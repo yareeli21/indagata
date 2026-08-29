@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }} · {{ request.app.state.nombre_proyecto }}</title>
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', path='favicon.png') }}">
+    {% block css_extra %}{% endblock %}
+</head>
+<body>
+
+    {% if request.url.path != '/login' %}
+    <aside class="barra-lateral">
+        <div class="marca-lateral">{{ request.app.state.nombre_proyecto }}</div>
+
+        <nav class="nav-lateral">
+            <a href="/instrumentos" class="item-nav {{ 'activo' if request.url.path == '/instrumentos' else '' }}">
+                <svg class="icono-nav" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
+                </svg>
+                Consultar
+            </a>
+            <a href="/cargar" class="item-nav {{ 'activo' if request.url.path == '/cargar' else '' }}">
+                <svg class="icono-nav" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M12 5v14M5 12h14"/>
+                </svg>
+                Cargar
+            </a>
+            <a href="/kpis" class="item-nav {{ 'activo' if request.url.path == '/kpis' else '' }}">
+                <svg class="icono-nav" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M4 20V10M12 20V4M20 20v-7"/>
+                </svg>
+                Indicadores
+            </a>
+        </nav>
+
+        <div class="usuario-lateral">
+            <div class="avatar-usuario">{{ (usuario_nombre or "U")[0] | upper }}</div>
+            <div>
+                <div class="nombre-usuario">{{ usuario_nombre or "Usuario" }}</div>
+                <a href="/logout" class="cerrar-sesion">Cerrar sesión</a>
+            </div>
+        </div>
+    </aside>
+    {% endif %}
+
+    <main class="contenedor {{ '' if request.url.path == '/login' else 'con-barra-lateral' }}">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="/static/js/base.js"></script>
+    {% block js_extra %}{% endblock %}
+</body>
+</html>

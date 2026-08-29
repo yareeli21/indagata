@@ -1,0 +1,90 @@
+#el docker compose
+
+services:
+
+    postgres:
+      image: postgres:16
+      container_name: superchido_postgres 
+
+      environment:
+        POSTGRES_DB: ${POSTGRES_DB}
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+      ports:
+        - "${POSTGRES_PORT}:5432"
+
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+        - ./postgres/init:/docker-entrypoint-initdb.d
+
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+        interval: 5s
+        timeout: 5s
+        retries: 5
+        start_period: 10s
+
+      restart: unless-stopped
+
+    ollama:
+       image: ollama/ollama:latest
+       container_name: superchido_ollama
+
+       ports:
+        - "11434:11434"
+
+       volumes:
+        - ollama_data:/root/.ollama
+
+       gpus: all
+
+       environment:
+         - NVIDIA_VISIBLE_DEVICES=all
+         - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+         - OLLAMA_DEBUG=1
+
+       restart: unless-stopped
+
+    fastapi:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: superchido_fastapi
+
+      environment:
+        POSTGRES_DB: ${POSTGRES_DB}
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        POSTGRES_HOST: postgres
+        POSTGRES_PORT: 5432
+        APP_NAME: ${APP_NAME}
+        APP_ENV: ${APP_ENV}
+        DEBUG: ${DEBUG}
+        OLLAMA_HOST: http://ollama:11434
+        OLLAMA_MODEL: ${OLLAMA_MODEL}
+        CHROMA_PATH: ${CHROMA_PATH}
+        RAW_PATH: ${RAW_PATH}
+        JSON_PATH: ${JSON_PATH}
+        SAV_PATH: ${SAV_PATH}
+        TEMP_PATH: ${TEMP_PATH}
+        SECRET_KEY: ${SECRET_KEY}
+        LOG_LEVEL: ${LOG_LEVEL}
+
+      ports:
+        - "8000:8000"
+      volumes:
+        - ./storage:/app/storage
+        - ./chromadb/data:/app/chromadb/data
+      depends_on:
+         postgres:
+            condition: service_healthy
+      
+         ollama:
+            condition: service_started
+
+      restart: unless-stopped
+      
+volumes:
+   postgres_data:
+   ollama_data:

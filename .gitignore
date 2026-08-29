@@ -1,0 +1,42 @@
+# .gitignore
+
+#entornos virtuales de python
+backend/venv/
+venv/
+__pycache__/
+*.pyc 
+
+#variables de entorno donde no debemos subir usuarios y contraseñas
+.env
+backend/.env 
+
+#el almacenamiento local generado por la app
+storage/raw/*
+storage/json/*
+storage/sav/*
+storage/temp/*
+!storage/raw/.gitkeep
+!storage/json/.gitkeep
+!storage/sav/.gitkeep
+!storage/temp/.gitkeep
+
+#chromadb almacenando los datos vectorizados, no en código
+
+chromadb/data/*
+!chromadb/data/.gitkeep
+
+#modelos de ollama descargados 
+ollama/models/*
+
+#logs
+logs/*.log
+
+#IDEs
+.vscode/
+.idea/
+
+#windows
+Thumbs.db
+
+#docker
+docker/*.log

@@ -1,0 +1,59 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<h1>Chat de IA</h1>
+<p class="subtitulo">Consulta en lenguaje natural sobre los instrumentos procesados</p>
+
+<div class="tarjeta">
+    <label for="instrumento">Instrumento</label>
+    <select class="campo" id="instrumento">
+        <option value="encuestas">Encuestas</option>
+        <option value="entrevistas">Entrevistas</option>
+        <option value="pruebas_estandarizadas">Pruebas estandarizadas</option>
+    </select>
+
+    <label for="pregunta">Pregunta</label>
+    <input class="campo" type="text" id="pregunta" placeholder="Ej. ¿Cuál fue el nivel de satisfacción promedio?">
+
+    <button class="boton" id="btn-consultar">Preguntar</button>
+</div>
+
+<div id="respuesta-contenedor" class="tarjeta" style="display: none;">
+    <strong>Respuesta:</strong>
+    <p id="respuesta-texto"></p>
+</div>
+
+{% endblock %}
+
+{% block js_extra %}
+<script>
+document.getElementById('btn-consultar').addEventListener('click', async () => {
+    const pregunta = document.getElementById('pregunta').value.trim();
+    const instrumento = document.getElementById('instrumento').value;
+    if (!pregunta) return;
+
+    const contenedor = document.getElementById('respuesta-contenedor');
+    const texto = document.getElementById('respuesta-texto');
+    texto.textContent = 'Consultando...';
+    contenedor.style.display = 'block';
+
+    try {
+        const resp = await fetch('/chat/consultar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pregunta, instrumento })
+        });
+        const datos = await resp.json();
+        texto.textContent = datos.respuesta;
+    } catch (err) {
+        texto.textContent = 'Ocurrió un error al consultar. Intenta de nuevo.';
+    }
+});
+</script>
+<!--
+    TODO (responsable de esta pantalla):
+    - Reemplazar la lógica mockup en routers/chat.py -> rag_backend.rag_service.consultar()
+    - Mostrar los chunks_recuperados (fuente) además de la respuesta
+    - Guardar el historial de la conversación en pantalla (y en tabla rag_log)
+-->
+{% endblock %}

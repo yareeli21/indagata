@@ -1,0 +1,24 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<h1>Catálogo de KPIs</h1>
+<p class="subtitulo">Indicadores disponibles por tipo de instrumento</p>
+
+{% if kpis %}
+<div class="tarjetas-grid">
+    {% for kp in kpis %}
+    <div class="tarjeta">
+        <span class="etiqueta">{{ kp.nombre }}</span>
+        <h3 style="margin: 0.5rem 0 0.25rem 0;">{{ kp.descripcion }}</h3>
+        <p style="margin: 0; color: var(--color-azul-petroleo);">{{ kp.objetivo }}</p>
+    </div>
+    {% endfor %}
+
+{% else %}
+    <div class="tarjeta" style="text-align: center; color: var(--color-azul-petroleo);">
+        Todavía no hay KPIs registrados en la base de datos.<br>
+        En cuanto se agreguen, aparecerán aquí automáticamente.
+    </div>
+{% endif %}
+
+{% endblock %}

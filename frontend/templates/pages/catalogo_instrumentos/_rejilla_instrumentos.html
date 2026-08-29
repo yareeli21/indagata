@@ -1,0 +1,19 @@
+<div class="rejilla-instrumentos">
+    {% for instrumento in instrumentos %}
+    <article class="ficha-instrumento ficha-instrumento--{{ instrumento.tipo_slug }}">
+        <div class="ficha-cabecera">
+            <span class="codigo-catalogo">{{ instrumento.codigo }}</span>
+        </div>
+        <span class="etiqueta">{{ instrumento.tipo }}</span>
+        <h3 class="ficha-titulo">{{ instrumento.nombre }}</h3>
+        <p style="margin: 0.5rem 0 0 0; color: var(--color-azul-petroleo); font-weight: 600;">
+            {{ instrumento.estado }}
+        </p>
+    </article>
+    {% else %}
+    <div class="tarjeta estado-vacio">
+        Todavía no hay instrumentos procesados en la base de datos.<br>
+        <span class="estado-vacio__detalle">En cuanto se cargue uno desde el pipeline de limpieza, aparecerá aquí automáticamente.</span>
+    </div>
+    {% endfor %}
+</div>

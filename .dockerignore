@@ -1,0 +1,14 @@
+# .dockerignore en la raíz del proyetco
+
+backend/venv/
+backend/.env
+.env
+**/__pycache__/
+**/*.pyc
+storage/raw/*
+storage/json/*
+storage/sav/*
+storage/temp/*
+chromadb/data/*
+.git/
+

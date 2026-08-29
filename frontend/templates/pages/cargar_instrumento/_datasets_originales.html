@@ -1,0 +1,11 @@
+<div class="lista-datasets">
+    {% for dataset in datasets_originales %}
+    <article class="tarjeta-dataset" onclick="verCrudo('{{ dataset.id_archivo_drive }}', '{{ dataset.nombre }}')" style="cursor:pointer;">
+        <span class="pill-tipo">{{ dataset.plataforma or "Instrumento" }}</span>
+        <h4 class="dataset-nombre">{{ dataset.nombre }}</h4>
+        <span class="dataset-fecha">{{ dataset.fecha_procesamiento.strftime('%d/%m/%Y') if dataset.fecha_procesamiento else '' }}</span>
+    </article>
+    {% else %}
+    <p class="datasets-vacio">No hay datasets originales con estos filtros.</p>
+    {% endfor %}
+</div>

@@ -1,0 +1,84 @@
+<!-- pantallas/login/login.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ titulo }}</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* --- LA IMAGEN DE FONDO --- */
+            background-image: url("/static/img/abstracto-login.png");
+            background-size: cover;       /* cubre toda la pantalla */
+            background-position: center;  /* centrada */
+            background-repeat: no-repeat;
+            font-family: sans-serif;
+        }
+
+        .login-card {
+            background-color: #FFFFFF;   /* el cuadrito queda sólido, encima del fondo */
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .login-card h1 {
+            color: #1C3258; /* Azul Marino */
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .login-card input {
+            width: 100%;
+            padding: 0.7rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .login-card button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color:  #0c3b2e; /* Naranja Indagata */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-card button:hover {
+            background-color: #2563EB; /* Azul Acción */
+        }
+
+        .error {
+            color: #c0392b;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h1>{{ titulo }}</h1>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="post" action="/login">
+            <input type="text" name="usuario" placeholder="Usuario" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>

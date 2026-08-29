@@ -1,0 +1,437 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<div class="encabezado-catalogo">
+    <p class="eyebrow">Repositorio de instrumentos · Aprende RAG</p>
+    <h1>Consulta</h1>
+    <p class="subtitulo">Encuentra y selecciona las fuentes en las que se basará tu búsqueda</p>
+</div>
+
+<div class="panel-consulta">
+    <!-- Columna izquierda: filtros rápidos + historial -->
+    <aside class="panel-filtros">
+        <button class="filtro-tipo" data-instrumento="encuesta">
+            <span class="icono-mini">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 3h6a1 1 0 0 1 1 1v1H8V4a1 1 0 0 1 1-1z"/>
+                    <rect x="6" y="4" width="12" height="17" rx="2"/>
+                    <path d="M9 11l1.5 1.5L13 10M9 15l1.5 1.5L13 14"/>
+                </svg>
+            </span>
+            <div>
+                <span class="filtro-titulo">Encuestas</span>
+                <span class="filtro-desc">Recopila feedback de participantes.</span>
+            </div>
+        </button>
+
+        <button class="filtro-tipo" data-instrumento="entrevista">
+            <span class="icono-mini">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="10.5" y="10" width="3" height="5" rx="1.5"/>
+                    <path d="M6 9a3 3 0 0 1 3-3h1M6 9v2a3 3 0 0 0 3 3h1M18 9a3 3 0 0 0-3-3h-1M18 9v2a3 3 0 0 1-3 3h-1"/>
+                </svg>
+            </span>
+            <div>
+                <span class="filtro-titulo">Entrevistas</span>
+                <span class="filtro-desc">Preguntas clave para líderes educativos.</span>
+            </div>
+        </button>
+
+        <button class="filtro-tipo" data-instrumento="prueba estandarizada">
+            <span class="icono-mini">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h9l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+                    <path d="M9 13l2 2 4-4"/>
+                </svg>
+            </span>
+            <div>
+                <span class="filtro-titulo">Pruebas estandarizadas</span>
+                <span class="filtro-desc">Instrumentos validados.</span>
+            </div>
+        </button>
+
+        <button class="filtro-tipo filtro-tipo--todos" data-instrumento="todos">
+            <span class="icono-mini icono-mini--claro">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9.5" cy="14.5" r="4.5"/>
+                    <path d="M12.8 17.8L16 21M14 4h4v4M14 8l4-4"/>
+                </svg>
+            </span>
+            <div>
+                <span class="filtro-titulo">Buscar en todos</span>
+                <span class="filtro-desc">Búsqueda simultánea en el sistema.</span>
+            </div>
+        </button>
+
+        <div class="caja-historial">
+            <h4>Historial</h4>
+            <ul id="lista-historial" class="lista-historial">
+                <li class="historial-vacio">Aún no has buscado fuentes.</li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Columna derecha: mini-chat + fuentes -->
+    <div class="panel-principal">
+        <div class="fila-chat-fuentes">
+            <div class="mini-chat">
+                <div class="mini-chat-cabecera">
+                    <span class="mini-chat-titulo">Chat RAG</span>
+                    <span class="mini-chat-subtitulo">Pregunta qué fuentes usar, no el contenido</span>
+                </div>
+                <div id="resultados-mini-chat" class="mini-chat-resultados">
+                    <p class="mini-chat-placeholder">Ej. "¿qué entrevistas hablan de dificultad de aprendizaje?"</p>
+                </div>
+                <form id="form-mini-chat" class="mini-chat-form">
+                    <input type="text" id="input-mini-chat" placeholder="Escribe tu pregunta..." autocomplete="off">
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+
+            <div class="panel-fuentes">
+                <h4>Fuentes seleccionadas</h4>
+                <ul id="lista-fuentes" class="lista-fuentes">
+                    <li class="fuentes-vacio">Ningún instrumento seleccionado todavía.</li>
+                </ul>
+                <button id="boton-continuar" class="boton boton-continuar" disabled>
+                    Continuar con estas fuentes →
+                </button>
+            </div>
+        </div>
+
+        <div class="panel-grafo">
+            <h4>Grafo interesantoso</h4>
+            <p class="grafo-placeholder">Próximamente: visualización de relaciones entre instrumentos según similitud semántica.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Instrumentos ocultos, disponibles para el mini-chat y los filtros -->
+<div id="datos-instrumentos" hidden>
+    {% for instrumento in instrumentos %}
+    <span
+        class="dato-instrumento"
+        data-id="{{ instrumento.id }}"
+        data-nombre="{{ instrumento.nombre }}"
+        data-tipo="{{ instrumento.tipo_slug }}"
+    ></span>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block css_extra %}
+<style>
+    .panel-consulta {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    /* --- Columna filtros --- */
+    .panel-filtros {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .filtro-tipo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background-color: #fff;
+        border: 1px solid var(--color-borde);
+        border-radius: 12px;
+        padding: 0.85rem;
+        text-align: left;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .filtro-tipo:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--sombra-suave);
+    }
+    .filtro-tipo.activo {
+        border-color: var(--color-azul-cielo);
+        background-color: var(--color-rosa-claro);
+    }
+
+    .icono-mini {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background-color: var(--color-azul-cielo);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .icono-mini svg { width: 18px; height: 18px; }
+    .icono-mini--claro { background-color: var(--color-azul-petroleo); }
+
+    .filtro-titulo { display: block; font-weight: 700; color: var(--color-azul-petroleo); font-size: 0.9rem; }
+    .filtro-desc { display: block; font-size: 0.75rem; opacity: 0.7; }
+
+    .filtro-tipo--todos {
+        background-color: var(--color-azul-petroleo);
+        border-color: var(--color-azul-petroleo);
+    }
+    .filtro-tipo--todos .filtro-titulo,
+    .filtro-tipo--todos .filtro-desc { color: var(--color-texto-claro); opacity: 1; }
+
+    .caja-historial {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: var(--sombra-suave);
+        margin-top: 0.5rem;
+    }
+    .caja-historial h4 { margin: 0 0 0.6rem 0; color: var(--color-azul-petroleo); font-size: 0.85rem; }
+    .lista-historial { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+    .lista-historial li {
+        font-size: 0.82rem;
+        padding: 0.4rem 0.6rem;
+        border-radius: 8px;
+        background: var(--color-rosa-claro);
+        cursor: pointer;
+    }
+    .historial-vacio { background: transparent !important; opacity: 0.6; cursor: default !important; }
+
+    /* --- Columna principal --- */
+    .fila-chat-fuentes {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .mini-chat {
+        background-color: var(--color-rosa-mauve);
+        border-radius: 16px;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        min-height: 260px;
+    }
+    .mini-chat-cabecera { margin-bottom: 0.75rem; }
+    .mini-chat-titulo { display: block; font-size: 1.3rem; font-weight: 800; color: var(--color-azul-petroleo); }
+    .mini-chat-subtitulo { display: block; font-size: 0.8rem; color: var(--color-azul-petroleo); opacity: 0.8; }
+
+    .mini-chat-resultados {
+        flex-grow: 1;
+        background: rgba(255,255,255,0.5);
+        border-radius: 10px;
+        padding: 0.85rem;
+        margin-bottom: 0.75rem;
+        overflow-y: auto;
+        max-height: 220px;
+    }
+    .mini-chat-placeholder { font-size: 0.85rem; color: var(--color-azul-petroleo); opacity: 0.7; margin: 0; }
+
+    .resultado-instrumento {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        border-radius: 8px;
+        padding: 0.5rem 0.75rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
+    }
+    .resultado-instrumento button {
+        background: var(--color-azul-petroleo);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+        cursor: pointer;
+    }
+
+    .mini-chat-form { display: flex; gap: 0.5rem; }
+    .mini-chat-form input {
+        flex-grow: 1;
+        padding: 0.6rem 0.8rem;
+        border-radius: 8px;
+        border: none;
+        font-size: 0.9rem;
+    }
+    .mini-chat-form button {
+        background: var(--color-azul-petroleo);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.6rem 1rem;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .panel-fuentes {
+        background-color: var(--color-azul-cielo);
+        border-radius: 16px;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+    }
+    .panel-fuentes h4 { margin: 0 0 0.75rem 0; color: var(--color-texto-claro); }
+
+    .lista-fuentes { list-style: none; margin: 0 0 1rem 0; padding: 0; flex-grow: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+    .lista-fuentes li {
+        background: rgba(255,255,255,0.85);
+        border-radius: 8px;
+        padding: 0.5rem 0.7rem;
+        font-size: 0.85rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .lista-fuentes li button {
+        background: none;
+        border: none;
+        color: var(--color-azul-petroleo);
+        cursor: pointer;
+        font-weight: 700;
+    }
+    .fuentes-vacio { background: transparent !important; color: var(--color-texto-claro); opacity: 0.85; }
+
+    .boton-continuar {
+        width: 100%;
+        background-color: var(--color-azul-petroleo);
+    }
+    .boton-continuar:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    .boton-continuar:not(:disabled):hover {
+        background-color: var(--color-rosa-mauve);
+    }
+
+    .panel-grafo {
+        background: #fff;
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: var(--sombra-suave);
+        min-height: 160px;
+    }
+    .panel-grafo h4 { margin: 0 0 0.5rem 0; color: var(--color-azul-petroleo); }
+    .grafo-placeholder { color: var(--color-azul-cielo); font-size: 0.9rem; }
+
+    @media (max-width: 900px) {
+        .panel-consulta { grid-template-columns: 1fr; }
+        .fila-chat-fuentes { grid-template-columns: 1fr; }
+    }
+</style>
+{% endblock %}
+
+{% block js_extra %}
+<script>
+(function () {
+    const instrumentosDisponibles = Array.from(document.querySelectorAll('.dato-instrumento')).map(el => ({
+        id: el.dataset.id,
+        nombre: el.dataset.nombre,
+        tipo: el.dataset.tipo,
+    }));
+
+    const fuentesSeleccionadas = new Map();
+    const historial = [];
+
+    const listaFuentes = document.getElementById('lista-fuentes');
+    const listaHistorial = document.getElementById('lista-historial');
+    const botonContinuar = document.getElementById('boton-continuar');
+
+    function renderFuentes() {
+        if (fuentesSeleccionadas.size === 0) {
+            listaFuentes.innerHTML = '<li class="fuentes-vacio">Ningún instrumento seleccionado todavía.</li>';
+            botonContinuar.disabled = true;
+            return;
+        }
+        listaFuentes.innerHTML = '';
+        fuentesSeleccionadas.forEach((nombre, id) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${nombre}</span><button data-id="${id}">✕</button>`;
+            listaFuentes.appendChild(li);
+        });
+        botonContinuar.disabled = false;
+    }
+
+    function agregarFuente(id, nombre) {
+        if (!fuentesSeleccionadas.has(id)) {
+            fuentesSeleccionadas.set(id, nombre);
+            if (!historial.includes(nombre)) {
+                historial.unshift(nombre);
+                renderHistorial();
+            }
+        }
+        renderFuentes();
+    }
+
+    function renderHistorial() {
+        if (historial.length === 0) {
+            listaHistorial.innerHTML = '<li class="historial-vacio">Aún no has buscado fuentes.</li>';
+            return;
+        }
+        listaHistorial.innerHTML = '';
+        historial.slice(0, 6).forEach(nombre => {
+            const li = document.createElement('li');
+            li.textContent = nombre;
+            listaHistorial.appendChild(li);
+        });
+    }
+
+    listaFuentes.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            fuentesSeleccionadas.delete(e.target.dataset.id);
+            renderFuentes();
+        }
+    });
+
+    // Filtros rápidos del sidebar: agregan TODOS los instrumentos de ese tipo
+    document.querySelectorAll('.filtro-tipo').forEach(boton => {
+        boton.addEventListener('click', () => {
+            const tipo = boton.dataset.instrumento;
+            window.location.href = `/chat?tipo=${encodeURIComponent(tipo)}`;
+        });
+    });
+
+    // Mini-chat: búsqueda simple por coincidencia de texto en el nombre
+    // TODO: reemplazar por consulta semántica real contra ChromaDB cuando esté listo el pipeline
+    const formMiniChat = document.getElementById('form-mini-chat');
+    const inputMiniChat = document.getElementById('input-mini-chat');
+    const resultadosMiniChat = document.getElementById('resultados-mini-chat');
+
+    formMiniChat.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const consulta = inputMiniChat.value.trim().toLowerCase();
+        if (!consulta) return;
+
+        const palabras = consulta.split(/\s+/);
+        const coincidencias = instrumentosDisponibles.filter(i =>
+            palabras.some(p => i.nombre.toLowerCase().includes(p))
+        );
+
+        resultadosMiniChat.innerHTML = '';
+        if (coincidencias.length === 0) {
+            resultadosMiniChat.innerHTML = '<p class="mini-chat-placeholder">No se encontraron instrumentos relacionados.</p>';
+            return;
+        }
+        coincidencias.forEach(i => {
+            const div = document.createElement('div');
+            div.className = 'resultado-instrumento';
+            div.innerHTML = `<span>${i.nombre}</span><button data-id="${i.id}" data-nombre="${i.nombre}">+ Agregar</button>`;
+            resultadosMiniChat.appendChild(div);
+        });
+    });
+
+    resultadosMiniChat.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            agregarFuente(e.target.dataset.id, e.target.dataset.nombre);
+        }
+    });
+
+    // Paso al chat grande, con las fuentes seleccionadas como filtro
+    botonContinuar.addEventListener('click', () => {
+        const ids = Array.from(fuentesSeleccionadas.keys()).join(',');
+        window.location.href = `/chat?instrumentos=${encodeURIComponent(ids)}`;
+    });
+})();
+</script>
+{% endblock %}
