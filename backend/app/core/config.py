@@ -35,6 +35,7 @@ class AppSettings(BaseSettings): #esta clase va a obtener automáticamente los v
     JSON_PATH: str
     SAV_PATH: str
     TEMP_PATH: str
+    DATA_PATH: str
 
     #seguridad
     SECRET_KEY: str
@@ -42,6 +43,17 @@ class AppSettings(BaseSettings): #esta clase va a obtener automáticamente los v
     #logs que mostrarán errores
 
     LOG_LEVEL: str
+
+    #umbral para textos largos
+    LIMPIEZA_VENTANA_CHARS: int = 1000
+    #umbral para el solapamiento en los chunks, teniendo en cuenta que nuestro chunks son de 500 tokens
+    LIMPIEZA_SOLAPE_CHARS: int = 150
+
+    #intervalo del polling del pipeline de limpieza 
+    LIMPIEZA_INTERVALO_SEGUNDOS: int =  30
+
+    #la expiración del JWT debe ser configurable
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
 
     model_config=SettingsConfigDict(
         env_file=".env",
@@ -92,8 +104,9 @@ class AppSettings(BaseSettings): #esta clase va a obtener automáticamente los v
     def chroma_path_abs(self) -> Path:
         return _PROJECT_ROOT / self.CHROMA_PATH.lstrip("/")
 
+    @property 
+    def data_path_abs(self) -> Path:
+        return _PROJECT_ROOT / self.DATA_PATH.lstrip("/")
+
 
 settings=AppSettings() #se ha creado la instancia de la clase AppSettings
-
-print("POSTGRES_USER cargado:", settings.POSTGRES_USER)
-print("POSTGRES_HOST cargado:", settings.POSTGRES_HOST)

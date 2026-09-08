@@ -6,6 +6,8 @@ python-multipart
 pydantic
 pydantic-settings
 python-dotenv
+python-docx >=1.1.0
+pyreadstat >=1.2.0
 
 sqlalchemy
 psycopg[binary]
