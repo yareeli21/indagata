@@ -36,13 +36,13 @@ from sqlalchemy import and_, or_
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
-from cargar_instru.models import (
+from app.models.models_cargar_instru import (
     InstrumentoProcesado,
     PermisoInstrumento,
     RawData,
     Usuario,
 )
-from cargar_instru.schemas import (
+from app.schemas.schemas_cargar_instru import (
     ArtefactosDisponibles,
     FiltrosInstrumento,
     InstrumentoCreate,

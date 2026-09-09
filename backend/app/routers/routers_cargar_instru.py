@@ -25,7 +25,7 @@ Tablas consultadas por este módulo:
   instrumento_procesado, raw_data, permiso_instrumento, usuarios
   (pipeline_limpieza_log no se consulta desde aquí)
 """
-
+#los routers somo como controllers a los cuales les llegan las peticiones de lo que alguien quiere hacer en la interfaz
 from __future__ import annotations
 
 from typing import Annotated
@@ -42,15 +42,15 @@ from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
 from app.database.database import get_db
-from cargar_instru.dependencies import (
+from app.dependencies.dependencies_cargar_instru import (
     DBSession,
     InstrumentoAcceso,
     InstrumentoProp,
     UsuarioActual,
     get_instrumento_o_404,
 )
-from cargar_instru.models import InstrumentoProcesado
-from cargar_instru.schemas import (
+from app.models.models_cargar_instru import InstrumentoProcesado
+from app.schemas.schemas_cargar_instru import (
     ArtefactosDisponibles,
     CargaResponse,
     FiltrosInstrumento,
@@ -64,7 +64,7 @@ from cargar_instru.schemas import (
     Visibilidad,
     VisibilidadUpdate,
 )
-from cargar_instru.services import InstrumentoService
+from app.services.services_cargar_instru import InstrumentoService
 
 app = APIRouter()
 

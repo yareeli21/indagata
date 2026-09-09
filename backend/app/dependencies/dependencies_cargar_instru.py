@@ -26,7 +26,7 @@ from sqlalchemy.orm import Session
 
 from app.core.config import settings
 from app.database.database import get_db
-from cargar_instru.models import InstrumentoProcesado, PermisoInstrumento, Usuario
+from app.models.models_cargar_instru import InstrumentoProcesado, PermisoInstrumento, Usuario
 
 # ---------------------------------------------------------------------------
 # Esquema OAuth2
