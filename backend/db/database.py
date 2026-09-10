@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from app.core.config import settings
+from sqlalchemy.ext.declarative import declarative_base
 
 
 #se crea el motor, como el administrador de conexiones, prepara todo para un conexión
@@ -17,6 +18,7 @@ SessionLocal=sessionmaker(
     autoflush=False,
     autocommit=False
 )
+Base = declarative_base()
 #abre la conexi+on, usa la conexión y cierra la conexión, es la dependency para FASTAPI
 def get_db():
     db=SessionLocal()
@@ -25,3 +27,6 @@ def get_db():
         yield db 
     finally:
         db.close()
+
+def create_tables():
+    Base.metadata.create_all(bind=engine)
