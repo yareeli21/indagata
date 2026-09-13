@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+
+<body>
+
+    <main class="auth-card">
+
+        <section class="auth-visual">
+            <img class="auth-visual__art" src="RUTA_DE_TU_IMAGEN.jpg" alt="">
+            <span class="auth-visual__label">WELCOME</span>
+        </section>
+
+        <section class="auth-form">
+            <h1>Login</h1>
+
+            <form>
+                <div class="field">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="field field--password">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+
+            <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+        </section>
+
+    </main>
+
+
+</body>
+
+</html>

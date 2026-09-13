@@ -149,7 +149,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
     usuario_id    INTEGER      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     usuario       VARCHAR(50)  UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    creado_en     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
+    correo         VARCHAR(60)  NOT NULL,
+    fecha     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ── Archivos crudos ───────────────────────────────────────────────────────────

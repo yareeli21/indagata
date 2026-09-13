@@ -2,12 +2,11 @@
 from sqlalchemy import String, Text, Numeric, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.database.base import Base
+from db.base import Base
 
 
 class Kpi(Base):
     __tablename__ = "kpi"
-    __table_args__ = {"schema": "tt_rag"}
 
     kpi_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     nombrekpi: Mapped[str] = mapped_column(String(255), nullable=False)
