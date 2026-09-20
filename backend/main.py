@@ -16,8 +16,6 @@ app.mount(
     name="static"
 )
 
-
-
 templates = Jinja2Templates(
     directory=str(BASE_DIR / "frontend" / "landing" / "templates")#osea las carpetas donde van a estar los templates
 )
@@ -28,3 +26,6 @@ def root(request:Request):
         request=request, 
         name="index.html"
         )
+
+@app.get("/dashboard", response_class=HTMLResponse)
+def dashboard

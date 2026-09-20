@@ -24,3 +24,7 @@ async def ver_catalogo_kpis(request: Request, db: Session = Depends(get_db)):
         "pages/catalogo_kpis/catalogo_kpis.html",
         {"titulo": "Catálogo de KPIs", "kpis": kpis},
     )
+
+
+
+
