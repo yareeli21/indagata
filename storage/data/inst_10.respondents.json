@@ -1,0 +1,318 @@
+[
+  {
+    "respondent_id": "R1",
+    "n_respondidas": 5,
+    "n_omitidas": 6,
+    "respuestas": [
+      {
+        "question_id": "q_001",
+        "pregunta": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental?",
+        "value_labels": "No estoy seguro(a)"
+      },
+      {
+        "question_id": "q_002",
+        "pregunta": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "value_labels": [
+          "Página web institucional",
+          "Compañeros"
+        ]
+      },
+      {
+        "question_id": "q_003",
+        "pregunta": "¿Has utilizado los servicios de apoyo psicológico de la institución?",
+        "value_labels": "No"
+      },
+      {
+        "question_id": "q_007",
+        "pregunta": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "value_labels": [
+          "No considero que lo necesite"
+        ]
+      },
+      {
+        "question_id": "q_008",
+        "pregunta": "¿Cómo calificarías tu bienestar emocional durante el semestre actual?",
+        "value_labels": "3"
+      }
+    ],
+    "resumen": "El respondente Sabías que la institución ofrece servicios de apoyo…: No estoy seguro(a), Cómo te enteraste de los servicios de salud…: Página web institucional, Compañeros y Has utilizado los servicios de apoyo psicológico de…: No.",
+    "respuestas_abiertas": [],
+    "trazabilidad": {
+      "fila_origen": 1
+    }
+  },
+  {
+    "respondent_id": "R2",
+    "n_respondidas": 4,
+    "n_omitidas": 7,
+    "respuestas": [
+      {
+        "question_id": "q_001",
+        "pregunta": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental?",
+        "value_labels": "No"
+      },
+      {
+        "question_id": "q_003",
+        "pregunta": "¿Has utilizado los servicios de apoyo psicológico de la institución?",
+        "value_labels": "No"
+      },
+      {
+        "question_id": "q_007",
+        "pregunta": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "value_labels": [
+          "No sabía que existían",
+          "No considero que lo necesite"
+        ]
+      },
+      {
+        "question_id": "q_008",
+        "pregunta": "¿Cómo calificarías tu bienestar emocional durante el semestre actual?",
+        "value_labels": "3"
+      }
+    ],
+    "resumen": "El respondente Sabías que la institución ofrece servicios de apoyo…: No, Has utilizado los servicios de apoyo psicológico de…: No y Si no has utilizado los servicios de salud…: No sabía que existían, No considero que lo necesite.",
+    "respuestas_abiertas": [],
+    "trazabilidad": {
+      "fila_origen": 2
+    }
+  },
+  {
+    "respondent_id": "R3",
+    "n_respondidas": 7,
+    "n_omitidas": 4,
+    "respuestas": [
+      {
+        "question_id": "q_001",
+        "pregunta": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental?",
+        "value_labels": "Sí"
+      },
+      {
+        "question_id": "q_002",
+        "pregunta": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "value_labels": [
+          "Página web institucional",
+          "Redes sociales",
+          "Compañeros"
+        ]
+      },
+      {
+        "question_id": "q_003",
+        "pregunta": "¿Has utilizado los servicios de apoyo psicológico de la institución?",
+        "value_labels": "Sí"
+      },
+      {
+        "question_id": "q_004",
+        "pregunta": "¿Con qué frecuencia has utilizado estos servicios?",
+        "value_labels": "4-5 veces"
+      },
+      {
+        "question_id": "q_005",
+        "pregunta": "¿Qué tipo de apoyo has utilizado?",
+        "value_labels": [
+          "Atención psicológica individual"
+        ]
+      },
+      {
+        "question_id": "q_006",
+        "pregunta": "Evalúa los siguientes aspectos del servicio de salud mental.",
+        "value_labels": {
+          "Accesibilidad del servicio": "Neutral",
+          "Horarios disponibles": "Muy buena",
+          "Confidencialidad": "Muy buena",
+          "Calidad de la atención": "Muy buena",
+          "Rapidez para obtener cita": "Buena"
+        }
+      },
+      {
+        "question_id": "q_008",
+        "pregunta": "¿Cómo calificarías tu bienestar emocional durante el semestre actual?",
+        "value_labels": "4"
+      }
+    ],
+    "resumen": "El respondente Sabías que la institución ofrece servicios de apoyo…: Sí, Cómo te enteraste de los servicios de salud…: Página web institucional, Redes sociales, Compañeros y Has utilizado los servicios de apoyo psicológico de…: Sí.",
+    "respuestas_abiertas": [],
+    "trazabilidad": {
+      "fila_origen": 3
+    }
+  },
+  {
+    "respondent_id": "R4",
+    "n_respondidas": 7,
+    "n_omitidas": 4,
+    "respuestas": [
+      {
+        "question_id": "q_001",
+        "pregunta": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental?",
+        "value_labels": "Sí"
+      },
+      {
+        "question_id": "q_002",
+        "pregunta": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "value_labels": [
+          "Compañeros"
+        ]
+      },
+      {
+        "question_id": "q_003",
+        "pregunta": "¿Has utilizado los servicios de apoyo psicológico de la institución?",
+        "value_labels": "Sí"
+      },
+      {
+        "question_id": "q_004",
+        "pregunta": "¿Con qué frecuencia has utilizado estos servicios?",
+        "value_labels": "2-3 veces"
+      },
+      {
+        "question_id": "q_005",
+        "pregunta": "¿Qué tipo de apoyo has utilizado?",
+        "value_labels": [
+          "Talleres de bienestar emocional"
+        ]
+      },
+      {
+        "question_id": "q_006",
+        "pregunta": "Evalúa los siguientes aspectos del servicio de salud mental.",
+        "value_labels": {
+          "Accesibilidad del servicio": "Buena",
+          "Horarios disponibles": "Buena",
+          "Confidencialidad": "Muy buena",
+          "Calidad de la atención": "Muy buena",
+          "Rapidez para obtener cita": "Buena"
+        }
+      },
+      {
+        "question_id": "q_008",
+        "pregunta": "¿Cómo calificarías tu bienestar emocional durante el semestre actual?",
+        "value_labels": "3"
+      }
+    ],
+    "resumen": "El respondente Sabías que la institución ofrece servicios de apoyo…: Sí, Cómo te enteraste de los servicios de salud…: Compañeros y Has utilizado los servicios de apoyo psicológico de…: Sí.",
+    "respuestas_abiertas": [],
+    "trazabilidad": {
+      "fila_origen": 4
+    }
+  },
+  {
+    "respondent_id": "R5",
+    "n_respondidas": 5,
+    "n_omitidas": 6,
+    "respuestas": [
+      {
+        "question_id": "q_001",
+        "pregunta": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental?",
+        "value_labels": "No estoy seguro(a)"
+      },
+      {
+        "question_id": "q_002",
+        "pregunta": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "value_labels": [
+          "No sabía que existían"
+        ]
+      },
+      {
+        "question_id": "q_003",
+        "pregunta": "¿Has utilizado los servicios de apoyo psicológico de la institución?",
+        "value_labels": "No"
+      },
+      {
+        "question_id": "q_007",
+        "pregunta": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "value_labels": [
+          "No sabía que existían"
+        ]
+      },
+      {
+        "question_id": "q_008",
+        "pregunta": "¿Cómo calificarías tu bienestar emocional durante el semestre actual?",
+        "value_labels": "4"
+      }
+    ],
+    "resumen": "El respondente Sabías que la institución ofrece servicios de apoyo…: No estoy seguro(a), Cómo te enteraste de los servicios de salud…: No sabía que existían y Has utilizado los servicios de apoyo psicológico de…: No.",
+    "respuestas_abiertas": [],
+    "trazabilidad": {
+      "fila_origen": 5
+    }
+  },
+  {
+    "respondent_id": "R6",
+    "n_respondidas": 5,
+    "n_omitidas": 6,
+    "respuestas": [
+      {
+        "question_id": "q_001",
+        "pregunta": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental?",
+        "value_labels": "Sí"
+      },
+      {
+        "question_id": "q_002",
+        "pregunta": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "value_labels": [
+          "Redes sociales"
+        ]
+      },
+      {
+        "question_id": "q_003",
+        "pregunta": "¿Has utilizado los servicios de apoyo psicológico de la institución?",
+        "value_labels": "No"
+      },
+      {
+        "question_id": "q_007",
+        "pregunta": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "value_labels": [
+          "Falta de tiempo"
+        ]
+      },
+      {
+        "question_id": "q_008",
+        "pregunta": "¿Cómo calificarías tu bienestar emocional durante el semestre actual?",
+        "value_labels": "2"
+      }
+    ],
+    "resumen": "El respondente Sabías que la institución ofrece servicios de apoyo…: Sí, Cómo te enteraste de los servicios de salud…: Redes sociales y Has utilizado los servicios de apoyo psicológico de…: No.",
+    "respuestas_abiertas": [],
+    "trazabilidad": {
+      "fila_origen": 6
+    }
+  },
+  {
+    "respondent_id": "R7",
+    "n_respondidas": 5,
+    "n_omitidas": 6,
+    "respuestas": [
+      {
+        "question_id": "q_001",
+        "pregunta": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental?",
+        "value_labels": "No estoy seguro(a)"
+      },
+      {
+        "question_id": "q_002",
+        "pregunta": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "value_labels": [
+          "Compañeros"
+        ]
+      },
+      {
+        "question_id": "q_003",
+        "pregunta": "¿Has utilizado los servicios de apoyo psicológico de la institución?",
+        "value_labels": "No"
+      },
+      {
+        "question_id": "q_007",
+        "pregunta": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "value_labels": [
+          "Preocupación por privacidad"
+        ]
+      },
+      {
+        "question_id": "q_008",
+        "pregunta": "¿Cómo calificarías tu bienestar emocional durante el semestre actual?",
+        "value_labels": "4"
+      }
+    ],
+    "resumen": "El respondente Sabías que la institución ofrece servicios de apoyo…: No estoy seguro(a), Cómo te enteraste de los servicios de salud…: Compañeros y Has utilizado los servicios de apoyo psicológico de…: No.",
+    "respuestas_abiertas": [],
+    "trazabilidad": {
+      "fila_origen": 7
+    }
+  }
+]

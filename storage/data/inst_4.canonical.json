@@ -1,0 +1,2040 @@
+{
+  "canonical_id": "sha256:db567020a20b3a9037e0a46ea1b5e78884c0b6710c8ab86f2be8d924b63aafb9",
+  "source": {
+    "platform_guess": "limesurvey",
+    "file_name": "4_1789697560_750e395a.csv",
+    "sheet": null
+  },
+  "dimensions": {
+    "n_rows": 7,
+    "n_columns": 40
+  },
+  "variables": [
+    {
+      "variable_id": "v_001",
+      "raw_header": "Response ID",
+      "normalized_name": "response_id",
+      "position": 1,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "1",
+            "count": 1
+          },
+          {
+            "value": "2",
+            "count": 1
+          },
+          {
+            "value": "3",
+            "count": 1
+          },
+          {
+            "value": "4",
+            "count": 1
+          },
+          {
+            "value": "5",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_002",
+      "raw_header": "Date submitted",
+      "normalized_name": "date_submitted",
+      "position": 2,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 6,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "2026-03-14 21:31:24",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 21:42:01",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 21:57:53",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 22:01:29",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 22:10:00",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_003",
+      "raw_header": "Last page",
+      "normalized_name": "last_page",
+      "position": 3,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "5",
+            "count": 6
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_004",
+      "raw_header": "Start language",
+      "normalized_name": "start_language",
+      "position": 4,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "en",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_005",
+      "raw_header": "Seed",
+      "normalized_name": "seed",
+      "position": 5,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "283659265",
+            "count": 1
+          },
+          {
+            "value": "722815346",
+            "count": 1
+          },
+          {
+            "value": "590812355",
+            "count": 1
+          },
+          {
+            "value": "3749830",
+            "count": 1
+          },
+          {
+            "value": "930883329",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_006",
+      "raw_header": "Date started",
+      "normalized_name": "date_started",
+      "position": 6,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "2026-03-14 18:19:49",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 21:22:13",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 21:37:51",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 21:42:37",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 21:58:20",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_007",
+      "raw_header": "Date last action",
+      "normalized_name": "date_last_action",
+      "position": 7,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "2026-03-14 18:19:49",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 21:31:24",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 21:42:01",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 21:57:53",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14 22:01:29",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_008",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre lo que aprendes en la escuela. [Estoy muy interesado/a en aprender.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes",
+      "position": 8,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre lo que aprendes en la escuela.",
+        "item": "Estoy muy interesado/a en aprender."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 4
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_009",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre lo que aprendes en la escuela. [Creo que lo que aprendemos en la escuela es interesante.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_2",
+      "position": 9,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre lo que aprendes en la escuela.",
+        "item": "Creo que lo que aprendemos en la escuela es interesante."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 3
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_010",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre lo que aprendes en la escuela. [Me gusta lo que aprendo en la escuela.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_3",
+      "position": 10,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre lo que aprendes en la escuela.",
+        "item": "Me gusta lo que aprendo en la escuela."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 5,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          },
+          {
+            "value": "En desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_011",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre lo que aprendes en la escuela. [Disfruto aprender cosas nuevas en clase.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_4",
+      "position": 11,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre lo que aprendes en la escuela.",
+        "item": "Disfruto aprender cosas nuevas en clase."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 2
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_012",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre lo que aprendes en la escuela. [Creo que aprender es aburrido.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_5",
+      "position": 12,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre lo que aprendes en la escuela.",
+        "item": "Creo que aprender es aburrido."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 4
+          },
+          {
+            "value": "En desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_013",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu escuela [Me gusta mi escuela]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_6",
+      "position": 13,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu escuela",
+        "item": "Me gusta mi escuela"
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "De acuerdo",
+            "count": 2
+          },
+          {
+            "value": "En desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_014",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu escuela [Me siento orgulloso/a de estar en esta escuela.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_7",
+      "position": 14,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu escuela",
+        "item": "Me siento orgulloso/a de estar en esta escuela."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "De acuerdo",
+            "count": 3
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          },
+          {
+            "value": "En desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_015",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu escuela [La mayoría de las mañanas tengo ganas de ir a la escuela.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_8",
+      "position": 15,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu escuela",
+        "item": "La mayoría de las mañanas tengo ganas de ir a la escuela."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 2
+          },
+          {
+            "value": "De acuerdo",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_016",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu escuela [Soy feliz de estar en esta escuela.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_9",
+      "position": 16,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu escuela",
+        "item": "Soy feliz de estar en esta escuela."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "De acuerdo",
+            "count": 2
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 2
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_017",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela. [Me esfuerzo mucho por hacerlo bien en la escuela.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_10",
+      "position": 17,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela.",
+        "item": "Me esfuerzo mucho por hacerlo bien en la escuela."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "De acuerdo",
+            "count": 4
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_018",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela. [En clase, trabajo todo lo que puedo.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_11",
+      "position": 18,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela.",
+        "item": "En clase, trabajo todo lo que puedo."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "En desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "De acuerdo",
+            "count": 2
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_019",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela. [Cuando estoy en clase, participo en las actividades.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_12",
+      "position": 19,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela.",
+        "item": "Cuando estoy en clase, participo en las actividades."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 5,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "En desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_020",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela. [Presto atención en clase.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_13",
+      "position": 20,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela.",
+        "item": "Presto atención en clase."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 2
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_021",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela. [Cuando estoy en clase, solo finjo que estoy trabajando]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_14",
+      "position": 21,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela.",
+        "item": "Cuando estoy en clase, solo finjo que estoy trabajando"
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 5,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "En desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_022",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela. [En la escuela, hago solo lo suficiente para pasar.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_15",
+      "position": 22,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela.",
+        "item": "En la escuela, hago solo lo suficiente para pasar."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 3
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "En desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_023",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela. [Cuando estoy en clase, mi mente divaga.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_16",
+      "position": 23,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela.",
+        "item": "Cuando estoy en clase, mi mente divaga."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 4
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_024",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela. [Si tengo problemas para entender algo, lo repaso hasta entenderlo.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_17",
+      "position": 24,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela.",
+        "item": "Si tengo problemas para entender algo, lo repaso hasta entenderlo."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 3
+          },
+          {
+            "value": "De acuerdo",
+            "count": 2
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_025",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela. [Cuando me encuentro con un problema difícil en la tarea, sigo trabajando hasta que creo haberlo resuelto.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_18",
+      "position": 25,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela.",
+        "item": "Cuando me encuentro con un problema difícil en la tarea, sigo trabajando hasta que creo haberlo resuelto."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 4
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_026",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu participación en actividades escolares. [Participo activamente en actividades escolares como el día del deporte o el día de campo.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_19",
+      "position": 26,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu participación en actividades escolares.",
+        "item": "Participo activamente en actividades escolares como el día del deporte o el día de campo."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 3
+          },
+          {
+            "value": "En desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_027",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu participación en actividades escolares. [Me ofrezco como voluntario/a para ayudar en actividades escolares como el día del deporte o la jornada de padres.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_20",
+      "position": 27,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu participación en actividades escolares.",
+        "item": "Me ofrezco como voluntario/a para ayudar en actividades escolares como el día del deporte o la jornada de padres."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 3
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_028",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu participación en actividades escolares. [Tengo un papel activo en las actividades extracurriculares de mi escuela.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_21",
+      "position": 28,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu participación en actividades escolares.",
+        "item": "Tengo un papel activo en las actividades extracurriculares de mi escuela."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 3
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 2
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_029",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Cuando estudio, trato de entender mejor el material relacionándolo con cosas que ya sé.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_22",
+      "position": 29,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": false,
+        "anomalies": [
+          {
+            "value": "En deesacuerdo",
+            "occurrences": 1,
+            "canonical_guess": "En desacuerdo"
+          }
+        ]
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Cuando estudio, trato de entender mejor el material relacionándolo con cosas que ya sé."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "De acuerdo",
+            "count": 3
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 2
+          },
+          {
+            "value": "En deesacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_030",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Cuando estudio, pienso en cómo la información podría ser útil en la vida real.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_23",
+      "position": 30,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": false,
+        "anomalies": [
+          {
+            "value": "En deesacuerdo",
+            "occurrences": 2,
+            "canonical_guess": "En desacuerdo"
+          }
+        ]
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Cuando estudio, pienso en cómo la información podría ser útil en la vida real."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 5,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "En deesacuerdo",
+            "count": 2
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_031",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Al aprender información nueva, trato de expresar las ideas con mis propias palabras.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_24",
+      "position": 31,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Al aprender información nueva, trato de expresar las ideas con mis propias palabras."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 4
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_032",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Cuando estudio, trato de conectar lo que aprendo con mis propias experiencias.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_25",
+      "position": 32,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": false,
+        "anomalies": [
+          {
+            "value": "En deesacuerdo",
+            "occurrences": 2,
+            "canonical_guess": "En desacuerdo"
+          }
+        ]
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Cuando estudio, trato de conectar lo que aprendo con mis propias experiencias."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "En deesacuerdo",
+            "count": 2
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_033",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Creo mis propios ejemplos para ayudarme a entender los conceptos importantes que aprendo en la escuela.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_26",
+      "position": 33,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": false,
+        "anomalies": [
+          {
+            "value": "En deesacuerdo",
+            "occurrences": 1,
+            "canonical_guess": "En desacuerdo"
+          }
+        ]
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Creo mis propios ejemplos para ayudarme a entender los conceptos importantes que aprendo en la escuela."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 3
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "En deesacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_034",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Al aprender cosas para la escuela, trato de ver cómo encajan con otras cosas que ya sé.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_27",
+      "position": 34,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": false,
+        "anomalies": [
+          {
+            "value": "En deesacuerdo",
+            "occurrences": 2,
+            "canonical_guess": "En desacuerdo"
+          }
+        ]
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Al aprender cosas para la escuela, trato de ver cómo encajan con otras cosas que ya sé."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "En deesacuerdo",
+            "count": 2
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_035",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Al aprender cosas para la escuela, trato de asociarlas con lo que aprendí en otras materias sobre temas iguales o similares.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_28",
+      "position": 35,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": false,
+        "anomalies": [
+          {
+            "value": "En deesacuerdo",
+            "occurrences": 1,
+            "canonical_guess": "En desacuerdo"
+          }
+        ]
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Al aprender cosas para la escuela, trato de asociarlas con lo que aprendí en otras materias sobre temas iguales o similares."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 2
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          },
+          {
+            "value": "En deesacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_036",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Trato de ver las similitudes y diferencias entre las cosas que estoy aprendiendo y las que ya sé.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_29",
+      "position": 36,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": false,
+        "anomalies": [
+          {
+            "value": "En deesacuerdo",
+            "occurrences": 1,
+            "canonical_guess": "En desacuerdo"
+          }
+        ]
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Trato de ver las similitudes y diferencias entre las cosas que estoy aprendiendo y las que ya sé."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 3
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "En deesacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_037",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Trato de entender cómo las cosas que aprendo en la escuela encajan entre sí.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_30",
+      "position": 37,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": false,
+        "anomalies": [
+          {
+            "value": "En deesacuerdo",
+            "occurrences": 1,
+            "canonical_guess": "En desacuerdo"
+          }
+        ]
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Trato de entender cómo las cosas que aprendo en la escuela encajan entre sí."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 5,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 2
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          },
+          {
+            "value": "En deesacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_038",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Trato de relacionar lo que ya sé con lo que estoy intentando aprender para la escuela.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_31",
+      "position": 38,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": false,
+        "anomalies": [
+          {
+            "value": "En deesacuerdo",
+            "occurrences": 1,
+            "canonical_guess": "En desacuerdo"
+          }
+        ]
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Trato de relacionar lo que ya sé con lo que estoy intentando aprender para la escuela."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 5,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "De acuerdo",
+            "count": 2
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 1
+          },
+          {
+            "value": "Totalmente desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "En deesacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_039",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Trato de analizar los temas y decidir qué se supone que debo aprender de ellos, en lugar de solo leerlos.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_32",
+      "position": 39,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": false,
+        "anomalies": [
+          {
+            "value": "En deesacuerdo",
+            "occurrences": 1,
+            "canonical_guess": "En desacuerdo"
+          }
+        ]
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Trato de analizar los temas y decidir qué se supone que debo aprender de ellos, en lugar de solo leerlos."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 3
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          },
+          {
+            "value": "En deesacuerdo",
+            "count": 1
+          },
+          {
+            "value": "De acuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_040",
+      "raw_header": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias. [Al estudiar, trato de combinar diferentes piezas de información del material del curso de nuevas maneras.]",
+      "normalized_name": "indica_tan_acuerdo_estas_cada_siguientes_33",
+      "position": 40,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Totalmente desacuerdo",
+          "En desacuerdo",
+          "Ni de acuerdo ni en desacuerdo",
+          "De acuerdo",
+          "Totalmente de acuerdo"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+        "item": "Al estudiar, trato de combinar diferentes piezas de información del material del curso de nuevas maneras."
+      },
+      "value_distribution": {
+        "n_non_null": 6,
+        "n_null": 1,
+        "null_ratio": 0.1429,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "De acuerdo",
+            "count": 3
+          },
+          {
+            "value": "Totalmente de acuerdo",
+            "count": 2
+          },
+          {
+            "value": "Ni de acuerdo ni en desacuerdo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "q_001",
+      "variable_ids": [
+        "v_008",
+        "v_009",
+        "v_010",
+        "v_011",
+        "v_012"
+      ],
+      "text": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre lo que aprendes en la escuela.",
+      "length_chars": 112,
+      "length_words": 20
+    },
+    {
+      "question_id": "q_002",
+      "variable_ids": [
+        "v_013",
+        "v_014",
+        "v_015",
+        "v_016"
+      ],
+      "text": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu escuela",
+      "length_chars": 92,
+      "length_words": 16
+    },
+    {
+      "question_id": "q_003",
+      "variable_ids": [
+        "v_017",
+        "v_018",
+        "v_019",
+        "v_020",
+        "v_021",
+        "v_022",
+        "v_023",
+        "v_024",
+        "v_025"
+      ],
+      "text": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo trabajas en la escuela.",
+      "length_chars": 110,
+      "length_words": 19
+    },
+    {
+      "question_id": "q_004",
+      "variable_ids": [
+        "v_026",
+        "v_027",
+        "v_028"
+      ],
+      "text": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre tu participación en actividades escolares.",
+      "length_chars": 124,
+      "length_words": 19
+    },
+    {
+      "question_id": "q_005",
+      "variable_ids": [
+        "v_029",
+        "v_030",
+        "v_031",
+        "v_032",
+        "v_033",
+        "v_034",
+        "v_035",
+        "v_036",
+        "v_037",
+        "v_038",
+        "v_039",
+        "v_040"
+      ],
+      "text": "Indica qué tan de acuerdo estás con cada una de las siguientes afirmaciones sobre cómo estudias.",
+      "length_chars": 96,
+      "length_words": 16
+    }
+  ]
+}

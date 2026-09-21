@@ -1,0 +1,878 @@
+[
+  {
+    "variable_id": "v_008",
+    "pregunta": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental?",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No estoy seguro(a)",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "No estoy seguro(a)",
+        "frequency": 3,
+        "percentage": 42.9
+      },
+      {
+        "value": "Sí",
+        "frequency": 3,
+        "percentage": 42.9
+      },
+      {
+        "value": "No",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental? — 7 respuestas; moda: No estoy seguro(a)"
+  },
+  {
+    "variable_id": "v_009",
+    "pregunta": "Página web institucional",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.29
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 5,
+        "percentage": 71.4
+      },
+      {
+        "value": "Yes",
+        "frequency": 2,
+        "percentage": 28.6
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Página web institucional — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_010",
+    "pregunta": "Redes sociales",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.29
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 5,
+        "percentage": 71.4
+      },
+      {
+        "value": "Yes",
+        "frequency": 2,
+        "percentage": 28.6
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Redes sociales — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_011",
+    "pregunta": "Profesores",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.0
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 7,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Profesores — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_012",
+    "pregunta": "Compañeros",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "Yes",
+      "media_codificada": 1.57
+    },
+    "distribution": [
+      {
+        "value": "Yes",
+        "frequency": 4,
+        "percentage": 57.1
+      },
+      {
+        "value": "No",
+        "frequency": 3,
+        "percentage": 42.9
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Compañeros — 7 respuestas; moda: Yes"
+  },
+  {
+    "variable_id": "v_013",
+    "pregunta": "Correo institucional",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.0
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 7,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Correo institucional — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_014",
+    "pregunta": "Eventos o campañas",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.0
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 7,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Eventos o campañas — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_015",
+    "pregunta": "No sabía que existían",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.14
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 6,
+        "percentage": 85.7
+      },
+      {
+        "value": "Yes",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "No sabía que existían — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_016",
+    "pregunta": "Otro",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.0
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 7,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Otro — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_017",
+    "pregunta": "¿Has utilizado los servicios de apoyo psicológico de la institución?",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.29
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 5,
+        "percentage": 71.4
+      },
+      {
+        "value": "Sí",
+        "frequency": 2,
+        "percentage": 28.6
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "¿Has utilizado los servicios de apoyo psicológico de la institución? — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_018",
+    "pregunta": "¿Con qué frecuencia has utilizado estos servicios?",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 2,
+      "n_nulos": 5,
+      "moda": "4-5 veces",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "4-5 veces",
+        "frequency": 1,
+        "percentage": 50.0
+      },
+      {
+        "value": "2-3 veces",
+        "frequency": 1,
+        "percentage": 50.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "¿Con qué frecuencia has utilizado estos servicios? — 2 respuestas; moda: 4-5 veces"
+  },
+  {
+    "variable_id": "v_019",
+    "pregunta": "Atención psicológica individual",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.14
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 6,
+        "percentage": 85.7
+      },
+      {
+        "value": "Yes",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Atención psicológica individual — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_020",
+    "pregunta": "Talleres de bienestar emocional",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.14
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 6,
+        "percentage": 85.7
+      },
+      {
+        "value": "Yes",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Talleres de bienestar emocional — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_021",
+    "pregunta": "Grupos de apoyo",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.0
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 7,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Grupos de apoyo — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_022",
+    "pregunta": "Orientación académica",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.0
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 7,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Orientación académica — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_023",
+    "pregunta": "Línea de apoyo",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.0
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 7,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Línea de apoyo — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_024",
+    "pregunta": "Otro",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.0
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 7,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Otro — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_025",
+    "pregunta": "Accesibilidad del servicio",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 2,
+      "n_nulos": 5,
+      "moda": "Neutral",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "Neutral",
+        "frequency": 1,
+        "percentage": 50.0
+      },
+      {
+        "value": "Buena",
+        "frequency": 1,
+        "percentage": 50.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Accesibilidad del servicio — 2 respuestas; moda: Neutral"
+  },
+  {
+    "variable_id": "v_026",
+    "pregunta": "Horarios disponibles",
+    "tipo": "ordinal",
+    "metrics": {
+      "n_respuestas": 2,
+      "n_nulos": 5,
+      "moda": "Muy buena",
+      "media_codificada": 4.5
+    },
+    "distribution": [
+      {
+        "value": "Muy buena",
+        "frequency": 1,
+        "percentage": 50.0
+      },
+      {
+        "value": "Buena",
+        "frequency": 1,
+        "percentage": 50.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Horarios disponibles — 2 respuestas; moda: Muy buena"
+  },
+  {
+    "variable_id": "v_027",
+    "pregunta": "Confidencialidad",
+    "tipo": "ordinal",
+    "metrics": {
+      "n_respuestas": 2,
+      "n_nulos": 5,
+      "moda": "Muy buena",
+      "media_codificada": 5.0
+    },
+    "distribution": [
+      {
+        "value": "Muy buena",
+        "frequency": 2,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Confidencialidad — 2 respuestas; moda: Muy buena"
+  },
+  {
+    "variable_id": "v_028",
+    "pregunta": "Calidad de la atención",
+    "tipo": "ordinal",
+    "metrics": {
+      "n_respuestas": 2,
+      "n_nulos": 5,
+      "moda": "Muy buena",
+      "media_codificada": 5.0
+    },
+    "distribution": [
+      {
+        "value": "Muy buena",
+        "frequency": 2,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Calidad de la atención — 2 respuestas; moda: Muy buena"
+  },
+  {
+    "variable_id": "v_029",
+    "pregunta": "Rapidez para obtener cita",
+    "tipo": "ordinal",
+    "metrics": {
+      "n_respuestas": 2,
+      "n_nulos": 5,
+      "moda": "Buena",
+      "media_codificada": 4.0
+    },
+    "distribution": [
+      {
+        "value": "Buena",
+        "frequency": 2,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Rapidez para obtener cita — 2 respuestas; moda: Buena"
+  },
+  {
+    "variable_id": "v_030",
+    "pregunta": "No sabía que existían",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.29
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 5,
+        "percentage": 71.4
+      },
+      {
+        "value": "Yes",
+        "frequency": 2,
+        "percentage": 28.6
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "No sabía que existían — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_031",
+    "pregunta": "Falta de tiempo",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.14
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 6,
+        "percentage": 85.7
+      },
+      {
+        "value": "Yes",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Falta de tiempo — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_032",
+    "pregunta": "Prefiero ayuda externa",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.0
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 7,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Prefiero ayuda externa — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_033",
+    "pregunta": "No considero que lo necesite",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.29
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 5,
+        "percentage": 71.4
+      },
+      {
+        "value": "Yes",
+        "frequency": 2,
+        "percentage": 28.6
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "No considero que lo necesite — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_034",
+    "pregunta": "Preocupación por privacidad",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.14
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 6,
+        "percentage": 85.7
+      },
+      {
+        "value": "Yes",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Preocupación por privacidad — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_035",
+    "pregunta": "Horarios poco accesibles",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.0
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 7,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Horarios poco accesibles — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_036",
+    "pregunta": "Otro",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.0
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 7,
+        "percentage": 100.0
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Otro — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "v_037",
+    "pregunta": "¿Cómo calificarías tu bienestar emocional durante el semestre actual?",
+    "tipo": "numeric",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "3",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "3",
+        "frequency": 3,
+        "percentage": 42.9
+      },
+      {
+        "value": "4",
+        "frequency": 3,
+        "percentage": 42.9
+      },
+      {
+        "value": "2",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "¿Cómo calificarías tu bienestar emocional durante el semestre actual? — 7 respuestas; moda: 3"
+  },
+  {
+    "variable_id": "v_038",
+    "pregunta": "Desde tu experiencia, ¿qué factores dentro de la institución influyen más en la salud mental de los estudiantes?",
+    "tipo": "multi_select",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "considero que es la presión que pueden llegar a tener por parte de las asignaturas, puede que no tengan una buena organización y de pronto se sientan frustrados por ello, más en los primeros semestres porque sienten otro nivel.",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "considero que es la presión que pueden llegar a tener por parte de las asignaturas, puede que no tengan una buena organización y de pronto se sientan frustrados por ello, más en los primeros semestres porque sienten otro nivel.",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "considero que la carga de trabajo especialmente en los primeros semestres y en los últimos que son muchas cosas por cumplir y a veces no da el tiempo",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "siento que muchos de esta escuela solemos ser muy reservados y nos cuesta tener amistades, personas en las cuales confiar, además, la carga escolar es bastante. Ambos factores se juntan y causan en ocasiones desbalances en nuestra salud mental.",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "considero que la organización de todos nuestros deberes, muchas veces son muchos y colapsamos más si no somos muy buenos en ciertas materias, se llega a un punto de frustración y nuestra salud mental paga las consecuencias",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "la carga de trabajo y en ocasiones como es una etapa muy vulnerable en las relaciones, puede que tenga gran influencia en cierto grupo de estudiantes",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Desde tu experiencia, ¿qué factores dentro de la institución influyen más en la salud mental de los estudiantes? — 7 respuestas; moda: considero que es la presión que pueden llegar a tener por parte de las asignaturas, puede que no tengan una buena organización y de pronto se sientan frustrados por ello, más en los primeros semestres porque sienten otro nivel."
+  },
+  {
+    "variable_id": "v_039",
+    "pregunta": "¿Qué mejoras debería implementar la institución para apoyar mejor la salud mental de los estudiantes?",
+    "tipo": "multi_select",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "Podrían ser pláticas por medio de profesionales constantemente sobre lo importante que es la salud mental y que incluso los profesores siempre traten de tomar todo eso en cuenta.",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "Podrían ser pláticas por medio de profesionales constantemente sobre lo importante que es la salud mental y que incluso los profesores siempre traten de tomar todo eso en cuenta.",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "me parece que una evaluación en cuanto a las técnicas de enseñanza de los profesores, que sean capaces de adaptarse a distintos métodos para poder captar la atención de más estudiantes y entonces se pueda lograr mitigar un poco la salud mental que contribuya al estrés ocasionado por la escuela.",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "fomentar más la parte de las actividades blandas, considero de suma importancia el saber relacionarse con otras personas",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "fomentar más el acudir, aunque sea una vez a tomar una terapia, que haya más difusión del tema y la importancia para que los estudiantes se animen",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "que se tengan pláticas por parte de profesionales para los alumnos, especialmente en el área de ingeniería, que comprendamos que igual para nosotros es bueno tomar apoyo de este tipo",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "¿Qué mejoras debería implementar la institución para apoyar mejor la salud mental de los estudiantes? — 7 respuestas; moda: Podrían ser pláticas por medio de profesionales constantemente sobre lo importante que es la salud mental y que incluso los profesores siempre traten de tomar todo eso en cuenta."
+  },
+  {
+    "variable_id": "v_040",
+    "pregunta": "Si deseas compartir algún comentario adicional sobre los servicios de apoyo psicológico, escríbelo aquí.",
+    "tipo": "free_text",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "solo que haya mayor difusión",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "solo que haya mayor difusión",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "mayor difusión",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "me gusta mucho que el instituto piense en estas atenciones que son de suma importancia, nunca hay que subestimar la salud mental porque es el pilar para que funcionemos bien en cualquier aspecto",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "hacerlos más públicos, necesitan mayor publicidad",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "me gustaría que lo difundan más ya que no muchos estamos enterados de su existencia",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": null,
+    "insights": [],
+    "numeric_evidence": null,
+    "semantic_text": "Si deseas compartir algún comentario adicional sobre los servicios de apoyo psicológico, escríbelo aquí. — 7 respuestas; moda: solo que haya mayor difusión"
+  }
+]

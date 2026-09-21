@@ -2,191 +2,123 @@
 inclusion: manual
 ---
 
-# Informe Técnico de Arquitectura — Indagata
-**Fecha:** Agosto 2026  
-**Rol:** Arquitecto de Software Senior  
-**Objetivo final:** Convertir el sistema en una plataforma educativa RAG para centralización y consulta de información educativa.
+# Arquitectura — Indagata
+
+**Actualizado:** 2026-09-20
+**Estado:** Documento vigente. Consolida y reemplaza a `arquitectura_definitiva.md` e `inspeccion_estructura.md`.
+**Complementos:** `modelo_conocimiento.md` y `chunking_strategy.md` (diseño conceptual del RAG principal, futuro).
+**Fuente de verdad del backend actual:** `backend/ARCHITECTURE_AUDIT_REPORT.md`.
+
+> ⚠️ Documentos previos (`arquitectura_definitiva.md`, `inspeccion_estructura.md`) describían un
+> prototipo anterior (Jinja2 + `routers/login.py`, `routers/chat.py`, `services/limpieza_service.py`,
+> cookies sin firmar, etc.) que **ya no corresponde al código actual**. Se consolidaron aquí.
 
 ---
 
-## 1. Estado actual del sistema
+## 1. Qué es Indagata
 
-**Indagata** es un monolito web con renderizado server-side (FastAPI + Jinja2 + PostgreSQL + Ollama local). Su propósito actual es gestionar el ciclo de vida de instrumentos de recolección de datos educativos (encuestas, entrevistas, pruebas estandarizadas), con un pipeline asistido por LLM para limpiar y enriquecer metadatos antes de vectorizarlos.
+Plataforma para **gestión y consulta de instrumentos de investigación educativa** (encuestas,
+entrevistas, pruebas estandarizadas). El objetivo final es una plataforma RAG: los instrumentos se
+cargan, se procesan con asistencia LLM hasta producir conocimiento estructurado (JSON consolidado),
+y ese conocimiento alimenta un RAG para consulta en lenguaje natural.
 
-Stack actual:
-- **Backend:** Python 3.12, FastAPI, SQLAlchemy (psycopg3), Pydantic v2
-- **Frontend:** Jinja2 templates + CSS variables + JS vanilla (sin framework)
-- **Base de datos:** PostgreSQL 16 (schema `tt_rag`)
-- **LLM:** Ollama local (httpx síncrono, sin streaming)
-- **Vectorización:** ChromaDB + LangChain instalados pero **sin implementar**
-- **Infraestructura:** Docker Compose (3 servicios: postgres, ollama, fastapi)
+Stack real actual:
+- **Backend:** Python 3.11+, FastAPI, SQLAlchemy 2.0 (psycopg3), Pydantic v2.
+- **Base de datos:** PostgreSQL (schema `tt_rag`).
+- **LLM:** Ollama local (HTTP síncrono vía `services/ollama_client.py`).
+- **Vectorización / RAG principal:** dependencias (ChromaDB, LangChain, sentence-transformers) declaradas pero **no implementadas** (funcionalidad futura).
 
 ---
 
-## 2. Módulos existentes y qué problema resuelven
+## 2. Arquitectura del backend (estado real)
 
-| Módulo | Archivos | Qué resuelve |
+Backend en capas + un servicio de dominio complejo aislado (el SIS).
+
+```
+routers      → HTTP: endpoints, validación in/out con schemas
+   │
+dependencies → Autenticación y acceso (hoy en MODO DESARROLLO; JWT preparado, pendiente)
+   │
+services     → Lógica de negocio del host
+   ├── api/services/   → carga, visualización, artefactos, mapeo SIS→BD, extracción
+   └── services/       → sis_adapter (acople al SIS) + ollama_client
+   │
+survey_intelligence/  → SIS: servicio interno de dominio (hexagonal), aislado del framework
+   │                    Instrumento → JSON canónico → JSON consolidado
+models       → ORM SQLAlchemy (schema tt_rag)
+```
+
+### Módulos reales
+| Módulo | Ubicación | Rol |
 |---|---|---|
-| **Auth** | `routers/login.py`, `services/login_service.py`, `core/security.py` | Login/logout con cookies httponly, hash bcrypt |
-| **Catálogo KPIs** | `routers/kpis.py`, `services/kpi_service.py`, `models/kpi.py` | Visualización de 50 KPIs educativos con umbrales y fórmulas |
-| **Catálogo instrumentos** | `routers/instrumentos.py`, `services/instrumento_service.py`, `models/instrumento.py` | Listado y filtro por tipo de los instrumentos ya procesados |
-| **Pipeline de carga** | `routers/cargar.py` + 4 servicios | Ingesta de archivos → limpieza automática (stub) → chat limpieza con Ollama → metadatos base (Pydantic) → metadatos enriquecidos con Ollama |
-| **Chat IA** | `routers/chat.py` | Pantalla de consulta RAG — actualmente retorna mockup hardcodeado |
-| **Config** | `core/config.py` | Centraliza todas las variables de entorno con pydantic-settings |
-| **Ollama client** | `core/ollama_client.py` | Wrapper HTTP síncrono hacia `/api/chat` de Ollama |
-| **Base de datos** | `postgres/init/01_schema.sql`, `02_seed.sql` | Esquema completo con 10 tablas, 50 KPIs y ~90 variables seed |
+| Routers de carga | `api/routers/routers_carga.py` | Wizard: upload → metadata → analyze → approve/cleaning → approve/enrichment |
+| Routers de visualización | `api/routers/routers_visualizacion.py` | Catálogo KPIs, listado, detalle, descarga, delete |
+| Servicios de carga | `api/services/services_carga.py` + `carga_sis_mapping.py` + `carga_artifacts.py` | Orquestación del wizard, mapeo SIS→BD, generación de artefactos |
+| Servicios de visualización | `api/services/services_visualizacion.py` | Consulta y borrado |
+| Extracción | `api/services/extraction/` | Módulo unificado de extracción documental (dispatch por formato) |
+| SIS | `survey_intelligence/` | Pipeline S1..S10 (incl. entrevistas), contratos, engine, ports, export |
+| Acople LLM | `services/sis_adapter.py`, `services/ollama_client.py` | Único punto de acople host↔SIS + cliente Ollama |
+| Config | `api/core/config.py` | pydantic-settings desde `.env` |
+| BD | `postgres/init/*.sql` | Schema `tt_rag` + seed (KPIs, variables) |
+
+### El SIS (Survey Intelligent System)
+Servicio interno de dominio (NO microservicio) con patrón **ports & adapters**. Aislado: no importa
+FastAPI ni SQLAlchemy. Se consume solo por `services/sis_adapter.py`. Produce el JSON canónico y el
+consolidado; **ahí termina su responsabilidad**. Detalle en `backend/ARCHITECTURE_AUDIT_REPORT.md` y
+en `backend/survey_intelligence/pipeline/README.md`.
 
 ---
 
-## 3. Deuda técnica detectada
+## 3. Componentes que se conservan (valor real)
 
-### Crítica
-- **Sin autenticación real en rutas protegidas.** La cookie `usuario_id` se setea pero ningún middleware valida su presencia. Cualquier URL es accesible sin login. `SECRET_KEY` existe pero no se usa para firmar nada.
-- **Endpoint `/chat/consultar` es un mockup.** Retorna una respuesta hardcodeada. ChromaDB y LangChain están instalados pero sin ningún código escrito.
-- **`limpieza_service.aplicar_limpieza_automatica` es un stub.** Solo avanza el estado; no procesa datos. El clasificador de columnas (`clasificador.py`) está referenciado pero no existe.
-
-### Significativa
-- **Ollama client es síncrono y bloquea.** Una sola llamada a Ollama (timeout 120s) bloquea el event loop de FastAPI entero. Debe ser async con httpx.
-- **8 tablas del esquema SQL sin usar.** `raw_data`, `pregunta_kpi`, `documento_vectorizado`, `rag_log`, `instituciones`, `variable`, `valor_variable`, `prompt` están definidas pero ningún router ni servicio las toca.
-- **Lógica de presentación en el servicio.** `instrumento_service._preparar_instrumentos()` genera códigos visuales (ENC-001) y slugs CSS. Pertenece a la capa de template, no al servicio.
-- **JS de pipeline en el template HTML.** El JavaScript que orquesta el flujo completo de carga (modales, historial de chat, llamadas encadenadas) vive en el bloque `js_extra` de `cargar_instrumento.html`. Difícil de mantener y probar.
-
-### Menor
-- `base.js` solo contiene un `console.log`. No aporta nada.
-- Los códigos de catálogo (ENC-001) se generan en runtime en Python, no están persistidos. Si se necesitan como referencia estable, deben guardarse en BD.
-- No hay manejo de errores consistente: algunos endpoints retornan JSON, otros redirigen, otros lanzan 500 sin capturar.
-
----
-
-## 4. Qué debe conservarse
-
-- **Esquema de base de datos completo** (`01_schema.sql`): está bien diseñado, cubre todo el dominio incluyendo vectorización, logs RAG y trazabilidad. Es la pieza más madura del sistema.
-- **Seed data** (`02_seed.sql`): los 50 KPIs y ~90 variables son valor de negocio real.
-- **Pipeline de metadatos** (`metadatos_service.py`, `metadatos_enriquecidos_service.py`): la lógica de dos niveles (base + enriquecidos) está bien pensada y los schemas Pydantic son sólidos.
+- **Esquema de BD** (`postgres/init/01_schema.sql`): cubre el dominio completo (instrumentos,
+  vectorización, logs RAG, KPIs, variables, trazabilidad). La pieza más madura.
+- **Seed data** (`02_seed.sql`): ~50 KPIs educativos con fórmulas/umbrales y ~90 variables. Valor de dominio real.
 - **Config centralizada** (`core/config.py`): patrón correcto con pydantic-settings.
-- **Sistema de diseño CSS** (`base.css`): paleta, componentes y layout son coherentes y funcionales.
-- **Arquitectura de templates** (`base.html` + páginas): la estructura Jinja2 con sidebar condicional es adecuada para el alcance del proyecto.
-- **Prompts del LLM** en `limpieza_service` y `metadatos_enriquecidos_service`: son prompts bien construidos con contexto del instrumento y marcadores de estado (`[LIMPIEZA_LISTA]`, `[METADATOS_LISTOS]`).
+- **`core/security.py`** (bcrypt): correcto; se activará con el JWT.
+- **Prompts del LLM** dentro del SIS (audit/enrichment/kpi/results/interview): bien construidos.
 
 ---
 
-## 5. Qué debe refactorizarse
+## 4. Deuda técnica y pendientes (estado real, post-refactor)
 
-| Qué | Hacia dónde |
-|---|---|
-| `core/ollama_client.py` — httpx síncrono | Cambiar a `httpx.AsyncClient` con `await` |
-| Auth por cookie sin firma | Implementar JWT firmado con `SECRET_KEY` vía `python-jose`. Añadir dependency `get_current_user` que valide el token en cada router protegido |
-| `instrumento_service._preparar_instrumentos()` | Mover lógica de presentación al template Jinja2 con un filtro o función de contexto |
-| JS inline en `cargar_instrumento.html` | Extraer a `/static/js/pipeline_carga.js` como módulo ES6 |
-| `limpieza_service.aplicar_limpieza_automatica` | Implementar clasificador de columnas con pandas (inferencia de dtype + normalización básica) |
-| Manejo de errores | Definir handlers globales en `main.py` para HTTPException y Exception genérica con respuesta JSON consistente |
+Tras las refactorizaciones documentadas en `CHANGELOG.md` (Fases A-G), la deuda restante es:
+- **Autenticación en MODO DESARROLLO.** `get_current_user` devuelve un usuario fijo; el bloque JWT
+  está escrito pero comentado. CORS abierto (`*`). **Pendiente:** activar login real (JWT) + endurecer CORS.
+- **Autorización duplicada** entre `dependencies` y `PermissionService` — centralizar al activar el JWT.
+- **RAG principal ausente** — ChromaDB/LangChain/embeddings sin implementar (funcionalidad futura).
+- **Flecos menores:** `KPI.activo` (bool sobre Integer), docstring de `delete()` que menciona ChromaDB (no-op).
 
 ---
 
-## 6. Qué debe eliminarse
+## 5. Arquitectura objetivo (visión)
 
-- `frontend/static/js/base.js` — no tiene contenido útil. Eliminar o convertirlo en el entry point del módulo JS.
-- El mockup hardcodeado en `routers/chat.py` — reemplazar, no parchear.
-- Las rutas GET `/` en `main.py` que retornan JSON informativo — en producción no aportan valor y exponen información del sistema.
+Plataforma educativa RAG donde los usuarios pueden **cargar** instrumentos y procesarlos con el SIS,
+**consultar** en lenguaje natural sobre el contenido vectorizado, y **monitorear** KPIs educativos.
+
+```
+Instrumento → Extracción → SIS (ETL inteligente) → JSON Canónico → JSON Consolidado
+   → [FRONTERA SIS] → RAG Principal → Chunks enriquecidos → Embeddings → Índice → Q&A
+```
+
+Principio de frontera: el **SIS produce** conocimiento estructurado; el **RAG principal consume**
+ese conocimiento. No se fusionan. Ver `modelo_conocimiento.md` (planos operativo/semántico) y
+`chunking_strategy.md` (Intelligent Enriched Chunking) para el diseño conceptual del RAG.
+
+### Componentes futuros (no implementados)
+- **Módulo de vectorización:** lee el JSON consolidado, aplica chunking enriquecido, genera embeddings
+  (sentence-transformers), indexa en ChromaDB. Estado objetivo `vectorizado`.
+- **Módulo RAG de consulta:** embedding de la pregunta → top-K chunks → contexto → Ollama → respuesta con fuentes.
+- **Autenticación JWT** + roles.
+- **Pipeline de pruebas estandarizadas** en el SIS (reglas psicométricas).
 
 ---
 
-## 7. Arquitectura objetivo
+## 6. Multi-instrumento (SIS)
 
-### Visión
-Plataforma educativa RAG donde los usuarios pueden:
-1. **Cargar** instrumentos educativos y procesarlos con asistencia LLM.
-2. **Consultar** en lenguaje natural sobre el contenido de los instrumentos vectorizados.
-3. **Monitorear** KPIs educativos vinculados a variables estandarizadas.
+Un solo SIS con un orquestador único (`facade.py`) + estrategia por instrumento (`survey_intelligence/pipelines/`, `select_pipeline`):
+- **Encuestas** (tabular): implementado (S1..S9 + S8b).
+- **Entrevistas** (narrativo): implementado (vía documento + S10: diarización + NLP + consolidado con participantes/turnos/temas).
+- **Pruebas estandarizadas:** estrategia esqueleto (vía documento, sin reglas psicométricas aún).
 
-### Capas propuestas
-
-```
-┌─────────────────────────────────────────────────────┐
-│                   FRONTEND (Jinja2)                  │
-│  login │ cargar │ catálogo │ chat-IA │ KPIs          │
-└────────────────────┬────────────────────────────────┘
-                     │ HTTP (FastAPI)
-┌────────────────────▼────────────────────────────────┐
-│                  API LAYER (Routers)                  │
-│  auth  │  instrumentos  │  rag  │  kpis              │
-└────────────────────┬────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────┐
-│                 SERVICE LAYER                         │
-│                                                       │
-│  ┌──────────────┐  ┌──────────────┐  ┌────────────┐ │
-│  │ PipelineService│ │  RAGService  │  │ KpiService │ │
-│  │ (carga+meta) │  │(query+chunks)│  │            │ │
-│  └──────┬───────┘  └──────┬───────┘  └────────────┘ │
-│         │                 │                           │
-│  ┌──────▼───────┐  ┌──────▼───────┐                 │
-│  │VectorizaciónSvc│ │ OllamaClient │                 │
-│  │(LangChain+   │  │  (async)     │                 │
-│  │  ChromaDB)   │  └──────────────┘                 │
-│  └──────────────┘                                    │
-└────────────────────┬────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────┐
-│              PERSISTENCE LAYER                        │
-│   PostgreSQL (SQLAlchemy)  │  ChromaDB (vectores)    │
-└─────────────────────────────────────────────────────┘
-```
-
-### Nuevos servicios a crear (prioridad de implementación)
-
-**P1 — Desbloquean el RAG core:**
-1. `services/vectorizacion_service.py` — recibe un `instrumento_id`, lee el archivo, lo chunquea con LangChain `RecursiveCharacterTextSplitter`, genera embeddings con `sentence-transformers` (modelo `paraphrase-multilingual-MiniLM-L12-v2`), guarda en ChromaDB y registra en `documento_vectorizado`. Avanza estado a "vectorizado".
-2. `services/rag_service.py` — recibe una pregunta, genera embedding de consulta, busca top-K chunks en ChromaDB, construye el contexto y llama a Ollama. Guarda en `rag_log`.
-
-**P2 — Seguridad mínima viable:**
-3. Middleware de autenticación JWT en todos los routers excepto `/login`.
-
-**P3 — Funcionalidades de valor educativo:**
-4. `services/kpi_inferencia_service.py` — usa `pregunta_kpi` para mapear preguntas del instrumento a KPIs usando el LLM con score de confianza. Usa la tabla `prompt` para versionar el prompt.
-5. `services/variable_service.py` — gestiona la carga de valores históricos en `valor_variable` para tracking de KPIs en el tiempo.
-
-### Flujo RAG objetivo
-
-```
-Usuario escribe pregunta
-        │
-        ▼
- Generar embedding (sentence-transformers)
-        │
-        ▼
- Buscar top-5 chunks en ChromaDB
- (filtrar opcionalmente por tipo de instrumento)
-        │
-        ▼
- Construir prompt con contexto recuperado
- + metadatos del instrumento (título, institución, periodo)
-        │
-        ▼
- Llamar a Ollama (async, con streaming opcional)
-        │
-        ▼
- Retornar respuesta + chunks fuente + metadata
- Guardar en rag_log
-```
-
-### Estado pipeline completo (incluyendo vectorización)
-
-```
-ingresado → limpio → estandarizado → vectorizado → error
-   ↑            ↑            ↑              ↑
- carga      metadatos   metadatos       ChromaDB
-            base        enriquecidos    + rag_log
-```
-
----
-
-## 8. Resumen de decisiones
-
-| Decisión | Justificación |
-|---|---|
-| Mantener monolito FastAPI + Jinja2 | El alcance no justifica microservicios. La complejidad de RAG está en los servicios, no en la distribución. |
-| ChromaDB local (no Pinecone/Weaviate) | Ya instalado, sin costo, suficiente para el volumen educativo esperado. Coherente con la filosofía local de Ollama. |
-| sentence-transformers multilingüe | El contenido es en español. `paraphrase-multilingual-MiniLM-L12-v2` tiene buen balance velocidad/calidad para español sin GPU. |
-| Mantener esquema SQL actual | Está bien diseñado y cubre el dominio completo. El esfuerzo de re-diseño no está justificado. |
-| JWT en cookies httponly | Mantiene la UX actual (no SPA), añade seguridad real sin cambiar el flujo de navegación. |
+Cómo está organizado y cómo extender: `backend/survey_intelligence/docs/ARQUITECTURA_SIS.md` y `backend/survey_intelligence/docs/GUIA_EXTENSION_INSTRUMENTOS.md`.

@@ -1,0 +1,451 @@
+[
+  {
+    "variable_id": "q_001",
+    "pregunta": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental?",
+    "tipo": "opcion_unica",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No estoy seguro(a)",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "No estoy seguro(a)",
+        "frequency": 3,
+        "percentage": 42.9
+      },
+      {
+        "value": "Sí",
+        "frequency": 3,
+        "percentage": 42.9
+      },
+      {
+        "value": "No",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": "La institución ofrece servicios de apoyo psicológico o de salud mental, pero solo el 42.9% de los estudiantes se declaran seguros(a) sobre este servicio.",
+    "insights": [
+      "La institución ofrece servicios de apoyo psicológico, pero su accesibilidad es limitada"
+    ],
+    "numeric_evidence": "42.9% de los estudiantes se declaran seguros(a) sobre el servicio de apoyo psicológico",
+    "semantic_text": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental? — 7 respuestas; moda: No estoy seguro(a)"
+  },
+  {
+    "variable_id": "q_002",
+    "pregunta": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+    "tipo": "opcion_multiple",
+    "metrics": {
+      "n_respuestas": 6,
+      "n_nulos": 1,
+      "moda": "Página web institucional",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "Página web institucional",
+        "frequency": 2,
+        "percentage": 28.6
+      },
+      {
+        "value": "Redes sociales",
+        "frequency": 2,
+        "percentage": 28.6
+      },
+      {
+        "value": "Profesores",
+        "frequency": 0,
+        "percentage": 0.0
+      },
+      {
+        "value": "Compañeros",
+        "frequency": 4,
+        "percentage": 57.1
+      },
+      {
+        "value": "Correo institucional",
+        "frequency": 0,
+        "percentage": 0.0
+      },
+      {
+        "value": "Eventos o campañas",
+        "frequency": 0,
+        "percentage": 0.0
+      },
+      {
+        "value": "No sabía que existían",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Otro",
+        "frequency": 0,
+        "percentage": 0.0
+      }
+    ],
+    "interpretation": "El 57.1% de los estudiantes se enteró de los servicios de salud mental a través de sus compañeros, mientras que el 28.6% lo hizo a través de la página web institucional.",
+    "insights": [
+      "Los compañeros son una fuente importante de información sobre los servicios de salud mental"
+    ],
+    "numeric_evidence": "57.1% de los estudiantes se enteró de los servicios de salud mental a través de sus compañeros",
+    "semantic_text": "¿Cómo te enteraste de los servicios de salud mental de la institución? — 6 respuestas; moda: Página web institucional"
+  },
+  {
+    "variable_id": "q_003",
+    "pregunta": "¿Has utilizado los servicios de apoyo psicológico de la institución?",
+    "tipo": "opcion_unica",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 5,
+        "percentage": 71.4
+      },
+      {
+        "value": "Sí",
+        "frequency": 2,
+        "percentage": 28.6
+      }
+    ],
+    "interpretation": "El 71.4% de los estudiantes no ha utilizado los servicios de apoyo psicológico de la institución.",
+    "insights": [
+      "La institución puede mejorar su accesibilidad y promoción de sus servicios"
+    ],
+    "numeric_evidence": "71.4% de los estudiantes no ha utilizado los servicios de apoyo psicológico de la institución",
+    "semantic_text": "¿Has utilizado los servicios de apoyo psicológico de la institución? — 7 respuestas; moda: No"
+  },
+  {
+    "variable_id": "q_004",
+    "pregunta": "¿Con qué frecuencia has utilizado estos servicios?",
+    "tipo": "opcion_unica",
+    "metrics": {
+      "n_respuestas": 2,
+      "n_nulos": 5,
+      "moda": "4-5 veces",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "4-5 veces",
+        "frequency": 1,
+        "percentage": 50.0
+      },
+      {
+        "value": "2-3 veces",
+        "frequency": 1,
+        "percentage": 50.0
+      }
+    ],
+    "interpretation": "El 50% de los estudiantes ha utilizado los servicios de apoyo psicológico 4-5 veces.",
+    "insights": [
+      "Los estudiantes pueden beneficiarse de un mayor apoyo psicológico"
+    ],
+    "numeric_evidence": "50% de los estudiantes ha utilizado los servicios de apoyo psicológico 4-5 veces",
+    "semantic_text": "¿Con qué frecuencia has utilizado estos servicios? — 2 respuestas; moda: 4-5 veces"
+  },
+  {
+    "variable_id": "q_005",
+    "pregunta": "¿Qué tipo de apoyo has utilizado?",
+    "tipo": "opcion_multiple",
+    "metrics": {
+      "n_respuestas": 2,
+      "n_nulos": 5,
+      "moda": "Atención psicológica individual",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "Atención psicológica individual",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Talleres de bienestar emocional",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Grupos de apoyo",
+        "frequency": 0,
+        "percentage": 0.0
+      },
+      {
+        "value": "Orientación académica",
+        "frequency": 0,
+        "percentage": 0.0
+      },
+      {
+        "value": "Línea de apoyo",
+        "frequency": 0,
+        "percentage": 0.0
+      },
+      {
+        "value": "Otro",
+        "frequency": 0,
+        "percentage": 0.0
+      }
+    ],
+    "interpretation": "El 14.3% de los estudiantes ha utilizado atención psicológica individual, mientras que el 14.3% ha utilizado talleres de bienestar emocional.",
+    "insights": [
+      "Hay una necesidad de más servicios de apoyo psicológico"
+    ],
+    "numeric_evidence": "14.3% de los estudiantes ha utilizado atención psicológica individual",
+    "semantic_text": "¿Qué tipo de apoyo has utilizado? — 2 respuestas; moda: Atención psicológica individual"
+  },
+  {
+    "variable_id": "q_006",
+    "pregunta": "Evalúa los siguientes aspectos del servicio de salud mental.",
+    "tipo": "likert",
+    "metrics": {
+      "n_respuestas": 2,
+      "n_nulos": 5,
+      "moda": "Neutral",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "Neutral",
+        "frequency": 1,
+        "percentage": 50.0
+      },
+      {
+        "value": "Buena",
+        "frequency": 1,
+        "percentage": 50.0
+      }
+    ],
+    "interpretation": "El 50% de los estudiantes ha calificado su bienestar emocional como 'neutral'.",
+    "insights": [
+      "Hay una necesidad de mejorar la salud mental de los estudiantes"
+    ],
+    "numeric_evidence": "50% de los estudiantes ha calificado su bienestar emocional como 'neutral'",
+    "semantic_text": "Evalúa los siguientes aspectos del servicio de salud mental. — 2 respuestas; moda: Neutral"
+  },
+  {
+    "variable_id": "q_007",
+    "pregunta": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+    "tipo": "opcion_multiple",
+    "metrics": {
+      "n_respuestas": 5,
+      "n_nulos": 2,
+      "moda": "No sabía que existían",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "No sabía que existían",
+        "frequency": 2,
+        "percentage": 28.6
+      },
+      {
+        "value": "Falta de tiempo",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Prefiero ayuda externa",
+        "frequency": 0,
+        "percentage": 0.0
+      },
+      {
+        "value": "No considero que lo necesite",
+        "frequency": 2,
+        "percentage": 28.6
+      },
+      {
+        "value": "Preocupación por privacidad",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Horarios poco accesibles",
+        "frequency": 0,
+        "percentage": 0.0
+      },
+      {
+        "value": "Otro",
+        "frequency": 0,
+        "percentage": 0.0
+      }
+    ],
+    "interpretation": "El 28.6% de los estudiantes no sabe que existen servicios de salud mental, mientras que el 14.3% lo hace debido a la falta de tiempo.",
+    "insights": [
+      "Hay una necesidad de mejorar la conciencia sobre los servicios de salud mental"
+    ],
+    "numeric_evidence": "28.6% de los estudiantes no sabe que existen servicios de salud mental",
+    "semantic_text": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones? — 5 respuestas; moda: No sabía que existían"
+  },
+  {
+    "variable_id": "q_008",
+    "pregunta": "¿Cómo calificarías tu bienestar emocional durante el semestre actual?",
+    "tipo": "likert",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "3",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "3",
+        "frequency": 3,
+        "percentage": 42.9
+      },
+      {
+        "value": "4",
+        "frequency": 3,
+        "percentage": 42.9
+      },
+      {
+        "value": "2",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": "El 42.9% de los estudiantes ha calificado su bienestar emocional como '3'.",
+    "insights": [
+      "Hay una necesidad de mejorar la salud mental de los estudiantes"
+    ],
+    "numeric_evidence": "42.9% de los estudiantes ha calificado su bienestar emocional como '3'",
+    "semantic_text": "¿Cómo calificarías tu bienestar emocional durante el semestre actual? — 7 respuestas; moda: 3"
+  },
+  {
+    "variable_id": "q_009",
+    "pregunta": "Desde tu experiencia, ¿qué factores dentro de la institución influyen más en la salud mental de los estudiantes?",
+    "tipo": "opcion_multiple",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "considero que es la presión que pueden llegar a tener por parte de las asignaturas, puede que no tengan una buena organización y de pronto se sientan frustrados por ello, más en los primeros semestres porque sienten otro nivel.",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "considero que es la presión que pueden llegar a tener por parte de las asignaturas, puede que no tengan una buena organización y de pronto se sientan frustrados por ello, más en los primeros semestres porque sienten otro nivel.",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "considero que la carga de trabajo especialmente en los primeros semestres y en los últimos que son muchas cosas por cumplir y a veces no da el tiempo",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "siento que muchos de esta escuela solemos ser muy reservados y nos cuesta tener amistades, personas en las cuales confiar, además, la carga escolar es bastante. Ambos factores se juntan y causan en ocasiones desbalances en nuestra salud mental.",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "considero que la organización de todos nuestros deberes, muchas veces son muchos y colapsamos más si no somos muy buenos en ciertas materias, se llega a un punto de frustración y nuestra salud mental paga las consecuencias",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "la carga de trabajo y en ocasiones como es una etapa muy vulnerable en las relaciones, puede que tenga gran influencia en cierto grupo de estudiantes",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": "El 14.3% de los estudiantes considera que la presión de las asignaturas es el factor más importante en la salud mental de los estudiantes.",
+    "insights": [
+      "Hay una necesidad de mejorar la carga de trabajo y la organización de la institución"
+    ],
+    "numeric_evidence": "14.3% de los estudiantes considera que la presión de las asignaturas es el factor más importante",
+    "semantic_text": "Desde tu experiencia, ¿qué factores dentro de la institución influyen más en la salud mental de los estudiantes? — 7 respuestas; moda: considero que es la presión que pueden llegar a tener por parte de las asignaturas, puede que no tengan una buena organización y de pronto se sientan frustrados por ello, más en los primeros semestres porque sienten otro nivel."
+  },
+  {
+    "variable_id": "q_010",
+    "pregunta": "¿Qué mejoras debería implementar la institución para apoyar mejor la salud mental de los estudiantes?",
+    "tipo": "opcion_multiple",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "Podrían ser pláticas por medio de profesionales constantemente sobre lo importante que es la salud mental y que incluso los profesores siempre traten de tomar todo eso en cuenta.",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "Podrían ser pláticas por medio de profesionales constantemente sobre lo importante que es la salud mental y que incluso los profesores siempre traten de tomar todo eso en cuenta.",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "me parece que una evaluación en cuanto a las técnicas de enseñanza de los profesores, que sean capaces de adaptarse a distintos métodos para poder captar la atención de más estudiantes y entonces se pueda lograr mitigar un poco la salud mental que contribuya al estrés ocasionado por la escuela.",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "fomentar más la parte de las actividades blandas, considero de suma importancia el saber relacionarse con otras personas",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "fomentar más el acudir, aunque sea una vez a tomar una terapia, que haya más difusión del tema y la importancia para que los estudiantes se animen",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "que se tengan pláticas por parte de profesionales para los alumnos, especialmente en el área de ingeniería, que comprendamos que igual para nosotros es bueno tomar apoyo de este tipo",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": "El 14.3% de los estudiantes considera que las pláticas por medio de profesionales constantemente sobre la salud mental son una mejoría importante.",
+    "insights": [
+      "Hay una necesidad de mejorar la conciencia sobre la salud mental y la importancia de buscar apoyo"
+    ],
+    "numeric_evidence": "14.3% de los estudiantes considera que las pláticas por medio de profesionales constantemente sobre la salud mental son una mejoría importante",
+    "semantic_text": "¿Qué mejoras debería implementar la institución para apoyar mejor la salud mental de los estudiantes? — 7 respuestas; moda: Podrían ser pláticas por medio de profesionales constantemente sobre lo importante que es la salud mental y que incluso los profesores siempre traten de tomar todo eso en cuenta."
+  },
+  {
+    "variable_id": "q_011",
+    "pregunta": "Si deseas compartir algún comentario adicional sobre los servicios de apoyo psicológico, escríbelo aquí.",
+    "tipo": "opcion_multiple",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "solo que haya mayor difusión",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "solo que haya mayor difusión",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "mayor difusión",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "me gusta mucho que el instituto piense en estas atenciones que son de suma importancia, nunca hay que subestimar la salud mental porque es el pilar para que funcionemos bien en cualquier aspecto",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "hacerlos más públicos, necesitan mayor publicidad",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "me gustaría que lo difundan más ya que no muchos estamos enterados de su existencia",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": "El 14.3% de los estudiantes considera que la mayor difusión de los servicios de apoyo psicológico es una mejoría importante.",
+    "insights": [
+      "Hay una necesidad de mejorar la conciencia sobre los servicios de apoyo psicológico"
+    ],
+    "numeric_evidence": "14.3% de los estudiantes considera que la mayor difusión de los servicios de apoyo psicológico es una mejoría importante",
+    "semantic_text": "Si deseas compartir algún comentario adicional sobre los servicios de apoyo psicológico, escríbelo aquí. — 7 respuestas; moda: solo que haya mayor difusión"
+  }
+]

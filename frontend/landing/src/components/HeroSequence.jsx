@@ -416,7 +416,7 @@ export default function HeroSequence() {
 
                     {/* Botón */}
                     <motion.button
-                      onClick={() => { window.location.href = '/login' }}
+                      onClick={() => { window.location.href = 'http://localhost:5174/login' }}
                       style={{
                         fontFamily:    '"Inter", sans-serif',
                         fontWeight:    500,

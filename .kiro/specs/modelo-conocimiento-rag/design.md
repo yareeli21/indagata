@@ -1,5 +1,8 @@
 # Design — Modelo de Conocimiento y Estrategia de Recuperación Semántica
 
+> **Nota (2026-09-20):** documento de DISEÑO de una funcionalidad FUTURA (RAG principal /
+> vectorización). Aún NO implementada. No refleja el código actual; es la visión objetivo.
+
 ## Overview
 
 This document defines the technical design for implementing the knowledge model and semantic retrieval strategy specified in `requirements.md`. It maps each functional requirement to concrete modules, classes, data structures, and integration points within the existing FastAPI + PostgreSQL + ChromaDB stack.

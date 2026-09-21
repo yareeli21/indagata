@@ -1,0 +1,386 @@
+{
+  "canonical_id": "sha256:c8c6b961a2b45c51e84f8a4f3fe1620081ca9627e4317f983e235e98796ffa15",
+  "source": {
+    "platform_guess": "google_forms",
+    "file_name": "6_1789875788_e04706b1.xlsx",
+    "sheet": "Respuestas de formulario 1"
+  },
+  "dimensions": {
+    "n_rows": 7,
+    "n_columns": 8
+  },
+  "variables": [
+    {
+      "variable_id": "v_001",
+      "raw_header": "Marca temporal",
+      "normalized_name": "marca_temporal",
+      "position": 1,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "2026-03-14T23:27:42.090000",
+            "count": 1
+          },
+          {
+            "value": "2026-03-14T23:32:43.980000",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15T00:18:03.311000",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15T01:08:23.329000",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15T01:11:01.794000",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_002",
+      "raw_header": "¿Actualmente participas en alguna actividad extracurricular organizada por la institución?",
+      "normalized_name": "actualmente_participas_alguna_actividad",
+      "position": 2,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Sí"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 4
+          },
+          {
+            "value": "Sí",
+            "count": 3
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_003",
+      "raw_header": "¿En cuántas actividades extracurriculares participas actualmente?",
+      "normalized_name": "cuantas_actividades_extracurriculares_pa",
+      "position": 3,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Ninguna",
+            "count": 4
+          },
+          {
+            "value": "1 actividad",
+            "count": 2
+          },
+          {
+            "value": "2 actividades",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_004",
+      "raw_header": "¿Qué tipo de actividades extracurriculares ofrece tu institución?",
+      "normalized_name": "tipo_actividades_extracurriculares_ofrec",
+      "position": 4,
+      "column_class": "question",
+      "inferred_data_type": "multi_select",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 5,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Deportivas, Culturales o artísticas, Académicas o científicas, Tecnológicas",
+            "count": 2
+          },
+          {
+            "value": "Deportivas, Académicas o científicas",
+            "count": 2
+          },
+          {
+            "value": "Deportivas, Culturales o artísticas, Tecnológicas",
+            "count": 1
+          },
+          {
+            "value": "Deportivas, Académicas o científicas, Tecnológicas",
+            "count": 1
+          },
+          {
+            "value": "Deportivas, Tecnológicas",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_005",
+      "raw_header": "¿Cómo evaluarías la variedad de actividades extracurriculares disponibles en la institución?",
+      "normalized_name": "como_evaluarias_variedad_actividades_ext",
+      "position": 5,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Adecuada",
+            "count": 5
+          },
+          {
+            "value": "Amplia",
+            "count": 1
+          },
+          {
+            "value": "Limitada",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_006",
+      "raw_header": "¿Qué tan fácil es para los estudiantes participar en actividades extracurriculares?",
+      "normalized_name": "tan_facil_estudiantes_participar_activid",
+      "position": 6,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Muy difícil",
+          "Difícil",
+          "Neutral",
+          "Fácil",
+          "Muy fácil"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 5,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Neutral",
+            "count": 3
+          },
+          {
+            "value": "Fácil",
+            "count": 1
+          },
+          {
+            "value": "Muy fácil",
+            "count": 1
+          },
+          {
+            "value": "Difícil",
+            "count": 1
+          },
+          {
+            "value": "Muy difícil",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_007",
+      "raw_header": "¿Consideras que la institución promueve activamente la participación en actividades extracurriculares?",
+      "normalized_name": "consideras_institucion_promueve_activame",
+      "position": 7,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "A veces",
+            "count": 3
+          },
+          {
+            "value": "Rara vez",
+            "count": 2
+          },
+          {
+            "value": "Frecuentemente",
+            "count": 1
+          },
+          {
+            "value": "Siempre",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_008",
+      "raw_header": "¿Crees que participar en actividades extracurriculares contribuye a tu desarrollo personal o académico?",
+      "normalized_name": "crees_participar_actividades_extracurric",
+      "position": 8,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 4,
+        "labels": [
+          "Nada",
+          "Poco",
+          "Moderadamente",
+          "Mucho"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 4,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Mucho",
+            "count": 3
+          },
+          {
+            "value": "Moderadamente",
+            "count": 2
+          },
+          {
+            "value": "Nada",
+            "count": 1
+          },
+          {
+            "value": "Poco",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "q_001",
+      "variable_ids": [
+        "v_002"
+      ],
+      "text": "¿Actualmente participas en alguna actividad extracurricular organizada por la institución?",
+      "length_chars": 90,
+      "length_words": 10
+    },
+    {
+      "question_id": "q_002",
+      "variable_ids": [
+        "v_003"
+      ],
+      "text": "¿En cuántas actividades extracurriculares participas actualmente?",
+      "length_chars": 65,
+      "length_words": 6
+    },
+    {
+      "question_id": "q_003",
+      "variable_ids": [
+        "v_005"
+      ],
+      "text": "¿Cómo evaluarías la variedad de actividades extracurriculares disponibles en la institución?",
+      "length_chars": 92,
+      "length_words": 11
+    },
+    {
+      "question_id": "q_004",
+      "variable_ids": [
+        "v_006"
+      ],
+      "text": "¿Qué tan fácil es para los estudiantes participar en actividades extracurriculares?",
+      "length_chars": 83,
+      "length_words": 11
+    },
+    {
+      "question_id": "q_005",
+      "variable_ids": [
+        "v_007"
+      ],
+      "text": "¿Consideras que la institución promueve activamente la participación en actividades extracurriculares?",
+      "length_chars": 102,
+      "length_words": 11
+    },
+    {
+      "question_id": "q_006",
+      "variable_ids": [
+        "v_008"
+      ],
+      "text": "¿Crees que participar en actividades extracurriculares contribuye a tu desarrollo personal o académico?",
+      "length_chars": 103,
+      "length_words": 13
+    }
+  ]
+}

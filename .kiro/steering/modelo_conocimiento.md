@@ -5,6 +5,9 @@ inclusion: manual
 # Modelo de Conocimiento — Indagata
 ## Separación entre información operativa e información semántica
 
+> **Nota (2026-09-20):** diseño CONCEPTUAL del RAG principal (funcionalidad futura, no
+> implementada). Sigue vigente como visión objetivo. Ver `arquitectura.md`.
+
 **Versión:** 1.1  
 **Fecha:** Agosto 2026  
 **Propósito:** Definir el modelo de conocimiento correcto antes de cualquier implementación del pipeline semántico.  

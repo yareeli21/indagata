@@ -5,6 +5,9 @@ inclusion: manual
 # Estrategia de Intelligent Enriched Chunking
 ## Chunking dinámico guiado por LLM para recuperación semántica educativa
 
+> **Nota (2026-09-20):** diseño CONCEPTUAL del RAG principal (funcionalidad futura, no
+> implementada). Sigue vigente como visión objetivo. Ver `arquitectura.md`.
+
 **Versión:** 1.0  
 **Fecha:** Agosto 2026  
 **Documento relacionado:** `modelo_conocimiento.md`

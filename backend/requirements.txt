@@ -1,7 +1,9 @@
-fastapi
+fastapi==0.115.6
+starlette==0.41.3
 uvicorn[standard]
 jinja2
 python-multipart
+httpx
 
 pydantic
 pydantic-settings
@@ -29,5 +31,7 @@ bcrypt==4.0.1
 pandas
 openpyxl
 pypdf
+PyPDF2
+pdfplumber
 
 

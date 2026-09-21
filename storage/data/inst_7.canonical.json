@@ -1,0 +1,1583 @@
+{
+  "canonical_id": "sha256:ff5c5c58a9101f0672bcdfa37f2ecbbd016a7b1eecf304930487acb6eb6393fb",
+  "source": {
+    "platform_guess": "limesurvey",
+    "file_name": "7_1789939925_299dd744.csv",
+    "sheet": null
+  },
+  "dimensions": {
+    "n_rows": 7,
+    "n_columns": 40
+  },
+  "variables": [
+    {
+      "variable_id": "v_001",
+      "raw_header": "Response ID",
+      "normalized_name": "response_id",
+      "position": 1,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "1",
+            "count": 1
+          },
+          {
+            "value": "2",
+            "count": 1
+          },
+          {
+            "value": "3",
+            "count": 1
+          },
+          {
+            "value": "4",
+            "count": 1
+          },
+          {
+            "value": "5",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_002",
+      "raw_header": "Date submitted",
+      "normalized_name": "date_submitted",
+      "position": 2,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "2026-03-15 04:01:34",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:06:57",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:36:01",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:39:34",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:42:03",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_003",
+      "raw_header": "Last page",
+      "normalized_name": "last_page",
+      "position": 3,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "6",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_004",
+      "raw_header": "Start language",
+      "normalized_name": "start_language",
+      "position": 4,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "en",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_005",
+      "raw_header": "Seed",
+      "normalized_name": "seed",
+      "position": 5,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "714674922",
+            "count": 1
+          },
+          {
+            "value": "633175540",
+            "count": 1
+          },
+          {
+            "value": "263291503",
+            "count": 1
+          },
+          {
+            "value": "1152637105",
+            "count": 1
+          },
+          {
+            "value": "2099185471",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_006",
+      "raw_header": "Date started",
+      "normalized_name": "date_started",
+      "position": 6,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "2026-03-15 03:23:19",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:02:13",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:07:03",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:36:08",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:39:41",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_007",
+      "raw_header": "Date last action",
+      "normalized_name": "date_last_action",
+      "position": 7,
+      "column_class": "platform_metadata",
+      "inferred_data_type": "unknown",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "2026-03-15 04:01:34",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:06:57",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:36:01",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:39:34",
+            "count": 1
+          },
+          {
+            "value": "2026-03-15 04:42:03",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_008",
+      "raw_header": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental?",
+      "normalized_name": "sabias_institucion_ofrece_servicios_apoy",
+      "position": 8,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No estoy seguro(a)",
+            "count": 3
+          },
+          {
+            "value": "Sí",
+            "count": 3
+          },
+          {
+            "value": "No",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_009",
+      "raw_header": "¿Cómo te enteraste de los servicios de salud mental de la institución? [Página web institucional]",
+      "normalized_name": "como_enteraste_servicios_salud_mental_in",
+      "position": 9,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Yes"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "item": "Página web institucional"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 5
+          },
+          {
+            "value": "Yes",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_010",
+      "raw_header": "¿Cómo te enteraste de los servicios de salud mental de la institución? [Redes sociales]",
+      "normalized_name": "como_enteraste_servicios_salud_mental_in_2",
+      "position": 10,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Yes"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "item": "Redes sociales"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 5
+          },
+          {
+            "value": "Yes",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_011",
+      "raw_header": "¿Cómo te enteraste de los servicios de salud mental de la institución? [Profesores]",
+      "normalized_name": "como_enteraste_servicios_salud_mental_in_3",
+      "position": 11,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "item": "Profesores"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_012",
+      "raw_header": "¿Cómo te enteraste de los servicios de salud mental de la institución? [Compañeros]",
+      "normalized_name": "como_enteraste_servicios_salud_mental_in_4",
+      "position": 12,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Yes"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "item": "Compañeros"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Yes",
+            "count": 4
+          },
+          {
+            "value": "No",
+            "count": 3
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_013",
+      "raw_header": "¿Cómo te enteraste de los servicios de salud mental de la institución? [Correo institucional]",
+      "normalized_name": "como_enteraste_servicios_salud_mental_in_5",
+      "position": 13,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "item": "Correo institucional"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_014",
+      "raw_header": "¿Cómo te enteraste de los servicios de salud mental de la institución? [Eventos o campañas]",
+      "normalized_name": "como_enteraste_servicios_salud_mental_in_6",
+      "position": 14,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "item": "Eventos o campañas"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_015",
+      "raw_header": "¿Cómo te enteraste de los servicios de salud mental de la institución? [No sabía que existían]",
+      "normalized_name": "como_enteraste_servicios_salud_mental_in_7",
+      "position": 15,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Yes"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "item": "No sabía que existían"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 6
+          },
+          {
+            "value": "Yes",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_016",
+      "raw_header": "¿Cómo te enteraste de los servicios de salud mental de la institución? [Otro]",
+      "normalized_name": "como_enteraste_servicios_salud_mental_in_8",
+      "position": 16,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+        "item": "Otro"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_017",
+      "raw_header": "¿Has utilizado los servicios de apoyo psicológico de la institución?",
+      "normalized_name": "has_utilizado_servicios_apoyo_psicologic",
+      "position": 17,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Sí"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 5
+          },
+          {
+            "value": "Sí",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_018",
+      "raw_header": "¿Con qué frecuencia has utilizado estos servicios?",
+      "normalized_name": "frecuencia_has_utilizado_estos_servicios",
+      "position": 18,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 2,
+        "n_null": 5,
+        "null_ratio": 0.7143,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "4-5 veces",
+            "count": 1
+          },
+          {
+            "value": "2-3 veces",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_019",
+      "raw_header": "¿Qué tipo de apoyo has utilizado? [Atención psicológica individual]",
+      "normalized_name": "tipo_apoyo_has_utilizado_atencion_psicol",
+      "position": 19,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Yes"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Qué tipo de apoyo has utilizado?",
+        "item": "Atención psicológica individual"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 6
+          },
+          {
+            "value": "Yes",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_020",
+      "raw_header": "¿Qué tipo de apoyo has utilizado? [Talleres de bienestar emocional]",
+      "normalized_name": "tipo_apoyo_has_utilizado_talleres_bienes",
+      "position": 20,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Yes"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Qué tipo de apoyo has utilizado?",
+        "item": "Talleres de bienestar emocional"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 6
+          },
+          {
+            "value": "Yes",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_021",
+      "raw_header": "¿Qué tipo de apoyo has utilizado? [Grupos de apoyo]",
+      "normalized_name": "tipo_apoyo_has_utilizado_grupos_apoyo",
+      "position": 21,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Qué tipo de apoyo has utilizado?",
+        "item": "Grupos de apoyo"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_022",
+      "raw_header": "¿Qué tipo de apoyo has utilizado? [Orientación académica]",
+      "normalized_name": "tipo_apoyo_has_utilizado_orientacion_aca",
+      "position": 22,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Qué tipo de apoyo has utilizado?",
+        "item": "Orientación académica"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_023",
+      "raw_header": "¿Qué tipo de apoyo has utilizado? [Línea de apoyo]",
+      "normalized_name": "tipo_apoyo_has_utilizado_linea_apoyo",
+      "position": 23,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Qué tipo de apoyo has utilizado?",
+        "item": "Línea de apoyo"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_024",
+      "raw_header": "¿Qué tipo de apoyo has utilizado? [Otro]",
+      "normalized_name": "tipo_apoyo_has_utilizado_otro",
+      "position": 24,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "¿Qué tipo de apoyo has utilizado?",
+        "item": "Otro"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_025",
+      "raw_header": "Evalúa los siguientes aspectos del servicio de salud mental. [Accesibilidad del servicio]",
+      "normalized_name": "evalua_siguientes_aspectos_servicio_salu",
+      "position": 25,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": null,
+      "matrix_group": {
+        "stem": "Evalúa los siguientes aspectos del servicio de salud mental.",
+        "item": "Accesibilidad del servicio"
+      },
+      "value_distribution": {
+        "n_non_null": 2,
+        "n_null": 5,
+        "null_ratio": 0.7143,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Neutral",
+            "count": 1
+          },
+          {
+            "value": "Buena",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_026",
+      "raw_header": "Evalúa los siguientes aspectos del servicio de salud mental. [Horarios disponibles]",
+      "normalized_name": "evalua_siguientes_aspectos_servicio_salu_2",
+      "position": 26,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Muy mala",
+          "Mala",
+          "Regular",
+          "Buena",
+          "Muy buena"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Evalúa los siguientes aspectos del servicio de salud mental.",
+        "item": "Horarios disponibles"
+      },
+      "value_distribution": {
+        "n_non_null": 2,
+        "n_null": 5,
+        "null_ratio": 0.7143,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Muy buena",
+            "count": 1
+          },
+          {
+            "value": "Buena",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_027",
+      "raw_header": "Evalúa los siguientes aspectos del servicio de salud mental. [Confidencialidad]",
+      "normalized_name": "evalua_siguientes_aspectos_servicio_salu_3",
+      "position": 27,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Muy mala",
+          "Mala",
+          "Regular",
+          "Buena",
+          "Muy buena"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Evalúa los siguientes aspectos del servicio de salud mental.",
+        "item": "Confidencialidad"
+      },
+      "value_distribution": {
+        "n_non_null": 2,
+        "n_null": 5,
+        "null_ratio": 0.7143,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Muy buena",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_028",
+      "raw_header": "Evalúa los siguientes aspectos del servicio de salud mental. [Calidad de la atención]",
+      "normalized_name": "evalua_siguientes_aspectos_servicio_salu_4",
+      "position": 28,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Muy mala",
+          "Mala",
+          "Regular",
+          "Buena",
+          "Muy buena"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Evalúa los siguientes aspectos del servicio de salud mental.",
+        "item": "Calidad de la atención"
+      },
+      "value_distribution": {
+        "n_non_null": 2,
+        "n_null": 5,
+        "null_ratio": 0.7143,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Muy buena",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_029",
+      "raw_header": "Evalúa los siguientes aspectos del servicio de salud mental. [Rapidez para obtener cita]",
+      "normalized_name": "evalua_siguientes_aspectos_servicio_salu_5",
+      "position": 29,
+      "column_class": "question",
+      "inferred_data_type": "ordinal",
+      "detected_scale": {
+        "kind": "likert",
+        "points": 5,
+        "labels": [
+          "Muy mala",
+          "Mala",
+          "Regular",
+          "Buena",
+          "Muy buena"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Evalúa los siguientes aspectos del servicio de salud mental.",
+        "item": "Rapidez para obtener cita"
+      },
+      "value_distribution": {
+        "n_non_null": 2,
+        "n_null": 5,
+        "null_ratio": 0.7143,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Buena",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_030",
+      "raw_header": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones? [No sabía que existían]",
+      "normalized_name": "si_no_has_utilizado_servicios_salud",
+      "position": 30,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Yes"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "item": "No sabía que existían"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 5
+          },
+          {
+            "value": "Yes",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_031",
+      "raw_header": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones? [Falta de tiempo]",
+      "normalized_name": "si_no_has_utilizado_servicios_salud_2",
+      "position": 31,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Yes"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "item": "Falta de tiempo"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 6
+          },
+          {
+            "value": "Yes",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_032",
+      "raw_header": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones? [Prefiero ayuda externa]",
+      "normalized_name": "si_no_has_utilizado_servicios_salud_3",
+      "position": 32,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "item": "Prefiero ayuda externa"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_033",
+      "raw_header": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones? [No considero que lo necesite]",
+      "normalized_name": "si_no_has_utilizado_servicios_salud_4",
+      "position": 33,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Yes"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "item": "No considero que lo necesite"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 5
+          },
+          {
+            "value": "Yes",
+            "count": 2
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_034",
+      "raw_header": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones? [Preocupación por privacidad]",
+      "normalized_name": "si_no_has_utilizado_servicios_salud_5",
+      "position": 34,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No",
+          "Yes"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "item": "Preocupación por privacidad"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 2,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 6
+          },
+          {
+            "value": "Yes",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_035",
+      "raw_header": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones? [Horarios poco accesibles]",
+      "normalized_name": "si_no_has_utilizado_servicios_salud_6",
+      "position": 35,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "item": "Horarios poco accesibles"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_036",
+      "raw_header": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones? [Otro]",
+      "normalized_name": "si_no_has_utilizado_servicios_salud_7",
+      "position": 36,
+      "column_class": "question",
+      "inferred_data_type": "nominal",
+      "detected_scale": {
+        "kind": "binary",
+        "points": 2,
+        "labels": [
+          "No"
+        ],
+        "consistent": true,
+        "anomalies": []
+      },
+      "matrix_group": {
+        "stem": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+        "item": "Otro"
+      },
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 1,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "No",
+            "count": 7
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_037",
+      "raw_header": "¿Cómo calificarías tu bienestar emocional durante el semestre actual?",
+      "normalized_name": "como_calificarias_bienestar_emocional_du",
+      "position": 37,
+      "column_class": "question",
+      "inferred_data_type": "numeric",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 3,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "3",
+            "count": 3
+          },
+          {
+            "value": "4",
+            "count": 3
+          },
+          {
+            "value": "2",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_038",
+      "raw_header": "Desde tu experiencia, ¿qué factores dentro de la institución influyen más en la salud mental de los estudiantes?",
+      "normalized_name": "desde_experiencia_factores_dentro_instit",
+      "position": 38,
+      "column_class": "question",
+      "inferred_data_type": "multi_select",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "considero que es la presión que pueden llegar a tener por parte de las asignaturas, puede que no tengan una buena organización y de pronto se sientan frustrados por ello, más en los primeros semestres porque sienten otro nivel.",
+            "count": 1
+          },
+          {
+            "value": "considero que la carga de trabajo especialmente en los primeros semestres y en los últimos que son muchas cosas por cumplir y a veces no da el tiempo",
+            "count": 1
+          },
+          {
+            "value": "siento que muchos de esta escuela solemos ser muy reservados y nos cuesta tener amistades, personas en las cuales confiar, además, la carga escolar es bastante. Ambos factores se juntan y causan en ocasiones desbalances en nuestra salud mental.",
+            "count": 1
+          },
+          {
+            "value": "considero que la organización de todos nuestros deberes, muchas veces son muchos y colapsamos más si no somos muy buenos en ciertas materias, se llega a un punto de frustración y nuestra salud mental paga las consecuencias",
+            "count": 1
+          },
+          {
+            "value": "la carga de trabajo y en ocasiones como es una etapa muy vulnerable en las relaciones, puede que tenga gran influencia en cierto grupo de estudiantes",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_039",
+      "raw_header": "¿Qué mejoras debería implementar la institución para apoyar mejor la salud mental de los estudiantes?",
+      "normalized_name": "mejoras_deberia_implementar_institucion",
+      "position": 39,
+      "column_class": "question",
+      "inferred_data_type": "multi_select",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "Podrían ser pláticas por medio de profesionales constantemente sobre lo importante que es la salud mental y que incluso los profesores siempre traten de tomar todo eso en cuenta.",
+            "count": 1
+          },
+          {
+            "value": "me parece que una evaluación en cuanto a las técnicas de enseñanza de los profesores, que sean capaces de adaptarse a distintos métodos para poder captar la atención de más estudiantes y entonces se pueda lograr mitigar un poco la salud mental que contribuya al estrés ocasionado por la escuela.",
+            "count": 1
+          },
+          {
+            "value": "fomentar más la parte de las actividades blandas, considero de suma importancia el saber relacionarse con otras personas",
+            "count": 1
+          },
+          {
+            "value": "fomentar más el acudir, aunque sea una vez a tomar una terapia, que haya más difusión del tema y la importancia para que los estudiantes se animen",
+            "count": 1
+          },
+          {
+            "value": "que se tengan pláticas por parte de profesionales para los alumnos, especialmente en el área de ingeniería, que comprendamos que igual para nosotros es bueno tomar apoyo de este tipo",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    },
+    {
+      "variable_id": "v_040",
+      "raw_header": "Si deseas compartir algún comentario adicional sobre los servicios de apoyo psicológico, escríbelo aquí.",
+      "normalized_name": "si_deseas_compartir_algun_comentario_adi",
+      "position": 40,
+      "column_class": "free_text",
+      "inferred_data_type": "free_text",
+      "detected_scale": null,
+      "matrix_group": null,
+      "value_distribution": {
+        "n_non_null": 7,
+        "n_null": 0,
+        "null_ratio": 0.0,
+        "cardinality": 7,
+        "n_structural_null": 0,
+        "top_values": [
+          {
+            "value": "solo que haya mayor difusión",
+            "count": 1
+          },
+          {
+            "value": "mayor difusión",
+            "count": 1
+          },
+          {
+            "value": "me gusta mucho que el instituto piense en estas atenciones que son de suma importancia, nunca hay que subestimar la salud mental porque es el pilar para que funcionemos bien en cualquier aspecto",
+            "count": 1
+          },
+          {
+            "value": "hacerlos más públicos, necesitan mayor publicidad",
+            "count": 1
+          },
+          {
+            "value": "me gustaría que lo difundan más ya que no muchos estamos enterados de su existencia",
+            "count": 1
+          }
+        ]
+      },
+      "profiling_stats": null
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "q_001",
+      "variable_ids": [
+        "v_009",
+        "v_010",
+        "v_011",
+        "v_012",
+        "v_013",
+        "v_014",
+        "v_015",
+        "v_016"
+      ],
+      "text": "¿Cómo te enteraste de los servicios de salud mental de la institución?",
+      "length_chars": 70,
+      "length_words": 12
+    },
+    {
+      "question_id": "q_002",
+      "variable_ids": [
+        "v_019",
+        "v_020",
+        "v_021",
+        "v_022",
+        "v_023",
+        "v_024"
+      ],
+      "text": "¿Qué tipo de apoyo has utilizado?",
+      "length_chars": 33,
+      "length_words": 6
+    },
+    {
+      "question_id": "q_003",
+      "variable_ids": [
+        "v_025",
+        "v_026",
+        "v_027",
+        "v_028",
+        "v_029"
+      ],
+      "text": "Evalúa los siguientes aspectos del servicio de salud mental.",
+      "length_chars": 60,
+      "length_words": 9
+    },
+    {
+      "question_id": "q_004",
+      "variable_ids": [
+        "v_030",
+        "v_031",
+        "v_032",
+        "v_033",
+        "v_034",
+        "v_035",
+        "v_036"
+      ],
+      "text": "Si no has utilizado los servicios de salud mental, ¿cuáles son las razones?",
+      "length_chars": 75,
+      "length_words": 13
+    },
+    {
+      "question_id": "q_005",
+      "variable_ids": [
+        "v_008"
+      ],
+      "text": "¿Sabías que la institución ofrece servicios de apoyo psicológico o de salud mental?",
+      "length_chars": 83,
+      "length_words": 13
+    },
+    {
+      "question_id": "q_006",
+      "variable_ids": [
+        "v_017"
+      ],
+      "text": "¿Has utilizado los servicios de apoyo psicológico de la institución?",
+      "length_chars": 68,
+      "length_words": 10
+    },
+    {
+      "question_id": "q_007",
+      "variable_ids": [
+        "v_018"
+      ],
+      "text": "¿Con qué frecuencia has utilizado estos servicios?",
+      "length_chars": 50,
+      "length_words": 7
+    },
+    {
+      "question_id": "q_008",
+      "variable_ids": [
+        "v_037"
+      ],
+      "text": "¿Cómo calificarías tu bienestar emocional durante el semestre actual?",
+      "length_chars": 69,
+      "length_words": 9
+    }
+  ]
+}

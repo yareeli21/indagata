@@ -1,0 +1,330 @@
+{
+  "info": {
+    "name": "INDAGATA - Instrumentos API",
+    "_postman_id": "indagata-instrumentos-v1",
+    "description": "Colección completa de endpoints para el módulo de Instrumentos de Investigación de INDAGATA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "instrumento_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Wizard - Carga de Instrumentos",
+      "item": [
+        {
+          "name": "PASO 1 - Upload Archivo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.environment.set('instrumento_id', jsonData.instrumento_id);",
+                  "    pm.test('Instrumento ID guardado: ' + jsonData.instrumento_id, () => {});",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "archivo",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "tipo_instrumento",
+                  "value": "encuesta",
+                  "type": "text"
+                },
+                {
+                  "key": "visibilidad",
+                  "value": "public",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/instrumentos/upload",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos", "upload"]
+            },
+            "description": "Sube el archivo del instrumento y crea el registro inicial con estado 'pendiente'"
+          },
+          "response": []
+        },
+        {
+          "name": "PASO 2 - Registrar Metadatos DC",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instrumento_id\": {{instrumento_id}},\n  \"dc_title\": \"Encuesta de Satisfacción Docente 2024\",\n  \"dc_creator\": \"Dr. Juan Pérez\",\n  \"dc_subject\": [\"educación\", \"docentes\", \"satisfacción laboral\"],\n  \"dc_description\": \"Instrumento para medir la satisfacción laboral de docentes de educación básica en México\",\n  \"dc_publisher\": \"Universidad Nacional de Educación\",\n  \"dc_contributor\": \"Dra. María González\",\n  \"dc_date\": \"2024-01-15\",\n  \"dc_type\": \"Encuesta cuantitativa\",\n  \"dc_format\": \"PDF\",\n  \"dc_identifier\": \"ISBN-978-3-16-148410-0\",\n  \"dc_language\": \"es\",\n  \"dc_coverage\": \"México, 2024, Educación Básica\",\n  \"dc_rights\": \"© 2024 Universidad Nacional. Todos los derechos reservados.\",\n  \"dc_source\": \"Estudio longitudinal de docentes\",\n  \"dc_relation\": \"Relacionado con proyecto FONDEC-2023-456\",\n  \"kpis_inferidos\": [\n    {\n      \"kpi_id\": 1,\n      \"evidencia_textual\": \"Pregunta 5: ¿Qué tan satisfecho está con su ambiente laboral?\",\n      \"score_inferencia\": 0.95\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/instrumentos/metadata",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos", "metadata"]
+            },
+            "description": "Registra los 13 campos Dublin Core obligatorios y KPIs base. Estado pasa a 'metadata_registrado'"
+          },
+          "response": []
+        },
+        {
+          "name": "PASO 3 - Analizar ETL",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/instrumentos/{{instrumento_id}}/etl/extract",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos", "{{instrumento_id}}", "etl", "extract"]
+            },
+            "description": "Dispara el análisis ETL con el LLM. Genera propuestas de transformaciones, metadatos y KPIs. Estado pasa a 'etl_pendiente'"
+          },
+          "response": []
+        },
+        {
+          "name": "PASO 4a - Obtener Propuestas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/instrumentos/{{instrumento_id}}/etl/proposals",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos", "{{instrumento_id}}", "etl", "proposals"]
+            },
+            "description": "Obtiene todas las propuestas generadas por el LLM con su estado actual"
+          },
+          "response": []
+        },
+        {
+          "name": "PASO 4b - Aprobar Propuestas",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instrumento_id\": {{instrumento_id}},\n  \"decisiones\": [\n    {\n      \"propuesta_id\": 1,\n      \"decision\": \"aceptada\"\n    },\n    {\n      \"propuesta_id\": 2,\n      \"decision\": \"aceptada\"\n    },\n    {\n      \"propuesta_id\": 3,\n      \"decision\": \"rechazada\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/instrumentos/{{instrumento_id}}/etl/approve",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos", "{{instrumento_id}}", "etl", "approve"]
+            },
+            "description": "Envía las decisiones del usuario sobre todas las propuestas. Estado pasa a 'etl_aprobado'"
+          },
+          "response": []
+        },
+        {
+          "name": "PASO 5 - Ejecutar Ingesta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instrumento_id\": {{instrumento_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/instrumentos/ingesta",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos", "ingesta"]
+            },
+            "description": "Ejecuta el pipeline completo: transformaciones, JSON, SAV, chunking, embeddings. Estado final 'vectorizado'"
+          },
+          "response": []
+        }
+      ],
+      "description": "Flujo completo de 5 pasos para cargar un instrumento al sistema"
+    },
+    {
+      "name": "Consultas",
+      "item": [
+        {
+          "name": "Listar Todos los Instrumentos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/instrumentos",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos"]
+            },
+            "description": "Obtiene lista completa de instrumentos sin filtros"
+          },
+          "response": []
+        },
+        {
+          "name": "Listar con Filtros",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/instrumentos?tipo_instrumento=encuesta&idioma=es&skip=0&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos"],
+              "query": [
+                {
+                  "key": "tipo_instrumento",
+                  "value": "encuesta",
+                  "description": "encuesta | entrevista | prueba_estandarizada"
+                },
+                {
+                  "key": "idioma",
+                  "value": "es",
+                  "description": "Código de idioma"
+                },
+                {
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Offset para paginación"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Límite de resultados (max: 100)"
+                }
+              ]
+            },
+            "description": "Lista de instrumentos filtrada por tipo e idioma con paginación"
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Detalle",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/instrumentos/{{instrumento_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos", "{{instrumento_id}}"]
+            },
+            "description": "Obtiene información completa de un instrumento: metadatos DC, enriquecidos, KPIs, estado"
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints para consultar instrumentos existentes"
+    },
+    {
+      "name": "Descargas",
+      "item": [
+        {
+          "name": "Descargar Original",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/instrumentos/{{instrumento_id}}/download?type=original",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos", "{{instrumento_id}}", "download"],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "original"
+                }
+              ]
+            },
+            "description": "Descarga el archivo original subido en el PASO 1"
+          },
+          "response": []
+        },
+        {
+          "name": "Descargar JSON Enriquecido",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/instrumentos/{{instrumento_id}}/download?type=json",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos", "{{instrumento_id}}", "download"],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "json"
+                }
+              ]
+            },
+            "description": "Descarga el JSON enriquecido con metadatos consolidados (disponible después de ingesta)"
+          },
+          "response": []
+        },
+        {
+          "name": "Descargar SAV",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/instrumentos/{{instrumento_id}}/download?type=sav",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos", "{{instrumento_id}}", "download"],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "sav"
+                }
+              ]
+            },
+            "description": "Descarga archivo SAV para SPSS/Stata (solo disponible para encuestas después de ingesta)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints para descargar archivos del instrumento"
+    },
+    {
+      "name": "Gestión",
+      "item": [
+        {
+          "name": "Eliminar Instrumento",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/instrumentos/{{instrumento_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["instrumentos", "{{instrumento_id}}"]
+            },
+            "description": "Elimina un instrumento y todos sus datos asociados. Operación irreversible."
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints de gestión y administración"
+    }
+  ]
+}
