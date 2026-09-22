@@ -27,8 +27,7 @@ class LoginResponse(LoginBase):
     fecha:datetime = Field(..., alias="Fecha de Creación")
 
 
-    class Config:
-        orm_mode = True
-        from_atributes = True
-        allow_population_by_field_name = True
-        populate_by_name = True
+    model_config = {
+        "from_attributes": True,
+        "populate_by_name": True
+    }

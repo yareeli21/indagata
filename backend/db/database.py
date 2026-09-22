@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.core.config import settings
+from core.config import settings
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -9,7 +9,8 @@ from sqlalchemy.ext.declarative import declarative_base
 engine = create_engine(
     settings.DATABASE_URL,
     echo=False,
-    future=True
+    future=True,
+    pool_pre_ping=True,  # descarta conexiones muertas antes de usarlas (robustez ante timeouts de red/BD)
 )
 
 #es para cada usuario (request) que entre y tenga su propia sesión

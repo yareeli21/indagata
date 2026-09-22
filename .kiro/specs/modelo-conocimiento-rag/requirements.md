@@ -1,5 +1,8 @@
 # Modelo de Conocimiento y Estrategia de Recuperación Semántica
 
+> **Nota (2026-09-20):** requisitos de una funcionalidad FUTURA (RAG principal). Aún NO
+> implementada. Es la visión objetivo, no el estado actual del código.
+
 ## Visión general
 
 Esta SPEC formaliza el modelo de conocimiento y la estrategia de recuperación semántica de la plataforma educativa RAG **Indagata**.

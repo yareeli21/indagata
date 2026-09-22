@@ -26,8 +26,7 @@ class KpiUpdate(KpiBase):
 
 
 class KpiResponse(KpiBase):
-    class Config:
-        orm_mode = True
-        from_atributes = True
-        allow_population_by_field_name = True
-        populate_by_name = True
+    model_config = {
+        "from_attributes": True,
+        "populate_by_name": True
+    }

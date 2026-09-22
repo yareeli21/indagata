@@ -1,0 +1,265 @@
+[
+  {
+    "variable_id": "v_002",
+    "pregunta": "¿Actualmente participas en alguna actividad extracurricular organizada por la institución?",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "No",
+      "media_codificada": 1.43
+    },
+    "distribution": [
+      {
+        "value": "No",
+        "frequency": 4,
+        "percentage": 57.1
+      },
+      {
+        "value": "Sí",
+        "frequency": 3,
+        "percentage": 42.9
+      }
+    ],
+    "interpretation": "La mayoría de los estudiantes (57.1%) no participan en ninguna actividad extracurricular organizada por la institución.",
+    "insights": [
+      "Patrón de ausencia de participación en actividades extracurriculares"
+    ],
+    "numeric_evidence": "4 de 7 = 57.1%",
+    "semantic_text": "Participación en actividades extracurriculares"
+  },
+  {
+    "variable_id": "v_003",
+    "pregunta": "¿En cuántas actividades extracurriculares participas actualmente?",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "Ninguna",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "Ninguna",
+        "frequency": 4,
+        "percentage": 57.1
+      },
+      {
+        "value": "1 actividad",
+        "frequency": 2,
+        "percentage": 28.6
+      },
+      {
+        "value": "2 actividades",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": "La mayoría de los estudiantes (57.1%) no participan en ninguna actividad extracurricular.",
+    "insights": [
+      "Patrón de ausencia de participación en actividades extracurriculares"
+    ],
+    "numeric_evidence": "4 de 7 = 57.1%",
+    "semantic_text": "Participación en actividades extracurriculares"
+  },
+  {
+    "variable_id": "v_004",
+    "pregunta": "¿Qué tipo de actividades extracurriculares ofrece tu institución?",
+    "tipo": "multi_select",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "Deportivas, Culturales o artísticas, Académicas o científicas, Tecnológicas",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "Deportivas, Culturales o artísticas, Académicas o científicas, Tecnológicas",
+        "frequency": 2,
+        "percentage": 28.6
+      },
+      {
+        "value": "Deportivas, Académicas o científicas",
+        "frequency": 2,
+        "percentage": 28.6
+      },
+      {
+        "value": "Deportivas, Culturales o artísticas, Tecnológicas",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Deportivas, Académicas o científicas, Tecnológicas",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Deportivas, Tecnológicas",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": "La institución ofrece una variedad de actividades extracurriculares, pero no hay una modalidad predominante.",
+    "insights": [
+      "Diversidad de actividades extracurriculares"
+    ],
+    "numeric_evidence": "4 de 7 = 57.1%",
+    "semantic_text": "Actividades extracurriculares"
+  },
+  {
+    "variable_id": "v_005",
+    "pregunta": "¿Cómo evaluarías la variedad de actividades extracurriculares disponibles en la institución?",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "Adecuada",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "Adecuada",
+        "frequency": 5,
+        "percentage": 71.4
+      },
+      {
+        "value": "Amplia",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Limitada",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": "La mayoría de los estudiantes (71.4%) consideran que la variedad de actividades extracurriculares es adecuada.",
+    "insights": [
+      "Percepción de variedad de actividades extracurriculares"
+    ],
+    "numeric_evidence": "5 de 7 = 71.4%",
+    "semantic_text": "Variedad de actividades extracurriculares"
+  },
+  {
+    "variable_id": "v_006",
+    "pregunta": "¿Qué tan fácil es para los estudiantes participar en actividades extracurriculares?",
+    "tipo": "ordinal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "Neutral",
+      "media_codificada": 3.0
+    },
+    "distribution": [
+      {
+        "value": "Neutral",
+        "frequency": 3,
+        "percentage": 42.9
+      },
+      {
+        "value": "Fácil",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Muy fácil",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Difícil",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Muy difícil",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": "La mayoría de los estudiantes (42.9%) consideran que participar en actividades extracurriculares es fácil.",
+    "insights": [
+      "Percepción de facilidad de participación en actividades extracurriculares"
+    ],
+    "numeric_evidence": "3 de 7 = 42.9%",
+    "semantic_text": "Participación en actividades extracurriculares"
+  },
+  {
+    "variable_id": "v_007",
+    "pregunta": "¿Consideras que la institución promueve activamente la participación en actividades extracurriculares?",
+    "tipo": "nominal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "A veces",
+      "media_codificada": null
+    },
+    "distribution": [
+      {
+        "value": "A veces",
+        "frequency": 3,
+        "percentage": 42.9
+      },
+      {
+        "value": "Rara vez",
+        "frequency": 2,
+        "percentage": 28.6
+      },
+      {
+        "value": "Frecuentemente",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Siempre",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": "La mayoría de los estudiantes (42.9%) consideran que la institución promueve activamente la participación en actividades extracurriculares.",
+    "insights": [
+      "Percepción de promoción de participación en actividades extracurriculares"
+    ],
+    "numeric_evidence": "3 de 7 = 42.9%",
+    "semantic_text": "Promoción de participación en actividades extracurriculares"
+  },
+  {
+    "variable_id": "v_008",
+    "pregunta": "¿Crees que participar en actividades extracurriculares contribuye a tu desarrollo personal o académico?",
+    "tipo": "ordinal",
+    "metrics": {
+      "n_respuestas": 7,
+      "n_nulos": 0,
+      "moda": "Mucho",
+      "media_codificada": 3.0
+    },
+    "distribution": [
+      {
+        "value": "Mucho",
+        "frequency": 3,
+        "percentage": 42.9
+      },
+      {
+        "value": "Moderadamente",
+        "frequency": 2,
+        "percentage": 28.6
+      },
+      {
+        "value": "Nada",
+        "frequency": 1,
+        "percentage": 14.3
+      },
+      {
+        "value": "Poco",
+        "frequency": 1,
+        "percentage": 14.3
+      }
+    ],
+    "interpretation": "La mayoría de los estudiantes (42.9%) consideran que participar en actividades extracurriculares contribuye mucho a su desarrollo personal o académico.",
+    "insights": [
+      "Percepción de contribución de participación en actividades extracurriculares"
+    ],
+    "numeric_evidence": "3 de 7 = 42.9%",
+    "semantic_text": "Contribución de participación en actividades extracurriculares"
+  }
+]
