@@ -27,5 +27,12 @@ def root(request:Request):
         name="index.html"
         )
 
-@app.get("/dashboard", response_class=HTMLResponse)
-def dashboard
+@app.get("/home", response_class=HTMLResponse)
+def home(request:Request):
+    return templates.TemplateResponse(
+        request=request,
+        name=""
+    )
+
+from routers.routers_login import router as login_router
+app.include_router(login_router)

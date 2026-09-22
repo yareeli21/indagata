@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+    <link rel="shortcut icon" href="">
+
 </head>
 
 <body>
@@ -13,7 +15,8 @@
     <main class="auth-card">
 
         <section class="auth-visual">
-            <img class="auth-visual__art" src="RUTA_DE_TU_IMAGEN.jpg" alt="">
+            <img class="auth-visual__art"
+                src="{{ url_for('static', path='/biblioteca.jpg') }}" alt="Library">
             <span class="auth-visual__label">WELCOME</span>
         </section>
 
