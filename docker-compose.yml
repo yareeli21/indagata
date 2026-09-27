@@ -1,0 +1,284 @@
+version: '3.9'
+
+services:
+  # ==================== INFRASTRUCTURE ====================
+  postgres:
+    image: postgres:16-alpine
+    container_name: indagata_postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      POSTGRES_INITDB_ARGS: "--locale=es_ES.UTF-8 --encoding=UTF8"
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infrastructure/postgres/init:/docker-entrypoint-initdb.d
+      - ./infrastructure/postgres/migrations:/migrations
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-indagata_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - indagata_network
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: indagata_ollama
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - OLLAMA_DEBUG=1
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - indagata_network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: indagata_chromadb
+    environment:
+      CHROMA_TELEMETRY_ENABLED: "false"
+    ports:
+      - "8001:8000"
+    volumes:
+      - chromadb_data:/data
+    networks:
+      - indagata_network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: indagata_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - indagata_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  # ==================== MICROSERVICES ====================
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/Dockerfile.api-gateway
+    container_name: indagata_api_gateway
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      SERVICE_NAME: api-gateway
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-prod}
+      INSTRUMENT_SERVICE_URL: http://instrument-service:8001
+      ANALYSIS_SERVICE_URL: http://analysis-service:8002
+      METADATA_SERVICE_URL: http://metadata-service:8003
+      STORAGE_SERVICE_URL: http://storage-service:8004
+      VISUALIZATION_SERVICE_URL: http://visualization-service:8005
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      DEBUG: ${DEBUG:-false}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./services/api-gateway:/app
+      - ./shared:/app/shared
+    networks:
+      - indagata_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  instrument-service:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/Dockerfile.instrument-service
+    container_name: indagata_instrument_service
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SERVICE_NAME: instrument-service
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      STORAGE_PATH: /app/storage
+      RAW_PATH: /app/storage/raw
+      TEMP_PATH: /app/storage/temp
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./services/instrument-service:/app
+      - ./shared:/app/shared
+      - ./storage:/app/storage
+    networks:
+      - indagata_network
+    restart: unless-stopped
+
+  analysis-service:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/Dockerfile.analysis-service
+    container_name: indagata_analysis_service
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ollama:
+        condition: service_started
+    environment:
+      SERVICE_NAME: analysis-service
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./services/analysis-service:/app
+      - ./shared:/app/shared
+    networks:
+      - indagata_network
+    restart: unless-stopped
+
+  metadata-service:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/Dockerfile.metadata-service
+    container_name: indagata_metadata_service
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SERVICE_NAME: metadata-service
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8003:8003"
+    volumes:
+      - ./services/metadata-service:/app
+      - ./shared:/app/shared
+    networks:
+      - indagata_network
+    restart: unless-stopped
+
+  storage-service:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/Dockerfile.storage-service
+    container_name: indagata_storage_service
+    environment:
+      SERVICE_NAME: storage-service
+      STORAGE_PATH: /app/storage
+      RAW_PATH: /app/storage/raw
+      JSON_PATH: /app/storage/json
+      SAV_PATH: /app/storage/sav
+      TEMP_PATH: /app/storage/temp
+      CHROMA_PATH: /app/chromadb/data
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8004:8004"
+    volumes:
+      - ./services/storage-service:/app
+      - ./shared:/app/shared
+      - ./storage:/app/storage
+      - ./chromadb:/app/chromadb
+    networks:
+      - indagata_network
+    restart: unless-stopped
+
+  visualization-service:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/Dockerfile.visualization-service
+    container_name: indagata_visualization_service
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SERVICE_NAME: visualization-service
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      STORAGE_PATH: /app/storage
+      JSON_PATH: /app/storage/json
+      SAV_PATH: /app/storage/sav
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8005:8005"
+    volumes:
+      - ./services/visualization-service:/app
+      - ./shared:/app/shared
+      - ./storage:/app/storage
+    networks:
+      - indagata_network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/Dockerfile.frontend
+    container_name: indagata_frontend
+    environment:
+      VITE_API_URL: http://localhost:8000
+      NODE_ENV: ${NODE_ENV:-production}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - indagata_network
+    restart: unless-stopped
+
+networks:
+  indagata_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  ollama_data:
+  chromadb_data:
+  redis_data:

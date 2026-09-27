@@ -5,6 +5,8 @@ services:
     postgres:
       image: postgres:16
       container_name: superchido_postgres 
+      env_file:
+        - ./backend/.env
 
       environment:
         POSTGRES_DB: ${POSTGRES_DB}
@@ -30,6 +32,8 @@ services:
     ollama:
        image: ollama/ollama:latest
        container_name: superchido_ollama
+       env_file:
+         - ./backend/.env
 
        ports:
         - "11434:11434"
@@ -51,6 +55,8 @@ services:
         context: .
         dockerfile: Dockerfile
       container_name: superchido_fastapi
+      env_file:
+        - ./backend/.env
 
       environment:
         POSTGRES_DB: ${POSTGRES_DB}
