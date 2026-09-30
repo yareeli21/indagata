@@ -1,360 +1,222 @@
--- ============================================================================
--- INDAGATA - Schema PostgreSQL v2.0 (Actualizado 2026-09-17)
--- Base de datos: aprende_rag
--- Schema: tt_rag
--- ============================================================================
+-- ============================================================
+-- INDAGATA - Esquema de base de datos (PostgreSQL)
+--
+-- Generado a partir del diagrama entregado, con las correcciones
+-- de normalización discutidas:
+--   - PK simples en USUARIO, KPI e INSTRUMENTO_PROCESADO
+--     (antes compuestas o inexistentes)
+--   - Catálogo KPI <-> VARIABLE separado en tabla puente N:M,
+--     en vez de columnas repetidas VARIABLE_1..6
+--   - KPI_INFERIDO como tabla asociativa N:M entre
+--     INSTRUMENTO_PROCESADO y KPI, con atributos propios
+--   - VALOR_VARIABLE_INFERIDO separado de KPI_INFERIDO para
+--     almacenar el valor de cada variable usada en la inferencia
+--
+-- Pendiente de decidir fuera de este script (no se puede resolver
+-- solo con SQL):
+--   - Columnas reales de METADATOS_ENRIQUECIDOS_ENTREVISTAS y PROMPTS
+--   - Validación de que tipo_instrumento coincida con la tabla de
+--     metadatos enriquecidos que se llena (regla de negocio -> FastAPI)
+-- ============================================================
 
--- Crear schema si no existe
-CREATE SCHEMA IF NOT EXISTS tt_rag;
+BEGIN;
 
--- Asegurar que estamos en el schema correcto
-SET search_path TO tt_rag, public;
-
-
--- ════════════════════════════════════════════════════════════════════════════
--- GRUPO 1: GESTIÓN DE INSTRUMENTOS (ACTUALIZADO)
--- ════════════════════════════════════════════════════════════════════════════
---INSTRUMENTO PREVIO A LA INGESTA DE RAG OSEA AQUI YA TIENE QUE TENER LOS METADATOS 
-CREATE TABLE IF NOT EXISTS instrumento_procesado (
-
-    ID_PROCESADO     INTEGER NOT NULL,
-    ID_RAW            VARCHAR(255) NOT NULL,
-    
-    plataforma          VARCHAR(50),
-    ruta_json           TEXT,  -- Disponible desde "etl_aprobado"
-    estado              VARCHAR(50)  NOT NULL DEFAULT 'pendiente'
-        CHECK (estado IN ('pendiente', 'metadata_registrado', 'etl_pendiente_limpieza', 'etl_pendiente_enriquecimiento', 'etl_aprobado', 'en_ingesta', 'vectorizado', 'error')),
-    fecha_procesamiento TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    ruta_archivo        TEXT  -- storage/raw/{id}_{timestamp}_{hash}.{ext}
-
+-- ------------------------------------------------------------
+-- USUARIO
+-- ------------------------------------------------------------
+CREATE TABLE usuario (
+    usuario_id      SERIAL PRIMARY KEY,
+    nombre          VARCHAR(255) NOT NULL,
+    email           VARCHAR(255) UNIQUE NOT NULL,
+    password_hash   TEXT NOT NULL,
+    rol             VARCHAR(255),
+    fecha_registro  TIMESTAMP NOT NULL DEFAULT now()
 );
 
-COMMENT ON COLUMN instrumento_procesado.ruta_json IS 'Ruta al JSON consolidado en storage/json/. Disponible desde "etl_aprobado".';
-COMMENT ON COLUMN instrumento_procesado.ruta_sav IS 'Ruta al .sav en storage/sav/. Solo encuestas, desde "vectorizado".';
-COMMENT ON COLUMN instrumento_procesado.ruta_texto_limpio IS 'Ruta al caché en storage/data/. Encuestas: {hash}.canonical.json; documentos: {hash}.txt. Reutilizable por hash.';
-COMMENT ON COLUMN instrumento_procesado.ruta_codebook IS 'Codebook opcional (solo encuestas). Se pasa como fuente RAG al SIS (activo en Nivel 2).';
-COMMENT ON COLUMN instrumento_procesado.estado IS 'Flujo: pendiente → metadata_registrado → (analyze SIS) → etl_pendiente_limpieza → etl_pendiente_enriquecimiento → etl_aprobado → en_ingesta → vectorizado | error';
-COMMENT ON COLUMN instrumento_procesado.schema_version IS 'Versión del schema del JSON consolidado. v2.0 incluye transformaciones, metadatos enriquecidos y KPIs.';
-COMMENT ON COLUMN instrumento_procesado.ruta_archivo IS 'Ruta relativa al archivo original en storage/raw/. Disponible desde estado "pendiente".';
-
--- Índices
-CREATE INDEX IF NOT EXISTS idx_instrumento_estado ON instrumento_procesado(estado)
-    WHERE estado IN ('metadata_registrado', 'etl_pendiente_limpieza', 'etl_pendiente_enriquecimiento', 'etl_aprobado', 'en_ingesta', 'vectorizado');
-CREATE INDEX IF NOT EXISTS idx_instrumento_tipo ON instrumento_procesado(tipo_instrumento);
-CREATE INDEX IF NOT EXISTS idx_instrumento_creado_en ON instrumento_procesado(creado_en);
-CREATE INDEX IF NOT EXISTS idx_instrumento_nombre_fts ON instrumento_procesado USING GIN (to_tsvector('spanish', nombre));
-
-
--- ════════════════════════════════════════════════════════════════════════════
--- GRUPO 2: METADATOS DUBLIN CORE (ACTUALIZADO - SIN VISIBILIDAD)
--- ════════════════════════════════════════════════════════════════════════════
-
--- Metadatos Dublin Core (13 campos estándar)
--- CAMBIOS: Eliminados dc_contributor y dc_identifier
-CREATE TABLE IF NOT EXISTS metadatos_dc (
-    metadatos_id   INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    instrumento_id INTEGER NOT NULL UNIQUE,
-    dc_title       TEXT    NOT NULL,
-    dc_creator     TEXT    NOT NULL,
-    dc_subject     TEXT    NOT NULL,  -- JSON array: '["tema1","tema2"]'
-    dc_description TEXT    NOT NULL,
-    dc_publisher   TEXT    NOT NULL,
-    dc_date        VARCHAR(20) NOT NULL,
-    dc_type        VARCHAR(50) NOT NULL,
-    dc_format      VARCHAR(50) NOT NULL,
-    dc_language    VARCHAR(10) NOT NULL,
-    dc_coverage    TEXT    NOT NULL,
-    dc_rights      TEXT    NOT NULL,
-    dc_source      TEXT,
-    dc_relation    TEXT,
-    registrado_en  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (instrumento_id) REFERENCES instrumento_procesado(instrumento_id) ON DELETE CASCADE
+-- ------------------------------------------------------------
+-- RAW_DATA
+-- ------------------------------------------------------------
+CREATE TABLE raw_data (
+    id_crudo            SERIAL PRIMARY KEY,
+    id_owner            INTEGER NOT NULL REFERENCES usuario(usuario_id),
+    tipo_instrumento    VARCHAR(30) NOT NULL
+        CHECK (tipo_instrumento IN ('encuesta', 'entrevista', 'prueba_estandarizada')),
+    nombre_archivo      TEXT NOT NULL,
+    ruta                TEXT NOT NULL,
+    fecha_carga         TIMESTAMP NOT NULL DEFAULT now()
 );
 
-COMMENT ON COLUMN metadatos_dc.dc_subject IS 'Lista de temas serializada como JSON: ''["tema1","tema2"]''';
+CREATE INDEX idx_raw_data_owner ON raw_data(id_owner);
+CREATE INDEX idx_raw_data_tipo  ON raw_data(tipo_instrumento);
 
--- Índices
-CREATE INDEX IF NOT EXISTS idx_metadatos_dc_language ON metadatos_dc(dc_language);
-CREATE INDEX IF NOT EXISTS idx_metadatos_dc_title_fts ON metadatos_dc USING GIN (to_tsvector('spanish', dc_title));
-
-
--- ════════════════════════════════════════════════════════════════════════════
--- GRUPO 3: PROPUESTAS ETL Y METADATOS ENRIQUECIDOS (NUEVO)
--- ════════════════════════════════════════════════════════════════════════════
-
--- Propuestas generadas por el LLM en el paso ETL
--- NUEVO: Tabla para registrar transformaciones, metadatos enriquecidos y KPIs sugeridos
-CREATE TABLE IF NOT EXISTS etl_propuesta (
-    propuesta_id     INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    instrumento_id   INTEGER NOT NULL,
-    tipo             VARCHAR(30) NOT NULL
-        CHECK (tipo IN ('transformacion', 'metadato_enriquecido', 'kpi_sugerido')),
-    descripcion      TEXT NOT NULL,
-    accion_sugerida  TEXT NOT NULL,
-    justificacion    TEXT NOT NULL,
-    impacto_esperado TEXT,
-    valor_original   TEXT,
-    valor_propuesto  TEXT,  -- Para metadatos: JSON. Para KPIs: nombre del KPI. Para transformaciones: texto.
-    estado_decision  VARCHAR(20) NOT NULL DEFAULT 'pendiente'
-        CHECK (estado_decision IN ('pendiente', 'aceptada', 'rechazada')),
-    fecha_propuesta  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    fecha_decision   TIMESTAMP,
-    FOREIGN KEY (instrumento_id) REFERENCES instrumento_procesado(instrumento_id) ON DELETE CASCADE
+-- ------------------------------------------------------------
+-- METADATOS_DC (Dublin Core) - relación 1:0..1 con RAW_DATA
+-- ------------------------------------------------------------
+CREATE TABLE metadatos_dc (
+    id_crudo        INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    dc_title        TEXT,
+    dc_creator      TEXT,
+    dc_description  TEXT,
+    dc_type         VARCHAR(50),
+    dc_date         DATERANGE,
+    dc_languaje     CHAR(10),
+    dc_coverage     TEXT,
+    dc_subject      TEXT,
+    dc_publisher    TEXT,
+    dc_rights       VARCHAR(25),
+    dc_format       VARCHAR(10),
+    dc_source       TEXT,
+    dc_relation     VARCHAR(255)
 );
 
-COMMENT ON COLUMN etl_propuesta.tipo IS 'Categoría de la propuesta: transformacion (recomendaciones de mejora), metadato_enriquecido (campos adicionales), kpi_sugerido (indicador inferido).';
-COMMENT ON COLUMN etl_propuesta.valor_propuesto IS 'Para transformaciones: valor después de aplicar la acción. Para metadatos/KPIs: JSON con el campo y valor sugeridos.';
-COMMENT ON COLUMN etl_propuesta.estado_decision IS 'pendiente (por defecto tras paso 3), aceptada o rechazada (tras paso 4).';
-
--- Índices
-CREATE INDEX IF NOT EXISTS idx_etl_propuesta_instrumento ON etl_propuesta(instrumento_id);
-CREATE INDEX IF NOT EXISTS idx_etl_propuesta_tipo ON etl_propuesta(tipo);
-CREATE INDEX IF NOT EXISTS idx_etl_propuesta_estado ON etl_propuesta(estado_decision);
-
-
--- Metadatos enriquecidos (campos adicionales del LLM)
--- NUEVO: JSONB flexible para campos adicionales aceptados en ETL
-CREATE TABLE IF NOT EXISTS metadatos_enriquecidos (
-    enriquecido_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    instrumento_id INTEGER NOT NULL UNIQUE,
-    metadatos      JSONB   NOT NULL DEFAULT '{}'::jsonb,
-    registrado_en  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (instrumento_id) REFERENCES instrumento_procesado(instrumento_id) ON DELETE CASCADE
+-- ------------------------------------------------------------
+-- Metadatos enriquecidos por tipo de instrumento
+-- (1:0..1 con RAW_DATA; solo debe existir fila en la tabla que
+--  corresponda a raw_data.tipo_instrumento -- esa coherencia se
+--  valida en la aplicación, no aquí)
+-- ------------------------------------------------------------
+CREATE TABLE metadatos_enriquecidos_encuestas (
+    id_crudo                INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    n_respondentes          INTEGER,
+    n_poblacion             INTEGER,
+    tipo_investigacion      TEXT,
+    notas_contextuales      TEXT,
+    notas_interpretacion    TEXT,
+    secciones               JSONB
 );
 
--- Índices
-CREATE INDEX IF NOT EXISTS idx_metadatos_enriquecidos_gin ON metadatos_enriquecidos USING GIN (metadatos);
-
-
--- Oportunidades de mejora continua emitidas por el SIS (Survey Intelligence Service)
--- NUEVO: el SIS solo emite status='proposed'; la promoción es gobernanza humana.
-CREATE TABLE IF NOT EXISTS improvement_opportunity (
-    opportunity_id  INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    instrumento_id  INTEGER NOT NULL,
-    sis_opportunity_id TEXT,  -- id que generó el SIS (trazabilidad)
-    scope           VARCHAR(30) NOT NULL
-        CHECK (scope IN ('survey', 'pipeline', 'future_analysis', 'validation_rule', 'quality_heuristic', 'pattern')),
-    titulo          TEXT NOT NULL,
-    descripcion     TEXT NOT NULL,
-    evidencia       JSONB DEFAULT '[]'::jsonb,
-    proposed_rule   JSONB,  -- {rule_id_candidate, when, then} para reglas candidatas
-    confianza       NUMERIC(4,3) CHECK (confianza IS NULL OR (confianza >= 0 AND confianza <= 1)),
-    generado_por    VARCHAR(60),
-    estado          VARCHAR(20) NOT NULL DEFAULT 'proposed'
-        CHECK (estado IN ('proposed', 'under_review', 'accepted', 'promoted', 'rejected')),
-    creado_en       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (instrumento_id) REFERENCES instrumento_procesado(instrumento_id) ON DELETE CASCADE
+CREATE TABLE metadatos_enriquecidos_pruebas_estandarizadas (
+    id_crudo                        INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    unidad_de_aprendizaje           TEXT NOT NULL,
+    mapeo_de_reactivos_por_seccion  TEXT NOT NULL,
+    institucion                     TEXT NOT NULL,
+    campus                          TEXT,
+    grado                           TEXT NOT NULL,
+    ciclo_escolar                   TEXT NOT NULL,
+    tipo_de_prueba                  TEXT,
+    version                         TEXT,
+    taxonomia_bloom                 TEXT NOT NULL,
+    objetivo_de_evaluacion          TEXT NOT NULL,
+    aplicantes                      INTEGER
 );
 
-COMMENT ON TABLE improvement_opportunity IS 'Recomendaciones de mejora del SIS. El SIS emite proposed; la promocion a regla activa es gobernanza humana.';
-
-CREATE INDEX IF NOT EXISTS idx_improvement_instrumento ON improvement_opportunity(instrumento_id);
-CREATE INDEX IF NOT EXISTS idx_improvement_scope ON improvement_opportunity(scope);
-CREATE INDEX IF NOT EXISTS idx_improvement_estado ON improvement_opportunity(estado);
-
-
-
---TABLAS PARA KPIS 
-
-
-CREATE TABLE IF NOT EXISTS kpi (
-    KPI_ID            INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    NOMBRE_DEL_KPI    VARCHAR(255) NOT NULL,
-    DESCRIPCION       TEXT,
-    CATEGORIA         VARCHAR(100),
-    AMBITO            VARCHAR(50),
-    URL_DOCUMENTACION TEXT,
-    VARIABLES         TEXT,
-    ID_VARIABLES      TEXT,
-    FORMULA           TEXT
+-- Pendiente de especificar: en el diagrama esta tabla sigue como
+-- placeholder ("Key/Field/Type" genérico). Queda con la misma forma
+-- de sus tablas hermanas para que se complete con las columnas
+-- reales de entrevista (duración, entrevistador, guion, etc.).
+CREATE TABLE metadatos_enriquecidos_entrevistas (
+    id_crudo    INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE
+    -- TODO: columnas específicas de entrevista
 );
 
--- Tabla de instituciones
--- NO TOCAR - Datos maestros
-CREATE TABLE IF NOT EXISTS instituciones (
-    institucion_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre         TEXT,
-    pais           TEXT,
-    tipo           TEXT
+-- ------------------------------------------------------------
+-- PROMPTS - también placeholder en el diagrama, sin relación clara
+-- a otra tabla. Queda como catálogo independiente.
+-- ------------------------------------------------------------
+CREATE TABLE prompts (
+    prompt_id   SERIAL PRIMARY KEY
+    -- TODO: columnas reales (nombre, contenido, version, etc.)
 );
 
--- Tabla de variables
--- NO TOCAR - Datos maestros
-CREATE TABLE IF NOT EXISTS variable (
-    variable_id     INTEGER      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre_variable VARCHAR(255) UNIQUE NOT NULL,
-    tipo_dato       VARCHAR(50),
+-- ------------------------------------------------------------
+-- INSTRUMENTO_PROCESADO
+-- PK simple (id_procesado); id_crudo es FK normal, no parte de la PK.
+-- ------------------------------------------------------------
+CREATE TABLE instrumento_procesado (
+    id_procesado            SERIAL PRIMARY KEY,
+    id_crudo                INTEGER NOT NULL REFERENCES raw_data(id_crudo),
+    ruta_de_archivo_limpio  VARCHAR(255),
+    ruta_json               TEXT,
+    estado                  VARCHAR(50) NOT NULL DEFAULT 'pendiente'
+        CHECK (estado IN (
+            'pendiente',
+            'metadata_registrado',
+            'etl_pendiente_limpieza',
+            'etl_pendiente_enriquecimiento',
+            'etl_aprobado',
+            'en_ingesta',
+            'vectorizado',
+            'error'
+        )),
+    fecha_procesamiento     TIMESTAMP,
+    fecha_aprobado          TIMESTAMP,
+    -- chroma_id / collection_id referencian el espacio de IDs de
+    -- ChromaDB, que vive fuera de Postgres: no hay tabla local que
+    -- referenciar, por eso quedan como INTEGER simples, no FK real.
+    chroma_id               INTEGER,
+    collection_id           INTEGER
+);
+
+CREATE INDEX idx_instrumento_procesado_raw    ON instrumento_procesado(id_crudo);
+CREATE INDEX idx_instrumento_procesado_estado ON instrumento_procesado(estado);
+
+-- ------------------------------------------------------------
+-- Catálogo de KPI y variables (relación N:M vía tabla puente)
+-- ------------------------------------------------------------
+CREATE TABLE kpi (
+    kpi_id              SERIAL PRIMARY KEY,
+    nombre_kpi          TEXT NOT NULL,
+    descripcion         TEXT,
+    categoria           TEXT,
+    ambito              TEXT,
+    url_documentacion   TEXT,
+    formula             TEXT
+);
+
+CREATE TABLE variable (
+    variable_id     SERIAL PRIMARY KEY,
+    nombre_variable TEXT NOT NULL,
     descripcion     TEXT,
-    unidad_medida   VARCHAR(50)
+    tipo_dato       VARCHAR(20) NOT NULL
+        CHECK (tipo_dato IN ('entero', 'decimal', 'texto', 'booleano')),
+    unidad          TEXT
 );
 
--- Relación KPI-Variable (muchos a muchos)
--- NO TOCAR - Datos maestros
-CREATE TABLE IF NOT EXISTS kpi_variable (
-    kpi_id      INTEGER NOT NULL,
-    variable_id INTEGER NOT NULL,
-    PRIMARY KEY (kpi_id, variable_id),
-    FOREIGN KEY (kpi_id) REFERENCES kpi(kpi_id) ON DELETE CASCADE,
-    FOREIGN KEY (variable_id) REFERENCES variable(variable_id) ON DELETE CASCADE
+CREATE TABLE kpi_variable (
+    kpi_id      INTEGER NOT NULL REFERENCES kpi(kpi_id),
+    variable_id INTEGER NOT NULL REFERENCES variable(variable_id),
+    PRIMARY KEY (kpi_id, variable_id)
 );
 
--- Valores posibles para variables categóricas
--- NO TOCAR - Datos maestros
-CREATE TABLE IF NOT EXISTS valor_variable (
-    valor_id       INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    variable_id    INTEGER     NOT NULL,
-    valor          VARCHAR(255) NOT NULL,
-    etiqueta       TEXT,
-    orden          INTEGER,
-    es_nulo        BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (variable_id) REFERENCES variable(variable_id) ON DELETE CASCADE
+-- ------------------------------------------------------------
+-- KPI inferido por instrumento procesado
+-- (tabla asociativa N:M instrumento_procesado <-> kpi,
+--  con atributos propios de la inferencia)
+-- ------------------------------------------------------------
+CREATE TABLE kpi_inferido (
+    id_procesado        INTEGER NOT NULL REFERENCES instrumento_procesado(id_procesado),
+    kpi_id              INTEGER NOT NULL REFERENCES kpi(kpi_id),
+    puntuacion_llm      NUMERIC,
+    puntuacion_rag      NUMERIC,
+    razon               TEXT,
+    resultado           NUMERIC,
+    fecha_inferencia    TIMESTAMP NOT NULL DEFAULT now(),
+    PRIMARY KEY (id_procesado, kpi_id)
 );
 
--- Pregunta-KPI (relación entre preguntas de instrumentos y KPIs)
--- NO TOCAR - Datos maestros
-CREATE TABLE IF NOT EXISTS pregunta_kpi (
-    pregunta_id      INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    instrumento_id   INTEGER NOT NULL,
-    pregunta_texto   TEXT,
-    kpi_id           INTEGER NOT NULL,
-    tipo_relacion    VARCHAR(50),
-    confianza        NUMERIC(3,2),
-    FOREIGN KEY (instrumento_id) REFERENCES instrumento_procesado(instrumento_id) ON DELETE CASCADE,
-    FOREIGN KEY (kpi_id) REFERENCES kpi(kpi_id)
+CREATE INDEX idx_kpi_inferido_kpi ON kpi_inferido(kpi_id);
+
+-- ------------------------------------------------------------
+-- Valores de cada variable usada en un KPI inferido.
+--
+-- valor_numerico / valor_texto / valor_booleano: exactamente una
+-- debe llenarse, según variable.tipo_dato. El CHECK de abajo solo
+-- garantiza "exactamente una columna llena"; que sea la columna
+-- correcta según tipo_dato se valida en la aplicación, porque un
+-- CHECK no puede leer una columna de otra tabla.
+-- ------------------------------------------------------------
+CREATE TABLE valor_variable_inferido (
+    id_procesado        INTEGER NOT NULL,
+    kpi_id              INTEGER NOT NULL,
+    variable_id         INTEGER NOT NULL REFERENCES variable(variable_id),
+    valor_numerico      NUMERIC,
+    valor_texto         TEXT,
+    valor_booleano      BOOLEAN,
+    confianza_variable  NUMERIC,
+    PRIMARY KEY (id_procesado, kpi_id, variable_id),
+    FOREIGN KEY (id_procesado, kpi_id)
+        REFERENCES kpi_inferido(id_procesado, kpi_id) ON DELETE CASCADE,
+    CHECK (num_nonnulls(valor_numerico, valor_texto, valor_booleano) = 1)
 );
 
-
--- ════════════════════════════════════════════════════════════════════════════
--- GRUPO 5: KPIs INFERIDOS (ACTUALIZADO)
--- ════════════════════════════════════════════════════════════════════════════
-
--- KPIs asociados al instrumento (manual o por LLM)
--- CAMBIOS: Agregado campo 'origen' para distinguir fuente
-CREATE TABLE IF NOT EXISTS kpi_inferido (
-    kpi_inferido_id   INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    instrumento_id    INTEGER NOT NULL,
-    kpi_id            INTEGER NOT NULL,
-    tipo_relacion     VARCHAR(20),  -- directo, indirecto, complementario, inferido
-    evidencia_textual TEXT,
-    score_inferencia  NUMERIC(4,3) CHECK (score_inferencia >= 0 AND score_inferencia <= 1),
-    origen            VARCHAR(20) NOT NULL DEFAULT 'registro_manual'
-        CHECK (origen IN ('registro_manual', 'propuesta_etl')),
-    registrado_en     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (instrumento_id) REFERENCES instrumento_procesado(instrumento_id) ON DELETE CASCADE,
-    FOREIGN KEY (kpi_id) REFERENCES kpi(kpi_id)
-);
-
-COMMENT ON COLUMN kpi_inferido.tipo_relacion IS 'Tipo de asociación: directa, indirecta, complementaria o inferida.';
-COMMENT ON COLUMN kpi_inferido.origen IS 'registro_manual: registrado por el investigador en paso 2. propuesta_etl: aceptado en paso 4.';
-
--- Índices
-CREATE INDEX IF NOT EXISTS idx_kpi_inferido_instrumento ON kpi_inferido(instrumento_id);
-CREATE INDEX IF NOT EXISTS idx_kpi_inferido_kpi ON kpi_inferido(kpi_id);
-
-
--- Usuarios del sistema
-CREATE TABLE IF NOT EXISTS usuarios (
-    USUARIO_ID    INTEGER      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    USUARIO       VARCHAR(50)  UNIQUE NOT NULL,
-    EMAIL         VARCHAR(255) UNIQUE NOT NULL,
-    PASSWORD_HASH TEXT,
-    ROL           VARCHAR(20)  DEFAULT 'investigador',
-    CREADO_EN     TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
-);
-
---TABLA DONDE SE ALMACENAN LOS ARCHIVOS EN CRUDO Y DESDE UN PRINCIPIO SE ESTABLECE SI VA A SER PUBLICO O NO
-CREATE TABLE IF NOT EXISTS raw_data (
-    ID_CRUDO            INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    ID_OWNER            INTEGER      NOT NULL,
-    TITULO              VARCHAR(255),
-    NOMBRE_DEL_ARCHIVO  VARCHAR(255), 
-    RUTA                TEXT,
-    TIPO_DE_INSTRUMENTO VARCHAR(30)  NOT NULL CHECK (TIPO_DE_INSTRUMENTO IN ('encuesta', 'entrevista', 'prueba_estandarizada')),
-    FECHA_CARGA         TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PERMISO             BOOLEAN,
-    FECHA_PERMISO       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (ID_OWNER) REFERENCES usuarios(USUARIO_ID) ON DELETE CASCADE
-);
-
--- Log del pipeline de ingesta (extracción, limpieza, vectorización)
-CREATE TABLE IF NOT EXISTS pipeline_ingesta_log (
-    log_id           INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    instrumento_id   INTEGER NOT NULL,
-    iniciado_en      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    finalizado_en    TIMESTAMP,
-    resultado        VARCHAR(20) NOT NULL DEFAULT 'en_proceso'
-        CHECK (resultado IN ('en_proceso', 'exitoso', 'error')),
-    extractor_usado  VARCHAR(50),
-    modelo_llm       VARCHAR(100),
-    prompt_version   VARCHAR(20),
-    tokens_entrada   INTEGER,
-    tokens_salida    INTEGER,
-    latencia_ms      INTEGER,
-    segmentos        INTEGER,
-    error_mensaje    TEXT,
-    etapa_actual     VARCHAR(50),  -- extraccion | limpieza | json | chunking | embeddings | vectorstore
-    n_chunks         INTEGER,
-    modelo_embedding VARCHAR(100),
-    FOREIGN KEY (instrumento_id) REFERENCES instrumento_procesado(instrumento_id) ON DELETE CASCADE
-);
-
-COMMENT ON COLUMN pipeline_ingesta_log.etapa_actual IS 'Etapa actual del pipeline: extraccion | limpieza | json | chunking | embeddings | vectorstore';
-COMMENT ON COLUMN pipeline_ingesta_log.n_chunks IS 'Número de chunks generados desde el JSON consolidado.';
-
--- Índices
-CREATE INDEX IF NOT EXISTS idx_ingesta_log_instrumento ON pipeline_ingesta_log(instrumento_id);
-CREATE INDEX IF NOT EXISTS idx_ingesta_log_en_proceso ON pipeline_ingesta_log(instrumento_id)
-    WHERE resultado = 'en_proceso';
-
-
--- ════════════════════════════════════════════════════════════════════════════
--- GRUPO 8: VECTORIZACIÓN Y RAG
--- ════════════════════════════════════════════════════════════════════════════
-
--- Documentos vectorizados (chunks del instrumento)
-CREATE TABLE IF NOT EXISTS documento_vectorizado (
-    documento_vectorizado_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    instrumento_id           INTEGER     NOT NULL,
-    chunk_index              INTEGER     NOT NULL,
-    chunk_texto              TEXT        NOT NULL,
-    chunk_metadata           JSONB       DEFAULT '{}'::jsonb,
-    embedding_modelo         VARCHAR(100),
-    almacenado_en            TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (instrumento_id) REFERENCES instrumento_procesado(instrumento_id) ON DELETE CASCADE,
-    UNIQUE (instrumento_id, chunk_index)
-);
-
--- Log de consultas RAG
-CREATE TABLE IF NOT EXISTS rag_log (
-    rag_log_id       INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    pregunta         TEXT        NOT NULL,
-    respuesta        TEXT,
-    modelo_usado     VARCHAR(100),
-    chunks_usados    INTEGER,
-    latencia_ms      INTEGER,
-    timestamp        TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
-);
-
-
--- ════════════════════════════════════════════════════════════════════════════
--- GRUPO 9: PROMPTS DEL SISTEMA
--- ════════════════════════════════════════════════════════════════════════════
-
--- Catálogo de prompts versionados
-CREATE TABLE IF NOT EXISTS prompt (
-    prompt_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    tipo      VARCHAR(20) NOT NULL,
-    version   VARCHAR(10) NOT NULL,
-    contenido TEXT NOT NULL,
-    activo    BOOLEAN DEFAULT TRUE,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (tipo, version)
-);
-
-
--- ════════════════════════════════════════════════════════════════════════════
--- FIN DEL SCHEMA
--- ════════════════════════════════════════════════════════════════════════════
-
--- Resetear search_path
-RESET search_path;
+COMMIT;
