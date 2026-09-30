@@ -97,3 +97,5 @@ export interface KpiSugerido {
   nombre: string;
   coincidencia: number;
 }
+
+export type FormatoDescarga = "crudo" | "json" | "sav";
