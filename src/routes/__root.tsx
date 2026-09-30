@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { AuthProvider } from "../features/auth/AuthContext";
 import { ResearchProvider } from "../features/research/ResearchContext";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Toaster } from "../components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -136,6 +137,7 @@ function RootComponent() {
         <ResearchProvider>
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
+          <Toaster richColors />
         </ResearchProvider>
       </AuthProvider>
     </QueryClientProvider>
