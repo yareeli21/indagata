@@ -21,7 +21,7 @@ const CUENTAS: Record<string, Usuario> = {
 export function iniciarSesion(usuario: string, _contrasena: string): Promise<Usuario> {
   const cuenta = CUENTAS[usuario.trim().toLowerCase()];
   if (!cuenta) {
-    return Promise.reject(new Error('Cuenta no reconocida. Usa "ana" o "admin".'));
+    return Promise.reject(new Error("Usuario o contraseña incorrectos"));
   }
   return simularRed(cuenta, 400);
 }
