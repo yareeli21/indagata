@@ -60,18 +60,22 @@ function IlustracionNodos() {
       className="pointer-events-none absolute inset-0 h-full w-full"
       aria-hidden="true"
     >
-      {aristas.map(([a, b], i) => (
-        <line
-          key={i}
-          x1={nodos[a][0]}
-          y1={nodos[a][1]}
-          x2={nodos[b][0]}
-          y2={nodos[b][1]}
-          stroke="currentColor"
-          strokeWidth={0.35}
-          className="text-primary-foreground/25"
-        />
-      ))}
+      {aristas.map(([a, b], i) => {
+        const na = nodos[a]!;
+        const nb = nodos[b]!;
+        return (
+          <line
+            key={i}
+            x1={na[0]}
+            y1={na[1]}
+            x2={nb[0]}
+            y2={nb[1]}
+            stroke="currentColor"
+            strokeWidth={0.35}
+            className="text-primary-foreground/25"
+          />
+        );
+      })}
       {nodos.map(([x, y, r], i) => (
         <g key={i}>
           <circle
