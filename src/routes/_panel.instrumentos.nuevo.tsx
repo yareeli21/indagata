@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Upload } from "lucide-react";
-import { PagePlaceholder } from "@/components/layout/PagePlaceholder";
+import { UploadWizard } from "@/features/upload/UploadWizard";
 
 export const Route = createFileRoute("/_panel/instrumentos/nuevo")({
   head: () => ({
@@ -17,11 +16,5 @@ export const Route = createFileRoute("/_panel/instrumentos/nuevo")({
       },
     ],
   }),
-  component: () => (
-    <PagePlaceholder
-      titulo="Subir instrumento"
-      descripcion="Carga un archivo y completa los metadatos para estandarizarlo."
-      icono={Upload}
-    />
-  ),
+  component: UploadWizard,
 });

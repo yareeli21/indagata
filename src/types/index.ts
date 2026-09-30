@@ -62,3 +62,35 @@ export interface Noticia {
   fecha: string;
   resumen: string;
 }
+
+export interface CambioLimpieza {
+  campo: string;
+  antes: string;
+  despues: string;
+}
+
+export interface ReporteLimpieza {
+  duplicadosEliminados: number;
+  nulosTratados: number;
+  columnasNormalizadas: number;
+  cambios: CambioLimpieza[];
+}
+
+export interface DublinCore {
+  titulo: string;
+  creador: string;
+  tema: string;
+  descripcion: string;
+  fecha: string;
+  idioma: string;
+  derechos: string;
+  cobertura: NivelEducativo | "";
+}
+
+export type MetadatosTipo = Record<string, string>;
+
+export interface KpiSugerido {
+  id: string;
+  nombre: string;
+  coincidencia: number;
+}
