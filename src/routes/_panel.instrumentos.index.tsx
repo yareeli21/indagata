@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Library } from "lucide-react";
-import { PagePlaceholder } from "@/components/layout/PagePlaceholder";
+import { InstrumentosPage } from "@/features/instruments/InstrumentosPage";
 
 export const Route = createFileRoute("/_panel/instrumentos/")({
   head: () => ({
@@ -18,11 +17,5 @@ export const Route = createFileRoute("/_panel/instrumentos/")({
       },
     ],
   }),
-  component: () => (
-    <PagePlaceholder
-      titulo="Mis instrumentos"
-      descripcion="Encuestas, entrevistas y pruebas estandarizadas disponibles para tu investigación."
-      icono={Library}
-    />
-  ),
+  component: InstrumentosPage,
 });

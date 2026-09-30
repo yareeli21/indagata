@@ -42,6 +42,9 @@ export interface Instrumento {
   nivel: NivelEducativo;
   autorId: string;
   anio: number;
+  /** ISO AAAA-MM-DD */
+  fecha: string;
+  kpis: string[];
   reactivos: number;
   estado: EstadoInstrumento;
   descripcion: string;
@@ -94,3 +97,5 @@ export interface KpiSugerido {
   nombre: string;
   coincidencia: number;
 }
+
+export type FormatoDescarga = "crudo" | "json" | "sav";
