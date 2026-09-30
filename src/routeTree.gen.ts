@@ -10,33 +10,118 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PanelRouteImport } from './routes/_panel'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as PanelChatRouteImport } from './routes/_panel.chat'
+import { Route as PanelInvestigacionRouteImport } from './routes/_panel.investigacion'
+import { Route as PanelKpisRouteImport } from './routes/_panel.kpis'
+import { Route as PanelInstrumentosIndexRouteImport } from './routes/_panel.instrumentos.index'
+import { Route as PanelInstrumentosNuevoRouteImport } from './routes/_panel.instrumentos.nuevo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PanelRoute = PanelRouteImport.update({
+  id: '/_panel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PanelChatRoute = PanelChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => PanelRoute,
+} as any)
+const PanelInvestigacionRoute = PanelInvestigacionRouteImport.update({
+  id: '/investigacion',
+  path: '/investigacion',
+  getParentRoute: () => PanelRoute,
+} as any)
+const PanelKpisRoute = PanelKpisRouteImport.update({
+  id: '/kpis',
+  path: '/kpis',
+  getParentRoute: () => PanelRoute,
+} as any)
+const PanelInstrumentosIndexRoute = PanelInstrumentosIndexRouteImport.update({
+  id: '/instrumentos/',
+  path: '/instrumentos/',
+  getParentRoute: () => PanelRoute,
+} as any)
+const PanelInstrumentosNuevoRoute = PanelInstrumentosNuevoRouteImport.update({
+  id: '/instrumentos/nuevo',
+  path: '/instrumentos/nuevo',
+  getParentRoute: () => PanelRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/chat': typeof PanelChatRoute
+  '/investigacion': typeof PanelInvestigacionRoute
+  '/kpis': typeof PanelKpisRoute
+  '/instrumentos/nuevo': typeof PanelInstrumentosNuevoRoute
+  '/instrumentos/': typeof PanelInstrumentosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/chat': typeof PanelChatRoute
+  '/investigacion': typeof PanelInvestigacionRoute
+  '/kpis': typeof PanelKpisRoute
+  '/instrumentos/nuevo': typeof PanelInstrumentosNuevoRoute
+  '/instrumentos': typeof PanelInstrumentosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_panel': typeof PanelRouteWithChildren
+  '/login': typeof LoginRoute
+  '/_panel/chat': typeof PanelChatRoute
+  '/_panel/investigacion': typeof PanelInvestigacionRoute
+  '/_panel/kpis': typeof PanelKpisRoute
+  '/_panel/instrumentos/nuevo': typeof PanelInstrumentosNuevoRoute
+  '/_panel/instrumentos/': typeof PanelInstrumentosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/chat'
+    | '/investigacion'
+    | '/kpis'
+    | '/instrumentos/nuevo'
+    | '/instrumentos/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/chat'
+    | '/investigacion'
+    | '/kpis'
+    | '/instrumentos/nuevo'
+    | '/instrumentos'
+  id:
+    | '__root__'
+    | '/'
+    | '/_panel'
+    | '/login'
+    | '/_panel/chat'
+    | '/_panel/investigacion'
+    | '/_panel/kpis'
+    | '/_panel/instrumentos/nuevo'
+    | '/_panel/instrumentos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PanelRoute: typeof PanelRouteWithChildren
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +133,80 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_panel': {
+      id: '/_panel'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof PanelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_panel/chat': {
+      id: '/_panel/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof PanelChatRouteImport
+      parentRoute: typeof PanelRoute
+    }
+    '/_panel/investigacion': {
+      id: '/_panel/investigacion'
+      path: '/investigacion'
+      fullPath: '/investigacion'
+      preLoaderRoute: typeof PanelInvestigacionRouteImport
+      parentRoute: typeof PanelRoute
+    }
+    '/_panel/kpis': {
+      id: '/_panel/kpis'
+      path: '/kpis'
+      fullPath: '/kpis'
+      preLoaderRoute: typeof PanelKpisRouteImport
+      parentRoute: typeof PanelRoute
+    }
+    '/_panel/instrumentos/': {
+      id: '/_panel/instrumentos/'
+      path: '/instrumentos'
+      fullPath: '/instrumentos/'
+      preLoaderRoute: typeof PanelInstrumentosIndexRouteImport
+      parentRoute: typeof PanelRoute
+    }
+    '/_panel/instrumentos/nuevo': {
+      id: '/_panel/instrumentos/nuevo'
+      path: '/instrumentos/nuevo'
+      fullPath: '/instrumentos/nuevo'
+      preLoaderRoute: typeof PanelInstrumentosNuevoRouteImport
+      parentRoute: typeof PanelRoute
+    }
   }
 }
 
+interface PanelRouteChildren {
+  PanelChatRoute: typeof PanelChatRoute
+  PanelInvestigacionRoute: typeof PanelInvestigacionRoute
+  PanelKpisRoute: typeof PanelKpisRoute
+  PanelInstrumentosNuevoRoute: typeof PanelInstrumentosNuevoRoute
+  PanelInstrumentosIndexRoute: typeof PanelInstrumentosIndexRoute
+}
+
+const PanelRouteChildren: PanelRouteChildren = {
+  PanelChatRoute: PanelChatRoute,
+  PanelInvestigacionRoute: PanelInvestigacionRoute,
+  PanelKpisRoute: PanelKpisRoute,
+  PanelInstrumentosNuevoRoute: PanelInstrumentosNuevoRoute,
+  PanelInstrumentosIndexRoute: PanelInstrumentosIndexRoute,
+}
+
+const PanelRouteWithChildren = PanelRoute._addFileChildren(PanelRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PanelRoute: PanelRouteWithChildren,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
