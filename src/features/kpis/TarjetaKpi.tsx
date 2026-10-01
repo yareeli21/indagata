@@ -1,0 +1,55 @@
+import {
+  Award, BarChart2, BookOpen, Briefcase, Calculator, ClipboardCheck,
+  Heart, Home, Laptop, MessageCircle, Monitor, Shield, Smile, Users, Zap,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import type { KpiCatalogo } from "@/types";
+
+const ICONOS: Record<string, LucideIcon> = {
+  Award, BarChart2, BookOpen, Briefcase, Calculator, ClipboardCheck,
+  Heart, Home, Laptop, MessageCircle, Monitor, Shield, Smile, Users, Zap,
+};
+
+interface TarjetaKpiProps {
+  kpi: KpiCatalogo;
+  activo?: boolean;
+  onClick: () => void;
+}
+
+export function TarjetaKpi({ kpi, activo = false, onClick }: TarjetaKpiProps) {
+  const Icono = ICONOS[kpi.icono] ?? BarChart2;
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "group flex w-full flex-col gap-3 rounded-xl border bg-card p-4 text-left shadow-sm transition-all",
+        "hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+        activo && "border-primary/60 bg-primary/5 ring-1 ring-primary/30",
+      )}
+      aria-pressed={activo}
+    >
+      <span
+        className={cn(
+          "flex size-10 items-center justify-center rounded-lg transition-colors",
+          activo
+            ? "bg-primary text-primary-foreground"
+            : "bg-primary/10 text-primary group-hover:bg-primary/20",
+        )}
+      >
+        <Icono className="size-5" />
+      </span>
+
+      <div className="space-y-0.5">
+        <p className={cn("font-semibold leading-snug text-sm", activo && "text-primary")}>
+          {kpi.nombre}
+        </p>
+        <p className="text-xs text-muted-foreground line-clamp-2">
+          {kpi.descripcionCorta}
+        </p>
+      </div>
+    </button>
+  );
+}

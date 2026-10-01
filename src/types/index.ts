@@ -99,3 +99,81 @@ export interface KpiSugerido {
 }
 
 export type FormatoDescarga = "crudo" | "json" | "sav";
+
+export type NivelCoincidencia = "alta" | "media" | "baja";
+
+export interface RazonCoincidencia {
+  tipo: "kpi" | "nivel" | "descripcion";
+  etiqueta: string;
+}
+
+export interface InstrumentoRelacionado {
+  instrumento: Instrumento;
+  nivel: NivelCoincidencia;
+  coincideCon: string[];
+  razones: RazonCoincidencia[];
+}
+
+export type ModeloLLM = "gpt-4o" | "gpt-4o-mini" | "gemini-1.5-pro" | "claude-3-5-sonnet";
+
+export interface ContextoInvestigacion {
+  objetivo: string;
+  poblacion: string;
+  nivel: NivelEducativo;
+  pregunta: string;
+}
+
+export interface FuenteChat {
+  instrumentoId: string;
+  titulo: string;
+  tipo: TipoInstrumento;
+  investigador: string;
+  kpis: string[];
+  fragmento: string;
+}
+
+export type RolMensaje = "usuario" | "asistente";
+
+export interface Mensaje {
+  id: string;
+  rol: RolMensaje;
+  contenido: string;
+  /** Solo en mensajes del asistente */
+  fuentes?: FuenteChat[];
+  /** true mientras se está generando (streaming) */
+  generando?: boolean;
+}
+
+// ── KPIs ──────────────────────────────────────────────────────────────────────
+
+export interface KpiCatalogo {
+  id: string;
+  nombre: string;
+  descripcionCorta: string;
+  queEs: string;
+  queMide: string;
+  comoSeMide: string;
+  formula: string;
+  infoGeneral: string;
+  /** Nombre del ícono de Lucide que representa este KPI */
+  icono: string;
+  /** Etiquetas de búsqueda */
+  etiquetas: string[];
+}
+
+export interface PuntoDato {
+  etiqueta: string;
+  valor: number;
+}
+
+export interface DatosGrafica {
+  kpiId: string;
+  /** Datos para gráfica de barras: por nivel educativo */
+  porNivel: PuntoDato[];
+  /** Datos para gráfica de líneas: por año */
+  porAnio: PuntoDato[];
+  /** Datos para gráfica de dona: por tipo de instrumento */
+  porTipo: PuntoDato[];
+  /** Número de instrumentos en las fuentes que cubren este KPI */
+  fuentesConteo: number;
+}

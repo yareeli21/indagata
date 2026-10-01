@@ -32,22 +32,26 @@ export function TablaInstrumentos({ instrumentos, investigadores, miId, onSelecc
             const ajeno = i.autorId !== miId;
             return (
               <TableRow key={i.id} onClick={() => onSeleccionar(i)}
-                className={cn("cursor-pointer", ajeno && "bg-muted/40 text-muted-foreground")}>
+                className={cn("cursor-pointer transition-colors", ajeno ? "bg-muted/40 opacity-75 hover:opacity-90 hover:bg-muted/60" : "hover:bg-muted/30")}>
                 <TableCell className="max-w-64">
-                  <p className={cn("font-medium", !ajeno && "text-foreground")}>{i.titulo}</p>
-                  {ajeno && <div className="mt-1"><OtherResearcherBadge /></div>}
+                  <p className={cn("font-medium", ajeno ? "text-muted-foreground" : "text-foreground")}>{i.titulo}</p>
                 </TableCell>
-                <TableCell className={cn(ajeno && "opacity-70")}><TipoBadge tipo={i.tipo} /></TableCell>
+                <TableCell><TipoBadge tipo={i.tipo} /></TableCell>
                 <TableCell>
                   <div className="flex flex-wrap gap-1">
                     {i.kpis.map((k) => (
-                      <span key={k} className="whitespace-nowrap rounded-md border px-2 py-0.5 text-xs">{k}</span>
+                      <span key={k} className={cn("whitespace-nowrap rounded-md border px-2 py-0.5 text-xs", ajeno && "border-border/50 text-muted-foreground")}>{k}</span>
                     ))}
                   </div>
                 </TableCell>
-                <TableCell>{i.nivel}</TableCell>
-                <TableCell className="whitespace-nowrap">{formatearFecha(i.fecha)}</TableCell>
-                <TableCell className="whitespace-nowrap">{nombre(i.autorId)}</TableCell>
+                <TableCell className={cn(ajeno && "text-muted-foreground")}>{i.nivel}</TableCell>
+                <TableCell className={cn("whitespace-nowrap", ajeno && "text-muted-foreground")}>{formatearFecha(i.fecha)}</TableCell>
+                <TableCell className="whitespace-nowrap">
+                  <div className="flex flex-col gap-1">
+                    <span className={cn(ajeno && "text-muted-foreground")}>{nombre(i.autorId)}</span>
+                    {ajeno && <OtherResearcherBadge />}
+                  </div>
+                </TableCell>
               </TableRow>
             );
           })}

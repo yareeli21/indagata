@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BarChart3 } from "lucide-react";
-import { PagePlaceholder } from "@/components/layout/PagePlaceholder";
+import { KpisPage } from "@/features/kpis/KpisPage";
 
 export const Route = createFileRoute("/_panel/kpis")({
   head: () => ({
@@ -17,11 +16,5 @@ export const Route = createFileRoute("/_panel/kpis")({
       },
     ],
   }),
-  component: () => (
-    <PagePlaceholder
-      titulo="KPIs"
-      descripcion="Indicadores clave del repositorio y novedades de la plataforma."
-      icono={BarChart3}
-    />
-  ),
+  component: KpisPage,
 });

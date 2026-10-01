@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MessageSquare } from "lucide-react";
-import { PagePlaceholder } from "@/components/layout/PagePlaceholder";
+import { ChatPage } from "@/features/chat/ChatPage";
 
 export const Route = createFileRoute("/_panel/chat")({
   head: () => ({
@@ -17,11 +16,5 @@ export const Route = createFileRoute("/_panel/chat")({
       },
     ],
   }),
-  component: () => (
-    <PagePlaceholder
-      titulo="Chat"
-      descripcion="Pregunta en lenguaje natural sobre los instrumentos de tu investigación activa."
-      icono={MessageSquare}
-    />
-  ),
+  component: ChatPage,
 });

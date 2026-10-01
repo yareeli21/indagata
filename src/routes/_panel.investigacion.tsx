@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FolderOpen } from "lucide-react";
-import { PagePlaceholder } from "@/components/layout/PagePlaceholder";
+import { ArmarInvestigacionPage } from "@/features/research/ArmarInvestigacionPage";
 
 export const Route = createFileRoute("/_panel/investigacion")({
   head: () => ({
@@ -17,11 +16,5 @@ export const Route = createFileRoute("/_panel/investigacion")({
       },
     ],
   }),
-  component: () => (
-    <PagePlaceholder
-      titulo="Armar investigación"
-      descripcion="Selecciona instrumentos y niveles educativos para conformar tu proyecto."
-      icono={FolderOpen}
-    />
-  ),
+  component: ArmarInvestigacionPage,
 });

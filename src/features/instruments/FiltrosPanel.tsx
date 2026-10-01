@@ -62,8 +62,14 @@ export function FiltrosPanel({ filtros, catalogoKpis, onChange }: FiltrosPanelPr
       </div>
       <div className="space-y-2">
         <Label>Rango de fechas</Label>
-        <Input type="date" aria-label="Desde" value={filtros.desde} onChange={(e) => onChange({ ...filtros, desde: e.target.value })} />
-        <Input type="date" aria-label="Hasta" value={filtros.hasta} onChange={(e) => onChange({ ...filtros, hasta: e.target.value })} />
+        <div className="space-y-1.5">
+          <Label htmlFor="f-desde" className="text-xs text-muted-foreground">Desde</Label>
+          <Input id="f-desde" type="date" aria-label="Desde" value={filtros.desde} onChange={(e) => onChange({ ...filtros, desde: e.target.value })} />
+        </div>
+        <div className="space-y-1.5">
+          <Label htmlFor="f-hasta" className="text-xs text-muted-foreground">Hasta</Label>
+          <Input id="f-hasta" type="date" aria-label="Hasta" value={filtros.hasta} onChange={(e) => onChange({ ...filtros, hasta: e.target.value })} />
+        </div>
       </div>
     </aside>
   );

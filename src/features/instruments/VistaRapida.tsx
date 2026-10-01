@@ -23,13 +23,32 @@ export function VistaRapida({ instrumento: i, autor, ajeno, onCerrar, onDescarga
         {i && (
           <>
             {ajeno && (
-              <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
-                <span className="-rotate-[35deg] whitespace-nowrap text-3xl font-bold uppercase tracking-widest text-muted-foreground/15">
-                  Instrumento de otro investigador
-                </span>
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 overflow-hidden"
+                style={{ zIndex: 0 }}
+              >
+                {/* Patrón diagonal de marca de agua */}
+                <div
+                  className="absolute inset-[-100%] flex flex-col gap-16"
+                  style={{ transform: "rotate(-35deg)", transformOrigin: "center" }}
+                >
+                  {Array.from({ length: 12 }).map((_, row) => (
+                    <div key={row} className="flex gap-20 whitespace-nowrap">
+                      {Array.from({ length: 6 }).map((_, col) => (
+                        <span
+                          key={col}
+                          className="text-sm font-semibold uppercase tracking-widest text-muted-foreground/10 select-none"
+                        >
+                          Instrumento de otro investigador
+                        </span>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
-            <div className="relative space-y-6">
+            <div className="relative z-10 space-y-6">
               <SheetHeader className="space-y-3 text-left">
                 <div className="flex flex-wrap gap-2"><TipoBadge tipo={i.tipo} />{ajeno && <OtherResearcherBadge />}</div>
                 <SheetTitle className="text-xl">{i.titulo}</SheetTitle>

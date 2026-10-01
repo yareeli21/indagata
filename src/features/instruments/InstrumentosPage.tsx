@@ -53,12 +53,22 @@ export function InstrumentosPage() {
   let contenido: React.ReactNode;
   if (!lista) {
     contenido = <div className="flex items-center justify-center gap-2 py-16 text-muted-foreground"><Loader2 className="size-5 animate-spin" /> Cargando instrumentos…</div>;
-  } else if (vista === "mios" && base.length === 0) {
-    contenido = (
-      <EstadoVacio icono={FileUp} titulo="Aún no has subido instrumentos"
-        descripcion="Sube tu primera encuesta, entrevista o prueba para empezar a construir tu acervo."
-        accion={<Button asChild><Link to="/instrumentos/nuevo"><Upload /> Subir instrumento</Link></Button>} />
-    );
+  } else if (base.length === 0) {
+    // No hay instrumentos en la vista seleccionada (sin filtros activos)
+    if (vista === "mios") {
+      contenido = (
+        <EstadoVacio icono={FileUp} titulo="Aún no has subido instrumentos"
+          descripcion="Sube tu primera encuesta, entrevista o prueba para empezar a construir tu acervo."
+          accion={<Button asChild><Link to="/instrumentos/nuevo"><Upload /> Subir instrumento</Link></Button>} />
+      );
+    } else {
+      // vista "todos" — puede ser admin o investigador que cambió el toggle
+      contenido = (
+        <EstadoVacio icono={FileUp} titulo="No hay instrumentos registrados"
+          descripcion="Aún no se ha subido ningún instrumento en la plataforma."
+          accion={<Button asChild><Link to="/instrumentos/nuevo"><Upload /> Subir instrumento</Link></Button>} />
+      );
+    }
   } else if (resultados.length === 0) {
     contenido = (
       <EstadoVacio icono={SearchX} titulo="No hay instrumentos con estos filtros"
@@ -70,7 +80,7 @@ export function InstrumentosPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6 md:p-8">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold">Instrumentos</h1>
@@ -87,7 +97,9 @@ export function InstrumentosPage() {
         <FiltrosPanel filtros={filtros} catalogoKpis={catalogo} onChange={setFiltros} />
         <div className="min-w-0 space-y-4">
           <ChipsFiltros filtros={filtros} onChange={setFiltros} />
-          {lista && base.length > 0 && <p className="text-sm text-muted-foreground">{resultados.length} de {base.length} instrumentos</p>}
+          {lista && base.length > 0 && resultados.length > 0 && (
+            <p className="text-sm text-muted-foreground">{resultados.length} de {base.length} {base.length === 1 ? "instrumento" : "instrumentos"}</p>
+          )}
           {contenido}
         </div>
       </div>
