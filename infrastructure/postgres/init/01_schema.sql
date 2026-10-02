@@ -335,6 +335,13 @@ CREATE TABLE IF NOT EXISTS rag_log (
     timestamp        TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS metadatos_entrevistas(
+    id_crudo INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    objetivo TEXT,
+    metodologia TEXT,
+    institucion TEXT
+);
+
 
 -- ════════════════════════════════════════════════════════════════════════════
 -- GRUPO 9: PROMPTS DEL SISTEMA
