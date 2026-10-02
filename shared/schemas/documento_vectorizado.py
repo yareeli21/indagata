@@ -1,3 +1,5 @@
+#Mantiene la trazabilidad exacta de los chunks que viven en ChromaDB.   
+
 from pydantic import BaseModel, ConfigDict
 from datetime import datetime
 

@@ -1,32 +1,31 @@
-# app/schemas/metadatos.py
-"""
-Esquema de metadatos Nivel 1 (globales, Dublin Core adaptado)
-para instrumentos: encuestas, entrevistas, pruebas estandarizadas.
-"""
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict
+from typing import Optional
+from datetime import datetime
 
+# Esquema base con los atributos comunes
+class InstrumentoBase(BaseModel):
+    nombre: str
+    tipo_instrumento: str
+    ruta_json: Optional[str] = None
+    ruta_sav: Optional[str] = None
+    ruta_crudo: Optional[str] = None
+    hash_md5: Optional[str] = None
+    estado: str = "ingresado"
 
-class MetadatosBase(BaseModel):
-    # obligatorios
-    titulo: str
-    institucion_responsable: str
-    objetivo: str
-    tipo_instrumento: str  # reutilizado del formulario de carga
-    periodo_inicio: str    # formato "YYYY-MM-DD"
-    periodo_fin: str
-    idioma: str = "es"
-    poblacion_alcance: str
+# Esquema para crear (recibe datos del frontend o del pipeline)
+class InstrumentoCreate(InstrumentoBase):
+    pass
 
-    # opcionales
-    palabras_clave: list[str] = Field(default_factory=list)
-    institucion_publica: str | None = None
-    condiciones_uso: str | None = None
-    formato_archivo: str | None = None       # automático, no editable
-    plataforma_origen: str | None = None      # editorial por ahora
-    instrumentos_relacionados: list[str] = Field(default_factory=list)
+# Esquema para actualizar rutas o estados
+class InstrumentoUpdate(BaseModel):
+    estado: Optional[str] = None
+    ruta_json: Optional[str] = None
+    ruta_sav: Optional[str] = None
 
+# Esquema de salida (lo que se responde al frontend)
+class InstrumentoResponse(InstrumentoBase):
+    id_instrumento: int
+    fecha_ingesta: datetime
 
-class MetadatosCompletos(BaseModel):
-    """Estructura final que se guarda en la columna JSONB `metadatos`."""
-    base: MetadatosBase
-    enriquecidos: dict = Field(default_factory=dict)  # Nivel 2, se llena después
+    # Permite a Pydantic leer los objetos de SQLAlchemy
+    model_config = ConfigDict(from_attributes=True)
