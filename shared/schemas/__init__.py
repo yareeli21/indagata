@@ -1,74 +1,197 @@
-"""Esquemas Pydantic compartidos (DTOs de entidades transversales).
+"""Esquemas Pydantic compartidos (DTOs alineados 1:1 con la base de datos).
 
-Solo se definen aquí los DTOs de entidades que cruzan servicios (instrumento,
-usuario, KPI, metadatos Dublin Core). Cada microservicio define sus propios
-DTOs de request/response específicos en su carpeta `schemas/`.
+Hay un módulo por tabla de `infrastructure/postgres/init/01_schema.sql`
+(fuente única de verdad). Cada módulo define el patrón habitual de una
+arquitectura FastAPI por microservicios:
 
-Los campos reflejan 1:1 el esquema de
-`infrastructure/postgres/init/01_schema.sql`.
+  - ``<Entidad>Base``   : campos comunes de entrada (sin PK ni columnas que
+                          genera la base de datos).
+  - ``<Entidad>Create`` : payload de alta.
+  - ``<Entidad>Update`` : actualización parcial (todos los campos opcionales).
+  - ``<Entidad>Read``   : representación de salida (incluye PK y timestamps,
+                          con ``from_attributes=True`` para serializar modelos
+                          ORM directamente).
+
+Los nombres transversales históricos (``UsuarioRead``, ``InstrumentoRead``,
+``MetadatosDCBase``, ``KPIRead``) se mantienen para no romper los servicios que
+ya los importan desde ``shared.schemas``.
 """
 from __future__ import annotations
 
-from datetime import datetime
+from shared.schemas.coleccion_vectorial import (
+    ColeccionVectorialBase,
+    ColeccionVectorialCreate,
+    ColeccionVectorialRead,
+    ColeccionVectorialUpdate,
+)
+from shared.schemas.documento_vectorizado import (
+    DocumentoVectorizadoBase,
+    DocumentoVectorizadoCreate,
+    DocumentoVectorizadoRead,
+    DocumentoVectorizadoUpdate,
+)
+from shared.schemas.instrumento_procesado import (
+    EstadoInstrumento,
+    InstrumentoProcesadoBase,
+    InstrumentoProcesadoCreate,
+    InstrumentoProcesadoRead,
+    InstrumentoProcesadoUpdate,
+)
+from shared.schemas.kpi import KPIBase, KPICreate, KPIRead, KPIUpdate
+from shared.schemas.kpi_inferido import (
+    KPIInferidoBase,
+    KPIInferidoCreate,
+    KPIInferidoRead,
+    KPIInferidoUpdate,
+)
+from shared.schemas.kpi_inferido_chunk import (
+    KpiInferidoChunkBase,
+    KpiInferidoChunkCreate,
+    KpiInferidoChunkRead,
+)
+from shared.schemas.kpi_variable import (
+    KPIVariableBase,
+    KPIVariableCreate,
+    KPIVariableRead,
+)
+from shared.schemas.metadatos_dc import (
+    MetadatosDCBase,
+    MetadatosDCCreate,
+    MetadatosDCRead,
+    MetadatosDCUpdate,
+)
+from shared.schemas.metadatos_encuestas import (
+    MetadatosEncuestasBase,
+    MetadatosEncuestasCreate,
+    MetadatosEncuestasRead,
+    MetadatosEncuestasUpdate,
+)
+from shared.schemas.metadatos_entrevistas import (
+    MetadatosEntrevistasBase,
+    MetadatosEntrevistasCreate,
+    MetadatosEntrevistasRead,
+    MetadatosEntrevistasUpdate,
+)
+from shared.schemas.metadatos_pruebasestandarizadas import (
+    MetadatosPruebasBase,
+    MetadatosPruebasCreate,
+    MetadatosPruebasRead,
+    MetadatosPruebasUpdate,
+)
+from shared.schemas.prompt import PromptBase, PromptCreate, PromptRead, PromptUpdate
+from shared.schemas.rag_log import RagLogBase, RagLogCreate, RagLogRead
+from shared.schemas.raw_data import (
+    RawDataBase,
+    RawDataCreate,
+    RawDataRead,
+    RawDataUpdate,
+)
+from shared.schemas.usuario import (
+    UsuarioBase,
+    UsuarioCreate,
+    UsuarioRead,
+    UsuarioUpdate,
+)
+from shared.schemas.valor_variable_inferido import (
+    ValorVariableInferidoBase,
+    ValorVariableInferidoCreate,
+    ValorVariableInferidoRead,
+    ValorVariableInferidoUpdate,
+)
+from shared.schemas.variable import (
+    VariableBase,
+    VariableCreate,
+    VariableRead,
+    VariableUpdate,
+)
 
-from pydantic import BaseModel, ConfigDict
+# ── Alias de compatibilidad ──────────────────────────────────────────────────
+# `InstrumentoRead` era el nombre histórico del DTO de salida de instrumento.
+InstrumentoRead = InstrumentoProcesadoRead
 
-
-# ── Usuario ──────────────────────────────────────────────────────────────────
-class UsuarioRead(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-
-    usuario_id: int
-    nombre: str
-    email: str
-    rol: str | None = None
-
-
-# ── Instrumento ──────────────────────────────────────────────────────────────
-class InstrumentoRead(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-
-    id_instrumento: int
-    id_crudo: int
-    ruta_de_archivo_limpio: str | None = None
-    ruta_json: str | None = None
-    estado: str
-    fecha_procesamiento: datetime | None = None
-    fecha_aprobado: datetime | None = None
-
-
-# ── Dublin Core ──────────────────────────────────────────────────────────────
-class MetadatosDCBase(BaseModel):
-    """Los 13 campos Dublin Core. dc_title es el único obligatorio."""
-
-    model_config = ConfigDict(from_attributes=True)
-
-    dc_title: str
-    dc_creator: str | None = None
-    dc_description: str | None = None
-    dc_type: str | None = None
-    dc_date: str | None = None
-    dc_language: str | None = None
-    dc_coverage: str | None = None
-    dc_subject: str | None = None
-    dc_publisher: str | None = None
-    dc_rights: str | None = None
-    dc_format: str | None = None
-    dc_source: str | None = None
-    dc_relation: str | None = None
-
-
-# ── KPI ──────────────────────────────────────────────────────────────────────
-class KPIRead(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-
-    kpi_id: int
-    nombre_kpi: str
-    descripcion: str | None = None
-    categoria: str | None = None
-    ambito: str | None = None
-    url_documentacion: str | None = None
-    formula: str | None = None
-
-
-__all__ = ["UsuarioRead", "InstrumentoRead", "MetadatosDCBase", "KPIRead"]
+__all__ = [
+    # usuario
+    "UsuarioBase",
+    "UsuarioCreate",
+    "UsuarioUpdate",
+    "UsuarioRead",
+    # raw_data
+    "RawDataBase",
+    "RawDataCreate",
+    "RawDataUpdate",
+    "RawDataRead",
+    # instrumento_procesado
+    "EstadoInstrumento",
+    "InstrumentoProcesadoBase",
+    "InstrumentoProcesadoCreate",
+    "InstrumentoProcesadoUpdate",
+    "InstrumentoProcesadoRead",
+    "InstrumentoRead",  # alias de compatibilidad
+    # metadatos_dc
+    "MetadatosDCBase",
+    "MetadatosDCCreate",
+    "MetadatosDCUpdate",
+    "MetadatosDCRead",
+    # metadatos_encuestas
+    "MetadatosEncuestasBase",
+    "MetadatosEncuestasCreate",
+    "MetadatosEncuestasUpdate",
+    "MetadatosEncuestasRead",
+    # metadatos_entrevistas
+    "MetadatosEntrevistasBase",
+    "MetadatosEntrevistasCreate",
+    "MetadatosEntrevistasUpdate",
+    "MetadatosEntrevistasRead",
+    # metadatos_pruebas
+    "MetadatosPruebasBase",
+    "MetadatosPruebasCreate",
+    "MetadatosPruebasUpdate",
+    "MetadatosPruebasRead",
+    # coleccion_vectorial
+    "ColeccionVectorialBase",
+    "ColeccionVectorialCreate",
+    "ColeccionVectorialUpdate",
+    "ColeccionVectorialRead",
+    # prompt
+    "PromptBase",
+    "PromptCreate",
+    "PromptUpdate",
+    "PromptRead",
+    # kpi
+    "KPIBase",
+    "KPICreate",
+    "KPIUpdate",
+    "KPIRead",
+    # variable
+    "VariableBase",
+    "VariableCreate",
+    "VariableUpdate",
+    "VariableRead",
+    # kpi_variable
+    "KPIVariableBase",
+    "KPIVariableCreate",
+    "KPIVariableRead",
+    # kpi_inferido
+    "KPIInferidoBase",
+    "KPIInferidoCreate",
+    "KPIInferidoUpdate",
+    "KPIInferidoRead",
+    # valor_variable_inferido
+    "ValorVariableInferidoBase",
+    "ValorVariableInferidoCreate",
+    "ValorVariableInferidoUpdate",
+    "ValorVariableInferidoRead",
+    # rag_log
+    "RagLogBase",
+    "RagLogCreate",
+    "RagLogRead",
+    # documento_vectorizado
+    "DocumentoVectorizadoBase",
+    "DocumentoVectorizadoCreate",
+    "DocumentoVectorizadoUpdate",
+    "DocumentoVectorizadoRead",
+    # kpi_inferido_chunk
+    "KpiInferidoChunkBase",
+    "KpiInferidoChunkCreate",
+    "KpiInferidoChunkRead",
+]
