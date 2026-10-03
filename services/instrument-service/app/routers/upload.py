@@ -13,11 +13,22 @@ from __future__ import annotations
 
 from fastapi import APIRouter, File, Form, UploadFile, status
 
-from app.dependencies import DBSession, UsuarioActual
+from typing import Annotated
+
+from fastapi import Depends
+
+from app.dependencies import DBSession, require_rol
 from app.schemas.upload import UploadResponse
 from app.services.upload_service import UploadService
+from shared.auth import ROL_ADMINISTRADOR, ROL_INVESTIGADOR
+from shared.models.usuario import Usuario
 
 router = APIRouter(prefix="/instrumentos", tags=["carga-instrumentos"])
+
+# Ingestar un instrumento requiere rol investigador o administrador.
+UsuarioQuePuedeIngestar = Annotated[
+    Usuario, Depends(require_rol(ROL_INVESTIGADOR, ROL_ADMINISTRADOR))
+]
 
 
 @router.post(
@@ -39,7 +50,7 @@ router = APIRouter(prefix="/instrumentos", tags=["carga-instrumentos"])
     ),
 )
 async def upload_instrumento(
-    usuario_actual: UsuarioActual,
+    usuario_actual: UsuarioQuePuedeIngestar,
     db: DBSession,
     archivo: UploadFile = File(
         ..., description="Archivo RESPONDIDO del instrumento (con las respuestas)."

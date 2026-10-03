@@ -59,6 +59,7 @@ class AppSettings(BaseSettings):
 
     # ── Seguridad / JWT ──────────────────────────────────────────────────────
     SECRET_KEY: str = "dev-secret-key-change-in-production"
+    JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
     # Usuario fijo de desarrollo (cuando no hay JWT real todavía).
     DEV_USER_ID: int = 1

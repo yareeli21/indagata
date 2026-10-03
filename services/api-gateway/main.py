@@ -1,52 +1,78 @@
-"""
-API Gateway - Main Entry Point
-Routes requests to appropriate microservices
-"""
+"""API Gateway — punto de entrada FastAPI.
 
-from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
+Expone, en esta tanda, el módulo de AUTENTICACIÓN:
+  GET  /health            → estado del servicio
+  POST /auth/login        → email + password → JWT
+  GET  /auth/me           → usuario del token
+  POST /auth/register     → alta de usuario (solo administrador)
+
+Arranque:
+  - Docker:  cwd=/app, con `shared/` copiado en /app/shared (ver Dockerfile).
+  - Local:   `uvicorn main:app --port 8000` desde services/api-gateway.
+"""
+from __future__ import annotations
+
 import logging
 import os
+import sys
+from contextlib import asynccontextmanager
+from pathlib import Path
 
-# Import routers
-from routers import health, proxy, auth
+# Resolver `import shared` también en ejecución local (igual que los servicios).
+if not (Path(__file__).resolve().parent / "shared").exists():
+    _REPO_ROOT = Path(__file__).resolve().parents[2]
+    if str(_REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(_REPO_ROOT))
 
-logger = logging.getLogger(__name__)
+from fastapi import FastAPI  # noqa: E402
+from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
+
+from app.auth.routers import router as auth_router  # noqa: E402
+
+logging.basicConfig(
+    level=os.getenv("LOG_LEVEL", "INFO").upper(),
+    format="%(asctime)s %(levelname)s %(name)s %(message)s",
+)
+logger = logging.getLogger("api-gateway")
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Handle startup and shutdown events"""
-    logger.info("🚀 API Gateway starting...")
+    logger.info("🚀 API Gateway listo (auth JWT).")
     yield
-    logger.info("🛑 API Gateway shutting down...")
+    logger.info("🛑 API Gateway detenido.")
+
 
 app = FastAPI(
-    title="Indagata API Gateway",
-    description="Central gateway for all Indagata microservices",
+    title="Indagata — API Gateway",
+    description="Puerta de entrada: autenticación (JWT), y enrutamiento a los servicios.",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
 )
 
-# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Update in production
+    allow_origins=["*"],  # Ajustar en producción.
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Routers
-app.include_router(health.router)
-app.include_router(auth.router, prefix="/api/auth")
-app.include_router(proxy.router, prefix="/api")
+
+@app.get("/health", tags=["health"])
+async def health() -> dict[str, str]:
+    return {"status": "ok", "service": "api-gateway"}
+
+
+app.include_router(auth_router)
+
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
         port=8000,
-        reload=os.getenv("DEBUG", "false").lower() == "true"
+        reload=os.getenv("DEBUG", "false").lower() == "true",
     )

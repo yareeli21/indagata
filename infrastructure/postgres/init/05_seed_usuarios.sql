@@ -1,26 +1,38 @@
 -- ============================================================
--- Seed de usuarios para desarrollo / pruebas de los microservicios.
+-- Seed de usuarios (login JWT).
 --
--- El instrument-service y el analysis-service, en MODO DESARROLLO
--- (AUTH_DEV_MODE=true), usan el usuario con usuario_id = DEV_USER_ID (=1).
--- Ese usuario debe existir y tener un rol que pueda subir instrumentos
--- (investigador o admin). 04_seed.sql ya inserta 'admin' como primer usuario;
--- aquí garantizamos su rol y añadimos un investigador explícito de prueba.
+-- Siembra el PRIMER ADMINISTRADOR (necesario para arrancar: no puede crearlo
+-- otro admin porque aún no existe ninguno). A partir de él, el administrador
+-- da de alta a los investigadores vía POST /auth/register en el api-gateway.
 --
--- La contraseña hash corresponde a bcrypt; cámbiela en producción.
+-- También siembra un investigador de prueba para desarrollo.
+--
+-- Esquema real de la tabla (tt_rag.usuario):
+--   usuario_id, nombre, email (UNIQUE), password_hash (bcrypt), rol, fecha_registro
+--
+-- Credenciales de desarrollo (CAMBIAR EN PRODUCCIÓN):
+--   admin:        admin@indagata.local        / admin123
+--   investigador: investigador@indagata.local / investigador123
 -- ============================================================
 
 SET search_path TO tt_rag, public;
 
--- Asegurar rol del primer usuario (admin). Puede subir instrumentos.
-UPDATE usuarios SET rol = 'admin' WHERE usuario = 'admin';
-
--- Investigador de prueba (idempotente).
-INSERT INTO usuarios (usuario, email, password_hash, rol)
+-- Primer ADMINISTRADOR (idempotente por email).
+INSERT INTO usuario (nombre, email, password_hash, rol)
 VALUES (
-    'investigador_demo',
-    'investigador.demo@indagata.local',
-    '$2b$12$H4Bg4iZGDjpsCChc31lt2eWa8vmKaM6f.uydwSxhU/.f2WRvMFw6a',
+    'Administrador',
+    'admin@indagata.local',
+    '$2b$12$oEQbNSQCRgJMRZCkcRcmgu6rbEGJHB4tMcNQPK2260k.G79pXt/PS',
+    'administrador'
+)
+ON CONFLICT (email) DO NOTHING;
+
+-- Investigador de prueba (idempotente por email).
+INSERT INTO usuario (nombre, email, password_hash, rol)
+VALUES (
+    'Investigador Demo',
+    'investigador@indagata.local',
+    '$2b$12$9WrJ1KqiW3eHekVP7mnSnOMIiVAyZnSeOz6Ae7GwnN50ejjBXRZdi',
     'investigador'
 )
-ON CONFLICT (usuario) DO NOTHING;
+ON CONFLICT (email) DO NOTHING;
