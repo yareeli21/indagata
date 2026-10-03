@@ -73,8 +73,7 @@ docker compose up -d postgres
 uvicorn main:app --reload --port 8001
 ```
 
-El `.env` de la raíz ya trae `POSTGRES_HOST=localhost` y `AUTH_DEV_MODE=true`,
-así que el servicio arranca y resuelve el usuario de desarrollo (id=1) sin token.
+El `.env` de la raíz ya trae `POSTGRES_HOST=localhost`.
 
 Una vez levantado:
 
@@ -83,9 +82,11 @@ Una vez levantado:
 - **http://localhost:8001/redoc** — documentación alternativa (solo lectura).
 - **http://localhost:8001/health** — confirma que el servicio responde.
 
-> **Requisito para operaciones que escriben:** el usuario `DEV_USER_ID=1` debe
-> existir en `tt_rag.usuario`. Lo siembra
-> `infrastructure/postgres/init/05_seed_usuarios.sql` al inicializar Postgres.
+> **El instrument-service exige autenticación (JWT).** `/instrumentos/upload` y
+> `DELETE /instrumentos/{id_crudo}` requieren un token válido en el header
+> `Authorization: Bearer <token>`. Para obtenerlo, primero haz login en el
+> api-gateway (ver sección **5. Autenticación**). Sin token → 401; con rol no
+> autorizado → 403.
 
 ### Nota sobre `import shared` en local
 
@@ -123,17 +124,70 @@ local no interfiere.
 Alternativa a Swagger UI, útil para scripts.
 
 ```powershell
-# Health check
+# Health check (no requiere token)
 curl http://localhost:8001/health
 
-# Upload multipart: archivo respondido + archivo original (opcional)
-curl.exe -F "tipo_instrumento=encuesta" `
+# 1) Login en el gateway para obtener el token
+$resp = curl.exe -s -X POST http://localhost:8000/auth/login `
+  -H "Content-Type: application/json" `
+  -d '{\"email\":\"investigador@indagata.local\",\"password\":\"investigador123\"}'
+$token = ($resp | ConvertFrom-Json).access_token
+
+# 2) Upload multipart CON el token (archivo respondido + original opcional)
+curl.exe -H "Authorization: Bearer $token" `
+         -F "tipo_instrumento=encuesta" `
          -F "archivo=@C:\ruta\respuestas.csv" `
          -F "archivo_original=@C:\ruta\cuestionario.pdf" `
          http://localhost:8001/instrumentos/upload
+
+# 3) Borrar un instrumento (solo el dueño, o un administrador)
+curl.exe -X DELETE -H "Authorization: Bearer $token" `
+         http://localhost:8001/instrumentos/10
 ```
 
 > En PowerShell usa `curl.exe` (no el alias `curl`) para pasar flags como `-F`.
+
+---
+
+## 5. Autenticación (login JWT)
+
+El login vive en el **api-gateway** (puerto 8000). Emite un **JWT firmado**; los
+servicios protegidos (hoy el instrument-service) lo validan con la misma
+`SECRET_KEY`. El token se manda en cada petición como
+`Authorization: Bearer <token>` y **expira a los 60 minutos**.
+
+### Roles
+- **investigador**: puede ingestar instrumentos y eliminar los suyos.
+- **administrador**: acceso total (ingesta, borrado de cualquiera, alta de usuarios).
+
+### Usuarios sembrados (desarrollo)
+`infrastructure/postgres/init/05_seed_usuarios.sql` crea:
+
+| Rol | Email | Password |
+|---|---|---|
+| administrador | `admin@indagata.local` | `admin123` |
+| investigador | `investigador@indagata.local` | `investigador123` |
+
+> Credenciales de desarrollo. **Cámbialas en producción.**
+
+### Endpoints de auth (gateway, puerto 8000)
+| Método | Ruta | Protección |
+|---|---|---|
+| `POST` | `/auth/login` | Público. `email` + `password` → `{ access_token, usuario }`. |
+| `GET`  | `/auth/me` | Token válido. Devuelve el usuario del token. |
+| `POST` | `/auth/register` | Solo **administrador**. Alta de usuario. |
+
+### Flujo típico (navegador / Swagger)
+1. Levanta gateway e instrument-service (ambos necesitan Postgres).
+2. En `http://localhost:8000/docs`, ejecuta `POST /auth/login` y copia el `access_token`.
+3. En `http://localhost:8001/docs`, pulsa **Authorize** y pega el token.
+4. Ya puedes ejecutar `/instrumentos/upload` y `DELETE /instrumentos/{id_crudo}`.
+
+### Comprobaciones útiles
+- Sin token → **401**.
+- Token expirado o manipulado → **401**.
+- Investigador que intenta borrar un instrumento ajeno → **403**.
+- Investigador que llama a `/auth/register` → **403** (solo administrador).
 
 ---
 
@@ -152,7 +206,23 @@ curl.exe -F "tipo_instrumento=encuesta" `
 | Síntoma                                   | Causa probable / solución                                             |
 |-------------------------------------------|-----------------------------------------------------------------------|
 | `ModuleNotFoundError: shared`             | Ejecuta desde la carpeta del servicio; revisa el shim de `sys.path` en `main.py`. |
-| 500 "usuario de prueba no existe"         | Falta sembrar `DEV_USER_ID=1`; corre los seeds de Postgres.           |
+| **401 en /instrumentos/***                | Falta el token. Haz login en el gateway y manda `Authorization: Bearer <token>`. |
+| **401 aunque mando token**                | Token expirado (dura 60 min) o `SECRET_KEY` distinta entre gateway y servicio; vuelve a hacer login. |
+| **403 al borrar**                         | Eres investigador y el instrumento no es tuyo (`id_owner`), o tu rol no está autorizado. |
+| **401 en /auth/login**                    | Email o contraseña incorrectos; revisa los usuarios sembrados.         |
 | El servicio no conecta a Postgres en local| `POSTGRES_HOST` debe ser `localhost` (no `postgres`) fuera de Docker. |
 | Puerto ocupado                            | Otro proceso usa el puerto; cámbialo con `--port` o libéralo.          |
 | Cambios no se reflejan                    | Usa `--reload` en local; en Docker reconstruye con `--build`.          |
+
+### Saltarse la auth en pruebas aisladas (forma #1)
+
+En la prueba en memoria (TestClient) puedes evitar el login real sobreescribiendo
+la dependencia de usuario, útil para probar la lógica sin generar un token:
+
+```python
+from app.dependencies import get_current_user
+from shared.models.usuario import Usuario
+
+fake = Usuario(); fake.usuario_id = 1; fake.rol = "administrador"
+main.app.dependency_overrides[get_current_user] = lambda: fake
+```
