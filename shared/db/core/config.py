@@ -37,11 +37,18 @@ class AppSettings(BaseSettings):
 
     # ── ChromaDB (vector store) ──────────────────────────────────────────────
     CHROMA_PATH: str = "chromadb/data"
-    # Modelo de embeddings multilingüe (sentence-transformers).
-    EMBEDDING_MODEL: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    # Conexión al servidor Chroma (contenedor). En local apunta a localhost; en
+    # Docker, docker-compose.yml inyecta CHROMA_HOST=chromadb.
+    CHROMA_HOST: str = "localhost"
+    CHROMA_PORT: int = 8008
+    # Modelo de embeddings multilingüe (sentence-transformers). 768 dimensiones.
+    EMBEDDING_MODEL: str = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
     # Colecciones de ChromaDB.
     CHROMA_COLLECTION_INSTRUMENTOS: str = "instrumentos"
     CHROMA_COLLECTION_KPIS: str = "kpis"
+    # Colección del resumen del instrumento (original + metadatos clave) para la
+    # búsqueda semántica de KPIs.
+    CHROMA_COLLECTION_SUMMARY: str = "summary_instrument"
 
     # ── Almacenamiento de archivos ───────────────────────────────────────────
     RAW_PATH: str = "storage/raw"

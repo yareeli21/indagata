@@ -54,7 +54,8 @@ services:
     environment:
       CHROMA_TELEMETRY_ENABLED: "false"
     ports:
-      - "8001:8000"
+      # Host 8008 → interno 8000. (8001 lo usa instrument-service.)
+      - "8008:8000"
     volumes:
       - chromadb_data:/data
     networks:
@@ -158,6 +159,8 @@ services:
         condition: service_healthy
       ollama:
         condition: service_started
+      chromadb:
+        condition: service_started
     environment:
       SERVICE_NAME: analysis-service
       POSTGRES_HOST: postgres
@@ -167,12 +170,16 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
       OLLAMA_HOST: http://ollama:11434
       OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
+      CHROMA_HOST: chromadb
+      CHROMA_PORT: 8000
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/paraphrase-multilingual-mpnet-base-v2}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
       - "8002:8002"
     volumes:
       - ./services/analysis-service:/app
       - ./shared:/app/shared
+      - ./storage:/app/storage
     networks:
       - indagata_network
     restart: unless-stopped
