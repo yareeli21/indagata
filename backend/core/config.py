@@ -49,6 +49,12 @@ class AppSettings(BaseSettings): #esta clase va a obtener automáticamente los v
     #umbral para el solapamiento en los chunks, teniendo en cuenta que nuestro chunks son de 500 tokens
     LIMPIEZA_SOLAPE_CHARS: int = 150
 
+    #ruta para archivos limpios
+    CLEAN_PATH: str = "storage/clean"
+
+    #agrupación de preguntas en SIS
+    SIS_QUESTION_GROUPING: bool = True
+
     #intervalo del polling del pipeline de limpieza 
     LIMPIEZA_INTERVALO_SEGUNDOS: int =  30
 
