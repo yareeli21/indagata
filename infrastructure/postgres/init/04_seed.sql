@@ -1,5 +1,9 @@
 -- -- DATOS INICIALES: KPIS BY ADMINISTRATOR(LAYLA) -----------------------
 
+-- Las tablas viven en el esquema tt_rag. Cada archivo de init corre en su
+-- propia sesión psql, así que fijamos el search_path aquí también.
+SET search_path TO tt_rag, public;
+
 
 INSERT INTO kpi (nombrekpi, descripcion, direccion_deseada, razon, formula) 
 VALUES 

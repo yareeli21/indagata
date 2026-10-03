@@ -1,28 +1,35 @@
-#El administrador gestiona este catálogo. Los KPIs no se eliminan
-#físicamente para no romper el historial, sino que se desactiva
+"""Schemas Pydantic: kpi.
+
+Refleja 1:1 la tabla `tt_rag.kpi` de 01_schema.sql.
+"""
+from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
-from typing import Optional
+
 
 class KPIBase(BaseModel):
-    nombre: str
-    descripcion: Optional[str] = None
-    formula: Optional[str] = None
-    unidad: Optional[str] = None
-    umbral_referencia: Optional[str] = None
-    activo: bool = True
+    nombre_kpi: str
+    descripcion: str | None = None
+    categoria: str | None = None
+    ambito: str | None = None
+    url_documentacion: str | None = None
+    formula: str | None = None
+
 
 class KPICreate(KPIBase):
     pass
 
-class KPIUpdate(BaseModel):
-    nombre: Optional[str] = None
-    descripcion: Optional[str] = None
-    formula: Optional[str] = None
-    unidad: Optional[str] = None
-    umbral_referencia: Optional[str] = None
-    activo: Optional[bool] = None
 
-class KPIResponse(KPIBase):
-    id_kpi: int
+class KPIUpdate(BaseModel):
+    nombre_kpi: str | None = None
+    descripcion: str | None = None
+    categoria: str | None = None
+    ambito: str | None = None
+    url_documentacion: str | None = None
+    formula: str | None = None
+
+
+class KPIRead(KPIBase):
     model_config = ConfigDict(from_attributes=True)
+
+    kpi_id: int

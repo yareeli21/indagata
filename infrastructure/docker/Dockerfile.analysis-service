@@ -1,10 +1,11 @@
-# Analysis Service (LLM Integration)
-FROM python:3.12-slim as base
+# Analysis Service (limpieza, metadatos, JSON, vectorización + KPIs semánticos)
+FROM python:3.12-slim AS base
 
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
+    g++ \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
@@ -15,14 +16,18 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+# libgomp1: requerido por torch/sentence-transformers; libpq5: psycopg
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq5 \
+    libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=base /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 
 COPY services/analysis-service/ ./
 COPY shared/ ./shared/
+
+RUN mkdir -p /app/storage/raw /app/storage/json /app/storage/sav /app/storage/clean /app/storage/temp /app/chromadb/data
 
 EXPOSE 8002
 

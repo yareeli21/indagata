@@ -1,22 +1,23 @@
-# app/models/kpi.py
-#Catálogo centralizado de indicadores 
-#clave de desempeño gestionado por el administrador
+"""Modelo ORM: kpi."""
+from __future__ import annotations
 
-from sqlalchemy import Text, Boolean
+from sqlalchemy import Text
 from sqlalchemy.orm import Mapped, mapped_column
-from app.database.base import Base
+
+from shared.db.base import SCHEMA, Base
+
 
 class KPI(Base):
     __tablename__ = "kpi"
-    __table_args__ = {"schema": "tt_rag"}
+    __table_args__ = {"schema": SCHEMA}
 
-    id_kpi: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    nombre: Mapped[str] = mapped_column(Text, nullable=False)
+    kpi_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    nombre_kpi: Mapped[str] = mapped_column(Text, nullable=False)
     descripcion: Mapped[str | None] = mapped_column(Text)
+    categoria: Mapped[str | None] = mapped_column(Text)
+    ambito: Mapped[str | None] = mapped_column(Text)
+    url_documentacion: Mapped[str | None] = mapped_column(Text)
     formula: Mapped[str | None] = mapped_column(Text)
-    unidad: Mapped[str | None] = mapped_column(Text)
-    umbral_referencia: Mapped[str | None] = mapped_column(Text)
-    activo: Mapped[bool] = mapped_column(Boolean, default=True)
 
-    def __repr__(self) -> str:
-        return f"<KPI id={self.id_kpi} nombre={self.nombre!r}>"
+    def __repr__(self) -> str:  # pragma: no cover
+        return f"<KPI kpi_id={self.kpi_id} nombre_kpi={self.nombre_kpi!r}>"
