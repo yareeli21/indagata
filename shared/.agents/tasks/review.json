@@ -1,4 +1,5 @@
 {
   "verdict": "APPROVED",
-  "note": "shared/ realigned 1:1 to 01_schema.sql: 17 tables, __all__ matches, schemas/repositories import cleanly, byte-compile clean. SQL not modified. Downstream service breakages catalogued in breakages.md."
+  "findings": [],
+  "reviewDoc": "c:\\Users\\yarel\\Documents\\indagata\\indagata\\shared\\.agents\\tasks\\review.md"
 }

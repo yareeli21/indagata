@@ -1,367 +1,290 @@
 -- ============================================================
--- INDAGATA - Esquema de base de datos (PostgreSQL)
+-- Indagata — Esquema PostgreSQL (fuente única de verdad)
 --
--- Generado a partir del diagrama entregado, con las correcciones
--- de normalización discutidas:
---   - PK simples en USUARIO, KPI e INSTRUMENTO_PROCESADO
---     (antes compuestas o inexistentes)
---   - Catálogo KPI <-> VARIABLE separado en tabla puente N:M,
---     en vez de columnas repetidas VARIABLE_1..6
---   - KPI_INFERIDO como tabla asociativa N:M entre
---     INSTRUMENTO_PROCESADO y KPI, con atributos propios
---   - VALOR_VARIABLE_INFERIDO separado de KPI_INFERIDO para
---     almacenar el valor de cada variable usada en la inferencia
+-- Flujo del pipeline:
+--   1. Llega un instrumento y se registra como crudo en raw_data.
+--      Se suben DOS archivos:
+--        - el respondido (tabular con respuestas)   → raw_archivo
+--        - el original (solo preguntas, sin datos)  → raw_archivo_original
+--      El original servirá para vectorización y búsqueda semántica futura.
+--   2. raw_data es la tabla PADRE. De ella cuelgan por id_crudo (PK = FK):
+--        - metadatos_dc
+--        - metadatos_enriquecidos_encuestas
+--        - metadatos_enriquecidos_entrevistas
+--        - metadatos_enriquecidos_pruebas
+--   3. Limpieza sencilla de ciencia de datos → se llenan DC y específicos.
+--   4. Se genera un JSON estructurado (instrumento_procesado).
+--   5. Resumen del JSON + instrumento original → vectorización → se buscan
+--      KPIs relacionados. Al aceptar los KPIs propuestos, se actualiza el JSON
+--      para incluir los KPIs asociados.
 --
--- Pendiente de decidir fuera de este script (no se puede resolver
--- solo con SQL):
---   - Columnas reales de METADATOS_ENRIQUECIDOS_ENTREVISTAS y PROMPTS
---   - Validación de que tipo_instrumento coincida con la tabla de
---     metadatos enriquecidos que se llena (regla de negocio -> FastAPI)
+-- Referencias a Chroma:
+--   - instrumento_procesado.collection_id → colección donde vive el instrumento
+--   - prompts.collection_id               → colección sobre la que actúa el prompt
+--   - documento_vectorizado.collection_id → colección del chunk
+--   - documento_vectorizado.chunk_id      → ID del punto/vector del chunk en Chroma
+--
+-- Control de borrado: NO hay tabla de permisos. Se autoriza por el campo
+-- usuario.rol (p. ej. 'investigador' puede borrar sus instrumentos, 'admin'
+-- cualquiera). La validación la hace la aplicación.
 -- ============================================================
+
+CREATE SCHEMA IF NOT EXISTS tt_rag;
+
+SET search_path TO tt_rag, public;
 
 BEGIN;
 
--- ------------------------------------------------------------
--- USUARIO
--- ------------------------------------------------------------
-CREATE TABLE usuario (
-    usuario_id      SERIAL PRIMARY KEY,
-    nombre          VARCHAR(255) NOT NULL,
-    email           VARCHAR(255) UNIQUE NOT NULL,
-    password_hash   TEXT NOT NULL,
-    rol             VARCHAR(255),
-    fecha_registro  TIMESTAMP NOT NULL DEFAULT now()
+-- ── 1. Usuarios ───────────────────────────────────────────────────────────────
+-- El rol autoriza la carga y el borrado de instrumentos (validado en la app).
+
+CREATE TABLE IF NOT EXISTS usuario (
+    usuario_id     SERIAL       PRIMARY KEY,
+    nombre         VARCHAR(255) NOT NULL,
+    email          VARCHAR(255) UNIQUE NOT NULL,
+    password_hash  TEXT         NOT NULL,
+    rol            VARCHAR(50),
+    fecha_registro TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
 );
 
--- ------------------------------------------------------------
--- RAW_DATA
--- ------------------------------------------------------------
-CREATE TABLE raw_data (
-    id_crudo            SERIAL PRIMARY KEY,
-    id_owner            INTEGER NOT NULL REFERENCES usuario(usuario_id),
-    tipo_instrumento    VARCHAR(30) NOT NULL
-        CHECK (tipo_instrumento IN ('encuesta', 'entrevista', 'prueba_estandarizada')),
-    nombre_archivo      TEXT NOT NULL,
-    ruta                TEXT NOT NULL,
-    fecha_carga         TIMESTAMP NOT NULL DEFAULT now()
+-- ── 2. raw_data (TABLA PADRE) ─────────────────────────────────────────────────
+-- Un registro por instrumento recibido en crudo. Guarda tanto el archivo
+-- respondido (raw_archivo) como el instrumento original sin respuestas
+-- (raw_archivo_original), que se usará para la vectorización semántica.
+
+CREATE TABLE IF NOT EXISTS raw_data (
+    id_crudo             SERIAL      PRIMARY KEY,
+    id_owner             INTEGER     NOT NULL REFERENCES usuario(usuario_id) ON DELETE CASCADE,
+    tipo_instrumento     VARCHAR(50) NOT NULL,
+    nombre_archivo       TEXT        NOT NULL,
+    raw_archivo          TEXT        NOT NULL,  -- ruta del archivo respondido (crudo con datos)
+    raw_archivo_original TEXT,                  -- ruta del instrumento original (solo preguntas)
+    fecha_carga          TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_raw_data_owner ON raw_data(id_owner);
-CREATE INDEX idx_raw_data_tipo  ON raw_data(tipo_instrumento);
+-- ── 3. instrumento_procesado ──────────────────────────────────────────────────
+-- Hija de raw_data por id_crudo. PK propia (id_instrumento) para que las tablas
+-- de KPIs y vectorización puedan relacionarse con ella.
 
--- ------------------------------------------------------------
--- METADATOS_DC (Dublin Core) - relación 1:0..1 con RAW_DATA
--- ------------------------------------------------------------
-CREATE TABLE metadatos_dc (
-    id_crudo        INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
-    dc_title        TEXT,
-    dc_creator      TEXT,
+CREATE TABLE IF NOT EXISTS instrumento_procesado (
+    id_instrumento         SERIAL       PRIMARY KEY,
+    id_crudo               INTEGER      NOT NULL REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    ruta_de_archivo_limpio VARCHAR(255),
+    ruta_json              TEXT,
+    estado                 VARCHAR(50)  NOT NULL DEFAULT 'recibido'
+                           CHECK (estado IN (
+                               'recibido',
+                               'limpieza_en_proceso',
+                               'limpio',
+                               'metadatos_registrados',
+                               'estandarizado',
+                               'vectorizado',
+                               'error'
+                           )),
+    fecha_procesamiento    TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    fecha_aprobado         TIMESTAMP
+);
+
+-- ── 4. metadatos_dc (Dublin Core adaptado) — hija de raw_data ─────────────────
+
+CREATE TABLE IF NOT EXISTS metadatos_dc (
+    id_crudo       INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    dc_title       TEXT NOT NULL,
+    dc_creator     TEXT,
     dc_description  TEXT,
-    dc_type         VARCHAR(50),
-    dc_date         DATERANGE,
-    dc_languaje     CHAR(10),
-    dc_coverage     TEXT,
-    dc_subject      TEXT,
-    dc_publisher    TEXT,
-    dc_rights       VARCHAR(25),
-    dc_format       VARCHAR(10),
-    dc_source       TEXT,
-    dc_relation     VARCHAR(255)
+    dc_type        VARCHAR(50),
+    dc_date        VARCHAR(100),
+    dc_language    VARCHAR(10),
+    dc_coverage    TEXT,
+    dc_subject     TEXT,
+    dc_publisher   TEXT,
+    dc_rights      VARCHAR(255),
+    dc_format      VARCHAR(50),
+    dc_source      TEXT,
+    dc_relation    TEXT
 );
 
--- ------------------------------------------------------------
--- Metadatos enriquecidos por tipo de instrumento
--- (1:0..1 con RAW_DATA; solo debe existir fila en la tabla que
---  corresponda a raw_data.tipo_instrumento -- esa coherencia se
---  valida en la aplicación, no aquí)
--- ------------------------------------------------------------
-CREATE TABLE metadatos_enriquecidos_encuestas (
-    id_crudo                INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
-    n_respondentes          INTEGER,
-    n_poblacion             INTEGER,
-    tipo_investigacion      TEXT,
-    notas_contextuales      TEXT,
-    notas_interpretacion    TEXT,
-    secciones               JSONB
+-- ── 5. Metadatos enriquecidos (separados por tipo) — hijas de raw_data ────────
+
+CREATE TABLE IF NOT EXISTS metadatos_enriquecidos_encuestas (
+    id_crudo             INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    n_respondentes       INTEGER,
+    n_poblacion          INTEGER,
+    carrera              TEXT,
+    poblacion_objetivo   TEXT,
+    notas_contextuales   TEXT,
+    notas_interpretacion TEXT
 );
 
-CREATE TABLE metadatos_enriquecidos_pruebas_estandarizadas (
-    id_crudo                        INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
-    unidad_de_aprendizaje           TEXT NOT NULL,
-    mapeo_de_reactivos_por_seccion  TEXT NOT NULL,
-    institucion                     TEXT NOT NULL,
-    campus                          TEXT,
-    grado                           TEXT NOT NULL,
-    ciclo_escolar                   TEXT NOT NULL,
-    tipo_de_prueba                  TEXT,
-    version                         TEXT,
-    taxonomia_bloom                 TEXT NOT NULL,
-    objetivo_de_evaluacion          TEXT NOT NULL,
-    aplicantes                      INTEGER
+CREATE TABLE IF NOT EXISTS metadatos_enriquecidos_entrevistas (
+    id_crudo             INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    identificador_propio TEXT,
+    objetivo             TEXT,
+    metodologia          TEXT,
+    institucion          TEXT,
+    derechos             TEXT
 );
 
--- Pendiente de especificar: en el diagrama esta tabla sigue como
--- placeholder ("Key/Field/Type" genérico). Queda con la misma forma
--- de sus tablas hermanas para que se complete con las columnas
--- reales de entrevista (duración, entrevistador, guion, etc.).
-CREATE TABLE metadatos_enriquecidos_entrevistas (
-    id_crudo    INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE
-    -- TODO: columnas específicas de entrevista
+CREATE TABLE IF NOT EXISTS metadatos_enriquecidos_pruebas (
+    id_crudo                       INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    unidad_de_aprendizaje          TEXT,
+    mapeo_de_reactivos_por_seccion JSONB,
+    institucion                    TEXT,
+    campus                         TEXT,
+    grado                          TEXT,
+    grupo                          TEXT,
+    ciclo_escolar                  TEXT,
+    tipo_de_prueba                 TEXT,
+    version                        TEXT,
+    taxonomia_bloom                TEXT,
+    nivel_educativo                TEXT,
+    objetivo_de_evaluacion         TEXT,
+    subareas                       TEXT,
+    competencias                   TEXT
 );
 
--- ------------------------------------------------------------
--- PROMPTS - también placeholder en el diagrama, sin relación clara
--- a otra tabla. Queda como catálogo independiente.
--- ------------------------------------------------------------
-CREATE TABLE prompts (
-    prompt_id   SERIAL PRIMARY KEY
-    -- TODO: columnas reales (nombre, contenido, version, etc.)
+-- ── 5b. coleccion_vectorial (config de la colección Chroma) ───────────────────
+-- Una colección Chroma por configuración de embedding. Guarda los parámetros con
+-- los que se vectorizó, para poder reindexar de forma reproducible. La referencian
+-- prompts y documento_vectorizado.
+
+CREATE TABLE IF NOT EXISTS coleccion_vectorial (
+    coleccion_id    SERIAL      PRIMARY KEY,
+    nombre          TEXT        UNIQUE NOT NULL,  -- nombre/UUID de la colección en Chroma
+    embedding_model VARCHAR(100),
+    chunk_size      INTEGER,
+    chunk_overlap   INTEGER,
+    creado_en       TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
 
--- ------------------------------------------------------------
--- INSTRUMENTO_PROCESADO
--- PK simple (id_procesado); id_crudo es FK normal, no parte de la PK.
--- ------------------------------------------------------------
-CREATE TABLE instrumento_procesado (
-    id_procesado            SERIAL PRIMARY KEY,
-    id_crudo                INTEGER NOT NULL REFERENCES raw_data(id_crudo),
-    ruta_de_archivo_limpio  VARCHAR(255),
-    ruta_json               TEXT,
-    estado                  VARCHAR(50) NOT NULL DEFAULT 'pendiente'
-        CHECK (estado IN (
-            'pendiente',
-            'metadata_registrado',
-            'etl_pendiente_limpieza',
-            'etl_pendiente_enriquecimiento',
-            'etl_aprobado',
-            'en_ingesta',
-            'vectorizado',
-            'error'
-        )),
-    fecha_procesamiento     TIMESTAMP,
-    fecha_aprobado          TIMESTAMP,
-    -- chroma_id / collection_id referencian el espacio de IDs de
-    -- ChromaDB, que vive fuera de Postgres: no hay tabla local que
-    -- referenciar, por eso quedan como INTEGER simples, no FK real.
-    chroma_id               INTEGER,
-    collection_id           INTEGER
+-- ── 6. prompts ────────────────────────────────────────────────────────────────
+
+CREATE TABLE IF NOT EXISTS prompts (
+    prompt_id     SERIAL      PRIMARY KEY,
+    tipo          VARCHAR(50) NOT NULL,
+    version       VARCHAR(10) NOT NULL,
+    contenido     TEXT        NOT NULL,
+    coleccion_id  INTEGER     REFERENCES coleccion_vectorial(coleccion_id) ON DELETE SET NULL,  -- colección sobre la que actúa el prompt
+    activo        BOOLEAN     DEFAULT TRUE,
+    creado_en     TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_instrumento_procesado_raw    ON instrumento_procesado(id_crudo);
-CREATE INDEX idx_instrumento_procesado_estado ON instrumento_procesado(estado);
+-- ── 7. kpi ────────────────────────────────────────────────────────────────────
 
--- ------------------------------------------------------------
--- Catálogo de KPI y variables (relación N:M vía tabla puente)
--- ------------------------------------------------------------
-CREATE TABLE kpi (
-    kpi_id              SERIAL PRIMARY KEY,
-    nombre_kpi          TEXT NOT NULL,
-    descripcion         TEXT,
-    categoria           TEXT,
-    ambito              TEXT,
-    url_documentacion   TEXT,
-    formula             TEXT
+CREATE TABLE IF NOT EXISTS kpi (
+    kpi_id           SERIAL PRIMARY KEY,
+    nombre_kpi       TEXT   NOT NULL,
+    descripcion      TEXT,
+    categoria        TEXT,
+    ambito           TEXT,
+    url_documentacion TEXT,
+    formula          TEXT
 );
 
-CREATE TABLE variable (
+-- ── 8. variable ───────────────────────────────────────────────────────────────
+
+CREATE TABLE IF NOT EXISTS variable (
     variable_id     SERIAL PRIMARY KEY,
-    nombre_variable TEXT NOT NULL,
+    nombre_variable TEXT   NOT NULL,
     descripcion     TEXT,
-    tipo_dato       VARCHAR(20) NOT NULL
-        CHECK (tipo_dato IN ('entero', 'decimal', 'texto', 'booleano')),
+    tipo_dato       VARCHAR(20),
     unidad          TEXT
 );
 
-CREATE TABLE kpi_variable (
-    kpi_id      INTEGER NOT NULL REFERENCES kpi(kpi_id),
-    variable_id INTEGER NOT NULL REFERENCES variable(variable_id),
+-- ── 9. kpi_variable ───────────────────────────────────────────────────────────
+
+CREATE TABLE IF NOT EXISTS kpi_variable (
+    kpi_id      INTEGER NOT NULL REFERENCES kpi(kpi_id) ON DELETE CASCADE,
+    variable_id INTEGER NOT NULL REFERENCES variable(variable_id) ON DELETE CASCADE,
     PRIMARY KEY (kpi_id, variable_id)
 );
 
--- ------------------------------------------------------------
--- KPI inferido por instrumento procesado
--- (tabla asociativa N:M instrumento_procesado <-> kpi,
---  con atributos propios de la inferencia)
--- ------------------------------------------------------------
-CREATE TABLE kpi_inferido (
-    id_procesado        INTEGER NOT NULL REFERENCES instrumento_procesado(id_procesado),
-    kpi_id              INTEGER NOT NULL REFERENCES kpi(kpi_id),
-    puntuacion_llm      NUMERIC,
-    puntuacion_rag      NUMERIC,
-    razon               TEXT,
-    resultado           NUMERIC,
-    fecha_inferencia    TIMESTAMP NOT NULL DEFAULT now(),
+-- ── 10. kpi_inferido (sin puntuación LLM ni RAG) ──────────────────────────────
+
+CREATE TABLE IF NOT EXISTS kpi_inferido (
+    id_procesado     INTEGER NOT NULL REFERENCES instrumento_procesado(id_instrumento) ON DELETE CASCADE,
+    kpi_id           INTEGER NOT NULL REFERENCES kpi(kpi_id) ON DELETE CASCADE,
+    razon            TEXT,
+    resultado        NUMERIC,
+    fecha_inferencia TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id_procesado, kpi_id)
 );
 
-CREATE INDEX idx_kpi_inferido_kpi ON kpi_inferido(kpi_id);
+-- ── 11. valor_variable_inferido ───────────────────────────────────────────────
 
--- ------------------------------------------------------------
--- Valores de cada variable usada en un KPI inferido.
---
--- valor_numerico / valor_texto / valor_booleano: exactamente una
--- debe llenarse, según variable.tipo_dato. El CHECK de abajo solo
--- garantiza "exactamente una columna llena"; que sea la columna
--- correcta según tipo_dato se valida en la aplicación, porque un
--- CHECK no puede leer una columna de otra tabla.
--- ------------------------------------------------------------
-CREATE TABLE valor_variable_inferido (
-    id_procesado        INTEGER NOT NULL,
-    kpi_id              INTEGER NOT NULL,
-    variable_id         INTEGER NOT NULL REFERENCES variable(variable_id),
-    valor_numerico      NUMERIC,
-    valor_texto         TEXT,
-    valor_booleano      BOOLEAN,
-    confianza_variable  NUMERIC,
+CREATE TABLE IF NOT EXISTS valor_variable_inferido (
+    id_procesado       INTEGER NOT NULL,
+    kpi_id             INTEGER NOT NULL,
+    variable_id        INTEGER NOT NULL REFERENCES variable(variable_id) ON DELETE CASCADE,
+    valor_numerico     NUMERIC,
+    valor_texto        TEXT,
+    valor_booleano     BOOLEAN,
+    confianza_variable NUMERIC,
     PRIMARY KEY (id_procesado, kpi_id, variable_id),
-    FOREIGN KEY (id_procesado, kpi_id)
-        REFERENCES kpi_inferido(id_procesado, kpi_id) ON DELETE CASCADE,
-    CHECK (num_nonnulls(valor_numerico, valor_texto, valor_booleano) = 1)
+    FOREIGN KEY (id_procesado, kpi_id) REFERENCES kpi_inferido(id_procesado, kpi_id) ON DELETE CASCADE
 );
 
-<<<<<<< HEAD
+-- ── 12. rag_log ───────────────────────────────────────────────────────────────
 
--- ════════════════════════════════════════════════════════════════════════════
--- GRUPO 5: KPIs INFERIDOS (ACTUALIZADO)
--- ════════════════════════════════════════════════════════════════════════════
-
--- KPIs asociados al instrumento (manual o por LLM)
--- CAMBIOS: Agregado campo 'origen' para distinguir fuente
-CREATE TABLE IF NOT EXISTS kpi_inferido (
-    kpi_inferido_id   INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    instrumento_id    INTEGER NOT NULL,
-    kpi_id            INTEGER NOT NULL,
-    tipo_relacion     VARCHAR(20),  -- directo, indirecto, complementario, inferido
-    evidencia_textual TEXT,
-    score_inferencia  NUMERIC(4,3) CHECK (score_inferencia >= 0 AND score_inferencia <= 1),
-    origen            VARCHAR(20) NOT NULL DEFAULT 'registro_manual'
-        CHECK (origen IN ('registro_manual', 'propuesta_etl')),
-    registrado_en     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (instrumento_id) REFERENCES instrumento_procesado(instrumento_id) ON DELETE CASCADE,
-    FOREIGN KEY (kpi_id) REFERENCES kpi(kpi_id)
+CREATE TABLE IF NOT EXISTS rag_log (
+    rag_log_id    SERIAL      PRIMARY KEY,
+    pregunta      TEXT        NOT NULL,
+    respuesta     TEXT,
+    modelo_usado  VARCHAR(100),
+    chunks_usados INTEGER,
+    latencia_ms   INTEGER,
+    timestamp     TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
 
-COMMENT ON COLUMN kpi_inferido.tipo_relacion IS 'Tipo de asociación: directa, indirecta, complementaria o inferida.';
-COMMENT ON COLUMN kpi_inferido.origen IS 'registro_manual: registrado por el investigador en paso 2. propuesta_etl: aceptado en paso 4.';
+-- ── 13. documento_vectorizado (chunks vectorizados de cada instrumento) ───────
+-- Un instrumento genera muchos chunks; cada fila es un chunk con su vector en
+-- Chroma (chroma_vector_id). El ON DELETE CASCADE permite borrar/reindexar los
+-- vectores de un instrumento específico.
 
--- Índices
-CREATE INDEX IF NOT EXISTS idx_kpi_inferido_instrumento ON kpi_inferido(instrumento_id);
-CREATE INDEX IF NOT EXISTS idx_kpi_inferido_kpi ON kpi_inferido(kpi_id);
-
-
--- Usuarios del sistema
-CREATE TABLE IF NOT EXISTS usuarios (
-    USUARIO_ID    INTEGER      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    USUARIO       VARCHAR(50)  UNIQUE NOT NULL,
-    EMAIL         VARCHAR(255) UNIQUE NOT NULL,
-    PASSWORD_HASH TEXT,
-    ROL           VARCHAR(20)  DEFAULT 'investigador',
-    CREADO_EN     TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
-);
-
---TABLA DONDE SE ALMACENAN LOS ARCHIVOS EN CRUDO Y DESDE UN PRINCIPIO SE ESTABLECE SI VA A SER PUBLICO O NO
-CREATE TABLE IF NOT EXISTS raw_data (
-    ID_CRUDO            INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    ID_OWNER            INTEGER      NOT NULL,
-    TITULO              VARCHAR(255),
-    NOMBRE_DEL_ARCHIVO  VARCHAR(255), 
-    RUTA                TEXT,
-    TIPO_DE_INSTRUMENTO VARCHAR(30)  NOT NULL CHECK (TIPO_DE_INSTRUMENTO IN ('encuesta', 'entrevista', 'prueba_estandarizada')),
-    FECHA_CARGA         TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PERMISO             BOOLEAN,
-    FECHA_PERMISO       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (ID_OWNER) REFERENCES usuarios(USUARIO_ID) ON DELETE CASCADE
-);
-
--- Log del pipeline de ingesta (extracción, limpieza, vectorización)
-CREATE TABLE IF NOT EXISTS pipeline_ingesta_log (
-    log_id           INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    instrumento_id   INTEGER NOT NULL,
-    iniciado_en      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    finalizado_en    TIMESTAMP,
-    resultado        VARCHAR(20) NOT NULL DEFAULT 'en_proceso'
-        CHECK (resultado IN ('en_proceso', 'exitoso', 'error')),
-    extractor_usado  VARCHAR(50),
-    modelo_llm       VARCHAR(100),
-    prompt_version   VARCHAR(20),
-    tokens_entrada   INTEGER,
-    tokens_salida    INTEGER,
-    latencia_ms      INTEGER,
-    segmentos        INTEGER,
-    error_mensaje    TEXT,
-    etapa_actual     VARCHAR(50),  -- extraccion | limpieza | json | chunking | embeddings | vectorstore
-    n_chunks         INTEGER,
-    modelo_embedding VARCHAR(100),
-    FOREIGN KEY (instrumento_id) REFERENCES instrumento_procesado(instrumento_id) ON DELETE CASCADE
-);
-
-COMMENT ON COLUMN pipeline_ingesta_log.etapa_actual IS 'Etapa actual del pipeline: extraccion | limpieza | json | chunking | embeddings | vectorstore';
-COMMENT ON COLUMN pipeline_ingesta_log.n_chunks IS 'Número de chunks generados desde el JSON consolidado.';
-
--- Índices
-CREATE INDEX IF NOT EXISTS idx_ingesta_log_instrumento ON pipeline_ingesta_log(instrumento_id);
-CREATE INDEX IF NOT EXISTS idx_ingesta_log_en_proceso ON pipeline_ingesta_log(instrumento_id)
-    WHERE resultado = 'en_proceso';
-
-
--- ════════════════════════════════════════════════════════════════════════════
--- GRUPO 8: VECTORIZACIÓN Y RAG
--- ════════════════════════════════════════════════════════════════════════════
-
--- Documentos vectorizados (chunks del instrumento)
 CREATE TABLE IF NOT EXISTS documento_vectorizado (
-    documento_vectorizado_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    instrumento_id           INTEGER     NOT NULL,
-    chunk_index              INTEGER     NOT NULL,
+    documento_vectorizado_id SERIAL      PRIMARY KEY,
+    instrumento_id           INTEGER     REFERENCES instrumento_procesado(id_instrumento) ON DELETE CASCADE,
+    coleccion_id             INTEGER     REFERENCES coleccion_vectorial(coleccion_id) ON DELETE SET NULL,
+    chroma_vector_id         TEXT,                        -- ID del punto/vector del chunk en Chroma (string)
+    chunk_index              INTEGER,
+    seccion                  TEXT,
     chunk_texto              TEXT        NOT NULL,
     chunk_metadata           JSONB       DEFAULT '{}'::jsonb,
-    embedding_modelo         VARCHAR(100),
-    almacenado_en            TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (instrumento_id) REFERENCES instrumento_procesado(instrumento_id) ON DELETE CASCADE,
-    UNIQUE (instrumento_id, chunk_index)
+    n_tokens                 INTEGER,
+    almacenado_en            TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
 
--- Log de consultas RAG
-CREATE TABLE IF NOT EXISTS rag_log (
-    rag_log_id       INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    pregunta         TEXT        NOT NULL,
-    respuesta        TEXT,
-    modelo_usado     VARCHAR(100),
-    chunks_usados    INTEGER,
-    latencia_ms      INTEGER,
-    timestamp        TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
+-- ── 14. kpi_inferido_chunk (puente: evidencia de la inferencia) ───────────────
+-- Registra qué chunks vectorizados sustentaron cada KPI inferido por búsqueda
+-- semántica, con el score de similitud de cada chunk. Reemplaza al antiguo
+-- campo 'secciones' de kpi_inferido con trazabilidad real a los chunks.
+
+CREATE TABLE IF NOT EXISTS kpi_inferido_chunk (
+    id_procesado             INTEGER NOT NULL,
+    kpi_id                   INTEGER NOT NULL,
+    documento_vectorizado_id INTEGER NOT NULL REFERENCES documento_vectorizado(documento_vectorizado_id) ON DELETE CASCADE,
+    score                    NUMERIC,
+    PRIMARY KEY (id_procesado, kpi_id, documento_vectorizado_id),
+    FOREIGN KEY (id_procesado, kpi_id) REFERENCES kpi_inferido(id_procesado, kpi_id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS metadatos_entrevistas(
-    id_crudo INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    objetivo TEXT,
-    metodologia TEXT,
-    institucion TEXT
-);
+-- ── Índices ───────────────────────────────────────────────────────────────────
 
+CREATE INDEX IF NOT EXISTS idx_raw_data_owner           ON raw_data(id_owner);
+CREATE INDEX IF NOT EXISTS idx_instrumento_crudo        ON instrumento_procesado(id_crudo);
+CREATE INDEX IF NOT EXISTS idx_instrumento_estado       ON instrumento_procesado(estado);
+CREATE INDEX IF NOT EXISTS idx_kpi_inferido_procesado   ON kpi_inferido(id_procesado);
+CREATE INDEX IF NOT EXISTS idx_kpi_inferido_kpi         ON kpi_inferido(kpi_id);
+CREATE INDEX IF NOT EXISTS idx_kpi_inf_chunk_docvec     ON kpi_inferido_chunk(documento_vectorizado_id);
+CREATE INDEX IF NOT EXISTS idx_docvec_instrumento       ON documento_vectorizado(instrumento_id);
+CREATE INDEX IF NOT EXISTS idx_docvec_coleccion         ON documento_vectorizado(coleccion_id);
+CREATE INDEX IF NOT EXISTS idx_rag_log_timestamp        ON rag_log(timestamp);
 
--- ════════════════════════════════════════════════════════════════════════════
--- GRUPO 9: PROMPTS DEL SISTEMA
--- ════════════════════════════════════════════════════════════════════════════
-
--- Catálogo de prompts versionados
-CREATE TABLE IF NOT EXISTS prompt (
-    prompt_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    tipo      VARCHAR(20) NOT NULL,
-    version   VARCHAR(10) NOT NULL,
-    contenido TEXT NOT NULL,
-    activo    BOOLEAN DEFAULT TRUE,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (tipo, version)
-);
-
-
--- ════════════════════════════════════════════════════════════════════════════
--- FIN DEL SCHEMA
--- ════════════════════════════════════════════════════════════════════════════
-
--- Resetear search_path
-RESET search_path;
-=======
 COMMIT;
->>>>>>> 8a57514ac6c1000b0c3888824d14d72980e0381f
+
+-- ── search_path por defecto para el rol actual ────────────────────────────────
+DO $$
+BEGIN
+    EXECUTE format('ALTER ROLE %I SET search_path TO tt_rag, public', current_user);
+END
+$$;

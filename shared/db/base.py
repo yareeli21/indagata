@@ -1,11 +1,19 @@
-# app/database/base.py
+"""Base declarativa única para TODOS los modelos del proyecto.
+
+Todos los modelos de `shared/models` heredan de esta `Base`. Al compartir una
+sola `Base`, SQLAlchemy conoce el mapa completo de tablas y relaciones sin
+importar qué microservicio la cargue. El esquema físico vive en
+`infrastructure/postgres/init/01_schema.sql`; aquí solo lo reflejamos.
+"""
+from __future__ import annotations
+
 from sqlalchemy.orm import DeclarativeBase
+
+# Esquema PostgreSQL donde viven todas las tablas.
+SCHEMA = "tt_rag"
 
 
 class Base(DeclarativeBase):
-    """
-    Clase base de la que heredan todos los modelos (tablas) del proyecto.
-    SQLAlchemy usa esto para saber qué clases representan tablas
-    y poder generar el esquema, hacer queries, etc.
-    """
+    """Base común de todos los modelos ORM. No instanciar directamente."""
+
     pass

@@ -1,83 +1,83 @@
-#archivo config.py para poder obtener las claves desde .env para FastAPI
+"""Configuración central (settings) leída desde variables de entorno / .env.
+
+Compartida por todos los microservicios. Usa pydantic-settings. Todos los
+campos tienen un valor por defecto razonable para que un servicio pueda
+arrancar en desarrollo aunque falte parte del .env; en producción (Docker)
+las variables llegan por el entorno del contenedor.
+"""
+from __future__ import annotations
+
 from pathlib import Path
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-#sube desde config.py hasta la raíz del proyecto
+# shared/db/core/config.py -> parents[3] = raíz del repo (indagata/)
 _PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
-#esta clase va a obtener la info directamente de .env con ayuda de Pydantic
 
-class AppSettings(BaseSettings): #esta clase va a obtener automáticamente los valores del .env
-    #para la aplicación/website
+class AppSettings(BaseSettings):
+    """Configuración de la aplicación. Lee del entorno y de un archivo .env."""
 
-    APP_NAME: str
-    APP_ENV: str
-    DEBUG: bool
+    # ── App ────────────────────────────────────────────────────────────────
+    APP_NAME: str = "Indagata"
+    APP_ENV: str = "development"
+    DEBUG: bool = True
+    LOG_LEVEL: str = "INFO"
 
-    #para la base de datos en postgreSQL
-    POSTGRES_DB: str
-    POSTGRES_USER: str
-    POSTGRES_PASSWORD: str
-    POSTGRES_HOST: str
-    POSTGRES_PORT: int
+    # ── Base de datos PostgreSQL ─────────────────────────────────────────────
+    POSTGRES_DB: str = "indagata_db"
+    POSTGRES_USER: str = "postgres"
+    POSTGRES_PASSWORD: str = "postgres"
+    POSTGRES_HOST: str = "localhost"
+    POSTGRES_PORT: int = 5432
 
-    #para ollama, el que nor proporciona correr los LLMs de manera local
+    # ── Ollama (LLM local) ───────────────────────────────────────────────────
+    OLLAMA_HOST: str = "http://localhost:11434"
+    OLLAMA_MODEL: str = "llama3.2:3b"
 
-    OLLAMA_HOST: str
-    OLLAMA_MODEL: str
+    # ── ChromaDB (vector store) ──────────────────────────────────────────────
+    CHROMA_PATH: str = "chromadb/data"
+    # Modelo de embeddings multilingüe (sentence-transformers).
+    EMBEDDING_MODEL: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    # Colecciones de ChromaDB.
+    CHROMA_COLLECTION_INSTRUMENTOS: str = "instrumentos"
+    CHROMA_COLLECTION_KPIS: str = "kpis"
 
-    #para la base de datos v en chroma db
-
-    CHROMA_PATH: str
-
-    #para el almacenameinto de los archivos que se generen
-    RAW_PATH: str
-    JSON_PATH: str
-    SAV_PATH: str
-    TEMP_PATH: str
-    DATA_PATH: str
-    #dataset limpio tras aplicar las transformaciones aprobadas (encuestas)
+    # ── Almacenamiento de archivos ───────────────────────────────────────────
+    RAW_PATH: str = "storage/raw"
+    JSON_PATH: str = "storage/json"
+    SAV_PATH: str = "storage/sav"
     CLEAN_PATH: str = "storage/clean"
+    TEMP_PATH: str = "storage/temp"
 
-    #seguridad
-    SECRET_KEY: str
-
-    #logs que mostrarán errores
-
-    LOG_LEVEL: str
-
-    #umbral para textos largos
-    LIMPIEZA_VENTANA_CHARS: int = 1000
-    #umbral para el solapamiento en los chunks, teniendo en cuenta que nuestro chunks son de 500 tokens
-    LIMPIEZA_SOLAPE_CHARS: int = 150
-
-    #intervalo del polling del pipeline de limpieza 
-    LIMPIEZA_INTERVALO_SEGUNDOS: int =  30
-
-    #la expiración del JWT debe ser configurable
+    # ── Seguridad / JWT ──────────────────────────────────────────────────────
+    SECRET_KEY: str = "dev-secret-key-change-in-production"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
+    # Usuario fijo de desarrollo (cuando no hay JWT real todavía).
+    DEV_USER_ID: int = 1
+    # Si es True, los servicios aceptan el usuario de desarrollo sin token.
+    AUTH_DEV_MODE: bool = True
 
-    #rediseño v2 del canónico de encuestas: reagrupar columnas en preguntas lógicas.
-    #Default False = comportamiento actual. Poner SIS_QUESTION_GROUPING=true en .env
-    #para probar el modo v2 sin cambiar el resto.
-    SIS_QUESTION_GROUPING: bool = False
+    # ── URLs de los microservicios ───────────────────────────────────────────
+    INSTRUMENT_SERVICE_URL: str = "http://localhost:8001"
+    ANALYSIS_SERVICE_URL: str = "http://localhost:8002"
 
-    model_config=SettingsConfigDict(
-        env_file=".env",
-        case_sensitive=True 
+    # ── Búsqueda semántica de KPIs ───────────────────────────────────────────
+    KPI_SEARCH_TOP_K: int = 5
+    KPI_SEARCH_MIN_SCORE: float = 0.30
+
+    model_config = SettingsConfigDict(
+        # Ruta absoluta al .env de la raíz del repo, para que se encuentre sin
+        # importar desde qué carpeta se arranque el servicio (local o Docker).
+        env_file=(str(_PROJECT_ROOT / ".env"), ".env"),
+        case_sensitive=True,
+        extra="ignore",
     )
 
+    # ── Rutas derivadas (absolutas desde la raíz del repo) ───────────────────
     @property
     def PROJECT_ROOT(self) -> Path:
         return _PROJECT_ROOT
-
-    @property
-    def STATIC_DIR(self) -> Path:
-        return _PROJECT_ROOT / "frontend" / "static"
-
-    @property 
-    def TEMPLATES_DIR(self) -> Path:
-        return _PROJECT_ROOT / "frontend" / "templates"
 
     @property
     def DATABASE_URL(self) -> str:
@@ -87,37 +87,34 @@ class AppSettings(BaseSettings): #esta clase va a obtener automáticamente los v
             f"@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}"
             f"/{self.POSTGRES_DB}"
         )
-    #con esta propiedad, si se llama tendremos algo como
-    # postgresql1://postgres:postgres@postgres:5432/tt_rag
-    #lo ocupará SQLAlquemy cuando se cree la conexión a la base de datos
+
+    def _abs(self, rel: str) -> Path:
+        p = Path(rel)
+        return p if p.is_absolute() else _PROJECT_ROOT / rel.lstrip("/\\")
 
     @property
     def raw_path_abs(self) -> Path:
-        return _PROJECT_ROOT / self.RAW_PATH.lstrip("/")
+        return self._abs(self.RAW_PATH)
 
     @property
     def json_path_abs(self) -> Path:
-        return _PROJECT_ROOT /self.JSON_PATH.lstrip("/")
+        return self._abs(self.JSON_PATH)
 
     @property
     def sav_path_abs(self) -> Path:
-        return _PROJECT_ROOT /self.SAV_PATH.lstrip("/")
-
-    @property
-    def temp_path_abs(self) -> Path:
-        return _PROJECT_ROOT /self.TEMP_PATH.lstrip("/")
-
-    @property
-    def chroma_path_abs(self) -> Path:
-        return _PROJECT_ROOT / self.CHROMA_PATH.lstrip("/")
-
-    @property 
-    def data_path_abs(self) -> Path:
-        return _PROJECT_ROOT / self.DATA_PATH.lstrip("/")
+        return self._abs(self.SAV_PATH)
 
     @property
     def clean_path_abs(self) -> Path:
-        return _PROJECT_ROOT / self.CLEAN_PATH.lstrip("/")
+        return self._abs(self.CLEAN_PATH)
+
+    @property
+    def temp_path_abs(self) -> Path:
+        return self._abs(self.TEMP_PATH)
+
+    @property
+    def chroma_path_abs(self) -> Path:
+        return self._abs(self.CHROMA_PATH)
 
 
-settings=AppSettings() #se ha creado la instancia de la clase AppSettings
+settings = AppSettings()
