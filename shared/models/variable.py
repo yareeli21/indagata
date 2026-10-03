@@ -1,10 +1,18 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, Numeric, TIMESTAMP, Boolean
-from sqlalchemy.orm import declarative_base, relationship
-from sqlalchemy.dialects.postgresql import JSONB
-from datetime import datetime
+"""Modelo ORM: variable."""
+from __future__ import annotations
+
+from sqlalchemy import String, Text
+from sqlalchemy.orm import Mapped, mapped_column
+
+from shared.db.base import SCHEMA, Base
+
 
 class Variable(Base):
     __tablename__ = "variable"
-    variable_id = Column(Integer, primary_key=True, autoincrement=True)
-    nombre_variable = Column(Text)
-    tipo_dato = Column(String(20))
+    __table_args__ = {"schema": SCHEMA}
+
+    variable_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    nombre_variable: Mapped[str] = mapped_column(Text, nullable=False)
+    descripcion: Mapped[str | None] = mapped_column(Text)
+    tipo_dato: Mapped[str | None] = mapped_column(String(20))
+    unidad: Mapped[str | None] = mapped_column(Text)

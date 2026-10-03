@@ -1,21 +1,34 @@
-#Registro de los chunks generados que vincula la base de datos 
-# relacional con ChromaDB a través de vector_id
+"""Modelo ORM: documento_vectorizado — chunks vectorizados en Chroma."""
+from __future__ import annotations
 
 from datetime import datetime
-from sqlalchemy import Text, Boolean, DateTime, ForeignKey, func
+
+from sqlalchemy import ForeignKey, Integer, Text, func, text
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
-from app.database.base import Base
+
+from shared.db.base import SCHEMA, Base
+
 
 class DocumentoVectorizado(Base):
     __tablename__ = "documento_vectorizado"
-    __table_args__ = {"schema": "tt_rag"}
+    __table_args__ = {"schema": SCHEMA}
 
-    id_documento: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    id_instrumento: Mapped[int] = mapped_column(ForeignKey("tt_rag.instrumento_procesado.id_instrumento"))
-    id_prompt: Mapped[int] = mapped_column(ForeignKey("tt_rag.prompt.id_prompt"))
-    tipo_chunk: Mapped[str] = mapped_column(Text, nullable=False)
-    col_id: Mapped[str] = mapped_column(Text, nullable=False)
-    texto_chunk: Mapped[str] = mapped_column(Text, nullable=False)
-    vector_id: Mapped[str] = mapped_column(Text, nullable=False)
-    activo: Mapped[bool] = mapped_column(Boolean, default=True)
-    fecha: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    documento_vectorizado_id: Mapped[int] = mapped_column(
+        primary_key=True, autoincrement=True
+    )
+    instrumento_id: Mapped[int | None] = mapped_column(
+        ForeignKey(f"{SCHEMA}.instrumento_procesado.id_instrumento", ondelete="CASCADE")
+    )
+    coleccion_id: Mapped[int | None] = mapped_column(
+        ForeignKey(f"{SCHEMA}.coleccion_vectorial.coleccion_id", ondelete="SET NULL")
+    )
+    chroma_vector_id: Mapped[str | None] = mapped_column(Text)
+    chunk_index: Mapped[int | None] = mapped_column(Integer)
+    seccion: Mapped[str | None] = mapped_column(Text)
+    chunk_texto: Mapped[str] = mapped_column(Text, nullable=False)
+    chunk_metadata: Mapped[dict] = mapped_column(
+        JSONB, server_default=text("'{}'::jsonb")
+    )
+    n_tokens: Mapped[int | None] = mapped_column(Integer)
+    almacenado_en: Mapped[datetime] = mapped_column(server_default=func.now())

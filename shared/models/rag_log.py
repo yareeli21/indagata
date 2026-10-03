@@ -1,20 +1,22 @@
-#Registro operacional de consultas procesadas para trazabilidad 
-# y evaluación de calidad con MLLMOps.
+"""Modelo ORM: rag_log — registro de consultas RAG."""
+from __future__ import annotations
 
 from datetime import datetime
-from sqlalchemy import Text, Integer, DateTime, ForeignKey, func
+
+from sqlalchemy import Integer, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column
-from app.database.base import Base
+
+from shared.db.base import SCHEMA, Base
+
 
 class RagLog(Base):
     __tablename__ = "rag_log"
-    __table_args__ = {"schema": "tt_rag"}
+    __table_args__ = {"schema": SCHEMA}
 
-    id_consulta: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    id_instrumento: Mapped[int | None] = mapped_column(ForeignKey("tt_rag.instrumento_procesado.id_instrumento"))
-    pregunta_usuario: Mapped[str] = mapped_column(Text, nullable=False)
-    chunks_recuperados: Mapped[str | None] = mapped_column(Text)
-    respuesta_llm: Mapped[str | None] = mapped_column(Text)
-    modelo_usado: Mapped[str] = mapped_column(Text, nullable=False)
-    latencia_ms: Mapped[int] = mapped_column(Integer)
-    fecha: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    rag_log_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    pregunta: Mapped[str] = mapped_column(Text, nullable=False)
+    respuesta: Mapped[str | None] = mapped_column(Text)
+    modelo_usado: Mapped[str | None] = mapped_column(String(100))
+    chunks_usados: Mapped[int | None] = mapped_column(Integer)
+    latencia_ms: Mapped[int | None] = mapped_column(Integer)
+    timestamp: Mapped[datetime] = mapped_column("timestamp", server_default=func.now())
