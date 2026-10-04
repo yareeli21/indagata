@@ -115,7 +115,10 @@ export function buscarRelacionados(
   // Orden: alta → media → baja, luego por título
   resultados.sort((a, b) => {
     const ord: Record<string, number> = { alta: 0, media: 1, baja: 2 };
-    return ord[a.nivel] - ord[b.nivel] || a.instrumento.titulo.localeCompare(b.instrumento.titulo);
+    return (
+      (ord[a.nivel] ?? 3) - (ord[b.nivel] ?? 3) ||
+      a.instrumento.titulo.localeCompare(b.instrumento.titulo)
+    );
   });
 
   return simularRed(resultados, 1200);

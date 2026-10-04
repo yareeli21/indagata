@@ -1,24 +1,56 @@
-# Pixel Perfect Pixel
+# INDAGATA — Frontend
 
-Implement exactly the screenshot and nothing else
+Interfaz web de INDAGATA: plataforma para subir, estandarizar, buscar y
+consultar instrumentos de investigación educativa en México.
 
-This project was built with [Lovable](https://lovable.dev).
+## Stack
 
-## Build with Lovable
+- **React 19** + **TypeScript**
+- **TanStack Start** (routing + SSR) y **TanStack Router**
+- **TanStack Query** para estado de servidor
+- **Vite 8** como bundler, con **Nitro** para el empaquetado de servidor
+- **Tailwind CSS 4** + **Radix UI**
+- **react-hook-form** + **zod** para formularios y validación
+- **recharts** para gráficas
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/11db4a8f-18d0-4c6e-935e-00efd1d52ace).
+## Requisitos
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+- [Bun](https://bun.sh) (gestor de paquetes y runtime de scripts)
 
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Desarrollo
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
+bun run dev
 ```
+
+El servidor de desarrollo queda disponible en `http://localhost:8080`
+(si el puerto está ocupado, Vite usa el siguiente libre).
+
+### Variables de entorno
+
+Copia `.env.example` a `.env` y ajústalo:
+
+- `VITE_API_URL` — URL base del api-gateway (por defecto `http://localhost:8000`).
+- `VITE_USAR_BACKEND` — `true` usa el backend real para autenticación; `false`
+  corre todo con datos de ejemplo (mocks), sin necesidad de levantar servicios.
+
+## Build
+
+```sh
+bun run build
+```
+
+Genera el bundle de cliente y el de servidor (SSR) bajo `.output/`.
+
+## Arquitectura
+
+- `src/api/` — único punto de acceso a datos. Las pantallas nunca importan los
+  mocks directamente; todo pasa por funciones asíncronas aquí, para poder
+  sustituirlas por llamadas HTTP sin tocar la UI.
+- `src/features/{auth,upload,instruments,research,chat,kpis}/` — organización por
+  dominio; un componente por archivo con props tipadas.
+- `src/components/` — componentes compartidos.
+- `src/routes/` — rutas de TanStack Router; el layout global es `_panel.tsx`.
+- `src/types/index.ts` — tipos de dominio compartidos.
+- `src/styles.css` — tokens semánticos de color, tipografía y sombras.

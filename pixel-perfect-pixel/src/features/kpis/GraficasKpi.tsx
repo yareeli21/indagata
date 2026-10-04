@@ -82,14 +82,15 @@ export function GraficasKpi({ kpi, datos, cargando }: GraficasKpiProps) {
             <XAxis dataKey="etiqueta" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
             <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
             <Tooltip
-              content={({ active, payload, label }) =>
-                active && payload?.length ? (
+              content={({ active, payload, label }) => {
+                const punto = payload?.[0];
+                return active && punto ? (
                   <div className="rounded-lg border bg-background px-3 py-2 shadow-md text-xs">
                     <p className="font-medium">{label}</p>
-                    <p className="text-muted-foreground">{payload[0].value} reactivos</p>
+                    <p className="text-muted-foreground">{punto.value} reactivos</p>
                   </div>
-                ) : null
-              }
+                ) : null;
+              }}
             />
             <Bar dataKey="valor" fill="var(--color-valor)" radius={[4, 4, 0, 0]} />
           </BarChart>
@@ -108,14 +109,15 @@ export function GraficasKpi({ kpi, datos, cargando }: GraficasKpiProps) {
             <XAxis dataKey="etiqueta" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
             <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
             <Tooltip
-              content={({ active, payload, label }) =>
-                active && payload?.length ? (
+              content={({ active, payload, label }) => {
+                const punto = payload?.[0];
+                return active && punto ? (
                   <div className="rounded-lg border bg-background px-3 py-2 shadow-md text-xs">
                     <p className="font-medium">{label}</p>
-                    <p className="text-muted-foreground">{payload[0].value} reactivos</p>
+                    <p className="text-muted-foreground">{punto.value} reactivos</p>
                   </div>
-                ) : null
-              }
+                ) : null;
+              }}
             />
             <Line
               type="monotone"
@@ -152,16 +154,17 @@ export function GraficasKpi({ kpi, datos, cargando }: GraficasKpiProps) {
               ))}
             </Pie>
             <Tooltip
-              content={({ active, payload }) =>
-                active && payload?.length ? (
+              content={({ active, payload }) => {
+                const punto = payload?.[0];
+                return active && punto ? (
                   <div className="rounded-lg border bg-background px-3 py-2 shadow-md text-xs">
-                    <p className="font-medium">{payload[0].name}</p>
+                    <p className="font-medium">{punto.name}</p>
                     <p className="text-muted-foreground">
-                      {payload[0].value} instrumento{Number(payload[0].value) !== 1 ? "s" : ""}
+                      {punto.value} instrumento{Number(punto.value) !== 1 ? "s" : ""}
                     </p>
                   </div>
-                ) : null
-              }
+                ) : null;
+              }}
             />
           </PieChart>
         </ChartContainer>

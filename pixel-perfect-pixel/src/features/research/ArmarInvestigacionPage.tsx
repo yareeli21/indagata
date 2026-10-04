@@ -124,7 +124,7 @@ export function ArmarInvestigacionPage() {
 
       {/* Contenido del paso */}
       <div className="rounded-3xl border border-border bg-card p-6 shadow-card md:p-8">
-        <h2 className="mb-6 font-display text-lg font-semibold">{PASOS[paso - 1].etiqueta}</h2>
+        <h2 className="mb-6 font-display text-lg font-semibold">{PASOS[paso - 1]?.etiqueta}</h2>
 
         {paso === 1 && (
           <>
