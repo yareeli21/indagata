@@ -109,7 +109,7 @@ export interface InstrumentoRelacionado {
   razones: RazonCoincidencia[];
 }
 
-export type ModeloLLM = "gpt-4o" | "gpt-4o-mini" | "gemini-1.5-pro" | "claude-3-5-sonnet";
+export type ModeloLLM = "llama3.2:3b";
 
 export interface ContextoInvestigacion {
   objetivo: string;

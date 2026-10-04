@@ -45,7 +45,7 @@ export function ChatPage() {
 
   // Chat
   const [mensajes, setMensajes] = useState<Mensaje[]>([]);
-  const [modelo, setModelo] = useState<ModeloLLM>("gpt-4o");
+  const [modelo, setModelo] = useState<ModeloLLM>("llama3.2:3b");
   const [generando, setGenerando] = useState(false);
   const cancelarRef = useRef<(() => void) | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -57,7 +57,11 @@ export function ChatPage() {
 
   async function handleComenzar(ctx: ContextoInvestigacion) {
     if (!activa) return;
-    await guardarContexto(activa.id, ctx);
+    await guardarContexto(
+      activa.id,
+      ctx,
+      instrumentosFuentes.map((i) => i.id),
+    );
     setContexto(ctx);
     setFase("chat");
   }
@@ -93,11 +97,12 @@ export function ChatPage() {
           setGenerando(false);
           cancelarRef.current = null;
         },
+        activa?.id ?? "",
       );
 
       cancelarRef.current = cancelar;
     },
-    [contexto, modelo],
+    [contexto, modelo, activa],
   );
 
   function handleDetener() {

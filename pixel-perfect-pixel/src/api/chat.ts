@@ -1,99 +1,184 @@
-import { instrumentos, investigadores } from "@/mocks/data";
 import type { ContextoInvestigacion, FuenteChat, ModeloLLM } from "@/types";
-import { simularRed } from "./client";
+import { API_URL, leerToken } from "./client";
 
 export const MODELOS_DISPONIBLES: { id: ModeloLLM; etiqueta: string }[] = [
-  { id: "gpt-4o", etiqueta: "GPT-4o" },
-  { id: "gpt-4o-mini", etiqueta: "GPT-4o mini" },
-  { id: "gemini-1.5-pro", etiqueta: "Gemini 1.5 Pro" },
-  { id: "claude-3-5-sonnet", etiqueta: "Claude 3.5 Sonnet" },
+  { id: "llama3.2:3b", etiqueta: "Llama 3.2 (3B) — local" },
 ];
 
-/** Frases de relleno para simular respuestas del asistente */
-const FRAGMENTOS_RESPUESTA = [
-  "Basándome en los instrumentos de tu investigación activa, ",
-  "De acuerdo con la evidencia disponible en el acervo, ",
-  "Los instrumentos seleccionados sugieren que ",
-  "A partir del análisis de los reactivos registrados, ",
-];
+// ── Selección de instrumentos por investigación (persistencia en cliente) ───────
 
-const CONTINUACIONES = [
-  "existe una correlación entre la comprensión lectora y el nivel de acompañamiento académico documentada en varios reactivos. Los instrumentos estandarizados muestran patrones consistentes entre licenciatura y posgrado.",
-  "los factores socioemocionales inciden significativamente en los indicadores de retención universitaria. Los instrumentos de tipo encuesta aportan datos cuantitativos que complementan las entrevistas semiestructuradas.",
-  "la apropiación tecnológica por parte del profesorado varía considerablemente según el programa y el área de conocimiento, tal como reflejan las guías de observación y las entrevistas especializadas.",
-  "los niveles de logro en comprensión lectora presentan diferencias estadísticamente significativas entre distintos programas universitarios, según los datos de los instrumentos estandarizados.",
-];
+const CLAVE_INSTRUMENTOS_POR_INVESTIGACION = "indagata.instrumentosPorInvestigacion";
 
-function elegirAlAzar<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)]!;
+function leerMapa(): Record<string, string[]> {
+  try {
+    const crudo = window.localStorage.getItem(CLAVE_INSTRUMENTOS_POR_INVESTIGACION);
+    if (!crudo) return {};
+    const datos = JSON.parse(crudo) as Record<string, string[]>;
+    return datos && typeof datos === "object" ? datos : {};
+  } catch {
+    return {};
+  }
 }
 
-/** Genera fuentes simuladas basadas en los instrumentos reales del mock */
-function generarFuentes(n = 2): FuenteChat[] {
-  const muestra = [...instrumentos].sort(() => Math.random() - 0.5).slice(0, n);
+function escribirMapa(mapa: Record<string, string[]>): void {
+  try {
+    window.localStorage.setItem(CLAVE_INSTRUMENTOS_POR_INVESTIGACION, JSON.stringify(mapa));
+  } catch {
+    /* almacenamiento no disponible */
+  }
+}
 
-  return muestra.map((ins) => {
-    const inv = investigadores.find((x) => x.id === ins.autorId);
-    return {
-      instrumentoId: ins.id,
-      titulo: ins.titulo,
-      tipo: ins.tipo,
-      investigador: inv?.nombre ?? "—",
-      kpis: ins.kpis.slice(0, 2),
-      fragmento: ins.descripcion,
-    };
-  });
+/** Persiste los instrumentos (ids = str(id_crudo)) juntados para una investigación. */
+export function setInstrumentosDeInvestigacion(
+  investigacionId: string,
+  instrumentoIds: string[],
+): void {
+  const mapa = leerMapa();
+  mapa[investigacionId] = instrumentoIds;
+  escribirMapa(mapa);
+}
+
+/** Devuelve los instrumentos juntados de una investigación (vacío ⇒ []). */
+export function getInstrumentosDeInvestigacion(investigacionId: string): string[] {
+  return leerMapa()[investigacionId] ?? [];
+}
+
+// ── Chat RAG con streaming SSE ──────────────────────────────────────────────────
+
+/** Datos del evento SSE `fuentes` emitido por el visualization-service. */
+interface EventoFuentes {
+  fuentes: FuenteChat[];
+}
+
+/** Datos del evento SSE `token`. */
+interface EventoToken {
+  t: string;
 }
 
 /**
- * Simula un endpoint de chat con streaming.
- * Futuro: POST /chat/mensaje con SSE / WebSocket.
+ * Envía una pregunta al RAG y recibe la respuesta por streaming (SSE sobre fetch).
+ * POST ${API_URL}/rag/chat con Authorization Bearer. El servicio emite eventos
+ * `token` (fragmentos), un `fuentes` al final y `fin` para cerrar (§4.9 del diseño).
  *
- * @param onToken  se llama con cada "token" generado durante el streaming
- * @param onDone   se llama cuando la generación termina, con las fuentes
- * @returns        función para cancelar el streaming
+ * @param onToken  se llama con cada fragmento de texto generado
+ * @param onDone   se llama al terminar, con las fuentes recuperadas
+ * @returns        función para cancelar el streaming (AbortController)
  */
 export function enviarMensaje(
-  _pregunta: string,
+  pregunta: string,
   _contexto: ContextoInvestigacion,
-  _modelo: ModeloLLM,
+  modelo: ModeloLLM,
   onToken: (token: string) => void,
   onDone: (fuentes: FuenteChat[]) => void,
+  investigacionId: string,
+  instrumentoIds?: string[],
 ): () => void {
-  const respuestaCompleta = elegirAlAzar(FRAGMENTOS_RESPUESTA) + elegirAlAzar(CONTINUACIONES);
+  void _contexto; // el contexto se usa en el prompt del backend; aquí no viaja
 
-  const palabras = respuestaCompleta.split(" ");
-  let i = 0;
-  let cancelado = false;
+  const controlador = new AbortController();
+  const ids = instrumentoIds ?? getInstrumentosDeInvestigacion(investigacionId);
 
-  // Simula streaming palabra a palabra con intervalos variables
-  function emitirSiguiente() {
-    if (cancelado || i >= palabras.length) {
-      if (!cancelado) {
-        onDone(generarFuentes(2));
-      }
+  const encabezados: Record<string, string> = { "Content-Type": "application/json" };
+  const token = leerToken();
+  if (token) encabezados.Authorization = `Bearer ${token}`;
+
+  let fuentes: FuenteChat[] = [];
+
+  async function ejecutar(): Promise<void> {
+    const respuesta = await fetch(`${API_URL}/rag/chat`, {
+      method: "POST",
+      headers: encabezados,
+      body: JSON.stringify({
+        investigacionId,
+        pregunta,
+        instrumentoIds: ids,
+        modelo,
+        stream: true,
+        top_k: 5,
+      }),
+      signal: controlador.signal,
+    });
+
+    if (!respuesta.ok || !respuesta.body) {
+      onDone(fuentes);
       return;
     }
-    onToken((i === 0 ? "" : " ") + palabras[i]);
-    i++;
-    const delay = 40 + Math.random() * 60;
-    timerId = window.setTimeout(emitirSiguiente, delay);
+
+    const lector = respuesta.body.getReader();
+    const decodificador = new TextDecoder();
+    let buffer = "";
+    let eventoActual = "";
+
+    const procesarLinea = (linea: string): void => {
+      if (linea === "") {
+        eventoActual = "";
+        return;
+      }
+      if (linea.startsWith("event:")) {
+        eventoActual = linea.slice("event:".length).trim();
+        return;
+      }
+      if (linea.startsWith("data:")) {
+        const datos = linea.slice("data:".length).trim();
+        if (eventoActual === "token") {
+          try {
+            const { t } = JSON.parse(datos) as EventoToken;
+            if (t) onToken(t);
+          } catch {
+            /* trozo no-JSON: se ignora */
+          }
+        } else if (eventoActual === "fuentes") {
+          try {
+            fuentes = (JSON.parse(datos) as EventoFuentes).fuentes ?? [];
+          } catch {
+            /* se ignora */
+          }
+        }
+      }
+    };
+
+    while (true) {
+      const { done, value } = await lector.read();
+      if (done) break;
+      buffer += decodificador.decode(value, { stream: true });
+      let corte = buffer.indexOf("\n");
+      while (corte !== -1) {
+        procesarLinea(buffer.slice(0, corte).replace(/\r$/, ""));
+        buffer = buffer.slice(corte + 1);
+        corte = buffer.indexOf("\n");
+      }
+    }
+
+    onDone(fuentes);
   }
 
-  let timerId = window.setTimeout(emitirSiguiente, 300);
+  ejecutar().catch(() => {
+    // Cancelación (AbortError) o fallo de red: no se notifica onDone en aborto.
+    if (!controlador.signal.aborted) onDone(fuentes);
+  });
 
-  return () => {
-    cancelado = true;
-    window.clearTimeout(timerId);
-  };
+  return () => controlador.abort();
 }
 
-/** Futuro: POST /investigacion/{id}/contexto */
-export function guardarContexto(
-  _investigacionId: string,
+/**
+ * Materializa "juntar los instrumentos" de una investigación: persiste la
+ * selección en el cliente e indexa en el vector store (POST ${API_URL}/rag/index).
+ */
+export async function guardarContexto(
+  investigacionId: string,
   contexto: ContextoInvestigacion,
+  instrumentoIds: string[],
 ): Promise<void> {
-  return simularRed(undefined, 200).then(() => {
-    void contexto; // sustituir por fetch en producción
+  void contexto; // el contexto no se indexa; alimenta el prompt en el chat
+  setInstrumentosDeInvestigacion(investigacionId, instrumentoIds);
+
+  const encabezados: Record<string, string> = { "Content-Type": "application/json" };
+  const token = leerToken();
+  if (token) encabezados.Authorization = `Bearer ${token}`;
+
+  await fetch(`${API_URL}/rag/index`, {
+    method: "POST",
+    headers: encabezados,
+    body: JSON.stringify({ investigacionId, instrumentoIds }),
   });
 }
