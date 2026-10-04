@@ -172,3 +172,21 @@ export interface DatosGrafica {
   /** Número de instrumentos en las fuentes que cubren este KPI */
   fuentesConteo: number;
 }
+
+// ── Espacio vectorial ───────────────────────────────────────────────────────────
+
+export interface PuntoVector {
+  x: number;
+  y: number;
+  /** Colección de ChromaDB a la que pertenece el punto (p.ej. "kpis"). */
+  coleccion: string;
+  /** Etiqueta legible del punto para mostrar al pasar el cursor. */
+  label: string;
+  id: string;
+}
+
+export interface EspacioVectorial {
+  puntos: PuntoVector[];
+  /** Conteo de puntos por colección. */
+  colecciones: Record<string, number>;
+}

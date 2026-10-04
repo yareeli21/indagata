@@ -105,7 +105,12 @@ export function UploadWizard() {
     await guardarInstrumento(documento);
     setGuardando(false);
     setConfirmar(false);
-    toast.success("Instrumento guardado");
+    toast.success("Instrumento guardado", {
+      action: {
+        label: "Ver espacio vectorial",
+        onClick: () => navigate({ to: "/espacio" }),
+      },
+    });
     navigate({ to: "/instrumentos" });
   }
 

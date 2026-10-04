@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { BarChart3, FolderOpen, MessageSquare, Upload, Library } from "lucide-react";
+import { BarChart3, FolderOpen, MessageSquare, Network, Upload, Library } from "lucide-react";
 
 const OPCIONES = [
   { to: "/instrumentos", etiqueta: "Mis instrumentos", icono: Library },
@@ -7,6 +7,7 @@ const OPCIONES = [
   { to: "/investigacion", etiqueta: "Armar investigación", icono: FolderOpen },
   { to: "/chat", etiqueta: "Chat", icono: MessageSquare },
   { to: "/kpis", etiqueta: "KPIs", icono: BarChart3 },
+  { to: "/espacio", etiqueta: "Espacio vectorial", icono: Network },
 ] as const;
 
 export function Sidebar() {
