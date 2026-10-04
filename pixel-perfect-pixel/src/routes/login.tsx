@@ -123,8 +123,8 @@ function LoginPage() {
             </p>
 
             <p className="text-center text-xs text-muted-foreground">
-              Acceso de demostración: <strong>admin@indagata.local</strong> (Administrador) o{" "}
-              <strong>investigador@indagata.local</strong> (Investigador).
+              Acceso de demostración: <strong>admin@indagata.com</strong> (Administrador) o{" "}
+              <strong>investigador@indagata.com</strong> (Investigador).
             </p>
           </form>
         </section>
