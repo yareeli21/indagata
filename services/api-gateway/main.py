@@ -1,10 +1,13 @@
 """API Gateway — punto de entrada FastAPI.
 
-Expone, en esta tanda, el módulo de AUTENTICACIÓN:
+Expone el módulo de AUTENTICACIÓN y el PROXY transparente a los microservicios:
   GET  /health            → estado del servicio
   POST /auth/login        → email + password → JWT
   GET  /auth/me           → usuario del token
   POST /auth/register     → alta de usuario (solo administrador)
+  *    /instrumentos/*     → instrument-service :8001 (passthrough)
+  *    /almacenamiento/*   → storage-service :8004 (passthrough)
+  POST /rag/*              → visualization-service :8005 (/rag/chat es SSE)
 
 Arranque:
   - Docker:  cwd=/app, con `shared/` copiado en /app/shared (ver Dockerfile).
@@ -28,6 +31,7 @@ from fastapi import FastAPI  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
 from app.auth.routers import router as auth_router  # noqa: E402
+from proxy.proxy import router as proxy_router  # noqa: E402
 
 logging.basicConfig(
     level=os.getenv("LOG_LEVEL", "INFO").upper(),
@@ -38,7 +42,7 @@ logger = logging.getLogger("api-gateway")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("🚀 API Gateway listo (auth JWT).")
+    logger.info("🚀 API Gateway listo (auth JWT + proxy transparente).")
     yield
     logger.info("🛑 API Gateway detenido.")
 
@@ -65,6 +69,7 @@ async def health() -> dict[str, str]:
 
 
 app.include_router(auth_router)
+app.include_router(proxy_router)
 
 
 if __name__ == "__main__":
