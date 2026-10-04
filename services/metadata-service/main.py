@@ -10,9 +10,14 @@ from contextlib import asynccontextmanager
 import logging
 import os
 import sys
+from pathlib import Path
 
-# Add shared to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'shared'))
+# Resolver `import shared` también en ejecución local (igual que api-gateway).
+# En Docker `shared/` está copiado en /app/shared, por lo que esto no aplica.
+if not (Path(__file__).resolve().parent / "shared").exists():
+    _REPO_ROOT = Path(__file__).resolve().parents[2]
+    if str(_REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(_REPO_ROOT))
 
 # Configure logging
 logging.basicConfig(
@@ -30,7 +35,7 @@ async def lifespan(app: FastAPI):
     logger.info(f"🚀 {SERVICE_NAME} starting on port {PORT}...")
     try:
         # Initialize database if needed
-        from db.database import init_db
+        from shared.db.database import init_db
         init_db()
         logger.info("✅ Database initialized")
     except Exception as e:

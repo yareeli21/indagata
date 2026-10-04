@@ -1,11 +1,16 @@
 fastapi==0.115.6
 uvicorn[standard]==0.30.0
 sqlalchemy==2.0.25
-psycopg[binary]==3.2.0
+psycopg[binary]==3.2.3
 pydantic==2.9.0
 pydantic-settings==2.5.0
 python-dotenv==1.0.1
 python-multipart==0.0.6
+
+# ── Autenticación (shared.auth usa `from jose import ...` y passlib) ──
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
 
 # ── Parseo de formatos (identificar la estructura del instrumento) ──
 openpyxl==3.1.2

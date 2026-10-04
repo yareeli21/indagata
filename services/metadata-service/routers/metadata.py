@@ -19,7 +19,6 @@ router = APIRouter(prefix="/metadata", tags=["metadata"])
 
 # Import shared dependencies
 from shared.db.database import get_db
-from shared.schemas.responses import DublinCoreMetadata, InstrumentResponse
 
 # Import business logic
 from services.dc_manager import DCManager
