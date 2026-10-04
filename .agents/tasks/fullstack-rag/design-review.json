@@ -1,0 +1,11 @@
+{
+  "verdict": "APPROVED",
+  "iteration": 4,
+  "resolved_by": "orchestrator",
+  "note": "Iteration-3 review was CHANGES_REQUESTED with 1 HIGH + 3 MEDIUM + 2 NIT, all narrow and confined to the frontend layer; the backend/RAG core (storage + visualization contracts, embeddings/chroma reuse, transparent gateway proxy, real settings names, Ollama) was verified sound across 27 confirmed assumptions. The orchestrator applied the 4 blocking fixes directly to design.md: HIGH-1 (do NOT touch the instrumentosFuentes useEffect; only widen the two existing call arguments in ChatPage.tsx — Option A, breaks the circular dependency and keeps chips visually identical), MED-2 (nivel heuristic restricted to the real closed union {Licenciatura, Posgrado}; Bachillerato removed), MED-3 (getInstrumento maps 404 -> null to preserve its Promise<Instrumento|null> signature), MED-4 (handleEnviar useCallback deps become [contexto, modelo, activa] to avoid a stale closure). The 2 NITs (seed search_path tt_rag, storage artifact key note) are documented and non-blocking. Design is cleared for planning + implementation.",
+  "findings": {
+    "high": 0,
+    "medium": 0,
+    "nit": 2
+  }
+}
