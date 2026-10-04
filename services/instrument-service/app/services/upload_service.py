@@ -23,11 +23,10 @@ from sqlalchemy.orm import Session
 
 from app.config.constants import MAX_FILE_SIZE_BYTES, TipoInstrumento
 from app.core import file_type_detector as detector
-from app.core import raw_storage
 from app.core.file_type_detector import FileType, FileTypeError
-from app.core.raw_storage import StoredFile
 from app.parsing import ParsedContent, ParseError, parse_file
 from app.schemas.upload import ArchivoRegistrado, ParseoArchivo, UploadResponse
+from app.storage import StorageError, StoredRef, get_storage
 from shared.models.instrumento_procesado import InstrumentoProcesado
 from shared.models.raw_data import RawData
 
@@ -112,12 +111,12 @@ def _to_parseo(parsed: ParsedContent | None) -> ParseoArchivo | None:
 
 
 def _to_archivo_registrado(
-    stored: StoredFile, file_type: FileType, parsed: ParsedContent | None = None
+    stored: StoredRef, file_type: FileType, parsed: ParsedContent | None = None
 ) -> ArchivoRegistrado:
     """Construye el DTO de un archivo almacenado."""
     return ArchivoRegistrado(
-        nombre_original=stored.original_name,
-        ruta_relativa=stored.relative_path,
+        nombre_original=stored.nombre_original,
+        ruta_relativa=stored.ruta,
         extension=file_type.extension,
         mime_type=file_type.mime_type,
         parser_family=file_type.parser_family,
@@ -191,22 +190,27 @@ class UploadService:
             except ParseError as exc:
                 logger.warning("No se pudo parsear el archivo original: %s", exc)
 
-        # ── 4. Persistir en disco (RAW DATA) ─────────────────────────────────
-        stored_resp: StoredFile | None = None
-        stored_orig: StoredFile | None = None
+        # ── 4. Entregar los archivos al ALMACENAMIENTO (storage port) ────────
+        # El servicio no decide dónde se guardan: delega en el puerto. Hoy el
+        # backend es local (provisional); mañana será el storage-service.
+        almacenamiento = get_storage()
+        stored_resp: StoredRef | None = None
+        stored_orig: StoredRef | None = None
         try:
-            stored_resp = raw_storage.save(content, file_type.filename)
+            stored_resp = almacenamiento.guardar(content, file_type.filename)
             if original_content is not None and original_type is not None:
-                stored_orig = raw_storage.save(original_content, original_type.filename)
+                stored_orig = almacenamiento.guardar(
+                    original_content, original_type.filename
+                )
 
             # ── 5. Persistir en BD: raw_data (padre) ─────────────────────────
             raw = RawData(
                 id_owner=usuario_id,
                 tipo_instrumento=tipo.value,
                 nombre_archivo=file_type.filename,
-                raw_archivo=stored_resp.relative_path,
+                raw_archivo=stored_resp.ruta,
                 raw_archivo_original=(
-                    stored_orig.relative_path if stored_orig is not None else None
+                    stored_orig.ruta if stored_orig is not None else None
                 ),
             )
             db.add(raw)
@@ -223,23 +227,23 @@ class UploadService:
             db.refresh(procesado)
         except SQLAlchemyError as exc:
             db.rollback()
-            # Limpieza de archivos ya escritos para no dejar huérfanos.
+            # Pedir al almacenamiento que elimine lo ya guardado (sin huérfanos).
             if stored_resp is not None:
-                raw_storage.delete(stored_resp.relative_path)
+                almacenamiento.eliminar(stored_resp.ruta)
             if stored_orig is not None:
-                raw_storage.delete(stored_orig.relative_path)
+                almacenamiento.eliminar(stored_orig.ruta)
             logger.exception("Error al registrar el instrumento en la base de datos.")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail="No se pudo registrar el instrumento. Intenta de nuevo.",
             ) from exc
-        except OSError as exc:
+        except StorageError as exc:
             db.rollback()
             if stored_resp is not None:
-                raw_storage.delete(stored_resp.relative_path)
+                almacenamiento.eliminar(stored_resp.ruta)
             if stored_orig is not None:
-                raw_storage.delete(stored_orig.relative_path)
-            logger.exception("Error de almacenamiento al guardar los archivos crudos.")
+                almacenamiento.eliminar(stored_orig.ruta)
+            logger.exception("Error del almacenamiento al guardar los archivos crudos.")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail="No se pudieron almacenar los archivos del instrumento.",

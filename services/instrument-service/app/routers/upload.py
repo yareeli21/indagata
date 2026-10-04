@@ -44,8 +44,9 @@ UsuarioQuePuedeIngestar = Annotated[
         "- **encuesta** → tabular (`.csv`, `.xlsx`, `.xls`): columnas y nº de filas.\n"
         "- **entrevista** / **prueba_estandarizada** → documento (`.pdf`, `.txt`, `.docx`): "
         "texto extraído y métricas.\n\n"
-        "Almacena ambos archivos en RAW DATA (`storage/raw`) y registra el instrumento "
-        "en `raw_data` (padre) + `instrumento_procesado` (estado `recibido`). "
+        "Delega el almacenamiento de ambos archivos en el servicio de storage y "
+        "registra el instrumento en `raw_data` (padre) + `instrumento_procesado` "
+        "(estado `recibido`). "
         "Devuelve `id_crudo`, `id_instrumento` y el resumen del parseo."
     ),
 )

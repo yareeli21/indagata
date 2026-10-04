@@ -6,8 +6,9 @@ Regla de autorización:
                      (raw_data.id_owner == su usuario_id). Si no, 403.
 
 Al borrar se elimina la fila `raw_data` (que arrastra en cascada a
-`instrumento_procesado` y descendientes vía ON DELETE CASCADE) y los archivos
-físicos de `storage/raw` (respondido y original).
+`instrumento_procesado` y descendientes vía ON DELETE CASCADE) y se pide al
+ALMACENAMIENTO (storage port) que elimine los archivos (respondido y original).
+El servicio no borra del disco directamente: delega en el puerto.
 """
 from __future__ import annotations
 
@@ -17,7 +18,7 @@ from fastapi import HTTPException, status
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
-from app.core import raw_storage
+from app.storage import get_storage
 from shared.auth import ROL_ADMINISTRADOR, ROL_INVESTIGADOR
 from shared.models.raw_data import RawData
 from shared.models.usuario import Usuario
@@ -74,11 +75,12 @@ class DeleteService:
                 detail="No se pudo eliminar el instrumento.",
             ) from exc
 
-        # Borrar archivos físicos (best-effort: la fila ya se eliminó).
+        # Pedir al almacenamiento que elimine los archivos (la fila ya se borró).
+        almacenamiento = get_storage()
         archivos_borrados: list[str] = []
         for ruta in rutas:
             if ruta:
-                raw_storage.delete(ruta)
+                almacenamiento.eliminar(ruta)
                 archivos_borrados.append(ruta)
 
         return {
