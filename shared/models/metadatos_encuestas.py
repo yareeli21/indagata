@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from sqlalchemy import ForeignKey, Integer, Text
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
 from shared.db.base import SCHEMA, Base
@@ -17,7 +18,11 @@ class MetadatosEnriquecidosEncuestas(Base):
     )
     n_respondentes: Mapped[int | None] = mapped_column(Integer)
     n_poblacion: Mapped[int | None] = mapped_column(Integer)
+    objetivo: Mapped[str | None] = mapped_column(Text)
     carrera: Mapped[str | None] = mapped_column(Text)
     poblacion_objetivo: Mapped[str | None] = mapped_column(Text)
+    constructo_principal: Mapped[str | None] = mapped_column(Text)
+    palabras_clave: Mapped[list | None] = mapped_column(JSONB)
+    dimensiones: Mapped[list | None] = mapped_column(JSONB)
     notas_contextuales: Mapped[str | None] = mapped_column(Text)
     notas_interpretacion: Mapped[str | None] = mapped_column(Text)

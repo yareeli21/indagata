@@ -110,11 +110,15 @@ CREATE TABLE IF NOT EXISTS metadatos_enriquecidos_encuestas (
     id_crudo             INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
     n_respondentes       INTEGER,
     n_poblacion          INTEGER,
+    objetivo             TEXT,
     carrera              TEXT,
     poblacion_objetivo   TEXT,
+    constructo_principal TEXT,
+    palabras_clave       JSONB,
+    dimensiones          JSONB,
     notas_contextuales   TEXT,
     notas_interpretacion TEXT
-);
+);  
 
 CREATE TABLE IF NOT EXISTS metadatos_enriquecidos_entrevistas (
     id_crudo             INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
