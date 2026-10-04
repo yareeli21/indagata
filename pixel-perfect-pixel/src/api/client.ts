@@ -56,6 +56,12 @@ interface OpcionesPedir {
   auth?: boolean;
 }
 
+/** Error de red con el código HTTP adjunto, para que las capas de `src/api`
+ * puedan mapear mensajes en español según el status (p.ej. 409, 422). */
+export interface ErrorHttp extends Error {
+  status?: number;
+}
+
 /**
  * Realiza una petición HTTP contra la API y devuelve el JSON parseado.
  * Lanza un Error con mensaje en español en respuestas no-2xx; un HTTP 401
@@ -78,7 +84,9 @@ export async function pedir<T>(url: string, opciones: OpcionesPedir = {}): Promi
 
   if (!respuesta.ok) {
     if (respuesta.status === 401) {
-      throw new Error("Usuario o contraseña incorrectos");
+      const error: ErrorHttp = new Error("Usuario o contraseña incorrectos");
+      error.status = 401;
+      throw error;
     }
     let detalle = "";
     try {
@@ -87,7 +95,9 @@ export async function pedir<T>(url: string, opciones: OpcionesPedir = {}): Promi
     } catch {
       /* cuerpo no-JSON: se ignora */
     }
-    throw new Error(detalle || `Error en la petición (HTTP ${respuesta.status}).`);
+    const error: ErrorHttp = new Error(detalle || `Error en la petición (HTTP ${respuesta.status}).`);
+    error.status = respuesta.status;
+    throw error;
   }
 
   return (await respuesta.json()) as T;

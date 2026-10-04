@@ -1,5 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { BarChart3, FolderOpen, MessageSquare, Network, Upload, Library } from "lucide-react";
+import {
+  BarChart3,
+  FolderOpen,
+  MessageSquare,
+  Network,
+  Upload,
+  Library,
+  UserPlus,
+} from "lucide-react";
+import { useAuth } from "@/features/auth/AuthContext";
 
 const OPCIONES = [
   { to: "/instrumentos", etiqueta: "Mis instrumentos", icono: Library },
@@ -10,7 +19,15 @@ const OPCIONES = [
   { to: "/espacio", etiqueta: "Espacio vectorial", icono: Network },
 ] as const;
 
+const OPCIONES_ADMIN = [
+  { to: "/usuarios", etiqueta: "Gestión de usuarios", icono: UserPlus },
+] as const;
+
 export function Sidebar() {
+  const { usuario } = useAuth();
+  const opciones =
+    usuario?.rol === "Administrador" ? [...OPCIONES, ...OPCIONES_ADMIN] : OPCIONES;
+
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar px-4 py-6 md:flex">
       <Link
@@ -26,7 +43,7 @@ export function Sidebar() {
       </Link>
 
       <nav className="flex flex-col gap-1">
-        {OPCIONES.map(({ to, etiqueta, icono: Icono }) => (
+        {opciones.map(({ to, etiqueta, icono: Icono }) => (
           <Link
             key={to}
             to={to}

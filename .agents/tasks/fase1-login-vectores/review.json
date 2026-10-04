@@ -1,0 +1,15 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    {
+      "severity": "info",
+      "detail": "El endpoint GET /vectorizacion/espacio devuelve HTTP 502 ('[Errno -3] Temporary failure in name resolution') en este momento porque el stack Docker esta degradado (daemon de Docker caido / ChromaDB no resoluble por DNS interno del contenedor). No es un defecto de codigo: la ruta esta registrada y viva en el OpenAPI del contenedor, el acceso a Chroma via get_client() es identico al de los endpoints /vectorizacion/* ya funcionales, y FEAT-002.json registra una verificacion previa con HTTP 200 y 51 puntos (kpis:30, summary_instrument:21) con el stack sano. Re-verificar con el stack arriba antes de merge.",
+      "file": "services/analysis-service/app/vectorization/routers/espacio.py"
+    },
+    {
+      "severity": "info",
+      "detail": "Cambio de soporte no listado en los deliverables: los emails seed pasaron de @indagata.local a @indagata.com (admin@indagata.com/admin123, investigador@indagata.com/investigador123). Es necesario porque pydantic EmailStr rechaza el TLD reservado .local, de lo contrario el login real de (A) no funcionaria. Esta dentro del area permitida infrastructure/postgres/init/ (no toca microservicios/api-gateway/Dockerfiles/.lovable). Nota: el texto demo del login y las credenciales de key_patterns del context.json quedan desalineados respecto al dominio real .com.",
+      "file": "infrastructure/postgres/init/05_seed_usuarios.sql"
+    }
+  ]
+}

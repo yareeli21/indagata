@@ -1,0 +1,7221 @@
+{
+  "instrument_id": "inst_18",
+  "schema_version": "1.0",
+  "instrument": {
+    "title": "Oferta educativa, recursos y modalidades de estudio",
+    "objective": "Valorar la pertinencia de la oferta académica, los recursos de biblioteca y la adecuación de las modalidades a las necesidades del estudiantado.",
+    "dimensions_explored": [
+      "Variedad de oferta",
+      "Recursos de biblioteca",
+      "Acreditación de programas",
+      "Modalidades",
+      "Flexibilidad"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "Reactivos del módulo",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "¿Qué tan suficiente es la variedad de cursos y programas para tus intereses?",
+            "type": "likert_1_5",
+            "options": [
+              "1 Nada suficiente",
+              "2 Poco",
+              "3 Medianamente",
+              "4 Bastante",
+              "5 Muy suficiente"
+            ],
+            "scale_min": 1,
+            "scale_max": 5
+          },
+          {
+            "question_id": "q2",
+            "text": "¿Con qué frecuencia usas la biblioteca o sus recursos digitales?",
+            "type": "likert_freq",
+            "options": [
+              "Nunca",
+              "Casi nunca",
+              "Algunas veces",
+              "Casi siempre",
+              "Siempre"
+            ],
+            "scale_min": 1,
+            "scale_max": 5
+          },
+          {
+            "question_id": "q3",
+            "text": "¿Qué tan suficientes son los materiales de lectura para tus cursos?",
+            "type": "likert_1_5",
+            "options": [
+              "1 Nada suficientes",
+              "2 Poco",
+              "3 Medianamente",
+              "4 Bastante",
+              "5 Completamente"
+            ],
+            "scale_min": 1,
+            "scale_max": 5
+          },
+          {
+            "question_id": "q4",
+            "text": "¿Conoces si tu programa tiene reconocimiento o acreditación externa?",
+            "type": "multiple_choice",
+            "options": [
+              "Sí, conozco el organismo",
+              "Sí, pero no los detalles",
+              "No",
+              "No estoy seguro/a"
+            ]
+          },
+          {
+            "question_id": "q5",
+            "text": "¿Qué tan fácil es conocer qué otros programas o trayectorias ofrece la institución?",
+            "type": "likert_1_5",
+            "options": [
+              "1 Nada fácil",
+              "2 Poco",
+              "3 Medianamente",
+              "4 Fácil",
+              "5 Muy fácil"
+            ],
+            "scale_min": 1,
+            "scale_max": 5
+          },
+          {
+            "question_id": "q6",
+            "text": "¿Qué modalidad prefieres para la mayoría de tus cursos?",
+            "type": "multiple_choice",
+            "options": [
+              "Presencial",
+              "En línea",
+              "Híbrida",
+              "Depende del curso",
+              "Sin preferencia"
+            ]
+          },
+          {
+            "question_id": "q7",
+            "text": "¿Qué modalidad cursas actualmente en la mayoría de tus materias?",
+            "type": "multiple_choice",
+            "options": [
+              "Presencial",
+              "En línea",
+              "Híbrida",
+              "Combinación variable"
+            ]
+          },
+          {
+            "question_id": "q8",
+            "text": "¿Qué tan bien se adapta la modalidad disponible a tus horarios y responsabilidades?",
+            "type": "likert_1_5",
+            "options": [
+              "1 Nada",
+              "2 Poco",
+              "3 Medianamente",
+              "4 Bastante",
+              "5 Muy bien"
+            ],
+            "scale_min": 1,
+            "scale_max": 5
+          },
+          {
+            "question_id": "q9",
+            "text": "¿Qué curso, recurso o modalidad te gustaría que se ofreciera?",
+            "type": "open"
+          },
+          {
+            "question_id": "q10",
+            "text": "¿Qué mejoraría tu acceso a los recursos de información que necesitas?",
+            "type": "open"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "dublin_core": {
+      "dc:creator": "Equipo de Investigación Educativa",
+      "dc:publisher": "Universidad (institución aplicadora)",
+      "dc:rights": "Uso académico e institucional. Datos sintéticos con fines demostrativos.",
+      "dc:language": "es",
+      "dc:type": "Dataset",
+      "dc:format": "application/json",
+      "dc:date": "2026-10-01",
+      "dc:source": "Cuaderno de encuestas de percepción estudiantil, México",
+      "dc:title": "Oferta educativa, recursos y modalidades de estudio",
+      "dc:subject": "oferta educativa, biblioteca, recursos de información, acreditación, modalidades, flexibilidad, cursos en línea",
+      "dc:description": "Valorar la pertinencia de la oferta académica, los recursos de biblioteca y la adecuación de las modalidades a las necesidades del estudiantado.",
+      "dc:coverage": "Estudiantes universitarios, México. Instrumento de percepción (no sustituye registros administrativos).",
+      "dc:relation": "Forma parte del Cuaderno de 11 encuestas de percepción estudiantil (México)."
+    },
+    "survey_specific": {
+      "poblacion_objetivo": "Estudiantes de licenciatura de universidades mexicanas, distintas carreras y semestres.",
+      "unidad_analisis": "estudiante universitario",
+      "n_poblacion": 5000,
+      "tipo_investigacion": "cuantitativa (encuesta de percepción)",
+      "notas_contextuales": "",
+      "notas_interpretacion": "",
+      "constructo_principal": "Pertinencia de la oferta educativa, recursos y modalidades",
+      "dimensiones": [
+        "Variedad de oferta",
+        "Recursos de biblioteca",
+        "Acreditación de programas",
+        "Modalidades",
+        "Flexibilidad"
+      ],
+      "palabras_clave": [
+        "oferta educativa",
+        "biblioteca",
+        "recursos de información",
+        "acreditación",
+        "modalidades",
+        "flexibilidad",
+        "cursos en línea"
+      ],
+      "escala_medicion": "likert_1_5, likert_freq, multiple_choice, abierta",
+      "n_respondentes": 250
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      {
+        "kpi_id": "kpi_45",
+        "nombre_es": "Recursos de biblioteca"
+      },
+      {
+        "kpi_id": "kpi_46",
+        "nombre_es": "Número de programas acreditados"
+      },
+      {
+        "kpi_id": "kpi_47",
+        "nombre_es": "Número de cursos o programas ofrecidos"
+      },
+      {
+        "kpi_id": "kpi_48",
+        "nombre_es": "Razón de matrícula en línea frente a presencial"
+      }
+    ],
+    "note": "kpi_hints es referencia de diseño; el KPI se descubre por similitud en iteración 2."
+  },
+  "synthetic_profiles": [
+    {
+      "profile_id": "desempeno_promedio",
+      "label": "Desempeño promedio",
+      "description": "Estudiante típico, resultados medios y experiencia estable.",
+      "target_weight": 0.28,
+      "n": 60
+    },
+    {
+      "profile_id": "alto_rendimiento",
+      "label": "Alto rendimiento",
+      "description": "Promedio alto, muy motivado, dedica muchas horas al estudio.",
+      "target_weight": 0.12,
+      "n": 30
+    },
+    {
+      "profile_id": "estudiante_trabajador",
+      "label": "Estudiante trabajador",
+      "description": "Combina estudio y empleo; tiempo limitado para actividades académicas.",
+      "target_weight": 0.15,
+      "n": 40
+    },
+    {
+      "profile_id": "problemas_financieros",
+      "label": "Problemas financieros",
+      "description": "Fuerte presión económica que condiciona su trayectoria.",
+      "target_weight": 0.1,
+      "n": 28
+    },
+    {
+      "profile_id": "riesgo_abandono",
+      "label": "Riesgo de abandono",
+      "description": "Baja motivación y vinculación; ha considerado dejar los estudios.",
+      "target_weight": 0.08,
+      "n": 25
+    },
+    {
+      "profile_id": "estres_elevado",
+      "label": "Estrés elevado",
+      "description": "Carga percibida alta y malestar, aunque mantiene desempeño.",
+      "target_weight": 0.09,
+      "n": 22
+    },
+    {
+      "profile_id": "alto_compromiso",
+      "label": "Alto compromiso académico",
+      "description": "Muy involucrado en actividades, investigación y comunidad.",
+      "target_weight": 0.06,
+      "n": 13
+    },
+    {
+      "profile_id": "bajo_compromiso",
+      "label": "Bajo compromiso académico",
+      "description": "Participación mínima y motivación baja, sin riesgo inmediato de abandono.",
+      "target_weight": 0.05,
+      "n": 14
+    },
+    {
+      "profile_id": "alta_satisfaccion",
+      "label": "Alta satisfacción institucional",
+      "description": "Percepción muy positiva de la institución y sus servicios.",
+      "target_weight": 0.04,
+      "n": 13
+    },
+    {
+      "profile_id": "baja_satisfaccion",
+      "label": "Baja satisfacción institucional",
+      "description": "Percepción negativa de la institución pese a continuar estudiando.",
+      "target_weight": 0.03,
+      "n": 5
+    }
+  ],
+  "respondents": [
+    {
+      "respondent_id": "r_0001",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 8,
+        "promedio": 8.0,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3,
+        "q3": 2,
+        "q4": "No",
+        "q5": 4,
+        "q6": "En línea",
+        "q7": "En línea",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0002",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 2,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 17,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0003",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 9,
+        "promedio": 8.2,
+        "empleo": "Sí",
+        "horas_estudio": 20,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0004",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 2,
+        "promedio": 7.4,
+        "empleo": "No",
+        "horas_estudio": 1,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Combinación variable",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0005",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 7,
+        "promedio": 8.8,
+        "empleo": "No",
+        "horas_estudio": 20,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 5,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0006",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 7,
+        "promedio": 6.9,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0007",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 18,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 1,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 15,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0008",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 7,
+        "promedio": 8.5,
+        "empleo": "Sí",
+        "horas_estudio": 13,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "En línea",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0009",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 26,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 10,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3,
+        "q3": 2,
+        "q4": "No",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0010",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 18,
+        "genero": "Masculino",
+        "carrera": "Comunicación",
+        "semestre": 1,
+        "promedio": 7.0,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0011",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 8,
+        "promedio": 7.5,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Sin preferencia",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0012",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 10,
+        "promedio": 7.0,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 2,
+        "q6": "Depende del curso",
+        "q7": "Combinación variable",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0013",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 18,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 1,
+        "promedio": 8.7,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5,
+        "q3": 5,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0014",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 26,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 9,
+        "promedio": 8.3,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0015",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 5,
+        "promedio": 7.2,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Combinación variable",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0016",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 19,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 5,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0017",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 6,
+        "promedio": 9.6,
+        "empleo": "No",
+        "horas_estudio": 17,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4,
+        "q3": 5,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0018",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 6,
+        "promedio": 7.8,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0019",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 7,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 2,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "En línea",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0020",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 6,
+        "promedio": 6.0,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0021",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 8,
+        "promedio": 8.6,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0022",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 8,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 3,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 4,
+        "q4": "No",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0023",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Negocios Internacionales",
+        "semestre": 2,
+        "promedio": 7.2,
+        "empleo": "No",
+        "horas_estudio": 3,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 2,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0024",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 6,
+        "promedio": 6.8,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 2,
+        "q6": "En línea",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0025",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 5,
+        "promedio": 6.4,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 1,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0026",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Negocios Internacionales",
+        "semestre": 7,
+        "promedio": 7.7,
+        "empleo": "No",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0027",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Nutrición",
+        "semestre": 2,
+        "promedio": 5.9,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "No",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0028",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 7,
+        "promedio": 8.1,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0029",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 5,
+        "promedio": 7.3,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0030",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 3,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0031",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 8,
+        "promedio": 7.4,
+        "empleo": "Sí",
+        "horas_estudio": 17,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 1,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0032",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 3,
+        "promedio": 8.3,
+        "empleo": "Sí",
+        "horas_estudio": 15,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 3,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0033",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 19,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 5,
+        "promedio": 7.8,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 3,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Sin preferencia",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0034",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 2,
+        "promedio": 9.8,
+        "empleo": "No",
+        "horas_estudio": 23,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0035",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 4,
+        "promedio": 5.7,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 1,
+        "q4": "No",
+        "q5": 2,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0036",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 9,
+        "promedio": 7.4,
+        "empleo": "No",
+        "horas_estudio": 6,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0037",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Biología",
+        "semestre": 3,
+        "promedio": 7.2,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "No",
+        "q5": 2,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0038",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 3,
+        "promedio": 9.3,
+        "empleo": "Sí",
+        "horas_estudio": 14,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4,
+        "q3": 4,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Depende del curso",
+        "q7": "En línea",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0039",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 7,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0040",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 4,
+        "promedio": 9.2,
+        "empleo": "No",
+        "horas_estudio": 18,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0041",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 10,
+        "promedio": 8.9,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 3,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0042",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 3,
+        "promedio": 6.2,
+        "empleo": "No",
+        "horas_estudio": 6,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0043",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 1,
+        "promedio": 6.2,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0044",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 7,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0045",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 4,
+        "promedio": 8.2,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0046",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 6,
+        "promedio": 7.5,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "En línea",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0047",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 1,
+        "promedio": 8.1,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0048",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 1,
+        "promedio": 6.8,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0049",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 4,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0050",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 7,
+        "promedio": 7.1,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0051",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 8,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5,
+        "q3": 2,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0052",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 8,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5,
+        "q3": 4,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0053",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 2,
+        "promedio": 7.3,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0054",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 6,
+        "promedio": 7.1,
+        "empleo": "No",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 1,
+        "q3": 2,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0055",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 4,
+        "promedio": 6.6,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 1,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0056",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 7,
+        "promedio": 6.6,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0057",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 6,
+        "promedio": 8.7,
+        "empleo": "No",
+        "horas_estudio": 16,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Depende del curso",
+        "q7": "En línea",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0058",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 5,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 11,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0059",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 1,
+        "promedio": 8.7,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0060",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 9,
+        "promedio": 8.6,
+        "empleo": "Sí",
+        "horas_estudio": 11,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 5,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "En línea",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0061",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 4,
+        "promedio": 7.0,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0062",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 6,
+        "promedio": 7.3,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0063",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 5,
+        "promedio": 8.3,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 5,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "En línea",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0064",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 6,
+        "promedio": 6.5,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 1,
+        "q3": 2,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0065",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 3,
+        "promedio": 6.8,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0066",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 10,
+        "promedio": 9.2,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 5,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0067",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 5,
+        "promedio": 8.2,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0068",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 6,
+        "promedio": 6.7,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0069",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 7,
+        "promedio": 8.0,
+        "empleo": "No",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Depende del curso",
+        "q7": "Combinación variable",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0070",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 6,
+        "promedio": 9.2,
+        "empleo": "No",
+        "horas_estudio": 17,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5,
+        "q3": 4,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0071",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Negocios Internacionales",
+        "semestre": 7,
+        "promedio": 6.1,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0072",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 6,
+        "promedio": 7.5,
+        "empleo": "Sí",
+        "horas_estudio": 15,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 2,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0073",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 12,
+        "promedio": 7.2,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 1,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0074",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 7,
+        "promedio": 7.4,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Combinación variable",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0075",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 19,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 4,
+        "promedio": 7.6,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0076",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 4,
+        "promedio": 8.4,
+        "empleo": "No",
+        "horas_estudio": 19,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0077",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 5,
+        "promedio": 7.3,
+        "empleo": "No",
+        "horas_estudio": 4,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 1,
+        "q3": 1,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0078",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 3,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0079",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 6,
+        "promedio": 7.3,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0080",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 4,
+        "promedio": 8.2,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Sin preferencia",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0081",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 5,
+        "promedio": 8.4,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0082",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 5,
+        "promedio": 6.5,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 2,
+        "q6": "Sin preferencia",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0083",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 6,
+        "promedio": 7.1,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0084",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 5,
+        "promedio": 6.0,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 1,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0085",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 5,
+        "promedio": 6.3,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 1,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Combinación variable",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0086",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 3,
+        "promedio": 7.9,
+        "empleo": "No",
+        "horas_estudio": 17,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0087",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 3,
+        "promedio": 6.0,
+        "empleo": "Sí",
+        "horas_estudio": 1,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Combinación variable",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0088",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 8,
+        "promedio": 9.1,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0089",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 27,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 11,
+        "promedio": 8.3,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 2,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0090",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 4,
+        "promedio": 7.3,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0091",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 2,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 11,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "En línea",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0092",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 18,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 1,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "En línea",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0093",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 8,
+        "promedio": 8.4,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0094",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 6,
+        "promedio": 8.1,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0095",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 26,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 6,
+        "promedio": 8.3,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0096",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 5,
+        "promedio": 7.0,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 1,
+        "q3": 2,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Sin preferencia",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0097",
+      "profile_id": "baja_satisfaccion",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 11,
+        "promedio": 7.2,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 3,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0098",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 8,
+        "promedio": 7.0,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0099",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 1,
+        "promedio": 8.6,
+        "empleo": "Sí",
+        "horas_estudio": 19,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 5,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0100",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Prefiero no responder",
+        "carrera": "Psicología",
+        "semestre": 4,
+        "promedio": 7.4,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0101",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 6,
+        "promedio": 7.9,
+        "empleo": "No",
+        "horas_estudio": 4,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0102",
+      "profile_id": "baja_satisfaccion",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 6,
+        "promedio": 7.4,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0103",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 4,
+        "promedio": 8.1,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 5,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0104",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 18,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 2,
+        "promedio": 8.9,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 4,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Sin preferencia",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0105",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 3,
+        "promedio": 7.8,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "En línea",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0106",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 8,
+        "promedio": 8.8,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0107",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 26,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 5,
+        "promedio": 9.4,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 5,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "En línea",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0108",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Nutrición",
+        "semestre": 7,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0109",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 6,
+        "promedio": 6.1,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0110",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 7,
+        "promedio": 7.3,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Depende del curso",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0111",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Comunicación",
+        "semestre": 6,
+        "promedio": 6.6,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0112",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Comunicación",
+        "semestre": 8,
+        "promedio": 7.1,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Combinación variable",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0113",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 4,
+        "promedio": 9.3,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0114",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 7,
+        "promedio": 8.2,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No",
+        "q5": 4,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0115",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 19,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 1,
+        "promedio": 8.4,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 2,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0116",
+      "profile_id": "baja_satisfaccion",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 5,
+        "promedio": 6.2,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Combinación variable",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0117",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 3,
+        "promedio": 8.1,
+        "empleo": "Sí",
+        "horas_estudio": 3,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0118",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 10,
+        "promedio": 7.1,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 2,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "En línea",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0119",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 9,
+        "promedio": 8.1,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0120",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 5,
+        "promedio": 8.4,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No",
+        "q5": 4,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0121",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 1,
+        "promedio": 6.5,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0122",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 18,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 2,
+        "promedio": 7.4,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0123",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 3,
+        "promedio": 7.0,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Sin preferencia",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0124",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 5,
+        "promedio": 7.6,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "En línea",
+        "q7": "Combinación variable",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0125",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 4,
+        "promedio": 7.2,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0126",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 5,
+        "promedio": 6.1,
+        "empleo": "Sí",
+        "horas_estudio": 3,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 1,
+        "q3": 1,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0127",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 19,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 3,
+        "promedio": 7.2,
+        "empleo": "No",
+        "horas_estudio": 1,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "En línea",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0128",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 10,
+        "promedio": 8.1,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Combinación variable",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0129",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Pedagogía",
+        "semestre": 3,
+        "promedio": 7.9,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0130",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 5,
+        "promedio": 8.8,
+        "empleo": "No",
+        "horas_estudio": 16,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "En línea",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0131",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 6,
+        "promedio": 9.2,
+        "empleo": "Sí",
+        "horas_estudio": 21,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0132",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 2,
+        "promedio": 8.3,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 3,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "En línea",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0133",
+      "profile_id": "baja_satisfaccion",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 5,
+        "promedio": 7.4,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 1,
+        "q4": "Sí, conozco el organismo",
+        "q5": 2,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0134",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 6,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "En línea",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0135",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 6,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 11,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0136",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 18,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 3,
+        "promedio": 9.3,
+        "empleo": "No",
+        "horas_estudio": 17,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Sin preferencia",
+        "q7": "Híbrida",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0137",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 5,
+        "promedio": 6.7,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 2,
+        "q6": "Depende del curso",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0138",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 4,
+        "promedio": 8.8,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0139",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 6,
+        "promedio": 8.8,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5,
+        "q3": 5,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "En línea",
+        "q7": "Combinación variable",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0140",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 7,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0141",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 4,
+        "promedio": 7.8,
+        "empleo": "No",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "En línea",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0142",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 6,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 14,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0143",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 7,
+        "promedio": 7.1,
+        "empleo": "No",
+        "horas_estudio": 2,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 2,
+        "q3": 2,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0144",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 3,
+        "promedio": 9.5,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0145",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 4,
+        "promedio": 8.7,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0146",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 3,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 4,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Depende del curso",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0147",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 6,
+        "promedio": 8.5,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Combinación variable",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0148",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 10,
+        "promedio": 8.2,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Combinación variable",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0149",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 2,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 5,
+        "q3": 5,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0150",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 5,
+        "promedio": 9.9,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4,
+        "q3": 4,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0151",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 4,
+        "promedio": 8.9,
+        "empleo": "No",
+        "horas_estudio": 22,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 5,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0152",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 4,
+        "promedio": 6.9,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 1,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0153",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 8,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 11,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Sin preferencia",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0154",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Nutrición",
+        "semestre": 5,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0155",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 4,
+        "promedio": 5.7,
+        "empleo": "Sí",
+        "horas_estudio": 11,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0156",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 5,
+        "promedio": 9.3,
+        "empleo": "No",
+        "horas_estudio": 25,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 5,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "En línea",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0157",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 6,
+        "promedio": 6.4,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 1,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 2,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0158",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 5,
+        "promedio": 8.7,
+        "empleo": "Sí",
+        "horas_estudio": 13,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0159",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Nutrición",
+        "semestre": 9,
+        "promedio": 9.4,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 5,
+        "q4": "Sí, pero no los detalles",
+        "q5": 5,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0160",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 9,
+        "promedio": 8.0,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Combinación variable",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0161",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 2,
+        "promedio": 7.5,
+        "empleo": "Sí",
+        "horas_estudio": 3,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Combinación variable",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0162",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Prefiero no responder",
+        "carrera": "Ingeniería Civil",
+        "semestre": 1,
+        "promedio": 7.9,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0163",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 7,
+        "promedio": 7.7,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 2,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "En línea",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0164",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 8,
+        "promedio": 8.6,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0165",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 2,
+        "promedio": 9.1,
+        "empleo": "No",
+        "horas_estudio": 20,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 5,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Combinación variable",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0166",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 1,
+        "promedio": 6.0,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 2,
+        "q6": "Depende del curso",
+        "q7": "Combinación variable",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0167",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 7,
+        "promedio": 6.9,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0168",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 5,
+        "promedio": 7.2,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0169",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Nutrición",
+        "semestre": 1,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 5,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0170",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 2,
+        "promedio": 9.0,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "En línea",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0171",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 6,
+        "promedio": 7.0,
+        "empleo": "Sí",
+        "horas_estudio": 11,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0172",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 18,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 1,
+        "promedio": 9.4,
+        "empleo": "Sí",
+        "horas_estudio": 18,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 3,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Depende del curso",
+        "q7": "En línea",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0173",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 5,
+        "promedio": 9.4,
+        "empleo": "No",
+        "horas_estudio": 22,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 5,
+        "q3": 4,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0174",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Nutrición",
+        "semestre": 1,
+        "promedio": 9.2,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 5,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0175",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 4,
+        "promedio": 9.6,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0176",
+      "profile_id": "baja_satisfaccion",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 4,
+        "promedio": 7.4,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 2,
+        "q3": 2,
+        "q4": "No",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0177",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 5,
+        "promedio": 6.2,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 2,
+        "q4": "No",
+        "q5": 2,
+        "q6": "Sin preferencia",
+        "q7": "Combinación variable",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0178",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 4,
+        "promedio": 8.3,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Sin preferencia",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0179",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Negocios Internacionales",
+        "semestre": 4,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 17,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Depende del curso",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0180",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Negocios Internacionales",
+        "semestre": 7,
+        "promedio": 8.5,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3,
+        "q3": 5,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0181",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 6,
+        "promedio": 5.7,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 2,
+        "q4": "No",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "En línea",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0182",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 8,
+        "promedio": 6.9,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0183",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 6,
+        "promedio": 5.6,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0184",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Nutrición",
+        "semestre": 5,
+        "promedio": 9.3,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0185",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 7,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0186",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 25,
+        "genero": "Prefiero no responder",
+        "carrera": "Biología",
+        "semestre": 5,
+        "promedio": 8.6,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Depende del curso",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0187",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 7,
+        "promedio": 9.4,
+        "empleo": "Sí",
+        "horas_estudio": 16,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0188",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 4,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0189",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 8,
+        "promedio": 9.5,
+        "empleo": "Sí",
+        "horas_estudio": 19,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0190",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 7,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 14,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 1,
+        "q4": "Sí, pero no los detalles",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0191",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 10,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0192",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 2,
+        "promedio": 8.3,
+        "empleo": "Sí",
+        "horas_estudio": 16,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 5,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0193",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 3,
+        "promedio": 7.3,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0194",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 3,
+        "promedio": 6.6,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0195",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 2,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0196",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 10,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 5,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0197",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 9,
+        "promedio": 7.8,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "En línea",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0198",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 23,
+        "genero": "Prefiero no responder",
+        "carrera": "Ingeniería Civil",
+        "semestre": 7,
+        "promedio": 8.6,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 5,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0199",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 9,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0200",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Negocios Internacionales",
+        "semestre": 6,
+        "promedio": 7.2,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "No",
+        "q5": 4,
+        "q6": "En línea",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0201",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Biología",
+        "semestre": 7,
+        "promedio": 7.7,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0202",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 17,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 1,
+        "promedio": 7.6,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0203",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 9,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0204",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 11,
+        "promedio": 7.5,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Sin preferencia",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0205",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 2,
+        "promedio": 8.6,
+        "empleo": "No",
+        "horas_estudio": 17,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 5,
+        "q4": "Sí, conozco el organismo",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0206",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Comunicación",
+        "semestre": 10,
+        "promedio": 8.8,
+        "empleo": "Sí",
+        "horas_estudio": 21,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 5,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Sin preferencia",
+        "q7": "Combinación variable",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0207",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Comunicación",
+        "semestre": 5,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 11,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Combinación variable",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0208",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 6,
+        "promedio": 6.6,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0209",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 19,
+        "genero": "Prefiero no responder",
+        "carrera": "Administración",
+        "semestre": 2,
+        "promedio": 6.8,
+        "empleo": "No",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0210",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 4,
+        "promedio": 6.3,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 1,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "En línea",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0211",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 10,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 16,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 1,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0212",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 9,
+        "promedio": 8.6,
+        "empleo": "Sí",
+        "horas_estudio": 14,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "En línea",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0213",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 2,
+        "promedio": 7.8,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0214",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 4,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 13,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3,
+        "q3": 2,
+        "q4": "No estoy seguro/a",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0215",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 4,
+        "promedio": 9.5,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "En línea",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0216",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 2,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0217",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 9,
+        "promedio": 8.2,
+        "empleo": "Sí",
+        "horas_estudio": 15,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4,
+        "q3": 2,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0218",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 6,
+        "promedio": 6.8,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 2,
+        "q4": "No",
+        "q5": 1,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0219",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 2,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 21,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4,
+        "q3": 4,
+        "q4": "No",
+        "q5": 5,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0220",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 6,
+        "promedio": 8.1,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0221",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 7,
+        "promedio": 6.9,
+        "empleo": "No",
+        "horas_estudio": 2,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 1,
+        "q4": "Sí, conozco el organismo",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0222",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 4,
+        "promedio": 7.8,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0223",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 5,
+        "promedio": 6.7,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 5,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0224",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 7,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 5,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0225",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 5,
+        "promedio": 9.3,
+        "empleo": "No",
+        "horas_estudio": 22,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0226",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 4,
+        "promedio": 8.5,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "En línea",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0227",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 7,
+        "promedio": 7.0,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 1,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0228",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 8,
+        "promedio": 6.5,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Combinación variable",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0229",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 5,
+        "promedio": 7.2,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0230",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 6,
+        "promedio": 6.8,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 1,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 2,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0231",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 19,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 3,
+        "promedio": 7.1,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 1,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Híbrida",
+        "q7": "Combinación variable",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0232",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 7,
+        "promedio": 8.6,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Depende del curso",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0233",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Biología",
+        "semestre": 4,
+        "promedio": 7.4,
+        "empleo": "Sí",
+        "horas_estudio": 17,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Híbrida",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0234",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 5,
+        "promedio": 7.6,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0235",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 1,
+        "promedio": 8.5,
+        "empleo": "Sí",
+        "horas_estudio": 16,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0236",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 6,
+        "promedio": 6.7,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0237",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 6,
+        "promedio": 7.8,
+        "empleo": "No",
+        "horas_estudio": 22,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0238",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Nutrición",
+        "semestre": 4,
+        "promedio": 8.6,
+        "empleo": "Sí",
+        "horas_estudio": 17,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 2,
+        "q3": 5,
+        "q4": "Sí, pero no los detalles",
+        "q5": 4,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0239",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 5,
+        "promedio": 8.2,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 1,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 5,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0240",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 4,
+        "promedio": 8.6,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "Sí, conozco el organismo",
+        "q5": 3,
+        "q6": "Híbrida",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0241",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Negocios Internacionales",
+        "semestre": 6,
+        "promedio": 7.3,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 1,
+        "q4": "No",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0242",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 1,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 4,
+        "q4": "Sí, pero no los detalles",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "En línea",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0243",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 3,
+        "promedio": 7.8,
+        "empleo": "No",
+        "horas_estudio": 4,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No",
+        "q5": 3,
+        "q6": "En línea",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0244",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 6,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 19,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 4,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0245",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 18,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 1,
+        "promedio": 6.7,
+        "empleo": "Sí",
+        "horas_estudio": 13,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2,
+        "q3": 2,
+        "q4": "No",
+        "q5": 3,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0246",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 4,
+        "promedio": 8.9,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 3,
+        "q3": 5,
+        "q4": "Sí, pero no los detalles",
+        "q5": 5,
+        "q6": "Híbrida",
+        "q7": "Híbrida",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0247",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 3,
+        "promedio": 7.9,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3,
+        "q3": 1,
+        "q4": "No",
+        "q5": 4,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0248",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 5,
+        "promedio": 8.6,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4,
+        "q3": 4,
+        "q4": "No estoy seguro/a",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0249",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 26,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 9,
+        "promedio": 8.2,
+        "empleo": "No",
+        "horas_estudio": 16,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4,
+        "q3": 4,
+        "q4": "Sí, conozco el organismo",
+        "q5": 5,
+        "q6": "Presencial",
+        "q7": "Presencial",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0250",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 5,
+        "promedio": 6.8,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 2,
+        "q3": 3,
+        "q4": "No estoy seguro/a",
+        "q5": 2,
+        "q6": "Presencial",
+        "q7": "Combinación variable",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    }
+  ],
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert_1_5",
+        "n": 250,
+        "mean": 3.28,
+        "std": 0.95,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "1": 7,
+          "2": 40,
+          "3": 106,
+          "4": 70,
+          "5": 27
+        }
+      },
+      "q2": {
+        "type": "likert_freq",
+        "n": 250,
+        "mean": 2.7,
+        "std": 1.01,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "1": 26,
+          "2": 88,
+          "3": 84,
+          "4": 40,
+          "5": 12
+        }
+      },
+      "q3": {
+        "type": "likert_1_5",
+        "n": 250,
+        "mean": 3.25,
+        "std": 0.99,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "1": 11,
+          "2": 44,
+          "3": 90,
+          "4": 82,
+          "5": 23
+        }
+      },
+      "q4": {
+        "type": "multiple_choice",
+        "n": 250,
+        "distribution": {
+          "Sí, pero no los detalles": 83,
+          "No": 62,
+          "Sí, conozco el organismo": 62,
+          "No estoy seguro/a": 43
+        }
+      },
+      "q5": {
+        "type": "likert_1_5",
+        "n": 250,
+        "mean": 3.32,
+        "std": 0.93,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "1": 5,
+          "2": 39,
+          "3": 104,
+          "4": 75,
+          "5": 27
+        }
+      },
+      "q6": {
+        "type": "multiple_choice",
+        "n": 250,
+        "distribution": {
+          "Presencial": 105,
+          "Híbrida": 62,
+          "Depende del curso": 38,
+          "En línea": 32,
+          "Sin preferencia": 13
+        }
+      },
+      "q7": {
+        "type": "multiple_choice",
+        "n": 250,
+        "distribution": {
+          "Presencial": 126,
+          "Híbrida": 76,
+          "En línea": 24,
+          "Combinación variable": 24
+        }
+      },
+      "q8": {
+        "type": "likert_1_5",
+        "n": 250,
+        "mean": 3.16,
+        "std": 0.97,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "1": 9,
+          "2": 53,
+          "3": 99,
+          "4": 68,
+          "5": 21
+        }
+      },
+      "q9": {
+        "type": "open",
+        "n_answered": 0,
+        "note": "Respuestas abiertas no sintetizadas en v1."
+      },
+      "q10": {
+        "type": "open",
+        "n_answered": 0,
+        "note": "Respuestas abiertas no sintetizadas en v1."
+      }
+    },
+    "global_summary": {
+      "promedio_medio": 7.78,
+      "promedio_std": 0.93,
+      "horas_estudio_media": 9.8,
+      "pct_con_empleo": 0.536
+    },
+    "demographics_summary": {
+      "por_carrera": {
+        "Administración": 28,
+        "Derecho": 25,
+        "Psicología": 25,
+        "Ingeniería en Sistemas Computacionales": 24,
+        "Ingeniería Industrial": 23,
+        "Contaduría": 21,
+        "Medicina": 18,
+        "Arquitectura": 15,
+        "Enfermería": 14,
+        "Comunicación": 13,
+        "Ingeniería Civil": 12,
+        "Biología": 11,
+        "Nutrición": 8,
+        "Negocios Internacionales": 7,
+        "Pedagogía": 6
+      },
+      "por_genero": {
+        "Femenino": 123,
+        "Masculino": 122,
+        "Prefiero no responder": 5
+      },
+      "por_situacion_economica": {
+        "Media": 97,
+        "Media-baja": 77,
+        "Baja": 33,
+        "Media-alta": 31,
+        "Alta": 12
+      },
+      "por_arquetipo": {
+        "desempeno_promedio": 60,
+        "estudiante_trabajador": 40,
+        "alto_rendimiento": 30,
+        "problemas_financieros": 28,
+        "riesgo_abandono": 25,
+        "estres_elevado": 22,
+        "bajo_compromiso": 14,
+        "alto_compromiso": 13,
+        "alta_satisfaccion": 13,
+        "baja_satisfaccion": 5
+      }
+    }
+  },
+  "cleaning_report": {
+    "n_respondents": 250,
+    "n_nulls_imputed": 0,
+    "n_range_clamps": 10,
+    "n_duplicates_removed": 0,
+    "notes": [
+      "Datos sintéticos: limpieza = validación de rangos/tipos y guardas de coherencia."
+    ]
+  },
+  "semantic": {
+    "semantic_document": "Instrumento: Oferta educativa, recursos y modalidades de estudio. Propósito: Valorar la pertinencia de la oferta académica, los recursos de biblioteca y la adecuación de las modalidades a las necesidades del estudiantado. Constructo principal: Pertinencia de la oferta educativa, recursos y modalidades. Dimensiones evaluadas: Variedad de oferta, Recursos de biblioteca, Acreditación de programas, Modalidades, Flexibilidad. Población objetivo: Estudiantes de licenciatura de universidades mexicanas, distintas carreras y semestres. Conceptos clave: oferta educativa, biblioteca, recursos de información, acreditación, modalidades, flexibilidad, cursos en línea. Las preguntas exploran: ¿Qué tan suficiente es la variedad de cursos y programas para tus intereses; ¿Con qué frecuencia usas la biblioteca o sus recursos digitales; ¿Qué tan suficientes son los materiales de lectura para tus cursos; ¿Conoces si tu programa tiene reconocimiento o acreditación externa; ¿Qué tan fácil es conocer qué otros programas o trayectorias ofrece la institución; ¿Qué modalidad prefieres para la mayoría de tus cursos; ¿Qué modalidad cursas actualmente en la mayoría de tus materias; ¿Qué tan bien se adapta la modalidad disponible a tus horarios y responsabilidades.",
+    "approx_tokens": 228,
+    "embedding_model": "paraphrase-multilingual-mpnet-base-v2",
+    "embedding_dim": 768,
+    "token_budget": 512,
+    "vector": null
+  },
+  "kpi_association": {
+    "method": "cosine_similarity",
+    "embedding_model": "paraphrase-multilingual-mpnet-base-v2",
+    "primary_kpi": null,
+    "secondary_kpis": [],
+    "all_candidates": [],
+    "generated_at": null,
+    "note": "Se completa en iteración 2 contra la colección de KPIs en ChromaDB."
+  }
+}

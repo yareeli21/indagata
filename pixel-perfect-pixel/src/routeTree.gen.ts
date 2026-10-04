@@ -16,6 +16,7 @@ import { Route as PanelChatRouteImport } from './routes/_panel.chat'
 import { Route as PanelEspacioRouteImport } from './routes/_panel.espacio'
 import { Route as PanelInvestigacionRouteImport } from './routes/_panel.investigacion'
 import { Route as PanelKpisRouteImport } from './routes/_panel.kpis'
+import { Route as PanelUsuariosRouteImport } from './routes/_panel.usuarios'
 import { Route as PanelInstrumentosIndexRouteImport } from './routes/_panel.instrumentos.index'
 import { Route as PanelInstrumentosNuevoRouteImport } from './routes/_panel.instrumentos.nuevo'
 
@@ -53,6 +54,11 @@ const PanelKpisRoute = PanelKpisRouteImport.update({
   path: '/kpis',
   getParentRoute: () => PanelRoute,
 } as any)
+const PanelUsuariosRoute = PanelUsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
+  getParentRoute: () => PanelRoute,
+} as any)
 const PanelInstrumentosIndexRoute = PanelInstrumentosIndexRouteImport.update({
   id: '/instrumentos/',
   path: '/instrumentos/',
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/espacio': typeof PanelEspacioRoute
   '/investigacion': typeof PanelInvestigacionRoute
   '/kpis': typeof PanelKpisRoute
+  '/usuarios': typeof PanelUsuariosRoute
   '/instrumentos/nuevo': typeof PanelInstrumentosNuevoRoute
   '/instrumentos/': typeof PanelInstrumentosIndexRoute
 }
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/espacio': typeof PanelEspacioRoute
   '/investigacion': typeof PanelInvestigacionRoute
   '/kpis': typeof PanelKpisRoute
+  '/usuarios': typeof PanelUsuariosRoute
   '/instrumentos/nuevo': typeof PanelInstrumentosNuevoRoute
   '/instrumentos': typeof PanelInstrumentosIndexRoute
 }
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/_panel/espacio': typeof PanelEspacioRoute
   '/_panel/investigacion': typeof PanelInvestigacionRoute
   '/_panel/kpis': typeof PanelKpisRoute
+  '/_panel/usuarios': typeof PanelUsuariosRoute
   '/_panel/instrumentos/nuevo': typeof PanelInstrumentosNuevoRoute
   '/_panel/instrumentos/': typeof PanelInstrumentosIndexRoute
 }
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/espacio'
     | '/investigacion'
     | '/kpis'
+    | '/usuarios'
     | '/instrumentos/nuevo'
     | '/instrumentos/'
   fileRoutesByTo: FileRoutesByTo
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
     | '/espacio'
     | '/investigacion'
     | '/kpis'
+    | '/usuarios'
     | '/instrumentos/nuevo'
     | '/instrumentos'
   id:
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '/_panel/espacio'
     | '/_panel/investigacion'
     | '/_panel/kpis'
+    | '/_panel/usuarios'
     | '/_panel/instrumentos/nuevo'
     | '/_panel/instrumentos/'
   fileRoutesById: FileRoutesById
@@ -187,6 +199,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PanelKpisRouteImport
       parentRoute: typeof PanelRoute
     }
+    '/_panel/usuarios': {
+      id: '/_panel/usuarios'
+      path: '/usuarios'
+      fullPath: '/usuarios'
+      preLoaderRoute: typeof PanelUsuariosRouteImport
+      parentRoute: typeof PanelRoute
+    }
     '/_panel/instrumentos/': {
       id: '/_panel/instrumentos/'
       path: '/instrumentos'
@@ -209,6 +228,7 @@ interface PanelRouteChildren {
   PanelEspacioRoute: typeof PanelEspacioRoute
   PanelInvestigacionRoute: typeof PanelInvestigacionRoute
   PanelKpisRoute: typeof PanelKpisRoute
+  PanelUsuariosRoute: typeof PanelUsuariosRoute
   PanelInstrumentosNuevoRoute: typeof PanelInstrumentosNuevoRoute
   PanelInstrumentosIndexRoute: typeof PanelInstrumentosIndexRoute
 }
@@ -218,6 +238,7 @@ const PanelRouteChildren: PanelRouteChildren = {
   PanelEspacioRoute: PanelEspacioRoute,
   PanelInvestigacionRoute: PanelInvestigacionRoute,
   PanelKpisRoute: PanelKpisRoute,
+  PanelUsuariosRoute: PanelUsuariosRoute,
   PanelInstrumentosNuevoRoute: PanelInstrumentosNuevoRoute,
   PanelInstrumentosIndexRoute: PanelInstrumentosIndexRoute,
 }

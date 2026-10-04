@@ -1,0 +1,7220 @@
+{
+  "instrument_id": "inst_21",
+  "schema_version": "1.0",
+  "instrument": {
+    "title": "Reputación, pertenencia y crecimiento institucional",
+    "objective": "Explorar la percepción estudiantil sobre el prestigio, el crecimiento y el sentido de pertenencia y recomendación de la institución.",
+    "dimensions_explored": [
+      "Reputación percibida",
+      "Crecimiento institucional",
+      "Sentido de pertenencia",
+      "Recomendación",
+      "Expectativa a futuro"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "Reactivos del módulo",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "¿Qué tan buena consideras la reputación de tu institución en tu campo?",
+            "type": "likert_1_5",
+            "options": [
+              "1 Muy mala",
+              "2 Mala",
+              "3 Regular",
+              "4 Buena",
+              "5 Muy buena"
+            ],
+            "scale_min": 1,
+            "scale_max": 5
+          },
+          {
+            "question_id": "q2",
+            "text": "¿Qué tan probable es que recomiendes tu institución a alguien más?",
+            "type": "numeric",
+            "scale_min": 0,
+            "scale_max": 10,
+            "unit": "escala 0-10"
+          },
+          {
+            "question_id": "q3",
+            "text": "¿Qué tan orgulloso/a te sientes de pertenecer a esta institución?",
+            "type": "likert_1_5",
+            "options": [
+              "1 Nada",
+              "2 Poco",
+              "3 Medianamente",
+              "4 Bastante",
+              "5 Mucho"
+            ],
+            "scale_min": 1,
+            "scale_max": 5
+          },
+          {
+            "question_id": "q4",
+            "text": "Comparado con el ciclo anterior, ¿cómo percibes el número de estudiantes que ingresan a tu programa?",
+            "type": "multiple_choice",
+            "options": [
+              "Mucho menor",
+              "Algo menor",
+              "Similar",
+              "Algo mayor",
+              "Mucho mayor",
+              "No sé"
+            ]
+          },
+          {
+            "question_id": "q5",
+            "text": "¿Qué tanto percibes que la institución mejora año con año?",
+            "type": "likert_1_5",
+            "options": [
+              "1 Nada",
+              "2 Poco",
+              "3 Medianamente",
+              "4 Bastante",
+              "5 Mucho"
+            ],
+            "scale_min": 1,
+            "scale_max": 5
+          },
+          {
+            "question_id": "q6",
+            "text": "¿Qué tan alineada está la institución con lo que esperabas al ingresar?",
+            "type": "likert_1_5",
+            "options": [
+              "1 Nada alineada",
+              "2 Poco",
+              "3 Medianamente",
+              "4 Bastante",
+              "5 Totalmente"
+            ],
+            "scale_min": 1,
+            "scale_max": 5
+          },
+          {
+            "question_id": "q7",
+            "text": "¿Qué influye más en la reputación que percibes de tu institución?",
+            "type": "multiple_choice",
+            "options": [
+              "Calidad docente",
+              "Resultados de egresados",
+              "Instalaciones",
+              "Investigación",
+              "Vida estudiantil",
+              "Prestigio histórico",
+              "Otro"
+            ]
+          },
+          {
+            "question_id": "q8",
+            "text": "¿Qué tan probable es que continúes aquí si pudieras elegir de nuevo?",
+            "type": "likert_1_5",
+            "options": [
+              "1 Nada probable",
+              "2 Poco",
+              "3 Medianamente",
+              "4 Bastante",
+              "5 Muy probable"
+            ],
+            "scale_min": 1,
+            "scale_max": 5
+          },
+          {
+            "question_id": "q9",
+            "text": "¿Qué fortalece más la reputación de tu institución?",
+            "type": "open"
+          },
+          {
+            "question_id": "q10",
+            "text": "¿Qué debería cambiar para que crezca y mejore su prestigio?",
+            "type": "open"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "dublin_core": {
+      "dc:creator": "Equipo de Investigación Educativa",
+      "dc:publisher": "Universidad (institución aplicadora)",
+      "dc:rights": "Uso académico e institucional. Datos sintéticos con fines demostrativos.",
+      "dc:language": "es",
+      "dc:type": "Dataset",
+      "dc:format": "application/json",
+      "dc:date": "2026-10-01",
+      "dc:source": "Cuaderno de encuestas de percepción estudiantil, México",
+      "dc:title": "Reputación, pertenencia y crecimiento institucional",
+      "dc:subject": "reputación, prestigio, crecimiento institucional, pertenencia, recomendación, admisiones, orgullo institucional",
+      "dc:description": "Explorar la percepción estudiantil sobre el prestigio, el crecimiento y el sentido de pertenencia y recomendación de la institución.",
+      "dc:coverage": "Estudiantes universitarios, México. Instrumento de percepción (no sustituye registros administrativos).",
+      "dc:relation": "Forma parte del Cuaderno de 11 encuestas de percepción estudiantil (México)."
+    },
+    "survey_specific": {
+      "poblacion_objetivo": "Estudiantes de licenciatura de universidades mexicanas, distintas carreras y semestres.",
+      "unidad_analisis": "estudiante universitario",
+      "n_poblacion": 5000,
+      "tipo_investigacion": "cuantitativa (encuesta de percepción)",
+      "notas_contextuales": "",
+      "notas_interpretacion": "",
+      "constructo_principal": "Reputación percibida, pertenencia y crecimiento institucional",
+      "dimensiones": [
+        "Reputación percibida",
+        "Crecimiento institucional",
+        "Sentido de pertenencia",
+        "Recomendación",
+        "Expectativa a futuro"
+      ],
+      "palabras_clave": [
+        "reputación",
+        "prestigio",
+        "crecimiento institucional",
+        "pertenencia",
+        "recomendación",
+        "admisiones",
+        "orgullo institucional"
+      ],
+      "escala_medicion": "likert_1_5, numeric, multiple_choice, abierta",
+      "n_respondentes": 250
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      {
+        "kpi_id": "kpi_55",
+        "nombre_es": "Crecimiento interanual en admisiones"
+      },
+      {
+        "kpi_id": "kpi_17",
+        "nombre_es": "Puntajes de satisfacción estudiantil"
+      },
+      {
+        "kpi_id": "kpi_16",
+        "nombre_es": "Tasa de retención estudiantil"
+      }
+    ],
+    "note": "kpi_hints es referencia de diseño; el KPI se descubre por similitud en iteración 2."
+  },
+  "synthetic_profiles": [
+    {
+      "profile_id": "desempeno_promedio",
+      "label": "Desempeño promedio",
+      "description": "Estudiante típico, resultados medios y experiencia estable.",
+      "target_weight": 0.28,
+      "n": 60
+    },
+    {
+      "profile_id": "alto_rendimiento",
+      "label": "Alto rendimiento",
+      "description": "Promedio alto, muy motivado, dedica muchas horas al estudio.",
+      "target_weight": 0.12,
+      "n": 30
+    },
+    {
+      "profile_id": "estudiante_trabajador",
+      "label": "Estudiante trabajador",
+      "description": "Combina estudio y empleo; tiempo limitado para actividades académicas.",
+      "target_weight": 0.15,
+      "n": 40
+    },
+    {
+      "profile_id": "problemas_financieros",
+      "label": "Problemas financieros",
+      "description": "Fuerte presión económica que condiciona su trayectoria.",
+      "target_weight": 0.1,
+      "n": 28
+    },
+    {
+      "profile_id": "riesgo_abandono",
+      "label": "Riesgo de abandono",
+      "description": "Baja motivación y vinculación; ha considerado dejar los estudios.",
+      "target_weight": 0.08,
+      "n": 25
+    },
+    {
+      "profile_id": "estres_elevado",
+      "label": "Estrés elevado",
+      "description": "Carga percibida alta y malestar, aunque mantiene desempeño.",
+      "target_weight": 0.09,
+      "n": 22
+    },
+    {
+      "profile_id": "alto_compromiso",
+      "label": "Alto compromiso académico",
+      "description": "Muy involucrado en actividades, investigación y comunidad.",
+      "target_weight": 0.06,
+      "n": 13
+    },
+    {
+      "profile_id": "bajo_compromiso",
+      "label": "Bajo compromiso académico",
+      "description": "Participación mínima y motivación baja, sin riesgo inmediato de abandono.",
+      "target_weight": 0.05,
+      "n": 14
+    },
+    {
+      "profile_id": "alta_satisfaccion",
+      "label": "Alta satisfacción institucional",
+      "description": "Percepción muy positiva de la institución y sus servicios.",
+      "target_weight": 0.04,
+      "n": 13
+    },
+    {
+      "profile_id": "baja_satisfaccion",
+      "label": "Baja satisfacción institucional",
+      "description": "Percepción negativa de la institución pese a continuar estudiando.",
+      "target_weight": 0.03,
+      "n": 5
+    }
+  ],
+  "respondents": [
+    {
+      "respondent_id": "r_0001",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 18,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 2,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.5,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0002",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 1,
+        "promedio": 8.5,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 9.4,
+        "q3": 5,
+        "q4": "Similar",
+        "q5": 5,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0003",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Biología",
+        "semestre": 4,
+        "promedio": 6.6,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.4,
+        "q3": 2,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0004",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Biología",
+        "semestre": 7,
+        "promedio": 7.0,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 9.2,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0005",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 19,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 2,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 16,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.9,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0006",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 8,
+        "promedio": 8.8,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.7,
+        "q3": 4,
+        "q4": "Mucho mayor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0007",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 6,
+        "promedio": 6.7,
+        "empleo": "No",
+        "horas_estudio": 2,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.2,
+        "q3": 5,
+        "q4": "Similar",
+        "q5": 1,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0008",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 5,
+        "promedio": 8.4,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.6,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0009",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Nutrición",
+        "semestre": 2,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 7.1,
+        "q3": 5,
+        "q4": "No sé",
+        "q5": 5,
+        "q6": 3,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0010",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 5,
+        "promedio": 8.1,
+        "empleo": "Sí",
+        "horas_estudio": 11,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 3.3,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0011",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 6,
+        "promedio": 7.2,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2.8,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0012",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 3,
+        "promedio": 7.0,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2.9,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0013",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 3,
+        "promedio": 6.4,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 5.1,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 1,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0014",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 9,
+        "promedio": 8.6,
+        "empleo": "No",
+        "horas_estudio": 18,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 8.0,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0015",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 19,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 5,
+        "promedio": 7.3,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 8.0,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0016",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 7,
+        "promedio": 6.0,
+        "empleo": "Sí",
+        "horas_estudio": 0,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3.5,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0017",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 2,
+        "promedio": 8.4,
+        "empleo": "No",
+        "horas_estudio": 19,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.9,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0018",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 5,
+        "promedio": 7.0,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 6.1,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0019",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 6,
+        "promedio": 7.9,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 6.1,
+        "q3": 4,
+        "q4": "Mucho menor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0020",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 9,
+        "promedio": 7.2,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 5.1,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Otro",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0021",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 3,
+        "promedio": 8.6,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 9.4,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0022",
+      "profile_id": "baja_satisfaccion",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 5,
+        "promedio": 8.1,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 2.3,
+        "q3": 1,
+        "q4": "Similar",
+        "q5": 1,
+        "q6": 2,
+        "q7": "Otro",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0023",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 5,
+        "promedio": 9.2,
+        "empleo": "Sí",
+        "horas_estudio": 21,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 10,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Otro",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0024",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 7,
+        "promedio": 9.2,
+        "empleo": "Sí",
+        "horas_estudio": 16,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 7.1,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Instalaciones",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0025",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 7,
+        "promedio": 9.1,
+        "empleo": "No",
+        "horas_estudio": 20,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 9.7,
+        "q3": 2,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0026",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 8,
+        "promedio": 7.5,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 7.3,
+        "q3": 3,
+        "q4": "Mucho menor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0027",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 7,
+        "promedio": 6.6,
+        "empleo": "No",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3.1,
+        "q3": 1,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Vida estudiantil",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0028",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 9,
+        "promedio": 6.7,
+        "empleo": "Sí",
+        "horas_estudio": 3,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4.5,
+        "q3": 2,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Resultados de egresados",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0029",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 9,
+        "promedio": 7.2,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 5.1,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0030",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 1,
+        "promedio": 8.4,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 5.2,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0031",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 6,
+        "promedio": 8.5,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.4,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0032",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 4,
+        "promedio": 7.7,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 6.9,
+        "q3": 3,
+        "q4": "Mucho mayor",
+        "q5": 5,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0033",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 6,
+        "promedio": 8.5,
+        "empleo": "Sí",
+        "horas_estudio": 13,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.6,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 5,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0034",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 4,
+        "promedio": 8.5,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 9.9,
+        "q3": 4,
+        "q4": "Mucho menor",
+        "q5": 5,
+        "q6": 4,
+        "q7": "Otro",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0035",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 7,
+        "promedio": 7.6,
+        "empleo": "No",
+        "horas_estudio": 2,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 1.5,
+        "q3": 3,
+        "q4": "Mucho menor",
+        "q5": 2,
+        "q6": 2,
+        "q7": "Calidad docente",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0036",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 27,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 9,
+        "promedio": 8.7,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2.6,
+        "q3": 3,
+        "q4": "No sé",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Vida estudiantil",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0037",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 10,
+        "promedio": 9.6,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.9,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0038",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 4,
+        "promedio": 8.6,
+        "empleo": "No",
+        "horas_estudio": 16,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 1.0,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Resultados de egresados",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0039",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 11,
+        "promedio": 6.9,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.3,
+        "q3": 3,
+        "q4": "Mucho mayor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0040",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 7,
+        "promedio": 9.8,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 6.1,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 5,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0041",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 9,
+        "promedio": 8.0,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4.6,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Otro",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0042",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Pedagogía",
+        "semestre": 2,
+        "promedio": 7.7,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.5,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 4,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0043",
+      "profile_id": "baja_satisfaccion",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 12,
+        "promedio": 7.3,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 2.9,
+        "q3": 1,
+        "q4": "No sé",
+        "q5": 1,
+        "q6": 2,
+        "q7": "Otro",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0044",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 2,
+        "promedio": 10.0,
+        "empleo": "No",
+        "horas_estudio": 25,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.9,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0045",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 9,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 13,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.8,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Otro",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0046",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 9,
+        "promedio": 7.8,
+        "empleo": "Sí",
+        "horas_estudio": 1,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.1,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0047",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 9,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 5.4,
+        "q3": 3,
+        "q4": "No sé",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0048",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 26,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 11,
+        "promedio": 7.4,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.0,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Otro",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0049",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 4,
+        "promedio": 8.3,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 9.3,
+        "q3": 5,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Resultados de egresados",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0050",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 4,
+        "promedio": 7.3,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.4,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0051",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 2,
+        "promedio": 8.6,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.0,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0052",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 4,
+        "promedio": 6.0,
+        "empleo": "Sí",
+        "horas_estudio": 0,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 4.6,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 1,
+        "q6": 2,
+        "q7": "Prestigio histórico",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0053",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 5,
+        "promedio": 7.7,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.4,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0054",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 8,
+        "promedio": 6.8,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.8,
+        "q3": 4,
+        "q4": "Mucho menor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0055",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Pedagogía",
+        "semestre": 1,
+        "promedio": 6.6,
+        "empleo": "No",
+        "horas_estudio": 3,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2.4,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Prestigio histórico",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0056",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 3,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.2,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 2,
+        "q7": "Otro",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0057",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Pedagogía",
+        "semestre": 1,
+        "promedio": 6.5,
+        "empleo": "No",
+        "horas_estudio": 3,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2.4,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0058",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 6,
+        "promedio": 9.1,
+        "empleo": "No",
+        "horas_estudio": 21,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 9.2,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0059",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 9,
+        "promedio": 8.7,
+        "empleo": "No",
+        "horas_estudio": 18,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.8,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 5,
+        "q6": 4,
+        "q7": "Instalaciones",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0060",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 9,
+        "promedio": 8.1,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3.8,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Otro",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0061",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 10,
+        "promedio": 7.5,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 5.8,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0062",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 6,
+        "promedio": 7.2,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.7,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0063",
+      "profile_id": "baja_satisfaccion",
+      "demographics": {
+        "edad": 18,
+        "genero": "Masculino",
+        "carrera": "Comunicación",
+        "semestre": 2,
+        "promedio": 7.5,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 0.2,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 2,
+        "q7": "Investigación",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0064",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 9,
+        "promedio": 7.4,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 5.5,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0065",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Comunicación",
+        "semestre": 7,
+        "promedio": 8.2,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 6.8,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Investigación",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0066",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 3,
+        "promedio": 6.7,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4.1,
+        "q3": 3,
+        "q4": "Mucho menor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0067",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 9,
+        "promedio": 8.9,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 9.0,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0068",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 9,
+        "promedio": 9.4,
+        "empleo": "No",
+        "horas_estudio": 27,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 7.3,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 5,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0069",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 7,
+        "promedio": 7.4,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.2,
+        "q3": 3,
+        "q4": "No sé",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0070",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Pedagogía",
+        "semestre": 5,
+        "promedio": 7.2,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.6,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0071",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 1,
+        "promedio": 8.4,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.0,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0072",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 8,
+        "promedio": 7.0,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.6,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Otro",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0073",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Pedagogía",
+        "semestre": 7,
+        "promedio": 6.7,
+        "empleo": "No",
+        "horas_estudio": 3,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 1.6,
+        "q3": 1,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0074",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 5,
+        "promedio": 7.0,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 7.8,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0075",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 5,
+        "promedio": 9.3,
+        "empleo": "No",
+        "horas_estudio": 20,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.7,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0076",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 5,
+        "promedio": 7.2,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3.2,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Vida estudiantil",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0077",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 3,
+        "promedio": 7.6,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4.8,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Investigación",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0078",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 7,
+        "promedio": 8.3,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 9.3,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 5,
+        "q6": 5,
+        "q7": "Calidad docente",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0079",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 5,
+        "promedio": 9.2,
+        "empleo": "Sí",
+        "horas_estudio": 21,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.0,
+        "q3": 4,
+        "q4": "No sé",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Investigación",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0080",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 8,
+        "promedio": 6.6,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.4,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 2,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0081",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 8,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5.4,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0082",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 4,
+        "promedio": 8.4,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5.2,
+        "q3": 4,
+        "q4": "Mucho menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0083",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Negocios Internacionales",
+        "semestre": 11,
+        "promedio": 9.2,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.8,
+        "q3": 5,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0084",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 7,
+        "promedio": 9.7,
+        "empleo": "No",
+        "horas_estudio": 22,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 7.6,
+        "q3": 4,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0085",
+      "profile_id": "baja_satisfaccion",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 4,
+        "promedio": 7.3,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 1.9,
+        "q3": 1,
+        "q4": "Algo menor",
+        "q5": 1,
+        "q6": 3,
+        "q7": "Otro",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0086",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 6,
+        "promedio": 6.6,
+        "empleo": "No",
+        "horas_estudio": 6,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2.8,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0087",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 5,
+        "promedio": 8.2,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.2,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0088",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 7,
+        "promedio": 6.8,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 5.5,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0089",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 5,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.5,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Investigación",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0090",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 8,
+        "promedio": 7.8,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 8.3,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 2,
+        "q7": "Instalaciones",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0091",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 5,
+        "promedio": 7.5,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.4,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 5,
+        "q6": 4,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0092",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Comunicación",
+        "semestre": 10,
+        "promedio": 8.8,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.4,
+        "q3": 4,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0093",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Nutrición",
+        "semestre": 4,
+        "promedio": 7.5,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.0,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0094",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 8,
+        "promedio": 6.8,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2.9,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 1,
+        "q7": "Investigación",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0095",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 10,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 15,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.1,
+        "q3": 2,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Instalaciones",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0096",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 8,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 14,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.1,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 2,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0097",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 8,
+        "promedio": 7.8,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.0,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Otro",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0098",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 8,
+        "promedio": 6.0,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.1,
+        "q3": 1,
+        "q4": "Mucho menor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Resultados de egresados",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0099",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 18,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 3,
+        "promedio": 5.9,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.7,
+        "q3": 1,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 1,
+        "q7": "Calidad docente",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0100",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 6,
+        "promedio": 8.6,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 3.7,
+        "q3": 4,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0101",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 4,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5.5,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0102",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 18,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 1,
+        "promedio": 6.5,
+        "empleo": "No",
+        "horas_estudio": 1,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.9,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0103",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 3,
+        "promedio": 7.3,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.2,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 5,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0104",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 10,
+        "promedio": 6.7,
+        "empleo": "Sí",
+        "horas_estudio": 3,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.9,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0105",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 3,
+        "promedio": 8.0,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.5,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 2,
+        "q7": "Calidad docente",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0106",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 7,
+        "promedio": 8.3,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 7.1,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0107",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 7,
+        "promedio": 8.6,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 9.2,
+        "q3": 5,
+        "q4": "Algo mayor",
+        "q5": 5,
+        "q6": 4,
+        "q7": "Investigación",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0108",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 3,
+        "promedio": 9.5,
+        "empleo": "No",
+        "horas_estudio": 21,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 7.7,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 5,
+        "q7": "Investigación",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0109",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Pedagogía",
+        "semestre": 7,
+        "promedio": 7.8,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5.4,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0110",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 9,
+        "promedio": 7.6,
+        "empleo": "No",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2.7,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0111",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 19,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 4,
+        "promedio": 6.6,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.9,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Otro",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0112",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 9,
+        "promedio": 7.5,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.6,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0113",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 7,
+        "promedio": 7.8,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4.0,
+        "q3": 5,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0114",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 7,
+        "promedio": 8.1,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 6.7,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0115",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 4,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 3,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.2,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 5,
+        "q7": "Investigación",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0116",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 3,
+        "promedio": 8.3,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 7.6,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0117",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 6,
+        "promedio": 9.2,
+        "empleo": "No",
+        "horas_estudio": 23,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 9.6,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 5,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0118",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 7,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.8,
+        "q3": 5,
+        "q4": "Mucho menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0119",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 10,
+        "promedio": 7.5,
+        "empleo": "Sí",
+        "horas_estudio": 17,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 10,
+        "q3": 5,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0120",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Biología",
+        "semestre": 4,
+        "promedio": 9.4,
+        "empleo": "No",
+        "horas_estudio": 20,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 10,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0121",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 5,
+        "promedio": 8.8,
+        "empleo": "No",
+        "horas_estudio": 24,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.4,
+        "q3": 5,
+        "q4": "Mucho mayor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Otro",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0122",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 6,
+        "promedio": 6.4,
+        "empleo": "No",
+        "horas_estudio": 4,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 7.2,
+        "q3": 2,
+        "q4": "No sé",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0123",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 4,
+        "promedio": 8.1,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4.7,
+        "q3": 5,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 2,
+        "q7": "Vida estudiantil",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0124",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 5,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 3,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4.1,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Resultados de egresados",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0125",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 5,
+        "promedio": 8.7,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 10,
+        "q3": 5,
+        "q4": "Mucho menor",
+        "q5": 4,
+        "q6": 5,
+        "q7": "Instalaciones",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0126",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 5,
+        "promedio": 6.3,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4.7,
+        "q3": 2,
+        "q4": "Mucho menor",
+        "q5": 3,
+        "q6": 1,
+        "q7": "Vida estudiantil",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0127",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 1,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.0,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 1,
+        "q7": "Calidad docente",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0128",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 11,
+        "promedio": 6.9,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.5,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0129",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 8,
+        "promedio": 6.1,
+        "empleo": "No",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2.5,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0130",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 9,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 17,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 7.7,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0131",
+      "profile_id": "baja_satisfaccion",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 5,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 2.2,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 1,
+        "q6": 1,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0132",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 5,
+        "promedio": 7.6,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 8.8,
+        "q3": 5,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Investigación",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0133",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 7,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.1,
+        "q3": 2,
+        "q4": "Algo menor",
+        "q5": 2,
+        "q6": 2,
+        "q7": "Vida estudiantil",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0134",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 8,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.3,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Otro",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0135",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 3,
+        "promedio": 7.5,
+        "empleo": "Sí",
+        "horas_estudio": 14,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.8,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 5,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0136",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 27,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 8,
+        "promedio": 7.7,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.0,
+        "q3": 2,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Otro",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0137",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 7,
+        "promedio": 7.0,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3.7,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0138",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 4,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 17,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.6,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 5,
+        "q7": "Otro",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0139",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 6,
+        "promedio": 7.0,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.9,
+        "q3": 5,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0140",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 9,
+        "promedio": 8.4,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.5,
+        "q3": 2,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Otro",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0141",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 2,
+        "promedio": 7.9,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 7.2,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 5,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0142",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 4,
+        "promedio": 6.5,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4.7,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0143",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 4,
+        "promedio": 8.5,
+        "empleo": "No",
+        "horas_estudio": 17,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.5,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0144",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 3,
+        "promedio": 6.5,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2.5,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 2,
+        "q7": "Otro",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0145",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 4,
+        "promedio": 7.2,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.3,
+        "q3": 3,
+        "q4": "Mucho mayor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Resultados de egresados",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0146",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 6,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 13,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 7.5,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0147",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 6,
+        "promedio": 7.3,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.4,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 2,
+        "q7": "Otro",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0148",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Negocios Internacionales",
+        "semestre": 3,
+        "promedio": 8.8,
+        "empleo": "Sí",
+        "horas_estudio": 18,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 9.9,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 5,
+        "q6": 4,
+        "q7": "Otro",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0149",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Biología",
+        "semestre": 4,
+        "promedio": 9.2,
+        "empleo": "Sí",
+        "horas_estudio": 19,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 8.4,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0150",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 4,
+        "promedio": 7.0,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 3.8,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0151",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 2,
+        "promedio": 8.6,
+        "empleo": "No",
+        "horas_estudio": 19,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 8.4,
+        "q3": 5,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Otro",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0152",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 1,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 11,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.0,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 1,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0153",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 4,
+        "promedio": 8.3,
+        "empleo": "No",
+        "horas_estudio": 18,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 6.8,
+        "q3": 3,
+        "q4": "Mucho menor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Investigación",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0154",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 5,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 6.9,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0155",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Nutrición",
+        "semestre": 6,
+        "promedio": 8.1,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.0,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0156",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 4,
+        "promedio": 6.4,
+        "empleo": "Sí",
+        "horas_estudio": 3,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 1.7,
+        "q3": 2,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Otro",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0157",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 5,
+        "promedio": 7.4,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 6.8,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0158",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 3,
+        "promedio": 8.6,
+        "empleo": "No",
+        "horas_estudio": 18,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.4,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0159",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 2,
+        "promedio": 8.2,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.7,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0160",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 5,
+        "promedio": 6.2,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2.8,
+        "q3": 1,
+        "q4": "Algo menor",
+        "q5": 2,
+        "q6": 1,
+        "q7": "Otro",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0161",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 7,
+        "promedio": 8.3,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 8.9,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 5,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0162",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 4,
+        "promedio": 8.2,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 8.1,
+        "q3": 5,
+        "q4": "Similar",
+        "q5": 5,
+        "q6": 5,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0163",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 10,
+        "promedio": 6.2,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.4,
+        "q3": 4,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 2,
+        "q7": "Investigación",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0164",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 7,
+        "promedio": 6.2,
+        "empleo": "No",
+        "horas_estudio": 4,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 7.2,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0165",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 6,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 17,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.3,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0166",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 4,
+        "promedio": 7.6,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2.9,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 2,
+        "q7": "Calidad docente",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0167",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 2,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.3,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Resultados de egresados",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0168",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 8,
+        "promedio": 7.4,
+        "empleo": "Sí",
+        "horas_estudio": 3,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 7.2,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Resultados de egresados",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0169",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 6,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5.1,
+        "q3": 2,
+        "q4": "Mucho mayor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0170",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 6,
+        "promedio": 8.3,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.1,
+        "q3": 4,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0171",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 5,
+        "promedio": 9.1,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.5,
+        "q3": 4,
+        "q4": "Algo menor",
+        "q5": 5,
+        "q6": 5,
+        "q7": "Investigación",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0172",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 3,
+        "promedio": 8.0,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 9.4,
+        "q3": 4,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0173",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Comunicación",
+        "semestre": 3,
+        "promedio": 8.8,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.8,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0174",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 7,
+        "promedio": 7.8,
+        "empleo": "Sí",
+        "horas_estudio": 15,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 8.9,
+        "q3": 5,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 5,
+        "q7": "Instalaciones",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0175",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 3,
+        "promedio": 6.2,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4.8,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0176",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 5,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 16,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 8.5,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 5,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0177",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Comunicación",
+        "semestre": 6,
+        "promedio": 8.7,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.9,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Resultados de egresados",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0178",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 5,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 4.2,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Resultados de egresados",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0179",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 8,
+        "promedio": 7.4,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 6.2,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0180",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 19,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 5,
+        "promedio": 9.1,
+        "empleo": "No",
+        "horas_estudio": 24,
+        "situacion_economica": "Alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 8.3,
+        "q3": 4,
+        "q4": "Algo menor",
+        "q5": 5,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0181",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 9,
+        "promedio": 7.1,
+        "empleo": "No",
+        "horas_estudio": 22,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.0,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0182",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 6,
+        "promedio": 6.6,
+        "empleo": "No",
+        "horas_estudio": 4,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 0.8,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0183",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 4,
+        "promedio": 7.3,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.7,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0184",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 10,
+        "promedio": 8.1,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5.3,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0185",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 6,
+        "promedio": 9.2,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 9.5,
+        "q3": 5,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 5,
+        "q7": "Instalaciones",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0186",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 5,
+        "promedio": 7.6,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.2,
+        "q3": 4,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Otro",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0187",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 6,
+        "promedio": 7.1,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 3.3,
+        "q3": 2,
+        "q4": "Mucho menor",
+        "q5": 2,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0188",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 25,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 9,
+        "promedio": 7.8,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2.6,
+        "q3": 4,
+        "q4": "Mucho menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0189",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 2,
+        "promedio": 7.7,
+        "empleo": "Sí",
+        "horas_estudio": 4,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4.6,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Calidad docente",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0190",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 26,
+        "genero": "Femenino",
+        "carrera": "Biología",
+        "semestre": 7,
+        "promedio": 6.4,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.2,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0191",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 18,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 1,
+        "promedio": 6.5,
+        "empleo": "Sí",
+        "horas_estudio": 2,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 2.9,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0192",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 4,
+        "promedio": 7.1,
+        "empleo": "No",
+        "horas_estudio": 5,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 3.6,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 1,
+        "q6": 2,
+        "q7": "Resultados de egresados",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0193",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 10,
+        "promedio": 7.4,
+        "empleo": "No",
+        "horas_estudio": 13,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4.7,
+        "q3": 5,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 4,
+        "q7": "Resultados de egresados",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0194",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 10,
+        "promedio": 8.2,
+        "empleo": "No",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4.8,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0195",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 1,
+        "promedio": 7.6,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.8,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0196",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 7,
+        "promedio": 6.7,
+        "empleo": "No",
+        "horas_estudio": 16,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.4,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0197",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 6,
+        "promedio": 7.1,
+        "empleo": "No",
+        "horas_estudio": 3,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 5.6,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0198",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 4,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 16,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5.7,
+        "q3": 5,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0199",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 8,
+        "promedio": 8.4,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.7,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Calidad docente",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0200",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 5,
+        "promedio": 6.6,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2.9,
+        "q3": 1,
+        "q4": "Mucho mayor",
+        "q5": 3,
+        "q6": 1,
+        "q7": "Instalaciones",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0201",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 5,
+        "promedio": 8.8,
+        "empleo": "Sí",
+        "horas_estudio": 18,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.7,
+        "q3": 4,
+        "q4": "Mucho menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0202",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 5,
+        "promedio": 7.9,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.1,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0203",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 3,
+        "promedio": 8.0,
+        "empleo": "No",
+        "horas_estudio": 17,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4.4,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 2,
+        "q7": "Prestigio histórico",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0204",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Psicología",
+        "semestre": 3,
+        "promedio": 7.8,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.9,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 5,
+        "q7": "Instalaciones",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0205",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 19,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 5,
+        "promedio": 9.4,
+        "empleo": "No",
+        "horas_estudio": 21,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.8,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 5,
+        "q7": "Instalaciones",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0206",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 8,
+        "promedio": 7.7,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.8,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0207",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Biología",
+        "semestre": 7,
+        "promedio": 8.0,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5.5,
+        "q3": 3,
+        "q4": "No sé",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0208",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 26,
+        "genero": "Masculino",
+        "carrera": "Arquitectura",
+        "semestre": 7,
+        "promedio": 7.0,
+        "empleo": "Sí",
+        "horas_estudio": 3,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 5.8,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Otro",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0209",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 7,
+        "promedio": 8.3,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.7,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0210",
+      "profile_id": "bajo_compromiso",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Pedagogía",
+        "semestre": 9,
+        "promedio": 7.3,
+        "empleo": "No",
+        "horas_estudio": 1,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.3,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Resultados de egresados",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0211",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 26,
+        "genero": "Femenino",
+        "carrera": "Enfermería",
+        "semestre": 10,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.3,
+        "q3": 4,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0212",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Nutrición",
+        "semestre": 10,
+        "promedio": 7.9,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 7.1,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 2,
+        "q6": 5,
+        "q7": "Investigación",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0213",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 20,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Industrial",
+        "semestre": 5,
+        "promedio": 7.3,
+        "empleo": "No",
+        "horas_estudio": 11,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.2,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0214",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 4,
+        "promedio": 7.5,
+        "empleo": "Sí",
+        "horas_estudio": 18,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 6.3,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0215",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 3,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 15,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 5.6,
+        "q3": 2,
+        "q4": "No sé",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0216",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 7,
+        "promedio": 7.5,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 5.5,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0217",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Nutrición",
+        "semestre": 8,
+        "promedio": 6.5,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 4.8,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Investigación",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0218",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Medicina",
+        "semestre": 6,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 7.0,
+        "q3": 3,
+        "q4": "Mucho mayor",
+        "q5": 2,
+        "q6": 3,
+        "q7": "Otro",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0219",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Derecho",
+        "semestre": 4,
+        "promedio": 8.1,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.1,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0220",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 6,
+        "promedio": 8.7,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 2.6,
+        "q3": 2,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0221",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 7,
+        "promedio": 8.4,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5.0,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Prestigio histórico",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0222",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Ingeniería Civil",
+        "semestre": 6,
+        "promedio": 8.4,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.4,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0223",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 5,
+        "promedio": 9.7,
+        "empleo": "No",
+        "horas_estudio": 19,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 8.5,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Resultados de egresados",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0224",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Contaduría",
+        "semestre": 8,
+        "promedio": 9.3,
+        "empleo": "Sí",
+        "horas_estudio": 15,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.3,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Otro",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0225",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Administración",
+        "semestre": 11,
+        "promedio": 8.0,
+        "empleo": "No",
+        "horas_estudio": 12,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 7.5,
+        "q3": 5,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0226",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Pedagogía",
+        "semestre": 3,
+        "promedio": 9.4,
+        "empleo": "No",
+        "horas_estudio": 14,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 9.3,
+        "q3": 4,
+        "q4": "Mucho mayor",
+        "q5": 5,
+        "q6": 3,
+        "q7": "Calidad docente",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0227",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 2,
+        "promedio": 7.0,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 6.8,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0228",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 8,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 15,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 8.2,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 5,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0229",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 7,
+        "promedio": 8.5,
+        "empleo": "No",
+        "horas_estudio": 21,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 5,
+        "q2": 6.8,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 4,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0230",
+      "profile_id": "alta_satisfaccion",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 8,
+        "promedio": 8.5,
+        "empleo": "No",
+        "horas_estudio": 9,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 8.7,
+        "q3": 5,
+        "q4": "Mucho menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0231",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 25,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 8,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 15,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.9,
+        "q3": 4,
+        "q4": "No sé",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Resultados de egresados",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0232",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Enfermería",
+        "semestre": 6,
+        "promedio": 7.4,
+        "empleo": "Sí",
+        "horas_estudio": 9,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5.1,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0233",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 21,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 6,
+        "promedio": 7.1,
+        "empleo": "No",
+        "horas_estudio": 7,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.7,
+        "q3": 4,
+        "q4": "Algo menor",
+        "q5": 4,
+        "q6": 4,
+        "q7": "Investigación",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0234",
+      "profile_id": "problemas_financieros",
+      "demographics": {
+        "edad": 22,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 6,
+        "promedio": 6.5,
+        "empleo": "Sí",
+        "horas_estudio": 7,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 4.2,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Vida estudiantil",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0235",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Psicología",
+        "semestre": 5,
+        "promedio": 9.3,
+        "empleo": "Sí",
+        "horas_estudio": 17,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 7.5,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 5,
+        "q7": "Prestigio histórico",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0236",
+      "profile_id": "estres_elevado",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 9,
+        "promedio": 7.6,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 4.7,
+        "q3": 2,
+        "q4": "Algo menor",
+        "q5": 2,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0237",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 19,
+        "genero": "Prefiero no responder",
+        "carrera": "Contaduría",
+        "semestre": 1,
+        "promedio": 7.8,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 6.2,
+        "q3": 3,
+        "q4": "Algo mayor",
+        "q5": 5,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0238",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 23,
+        "genero": "Masculino",
+        "carrera": "Derecho",
+        "semestre": 7,
+        "promedio": 6.9,
+        "empleo": "No",
+        "horas_estudio": 2,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 1,
+        "q2": 3.0,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 1,
+        "q6": 1,
+        "q7": "Otro",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0239",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 21,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 6,
+        "promedio": 9.5,
+        "empleo": "No",
+        "horas_estudio": 20,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 10,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Prestigio histórico",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0240",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Contaduría",
+        "semestre": 3,
+        "promedio": 9.4,
+        "empleo": "No",
+        "horas_estudio": 21,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 8.7,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 5,
+        "q6": 3,
+        "q7": "Resultados de egresados",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0241",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 19,
+        "genero": "Femenino",
+        "carrera": "Ingeniería en Sistemas Computacionales",
+        "semestre": 5,
+        "promedio": 7.9,
+        "empleo": "Sí",
+        "horas_estudio": 6,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 3.7,
+        "q3": 4,
+        "q4": "Similar",
+        "q5": 5,
+        "q6": 3,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0242",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 6,
+        "promedio": 7.8,
+        "empleo": "Sí",
+        "horas_estudio": 5,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 3.6,
+        "q3": 3,
+        "q4": "Mucho menor",
+        "q5": 3,
+        "q6": 3,
+        "q7": "Otro",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0243",
+      "profile_id": "riesgo_abandono",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Pedagogía",
+        "semestre": 3,
+        "promedio": 6.5,
+        "empleo": "No",
+        "horas_estudio": 2,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 2,
+        "q2": 6.2,
+        "q3": 2,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Investigación",
+        "q8": 1,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0244",
+      "profile_id": "alto_rendimiento",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Comunicación",
+        "semestre": 4,
+        "promedio": 9.0,
+        "empleo": "No",
+        "horas_estudio": 18,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 8.0,
+        "q3": 4,
+        "q4": "Algo mayor",
+        "q5": 5,
+        "q6": 5,
+        "q7": "Otro",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0245",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Arquitectura",
+        "semestre": 6,
+        "promedio": 7.8,
+        "empleo": "Sí",
+        "horas_estudio": 12,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 9.6,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 4,
+        "q6": 5,
+        "q7": "Instalaciones",
+        "q8": 2,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0246",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 22,
+        "genero": "Femenino",
+        "carrera": "Nutrición",
+        "semestre": 7,
+        "promedio": 8.1,
+        "empleo": "Sí",
+        "horas_estudio": 8,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 5.9,
+        "q3": 4,
+        "q4": "Mucho menor",
+        "q5": 3,
+        "q6": 2,
+        "q7": "Otro",
+        "q8": 3,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0247",
+      "profile_id": "alto_compromiso",
+      "demographics": {
+        "edad": 24,
+        "genero": "Masculino",
+        "carrera": "Medicina",
+        "semestre": 7,
+        "promedio": 8.0,
+        "empleo": "Sí",
+        "horas_estudio": 14,
+        "situacion_economica": "Media-alta",
+        "apoyo_familiar": "Medio"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.3,
+        "q3": 3,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Otro",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0248",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 23,
+        "genero": "Femenino",
+        "carrera": "Biología",
+        "semestre": 4,
+        "promedio": 7.0,
+        "empleo": "Sí",
+        "horas_estudio": 10,
+        "situacion_economica": "Baja",
+        "apoyo_familiar": "Bajo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.9,
+        "q3": 5,
+        "q4": "Algo menor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Vida estudiantil",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0249",
+      "profile_id": "estudiante_trabajador",
+      "demographics": {
+        "edad": 20,
+        "genero": "Masculino",
+        "carrera": "Biología",
+        "semestre": 3,
+        "promedio": 8.3,
+        "empleo": "No",
+        "horas_estudio": 10,
+        "situacion_economica": "Media-baja",
+        "apoyo_familiar": "Nulo"
+      },
+      "answers": {
+        "q1": 4,
+        "q2": 6.0,
+        "q3": 2,
+        "q4": "Algo mayor",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Instalaciones",
+        "q8": 4,
+        "q9": null,
+        "q10": null
+      }
+    },
+    {
+      "respondent_id": "r_0250",
+      "profile_id": "desempeno_promedio",
+      "demographics": {
+        "edad": 24,
+        "genero": "Femenino",
+        "carrera": "Administración",
+        "semestre": 10,
+        "promedio": 8.1,
+        "empleo": "No",
+        "horas_estudio": 3,
+        "situacion_economica": "Media",
+        "apoyo_familiar": "Alto"
+      },
+      "answers": {
+        "q1": 3,
+        "q2": 5.3,
+        "q3": 3,
+        "q4": "Similar",
+        "q5": 3,
+        "q6": 4,
+        "q7": "Calidad docente",
+        "q8": 5,
+        "q9": null,
+        "q10": null
+      }
+    }
+  ],
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert_1_5",
+        "n": 250,
+        "mean": 3.17,
+        "std": 0.95,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "1": 9,
+          "2": 47,
+          "3": 108,
+          "4": 64,
+          "5": 22
+        }
+      },
+      "q2": {
+        "type": "numeric",
+        "n": 250,
+        "mean": 5.66,
+        "std": 2.05,
+        "min": 0.2,
+        "max": 10.0
+      },
+      "q3": {
+        "type": "likert_1_5",
+        "n": 250,
+        "mean": 3.24,
+        "std": 0.97,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "1": 9,
+          "2": 44,
+          "3": 98,
+          "4": 76,
+          "5": 23
+        }
+      },
+      "q4": {
+        "type": "multiple_choice",
+        "n": 250,
+        "distribution": {
+          "Similar": 101,
+          "Algo mayor": 69,
+          "Algo menor": 43,
+          "Mucho menor": 18,
+          "No sé": 10,
+          "Mucho mayor": 9
+        }
+      },
+      "q5": {
+        "type": "likert_1_5",
+        "n": 250,
+        "mean": 3.23,
+        "std": 0.96,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "1": 10,
+          "2": 41,
+          "3": 103,
+          "4": 74,
+          "5": 22
+        }
+      },
+      "q6": {
+        "type": "likert_1_5",
+        "n": 250,
+        "mean": 3.26,
+        "std": 0.95,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "1": 8,
+          "2": 44,
+          "3": 92,
+          "4": 86,
+          "5": 20
+        }
+      },
+      "q7": {
+        "type": "multiple_choice",
+        "n": 250,
+        "distribution": {
+          "Vida estudiantil": 44,
+          "Calidad docente": 38,
+          "Instalaciones": 37,
+          "Investigación": 36,
+          "Otro": 34,
+          "Prestigio histórico": 33,
+          "Resultados de egresados": 28
+        }
+      },
+      "q8": {
+        "type": "likert_1_5",
+        "n": 250,
+        "mean": 3.62,
+        "std": 1.14,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "1": 12,
+          "2": 35,
+          "3": 51,
+          "4": 89,
+          "5": 63
+        }
+      },
+      "q9": {
+        "type": "open",
+        "n_answered": 0,
+        "note": "Respuestas abiertas no sintetizadas en v1."
+      },
+      "q10": {
+        "type": "open",
+        "n_answered": 0,
+        "note": "Respuestas abiertas no sintetizadas en v1."
+      }
+    },
+    "global_summary": {
+      "promedio_medio": 7.79,
+      "promedio_std": 0.89,
+      "horas_estudio_media": 10.1,
+      "pct_con_empleo": 0.472
+    },
+    "demographics_summary": {
+      "por_carrera": {
+        "Derecho": 28,
+        "Psicología": 24,
+        "Medicina": 21,
+        "Contaduría": 21,
+        "Administración": 20,
+        "Biología": 19,
+        "Enfermería": 18,
+        "Ingeniería en Sistemas Computacionales": 18,
+        "Ingeniería Industrial": 17,
+        "Pedagogía": 17,
+        "Comunicación": 16,
+        "Arquitectura": 14,
+        "Ingeniería Civil": 9,
+        "Nutrición": 6,
+        "Negocios Internacionales": 2
+      },
+      "por_genero": {
+        "Femenino": 139,
+        "Masculino": 110,
+        "Prefiero no responder": 1
+      },
+      "por_situacion_economica": {
+        "Media": 77,
+        "Media-baja": 76,
+        "Media-alta": 48,
+        "Baja": 40,
+        "Alta": 9
+      },
+      "por_arquetipo": {
+        "desempeno_promedio": 60,
+        "estudiante_trabajador": 40,
+        "alto_rendimiento": 30,
+        "problemas_financieros": 28,
+        "riesgo_abandono": 25,
+        "estres_elevado": 22,
+        "bajo_compromiso": 14,
+        "alta_satisfaccion": 13,
+        "alto_compromiso": 13,
+        "baja_satisfaccion": 5
+      }
+    }
+  },
+  "cleaning_report": {
+    "n_respondents": 250,
+    "n_nulls_imputed": 0,
+    "n_range_clamps": 7,
+    "n_duplicates_removed": 0,
+    "notes": [
+      "Datos sintéticos: limpieza = validación de rangos/tipos y guardas de coherencia."
+    ]
+  },
+  "semantic": {
+    "semantic_document": "Instrumento: Reputación, pertenencia y crecimiento institucional. Propósito: Explorar la percepción estudiantil sobre el prestigio, el crecimiento y el sentido de pertenencia y recomendación de la institución. Constructo principal: Reputación percibida, pertenencia y crecimiento institucional. Dimensiones evaluadas: Reputación percibida, Crecimiento institucional, Sentido de pertenencia, Recomendación, Expectativa a futuro. Población objetivo: Estudiantes de licenciatura de universidades mexicanas, distintas carreras y semestres. Conceptos clave: reputación, prestigio, crecimiento institucional, pertenencia, recomendación, admisiones, orgullo institucional. Las preguntas exploran: ¿Qué tan buena consideras la reputación de tu institución en tu campo; ¿Qué tan probable es que recomiendes tu institución a alguien más; ¿Qué tan orgulloso/a te sientes de pertenecer a esta institución; Comparado con el ciclo anterior; ¿Qué tanto percibes que la institución mejora año con año; ¿Qué tan alineada está la institución con lo que esperabas al ingresar; ¿Qué influye más en la reputación que percibes de tu institución; ¿Qué tan probable es que continúes aquí si pudieras elegir de nuevo.",
+    "approx_tokens": 208,
+    "embedding_model": "paraphrase-multilingual-mpnet-base-v2",
+    "embedding_dim": 768,
+    "token_budget": 512,
+    "vector": null
+  },
+  "kpi_association": {
+    "method": "cosine_similarity",
+    "embedding_model": "paraphrase-multilingual-mpnet-base-v2",
+    "primary_kpi": null,
+    "secondary_kpis": [],
+    "all_candidates": [],
+    "generated_at": null,
+    "note": "Se completa en iteración 2 contra la colección de KPIs en ChromaDB."
+  }
+}

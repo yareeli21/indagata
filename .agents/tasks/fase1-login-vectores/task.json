@@ -1,0 +1,7 @@
+{
+  "task_id": "task-fase1-login-vectores",
+  "task_description": "Fase 1 de INDAGATA: (A) conectar el login del frontend pixel-perfect-pixel al backend JWT real del api-gateway; (B) agregar un endpoint read-only GET /vectorizacion/espacio en analysis-service que proyecta con PCA los embeddings de las colecciones kpis y summary_instrument de ChromaDB; (C) agregar una pantalla en espanol 'Espacio vectorial' en el frontend que dibuja esos puntos como dispersograma 2D, con botones de acceso desde el sidebar y al terminar una ingesta.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null
+}
