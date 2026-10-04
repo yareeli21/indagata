@@ -245,6 +245,10 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      ollama:
+        condition: service_started
+      chromadb:
+        condition: service_started
     environment:
       SERVICE_NAME: visualization-service
       POSTGRES_HOST: postgres
@@ -255,6 +259,15 @@ services:
       STORAGE_PATH: /app/storage
       JSON_PATH: /app/storage/json
       SAV_PATH: /app/storage/sav
+      RAW_PATH: /app/storage/raw
+      TEMP_PATH: /app/storage/temp
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
+      CHROMA_HOST: chromadb
+      CHROMA_PORT: 8000
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/paraphrase-multilingual-mpnet-base-v2}
+      STORAGE_SERVICE_URL: http://storage-service:8004
+      INSTRUMENT_SERVICE_URL: http://instrument-service:8001
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
       - "8005:8005"
@@ -262,6 +275,8 @@ services:
       - ./services/visualization-service:/app
       - ./shared:/app/shared
       - ./storage:/app/storage
+      # Cache persistente del modelo de embeddings (sentence-transformers).
+      - hf_cache:/root/.cache/huggingface
     networks:
       - indagata_network
     restart: unless-stopped

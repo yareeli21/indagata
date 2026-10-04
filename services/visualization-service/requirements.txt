@@ -3,3 +3,14 @@ uvicorn[standard]==0.30.0
 pydantic==2.9.0
 pydantic-settings==2.5.0
 python-dotenv==1.0.1
+
+# ── RAG (copiadas de services/analysis-service/requirements.txt) ──
+httpx==0.27.0
+# numpy<2: el cliente de chromadb usa np.float_, removido en numpy 2.0.
+numpy==1.26.4
+# chromadb-client 1.0.0: thin client HTTP (API v2) que usa chromadb.HttpClient.
+chromadb-client==1.0.0
+sentence-transformers==3.0.0
+# BD opcional para sources.resolver_artefacto (ruta_json por id_crudo).
+sqlalchemy==2.0.25
+psycopg[binary]==3.2.3
