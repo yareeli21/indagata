@@ -283,6 +283,26 @@ services:
       - indagata_network
     restart: unless-stopped
 
+  # ==================== VISOR DE VECTORES (ChromaDB) ====================
+  # Visor web read-only de los embeddings de Chroma: proyección PCA 2D coloreada
+  # por colección (kpis / summary_instrument). Standalone; NO toca ningún otro
+  # servicio. Fuente en .agents/tasks/chroma-viz/scratch/viewer (fuera de services/*).
+  chroma-viewer:
+    build:
+      context: ./.agents/tasks/chroma-viz/scratch/viewer
+      dockerfile: Dockerfile
+    container_name: indagata_chroma_viewer
+    environment:
+      CHROMA_HOST: chromadb
+      CHROMA_PORT: 8000
+    ports:
+      - "8085:8000"
+    depends_on:
+      - chromadb
+    networks:
+      - indagata_network
+    restart: unless-stopped
+
 networks:
   indagata_network:
     driver: bridge
