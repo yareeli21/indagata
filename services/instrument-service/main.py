@@ -21,7 +21,7 @@ from pathlib import Path
 # ── Resolver import de `shared` también en ejecución local ────────────────────
 # En Docker `shared` vive en /app/shared (misma cwd). En local, el paquete está
 # en la raíz del repo: services/instrument-service/main.py -> parents[2].
-if not (Path(__file__).resolve().parent / "shared").exists():
+if not (Path(__file__).resolve().parent / "shared" / "__init__.py").exists():
     _REPO_ROOT = Path(__file__).resolve().parents[2]
     if str(_REPO_ROOT) not in sys.path:
         sys.path.insert(0, str(_REPO_ROOT))
