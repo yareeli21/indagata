@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { iniciarSesion } from "@/api/auth";
+import { borrarToken } from "@/api/client";
 import type { Usuario } from "@/types";
 
 const CLAVE = "indagata.sesion";
@@ -37,6 +38,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const salir = useCallback(() => {
     window.localStorage.removeItem(CLAVE);
+    borrarToken();
     setUsuario(null);
   }, []);
 

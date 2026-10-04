@@ -69,10 +69,10 @@ function LoginPage() {
             <div className="relative">
               <input
                 id="usuario"
-                type="text"
+                type="email"
                 value={nombreUsuario}
                 onChange={(e) => setNombreUsuario(e.target.value)}
-                placeholder="Usuario"
+                placeholder="Correo electrónico"
                 autoComplete="username"
                 required
                 className="w-full border-0 border-b-[1.5px] border-border bg-transparent px-0.5 pb-3 pt-1.5 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary"
@@ -123,8 +123,8 @@ function LoginPage() {
             </p>
 
             <p className="text-center text-xs text-muted-foreground">
-              Acceso de demostración: <strong>ana</strong> (Investigador) o <strong>admin</strong>{" "}
-              (Administrador), con cualquier contraseña.
+              Acceso de demostración: <strong>admin@indagata.com</strong> (Administrador) o{" "}
+              <strong>investigador@indagata.com</strong> (Investigador).
             </p>
           </form>
         </section>
