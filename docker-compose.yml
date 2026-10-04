@@ -180,6 +180,9 @@ services:
       - ./services/analysis-service:/app
       - ./shared:/app/shared
       - ./storage:/app/storage
+      # Cache persistente del modelo de embeddings (sentence-transformers).
+      # Evita volver a descargarlo (varios cientos de MB) en cada rebuild/recreate.
+      - hf_cache:/root/.cache/huggingface
     networks:
       - indagata_network
     restart: unless-stopped
@@ -289,3 +292,4 @@ volumes:
   ollama_data:
   chromadb_data:
   redis_data:
+  hf_cache:
