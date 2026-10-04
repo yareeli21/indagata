@@ -1,0 +1,7 @@
+{
+  "task_id": "task-universidad-y-rediseno-panel",
+  "task_description": "Reorientar INDAGATA a educacion universitaria (reemplazar NIVELES_EDUCATIVOS por Licenciatura/Posgrado y reescribir todos los datos mock y textos de API a contexto universitario) y pulir el interior del panel (layout + pantallas instruments/upload/research/chat/kpis) con el estilo moderno del login aprobado (navy + crema, Poppins/Nunito, bordes redondeados, sombras, solo tokens semanticos).",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}
