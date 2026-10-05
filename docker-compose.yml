@@ -140,6 +140,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      # Debe coincidir con la SECRET_KEY del api-gateway para validar el JWT.
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-prod}
       STORAGE_PATH: /app/storage
       RAW_PATH: /app/storage/raw
       TEMP_PATH: /app/storage/temp
@@ -173,6 +175,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      # Debe coincidir con la SECRET_KEY del api-gateway para validar el JWT.
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-prod}
       OLLAMA_HOST: http://ollama:11434
       OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
       CHROMA_HOST: chromadb
@@ -207,6 +211,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      # Debe coincidir con la SECRET_KEY del api-gateway para validar el JWT.
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-prod}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
       - "8003:8003"
@@ -261,6 +267,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      # Debe coincidir con la SECRET_KEY del api-gateway para validar el JWT.
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-prod}
       STORAGE_PATH: /app/storage
       JSON_PATH: /app/storage/json
       SAV_PATH: /app/storage/sav
