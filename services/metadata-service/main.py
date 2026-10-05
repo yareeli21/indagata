@@ -10,9 +10,14 @@ from contextlib import asynccontextmanager
 import logging
 import os
 import sys
+from pathlib import Path
 
-# Add shared to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'shared'))
+# Resolver `import shared` también en ejecución local (igual que api-gateway).
+# En Docker `shared/` está copiado en /app/shared, por lo que esto no aplica.
+if not (Path(__file__).resolve().parent / "shared").exists():
+    _REPO_ROOT = Path(__file__).resolve().parents[2]
+    if str(_REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(_REPO_ROOT))
 
 # Configure logging
 logging.basicConfig(
@@ -27,18 +32,18 @@ PORT = 8003
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Handle startup and shutdown events"""
-    logger.info(f"🚀 {SERVICE_NAME} starting on port {PORT}...")
+    logger.info(f"{SERVICE_NAME} starting on port {PORT}...")
     try:
         # Initialize database if needed
         from db.database import init_db
         init_db()
-        logger.info("✅ Database initialized")
+        logger.info(" Database initialized")
     except Exception as e:
-        logger.error(f"❌ Failed to initialize database: {e}")
+        logger.error(f" Failed to initialize database: {e}")
     
     yield
     
-    logger.info(f"🛑 {SERVICE_NAME} shutting down...")
+    logger.info(f" {SERVICE_NAME} shutting down...")
 
 app = FastAPI(
     title=f"Indagata {SERVICE_NAME}",
@@ -64,9 +69,9 @@ try:
     app.include_router(metadata.router, prefix="/api", tags=["metadata"])
     app.include_router(enrichment.router, prefix="/api", tags=["enrichment"])
     
-    logger.info("✅ All routers registered")
+    logger.info("All routers registered")
 except ImportError as e:
-    logger.error(f"❌ Failed to import routers: {e}")
+    logger.error(f" Failed to import routers: {e}")
 
 if __name__ == "__main__":
     import uvicorn

@@ -1,0 +1,33 @@
+{
+  "project_type": "SPA TanStack Start + React 19 + Tailwind CSS v4, en espanol, sin backend, datos simulados. Plataforma para investigadores de educacion universitaria.",
+  "language": "TypeScript (TSX)",
+  "build_system": "Vite 8 con rolldown (overrides rolldown 1.2.1) + plugin TanStack Start + Nitro. El build es transpile-only: NO ejecuta typecheck completo. Gestor/ejecutor: bun 1.4.2 en Windows.",
+  "test_framework": "No hay framework de pruebas unitarias en el proyecto. La verificacion es build + eslint + revision visual.",
+  "build_command": "bun run build",
+  "test_command": "bun run build  (gate verde exit 0) y  bunx eslint src --fix  (sin errores)",
+  "verification_instructions": "1) bun run build debe terminar con exit 0 (es el gate principal; transpile-only). 2) bunx eslint src --fix normaliza fin de linea a LF (necesario por core.autocrlf=true en Windows, no hay .gitattributes) y debe quedar SIN errores; persisten solo 9 warnings preexistentes react-refresh/only-export-components que son aceptables. 3) Typecheck: bunx tsc --noEmit tiene 10 errores PREEXISTENTES (chat.ts, instrumentos.ts, GraficasKpi.tsx, FormularioContexto.tsx:36 'nivel !== \"\"', ArmarInvestigacionPage.tsx); el objetivo es NO introducir errores nuevos respecto a esa linea base (idealmente reducirlos), NO lograr un tsc limpio. 4) Sin clases de color literales (grep en src de 'bg-(blue|slate|gray|red|green)-|text-\\[#|bg-\\[#' debe dar 0). 5) src/routes/login.tsx sin cambios. 6) Valores de color de src/styles.css intactos.",
+  "snapshot_or_generated_files": "El build genera .output/ y .wrangler/ (artefactos, no se commitean). No hay snapshots que haya que regenerar.",
+  "environment_constraints": "Windows + PowerShell. core.autocrlf=true sin .gitattributes: los archivos del repo estan en LF pero el checkout local queda en CRLF, por eso eslint muestra ~7330 errores prettier/prettier 'Delete CR' que desaparecen con --fix y dejan los archivos en LF. Lovable esta conectado al repo: NO reescribir historia git (nada de push --force / rebase / amend de commits ya pusheados); mantener la rama en estado funcional. Commits locales, nunca push.",
+  "contribution_requirements": "AGENTS.md: (1) Interfaz 100% en espanol. (2) Las pantallas NUNCA importan src/mocks/ directo: todo acceso pasa por funciones asincronas en src/api/ (hoy resuelven con simularRed de src/api/client.ts); no agregar llamadas HTTP reales. (3) Sin backend/BD/auth externa; login simulado en src/api/auth.ts. (4) Organizacion por features en src/features/{auth,upload,instruments,research,chat,kpis}/; componentes compartidos en src/components/; un componente por archivo con props tipadas. (5) Tipos de dominio en src/types/index.ts incluida la lista cerrada de niveles. (6) Enrutamiento TanStack Router (src/routes/, layout global _panel.tsx). (7) Colores/tipografia/sombras SOLO como tokens semanticos de src/styles.css, nunca clases de color literales. ADEMAS (usuario): NO tocar src/routes/login.tsx (diseno aprobado) salvo que un cambio de tipos lo obligue; NO cambiar valores de color de src/styles.css (se pueden ANADIR tokens/utilidades nuevas).",
+  "key_patterns": "Tokens de color oklch en src/styles.css: --primary (navy), --primary-soft, --accent, --accent-soft (crema), --muted, --card, --border, --ring, --chart-1..5, tokens de sidebar. Utilidades: bg-primary, text-muted-foreground, font-display (Poppins para titulos h1-h4), font-sans (Nunito), rounded-2xl/3xl/4xl, shadow-card/shadow-soft/shadow-elevated. El nivel educativo se consume de forma GENERICA: se muestra como string (TablaInstrumentos, VistaRapida, Paso1/2/3), se compara por igualdad (filtros.ts, instrumentos.ts buscarRelacionados), se usa como etiqueta de eje en recharts (kpis.ts porNivel) y se itera NIVELES_EDUCATIVOS en los Select (FiltrosPanel, FormularioContexto, StepDublinCore). No hay nombres de nivel hardcodeados en logica fuera de src/mocks/ y textos de src/api/chat.ts, por eso cambiar los valores de la lista es seguro sin tocar la logica de los componentes.",
+  "relevant_files": [
+    "src/types/index.ts  (MODIFICAR: NIVELES_EDUCATIVOS)",
+    "src/mocks/data.ts  (MODIFICAR: 15 instrumentos, investigaciones, kpis, noticias, catalogoKpis)",
+    "src/mocks/carga.ts  (MODIFICAR: fila 'secundaria' del reporte de limpieza)",
+    "src/api/chat.ts  (MODIFICAR: CONTINUACIONES con 'primaria urbana y rural' / niveles)",
+    "src/api/kpis.ts  (ESTUDIAR: porNivel usa ins.nivel como etiqueta; getKpis/getNoticias/getCatalogoKpis)",
+    "src/api/instrumentos.ts  (ESTUDIAR: buscarRelacionados compara nivel)",
+    "src/features/instruments/filtros.ts  (ESTUDIAR/EXTENDER si se anade filtro estado/anio)",
+    "src/features/instruments/FiltrosPanel.tsx, InstrumentosPage.tsx, ChipsFiltros.tsx, TablaInstrumentos.tsx, VistaRapida.tsx, TipoBadge.tsx, EstadoVacio.tsx, MenuDescarga.tsx, DialogoEliminar.tsx",
+    "src/features/upload/UploadWizard.tsx, Stepper.tsx, StepArchivo.tsx, StepLimpieza.tsx, StepDublinCore.tsx, StepMetadatosTipo.tsx, JsonPreview.tsx, StepKpis.tsx, StepGuardar.tsx",
+    "src/features/research/ArmarInvestigacionPage.tsx, Stepper.tsx, Paso1Seleccion.tsx, Paso2Relacionados.tsx, Paso3Revision.tsx, ResearchContext.tsx",
+    "src/features/chat/ChatPage.tsx, BarraEntrada.tsx, BurbujaMensaje.tsx, ChipsFuentes.tsx, EstadoVacioChat.tsx, FormularioContexto.tsx, PanelNoticias.tsx",
+    "src/features/kpis/KpisPage.tsx, TarjetaKpi.tsx, DetalleKpi.tsx, GraficasKpi.tsx",
+    "src/components/layout/Sidebar.tsx, Header.tsx, ResearchSelector.tsx, PagePlaceholder.tsx",
+    "src/routes/_panel.tsx (layout), _panel.instrumentos.index.tsx, _panel.instrumentos.nuevo.tsx, _panel.investigacion.tsx, _panel.kpis.tsx, _panel.chat.tsx",
+    "src/routes/login.tsx  (REFERENCIA de estilo aprobado — NO MODIFICAR)",
+    "src/styles.css  (tokens; se pueden ANADIR, no cambiar los existentes)",
+    "src/components/ui/*  (primitivos: button, card, badge, input, label, select, tabs, toggle-group, separator, chart, etc. — REUTILIZAR, no crear primitivos nuevos)"
+  ],
+  "directory_structure": "src/types (tipos de dominio), src/mocks (datos simulados, nunca importados por pantallas), src/api (funciones async que envuelven mocks con simularRed de client.ts), src/features/{auth,instruments,upload,research,chat,kpis} (una pantalla por feature), src/components/layout (Sidebar/Header/ResearchSelector/PagePlaceholder), src/components/ui (primitivos shadcn-style), src/routes (TanStack Router, _panel.tsx es el layout global, login.tsx la ruta de acceso), src/styles.css (sistema de diseno en tokens oklch)."
+}

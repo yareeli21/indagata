@@ -1,7 +1,10 @@
 fastapi==0.115.6
 uvicorn[standard]==0.30.0
 sqlalchemy==2.0.25
-psycopg[binary]==3.2.0
+psycopg[binary]==3.2.3
 pydantic==2.9.0
 pydantic-settings==2.5.0
 python-dotenv==1.0.1
+
+# ── Validación de email (shared.schemas.usuario usa pydantic EmailStr) ──
+email-validator==2.1.0

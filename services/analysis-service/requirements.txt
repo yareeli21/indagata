@@ -1,11 +1,19 @@
 fastapi==0.115.6
 uvicorn[standard]==0.30.0
 sqlalchemy==2.0.25
-psycopg[binary]==3.2.0
+psycopg[binary]==3.2.3
 pydantic==2.9.0
 pydantic-settings==2.5.0
 python-dotenv==1.0.1
-langchain==0.3.0
-langchain-ollama==0.1.0
-langchain-community==0.1.0
+python-multipart==0.0.6
 httpx==0.27.0
+
+# ── Vectorización e inferencia de KPIs ──
+# numpy<2: el cliente de chromadb usa np.float_, removido en numpy 2.0.
+numpy==1.26.4
+# chromadb-client 1.0.0: thin client HTTP que habla la API v2 del servidor
+# ChromaDB 1.0.0 (el servidor eliminó la API v1). Usa el mismo namespace
+# chromadb.HttpClient, así que no requiere cambios de código. El paquete
+# completo chromadb==1.0.0 choca con fastapi==0.115.6; el client-only no.
+chromadb-client==1.0.0
+sentence-transformers==3.0.0
