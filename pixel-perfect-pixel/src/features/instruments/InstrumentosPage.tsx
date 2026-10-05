@@ -55,12 +55,22 @@ export function InstrumentosPage() {
   async function confirmarEliminar() {
     if (!aEliminar) return;
     setEliminando(true);
-    await eliminarInstrumento(aEliminar.id);
-    setLista((l) => (l ?? []).filter((i) => i.id !== aEliminar.id));
-    toast.success(`Se eliminó el instrumento «${aEliminar.titulo}»`);
-    setEliminando(false);
-    setAEliminar(null);
-    setSeleccionado(null);
+    try {
+      await eliminarInstrumento(aEliminar.id);
+      setLista((l) => (l ?? []).filter((i) => i.id !== aEliminar.id));
+      toast.success(`Se eliminó el instrumento «${aEliminar.titulo}»`);
+      setAEliminar(null);
+      setSeleccionado(null);
+    } catch (error) {
+      // El backend refuerza la propiedad: un investigador que intenta borrar un
+      // instrumento ajeno recibe 403 ("Solo puedes eliminar instrumentos que tú
+      // subiste."). Se muestra ese mensaje y NO se quita de la lista (no se borró).
+      const mensaje =
+        error instanceof Error ? error.message : "No se pudo eliminar el instrumento.";
+      toast.error(mensaje);
+    } finally {
+      setEliminando(false);
+    }
   }
 
   let contenido: React.ReactNode;
