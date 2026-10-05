@@ -5,6 +5,7 @@ Handles enriched metadata proposals generated after LLM analysis.
 Enriched metadata adds inferred context beyond the basic 13 Dublin Core fields.
 
 Workflow:
+1.- metadata r
 1. analysis-service completes LLM processing
 2. analysis-service calls POST /enrichment/{id} with proposals
 3. User reviews proposals via GET /enrichment/{id}
@@ -58,7 +59,7 @@ async def create_enrichment_proposals(
     """
     try:
         result = EnrichmentEngine.create_proposals(db, instrumento_id, proposals)
-        logger.info(f"✅ Created {len(proposals)} enrichment proposals for instrument {instrumento_id}")
+        logger.info(f" Created {len(proposals)} enrichment proposals for instrument {instrumento_id}")
         return {
             "instrumento_id": instrumento_id,
             "n_proposals": len(proposals),
@@ -68,7 +69,7 @@ async def create_enrichment_proposals(
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"❌ Error creating enrichment proposals: {e}")
+        logger.error(f" Error creating enrichment proposals: {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to create enrichment proposals"
@@ -100,7 +101,7 @@ async def get_enrichment_proposals(
             instrumento_id,
             filter_status=filter_status
         )
-        logger.info(f"✅ Retrieved enrichment proposals for instrument {instrumento_id}")
+        logger.info(f" Retrieved enrichment proposals for instrument {instrumento_id}")
         
         # Count by status
         stats = {
@@ -118,7 +119,7 @@ async def get_enrichment_proposals(
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"❌ Error retrieving enrichment proposals: {e}")
+        logger.error(f" Error retrieving enrichment proposals: {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to retrieve enrichment proposals"

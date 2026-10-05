@@ -15,7 +15,7 @@ import logging
 from contextlib import asynccontextmanager
 
 # Local imports
-from db import init_db, get_db, engine
+from shared.db import init_db, get_db, engine
 from routers import documents, health
 from sqlalchemy.orm import Session
 
