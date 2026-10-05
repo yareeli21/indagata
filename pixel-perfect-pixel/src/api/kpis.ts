@@ -1,23 +1,57 @@
 import { kpis, noticias, catalogoKpis } from "@/mocks/data";
 import { instrumentos } from "@/mocks/data";
 import type { DatosGrafica, Kpi, KpiCatalogo, Noticia } from "@/types";
-import { simularRed } from "./client";
+import { API_URL, pedir, simularRed } from "./client";
 
+// TODO: no hay endpoint de KPIs de tablero (p. ej. GET /kpis/tablero); queda mock.
 export function getKpis(): Promise<Kpi[]> {
   return simularRed(kpis);
 }
 
+// TODO: no hay endpoint de noticias (p. ej. GET /noticias); queda mock.
 export function getNoticias(): Promise<Noticia[]> {
   return simularRed(noticias);
 }
 
-export function getCatalogoKpis(): Promise<KpiCatalogo[]> {
-  return simularRed(catalogoKpis);
+/**
+ * Catálogo de KPIs real: GET /instrumentos/kpis/catalogo (gateway) → list[str]
+ * (unión de nombres de KPIs de los instrumentos). El backend solo expone NOMBRES;
+ * `KpiCatalogo` es más rico, así que los campos de texto quedan vacíos con TODO.
+ * Si la respuesta viene vacía (p. ej. antes de confirmar KPIs) se degrada a mock
+ * para no dejar la página en blanco.
+ */
+export async function getCatalogoKpis(): Promise<KpiCatalogo[]> {
+  let nombres: string[] = [];
+  try {
+    nombres = await pedir<string[]>(`${API_URL}/instrumentos/kpis/catalogo`, { auth: true });
+  } catch {
+    // Fallback a mock ante fallo de red/servicio para no romper la página.
+    return simularRed(catalogoKpis);
+  }
+
+  if (!nombres || nombres.length === 0) return simularRed(catalogoKpis);
+
+  // Mapeo list[str] → KpiCatalogo[]. TODO: no hay endpoint con la descripción
+  // detallada del KPI (tt_rag.kpi tiene descripcion/categoria/ambito/formula, pero
+  // no se expone); falta un GET /instrumentos/kpis/catalogo-detallado.
+  return nombres.map((nombre) => ({
+    id: nombre.toLowerCase().replace(/\s+/g, "-"),
+    nombre,
+    descripcionCorta: "",
+    queEs: "",
+    queMide: "",
+    comoSeMide: "",
+    formula: "",
+    infoGeneral: "",
+    icono: "ChartBar",
+    etiquetas: [],
+  }));
 }
 
 /**
  * Calcula datos de gráficas para un KPI dado un conjunto de instrumentos (fuentes).
- * Futuro: GET /kpis/{id}/datos?instrumentIds=...
+ * TODO: no hay endpoint de datos de gráfica (p. ej. GET /kpis/{id}/datos?instrumentIds=...);
+ * queda mock.
  */
 export function getDatosGrafica(kpiId: string, fuenteIds: string[]): Promise<DatosGrafica | null> {
   const catalogoEntry = catalogoKpis.find((k) => k.id === kpiId);

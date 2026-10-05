@@ -7,12 +7,17 @@ por prefijo, y devuelve el status y el cuerpo del upstream de forma transparente
 JSON de dominio directo con el status HTTP real (incluye 401/404/409/422).
 
 Prefijos passthrough:
-  - /instrumentos/*   → instrument-service :8001   (GET/POST/DELETE)
-  - /almacenamiento/* → storage-service :8004      (GET/POST)
-  - /rag/*            → visualization-service :8005 (POST; /rag/chat es SSE)
+  - /instrumentos/*     → instrument-service :8001   (GET/POST/DELETE)
+  - /almacenamiento/*   → storage-service :8004      (GET/POST)
+  - /rag/*              → visualization-service :8005 (POST; /rag/chat es SSE)
+  - /api/metadata/*     → metadata-service :8003      (GET/POST/DELETE)
+  - /api/enrichment/*   → metadata-service :8003      (GET/POST/DELETE)
 
-`analysis-service` lo consume el frontend de forma directa (no se proxea aquí) y
-`metadata-service` NO se proxea en esta tanda por alcance (ver design.md §5.2).
+`analysis-service` lo consume el frontend de forma directa (no se proxea aquí). El
+`metadata-service` SÍ se proxea por el gateway (puerta única): los prefijos
+`/api/metadata/*` y `/api/enrichment/*` se reenvían AS-IS a `metadata-service`
+preservando el doble segmento real de sus rutas (p. ej.
+`/api/metadata/metadata/{id}/init`); ver design.md §5.
 """
 
 from __future__ import annotations
@@ -146,3 +151,48 @@ async def rag_chat(request: Request) -> StreamingResponse:
 @router.post("/rag/{path:path}")
 async def rag_post(request: Request, path: str = "") -> Response:
     return await proxy_request("visualization", _ruta_upstream("/rag", path), request, "POST")
+
+
+# ---------------------------------------------------------------------------
+# Metadatos (Dublin Core) → metadata-service :8003
+# El path se reenvía TAL CUAL, por lo que el doble segmento real del servicio
+# (`/api/metadata/metadata/{id}/init`) se preserva de punta a punta. Rutas base
+# (`/api/metadata`) y por sub-path explícitas para evitar el redirect 307.
+# ---------------------------------------------------------------------------
+@router.get("/api/metadata")
+@router.get("/api/metadata/{path:path}")
+async def metadata_get(request: Request, path: str = "") -> Response:
+    return await proxy_request("metadata", _ruta_upstream("/api/metadata", path), request, "GET")
+
+
+@router.post("/api/metadata")
+@router.post("/api/metadata/{path:path}")
+async def metadata_post(request: Request, path: str = "") -> Response:
+    return await proxy_request("metadata", _ruta_upstream("/api/metadata", path), request, "POST")
+
+
+@router.delete("/api/metadata")
+@router.delete("/api/metadata/{path:path}")
+async def metadata_delete(request: Request, path: str = "") -> Response:
+    return await proxy_request("metadata", _ruta_upstream("/api/metadata", path), request, "DELETE")
+
+
+# ---------------------------------------------------------------------------
+# Enriquecimiento → metadata-service :8003 (mismo patrón que /api/metadata).
+# ---------------------------------------------------------------------------
+@router.get("/api/enrichment")
+@router.get("/api/enrichment/{path:path}")
+async def enrichment_get(request: Request, path: str = "") -> Response:
+    return await proxy_request("metadata", _ruta_upstream("/api/enrichment", path), request, "GET")
+
+
+@router.post("/api/enrichment")
+@router.post("/api/enrichment/{path:path}")
+async def enrichment_post(request: Request, path: str = "") -> Response:
+    return await proxy_request("metadata", _ruta_upstream("/api/enrichment", path), request, "POST")
+
+
+@router.delete("/api/enrichment")
+@router.delete("/api/enrichment/{path:path}")
+async def enrichment_delete(request: Request, path: str = "") -> Response:
+    return await proxy_request("metadata", _ruta_upstream("/api/enrichment", path), request, "DELETE")

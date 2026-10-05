@@ -37,10 +37,11 @@ class DCManager:
         - dc_title: suggested from instrument name
         """
         from shared.models.instrumento_procesado import InstrumentoProcesado
+        from shared.models.raw_data import RawData
         
-        # Get instrument
+        # Get instrument (PK real: id_instrumento)
         instrumento = db.query(InstrumentoProcesado).filter(
-            InstrumentoProcesado.instrumento_id == instrumento_id
+            InstrumentoProcesado.id_instrumento == instrumento_id
         ).first()
         
         if not instrumento:
@@ -49,6 +50,14 @@ class DCManager:
                 detail=f"Instrument {instrumento_id} not found"
             )
         
+        # tipo_instrumento y nombre del archivo viven en raw_data (via id_crudo),
+        # NO en instrumento_procesado.
+        raw = db.query(RawData).filter(
+            RawData.id_crudo == instrumento.id_crudo
+        ).first()
+        tipo_instrumento = raw.tipo_instrumento if raw else None
+        nombre_archivo = raw.nombre_archivo if raw else None
+        
         # Get user (TODO: from authentication context)
         # For now, use a placeholder
         usuario_nombre = "Sistema"  # Would come from auth context
@@ -56,23 +65,25 @@ class DCManager:
         # Get config
         app_name = os.getenv("APP_NAME", "Indagata")
         
-        # Get file extension
+        # Get file extension (ruta_json o ruta_de_archivo_limpio son las rutas reales
+        # del modelo; instrumento no tiene `ruta_archivo`).
         file_format = "unknown"
-        if instrumento.ruta_archivo:
+        ruta = instrumento.ruta_json or instrumento.ruta_de_archivo_limpio
+        if ruta:
             try:
-                file_format = Path(instrumento.ruta_archivo).suffix.lstrip(".")
-            except:
+                file_format = Path(ruta).suffix.lstrip(".") or "unknown"
+            except Exception:
                 pass
         
         return {
             "instrumento_id": instrumento_id,
             "dc_creator": usuario_nombre,
             "dc_publisher": app_name,
-            "dc_type": instrumento.tipo_instrumento,
+            "dc_type": tipo_instrumento,
             "dc_format": file_format,
             "dc_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
             "dc_language": "es",
-            "dc_title_sugerido": instrumento.nombre or instrumento.archivo_nombre or "Sin título",
+            "dc_title_sugerido": nombre_archivo or "Sin título",
         }
     
     @staticmethod
@@ -90,10 +101,11 @@ class DCManager:
         """
         from shared.models.instrumento_procesado import InstrumentoProcesado
         from shared.models.metadatos_dc import MetadatosDC
+        from shared.models.raw_data import RawData
         
-        # 1. Get instrument
+        # 1. Get instrument (PK real: id_instrumento)
         instrumento = db.query(InstrumentoProcesado).filter(
-            InstrumentoProcesado.instrumento_id == instrumento_id
+            InstrumentoProcesado.id_instrumento == instrumento_id
         ).first()
         
         if not instrumento:
@@ -102,9 +114,16 @@ class DCManager:
                 detail=f"Instrument {instrumento_id} not found"
             )
         
+        # tipo_instrumento vive en raw_data (via id_crudo); MetadatosDC se identifica
+        # por id_crudo (PK/FK real), no por un `instrumento_id` inexistente.
+        raw = db.query(RawData).filter(
+            RawData.id_crudo == instrumento.id_crudo
+        ).first()
+        tipo_instrumento = raw.tipo_instrumento if raw else None
+        
         # 2. Check if metadata already exists (immutability)
         existing = db.query(MetadatosDC).filter(
-            MetadatosDC.instrumento_id == instrumento_id
+            MetadatosDC.id_crudo == instrumento.id_crudo
         ).first()
         
         if existing:
@@ -118,22 +137,23 @@ class DCManager:
         usuario_nombre = request.get("dc_creator", "Sistema")
         
         file_format = "unknown"
-        if instrumento.ruta_archivo:
+        ruta = instrumento.ruta_json or instrumento.ruta_de_archivo_limpio
+        if ruta:
             try:
-                file_format = Path(instrumento.ruta_archivo).suffix.lstrip(".")
-            except:
+                file_format = Path(ruta).suffix.lstrip(".") or "unknown"
+            except Exception:
                 pass
         
-        # 4. Create metadata record
+        # 4. Create metadata record (clave real: id_crudo)
         metadatos = MetadatosDC(
-            instrumento_id=instrumento_id,
+            id_crudo=instrumento.id_crudo,
             dc_title=request.get("dc_title"),
             dc_creator=usuario_nombre,
             dc_subject=json.dumps(request.get("dc_subject", []), ensure_ascii=False),
             dc_description=request.get("dc_description"),
             dc_publisher=app_name,
             dc_date=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
-            dc_type=instrumento.tipo_instrumento,
+            dc_type=tipo_instrumento,
             dc_format=file_format,
             dc_language="es",
             dc_coverage=request.get("dc_coverage"),
@@ -144,9 +164,8 @@ class DCManager:
         
         db.add(metadatos)
         
-        # 5. Update instrument state
-        instrumento.estado = "metadata_registrado"
-        instrumento.nombre = request.get("dc_title", instrumento.nombre)
+        # 5. Update instrument state (valor del CHECK: 'metadatos_registrados', plural)
+        instrumento.estado = "metadatos_registrados"
         instrumento.fecha_procesamiento = datetime.now(timezone.utc)
         
         db.add(instrumento)
@@ -158,7 +177,7 @@ class DCManager:
         # 6. Return complete response
         return {
             "instrumento_id": instrumento_id,
-            "estado": "metadata_registrado",
+            "estado": "metadatos_registrados",
             "dc_title": metadatos.dc_title,
             "dc_creator": metadatos.dc_creator,
             "dc_subject": json.loads(metadatos.dc_subject),
@@ -178,10 +197,22 @@ class DCManager:
     @staticmethod
     def get_dc(db: Session, instrumento_id: int) -> dict:
         """Retrieve Dublin Core metadata"""
+        from shared.models.instrumento_procesado import InstrumentoProcesado
         from shared.models.metadatos_dc import MetadatosDC
         
+        # Resolver id_crudo desde id_instrumento (MetadatosDC se identifica por id_crudo).
+        instrumento = db.query(InstrumentoProcesado).filter(
+            InstrumentoProcesado.id_instrumento == instrumento_id
+        ).first()
+        
+        if not instrumento:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Instrument {instrumento_id} not found"
+            )
+        
         metadatos = db.query(MetadatosDC).filter(
-            MetadatosDC.instrumento_id == instrumento_id
+            MetadatosDC.id_crudo == instrumento.id_crudo
         ).first()
         
         if not metadatos:
@@ -221,7 +252,7 @@ class DCManager:
             "limit": limit,
             "metadatos": [
                 {
-                    "instrumento_id": m.instrumento_id,
+                    "id_crudo": m.id_crudo,
                     "dc_title": m.dc_title,
                     "dc_creator": m.dc_creator,
                     "dc_type": m.dc_type,
@@ -234,10 +265,22 @@ class DCManager:
     @staticmethod
     def delete_dc(db: Session, instrumento_id: int) -> None:
         """Delete metadata (for cleanup/re-registration)"""
+        from shared.models.instrumento_procesado import InstrumentoProcesado
         from shared.models.metadatos_dc import MetadatosDC
         
+        # Resolver id_crudo desde id_instrumento (MetadatosDC se identifica por id_crudo).
+        instrumento = db.query(InstrumentoProcesado).filter(
+            InstrumentoProcesado.id_instrumento == instrumento_id
+        ).first()
+        
+        if not instrumento:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Metadata not found for instrument {instrumento_id}"
+            )
+        
         metadatos = db.query(MetadatosDC).filter(
-            MetadatosDC.instrumento_id == instrumento_id
+            MetadatosDC.id_crudo == instrumento.id_crudo
         ).first()
         
         if not metadatos:
