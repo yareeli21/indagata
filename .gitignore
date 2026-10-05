@@ -33,3 +33,7 @@ frontend/landing/dist/
 .idea/
 .DS_Store
 Thumbs.db
+
+# ── Artefactos de verificación / runtime ──────────────────────────────────────
+docker-compose.verify.yml
+storage/raw/*.txt
