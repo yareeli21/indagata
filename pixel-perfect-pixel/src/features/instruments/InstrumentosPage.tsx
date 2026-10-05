@@ -37,11 +37,27 @@ export function InstrumentosPage() {
   const [eliminando, setEliminando] = useState(false);
 
   useEffect(() => {
-    Promise.all([getInstrumentos(), getInvestigadores(), getCatalogoKpis()]).then(([i, inv, k]) => {
-      setLista(i);
-      setInvestigadores(inv);
-      setCatalogo(k);
-    });
+    let activo = true;
+    Promise.all([getInstrumentos(), getInvestigadores(), getCatalogoKpis()])
+      .then(([i, inv, k]) => {
+        if (!activo) return;
+        setLista(i);
+        setInvestigadores(inv);
+        setCatalogo(k);
+      })
+      .catch((error: unknown) => {
+        // Sin este catch, un fallo (p. ej. 401 por token, red caída) dejaba la
+        // pantalla "Cargando…" girando para siempre. Ahora se corta el spinner
+        // (lista = []) y se avisa con el mensaje real del backend.
+        if (!activo) return;
+        setLista([]);
+        const mensaje =
+          error instanceof Error ? error.message : "No se pudieron cargar los instrumentos.";
+        toast.error(mensaje);
+      });
+    return () => {
+      activo = false;
+    };
   }, []);
 
   const base = useMemo(
