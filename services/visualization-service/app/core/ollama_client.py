@@ -26,6 +26,26 @@ logger = logging.getLogger("visualization-service")
 
 _TIMEOUT = httpx.Timeout(connect=5.0, read=120.0, write=120.0, pool=5.0)
 
+# Opciones de rendimiento para GPUs con poca VRAM (p. ej. GTX 1650, 4 GiB).
+# - keep_alive=-1: mantiene el modelo cargado en VRAM mientras viva el contenedor,
+#   eliminando el recargado (~20 s) que Ollama hace tras OLLAMA_KEEP_ALIVE (5 min).
+# - num_ctx=2048: ventana de contexto suficiente para el prompt del RAG (hasta ~5
+#   fuentes + pregunta); reduce el KV-cache y deja más VRAM para los pesos, evitando
+#   el offload parcial a CPU que ralentiza la generación.
+_KEEP_ALIVE = "-1"
+_OPTIONS = {"num_ctx": 2048}
+
+
+def _payload(modelo: str, prompt: str, *, stream: bool) -> dict:
+    """Arma el cuerpo de /api/generate con las opciones de rendimiento."""
+    return {
+        "model": modelo,
+        "prompt": prompt,
+        "stream": stream,
+        "keep_alive": _KEEP_ALIVE,
+        "options": _OPTIONS,
+    }
+
 MENSAJE_DEGRADADO = (
     "No se pudo contactar al modelo local (Ollama). Se muestran las fuentes "
     "recuperadas de tus instrumentos; reintenta cuando el modelo esté disponible."
@@ -42,7 +62,7 @@ async def generar_stream(prompt: str, modelo: str) -> AsyncIterator[str]:
     Ante error de conexión/timeout produce un único trozo con el mensaje de
     degradación y termina (no lanza).
     """
-    payload = {"model": modelo, "prompt": prompt, "stream": True}
+    payload = _payload(modelo, prompt, stream=True)
     try:
         async with httpx.AsyncClient(timeout=_TIMEOUT) as cliente:
             async with cliente.stream("POST", _url(), json=payload) as resp:
@@ -73,7 +93,7 @@ async def generar_no_stream(prompt: str, modelo: str) -> tuple[str, bool]:
 
     `degradado=True` si Ollama no estuvo disponible o devolvió error.
     """
-    payload = {"model": modelo, "prompt": prompt, "stream": False}
+    payload = _payload(modelo, prompt, stream=False)
     try:
         async with httpx.AsyncClient(timeout=_TIMEOUT) as cliente:
             resp = await cliente.post(_url(), json=payload)

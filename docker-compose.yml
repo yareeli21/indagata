@@ -33,6 +33,11 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility
       - OLLAMA_DEBUG=1
+      # Mantener el modelo cargado en VRAM indefinidamente (no descargarlo tras 5 min
+      # inactivo). Evita el recargado de ~20 s en cada pregunta tras una pausa. En una
+      # GPU de 4 GiB (GTX 1650) esto, junto con num_ctx=2048 en el cliente, mantiene el
+      # modelo 100% en GPU y las respuestas en ~2 s en vez de ~24 s.
+      - OLLAMA_KEEP_ALIVE=-1
     ports:
       - "11434:11434"
     volumes:

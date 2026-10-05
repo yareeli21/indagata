@@ -9,6 +9,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY services/visualization-service/requirements.txt ./requirements.txt
+# torch CPU-only: el visualization-service solo usa torch para los embeddings
+# (sentence-transformers), que corren rápido en CPU para textos cortos (preguntas y
+# chunks). La GPU la usa Ollama, que es otro contenedor. Instalar torch desde el
+# índice CPU de PyTorch ANTES del resto evita arrastrar ~2.5 GB de wheels CUDA de
+# nvidia, reduciendo la imagen de ~3 GB a ~800 MB y el build de ~15 min a ~3 min.
+RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu torch==2.2.2
 RUN pip install --no-cache-dir -r requirements.txt
 
 FROM python:3.12-slim
