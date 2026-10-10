@@ -13,7 +13,7 @@ import {
   YAxis,
 } from "recharts";
 import { ChartContainer, type ChartConfig } from "@/components/ui/chart";
-import type { DatosGrafica, KpiCatalogo } from "@/types";
+import type { DatosGrafica, EvidenciaKpiInstrumento, KpiCatalogo } from "@/types";
 
 interface GraficasKpiProps {
   kpi: KpiCatalogo;
@@ -69,121 +69,186 @@ export function GraficasKpi({ kpi, datos, cargando }: GraficasKpiProps) {
   }
 
   return (
-    <div className="grid gap-6 md:grid-cols-3">
-      {/* Gráfica de barras — por nivel educativo */}
-      <TarjetaGrafica
-        titulo="Por nivel educativo"
-        subtitulo="Reactivos totales"
-        fuentesConteo={datos.fuentesConteo}
-      >
-        <ChartContainer config={configBarras} className="h-40 w-full">
-          <BarChart data={datos.porNivel} margin={{ top: 4, right: 4, bottom: 4, left: -20 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="etiqueta" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-            <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-            <Tooltip
-              content={({ active, payload, label }) => {
-                const punto = payload?.[0];
-                return active && punto ? (
-                  <div className="rounded-lg border bg-background px-3 py-2 shadow-md text-xs">
-                    <p className="font-medium">{label}</p>
-                    <p className="text-muted-foreground">{punto.value} reactivos</p>
-                  </div>
-                ) : null;
-              }}
-            />
-            <Bar dataKey="valor" fill="var(--color-valor)" radius={[4, 4, 0, 0]} />
-          </BarChart>
-        </ChartContainer>
-      </TarjetaGrafica>
-
-      {/* Gráfica de líneas — evolución por año */}
-      <TarjetaGrafica
-        titulo="Evolución por año"
-        subtitulo="Reactivos acumulados"
-        fuentesConteo={datos.fuentesConteo}
-      >
-        <ChartContainer config={configLineas} className="h-40 w-full">
-          <LineChart data={datos.porAnio} margin={{ top: 4, right: 4, bottom: 4, left: -20 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="etiqueta" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-            <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-            <Tooltip
-              content={({ active, payload, label }) => {
-                const punto = payload?.[0];
-                return active && punto ? (
-                  <div className="rounded-lg border bg-background px-3 py-2 shadow-md text-xs">
-                    <p className="font-medium">{label}</p>
-                    <p className="text-muted-foreground">{punto.value} reactivos</p>
-                  </div>
-                ) : null;
-              }}
-            />
-            <Line
-              type="monotone"
-              dataKey="valor"
-              stroke="var(--color-valor)"
-              strokeWidth={2}
-              dot={{ r: 3, fill: "var(--color-valor)" }}
-              activeDot={{ r: 5 }}
-            />
-          </LineChart>
-        </ChartContainer>
-      </TarjetaGrafica>
-
-      {/* Gráfica de dona — por tipo de instrumento */}
-      <TarjetaGrafica
-        titulo="Por tipo de instrumento"
-        subtitulo="Distribución de fuentes"
-        fuentesConteo={datos.fuentesConteo}
-      >
-        <ChartContainer config={configDona} className="h-40 w-full">
-          <PieChart>
-            <Pie
-              data={datos.porTipo}
-              dataKey="valor"
-              nameKey="etiqueta"
-              cx="50%"
-              cy="50%"
-              innerRadius={38}
-              outerRadius={60}
-              paddingAngle={3}
-            >
-              {datos.porTipo.map((_, idx) => (
-                <Cell key={idx} fill={COLORES_DONA[idx % COLORES_DONA.length]} />
-              ))}
-            </Pie>
-            <Tooltip
-              content={({ active, payload }) => {
-                const punto = payload?.[0];
-                return active && punto ? (
-                  <div className="rounded-lg border bg-background px-3 py-2 shadow-md text-xs">
-                    <p className="font-medium">{punto.name}</p>
-                    <p className="text-muted-foreground">
-                      {punto.value} instrumento{Number(punto.value) !== 1 ? "s" : ""}
-                    </p>
-                  </div>
-                ) : null;
-              }}
-            />
-          </PieChart>
-        </ChartContainer>
-        {/* Leyenda manual */}
-        <div className="mt-2 flex flex-wrap justify-center gap-2">
-          {datos.porTipo.map((p, idx) => (
-            <div
-              key={p.etiqueta}
-              className="flex items-center gap-1 text-[10px] text-muted-foreground"
-            >
-              <span
-                className="size-2 rounded-full"
-                style={{ background: COLORES_DONA[idx % COLORES_DONA.length] }}
+    <div className="space-y-6">
+      <div className="grid gap-6 md:grid-cols-3">
+        {/* Gráfica de barras — por nivel educativo */}
+        <TarjetaGrafica
+          titulo="Por nivel educativo"
+          subtitulo="Reactivos totales"
+          fuentesConteo={datos.fuentesConteo}
+        >
+          <ChartContainer config={configBarras} className="h-40 w-full">
+            <BarChart data={datos.porNivel} margin={{ top: 4, right: 4, bottom: 4, left: -20 }}>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+              <XAxis dataKey="etiqueta" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
+              <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
+              <Tooltip
+                content={({ active, payload, label }) => {
+                  const punto = payload?.[0];
+                  return active && punto ? (
+                    <div className="rounded-lg border bg-background px-3 py-2 shadow-md text-xs">
+                      <p className="font-medium">{label}</p>
+                      <p className="text-muted-foreground">{punto.value} reactivos</p>
+                    </div>
+                  ) : null;
+                }}
               />
-              {p.etiqueta}
+              <Bar dataKey="valor" fill="var(--color-valor)" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ChartContainer>
+        </TarjetaGrafica>
+
+        {/* Gráfica de líneas — evolución por año */}
+        <TarjetaGrafica
+          titulo="Evolución por año"
+          subtitulo="Reactivos acumulados"
+          fuentesConteo={datos.fuentesConteo}
+        >
+          <ChartContainer config={configLineas} className="h-40 w-full">
+            <LineChart data={datos.porAnio} margin={{ top: 4, right: 4, bottom: 4, left: -20 }}>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+              <XAxis dataKey="etiqueta" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
+              <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
+              <Tooltip
+                content={({ active, payload, label }) => {
+                  const punto = payload?.[0];
+                  return active && punto ? (
+                    <div className="rounded-lg border bg-background px-3 py-2 shadow-md text-xs">
+                      <p className="font-medium">{label}</p>
+                      <p className="text-muted-foreground">{punto.value} reactivos</p>
+                    </div>
+                  ) : null;
+                }}
+              />
+              <Line
+                type="monotone"
+                dataKey="valor"
+                stroke="var(--color-valor)"
+                strokeWidth={2}
+                dot={{ r: 3, fill: "var(--color-valor)" }}
+                activeDot={{ r: 5 }}
+              />
+            </LineChart>
+          </ChartContainer>
+        </TarjetaGrafica>
+
+        {/* Gráfica de dona — por tipo de instrumento */}
+        <TarjetaGrafica
+          titulo="Por tipo de instrumento"
+          subtitulo="Distribución de fuentes"
+          fuentesConteo={datos.fuentesConteo}
+        >
+          <ChartContainer config={configDona} className="h-40 w-full">
+            <PieChart>
+              <Pie
+                data={datos.porTipo}
+                dataKey="valor"
+                nameKey="etiqueta"
+                cx="50%"
+                cy="50%"
+                innerRadius={38}
+                outerRadius={60}
+                paddingAngle={3}
+              >
+                {datos.porTipo.map((_, idx) => (
+                  <Cell key={idx} fill={COLORES_DONA[idx % COLORES_DONA.length]} />
+                ))}
+              </Pie>
+              <Tooltip
+                content={({ active, payload }) => {
+                  const punto = payload?.[0];
+                  return active && punto ? (
+                    <div className="rounded-lg border bg-background px-3 py-2 shadow-md text-xs">
+                      <p className="font-medium">{punto.name}</p>
+                      <p className="text-muted-foreground">
+                        {punto.value} instrumento{Number(punto.value) !== 1 ? "s" : ""}
+                      </p>
+                    </div>
+                  ) : null;
+                }}
+              />
+            </PieChart>
+          </ChartContainer>
+          {/* Leyenda manual */}
+          <div className="mt-2 flex flex-wrap justify-center gap-2">
+            {datos.porTipo.map((p, idx) => (
+              <div
+                key={p.etiqueta}
+                className="flex items-center gap-1 text-[10px] text-muted-foreground"
+              >
+                <span
+                  className="size-2 rounded-full"
+                  style={{ background: COLORES_DONA[idx % COLORES_DONA.length] }}
+                />
+                {p.etiqueta}
+              </div>
+            ))}
+          </div>
+        </TarjetaGrafica>
+      </div>
+      <EvidenciaKpi kpi={kpi} instrumentos={datos.instrumentos} />
+    </div>
+  );
+}
+
+/** Qué instrumentos y qué preguntas miden el KPI (similitud en el espacio vectorial). */
+function EvidenciaKpi({
+  kpi,
+  instrumentos,
+}: {
+  kpi: KpiCatalogo;
+  instrumentos: EvidenciaKpiInstrumento[];
+}) {
+  if (instrumentos.length === 0) return null;
+  return (
+    <div className="space-y-3 rounded-2xl border border-border bg-card p-4 shadow-card">
+      <div>
+        <p className="font-display text-sm font-semibold">
+          Cómo se mide «{kpi.nombre}» en tus fuentes
+        </p>
+        <p className="text-xs text-muted-foreground">
+          Preguntas de cada instrumento más cercanas al KPI en el espacio semántico.
+        </p>
+      </div>
+      <ul className="divide-y divide-border">
+        {instrumentos.map((ins) => (
+          <li key={ins.instrumentoId} className="space-y-2 py-3 first:pt-0 last:pb-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-sm font-medium">{ins.titulo}</span>
+              <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
+                {ins.tipo}
+              </span>
+              <span
+                className={
+                  ins.origen === "aceptado"
+                    ? "rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary"
+                    : "rounded-full bg-accent-soft px-2 py-0.5 text-[11px] font-medium text-accent-foreground"
+                }
+              >
+                {ins.origen === "aceptado" ? "KPI aceptado por su autor" : "Referencia de diseño"}
+                {ins.score != null && ` · ${Math.round(ins.score * 100)}%`}
+              </span>
             </div>
-          ))}
-        </div>
-      </TarjetaGrafica>
+            {ins.preguntas.length > 0 ? (
+              <ol className="space-y-1">
+                {ins.preguntas.map((p) => (
+                  <li key={p.preguntaId || p.texto} className="flex items-start gap-2 text-xs">
+                    <span className="mt-0.5 shrink-0 rounded bg-primary/10 px-1.5 font-mono text-primary">
+                      {Math.round(p.score * 100)}%
+                    </span>
+                    <span className="text-foreground/80">{p.texto}</span>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <p className="text-xs text-muted-foreground">
+                El instrumento aún no está en el RAG: aprueba sus metadatos para ver qué preguntas
+                miden este KPI.
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

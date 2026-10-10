@@ -7,6 +7,7 @@ import { getCatalogoKpis, getDatosGrafica, getKpis } from "@/api/kpis";
 import { getInstrumentos } from "@/api/instrumentos";
 import { useAuth } from "@/features/auth/AuthContext";
 import { useResearch } from "@/features/research/ResearchContext";
+import { fuentesDeInvestigacion } from "@/features/research/fuentes";
 import { cn } from "@/lib/utils";
 import { PageHeader } from "@/components/layout/PageHeader";
 import type { DatosGrafica, Kpi, KpiCatalogo } from "@/types";
@@ -75,17 +76,17 @@ export function KpisPage() {
     getKpis().then((k) => setMetricas(k.slice(0, 4)));
   }, []);
 
-  // Cargar fuentes de la investigación activa (propios + ajenos simulados)
+  // Cargar las fuentes de la investigación activa (los instrumentos elegidos al armarla)
   useEffect(() => {
     if (!activa) {
       setFuenteIds([]);
       return;
     }
-    getInstrumentos().then((todos) => {
-      const propios = todos.filter((i) => i.autorId === miId).slice(0, 3);
-      const ajenos = todos.filter((i) => i.autorId !== miId).slice(0, 2);
-      setFuenteIds([...propios, ...ajenos].map((i) => i.id));
-    });
+    getInstrumentos()
+      .then((todos) =>
+        setFuenteIds(fuentesDeInvestigacion(todos, activa.id, miId).map((i) => i.id)),
+      )
+      .catch(() => setFuenteIds([]));
   }, [activa, miId]);
 
   // Cargar datos del dashboard cuando cambia el KPI o las fuentes
@@ -94,11 +95,21 @@ export function KpisPage() {
       setDatosDashboard(null);
       return;
     }
+    let vigente = true;
     setCargandoGraficas(true);
-    getDatosGrafica(kpiDashboard.id, fuenteIds).then((d) => {
-      setDatosDashboard(d);
-      setCargandoGraficas(false);
-    });
+    getDatosGrafica(kpiDashboard.id, fuenteIds)
+      .then((d) => {
+        if (vigente) setDatosDashboard(d);
+      })
+      .catch(() => {
+        if (vigente) setDatosDashboard(null);
+      })
+      .finally(() => {
+        if (vigente) setCargandoGraficas(false);
+      });
+    return () => {
+      vigente = false;
+    };
   }, [kpiDashboard, fuenteIds]);
 
   const catalogoFiltrado = useMemo(() => {
@@ -148,7 +159,9 @@ export function KpisPage() {
       <section className="space-y-5">
         {catalogoFiltrado.length === 0 ? (
           <p className="py-10 text-center text-sm text-muted-foreground">
-            No hay KPIs que coincidan con "{busqueda}".
+            {busqueda.trim()
+              ? `No hay KPIs que coincidan con "${busqueda}".`
+              : "Aún no hay KPIs en el catálogo."}
           </p>
         ) : (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

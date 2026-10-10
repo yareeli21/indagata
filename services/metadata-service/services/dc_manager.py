@@ -1,295 +1,158 @@
-"""
-Dublin Core Manager - Core Business Logic
+"""Dublin Core — propuesta, normalización, validación y persistencia.
 
-Handles all CRUD operations for Dublin Core metadata:
-- Registration (6 auto-filled + 7 user-provided fields)
-- Retrieval
-- Validation
-- Immutability enforcement
+Todo instrumento DEBE tener sus 13 campos Dublin Core (tabla `metadatos_dc`,
+clave `id_crudo`). El servicio los propone a partir de hechos del sistema
+(autor, fecha de carga, formato del archivo) y de lo inferido del contenido; el
+autor los revisa y los aprueba. Solo `dc_relation` es opcional.
+
+Origen de cada valor propuesto:
+  - automatico: hecho del sistema (usuario, archivo, fecha).
+  - archivo:    leído del propio instrumento (JSON con Dublin Core).
+  - inferido:   heurística sobre el contenido.
+  - llm:        sugerido por el modelo local.
+  - aprobado:   ya aprobado por el autor (valor guardado en BD).
 """
+from __future__ import annotations
+
+import mimetypes
+from datetime import datetime
+from pathlib import Path
+from typing import Any
 
 from sqlalchemy.orm import Session
-from fastapi import HTTPException, status
-from datetime import datetime, timezone
-from pathlib import Path
-import logging
-import json
-import os
 
-logger = logging.getLogger(__name__)
+from shared.db.core.config import settings
+from shared.models.metadatos_dc import MetadatosDC
+
+from services.analizador import Analisis
+from services.campos import CAMPOS_DC, TIPO_UI
+
+CLAVES_DC: tuple[str, ...] = tuple(c.clave for c in CAMPOS_DC)
+DERECHOS_POR_DEFECTO = (
+    "Uso académico. Datos de investigación educativa: citar a la autoría y "
+    "solicitar autorización para su reutilización."
+)
+_MIME = {
+    ".csv": "text/csv",
+    ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    ".xls": "application/vnd.ms-excel",
+    ".pdf": "application/pdf",
+    ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ".txt": "text/plain",
+    ".json": "application/json",
+    ".md": "text/markdown",
+}
+
+
+def _texto(valor: Any) -> str:
+    if valor is None:
+        return ""
+    if isinstance(valor, (list, tuple)):
+        return ", ".join(t for t in (_texto(v) for v in valor) if t)
+    return str(valor).strip()
+
+
+def formato_de(nombre: str) -> str:
+    extension = Path(nombre or "").suffix.lower()
+    return _MIME.get(extension) or mimetypes.guess_type(nombre or "")[0] or "application/octet-stream"
+
+
+def cobertura_sugerida(analisis: Analisis) -> str:
+    """«Nivel — población» a partir de lo inferido del instrumento."""
+    nivel = analisis.hallazgos.get("nivel_educativo", "")
+    if not nivel and analisis.carreras:
+        nivel = "Licenciatura"
+    if nivel in ("Maestría", "Doctorado"):
+        nivel = f"Posgrado ({nivel.lower()})"
+    poblacion = analisis.hallazgos.get("poblacion", "")
+    return " — ".join(p for p in (nivel, poblacion) if p)
 
 
 class DCManager:
-    """Business logic for Dublin Core metadata management"""
-    
+    """Lógica de negocio de los metadatos Dublin Core."""
+
     @staticmethod
-    def get_initial_data(db: Session, instrumento_id: int) -> dict:
-        """
-        Get pre-populated data for metadata registration form.
-        
-        Returns auto-filled values (read-only on frontend):
-        - dc_creator: from authenticated user
-        - dc_publisher: from APP_NAME config
-        - dc_type: from instrument type
-        - dc_format: from file extension
-        - dc_date: today
-        - dc_language: "es"
-        - dc_title: suggested from instrument name
-        """
-        from shared.models.instrumento_procesado import InstrumentoProcesado
-        from shared.models.raw_data import RawData
-        
-        # Get instrument (PK real: id_instrumento)
-        instrumento = db.query(InstrumentoProcesado).filter(
-            InstrumentoProcesado.id_instrumento == instrumento_id
-        ).first()
-        
-        if not instrumento:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Instrument {instrumento_id} not found"
-            )
-        
-        # tipo_instrumento y nombre del archivo viven en raw_data (via id_crudo),
-        # NO en instrumento_procesado.
-        raw = db.query(RawData).filter(
-            RawData.id_crudo == instrumento.id_crudo
-        ).first()
-        tipo_instrumento = raw.tipo_instrumento if raw else None
-        nombre_archivo = raw.nombre_archivo if raw else None
-        
-        # Get user (TODO: from authentication context)
-        # For now, use a placeholder
-        usuario_nombre = "Sistema"  # Would come from auth context
-        
-        # Get config
-        app_name = os.getenv("APP_NAME", "Indagata")
-        
-        # Get file extension (ruta_json o ruta_de_archivo_limpio son las rutas reales
-        # del modelo; instrumento no tiene `ruta_archivo`).
-        file_format = "unknown"
-        ruta = instrumento.ruta_json or instrumento.ruta_de_archivo_limpio
-        if ruta:
-            try:
-                file_format = Path(ruta).suffix.lstrip(".") or "unknown"
-            except Exception:
-                pass
-        
-        return {
-            "instrumento_id": instrumento_id,
-            "dc_creator": usuario_nombre,
-            "dc_publisher": app_name,
-            "dc_type": tipo_instrumento,
-            "dc_format": file_format,
-            "dc_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
-            "dc_language": "es",
-            "dc_title_sugerido": nombre_archivo or "Sin título",
-        }
-    
-    @staticmethod
-    def register_dc(db: Session, instrumento_id: int, request: dict) -> dict:
-        """
-        Register Dublin Core metadata for an instrument.
-        
-        IMMUTABLE: Second registration returns 409 Conflict.
-        
-        Auto-filled fields (6):
-        - dc_creator, dc_publisher, dc_type, dc_format, dc_date, dc_language
-        
-        User input (7):
-        - dc_title, dc_subject, dc_description, dc_coverage, dc_rights, dc_source, dc_relation
-        """
-        from shared.models.instrumento_procesado import InstrumentoProcesado
-        from shared.models.metadatos_dc import MetadatosDC
-        from shared.models.raw_data import RawData
-        
-        # 1. Get instrument (PK real: id_instrumento)
-        instrumento = db.query(InstrumentoProcesado).filter(
-            InstrumentoProcesado.id_instrumento == instrumento_id
-        ).first()
-        
-        if not instrumento:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Instrument {instrumento_id} not found"
-            )
-        
-        # tipo_instrumento vive en raw_data (via id_crudo); MetadatosDC se identifica
-        # por id_crudo (PK/FK real), no por un `instrumento_id` inexistente.
-        raw = db.query(RawData).filter(
-            RawData.id_crudo == instrumento.id_crudo
-        ).first()
-        tipo_instrumento = raw.tipo_instrumento if raw else None
-        
-        # 2. Check if metadata already exists (immutability)
-        existing = db.query(MetadatosDC).filter(
-            MetadatosDC.id_crudo == instrumento.id_crudo
-        ).first()
-        
-        if existing:
-            raise HTTPException(
-                status_code=status.HTTP_409_CONFLICT,
-                detail="Metadata already registered for this instrument. Registration is immutable."
-            )
-        
-        # 3. Get auto-filled values
-        app_name = os.getenv("APP_NAME", "Indagata")
-        usuario_nombre = request.get("dc_creator", "Sistema")
-        
-        file_format = "unknown"
-        ruta = instrumento.ruta_json or instrumento.ruta_de_archivo_limpio
-        if ruta:
-            try:
-                file_format = Path(ruta).suffix.lstrip(".") or "unknown"
-            except Exception:
-                pass
-        
-        # 4. Create metadata record (clave real: id_crudo)
-        metadatos = MetadatosDC(
-            id_crudo=instrumento.id_crudo,
-            dc_title=request.get("dc_title"),
-            dc_creator=usuario_nombre,
-            dc_subject=json.dumps(request.get("dc_subject", []), ensure_ascii=False),
-            dc_description=request.get("dc_description"),
-            dc_publisher=app_name,
-            dc_date=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
-            dc_type=tipo_instrumento,
-            dc_format=file_format,
-            dc_language="es",
-            dc_coverage=request.get("dc_coverage"),
-            dc_rights=request.get("dc_rights"),
-            dc_source=request.get("dc_source"),
-            dc_relation=request.get("dc_relation"),
+    def proponer(raw: Any, autor_nombre: str, analisis: Analisis) -> tuple[dict[str, str], dict[str, str]]:
+        archivo = analisis.dc_archivo
+        valores: dict[str, str] = {}
+        origen: dict[str, str] = {}
+
+        def poner(clave: str, *candidatos: tuple[Any, str]) -> None:
+            for valor, fuente in candidatos:
+                texto = _texto(valor)
+                if texto:
+                    valores[clave], origen[clave] = texto, fuente
+                    return
+            valores[clave] = ""
+
+        fecha = raw.fecha_carga.date().isoformat() if isinstance(raw.fecha_carga, datetime) else ""
+        tipo = (raw.tipo_instrumento or "").lower()
+
+        poner("dc_title", (archivo.get("dc_title"), "archivo"), (analisis.titulo, "inferido"))
+        poner("dc_creator", (archivo.get("dc_creator"), "archivo"), (autor_nombre, "automatico"))
+        poner("dc_subject", (archivo.get("dc_subject"), "archivo"), (analisis.palabras_clave[:6], "inferido"))
+        poner("dc_description", (archivo.get("dc_description"), "archivo"), (analisis.descripcion, "inferido"))
+        poner("dc_type", (TIPO_UI.get(tipo, raw.tipo_instrumento), "automatico"))
+        poner("dc_date", (archivo.get("dc_date"), "archivo"), (fecha, "automatico"))
+        poner("dc_language", (archivo.get("dc_language"), "archivo"), (analisis.idioma, "automatico"))
+        poner("dc_coverage", (archivo.get("dc_coverage"), "archivo"), (cobertura_sugerida(analisis), "inferido"))
+        poner(
+            "dc_publisher",
+            (archivo.get("dc_publisher"), "archivo"),
+            (analisis.hallazgos.get("institucion"), "inferido"),
+            (settings.APP_NAME, "automatico"),
         )
-        
-        db.add(metadatos)
-        
-        # 5. Update instrument state (valor del CHECK: 'metadatos_registrados', plural)
-        instrumento.estado = "metadatos_registrados"
-        instrumento.fecha_procesamiento = datetime.now(timezone.utc)
-        
-        db.add(instrumento)
-        db.commit()
-        db.refresh(metadatos)
-        
-        logger.info(f"✅ Metadata registered for instrument {instrumento_id}")
-        
-        # 6. Return complete response
-        return {
-            "instrumento_id": instrumento_id,
-            "estado": "metadatos_registrados",
-            "dc_title": metadatos.dc_title,
-            "dc_creator": metadatos.dc_creator,
-            "dc_subject": json.loads(metadatos.dc_subject),
-            "dc_description": metadatos.dc_description,
-            "dc_publisher": metadatos.dc_publisher,
-            "dc_date": metadatos.dc_date,
-            "dc_type": metadatos.dc_type,
-            "dc_format": metadatos.dc_format,
-            "dc_language": metadatos.dc_language,
-            "dc_coverage": metadatos.dc_coverage,
-            "dc_rights": metadatos.dc_rights,
-            "dc_source": metadatos.dc_source,
-            "dc_relation": metadatos.dc_relation,
-            "mensaje": "✅ Metadata registered successfully. Ready for analysis."
-        }
-    
+        poner("dc_rights", (archivo.get("dc_rights"), "archivo"), (DERECHOS_POR_DEFECTO, "inferido"))
+        poner("dc_format", (archivo.get("dc_format"), "archivo"), (formato_de(raw.nombre_archivo), "automatico"))
+        poner("dc_source", (archivo.get("dc_source"), "archivo"), (raw.nombre_archivo, "automatico"))
+        poner("dc_relation", (archivo.get("dc_relation"), "archivo"))
+        return valores, origen
+
     @staticmethod
-    def get_dc(db: Session, instrumento_id: int) -> dict:
-        """Retrieve Dublin Core metadata"""
-        from shared.models.instrumento_procesado import InstrumentoProcesado
-        from shared.models.metadatos_dc import MetadatosDC
-        
-        # Resolver id_crudo desde id_instrumento (MetadatosDC se identifica por id_crudo).
-        instrumento = db.query(InstrumentoProcesado).filter(
-            InstrumentoProcesado.id_instrumento == instrumento_id
-        ).first()
-        
-        if not instrumento:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Instrument {instrumento_id} not found"
-            )
-        
-        metadatos = db.query(MetadatosDC).filter(
-            MetadatosDC.id_crudo == instrumento.id_crudo
-        ).first()
-        
-        if not metadatos:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Metadata not found for instrument {instrumento_id}"
-            )
-        
-        return {
-            "instrumento_id": instrumento_id,
-            "dc_title": metadatos.dc_title,
-            "dc_creator": metadatos.dc_creator,
-            "dc_subject": json.loads(metadatos.dc_subject) if metadatos.dc_subject else [],
-            "dc_description": metadatos.dc_description,
-            "dc_publisher": metadatos.dc_publisher,
-            "dc_date": metadatos.dc_date,
-            "dc_type": metadatos.dc_type,
-            "dc_format": metadatos.dc_format,
-            "dc_language": metadatos.dc_language,
-            "dc_coverage": metadatos.dc_coverage,
-            "dc_rights": metadatos.dc_rights,
-            "dc_source": metadatos.dc_source,
-            "dc_relation": metadatos.dc_relation,
-        }
-    
+    def normalizar(payload: dict[str, Any] | None) -> dict[str, str | None]:
+        """Recorta textos, une listas con comas y deja None en los vacíos."""
+        datos = payload or {}
+        return {clave: (_texto(datos.get(clave)) or None) for clave in CLAVES_DC}
+
     @staticmethod
-    def list_dc(db: Session, skip: int = 0, limit: int = 20) -> dict:
-        """List all metadata with pagination"""
-        from shared.models.metadatos_dc import MetadatosDC
-        
-        total = db.query(MetadatosDC).count()
-        metadatos_list = db.query(MetadatosDC).offset(skip).limit(limit).all()
-        
-        return {
-            "total": total,
-            "skip": skip,
-            "limit": limit,
-            "metadatos": [
-                {
-                    "id_crudo": m.id_crudo,
-                    "dc_title": m.dc_title,
-                    "dc_creator": m.dc_creator,
-                    "dc_type": m.dc_type,
-                    "dc_date": m.dc_date,
-                }
-                for m in metadatos_list
-            ]
-        }
-    
+    def validar(valores: dict[str, str | None]) -> dict[str, str]:
+        """Errores por campo ({clave: mensaje}); vacío si todo es válido."""
+        errores: dict[str, str] = {}
+        for campo in CAMPOS_DC:
+            valor = valores.get(campo.clave)
+            if campo.requerido and not valor:
+                errores[campo.clave] = f"«{campo.etiqueta}» es obligatorio."
+            elif valor and campo.max_longitud and len(valor) > campo.max_longitud:
+                errores[campo.clave] = f"«{campo.etiqueta}» admite como máximo {campo.max_longitud} caracteres."
+        return errores
+
     @staticmethod
-    def delete_dc(db: Session, instrumento_id: int) -> None:
-        """Delete metadata (for cleanup/re-registration)"""
-        from shared.models.instrumento_procesado import InstrumentoProcesado
-        from shared.models.metadatos_dc import MetadatosDC
-        
-        # Resolver id_crudo desde id_instrumento (MetadatosDC se identifica por id_crudo).
-        instrumento = db.query(InstrumentoProcesado).filter(
-            InstrumentoProcesado.id_instrumento == instrumento_id
-        ).first()
-        
-        if not instrumento:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Metadata not found for instrument {instrumento_id}"
-            )
-        
-        metadatos = db.query(MetadatosDC).filter(
-            MetadatosDC.id_crudo == instrumento.id_crudo
-        ).first()
-        
-        if not metadatos:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Metadata not found for instrument {instrumento_id}"
-            )
-        
-        db.delete(metadatos)
-        db.commit()
-        
-        logger.info(f"✅ Metadata deleted for instrument {instrumento_id}")
+    def guardar(db: Session, id_crudo: int, valores: dict[str, str | None]) -> MetadatosDC:
+        """Inserta o actualiza la fila Dublin Core (sin commit)."""
+        fila = db.get(MetadatosDC, id_crudo)
+        if fila is None:
+            fila = MetadatosDC(id_crudo=id_crudo, dc_title=valores["dc_title"] or "")
+            db.add(fila)
+        for clave in CLAVES_DC:
+            setattr(fila, clave, valores.get(clave))
+        return fila
+
+    @staticmethod
+    def obtener(db: Session, id_crudo: int) -> dict[str, str] | None:
+        fila = db.get(MetadatosDC, id_crudo)
+        if fila is None:
+            return None
+        return {clave: getattr(fila, clave) or "" for clave in CLAVES_DC}
+
+    @staticmethod
+    def eliminar(db: Session, id_crudo: int) -> bool:
+        fila = db.get(MetadatosDC, id_crudo)
+        if fila is None:
+            return False
+        db.delete(fila)
+        return True
+
+    @staticmethod
+    def listar(db: Session, skip: int = 0, limit: int = 20) -> tuple[int, list[MetadatosDC]]:
+        consulta = db.query(MetadatosDC).order_by(MetadatosDC.id_crudo)
+        return consulta.count(), consulta.offset(skip).limit(limit).all()

@@ -59,6 +59,12 @@ class StoragePort(ABC):
     def eliminar(self, ruta: str) -> None:
         """Elimina un archivo por su referencia (idempotente: no falla si no existe)."""
 
+    def purgar_instrumento(self, id_crudo: int) -> None:
+        """Elimina los artefactos derivados del instrumento (JSON, .sav, vectores).
+
+        Opcional: el backend local no genera derivados, así que no hace nada.
+        """
+
 
 class StorageError(Exception):
     """Fallo del almacenamiento (independiente del backend)."""

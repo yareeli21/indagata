@@ -1,85 +1,85 @@
-"""
-Metadata Service - FastAPI Entry Point
-Port: 8003
-Responsibility: Dublin Core metadata registration, enrichment, and retrieval
-"""
+"""Metadata Service — punto de entrada FastAPI.
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
+Port: 8003
+
+Responsabilidad: que TODO instrumento tenga metadatos completos y aprobados por
+su autor antes de entrar al RAG.
+  1. Dublin Core obligatorio (tabla metadatos_dc, 13 campos).
+  2. Metadatos específicos del tipo (metadatos_enriquecidos_encuestas /
+     _entrevistas / _pruebas), completando los faltantes a partir del contenido.
+  3. Aprobación del autor → JSON estandarizado (guardado en storage-service) e
+     ingesta al índice vectorial.
+
+Arranque:
+  - Docker:  cwd=/app, con `shared/` copiado en /app/shared (ver Dockerfile).
+  - Local:   `uvicorn main:app --port 8003` desde services/metadata-service.
+"""
+from __future__ import annotations
+
 import logging
 import os
 import sys
+from contextlib import asynccontextmanager
 from pathlib import Path
 
-# Resolver `import shared` también en ejecución local (igual que api-gateway).
-# En Docker `shared/` está copiado en /app/shared, por lo que esto no aplica.
-if not (Path(__file__).resolve().parent / "shared").exists():
+# Resolver `import shared` también en ejecución local (en Docker vive en /app/shared).
+if not (Path(__file__).resolve().parent / "shared" / "__init__.py").exists():
     _REPO_ROOT = Path(__file__).resolve().parents[2]
     if str(_REPO_ROOT) not in sys.path:
         sys.path.insert(0, str(_REPO_ROOT))
 
-# Configure logging
-logging.basicConfig(
-    level=os.getenv("LOG_LEVEL", "INFO"),
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger(__name__)
+from fastapi import FastAPI  # noqa: E402
+from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
-SERVICE_NAME = "metadata-service"
-PORT = 8003
+from routers import enrichment, health, metadata  # noqa: E402
+
+logging.basicConfig(
+    level=os.getenv("LOG_LEVEL", "INFO").upper(),
+    format="%(asctime)s %(levelname)s %(name)s %(message)s",
+)
+logger = logging.getLogger("metadata-service")
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Handle startup and shutdown events"""
-    logger.info(f"🚀 {SERVICE_NAME} starting on port {PORT}...")
-    try:
-        # Initialize database if needed
-        from shared.db.database import init_db
-        init_db()
-        logger.info("✅ Database initialized")
-    except Exception as e:
-        logger.error(f"❌ Failed to initialize database: {e}")
-    
+    from shared.db.core.config import settings
+
+    logger.info(
+        "🚀 metadata-service listo. storage=%s LLM=%s (%s)",
+        settings.STORAGE_SERVICE_URL,
+        settings.OLLAMA_MODEL if settings.METADATA_USAR_LLM else "desactivado",
+        settings.OLLAMA_HOST,
+    )
     yield
-    
-    logger.info(f"🛑 {SERVICE_NAME} shutting down...")
+    logger.info("🛑 metadata-service detenido.")
+
 
 app = FastAPI(
-    title=f"Indagata {SERVICE_NAME}",
-    description="Manages all metadata operations for instruments (Dublin Core + Enrichment)",
-    version="1.0.0",
-    lifespan=lifespan
+    title="Indagata — Metadata Service",
+    description="Dublin Core obligatorio, metadatos por tipo de instrumento y aprobación del autor.",
+    version="2.0.0",
+    lifespan=lifespan,
 )
 
-# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Update in production
+    allow_origins=["*"],  # Ajustar en producción.
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Import and include routers
-try:
-    from routers import health, metadata, enrichment
-    
-    app.include_router(health.router, tags=["health"])
-    app.include_router(metadata.router, prefix="/api", tags=["metadata"])
-    app.include_router(enrichment.router, prefix="/api", tags=["enrichment"])
-    
-    logger.info("✅ All routers registered")
-except ImportError as e:
-    logger.error(f"❌ Failed to import routers: {e}")
+app.include_router(health.router)
+app.include_router(metadata.router)
+app.include_router(enrichment.router)
+
 
 if __name__ == "__main__":
     import uvicorn
-    debug_mode = os.getenv("DEBUG", "false").lower() == "true"
+
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=PORT,
-        reload=debug_mode,
-        log_level=os.getenv("LOG_LEVEL", "info").lower()
+        port=8003,
+        reload=os.getenv("DEBUG", "false").lower() == "true",
     )

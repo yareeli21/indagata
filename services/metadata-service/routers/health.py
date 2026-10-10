@@ -1,64 +1,31 @@
-"""Health check endpoints - Liveness & Readiness probes"""
+"""Health checks — liveness y readiness."""
+from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException, status
 import logging
 
-logger = logging.getLogger(__name__)
+from fastapi import APIRouter, HTTPException, status
+from sqlalchemy import text
+
+logger = logging.getLogger("metadata-service")
 router = APIRouter(tags=["health"])
 
+
 @router.get("/health")
-async def health_check():
-    """
-    Liveness Probe
-    Returns 200 if service is running
-    Docker/Kubernetes use this to verify container is alive
-    """
-    return {
-        "status": "ok",
-        "service": "metadata-service",
-        "version": "1.0.0"
-    }
+def health_check() -> dict[str, str]:
+    return {"status": "ok", "service": "metadata-service", "version": "2.0.0"}
+
 
 @router.get("/health/ready")
-async def readiness_check():
-    """
-    Readiness Probe
-    Returns 200 only if service is ready to handle requests
-    Checks:
-    - Database connectivity
-    - Configuration loaded
-    """
-    try:
-        # Test database connection
-        from shared.db.database import SessionLocal
-        
-        db = SessionLocal()
-        try:
-            # Simple query to verify connection
-            db.execute("SELECT 1")
-            db.close()
-        except Exception as e:
-            logger.error(f"Database check failed: {e}")
-            raise HTTPException(
-                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-                detail="Database unavailable"
-            )
-        
-        return {
-            "ready": True,
-            "service": "metadata-service",
-            "checks": {
-                "database": "ok"
-            }
-        }
-    except Exception as e:
-        logger.error(f"Readiness check failed: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail=f"Service not ready: {str(e)}"
-        )
+def readiness_check() -> dict:
+    """200 solo si la base de datos responde."""
+    from shared.db.session import SessionLocal
 
-@router.get("/health/live")
-async def liveness():
-    """Alternative liveness probe endpoint"""
-    return {"status": "alive"}
+    db = SessionLocal()
+    try:
+        db.execute(text("SELECT 1"))
+    except Exception as exc:  # noqa: BLE001
+        logger.error("Base de datos no disponible: %s", exc)
+        raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, "Base de datos no disponible.") from exc
+    finally:
+        db.close()
+    return {"ready": True, "service": "metadata-service", "checks": {"database": "ok"}}

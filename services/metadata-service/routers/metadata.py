@@ -1,174 +1,131 @@
+"""Router — metadatos Dublin Core y aprobación por el autor.
+
+Prefijo /api/metadata (el api-gateway lo reenvía tal cual). `{id_crudo}` es el
+id canónico del instrumento (PK de raw_data), el mismo que usa el frontend.
+
+  GET    /api/metadata                         listado paginado
+  GET    /api/metadata/{id}/propuesta          Dublin Core propuesto (o aprobado)
+  POST   /api/metadata/{id}/vista-previa       JSON estandarizado sin guardar + errores
+  POST   /api/metadata/{id}/aprobar            el autor aprueba → persistir + ingesta RAG
+  POST   /api/metadata/{id}/finalizar          añadir los KPIs aceptados al JSON
+  GET    /api/metadata/{id}                    metadatos aprobados
+  DELETE /api/metadata/{id}                    retirar la aprobación (sale del RAG)
 """
-Dublin Core Metadata CRUD Endpoints
+from __future__ import annotations
 
-Manages registration and retrieval of 13 Dublin Core metadata fields:
-- 6 auto-completed (creator, publisher, type, format, date, language)
-- 7 user-provided (title, subject, description, coverage, rights, source, relation)
+from fastapi import APIRouter, HTTPException, Query, status
 
-Immutable: Registration happens once, subsequent attempts return 409 Conflict.
-"""
-
-from fastapi import APIRouter, HTTPException, Depends, status, Query
-from sqlalchemy.orm import Session
-import logging
-from typing import Optional
-from datetime import datetime
-
-logger = logging.getLogger(__name__)
-router = APIRouter(prefix="/metadata", tags=["metadata"])
-
-# Import shared dependencies
-from shared.db.database import get_db
-
-# Import business logic
+from dependencies import DBSession, Investigador
+from models import (
+    AprobacionResponse,
+    FinalizacionResponse,
+    ListadoMetadatos,
+    MetadatosPayload,
+    MetadatosResponse,
+    PropuestaResponse,
+    ResumenMetadatos,
+    RetiroResponse,
+    VistaPreviaResponse,
+)
+from services import aprobacion
 from services.dc_manager import DCManager
+from services.enrichment_engine import EnrichmentEngine
+
+router = APIRouter(prefix="/api/metadata", tags=["metadatos-dublin-core"])
 
 
-@router.get("/metadata/{instrumento_id}/init")
-async def get_metadata_init(
-    instrumento_id: int,
-    db: Session = Depends(get_db)
-):
-    """
-    Get pre-populated metadata fields for form initialization.
-    
-    Returns auto-filled values (6 fields) with title suggestion:
-    - dc_creator: authenticated user
-    - dc_publisher: app name from config
-    - dc_type: instrument type (encuesta/entrevista/prueba_estandarizada)
-    - dc_format: file extension
-    - dc_date: registration date (today)
-    - dc_language: "es"
-    - dc_title (editable): suggested from instrument name
-    
-    Used by frontend to initialize the metadata registration form.
-    """
-    try:
-        initial_data = DCManager.get_initial_data(db, instrumento_id)
-        logger.info(f"✅ Metadata init data retrieved for instrument {instrumento_id}")
-        return initial_data
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"❌ Error getting metadata init: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to retrieve metadata initialization data"
-        )
-
-
-@router.post("/metadata/{instrumento_id}", response_model=dict)
-async def register_metadata(
-    instrumento_id: int,
-    request: dict,  # Will be validated by DCManager
-    db: Session = Depends(get_db)
-):
-    """
-    Register Dublin Core metadata (Step 2 of upload workflow).
-    
-    Registers all 13 Dublin Core fields. Six fields are auto-completed,
-    and seven fields come from user input.
-    
-    IMMUTABLE: Calling this endpoint twice returns 409 Conflict.
-    You cannot update metadata after registration.
-    
-    Fields:
-    - dc_title: str (required) - Instrument title
-    - dc_subject: list[str] (required) - Keywords/topics
-    - dc_description: str (optional) - Detailed description
-    - dc_coverage: str (optional) - Geographic/temporal coverage
-    - dc_rights: str (optional) - Usage rights
-    - dc_source: str (optional) - Original source
-    - dc_relation: str (optional) - Related instruments
-    
-    Returns: All 13 fields with instrument state updated to "metadata_registrado"
-    """
-    try:
-        response = DCManager.register_dc(db, instrumento_id, request)
-        logger.info(f"✅ Metadata registered for instrument {instrumento_id}")
-        return response
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"❌ Error registering metadata: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to register metadata"
-        )
-
-
-@router.get("/metadata/{instrumento_id}")
-async def get_metadata(
-    instrumento_id: int,
-    db: Session = Depends(get_db)
-):
-    """
-    Retrieve Dublin Core metadata for an instrument.
-    
-    Returns all 13 registered Dublin Core fields including:
-    - Auto-filled fields (creator, publisher, type, format, date, language)
-    - User-provided fields (title, subject, description, coverage, rights, source, relation)
-    - Timestamps (created_at, updated_at)
-    
-    Available in states: metadata_registrado, etl_*, etl_aprobado
-    """
-    try:
-        metadata = DCManager.get_dc(db, instrumento_id)
-        logger.info(f"✅ Metadata retrieved for instrument {instrumento_id}")
-        return metadata
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"❌ Error retrieving metadata: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to retrieve metadata"
-        )
-
-
-@router.get("/metadata")
-async def list_metadata(
+@router.get("", response_model=ListadoMetadatos, summary="Listar metadatos Dublin Core")
+def listar(
+    _: Investigador,
+    db: DBSession,
     skip: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=100),
-    db: Session = Depends(get_db)
-):
-    """
-    List all metadata records (with pagination).
-    
-    Use for admin dashboards or bulk operations.
-    """
-    try:
-        results = DCManager.list_dc(db, skip=skip, limit=limit)
-        logger.info(f"✅ Listed metadata ({skip}-{skip+limit})")
-        return results
-    except Exception as e:
-        logger.error(f"❌ Error listing metadata: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to list metadata"
-        )
+) -> ListadoMetadatos:
+    total, filas = DCManager.listar(db, skip, limit)
+    return ListadoMetadatos(
+        total=total,
+        skip=skip,
+        limit=limit,
+        metadatos=[
+            ResumenMetadatos(
+                id_crudo=f.id_crudo, dc_title=f.dc_title, dc_creator=f.dc_creator, dc_type=f.dc_type, dc_date=f.dc_date
+            )
+            for f in filas
+        ],
+    )
 
 
-@router.delete("/metadata/{instrumento_id}")
-async def delete_metadata(
-    instrumento_id: int,
-    db: Session = Depends(get_db)
-):
-    """
-    Delete metadata for an instrument (admin only, for cleanup).
-    
-    Allows starting the metadata registration process over if needed.
-    Only works if instrument is in 'pendiente' state (not yet analyzed).
-    """
-    try:
-        DCManager.delete_dc(db, instrumento_id)
-        logger.info(f"✅ Metadata deleted for instrument {instrumento_id}")
-        return {"message": "Metadata deleted successfully"}
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"❌ Error deleting metadata: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to delete metadata"
-        )
+@router.get(
+    "/{id_crudo}/propuesta",
+    response_model=PropuestaResponse,
+    summary="Dublin Core propuesto para el instrumento",
+    description=(
+        "Propone los 13 campos Dublin Core: los automáticos (autor, fecha, formato, "
+        "fuente, idioma) y los inferidos del contenido (título, tema, descripción, "
+        "cobertura). Con `usar_llm` el modelo local completa los campos interpretativos. "
+        "Si los metadatos ya fueron aprobados, devuelve los aprobados."
+    ),
+)
+def propuesta(
+    id_crudo: int, usuario: Investigador, db: DBSession, usar_llm: bool | None = None
+) -> PropuestaResponse:
+    return PropuestaResponse(**aprobacion.propuesta(db, usuario, id_crudo, "dublin_core", usar_llm))
+
+
+@router.post(
+    "/{id_crudo}/vista-previa",
+    response_model=VistaPreviaResponse,
+    summary="Vista previa del JSON estandarizado (no guarda nada)",
+)
+def vista_previa(
+    id_crudo: int, payload: MetadatosPayload, usuario: Investigador, db: DBSession
+) -> VistaPreviaResponse:
+    return VistaPreviaResponse(**aprobacion.vista_previa(db, usuario, id_crudo, payload.model_dump()))
+
+
+@router.post(
+    "/{id_crudo}/aprobar",
+    response_model=AprobacionResponse,
+    summary="El autor aprueba los metadatos (requisito para el RAG)",
+    description=(
+        "Valida el Dublin Core y los metadatos del tipo, genera el JSON estandarizado, "
+        "lo guarda en el storage-service, persiste `metadatos_dc` + "
+        "`metadatos_enriquecidos_*`, marca el instrumento como aprobado y pide su "
+        "ingesta al índice vectorial. Solo el autor (o un administrador)."
+    ),
+)
+def aprobar(
+    id_crudo: int, payload: MetadatosPayload, usuario: Investigador, db: DBSession
+) -> AprobacionResponse:
+    return AprobacionResponse(**aprobacion.aprobar(db, usuario, id_crudo, payload.model_dump()))
+
+
+@router.post(
+    "/{id_crudo}/finalizar",
+    response_model=FinalizacionResponse,
+    summary="Guardar el instrumento con los KPIs aceptados",
+)
+def finalizar(id_crudo: int, usuario: Investigador, db: DBSession) -> FinalizacionResponse:
+    return FinalizacionResponse(**aprobacion.finalizar(db, usuario, id_crudo))
+
+
+@router.get("/{id_crudo}", response_model=MetadatosResponse, summary="Metadatos registrados del instrumento")
+def obtener(id_crudo: int, usuario: Investigador, db: DBSession) -> MetadatosResponse:
+    ctx = aprobacion.cargar_contexto(db, usuario, id_crudo, exigir_dueno=False)
+    dc = DCManager.obtener(db, id_crudo)
+    if dc is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "El instrumento no tiene metadatos registrados.")
+    return MetadatosResponse(
+        id_crudo=id_crudo,
+        tipo_instrumento=ctx.tipo,
+        estado=ctx.procesado.estado,
+        aprobado=ctx.aprobado,
+        fecha_aprobado=ctx.procesado.fecha_aprobado,
+        dublin_core=dc,
+        enriquecidos=EnrichmentEngine.obtener(db, ctx.tipo, id_crudo),
+    )
+
+
+@router.delete("/{id_crudo}", response_model=RetiroResponse, summary="Retirar los metadatos aprobados")
+def retirar(id_crudo: int, usuario: Investigador, db: DBSession) -> RetiroResponse:
+    return RetiroResponse(**aprobacion.retirar(db, usuario, id_crudo))

@@ -23,7 +23,7 @@ http://localhost:5173/app/*      → Sistema principal (protegido)
 ## Requisitos
 
 - Node.js 18+
-- Backend FastAPI corriendo en `http://localhost:8000`
+- Backend FastAPI corriendo en `http://localhost:8006` (API Gateway de Docker)
 
 ## Notas
 

@@ -8,10 +8,10 @@ export function simularRed<T>(dato: T, ms = 300): Promise<T> {
 }
 
 /** URL base del api-gateway (login y servicios proxeados). */
-export const API_URL: string = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+export const API_URL: string = import.meta.env["VITE_API_URL"] ?? "http://localhost:8006";
 
 /** URL base del analysis-service (el api-gateway NO proxea /vectorizacion/*). */
-export const ANALYSIS_URL: string = import.meta.env.VITE_ANALYSIS_URL ?? "http://localhost:8002";
+export const ANALYSIS_URL: string = import.meta.env["VITE_ANALYSIS_URL"] ?? "http://localhost:8002";
 
 // ── Store de token (memoria + localStorage) ────────────────────────────────────
 
@@ -73,13 +73,13 @@ export async function pedir<T>(url: string, opciones: OpcionesPedir = {}): Promi
   const headers: Record<string, string> = { "Content-Type": "application/json" };
   if (auth) {
     const token = leerToken();
-    if (token) headers.Authorization = `Bearer ${token}`;
+    if (token) headers["Authorization"] = `Bearer ${token}`;
   }
 
   const respuesta = await fetch(url, {
     method,
     headers,
-    body: body === undefined ? undefined : JSON.stringify(body),
+    body: body === undefined ? null : JSON.stringify(body),
   });
 
   if (!respuesta.ok) {
@@ -95,7 +95,9 @@ export async function pedir<T>(url: string, opciones: OpcionesPedir = {}): Promi
     } catch {
       /* cuerpo no-JSON: se ignora */
     }
-    const error: ErrorHttp = new Error(detalle || `Error en la petición (HTTP ${respuesta.status}).`);
+    const error: ErrorHttp = new Error(
+      detalle || `Error en la petición (HTTP ${respuesta.status}).`,
+    );
     error.status = respuesta.status;
     throw error;
   }

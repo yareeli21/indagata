@@ -19,10 +19,21 @@ interface StepArchivoProps {
   tipo: TipoInstrumento | null;
   onArchivo: (f: File) => void;
   onTipo: (t: TipoInstrumento) => void;
+  /** Instrumento original sin respuestas (opcional): mejora los metadatos y los KPIs. */
+  archivoOriginal: File | null;
+  onArchivoOriginal: (f: File | null) => void;
 }
 
-export function StepArchivo({ archivo, tipo, onArchivo, onTipo }: StepArchivoProps) {
+export function StepArchivo({
+  archivo,
+  tipo,
+  onArchivo,
+  onTipo,
+  archivoOriginal,
+  onArchivoOriginal,
+}: StepArchivoProps) {
   const input = useRef<HTMLInputElement>(null);
+  const inputOriginal = useRef<HTMLInputElement>(null);
   const [arrastrando, setArrastrando] = useState(false);
 
   return (
@@ -60,7 +71,7 @@ export function StepArchivo({ archivo, tipo, onArchivo, onTipo }: StepArchivoPro
           <>
             <p className="font-medium">Arrastra y suelta tu archivo aquí</p>
             <p className="text-sm text-muted-foreground">
-              o haz clic para seleccionarlo · CSV, XLSX, DOCX o PDF
+              o haz clic para seleccionarlo · CSV o XLSX (encuestas) · PDF, DOCX o TXT
             </p>
           </>
         )}
@@ -68,11 +79,47 @@ export function StepArchivo({ archivo, tipo, onArchivo, onTipo }: StepArchivoPro
           ref={input}
           type="file"
           className="hidden"
-          accept=".csv,.xlsx,.xls,.docx,.pdf"
+          accept=".csv,.xlsx,.xls,.docx,.pdf,.txt"
           onChange={(e) => {
             const f = e.target.files?.[0];
             if (f) onArchivo(f);
           }}
+        />
+      </div>
+
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm">
+        <div className="min-w-0">
+          <p className="font-medium">Instrumento original (opcional)</p>
+          <p className="truncate text-muted-foreground">
+            {archivoOriginal
+              ? archivoOriginal.name
+              : "Las preguntas sin respuestas (PDF, DOCX o TXT): mejoran los metadatos y los KPIs."}
+          </p>
+        </div>
+        <div className="flex gap-2">
+          {archivoOriginal && (
+            <button
+              type="button"
+              className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+              onClick={() => onArchivoOriginal(null)}
+            >
+              Quitar
+            </button>
+          )}
+          <button
+            type="button"
+            className="rounded-lg border border-border bg-card px-3 py-1.5 text-sm font-medium hover:border-primary/60"
+            onClick={() => inputOriginal.current?.click()}
+          >
+            {archivoOriginal ? "Cambiar" : "Adjuntar"}
+          </button>
+        </div>
+        <input
+          ref={inputOriginal}
+          type="file"
+          className="hidden"
+          accept=".docx,.pdf,.txt"
+          onChange={(e) => onArchivoOriginal(e.target.files?.[0] ?? null)}
         />
       </div>
 

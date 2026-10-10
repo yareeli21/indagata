@@ -5,14 +5,23 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 COPY services/storage-service/requirements.txt ./requirements.txt
+# torch CPU-only: el storage-service solo usa torch para calcular los embeddings
+# de la ingesta (sentence-transformers). Instalarlo desde el índice CPU ANTES del
+# resto evita descargar ~2.5 GB de wheels CUDA (igual que visualization-service).
+RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu torch==2.2.2
 RUN pip install --no-cache-dir -r requirements.txt
 
 FROM python:3.12-slim
 
 WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq5 \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=base /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --from=base /usr/local/bin /usr/local/bin
@@ -20,7 +29,7 @@ COPY --from=base /usr/local/bin /usr/local/bin
 COPY services/storage-service/ ./
 COPY shared/ ./shared/
 
-RUN mkdir -p /app/storage/{raw,json,sav,clean,temp} /app/chromadb/data
+RUN mkdir -p /app/storage/raw /app/storage/json /app/storage/sav /app/storage/clean /app/storage/temp
 
 EXPOSE 8004
 

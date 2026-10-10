@@ -12,6 +12,9 @@ python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 bcrypt==4.0.1
 
+# ── Almacenamiento delegado al storage-service (STORAGE_BACKEND=http) ──
+httpx==0.27.0
+
 # ── Parseo de formatos (identificar la estructura del instrumento) ──
 openpyxl==3.1.2
 pypdf==4.1.0

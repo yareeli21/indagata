@@ -1,4 +1,12 @@
-import type { KpiSugerido, ReporteLimpieza, TipoInstrumento } from "@/types";
+import type {
+  DublinCore,
+  KpiSugerido,
+  MetadatosTipo,
+  NivelEducativo,
+  OrigenMetadato,
+  ReporteLimpieza,
+  TipoInstrumento,
+} from "@/types";
 import { ANALYSIS_URL, API_URL, leerToken, pedir } from "./client";
 
 // ── Mapeo tipo UI → enum backend ────────────────────────────────────────────────
@@ -53,9 +61,9 @@ interface UploadResponse {
 
 /** Resultado del paso 1 (subir): ambos ids reales + el reporte de limpieza derivado. */
 export interface ResultadoCarga {
-  /** PK de raw_data (instrument-service: listados/detalle). */
+  /** PK de raw_data: id canónico (instrument-, metadata-, storage- y visualization-service). */
   idCrudo: number;
-  /** PK de instrumento_procesado (metadatos + KPIs). */
+  /** PK de instrumento_procesado (lo usa el analysis-service para los KPIs). */
   idInstrumento: number;
   /** Reporte de limpieza derivado del parseo del upload (no hay endpoint propio). */
   reporte: ReporteLimpieza;
@@ -66,11 +74,10 @@ export interface ResultadoCarga {
 /**
  * Deriva un `ReporteLimpieza` del resumen de parseo del upload.
  *
- * NOTA: no existe etapa de limpieza con conteos de duplicados/nulos en el backend
- * (instrument-service solo expone upload/list/get/delete). Por eso
- * `duplicadosEliminados` y `nulosTratados` son 0 (valor honesto, no inventado).
- * Cuando exista `POST /instrumentos/limpieza` que devuelva esos conteos, se
- * reemplaza este derivado. La forma de `ReporteLimpieza`/`CambioLimpieza` se preserva.
+ * NOTA: la etapa de limpieza (imputación, duplicados, registros vacíos) no forma
+ * parte de los servicios actuales; por eso `duplicadosEliminados` y
+ * `nulosTratados` son 0 (valor honesto, no inventado). Cuando exista ese
+ * endpoint se reemplaza este derivado sin cambiar la forma de `ReporteLimpieza`.
  */
 export function mapearParseoALimpieza(parseo: ParseoArchivo | null | undefined): ReporteLimpieza {
   if (!parseo) {
@@ -99,21 +106,31 @@ export function mapearParseoALimpieza(parseo: ParseoArchivo | null | undefined):
 
   return {
     columnasNormalizadas: parseo.headers?.length ?? 0,
-    duplicadosEliminados: 0, // sin etapa de limpieza con este conteo (ver NOTA)
-    nulosTratados: 0, // sin etapa de limpieza con este conteo (ver NOTA)
+    duplicadosEliminados: 0,
+    nulosTratados: 0,
     cambios,
   };
 }
 
 // ── Paso 1: subir el instrumento ──────────────────────────────────────────────────
 
+/** Lee el `detail` de una respuesta de error de FastAPI (si es texto). */
+async function detalleDe(respuesta: Response): Promise<string> {
+  try {
+    const datos = (await respuesta.json()) as { detail?: unknown };
+    return typeof datos?.detail === "string" ? datos.detail : "";
+  } catch {
+    return "";
+  }
+}
+
 /**
  * Sube el instrumento RESPONDIDO (y opcionalmente el ORIGINAL) por el gateway:
- * `POST /instrumentos/upload` (multipart). Requiere Bearer (rol investigador/admin).
- * Devuelve ambos ids (`id_crudo`, `id_instrumento`) y el reporte derivado del parseo.
+ * `POST /instrumentos/upload` (multipart). El storage-service guarda el archivo
+ * tal cual se subió. Requiere Bearer (rol investigador/admin).
  *
  * `pedir()` fuerza `Content-Type: application/json`, así que para multipart se usa
- * `fetch` directo con `FormData` y header Authorization (patrón de `chat.ts`).
+ * `fetch` directo con `FormData` y header Authorization.
  */
 export async function subirInstrumento(
   archivo: File,
@@ -136,17 +153,10 @@ export async function subirInstrumento(
   });
 
   if (!respuesta.ok) {
-    // Mapeo de errores a mensajes en español según el status (§2.5 del diseño).
-    let detalle = "";
-    try {
-      const datos = (await respuesta.json()) as { detail?: unknown };
-      if (typeof datos?.detail === "string") detalle = datos.detail;
-    } catch {
-      /* cuerpo no-JSON: se ignora */
-    }
+    const detalle = await detalleDe(respuesta);
     const mensaje =
       respuesta.status === 401
-        ? "Usuario o contraseña incorrectos"
+        ? "Tu sesión expiró, vuelve a iniciar sesión."
         : respuesta.status === 403
           ? detalle || "No tienes permiso para subir instrumentos."
           : detalle || `No se pudo subir el instrumento (HTTP ${respuesta.status}).`;
@@ -163,76 +173,209 @@ export async function subirInstrumento(
   };
 }
 
-/**
- * Firma estable por compatibilidad. El reporte de limpieza REAL lo produce
- * `subirInstrumento` (derivado del parseo del upload) y el wizard ya no invoca
- * esta función: no hay endpoint de limpieza y no se inventa uno. Devuelve un
- * reporte derivado solo del `File` (ceros, sin cambios).
- */
-export function limpiarArchivo(_archivo: File): Promise<ReporteLimpieza> {
-  return Promise.resolve({
-    duplicadosEliminados: 0,
-    nulosTratados: 0,
-    columnasNormalizadas: 0,
-    cambios: [],
-  });
+// ── Pasos 3 y 4: propuesta de metadatos (metadata-service) ────────────────────────
+
+interface PropuestaResponse {
+  id_crudo: number;
+  id_instrumento: number;
+  tipo_instrumento: string;
+  tabla: string;
+  aprobado: boolean;
+  valores: Record<string, unknown>;
+  origen: Record<string, OrigenMetadato>;
+  obligatorios: string[];
+  notas: string[];
 }
 
-// ── Paso 3: metadatos Dublin Core ──────────────────────────────────────────────────
-
-/** Datos pre-poblados que devuelve el init de metadatos (7 campos auto-rellenados). */
-export interface MetadatosInit {
-  dc_creator: string;
-  dc_publisher: string;
-  dc_type: string;
-  dc_format: string;
-  dc_date: string;
-  dc_language: string;
-  dc_title_sugerido: string;
+/** Propuesta del metadata-service para un grupo de metadatos (o lo ya aprobado). */
+export interface PropuestaMetadatos {
+  aprobado: boolean;
+  valores: Record<string, unknown>;
+  origen: Record<string, OrigenMetadato>;
+  obligatorios: string[];
+  notas: string[];
 }
 
-/**
- * GET pre-poblado de metadatos por el gateway.
- * NOTA: la ruta real tiene DOBLE segmento `metadata` (el router usa prefix
- * `/metadata` con decoradores `/metadata/{id}/init`, montado con prefix `/api`).
- * No "corregir" a un solo `metadata`: el proxy reenvía el path tal cual.
- */
-export function getMetadatosInit(idInstrumento: number): Promise<MetadatosInit> {
-  return pedir<MetadatosInit>(`${API_URL}/api/metadata/metadata/${idInstrumento}/init`, {
-    auth: true,
-  });
+function aPropuesta(r: PropuestaResponse): PropuestaMetadatos {
+  return {
+    aprobado: r.aprobado,
+    valores: r.valores ?? {},
+    origen: r.origen ?? {},
+    obligatorios: r.obligatorios ?? [],
+    notas: r.notas ?? [],
+  };
 }
 
-/** Payload de registro de los 13 campos Dublin Core (solo título/tema exige el wizard). */
-export interface RegistroMetadatos {
-  dc_title: string;
-  dc_subject: string[];
-  dc_creator?: string;
-  dc_description?: string;
-  dc_coverage?: string;
-  dc_rights?: string;
-  dc_source?: string;
-  dc_relation?: string;
+/** Dublin Core propuesto: automáticos + inferidos del archivo (+ LLM si está activo). */
+export async function getPropuestaDublinCore(idCrudo: number): Promise<PropuestaMetadatos> {
+  return aPropuesta(
+    await pedir<PropuestaResponse>(`${API_URL}/api/metadata/${idCrudo}/propuesta`, { auth: true }),
+  );
 }
 
-/**
- * POST de registro de metadatos (inmutable: una 2ª llamada → 409). El `dc_creator`
- * lo envía el frontend (si se omite, el backend persiste "Sistema"). Doble `metadata`
- * en la ruta (ver `getMetadatosInit`). Mapeo de 409/404 a mensaje por el status lo
- * hace el caller leyendo `ErrorHttp.status`.
- */
-export function registrarMetadatos(
-  idInstrumento: number,
-  datos: RegistroMetadatos,
-): Promise<Record<string, unknown>> {
-  return pedir<Record<string, unknown>>(`${API_URL}/api/metadata/metadata/${idInstrumento}`, {
+/** Metadatos específicos del tipo propuestos (encuesta, entrevista o prueba). */
+export async function getPropuestaEnriquecida(idCrudo: number): Promise<PropuestaMetadatos> {
+  return aPropuesta(
+    await pedir<PropuestaResponse>(`${API_URL}/api/enrichment/${idCrudo}/propuesta`, {
+      auth: true,
+    }),
+  );
+}
+
+// Correspondencia campo del formulario ↔ columna de metadatos_dc.
+const CAMPOS_DC: Record<Exclude<keyof DublinCore, "cobertura" | "coberturaDetalle">, string> = {
+  titulo: "dc_title",
+  creador: "dc_creator",
+  tema: "dc_subject",
+  descripcion: "dc_description",
+  tipo: "dc_type",
+  fecha: "dc_date",
+  idioma: "dc_language",
+  editor: "dc_publisher",
+  derechos: "dc_rights",
+  formato: "dc_format",
+  fuente: "dc_source",
+  relacion: "dc_relation",
+};
+
+/** Campo del formulario Dublin Core que corresponde a una columna `dc_*`. */
+export const CAMPO_DC_POR_COLUMNA: Record<string, keyof DublinCore> = {
+  ...Object.fromEntries(Object.entries(CAMPOS_DC).map(([campo, col]) => [col, campo])),
+  dc_coverage: "cobertura",
+} as Record<string, keyof DublinCore>;
+
+function texto(valor: unknown): string {
+  if (valor === null || valor === undefined) return "";
+  if (Array.isArray(valor)) return valor.map(texto).filter(Boolean).join(", ");
+  if (typeof valor === "object") {
+    return Object.entries(valor as Record<string, unknown>)
+      .map(([k, v]) => `${k}: ${texto(v)}`)
+      .join("\n");
+  }
+  return String(valor);
+}
+
+/** «Licenciatura — Estudiantes de la UNAM» → nivel + detalle. */
+function partirCobertura(cobertura: string): { nivel: NivelEducativo | ""; detalle: string } {
+  const limpio = cobertura.trim();
+  const m = /^(Licenciatura|Posgrado)(?:\s*\([^)]*\))?\s*(?:[—–-]\s*)?(.*)$/i.exec(limpio);
+  if (m) {
+    const nivel: NivelEducativo = m[1]?.toLowerCase() === "posgrado" ? "Posgrado" : "Licenciatura";
+    return { nivel, detalle: (m[2] ?? "").trim() };
+  }
+  const minusculas = limpio.toLowerCase();
+  if (/posgrado|maestr|doctor|especialidad/.test(minusculas))
+    return { nivel: "Posgrado", detalle: limpio };
+  if (/licenciatura|universitari|pregrado/.test(minusculas))
+    return { nivel: "Licenciatura", detalle: limpio };
+  return { nivel: "", detalle: limpio };
+}
+
+/** Aplica una propuesta (valores `dc_*`) sobre el formulario Dublin Core. */
+export function dublinCoreDesdePropuesta(
+  valores: Record<string, unknown>,
+  base: DublinCore,
+): DublinCore {
+  const dc: DublinCore = { ...base };
+  for (const [campo, columna] of Object.entries(CAMPOS_DC) as [keyof typeof CAMPOS_DC, string][]) {
+    const valor = texto(valores[columna]);
+    if (valor) dc[campo] = valor;
+  }
+  const cobertura = texto(valores["dc_coverage"]);
+  if (cobertura) {
+    const { nivel, detalle } = partirCobertura(cobertura);
+    dc.cobertura = nivel;
+    dc.coberturaDetalle = detalle;
+  }
+  return dc;
+}
+
+/** Formulario Dublin Core → columnas `dc_*` que espera el metadata-service. */
+export function dublinCoreAPayload(dc: DublinCore): Record<string, string> {
+  const payload: Record<string, string> = {};
+  for (const [campo, columna] of Object.entries(CAMPOS_DC) as [keyof typeof CAMPOS_DC, string][]) {
+    payload[columna] = dc[campo].trim();
+  }
+  payload["dc_coverage"] = [dc.cobertura, dc.coberturaDetalle.trim()].filter(Boolean).join(" — ");
+  return payload;
+}
+
+/** Valores propuestos del tipo → texto de formulario (listas con comas, mapas por línea). */
+export function metadatosTipoDesdePropuesta(valores: Record<string, unknown>): MetadatosTipo {
+  return Object.fromEntries(Object.entries(valores).map(([clave, valor]) => [clave, texto(valor)]));
+}
+
+// ── Paso 5: vista previa y aprobación ─────────────────────────────────────────────
+
+export interface ErroresMetadatos {
+  dublin_core: Record<string, string>;
+  enriquecidos: Record<string, string>;
+}
+
+export interface VistaPrevia {
+  json: Record<string, unknown>;
+  valido: boolean;
+  errores: ErroresMetadatos;
+}
+
+/** JSON estandarizado que se generaría con estos metadatos (no guarda nada). */
+export async function previsualizarMetadatos(
+  idCrudo: number,
+  dc: DublinCore,
+  meta: MetadatosTipo,
+): Promise<VistaPrevia> {
+  const r = await pedir<{
+    json_estandarizado: Record<string, unknown>;
+    valido: boolean;
+    errores: ErroresMetadatos;
+  }>(`${API_URL}/api/metadata/${idCrudo}/vista-previa`, {
     method: "POST",
-    body: datos,
     auth: true,
+    body: { dublin_core: dublinCoreAPayload(dc), enriquecidos: meta },
   });
+  return { json: r.json_estandarizado, valido: r.valido, errores: r.errores };
 }
 
-// ── Paso 4: asociación de KPIs (analysis-service directo) ───────────────────────────
+export interface ResultadoAprobacion {
+  idInstrumento: number;
+  json: Record<string, unknown>;
+  /** Instrumento en Markdown (solo preguntas): entrada para proponer KPIs. */
+  textoInstrumento: string;
+  ingesta: { indexado: boolean; chunks: number; motivo: string | null };
+  mensaje: string;
+}
+
+/**
+ * El autor aprueba sus metadatos: el metadata-service los persiste
+ * (metadatos_dc + metadatos_enriquecidos_*), guarda el JSON estandarizado en el
+ * storage-service y lo ingiere al RAG. Se puede volver a aprobar para corregir.
+ */
+export async function aprobarMetadatos(
+  idCrudo: number,
+  dc: DublinCore,
+  meta: MetadatosTipo,
+): Promise<ResultadoAprobacion> {
+  const r = await pedir<{
+    id_instrumento: number;
+    json_estandarizado: Record<string, unknown>;
+    texto_instrumento: string;
+    ingesta: { indexado: boolean; chunks: number; motivo: string | null };
+    mensaje: string;
+  }>(`${API_URL}/api/metadata/${idCrudo}/aprobar`, {
+    method: "POST",
+    auth: true,
+    body: { dublin_core: dublinCoreAPayload(dc), enriquecidos: meta },
+  });
+  return {
+    idInstrumento: r.id_instrumento,
+    json: r.json_estandarizado,
+    textoInstrumento: r.texto_instrumento,
+    ingesta: r.ingesta,
+    mensaje: r.mensaje,
+  };
+}
+
+// ── Paso 6: asociación de KPIs (analysis-service directo) ───────────────────────────
 
 /** KPI candidato que devuelve el backend en /vectorizacion/propuestas. */
 interface PropuestaKPI {
@@ -252,20 +395,9 @@ interface PropuestasResponse {
 }
 
 /**
- * Firma estable por compatibilidad. La propuesta REAL la produce `proponerKpis`
- * (necesita el JSON del instrumento + .md original + tipo + id_instrumento, no solo
- * una descripción). El wizard ya no invoca esta función; devuelve `[]`.
- */
-export function getKpisSugeridos(_descripcion: string): Promise<KpiSugerido[]> {
-  // TODO: la propuesta real la hace `proponerKpis` (POST /vectorizacion/propuestas).
-  return Promise.resolve([]);
-}
-
-/**
- * Paso 1 de KPIs: propone KPIs por similitud semántica.
+ * Propone KPIs por similitud semántica con los KPIs almacenados en Chroma.
  * `POST /vectorizacion/propuestas` (multipart) contra ANALYSIS_URL directo (el gateway
- * no proxea /vectorizacion/*). Sin Authorization (auth dev mode resuelve sin token,
- * patrón de `espacio.ts`). Se envían Blob/File con `type` explícito.
+ * no proxea /vectorizacion/*). Recibe el JSON aprobado y el instrumento en texto.
  */
 export async function proponerKpis(args: {
   idInstrumento: number;
@@ -295,13 +427,7 @@ export async function proponerKpis(args: {
   });
 
   if (!respuesta.ok) {
-    let detalle = "";
-    try {
-      const datos = (await respuesta.json()) as { detail?: unknown };
-      if (typeof datos?.detail === "string") detalle = datos.detail;
-    } catch {
-      /* cuerpo no-JSON: se ignora */
-    }
+    const detalle = await detalleDe(respuesta);
     const error = new Error(
       detalle || `No se pudieron proponer KPIs (HTTP ${respuesta.status}).`,
     ) as Error & { status?: number };
@@ -310,7 +436,6 @@ export async function proponerKpis(args: {
   }
 
   const datos = (await respuesta.json()) as PropuestasResponse;
-  // Mapeo PropuestaKPI → KpiSugerido (preserva la forma de 3 campos).
   return (datos.propuestas ?? []).map((p) => ({
     id: String(p.kpi_id),
     nombre: p.nombre_kpi,
@@ -338,9 +463,8 @@ interface ConfirmarResponse {
 }
 
 /**
- * Paso 2 de KPIs: confirma las decisiones y enriquece el JSON.
- * `POST /vectorizacion/confirmar` (JSON) contra ANALYSIS_URL directo, sin auth.
- * El /confirmar persiste los KPIs aceptados: ES el "guardar" del dominio de KPIs.
+ * Confirma las decisiones del autor: el analysis-service persiste los KPIs
+ * aceptados (`kpi_inferido` + evidencia). `POST /vectorizacion/confirmar`.
  */
 export async function confirmarKpis(args: {
   idInstrumento: number;
@@ -374,16 +498,17 @@ export async function confirmarKpis(args: {
   };
 }
 
+// ── Paso 7: guardar ──────────────────────────────────────────────────────────────────
+
 /**
- * Firma estable. El "guardado" de dominio del paso 4 es el `json_enriquecido` que
- * devuelve `confirmarKpis` (el /confirmar ya persiste los KPIs aceptados en BD).
- * Devuelve el id real del instrumento (en vez del `ins-${Date.now()}` del mock).
- *
- * TODO: si se requiere persistir `json_enriquecido` como artefacto en storage-service,
- * cablear `POST /almacenamiento/...` tras verificar su contrato real (router no leído).
+ * Cierra la carga: el metadata-service añade al JSON estandarizado los KPIs que el
+ * autor aceptó, lo guarda como versión final en el storage-service y actualiza el
+ * índice del RAG. `POST /api/metadata/{id_crudo}/finalizar`.
  */
-export function guardarInstrumento(documento: unknown): Promise<{ id: string }> {
-  const doc = documento as { id_instrumento?: number } | null | undefined;
-  const id = doc?.id_instrumento != null ? String(doc.id_instrumento) : `ins-${Date.now()}`;
-  return Promise.resolve({ id });
+export async function guardarInstrumento(idCrudo: number): Promise<{ id: string; kpis: string[] }> {
+  const r = await pedir<{ id_crudo: number; kpis: { nombre_kpi: string }[] }>(
+    `${API_URL}/api/metadata/${idCrudo}/finalizar`,
+    { method: "POST", auth: true },
+  );
+  return { id: String(r.id_crudo), kpis: (r.kpis ?? []).map((k) => k.nombre_kpi) };
 }

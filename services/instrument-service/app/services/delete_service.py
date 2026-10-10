@@ -82,6 +82,8 @@ class DeleteService:
             if ruta:
                 almacenamiento.eliminar(ruta)
                 archivos_borrados.append(ruta)
+        # Derivados (JSON estandarizado, .sav, vectores del RAG).
+        almacenamiento.purgar_instrumento(id_crudo)
 
         return {
             "id_crudo": id_crudo,

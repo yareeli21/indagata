@@ -69,6 +69,15 @@ class AppSettings(BaseSettings):
     # ── URLs de los microservicios ───────────────────────────────────────────
     INSTRUMENT_SERVICE_URL: str = "http://localhost:8001"
     ANALYSIS_SERVICE_URL: str = "http://localhost:8002"
+    # Autoridad de archivos y del índice vectorial. En Docker, docker-compose.yml
+    # inyecta http://storage-service:8004.
+    STORAGE_SERVICE_URL: str = "http://localhost:8004"
+
+    # ── metadata-service ─────────────────────────────────────────────────────
+    # Si es True, la propuesta de metadatos pide a Ollama los campos que las
+    # heurísticas no lograron inferir (con degradación grácil si no responde).
+    METADATA_USAR_LLM: bool = True
+    METADATA_LLM_TIMEOUT: float = 60.0
 
     # ── Búsqueda semántica de KPIs ───────────────────────────────────────────
     KPI_SEARCH_TOP_K: int = 5

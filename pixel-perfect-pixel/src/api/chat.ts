@@ -66,21 +66,19 @@ interface EventoToken {
  */
 export function enviarMensaje(
   pregunta: string,
-  _contexto: ContextoInvestigacion,
+  contexto: ContextoInvestigacion,
   modelo: ModeloLLM,
   onToken: (token: string) => void,
   onDone: (fuentes: FuenteChat[]) => void,
   investigacionId: string,
   instrumentoIds?: string[],
 ): () => void {
-  void _contexto; // el contexto se usa en el prompt del backend; aquí no viaja
-
   const controlador = new AbortController();
   const ids = instrumentoIds ?? getInstrumentosDeInvestigacion(investigacionId);
 
   const encabezados: Record<string, string> = { "Content-Type": "application/json" };
   const token = leerToken();
-  if (token) encabezados.Authorization = `Bearer ${token}`;
+  if (token) encabezados["Authorization"] = `Bearer ${token}`;
 
   let fuentes: FuenteChat[] = [];
 
@@ -94,7 +92,9 @@ export function enviarMensaje(
         instrumentoIds: ids,
         modelo,
         stream: true,
-        top_k: 5,
+        top_k: 6,
+        // Orienta la respuesta hacia la investigación (objetivo, población, nivel).
+        contexto,
       }),
       signal: controlador.signal,
     });
@@ -174,7 +174,7 @@ export async function guardarContexto(
 
   const encabezados: Record<string, string> = { "Content-Type": "application/json" };
   const token = leerToken();
-  if (token) encabezados.Authorization = `Bearer ${token}`;
+  if (token) encabezados["Authorization"] = `Bearer ${token}`;
 
   await fetch(`${API_URL}/rag/index`, {
     method: "POST",

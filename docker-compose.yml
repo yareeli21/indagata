@@ -112,7 +112,7 @@ services:
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
       DEBUG: ${DEBUG:-false}
     ports:
-      - "8000:8000"
+      - "8006:8000"
     volumes:
       - ./services/api-gateway:/app
       - ./shared:/app/shared
@@ -133,6 +133,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      storage-service:
+        condition: service_started
     environment:
       SERVICE_NAME: instrument-service
       POSTGRES_HOST: postgres
@@ -145,6 +147,9 @@ services:
       STORAGE_PATH: /app/storage
       RAW_PATH: /app/storage/raw
       TEMP_PATH: /app/storage/temp
+      # El archivo crudo lo guarda el storage-service (sin cambios, con SHA-256).
+      STORAGE_BACKEND: http
+      STORAGE_SERVICE_URL: http://storage-service:8004
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
       - "8001:8001"
@@ -204,6 +209,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      storage-service:
+        condition: service_started
     environment:
       SERVICE_NAME: metadata-service
       POSTGRES_HOST: postgres
@@ -213,6 +220,13 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
       # Debe coincidir con la SECRET_KEY del api-gateway para validar el JWT.
       SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-prod}
+      APP_NAME: ${APP_NAME:-Indagata}
+      # Lee el instrumento, guarda el JSON estandarizado y pide la ingesta al RAG.
+      STORAGE_SERVICE_URL: http://storage-service:8004
+      # Sugerencias de metadatos con el LLM local (con degradación si no responde).
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
+      METADATA_USAR_LLM: ${METADATA_USAR_LLM:-true}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
       - "8003:8003"
@@ -228,14 +242,30 @@ services:
       context: .
       dockerfile: ./infrastructure/docker/Dockerfile.storage-service
     container_name: indagata_storage_service
+    depends_on:
+      postgres:
+        condition: service_healthy
+      chromadb:
+        condition: service_started
     environment:
       SERVICE_NAME: storage-service
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      # Valida los tokens de servicio y de administrador.
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-prod}
       STORAGE_PATH: /app/storage
       RAW_PATH: /app/storage/raw
+      CLEAN_PATH: /app/storage/clean
       JSON_PATH: /app/storage/json
       SAV_PATH: /app/storage/sav
       TEMP_PATH: /app/storage/temp
-      CHROMA_PATH: /app/chromadb/data
+      # Único escritor de la colección `instrumentos` (ingesta al RAG).
+      CHROMA_HOST: chromadb
+      CHROMA_PORT: 8000
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/paraphrase-multilingual-mpnet-base-v2}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
       - "8004:8004"
@@ -243,7 +273,8 @@ services:
       - ./services/storage-service:/app
       - ./shared:/app/shared
       - ./storage:/app/storage
-      - ./chromadb:/app/chromadb
+      # Cache persistente del modelo de embeddings (compartido con los demás servicios).
+      - hf_cache:/root/.cache/huggingface
     networks:
       - indagata_network
     restart: unless-stopped
@@ -259,6 +290,8 @@ services:
       ollama:
         condition: service_started
       chromadb:
+        condition: service_started
+      storage-service:
         condition: service_started
     environment:
       SERVICE_NAME: visualization-service
@@ -300,7 +333,7 @@ services:
       dockerfile: ./infrastructure/docker/Dockerfile.frontend
     container_name: indagata_frontend
     environment:
-      VITE_API_URL: http://localhost:8000
+      VITE_API_URL: http://localhost:8006
       NODE_ENV: ${NODE_ENV:-production}
     ports:
       - "3000:3000"

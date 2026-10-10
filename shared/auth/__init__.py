@@ -17,7 +17,13 @@ from shared.auth.jwt_handler import (
     decodificar_token,
 )
 from shared.auth.password import hashear_password, verificar_password
-from shared.auth.roles import ROL_ADMINISTRADOR, ROL_INVESTIGADOR, ROLES_VALIDOS
+from shared.auth.roles import (
+    ROL_ADMINISTRADOR,
+    ROL_INVESTIGADOR,
+    ROL_SERVICIO,
+    ROLES_VALIDOS,
+)
+from shared.auth.servicio import cabeceras_servicio, crear_token_servicio, es_token_servicio
 
 __all__ = [
     "crear_access_token",
@@ -28,5 +34,9 @@ __all__ = [
     "verificar_password",
     "ROL_INVESTIGADOR",
     "ROL_ADMINISTRADOR",
+    "ROL_SERVICIO",
     "ROLES_VALIDOS",
+    "cabeceras_servicio",
+    "crear_token_servicio",
+    "es_token_servicio",
 ]

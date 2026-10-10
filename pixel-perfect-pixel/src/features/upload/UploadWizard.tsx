@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { AlertTriangle, ArrowLeft, ArrowRight, Loader2, Save } from "lucide-react";
+import { AlertTriangle, ArrowLeft, ArrowRight, Loader2, Save, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,19 +14,26 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import {
+  CAMPO_DC_POR_COLUMNA,
+  aprobarMetadatos,
   confirmarKpis,
-  getMetadatosInit,
+  dublinCoreDesdePropuesta,
+  getPropuestaDublinCore,
+  getPropuestaEnriquecida,
   guardarInstrumento,
+  metadatosTipoDesdePropuesta,
+  previsualizarMetadatos,
   proponerKpis,
-  registrarMetadatos,
   subirInstrumento,
-  type RegistroMetadatos,
+  type ResultadoAprobacion,
+  type VistaPrevia,
 } from "@/api/carga";
 import { useAuth } from "@/features/auth/AuthContext";
 import type {
   DublinCore,
   KpiSugerido,
   MetadatosTipo,
+  OrigenMetadato,
   ReporteLimpieza,
   TipoInstrumento,
 } from "@/types";
@@ -35,8 +42,8 @@ import { Stepper } from "./Stepper";
 import { StepArchivo } from "./StepArchivo";
 import { StepLimpieza } from "./StepLimpieza";
 import { StepDublinCore } from "./StepDublinCore";
-import { StepMetadatosTipo } from "./StepMetadatosTipo";
-import { JsonPreview } from "./JsonPreview";
+import { CAMPOS_POR_TIPO, StepMetadatosTipo } from "./StepMetadatosTipo";
+import { StepAprobacion } from "./StepAprobacion";
 import { StepKpis, type DecisionKpi } from "./StepKpis";
 import { StepGuardar } from "./StepGuardar";
 
@@ -45,222 +52,281 @@ const PASOS = [
   "Limpieza",
   "Dublin Core",
   "Metadatos del tipo",
-  "Vista previa JSON",
+  "Aprobar metadatos",
   "KPIs sugeridos",
   "Guardar",
 ];
+
+/** Campos Dublin Core que el formulario exige antes de continuar. */
+const DC_OBLIGATORIOS: (keyof DublinCore)[] = [
+  "titulo",
+  "creador",
+  "tema",
+  "descripcion",
+  "fecha",
+  "idioma",
+  "cobertura",
+  "editor",
+  "derechos",
+];
+
+const ETIQUETAS_DC: Record<string, string> = {
+  dc_title: "Título",
+  dc_creator: "Creador",
+  dc_subject: "Tema",
+  dc_description: "Descripción",
+  dc_type: "Tipo",
+  dc_date: "Fecha",
+  dc_language: "Idioma",
+  dc_coverage: "Cobertura",
+  dc_publisher: "Editor",
+  dc_rights: "Derechos",
+  dc_format: "Formato",
+  dc_source: "Fuente",
+  dc_relation: "Relación",
+};
+
+function dublinCoreInicial(creador: string): DublinCore {
+  return {
+    titulo: "",
+    creador,
+    tema: "",
+    descripcion: "",
+    tipo: "",
+    fecha: new Date().toISOString().slice(0, 10),
+    idioma: "es",
+    cobertura: "",
+    coberturaDetalle: "",
+    editor: "",
+    derechos: "",
+    formato: "",
+    fuente: "",
+    relacion: "",
+  };
+}
+
+function mensajeDe(e: unknown, defecto: string): string {
+  return e instanceof Error && e.message ? e.message : defecto;
+}
 
 export function UploadWizard() {
   const { usuario } = useAuth();
   const navigate = useNavigate();
   const [paso, setPaso] = useState(0);
   const [archivo, setArchivo] = useState<File | null>(null);
+  const [archivoOriginal, setArchivoOriginal] = useState<File | null>(null);
   const [tipo, setTipo] = useState<TipoInstrumento | null>(null);
   const [reporte, setReporte] = useState<ReporteLimpieza | null>(null);
-  // Ids reales que fluyen por el pipeline (§1.1 del diseño): id_crudo ≠ id_instrumento.
-  const [idInstrumento, setIdInstrumento] = useState<number | null>(null);
+  // id_crudo: id canónico (metadatos, storage, visualización). El id_instrumento
+  // que usa el analysis-service llega en el resultado de la aprobación.
   const [idCrudo, setIdCrudo] = useState<number | null>(null);
-  // El instrumento ORIGINAL (.md, solo preguntas) y el JSON enriquecido solo existen
-  // por la ruta de artefactos sembrados; en el flujo de upload puro quedan nulos.
-  const [archivoOriginal, setArchivoOriginal] = useState<File | null>(null);
-  const [jsonInstrumento, setJsonInstrumento] = useState<Record<string, unknown> | null>(null);
   const [avanzando, setAvanzando] = useState(false);
-  const [dc, setDc] = useState<DublinCore>({
-    titulo: "",
-    creador: usuario?.nombre ?? "",
-    tema: "",
-    descripcion: "",
-    fecha: new Date().toISOString().slice(0, 10),
-    idioma: "Español",
-    derechos: "",
-    cobertura: "",
-  });
+
+  // Dublin Core (propuesto por el metadata-service, editable por el autor).
+  const [dc, setDc] = useState<DublinCore>(() => dublinCoreInicial(usuario?.nombre ?? ""));
+  const [origenDc, setOrigenDc] = useState<Partial<Record<keyof DublinCore, OrigenMetadato>>>({});
+  const [notasDc, setNotasDc] = useState<string[]>([]);
+  const [dcPropuestoPara, setDcPropuestoPara] = useState<number | null>(null);
+
+  // Metadatos del tipo.
   const [meta, setMeta] = useState<MetadatosTipo>({});
+  const [origenMeta, setOrigenMeta] = useState<Record<string, OrigenMetadato>>({});
+  const [obligatoriosMeta, setObligatoriosMeta] = useState<string[]>([]);
+  const [metaPropuestoPara, setMetaPropuestoPara] = useState<number | null>(null);
+
+  // Aprobación y KPIs.
+  const [vistaPrevia, setVistaPrevia] = useState<VistaPrevia | null>(null);
+  const [aprobacion, setAprobacion] = useState<ResultadoAprobacion | null>(null);
   const [sugeridos, setSugeridos] = useState<KpiSugerido[] | null>(null);
   const [decisiones, setDecisiones] = useState<Record<string, DecisionKpi>>({});
   const [confirmar, setConfirmar] = useState(false);
   const [guardando, setGuardando] = useState(false);
 
-  // Pre-poblado de Dublin Core al entrar al paso de metadatos (paso === 2).
+  const cargandoDc = paso === 2 && idCrudo != null && dcPropuestoPara !== idCrudo;
+  const cargandoMeta = paso === 3 && idCrudo != null && metaPropuestoPara !== idCrudo;
+
+  // Propuesta de Dublin Core al entrar al paso 3 (una vez por instrumento subido).
   useEffect(() => {
-    if (paso !== 2 || idInstrumento == null) return;
+    if (!cargandoDc || idCrudo == null) return;
     let cancelado = false;
-    getMetadatosInit(idInstrumento)
-      .then((init) => {
+    getPropuestaDublinCore(idCrudo)
+      .then((p) => {
         if (cancelado) return;
-        setDc((prev) => ({
-          ...prev,
-          // Solo pre-rellena el título si el sugerido es útil; NO toca `creador`
-          // (el init.dc_creator es "Sistema" hardcodeado; §4.3 del diseño).
-          titulo:
-            prev.titulo ||
-            (init.dc_title_sugerido && init.dc_title_sugerido !== "Sin título"
-              ? init.dc_title_sugerido
-              : prev.titulo),
-          fecha: init.dc_date || prev.fecha,
-          idioma: init.dc_language === "es" ? "Español" : prev.idioma,
-        }));
+        setDc((prev) => dublinCoreDesdePropuesta(p.valores, prev));
+        const origen: Partial<Record<keyof DublinCore, OrigenMetadato>> = {};
+        for (const [columna, valor] of Object.entries(p.origen)) {
+          const campo = CAMPO_DC_POR_COLUMNA[columna];
+          if (campo) origen[campo] = valor;
+        }
+        setOrigenDc(origen);
+        setNotasDc(p.notas);
       })
-      .catch(() => {
-        /* pre-poblado best-effort: si falla, el usuario captura los campos */
+      .catch((e: unknown) => {
+        if (!cancelado)
+          toast.error(mensajeDe(e, "No se pudo proponer el Dublin Core; captúralo a mano."));
+      })
+      .finally(() => {
+        if (!cancelado) setDcPropuestoPara(idCrudo);
       });
     return () => {
       cancelado = true;
     };
-  }, [paso, idInstrumento]);
+  }, [cargandoDc, idCrudo]);
 
-  // Propuesta real de KPIs (paso === 5). Reemplaza a `getKpisSugeridos`.
-  // ⚠️ Solo ejecutable con artefactos sembrados (`archivoJson` + `.md` original):
-  // el upload puro NO produce el JSON enriquecido, así que en ese flujo el paso
-  // queda sin fuente (sugeridos = []). TODO: no hay endpoint que devuelva el JSON
-  // enriquecido tras el upload para alimentar las propuestas end-to-end.
+  // Propuesta de metadatos del tipo al entrar al paso 4.
   useEffect(() => {
-    if (paso !== 5 || sugeridos || idInstrumento == null || !tipo) return;
-    if (!jsonInstrumento || !archivoOriginal) {
-      setSugeridos([]);
-      return;
-    }
+    if (!cargandoMeta || idCrudo == null) return;
+    let cancelado = false;
+    getPropuestaEnriquecida(idCrudo)
+      .then((p) => {
+        if (cancelado) return;
+        setMeta(metadatosTipoDesdePropuesta(p.valores));
+        setOrigenMeta(p.origen);
+        setObligatoriosMeta(p.obligatorios);
+      })
+      .catch((e: unknown) => {
+        if (!cancelado)
+          toast.error(mensajeDe(e, "No se pudieron proponer los metadatos del tipo."));
+      })
+      .finally(() => {
+        if (!cancelado) setMetaPropuestoPara(idCrudo);
+      });
+    return () => {
+      cancelado = true;
+    };
+  }, [cargandoMeta, idCrudo]);
+
+  // Propuesta de KPIs (paso 6) sobre el JSON aprobado y el instrumento en texto.
+  useEffect(() => {
+    if (paso !== 5 || sugeridos || !aprobacion || !tipo) return;
     let cancelado = false;
     proponerKpis({
-      idInstrumento,
-      archivoJson: new Blob([JSON.stringify(jsonInstrumento)], { type: "application/json" }),
-      instrumentoOriginal: archivoOriginal,
+      idInstrumento: aprobacion.idInstrumento,
+      archivoJson: new Blob([JSON.stringify(aprobacion.json)], { type: "application/json" }),
+      instrumentoOriginal: new Blob([aprobacion.textoInstrumento], { type: "text/markdown" }),
       tipo,
     })
       .then((lista) => {
         if (!cancelado) setSugeridos(lista);
       })
-      .catch(() => {
-        if (!cancelado) setSugeridos([]);
+      .catch((e: unknown) => {
+        if (cancelado) return;
+        setSugeridos([]);
+        toast.warning(mensajeDe(e, "No se pudieron proponer KPIs."));
       });
     return () => {
       cancelado = true;
     };
-  }, [paso, sugeridos, idInstrumento, tipo, jsonInstrumento, archivoOriginal]);
+  }, [paso, sugeridos, aprobacion, tipo]);
 
   const kpisAceptados = (sugeridos ?? []).filter((k) => decisiones[k.id] === "aceptado");
 
-  const documento = useMemo(
+  const etiquetas = useMemo(
     () => ({
-      id_instrumento: idInstrumento,
-      id_crudo: idCrudo,
-      tipo,
-      archivo: archivo?.name ?? null,
-      dublin_core: { ...dc },
-      metadatos_tipo: Object.fromEntries(
-        Object.entries(meta).map(([k, v]) => [k, v !== "" && !isNaN(Number(v)) ? Number(v) : v]),
-      ),
-      limpieza: reporte && {
-        duplicados_eliminados: reporte.duplicadosEliminados,
-        nulos_tratados: reporte.nulosTratados,
-        columnas_normalizadas: reporte.columnasNormalizadas,
-      },
-      kpis: kpisAceptados.map((k) => k.nombre),
+      ...ETIQUETAS_DC,
+      ...Object.fromEntries((tipo ? CAMPOS_POR_TIPO[tipo] : []).map((c) => [c.clave, c.etiqueta])),
     }),
-    [idInstrumento, idCrudo, tipo, archivo, dc, meta, reporte, kpisAceptados],
+    [tipo],
   );
 
   const puedeContinuar = [
     !!archivo && !!tipo,
     !!reporte,
-    !!dc.titulo.trim() && !!dc.creador.trim() && !!dc.descripcion.trim() && !!dc.cobertura,
-    true,
-    true,
+    !cargandoDc && DC_OBLIGATORIOS.every((k) => String(dc[k]).trim() !== ""),
+    !cargandoMeta && obligatoriosMeta.every((k) => (meta[k] ?? "").trim() !== ""),
+    !!vistaPrevia?.valido,
     !!sugeridos,
     true,
   ][paso];
 
-  /** Avanza al siguiente paso, ejecutando la llamada real de red que corresponde. */
+  function reiniciarMetadatos() {
+    setDc(dublinCoreInicial(usuario?.nombre ?? ""));
+    setOrigenDc({});
+    setNotasDc([]);
+    setMeta({});
+    setOrigenMeta({});
+    setObligatoriosMeta([]);
+    setVistaPrevia(null);
+    setAprobacion(null);
+    setSugeridos(null);
+    setDecisiones({});
+  }
+
+  /** Avanza al siguiente paso, ejecutando la llamada de red que corresponde. */
   async function avanzar() {
-    // Paso 0 → 1: subir el instrumento. Captura ambos ids y el reporte real
-    // (derivado del parseo del upload) ANTES de avanzar al paso de limpieza.
-    if (paso === 0) {
-      if (!archivo || !tipo) return;
-      setAvanzando(true);
-      try {
-        const resultado = await subirInstrumento(archivo, tipo, archivoOriginal ?? undefined);
+    setAvanzando(true);
+    try {
+      if (paso === 0) {
+        if (!archivo || !tipo) return;
+        const resultado = await subirInstrumento(archivo, tipo, archivoOriginal);
+        reiniciarMetadatos();
         setIdCrudo(resultado.idCrudo);
-        setIdInstrumento(resultado.idInstrumento);
         setReporte(resultado.reporte);
         setPaso(1);
-      } catch (e) {
-        toast.error(e instanceof Error ? e.message : "No se pudo subir el instrumento.");
-      } finally {
-        setAvanzando(false);
+        return;
       }
-      return;
-    }
-
-    // Paso 2 → 3: registrar los metadatos Dublin Core (inmutable: 2ª vez → 409).
-    if (paso === 2 && idInstrumento != null) {
-      setAvanzando(true);
-      try {
-        const metadatos: RegistroMetadatos = {
-          dc_title: dc.titulo,
-          dc_creator: dc.creador,
-          dc_subject: dc.tema
-            .split(",")
-            .map((t) => t.trim())
-            .filter(Boolean),
-          dc_description: dc.descripcion,
-        };
-        if (dc.cobertura) metadatos.dc_coverage = dc.cobertura;
-        if (dc.derechos) metadatos.dc_rights = dc.derechos;
-        await registrarMetadatos(idInstrumento, metadatos);
-        setPaso(3);
-      } catch (e) {
-        const status = (e as { status?: number })?.status;
-        if (status === 409) {
-          // Ya registrado (inmutable): se continúa sin reintentar.
-          setPaso(3);
-        } else {
-          toast.error(e instanceof Error ? e.message : "No se pudieron registrar los metadatos.");
-        }
-      } finally {
-        setAvanzando(false);
+      if (paso === 3 && idCrudo != null) {
+        setVistaPrevia(await previsualizarMetadatos(idCrudo, dc, meta));
+        setPaso(4);
+        return;
       }
-      return;
+      if (paso === 4 && idCrudo != null) {
+        const resultado = await aprobarMetadatos(idCrudo, dc, meta);
+        setAprobacion(resultado);
+        setSugeridos(null);
+        setDecisiones({});
+        if (resultado.ingesta.indexado) toast.success(resultado.mensaje);
+        else toast.warning(resultado.mensaje);
+        setPaso(5);
+        return;
+      }
+      setPaso(paso + 1);
+    } catch (e) {
+      toast.error(mensajeDe(e, "No se pudo completar el paso."));
+    } finally {
+      setAvanzando(false);
     }
-
-    setPaso(paso + 1);
   }
 
   async function guardar() {
+    if (idCrudo == null || !aprobacion) return;
     setGuardando(true);
-    // Confirmar los KPIs aceptados enriquece el JSON y persiste el dominio de KPIs.
-    // Solo se intenta si hubo propuesta real (jsonInstrumento presente).
-    if (idInstrumento != null && jsonInstrumento) {
-      try {
-        await confirmarKpis({
-          idInstrumento,
-          decisiones: (sugeridos ?? []).map((k) => ({
-            kpiId: Number(k.id),
-            aceptado: decisiones[k.id] === "aceptado",
-            score: k.coincidencia / 100,
-          })),
-          jsonInstrumento,
-        });
-      } catch (e) {
-        toast.error(e instanceof Error ? e.message : "No se pudieron confirmar los KPIs.");
+    try {
+      if ((sugeridos ?? []).length > 0) {
+        try {
+          await confirmarKpis({
+            idInstrumento: aprobacion.idInstrumento,
+            decisiones: (sugeridos ?? []).map((k) => ({
+              kpiId: Number(k.id),
+              aceptado: decisiones[k.id] === "aceptado",
+              score: k.coincidencia / 100,
+            })),
+            jsonInstrumento: aprobacion.json,
+          });
+        } catch (e) {
+          toast.error(mensajeDe(e, "No se pudieron confirmar los KPIs."));
+        }
       }
+      await guardarInstrumento(idCrudo);
+      setConfirmar(false);
+      toast.success("Instrumento guardado", {
+        action: { label: "Ver espacio vectorial", onClick: () => navigate({ to: "/espacio" }) },
+      });
+      navigate({ to: "/instrumentos" });
+    } catch (e) {
+      toast.error(mensajeDe(e, "No se pudo guardar el instrumento."));
+    } finally {
+      setGuardando(false);
     }
-    await guardarInstrumento(documento);
-    setGuardando(false);
-    setConfirmar(false);
-    toast.success("Instrumento guardado", {
-      action: {
-        label: "Ver espacio vectorial",
-        onClick: () => navigate({ to: "/espacio" }),
-      },
-    });
-    navigate({ to: "/instrumentos" });
   }
+
+  const ingesta = aprobacion?.ingesta;
 
   return (
     <div className="mx-auto max-w-4xl space-y-8 p-6 md:p-8">
       <PageHeader
         titulo="Subir instrumento"
-        descripcion="Carga, limpia y estandariza tu instrumento en 7 pasos."
+        descripcion="Carga tu instrumento, revisa y aprueba sus metadatos, y asócialo a KPIs."
       />
       <Stepper pasos={PASOS} actual={paso} />
 
@@ -276,12 +342,13 @@ export function UploadWizard() {
             <StepArchivo
               archivo={archivo}
               tipo={tipo}
+              archivoOriginal={archivoOriginal}
               onArchivo={(f) => {
                 setArchivo(f);
                 setReporte(null);
                 setIdCrudo(null);
-                setIdInstrumento(null);
               }}
+              onArchivoOriginal={setArchivoOriginal}
               onTipo={(t) => {
                 setTipo(t);
                 setMeta({});
@@ -289,9 +356,26 @@ export function UploadWizard() {
             />
           )}
           {paso === 1 && <StepLimpieza reporte={reporte} />}
-          {paso === 2 && <StepDublinCore valor={dc} onChange={setDc} />}
-          {paso === 3 && tipo && <StepMetadatosTipo tipo={tipo} valor={meta} onChange={setMeta} />}
-          {paso === 4 && <JsonPreview datos={documento} />}
+          {paso === 2 && (
+            <StepDublinCore
+              valor={dc}
+              onChange={setDc}
+              origen={origenDc}
+              cargando={cargandoDc}
+              notas={notasDc}
+            />
+          )}
+          {paso === 3 && tipo && (
+            <StepMetadatosTipo
+              tipo={tipo}
+              valor={meta}
+              onChange={setMeta}
+              origen={origenMeta}
+              obligatorios={obligatoriosMeta}
+              cargando={cargandoMeta}
+            />
+          )}
+          {paso === 4 && <StepAprobacion vistaPrevia={vistaPrevia} etiquetas={etiquetas} />}
           {paso === 5 && (
             <StepKpis
               sugeridos={sugeridos}
@@ -308,10 +392,13 @@ export function UploadWizard() {
                 { etiqueta: "Creador", valor: dc.creador },
                 { etiqueta: "Nivel educativo", valor: dc.cobertura },
                 { etiqueta: "Fecha", valor: dc.fecha },
+                { etiqueta: "Metadatos", valor: aprobacion ? "Aprobados por ti" : "" },
                 {
-                  etiqueta: "Registros limpiados",
-                  valor: reporte
-                    ? `${reporte.duplicadosEliminados} duplicados · ${reporte.nulosTratados} nulos`
+                  etiqueta: "RAG",
+                  valor: ingesta
+                    ? ingesta.indexado
+                      ? `Integrado (${ingesta.chunks} fragmentos)`
+                      : `Pendiente: ${ingesta.motivo ?? "se reintentará"}`
                     : "",
                 },
                 {
@@ -323,12 +410,25 @@ export function UploadWizard() {
           )}
         </div>
         <footer className="flex justify-between border-t border-border bg-muted/30 px-6 py-4">
-          <Button variant="outline" disabled={paso === 0} onClick={() => setPaso(paso - 1)}>
+          <Button
+            variant="outline"
+            disabled={paso === 0 || avanzando}
+            onClick={() => setPaso(paso - 1)}
+          >
             <ArrowLeft /> Atrás
           </Button>
           {paso < 6 ? (
             <Button disabled={!puedeContinuar || avanzando} onClick={avanzar}>
-              {avanzando && <Loader2 className="animate-spin" />} Continuar <ArrowRight />
+              {avanzando && <Loader2 className="animate-spin" />}
+              {paso === 4 ? (
+                <>
+                  <ShieldCheck /> Aprobar metadatos
+                </>
+              ) : (
+                <>
+                  Continuar <ArrowRight />
+                </>
+              )}
             </Button>
           ) : (
             <Button onClick={() => setConfirmar(true)}>

@@ -206,7 +206,12 @@ export function InstrumentosPage() {
         autor={seleccionado ? nombreAutor(seleccionado.autorId) : ""}
         ajeno={!!seleccionado && seleccionado.autorId !== miId}
         onCerrar={() => setSeleccionado(null)}
-        onDescargar={(f) => seleccionado && descargarInstrumento(seleccionado.id, f)}
+        onDescargar={(f) => {
+          if (!seleccionado) return;
+          descargarInstrumento(seleccionado.id, f).catch((error: unknown) =>
+            toast.error(error instanceof Error ? error.message : "No se pudo descargar."),
+          );
+        }}
         onEliminar={() => setAEliminar(seleccionado)}
       />
       <DialogoEliminar

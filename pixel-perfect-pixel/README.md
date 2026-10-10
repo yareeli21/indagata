@@ -31,7 +31,7 @@ El servidor de desarrollo queda disponible en `http://localhost:8080`
 
 Copia `.env.example` a `.env` y ajústalo:
 
-- `VITE_API_URL` — URL base del api-gateway (por defecto `http://localhost:8000`).
+- `VITE_API_URL` — URL base del api-gateway (por defecto `http://localhost:8006`).
 - `VITE_USAR_BACKEND` — `true` usa el backend real para autenticación; `false`
   corre todo con datos de ejemplo (mocks), sin necesidad de levantar servicios.
 

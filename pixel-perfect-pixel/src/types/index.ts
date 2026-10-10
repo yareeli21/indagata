@@ -74,18 +74,32 @@ export interface ReporteLimpieza {
   cambios: CambioLimpieza[];
 }
 
+/** Los 13 campos Dublin Core de `metadatos_dc` (la cobertura se captura como
+ * nivel educativo + detalle y se guarda como «Nivel — detalle»). */
 export interface DublinCore {
   titulo: string;
   creador: string;
   tema: string;
   descripcion: string;
+  tipo: string;
   fecha: string;
+  /** Código ISO 639-1, p. ej. «es». */
   idioma: string;
-  derechos: string;
   cobertura: NivelEducativo | "";
+  coberturaDetalle: string;
+  editor: string;
+  derechos: string;
+  formato: string;
+  fuente: string;
+  relacion: string;
 }
 
+/** Metadatos específicos del tipo, como texto de formulario (listas separadas
+ * por comas; reactivos por sección como «Sección: número» por línea). */
 export type MetadatosTipo = Record<string, string>;
+
+/** De dónde salió un metadato propuesto por el metadata-service. */
+export type OrigenMetadato = "automatico" | "archivo" | "inferido" | "llm" | "aprobado";
 
 export interface KpiSugerido {
   id: string;
@@ -171,6 +185,36 @@ export interface DatosGrafica {
   porTipo: PuntoDato[];
   /** Número de instrumentos en las fuentes que cubren este KPI */
   fuentesConteo: number;
+  /** Instrumentos que miden el KPI y sus preguntas más relacionadas */
+  instrumentos: EvidenciaKpiInstrumento[];
+}
+
+/** Pregunta de un instrumento cercana a un KPI en el espacio vectorial. */
+export interface PreguntaEvidencia {
+  preguntaId: string;
+  texto: string;
+  /** Similitud 0–1 entre la pregunta y el KPI */
+  score: number;
+}
+
+/** «aceptado»: el autor lo confirmó; «referencia»: declarado en el diseño del instrumento. */
+export type OrigenKpi = "aceptado" | "referencia";
+
+export interface EvidenciaKpiInstrumento {
+  instrumentoId: string;
+  titulo: string;
+  tipo: TipoInstrumento;
+  score: number | null;
+  origen: OrigenKpi;
+  preguntas: PreguntaEvidencia[];
+}
+
+export interface KpiDeInstrumento {
+  kpiId: string;
+  nombre: string;
+  score: number | null;
+  origen: OrigenKpi;
+  preguntas: PreguntaEvidencia[];
 }
 
 // ── Espacio vectorial ───────────────────────────────────────────────────────────

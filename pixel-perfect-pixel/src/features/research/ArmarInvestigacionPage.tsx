@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
+import { setInstrumentosDeInvestigacion } from "@/api/chat";
 import { buscarRelacionados, getInstrumentos, getInvestigadores } from "@/api/instrumentos";
 import { useAuth } from "@/features/auth/AuthContext";
 import { useResearch } from "@/features/research/ResearchContext";
@@ -72,9 +73,14 @@ export function ArmarInvestigacionPage() {
   async function irAPaso2() {
     setPaso(2);
     setBuscando(true);
-    const resultados = await buscarRelacionados(seleccionadosPropios, miId);
-    setRelacionados(resultados);
-    setBuscando(false);
+    try {
+      setRelacionados(await buscarRelacionados(seleccionadosPropios, miId));
+    } catch (error) {
+      setRelacionados([]);
+      toast.error(error instanceof Error ? error.message : "No se pudieron buscar relacionados.");
+    } finally {
+      setBuscando(false);
+    }
   }
 
   function omitirBusqueda() {
@@ -98,7 +104,9 @@ export function ArmarInvestigacionPage() {
   }
 
   async function iniciarInvestigacion(nombre: string) {
-    await crear(nombre);
+    const nueva = await crear(nombre);
+    // Las fuentes del chat y de los dashboards de KPIs son los instrumentos elegidos.
+    setInstrumentosDeInvestigacion(nueva.id, [...seleccionadosPropios, ...seleccionadosAjenos]);
     toast.success(`Investigación «${nombre}» creada. ¡Empieza a explorar!`);
     navigate({ to: "/chat" });
   }

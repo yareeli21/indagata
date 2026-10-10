@@ -3,6 +3,7 @@ import { enviarMensaje, guardarContexto } from "@/api/chat";
 import { getInstrumentos } from "@/api/instrumentos";
 import { useAuth } from "@/features/auth/AuthContext";
 import { useResearch } from "@/features/research/ResearchContext";
+import { fuentesDeInvestigacion } from "@/features/research/fuentes";
 import type { ContextoInvestigacion, Instrumento, Mensaje, ModeloLLM } from "@/types";
 import { BarraEntrada } from "./BarraEntrada";
 import { BurbujaMensaje } from "./BurbujaMensaje";
@@ -18,17 +19,14 @@ export function ChatPage() {
   const { activa, cargando: cargandoResearch } = useResearch();
   const miId = usuario?.investigadorId ?? "";
 
-  // Instrumentos de la investigación activa (simulado: todos los propios + algunos ajenos)
+  // Instrumentos de la investigación activa (los elegidos al armarla).
   const [instrumentosFuentes, setInstrumentosFuentes] = useState<Instrumento[]>([]);
 
   useEffect(() => {
     if (!activa) return;
-    getInstrumentos().then((todos) => {
-      // Simulación: tomar instrumentos propios + 2 ajenos como fuentes de la investigación
-      const propios = todos.filter((i) => i.autorId === miId).slice(0, 3);
-      const ajenos = todos.filter((i) => i.autorId !== miId).slice(0, 2);
-      setInstrumentosFuentes([...propios, ...ajenos]);
-    });
+    getInstrumentos()
+      .then((todos) => setInstrumentosFuentes(fuentesDeInvestigacion(todos, activa.id, miId)))
+      .catch(() => setInstrumentosFuentes([]));
   }, [activa, miId]);
 
   // Fase del asistente

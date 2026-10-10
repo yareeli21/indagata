@@ -1,15 +1,21 @@
 """Visualization Service — punto de entrada FastAPI.
 
-Microservicio RAG (centro de la demo). Expone:
-  GET  /health        → estado del servicio
-  POST /rag/index     → indexa los instrumentos de una investigación en Chroma
-  POST /rag/chat      → chat fundamentado (SSE o JSON) con Ollama
+Port: 8005
+
+Muestra la información de forma amigable para el investigador:
+  - Catálogo del acervo con filtros y facetas, fichas e investigadores.
+  - KPIs: catálogo, resumen del acervo, dashboards y QUÉ PREGUNTAS de cada
+    instrumento miden cada KPI.
+  - Instrumentos relacionados de otros autores.
+  - Descargas (crudo / JSON / .sav) con la regla de propiedad.
+  - Chat RAG sobre los instrumentos de la investigación o de todo el sistema.
+
+Es de solo lectura sobre la BD y ChromaDB (salvo `rag_log`); la ingesta la hace
+el storage-service.
 
 Arranque:
   - Docker:  cwd=/app, con `shared/` copiado en /app/shared (ver Dockerfile).
   - Local:   `uvicorn main:app --port 8005` desde services/visualization-service.
-             Para que `import shared` resuelva en local, se añade la raíz del
-             repo a sys.path si el paquete `shared` no está ya disponible.
 """
 from __future__ import annotations
 
@@ -19,9 +25,7 @@ import sys
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-# ── Resolver import de `shared` también en ejecución local ────────────────────
-# En Docker `shared` vive en /app/shared (misma cwd). En local, el paquete está
-# en la raíz del repo: services/visualization-service/main.py -> parents[2].
+# Resolver `import shared` también en ejecución local (en Docker vive en /app/shared).
 if not (Path(__file__).resolve().parent / "shared" / "__init__.py").exists():
     _REPO_ROOT = Path(__file__).resolve().parents[2]
     if str(_REPO_ROOT) not in sys.path:
@@ -30,7 +34,7 @@ if not (Path(__file__).resolve().parent / "shared" / "__init__.py").exists():
 from fastapi import FastAPI  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
-from app.routers import health, rag  # noqa: E402
+from routers import catalog, download, health, kpis, rag  # noqa: E402
 
 logging.basicConfig(
     level=os.getenv("LOG_LEVEL", "INFO").upper(),
@@ -41,17 +45,14 @@ logger = logging.getLogger("visualization-service")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Prepara los directorios de almacenamiento al arrancar."""
     from shared.db.core.config import settings
 
-    settings.raw_path_abs.mkdir(parents=True, exist_ok=True)
-    settings.temp_path_abs.mkdir(parents=True, exist_ok=True)
     logger.info(
-        "🚀 visualization-service listo. RAW_PATH=%s OLLAMA_HOST=%s CHROMA=%s:%s",
-        settings.raw_path_abs,
+        "🚀 visualization-service listo. OLLAMA=%s CHROMA=%s:%s storage=%s",
         settings.OLLAMA_HOST,
         settings.CHROMA_HOST,
         settings.CHROMA_PORT,
+        settings.STORAGE_SERVICE_URL,
     )
     yield
     logger.info("🛑 visualization-service detenido.")
@@ -59,8 +60,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Indagata — Visualization Service",
-    description="Servicio RAG: indexado por investigación y chat fundamentado con Ollama.",
-    version="1.0.0",
+    description="Catálogo, KPIs, relaciones, descargas y chat RAG sobre los instrumentos.",
+    version="2.0.0",
     lifespan=lifespan,
 )
 
@@ -70,9 +71,13 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["Content-Disposition"],
 )
 
 app.include_router(health.router)
+app.include_router(catalog.router)
+app.include_router(kpis.router)
+app.include_router(download.router)
 app.include_router(rag.router)
 
 

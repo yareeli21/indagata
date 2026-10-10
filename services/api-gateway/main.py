@@ -6,8 +6,9 @@ Expone el módulo de AUTENTICACIÓN y el PROXY transparente a los microservicios
   GET  /auth/me           → usuario del token
   POST /auth/register     → alta de usuario (solo administrador)
   *    /instrumentos/*     → instrument-service :8001 (passthrough)
-  *    /almacenamiento/*   → storage-service :8004 (passthrough)
+  *    /almacenamiento/*   → storage-service :8004 (passthrough, solo administradores)
   POST /rag/*              → visualization-service :8005 (/rag/chat es SSE)
+  *    /visualizacion/*    → visualization-service :8005 (catálogo, KPIs, descargas)
   *    /api/metadata/*     → metadata-service :8003 (passthrough)
   *    /api/enrichment/*   → metadata-service :8003 (passthrough)
 
@@ -62,6 +63,8 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    # Para que el frontend lea el nombre del archivo en las descargas.
+    expose_headers=["Content-Disposition", "X-Checksum-SHA256"],
 )
 
 

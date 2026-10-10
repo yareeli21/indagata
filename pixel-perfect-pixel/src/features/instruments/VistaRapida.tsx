@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import { OtherResearcherBadge } from "@/components/shared/OtherResearcherBadge";
 import type { FormatoDescarga, Instrumento } from "@/types";
+import { KpisInstrumento } from "./KpisInstrumento";
 import { MenuDescarga } from "./MenuDescarga";
 import { TipoBadge } from "./TipoBadge";
 import { EstadoBadge } from "./EstadoBadge";
@@ -84,14 +85,8 @@ export function VistaRapida({
                 </div>
               </dl>
               <div className="space-y-2">
-                <p className="text-sm text-muted-foreground">KPIs</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {i.kpis.map((k) => (
-                    <span key={k} className="rounded-md border px-2 py-0.5 text-xs">
-                      {k}
-                    </span>
-                  ))}
-                </div>
+                <p className="text-sm text-muted-foreground">KPIs y preguntas que los miden</p>
+                <KpisInstrumento instrumentoId={i.id} />
               </div>
               <div className="flex flex-wrap gap-2 border-t pt-4">
                 <MenuDescarga instrumento={i} ajeno={ajeno} onDescargar={onDescargar} />
