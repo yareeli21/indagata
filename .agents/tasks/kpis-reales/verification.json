@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "id": "CA-2",
+      "passed": true,
+      "detail": "Tras recrear volúmenes + seed_kpis.py (n_insertados=55), SELECT COUNT(*) FROM tt_rag.kpi = 55 con IDs contiguos 1..55 (MIN=1, MAX=55, contiguo=t). Conteo recontado del CSV en runtime (55 filas, no hardcodeado)."
+    },
+    {
+      "id": "CA-3",
+      "passed": true,
+      "detail": "FKs hacia kpi(kpi_id) intactas tras el TRUNCATE ... RESTART IDENTITY CASCADE: pg_constraint lista kpi_variable_kpi_id_fkey y kpi_inferido_kpi_id_fkey (contype='f', confrelid=tt_rag.kpi). La recreación de volumen aplicó 01_schema.sql completo sin romper constraints."
+    },
+    {
+      "id": "CA-4",
+      "passed": true,
+      "detail": "POST /vectorizacion/kpis/reindex -> 200 {coleccion:kpis, n_kpis:55}. La colección Chroma kpis contiene exactamente 55 puntos (col.count()=55); todos los ids = str(kpi_id) con rango 1..55; metadatos con clave nueva 'nombre' y sin 'nombre_kpi' viejo (delete_collection+recrear efectivo)."
+    },
+    {
+      "id": "CA-5",
+      "passed": true,
+      "detail": "Para la muestra de ids 1, 28 y 55 el document del punto Chroma es idéntico a tt_rag.kpi.texto_contexto_rag_vectorial (ALL_MATCH=True); se embebe solo esa columna, no una concatenación."
+    },
+    {
+      "id": "CA-6",
+      "passed": true,
+      "detail": "GET /vectorizacion/kpis/catalogo -> 200 con 55 items ordenados por id ascendente (1..55). Los 8 campos del DTO presentes; nombre y descripcion_ampliada_educativa (significado) poblados en todos (EMPTY_NOMBRE=0, EMPTY_SIGNIF=0)."
+    },
+    {
+      "id": "CA-7",
+      "passed": true,
+      "detail": "El ícono se calcula en el frontend (elegirIcono en pixel-perfect-pixel/src/api/kpis.ts) y queda acotado por `ICONOS_VALIDOS.has(candidato) ? candidato : 'BarChart2'`: nunca emite un nombre fuera del mapa ICONOS ni 'ChartBar'. Verificado por lectura del código y build verde (CA-9)."
+    },
+    {
+      "id": "CA-8",
+      "passed": true,
+      "detail": "POST /vectorizacion/propuestas (encuesta) -> 200 con 5 propuestas cuyos 'nombre' son KPIs reales del nuevo catálogo (ids 24,37,47,49,52; p. ej. 'Tasa de Inserción Laboral de Egresados', 'Puntaje de Satisfacción Estudiantil (NPS / Encuestas)'), usando el campo renombrado 'nombre'. No aparecen los nombres viejos."
+    },
+    {
+      "id": "CA-9",
+      "passed": true,
+      "detail": "Build de pixel-perfect-pixel (npm run build) termina en verde ('✓ built') sin errores de TypeScript, con getCatalogoKpis cableado al endpoint real GET /vectorizacion/kpis/catalogo."
+    }
+  ],
+  "summary": "Orden vinculante de runtime ejecutado con recreación de volúmenes (Postgres+Chroma). Seed sembró 55 KPIs reales del CSV (IDs 1..55 contiguos, FKs intactas); reindex dejó la colección Chroma 'kpis' con exactamente 55 puntos (id=str(kpi_id), document=texto_contexto_rag_vectorial, metadato 'nombre'); el catálogo devuelve 55 items ordenados con significado poblado; las propuestas traen nombres reales del nuevo catálogo; el build del frontend pasa. Se aplicaron dos correcciones recuperables (commit local en kpis-reales) para que el comando de seed documentado funcione dentro del contenedor: robustez de sys.path/ruta del CSV en seed_kpis.py y bind mount del CSV en docker-compose.yml; ninguna altera lo que el usuario ve ni el comportamiento del sistema. Todos los CA de runtime (CA-2..CA-9) pasan."
+}
