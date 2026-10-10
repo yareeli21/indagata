@@ -385,3 +385,62 @@ export function guardarInstrumento(documento: unknown): Promise<{ id: string }> 
   const id = doc?.id_instrumento != null ? String(doc.id_instrumento) : `ins-${Date.now()}`;
   return Promise.resolve({ id });
 }
+
+// ── Paso 5: cálculo real del valor de los KPIs (analysis-service directo) ───────────
+
+// Types for the KPI calculation step
+export interface VariableKpi {
+  clave: string;
+  etiqueta: string;
+  unidad: string;
+}
+export interface PrepararCalculoResponse {
+  kpi_id: number;
+  nombre: string;
+  tipo: "ratio" | "conteo" | "descriptivo";
+  variables: VariableKpi[];
+  expresion: string | null;
+  formula_texto: string;
+  descripcion_direccional: string;
+}
+export interface RegistrarCalculoRequest {
+  id_instrumento: number;
+  kpi_id: number;
+  variables_input: Record<string, number>;
+  resultado_valor: number;
+  resultado_unidad: string;
+  referencia_valor: number;
+  referencia_contexto: string;
+}
+export interface KpiCalculoResult {
+  kpi_calculo_id: number;
+  nivel_semaforo: "bueno" | "neutro" | "riesgo" | "informativo" | "sin_calculo";
+  resultado_valor: number;
+  referencia_valor: number;
+  interpretacion_texto: string;
+}
+
+// Note: calls go through API_URL (gateway) since analysis-service KPI calc routes
+// will be proxied. If not proxied yet, call ANALYSIS_URL directly like espacio.ts.
+export async function prepararCalculo(
+  id_instrumento: number,
+  kpi_id: number,
+): Promise<PrepararCalculoResponse> {
+  return pedir<PrepararCalculoResponse>(`${ANALYSIS_URL}/kpis/calculo/preparar`, {
+    method: "POST",
+    body: { id_instrumento, kpi_id },
+    auth: false,
+  });
+}
+export async function registrarCalculo(req: RegistrarCalculoRequest): Promise<KpiCalculoResult> {
+  return pedir<KpiCalculoResult>(`${ANALYSIS_URL}/kpis/calculo/registrar`, {
+    method: "POST",
+    body: req,
+    auth: false,
+  });
+}
+export async function getCalculosInstrumento(id_instrumento: number): Promise<KpiCalculoResult[]> {
+  return pedir<KpiCalculoResult[]>(`${ANALYSIS_URL}/kpis/calculo/${id_instrumento}`, {
+    auth: false,
+  });
+}

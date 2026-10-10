@@ -274,6 +274,22 @@ CREATE TABLE IF NOT EXISTS kpi_inferido_chunk (
     FOREIGN KEY (id_procesado, kpi_id) REFERENCES kpi_inferido(id_procesado, kpi_id) ON DELETE CASCADE
 );
 
+-- ── kpi_calculo (cálculo real del valor del KPI por instrumento) ──────────────
+CREATE TABLE IF NOT EXISTS kpi_calculo (
+    kpi_calculo_id      SERIAL PRIMARY KEY,
+    id_procesado        INTEGER NOT NULL REFERENCES instrumento_procesado(id_instrumento) ON DELETE CASCADE,
+    kpi_id              INTEGER NOT NULL REFERENCES kpi(kpi_id) ON DELETE CASCADE,
+    variables_input     JSONB   NOT NULL,
+    resultado_valor     NUMERIC(12,4),
+    resultado_unidad    TEXT,
+    referencia_valor    NUMERIC(12,4),
+    referencia_contexto TEXT,
+    nivel_semaforo      TEXT CHECK (nivel_semaforo IN ('bueno','neutro','riesgo','informativo','sin_calculo')),
+    formula_usada       TEXT,
+    calculado_por       INTEGER REFERENCES usuario(usuario_id),
+    fecha_calculo       TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- ── Índices ───────────────────────────────────────────────────────────────────
 
 CREATE INDEX IF NOT EXISTS idx_raw_data_owner           ON raw_data(id_owner);

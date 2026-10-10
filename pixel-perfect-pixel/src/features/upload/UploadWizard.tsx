@@ -38,7 +38,13 @@ import { StepDublinCore } from "./StepDublinCore";
 import { StepMetadatosTipo } from "./StepMetadatosTipo";
 import { JsonPreview } from "./JsonPreview";
 import { StepKpis, type DecisionKpi } from "./StepKpis";
+import {
+  StepCalculoKpis,
+  type EstadoCalculoKpi,
+  type KpiAceptado,
+} from "./StepCalculoKpis";
 import { StepGuardar } from "./StepGuardar";
+import { registrarCalculo } from "@/api/carga";
 
 const PASOS = [
   "Archivo",
@@ -47,8 +53,13 @@ const PASOS = [
   "Metadatos del tipo",
   "Vista previa JSON",
   "KPIs sugeridos",
+  "Calcular KPIs",
   "Guardar",
 ];
+
+const TOTAL_PASOS = PASOS.length;
+const PASO_CALCULO = 6;
+const PASO_GUARDAR = 7;
 
 export function UploadWizard() {
   const { usuario } = useAuth();
@@ -80,6 +91,8 @@ export function UploadWizard() {
   const [decisiones, setDecisiones] = useState<Record<string, DecisionKpi>>({});
   const [confirmar, setConfirmar] = useState(false);
   const [guardando, setGuardando] = useState(false);
+  // Paso 5 — cálculo real de KPIs: estado por kpi_id (variables, resultado, semáforo…).
+  const [calculos, setCalculos] = useState<Record<number, EstadoCalculoKpi>>({});
 
   // Pre-poblado de Dublin Core al entrar al paso de metadatos (paso === 2).
   useEffect(() => {
@@ -140,6 +153,26 @@ export function UploadWizard() {
 
   const kpisAceptados = (sugeridos ?? []).filter((k) => decisiones[k.id] === "aceptado");
 
+  // KPIs confirmados que entran al paso de cálculo (id numérico + nombre).
+  const kpisParaCalcular: KpiAceptado[] = kpisAceptados.map((k) => ({
+    id: Number(k.id),
+    nombre: k.nombre,
+  }));
+
+  /** El paso de cálculo está completo cuando cada KPI calculable fue resuelto u omitido. */
+  function calculoCompleto(): boolean {
+    return kpisParaCalcular.every((kpi) => {
+      const estado = calculos[kpi.id];
+      if (!estado || estado.omitido) return true;
+      const prep = estado.preparado;
+      if (!prep) return false; // aún preparando
+      const noCalculable = prep.tipo === "descriptivo" || prep.variables.length === 0;
+      if (noCalculable) return true;
+      // Calculable: requiere resultado y referencia capturados.
+      return estado.resultado != null && estado.referencia.trim() !== "";
+    });
+  }
+
   const documento = useMemo(
     () => ({
       id_instrumento: idInstrumento,
@@ -167,6 +200,7 @@ export function UploadWizard() {
     true,
     true,
     !!sugeridos,
+    calculoCompleto(),
     true,
   ][paso];
 
@@ -244,6 +278,41 @@ export function UploadWizard() {
         toast.error(e instanceof Error ? e.message : "No se pudieron confirmar los KPIs.");
       }
     }
+    // Registra el cálculo real de cada KPI resuelto (no omitido, con resultado y referencia).
+    if (idInstrumento != null) {
+      for (const kpi of kpisParaCalcular) {
+        const estado = calculos[kpi.id];
+        if (
+          !estado ||
+          estado.omitido ||
+          estado.resultado == null ||
+          estado.referencia.trim() === ""
+        ) {
+          continue;
+        }
+        const prep = estado.preparado;
+        if (!prep || prep.tipo === "descriptivo" || prep.variables.length === 0) continue;
+        const variablesInput: Record<string, number> = {};
+        for (const v of prep.variables) {
+          variablesInput[v.clave] = Number(estado.valores[v.clave]);
+        }
+        try {
+          await registrarCalculo({
+            id_instrumento: idInstrumento,
+            kpi_id: kpi.id,
+            variables_input: variablesInput,
+            resultado_valor: estado.resultado,
+            resultado_unidad: estado.unidad,
+            referencia_valor: Number(estado.referencia),
+            referencia_contexto: prep.descripcion_direccional,
+          });
+        } catch (e) {
+          toast.error(
+            e instanceof Error ? e.message : `No se pudo registrar el cálculo de ${kpi.nombre}.`,
+          );
+        }
+      }
+    }
     await guardarInstrumento(documento);
     setGuardando(false);
     setConfirmar(false);
@@ -260,14 +329,14 @@ export function UploadWizard() {
     <div className="mx-auto max-w-4xl space-y-8 p-6 md:p-8">
       <PageHeader
         titulo="Subir instrumento"
-        descripcion="Carga, limpia y estandariza tu instrumento en 7 pasos."
+        descripcion={`Carga, limpia y estandariza tu instrumento en ${TOTAL_PASOS} pasos.`}
       />
       <Stepper pasos={PASOS} actual={paso} />
 
       <section className="overflow-hidden rounded-3xl border border-border bg-card shadow-card">
         <header className="border-b border-border px-6 py-4">
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-            Paso {paso + 1} de 7
+            Paso {paso + 1} de {TOTAL_PASOS}
           </p>
           <h2 className="font-display text-lg font-semibold">{PASOS[paso]}</h2>
         </header>
@@ -299,7 +368,17 @@ export function UploadWizard() {
               onDecidir={(id, d) => setDecisiones({ ...decisiones, [id]: d })}
             />
           )}
-          {paso === 6 && (
+          {paso === PASO_CALCULO && (
+            <StepCalculoKpis
+              idInstrumento={idInstrumento}
+              kpis={kpisParaCalcular}
+              estados={calculos}
+              onCambio={(kpiId, estado) =>
+                setCalculos((prev) => ({ ...prev, [kpiId]: estado }))
+              }
+            />
+          )}
+          {paso === PASO_GUARDAR && (
             <StepGuardar
               resumen={[
                 { etiqueta: "Archivo", valor: archivo?.name ?? "" },
@@ -326,7 +405,7 @@ export function UploadWizard() {
           <Button variant="outline" disabled={paso === 0} onClick={() => setPaso(paso - 1)}>
             <ArrowLeft /> Atrás
           </Button>
-          {paso < 6 ? (
+          {paso < PASO_GUARDAR ? (
             <Button disabled={!puedeContinuar || avanzando} onClick={avanzar}>
               {avanzando && <Loader2 className="animate-spin" />} Continuar <ArrowRight />
             </Button>
