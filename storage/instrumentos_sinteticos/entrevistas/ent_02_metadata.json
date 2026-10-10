@@ -1,0 +1,30 @@
+{
+  "titulo": "Entrevista sobre experiencia docente y calidad educativa",
+  "tipo": "entrevista",
+  "fuente": "sintetico",
+  "n_respondentes": 30,
+  "n_items": 10,
+  "tipo_escala": "texto_cualitativo",
+  "dimensiones": [
+    "Semiestructurada"
+  ],
+  "kpis_asociados": [
+    "Cualificación Docente y Tasa de Rotación del Profesorado",
+    "Satisfacción Estudiantil",
+    "Tamaño Promedio de Clase (Alumnos por Aula)",
+    "Ratio Estudiante-Docente"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P7",
+      "P1",
+      "P2",
+      "P5"
+    ],
+    "distribucion_base": "plantillas_perfil_nlp",
+    "alpha_cronbach_estimado": null,
+    "palabras_promedio_por_respuesta": 40.5,
+    "n_preguntas": 10
+  },
+  "fecha_generacion": "2026-10-10"
+}

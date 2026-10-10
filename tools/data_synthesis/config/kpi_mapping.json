@@ -1,0 +1,359 @@
+{
+  "encuestas": {
+    "enc_01": {
+      "titulo": "Inventario de Estrategias de Aprendizaje y Estudio (IEAE)",
+      "fuente": "real",
+      "referencia": "Fernández Liporace et al.",
+      "kpis": [
+        "Puntajes en Pruebas Estandarizadas de Referencia",
+        "Tasa de Retención / Permanencia Estudiantil",
+        "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+        "Servicios de Apoyo al Estudiante",
+        "Tasa de Deserción / Abandono Estudiantil"
+      ],
+      "dimensiones": ["Organizacion y planificacion", "Habilidades examen", "Motivacion", "Recursos aprendizaje", "Estrategias control consolidacion", "Habilidades jerarquizar"],
+      "n_items": 21,
+      "escala": "likert_1_5"
+    },
+    "enc_02": {
+      "titulo": "Student Engagement Questionnaire (Pakistan)",
+      "fuente": "real",
+      "referencia": "Development and validation of student engagement questionnaire",
+      "kpis": [
+        "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+        "Tasa de Retención / Permanencia Estudiantil",
+        "Tasa de Asistencia Escolar y Universitaria",
+        "Tasa de Finalización de Cursos Online",
+        "Satisfacción Estudiantil"
+      ],
+      "dimensiones": ["Compromiso cognitivo", "Compromiso conductual", "Compromiso afectivo", "Compromiso social"],
+      "n_items": 19,
+      "escala": "likert_1_5"
+    },
+    "enc_03": {
+      "titulo": "Student Engagement in Schools Questionnaire (SESQ)",
+      "fuente": "real",
+      "referencia": "The Student Engagement in Schools Questionnaire",
+      "kpis": [
+        "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+        "Oferta de Actividades Extracurriculares",
+        "Tasa de Deserción / Abandono Estudiantil",
+        "Satisfacción Estudiantil",
+        "Tasa de Asistencia Escolar y Universitaria"
+      ],
+      "dimensiones": ["Gusto escuela", "Gusto aprender", "Comportamiento esfuerzo persistencia", "Actividades extracurriculares", "Cognitivas"],
+      "n_items": 32,
+      "escala": "likert_1_5"
+    },
+    "enc_04": {
+      "titulo": "MSLQ-SF: Cuestionario de Motivación y Estrategias de Aprendizaje Forma Corta",
+      "fuente": "real",
+      "referencia": "Motivated Strategies for Learning Questionnaire Short Form",
+      "kpis": [
+        "Puntajes en Pruebas Estandarizadas de Referencia",
+        "Tasa de Retención / Permanencia Estudiantil",
+        "Tasa de Graduación / Titulación",
+        "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+        "Años Promedio para la Graduación (Duración Real del Programa)"
+      ],
+      "dimensiones": ["Estrategias elaboracion", "Estrategias organizacion", "Pensamiento critico", "Autorregulacion metacognitiva", "Gestion tiempo esfuerzo", "Elaboracion compañero", "Motivacion intrinseca", "Autoeficacia"],
+      "n_items": 37,
+      "escala": "likert_1_5"
+    },
+    "enc_05": {
+      "titulo": "Escala RAU de Rendimiento Académico Universitario",
+      "fuente": "real",
+      "referencia": "Escala RAU",
+      "kpis": [
+        "Tasa de Graduación / Titulación",
+        "Puntajes en Pruebas Estandarizadas de Referencia",
+        "Años Promedio para la Graduación (Duración Real del Programa)",
+        "Tasa de Retención / Permanencia Estudiantil",
+        "Tasa de Deserción / Abandono Estudiantil"
+      ],
+      "dimensiones": ["Aportacion actividades academicas", "Dedicacion estudio", "Falta organizacion recursos", "Promedio calificaciones", "Actividades de estudio"],
+      "n_items": 26,
+      "escala": "likert_1_5"
+    },
+    "enc_06": {
+      "titulo": "Encuesta de Satisfacción con Servicios Institucionales",
+      "fuente": "sintetico",
+      "kpis": [
+        "Satisfacción Estudiantil",
+        "Servicios de Apoyo al Estudiante",
+        "Proporción de Consejeros/Orientadores por Estudiante",
+        "Estadísticas de Seguridad en el Campus (Índice de Criminalidad)",
+        "Disponibilidad de Vivienda Estudiantil"
+      ],
+      "dimensiones": ["Servicios academicos", "Infraestructura", "Seguridad", "Atencion estudiantil", "Satisfaccion general"],
+      "n_items": 25,
+      "escala": "mixta"
+    },
+    "enc_07": {
+      "titulo": "Encuesta de Diversidad e Inclusión en el Aula",
+      "fuente": "sintetico",
+      "kpis": [
+        "Métricas de Diversidad e Inclusión (Alumnado y Docentes)",
+        "Oferta de Actividades Extracurriculares",
+        "Alianzas Corporativas y Oportunidades de Pasantías",
+        "Porcentaje de Estudiantes que Reciben Ayuda Financiera"
+      ],
+      "dimensiones": ["Inclusion academica", "Diversidad cultural", "Equidad de genero", "Accesibilidad financiera"],
+      "n_items": 20,
+      "escala": "mixta"
+    },
+    "enc_08": {
+      "titulo": "Encuesta de Bienestar y Salud Mental Estudiantil",
+      "fuente": "sintetico",
+      "kpis": [
+        "Uso de Servicios de Salud Mental Estudiantil",
+        "Tasa de Deserción / Abandono Estudiantil",
+        "Servicios de Apoyo al Estudiante",
+        "Proporción de Consejeros/Orientadores por Estudiante",
+        "Satisfacción Estudiantil"
+      ],
+      "dimensiones": ["Bienestar emocional", "Estres academico", "Apoyo institucional", "Habitos saludables", "Red de apoyo social"],
+      "n_items": 20,
+      "escala": "mixta"
+    },
+    "enc_09": {
+      "titulo": "Encuesta de Carga Académica y Gestión del Tiempo",
+      "fuente": "sintetico",
+      "kpis": [
+        "Años Promedio para la Graduación (Duración Real del Programa)",
+        "Tasa de Deserción / Abandono Estudiantil",
+        "Puntajes en Pruebas Estandarizadas de Referencia",
+        "Tasa de Asistencia Escolar y Universitaria",
+        "Ratio de Matriculados frente a Graduados del Curso"
+      ],
+      "dimensiones": ["Carga horaria percibida", "Organizacion del tiempo", "Equilibrio vida academica", "Rendimiento bajo presion"],
+      "n_items": 20,
+      "escala": "mixta"
+    },
+    "enc_10": {
+      "titulo": "Encuesta de Inserción Laboral y Expectativas Profesionales",
+      "fuente": "sintetico",
+      "kpis": [
+        "Tasa de Inserción Laboral de Egresados",
+        "Alianzas Corporativas y Oportunidades de Pasantías",
+        "Ingresos por Educación Continua",
+        "Tasa de Estudios de Posgrado",
+        "Tasa de Donaciones de Exalumnos (Filantropía de Egresados)"
+      ],
+      "dimensiones": ["Expectativas laborales", "Competencias profesionales", "Redes de contacto", "Formacion continua"],
+      "n_items": 20,
+      "escala": "mixta"
+    }
+  },
+  "entrevistas": {
+    "ent_01": {
+      "titulo": "Entrevista sobre estrategias de permanencia universitaria",
+      "perfiles_objetivo": ["P2", "P3", "P4", "P8"],
+      "n_respondentes": 40,
+      "kpis": [
+        "Tasa de Retención / Permanencia Estudiantil",
+        "Tasa de Deserción / Abandono Estudiantil",
+        "Servicios de Apoyo al Estudiante",
+        "Proporción de Consejeros/Orientadores por Estudiante"
+      ]
+    },
+    "ent_02": {
+      "titulo": "Entrevista sobre experiencia docente y calidad educativa",
+      "perfiles_objetivo": ["P1", "P2", "P5", "P7"],
+      "n_respondentes": 30,
+      "kpis": [
+        "Cualificación Docente y Tasa de Rotación del Profesorado",
+        "Satisfacción Estudiantil",
+        "Tamaño Promedio de Clase (Alumnos por Aula)",
+        "Ratio Estudiante-Docente"
+      ]
+    },
+    "ent_03": {
+      "titulo": "Entrevista sobre tecnología y aprendizaje digital",
+      "perfiles_objetivo": ["P1", "P2", "P3", "P6"],
+      "n_respondentes": 35,
+      "kpis": [
+        "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+        "Tasa de Finalización de Cursos Online",
+        "Uso de Analítica de Aprendizaje"
+      ]
+    },
+    "ent_04": {
+      "titulo": "Entrevista sobre inclusión y diversidad universitaria",
+      "perfiles_objetivo": ["P3", "P6", "P7", "P8"],
+      "n_respondentes": 28,
+      "kpis": [
+        "Métricas de Diversidad e Inclusión (Alumnado y Docentes)",
+        "Porcentaje de Estudiantes que Reciben Ayuda Financiera",
+        "Estadísticas de Seguridad en el Campus (Índice de Criminalidad)"
+      ]
+    },
+    "ent_05": {
+      "titulo": "Entrevista sobre investigación y producción académica (posgrado)",
+      "perfiles_objetivo": ["P7"],
+      "n_respondentes": 25,
+      "kpis": [
+        "Producción Total de Investigación Docente",
+        "Tasa de Publicación del Cuerpo Docente",
+        "Financiamiento y Becas de Investigación",
+        "Patentes Otorgadas"
+      ]
+    },
+    "ent_06": {
+      "titulo": "Entrevista sobre orientación vocacional y tutoría",
+      "perfiles_objetivo": ["P1", "P2", "P3", "P8"],
+      "n_respondentes": 32,
+      "kpis": [
+        "Proporción de Consejeros/Orientadores por Estudiante",
+        "Tasa de Graduación / Titulación",
+        "Tasa de Inserción Laboral de Egresados",
+        "Tasa de Estudios de Posgrado"
+      ]
+    },
+    "ent_07": {
+      "titulo": "Entrevista sobre actividades extracurriculares y vida de campus",
+      "perfiles_objetivo": ["P1", "P2", "P5", "P6"],
+      "n_respondentes": 30,
+      "kpis": [
+        "Oferta de Actividades Extracurriculares",
+        "Satisfacción Estudiantil",
+        "Tasa de Retención / Permanencia Estudiantil"
+      ]
+    },
+    "ent_08": {
+      "titulo": "Entrevista sobre financiamiento y accesibilidad de la educación",
+      "perfiles_objetivo": ["P3", "P4", "P8"],
+      "n_respondentes": 28,
+      "kpis": [
+        "Tarifa Promedio de Matrícula / Colegiatura",
+        "Tamaño del Fondo Patrimonial / Financiero (Endowment)",
+        "Porcentaje de Estudiantes que Reciben Ayuda Financiera",
+        "Tasa de Incumplimiento de Préstamos Estudiantiles"
+      ]
+    },
+    "ent_09": {
+      "titulo": "Entrevista sobre transición secundaria-universidad (primer año)",
+      "perfiles_objetivo": ["P2", "P3", "P6", "P8"],
+      "n_respondentes": 35,
+      "kpis": [
+        "Tasa de Retención / Permanencia Estudiantil",
+        "Tasa de Deserción / Abandono Estudiantil",
+        "Tasa de Asistencia Escolar y Universitaria",
+        "Servicios de Apoyo al Estudiante"
+      ]
+    },
+    "ent_10": {
+      "titulo": "Entrevista sobre internacionalización y movilidad académica",
+      "perfiles_objetivo": ["P6", "P7"],
+      "n_respondentes": 25,
+      "kpis": [
+        "Ratio de Estudiantes Nacionales vs. Internacionales",
+        "Tasa de Participación en Estudios en el Extranjero",
+        "Alianzas Corporativas y Oportunidades de Pasantías",
+        "Número de Programas Acreditados"
+      ]
+    }
+  },
+  "pruebas": {
+    "pru_01": {
+      "titulo": "Prueba de Comprensión Lectora Universitaria",
+      "kpis": [
+        "Puntajes en Pruebas Estandarizadas de Referencia",
+        "Tasa de Retención / Permanencia Estudiantil",
+        "Tasa de Aprobación de Exámenes de Certificación"
+      ],
+      "n_items": 25,
+      "tipos_preguntas": {"opcion_multiple": 15, "verdadero_falso": 5, "respuesta_corta": 5}
+    },
+    "pru_02": {
+      "titulo": "Prueba de Competencias Matemáticas Básicas",
+      "kpis": [
+        "Puntajes en Pruebas Estandarizadas de Referencia",
+        "Tasa de Graduación / Titulación",
+        "Años Promedio para la Graduación (Duración Real del Programa)"
+      ],
+      "n_items": 20,
+      "tipos_preguntas": {"opcion_multiple": 12, "calculo_numerico": 4, "verdadero_falso": 4}
+    },
+    "pru_03": {
+      "titulo": "Prueba de Alfabetización Digital",
+      "kpis": [
+        "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+        "Uso de Analítica de Aprendizaje",
+        "Tasa de Finalización de Cursos Online"
+      ],
+      "n_items": 22,
+      "tipos_preguntas": {"opcion_multiple": 10, "verdadero_falso": 7, "ordenamiento_emparejamiento": 5}
+    },
+    "pru_04": {
+      "titulo": "Evaluación de Competencias para el Aprendizaje Autónomo (CAA)",
+      "kpis": [
+        "Puntajes en Pruebas Estandarizadas de Referencia",
+        "Tasa de Retención / Permanencia Estudiantil",
+        "Tasa de Graduación / Titulación"
+      ],
+      "n_items": 18,
+      "tipos_preguntas": {"likert_conductual": 8, "opcion_multiple": 6, "si_no": 4}
+    },
+    "pru_05": {
+      "titulo": "Evaluación de Competencias Docentes (perspectiva estudiantil)",
+      "kpis": [
+        "Cualificación Docente y Tasa de Rotación del Profesorado",
+        "Satisfacción Estudiantil",
+        "Tasa de Publicación del Cuerpo Docente"
+      ],
+      "n_items": 20,
+      "tipos_preguntas": {"opcion_multiple": 20}
+    },
+    "pru_06": {
+      "titulo": "Prueba de Competencia en Investigación Científica",
+      "kpis": [
+        "Producción Total de Investigación Docente",
+        "Financiamiento y Becas de Investigación",
+        "Número de Programas Acreditados"
+      ],
+      "n_items": 15,
+      "tipos_preguntas": {"opcion_multiple": 8, "verdadero_falso": 4, "emparejamiento": 3}
+    },
+    "pru_07": {
+      "titulo": "Test de Orientación Vocacional y Aptitudes Profesionales",
+      "kpis": [
+        "Tasa de Inserción Laboral de Egresados",
+        "Tasa de Estudios de Posgrado",
+        "Alianzas Corporativas y Oportunidades de Pasantías"
+      ],
+      "n_items": 25,
+      "tipos_preguntas": {"opcion_multiple": 15, "escala_preferencia": 10}
+    },
+    "pru_08": {
+      "titulo": "Evaluación de Competencias Interculturales",
+      "kpis": [
+        "Métricas de Diversidad e Inclusión (Alumnado y Docentes)",
+        "Ratio de Estudiantes Nacionales vs. Internacionales",
+        "Tasa de Participación en Estudios en el Extranjero"
+      ],
+      "n_items": 20,
+      "tipos_preguntas": {"opcion_multiple": 10, "verdadero_falso": 5, "escenarios": 5}
+    },
+    "pru_09": {
+      "titulo": "Prueba de Habilidades de Comunicación Académica",
+      "kpis": [
+        "Puntajes en Pruebas Estandarizadas de Referencia",
+        "Tasa de Aprobación de Exámenes de Certificación",
+        "Cualificación Docente y Tasa de Rotación del Profesorado"
+      ],
+      "n_items": 18,
+      "tipos_preguntas": {"opcion_multiple": 12, "verdadero_falso": 6}
+    },
+    "pru_10": {
+      "titulo": "Evaluación de Liderazgo y Participación Estudiantil",
+      "kpis": [
+        "Oferta de Actividades Extracurriculares",
+        "Tasa de Retención / Permanencia Estudiantil",
+        "Satisfacción Estudiantil"
+      ],
+      "n_items": 20,
+      "tipos_preguntas": {"likert": 8, "opcion_multiple": 8, "si_no": 4}
+    }
+  }
+}

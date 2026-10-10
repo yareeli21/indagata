@@ -1,0 +1,30 @@
+{
+  "titulo": "Entrevista sobre orientación vocacional y tutoría",
+  "tipo": "entrevista",
+  "fuente": "sintetico",
+  "n_respondentes": 32,
+  "n_items": 8,
+  "tipo_escala": "texto_cualitativo",
+  "dimensiones": [
+    "Semiestructurada"
+  ],
+  "kpis_asociados": [
+    "Proporción de Consejeros/Orientadores por Estudiante",
+    "Tasa de Graduación / Titulación",
+    "Tasa de Inserción Laboral de Egresados",
+    "Tasa de Estudios de Posgrado"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P1",
+      "P3",
+      "P2",
+      "P8"
+    ],
+    "distribucion_base": "plantillas_perfil_nlp",
+    "alpha_cronbach_estimado": null,
+    "palabras_promedio_por_respuesta": 40.3,
+    "n_preguntas": 8
+  },
+  "fecha_generacion": "2026-10-10"
+}

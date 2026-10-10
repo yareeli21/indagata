@@ -1,0 +1,38 @@
+{
+  "titulo": "Encuesta de Bienestar y Salud Mental Estudiantil",
+  "tipo": "encuesta",
+  "fuente": "sintetico",
+  "referencia": "Generada sintéticamente – Indagata v1.0",
+  "n_respondentes": 160,
+  "n_items": 20,
+  "tipo_escala": "mixta",
+  "dimensiones": [
+    "Bienestar emocional",
+    "Estrés académico",
+    "Apoyo institucional"
+  ],
+  "kpis_asociados": [
+    "Uso de Servicios de Salud Mental Estudiantil",
+    "Tasa de Deserción / Abandono Estudiantil",
+    "Servicios de Apoyo al Estudiante",
+    "Proporción de Consejeros/Orientadores por Estudiante",
+    "Satisfacción Estudiantil"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P3",
+      "P7",
+      "P1",
+      "P6",
+      "P4",
+      "P5",
+      "P2",
+      "P8"
+    ],
+    "distribucion_base": "beta_rescalada",
+    "alpha_cronbach_estimado": 0.8869,
+    "pct_outliers_detectados": 0.0,
+    "n_items_likert": 10
+  },
+  "fecha_generacion": "2026-10-10"
+}

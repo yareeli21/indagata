@@ -1,0 +1,41 @@
+{
+  "titulo": "Inventario de Estrategias de Aprendizaje y Estudio (IEAE)",
+  "tipo": "encuesta",
+  "fuente": "real",
+  "referencia": "Fernández Liporace, M. et al.",
+  "n_respondentes": 180,
+  "n_items": 21,
+  "tipo_escala": "likert_1_5",
+  "dimensiones": [
+    "Organización y planificación",
+    "Habilidades para el examen",
+    "Motivación",
+    "Recursos de aprendizaje",
+    "Estrategias de control y consolidación",
+    "Habilidades para jerarquizar"
+  ],
+  "kpis_asociados": [
+    "Puntajes en Pruebas Estandarizadas de Referencia",
+    "Tasa de Retención / Permanencia Estudiantil",
+    "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+    "Servicios de Apoyo al Estudiante",
+    "Tasa de Deserción / Abandono Estudiantil"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P3",
+      "P7",
+      "P1",
+      "P6",
+      "P4",
+      "P5",
+      "P2",
+      "P8"
+    ],
+    "distribucion_base": "beta_rescalada",
+    "alpha_cronbach_estimado": 0.9367,
+    "pct_outliers_detectados": 0.0,
+    "n_items_likert": 21
+  },
+  "fecha_generacion": "2026-10-10"
+}

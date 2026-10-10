@@ -1,0 +1,39 @@
+{
+  "titulo": "Cuestionario de Compromiso Estudiantil (Student Engagement Questionnaire)",
+  "tipo": "encuesta",
+  "fuente": "real",
+  "referencia": "Development and validation of student engagement questionnaire, Pakistan",
+  "n_respondentes": 200,
+  "n_items": 19,
+  "tipo_escala": "likert_1_5",
+  "dimensiones": [
+    "Compromiso cognitivo",
+    "Compromiso conductual",
+    "Compromiso afectivo",
+    "Compromiso social"
+  ],
+  "kpis_asociados": [
+    "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+    "Tasa de Retención / Permanencia Estudiantil",
+    "Tasa de Asistencia Escolar y Universitaria",
+    "Tasa de Finalización de Cursos Online",
+    "Satisfacción Estudiantil"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P3",
+      "P7",
+      "P1",
+      "P6",
+      "P4",
+      "P5",
+      "P2",
+      "P8"
+    ],
+    "distribucion_base": "beta_rescalada",
+    "alpha_cronbach_estimado": 0.9393,
+    "pct_outliers_detectados": 0.0,
+    "n_items_likert": 19
+  },
+  "fecha_generacion": "2026-10-10"
+}

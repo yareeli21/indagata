@@ -1,0 +1,30 @@
+{
+  "titulo": "Entrevista sobre transición secundaria-universidad (primer año)",
+  "tipo": "entrevista",
+  "fuente": "sintetico",
+  "n_respondentes": 35,
+  "n_items": 8,
+  "tipo_escala": "texto_cualitativo",
+  "dimensiones": [
+    "Semiestructurada"
+  ],
+  "kpis_asociados": [
+    "Tasa de Retención / Permanencia Estudiantil",
+    "Tasa de Deserción / Abandono Estudiantil",
+    "Tasa de Asistencia Escolar y Universitaria",
+    "Servicios de Apoyo al Estudiante"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P3",
+      "P6",
+      "P2",
+      "P8"
+    ],
+    "distribucion_base": "plantillas_perfil_nlp",
+    "alpha_cronbach_estimado": null,
+    "palabras_promedio_por_respuesta": 38.8,
+    "n_preguntas": 8
+  },
+  "fecha_generacion": "2026-10-10"
+}

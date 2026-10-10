@@ -1,0 +1,44 @@
+{
+  "titulo": "Prueba de Alfabetización Digital",
+  "tipo": "prueba_estandarizada",
+  "fuente": "sintetico",
+  "n_respondentes": 95,
+  "n_items": 22,
+  "tipo_escala": "mixta",
+  "dimensiones": [
+    "Competencias digitales básicas",
+    "Verdadero o Falso digital",
+    "Ordenamiento y emparejamiento (codificado como opción múltiple)"
+  ],
+  "kpis_asociados": [
+    "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+    "Uso de Analítica de Aprendizaje",
+    "Tasa de Finalización de Cursos Online"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P3",
+      "P6",
+      "P2",
+      "P5",
+      "P1",
+      "P7",
+      "P4",
+      "P8"
+    ],
+    "distribucion_base": "beta_rendimiento_por_perfil",
+    "alpha_cronbach_estimado": null,
+    "modelo_rendimiento": {
+      "P1": "75-95%",
+      "P2": "55-75%",
+      "P3": "35-60%",
+      "P4": "50-70%",
+      "P5": "60-75%",
+      "P6": "45-80%",
+      "P7": "75-95%",
+      "P8": "35-60%"
+    },
+    "n_secciones": 3
+  },
+  "fecha_generacion": "2026-10-10"
+}

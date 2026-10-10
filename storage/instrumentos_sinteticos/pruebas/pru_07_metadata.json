@@ -1,0 +1,43 @@
+{
+  "titulo": "Test de Orientación Vocacional y Aptitudes Profesionales",
+  "tipo": "prueba_estandarizada",
+  "fuente": "sintetico",
+  "n_respondentes": 110,
+  "n_items": 25,
+  "tipo_escala": "mixta",
+  "dimensiones": [
+    "Aptitudes profesionales",
+    "Escalas de preferencia profesional"
+  ],
+  "kpis_asociados": [
+    "Tasa de Inserción Laboral de Egresados",
+    "Tasa de Estudios de Posgrado",
+    "Alianzas Corporativas y Oportunidades de Pasantías"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P3",
+      "P6",
+      "P2",
+      "P5",
+      "P1",
+      "P4",
+      "P7",
+      "P8"
+    ],
+    "distribucion_base": "beta_rendimiento_por_perfil",
+    "alpha_cronbach_estimado": 0.9363,
+    "modelo_rendimiento": {
+      "P1": "75-95%",
+      "P2": "55-75%",
+      "P3": "35-60%",
+      "P4": "50-70%",
+      "P5": "60-75%",
+      "P6": "45-80%",
+      "P7": "75-95%",
+      "P8": "35-60%"
+    },
+    "n_secciones": 2
+  },
+  "fecha_generacion": "2026-10-10"
+}

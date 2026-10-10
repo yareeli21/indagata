@@ -1,0 +1,37 @@
+{
+  "titulo": "Encuesta de Diversidad e Inclusión en el Aula",
+  "tipo": "encuesta",
+  "fuente": "sintetico",
+  "referencia": "Generada sintéticamente – Indagata v1.0",
+  "n_respondentes": 160,
+  "n_items": 20,
+  "tipo_escala": "mixta",
+  "dimensiones": [
+    "Inclusión académica",
+    "Diversidad cultural",
+    "Equidad de género"
+  ],
+  "kpis_asociados": [
+    "Métricas de Diversidad e Inclusión (Alumnado y Docentes)",
+    "Oferta de Actividades Extracurriculares",
+    "Alianzas Corporativas y Oportunidades de Pasantías",
+    "Porcentaje de Estudiantes que Reciben Ayuda Financiera"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P3",
+      "P7",
+      "P1",
+      "P6",
+      "P4",
+      "P5",
+      "P2",
+      "P8"
+    ],
+    "distribucion_base": "beta_rescalada",
+    "alpha_cronbach_estimado": 0.9165,
+    "pct_outliers_detectados": 0.0,
+    "n_items_likert": 12
+  },
+  "fecha_generacion": "2026-10-10"
+}

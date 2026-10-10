@@ -1,0 +1,29 @@
+{
+  "titulo": "Entrevista sobre actividades extracurriculares y vida de campus",
+  "tipo": "entrevista",
+  "fuente": "sintetico",
+  "n_respondentes": 30,
+  "n_items": 8,
+  "tipo_escala": "texto_cualitativo",
+  "dimensiones": [
+    "Semiestructurada"
+  ],
+  "kpis_asociados": [
+    "Oferta de Actividades Extracurriculares",
+    "Satisfacción Estudiantil",
+    "Tasa de Retención / Permanencia Estudiantil"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P1",
+      "P6",
+      "P5",
+      "P2"
+    ],
+    "distribucion_base": "plantillas_perfil_nlp",
+    "alpha_cronbach_estimado": null,
+    "palabras_promedio_por_respuesta": 39.2,
+    "n_preguntas": 8
+  },
+  "fecha_generacion": "2026-10-10"
+}

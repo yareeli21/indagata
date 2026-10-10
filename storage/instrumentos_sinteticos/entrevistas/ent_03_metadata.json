@@ -1,0 +1,29 @@
+{
+  "titulo": "Entrevista sobre tecnología y aprendizaje digital",
+  "tipo": "entrevista",
+  "fuente": "sintetico",
+  "n_respondentes": 35,
+  "n_items": 10,
+  "tipo_escala": "texto_cualitativo",
+  "dimensiones": [
+    "Semiestructurada"
+  ],
+  "kpis_asociados": [
+    "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+    "Tasa de Finalización de Cursos Online",
+    "Uso de Analítica de Aprendizaje"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P6",
+      "P3",
+      "P2",
+      "P1"
+    ],
+    "distribucion_base": "plantillas_perfil_nlp",
+    "alpha_cronbach_estimado": null,
+    "palabras_promedio_por_respuesta": 38.6,
+    "n_preguntas": 10
+  },
+  "fecha_generacion": "2026-10-10"
+}

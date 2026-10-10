@@ -1,0 +1,40 @@
+{
+  "titulo": "Escala RAU de Rendimiento Académico Universitario",
+  "tipo": "encuesta",
+  "fuente": "real",
+  "referencia": "Escala RAU",
+  "n_respondentes": 180,
+  "n_items": 26,
+  "tipo_escala": "likert_1_5",
+  "dimensiones": [
+    "Aportación en actividades académicas",
+    "Dedicación al estudio",
+    "Falta de organización de recursos",
+    "Promedio de calificaciones",
+    "Actividades de estudio"
+  ],
+  "kpis_asociados": [
+    "Tasa de Graduación / Titulación",
+    "Puntajes en Pruebas Estandarizadas de Referencia",
+    "Años Promedio para la Graduación (Duración Real del Programa)",
+    "Tasa de Retención / Permanencia Estudiantil",
+    "Tasa de Deserción / Abandono Estudiantil"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P3",
+      "P7",
+      "P1",
+      "P6",
+      "P4",
+      "P5",
+      "P2",
+      "P8"
+    ],
+    "distribucion_base": "beta_rescalada",
+    "alpha_cronbach_estimado": 0.9417,
+    "pct_outliers_detectados": 0.0,
+    "n_items_likert": 26
+  },
+  "fecha_generacion": "2026-10-10"
+}

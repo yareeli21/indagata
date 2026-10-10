@@ -1,0 +1,161 @@
+id_respondente,perfil,edad,genero,semestre,promedio_gpa,horas_trabajo_semana,tipo_universidad,nivel_ses,nivel_estudio,primera_generacion,tiene_beca,Carga_horaria_p_item1,Carga_horaria_p_item2,Carga_horaria_p_item3,Carga_horaria_p_item4,Organización_de_item1,Organización_de_item2,Organización_de_item3,Organización_de_item4,Cuántas_materias_cursas_actualmente,Con_qué_frecuencia_dejas_tareas_para_el,Qué_estrategia_usas_más_para_gestionar_,Cuántas_horas_dedicas_al_estudio_fuera_,Has_reprobado_alguna_materia_por_falta_,Cuál_es_tu_carga_laboral_actual,Tienes_dificultades_para_equilibrar_tra,Tu_institución_ofrece_talleres_de_gesti,Cuántas_horas_por_semana_dedicas_al_est,"Del_1_al_10,_cuánta_presión_sientes_por","Del_1_al_10,_qué_tan_efectivo/a_eres_ge",Cuántos_créditos_cursas_este_semestre_
+R0001,P3,17,femenino,5,1.86,29,publica,bajo,pregrado,True,False,3,4,3,3,2,3,2,4,5-6,Raramente,App digital,15-20h,"Sí, una vez",Trabajo menos de 20h semanales,No,No,16,9,4,39
+R0002,P8,25,femenino,8,2.66,19,publica,muy_bajo,pregrado,False,True,3,3,3,5,1,3,3,2,1-2,Raramente,Sin estrategia definida,Menos de 5h,"Sí, varias veces",Trabajo 20-30h,Sí,Sí,49,5,7,18
+R0003,P5,26,masculino,7,3.44,17,mixta,medio,pregrado,False,False,4,4,2,3,3,4,3,3,1-2,Siempre,Sin estrategia definida,Más de 20h,Casi lo hago,Trabajo 20-30h,Sí,Sí,50,4,6,19
+R0004,P2,19,femenino,6,3.29,6,publica,medio,pregrado,False,False,2,3,1,3,3,3,4,4,5-6,A veces,App digital,Más de 20h,"No, nunca",Trabajo menos de 20h semanales,Sí,Sí,5,9,2,19
+R0005,P8,24,masculino,7,3.11,19,publica,muy_bajo,pregrado,False,True,1,1,2,2,1,3,3,3,7 o más,Siempre,Sin estrategia definida,5-10h,Casi lo hago,No trabajo,No,No,4,8,5,17
+R0006,P2,24,femenino,2,3.27,1,publica,medio,pregrado,False,False,3,2,3,2,4,4,4,4,3-4,Frecuentemente,Sin estrategia definida,Menos de 5h,"Sí, varias veces",Trabajo 20-30h,No,No,30,4,3,10
+R0007,P5,23,masculino,11,3.64,17,mixta,medio,pregrado,False,False,2,3,3,3,5,5,4,5,1-2,A veces,App digital,Más de 20h,"Sí, varias veces",No trabajo,No,Sí,9,10,6,10
+R0008,P7,32,femenino,4,3.76,20,privada,alto,posgrado,False,False,5,5,5,5,4,5,4,5,5-6,Nunca,App digital,5-10h,"Sí, varias veces",No trabajo,Sí,No,3,9,1,12
+R0009,P5,26,femenino,9,3.2,15,mixta,medio,pregrado,False,False,4,3,4,5,3,3,3,2,7 o más,Frecuentemente,App digital,Más de 20h,"No, nunca",No trabajo,Sí,Sí,41,2,1,14
+R0010,P8,20,femenino,4,2.99,26,publica,muy_bajo,pregrado,False,True,3,2,3,3,1,1,1,2,3-4,A veces,Agenda física,Menos de 5h,"Sí, una vez",Trabajo 20-30h,Sí,No,22,6,4,30
+R0011,P7,34,masculino,2,3.78,21,privada,alto,posgrado,False,False,4,5,5,5,5,5,4,5,3-4,Nunca,Sin estrategia definida,5-10h,"No, nunca",Trabajo más de 30h,Sí,No,44,7,6,14
+R0012,P1,19,masculino,8,3.81,8,privada,alto,pregrado,False,False,4,4,3,4,4,5,5,4,7 o más,Raramente,Lista de tareas informal,10-15h,"No, nunca",Trabajo 20-30h,Sí,No,37,5,5,19
+R0013,P5,26,femenino,10,3.05,20,mixta,medio,pregrado,False,False,3,3,4,3,3,2,3,2,1-2,A veces,Agenda física,Menos de 5h,Casi lo hago,No trabajo,No,No,33,6,1,24
+R0014,P6,27,masculino,3,3.16,2,privada,medio_alto,pregrado,False,False,4,3,3,2,3,2,1,1,3-4,Siempre,Lista de tareas informal,10-15h,"Sí, varias veces",No trabajo,Sí,No,19,10,2,12
+R0015,P3,19,masculino,1,1.81,37,publica,bajo,pregrado,True,False,1,2,2,2,4,4,3,4,1-2,Frecuentemente,Sin estrategia definida,Más de 20h,"No, nunca",Trabajo 20-30h,No,No,38,6,2,24
+R0016,P8,18,masculino,8,2.16,27,publica,muy_bajo,pregrado,False,True,1,1,2,1,2,3,4,4,1-2,Raramente,Sin estrategia definida,Menos de 5h,"No, nunca",Trabajo más de 30h,Sí,Sí,5,2,1,38
+R0017,P7,27,masculino,4,3.9,30,privada,alto,posgrado,False,False,5,5,4,5,5,4,5,4,7 o más,Siempre,Sin estrategia definida,10-15h,"No, nunca",Trabajo 20-30h,No,No,15,9,9,10
+R0018,P3,19,femenino,2,1.66,38,publica,bajo,pregrado,True,False,3,3,3,2,2,2,3,2,3-4,Frecuentemente,App digital,Menos de 5h,Casi lo hago,Trabajo 20-30h,No,Sí,42,4,3,19
+R0019,P2,19,femenino,5,2.96,0,publica,medio,pregrado,False,False,4,4,4,4,3,4,4,4,7 o más,Siempre,Sin estrategia definida,15-20h,"Sí, una vez",Trabajo 20-30h,No,No,34,2,8,12
+R0020,P2,24,masculino,2,2.92,13,publica,medio,pregrado,False,False,3,3,3,3,3,3,3,3,3-4,A veces,Sin estrategia definida,10-15h,"Sí, una vez",Trabajo 20-30h,Sí,Sí,12,3,5,16
+R0021,P2,20,femenino,3,3.07,2,publica,medio,pregrado,False,False,4,3,4,4,1,3,3,2,5-6,Siempre,App digital,10-15h,"Sí, una vez",No trabajo,Sí,No,43,9,10,36
+R0022,P4,26,masculino,3,2.77,38,publica,medio,pregrado,False,False,4,4,4,3,4,1,4,3,1-2,Siempre,Sin estrategia definida,10-15h,"Sí, varias veces",No trabajo,Sí,No,25,10,10,26
+R0023,P5,23,masculino,7,3.42,7,mixta,medio,pregrado,False,False,2,3,4,2,1,1,2,1,5-6,Frecuentemente,Sin estrategia definida,15-20h,"Sí, varias veces",Trabajo menos de 20h semanales,No,No,37,2,7,20
+R0024,P2,20,otro,6,3.32,13,publica,medio,pregrado,False,False,3,3,4,4,4,5,3,3,7 o más,Siempre,Agenda física,15-20h,"No, nunca",No trabajo,Sí,Sí,7,2,10,35
+R0025,P4,29,masculino,6,2.56,31,publica,medio,pregrado,False,False,2,1,1,1,1,1,1,1,7 o más,A veces,Lista de tareas informal,Más de 20h,Casi lo hago,Trabajo menos de 20h semanales,No,No,7,10,5,38
+R0026,P2,20,femenino,4,3.21,14,publica,medio,pregrado,False,False,5,5,5,5,4,4,3,5,1-2,Nunca,Lista de tareas informal,15-20h,"Sí, varias veces",Trabajo más de 30h,No,Sí,50,2,4,37
+R0027,P8,21,masculino,8,2.53,29,publica,muy_bajo,pregrado,False,True,3,1,2,2,3,3,3,2,7 o más,Raramente,Sin estrategia definida,Más de 20h,"Sí, una vez",Trabajo menos de 20h semanales,No,No,46,6,2,25
+R0028,P7,28,masculino,2,3.87,25,privada,alto,posgrado,False,False,5,4,5,5,5,5,5,5,7 o más,Nunca,App digital,Menos de 5h,"Sí, varias veces",Trabajo menos de 20h semanales,Sí,No,19,3,6,19
+R0029,P1,22,masculino,8,3.97,2,privada,alto,pregrado,False,False,3,4,3,3,4,4,4,4,5-6,Raramente,App digital,Menos de 5h,"Sí, varias veces",Trabajo 20-30h,No,No,47,2,7,25
+R0030,P2,23,masculino,4,3.24,12,publica,medio,pregrado,False,False,4,4,4,4,1,1,1,2,3-4,Frecuentemente,Agenda física,10-15h,"Sí, varias veces",Trabajo menos de 20h semanales,No,No,41,7,6,33
+R0031,P8,22,femenino,3,2.18,25,publica,muy_bajo,pregrado,False,True,3,2,3,3,3,4,3,5,1-2,Nunca,App digital,Menos de 5h,Casi lo hago,Trabajo 20-30h,Sí,No,13,2,3,23
+R0032,P2,20,masculino,4,3.49,13,publica,medio,pregrado,False,False,5,5,4,4,3,4,3,3,5-6,Frecuentemente,App digital,Más de 20h,"Sí, una vez",Trabajo 20-30h,No,Sí,19,3,4,26
+R0033,P7,30,femenino,5,3.77,19,privada,alto,posgrado,False,False,5,4,5,5,5,5,5,5,1-2,Frecuentemente,Sin estrategia definida,Más de 20h,Casi lo hago,Trabajo 20-30h,Sí,No,27,7,3,33
+R0034,P1,18,femenino,1,3.99,10,privada,alto,pregrado,False,False,4,4,4,4,4,4,5,4,5-6,A veces,Sin estrategia definida,10-15h,"No, nunca",Trabajo menos de 20h semanales,Sí,No,17,4,9,28
+R0035,P3,17,masculino,4,2.41,32,publica,bajo,pregrado,True,False,1,1,1,1,1,3,2,1,3-4,Frecuentemente,Lista de tareas informal,10-15h,"Sí, una vez",Trabajo más de 30h,No,Sí,14,10,2,33
+R0036,P5,24,masculino,10,3.79,6,mixta,medio,pregrado,False,False,4,4,4,4,2,3,3,3,1-2,A veces,Lista de tareas informal,Más de 20h,"Sí, una vez",Trabajo más de 30h,Sí,Sí,12,6,3,23
+R0037,P3,21,femenino,5,2.58,30,publica,bajo,pregrado,True,False,2,2,1,2,1,2,1,1,5-6,Frecuentemente,Lista de tareas informal,10-15h,"Sí, varias veces",No trabajo,Sí,No,32,2,4,34
+R0038,P7,24,femenino,3,3.82,10,privada,alto,posgrado,False,False,4,4,5,5,5,5,5,5,3-4,Frecuentemente,Lista de tareas informal,Más de 20h,Casi lo hago,No trabajo,No,No,20,7,5,15
+R0039,P8,25,masculino,1,2.31,34,publica,muy_bajo,pregrado,False,True,2,2,1,2,3,2,4,3,5-6,A veces,Sin estrategia definida,Más de 20h,Casi lo hago,Trabajo 20-30h,Sí,Sí,49,7,4,31
+R0040,P4,28,masculino,5,2.7,31,publica,medio,pregrado,False,False,3,2,5,4,1,2,3,3,3-4,Frecuentemente,Agenda física,5-10h,"No, nunca",Trabajo 20-30h,Sí,Sí,44,6,10,35
+R0041,P3,21,femenino,5,1.67,27,publica,bajo,pregrado,True,False,1,1,1,1,1,2,2,2,3-4,Frecuentemente,App digital,15-20h,"Sí, varias veces",Trabajo más de 30h,No,No,4,10,6,22
+R0042,P6,18,masculino,2,3.32,8,privada,medio_alto,pregrado,False,False,3,3,3,4,4,4,5,4,1-2,A veces,Lista de tareas informal,Menos de 5h,Casi lo hago,Trabajo menos de 20h semanales,No,No,33,7,4,26
+R0043,P6,21,masculino,4,3.75,2,privada,medio_alto,pregrado,False,False,3,4,4,5,4,4,4,4,1-2,Siempre,Lista de tareas informal,Menos de 5h,"Sí, varias veces",Trabajo 20-30h,Sí,No,32,8,4,29
+R0044,P1,22,femenino,7,3.87,5,privada,alto,pregrado,False,False,4,4,4,5,4,5,5,5,5-6,Raramente,Sin estrategia definida,Menos de 5h,"No, nunca",No trabajo,No,Sí,2,7,6,22
+R0045,P3,17,femenino,1,2.57,22,publica,bajo,pregrado,True,False,3,2,3,3,2,2,2,3,7 o más,Nunca,App digital,Más de 20h,"No, nunca",Trabajo más de 30h,Sí,No,40,3,4,24
+R0046,P4,35,femenino,6,2.91,40,publica,medio,pregrado,False,False,1,2,3,2,3,3,2,2,1-2,Siempre,Sin estrategia definida,Menos de 5h,"Sí, varias veces",Trabajo 20-30h,No,No,27,9,9,30
+R0047,P2,24,femenino,6,3.4,2,publica,medio,pregrado,False,False,4,5,3,4,4,3,4,4,1-2,Siempre,Agenda física,5-10h,"Sí, una vez",Trabajo 20-30h,Sí,Sí,42,7,2,33
+R0048,P6,26,masculino,8,3.29,0,privada,medio_alto,pregrado,False,False,4,3,3,4,3,2,1,1,5-6,A veces,Sin estrategia definida,15-20h,"Sí, varias veces",No trabajo,Sí,No,25,7,4,23
+R0049,P7,29,masculino,1,3.85,23,privada,alto,posgrado,False,False,5,5,5,4,5,5,5,5,5-6,Raramente,Lista de tareas informal,Menos de 5h,"Sí, varias veces",Trabajo más de 30h,No,No,21,1,5,37
+R0050,P7,31,femenino,5,3.76,23,privada,alto,posgrado,False,False,5,5,5,5,5,5,4,5,3-4,Raramente,Agenda física,Menos de 5h,"Sí, una vez",Trabajo menos de 20h semanales,Sí,Sí,35,8,10,36
+R0051,P5,24,masculino,11,3.7,6,mixta,medio,pregrado,False,False,3,2,3,2,2,2,2,3,7 o más,A veces,Agenda física,15-20h,"Sí, varias veces",No trabajo,Sí,No,39,1,3,32
+R0052,P7,24,masculino,1,3.82,10,privada,alto,posgrado,False,False,5,4,4,4,4,5,5,5,7 o más,Siempre,Sin estrategia definida,Más de 20h,"No, nunca",Trabajo menos de 20h semanales,Sí,No,38,4,3,14
+R0053,P2,24,masculino,8,3.35,11,publica,medio,pregrado,False,False,2,3,3,3,5,4,4,5,5-6,Raramente,Lista de tareas informal,Menos de 5h,"No, nunca",Trabajo más de 30h,No,No,24,6,4,21
+R0054,P1,22,masculino,6,3.67,3,privada,alto,pregrado,False,False,4,4,3,4,5,5,5,5,7 o más,Frecuentemente,Sin estrategia definida,15-20h,"No, nunca",Trabajo menos de 20h semanales,Sí,No,28,10,7,10
+R0055,P4,34,femenino,12,2.7,39,publica,medio,pregrado,False,False,2,1,2,1,1,1,1,2,3-4,Raramente,Sin estrategia definida,10-15h,"Sí, una vez",No trabajo,Sí,No,50,2,10,38
+R0056,P3,18,otro,2,2.75,32,publica,bajo,pregrado,True,False,1,1,1,1,2,2,2,1,1-2,A veces,Agenda física,Más de 20h,"Sí, varias veces",Trabajo más de 30h,No,Sí,44,9,1,27
+R0057,P7,33,femenino,3,3.99,24,privada,alto,posgrado,False,False,4,4,5,5,4,4,4,4,1-2,Frecuentemente,Sin estrategia definida,Más de 20h,"No, nunca",Trabajo 20-30h,Sí,Sí,20,6,7,20
+R0058,P7,35,masculino,6,3.88,29,privada,alto,posgrado,False,False,5,5,5,5,5,5,5,5,7 o más,Frecuentemente,Lista de tareas informal,10-15h,"No, nunca",Trabajo 20-30h,Sí,Sí,32,6,6,17
+R0059,P3,20,femenino,5,2.7,35,publica,bajo,pregrado,True,False,3,2,3,2,3,4,4,2,1-2,Frecuentemente,Agenda física,Más de 20h,"Sí, varias veces",Trabajo 20-30h,No,No,8,10,4,31
+R0060,P1,19,masculino,7,3.92,5,privada,alto,pregrado,False,False,4,4,4,4,4,4,4,5,1-2,Raramente,App digital,5-10h,"Sí, una vez",No trabajo,No,Sí,17,5,2,13
+R0061,P2,24,femenino,2,3.0,11,publica,medio,pregrado,False,False,3,3,2,3,3,3,3,3,5-6,Nunca,App digital,10-15h,Casi lo hago,Trabajo 20-30h,Sí,No,27,2,7,21
+R0062,P3,20,femenino,1,2.01,39,publica,bajo,pregrado,True,False,1,1,2,1,3,2,2,2,3-4,A veces,Lista de tareas informal,Menos de 5h,"No, nunca",No trabajo,No,No,19,1,7,10
+R0063,P5,27,masculino,7,3.37,5,mixta,medio,pregrado,False,False,4,4,4,3,3,3,3,3,1-2,A veces,App digital,Menos de 5h,"Sí, una vez",No trabajo,Sí,Sí,47,4,2,33
+R0064,P8,25,femenino,5,2.49,33,publica,muy_bajo,pregrado,False,True,3,3,3,3,2,4,2,2,7 o más,Raramente,App digital,15-20h,"Sí, una vez",Trabajo 20-30h,Sí,No,43,10,7,33
+R0065,P2,21,femenino,5,3.27,13,publica,medio,pregrado,False,False,3,3,2,4,5,4,4,4,5-6,Nunca,Lista de tareas informal,10-15h,"Sí, varias veces",Trabajo 20-30h,Sí,Sí,1,3,6,33
+R0066,P7,35,femenino,4,3.92,12,privada,alto,posgrado,False,False,5,5,5,5,5,5,5,5,3-4,Siempre,Lista de tareas informal,Menos de 5h,"Sí, varias veces",No trabajo,No,Sí,13,2,5,39
+R0067,P6,18,femenino,8,3.57,4,privada,medio_alto,pregrado,False,False,2,2,4,2,3,3,4,4,1-2,Nunca,App digital,Más de 20h,Casi lo hago,No trabajo,Sí,No,8,1,6,25
+R0068,P3,21,femenino,2,2.46,37,publica,bajo,pregrado,True,False,1,3,1,2,1,1,1,1,5-6,Nunca,Agenda física,Más de 20h,"Sí, una vez",No trabajo,No,Sí,7,6,10,29
+R0069,P1,20,masculino,8,3.75,4,privada,alto,pregrado,False,False,4,4,4,4,4,3,4,4,1-2,Raramente,Agenda física,5-10h,"No, nunca",No trabajo,Sí,No,27,4,5,36
+R0070,P1,18,femenino,4,3.72,8,privada,alto,pregrado,False,False,5,4,5,4,4,5,4,5,1-2,Raramente,Sin estrategia definida,Menos de 5h,Casi lo hago,Trabajo más de 30h,Sí,No,38,4,9,33
+R0071,P5,25,masculino,7,3.09,18,mixta,medio,pregrado,False,False,2,2,3,2,3,2,2,3,7 o más,Nunca,App digital,5-10h,"No, nunca",No trabajo,Sí,No,37,6,1,24
+R0072,P7,31,masculino,3,3.91,21,privada,alto,posgrado,False,False,4,4,4,4,4,4,5,5,7 o más,Raramente,Agenda física,15-20h,"No, nunca",Trabajo 20-30h,No,No,21,4,8,35
+R0073,P5,25,masculino,11,3.51,17,mixta,medio,pregrado,False,False,3,3,1,3,2,3,4,3,7 o más,Raramente,App digital,Menos de 5h,"Sí, varias veces",Trabajo menos de 20h semanales,Sí,No,20,1,8,33
+R0074,P6,19,otro,6,3.74,1,privada,medio_alto,pregrado,False,False,2,3,3,1,2,2,4,2,3-4,A veces,Agenda física,5-10h,"Sí, una vez",Trabajo menos de 20h semanales,Sí,Sí,11,5,8,34
+R0075,P4,34,otro,5,3.11,36,publica,medio,pregrado,False,False,2,1,2,2,1,2,3,4,5-6,A veces,Agenda física,5-10h,"Sí, varias veces",No trabajo,No,No,43,8,4,25
+R0076,P2,19,masculino,4,3.35,6,publica,medio,pregrado,False,False,4,5,4,5,3,3,4,4,1-2,Nunca,Agenda física,15-20h,"No, nunca",No trabajo,No,Sí,42,6,1,20
+R0077,P1,19,femenino,2,3.83,2,privada,alto,pregrado,False,False,4,5,4,4,5,4,5,5,7 o más,Siempre,Sin estrategia definida,5-10h,"Sí, una vez",Trabajo más de 30h,No,Sí,18,10,1,34
+R0078,P7,25,masculino,5,3.75,23,privada,alto,posgrado,False,False,4,5,4,4,5,5,5,4,1-2,A veces,App digital,15-20h,"Sí, una vez",Trabajo más de 30h,No,No,9,1,4,10
+R0079,P4,25,femenino,8,2.84,40,publica,medio,pregrado,False,False,3,3,3,3,2,1,1,1,7 o más,A veces,Agenda física,5-10h,"Sí, una vez",Trabajo menos de 20h semanales,No,No,23,1,2,37
+R0080,P7,30,femenino,1,3.96,18,privada,alto,posgrado,False,False,5,5,5,4,5,5,5,5,5-6,Frecuentemente,Lista de tareas informal,Menos de 5h,"Sí, varias veces",Trabajo 20-30h,No,No,37,2,3,29
+R0081,P3,17,masculino,2,2.14,36,publica,bajo,pregrado,True,False,3,3,2,3,3,3,3,3,7 o más,Siempre,Sin estrategia definida,5-10h,"No, nunca",Trabajo más de 30h,Sí,Sí,14,1,1,35
+R0082,P2,24,masculino,4,3.47,11,publica,medio,pregrado,False,False,3,3,3,3,2,2,3,3,5-6,Nunca,App digital,Más de 20h,"No, nunca",Trabajo menos de 20h semanales,Sí,No,17,7,4,39
+R0083,P5,26,femenino,8,3.35,18,mixta,medio,pregrado,False,False,3,4,4,3,3,3,3,3,1-2,A veces,Agenda física,15-20h,Casi lo hago,Trabajo más de 30h,Sí,Sí,7,7,10,32
+R0084,P5,26,masculino,12,3.78,10,mixta,medio,pregrado,False,False,3,4,3,3,2,3,3,3,5-6,Siempre,App digital,10-15h,"Sí, varias veces",Trabajo 20-30h,Sí,No,36,8,2,37
+R0085,P6,24,masculino,10,3.87,3,privada,medio_alto,pregrado,False,False,3,3,3,3,4,3,3,2,5-6,Raramente,Lista de tareas informal,5-10h,"Sí, una vez",Trabajo menos de 20h semanales,Sí,Sí,45,3,4,29
+R0086,P1,21,femenino,8,3.6,3,privada,alto,pregrado,False,False,3,4,4,4,4,3,4,4,3-4,Siempre,Sin estrategia definida,5-10h,"No, nunca",Trabajo más de 30h,No,Sí,39,7,4,10
+R0087,P1,19,femenino,3,3.6,4,privada,alto,pregrado,False,False,4,4,5,4,4,3,4,4,5-6,A veces,Agenda física,10-15h,Casi lo hago,Trabajo menos de 20h semanales,Sí,No,40,2,5,21
+R0088,P4,30,femenino,7,2.59,45,publica,medio,pregrado,False,False,2,3,2,3,2,2,2,4,3-4,Nunca,Lista de tareas informal,Más de 20h,"Sí, varias veces",No trabajo,No,No,8,10,6,38
+R0089,P4,26,masculino,4,3.2,37,publica,medio,pregrado,False,False,4,3,3,4,5,5,3,2,3-4,Siempre,Agenda física,5-10h,"Sí, una vez",No trabajo,Sí,Sí,44,3,10,17
+R0090,P1,22,femenino,1,3.8,3,privada,alto,pregrado,False,False,3,4,3,3,4,5,5,5,5-6,Nunca,Lista de tareas informal,Más de 20h,Casi lo hago,Trabajo 20-30h,Sí,No,42,1,2,10
+R0091,P3,18,masculino,5,2.14,40,publica,bajo,pregrado,True,False,3,2,2,3,2,3,4,3,5-6,Frecuentemente,Agenda física,5-10h,"Sí, varias veces",Trabajo 20-30h,No,No,16,2,4,23
+R0092,P5,24,femenino,12,3.79,10,mixta,medio,pregrado,False,False,3,4,5,4,2,2,2,2,1-2,A veces,App digital,Menos de 5h,"Sí, varias veces",Trabajo más de 30h,No,No,31,6,2,26
+R0093,P4,26,masculino,7,2.96,40,publica,medio,pregrado,False,False,4,5,4,4,2,4,2,5,7 o más,Frecuentemente,App digital,15-20h,"Sí, varias veces",No trabajo,No,Sí,3,8,1,25
+R0094,P2,20,femenino,9,3.24,12,publica,medio,pregrado,False,False,5,4,3,3,3,2,3,3,1-2,Raramente,Sin estrategia definida,Menos de 5h,"Sí, una vez",Trabajo 20-30h,Sí,No,43,5,8,36
+R0095,P8,24,femenino,3,2.83,28,publica,muy_bajo,pregrado,False,True,1,3,1,2,3,1,1,1,1-2,Nunca,Agenda física,15-20h,"Sí, varias veces",Trabajo menos de 20h semanales,Sí,No,0,4,3,15
+R0096,P1,21,masculino,3,3.95,7,privada,alto,pregrado,False,False,4,4,4,5,3,4,4,5,3-4,A veces,Agenda física,Más de 20h,"Sí, una vez",Trabajo más de 30h,No,No,1,2,3,22
+R0097,P2,19,masculino,3,3.29,10,publica,medio,pregrado,False,False,4,3,2,4,2,3,1,2,7 o más,Frecuentemente,Lista de tareas informal,Menos de 5h,"Sí, una vez",Trabajo más de 30h,No,Sí,31,2,5,28
+R0098,P1,18,femenino,3,3.54,5,privada,alto,pregrado,False,False,4,4,5,5,4,5,4,4,7 o más,A veces,Agenda física,10-15h,Casi lo hago,No trabajo,Sí,Sí,38,9,5,31
+R0099,P2,22,masculino,6,3.08,5,publica,medio,pregrado,False,False,5,4,4,4,5,4,5,4,3-4,Nunca,Agenda física,Menos de 5h,"Sí, una vez",Trabajo 20-30h,Sí,No,41,8,5,36
+R0100,P5,22,femenino,7,3.7,18,mixta,medio,pregrado,False,False,3,1,2,3,3,3,3,2,3-4,Frecuentemente,App digital,10-15h,Casi lo hago,Trabajo 20-30h,Sí,Sí,50,2,9,17
+R0101,P1,20,femenino,4,3.64,0,privada,alto,pregrado,False,False,4,4,4,4,4,4,4,4,3-4,A veces,Agenda física,10-15h,"Sí, varias veces",Trabajo menos de 20h semanales,Sí,Sí,0,2,7,37
+R0102,P1,22,masculino,8,3.72,5,privada,alto,pregrado,False,False,5,4,5,5,4,4,4,4,1-2,Frecuentemente,Lista de tareas informal,Menos de 5h,"Sí, varias veces",Trabajo menos de 20h semanales,Sí,Sí,35,6,4,40
+R0103,P2,21,femenino,3,3.27,4,publica,medio,pregrado,False,False,5,5,4,5,3,4,3,4,3-4,Siempre,Agenda física,Menos de 5h,Casi lo hago,No trabajo,Sí,Sí,16,4,2,40
+R0104,P1,22,masculino,8,3.53,7,privada,alto,pregrado,False,False,4,4,4,5,4,5,4,4,7 o más,Siempre,Agenda física,10-15h,"Sí, varias veces",Trabajo menos de 20h semanales,Sí,No,46,2,1,11
+R0105,P3,20,masculino,4,1.82,21,publica,bajo,pregrado,True,False,5,3,2,4,2,3,1,3,5-6,Siempre,Agenda física,Más de 20h,"Sí, una vez",No trabajo,Sí,No,14,5,8,21
+R0106,P2,20,masculino,7,3.25,11,publica,medio,pregrado,False,False,5,5,4,4,5,4,5,4,3-4,Frecuentemente,Sin estrategia definida,5-10h,"No, nunca",Trabajo 20-30h,No,No,21,5,8,29
+R0107,P3,18,masculino,5,2.53,27,publica,bajo,pregrado,True,False,4,3,4,2,3,3,4,2,7 o más,Frecuentemente,Lista de tareas informal,Más de 20h,Casi lo hago,Trabajo 20-30h,No,No,15,6,7,18
+R0108,P7,35,masculino,3,3.86,26,privada,alto,posgrado,False,False,4,4,5,5,5,5,5,5,1-2,Nunca,App digital,Menos de 5h,"Sí, varias veces",Trabajo 20-30h,No,No,35,8,8,11
+R0109,P3,17,masculino,4,2.06,40,publica,bajo,pregrado,True,False,3,2,2,2,1,2,3,3,7 o más,Nunca,Lista de tareas informal,Menos de 5h,"Sí, una vez",Trabajo más de 30h,No,No,46,3,7,18
+R0110,P1,22,femenino,3,3.78,2,privada,alto,pregrado,False,False,4,4,4,4,4,3,4,4,3-4,Nunca,Lista de tareas informal,5-10h,"Sí, varias veces",Trabajo menos de 20h semanales,No,Sí,28,8,7,11
+R0111,P4,33,femenino,4,3.24,31,publica,medio,pregrado,False,False,2,3,2,2,1,3,3,3,5-6,Frecuentemente,App digital,Menos de 5h,"Sí, una vez",No trabajo,Sí,No,17,8,10,32
+R0112,P1,19,femenino,1,3.59,10,privada,alto,pregrado,False,False,4,4,4,3,4,4,5,5,7 o más,Frecuentemente,Agenda física,Menos de 5h,"Sí, varias veces",Trabajo menos de 20h semanales,Sí,Sí,17,8,6,18
+R0113,P1,18,otro,3,3.73,9,privada,alto,pregrado,False,False,4,4,5,5,3,4,4,4,7 o más,Siempre,App digital,5-10h,"Sí, una vez",Trabajo menos de 20h semanales,Sí,No,34,10,10,30
+R0114,P3,19,otro,3,2.75,25,publica,bajo,pregrado,True,False,2,1,3,2,3,2,3,4,7 o más,Frecuentemente,Sin estrategia definida,10-15h,"Sí, varias veces",Trabajo menos de 20h semanales,No,Sí,31,3,8,10
+R0115,P2,24,masculino,9,3.06,2,publica,medio,pregrado,False,False,4,4,3,3,3,3,3,2,5-6,Siempre,Lista de tareas informal,Más de 20h,Casi lo hago,Trabajo más de 30h,No,No,12,8,5,34
+R0116,P1,19,femenino,4,3.62,5,privada,alto,pregrado,False,False,4,4,4,4,5,5,4,4,5-6,Frecuentemente,App digital,15-20h,"No, nunca",Trabajo más de 30h,No,No,18,1,4,16
+R0117,P2,19,masculino,8,3.11,1,publica,medio,pregrado,False,False,3,4,5,4,3,2,3,3,7 o más,Frecuentemente,Sin estrategia definida,15-20h,"No, nunca",Trabajo 20-30h,Sí,No,48,4,2,17
+R0118,P4,35,masculino,4,3.23,40,publica,medio,pregrado,False,False,2,3,3,4,5,4,5,2,7 o más,A veces,Agenda física,15-20h,"Sí, una vez",Trabajo más de 30h,No,Sí,48,8,4,14
+R0119,P2,21,masculino,4,3.34,3,publica,medio,pregrado,False,False,3,2,3,3,4,4,5,4,3-4,Nunca,Agenda física,10-15h,"No, nunca",Trabajo menos de 20h semanales,No,Sí,19,10,6,12
+R0120,P1,18,femenino,4,3.99,10,privada,alto,pregrado,False,False,3,4,4,5,4,4,5,4,5-6,Frecuentemente,Agenda física,Menos de 5h,"Sí, una vez",Trabajo menos de 20h semanales,No,No,40,2,7,38
+R0121,P7,35,masculino,4,3.81,20,privada,alto,posgrado,False,False,4,4,4,4,4,4,4,4,7 o más,A veces,Agenda física,5-10h,"Sí, varias veces",Trabajo más de 30h,Sí,Sí,3,8,9,39
+R0122,P5,27,masculino,8,3.56,12,mixta,medio,pregrado,False,False,2,3,2,2,4,4,4,4,7 o más,Siempre,App digital,Menos de 5h,"Sí, una vez",Trabajo menos de 20h semanales,Sí,Sí,44,4,2,11
+R0123,P6,24,masculino,6,2.87,0,privada,medio_alto,pregrado,False,False,2,1,4,3,2,3,3,2,3-4,Siempre,Agenda física,10-15h,"Sí, una vez",Trabajo menos de 20h semanales,No,No,16,6,2,18
+R0124,P3,21,masculino,4,2.58,39,publica,bajo,pregrado,True,False,3,5,3,3,2,1,2,1,7 o más,Raramente,App digital,15-20h,"Sí, una vez",Trabajo más de 30h,No,Sí,32,9,7,28
+R0125,P4,30,masculino,7,2.63,50,publica,medio,pregrado,False,False,2,2,2,2,1,1,3,3,5-6,Nunca,Agenda física,10-15h,"Sí, varias veces",Trabajo más de 30h,Sí,No,31,9,1,27
+R0126,P6,21,masculino,4,3.52,2,privada,medio_alto,pregrado,False,False,2,2,2,2,4,3,4,4,3-4,Raramente,Agenda física,10-15h,Casi lo hago,Trabajo más de 30h,Sí,Sí,42,5,9,30
+R0127,P3,21,femenino,2,1.63,21,publica,bajo,pregrado,True,False,3,3,2,3,4,4,4,3,3-4,A veces,Lista de tareas informal,15-20h,"Sí, una vez",Trabajo 20-30h,No,Sí,48,9,3,38
+R0128,P7,27,masculino,2,3.99,25,privada,alto,posgrado,False,False,5,5,5,4,4,5,4,4,3-4,Siempre,Lista de tareas informal,Menos de 5h,"Sí, una vez",Trabajo 20-30h,No,Sí,18,5,6,35
+R0129,P6,26,femenino,2,3.16,10,privada,medio_alto,pregrado,False,False,4,4,2,4,4,4,3,4,1-2,Siempre,Sin estrategia definida,15-20h,Casi lo hago,Trabajo 20-30h,No,Sí,27,3,1,19
+R0130,P2,23,masculino,6,3.09,11,publica,medio,pregrado,False,False,4,4,4,5,2,3,3,4,1-2,Siempre,App digital,15-20h,Casi lo hago,Trabajo 20-30h,Sí,No,33,10,1,21
+R0131,P3,18,masculino,3,1.5,36,publica,bajo,pregrado,True,False,3,3,3,2,2,2,2,2,1-2,Raramente,Sin estrategia definida,Más de 20h,"Sí, varias veces",No trabajo,No,No,29,4,9,20
+R0132,P2,21,masculino,8,2.81,9,publica,medio,pregrado,False,False,3,2,1,3,4,4,4,3,5-6,Nunca,App digital,10-15h,Casi lo hago,No trabajo,Sí,Sí,17,10,7,15
+R0133,P4,30,femenino,7,2.54,33,publica,medio,pregrado,False,False,2,2,3,2,2,3,3,3,3-4,Frecuentemente,App digital,Más de 20h,"Sí, una vez",Trabajo más de 30h,Sí,No,19,10,10,27
+R0134,P7,29,otro,6,3.96,11,privada,alto,posgrado,False,False,4,4,4,5,4,4,5,4,1-2,A veces,Agenda física,5-10h,"Sí, una vez",No trabajo,Sí,No,30,1,9,13
+R0135,P4,35,femenino,4,2.6,48,publica,medio,pregrado,False,False,5,4,5,5,5,5,4,3,5-6,A veces,App digital,10-15h,Casi lo hago,Trabajo 20-30h,Sí,No,47,8,10,13
+R0136,P3,17,femenino,2,2.27,40,publica,bajo,pregrado,True,False,2,4,3,2,3,3,4,3,3-4,Frecuentemente,App digital,15-20h,Casi lo hago,Trabajo menos de 20h semanales,No,Sí,3,9,2,14
+R0137,P3,18,masculino,4,2.69,34,publica,bajo,pregrado,True,False,3,2,2,3,4,3,2,2,5-6,Siempre,Lista de tareas informal,10-15h,Casi lo hago,Trabajo 20-30h,Sí,Sí,11,3,8,33
+R0138,P5,25,femenino,8,3.58,11,mixta,medio,pregrado,False,False,4,3,3,3,3,4,3,4,7 o más,Nunca,Sin estrategia definida,5-10h,"Sí, varias veces",Trabajo menos de 20h semanales,No,No,40,5,7,26
+R0139,P4,32,masculino,6,2.67,43,publica,medio,pregrado,False,False,3,1,3,1,4,4,3,4,7 o más,Frecuentemente,Agenda física,10-15h,"Sí, varias veces",Trabajo menos de 20h semanales,No,No,30,10,3,19
+R0140,P4,30,masculino,4,2.89,37,publica,medio,pregrado,False,False,2,3,4,3,2,1,2,2,3-4,Nunca,App digital,10-15h,"Sí, una vez",Trabajo 20-30h,Sí,Sí,21,8,2,28
+R0141,P5,23,femenino,7,3.7,17,mixta,medio,pregrado,False,False,2,4,2,3,3,4,3,3,1-2,A veces,Agenda física,Menos de 5h,"Sí, una vez",Trabajo más de 30h,Sí,No,18,4,4,32
+R0142,P6,19,femenino,2,3.53,1,privada,medio_alto,pregrado,False,False,4,5,5,4,1,2,2,2,1-2,Nunca,Sin estrategia definida,Más de 20h,"No, nunca",Trabajo más de 30h,No,No,50,4,9,34
+R0143,P5,25,masculino,10,3.38,9,mixta,medio,pregrado,False,False,2,3,3,4,3,4,3,3,1-2,Siempre,Lista de tareas informal,15-20h,"Sí, varias veces",No trabajo,No,Sí,45,2,5,24
+R0144,P5,26,femenino,9,3.13,17,mixta,medio,pregrado,False,False,3,3,2,3,2,2,3,3,1-2,A veces,Agenda física,Menos de 5h,"Sí, varias veces",Trabajo más de 30h,Sí,No,43,10,3,34
+R0145,P5,26,femenino,12,3.62,10,mixta,medio,pregrado,False,False,3,3,3,3,2,2,2,3,5-6,Raramente,Sin estrategia definida,5-10h,Casi lo hago,Trabajo más de 30h,No,Sí,14,9,6,19
+R0146,P8,21,masculino,3,2.14,34,publica,muy_bajo,pregrado,False,True,3,3,3,3,2,5,3,5,7 o más,Raramente,Agenda física,10-15h,"No, nunca",Trabajo menos de 20h semanales,No,No,31,8,7,36
+R0147,P6,28,masculino,5,3.18,0,privada,medio_alto,pregrado,False,False,3,2,3,2,3,4,3,4,7 o más,Frecuentemente,Sin estrategia definida,10-15h,Casi lo hago,Trabajo 20-30h,No,Sí,48,5,7,15
+R0148,P4,31,masculino,12,2.72,39,publica,medio,pregrado,False,False,4,3,5,4,1,1,1,1,5-6,Raramente,Sin estrategia definida,Menos de 5h,Casi lo hago,Trabajo 20-30h,No,No,13,5,6,14
+R0149,P7,30,masculino,2,3.88,13,privada,alto,posgrado,False,False,4,5,5,4,5,4,5,4,3-4,Raramente,Lista de tareas informal,5-10h,Casi lo hago,Trabajo 20-30h,No,Sí,10,4,4,33
+R0150,P8,21,masculino,2,2.48,19,publica,muy_bajo,pregrado,False,True,2,3,1,2,1,2,2,3,5-6,Nunca,Lista de tareas informal,Más de 20h,Casi lo hago,Trabajo más de 30h,No,No,32,4,4,33
+R0151,P3,20,masculino,1,2.32,33,publica,bajo,pregrado,True,False,2,2,3,2,2,1,2,2,5-6,Raramente,Agenda física,5-10h,"No, nunca",Trabajo menos de 20h semanales,Sí,No,10,1,4,37
+R0152,P7,31,femenino,5,3.94,30,privada,alto,posgrado,False,False,4,4,4,5,4,4,4,4,3-4,Frecuentemente,Lista de tareas informal,5-10h,"No, nunca",No trabajo,Sí,No,38,3,10,12
+R0153,P8,18,femenino,4,2.83,27,publica,muy_bajo,pregrado,False,True,2,2,3,2,3,2,2,1,1-2,Nunca,Agenda física,Más de 20h,"No, nunca",Trabajo más de 30h,Sí,No,44,7,5,37
+R0154,P2,22,masculino,7,3.1,10,publica,medio,pregrado,False,False,4,3,2,2,3,3,4,3,5-6,Siempre,App digital,Más de 20h,"No, nunca",No trabajo,No,No,24,3,10,37
+R0155,P3,20,masculino,5,2.29,40,publica,bajo,pregrado,True,False,1,1,1,2,3,2,3,3,3-4,Raramente,Lista de tareas informal,Menos de 5h,Casi lo hago,No trabajo,Sí,Sí,50,2,4,27
+R0156,P3,18,femenino,2,2.33,30,publica,bajo,pregrado,True,False,3,3,3,4,3,2,4,3,5-6,Frecuentemente,Sin estrategia definida,5-10h,"No, nunca",Trabajo más de 30h,No,No,30,5,4,26
+R0157,P5,26,femenino,7,3.14,10,mixta,medio,pregrado,False,False,3,3,3,2,3,3,3,4,3-4,Nunca,Sin estrategia definida,Más de 20h,"No, nunca",Trabajo más de 30h,No,Sí,20,9,4,14
+R0158,P8,20,masculino,2,2.3,23,publica,muy_bajo,pregrado,False,True,4,4,4,3,4,3,4,4,7 o más,Nunca,Sin estrategia definida,Más de 20h,"Sí, una vez",No trabajo,Sí,No,44,4,4,29
+R0159,P2,22,masculino,8,3.07,3,publica,medio,pregrado,False,False,4,3,3,3,3,2,3,3,7 o más,Siempre,Sin estrategia definida,10-15h,Casi lo hago,Trabajo más de 30h,No,No,31,8,4,33
+R0160,P6,18,femenino,6,2.95,4,privada,medio_alto,pregrado,False,False,4,2,3,4,3,4,2,3,5-6,Siempre,Agenda física,15-20h,"Sí, una vez",Trabajo 20-30h,No,No,6,7,7,29
