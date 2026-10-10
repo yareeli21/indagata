@@ -163,3 +163,57 @@ Arranque limpio, sin `NameError`: confirma el import de `kpis` en main.py, su
 - `schemas/vectorizacion.py`: `PropuestaKPI` sin `categoria`/`ambito`;
   `KpiAgregado.nombre`; nueva `KpiCatalogoDTO` (8 campos string).
 - Ningún archivo vivo lee ya `nombre_kpi`/`.categoria`/`.ambito`.
+
+---
+
+# Verificación — FEAT-003 (kpis-reales)
+
+Entorno: Windows + PowerShell. Node vía `npm`. Todas las rutas bajo el worktree
+`.worktrees/kpis-reales/pixel-perfect-pixel`. El frontend NO tiene runner de tests:
+la verificación es el build de TypeScript (vite + tsc por tsconfig noEmit).
+
+## Instalación de dependencias
+
+`pixel-perfect-pixel` no versiona `package-lock.json`, así que `npm ci` no aplica;
+se usó `npm install` (vía alternativa documentada en context.json / FEAT-003):
+
+```
+npm install
+```
+
+Salida resumida: `added 399 packages, and audited 400 packages ... found 0 vulnerabilities`
+(exit code 0). Warnings de deprecación de terceros (tsconfck, recharts, eslint),
+ajenos a esta feature.
+
+## Build de TypeScript (CA-9)
+
+```
+npm run build
+```
+
+Salida resumida: `✓ built in 5.73s` + `Generated .output/nitro.json` (exit code 0).
+Sin errores de TypeScript ni de tipos tras el cableado del catálogo real y la
+reconciliación de `carga.ts`.
+
+## Lectura de control
+
+- `grep nombre_kpi|ChartBar` sobre `pixel-perfect-pixel/src/`: solo quedan
+  referencias en COMENTARIOS (docstring de `elegirIcono` e `iconos.ts` que explican
+  el fallback). Ningún código lee `nombre_kpi` ni emite `ChartBar`.
+- `elegirIcono` termina con `return ICONOS_VALIDOS.has(candidato) ? candidato : "BarChart2";`,
+  donde `ICONOS_VALIDOS` (importado de `src/features/kpis/iconos.ts`) es el `Set` de
+  las 15 claves del mapa `ICONOS` → no puede devolver un nombre fuera del conjunto.
+- `getCatalogoKpis` consume `${ANALYSIS_URL}/vectorizacion/kpis/catalogo` con
+  `auth: false`, mapea con `mapearKpi`, conserva su firma y degrada a `simularRed(catalogoKpis)`
+  solo ante error de red / respuesta vacía.
+- `carga.ts`: interfaces locales `PropuestaKPI`/`KpiAgregado` usan `nombre` (sin
+  `nombre_kpi`), `PropuestaKPI` ya no tiene `categoria`/`ambito`, y `proponerKpis`/
+  `confirmarKpis` (ambas ramas del `.map`) leen `.nombre`. La forma expuesta a las
+  pantallas (`KpiSugerido` y `{kpiId,nombreKpi,score?}`) no cambia.
+
+## Nota de implementación
+
+Se tomó la mejora opcional (step 6): se extrajo el mapa `ICONOS` y el set de claves
+válidas a `src/features/kpis/iconos.ts`, importado por `TarjetaKpi.tsx`,
+`DetalleKpi.tsx` y `src/api/kpis.ts` (`ICONOS_VALIDOS`), evitando duplicar las 15
+claves en tres sitios.

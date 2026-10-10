@@ -237,9 +237,7 @@ export function registrarMetadatos(
 /** KPI candidato que devuelve el backend en /vectorizacion/propuestas. */
 interface PropuestaKPI {
   kpi_id: number;
-  nombre_kpi: string;
-  categoria?: string | null;
-  ambito?: string | null;
+  nombre: string;
   score: number;
 }
 
@@ -313,7 +311,7 @@ export async function proponerKpis(args: {
   // Mapeo PropuestaKPI → KpiSugerido (preserva la forma de 3 campos).
   return (datos.propuestas ?? []).map((p) => ({
     id: String(p.kpi_id),
-    nombre: p.nombre_kpi,
+    nombre: p.nombre,
     coincidencia: Math.round(p.score * 100),
   }));
 }
@@ -326,7 +324,7 @@ export interface DecisionKpiApi {
 
 interface KpiAgregado {
   kpi_id: number;
-  nombre_kpi: string;
+  nombre: string;
   score?: number | null;
 }
 
@@ -367,8 +365,8 @@ export async function confirmarKpis(args: {
   return {
     kpisAgregados: (datos.kpis_agregados ?? []).map((k) =>
       k.score == null
-        ? { kpiId: k.kpi_id, nombreKpi: k.nombre_kpi }
-        : { kpiId: k.kpi_id, nombreKpi: k.nombre_kpi, score: k.score },
+        ? { kpiId: k.kpi_id, nombreKpi: k.nombre }
+        : { kpiId: k.kpi_id, nombreKpi: k.nombre, score: k.score },
     ),
     jsonEnriquecido: datos.json_enriquecido,
   };
