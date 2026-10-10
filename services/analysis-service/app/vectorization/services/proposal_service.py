@@ -98,9 +98,9 @@ class ProposalService:
         propuestas = [
             PropuestaKPI(
                 kpi_id=m.kpi_id,
-                nombre_kpi=m.nombre_kpi,
-                categoria=m.categoria or None,
-                ambito=m.ambito or None,
+                nombre=m.nombre,
+                polaridad_rendimiento=m.polaridad_rendimiento,
+                tipo_objetivo_estrategico=m.tipo_objetivo_estrategico,
                 score=m.score,
             )
             for m in matches

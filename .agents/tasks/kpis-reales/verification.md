@@ -85,3 +85,81 @@ Bloque redefinido a `kpi_id SERIAL PRIMARY KEY` + las 8 columnas snake_case
 (§1.1), con `nombre` y `texto_contexto_rag_vectorial` NOT NULL. Las tablas
 hijas `kpi_variable`, `kpi_inferido`, `valor_variable_inferido` y
 `kpi_inferido_chunk` y sus FKs a `kpi(kpi_id)` no se tocaron (CA-3).
+
+---
+
+# Verificación — FEAT-002 (kpis-reales)
+
+Entorno: Windows + PowerShell. Intérprete `.venv` del árbol principal
+(`c:\Users\yarel\Documents\indagata\indagata\.venv`), Python 3.14.2, con
+`requirements.txt` de analysis-service efectivamente instalado (fastapi 0.115.6,
+sqlalchemy 2.0.52, pydantic 2.13.5, chromadb-client, sentence-transformers, numpy;
+`email-validator` presente por la brecha preexistente de `shared/schemas/usuario`).
+Todas las rutas bajo el worktree. No se ejecutó runtime (docker/seed/reindex).
+
+## py_compile de los 10 archivos
+
+Comando (desde `services/analysis-service`):
+
+```
+python -m py_compile \
+  app/vectorization/core/chroma_client.py \
+  app/vectorization/core/kpi_indexer.py \
+  app/vectorization/core/kpi_search.py \
+  app/vectorization/services/proposal_service.py \
+  app/vectorization/services/enrichment_service.py \
+  app/vectorization/routers/espacio.py \
+  app/vectorization/routers/kpis.py \
+  app/vectorization/schemas/vectorizacion.py \
+  main.py \
+  ../../infrastructure/chroma-viewer/app.py
+```
+
+Salida: exit code 0 (los 10 compilan sin error).
+
+## Firma de reindex_kpis (seam de inyección migrado a client)
+
+```
+python -c "import app.vectorization.core.kpi_indexer as m, inspect; s=inspect.signature(m.reindex_kpis).parameters; print('client' in s and 'collection' not in s)"
+```
+
+Salida:
+
+```
+True
+```
+
+(`reindex_kpis(db, *, client=None)`; ya no acepta `collection=`.)
+
+## Arranque del backend (import + include_router + todos los routers cargan)
+
+```
+python -c "import main; print([r.path for r in main.app.routes if 'kpis/catalogo' in r.path])"
+```
+
+Salida:
+
+```
+['/vectorizacion/kpis/catalogo']
+```
+
+Arranque limpio, sin `NameError`: confirma el import de `kpis` en main.py, su
+`include_router`, el DTO `KpiCatalogoDTO` y que no hay colisión con el
+`POST /vectorizacion/kpis/reindex` existente.
+
+## Reconciliación de lectores (grep manual tras los cambios)
+
+- `kpi_indexer.py`: `build_kpi_text` devuelve solo `texto_contexto_rag_vectorial`
+  (o `""`); nueva `build_kpi_metadata` pura con los 6 escalares y clave `nombre`;
+  `reindex_kpis` hace `delete_collection` + `get_or_create_collection` antes del
+  upsert.
+- `kpi_search.py`: `KpiMatch` → `kpi_id, nombre, polaridad_rendimiento,
+  tipo_objetivo_estrategico, score`; lee `meta.get("nombre"/...)`.
+- `proposal_service.py`: `PropuestaKPI(nombre, polaridad_rendimiento,
+  tipo_objetivo_estrategico, ...)`.
+- `enrichment_service.py`: `kpis[...].nombre` y clave `inferred_kpis` con `nombre`.
+- `espacio.py` y `infrastructure/chroma-viewer/app.py`: `_label_for` rama `kpis`
+  lee `meta.get("nombre")`.
+- `schemas/vectorizacion.py`: `PropuestaKPI` sin `categoria`/`ambito`;
+  `KpiAgregado.nombre`; nueva `KpiCatalogoDTO` (8 campos string).
+- Ningún archivo vivo lee ya `nombre_kpi`/`.categoria`/`.ambito`.

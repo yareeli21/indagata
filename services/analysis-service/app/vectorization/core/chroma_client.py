@@ -45,6 +45,19 @@ def get_or_create_collection(name: str, client: Any | None = None):
     )
 
 
+def delete_collection(name: str, *, client: Any | None = None) -> None:
+    """Borra una colección por nombre (idempotente).
+
+    No lanza si la colección no existe. `client` permite inyectar un cliente
+    alterno (p. ej. efímero en pruebas), igual que `get_or_create_collection`.
+    """
+    cli = client or get_client()
+    try:
+        cli.delete_collection(name)
+    except Exception:  # noqa: BLE001 -- "no existe" varía por backend; es idempotente
+        pass
+
+
 def upsert(
     collection,
     ids: list[str],

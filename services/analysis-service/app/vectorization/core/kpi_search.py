@@ -24,9 +24,9 @@ class KpiMatch:
     """Un KPI candidato devuelto por la búsqueda semántica."""
 
     kpi_id: int
-    nombre_kpi: str
-    categoria: str
-    ambito: str
+    nombre: str
+    polaridad_rendimiento: str
+    tipo_objetivo_estrategico: str
     score: float
 
 
@@ -106,9 +106,9 @@ def search_kpis(
         matches.append(
             KpiMatch(
                 kpi_id=int(meta.get("kpi_id")),
-                nombre_kpi=str(meta.get("nombre_kpi", "")),
-                categoria=str(meta.get("categoria", "")),
-                ambito=str(meta.get("ambito", "")),
+                nombre=str(meta.get("nombre", "")),
+                polaridad_rendimiento=str(meta.get("polaridad_rendimiento", "")),
+                tipo_objetivo_estrategico=str(meta.get("tipo_objetivo_estrategico", "")),
                 score=round(score, 4),
             )
         )

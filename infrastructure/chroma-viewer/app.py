@@ -30,7 +30,7 @@ def _client():
 def _label_for(coleccion: str, meta: dict[str, Any] | None, doc: str | None, pid: str) -> str:
     meta = meta or {}
     if coleccion == "kpis":
-        return str(meta.get("nombre_kpi") or doc or pid)
+        return str(meta.get("nombre") or doc or pid)
     # summary_instrument u otras
     for k in ("titulo", "Título", "nombre_archivo", "id_instrumento"):
         if meta.get(k):

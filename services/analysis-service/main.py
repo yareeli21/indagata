@@ -27,7 +27,7 @@ if not (Path(__file__).resolve().parent / "shared" / "__init__.py").exists():
 from fastapi import FastAPI  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
-from app.vectorization.routers import espacio, health, vectorizacion  # noqa: E402
+from app.vectorization.routers import espacio, health, kpis, vectorizacion  # noqa: E402
 
 logging.basicConfig(
     level=os.getenv("LOG_LEVEL", "INFO").upper(),
@@ -68,6 +68,7 @@ app.add_middleware(
 app.include_router(health.router)
 app.include_router(vectorizacion.router)
 app.include_router(espacio.router)
+app.include_router(kpis.router)
 
 
 if __name__ == "__main__":

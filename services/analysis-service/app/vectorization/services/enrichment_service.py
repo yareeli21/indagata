@@ -152,7 +152,7 @@ class EnrichmentService:
                     kpis_agregados.append(
                         KpiAgregado(
                             kpi_id=d.kpi_id,
-                            nombre_kpi=kpis[d.kpi_id].nombre_kpi,
+                            nombre=kpis[d.kpi_id].nombre,
                             score=d.score,
                         )
                     )
@@ -169,7 +169,7 @@ class EnrichmentService:
         # Enriquecer el JSON (copia profunda para no mutar el request).
         enriquecido = copy.deepcopy(request.json_instrumento)
         enriquecido[INFERRED_KPIS_KEY] = [
-            {"kpi_id": k.kpi_id, "nombre_kpi": k.nombre_kpi, "score": k.score}
+            {"kpi_id": k.kpi_id, "nombre": k.nombre, "score": k.score}
             for k in kpis_agregados
         ]
 
