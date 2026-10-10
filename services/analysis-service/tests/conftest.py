@@ -1,8 +1,10 @@
 """Config de pytest para analysis-service.
 
-Inserta la raíz del servicio (`services/analysis-service`) en `sys.path` para
-que `import scripts.seed_kpis` resuelva al ejecutar los tests desde cualquier
-cwd.
+Inserta en `sys.path`:
+  - la raíz del servicio (`services/analysis-service`), para que `import
+    scripts.seed_kpis` y `import app.vectorization...` resuelvan desde cualquier cwd.
+  - la raíz del repo, para que `import shared...` resuelva al correr pytest desde
+    la carpeta del servicio (mismo patrón que `scripts/seed_kpis.py`).
 """
 from __future__ import annotations
 
@@ -12,3 +14,7 @@ from pathlib import Path
 _SERVICE_ROOT = Path(__file__).resolve().parents[1]
 if str(_SERVICE_ROOT) not in sys.path:
     sys.path.insert(0, str(_SERVICE_ROOT))
+
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))

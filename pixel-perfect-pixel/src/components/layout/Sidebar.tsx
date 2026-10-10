@@ -4,6 +4,7 @@ import {
   FolderOpen,
   MessageSquare,
   Network,
+  Share2,
   Upload,
   Library,
   UserPlus,
@@ -17,6 +18,7 @@ const OPCIONES = [
   { to: "/chat", etiqueta: "Chat", icono: MessageSquare },
   { to: "/kpis", etiqueta: "KPIs", icono: BarChart3 },
   { to: "/espacio", etiqueta: "Espacio vectorial", icono: Network },
+  { to: "/grafo", etiqueta: "Grafo de recomendación", icono: Share2 },
 ] as const;
 
 const OPCIONES_ADMIN = [

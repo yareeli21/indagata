@@ -290,6 +290,17 @@ CREATE TABLE IF NOT EXISTS kpi_calculo (
     fecha_calculo       TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- ── grafo_investigacion (trazabilidad del grafo de recomendación) ─────────────
+CREATE TABLE IF NOT EXISTS grafo_investigacion (
+    grafo_id          SERIAL  PRIMARY KEY,
+    investigacion_id  TEXT    NOT NULL,
+    id_owner          INTEGER REFERENCES usuario(usuario_id) ON DELETE CASCADE,
+    instrumento_ids   JSONB   NOT NULL,
+    grafo_snapshot    JSONB   NOT NULL,
+    parametros        JSONB,
+    fecha_creacion    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- ── Índices ───────────────────────────────────────────────────────────────────
 
 CREATE INDEX IF NOT EXISTS idx_raw_data_owner           ON raw_data(id_owner);
@@ -301,6 +312,7 @@ CREATE INDEX IF NOT EXISTS idx_kpi_inf_chunk_docvec     ON kpi_inferido_chunk(do
 CREATE INDEX IF NOT EXISTS idx_docvec_instrumento       ON documento_vectorizado(instrumento_id);
 CREATE INDEX IF NOT EXISTS idx_docvec_coleccion         ON documento_vectorizado(coleccion_id);
 CREATE INDEX IF NOT EXISTS idx_rag_log_timestamp        ON rag_log(timestamp);
+CREATE INDEX IF NOT EXISTS idx_grafo_inv_owner          ON grafo_investigacion(id_owner);
 
 COMMIT;
 
