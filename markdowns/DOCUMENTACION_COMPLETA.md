@@ -6,12 +6,6 @@
 > semántica y conversar con ellos mediante **RAG** (recuperación aumentada por
 > generación).
 
-Este documento está pensado para dos lectores a la vez:
-
-- **Una persona poco técnica** que necesita *levantar el proyecto desde cero* en
-  su equipo y usarlo (secciones 1 y 1b).
-- **Una persona técnica** que necesita entender la base de datos, los
-  microservicios, la base de datos vectorial y el RAG a detalle (secciones 2 a 5).
 
 Todo lo que aquí se describe refleja el código real del repositorio en la rama
 `pruebas`. Cuando algo todavía no está terminado, se dice explícitamente.
