@@ -37,12 +37,30 @@ import os
 import sys
 from pathlib import Path
 
-# ── Resolver import de `shared` también en ejecución local ────────────────────
-# scripts/seed_kpis.py -> parents[3] = raíz del repo (donde vive `shared/`).
-if not (Path(__file__).resolve().parents[1] / "shared" / "__init__.py").exists():
-    _REPO_ROOT = Path(__file__).resolve().parents[3]
-    if str(_REPO_ROOT) not in sys.path:
-        sys.path.insert(0, str(_REPO_ROOT))
+# ── Resolver import de `shared` en ejecución local y en contenedor ────────────
+# Local:      scripts/seed_kpis.py -> parents[3] = raíz del repo (tiene `shared/`).
+# Contenedor: `shared/` está montado junto al script en parents[1] (= /app), que
+# no está en sys.path al invocar `python scripts/seed_kpis.py` (sys.path[0] es la
+# carpeta del script). En ambos casos aseguramos que la carpeta que contiene
+# `shared/__init__.py` esté en sys.path.
+def _candidatos_con_shared() -> list[Path]:
+    """Bases candidatas que podrían contener `shared/` (local y contenedor)."""
+    script = Path(__file__).resolve()
+    bases: list[Path] = []
+    for idx in (1, 3):  # parents[1]=/app (contenedor); parents[3]=raíz (local)
+        try:
+            bases.append(script.parents[idx])
+        except IndexError:
+            continue
+    return bases
+
+
+_DIR_CON_SHARED = next(
+    (b for b in _candidatos_con_shared() if (b / "shared" / "__init__.py").exists()),
+    None,
+)
+if _DIR_CON_SHARED is not None and str(_DIR_CON_SHARED) not in sys.path:
+    sys.path.insert(0, str(_DIR_CON_SHARED))
 
 from sqlalchemy import text  # noqa: E402
 from sqlalchemy.exc import SQLAlchemyError  # noqa: E402
@@ -71,17 +89,28 @@ class ErrorValidacionCSV(Exception):
 
 
 def ruta_csv_por_defecto() -> Path:
-    """`KPIS_CSV_PATH` si está definida; si no, la ruta por defecto en el repo."""
+    """`KPIS_CSV_PATH` si está definida; si no, se busca el CSV en las rutas
+    conocidas (ejecución local desde la raíz del repo o dentro del contenedor,
+    donde `infrastructure/postgres/seed/` se monta bajo `/app`)."""
     env = os.environ.get("KPIS_CSV_PATH")
     if env:
         return Path(env)
-    return (
-        Path(__file__).resolve().parents[3]
-        / "infrastructure"
-        / "postgres"
-        / "seed"
-        / "kpis_ampliados.csv"
-    )
+
+    script_dir = Path(__file__).resolve()
+    # parents[3] = raíz del repo en local; parents[1] = /app en el contenedor.
+    bases: list[Path] = []
+    for idx in (3, 1):
+        try:
+            bases.append(script_dir.parents[idx])
+        except IndexError:
+            continue
+    relativa = Path("infrastructure") / "postgres" / "seed" / "kpis_ampliados.csv"
+    for base in bases:
+        candidata = base / relativa
+        if candidata.is_file():
+            return candidata
+    # Fallback: la primera base conocida (mensaje de error claro si no existe).
+    return (bases[0] if bases else script_dir.parent) / relativa
 
 
 def leer_kpis_csv(path: str | os.PathLike[str]) -> list[dict]:
