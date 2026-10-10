@@ -217,3 +217,112 @@ Se tomó la mejora opcional (step 6): se extrajo el mapa `ICONOS` y el set de cl
 válidas a `src/features/kpis/iconos.ts`, importado por `TarjetaKpi.tsx`,
 `DetalleKpi.tsx` y `src/api/kpis.ts` (`ICONOS_VALIDOS`), evitando duplicar las 15
 claves en tres sitios.
+
+---
+
+# Verificación de INTEGRACIÓN entre FEATs (iteración 1)
+
+Entorno: Windows + PowerShell. Backend con `.venv` del árbol principal
+(`c:\Users\yarel\Documents\indagata\indagata\.venv`, Python 3.14.2, `requirements.txt`
+de analysis-service instalado: fastapi 0.115.6, sqlalchemy 2.0.52, pydantic 2.13.5)
+más `requirements-dev.txt` (pytest 9.1.1). Frontend con Node v24.12.0 / npm,
+`node_modules` presente. Todas las rutas bajo el worktree `.worktrees/kpis-reales`.
+No se ejecutó runtime (docker/seed/reindex): esa verificación es del paso posterior.
+
+## Estado del worktree
+
+- Las tres FEAT ya están commiteadas en `kpis-reales` (`6ecb3e8` FEAT-001,
+  `3f3b4aa` FEAT-002, `40810c8` FEAT-003) sobre `origin/pruebas`.
+- El CSV `infrastructure/postgres/seed/kpis_ampliados.csv` existe en el worktree
+  (56 líneas) y está versionado (`git ls-files` lo lista).
+
+## Backend — py_compile de todos los archivos tocados por FEAT-001/002
+
+```
+python -m py_compile \
+  app/vectorization/core/chroma_client.py \
+  app/vectorization/core/kpi_indexer.py \
+  app/vectorization/core/kpi_search.py \
+  app/vectorization/services/proposal_service.py \
+  app/vectorization/services/enrichment_service.py \
+  app/vectorization/routers/espacio.py \
+  app/vectorization/routers/kpis.py \
+  app/vectorization/schemas/vectorizacion.py \
+  main.py scripts/seed_kpis.py \
+  ../../infrastructure/chroma-viewer/app.py \
+  ../../shared/models/kpi.py ../../shared/schemas/kpi.py
+```
+
+Salida: `PYCOMPILE_EXIT=0` (los 13 compilan sin error).
+
+## Backend — arranque con todos los routers cargados
+
+```
+python -c "import main; print('ROUTES:', [r.path for r in main.app.routes if 'kpis/catalogo' in r.path])"
+→ ROUTES: ['/vectorizacion/kpis/catalogo']   (EXIT=0, sin NameError)
+```
+
+Arranque limpio: confirma que FEAT-002 (import + include_router de `kpis`, el DTO y
+el seam `nombre`) integra sin romper los routers de FEAT previas.
+
+## Backend — contratos ORM / schemas / firma (seam FEAT-001 ↔ FEAT-002)
+
+```
+python -c "import app.vectorization.core.kpi_indexer as m, inspect; s=inspect.signature(m.reindex_kpis).parameters; print('SIG_OK:', 'client' in s and 'collection' not in s)"
+→ SIG_OK: True   (reindex_kpis(db, *, client=None), sin collection=)
+
+python (PYTHONPATH=worktree) -c "from shared.models.kpi import KPI; print('COLS:', [c.name for c in KPI.__table__.columns])"
+→ COLS: ['kpi_id','nombre','polaridad_rendimiento','tipo_objetivo_estrategico',
+         'formula_metrica_calculo','descripcion_ampliada_educativa',
+         'comportamiento_direccional_causalidad','razon_estrategica_decisiones',
+         'texto_contexto_rag_vectorial']   (9 columnas = kpi_id + 8)
+
+python -c "from shared.schemas import KPIBase, KPICreate, KPIUpdate, KPIRead; print('FIELDS:', sorted(KPIRead.model_fields.keys()))"
+→ FIELDS: 9 campos (kpi_id + los 8 snake_case), sin ImportError
+```
+
+## Backend — pytest de las funciones puras (leer_kpis_csv)
+
+```
+pip install -r requirements-dev.txt   # pytest 9.1.1
+python -m pytest tests/ -q
+→ ....  4 passed in 0.57s   (PYTEST_EXIT=0)
+```
+
+Casos: caso feliz, cabecera incorrecta (aborta), `KPI` vacío (aborta),
+`Texto_Contexto_RAG_Vectorial` vacío (aborta).
+
+## Frontend — build de TypeScript (seam FEAT-002 ↔ FEAT-003)
+
+```
+npm run build
+→ ✓ built in 1.04s ; Generated .output/nitro.json   (BUILD_EXIT=0)
+```
+
+Sin errores de TypeScript tras el cableado del catálogo real y la reconciliación
+de `carga.ts`.
+
+## Seam de contrato entre FEATs (lectura de control)
+
+- `git grep nombre_kpi` en backend vivo (`services/analysis-service/app`,
+  `infrastructure/chroma-viewer/app.py`, `shared`): solo 1 hit, un docstring de
+  `kpi_indexer.py`. Ningún código lee ya `nombre_kpi`.
+- `git grep nombre_kpi` en `pixel-perfect-pixel/src`: 0 hits en código.
+- `git grep ChartBar` en `pixel-perfect-pixel/src`: solo comentarios de
+  `kpis.ts`/`iconos.ts`; el fallback real es `BarChart2`.
+- **DTO del catálogo alineado 8-a-8**: la `interface KpiCatalogoDTO` de
+  `src/api/kpis.ts` y la clase `KpiCatalogoDTO` de `schemas/vectorizacion.py`
+  comparten exactamente los mismos 8 campos string
+  (`id, nombre, descripcion_ampliada_educativa, polaridad_rendimiento,
+  tipo_objetivo_estrategico, formula_metrica_calculo,
+  comportamiento_direccional_causalidad, razon_estrategica_decisiones`).
+- **Propuestas/confirmar**: `carga.ts` lee `kpi_id, nombre, score` de
+  `PropuestaKPI` y `kpi_id, nombre, score` de `KpiAgregado`, consistente con las
+  clases Pydantic homónimas del backend (que además exponen
+  `polaridad_rendimiento`/`tipo_objetivo_estrategico`, ignorados sin daño por el
+  front). `confirmarKpis` lee `.nombre` en ambas ramas del `.map`.
+
+**Resultado**: las costuras entre FEAT-001/002/003 integran; backend arranca con
+todos los routers, los contratos (ORM, schemas, DTO del catálogo, propuestas/
+confirmar) están alineados, pytest verde y build del frontend verde. No se
+requirió ningún arreglo de costura en esta iteración.
