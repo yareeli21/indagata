@@ -1,10 +1,10 @@
-import { ANALYSIS_URL, pedir } from "./client";
+import { API_URL, pedir } from "./client";
 
 /**
  * Cliente de API del Grafo de Recomendación de Instrumentos.
  *
- * El api-gateway NO proxea /grafo/*, por eso se llama directo a ANALYSIS_URL
- * (igual que `espacio.ts`). En modo desarrollo el servicio resuelve el usuario
+ * El api-gateway proxea /grafo/* hacia el analysis-service (igual que
+ * `espacio.ts`). En modo desarrollo el servicio resuelve el usuario
  * sin token (auth:false).
  *
  * Dos espacios de identificadores: el grafo opera en `id` (= id_instrumento);
@@ -51,7 +51,7 @@ export interface RecomendarRequest {
 /** Grafo base del acervo: todos los instrumentos como nodos + aristas de KPI compartido. */
 export function getAcervoGrafo(): Promise<{ nodos: NodoGrafo[]; aristas: AristaGrafo[] }> {
   return pedir<{ nodos: NodoGrafo[]; aristas: AristaGrafo[] }>(
-    `${ANALYSIS_URL}/grafo/acervo`,
+    `${API_URL}/grafo/acervo`,
     { auth: false },
   );
 }
@@ -62,7 +62,7 @@ export function recomendarGrafo(req: RecomendarRequest): Promise<{
   parametros: Record<string, number>;
   degradado_semantico: boolean;
 }> {
-  return pedir(`${ANALYSIS_URL}/grafo/recomendar`, {
+  return pedir(`${API_URL}/grafo/recomendar`, {
     method: "POST",
     body: req,
     auth: false,
@@ -83,7 +83,7 @@ export function guardarGrafoInvestigacion(req: {
   grafoId: number;
   instrumentoIdsCrudo: string[];
 }> {
-  return pedir(`${ANALYSIS_URL}/grafo/investigacion`, {
+  return pedir(`${API_URL}/grafo/investigacion`, {
     method: "POST",
     body: req,
     auth: false,

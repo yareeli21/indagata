@@ -2,7 +2,7 @@ import { kpis, noticias, catalogoKpis } from "@/mocks/data";
 import { instrumentos } from "@/mocks/data";
 import { ICONOS_VALIDOS } from "@/features/kpis/iconos";
 import type { DatosGrafica, Kpi, KpiCatalogo, Noticia } from "@/types";
-import { ANALYSIS_URL, pedir, simularRed } from "./client";
+import { API_URL, pedir, simularRed } from "./client";
 
 /** DTO del catálogo real que devuelve analysis-service (8 campos, todos string). */
 interface KpiCatalogoDTO {
@@ -27,15 +27,15 @@ export function getNoticias(): Promise<Noticia[]> {
 }
 
 /**
- * Catálogo de KPIs real: GET /vectorizacion/kpis/catalogo (analysis-service directo,
- * `auth: false`, igual que `espacio.ts`; el gateway NO proxea /vectorizacion/*).
+ * Catálogo de KPIs real: GET /vectorizacion/kpis/catalogo por el api-gateway
+ * (`auth: false`, igual que `espacio.ts`; el gateway proxea /vectorizacion/*).
  * Mapea cada `KpiCatalogoDTO` a `KpiCatalogo` (Opción B) con `mapearKpi`. Ante error
  * de red o respuesta vacía se degrada al mock para no dejar la página en blanco.
  */
 export async function getCatalogoKpis(): Promise<KpiCatalogo[]> {
   let dtos: KpiCatalogoDTO[];
   try {
-    dtos = await pedir<KpiCatalogoDTO[]>(`${ANALYSIS_URL}/vectorizacion/kpis/catalogo`, {
+    dtos = await pedir<KpiCatalogoDTO[]>(`${API_URL}/vectorizacion/kpis/catalogo`, {
       auth: false,
     });
   } catch {

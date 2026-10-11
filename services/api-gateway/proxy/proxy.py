@@ -8,15 +8,21 @@ JSON de dominio directo con el status HTTP real (incluye 401/404/409/422).
 
 Prefijos passthrough:
   - /instrumentos/*     → instrument-service :8001   (GET/POST/DELETE)
+  - /vectorizacion/*    → analysis-service :8002      (GET/POST; /propuestas es multipart)
+  - /kpis/*             → analysis-service :8002      (GET/POST)
+  - /grafo/*            → analysis-service :8002      (GET/POST)
   - /almacenamiento/*   → storage-service :8004      (GET/POST)
   - /rag/*              → visualization-service :8005 (POST; /rag/chat es SSE)
   - /api/metadata/*     → metadata-service :8003      (GET/POST/DELETE)
   - /api/enrichment/*   → metadata-service :8003      (GET/POST/DELETE)
 
-`analysis-service` lo consume el frontend de forma directa (no se proxea aquí). El
-`metadata-service` SÍ se proxea por el gateway (puerta única): los prefijos
-`/api/metadata/*` y `/api/enrichment/*` se reenvían AS-IS a `metadata-service`
-preservando el doble segmento real de sus rutas (p. ej.
+`analysis-service` SÍ se proxea por el gateway (puerta única): los prefijos
+`/vectorizacion/*`, `/kpis/*` y `/grafo/*` se reenvían AS-IS a `analysis-service`.
+`/vectorizacion/propuestas` recibe `multipart/form-data`; `proxy_request` reenvía
+los bytes crudos conservando el `Content-Type` original (y por tanto el `boundary`),
+porque `_HEADERS_A_QUITAR` solo quita `host`/`content-length`. El `metadata-service`
+también se proxea: los prefijos `/api/metadata/*` y `/api/enrichment/*` se reenvían
+AS-IS preservando el doble segmento real de sus rutas (p. ej.
 `/api/metadata/metadata/{id}/init`); ver design.md §5.
 """
 
@@ -196,3 +202,51 @@ async def enrichment_post(request: Request, path: str = "") -> Response:
 @router.delete("/api/enrichment/{path:path}")
 async def enrichment_delete(request: Request, path: str = "") -> Response:
     return await proxy_request("metadata", _ruta_upstream("/api/enrichment", path), request, "DELETE")
+
+
+# ---------------------------------------------------------------------------
+# Vectorización → analysis-service :8002 (passthrough del path tal cual).
+# `/vectorizacion/propuestas` recibe multipart/form-data: `proxy_request` reenvía
+# los bytes crudos conservando el `Content-Type` original (y el `boundary`).
+# Rutas base y por sub-path explícitas para evitar el redirect 307 de FastAPI.
+# ---------------------------------------------------------------------------
+@router.get("/vectorizacion")
+@router.get("/vectorizacion/{path:path}")
+async def vectorizacion_get(request: Request, path: str = "") -> Response:
+    return await proxy_request("analysis", _ruta_upstream("/vectorizacion", path), request, "GET")
+
+
+@router.post("/vectorizacion")
+@router.post("/vectorizacion/{path:path}")
+async def vectorizacion_post(request: Request, path: str = "") -> Response:
+    return await proxy_request("analysis", _ruta_upstream("/vectorizacion", path), request, "POST")
+
+
+# ---------------------------------------------------------------------------
+# KPIs (cálculo) → analysis-service :8002
+# ---------------------------------------------------------------------------
+@router.get("/kpis")
+@router.get("/kpis/{path:path}")
+async def kpis_get(request: Request, path: str = "") -> Response:
+    return await proxy_request("analysis", _ruta_upstream("/kpis", path), request, "GET")
+
+
+@router.post("/kpis")
+@router.post("/kpis/{path:path}")
+async def kpis_post(request: Request, path: str = "") -> Response:
+    return await proxy_request("analysis", _ruta_upstream("/kpis", path), request, "POST")
+
+
+# ---------------------------------------------------------------------------
+# Grafo de recomendación → analysis-service :8002
+# ---------------------------------------------------------------------------
+@router.get("/grafo")
+@router.get("/grafo/{path:path}")
+async def grafo_get(request: Request, path: str = "") -> Response:
+    return await proxy_request("analysis", _ruta_upstream("/grafo", path), request, "GET")
+
+
+@router.post("/grafo")
+@router.post("/grafo/{path:path}")
+async def grafo_post(request: Request, path: str = "") -> Response:
+    return await proxy_request("analysis", _ruta_upstream("/grafo", path), request, "POST")

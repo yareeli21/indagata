@@ -9,7 +9,7 @@ import type {
   TipoPreguntaBackend,
   TipoPreguntaUI,
 } from "@/types";
-import { ANALYSIS_URL, API_URL, leerToken, pedir } from "./client";
+import { API_URL, leerToken, pedir } from "./client";
 
 // ── Mapeo tipo UI → enum backend ────────────────────────────────────────────────
 // La etiqueta de UI (`TIPOS_INSTRUMENTO`) se convierte aquí al vocabulario cerrado
@@ -397,7 +397,7 @@ export function registrarMetadatosEspecificos(
   });
 }
 
-// ── Paso 6: asociación de KPIs (analysis-service directo) ───────────────────────────
+// ── Paso 6: asociación de KPIs (analysis-service por el gateway) ───────────────────────────
 
 /** KPI candidato que devuelve el backend en /vectorizacion/propuestas. */
 interface PropuestaKPI {
@@ -417,7 +417,7 @@ interface PropuestasResponse {
 /**
  * Firma estable por compatibilidad. La propuesta REAL la produce `proponerKpis`
  * (necesita el JSON del instrumento + .md original + tipo + id_instrumento, no solo
- * una descripción). El wizard ya no invoca esta función; devuelve `[]`.
+ * una descripción) por el api-gateway. El wizard ya no invoca esta función; devuelve `[]`.
  */
 export function getKpisSugeridos(_descripcion: string): Promise<KpiSugerido[]> {
   // TODO: la propuesta real la hace `proponerKpis` (POST /vectorizacion/propuestas).
@@ -426,8 +426,8 @@ export function getKpisSugeridos(_descripcion: string): Promise<KpiSugerido[]> {
 
 /**
  * Paso 1 de KPIs: propone KPIs por similitud semántica.
- * `POST /vectorizacion/propuestas` (multipart) contra ANALYSIS_URL directo (el gateway
- * no proxea /vectorizacion/*). Sin Authorization (auth dev mode resuelve sin token,
+ * `POST /vectorizacion/propuestas` (multipart) por el api-gateway (que ya proxea
+ * /vectorizacion/*). Sin Authorization (auth dev mode resuelve sin token,
  * patrón de `espacio.ts`). Se envían Blob/File con `type` explícito.
  */
 export async function proponerKpis(args: {
@@ -452,7 +452,7 @@ export async function proponerKpis(args: {
   form.append("tipo_instrumento", TIPO_UI_A_BACKEND[tipo]);
   form.append("id_instrumento", String(idInstrumento));
 
-  const respuesta = await fetch(`${ANALYSIS_URL}/vectorizacion/propuestas`, {
+  const respuesta = await fetch(`${API_URL}/vectorizacion/propuestas`, {
     method: "POST",
     body: form,
   });
@@ -502,7 +502,7 @@ interface ConfirmarResponse {
 
 /**
  * Paso 2 de KPIs: confirma las decisiones y enriquece el JSON.
- * `POST /vectorizacion/confirmar` (JSON) contra ANALYSIS_URL directo, sin auth.
+ * `POST /vectorizacion/confirmar` (JSON) por el api-gateway, sin auth.
  * El /confirmar persiste los KPIs aceptados: ES el "guardar" del dominio de KPIs.
  */
 export async function confirmarKpis(args: {
@@ -513,7 +513,7 @@ export async function confirmarKpis(args: {
   kpisAgregados: { kpiId: number; nombreKpi: string; score?: number }[];
   jsonEnriquecido: Record<string, unknown>;
 }> {
-  const datos = await pedir<ConfirmarResponse>(`${ANALYSIS_URL}/vectorizacion/confirmar`, {
+  const datos = await pedir<ConfirmarResponse>(`${API_URL}/vectorizacion/confirmar`, {
     method: "POST",
     body: {
       id_instrumento: args.idInstrumento,
@@ -551,7 +551,7 @@ export function guardarInstrumento(documento: unknown): Promise<{ id: string }> 
   return Promise.resolve({ id });
 }
 
-// ── Paso 5: cálculo real del valor de los KPIs (analysis-service directo) ───────────
+// ── Paso 5: cálculo real del valor de los KPIs (analysis-service por el gateway) ───────────
 
 // Types for the KPI calculation step
 export interface VariableKpi {
@@ -585,27 +585,27 @@ export interface KpiCalculoResult {
   interpretacion_texto: string;
 }
 
-// Note: calls go through API_URL (gateway) since analysis-service KPI calc routes
-// will be proxied. If not proxied yet, call ANALYSIS_URL directly like espacio.ts.
+// Las llamadas van por API_URL (api-gateway), que ya proxea las rutas de cálculo
+// de KPIs del analysis-service (/kpis/*). En dev el servicio resuelve sin token.
 export async function prepararCalculo(
   id_instrumento: number,
   kpi_id: number,
 ): Promise<PrepararCalculoResponse> {
-  return pedir<PrepararCalculoResponse>(`${ANALYSIS_URL}/kpis/calculo/preparar`, {
+  return pedir<PrepararCalculoResponse>(`${API_URL}/kpis/calculo/preparar`, {
     method: "POST",
     body: { id_instrumento, kpi_id },
     auth: false,
   });
 }
 export async function registrarCalculo(req: RegistrarCalculoRequest): Promise<KpiCalculoResult> {
-  return pedir<KpiCalculoResult>(`${ANALYSIS_URL}/kpis/calculo/registrar`, {
+  return pedir<KpiCalculoResult>(`${API_URL}/kpis/calculo/registrar`, {
     method: "POST",
     body: req,
     auth: false,
   });
 }
 export async function getCalculosInstrumento(id_instrumento: number): Promise<KpiCalculoResult[]> {
-  return pedir<KpiCalculoResult[]>(`${ANALYSIS_URL}/kpis/calculo/${id_instrumento}`, {
+  return pedir<KpiCalculoResult[]>(`${API_URL}/kpis/calculo/${id_instrumento}`, {
     auth: false,
   });
 }

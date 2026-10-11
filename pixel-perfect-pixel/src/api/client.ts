@@ -10,7 +10,11 @@ export function simularRed<T>(dato: T, ms = 300): Promise<T> {
 /** URL base del api-gateway (login y servicios proxeados). */
 export const API_URL: string = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
-/** URL base del analysis-service (el api-gateway NO proxea /vectorizacion/*). */
+/**
+ * URL base del analysis-service.
+ * @deprecated El api-gateway ya proxea el analysis-service (/vectorizacion/*,
+ * /kpis/*, /grafo/*); usar `API_URL`. Se conserva por compatibilidad de imports.
+ */
 export const ANALYSIS_URL: string = import.meta.env.VITE_ANALYSIS_URL ?? "http://localhost:8002";
 
 // ── Store de token (memoria + localStorage) ────────────────────────────────────
