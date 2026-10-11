@@ -344,6 +344,7 @@ export function UploadWizard() {
           {paso === 0 && (
             <StepArchivo
               archivo={archivo}
+              archivoOriginal={archivoOriginal}
               tipo={tipo}
               onArchivo={(f) => {
                 setArchivo(f);
@@ -351,6 +352,7 @@ export function UploadWizard() {
                 setIdCrudo(null);
                 setIdInstrumento(null);
               }}
+              onArchivoOriginal={setArchivoOriginal}
               onTipo={(t) => {
                 setTipo(t);
                 setMeta({});
