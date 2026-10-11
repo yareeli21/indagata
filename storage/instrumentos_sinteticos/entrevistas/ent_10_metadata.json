@@ -1,0 +1,28 @@
+{
+  "titulo": "Entrevista sobre internacionalización y movilidad académica",
+  "tipo": "entrevista",
+  "fuente": "sintetico",
+  "n_respondentes": 25,
+  "n_items": 8,
+  "tipo_escala": "texto_cualitativo",
+  "dimensiones": [
+    "Semiestructurada"
+  ],
+  "kpis_asociados": [
+    "Ratio de Estudiantes Nacionales vs. Internacionales",
+    "Tasa de Participación en Estudios en el Extranjero",
+    "Alianzas Corporativas y Oportunidades de Pasantías",
+    "Número de Programas Acreditados"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P7",
+      "P6"
+    ],
+    "distribucion_base": "plantillas_perfil_nlp",
+    "alpha_cronbach_estimado": null,
+    "palabras_promedio_por_respuesta": 39.7,
+    "n_preguntas": 8
+  },
+  "fecha_generacion": "2026-10-10"
+}

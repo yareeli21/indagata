@@ -176,13 +176,15 @@ CREATE TABLE IF NOT EXISTS prompts (
 -- ── 7. kpi ────────────────────────────────────────────────────────────────────
 
 CREATE TABLE IF NOT EXISTS kpi (
-    kpi_id           SERIAL PRIMARY KEY,
-    nombre_kpi       TEXT   NOT NULL,
-    descripcion      TEXT,
-    categoria        TEXT,
-    ambito           TEXT,
-    url_documentacion TEXT,
-    formula          TEXT
+    kpi_id                                SERIAL PRIMARY KEY,
+    nombre                                TEXT   NOT NULL,  -- CSV: KPI
+    polaridad_rendimiento                 TEXT,             -- CSV: Polaridad_Rendimiento
+    tipo_objetivo_estrategico             TEXT,             -- CSV: Tipo_Objetivo_Estrategico
+    formula_metrica_calculo               TEXT,             -- CSV: Formula_Metrica_Calculo
+    descripcion_ampliada_educativa        TEXT,             -- CSV: Descripcion_Ampliada_Educativa (significado UI)
+    comportamiento_direccional_causalidad TEXT,             -- CSV: Comportamiento_Direccional_y_Causalidad
+    razon_estrategica_decisiones          TEXT,             -- CSV: Razon_Estrategica_y_Decisiones
+    texto_contexto_rag_vectorial          TEXT   NOT NULL   -- CSV: Texto_Contexto_RAG_Vectorial (texto a embeber)
 );
 
 -- ── 8. variable ───────────────────────────────────────────────────────────────

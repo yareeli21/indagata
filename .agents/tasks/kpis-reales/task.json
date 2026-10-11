@@ -1,0 +1,7 @@
+{
+  "task_id": "task-kpis-reales",
+  "task_description": "Reemplazar el catalogo de KPIs de ejemplo por los KPIs reales del CSV infrastructure/postgres/seed/kpis_ampliados.csv (55 filas, 8 columnas) a lo largo de 5 capas en el worktree .worktrees/kpis-reales (rama kpis-reales): (1) esquema de tt_rag.kpi + script Python de re-seed, (2) modelo ORM + schemas Pydantic compartidos, (3) indexacion vectorial Chroma + reconciliacion de lectores de metadatos, (4) endpoint GET /vectorizacion/kpis/catalogo en analysis-service, (5) frontend pixel-perfect-pixel (getCatalogoKpis + carga.ts). Fuente de verdad: design.md (autoritativo) y requirements.md. Orden de runtime vinculante: reseed -> codigo -> reindex, con recreacion de volumenes como unica via de re-seed de forma en pruebas.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null
+}

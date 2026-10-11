@@ -1,0 +1,35 @@
+{
+  "titulo": "Encuesta de Inserción Laboral y Expectativas Profesionales",
+  "tipo": "encuesta",
+  "fuente": "sintetico",
+  "referencia": "Generada sintéticamente – Indagata v1.0",
+  "n_respondentes": 150,
+  "n_items": 20,
+  "tipo_escala": "mixta",
+  "dimensiones": [
+    "Expectativas laborales",
+    "Competencias profesionales",
+    "Redes de contacto"
+  ],
+  "kpis_asociados": [
+    "Tasa de Inserción Laboral de Egresados",
+    "Alianzas Corporativas y Oportunidades de Pasantías",
+    "Ingresos por Educación Continua",
+    "Tasa de Estudios de Posgrado",
+    "Tasa de Donaciones de Exalumnos (Filantropía de Egresados)"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P7",
+      "P1",
+      "P4",
+      "P5",
+      "P2"
+    ],
+    "distribucion_base": "beta_rescalada",
+    "alpha_cronbach_estimado": 0.8823,
+    "pct_outliers_detectados": 0.0,
+    "n_items_likert": 10
+  },
+  "fecha_generacion": "2026-10-10"
+}

@@ -438,7 +438,30 @@ servicio de análisis:
 | Confirmación | `POST /vectorizacion/confirmar` | Persiste los KPIs aceptados y enriquece el JSON |
 | Mantenimiento | `POST /vectorizacion/kpis/reindex` | Reindexa el catálogo de KPIs en la base vectorial |
 
-### 6.2 Construcción del *summary* y generación de *embeddings*
+### 6.2 Limpieza y estandarización de los instrumentos
+
+Antes de que un instrumento pueda vectorizarse, debe atravesar dos etapas
+previas que son determinantes para la calidad del resultado: la **limpieza** y
+la **estandarización**. La limpieza aplica un procesamiento sencillo de ciencia
+de datos sobre el instrumento cargado —depurando y normalizando su contenido—,
+mientras que la estandarización lo transforma en una estructura homogénea
+(un JSON estructurado) y lo enriquece con metadatos, de modo que instrumentos de
+distinta procedencia queden representados de forma uniforme. Esta normalización
+es la que permite que la posterior comparación semántica entre instrumentos y
+KPIs sea consistente.
+
+Técnicamente, estas etapas se reflejan en el campo `estado` de la tabla
+`instrumento_procesado`, que actúa como control del avance del instrumento a lo
+largo del pipeline. El estado evoluciona de forma secuencial a través de valores
+como `recibido`, `limpieza_en_proceso`, `limpio`, `metadatos_registrados`,
+`estandarizado` y, finalmente, `vectorizado`. El enriquecimiento de metadatos lo
+coordina el servicio de metadata, que expone *endpoints* para crear las
+propuestas de metadatos enriquecidos (`POST /enrichment/{id}/create`),
+consultarlas y aprobarlas o rechazarlas (`POST /enrichment/{id}/approve`); una
+vez aprobadas, el instrumento queda listo para la generación del JSON
+estandarizado que alimentará la vectorización.
+
+### 6.3 Construcción del *summary* y generación de *embeddings*
 
 El primer paso del procesamiento consiste en preparar el texto que será
 vectorizado. En lugar de vectorizar el instrumento completo, el sistema
@@ -455,7 +478,7 @@ Una vez construido el *summary*, este se convierte en un vector numérico
 vez que se necesita— y los vectores se normalizan, lo que resulta coherente con
 el uso posterior de la similitud coseno como medida de cercanía.
 
-### 6.3 Indexación en ChromaDB y asociación a KPIs
+### 6.4 Indexación en ChromaDB y asociación a KPIs
 
 El vector del *summary* se almacena en una colección de la base de datos
 vectorial ChromaDB destinada a los instrumentos. De forma paralela, el catálogo
@@ -480,61 +503,195 @@ JSON del instrumento se enriquece con los indicadores confirmados. De este modo,
 cada KPI asociado queda respaldado por evidencia verificable y no por una
 decisión opaca del sistema.
 
-### 6.4 Consulta mediante RAG
+### 6.5 Consulta mediante RAG
 
-La segunda gran etapa del flujo es la consulta mediante recuperación aumentada
-por generación (RAG), que aprovecha la misma base vectorial construida en la
-etapa anterior. El principio de funcionamiento es el siguiente: ante una
-pregunta formulada en lenguaje natural, el sistema recupera de ChromaDB los
-fragmentos de texto más relevantes para esa pregunta y los proporciona como
-contexto al modelo de lenguaje servido por Ollama, el cual genera una respuesta
-fundamentada en dicho contexto. Cada consulta se registra en la tabla `rag_log`,
-que conserva la pregunta, la respuesta, el modelo utilizado, el número de
-fragmentos empleados y la latencia, lo que permite auditar y evaluar el
-comportamiento del sistema.
+La segunda etapa prevista del flujo es la consulta mediante recuperación
+aumentada por generación (RAG), que reutiliza la misma base vectorial construida
+en la etapa anterior. De manera general, su principio de funcionamiento consiste
+en recuperar de ChromaDB los fragmentos de texto más relevantes para una
+pregunta formulada en lenguaje natural y entregarlos como contexto al modelo de
+lenguaje servido por Ollama, de modo que la respuesta generada se fundamente en
+la información del propio sistema. El esquema de la base de datos ya contempla la
+tabla `rag_log` para registrar estas consultas (pregunta, respuesta, modelo y
+métricas asociadas).
 
-> **Nota sobre el estado de implementación.** En el estado actual del
-> desarrollo, el núcleo de vectorización e inferencia de KPIs descrito en las
-> secciones 6.2 y 6.3 se encuentra implementado y operativo. La consulta RAG
-> aquí descrita corresponde a la etapa diseñada que se apoya en la misma
-> infraestructura vectorial (ChromaDB) y en el modelo de lenguaje (Ollama) ya
-> integrados en la orquestación; su implementación completa se contempla como la
-> continuación natural de este flujo.
+Cabe precisar que esta funcionalidad se encuentra en una etapa temprana de
+desarrollo: la infraestructura en la que se apoya —la base vectorial ChromaDB y
+el modelo Ollama— ya forma parte de la orquestación del sistema, y actualmente
+se trabaja en su integración con el frontend. No obstante, el flujo RAG aún no
+opera en su totalidad, por lo que su implementación completa se contempla como
+la continuación natural del trabajo descrito en este capítulo.
 
 ---
 
 ## 7. Implementación del frontend
-[Cómo se construyó la interfaz y su conexión con el backend.]
 
-### 7.1 Estructura de componentes
-[Organización de componentes, páginas y recursos (assets).]
+La interfaz de usuario de la plataforma se desarrolló como una aplicación web de
+una sola página (SPA) con React y TypeScript, construida sobre el framework
+TanStack Start y la herramienta Vite. La totalidad de la interfaz se diseñó en
+español —tanto los textos como los nombres de las rutas y del dominio en el
+código— y se organizó siguiendo un enfoque por *features* (dominios), de modo
+que cada área funcional del sistema reside en su propio módulo.
+
+### 7.1 Estructura de componentes y organización por features
+
+El código fuente del frontend se organiza, dentro de `src/`, separando la lógica
+de cada dominio de los elementos reutilizables. El directorio `features/` agrupa
+las áreas funcionales de la aplicación —autenticación, carga de instrumentos,
+instrumentos, investigación, chat e indicadores (KPIs)—, cada una con sus
+propios componentes y lógica. Los componentes de interfaz compartidos entre
+distintas áreas se ubican en `components/`, siguiendo la convención de un
+componente por archivo con sus propiedades (*props*) tipadas. Los tipos de
+dominio comunes se centralizan en `types/`.
+
+El enrutamiento se definió de manera declarativa mediante TanStack Router, cuyos
+archivos de ruta residen en `routes/`. La aplicación emplea un *layout* global
+—la ruta de panel— del que dependen las distintas pantallas internas del
+sistema: la carga de un nuevo instrumento, el listado de instrumentos, la
+investigación, los KPIs y el chat.
 
 ### 7.2 Integración con la API
-[Consumo de los endpoints del API Gateway, manejo de estado y de errores.]
+
+Una de las decisiones de diseño más relevantes del frontend es que las pantallas
+nunca acceden directamente a los datos: toda interacción con información se
+canaliza a través de una capa dedicada en `api/`. Cada módulo de esta capa
+expone funciones asíncronas (que devuelven promesas), de manera que la interfaz
+depende de esas firmas y no de su implementación interna. Gracias a ello, es
+posible sustituir los datos de ejemplo (ubicados en `mocks/`) por llamadas HTTP
+reales al backend sin modificar las pantallas; basta con reemplazar el cuerpo de
+las funciones de la capa `api/`.
+
+El acceso al backend se concentra en un cliente HTTP común. Este cliente define
+la dirección base del API Gateway (configurable mediante variables de entorno),
+un ayudante genérico para realizar las peticiones y la gestión del token de
+autenticación. Cuando el usuario inicia sesión, el token JWT devuelto por el
+backend se almacena de forma persistente (en `localStorage`, con respaldo en
+memoria) y se adjunta de manera automática —en la cabecera de autorización— a
+las peticiones que así lo requieren. El cliente también centraliza el manejo de
+errores: traduce los códigos de respuesta HTTP a mensajes claros en español, de
+modo que, por ejemplo, un intento de inicio de sesión fallido se presenta al
+usuario con un mensaje comprensible.
+
+> **Nota sobre el estado de integración.** La integración de la autenticación y
+> de las operaciones principales con el backend se encuentra en marcha. En el
+> caso particular de la consulta mediante RAG (descrita en la sección 6.5), su
+> conexión con el frontend apenas se está incorporando y aún no opera en su
+> totalidad.
 
 ### 7.3 Estilos y experiencia de usuario
-[Hojas de estilo, framework de UI, recursos visuales.]
+
+El diseño visual de la interfaz se apoya en Tailwind CSS, complementado con una
+biblioteca de componentes accesibles basada en Radix UI, lo que proporciona
+elementos de interfaz consistentes (diálogos, menús, pestañas, formularios,
+entre otros). Para preservar la coherencia visual, los colores, la tipografía y
+las sombras se definieron exclusivamente como *tokens* semánticos centralizados
+en la hoja de estilos principal (`styles.css`), evitando el uso de valores de
+color literales en los componentes. Este enfoque facilita el mantenimiento de la
+identidad visual y permite ajustar el aspecto de toda la aplicación desde un
+único punto.
 
 ---
 
 ## 8. Integración de los componentes
-[Cómo se unieron todas las piezas para funcionar como un solo sistema.]
+
+Una vez construidos los componentes de manera independiente, la integración
+consistió en hacerlos operar como un sistema único y coherente. Esta sección
+describe los mecanismos transversales que atraviesan a todos los servicios: la
+autenticación de los usuarios, la protección de sus datos, el recorrido completo
+de una operación a través del sistema y la estrategia de manejo de errores.
 
 ### 8.1 Autenticación y manejo de usuarios
-[Flujo completo de autenticación paso a paso: registro/login, generación y
-validación de tokens (JWT), cifrado de contraseñas (bcrypt), y protección de
-los endpoints a través del API Gateway.]
+
+La autenticación del sistema se centraliza en el API Gateway y se basa en tokens
+JSON Web Token (JWT). El flujo completo opera de la siguiente manera:
+
+1. **Inicio de sesión.** El usuario envía su correo y contraseña al *endpoint*
+   `POST /auth/login`. El servicio busca al usuario por su correo y verifica la
+   contraseña recibida contra el *hash* almacenado. Si las credenciales son
+   correctas, genera un token JWT firmado; en caso contrario, responde con un
+   error de autenticación (código HTTP 401).
+
+2. **Generación del token.** El token se firma con una clave secreta
+   (`SECRET_KEY`) mediante el algoritmo HS256 e incluye, como información
+   (*claims*), el identificador del usuario, su rol y la fecha de expiración.
+   De este modo, el token funciona como una credencial autocontenida y con
+   vigencia limitada.
+
+3. **Acceso a recursos protegidos.** En las peticiones subsecuentes, el token se
+   envía en la cabecera de autorización (`Authorization: Bearer <token>`). Una
+   dependencia del gateway lo valida —comprobando su firma y vigencia— y, a
+   partir de él, identifica al usuario. Si el token es inválido o ha expirado,
+   la petición se rechaza con un error 401.
+
+4. **Autorización por rol.** El sistema define un vocabulario cerrado de dos
+   roles: *investigador* y *administrador*. Determinadas operaciones exigen un
+   rol específico; por ejemplo, el alta de nuevos usuarios
+   (`POST /auth/register`) está reservada al administrador. Cuando un usuario
+   autenticado carece del rol necesario, la operación se rechaza con un error de
+   permisos (código HTTP 403).
+
+Un aspecto relevante del diseño es que los tokens son *autocontenidos* y de
+validación independiente: cualquier servicio puede verificar un token con la
+misma clave secreta, sin necesidad de consultar la base de datos ni de invocar
+nuevamente al gateway. Esto simplifica la comunicación entre microservicios y
+evita acoplamientos innecesarios.
 
 ### 8.2 Privacidad y protección de datos de los usuarios
-[Qué datos del usuario se almacenan, cómo se protegen (cifrado de contraseñas,
-control de acceso) y qué consideraciones de privacidad se aplicaron.]
+
+La protección de los datos de los usuarios se abordó mediante varias medidas
+concretas aplicadas durante la implementación:
+
+- **Cifrado de contraseñas.** Las contraseñas nunca se almacenan en texto plano.
+  Al dar de alta a un usuario, la contraseña se transforma mediante el algoritmo
+  de *hashing* **bcrypt**, y únicamente se guarda ese *hash* en la base de
+  datos. Durante el inicio de sesión, la contraseña recibida se compara contra
+  el *hash* almacenado, sin que el valor original llegue a persistirse en ningún
+  momento.
+
+- **Defensa frente a la enumeración de cuentas.** El proceso de autenticación se
+  diseñó para verificar siempre un *hash* de contraseña, incluso cuando el
+  correo no corresponde a ningún usuario registrado. Con ello se evita que las
+  diferencias en el tiempo de respuesta revelen si un correo determinado existe
+  o no en el sistema, una medida básica contra los intentos de enumeración de
+  usuarios.
+
+- **Control de acceso basado en roles.** Como se describió, el acceso a las
+  operaciones sensibles —como el alta de usuarios o el borrado de instrumentos—
+  se restringe según el rol del usuario. El sistema no emplea una tabla de
+  permisos independiente, sino que la autorización se valida en la capa de
+  aplicación a partir del rol.
+
+- **Minimización de datos.** De cada usuario se almacena únicamente la
+  información necesaria para la operación del sistema: nombre, correo electrónico
+  (único), el *hash* de la contraseña, el rol y la fecha de registro. No se
+  recopilan datos personales adicionales.
 
 ### 8.3 Flujo de datos de extremo a extremo
-[Recorrido de una operación completa: desde el frontend, por el gateway,
-hasta el servicio y la base de datos, y de regreso.]
+
+Para ilustrar cómo se integran los componentes, puede seguirse el recorrido de
+una operación típica. La petición se origina en el frontend, que la dirige al
+API Gateway adjuntando, cuando corresponde, el token de autenticación. El
+gateway valida la credencial y, según la naturaleza de la operación, la atiende
+directamente —en el caso de la autenticación— o la encamina hacia el
+microservicio responsable. El servicio correspondiente ejecuta la lógica de
+negocio y accede a la base de datos PostgreSQL —o, en el caso del procesamiento
+inteligente, a la base vectorial ChromaDB— para leer o persistir la información.
+Finalmente, la respuesta recorre el camino inverso hasta el frontend, que la
+presenta al usuario. El intercambio de datos se realiza en todo momento en
+formato JSON a través de la red interna que conecta a los contenedores.
 
 ### 8.4 Manejo de errores y validaciones
-[Estrategia global de errores y validación de datos.]
+
+El sistema aplica una estrategia de validación y manejo de errores en varias
+capas. En el backend, la validación de los datos de entrada se apoya en los
+esquemas de *Pydantic*, que garantizan que las peticiones cumplan con la
+estructura y los tipos esperados antes de ser procesadas; las violaciones de
+estas reglas se traducen en respuestas de error con el código HTTP
+correspondiente (por ejemplo, 422 para datos no válidos o 409 para conflictos
+como un correo duplicado). En el frontend, el cliente HTTP centraliza la
+interpretación de estos códigos y los traduce a mensajes claros en español,
+de modo que el usuario reciba una retroalimentación comprensible ante
+situaciones como credenciales incorrectas o errores de validación.
 
 ---
 

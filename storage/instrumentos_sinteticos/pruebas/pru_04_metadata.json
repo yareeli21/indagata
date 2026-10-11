@@ -1,0 +1,44 @@
+{
+  "titulo": "Evaluación de Competencias para el Aprendizaje Autónomo (CAA)",
+  "tipo": "prueba_estandarizada",
+  "fuente": "sintetico",
+  "n_respondentes": 90,
+  "n_items": 18,
+  "tipo_escala": "mixta",
+  "dimensiones": [
+    "Conductas de aprendizaje autónomo",
+    "Conocimiento sobre aprendizaje",
+    "Autonomía: Sí / No"
+  ],
+  "kpis_asociados": [
+    "Puntajes en Pruebas Estandarizadas de Referencia",
+    "Tasa de Retención / Permanencia Estudiantil",
+    "Tasa de Graduación / Titulación"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P3",
+      "P6",
+      "P2",
+      "P5",
+      "P1",
+      "P7",
+      "P4",
+      "P8"
+    ],
+    "distribucion_base": "beta_rendimiento_por_perfil",
+    "alpha_cronbach_estimado": 0.9294,
+    "modelo_rendimiento": {
+      "P1": "75-95%",
+      "P2": "55-75%",
+      "P3": "35-60%",
+      "P4": "50-70%",
+      "P5": "60-75%",
+      "P6": "45-80%",
+      "P7": "75-95%",
+      "P8": "35-60%"
+    },
+    "n_secciones": 3
+  },
+  "fecha_generacion": "2026-10-10"
+}

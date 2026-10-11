@@ -1,0 +1,211 @@
+{
+  "perfiles": [
+    {
+      "id": "P1",
+      "nombre": "Alto rendimiento, autoregulado",
+      "peso": 0.12,
+      "edad_rango": [18, 22],
+      "tipo_universidad": "privada",
+      "nivel_ses": "alto",
+      "descripcion": "Estudiante de alto desempeño con habilidades de autorregulación bien desarrolladas. Estudia en universidad privada, familia de recursos altos.",
+      "likert": {
+        "distribucion": "beta",
+        "alpha": 6,
+        "beta": 2,
+        "escala": [1, 5],
+        "media_estimada": 4.2,
+        "desviacion_estimada": 0.6
+      },
+      "tasa_atipicos": 0.01,
+      "patron_respuesta": "normal",
+      "semestre_rango": [1, 8],
+      "horas_trabajo_rango": [0, 10],
+      "gpa_rango": [3.5, 4.0],
+      "genero_dist": {"masculino": 0.45, "femenino": 0.50, "otro": 0.05},
+      "rendimiento_prueba": {"min": 0.75, "max": 0.95}
+    },
+    {
+      "id": "P2",
+      "nombre": "Promedio comprometido",
+      "peso": 0.20,
+      "edad_rango": [19, 24],
+      "tipo_universidad": "publica",
+      "nivel_ses": "medio",
+      "descripcion": "Estudiante con rendimiento promedio pero compromiso positivo. Universidad pública, nivel socioeconómico medio.",
+      "likert": {
+        "distribucion": "beta",
+        "alpha": 4,
+        "beta": 3,
+        "escala": [1, 5],
+        "media_estimada": 3.4,
+        "desviacion_estimada": 0.9
+      },
+      "tasa_atipicos": 0.02,
+      "patron_respuesta": "normal",
+      "semestre_rango": [2, 9],
+      "horas_trabajo_rango": [0, 15],
+      "gpa_rango": [2.8, 3.5],
+      "genero_dist": {"masculino": 0.48, "femenino": 0.48, "otro": 0.04},
+      "rendimiento_prueba": {"min": 0.55, "max": 0.75}
+    },
+    {
+      "id": "P3",
+      "nombre": "En riesgo académico",
+      "peso": 0.15,
+      "edad_rango": [17, 21],
+      "tipo_universidad": "publica",
+      "nivel_ses": "bajo",
+      "descripcion": "Estudiante de primera generación universitaria, bajo nivel socioeconómico. Alto riesgo de abandono.",
+      "likert": {
+        "distribucion": "beta",
+        "alpha": 2,
+        "beta": 5,
+        "escala": [1, 5],
+        "media_estimada": 2.1,
+        "desviacion_estimada": 1.1
+      },
+      "tasa_atipicos": 0.08,
+      "patron_respuesta": "normal",
+      "semestre_rango": [1, 5],
+      "horas_trabajo_rango": [20, 40],
+      "gpa_rango": [1.5, 2.8],
+      "es_primera_generacion": true,
+      "genero_dist": {"masculino": 0.50, "femenino": 0.45, "otro": 0.05},
+      "rendimiento_prueba": {"min": 0.35, "max": 0.60}
+    },
+    {
+      "id": "P4",
+      "nombre": "Trabajador adulto tiempo parcial",
+      "peso": 0.13,
+      "edad_rango": [25, 35],
+      "tipo_universidad": "publica",
+      "nivel_ses": "medio",
+      "descripcion": "Adulto que trabaja más de 30 horas semanales y estudia a tiempo parcial. Patrón de respuesta irregular.",
+      "likert": {
+        "distribucion": "beta",
+        "alpha": 3,
+        "beta": 3,
+        "escala": [1, 5],
+        "media_estimada": 3.0,
+        "desviacion_estimada": 1.3
+      },
+      "tasa_atipicos": 0.05,
+      "patron_respuesta": "irregular",
+      "semestre_rango": [3, 12],
+      "horas_trabajo_rango": [30, 50],
+      "gpa_rango": [2.5, 3.3],
+      "genero_dist": {"masculino": 0.55, "femenino": 0.42, "otro": 0.03},
+      "rendimiento_prueba": {"min": 0.50, "max": 0.70}
+    },
+    {
+      "id": "P5",
+      "nombre": "Avanzado desmotivado (burnout)",
+      "peso": 0.10,
+      "edad_rango": [22, 27],
+      "tipo_universidad": "mixta",
+      "nivel_ses": "medio",
+      "descripcion": "Estudiante en semestres avanzados con síntomas de burnout. Alta competencia pero baja motivación.",
+      "likert": {
+        "distribucion": "beta",
+        "alpha": 3,
+        "beta": 4,
+        "escala": [1, 5],
+        "media_motivacion": 2.6,
+        "media_rendimiento": 3.8,
+        "media_estimada": 3.0,
+        "desviacion_estimada": 0.8
+      },
+      "tasa_atipicos": 0.03,
+      "patron_respuesta": "mixto_burnout",
+      "semestre_rango": [7, 12],
+      "horas_trabajo_rango": [5, 20],
+      "gpa_rango": [3.0, 3.8],
+      "genero_dist": {"masculino": 0.47, "femenino": 0.50, "otro": 0.03},
+      "rendimiento_prueba": {"min": 0.60, "max": 0.75}
+    },
+    {
+      "id": "P6",
+      "nombre": "Internacional/contexto diverso",
+      "peso": 0.08,
+      "edad_rango": [18, 28],
+      "tipo_universidad": "privada",
+      "nivel_ses": "medio_alto",
+      "descripcion": "Estudiante de intercambio internacional con distribución más plana de respuestas. Posible sesgo cultural en algunos ítems.",
+      "likert": {
+        "distribucion": "beta",
+        "alpha": 3,
+        "beta": 3,
+        "escala": [1, 5],
+        "media_estimada": 3.1,
+        "desviacion_estimada": 1.0
+      },
+      "tasa_atipicos": 0.04,
+      "patron_respuesta": "plano",
+      "sesgo_cultural": true,
+      "semestre_rango": [1, 10],
+      "horas_trabajo_rango": [0, 10],
+      "gpa_rango": [2.8, 3.9],
+      "genero_dist": {"masculino": 0.48, "femenino": 0.48, "otro": 0.04},
+      "rendimiento_prueba": {"min": 0.45, "max": 0.80}
+    },
+    {
+      "id": "P7",
+      "nombre": "Posgrado alta competencia",
+      "peso": 0.12,
+      "edad_rango": [24, 35],
+      "tipo_universidad": "privada",
+      "nivel_ses": "alto",
+      "descripcion": "Estudiante de maestría o doctorado con alta competencia académica. Efecto techo en respuestas Likert.",
+      "likert": {
+        "distribucion": "beta",
+        "alpha": 7,
+        "beta": 2,
+        "escala": [1, 5],
+        "media_estimada": 4.5,
+        "desviacion_estimada": 0.5
+      },
+      "tasa_atipicos": 0.01,
+      "patron_respuesta": "techo",
+      "semestre_rango": [1, 6],
+      "nivel_estudio": "posgrado",
+      "horas_trabajo_rango": [10, 30],
+      "gpa_rango": [3.7, 4.0],
+      "genero_dist": {"masculino": 0.52, "femenino": 0.45, "otro": 0.03},
+      "rendimiento_prueba": {"min": 0.75, "max": 0.95}
+    },
+    {
+      "id": "P8",
+      "nombre": "Dificultades socioeconómicas",
+      "peso": 0.10,
+      "edad_rango": [18, 26],
+      "tipo_universidad": "publica",
+      "nivel_ses": "muy_bajo",
+      "descripcion": "Estudiante becado con trabajo parcial y alto nivel de estrés. Items de bienestar muy bajos.",
+      "likert": {
+        "distribucion": "beta",
+        "alpha": 2.5,
+        "beta": 4,
+        "escala": [1, 5],
+        "media_estimada": 2.8,
+        "desviacion_estimada": 1.2
+      },
+      "tasa_atipicos": 0.06,
+      "patron_respuesta": "bienestar_bajo",
+      "tiene_beca": true,
+      "semestre_rango": [1, 8],
+      "horas_trabajo_rango": [15, 35],
+      "gpa_rango": [2.0, 3.2],
+      "genero_dist": {"masculino": 0.45, "femenino": 0.52, "otro": 0.03},
+      "rendimiento_prueba": {"min": 0.35, "max": 0.60}
+    }
+  ],
+  "estructura_correlacion": {
+    "intra_dimension": {"min": 0.45, "max": 0.65},
+    "inter_dimension": {"min": 0.10, "max": 0.25}
+  },
+  "patrones_respuesta_especiales": {
+    "aquiescencia": {"probabilidad": 0.015, "rango": [4, 5]},
+    "rechazo": {"probabilidad": 0.015, "rango": [1, 2]},
+    "zigzag": {"probabilidad": 0.01}
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "titulo": "Entrevista sobre investigación y producción académica (posgrado)",
+  "tipo": "entrevista",
+  "fuente": "sintetico",
+  "n_respondentes": 25,
+  "n_items": 10,
+  "tipo_escala": "texto_cualitativo",
+  "dimensiones": [
+    "Semiestructurada"
+  ],
+  "kpis_asociados": [
+    "Producción Total de Investigación Docente",
+    "Tasa de Publicación del Cuerpo Docente",
+    "Financiamiento y Becas de Investigación",
+    "Patentes Otorgadas"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P7"
+    ],
+    "distribucion_base": "plantillas_perfil_nlp",
+    "alpha_cronbach_estimado": null,
+    "palabras_promedio_por_respuesta": 40.8,
+    "n_preguntas": 10
+  },
+  "fecha_generacion": "2026-10-10"
+}

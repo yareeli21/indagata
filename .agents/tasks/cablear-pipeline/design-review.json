@@ -1,0 +1,27 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    {
+      "id": 1,
+      "severity": "NIT",
+      "where": "§4.5",
+      "problem": "La frase 'acepta vacío/null y responde 200' es correcta para dc_subject pero imprecisa para dc_title: dc_title es NOT NULL en el modelo ORM (shared/models/metadatos_dc.py) y en el DDL (01_schema.sql). Si dc_title se omite (-> None) la inserción falla con IntegrityError que el router captura en su except genérico y responde 500, no 200. Una cadena vacía '' sí se persiste. En la practica el wizard garantiza titulo no vacio (puedeContinuar[2]), por lo que el caso no se alcanza desde la UI.",
+      "fix": "Acotar la frase: register_dc no valida via Pydantic; dc_subject vacio/omitido -> 200; dc_title es NOT NULL (modelo + DDL): omitido -> None -> 500, cadena vacia '' si se persiste; el wizard garantiza dc_title no vacio."
+    },
+    {
+      "id": 2,
+      "severity": "NIT",
+      "where": "§11.2 / §4.0",
+      "problem": "La suposicion 'DDL de metadatos_dc no verificado; pendiente' ya es verificable y resulta correcta. El DDL en infrastructure/postgres/init/01_schema.sql define metadatos_dc con id_crudo INTEGER PRIMARY KEY REFERENCES raw_data(id_crudo), coincidiendo con el modelo shared.MetadatosDC. Dejarlo como pendiente subestima lo confirmable.",
+      "fix": "Cambiar §11.2 de 'pendiente' a verificado citando 01_schema.sql: metadatos_dc PK id_crudo coincide con el modelo shared; el arreglo de dc_manager (filtrar/crear por id_crudo) es consistente con el esquema real."
+    },
+    {
+      "id": 3,
+      "severity": "NIT",
+      "where": "§6.4 / §11.3",
+      "problem": "El contrato de storage-service POST /almacenamiento/json?tipo=analysis se deja como caja negra ('router no leido') aunque el servicio esta presente en el worktree (services/storage-service/). Como guardarInstrumento no se cablea en esta iteracion, no hay impacto funcional.",
+      "fix": "Opcional: indicar la ruta del router real de storage-service a consultar cuando se cablee, o afirmar explicitamente que la lectura se difiere a la iteracion que cablee storage. No es necesario para aprobar."
+    }
+  ],
+  "reviewDoc": "c:\\Users\\yarel\\Documents\\indagata\\indagata\\.worktrees\\cablear-pipeline\\.agents\\tasks\\cablear-pipeline\\design-review.md"
+}

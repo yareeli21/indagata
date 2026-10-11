@@ -1,0 +1,43 @@
+{
+  "titulo": "MSLQ-SF: Cuestionario de Motivación y Estrategias de Aprendizaje Forma Corta",
+  "tipo": "encuesta",
+  "fuente": "real",
+  "referencia": "Motivated Strategies for Learning Questionnaire – Short Form (MSLQ-SF)",
+  "n_respondentes": 200,
+  "n_items": 38,
+  "tipo_escala": "likert_1_5",
+  "dimensiones": [
+    "Elaboración",
+    "Organización",
+    "Pensamiento crítico",
+    "Autorregulación metacognitiva",
+    "Gestión del tiempo y del esfuerzo",
+    "Elaboración con compañeros",
+    "Motivación intrínseca",
+    "Autoeficacia"
+  ],
+  "kpis_asociados": [
+    "Puntajes en Pruebas Estandarizadas de Referencia",
+    "Tasa de Retención / Permanencia Estudiantil",
+    "Tasa de Graduación / Titulación",
+    "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+    "Años Promedio para la Graduación (Duración Real del Programa)"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P3",
+      "P7",
+      "P1",
+      "P6",
+      "P4",
+      "P5",
+      "P2",
+      "P8"
+    ],
+    "distribucion_base": "beta_rescalada",
+    "alpha_cronbach_estimado": 0.9596,
+    "pct_outliers_detectados": 0.0,
+    "n_items_likert": 38
+  },
+  "fecha_generacion": "2026-10-10"
+}

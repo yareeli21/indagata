@@ -1,0 +1,20 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    {
+      "archivo": "services/visualization-service/app/core/sources.py",
+      "problema": "extraer_metadata toma 'investigador' de metadata.dublin_core['dc:creator'], mientras el diseño §4.2 lo define como str(id_owner) o ''. No rompe nada (produce un string válido y respeta el default ''), pero diverge de la fuente de verdad del autorId.",
+      "severidad": "nit",
+      "confianza": "confirmed",
+      "fix": "Opcional: resolver 'investigador' desde id_owner (vía BD/seed) cuando esté disponible, o documentar explícitamente en el docstring que en el camino de fallback se usa dc:creator por carecer de id_owner."
+    },
+    {
+      "archivo": "services/visualization-service/app/core/sources.py",
+      "problema": "En el camino de fallback, 'tipo' se infiere de dc:type (='Dataset'), que nunca está en _TIPO_MAP, así que toda fuente queda tipada 'Encuesta' y se emite un logger.warning por instrumento. Es consistente con el diseño (dc:type marcado 'solo informativo'), pero genera ruido de logs y un tipo poco informativo.",
+      "severidad": "nit",
+      "confianza": "confirmed",
+      "fix": "Opcional: resolver 'tipo' desde raw_data.tipo_instrumento (vía _seed_map/BD) cuando exista, o bajar el warning a debug para no inundar los logs en indexados masivos."
+    }
+  ],
+  "reviewDoc": "c:\\Users\\yarel\\Documents\\indagata\\indagata\\.agents\\tasks\\fullstack-rag\\2026-10-04-175037-review.md"
+}

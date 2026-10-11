@@ -1,0 +1,30 @@
+{
+  "titulo": "Entrevista sobre estrategias de permanencia universitaria",
+  "tipo": "entrevista",
+  "fuente": "sintetico",
+  "n_respondentes": 40,
+  "n_items": 12,
+  "tipo_escala": "texto_cualitativo",
+  "dimensiones": [
+    "Semiestructurada"
+  ],
+  "kpis_asociados": [
+    "Tasa de Retención / Permanencia Estudiantil",
+    "Tasa de Deserción / Abandono Estudiantil",
+    "Servicios de Apoyo al Estudiante",
+    "Proporción de Consejeros/Orientadores por Estudiante"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P4",
+      "P3",
+      "P2",
+      "P8"
+    ],
+    "distribucion_base": "plantillas_perfil_nlp",
+    "alpha_cronbach_estimado": null,
+    "palabras_promedio_por_respuesta": 40.1,
+    "n_preguntas": 12
+  },
+  "fecha_generacion": "2026-10-10"
+}

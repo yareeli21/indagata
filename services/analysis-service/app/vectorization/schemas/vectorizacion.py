@@ -12,9 +12,9 @@ class PropuestaKPI(BaseModel):
     """Un KPI candidato propuesto por similitud semántica."""
 
     kpi_id: int = Field(..., description="PK del KPI en la tabla tt_rag.kpi.")
-    nombre_kpi: str = Field(..., description="Nombre del KPI.")
-    categoria: str | None = Field(default=None, description="Categoría del KPI.")
-    ambito: str | None = Field(default=None, description="Ámbito del KPI.")
+    nombre: str = Field(..., description="Nombre del KPI.")
+    polaridad_rendimiento: str | None = Field(default=None, description="Polaridad de rendimiento del KPI.")
+    tipo_objetivo_estrategico: str | None = Field(default=None, description="Tipo de objetivo estratégico del KPI.")
     score: float = Field(..., description="Similitud [0,1] con el instrumento (mayor = más cercano).")
 
 
@@ -58,7 +58,7 @@ class KpiAgregado(BaseModel):
     """Un KPI que quedó agregado al JSON enriquecido."""
 
     kpi_id: int
-    nombre_kpi: str
+    nombre: str
     score: float | None = None
 
 
@@ -81,6 +81,25 @@ class ReindexResponse(BaseModel):
     coleccion: str
     n_kpis: int
     mensaje: str = Field(default="Colección de KPIs reindexada.")
+
+
+# ── Catálogo de KPIs (frontend) ───────────────────────────────────────────────
+
+class KpiCatalogoDTO(BaseModel):
+    """Un KPI del catálogo real, tal como lo consume el frontend.
+
+    Todos los campos son string; los nullable de la tabla se emiten como "" (nunca
+    None) y el ícono se calcula en el frontend, no aquí.
+    """
+
+    id: str = Field(..., description="str(kpi_id).")
+    nombre: str = Field(..., description="Nombre del KPI (NOT NULL en la tabla).")
+    descripcion_ampliada_educativa: str = Field(..., description="Significado mostrado en la UI.")
+    polaridad_rendimiento: str = Field(..., description="Polaridad de rendimiento.")
+    tipo_objetivo_estrategico: str = Field(..., description="Tipo de objetivo estratégico.")
+    formula_metrica_calculo: str = Field(..., description="Fórmula / métrica de cálculo.")
+    comportamiento_direccional_causalidad: str = Field(..., description="Comportamiento direccional y causalidad.")
+    razon_estrategica_decisiones: str = Field(..., description="Razón estratégica y decisiones.")
 
 
 # ── Inspección: ver el embedding del summary de un instrumento ────────────────

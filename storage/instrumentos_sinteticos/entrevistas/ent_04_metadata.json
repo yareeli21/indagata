@@ -1,0 +1,29 @@
+{
+  "titulo": "Entrevista sobre inclusión y diversidad universitaria",
+  "tipo": "entrevista",
+  "fuente": "sintetico",
+  "n_respondentes": 28,
+  "n_items": 8,
+  "tipo_escala": "texto_cualitativo",
+  "dimensiones": [
+    "Semiestructurada"
+  ],
+  "kpis_asociados": [
+    "Métricas de Diversidad e Inclusión (Alumnado y Docentes)",
+    "Porcentaje de Estudiantes que Reciben Ayuda Financiera",
+    "Estadísticas de Seguridad en el Campus (Índice de Criminalidad)"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P7",
+      "P3",
+      "P6",
+      "P8"
+    ],
+    "distribucion_base": "plantillas_perfil_nlp",
+    "alpha_cronbach_estimado": null,
+    "palabras_promedio_por_respuesta": 38.9,
+    "n_preguntas": 8
+  },
+  "fecha_generacion": "2026-10-10"
+}

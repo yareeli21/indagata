@@ -12,12 +12,14 @@ class KPI(Base):
     __table_args__ = {"schema": SCHEMA}
 
     kpi_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    nombre_kpi: Mapped[str] = mapped_column(Text, nullable=False)
-    descripcion: Mapped[str | None] = mapped_column(Text)
-    categoria: Mapped[str | None] = mapped_column(Text)
-    ambito: Mapped[str | None] = mapped_column(Text)
-    url_documentacion: Mapped[str | None] = mapped_column(Text)
-    formula: Mapped[str | None] = mapped_column(Text)
+    nombre: Mapped[str] = mapped_column(Text, nullable=False)
+    polaridad_rendimiento: Mapped[str | None] = mapped_column(Text)
+    tipo_objetivo_estrategico: Mapped[str | None] = mapped_column(Text)
+    formula_metrica_calculo: Mapped[str | None] = mapped_column(Text)
+    descripcion_ampliada_educativa: Mapped[str | None] = mapped_column(Text)
+    comportamiento_direccional_causalidad: Mapped[str | None] = mapped_column(Text)
+    razon_estrategica_decisiones: Mapped[str | None] = mapped_column(Text)
+    texto_contexto_rag_vectorial: Mapped[str] = mapped_column(Text, nullable=False)
 
     def __repr__(self) -> str:  # pragma: no cover
-        return f"<KPI kpi_id={self.kpi_id} nombre_kpi={self.nombre_kpi!r}>"
+        return f"<KPI kpi_id={self.kpi_id} nombre={self.nombre!r}>"

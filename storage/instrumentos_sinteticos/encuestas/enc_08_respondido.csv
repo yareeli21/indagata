@@ -1,0 +1,161 @@
+id_respondente,perfil,edad,genero,semestre,promedio_gpa,horas_trabajo_semana,tipo_universidad,nivel_ses,nivel_estudio,primera_generacion,tiene_beca,Bienestar_emoci_item1,Bienestar_emoci_item2,Bienestar_emoci_item3,Bienestar_emoci_item4,Estrés_académic_item1,Estrés_académic_item2,Estrés_académic_item3,Apoyo_instituci_item1,Apoyo_instituci_item2,Apoyo_instituci_item3,Con_qué_frecuencia_has_sentido_síntomas,Has_buscado_ayuda_psicológica_profesion,Cuál_es_el_principal_factor_de_estrés_e,Con_qué_frecuencia_realizas_actividades,Has_pensado_en_abandonar_los_estudios_p,Duermes_al_menos_7_horas_diarias_en_pro,Tu_institución_tiene_un_programa_formal,"En_una_escala_del_1_al_10,_cómo_calific","En_una_escala_del_1_al_10,_cuánto_estré","En_una_escala_del_1_al_10,_cuán_satisfe"
+R0001,P2,20,femenino,8,3.13,14,publica,medio,pregrado,False,False,3,2,2,4,3,2,2,4,3,2,Raramente,"No, nunca",Relaciones interpersonales,Diariamente,"Sí, actualmente",Sí,Sí,7,2,4
+R0002,P7,30,masculino,4,3.79,18,privada,alto,posgrado,False,False,4,5,4,5,4,4,4,4,4,5,Raramente,"No, nunca",Carga de materias,Raramente,Frecuentemente,Sí,No,2,1,3
+R0003,P5,26,masculino,12,3.28,10,mixta,medio,pregrado,False,False,4,4,4,4,3,3,3,3,4,4,Siempre,"Sí, de forma externa",Carga de materias,Semanalmente,Nunca,No,No,1,1,10
+R0004,P5,22,masculino,11,3.14,5,mixta,medio,pregrado,False,False,2,2,3,3,2,2,2,2,1,3,Siempre,"Sí, de forma externa",Relaciones interpersonales,Nunca,Frecuentemente,No,Sí,2,7,8
+R0005,P4,35,femenino,8,3.05,45,publica,medio,pregrado,False,False,2,4,2,2,4,2,2,4,3,5,Ocasionalmente,Estoy considerándolo,Trabajo y conciliación,Nunca,En algún momento,Sí,No,7,3,7
+R0006,P3,21,femenino,4,1.76,31,publica,bajo,pregrado,True,False,3,2,2,4,1,1,1,2,1,4,Ocasionalmente,"Sí, de forma externa",Relaciones interpersonales,Semanalmente,En algún momento,No,Sí,5,7,10
+R0007,P5,27,masculino,9,3.01,12,mixta,medio,pregrado,False,False,4,4,4,5,2,3,2,3,3,3,Raramente,"No, nunca",Relaciones interpersonales,Semanalmente,Frecuentemente,No,No,4,3,10
+R0008,P6,26,femenino,3,3.13,3,privada,medio_alto,pregrado,False,False,3,3,3,3,1,2,3,4,4,5,Frecuentemente,"Sí, de forma externa",Trabajo y conciliación,Diariamente,"Sí, actualmente",No,No,5,3,4
+R0009,P4,27,femenino,11,3.14,31,publica,medio,pregrado,False,False,3,2,3,3,1,1,1,2,2,1,Siempre,"No, nunca",Carga de materias,Semanalmente,Nunca,Sí,No,1,2,6
+R0010,P4,34,femenino,5,3.05,47,publica,medio,pregrado,False,False,2,3,1,2,1,2,1,4,1,3,Ocasionalmente,"No, nunca",Relaciones interpersonales,Raramente,Nunca,No,Sí,6,3,6
+R0011,P2,19,masculino,3,3.15,2,publica,medio,pregrado,False,False,3,4,3,3,4,4,3,2,3,4,Ocasionalmente,"No, nunca",Economía familiar,Nunca,Nunca,Sí,Sí,2,3,1
+R0012,P1,22,femenino,3,3.91,4,privada,alto,pregrado,False,False,4,4,3,4,5,4,5,5,4,5,Ocasionalmente,"No, nunca",Exámenes y evaluaciones,Diariamente,Nunca,Sí,Sí,7,9,1
+R0013,P1,20,femenino,2,3.88,3,privada,alto,pregrado,False,False,5,4,4,4,5,5,5,5,4,4,Siempre,Estoy considerándolo,Relaciones interpersonales,Nunca,"Sí, actualmente",No,Sí,2,6,4
+R0014,P6,22,femenino,6,3.62,2,privada,medio_alto,pregrado,False,False,5,3,4,4,4,4,3,5,4,4,Ocasionalmente,"Sí, de forma externa",Trabajo y conciliación,Diariamente,Nunca,Sí,Sí,3,5,1
+R0015,P3,21,femenino,2,2.05,38,publica,bajo,pregrado,True,False,3,2,1,2,1,2,2,3,3,2,Ocasionalmente,"Sí, de forma externa",Relaciones interpersonales,Raramente,Nunca,Sí,No,10,10,7
+R0016,P6,21,femenino,4,3.89,10,privada,medio_alto,pregrado,False,False,4,3,4,4,4,2,2,4,3,3,Ocasionalmente,"No, nunca",Economía familiar,Semanalmente,Frecuentemente,No,No,7,5,1
+R0017,P4,30,masculino,7,2.97,41,publica,medio,pregrado,False,False,2,2,4,2,4,5,3,4,2,2,Nunca,"No, nunca",Relaciones interpersonales,Nunca,En algún momento,No,Sí,9,9,3
+R0018,P3,17,masculino,5,2.75,34,publica,bajo,pregrado,True,False,3,4,2,2,2,2,2,1,1,1,Siempre,"No, nunca",Carga de materias,Diariamente,"Sí, actualmente",Sí,No,5,4,1
+R0019,P5,27,masculino,9,3.28,10,mixta,medio,pregrado,False,False,2,4,3,3,3,3,5,2,1,2,Raramente,"Sí, de forma externa",Exámenes y evaluaciones,Raramente,Frecuentemente,No,No,8,10,5
+R0020,P2,22,masculino,2,2.83,9,publica,medio,pregrado,False,False,4,3,4,3,3,3,4,3,3,5,Siempre,Estoy considerándolo,Exámenes y evaluaciones,Semanalmente,Nunca,No,No,5,2,9
+R0021,P8,20,femenino,8,2.12,25,publica,muy_bajo,pregrado,False,True,4,3,2,4,1,1,1,3,4,4,Raramente,"Sí, de forma externa",Relaciones interpersonales,Nunca,En algún momento,No,Sí,7,6,1
+R0022,P3,19,otro,4,1.83,23,publica,bajo,pregrado,True,False,2,3,3,3,3,1,3,2,2,2,Raramente,"No, nunca",Economía familiar,Raramente,Nunca,No,No,6,5,7
+R0023,P6,19,femenino,8,3.51,4,privada,medio_alto,pregrado,False,False,3,3,4,3,3,5,3,1,1,2,Siempre,"Sí, en la institución",Relaciones interpersonales,Raramente,En algún momento,Sí,No,1,9,6
+R0024,P2,20,femenino,9,3.19,14,publica,medio,pregrado,False,False,3,4,3,4,3,3,3,3,5,5,Nunca,"Sí, en la institución",Exámenes y evaluaciones,Nunca,"Sí, actualmente",No,Sí,7,3,9
+R0025,P3,19,femenino,1,1.53,33,publica,bajo,pregrado,True,False,3,2,3,2,4,3,2,1,3,2,Frecuentemente,"Sí, en la institución",Carga de materias,Semanalmente,En algún momento,Sí,Sí,2,4,6
+R0026,P4,27,masculino,10,2.75,41,publica,medio,pregrado,False,False,1,1,1,1,4,4,4,3,2,2,Siempre,"No, nunca",Trabajo y conciliación,Raramente,Frecuentemente,No,Sí,7,4,9
+R0027,P2,24,femenino,5,3.4,14,publica,medio,pregrado,False,False,3,4,4,4,5,5,4,5,4,5,Raramente,"Sí, en la institución",Exámenes y evaluaciones,Semanalmente,En algún momento,No,No,2,7,7
+R0028,P3,17,femenino,4,2.67,32,publica,bajo,pregrado,True,False,1,2,1,1,3,1,1,1,3,2,Raramente,"No, nunca",Economía familiar,Nunca,"Sí, actualmente",No,No,9,3,8
+R0029,P3,20,masculino,3,1.61,23,publica,bajo,pregrado,True,False,2,1,1,1,2,2,2,2,2,2,Raramente,"No, nunca",Carga de materias,Nunca,Frecuentemente,No,Sí,6,5,5
+R0030,P7,31,femenino,3,3.73,21,privada,alto,posgrado,False,False,4,4,4,5,5,4,4,4,4,4,Siempre,Estoy considerándolo,Exámenes y evaluaciones,Diariamente,Frecuentemente,Sí,Sí,5,7,4
+R0031,P4,26,masculino,4,2.89,47,publica,medio,pregrado,False,False,1,1,1,1,3,4,2,2,3,3,Raramente,"No, nunca",Economía familiar,Nunca,"Sí, actualmente",No,No,10,3,6
+R0032,P1,20,masculino,8,3.74,2,privada,alto,pregrado,False,False,4,5,5,4,5,5,5,4,4,4,Nunca,Estoy considerándolo,Carga de materias,Diariamente,"Sí, actualmente",Sí,Sí,10,3,2
+R0033,P2,21,femenino,3,3.15,9,publica,medio,pregrado,False,False,5,3,4,4,3,4,3,4,3,2,Ocasionalmente,"No, nunca",Economía familiar,Semanalmente,"Sí, actualmente",Sí,Sí,3,2,8
+R0034,P8,18,femenino,5,2.43,32,publica,muy_bajo,pregrado,False,True,4,4,5,4,3,3,3,2,1,1,Nunca,"No, nunca",Exámenes y evaluaciones,Semanalmente,En algún momento,No,Sí,10,2,2
+R0035,P1,22,femenino,8,3.96,2,privada,alto,pregrado,False,False,4,3,3,3,4,4,4,5,5,5,Ocasionalmente,Estoy considerándolo,Trabajo y conciliación,Semanalmente,Nunca,Sí,Sí,5,10,10
+R0036,P5,24,femenino,12,3.36,7,mixta,medio,pregrado,False,False,4,4,4,4,2,2,3,2,2,3,Nunca,"No, nunca",Economía familiar,Semanalmente,Nunca,No,No,4,9,1
+R0037,P2,19,masculino,3,2.99,6,publica,medio,pregrado,False,False,4,3,4,3,5,5,5,3,4,2,Raramente,"No, nunca",Relaciones interpersonales,Raramente,Nunca,Sí,No,10,2,2
+R0038,P3,17,femenino,2,2.05,22,publica,bajo,pregrado,True,False,3,2,1,2,5,5,5,2,2,2,Nunca,"Sí, en la institución",Exámenes y evaluaciones,Diariamente,Frecuentemente,No,Sí,9,6,2
+R0039,P3,19,masculino,2,2.78,33,publica,bajo,pregrado,True,False,2,2,2,3,2,2,2,3,3,2,Nunca,"No, nunca",Trabajo y conciliación,Nunca,Nunca,Sí,No,9,2,2
+R0040,P8,25,masculino,4,2.69,35,publica,muy_bajo,pregrado,False,True,3,4,4,4,4,4,4,4,5,5,Frecuentemente,"Sí, de forma externa",Exámenes y evaluaciones,Semanalmente,En algún momento,Sí,No,5,9,1
+R0041,P4,34,masculino,4,3.24,45,publica,medio,pregrado,False,False,3,2,3,1,3,5,4,2,5,2,Siempre,"Sí, de forma externa",Economía familiar,Semanalmente,Frecuentemente,Sí,Sí,6,8,10
+R0042,P2,22,otro,4,3.37,9,publica,medio,pregrado,False,False,3,3,4,4,3,3,3,1,1,1,Raramente,"Sí, de forma externa",Economía familiar,Nunca,En algún momento,Sí,No,10,8,7
+R0043,P5,23,masculino,12,3.06,11,mixta,medio,pregrado,False,False,2,2,3,3,3,2,2,3,3,2,Nunca,"No, nunca",Relaciones interpersonales,Semanalmente,En algún momento,Sí,Sí,1,4,4
+R0044,P1,18,femenino,6,3.93,3,privada,alto,pregrado,False,False,4,4,4,4,5,5,4,4,4,4,Siempre,"Sí, en la institución",Trabajo y conciliación,Diariamente,Frecuentemente,Sí,Sí,10,4,4
+R0045,P8,18,masculino,8,2.49,28,publica,muy_bajo,pregrado,False,True,3,1,3,3,3,3,3,2,2,1,Ocasionalmente,"No, nunca",Carga de materias,Raramente,Nunca,Sí,No,10,9,3
+R0046,P3,19,femenino,4,2.53,29,publica,bajo,pregrado,True,False,2,2,2,3,3,4,3,2,2,2,Raramente,Estoy considerándolo,Exámenes y evaluaciones,Semanalmente,Nunca,Sí,Sí,5,6,6
+R0047,P7,31,masculino,5,3.7,25,privada,alto,posgrado,False,False,5,4,5,4,4,4,5,4,4,4,Frecuentemente,"No, nunca",Trabajo y conciliación,Raramente,Frecuentemente,Sí,No,1,6,4
+R0048,P7,33,masculino,5,3.83,23,privada,alto,posgrado,False,False,5,4,5,5,4,4,4,5,5,5,Frecuentemente,Estoy considerándolo,Exámenes y evaluaciones,Nunca,Frecuentemente,No,Sí,4,10,5
+R0049,P2,20,masculino,2,3.39,14,publica,medio,pregrado,False,False,3,4,4,3,2,2,3,3,2,3,Frecuentemente,Estoy considerándolo,Carga de materias,Nunca,Frecuentemente,No,No,2,9,4
+R0050,P8,26,masculino,2,2.18,28,publica,muy_bajo,pregrado,False,True,4,4,4,4,2,2,3,1,4,2,Frecuentemente,"Sí, de forma externa",Trabajo y conciliación,Nunca,En algún momento,No,Sí,7,4,3
+R0051,P8,18,masculino,3,3.18,31,publica,muy_bajo,pregrado,False,True,2,2,2,3,5,3,4,4,3,4,Nunca,Estoy considerándolo,Exámenes y evaluaciones,Semanalmente,Nunca,No,No,4,1,6
+R0052,P7,27,masculino,4,3.96,21,privada,alto,posgrado,False,False,5,5,5,5,4,5,4,4,4,4,Raramente,Estoy considerándolo,Relaciones interpersonales,Diariamente,"Sí, actualmente",Sí,Sí,4,3,2
+R0053,P3,18,masculino,3,1.78,33,publica,bajo,pregrado,True,False,1,2,1,1,3,2,1,1,1,1,Frecuentemente,Estoy considerándolo,Carga de materias,Nunca,Frecuentemente,Sí,No,6,8,6
+R0054,P5,24,masculino,9,3.37,18,mixta,medio,pregrado,False,False,4,3,4,1,2,3,4,3,4,2,Siempre,"Sí, en la institución",Carga de materias,Nunca,Nunca,Sí,No,7,2,6
+R0055,P1,22,otro,4,3.84,2,privada,alto,pregrado,False,False,4,5,5,4,3,3,3,4,4,4,Frecuentemente,Estoy considerándolo,Trabajo y conciliación,Diariamente,"Sí, actualmente",Sí,No,2,4,2
+R0056,P8,25,masculino,3,2.21,31,publica,muy_bajo,pregrado,False,True,4,3,3,3,4,3,3,1,1,1,Raramente,"Sí, en la institución",Exámenes y evaluaciones,Diariamente,Frecuentemente,Sí,No,5,10,9
+R0057,P2,22,femenino,5,3.18,1,publica,medio,pregrado,False,False,4,2,3,3,4,3,3,5,4,3,Siempre,"No, nunca",Trabajo y conciliación,Semanalmente,En algún momento,Sí,Sí,1,5,10
+R0058,P6,22,femenino,4,3.89,2,privada,medio_alto,pregrado,False,False,2,3,3,3,3,3,3,1,2,3,Ocasionalmente,"Sí, en la institución",Exámenes y evaluaciones,Diariamente,En algún momento,Sí,Sí,6,3,8
+R0059,P7,27,otro,5,3.91,22,privada,alto,posgrado,False,False,5,5,5,4,4,5,5,5,4,3,Nunca,Estoy considerándolo,Relaciones interpersonales,Nunca,Frecuentemente,Sí,No,4,6,10
+R0060,P8,21,femenino,4,2.52,18,publica,muy_bajo,pregrado,False,True,2,3,2,2,2,3,1,4,4,3,Raramente,"No, nunca",Trabajo y conciliación,Nunca,Nunca,No,No,4,10,10
+R0061,P7,30,femenino,6,3.77,25,privada,alto,posgrado,False,False,4,4,5,4,4,4,4,4,4,4,Siempre,"Sí, de forma externa",Economía familiar,Diariamente,Nunca,No,No,2,3,8
+R0062,P7,31,femenino,3,3.71,23,privada,alto,posgrado,False,False,4,4,4,4,5,4,4,4,5,4,Ocasionalmente,"No, nunca",Relaciones interpersonales,Raramente,En algún momento,No,Sí,8,6,4
+R0063,P6,28,femenino,6,3.06,7,privada,medio_alto,pregrado,False,False,2,4,3,3,2,3,4,4,3,5,Ocasionalmente,"Sí, en la institución",Economía familiar,Raramente,"Sí, actualmente",Sí,Sí,3,8,3
+R0064,P4,28,femenino,6,2.73,31,publica,medio,pregrado,False,False,3,4,4,4,2,2,2,2,3,2,Nunca,Estoy considerándolo,Trabajo y conciliación,Semanalmente,En algún momento,No,No,7,6,9
+R0065,P1,18,femenino,2,3.99,5,privada,alto,pregrado,False,False,5,4,4,4,5,5,5,5,4,4,Frecuentemente,Estoy considerándolo,Trabajo y conciliación,Semanalmente,"Sí, actualmente",No,Sí,7,9,5
+R0066,P8,19,masculino,5,2.18,20,publica,muy_bajo,pregrado,False,True,4,4,4,3,1,2,3,3,3,4,Raramente,Estoy considerándolo,Trabajo y conciliación,Nunca,"Sí, actualmente",Sí,No,7,5,8
+R0067,P3,20,femenino,4,1.75,35,publica,bajo,pregrado,True,False,1,1,1,1,1,1,1,1,2,2,Nunca,Estoy considerándolo,Exámenes y evaluaciones,Semanalmente,"Sí, actualmente",No,No,1,8,9
+R0068,P7,28,femenino,1,3.94,24,privada,alto,posgrado,False,False,5,5,4,4,4,4,5,5,5,4,Siempre,"Sí, de forma externa",Economía familiar,Semanalmente,Nunca,Sí,No,9,4,10
+R0069,P3,21,masculino,5,1.7,34,publica,bajo,pregrado,True,False,4,2,2,2,2,3,3,2,2,2,Ocasionalmente,"No, nunca",Trabajo y conciliación,Semanalmente,"Sí, actualmente",Sí,Sí,7,1,7
+R0070,P3,18,femenino,3,2.61,20,publica,bajo,pregrado,True,False,4,3,2,3,1,1,1,2,3,2,Siempre,"Sí, de forma externa",Relaciones interpersonales,Diariamente,"Sí, actualmente",No,No,8,4,3
+R0071,P3,19,masculino,1,2.41,32,publica,bajo,pregrado,True,False,4,4,5,4,2,1,1,3,4,2,Frecuentemente,"Sí, en la institución",Trabajo y conciliación,Semanalmente,"Sí, actualmente",Sí,Sí,8,2,1
+R0072,P8,18,femenino,4,3.12,31,publica,muy_bajo,pregrado,False,True,1,1,2,1,2,2,3,2,2,2,Siempre,"No, nunca",Economía familiar,Semanalmente,Nunca,No,Sí,6,8,9
+R0073,P2,22,femenino,3,3.22,7,publica,medio,pregrado,False,False,4,4,4,4,4,4,3,4,5,3,Ocasionalmente,"Sí, de forma externa",Carga de materias,Diariamente,En algún momento,No,No,8,5,1
+R0074,P4,32,femenino,5,3.08,34,publica,medio,pregrado,False,False,1,1,1,2,3,3,3,4,4,5,Frecuentemente,"No, nunca",Relaciones interpersonales,Raramente,Frecuentemente,Sí,No,3,8,6
+R0075,P2,24,femenino,5,2.82,10,publica,medio,pregrado,False,False,2,2,2,2,4,4,4,4,4,5,Siempre,"No, nunca",Trabajo y conciliación,Nunca,Frecuentemente,No,No,4,8,3
+R0076,P4,28,masculino,10,2.8,32,publica,medio,pregrado,False,False,1,1,1,1,4,3,4,1,2,2,Frecuentemente,"Sí, en la institución",Exámenes y evaluaciones,Diariamente,Frecuentemente,Sí,No,4,6,5
+R0077,P4,28,masculino,6,2.76,49,publica,medio,pregrado,False,False,1,1,1,1,1,4,3,1,3,2,Frecuentemente,"No, nunca",Relaciones interpersonales,Diariamente,"Sí, actualmente",Sí,No,4,10,9
+R0078,P2,22,femenino,6,3.1,1,publica,medio,pregrado,False,False,3,4,2,4,3,4,4,3,4,2,Siempre,"Sí, de forma externa",Trabajo y conciliación,Diariamente,Nunca,No,No,6,5,5
+R0079,P5,22,masculino,12,3.27,13,mixta,medio,pregrado,False,False,3,2,2,3,1,2,2,4,3,4,Raramente,Estoy considerándolo,Exámenes y evaluaciones,Diariamente,En algún momento,No,No,8,7,2
+R0080,P7,26,femenino,3,3.82,13,privada,alto,posgrado,False,False,5,5,5,5,4,4,4,4,4,5,Ocasionalmente,"Sí, de forma externa",Relaciones interpersonales,Diariamente,Nunca,No,No,3,7,5
+R0081,P7,34,femenino,3,3.99,17,privada,alto,posgrado,False,False,4,4,4,3,4,5,5,5,5,5,Frecuentemente,"No, nunca",Carga de materias,Semanalmente,Frecuentemente,Sí,No,4,8,2
+R0082,P6,20,femenino,3,3.62,4,privada,medio_alto,pregrado,False,False,3,2,3,1,3,5,4,3,3,4,Siempre,"Sí, de forma externa",Relaciones interpersonales,Nunca,En algún momento,Sí,Sí,8,5,9
+R0083,P2,22,femenino,8,3.18,9,publica,medio,pregrado,False,False,3,5,4,4,5,5,4,2,3,4,Frecuentemente,Estoy considerándolo,Carga de materias,Semanalmente,Frecuentemente,No,No,8,5,1
+R0084,P5,22,masculino,11,3.48,20,mixta,medio,pregrado,False,False,1,2,2,2,4,3,4,3,2,3,Ocasionalmente,Estoy considerándolo,Exámenes y evaluaciones,Nunca,En algún momento,No,No,3,9,10
+R0085,P5,26,masculino,12,3.39,6,mixta,medio,pregrado,False,False,3,3,2,3,2,1,2,2,3,2,Frecuentemente,"No, nunca",Carga de materias,Nunca,En algún momento,Sí,No,2,10,3
+R0086,P6,23,otro,8,3.38,8,privada,medio_alto,pregrado,False,False,4,2,3,4,3,3,4,3,3,2,Ocasionalmente,"No, nunca",Trabajo y conciliación,Semanalmente,En algún momento,No,No,4,1,7
+R0087,P6,25,masculino,6,3.65,7,privada,medio_alto,pregrado,False,False,1,1,1,1,4,4,4,1,2,2,Ocasionalmente,"No, nunca",Economía familiar,Diariamente,Frecuentemente,Sí,Sí,2,10,9
+R0088,P5,23,otro,12,3.75,9,mixta,medio,pregrado,False,False,2,2,4,2,4,2,3,3,3,4,Ocasionalmente,"Sí, en la institución",Trabajo y conciliación,Nunca,"Sí, actualmente",Sí,No,7,10,2
+R0089,P6,24,femenino,8,3.62,9,privada,medio_alto,pregrado,False,False,4,3,3,3,2,3,2,3,4,2,Frecuentemente,Estoy considerándolo,Relaciones interpersonales,Nunca,Nunca,No,Sí,8,6,10
+R0090,P7,26,masculino,4,3.83,19,privada,alto,posgrado,False,False,5,5,5,5,5,5,5,5,5,5,Nunca,"No, nunca",Carga de materias,Semanalmente,Nunca,No,No,7,6,5
+R0091,P4,30,femenino,6,2.53,32,publica,medio,pregrado,False,False,3,4,2,2,4,4,2,5,3,3,Siempre,"Sí, de forma externa",Carga de materias,Raramente,"Sí, actualmente",No,No,4,5,6
+R0092,P2,22,femenino,4,3.07,14,publica,medio,pregrado,False,False,4,3,3,2,4,4,4,2,1,2,Nunca,Estoy considerándolo,Trabajo y conciliación,Diariamente,"Sí, actualmente",Sí,No,4,6,4
+R0093,P7,35,masculino,5,3.97,23,privada,alto,posgrado,False,False,4,4,4,4,4,4,4,5,5,5,Frecuentemente,Estoy considerándolo,Economía familiar,Nunca,"Sí, actualmente",No,No,5,2,10
+R0094,P5,27,otro,12,3.12,18,mixta,medio,pregrado,False,False,3,4,4,3,3,4,4,2,3,2,Siempre,"Sí, en la institución",Carga de materias,Diariamente,"Sí, actualmente",Sí,No,8,4,7
+R0095,P5,25,masculino,10,3.25,16,mixta,medio,pregrado,False,False,3,3,2,3,4,5,3,4,3,3,Raramente,"Sí, de forma externa",Trabajo y conciliación,Raramente,Nunca,Sí,Sí,10,10,4
+R0096,P2,23,masculino,9,2.9,2,publica,medio,pregrado,False,False,3,3,4,3,3,3,3,4,4,4,Ocasionalmente,"Sí, en la institución",Carga de materias,Raramente,Nunca,No,Sí,10,6,1
+R0097,P2,23,femenino,4,3.39,7,publica,medio,pregrado,False,False,5,2,4,3,5,4,4,2,3,3,Ocasionalmente,"Sí, de forma externa",Economía familiar,Semanalmente,Frecuentemente,Sí,Sí,4,4,9
+R0098,P7,35,femenino,4,3.88,27,privada,alto,posgrado,False,False,5,5,5,5,4,5,5,5,4,4,Nunca,Estoy considerándolo,Economía familiar,Diariamente,"Sí, actualmente",Sí,No,2,3,7
+R0099,P1,19,femenino,6,3.64,2,privada,alto,pregrado,False,False,4,5,4,4,4,4,4,5,5,5,Frecuentemente,"Sí, de forma externa",Carga de materias,Raramente,"Sí, actualmente",No,No,1,8,2
+R0100,P3,20,masculino,3,1.61,36,publica,bajo,pregrado,True,False,1,1,1,1,2,1,1,3,4,4,Siempre,"Sí, en la institución",Carga de materias,Semanalmente,"Sí, actualmente",No,Sí,10,5,5
+R0101,P4,33,masculino,11,2.98,30,publica,medio,pregrado,False,False,4,5,2,4,3,2,3,1,1,1,Siempre,Estoy considerándolo,Carga de materias,Semanalmente,"Sí, actualmente",Sí,Sí,10,6,3
+R0102,P1,22,femenino,1,3.51,4,privada,alto,pregrado,False,False,5,5,5,5,5,5,4,5,4,5,Siempre,"Sí, en la institución",Exámenes y evaluaciones,Semanalmente,Nunca,No,No,6,4,3
+R0103,P4,29,femenino,4,2.95,50,publica,medio,pregrado,False,False,2,3,2,3,3,3,3,3,3,1,Ocasionalmente,"No, nunca",Exámenes y evaluaciones,Diariamente,En algún momento,No,No,1,1,5
+R0104,P1,19,masculino,6,3.71,9,privada,alto,pregrado,False,False,4,5,5,5,3,4,4,4,4,4,Frecuentemente,"No, nunca",Exámenes y evaluaciones,Nunca,Frecuentemente,Sí,Sí,5,3,1
+R0105,P2,21,femenino,2,2.89,11,publica,medio,pregrado,False,False,3,3,3,4,4,4,4,4,4,4,Raramente,"Sí, de forma externa",Economía familiar,Diariamente,En algún momento,Sí,Sí,8,6,3
+R0106,P8,23,masculino,7,2.5,24,publica,muy_bajo,pregrado,False,True,3,3,3,1,2,1,2,5,5,4,Raramente,"Sí, en la institución",Economía familiar,Nunca,"Sí, actualmente",Sí,Sí,8,3,1
+R0107,P4,32,masculino,12,2.92,36,publica,medio,pregrado,False,False,2,5,2,3,3,1,2,4,4,5,Siempre,Estoy considerándolo,Trabajo y conciliación,Nunca,"Sí, actualmente",Sí,No,8,6,10
+R0108,P8,24,femenino,6,2.48,22,publica,muy_bajo,pregrado,False,True,4,2,3,2,5,5,3,3,3,3,Raramente,"Sí, de forma externa",Relaciones interpersonales,Diariamente,Frecuentemente,Sí,No,8,9,9
+R0109,P4,32,femenino,7,3.24,47,publica,medio,pregrado,False,False,3,3,3,2,4,4,3,5,3,5,Frecuentemente,"Sí, de forma externa",Trabajo y conciliación,Raramente,Nunca,No,No,1,2,2
+R0110,P7,24,masculino,4,3.74,13,privada,alto,posgrado,False,False,4,5,5,5,4,4,4,4,4,4,Siempre,Estoy considerándolo,Carga de materias,Semanalmente,"Sí, actualmente",Sí,No,7,9,6
+R0111,P1,22,masculino,5,3.53,8,privada,alto,pregrado,False,False,4,5,5,4,4,4,4,5,5,5,Frecuentemente,"Sí, de forma externa",Trabajo y conciliación,Nunca,En algún momento,No,No,10,2,3
+R0112,P2,24,femenino,3,3.09,4,publica,medio,pregrado,False,False,4,4,4,2,3,2,2,5,5,5,Nunca,"No, nunca",Economía familiar,Diariamente,En algún momento,No,Sí,5,5,6
+R0113,P2,22,femenino,3,2.98,1,publica,medio,pregrado,False,False,2,3,2,2,5,4,3,4,3,3,Siempre,"Sí, de forma externa",Exámenes y evaluaciones,Raramente,Frecuentemente,Sí,No,6,7,5
+R0114,P1,22,femenino,5,3.77,7,privada,alto,pregrado,False,False,5,5,4,4,5,4,5,5,5,4,Raramente,"Sí, de forma externa",Exámenes y evaluaciones,Nunca,Nunca,Sí,No,3,3,1
+R0115,P8,24,femenino,5,2.71,29,publica,muy_bajo,pregrado,False,True,2,1,1,2,3,4,3,3,3,4,Siempre,Estoy considerándolo,Exámenes y evaluaciones,Nunca,Frecuentemente,Sí,Sí,9,3,8
+R0116,P4,33,femenino,11,3.02,30,publica,medio,pregrado,False,False,4,5,4,5,2,3,2,3,3,3,Nunca,"No, nunca",Exámenes y evaluaciones,Nunca,Frecuentemente,Sí,Sí,4,5,8
+R0117,P4,34,masculino,9,3.29,50,publica,medio,pregrado,False,False,4,4,4,4,3,2,2,4,4,4,Raramente,"No, nunca",Exámenes y evaluaciones,Semanalmente,En algún momento,Sí,No,10,1,1
+R0118,P4,33,masculino,4,3.22,44,publica,medio,pregrado,False,False,2,3,3,2,3,2,3,1,3,1,Frecuentemente,Estoy considerándolo,Economía familiar,Nunca,En algún momento,No,No,6,10,3
+R0119,P2,20,otro,3,3.42,11,publica,medio,pregrado,False,False,3,2,2,2,3,2,3,4,4,5,Nunca,Estoy considerándolo,Relaciones interpersonales,Semanalmente,En algún momento,Sí,Sí,4,3,2
+R0120,P8,20,femenino,4,2.57,34,publica,muy_bajo,pregrado,False,True,1,1,1,1,2,3,2,5,4,4,Raramente,"Sí, en la institución",Relaciones interpersonales,Semanalmente,Frecuentemente,No,Sí,6,8,4
+R0121,P5,26,femenino,7,3.76,10,mixta,medio,pregrado,False,False,4,3,4,3,3,3,3,3,3,3,Siempre,Estoy considerándolo,Carga de materias,Raramente,"Sí, actualmente",No,Sí,1,3,5
+R0122,P2,24,femenino,4,3.46,2,publica,medio,pregrado,False,False,2,2,3,2,2,2,2,3,2,3,Siempre,"No, nunca",Economía familiar,Semanalmente,En algún momento,No,Sí,10,9,7
+R0123,P3,20,masculino,5,1.95,29,publica,bajo,pregrado,True,False,1,3,2,2,1,3,2,2,3,3,Ocasionalmente,"Sí, de forma externa",Exámenes y evaluaciones,Raramente,"Sí, actualmente",No,No,5,2,7
+R0124,P1,20,masculino,2,3.96,5,privada,alto,pregrado,False,False,4,4,4,3,5,5,4,4,4,4,Siempre,"Sí, en la institución",Carga de materias,Raramente,En algún momento,Sí,Sí,5,8,2
+R0125,P5,22,femenino,10,3.22,16,mixta,medio,pregrado,False,False,3,4,4,5,2,2,2,4,3,4,Frecuentemente,"Sí, de forma externa",Carga de materias,Nunca,Nunca,No,No,5,8,5
+R0126,P4,35,masculino,5,2.91,46,publica,medio,pregrado,False,False,2,1,1,3,3,3,2,3,2,1,Siempre,Estoy considerándolo,Trabajo y conciliación,Nunca,"Sí, actualmente",No,Sí,7,8,8
+R0127,P8,23,femenino,7,2.86,16,publica,muy_bajo,pregrado,False,True,3,4,4,3,2,2,1,2,3,1,Ocasionalmente,"Sí, de forma externa",Carga de materias,Nunca,En algún momento,Sí,No,8,1,9
+R0128,P8,19,masculino,8,2.07,17,publica,muy_bajo,pregrado,False,True,1,3,3,2,1,2,1,3,2,1,Raramente,"No, nunca",Economía familiar,Nunca,Frecuentemente,Sí,No,7,2,9
+R0129,P1,18,femenino,6,3.73,4,privada,alto,pregrado,False,False,4,4,5,4,4,5,4,4,4,4,Siempre,Estoy considerándolo,Trabajo y conciliación,Raramente,En algún momento,No,Sí,2,9,3
+R0130,P1,19,femenino,8,3.8,5,privada,alto,pregrado,False,False,4,5,5,4,4,4,4,4,5,5,Ocasionalmente,"Sí, en la institución",Exámenes y evaluaciones,Raramente,Frecuentemente,No,Sí,8,4,6
+R0131,P7,29,masculino,3,3.86,27,privada,alto,posgrado,False,False,5,5,5,5,4,5,4,4,4,4,Ocasionalmente,"Sí, de forma externa",Carga de materias,Raramente,"Sí, actualmente",No,Sí,7,9,2
+R0132,P4,34,femenino,6,3.08,35,publica,medio,pregrado,False,False,2,2,3,4,4,3,3,2,2,2,Frecuentemente,"No, nunca",Relaciones interpersonales,Nunca,"Sí, actualmente",No,No,10,9,4
+R0133,P3,18,masculino,5,2.63,28,publica,bajo,pregrado,True,False,3,3,4,1,3,3,3,1,2,2,Siempre,Estoy considerándolo,Economía familiar,Diariamente,"Sí, actualmente",No,No,3,7,3
+R0134,P4,31,masculino,8,2.81,45,publica,medio,pregrado,False,False,4,2,2,1,4,3,3,3,4,2,Siempre,Estoy considerándolo,Relaciones interpersonales,Diariamente,En algún momento,No,No,9,2,3
+R0135,P3,20,masculino,3,1.58,33,publica,bajo,pregrado,True,False,2,3,2,1,1,1,2,2,1,2,Raramente,"Sí, en la institución",Relaciones interpersonales,Semanalmente,Nunca,Sí,No,9,4,9
+R0136,P5,23,otro,9,3.72,20,mixta,medio,pregrado,False,False,1,2,2,1,3,3,3,2,2,4,Raramente,"Sí, en la institución",Economía familiar,Nunca,Frecuentemente,No,Sí,1,1,8
+R0137,P8,23,femenino,1,2.28,33,publica,muy_bajo,pregrado,False,True,2,2,2,2,4,1,3,5,4,4,Siempre,"Sí, en la institución",Trabajo y conciliación,Diariamente,Nunca,Sí,No,10,1,9
+R0138,P5,22,femenino,7,3.33,20,mixta,medio,pregrado,False,False,2,3,3,2,5,5,5,4,3,3,Raramente,Estoy considerándolo,Economía familiar,Raramente,En algún momento,No,No,9,9,4
+R0139,P3,20,femenino,1,2.67,23,publica,bajo,pregrado,True,False,2,1,1,1,4,2,4,2,1,1,Frecuentemente,"Sí, de forma externa",Relaciones interpersonales,Raramente,"Sí, actualmente",Sí,Sí,9,5,4
+R0140,P2,22,masculino,4,3.14,10,publica,medio,pregrado,False,False,3,1,3,3,4,3,5,3,3,3,Frecuentemente,"No, nunca",Exámenes y evaluaciones,Diariamente,Frecuentemente,No,No,10,8,9
+R0141,P8,24,masculino,3,2.77,16,publica,muy_bajo,pregrado,False,True,2,1,2,1,2,3,2,3,2,3,Ocasionalmente,Estoy considerándolo,Exámenes y evaluaciones,Nunca,Frecuentemente,No,No,3,2,1
+R0142,P4,34,masculino,5,2.59,40,publica,medio,pregrado,False,False,2,4,3,3,4,4,3,4,5,5,Frecuentemente,"Sí, en la institución",Carga de materias,Diariamente,"Sí, actualmente",Sí,Sí,1,2,8
+R0143,P4,28,femenino,4,2.71,45,publica,medio,pregrado,False,False,4,2,4,2,4,5,4,2,2,2,Frecuentemente,"No, nunca",Economía familiar,Diariamente,Frecuentemente,No,Sí,7,6,7
+R0144,P1,22,femenino,2,3.7,3,privada,alto,pregrado,False,False,4,4,5,5,5,4,5,3,4,4,Nunca,"Sí, en la institución",Relaciones interpersonales,Semanalmente,"Sí, actualmente",No,No,6,6,4
+R0145,P8,26,masculino,2,2.78,16,publica,muy_bajo,pregrado,False,True,3,2,4,4,1,1,1,4,1,2,Nunca,"No, nunca",Economía familiar,Semanalmente,Nunca,Sí,Sí,9,5,10
+R0146,P3,21,masculino,4,1.87,40,publica,bajo,pregrado,True,False,1,2,1,2,4,3,2,4,3,4,Ocasionalmente,"Sí, en la institución",Carga de materias,Raramente,En algún momento,No,Sí,6,1,3
+R0147,P8,23,masculino,8,2.87,34,publica,muy_bajo,pregrado,False,True,4,4,3,3,2,3,5,5,3,4,Siempre,"Sí, de forma externa",Trabajo y conciliación,Semanalmente,En algún momento,No,Sí,2,3,4
+R0148,P2,20,masculino,9,3.09,14,publica,medio,pregrado,False,False,3,4,3,5,5,5,5,4,3,4,Raramente,"Sí, en la institución",Exámenes y evaluaciones,Raramente,"Sí, actualmente",No,Sí,6,2,4
+R0149,P3,18,femenino,5,2.53,27,publica,bajo,pregrado,True,False,3,2,1,2,2,4,3,2,2,3,Ocasionalmente,"Sí, en la institución",Relaciones interpersonales,Semanalmente,"Sí, actualmente",Sí,No,4,2,4
+R0150,P2,23,femenino,5,3.0,11,publica,medio,pregrado,False,False,3,4,3,4,4,4,4,4,4,3,Ocasionalmente,"Sí, en la institución",Trabajo y conciliación,Nunca,En algún momento,Sí,Sí,9,3,4
+R0151,P3,20,femenino,2,1.51,35,publica,bajo,pregrado,True,False,2,2,2,3,1,1,1,2,2,3,Frecuentemente,Estoy considerándolo,Relaciones interpersonales,Raramente,"Sí, actualmente",No,Sí,8,7,5
+R0152,P8,21,femenino,4,2.57,19,publica,muy_bajo,pregrado,False,True,2,1,3,3,1,1,1,4,4,4,Nunca,"No, nunca",Economía familiar,Nunca,Frecuentemente,No,Sí,9,8,10
+R0153,P3,18,masculino,1,1.84,23,publica,bajo,pregrado,True,False,4,2,3,1,3,1,1,2,3,1,Frecuentemente,Estoy considerándolo,Trabajo y conciliación,Raramente,Nunca,Sí,No,8,9,5
+R0154,P7,28,masculino,6,3.86,27,privada,alto,posgrado,False,False,4,5,4,5,3,4,3,5,5,4,Frecuentemente,"Sí, en la institución",Economía familiar,Semanalmente,"Sí, actualmente",No,Sí,2,4,7
+R0155,P6,28,masculino,2,3.09,5,privada,medio_alto,pregrado,False,False,3,2,2,1,3,3,3,4,3,3,Raramente,"Sí, en la institución",Economía familiar,Nunca,Nunca,No,No,9,6,7
+R0156,P2,22,masculino,2,3.28,8,publica,medio,pregrado,False,False,2,3,4,3,3,3,5,4,5,5,Nunca,"Sí, de forma externa",Economía familiar,Diariamente,Frecuentemente,Sí,Sí,2,9,7
+R0157,P4,29,masculino,3,2.67,37,publica,medio,pregrado,False,False,2,2,1,1,2,2,3,4,4,4,Frecuentemente,Estoy considerándolo,Trabajo y conciliación,Diariamente,"Sí, actualmente",Sí,Sí,3,5,4
+R0158,P7,32,femenino,3,3.75,30,privada,alto,posgrado,False,False,5,4,4,5,4,4,5,4,4,4,Nunca,"Sí, en la institución",Trabajo y conciliación,Raramente,Frecuentemente,Sí,No,2,1,3
+R0159,P5,23,femenino,11,3.37,5,mixta,medio,pregrado,False,False,3,3,2,3,2,3,3,4,3,4,Raramente,"Sí, de forma externa",Trabajo y conciliación,Nunca,Frecuentemente,Sí,Sí,1,5,4
+R0160,P2,20,otro,4,3.01,3,publica,medio,pregrado,False,False,5,3,5,4,5,5,5,3,1,3,Ocasionalmente,"Sí, en la institución",Economía familiar,Semanalmente,"Sí, actualmente",Sí,No,9,1,4

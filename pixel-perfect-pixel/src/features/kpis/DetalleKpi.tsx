@@ -1,21 +1,4 @@
-import {
-  Award,
-  BarChart2,
-  BookOpen,
-  Briefcase,
-  Calculator,
-  ClipboardCheck,
-  Heart,
-  Home,
-  Laptop,
-  MessageCircle,
-  Monitor,
-  Shield,
-  Smile,
-  Users,
-  Zap,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { BarChart2 } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -24,25 +7,8 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
+import { ICONOS } from "@/features/kpis/iconos";
 import type { KpiCatalogo } from "@/types";
-
-const ICONOS: Record<string, LucideIcon> = {
-  Award,
-  BarChart2,
-  BookOpen,
-  Briefcase,
-  Calculator,
-  ClipboardCheck,
-  Heart,
-  Home,
-  Laptop,
-  MessageCircle,
-  Monitor,
-  Shield,
-  Smile,
-  Users,
-  Zap,
-};
 
 interface DetalleKpiProps {
   kpi: KpiCatalogo | null;

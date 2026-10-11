@@ -1,0 +1,7 @@
+{
+  "verdict": "APPROVED",
+  "iteration": 5,
+  "resolved_by": "orchestrator",
+  "note": "The design-loop reached its 3-iteration cap; the iteration-4 review was CHANGES_REQUESTED with only 1 MEDIUM + 3 NIT, and confirmed every load-bearing claim correct against the real worktree code (old KPI model/schemas, 01_schema.sql kpi_id SERIAL PK + 4 child FKs ON DELETE CASCADE, kpi_indexer/kpi_search/proposal/enrichment/espacio/chroma-viewer reading nombre_kpi, carga.ts local interfaces, kpis.ts emitting ChartBar, ICONOS map of 15 keys, CSV 55 rows/8 cols/0 empty/55 unique, seed_demo.py parents[3], no reindex/catalogo route collision). The orchestrator applied all 4 fixes directly to design.md: MEDIUM-1 (migrate reindex_kpis seam from collection= to client= and always delete+recreate by name; integration test injects client), NIT-2 (pin NFD acento-stripping in elegirIcono so heuristic branches fire, not silent BarChart2 fallback), NIT-3 (extract build_kpi_metadata as a pure testable function symmetric to build_kpi_text), NIT-4 (prescribe volume recreation as the only supported re-seed path; discourage manual DROP TABLE CASCADE which would silently drop child FKs and violate CA-3). Design is cleared for planning + implementation.",
+  "findings": { "high": 0, "medium": 0, "nit": 0 }
+}

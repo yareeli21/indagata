@@ -1,0 +1,29 @@
+{
+  "titulo": "Entrevista sobre financiamiento y accesibilidad de la educación",
+  "tipo": "entrevista",
+  "fuente": "sintetico",
+  "n_respondentes": 28,
+  "n_items": 8,
+  "tipo_escala": "texto_cualitativo",
+  "dimensiones": [
+    "Semiestructurada"
+  ],
+  "kpis_asociados": [
+    "Tarifa Promedio de Matrícula / Colegiatura",
+    "Tamaño del Fondo Patrimonial / Financiero (Endowment)",
+    "Porcentaje de Estudiantes que Reciben Ayuda Financiera",
+    "Tasa de Incumplimiento de Préstamos Estudiantiles"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P4",
+      "P3",
+      "P8"
+    ],
+    "distribucion_base": "plantillas_perfil_nlp",
+    "alpha_cronbach_estimado": null,
+    "palabras_promedio_por_respuesta": 40.2,
+    "n_preguntas": 8
+  },
+  "fecha_generacion": "2026-10-10"
+}

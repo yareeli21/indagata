@@ -1,0 +1,37 @@
+{
+  "titulo": "Encuesta de Carga Académica y Gestión del Tiempo",
+  "tipo": "encuesta",
+  "fuente": "sintetico",
+  "referencia": "Generada sintéticamente – Indagata v1.0",
+  "n_respondentes": 160,
+  "n_items": 20,
+  "tipo_escala": "mixta",
+  "dimensiones": [
+    "Carga horaria percibida",
+    "Organización del tiempo"
+  ],
+  "kpis_asociados": [
+    "Años Promedio para la Graduación (Duración Real del Programa)",
+    "Tasa de Deserción / Abandono Estudiantil",
+    "Puntajes en Pruebas Estandarizadas de Referencia",
+    "Tasa de Asistencia Escolar y Universitaria",
+    "Ratio de Matriculados frente a Graduados del Curso"
+  ],
+  "parametros_estadisticos": {
+    "perfiles_usados": [
+      "P3",
+      "P7",
+      "P1",
+      "P6",
+      "P4",
+      "P5",
+      "P2",
+      "P8"
+    ],
+    "distribucion_base": "beta_rescalada",
+    "alpha_cronbach_estimado": 0.9136,
+    "pct_outliers_detectados": 0.0,
+    "n_items_likert": 8
+  },
+  "fecha_generacion": "2026-10-10"
+}
