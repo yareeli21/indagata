@@ -14,7 +14,8 @@ import tsConfigPaths from "vite-tsconfig-paths";
 //   5. nitro          → empaquetado del servidor para desplegar.
 export default defineConfig({
   server: {
-    port: 8080,
+    port: 5173,
+    strictPort: true,
   },
   optimizeDeps: {
     include: ["sonner"],

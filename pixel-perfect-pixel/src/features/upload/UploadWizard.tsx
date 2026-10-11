@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { AlertTriangle, ArrowLeft, ArrowRight, Loader2, Save } from "lucide-react";
 import { toast } from "sonner";
@@ -174,6 +174,12 @@ export function UploadWizard() {
   const [archivoOriginal, setArchivoOriginal] = useState<File | null>(null);
   const [jsonInstrumento, setJsonInstrumento] = useState<Record<string, unknown> | null>(null);
   const [avanzando, setAvanzando] = useState(false);
+  // JSON enriquecido (DC + survey_specific) que produce el paso de KPIs. Vive en una ref
+  // —no en estado— para NO re-disparar el efecto de propuesta (evita el bucle de render).
+  // `guardar()` lo usa en confirmarKpis con fallback a jsonInstrumento.
+  const jsonEnriquecidoRef = useRef<Record<string, unknown> | null>(null);
+  // Guard: la propuesta de KPIs se dispara una sola vez por id_instrumento (paso 6).
+  const propuestaDisparadaRef = useRef<number | null>(null);
   // Estandarización (paso 2): preview propuesto + tipos confirmados por el investigador.
   const [tiposDetectados, setTiposDetectados] = useState<PreguntaPreview[] | null>(null);
   const [tiposConfirmados, setTiposConfirmados] = useState<PreguntaPreview[] | null>(null);
@@ -261,18 +267,23 @@ export function UploadWizard() {
   // Propuesta real de KPIs (paso === 6). Enriquece el JSON (DC + survey_specific) de
   // forma inmutable antes de proponer, y diferencia 503 (servicio caído) de lista vacía.
   useEffect(() => {
-    if (paso !== 6 || sugeridos || idInstrumento == null || !tipo) return;
+    if (paso !== 6 || idInstrumento == null || !tipo) return;
+    // Guard: dispara la propuesta UNA sola vez por id_instrumento. Sin esto, el
+    // enriquecimiento del JSON (objeto nuevo en cada render) realimentaba el efecto
+    // y provocaba un bucle infinito de peticiones (Maximum update depth exceeded).
+    if (propuestaDisparadaRef.current === idInstrumento) return;
     if (!jsonInstrumento) {
       setSugeridos([]);
       return;
     }
+    propuestaDisparadaRef.current = idInstrumento;
     let cancelado = false;
     const original = archivoOriginal
       ? archivoOriginal
       : new Blob([textoDerivadoDePreguntas(jsonInstrumento)], { type: "text/markdown" });
     const surveyEspecifico = armarSurveyEspecifico(tipo, meta);
     const jsonEnriquecido = enriquecerJson(jsonInstrumento, dc, surveyEspecifico);
-    setJsonInstrumento(jsonEnriquecido); // persiste para confirmarKpis (paso 8)
+    jsonEnriquecidoRef.current = jsonEnriquecido; // para confirmarKpis (paso 8), sin re-render
     const archivoJson = new Blob([JSON.stringify(jsonEnriquecido)], { type: "application/json" });
 
     proponerKpis({ idInstrumento, archivoJson, instrumentoOriginal: original, tipo })
@@ -281,6 +292,8 @@ export function UploadWizard() {
       })
       .catch((e) => {
         if (cancelado) return;
+        // Permite reintentar en una nueva entrada al paso si la propuesta falló.
+        propuestaDisparadaRef.current = null;
         const status = (e as { status?: number })?.status;
         if (status === 503) {
           toast.error(
@@ -297,7 +310,7 @@ export function UploadWizard() {
       cancelado = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paso, sugeridos, idInstrumento, tipo, jsonInstrumento, archivoOriginal]);
+  }, [paso, idInstrumento, tipo]);
 
   const kpisAceptados = (sugeridos ?? []).filter((k) => decisiones[k.id] === "aceptado");
 
@@ -457,8 +470,9 @@ export function UploadWizard() {
   async function guardar() {
     setGuardando(true);
     // Confirmar los KPIs aceptados enriquece el JSON y persiste el dominio de KPIs.
-    // Solo se intenta si hubo propuesta real (jsonInstrumento presente).
-    if (idInstrumento != null && jsonInstrumento) {
+    // Usa el JSON ENRIQUECIDO que calculó el paso 6 (ref); si no existe, cae al base.
+    const jsonParaConfirmar = jsonEnriquecidoRef.current ?? jsonInstrumento;
+    if (idInstrumento != null && jsonParaConfirmar) {
       try {
         await confirmarKpis({
           idInstrumento,
@@ -467,7 +481,7 @@ export function UploadWizard() {
             aceptado: decisiones[k.id] === "aceptado",
             score: k.coincidencia / 100,
           })),
-          jsonInstrumento,
+          jsonInstrumento: jsonParaConfirmar,
         });
       } catch (e) {
         toast.error(e instanceof Error ? e.message : "No se pudieron confirmar los KPIs.");
