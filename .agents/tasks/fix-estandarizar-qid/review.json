@@ -1,0 +1,12 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    {
+      "label": "Cambios no relacionados en el mismo diff",
+      "confidence": "possible",
+      "blocking": false,
+      "detail": "proxy.py del api-gateway, APIs del frontend (carga.ts, client.ts, espacio.ts, grafo.ts, kpis.ts), UploadWizard.tsx y Dockerfile.analysis-service aparecen en el diff pero quedan fuera del alcance del fix de estandarizacion. No bloquean; conviene que la usuaria los separe o los confirme intencionales antes de commitear."
+    }
+  ],
+  "reviewDoc": "c:\\Users\\yarel\\Documents\\indagata\\indagata\\.agents\\tasks\\fix-estandarizar-qid\\review.md"
+}

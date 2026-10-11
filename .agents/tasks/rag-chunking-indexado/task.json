@@ -1,0 +1,7 @@
+{
+  "task_id": "task-rag-chunking-indexado",
+  "task_description": "Reescribir QUE texto indexa el visualization-service en el RAG (no el troceo ni el contrato HTTP) para producir chunks en prosa espanola densa y citable: ESTRUCTURA (que mide el instrumento, usando el .txt original para preguntas redactadas y nombres de dimension) y HALLAZGOS (estadistica agregada POR DIMENSION; nunca por respondente). Implementacion fiel al design.md aprobado (secciones 4-9 y 15 normativas).",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}

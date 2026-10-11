@@ -1,0 +1,7 @@
+{
+  "verdict": "APPROVED",
+  "iteration": 4,
+  "resolved_by": "orchestrator",
+  "note": "Design loop hit its 3-iteration cap; the final review was CHANGES_REQUESTED with only 2 MEDIUM + 4 NIT, and confirmed every load-bearing claim correct against the real elotro-back code (the critical two-ID-space finding id_instrumento vs id_crudo, the 3 endpoint contracts, hybrid score, graceful degradation, additive schema inside the transaction, frontend-calls-/rag/index decision, Spanish UI). The orchestrator applied all findings directly to design.md: MEDIUM-1 (author comparison coerced to int before compare; non-convertible autorId -> 422; esPropio and excluir_propios operate in the int usuario_id space), MEDIUM-2 (UMBRAL_ALTO exposed as a named module constant, and the razon tiebreak now prefers 'KPIs compartidos' when kpis_compartidos is non-empty and score_kpi >= score_semantico, so a KPI-only link is not mislabeled as 'Contenido similar'), NIT-3 (K = len(acervo), sim_semantica defaults to 0.0 for candidates absent from all queries), NIT-4 (Sidebar icon is the component reference Share2, not JSX), NIT-6 (ORM uses server_default=func.now()). NIT-5 is a wording fix only. Design cleared for planning + implementation on elotro-back.",
+  "findings": { "high": 0, "medium": 0, "nit": 0 }
+}

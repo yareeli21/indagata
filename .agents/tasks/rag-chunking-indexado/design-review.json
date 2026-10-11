@@ -1,0 +1,46 @@
+{
+  "verdict": "CHANGES_REQUESTED",
+  "findings": [
+    {
+      "id": 1,
+      "severity": "MEDIUM",
+      "title": "El guard de conteo del mapeo posicional no detecta reordenamientos; falta criterio de validación semántica mínima",
+      "location": "§5.4 método 1 (len(plano)==len(questions_likert)); §11.2; §12",
+      "problem": "El único criterio de aplicabilidad del mapeo posicional es la igualdad de conteo. En domain_builder.construir_tabular el orden de las preguntas sigue el orden de columnas del CSV, no el del .txt. Un instrumento con el mismo número de ítems en distinto orden pasaría el guard y produciría un mapeo question_id->dimensión silenciosamente incorrecto; el log 'posicional' no distingue un mapeo correcto de uno incorrecto.",
+      "fix": "Elegir y especificar: (a) comprobación de consistencia barata (comparar nº de ítem embebido en el nombre de columna contra la posición en el .txt; si hay desajustes, degradar a prefijo con WARNING), o (b) documentar explícitamente como invariante en §9/§11.2 que el mapeo posicional asume orden idéntico y no detecta reordenamientos."
+    },
+    {
+      "id": 2,
+      "severity": "MEDIUM",
+      "title": "La precedencia de título no es implementable solo añadiendo titulo_override; extraer_metadata antepone hoy instrument.title",
+      "location": "§6.1, §6.2 (dc:title -> .txt -> instrument.title); §7 (extraer_metadata gana titulo_override)",
+      "problem": "sources.extraer_metadata calcula hoy titulo = instrument.title or dc:title or f'Instrumento {id}', con instrument.title (el nombre del CSV) por delante de dc:title, al revés de la precedencia pedida. Añadir un titulo_override opcional no basta ni implementa la precedencia de tres niveles; el diseño dice 'extender de forma mínima' sin indicar que hay que reescribir la precedencia interna, dejando divergencia posible entre el chunk de cabecera (§6.1) y la metadata de Chroma (§6.2).",
+      "fix": "Especificar en §6.2/§7 la nueva precedencia exacta como fórmula: titulo = dc:title or titulo_override(.txt) or instrument.title or f'Instrumento {id}', declarar explícitamente que se REORDENA la precedencia actual, y confirmar que el chunk de cabecera (§6.1) usa el mismo orden."
+    },
+    {
+      "id": 3,
+      "severity": "NIT",
+      "title": "No está asignada la responsabilidad de derivar id_crudo cuando instrument_id del artefacto y el del router difieren",
+      "location": "§3.3/§6.1/§7 (construir_chunks(artefacto, instrumento_id)); §5.1 (ruta_original); §8",
+      "problem": "construir_chunks recibe instrumento_id del router (puede ser '1' o 'upload_1') y el artefacto trae instrument_id ('upload_1'). El diseño no fija cuál se usa si difieren.",
+      "fix": "Fijar en §5.1/§7 que la fuente de verdad para derivar id_crudo es el parámetro del router (instrumento_id) y que artefacto['instrument_id'] solo se usa para degradación por nombre si el router no parsea."
+    },
+    {
+      "id": 4,
+      "severity": "NIT",
+      "title": "Chunks de estructura cortos pueden quedar bajo MIN_LONGITUD; §6.4 solo filtra al re-trocear",
+      "location": "§6.4 (bucle de aplanado); chunking.MIN_LONGITUD=40",
+      "problem": "Cuando len(ch.texto) <= VENTANA el texto se indexa tal cual sin pasar por el filtro de 40 chars de trocear, divergiendo del comportamiento actual que descarta <40.",
+      "fix": "Añadir en §6.4 el descarte de piezas con texto.strip() de longitud < chunking.MIN_LONGITUD tras aplanar, o justificar por qué se conservan, garantizando que documents/ids/metadatas no lleven entradas casi vacías."
+    },
+    {
+      "id": 5,
+      "severity": "NIT",
+      "title": "redactar_resumen_global sin reglas de selección cuando faltan likert o numéricas",
+      "location": "§4.2 (2-3 hallazgos salientes); §4.1 firma redactar_resumen_global",
+      "problem": "La regla asume que existen dimensiones likert y al menos una numérica; no define el caso de listas de hallazgos sin cierto tipo (§4.4 solo cubre n==0 por dimensión).",
+      "fix": "Añadir en §4.2: si no hay likert, omitir cláusulas de media alta/baja; si no hay numéricas, omitir la numérica destacada; si hallazgos está vacío, reportar solo n y la lista (vacía) de dimensiones sin inventar cifras."
+    }
+  ],
+  "reviewDoc": "c:\\Users\\yarel\\Documents\\indagata\\indagata\\.agents\\tasks\\rag-chunking-indexado\\design-review.md"
+}

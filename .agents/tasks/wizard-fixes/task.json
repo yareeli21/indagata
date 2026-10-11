@@ -1,0 +1,7 @@
+{
+  "task_id": "task-wizard-fixes",
+  "task_description": "Añadir la etapa de ESTANDARIZACIÓN dentro de instrument-service (preview + estandarizar que produce el JSON de dominio del seed y escribe ruta_json) y resolver 5 bugs del asistente de carga: Bug 5 (fallback a semilla en instrumento_query), Bug 1 (Dublin Core source/relation + fecha/idioma informativos), Bug 2 (endpoint y formulario de metadatos específicos por tipo), Bug 4 (cablear la propuesta de KPIs con JSON enriquecido inmutable y manejo de 503), y el reorden del wizard a 9 pasos con el nuevo StepTiposPregunta. Fuente de verdad: .agents/tasks/wizard-fixes/design.md.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null
+}

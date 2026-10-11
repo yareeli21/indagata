@@ -1,0 +1,24 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    {
+      "severity": "non-blocking",
+      "confidence": "confirmed",
+      "label": "Interacción clic vs arrastrar-soltar",
+      "detail": "La pantalla agrega instrumentos desde la ficha por clic, no con onDrop de React Flow como describen RF-4/RF-6 de la spec y el plan ítem 6. No bloqueante: el diseño es la fuente de verdad y el comportamiento observable (agregar al set activo → recálculo en tiempo real con debounce) se preserva. Considerar drag-and-drop si se quiere literalidad con la spec."
+    },
+    {
+      "severity": "non-blocking",
+      "confidence": "confirmed",
+      "label": "parametros con top_n extra",
+      "detail": "/grafo/recomendar devuelve top_n además del {w_sem, w_kpi, min_score} del literal de la spec §4.2. Aditivo y compatible con el tipo TS Record<string, number>."
+    },
+    {
+      "severity": "non-blocking",
+      "confidence": "confirmed",
+      "label": "DDL en BD ya poblada",
+      "detail": "grafo_investigacion solo se crea en init de volumen Postgres limpio; en una BD ya poblada hay que aplicar el CREATE TABLE IF NOT EXISTS a mano o recrear el volumen de pruebas antes de ejercer /grafo/investigacion (flag design §9-B, documentado por el coder)."
+    }
+  ],
+  "reviewDoc": "c:\\Users\\yarel\\Documents\\indagata\\indagata\\.agents\\tasks\\grafo\\review.md"
+}

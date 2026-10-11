@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "branch": "elotro-back",
+  "checks": {
+    "python_ast_parse": "pass",
+    "hybrid_score_unit": "pass",
+    "schema_and_router_registration": "pass",
+    "frontend_build": "pass",
+    "docker_live_endpoints": "not_exercised"
+  },
+  "notes": "Build pasa sin errores TS (@xyflow/react@12.12.0) y la matematica del score hibrido cuadra con 25 aserciones calculadas a mano (Jaccard, score combinado w_sem*sim+w_kpi*jaccard, etiqueta razon, degradacion RNF-4 via seam client). Docker esta arriba pero el contenedor indagata_analysis_service corre una imagen anterior a la feature (GET /grafo/acervo -> 404; /openapi.json sin rutas /grafo/*), por lo que no se ejercitaron los endpoints en vivo y no se redeployo. passed=true porque build + matematica pasan, que es lo que define el criterio.",
+  "committed": false,
+  "pushed": false
+}

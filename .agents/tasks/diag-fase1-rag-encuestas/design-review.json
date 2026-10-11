@@ -1,0 +1,62 @@
+{
+  "verdict": "CHANGES_REQUESTED",
+  "findings": [
+    {
+      "id": 1,
+      "severity": "MEDIUM",
+      "title": "Dos funciones de escala con semánticas distintas rompen la coherencia stat<->interpretado y no 'reusan _escala_efectiva' como pide el encargo",
+      "where": "design.md §5.4(a), §2; agregacion.agregar_likert / agregacion._escala_efectiva",
+      "problem": "El encargo exige reusar _escala_efectiva. El diseño crea una funcion nueva escala_efectiva (min/max envolvente) y deja _escala_efectiva (solo items[0]) para agregar_likert, que calcula pct_alto. Conviven dos rangos: el chunk estadistico usa el del primer item y el interpretado/grupos usan el envolvente. Coinciden en datos homogeneos 1..5 pero divergen justo en el caso heterogeneo que escala_efectiva dice cubrir, produciendo chunk estadistico e interpretado incoherentes para la misma dimension.",
+      "fix": "Refactorizar a una unica funcion de rango usada por agregar_likert y por las mejoras 2/3 (cumple literalmente 'reusar _escala_efectiva'), o declarar explicitamente y testear que bajo el invariante homogeneo ambas devuelven lo mismo y documentar la bifurcacion como deuda consciente en §13."
+    },
+    {
+      "id": 2,
+      "severity": "MEDIUM",
+      "title": "redactar_interpretacion_dimension no especifica que el nivel sale de _clasificar_nivel",
+      "where": "design.md §5.2 (firma) y §5.3 (regla 1 interpola ETIQUETA_NIVEL[nivel])",
+      "problem": "La regla 1 usa _ETIQUETA_NIVEL[nivel] pero el diseno no dice de donde sale 'nivel'. Se infiere _clasificar_nivel(h.media, scale_min, scale_max) pero no esta escrito, dejando abierta una clasificacion ad-hoc (cuartiles, 2.5/3.5 fijos) que romperia la coherencia con los grupos y el requisito de cortes parametricos del encargo.",
+      "fix": "Anadir linea normativa en §5.2/§5.3: 'nivel = _clasificar_nivel(h.media, scale_min, scale_max)' como UNICO origen del nivel por dimension, prohibiendo otro criterio, y un test en §10 que ate media->etiqueta."
+    },
+    {
+      "id": 3,
+      "severity": "NIT",
+      "title": "Empates de media entre dimensiones no especificados",
+      "where": "design.md §5.3 reglas 2-3",
+      "problem": "max()/min() sobre todos_likert eligen arbitrariamente ante empate; el texto podria afirmar 'la mejor evaluada' habiendo otra empatada.",
+      "fix": "Documentar desempate determinista (primera en orden de aparicion) o usar 'una de las dimensiones mejor evaluadas' ante empate exacto."
+    },
+    {
+      "id": 4,
+      "severity": "NIT",
+      "title": "Posible re-troceo del chunk interpretado por chunking.VENTANA debilita la propiedad de F2",
+      "where": "design.md §3.1/§5.3/§6.5; rag._aplanar_piezas + chunking.trocear (VENTANA=800)",
+      "problem": "El valor de F2 depende de que la comparacion viva en un solo fragmento recuperable; si el texto interpretado superara 800 chars, _aplanar_piezas lo partiria y la comparacion dejaria de estar en un fragmento.",
+      "fix": "Acotar en §5.3 la longitud del texto interpretado (<=~700 chars, 1-2 dimensiones comparadas) y nota en §14 de que debe caber en una ventana."
+    },
+    {
+      "id": 5,
+      "severity": "NIT",
+      "title": "Rama 'no es likert' de redactar_interpretacion_dimension es inalcanzable desde el unico llamador",
+      "where": "design.md §5.5 y §7",
+      "problem": "sources ya pre-filtra a likert con media, por lo que la comprobacion interna h.tipo!='likert' nunca se dispara desde produccion. No es error, pero conviene aclararlo.",
+      "fix": "Nota en §5.2: la comprobacion es defensa para uso directo en tests; el unico llamador ya pre-filtra."
+    },
+    {
+      "id": 6,
+      "severity": "NIT",
+      "title": "items_likert y dims_por_qid duplican informacion de items_por_dim hacia agrupar_por_desempeno",
+      "where": "design.md §6.3 (firma) y §6.7 (construccion)",
+      "problem": "Dos representaciones planas describen lo mismo que items_por_dim y deben mantenerse consistentes a mano, aumentando la superficie de error del invariante solo-Likert.",
+      "fix": "Pasar items_por_dim (o dict dim->list[qid]) directamente, o documentar que ambas estructuras DEBEN derivarse del mismo items_por_dim."
+    },
+    {
+      "id": 7,
+      "severity": "NIT",
+      "title": "El ejemplo del chunk interpretado inventa causas que la regla 4 prohibe",
+      "where": "design.md §5.3 (texto de ejemplo) vs regla 4 de redaccion",
+      "problem": "El ejemplo redacta 'disposicion e interes' y 'habitos de organizacion', interpretacion especifica que no deriva de ninguna de las 4 reglas y que el diseno clasifica como 'inventar causas'. Incoherencia entre ejemplo ilustrativo y reglas normativas.",
+      "fix": "Alinear el ejemplo con la implicacion generica derivada del nivel, o marcarlo explicitamente como ilustrativo ajeno a las 4 reglas."
+    }
+  ],
+  "reviewDoc": "c:\\Users\\yarel\\Documents\\indagata\\indagata\\.agents\\tasks\\diag-fase1-rag-encuestas\\design-review.md"
+}

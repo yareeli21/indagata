@@ -1,0 +1,30 @@
+{
+  "project_type": "Monorepo de microservicios FastAPI (Python). El trabajo es en services/visualization-service (modulo RAG: indexado + chat con Ollama + ChromaDB).",
+  "language": "Python 3 (el .venv del repo corre Python 3.14.2).",
+  "build_system": "Sin build empaquetado. 'Compilacion' = compileall (humo de sintaxis). Dependencias via requirements.txt por servicio; NO se anaden ni cambian dependencias en esta tarea.",
+  "test_framework": "pytest 9.1.1 (en el .venv del repo). No hay pytest.ini ni pyproject.toml en la raiz; cada paquete de tests aporta su conftest.py que inserta la raiz del servicio y la raiz del repo en sys.path.",
+  "build_command": ".\\.venv\\Scripts\\python.exe -m compileall services\\visualization-service\\app",
+  "test_command": ".\\.venv\\Scripts\\python.exe -m pytest services\\visualization-service\\tests -q",
+  "verification_instructions": "Desde la raiz del repo c:\\Users\\yarel\\Documents\\indagata\\indagata en PowerShell. Por FEAT, correr los tests del/los modulo(s) tocados y luego compileall del app. Al final de la tarea correr la suite completa del servicio. La BD (PostgreSQL) y Chroma/embeddings/Ollama se MOCKEAN o se omiten en los tests (monkeypatch, dependency_overrides, TestClient), como en services/metadata-service/tests y services/instrument-service/app/standardization/tests. No se requiere BD ni servicios externos vivos para los tests.",
+  "snapshot_or_generated_files": null,
+  "environment_constraints": "Windows + PowerShell. Usar el interprete del venv del repo: .\\.venv\\Scripts\\python.exe. NO hacer git add/commit/push (la usuaria commitea despues; dejar los cambios solo en el working tree) salvo que el loop pida commit local en la rama. Rama actual: elotro-back. AVISO: numpy instalado es 2.5.3 (no 1.26.4 como dice requirements.txt/design); agregacion.py solo usa np.mean/np.std que funcionan igual en numpy 2.x, asi que no bloquea; NO cambiar requirements.txt. AVISO: el mojibake real de los nombres de columna del JSON es cp850<->utf-8, no cp1252: s.encode('cp1252') lanza UnicodeEncodeError sobre los glifos, pero s.encode('cp850').decode('utf-8') reconstruye el nombre; la reparacion debe intentar cp1252 y luego cp850 y, si ambas fallan, dejar el original (coherente con design 5.4-m2/14-F10). Esto solo afecta el modo degradado (fallback por prefijo); con el .txt presente el mapeo posicional gana.",
+  "contribution_requirements": "No hay AGENTS.md ni .kiro/steering para los servicios Python (el unico AGENTS.md es de pixel-perfect-pixel, el front, irrelevante aqui). Seguir el estilo defensivo ya presente en sources.py (_como_dict/_como_lista/_texto, try/except con logging.getLogger('visualization-service')). Todo el texto generado para los chunks es en espanol.",
+  "key_patterns": "sources.py ya resuelve rutas por id_crudo desde la BD con el patron: crear engine con settings.DATABASE_URL, Session, select, degradar en silencio si falta BD/driver (_resolver_desde_bd). Reusar ESE patron en original_txt.ruta_original pero con otra tabla/consulta: select(RawData.raw_archivo_original).where(RawData.id_crudo==id_crudo). settings.raw_path_abs=PROJECT_ROOT/storage/raw; settings.raw_path_abs.parent=PROJECT_ROOT/storage. local_backend persiste ruta='raw/<name>' y lee desde raw_path_abs.parent -> candidato primario de ruta = settings.raw_path_abs.parent/rel; candidato seed = settings.PROJECT_ROOT/rel. chunking.VENTANA=800, chunking.MIN_LONGITUD=40, chunking.trocear(texto)->list[str]. El router serializa kpis (lista) a JSON string para Chroma.",
+  "relevant_files": [
+    "services/visualization-service/app/core/sources.py (MODIFICAR: extraer_metadata gana titulo_override y reordena precedencia; NUEVO construir_chunks y dataclass ChunkIndexable; extraer_texto se conserva)",
+    "services/visualization-service/app/core/chunking.py (NO TOCAR; se usa VENTANA, MIN_LONGITUD, trocear)",
+    "services/visualization-service/app/routers/rag.py (MODIFICAR POST /rag/index: construir_chunks + aplanado + numeracion + metadata aditiva clase_chunk/dimension)",
+    "services/visualization-service/app/schemas/rag.py (NO TOCAR; contrato HTTP)",
+    "services/visualization-service/requirements.txt (NO TOCAR)",
+    "shared/models/raw_data.py (modelo RawData.raw_archivo_original; se consulta)",
+    "shared/db/core/config.py (settings: raw_path_abs, PROJECT_ROOT, DATABASE_URL)",
+    "services/instrument-service/app/storage/local_backend.py (patron: confirma convencion de ruta 'raw/<name>')",
+    "services/metadata-service/tests/conftest.py (patron de conftest para sys.path)",
+    "services/instrument-service/app/standardization/tests/conftest.py (patron de conftest)",
+    "storage/raw/114c9cc8b19a46cf8ad0719099771bd1__inst_1.estandarizado.v1.json (dato real: upload_1, 180 respondents, 21 likert q13-q33)",
+    "storage/raw/1fc6284239234052a63f5566a959733b__enc_01_original.txt (.txt original real: titulo IEAE, 6 secciones, 21 items)",
+    ".agents/tasks/rag-chunking-indexado/design.md (fuente de verdad; secciones 4-9 y 15 normativas)",
+    ".agents/tasks/rag-chunking-indexado/plan.md (plan ordenado por dependencia)"
+  ],
+  "directory_structure": "services/visualization-service/app/core/ (sources.py, chunking.py, chroma_client.py, embeddings.py, ollama_client.py, prompt.py); app/routers/ (rag.py); app/schemas/ (rag.py). NO existe services/visualization-service/tests: crearla con conftest.py (inserta raiz del servicio y raiz del repo en sys.path). Datos reales en storage/raw/. Diseno y plan en .agents/tasks/rag-chunking-indexado/."
+}

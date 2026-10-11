@@ -1,0 +1,7 @@
+{
+  "task_id": "task-diag-fase1-rag-encuestas",
+  "task_description": "Implementar FASE 1 del diagnóstico pedagógico del RAG del visualization-service (solo encuestas Likert), siguiendo el diseño aprobado en .agents/tasks/diag-fase1-rag-encuestas/design.md (normativo §4-§10 y §16). Tres mejoras aditivas: (1) reescribir prompt._INSTRUCCION para habilitar interpretación pedagógica fundamentada manteniendo la regla dura anti-invención de cifras; (2) chunks de hallazgos interpretados por dimensión (nivel bajo/medio/alto por tercios, comparación entre dimensiones y brecha, implicación genérica); (3) chunks de grupo por desempeño (clase_chunk 'grupo_desempeno') agrupando respondentes por puntaje global equiponderado derivado EXCLUSIVAMENTE de respuestas Likert (nunca 'perfil' ni etiquetas externas). Clave de escala única agregacion.escala_efectiva. Sin tocar el contrato HTTP, sin dependencias nuevas, sin tocar rag.py/chunking.py/ollama_client.py/chroma_client.py/embeddings.py/schemas ni la estadística existente.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}

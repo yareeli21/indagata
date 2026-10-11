@@ -1,0 +1,11 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    {
+      "severity": "NIT",
+      "detail": "En modo degradado (sin .txt), el chunk de estructura por dimensión genera 'Dimensión «Dimensión <Prefijo> (agrupación aproximada)», ítems evaluados:' porque _chunks_estructura_dimension antepone 'Dimensión «{dim}»' y, en el fallback, dim ya es 'Dimensión <Prefijo> (agrupación aproximada)'. La redundancia 'Dimensión Dimensión' es cosmética; sigue en español y es citable, pero conviene evitarla (p.ej. usar la etiqueta tal cual sin el prefijo 'Dimensión «...»' cuando el mapa viene del fallback, o quitar el prefijo literal de la etiqueta de mapa_por_prefijo).",
+      "file": "services/visualization-service/app/core/sources.py"
+    }
+  ],
+  "summary": "El diff cumple el design (§4-§9, §15) y la verificación pasa (43/43 tests, compileall OK). Confirmado: (a) nunca un chunk por respondente —agregación por dimensión en agregacion.py, invariante §9; (b) estadística agregada por dimensión (media, DE ddof=0, % extremo alto por tercio superior, ítem más alto/bajo con texto, n) y chunks de estructura con título real + dimensiones del .txt; (c) precedencia de título dc:title→.txt→instrument.title reordenada en extraer_metadata con punto único de verdad (§15.2); (d) chequeo monotónico por grupo de prefijo contiguo + mapeo posicional primario / prefijo fallback (§15.1); (e) numeración aplanada sobre piezas y metadata aditiva clase_chunk/dimension sin romper las claves existentes (§6.4, §6.3); (f) degradación grácil con try/except por bloque y fallbacks (§6.5); (g) contrato HTTP de /rag/index y /rag/chat intacto y, verificado contra el baseline del task (ef5cd79..HEAD), no se tocaron chunking.py, ollama_client.py, prompt.py, chroma_client.py, embeddings.py, schemas ni requirements.txt; (h) nunca nan/\\ufffd en texto citable —n==0⇒None sin formatear, lectura utf-8 estricta, aserciones en tests; (i) todo el texto generado en español. Único hallazgo NIT no bloqueante: redundancia cosmética 'Dimensión Dimensión' en el encabezado del chunk de estructura solo en modo degradado."
+}
