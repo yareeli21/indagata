@@ -1,4 +1,14 @@
-import type { KpiSugerido, ReporteLimpieza, TipoInstrumento } from "@/types";
+import type {
+  EstandarizarPreviewResponse,
+  EstandarizarResponse,
+  KpiSugerido,
+  MetadatosEspecificos,
+  PreguntaPreview,
+  ReporteLimpieza,
+  TipoInstrumento,
+  TipoPreguntaBackend,
+  TipoPreguntaUI,
+} from "@/types";
 import { ANALYSIS_URL, API_URL, leerToken, pedir } from "./client";
 
 // ── Mapeo tipo UI → enum backend ────────────────────────────────────────────────
@@ -10,6 +20,33 @@ const TIPO_UI_A_BACKEND: Record<TipoInstrumento, string> = {
   Entrevista: "entrevista",
   "Prueba estandarizada": "prueba_estandarizada",
 };
+
+// ── Mapeo tipo de pregunta UI ↔ backend ─────────────────────────────────────────
+// Frontera de conversión entre la etiqueta en español del wizard y el vocabulario
+// cerrado del backend de estandarización (design.md §7).
+const TIPO_PREGUNTA_UI_A_BACKEND: Record<TipoPreguntaUI, TipoPreguntaBackend> = {
+  Binaria: "binaria",
+  "Opción múltiple": "opcion_multiple",
+  Likert: "likert",
+  "Numérica continua": "numerica_continua",
+  Abierta: "abierta",
+};
+
+const TIPO_PREGUNTA_BACKEND_A_UI: Record<TipoPreguntaBackend, TipoPreguntaUI> = {
+  binaria: "Binaria",
+  opcion_multiple: "Opción múltiple",
+  likert: "Likert",
+  numerica_continua: "Numérica continua",
+  abierta: "Abierta",
+};
+
+export function tipoPreguntaAUI(tipo: TipoPreguntaBackend): TipoPreguntaUI {
+  return TIPO_PREGUNTA_BACKEND_A_UI[tipo];
+}
+
+export function tipoPreguntaABackend(etiqueta: TipoPreguntaUI): TipoPreguntaBackend {
+  return TIPO_PREGUNTA_UI_A_BACKEND[etiqueta];
+}
 
 // ── Tipos del backend (upload) ──────────────────────────────────────────────────
 
@@ -232,7 +269,135 @@ export function registrarMetadatos(
   });
 }
 
-// ── Paso 4: asociación de KPIs (analysis-service directo) ───────────────────────────
+// ── Paso 2: estandarización (tipos de pregunta) ─────────────────────────────────
+
+/**
+ * Previsualiza los tipos de pregunta detectados: `POST /instrumentos/{id}/estandarizar/preview`
+ * por el gateway (passthrough de `/instrumentos/*`). No persiste nada. Requiere Bearer.
+ * `{id}` = id_crudo (id canónico del frontend; ver FEAT-001). Sin body.
+ */
+export function estandarizarPreview(idCrudo: number): Promise<EstandarizarPreviewResponse> {
+  return pedir<EstandarizarPreviewResponse>(
+    `${API_URL}/instrumentos/${idCrudo}/estandarizar/preview`,
+    { method: "POST", auth: true },
+  );
+}
+
+/** Pregunta confirmada que se envía a `/estandarizar` (vocabulario backend). */
+export interface PreguntaConfirmada {
+  question_id: string;
+  text: string;
+  type: TipoPreguntaBackend;
+  options?: string[] | null;
+  scale_min?: number | null;
+  scale_max?: number | null;
+  es_demografica: boolean;
+}
+
+/**
+ * Persiste el JSON de dominio con los tipos CONFIRMADOS/CORREGIDOS:
+ * `POST /instrumentos/{id}/estandarizar`. Avanza el estado a `estandarizado` y
+ * devuelve `json_instrumento` para reusarlo en la propuesta de KPIs (Bug 4).
+ * El `text` de cada pregunta DEBE igualar el header normalizado del preview (el
+ * backend mapea pregunta↔columna por NOMBRE, no por posición). Mapea 404/409/422
+ * a mensaje en español vía `ErrorHttp.status` que `pedir` adjunta.
+ */
+export function estandarizar(
+  idCrudo: number,
+  preguntas: PreguntaConfirmada[],
+): Promise<EstandarizarResponse> {
+  return pedir<EstandarizarResponse>(`${API_URL}/instrumentos/${idCrudo}/estandarizar`, {
+    method: "POST",
+    body: { preguntas },
+    auth: true,
+  });
+}
+
+/**
+ * Convierte una `PreguntaPreview` (editable en la UI) al contrato `PreguntaConfirmada`
+ * que exige `/estandarizar`. Solo adjunta `options` para los tipos que las usan y
+ * `scale_*` solo para Likert (el backend recalcula lo que falte en best-effort).
+ */
+export function preguntaPreviewAConfirmada(p: PreguntaPreview): PreguntaConfirmada {
+  const confirmada: PreguntaConfirmada = {
+    question_id: p.question_id,
+    text: p.text,
+    type: p.type,
+    es_demografica: p.es_demografica,
+  };
+  if (p.type === "opcion_multiple" || p.type === "binaria" || p.type === "likert") {
+    if (p.options != null) confirmada.options = p.options;
+  }
+  if (p.type === "likert") {
+    if (p.scale_min != null) confirmada.scale_min = p.scale_min;
+    if (p.scale_max != null) confirmada.scale_max = p.scale_max;
+  }
+  return confirmada;
+}
+
+// ── Paso 4: metadatos específicos por tipo ───────────────────────────────────────
+
+/** Claves de `campos` que el backend trata como lista (parseadas desde texto por comas). */
+const CAMPOS_LISTA_ESPECIFICOS = new Set([
+  "palabras_clave",
+  "dimensiones",
+  "subareas",
+  "competencias",
+]);
+/** Claves de `campos` numéricas (se envían como string numérica o se omiten si vacías). */
+const CAMPOS_NUMERICOS_ESPECIFICOS = new Set(["n_respondentes", "n_poblacion"]);
+/**
+ * El backend espera `palabras_clave`/`dimensiones` como arrays (JSON); `subareas`/
+ * `competencias` son TEXT en el ORM y deben ir como string. Para esos dos últimos
+ * se re-unen con coma antes de enviar.
+ */
+const CAMPOS_LISTA_COMO_TEXTO = new Set(["subareas", "competencias"]);
+
+/**
+ * Registra los metadatos específicos del tipo: `POST /api/metadata/{id}/especificos`
+ * (gateway → metadata-service, bajo el prefijo `/api/metadata/*` ya proxeado).
+ * `{id}` = id_instrumento. UPSERT (no inmutable): el investigador puede revisitar.
+ *
+ * Parseo cliente (design.md §6.2 / contrato FEAT-002):
+ * - listas (`palabras_clave`/`dimensiones`): texto por comas → array; vacío → omitido.
+ * - `subareas`/`competencias`: TEXT en el ORM → se envían como string (coma a coma).
+ * - numéricos (`n_respondentes`/`n_poblacion`): string numérica; vacío → omitido.
+ * - el resto: string; vacío → omitido (el backend coacciona '' → NULL de todos modos).
+ */
+export function registrarMetadatosEspecificos(
+  idInstrumento: number,
+  tipo: TipoInstrumento,
+  campos: MetadatosEspecificos,
+): Promise<Record<string, unknown>> {
+  const parsearLista = (valor: string): string[] =>
+    valor
+      .split(",")
+      .map((t) => t.trim())
+      .filter(Boolean);
+
+  const payload: Record<string, unknown> = {};
+  for (const [clave, bruto] of Object.entries(campos)) {
+    const valor = (bruto ?? "").trim();
+    if (valor === "") continue; // vacío → se omite (el backend lo deja NULL)
+    if (CAMPOS_LISTA_ESPECIFICOS.has(clave)) {
+      const lista = parsearLista(valor);
+      if (lista.length === 0) continue;
+      payload[clave] = CAMPOS_LISTA_COMO_TEXTO.has(clave) ? lista.join(", ") : lista;
+    } else if (CAMPOS_NUMERICOS_ESPECIFICOS.has(clave)) {
+      payload[clave] = valor; // string numérica; el backend valida y coacciona
+    } else {
+      payload[clave] = valor;
+    }
+  }
+
+  return pedir<Record<string, unknown>>(`${API_URL}/api/metadata/${idInstrumento}/especificos`, {
+    method: "POST",
+    body: { tipo: TIPO_UI_A_BACKEND[tipo], campos: payload },
+    auth: true,
+  });
+}
+
+// ── Paso 6: asociación de KPIs (analysis-service directo) ───────────────────────────
 
 /** KPI candidato que devuelve el backend en /vectorizacion/propuestas. */
 interface PropuestaKPI {

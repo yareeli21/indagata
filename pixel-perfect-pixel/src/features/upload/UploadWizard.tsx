@@ -15,10 +15,14 @@ import {
 } from "@/components/ui/alert-dialog";
 import {
   confirmarKpis,
+  estandarizar,
+  estandarizarPreview,
   getMetadatosInit,
   guardarInstrumento,
+  preguntaPreviewAConfirmada,
   proponerKpis,
   registrarMetadatos,
+  registrarMetadatosEspecificos,
   subirInstrumento,
   type RegistroMetadatos,
 } from "@/api/carga";
@@ -27,6 +31,7 @@ import type {
   DublinCore,
   KpiSugerido,
   MetadatosTipo,
+  PreguntaPreview,
   ReporteLimpieza,
   TipoInstrumento,
 } from "@/types";
@@ -34,21 +39,19 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Stepper } from "./Stepper";
 import { StepArchivo } from "./StepArchivo";
 import { StepLimpieza } from "./StepLimpieza";
+import { StepTiposPregunta } from "./StepTiposPregunta";
 import { StepDublinCore } from "./StepDublinCore";
 import { StepMetadatosTipo } from "./StepMetadatosTipo";
 import { JsonPreview } from "./JsonPreview";
 import { StepKpis, type DecisionKpi } from "./StepKpis";
-import {
-  StepCalculoKpis,
-  type EstadoCalculoKpi,
-  type KpiAceptado,
-} from "./StepCalculoKpis";
+import { StepCalculoKpis, type EstadoCalculoKpi, type KpiAceptado } from "./StepCalculoKpis";
 import { StepGuardar } from "./StepGuardar";
 import { registrarCalculo } from "@/api/carga";
 
 const PASOS = [
   "Archivo",
   "Limpieza",
+  "Tipos de pregunta",
   "Dublin Core",
   "Metadatos del tipo",
   "Vista previa JSON",
@@ -58,8 +61,103 @@ const PASOS = [
 ];
 
 const TOTAL_PASOS = PASOS.length;
-const PASO_CALCULO = 6;
-const PASO_GUARDAR = 7;
+const PASO_CALCULO = 7;
+const PASO_GUARDAR = 8;
+
+/**
+ * Claves de `survey_specific` que `metadata_extractor` lee para el summary, por tipo
+ * (espejo de `CAMPOS_ESPECIFICOS_POR_TIPO` del analysis-service; design.md §1.4bis).
+ * Solo estas claves se enriquecen en el JSON antes de proponer KPIs.
+ */
+const CLAVES_SURVEY_POR_TIPO: Record<TipoInstrumento, string[]> = {
+  Encuesta: [
+    "constructo_principal",
+    "dimensiones",
+    "palabras_clave",
+    "carrera",
+    "notas_contextuales",
+    "notas_interpretacion",
+  ],
+  Entrevista: ["objetivo", "metodologia"],
+  "Prueba estandarizada": [
+    "unidad_de_aprendizaje",
+    "taxonomia_bloom",
+    "objetivo_de_evaluacion",
+    "competencias",
+  ],
+};
+
+/** Claves que el backend/summary tratan como listas (texto por comas → array). */
+const CLAVES_LISTA_SURVEY = new Set(["dimensiones", "palabras_clave", "competencias"]);
+
+/**
+ * Arma el `survey_specific` del tipo a partir del estado del paso 4, limitándose a
+ * las claves que lee `metadata_extractor` y parseando las listas por comas.
+ */
+function armarSurveyEspecifico(
+  tipo: TipoInstrumento,
+  meta: MetadatosTipo,
+): Record<string, unknown> {
+  const survey: Record<string, unknown> = {};
+  for (const clave of CLAVES_SURVEY_POR_TIPO[tipo]) {
+    const valor = (meta[clave] ?? "").trim();
+    if (valor === "") continue;
+    if (CLAVES_LISTA_SURVEY.has(clave)) {
+      const lista = valor
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean);
+      if (lista.length > 0) survey[clave] = lista;
+    } else {
+      survey[clave] = valor;
+    }
+  }
+  return survey;
+}
+
+/**
+ * Enriquecimiento INMUTABLE del JSON de dominio (design.md §1.4bis). Devuelve una
+ * copia nueva escribiendo SOLO las 4 claves `dc:` que lee `metadata_extractor`
+ * (`DUBLIN_CORE_KEYS`) en `metadata.dublin_core`, y fusionando `survey_specific`.
+ * NO muta `base` ni el estado de React.
+ */
+export function enriquecerJson(
+  base: Record<string, unknown>,
+  dc: DublinCore,
+  surveyEspecifico: Record<string, unknown>,
+): Record<string, unknown> {
+  const dcJson: Record<string, string> = {};
+  if (dc.titulo) dcJson["dc:title"] = dc.titulo;
+  if (dc.tema) dcJson["dc:subject"] = dc.tema;
+  if (dc.descripcion) dcJson["dc:description"] = dc.descripcion;
+  if (dc.cobertura) dcJson["dc:coverage"] = dc.cobertura;
+  const metaPrev = (base.metadata as Record<string, unknown>) ?? {};
+  const surveyPrev = (metaPrev.survey_specific as Record<string, unknown>) ?? {};
+  return {
+    ...base,
+    metadata: {
+      ...metaPrev,
+      dublin_core: dcJson,
+      survey_specific: { ...surveyPrev, ...surveyEspecifico },
+    },
+  };
+}
+
+/**
+ * Respaldo SOLO tabular: una línea por `question.text`. Para documentos, el JSON ya
+ * contiene una sola pregunta abierta con el texto completo, de modo que esto devuelve
+ * ese texto íntegro (design.md §4, Hallazgo 3).
+ */
+function textoDerivadoDePreguntas(json: Record<string, unknown>): string {
+  const instrument = json.instrument as
+    { sections?: { questions?: { text?: string }[] }[] } | undefined;
+  const secciones = instrument?.sections ?? [];
+  return secciones
+    .flatMap((s) => s.questions ?? [])
+    .map((q) => q.text ?? "")
+    .filter(Boolean)
+    .join("\n");
+}
 
 export function UploadWizard() {
   const { usuario } = useAuth();
@@ -71,11 +169,16 @@ export function UploadWizard() {
   // Ids reales que fluyen por el pipeline (§1.1 del diseño): id_crudo ≠ id_instrumento.
   const [idInstrumento, setIdInstrumento] = useState<number | null>(null);
   const [idCrudo, setIdCrudo] = useState<number | null>(null);
-  // El instrumento ORIGINAL (.md, solo preguntas) y el JSON enriquecido solo existen
-  // por la ruta de artefactos sembrados; en el flujo de upload puro quedan nulos.
+  // El instrumento ORIGINAL (.md/.txt, solo preguntas) es opcional; si no hay, el
+  // paso de KPIs deriva el texto del JSON (textoDerivadoDePreguntas).
   const [archivoOriginal, setArchivoOriginal] = useState<File | null>(null);
   const [jsonInstrumento, setJsonInstrumento] = useState<Record<string, unknown> | null>(null);
   const [avanzando, setAvanzando] = useState(false);
+  // Estandarización (paso 2): preview propuesto + tipos confirmados por el investigador.
+  const [tiposDetectados, setTiposDetectados] = useState<PreguntaPreview[] | null>(null);
+  const [tiposConfirmados, setTiposConfirmados] = useState<PreguntaPreview[] | null>(null);
+  const [notasPreview, setNotasPreview] = useState<string[]>([]);
+  const [nRespondentesDetectados, setNRespondentesDetectados] = useState<number | null>(null);
   const [dc, setDc] = useState<DublinCore>({
     titulo: "",
     creador: usuario?.nombre ?? "",
@@ -85,18 +188,51 @@ export function UploadWizard() {
     idioma: "Español",
     derechos: "",
     cobertura: "",
+    fuente: "",
+    relacion: "",
   });
   const [meta, setMeta] = useState<MetadatosTipo>({});
   const [sugeridos, setSugeridos] = useState<KpiSugerido[] | null>(null);
   const [decisiones, setDecisiones] = useState<Record<string, DecisionKpi>>({});
   const [confirmar, setConfirmar] = useState(false);
   const [guardando, setGuardando] = useState(false);
-  // Paso 5 — cálculo real de KPIs: estado por kpi_id (variables, resultado, semáforo…).
+  // Paso 7 — cálculo real de KPIs: estado por kpi_id (variables, resultado, semáforo…).
   const [calculos, setCalculos] = useState<Record<number, EstadoCalculoKpi>>({});
 
-  // Pre-poblado de Dublin Core al entrar al paso de metadatos (paso === 2).
+  // Preview de tipos de pregunta al ENTRAR al paso 2 (estandarización).
   useEffect(() => {
-    if (paso !== 2 || idInstrumento == null) return;
+    if (paso !== 2 || idCrudo == null || tiposDetectados) return;
+    let cancelado = false;
+    estandarizarPreview(idCrudo)
+      .then((resp) => {
+        if (cancelado) return;
+        setTiposDetectados(resp.preguntas);
+        setTiposConfirmados(resp.preguntas);
+        setNotasPreview(resp.notas ?? []);
+        setNRespondentesDetectados(resp.n_respondentes_detectados);
+      })
+      .catch((e) => {
+        if (cancelado) return;
+        toast.error(e instanceof Error ? e.message : "No se pudieron analizar las preguntas.");
+      });
+    return () => {
+      cancelado = true;
+    };
+  }, [paso, idCrudo, tiposDetectados]);
+
+  // Pre-rellenar `n_respondentes` (encuesta) con el valor detectado, editable (NIT #3).
+  useEffect(() => {
+    if (nRespondentesDetectados == null || tipo !== "Encuesta") return;
+    setMeta((prev) =>
+      prev.n_respondentes != null && prev.n_respondentes !== ""
+        ? prev
+        : { ...prev, n_respondentes: String(nRespondentesDetectados) },
+    );
+  }, [nRespondentesDetectados, tipo]);
+
+  // Pre-poblado de Dublin Core al entrar al paso DC (paso === 3).
+  useEffect(() => {
+    if (paso !== 3 || idInstrumento == null) return;
     let cancelado = false;
     getMetadatosInit(idInstrumento)
       .then((init) => {
@@ -122,33 +258,45 @@ export function UploadWizard() {
     };
   }, [paso, idInstrumento]);
 
-  // Propuesta real de KPIs (paso === 5). Reemplaza a `getKpisSugeridos`.
-  // ⚠️ Solo ejecutable con artefactos sembrados (`archivoJson` + `.md` original):
-  // el upload puro NO produce el JSON enriquecido, así que en ese flujo el paso
-  // queda sin fuente (sugeridos = []). TODO: no hay endpoint que devuelva el JSON
-  // enriquecido tras el upload para alimentar las propuestas end-to-end.
+  // Propuesta real de KPIs (paso === 6). Enriquece el JSON (DC + survey_specific) de
+  // forma inmutable antes de proponer, y diferencia 503 (servicio caído) de lista vacía.
   useEffect(() => {
-    if (paso !== 5 || sugeridos || idInstrumento == null || !tipo) return;
-    if (!jsonInstrumento || !archivoOriginal) {
+    if (paso !== 6 || sugeridos || idInstrumento == null || !tipo) return;
+    if (!jsonInstrumento) {
       setSugeridos([]);
       return;
     }
     let cancelado = false;
-    proponerKpis({
-      idInstrumento,
-      archivoJson: new Blob([JSON.stringify(jsonInstrumento)], { type: "application/json" }),
-      instrumentoOriginal: archivoOriginal,
-      tipo,
-    })
+    const original = archivoOriginal
+      ? archivoOriginal
+      : new Blob([textoDerivadoDePreguntas(jsonInstrumento)], { type: "text/markdown" });
+    const surveyEspecifico = armarSurveyEspecifico(tipo, meta);
+    const jsonEnriquecido = enriquecerJson(jsonInstrumento, dc, surveyEspecifico);
+    setJsonInstrumento(jsonEnriquecido); // persiste para confirmarKpis (paso 8)
+    const archivoJson = new Blob([JSON.stringify(jsonEnriquecido)], { type: "application/json" });
+
+    proponerKpis({ idInstrumento, archivoJson, instrumentoOriginal: original, tipo })
       .then((lista) => {
         if (!cancelado) setSugeridos(lista);
       })
-      .catch(() => {
-        if (!cancelado) setSugeridos([]);
+      .catch((e) => {
+        if (cancelado) return;
+        const status = (e as { status?: number })?.status;
+        if (status === 503) {
+          toast.error(
+            "El servicio de vectorización no está disponible. Verifica que Chroma y Ollama " +
+              "estén arriba y que la colección de KPIs esté reindexada " +
+              "(POST /vectorizacion/kpis/reindex).",
+          );
+        } else {
+          toast.error(e instanceof Error ? e.message : "No se pudieron proponer KPIs.");
+        }
+        setSugeridos([]); // lista vacía SOLO como estado terminal tras surfacar el error
       });
     return () => {
       cancelado = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paso, sugeridos, idInstrumento, tipo, jsonInstrumento, archivoOriginal]);
 
   const kpisAceptados = (sugeridos ?? []).filter((k) => decisiones[k.id] === "aceptado");
@@ -196,6 +344,7 @@ export function UploadWizard() {
   const puedeContinuar = [
     !!archivo && !!tipo,
     !!reporte,
+    !!jsonInstrumento || !!tiposConfirmados,
     !!dc.titulo.trim() && !!dc.creador.trim() && !!dc.descripcion.trim() && !!dc.cobertura,
     true,
     true,
@@ -225,8 +374,31 @@ export function UploadWizard() {
       return;
     }
 
-    // Paso 2 → 3: registrar los metadatos Dublin Core (inmutable: 2ª vez → 409).
-    if (paso === 2 && idInstrumento != null) {
+    // Paso 2 → 3: estandarizar con los tipos confirmados. Persiste el JSON de dominio,
+    // setea ruta_json y guarda el json_instrumento para alimentar la propuesta de KPIs.
+    if (paso === 2 && idCrudo != null) {
+      if (!tiposConfirmados) return;
+      setAvanzando(true);
+      try {
+        const preguntas = tiposConfirmados.map(preguntaPreviewAConfirmada);
+        const resp = await estandarizar(idCrudo, preguntas);
+        setJsonInstrumento(resp.json_instrumento);
+        setPaso(3);
+      } catch (e) {
+        const status = (e as { status?: number })?.status;
+        if (status === 409) {
+          toast.error("El instrumento ya fue vectorizado; no puede reestandarizarse.");
+        } else {
+          toast.error(e instanceof Error ? e.message : "No se pudo estandarizar el instrumento.");
+        }
+      } finally {
+        setAvanzando(false);
+      }
+      return;
+    }
+
+    // Paso 3 → 4: registrar los metadatos Dublin Core (inmutable: 2ª vez → 409).
+    if (paso === 3 && idInstrumento != null) {
       setAvanzando(true);
       try {
         const metadatos: RegistroMetadatos = {
@@ -240,15 +412,38 @@ export function UploadWizard() {
         };
         if (dc.cobertura) metadatos.dc_coverage = dc.cobertura;
         if (dc.derechos) metadatos.dc_rights = dc.derechos;
+        if (dc.fuente) metadatos.dc_source = dc.fuente;
+        if (dc.relacion) metadatos.dc_relation = dc.relacion;
         await registrarMetadatos(idInstrumento, metadatos);
-        setPaso(3);
+        setPaso(4);
       } catch (e) {
         const status = (e as { status?: number })?.status;
         if (status === 409) {
           // Ya registrado (inmutable): se continúa sin reintentar.
-          setPaso(3);
+          setPaso(4);
         } else {
           toast.error(e instanceof Error ? e.message : "No se pudieron registrar los metadatos.");
+        }
+      } finally {
+        setAvanzando(false);
+      }
+      return;
+    }
+
+    // Paso 4 → 5: registrar los metadatos específicos del tipo (UPSERT).
+    if (paso === 4 && idInstrumento != null && tipo) {
+      setAvanzando(true);
+      try {
+        await registrarMetadatosEspecificos(idInstrumento, tipo, meta);
+        setPaso(5);
+      } catch (e) {
+        const status = (e as { status?: number })?.status;
+        if (status === 409) {
+          toast.error("El tipo no coincide con el instrumento.");
+        } else {
+          toast.error(
+            e instanceof Error ? e.message : "No se pudieron registrar los metadatos del tipo.",
+          );
         }
       } finally {
         setAvanzando(false);
@@ -351,6 +546,9 @@ export function UploadWizard() {
                 setReporte(null);
                 setIdCrudo(null);
                 setIdInstrumento(null);
+                setJsonInstrumento(null);
+                setTiposDetectados(null);
+                setTiposConfirmados(null);
               }}
               onArchivoOriginal={setArchivoOriginal}
               onTipo={(t) => {
@@ -360,10 +558,17 @@ export function UploadWizard() {
             />
           )}
           {paso === 1 && <StepLimpieza reporte={reporte} />}
-          {paso === 2 && <StepDublinCore valor={dc} onChange={setDc} />}
-          {paso === 3 && tipo && <StepMetadatosTipo tipo={tipo} valor={meta} onChange={setMeta} />}
-          {paso === 4 && <JsonPreview datos={documento} />}
-          {paso === 5 && (
+          {paso === 2 && (
+            <StepTiposPregunta
+              preguntas={tiposConfirmados}
+              notas={notasPreview}
+              onChange={setTiposConfirmados}
+            />
+          )}
+          {paso === 3 && <StepDublinCore valor={dc} onChange={setDc} />}
+          {paso === 4 && tipo && <StepMetadatosTipo tipo={tipo} valor={meta} onChange={setMeta} />}
+          {paso === 5 && <JsonPreview datos={documento} />}
+          {paso === 6 && (
             <StepKpis
               sugeridos={sugeridos}
               decisiones={decisiones}
@@ -375,9 +580,7 @@ export function UploadWizard() {
               idInstrumento={idInstrumento}
               kpis={kpisParaCalcular}
               estados={calculos}
-              onCambio={(kpiId, estado) =>
-                setCalculos((prev) => ({ ...prev, [kpiId]: estado }))
-              }
+              onCambio={(kpiId, estado) => setCalculos((prev) => ({ ...prev, [kpiId]: estado }))}
             />
           )}
           {paso === PASO_GUARDAR && (

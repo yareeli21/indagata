@@ -83,6 +83,10 @@ export interface DublinCore {
   idioma: string;
   derechos: string;
   cobertura: NivelEducativo | "";
+  /** dc_source — opcional (Bug 1). */
+  fuente?: string;
+  /** dc_relation — opcional (Bug 1). */
+  relacion?: string;
 }
 
 export type MetadatosTipo = Record<string, string>;
@@ -92,6 +96,63 @@ export interface KpiSugerido {
   nombre: string;
   coincidencia: number;
 }
+
+// ── Estandarización (tipos de pregunta) ─────────────────────────────────────────
+
+/**
+ * Etiquetas de UI (español) para el tipo de pregunta. El mapeo a vocabulario
+ * backend (binaria/opcion_multiple/likert/numerica_continua/abierta) vive en
+ * `src/api/carga.ts` (frontera de conversión).
+ */
+export const TIPOS_PREGUNTA_UI = [
+  "Binaria",
+  "Opción múltiple",
+  "Likert",
+  "Numérica continua",
+  "Abierta",
+] as const;
+export type TipoPreguntaUI = (typeof TIPOS_PREGUNTA_UI)[number];
+
+/** Vocabulario cerrado de `type` que exige/devuelve el backend de estandarización. */
+export type TipoPreguntaBackend =
+  "binaria" | "opcion_multiple" | "likert" | "numerica_continua" | "abierta";
+
+/** Confianza informativa de la detección automática de tipo. */
+export type ConfianzaDeteccion = "alta" | "media" | "baja";
+
+/** Pregunta tal como la propone el preview de estandarización (editable por el investigador). */
+export interface PreguntaPreview {
+  question_id: string;
+  text: string;
+  type: TipoPreguntaBackend;
+  options?: string[] | null;
+  scale_min?: number | null;
+  scale_max?: number | null;
+  confianza: ConfianzaDeteccion;
+  es_demografica: boolean;
+}
+
+/** Respuesta de `POST /instrumentos/{id}/estandarizar/preview`. */
+export interface EstandarizarPreviewResponse {
+  id_crudo: number;
+  tipo_instrumento: string;
+  preguntas: PreguntaPreview[];
+  n_respondentes_detectados: number;
+  notas: string[];
+}
+
+/** Respuesta de `POST /instrumentos/{id}/estandarizar`. */
+export interface EstandarizarResponse {
+  id_crudo: number;
+  id_instrumento: number;
+  estado: string;
+  ruta_json: string;
+  json_instrumento: Record<string, unknown>;
+  mensaje: string;
+}
+
+/** Campos de metadatos específicos por tipo (claves = columnas reales de la tabla). */
+export type MetadatosEspecificos = Record<string, string>;
 
 export type FormatoDescarga = "crudo" | "json" | "sav";
 

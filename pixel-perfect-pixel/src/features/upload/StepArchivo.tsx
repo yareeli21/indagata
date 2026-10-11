@@ -1,7 +1,17 @@
 import { useRef, useState } from "react";
 import { ClipboardList, FileUp, FlaskConical, MessagesSquare } from "lucide-react";
+import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { TIPOS_INSTRUMENTO, type TipoInstrumento } from "@/types";
+
+// El instrumento original se envía al summary como texto plano/markdown, así que
+// solo se aceptan .md/.txt; un binario (.pdf/.docx) inyectaría bytes basura.
+const EXTENSIONES_ORIGINAL = [".md", ".txt"] as const;
+
+function esTextoPlano(nombre: string): boolean {
+  const minus = nombre.toLowerCase();
+  return EXTENSIONES_ORIGINAL.some((ext) => minus.endsWith(ext));
+}
 
 const ICONOS = {
   Encuesta: ClipboardList,
@@ -35,6 +45,18 @@ export function StepArchivo({
   const inputOriginal = useRef<HTMLInputElement>(null);
   const [arrastrando, setArrastrando] = useState(false);
   const [arrastrandoOriginal, setArrastrandoOriginal] = useState(false);
+
+  // Valida que el instrumento original sea texto plano/markdown antes de aceptarlo.
+  const seleccionarOriginal = (f: File) => {
+    if (!esTextoPlano(f.name)) {
+      toast.error(
+        "El instrumento original debe ser un archivo de texto (.md o .txt). " +
+          "No se admiten PDF ni Word aquí.",
+      );
+      return;
+    }
+    onArchivoOriginal(f);
+  };
 
   return (
     <div className="space-y-8">
@@ -106,7 +128,7 @@ export function StepArchivo({
             e.preventDefault();
             setArrastrandoOriginal(false);
             const f = e.dataTransfer.files[0];
-            if (f) onArchivoOriginal(f);
+            if (f) seleccionarOriginal(f);
           }}
           className={cn(
             "flex cursor-pointer flex-col items-center gap-3 rounded-xl border-2 border-dashed p-10 text-center transition-colors",
@@ -127,7 +149,7 @@ export function StepArchivo({
             <>
               <p className="font-medium">Arrastra y suelta el instrumento original aquí</p>
               <p className="text-sm text-muted-foreground">
-                o haz clic para seleccionarlo · TXT, PDF o DOCX
+                o haz clic para seleccionarlo · solo texto plano (TXT o MD)
               </p>
             </>
           )}
@@ -135,10 +157,10 @@ export function StepArchivo({
             ref={inputOriginal}
             type="file"
             className="hidden"
-            accept=".txt,.pdf,.docx"
+            accept=".md,.txt"
             onChange={(e) => {
               const f = e.target.files?.[0];
-              if (f) onArchivoOriginal(f);
+              if (f) seleccionarOriginal(f);
             }}
           />
         </div>

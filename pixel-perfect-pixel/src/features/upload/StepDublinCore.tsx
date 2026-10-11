@@ -50,11 +50,35 @@ export function StepDublinCore({ valor, onChange }: StepDublinCoreProps) {
           <Info className="size-3.5" /> Se usa para encontrar instrumentos similares.
         </p>
       </Campo>
+      <Campo id="fuente" label="Fuente">
+        <Input
+          id="fuente"
+          value={valor.fuente ?? ""}
+          onChange={set("fuente")}
+          placeholder="p. ej. instrumento adaptado de…"
+          maxLength={120}
+        />
+      </Campo>
+      <Campo id="relacion" label="Relación">
+        <Input
+          id="relacion"
+          value={valor.relacion ?? ""}
+          onChange={set("relacion")}
+          placeholder="p. ej. forma parte del proyecto…"
+          maxLength={120}
+        />
+      </Campo>
       <Campo id="fecha" label="Fecha">
         <Input id="fecha" type="date" value={valor.fecha} onChange={set("fecha")} />
+        <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <Info className="size-3.5" /> El sistema fija la fecha de registro y el idioma (es).
+        </p>
       </Campo>
       <Campo id="idioma" label="Idioma">
         <Input id="idioma" value={valor.idioma} onChange={set("idioma")} maxLength={40} />
+        <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <Info className="size-3.5" /> Campo informativo: el idioma registrado es español (es).
+        </p>
       </Campo>
       <Campo id="derechos" label="Derechos">
         <Input
