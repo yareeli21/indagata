@@ -63,10 +63,11 @@ app.add_middleware(
 
 # Import and include routers
 try:
-    from routers import health, metadata, enrichment
+    from routers import health, metadata, enrichment, specific
     
     app.include_router(health.router, tags=["health"])
     app.include_router(metadata.router, prefix="/api", tags=["metadata"])
+    app.include_router(specific.router, prefix="/api", tags=["metadata-especificos"])
     app.include_router(enrichment.router, prefix="/api", tags=["enrichment"])
     
     logger.info("✅ All routers registered")
