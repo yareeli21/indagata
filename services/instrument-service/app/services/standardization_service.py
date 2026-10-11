@@ -186,28 +186,68 @@ def _mapa_headers(tabla: RawTable) -> tuple[dict[str, int], list[str]]:
     return mapa, notas
 
 
+def _parsear_question_id(question_id: str) -> int | None:
+    """Devuelve el índice 1-based codificado en 'q<entero>', o None si no parsea.
+
+    Formato esperado: prefijo 'q' seguido de uno o más dígitos (p. ej. 'q1',
+    'q33'). Devuelve el entero N (sin convertir a índice 0-based) o None si el
+    valor no respeta ese formato. Un None permite el fallback por nombre.
+    """
+    if not question_id or question_id[0] != "q":
+        return None
+    resto = question_id[1:]
+    if not resto.isdigit():
+        return None
+    return int(resto)
+
+
 def _resolver_preguntas_tabular(
     tabla: RawTable,
     preguntas: list[PreguntaConfirmada],
 ) -> tuple[list[domain_builder.PreguntaDominio], list[str]]:
-    """Mapea cada pregunta confirmada a su columna por nombre normalizado.
+    """Mapea cada pregunta confirmada a su columna por `question_id`.
+
+    `question_id` tiene forma 'q{N}', con N = índice 1-based de la columna en
+    `tabla.headers` (lo genera `type_detector.detectar_tipos`). La columna se
+    deriva como `N - 1`. Si el `question_id` no viene o no parsea, se intenta un
+    fallback por nombre normalizado contra `_mapa_headers`.
 
     Raises:
-        HTTPException 422 si una pregunta referencia un header inexistente.
+        HTTPException 422 si una pregunta no puede resolverse a una columna
+        válida (id fuera de rango o sin match por id ni por nombre).
     """
     mapa, notas = _mapa_headers(tabla)
+    n_cols = len(tabla.headers)
     usados: set[int] = set()
     resueltas: list[domain_builder.PreguntaDominio] = []
 
     for p in preguntas:
-        clave = _normalizar(p.text)
-        col = mapa.get(clave)
+        col: int | None = None
+        numero = _parsear_question_id(p.question_id)
+        if numero is not None:
+            # El question_id parsea: el índice DEBE estar en rango (no es un
+            # payload legacy, es un id inválido si cae fuera).
+            col = numero - 1
+            if not (0 <= col < n_cols):
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail=(
+                        f"La pregunta con question_id '{p.question_id}' "
+                        f"(texto: '{p.text}') no corresponde a ninguna columna "
+                        f"del instrumento (hay {n_cols} columnas)."
+                    ),
+                )
+        else:
+            # question_id ausente o no parseable: fallback por nombre.
+            col = mapa.get(_normalizar(p.text))
+
         if col is None:
             raise HTTPException(
                 status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
                 detail=(
-                    f"La pregunta '{p.text}' no corresponde a ninguna columna del "
-                    f"instrumento."
+                    f"La pregunta con question_id '{p.question_id}' "
+                    f"(texto: '{p.text}') no se pudo mapear a ninguna columna del "
+                    f"instrumento (ni por question_id ni por nombre)."
                 ),
             )
         usados.add(col)

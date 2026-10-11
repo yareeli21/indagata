@@ -192,3 +192,108 @@ def test_flujo_upload_preview_estandarizar(client):
     assert "TITULO DEL SEED INST_01" not in titulos
     # El título degrada al nombre de archivo del upload real.
     assert "encuesta.csv" in titulos
+
+
+# ── Regresión del fix: resolución por question_id ─────────────────────────────
+
+# Headers que normalizan a la MISMA clave (duplicados/sucios): antes del fix el
+# match por nombre fallaba porque `_mapa_headers` desambigua con sufijo '__2' en
+# la clave pero no en el `text` del preview.
+CSV_HEADERS_DUPLICADOS = (
+    "Organizacion y  item1,Organizacion_y__item1,comentario\n"
+    "4,2,me gusta\n"
+    "1,5,regular\n"
+    "5,3,excelente\n"
+).encode("utf-8")
+
+
+def test_estandarizar_resuelve_por_question_id_con_headers_duplicados(client):
+    """Headers que colisionan al normalizar: el mapeo por question_id funciona.
+
+    Antes del fix esto devolvía 422 porque el `text` crudo del preview no
+    igualaba la clave desambiguada ('..._item1__2').
+    """
+    resp = client.post(
+        "/instrumentos/upload",
+        files={"archivo": ("dup.csv", io.BytesIO(CSV_HEADERS_DUPLICADOS), "text/csv")},
+        data={"tipo_instrumento": "encuesta"},
+    )
+    assert resp.status_code == 201, resp.text
+    id_crudo = resp.json()["id_crudo"]
+
+    prev = client.post(f"/instrumentos/{id_crudo}/estandarizar/preview")
+    assert prev.status_code == 200, prev.text
+    preguntas_preview = prev.json()["preguntas"]
+    # Los tres question_id del preview deben ser q1, q2, q3 (estables por columna).
+    assert [p["question_id"] for p in preguntas_preview] == ["q1", "q2", "q3"]
+
+    # Reenviar CADA pregunta del preview tal cual (incluyendo el question_id).
+    payload = {
+        "preguntas": [
+            {
+                "question_id": p["question_id"],
+                "text": p["text"],
+                "type": p["type"],
+                "options": p.get("options"),
+                "scale_min": p.get("scale_min"),
+                "scale_max": p.get("scale_max"),
+                "es_demografica": p.get("es_demografica", False),
+            }
+            for p in preguntas_preview
+        ]
+    }
+    est = client.post(f"/instrumentos/{id_crudo}/estandarizar", json=payload)
+    assert est.status_code == 200, est.text
+    datos = est.json()
+    assert datos["estado"] == "estandarizado"
+    questions = datos["json_instrumento"]["instrument"]["sections"][0]["questions"]
+    # Ninguna es demográfica: las tres columnas quedan como preguntas.
+    assert [q["question_id"] for q in questions] == ["q1", "q2", "q3"]
+
+
+def test_estandarizar_question_id_fuera_de_rango_devuelve_422(client):
+    """Un question_id que parsea pero cae fuera de rango -> 422 con id y text."""
+    resp = client.post(
+        "/instrumentos/upload",
+        files={"archivo": ("encuesta.csv", io.BytesIO(CSV_CONTENIDO), "text/csv")},
+        data={"tipo_instrumento": "encuesta"},
+    )
+    assert resp.status_code == 201, resp.text
+    id_crudo = resp.json()["id_crudo"]
+
+    payload = {
+        "preguntas": [
+            {"question_id": "q99", "text": "edad", "type": "numerica_continua",
+             "es_demografica": True},
+        ]
+    }
+    est = client.post(f"/instrumentos/{id_crudo}/estandarizar", json=payload)
+    assert est.status_code == 422, est.text
+    detalle = est.json()["detail"]
+    assert "q99" in detalle
+    assert "edad" in detalle
+
+
+def test_estandarizar_fallback_por_nombre_sin_question_id(client):
+    """Sin question_id parseable, el fallback por nombre único resuelve (200)."""
+    resp = client.post(
+        "/instrumentos/upload",
+        files={"archivo": ("encuesta.csv", io.BytesIO(CSV_CONTENIDO), "text/csv")},
+        data={"tipo_instrumento": "encuesta"},
+    )
+    assert resp.status_code == 201, resp.text
+    id_crudo = resp.json()["id_crudo"]
+
+    # question_id vacío (no parsea) -> fallback por nombre normalizado del header.
+    payload = {
+        "preguntas": [
+            {"question_id": "", "text": "edad", "type": "numerica_continua",
+             "es_demografica": True},
+            {"question_id": "", "text": "claridad", "type": "likert",
+             "scale_min": 1, "scale_max": 5},
+            {"question_id": "", "text": "comentario", "type": "abierta"},
+        ]
+    }
+    est = client.post(f"/instrumentos/{id_crudo}/estandarizar", json=payload)
+    assert est.status_code == 200, est.text
+    assert est.json()["estado"] == "estandarizado"
