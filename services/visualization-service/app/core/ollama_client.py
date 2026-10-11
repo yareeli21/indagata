@@ -27,12 +27,15 @@ logger = logging.getLogger("visualization-service")
 _TIMEOUT = httpx.Timeout(connect=5.0, read=120.0, write=120.0, pool=5.0)
 
 # Opciones de rendimiento para GPUs con poca VRAM (p. ej. GTX 1650, 4 GiB).
-# - keep_alive=-1: mantiene el modelo cargado en VRAM mientras viva el contenedor,
+# - keep_alive="-1m": mantiene el modelo cargado en VRAM mientras viva el contenedor,
 #   eliminando el recargado (~20 s) que Ollama hace tras OLLAMA_KEEP_ALIVE (5 min).
+#   DEBE llevar unidad de duración ("-1m", no "-1"): las versiones recientes de Ollama
+#   rechazan "-1" con HTTP 400 ("time: missing unit in duration"), lo que degradaba
+#   el chat a solo-fuentes. Un valor negativo con unidad = cargado indefinidamente.
 # - num_ctx=2048: ventana de contexto suficiente para el prompt del RAG (hasta ~5
 #   fuentes + pregunta); reduce el KV-cache y deja más VRAM para los pesos, evitando
 #   el offload parcial a CPU que ralentiza la generación.
-_KEEP_ALIVE = "-1"
+_KEEP_ALIVE = "-1m"
 _OPTIONS = {"num_ctx": 2048}
 
 

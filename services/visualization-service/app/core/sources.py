@@ -26,6 +26,7 @@ from __future__ import annotations
 import json as jsonlib
 import logging
 import os
+import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -304,6 +305,22 @@ _TIPO_NUMERICO = "numerica_continua"
 _TIPO_BINARIO = "binaria"
 _TIPO_CATEGORICO = "opcion_multiple"
 
+# Columnas que son ARQUETIPOS/metadatos de los datos sintéticos, no respuestas reales
+# del instrumento. No existen en datos reales (p.ej. "perfil"=P1..P8, "profile_id"),
+# así que no deben generar chunks: confundirían al LLM y no aportan al diagnóstico.
+# Se comparan en forma normalizada (minúsculas, sin acentos, espacios→_) contra el
+# `text` y el `question_id` de la pregunta.
+_COLUMNAS_ARTEFACTO = frozenset({"perfil", "profile_id", "profile", "arquetipo"})
+
+
+def _es_columna_artefacto(texto_q: str, qid: str) -> bool:
+    """True si la columna es un arquetipo sintético (perfil/profile_id) a excluir."""
+    def _norm(v: str) -> str:
+        base = unicodedata.normalize("NFKD", v).encode("ascii", "ignore").decode("ascii")
+        return base.strip().lower().replace(" ", "_")
+
+    return _norm(texto_q) in _COLUMNAS_ARTEFACTO or _norm(qid) in _COLUMNAS_ARTEFACTO
+
 
 def _preguntas(instrumento: dict[str, Any]) -> list[dict[str, Any]]:
     """Aplana todas las preguntas de todas las secciones en orden del JSON."""
@@ -536,6 +553,10 @@ def construir_chunks(
         qid = _texto(q.get("question_id"))
         texto_q = _texto(q.get("text")) or qid
         if not qid:
+            continue
+        # Excluir columnas-artefacto de los datos sintéticos (perfil/profile_id):
+        # no existen en datos reales y confundirían al LLM.
+        if _es_columna_artefacto(texto_q, qid):
             continue
         try:
             if tipo == _TIPO_NUMERICO:
