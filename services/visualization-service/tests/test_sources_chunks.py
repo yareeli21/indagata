@@ -69,6 +69,7 @@ def test_construir_chunks_con_txt(monkeypatch):
     clases = [c.clase for c in chunks]
     estructura = [c for c in chunks if c.clase == "estructura"]
     hallazgos = [c for c in chunks if c.clase == "hallazgos"]
+    grupos = [c for c in chunks if c.clase == "grupo_desempeno"]
 
     # cabecera + 2 dimensiones de estructura
     assert len(estructura) == 3
@@ -83,9 +84,10 @@ def test_construir_chunks_con_txt(monkeypatch):
     assert "Me esfuerzo cuando el tema es interesante." in dim_textos
     assert "Organizo el material antes de estudiar." in dim_textos
 
-    # 2 likert + 1 numérica + 1 binaria + 1 resumen global
-    assert len(hallazgos) == 5
-    # El resumen global es el último, sin dimensión.
+    # 2 likert estadísticos + 1 numérica + 1 binaria + 1 resumen global, MÁS
+    # los chunks interpretados por dimensión (mejora 2). Conteo flexible.
+    assert len(hallazgos) >= 5
+    # El resumen global es el último hallazgo emitido, sin dimensión.
     assert hallazgos[-1].dimension == ""
     assert "respondentes" in hallazgos[-1].texto
     # Prosa con medias/porcentajes, no números sueltos.
@@ -94,6 +96,25 @@ def test_construir_chunks_con_txt(monkeypatch):
     )
     assert "/5" in likert_textos
     assert "%" in likert_textos
+
+    # Mejora 2: aparecen chunks interpretados por dimensión (nivel + rango).
+    hallazgos_textos = "\n".join(c.texto for c in hallazgos)
+    assert "nivel" in hallazgos_textos
+    assert "rango de 1 a 5" in hallazgos_textos
+
+    # Mejora 3: al menos un chunk de grupo por desempeño.
+    assert len(grupos) >= 1
+    grupos_textos = "\n".join(c.texto for c in grupos)
+
+    # NIT #9: la etiqueta de grupo 'medio' nunca aparece como 'moderado' en los
+    # chunks de grupo, y los interpretados por dimensión no usan 'medio' (usan
+    # 'nivel moderado').
+    assert "moderado" not in grupos_textos
+    interpretados_textos = "\n".join(
+        c.texto for c in hallazgos if "rango de 1 a 5" in c.texto
+    )
+    assert "nivel medio" not in interpretados_textos
+
     assert "nan" not in "\n".join(c.texto for c in chunks)
     assert clases.count("estructura") == 3
 

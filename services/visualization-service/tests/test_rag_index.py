@@ -134,7 +134,7 @@ def test_index_inst_1_prosa_y_metadata(cliente_y_coleccion):
     }
     for meta in coleccion.metadatas:
         assert requeridas.issubset(meta.keys())
-        assert meta["clase_chunk"] in ("estructura", "hallazgos")
+        assert meta["clase_chunk"] in ("estructura", "hallazgos", "grupo_desempeno")
         assert isinstance(meta["kpis"], str)  # serializado a JSON string
         assert meta["titulo"] != "enc_01_respondido.csv"
 
@@ -145,6 +145,12 @@ def test_index_inst_1_prosa_y_metadata(cliente_y_coleccion):
     # ids con el formato investigacionId:instrumentoId:n
     assert coleccion.ids[0] == "inv-demo:1:0"
 
-    # Hay chunks de ambas clases (estructura y hallazgos).
+    # Hay chunks de las tres clases (estructura, hallazgos, grupo_desempeno).
     clases = {m["clase_chunk"] for m in coleccion.metadatas}
-    assert clases == {"estructura", "hallazgos"}
+    assert clases == {"estructura", "hallazgos", "grupo_desempeno"}
+
+    # Aparecen chunks interpretativos (mejora 2) y al menos uno de grupo (mejora 3).
+    assert any(
+        palabra in todo for palabra in ("nivel", "fortaleza", "área de mejora")
+    )
+    assert any(m["clase_chunk"] == "grupo_desempeno" for m in coleccion.metadatas)

@@ -295,7 +295,7 @@ class ChunkIndexable:
     """Un chunk ya redactado listo para indexar (§6.1)."""
 
     texto: str
-    clase: str  # "estructura" | "hallazgos"
+    clase: str  # "estructura" | "hallazgos" | "grupo_desempeno"
     dimension: str  # "" para resumen global / cabecera de estructura
 
 
@@ -491,6 +491,44 @@ def construir_chunks(
                 )
         except Exception as exc:  # noqa: BLE001
             logger.warning("Falló la agregación likert de %r: %s", dim, exc)
+
+    # (B.2) Interpretación por dimensión (mejora 2, §5.3, §16.2-§16.5, §16.7).
+    hallazgos_likert = [
+        h for h in hallazgos if h.tipo == "likert" and h.media is not None
+    ]
+    try:
+        if hallazgos_likert:
+            items_plano = [it for its in items_por_dim.values() for it in its]
+            smin, smax = agregacion.escala_efectiva(items_plano)
+            for h in hallazgos_likert:
+                texto = agregacion.redactar_interpretacion_dimension(
+                    h, hallazgos_likert, smin, smax
+                )
+                if texto:
+                    chunks.append(
+                        ChunkIndexable(
+                            texto=texto, clase="hallazgos", dimension=h.dimension
+                        )
+                    )
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Falló la interpretación por dimensión: %s", exc)
+
+    # (B.3) Grupos por desempeño (mejora 3, §6.4, §6.5, §16.6).
+    try:
+        if hallazgos_likert and respondents:
+            items_plano = [it for its in items_por_dim.values() for it in its]
+            _smin, _smax = agregacion.escala_efectiva(items_plano)
+            grupos = agregacion.agrupar_por_desempeno(items_por_dim, respondents)
+            for g in grupos:
+                chunks.append(
+                    ChunkIndexable(
+                        texto=agregacion.redactar_grupo(g, _smax),
+                        clase="grupo_desempeno",
+                        dimension=g.grupo,
+                    )
+                )
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Falló la agrupación por desempeño: %s", exc)
 
     # Numérica / categórica / binaria: un chunk por pregunta agregable.
     for q in preguntas:
