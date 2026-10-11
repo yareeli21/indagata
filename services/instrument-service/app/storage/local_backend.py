@@ -62,6 +62,20 @@ class LocalStorageBackend(StoragePort):
             size_bytes=len(content),
         )
 
+    def leer(self, ruta: str) -> bytes:
+        if not ruta:
+            raise StorageError("Ruta de archivo vacía.")
+        storage_root = settings.raw_path_abs.parent
+        target = (storage_root / ruta).resolve()
+        # Defensa en profundidad: no leer fuera de storage/.
+        root = storage_root.resolve()
+        if root not in target.parents and target != root:
+            raise StorageError(f"Ruta fuera del almacenamiento: {ruta}")
+        try:
+            return Path(target).read_bytes()
+        except OSError as exc:
+            raise StorageError(f"No se pudo leer el archivo: {exc}") from exc
+
     def eliminar(self, ruta: str) -> None:
         if not ruta:
             return

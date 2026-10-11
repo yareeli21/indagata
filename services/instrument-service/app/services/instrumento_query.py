@@ -2,10 +2,10 @@
 
 Orden de resolución (sin requerir storage-service corriendo):
   1. `instrumento_procesado.ruta_json` si el archivo existe en disco.
-  2. Fallback a `storage/raw/`: traducir `id_crudo -> inst_XX` por el manifiesto
-     `_seed_map.json` (si existe) o por el mapeo directo `N -> inst_{N:02d}`, y
-     abrir la última versión con `glob("inst_<NN>.v*.json")` bajo
-     `settings.raw_path_abs`.
+  2. Fallback a `storage/raw/`: traducir `id_crudo -> inst_XX` SOLO por el
+     manifiesto `_seed_map.json` (sin fallback directo `N -> inst_{N:02d}`, que
+     secuestraba uploads reales — Bug 5), y abrir la última versión con
+     `glob("inst_<NN>.v*.json")` bajo `settings.raw_path_abs`.
 
 Devuelve el `dict` del JSON o `None` si no se puede resolver. Lectura
 defensiva: cualquier error de E/S o de parseo se registra y devuelve `None`.
@@ -70,13 +70,17 @@ def _cargar_seed_map() -> dict[str, int]:
 
 
 def _slug_por_id_crudo(id_crudo: int) -> str | None:
-    """Traduce `id_crudo -> inst_XX` por _seed_map.json o `N -> inst_{N:02d}`."""
+    """Traduce `id_crudo -> inst_XX` SOLO por _seed_map.json.
+
+    Sin mapeo explícito devuelve None: no hay fallback directo
+    `N -> inst_{N:02d}` que secuestre el JSON sembrado de un upload real
+    (Bug 5). Los instrumentos sembrados siguen resolviéndose porque
+    `scripts/seed_demo.py` escribe/mantiene `_seed_map.json`.
+    """
     seed_map = _cargar_seed_map()
     for inst, cid in seed_map.items():
         if cid == id_crudo:
             return inst
-    if id_crudo >= 1:
-        return f"inst_{id_crudo:02d}"
     return None
 
 

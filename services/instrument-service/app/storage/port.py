@@ -56,6 +56,14 @@ class StoragePort(ABC):
         """
 
     @abstractmethod
+    def leer(self, ruta: str) -> bytes:
+        """Lee el contenido almacenado por la `ruta` guardada en raw_data.
+
+        Raises:
+            StorageError: si no existe o falla la lectura.
+        """
+
+    @abstractmethod
     def eliminar(self, ruta: str) -> None:
         """Elimina un archivo por su referencia (idempotente: no falla si no existe)."""
 
