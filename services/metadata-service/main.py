@@ -12,9 +12,12 @@ import os
 import sys
 from pathlib import Path
 
-# Resolver `import shared` también en ejecución local (igual que api-gateway).
-# En Docker `shared/` está copiado en /app/shared, por lo que esto no aplica.
-if not (Path(__file__).resolve().parent / "shared").exists():
+# Resolver `import shared` también en ejecución local (igual que instrument-service).
+# En Docker `shared/` está copiado en /app/shared (con su __init__.py), por lo que
+# esto no aplica. En local puede existir un directorio `shared/` VACÍO (residuo del
+# montaje Docker); se comprueba `shared/__init__.py` —no solo el directorio— para no
+# dar por resuelto el paquete cuando la carpeta está vacía y así añadir la raíz del repo.
+if not (Path(__file__).resolve().parent / "shared" / "__init__.py").exists():
     _REPO_ROOT = Path(__file__).resolve().parents[2]
     if str(_REPO_ROOT) not in sys.path:
         sys.path.insert(0, str(_REPO_ROOT))
