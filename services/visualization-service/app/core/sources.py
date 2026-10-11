@@ -26,11 +26,13 @@ from __future__ import annotations
 import json as jsonlib
 import logging
 import os
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 import httpx
 
+from app.core import agregacion, original_txt
 from shared.db.core.config import settings
 
 logger = logging.getLogger("visualization-service")
@@ -249,7 +251,9 @@ def extraer_kpis(instrumento_json: dict[str, Any] | None) -> list[str]:
 
 
 def extraer_metadata(
-    instrumento_json: dict[str, Any] | None, instrumento_id: str
+    instrumento_json: dict[str, Any] | None,
+    instrumento_id: str,
+    titulo_override: str | None = None,
 ) -> dict[str, Any]:
     """Metadata del instrumento para Chroma / FuenteChatOut (§4.2).
 
@@ -258,6 +262,10 @@ def extraer_metadata(
     informativa; el esquema real no trae el tipo canónico de `raw_data`, así que
     si no mapea cae al default "Encuesta" (§2.4). `kpis` es lista (el router la
     serializa a JSON string para la metadata de Chroma).
+
+    Precedencia del título (§15.2, EXACTA): `dc:title` → `titulo_override`
+    (cabecera "INSTRUMENTO:" del .txt) → `instrument.title` (nombre del CSV) →
+    `f"Instrumento {id}"`. `titulo_override` es opcional y retrocompatible.
     """
     data = _como_dict(instrumento_json)
     instrumento = _como_dict(data.get("instrument"))
@@ -265,8 +273,9 @@ def extraer_metadata(
     dublin_core = _como_dict(metadata.get("dublin_core"))
 
     titulo = (
-        _texto(instrumento.get("title"))
-        or _texto(dublin_core.get("dc:title"))
+        _texto(dublin_core.get("dc:title"))
+        or _texto(titulo_override)
+        or _texto(instrumento.get("title"))
         or f"Instrumento {instrumento_id}"
     )
     investigador = _texto(dublin_core.get("dc:creator"))
@@ -278,3 +287,246 @@ def extraer_metadata(
         "investigador": investigador,
         "kpis": extraer_kpis(data),
     }
+
+
+# ── Construcción de chunks pre-redactados (§6.1, §6.5, §7, §9, §15.2, §15.3) ───
+@dataclass(frozen=True)
+class ChunkIndexable:
+    """Un chunk ya redactado listo para indexar (§6.1)."""
+
+    texto: str
+    clase: str  # "estructura" | "hallazgos"
+    dimension: str  # "" para resumen global / cabecera de estructura
+
+
+# Tipos de pregunta no agregables como hallazgo (§4.2: `abierta` se omite).
+_TIPO_NUMERICO = "numerica_continua"
+_TIPO_BINARIO = "binaria"
+_TIPO_CATEGORICO = "opcion_multiple"
+
+
+def _preguntas(instrumento: dict[str, Any]) -> list[dict[str, Any]]:
+    """Aplana todas las preguntas de todas las secciones en orden del JSON."""
+    preguntas: list[dict[str, Any]] = []
+    for seccion in _como_lista(instrumento.get("sections")):
+        for pregunta in _como_lista(_como_dict(seccion).get("questions")):
+            preguntas.append(_como_dict(pregunta))
+    return preguntas
+
+
+def _id_crudo_param(instrumento_id: str, artefacto: dict[str, Any]) -> str:
+    """Fuente de verdad del id (§15.3-NIT3): el parámetro del router; si no
+    parsea a entero, se respalda en `artefacto["instrument_id"]`."""
+    try:
+        int(str(instrumento_id).removeprefix("upload_"))
+        return instrumento_id
+    except (TypeError, ValueError):
+        respaldo = _texto(artefacto.get("instrument_id"))
+        return respaldo or instrumento_id
+
+
+def _chunk_cabecera(
+    data: dict[str, Any], titulo: str
+) -> ChunkIndexable | None:
+    """Chunk de cabecera de estructura: título real + descripción + constructo."""
+    metadata = _como_dict(data.get("metadata"))
+    dublin_core = _como_dict(metadata.get("dublin_core"))
+    survey = _como_dict(metadata.get("survey_specific"))
+
+    partes = [f"Instrumento: {titulo}."]
+    descripcion = _texto(dublin_core.get("dc:description"))
+    if descripcion:
+        partes.append(descripcion)
+    constructo = _texto(survey.get("constructo_principal"))
+    if constructo:
+        partes.append(f"Constructo principal: {constructo}.")
+    return ChunkIndexable(texto=" ".join(partes), clase="estructura", dimension="")
+
+
+def _chunks_estructura_dimension(
+    questions_likert: list[dict[str, Any]], mapa: dict[str, tuple[str, str]]
+) -> list[ChunkIndexable]:
+    """Un chunk de estructura por dimensión: título + ítems redactados numerados.
+
+    Agrupa las preguntas likert por su dimensión (según el mapa) preservando el
+    orden de aparición. En modo degradado el mapa viene del fallback por prefijo
+    (etiquetas normalizadas, nunca mojibake crudo).
+    """
+    orden: list[str] = []
+    items_por_dim: dict[str, list[str]] = {}
+    for q in questions_likert:
+        qid = _texto(q.get("question_id"))
+        dim, texto_item = mapa.get(qid, ("", ""))
+        if not dim:
+            continue
+        if dim not in items_por_dim:
+            items_por_dim[dim] = []
+            orden.append(dim)
+        items_por_dim[dim].append(texto_item)
+
+    chunks: list[ChunkIndexable] = []
+    for dim in orden:
+        lineas = [f"Dimensión «{dim}», ítems evaluados:"]
+        for i, texto_item in enumerate(items_por_dim[dim], start=1):
+            lineas.append(f"{i}. {texto_item}")
+        chunks.append(
+            ChunkIndexable(texto="\n".join(lineas), clase="estructura", dimension=dim)
+        )
+    return chunks
+
+
+def titulo_override_txt(artefacto: dict[str, Any] | None, instrumento_id: str) -> str | None:
+    """Título legible de la cabecera del .txt original, o `None` si no hay .txt.
+
+    Punto único de resolución del `titulo_override` (§15.2 punto 2): lo usan
+    tanto `construir_chunks` (cabecera de estructura y metadata interna) como el
+    router (metadata de Chroma), para que el título no diverja. Degrada en
+    silencio a `None` ante cualquier fallo de I/O.
+    """
+    data = _como_dict(artefacto)
+    id_crudo = _id_crudo_param(instrumento_id, data)
+    try:
+        texto_original = original_txt.leer_texto_original(id_crudo)
+        if not texto_original:
+            return None
+        return original_txt.parsear_estructura(texto_original).titulo_instrumento
+    except Exception as exc:  # noqa: BLE001 - degradación grácil
+        logger.warning("No se pudo leer el título del .txt original: %s", exc)
+        return None
+
+
+def construir_chunks(
+    artefacto: dict[str, Any] | None, instrumento_id: str
+) -> list[ChunkIndexable]:
+    """Orquesta `original_txt` + `agregacion` en chunks pre-redactados (§6.1).
+
+    Devuelve `list[ChunkIndexable]` o `[]` si el JSON no trae instrument/preguntas
+    (el router degrada entonces al camino `extraer_texto` + `trocear`). Cada
+    bloque va envuelto en su propio `try/except` con `logger.warning`: una
+    dimensión que falle no tumba el resto (§6.5, §9).
+    """
+    data = _como_dict(artefacto)
+    instrumento = _como_dict(data.get("instrument"))
+    preguntas = _preguntas(instrumento)
+    if not instrumento or not preguntas:
+        return []
+
+    id_crudo = _id_crudo_param(instrumento_id, data)
+    questions_likert = [q for q in preguntas if _texto(q.get("type")) == "likert"]
+    respondents = _como_lista(data.get("respondents"))
+
+    # .txt original (estructura legible + mapeo question_id -> dimensión).
+    estructura = None
+    mapa: dict[str, tuple[str, str]] = {}
+    try:
+        texto_original = original_txt.leer_texto_original(id_crudo)
+        if texto_original:
+            estructura = original_txt.parsear_estructura(texto_original)
+        if estructura is not None:
+            mapa = original_txt.construir_mapa_dimension(estructura, questions_likert)
+        if not mapa and questions_likert:
+            mapa = original_txt.mapa_por_prefijo(questions_likert)
+    except Exception as exc:  # noqa: BLE001 - degradación grácil (§6.5)
+        logger.warning("No se pudo resolver el .txt original: %s", exc)
+        try:
+            mapa = original_txt.mapa_por_prefijo(questions_likert)
+        except Exception as exc2:  # noqa: BLE001
+            logger.warning("Fallback por prefijo también falló: %s", exc2)
+            mapa = {}
+
+    titulo_override = estructura.titulo_instrumento if estructura is not None else None
+    # Un único punto de verdad del título (§15.2 punto 2).
+    titulo = extraer_metadata(data, instrumento_id, titulo_override=titulo_override).get(
+        "titulo", ""
+    )
+
+    chunks: list[ChunkIndexable] = []
+
+    # (A) Chunks de ESTRUCTURA ────────────────────────────────────────────────
+    try:
+        cabecera = _chunk_cabecera(data, titulo)
+        if cabecera is not None:
+            chunks.append(cabecera)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Falló el chunk de cabecera: %s", exc)
+    try:
+        chunks.extend(_chunks_estructura_dimension(questions_likert, mapa))
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Fallaron los chunks de estructura por dimensión: %s", exc)
+
+    # (B) Chunks de HALLAZGOS ──────────────────────────────────────────────────
+    if not respondents:
+        return chunks
+
+    hallazgos: list[agregacion.HallazgoDimension] = []
+
+    # Likert: un chunk por dimensión (agrupando por el mapa, orden de aparición).
+    orden_dim: list[str] = []
+    items_por_dim: dict[str, list[tuple[str, str, int, int]]] = {}
+    for q in questions_likert:
+        qid = _texto(q.get("question_id"))
+        dim, texto_item = mapa.get(qid, ("", ""))
+        if not dim:
+            continue
+        smin = q.get("scale_min")
+        smax = q.get("scale_max")
+        smin = int(smin) if isinstance(smin, (int, float)) else 1
+        smax = int(smax) if isinstance(smax, (int, float)) else 5
+        if dim not in items_por_dim:
+            items_por_dim[dim] = []
+            orden_dim.append(dim)
+        items_por_dim[dim].append((qid, texto_item, smin, smax))
+
+    for dim in orden_dim:
+        try:
+            h = agregacion.agregar_likert(items_por_dim[dim], respondents, dim)
+            if h is not None:
+                hallazgos.append(h)
+                chunks.append(
+                    ChunkIndexable(
+                        texto=agregacion.redactar_hallazgo(h),
+                        clase="hallazgos",
+                        dimension=dim,
+                    )
+                )
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Falló la agregación likert de %r: %s", dim, exc)
+
+    # Numérica / categórica / binaria: un chunk por pregunta agregable.
+    for q in preguntas:
+        tipo = _texto(q.get("type"))
+        qid = _texto(q.get("question_id"))
+        texto_q = _texto(q.get("text")) or qid
+        if not qid:
+            continue
+        try:
+            if tipo == _TIPO_NUMERICO:
+                h = agregacion.agregar_numerica(qid, texto_q, respondents)
+            elif tipo in (_TIPO_CATEGORICO, _TIPO_BINARIO):
+                clase_tipo = "binaria" if tipo == _TIPO_BINARIO else "categorica"
+                h = agregacion.agregar_categorica(qid, texto_q, clase_tipo, respondents)
+            else:
+                continue
+            if h is not None:
+                hallazgos.append(h)
+                chunks.append(
+                    ChunkIndexable(
+                        texto=agregacion.redactar_hallazgo(h),
+                        clase="hallazgos",
+                        dimension=h.dimension,
+                    )
+                )
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Falló la agregación de %r (%s): %s", qid, tipo, exc)
+
+    # Resumen global.
+    try:
+        resumen = agregacion.redactar_resumen_global(hallazgos, len(respondents), titulo)
+        if resumen.strip():
+            chunks.append(
+                ChunkIndexable(texto=resumen, clase="hallazgos", dimension="")
+            )
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Falló el resumen global: %s", exc)
+
+    return chunks

@@ -35,6 +35,25 @@ def _tipo_seguro(valor) -> str:
     return valor if valor in _TIPOS_VALIDOS else "Encuesta"
 
 
+def _aplanar_piezas(chunks_ix, chunking) -> list[tuple[str, dict]]:
+    """Aplana `list[ChunkIndexable]` a piezas (texto, metadata_aditiva) (§6.4).
+
+    Re-trocea SOLO si el texto supera `chunking.VENTANA`, propagando
+    `clase_chunk`/`dimension` a cada pieza, y descarta piezas más cortas que
+    `chunking.MIN_LONGITUD` (§15.3-NIT4). La numeración de `id`/`chunk_index` la
+    hace el llamador sobre esta lista APLANADA.
+    """
+    piezas: list[tuple[str, dict]] = []
+    for ch in chunks_ix:
+        textos = [ch.texto] if len(ch.texto) <= chunking.VENTANA else chunking.trocear(ch.texto)
+        extra = {"clase_chunk": ch.clase, "dimension": ch.dimension}
+        for t in textos:
+            if len(t.strip()) < chunking.MIN_LONGITUD:
+                continue
+            piezas.append((t, extra))
+    return piezas
+
+
 def _deserializar_kpis(valor) -> list[str]:
     """Deserializa el string JSON de kpis guardado en la metadata de Chroma."""
     if isinstance(valor, list):
@@ -86,9 +105,19 @@ async def indexar(peticion: IndexRequest) -> IndexResponse:
 
         from app.core import chunking
 
-        texto = sources.extraer_texto(artefacto)
-        chunks = chunking.trocear(texto)
-        if not chunks:
+        # Chunks pre-redactados (§6.1); si vienen vacíos, degradar al camino
+        # anterior (extraer_texto + trocear) sin clase/dimensión (§6.5).
+        chunks_ix = sources.construir_chunks(artefacto, instrumento_id)
+        if chunks_ix:
+            piezas = _aplanar_piezas(chunks_ix, chunking)
+        else:
+            texto = sources.extraer_texto(artefacto)
+            piezas = [
+                (t, {"clase_chunk": "estructura", "dimension": ""})
+                for t in chunking.trocear(texto)
+            ]
+
+        if not piezas:
             resultados.append(
                 IndexInstrumentoResultado(
                     instrumentoId=instrumento_id,
@@ -99,11 +128,17 @@ async def indexar(peticion: IndexRequest) -> IndexResponse:
             )
             continue
 
-        meta = sources.extraer_metadata(artefacto, instrumento_id)
+        documentos = [t for t, _ in piezas]
+        # Mismo título que la cabecera de estructura: precedencia §15.2 con el
+        # título del .txt como override (punto único de verdad del título).
+        titulo_override = sources.titulo_override_txt(artefacto, instrumento_id)
+        meta = sources.extraer_metadata(
+            artefacto, instrumento_id, titulo_override=titulo_override
+        )
         kpis_json = json.dumps(meta.get("kpis", []), ensure_ascii=False)
 
         try:
-            vectores = embeddings.embed_texts(chunks)
+            vectores = embeddings.embed_texts(documentos)
         except HTTPException:
             raise
         except Exception as exc:  # noqa: BLE001
@@ -113,7 +148,10 @@ async def indexar(peticion: IndexRequest) -> IndexResponse:
                 detail="No se pudo cargar el modelo de embeddings.",
             )
 
-        ids = [f"{peticion.investigacionId}:{instrumento_id}:{n}" for n in range(len(chunks))]
+        ids = [
+            f"{peticion.investigacionId}:{instrumento_id}:{n}"
+            for n in range(len(piezas))
+        ]
         metadatas = [
             {
                 "instrumentoId": instrumento_id,
@@ -123,21 +161,23 @@ async def indexar(peticion: IndexRequest) -> IndexResponse:
                 "kpis": kpis_json,
                 "investigacionId": peticion.investigacionId,
                 "chunk_index": n,
+                "clase_chunk": extra["clase_chunk"],
+                "dimension": extra["dimension"],
             }
-            for n in range(len(chunks))
+            for n, (_, extra) in enumerate(piezas)
         ]
 
         try:
-            chroma_client.upsert(coleccion, ids, vectores, chunks, metadatas)
+            chroma_client.upsert(coleccion, ids, vectores, documentos, metadatas)
         except Exception as exc:  # noqa: BLE001
             logger.error("Vector store no disponible: %s", exc)
             raise HTTPException(status_code=502, detail="Vector store no disponible.")
 
-        total_chunks += len(chunks)
+        total_chunks += len(piezas)
         resultados.append(
             IndexInstrumentoResultado(
                 instrumentoId=instrumento_id,
-                chunks=len(chunks),
+                chunks=len(piezas),
                 estado="indexado",
             )
         )
