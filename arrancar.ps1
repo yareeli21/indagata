@@ -105,5 +105,5 @@ Write-Host " Ahora levanta el FRONTEND en otra terminal:" -ForegroundColor Cyan
 Write-Host "   cd pixel-perfect-pixel"
 Write-Host "   bun run dev"
 Write-Host ""
-Write-Host " Luego abre la URL que muestre Vite (normalmente http://localhost:3000)." -ForegroundColor Cyan
+Write-Host " Luego abre la URL que muestre Vite: http://localhost:5173" -ForegroundColor Cyan
 Write-Host ""
