@@ -341,7 +341,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./frontend:/app
+      - ./pixel-perfect-pixel:/app
       - /app/node_modules
     networks:
       - indagata_network
