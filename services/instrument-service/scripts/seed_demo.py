@@ -24,12 +24,17 @@ import re
 import sys
 from pathlib import Path
 
-# ── Resolver import de `shared` también en ejecución local ────────────────────
-# scripts/seed_demo.py -> parents[3] = raíz del repo (donde vive `shared/`).
-if not (Path(__file__).resolve().parents[1] / "shared" / "__init__.py").exists():
-    _REPO_ROOT = Path(__file__).resolve().parents[3]
-    if str(_REPO_ROOT) not in sys.path:
-        sys.path.insert(0, str(_REPO_ROOT))
+# ── Resolver import de `shared` (contenedor y ejecución local) ────────────────
+# `python scripts/seed_demo.py` solo agrega `scripts/` a sys.path, así que hay que
+# agregar la primera carpeta ancestra que contenga `shared/`:
+#   - contenedor: /app (shared montado en /app/shared);
+#   - local:      raíz del repo (indagata/shared).
+_SHARED_ROOT = next(
+    (p for p in Path(__file__).resolve().parents if (p / "shared" / "__init__.py").is_file()),
+    None,
+)
+if _SHARED_ROOT is not None and str(_SHARED_ROOT) not in sys.path:
+    sys.path.insert(0, str(_SHARED_ROOT))
 
 from shared.db.core.config import settings  # noqa: E402
 from shared.db.session import SessionLocal  # noqa: E402
