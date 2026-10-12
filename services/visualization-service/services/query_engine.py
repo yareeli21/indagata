@@ -224,14 +224,14 @@ def cargar_fichas(db: Session) -> list[Ficha]:
 
     kpis_por_procesado: dict[int, list[tuple[int, str, float | None]]] = {}
     filas_kpi = (
-        db.query(KPIInferido.id_procesado, KPI.kpi_id, KPI.nombre_kpi, func.max(KpiInferidoChunk.score))
+        db.query(KPIInferido.id_procesado, KPI.kpi_id, KPI.nombre, func.max(KpiInferidoChunk.score))
         .join(KPI, KPI.kpi_id == KPIInferido.kpi_id)
         .outerjoin(
             KpiInferidoChunk,
             (KpiInferidoChunk.id_procesado == KPIInferido.id_procesado)
             & (KpiInferidoChunk.kpi_id == KPIInferido.kpi_id),
         )
-        .group_by(KPIInferido.id_procesado, KPI.kpi_id, KPI.nombre_kpi)
+        .group_by(KPIInferido.id_procesado, KPI.kpi_id, KPI.nombre)
         .all()
     )
     for id_procesado, kpi_id, nombre, score in filas_kpi:
@@ -407,6 +407,14 @@ class KpiRef:
     ambito: str = ""
 
 
+def _kpi_ref(k: KPI) -> KpiRef:
+    """KpiRef de una fila de `tt_rag.kpi`; polaridad y tipo de objetivo hacen de etiquetas."""
+    return KpiRef(
+        str(k.kpi_id), k.kpi_id, k.nombre, k.descripcion_ampliada_educativa or "",
+        k.polaridad_rendimiento or "", k.tipo_objetivo_estrategico or "",
+    )
+
+
 def _icono(*textos: str) -> str:
     t = normalizar(" ".join(textos))
     for patron, icono in _ICONOS:
@@ -427,11 +435,11 @@ def resolver_kpi(db: Session, kpi_id: str, fichas: list[Ficha]) -> KpiRef | None
     if kpi_id.isdigit():
         fila = db.get(KPI, int(kpi_id))
         if fila is not None:
-            return KpiRef(str(fila.kpi_id), fila.kpi_id, fila.nombre_kpi, fila.descripcion or "", fila.categoria or "", fila.ambito or "")
+            return _kpi_ref(fila)
     clave = slug(kpi_id)
     for fila in db.query(KPI).all():
-        if slug(fila.nombre_kpi) == clave:
-            return KpiRef(str(fila.kpi_id), fila.kpi_id, fila.nombre_kpi, fila.descripcion or "", fila.categoria or "", fila.ambito or "")
+        if slug(fila.nombre) == clave:
+            return _kpi_ref(fila)
     for ficha in fichas:
         for nombre in ficha.kpis:
             if slug(nombre) == clave:
@@ -445,11 +453,8 @@ def catalogo_kpis(db: Session, fichas: list[Ficha]) -> list[dict[str, Any]]:
         variables.setdefault(kpi_id, []).append(variable)
 
     salida: list[dict[str, Any]] = []
-    filas = db.query(KPI).order_by(KPI.nombre_kpi).all()
-    refs = [
-        (KpiRef(str(k.kpi_id), k.kpi_id, k.nombre_kpi, k.descripcion or "", k.categoria or "", k.ambito or ""), k)
-        for k in filas
-    ]
+    filas = db.query(KPI).order_by(KPI.nombre).all()
+    refs = [(_kpi_ref(k), k) for k in filas]
     if not refs:
         # Sin catálogo en BD: se usan los nombres de KPI declarados en los instrumentos.
         nombres = sorted({n for f in fichas for n in f.kpis}, key=normalizar)
@@ -467,20 +472,17 @@ def catalogo_kpis(db: Session, fichas: list[Ficha]) -> list[dict[str, Any]]:
             else "Se estima con los reactivos de los instrumentos asociados, identificados por similitud semántica."
         )
         info = f"{n} instrumento{'s' if n != 1 else ''} del acervo asociado{'s' if n != 1 else ''} a este KPI."
-        if fila is not None and fila.url_documentacion:
-            info += f" Documentación: {fila.url_documentacion}"
+        if fila is not None and fila.razon_estrategica_decisiones:
+            info = f"{fila.razon_estrategica_decisiones} {info}"
         salida.append(
             {
                 "id": ref.id,
                 "nombre": ref.nombre,
                 "descripcionCorta": (ref.descripcion[:137] + "…") if len(ref.descripcion) > 140 else ref.descripcion,
                 "queEs": ref.descripcion,
-                "queMide": " · ".join(p for p in (
-                    f"Categoría: {ref.categoria}" if ref.categoria else "",
-                    f"Ámbito: {ref.ambito}" if ref.ambito else "",
-                ) if p),
+                "queMide": (fila.comportamiento_direccional_causalidad if fila is not None else None) or "",
                 "comoSeMide": como,
-                "formula": (fila.formula if fila is not None and fila.formula else ""),
+                "formula": (fila.formula_metrica_calculo if fila is not None else None) or "",
                 "infoGeneral": info,
                 "icono": _icono(ref.nombre, ref.categoria, ref.ambito),
                 "etiquetas": [e for e in (ref.categoria, ref.ambito) if e],
@@ -658,21 +660,14 @@ def kpis_de_instrumento(db: Session, ficha: Ficha) -> list[dict[str, Any]]:
     for kpi_id in ficha.kpi_ids:
         if kpi_id in filas:
             k = filas[kpi_id]
-            refs[normalizar(k.nombre_kpi)] = (
-                KpiRef(str(k.kpi_id), k.kpi_id, k.nombre_kpi, k.descripcion or "", k.categoria or "", k.ambito or ""),
-                "aceptado",
-            )
-    por_nombre = {normalizar(k.nombre_kpi): k for k in filas.values()}
+            refs[normalizar(k.nombre)] = (_kpi_ref(k), "aceptado")
+    por_nombre = {normalizar(k.nombre): k for k in filas.values()}
     for nombre in ficha.kpis:
         clave = normalizar(nombre)
         if clave in refs:
             continue
         k = por_nombre.get(clave)
-        ref = (
-            KpiRef(str(k.kpi_id), k.kpi_id, k.nombre_kpi, k.descripcion or "", k.categoria or "", k.ambito or "")
-            if k is not None
-            else KpiRef(slug(nombre), None, nombre)
-        )
+        ref = _kpi_ref(k) if k is not None else KpiRef(slug(nombre), None, nombre)
         refs[clave] = (ref, "referencia")
     return [
         {

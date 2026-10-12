@@ -44,8 +44,9 @@ def acervo(db, tmp_path, chroma, storage):
             Usuario(usuario_id=1, nombre="Admin", email="a@x.com", password_hash="x", rol="administrador"),
             Usuario(usuario_id=2, nombre="Ana Beltrán", email="ana@x.com", password_hash="x", rol="investigador"),
             Usuario(usuario_id=3, nombre="Luis Ordóñez", email="luis@x.com", password_hash="x", rol="investigador"),
-            KPI(kpi_id=5, nombre_kpi="Compromiso académico", descripcion="Grado de involucramiento del estudiante.", categoria="Aprendizaje"),
-            KPI(kpi_id=6, nombre_kpi="Satisfacción estudiantil", categoria="Satisfacción"),
+            KPI(kpi_id=5, nombre="Compromiso académico", descripcion_ampliada_educativa="Grado de involucramiento del estudiante.",
+                polaridad_rendimiento="POSITIVO (Maximizar)", texto_contexto_rag_vectorial="Compromiso académico"),
+            KPI(kpi_id=6, nombre="Satisfacción estudiantil", texto_contexto_rag_vectorial="Satisfacción estudiantil"),
         ]
     )
     db.flush()

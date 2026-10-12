@@ -255,7 +255,7 @@ def test_finalizar_agrega_kpis_aceptados(cliente, ana, crear_instrumento, db, st
         headers=ana,
     )
     procesado = db.query(InstrumentoProcesado).filter_by(id_crudo=id_crudo).one()
-    db.add(KPI(kpi_id=5, nombre_kpi="Compromiso académico"))
+    db.add(KPI(kpi_id=5, nombre="Compromiso académico", texto_contexto_rag_vectorial="Compromiso académico"))
     db.add(KPIInferido(id_procesado=procesado.id_instrumento, kpi_id=5, razon="Aceptado"))
     db.commit()
 

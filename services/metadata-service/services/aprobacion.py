@@ -247,7 +247,7 @@ def kpis_aceptados(db: Session, id_crudo: int) -> list[dict[str, Any]]:
     if not ids_procesados:
         return []
     filas = (
-        db.query(KPIInferido.kpi_id, KPI.nombre_kpi, func.max(KpiInferidoChunk.score))
+        db.query(KPIInferido.kpi_id, KPI.nombre, func.max(KpiInferidoChunk.score))
         .join(KPI, KPI.kpi_id == KPIInferido.kpi_id)
         .outerjoin(
             KpiInferidoChunk,
@@ -255,7 +255,7 @@ def kpis_aceptados(db: Session, id_crudo: int) -> list[dict[str, Any]]:
             & (KpiInferidoChunk.kpi_id == KPIInferido.kpi_id),
         )
         .filter(KPIInferido.id_procesado.in_(ids_procesados))
-        .group_by(KPIInferido.kpi_id, KPI.nombre_kpi)
+        .group_by(KPIInferido.kpi_id, KPI.nombre)
         .order_by(KPIInferido.kpi_id)
         .all()
     )
