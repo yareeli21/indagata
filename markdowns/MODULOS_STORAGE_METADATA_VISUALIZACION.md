@@ -167,9 +167,9 @@ La primera vez Postgres ejecuta `infrastructure/postgres/init/01_schema.sql` y
 # Modelo del LLM (una sola vez; queda en el volumen ollama_data)
 docker exec -it indagata_ollama ollama pull llama3.2:3b
 
-# Catálogo de KPIs de demostración (OJO: vacía la tabla kpi y, en cascada, kpi_inferido)
-docker cp .agents/tasks/chroma-viz/scratch/seed_kpis.sql indagata_postgres:/tmp/seed_kpis.sql
-docker exec indagata_postgres psql -U postgres -d indagata_db -f /tmp/seed_kpis.sql
+# Catálogo de 55 KPIs desde infrastructure/postgres/seed/kpis_ampliados.csv
+# (OJO: vacía la tabla kpi y, en cascada, kpi_variable y kpi_inferido)
+docker exec indagata_analysis_service python scripts/seed_kpis.py
 
 # Vectorizar los KPIs en Chroma (colección `kpis`)
 curl.exe -X POST http://localhost:8002/vectorizacion/kpis/reindex
@@ -295,6 +295,16 @@ respuesta lo indica; se reintenta al armar una investigación.
 
 **«KPIs sugeridos» aparece vacío**
 Falta sembrar la tabla `kpi` o reindexar la colección `kpis` (§5.3).
+
+**`usuario de prueba (usuario_id=1) no existe` o `column kpi.nombre does not exist`**
+El volumen `postgres_data` viene de una versión anterior del proyecto: los
+scripts de `infrastructure/postgres/init/` solo corren con el volumen vacío, así
+que no se crearon los usuarios o la tabla `kpi` conserva la forma vieja. Si no
+necesitas los datos de esa base, recréala y repite §5.3:
+`docker compose down` → `docker volume rm <carpeta>_postgres_data` (el nombre
+exacto sale en `docker volume ls`; con la carpeta `indagata` es
+`indagata_postgres_data`) → `docker compose up -d`. No uses `down -v`: también
+borraría el modelo de Ollama y la caché de embeddings.
 
 **El chat responde que no encontró información**
 Solo entran al RAG los instrumentos con metadatos aprobados; aprueba los tuyos
