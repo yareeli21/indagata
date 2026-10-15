@@ -4,7 +4,12 @@ Pasos:
   1. Vectores: KPIs desde la colección `kpis` (o embebidos si faltan),
      instrumentos con `vectores_instrumento`, chunks con la fuente activa.
   2. PCA ajustado sobre KPIs + instrumentos (el conjunto «ancla»); chunks y, más
-     adelante, consultas se proyectan con la MISMA transformación.
+     adelante, consultas se proyectan con la MISMA transformación. Se calcula
+     también una vista «alineada»: cada tipo se centra en su propio centroide
+     antes del PCA, para quitar la brecha de modalidad (un KPI es una definición
+     corta y un instrumento un texto largo, y eso separa los grupos aunque traten
+     el mismo tema). Solo cambia el dibujo; el parecido se sigue midiendo con
+     coseno sobre los vectores originales.
   3. Clusters semánticos de KPIs (k-means esférico sobre los vectores originales);
      cada instrumento hereda el cluster de su KPI más parecido (coseno).
 
@@ -36,6 +41,8 @@ logger = logging.getLogger("visualization-service")
 
 # Si PC1 + PC2 explican menos que esto, la UI advierte que el mapa simplifica mucho.
 UMBRAL_VARIANZA_BAJA = 0.25
+# Tope de chunks que se comparan al buscar vecinos (coseno exacto, en memoria).
+LIMITE_CHUNKS_VECINOS = 20000
 
 
 @dataclass
@@ -52,6 +59,11 @@ class Elemento:
     cluster: int | None = None
     x: float = 0.0
     y: float = 0.0
+    # Texto completo (solo chunks), para el panel de detalle.
+    texto: str = ""
+    # Coordenadas en la vista alineada.
+    xa: float = 0.0
+    ya: float = 0.0
 
 
 @dataclass
@@ -60,11 +72,16 @@ class Espacio:
     kpis: list[Elemento]
     instrumentos: list[Elemento]
     proyeccion: algebra.Proyeccion
+    proyeccion_alineada: algebra.Proyeccion
+    # Centroide de cada tipo («kpi», «instrumento», «chunk») para la vista alineada.
+    medias: dict[str, np.ndarray]
     clusters: list[dict[str, Any]]
     fuente: FuenteChunks
     generado: datetime
     chunks: list[Elemento] = field(default_factory=list)
     limite_chunks: int = 0
+    # Todos los chunks (sin muestreo) para buscar vecinos; se cargan al pedirlos.
+    chunks_completos: list[Elemento] | None = None
 
 
 _cache: dict[str, Espacio] = {}
@@ -107,7 +124,11 @@ def _vectores_kpis(kpis: list[KPI]) -> dict[int, list[float]]:
 def _huella(kpis: list[KPI], fichas: list[query_engine.Ficha]) -> str:
     partes = [f"k{k.kpi_id}:{k.nombre}:{len(k.texto_contexto_rag_vectorial or '')}" for k in kpis]
     partes += [f"i{f.id}:{f.estado_backend}:{f.titulo}:{f.reactivos}:{bool(f.data)}" for f in fichas]
-    for nombre in (settings.CHROMA_COLLECTION_KPIS, settings.CHROMA_COLLECTION_SUMMARY):
+    for nombre in (
+        settings.CHROMA_COLLECTION_KPIS,
+        settings.CHROMA_COLLECTION_SUMMARY,
+        settings.CHROMA_COLLECTION_INSTRUMENTOS,
+    ):
         try:
             coleccion = vectores.coleccion_existente(nombre)
             partes.append(f"{nombre}:{coleccion.count() if coleccion is not None else 0}")
@@ -158,6 +179,16 @@ def _construir(db: Session, huella: str, kpis: list[KPI], fichas: list[query_eng
     for e, (x, y) in zip(ancla, proyeccion.proyectar(matriz)):
         e.x, e.y = float(x), float(y)
 
+    medias = {
+        tipo: np.vstack([e.vector for e in grupo]).mean(axis=0)
+        for tipo, grupo in (("kpi", elementos_kpi), ("instrumento", elementos_inst))
+        if grupo
+    }
+    alineada = np.vstack([e.vector - medias[e.tipo] for e in ancla]) if ancla else matriz
+    proyeccion_alineada = algebra.ajustar_pca(alineada) if len(ancla) else proyeccion
+    for e, (x, y) in zip(ancla, proyeccion_alineada.proyectar(alineada)):
+        e.xa, e.ya = float(x), float(y)
+
     clusters: list[dict[str, Any]] = []
     if elementos_kpi:
         mat_kpi = np.vstack([e.vector for e in elementos_kpi])
@@ -187,14 +218,15 @@ def _construir(db: Session, huella: str, kpis: list[KPI], fichas: list[query_eng
         kpis=elementos_kpi,
         instrumentos=elementos_inst,
         proyeccion=proyeccion,
+        proyeccion_alineada=proyeccion_alineada,
+        medias=medias,
         clusters=clusters,
         fuente=fuente_activa(),
         generado=datetime.now(timezone.utc),
     )
 
 
-def _agregar_chunks(espacio: Espacio, limite: int) -> None:
-    """Proyecta los chunks con el PCA ya ajustado (no lo reajusta)."""
+def _elementos_chunk(espacio: Espacio, limite: int) -> list[Elemento]:
     chunks = espacio.fuente.todos(limite)
     instrumentos = {e.ref: e for e in espacio.instrumentos}
     elementos: list[Elemento] = []
@@ -208,18 +240,38 @@ def _agregar_chunks(espacio: Espacio, limite: int) -> None:
                 ref=c.id,
                 etiqueta=f"{titulo} — {c.seccion or 'fragmento'}",
                 resumen=_primera_oracion(c.texto, 140),
+                texto=c.texto,
                 detalle=c.seccion,
                 vector=np.asarray(c.embedding, dtype=float),
                 instrumento_id=c.instrumento_id,
                 cluster=padre.cluster if padre else None,
             )
         )
+    return elementos
+
+
+def _agregar_chunks(espacio: Espacio, limite: int) -> None:
+    """Proyecta los chunks con el PCA ya ajustado (no lo reajusta)."""
+    elementos = _elementos_chunk(espacio, limite)
     if elementos:
-        coords = espacio.proyeccion.proyectar(np.vstack([e.vector for e in elementos]))
-        for e, (x, y) in zip(elementos, coords):
+        matriz = np.vstack([e.vector for e in elementos])
+        for e, (x, y) in zip(elementos, espacio.proyeccion.proyectar(matriz)):
             e.x, e.y = float(x), float(y)
+        espacio.medias["chunk"] = matriz.mean(axis=0)
+        alineados = espacio.proyeccion_alineada.proyectar(matriz - espacio.medias["chunk"])
+        for e, (x, y) in zip(elementos, alineados):
+            e.xa, e.ya = float(x), float(y)
     espacio.chunks = elementos
     espacio.limite_chunks = limite
+
+
+def chunks_completos(espacio: Espacio) -> list[Elemento]:
+    """Todos los chunks de la fuente (para vecinos), cargados una vez por espacio."""
+    if espacio.chunks_completos is None:
+        with _lock:
+            if espacio.chunks_completos is None:
+                espacio.chunks_completos = _elementos_chunk(espacio, LIMITE_CHUNKS_VECINOS)
+    return espacio.chunks_completos
 
 
 def obtener_espacio(db: Session, *, chunks: bool = False, limite_chunks: int = 3000) -> Espacio:
@@ -255,7 +307,7 @@ def precalentar() -> None:
         logger.warning("No se pudo precalcular el espacio vectorial: %s", exc)
 
 
-def _punto(e: Elemento) -> dict[str, Any]:
+def _punto(e: Elemento, alinear: bool) -> dict[str, Any]:
     return {
         "id": e.id,
         "tipo": e.tipo,
@@ -263,26 +315,29 @@ def _punto(e: Elemento) -> dict[str, Any]:
         "etiqueta": e.etiqueta,
         "resumen": e.resumen,
         "detalle": e.detalle,
-        "x": round(e.x, 4),
-        "y": round(e.y, 4),
+        "x": round(e.xa if alinear else e.x, 4),
+        "y": round(e.ya if alinear else e.y, 4),
         "clusterId": e.cluster,
         "instrumentoId": e.instrumento_id,
         "origenVector": e.origen_vector,
     }
 
 
-def mapa(db: Session, *, chunks: bool = False, limite_chunks: int = 3000) -> dict[str, Any]:
-    """DTO del mapa para el frontend."""
+def mapa(
+    db: Session, *, chunks: bool = False, limite_chunks: int = 3000, alinear: bool = False
+) -> dict[str, Any]:
+    """DTO del mapa para el frontend (`alinear`: vista con los grupos centrados)."""
     espacio = obtener_espacio(db, chunks=chunks, limite_chunks=limite_chunks)
+    proyeccion = espacio.proyeccion_alineada if alinear else espacio.proyeccion
     elementos = espacio.kpis + espacio.instrumentos + (espacio.chunks if chunks else [])
     dimension = int(espacio.proyeccion.media.shape[0]) if espacio.kpis or espacio.instrumentos else 0
     return {
         "modelo": settings.EMBEDDING_MODEL,
         "dimension": dimension,
         "pca": {
-            "varianza": [round(v, 4) for v in espacio.proyeccion.varianza],
-            "varianzaTotal": round(espacio.proyeccion.varianza_total, 4),
-            "varianzaBaja": espacio.proyeccion.varianza_total < UMBRAL_VARIANZA_BAJA,
+            "varianza": [round(v, 4) for v in proyeccion.varianza],
+            "varianzaTotal": round(proyeccion.varianza_total, 4),
+            "varianzaBaja": proyeccion.varianza_total < UMBRAL_VARIANZA_BAJA,
         },
         "clusters": espacio.clusters,
         "fuenteChunks": {"nombre": espacio.fuente.nombre, "provisional": espacio.fuente.provisional},
@@ -291,6 +346,7 @@ def mapa(db: Session, *, chunks: bool = False, limite_chunks: int = 3000) -> dic
             "instrumentos": len(espacio.instrumentos),
             "chunks": len(espacio.chunks) if chunks else 0,
         },
-        "puntos": [_punto(e) for e in elementos],
+        "puntos": [_punto(e, alinear) for e in elementos],
         "generadoEn": espacio.generado.isoformat(),
+        "alineado": alinear,
     }

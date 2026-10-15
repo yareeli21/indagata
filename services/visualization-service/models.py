@@ -262,3 +262,62 @@ class MapaEspacioOut(BaseModel):
     conteos: ConteosEspacioOut
     puntos: list[PuntoEspacioOut]
     generadoEn: str
+    # True si cada grupo se centró en su propio centroide antes del PCA.
+    alineado: bool = False
+
+
+class VecinoOut(BaseModel):
+    """Punto cercano al origen; `similitud` = coseno en el espacio original."""
+
+    id: str
+    tipo: TipoPunto
+    ref: str
+    etiqueta: str
+    similitud: float
+    clusterId: int | None = None
+    instrumentoId: str | None = None
+    # Solo chunks: texto completo y sección.
+    texto: str | None = None
+    seccion: str | None = None
+
+
+class OrigenVecinosOut(BaseModel):
+    id: str
+    tipo: TipoPunto
+    ref: str
+    etiqueta: str
+    clusterId: int | None = None
+    # Solo chunks: texto completo y sección.
+    texto: str | None = None
+    seccion: str | None = None
+
+
+class VecinosEspacioOut(BaseModel):
+    origen: OrigenVecinosOut
+    kpis: list[VecinoOut]
+    instrumentos: list[VecinoOut]
+    chunks: list[VecinoOut]
+    fuenteChunks: FuenteChunksOut
+
+
+class BusquedaEspacioIn(BaseModel):
+    texto: str = Field(min_length=3, max_length=300)
+    k: int = Field(6, ge=1, le=30)
+
+
+class PosicionOut(BaseModel):
+    x: float
+    y: float
+
+
+class BusquedaEspacioOut(BaseModel):
+    texto: str
+    # Posición de la consulta en la vista original y en la alineada.
+    posicion: PosicionOut
+    posicionAlineada: PosicionOut
+    # Grupo con cuyo centroide se centró la consulta en la vista alineada.
+    grupoReferencia: Literal["kpi", "instrumento", "chunk"] | None = None
+    kpis: list[VecinoOut]
+    instrumentos: list[VecinoOut]
+    chunks: list[VecinoOut]
+    fuenteChunks: FuenteChunksOut

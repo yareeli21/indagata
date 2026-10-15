@@ -30,7 +30,7 @@ export function TooltipPunto({ punto, x, y, ancho, alto }: TooltipPuntoProps) {
       style={{ left: izquierda, top: arriba, width: ANCHO_TOOLTIP }}
     >
       <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">
-        <SimboloTipo tipo={punto.tipo} />
+        <SimboloTipo tipo={punto.tipo} clusterId={punto.clusterId} />
         {NOMBRE_TIPO[punto.tipo]}
       </p>
       <p className="mt-1.5 font-display text-base font-bold leading-snug text-foreground">
