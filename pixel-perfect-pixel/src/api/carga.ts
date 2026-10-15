@@ -7,7 +7,7 @@ import type {
   ReporteLimpieza,
   TipoInstrumento,
 } from "@/types";
-import { ANALYSIS_URL, API_URL, leerToken, pedir } from "./client";
+import { ANALYSIS_URL, API_URL, avisarSesionExpirada, leerToken, pedir } from "./client";
 
 // ── Mapeo tipo UI → enum backend ────────────────────────────────────────────────
 // La etiqueta de UI (`TIPOS_INSTRUMENTO`) se convierte aquí al vocabulario cerrado
@@ -153,6 +153,7 @@ export async function subirInstrumento(
   });
 
   if (!respuesta.ok) {
+    if (respuesta.status === 401) avisarSesionExpirada();
     const detalle = await detalleDe(respuesta);
     const mensaje =
       respuesta.status === 401

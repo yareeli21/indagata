@@ -10,7 +10,7 @@ import type {
   RazonCoincidencia,
   TipoInstrumento,
 } from "@/types";
-import { API_URL, ErrorHttp, leerToken, pedir } from "./client";
+import { API_URL, ErrorHttp, avisarSesionExpirada, leerToken, pedir } from "./client";
 
 /**
  * DTO de instrumento que devuelven el instrument-service y el visualization-service
@@ -108,6 +108,7 @@ export async function descargarInstrumento(id: string, formato: FormatoDescarga)
     { headers },
   );
   if (!respuesta.ok) {
+    if (respuesta.status === 401) avisarSesionExpirada();
     let detalle = "";
     try {
       const datos = (await respuesta.json()) as { detail?: unknown };

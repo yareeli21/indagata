@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { iniciarSesion } from "@/api/auth";
-import { borrarToken } from "@/api/client";
+import { EVENTO_SESION_EXPIRADA, borrarToken } from "@/api/client";
 import type { Usuario } from "@/types";
 
 const CLAVE = "indagata.sesion";
@@ -41,6 +41,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     borrarToken();
     setUsuario(null);
   }, []);
+
+  // Token vencido (401 en cualquier petición autenticada): cerrar sesión; el
+  // layout del panel redirige a /login al quedar sin usuario.
+  useEffect(() => {
+    window.addEventListener(EVENTO_SESION_EXPIRADA, salir);
+    return () => window.removeEventListener(EVENTO_SESION_EXPIRADA, salir);
+  }, [salir]);
 
   const value = useMemo(
     () => ({ usuario, cargando, entrar, salir }),

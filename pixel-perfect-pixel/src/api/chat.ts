@@ -1,5 +1,5 @@
 import type { ContextoInvestigacion, FuenteChat, ModeloLLM } from "@/types";
-import { API_URL, leerToken } from "./client";
+import { API_URL, avisarSesionExpirada, leerToken } from "./client";
 
 export const MODELOS_DISPONIBLES: { id: ModeloLLM; etiqueta: string }[] = [
   { id: "llama3.2:3b", etiqueta: "Llama 3.2 (3B) — local" },
@@ -100,6 +100,7 @@ export function enviarMensaje(
     });
 
     if (!respuesta.ok || !respuesta.body) {
+      if (respuesta.status === 401) avisarSesionExpirada();
       onDone(fuentes);
       return;
     }
@@ -176,9 +177,10 @@ export async function guardarContexto(
   const token = leerToken();
   if (token) encabezados["Authorization"] = `Bearer ${token}`;
 
-  await fetch(`${API_URL}/rag/index`, {
+  const respuesta = await fetch(`${API_URL}/rag/index`, {
     method: "POST",
     headers: encabezados,
     body: JSON.stringify({ investigacionId, instrumentoIds }),
   });
+  if (respuesta.status === 401) avisarSesionExpirada();
 }

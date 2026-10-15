@@ -47,6 +47,15 @@ export function borrarToken(): void {
   }
 }
 
+/** Evento que AuthContext escucha para cerrar la sesión y volver al login. */
+export const EVENTO_SESION_EXPIRADA = "indagata:sesion-expirada";
+
+/** Llamar ante un HTTP 401 de una petición autenticada (token vencido o inválido). */
+export function avisarSesionExpirada(): void {
+  borrarToken();
+  window.dispatchEvent(new Event(EVENTO_SESION_EXPIRADA));
+}
+
 // ── Helper HTTP ─────────────────────────────────────────────────────────────────
 
 interface OpcionesPedir {
@@ -64,8 +73,9 @@ export interface ErrorHttp extends Error {
 
 /**
  * Realiza una petición HTTP contra la API y devuelve el JSON parseado.
- * Lanza un Error con mensaje en español en respuestas no-2xx; un HTTP 401
- * se mapea al mensaje exacto 'Usuario o contraseña incorrectos'.
+ * Lanza un Error con mensaje en español en respuestas no-2xx. Un HTTP 401 en
+ * el login es 'Usuario o contraseña incorrectos'; en una petición autenticada
+ * significa que el token venció, así que además se cierra la sesión.
  */
 export async function pedir<T>(url: string, opciones: OpcionesPedir = {}): Promise<T> {
   const { method = "GET", body, auth = false } = opciones;
@@ -84,7 +94,10 @@ export async function pedir<T>(url: string, opciones: OpcionesPedir = {}): Promi
 
   if (!respuesta.ok) {
     if (respuesta.status === 401) {
-      const error: ErrorHttp = new Error("Usuario o contraseña incorrectos");
+      if (auth) avisarSesionExpirada();
+      const error: ErrorHttp = new Error(
+        auth ? "Tu sesión expiró, vuelve a iniciar sesión." : "Usuario o contraseña incorrectos",
+      );
       error.status = 401;
       throw error;
     }
