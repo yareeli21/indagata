@@ -5,6 +5,9 @@ import { useAuth } from "@/features/auth/AuthContext";
 import { useResearch } from "@/features/research/ResearchContext";
 import { fuentesDeInvestigacion } from "@/features/research/fuentes";
 import type { ContextoInvestigacion, Instrumento, Mensaje, ModeloLLM } from "@/types";
+import { MessageSquare } from "lucide-react";
+import { PageHeader } from "@/components/layout/PageHeader";
+import { Pagina } from "@/components/layout/Pagina";
 import { BarraEntrada } from "./BarraEntrada";
 import { BurbujaMensaje } from "./BurbujaMensaje";
 import { ChipsFuentes } from "./ChipsFuentes";
@@ -119,21 +122,33 @@ export function ChatPage() {
   // ── Sin investigación activa ──
   if (fase === "vacio") {
     return (
-      <div className="flex h-full flex-1 flex-col">
+      <Pagina>
+        <PageHeader
+          icono={MessageSquare}
+          etiqueta="Asistente RAG"
+          titulo="Chat con el acervo"
+          descripcion="Pregunta en lenguaje natural y recibe respuestas fundamentadas en tus instrumentos."
+        />
         <EstadoVacioChat />
-      </div>
+      </Pagina>
     );
   }
 
   // ── Formulario de contexto ──
   if (fase === "contexto") {
     return (
-      <div className="flex h-full flex-1 flex-col">
+      <Pagina>
+        <PageHeader
+          icono={MessageSquare}
+          etiqueta="Asistente RAG"
+          titulo="Chat con el acervo"
+          descripcion="Antes de empezar, cuéntale al asistente el contexto de tu investigación."
+        />
         <FormularioContexto
           nombreInvestigacion={activa?.nombre ?? ""}
           onComenzar={handleComenzar}
         />
-      </div>
+      </Pagina>
     );
   }
 

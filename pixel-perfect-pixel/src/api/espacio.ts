@@ -1,13 +1,17 @@
-import type { EspacioVectorial } from "@/types";
-import { ANALYSIS_URL, pedir } from "./client";
+import type { MapaEspacio } from "@/types";
+import { API_URL, pedir } from "./client";
+
+interface OpcionesMapa {
+  /** Incluir los chunks del RAG (fuente provisional por ahora). */
+  chunks?: boolean;
+}
 
 /**
- * Obtiene la proyección 2D del espacio vectorial (colecciones kpis y
- * summary_instrument) desde analysis-service. El api-gateway NO proxea
- * /vectorizacion/*, por eso se llama directo a ANALYSIS_URL.
- *
- * En modo desarrollo el endpoint resuelve el usuario sin token (auth:false).
+ * Mapa 2D del espacio de embeddings (KPIs, instrumentos y, opcionalmente,
+ * chunks) proyectado con PCA. GET /visualizacion/espacio/mapa (visualization-service).
  */
-export function getEspacioVectorial(): Promise<EspacioVectorial> {
-  return pedir<EspacioVectorial>(`${ANALYSIS_URL}/vectorizacion/espacio`, { auth: false });
+export function getMapaEspacio({ chunks = false }: OpcionesMapa = {}): Promise<MapaEspacio> {
+  return pedir<MapaEspacio>(`${API_URL}/visualizacion/espacio/mapa?chunks=${chunks}`, {
+    auth: true,
+  });
 }

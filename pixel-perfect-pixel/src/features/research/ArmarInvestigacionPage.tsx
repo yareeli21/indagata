@@ -6,7 +6,10 @@ import { buscarRelacionados, getInstrumentos, getInvestigadores } from "@/api/in
 import { useAuth } from "@/features/auth/AuthContext";
 import { useResearch } from "@/features/research/ResearchContext";
 import type { Instrumento, InstrumentoRelacionado, Investigador } from "@/types";
+import { FolderOpen } from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { Pagina } from "@/components/layout/Pagina";
+import { Cargando } from "@/components/shared/Cargando";
 import { Stepper } from "./Stepper";
 import { Paso1Seleccion } from "./Paso1Seleccion";
 import { Paso2Relacionados } from "./Paso2Relacionados";
@@ -120,9 +123,11 @@ export function ArmarInvestigacionPage() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl space-y-8 p-6 md:p-8">
+    <Pagina>
       {/* Cabecera */}
       <PageHeader
+        icono={FolderOpen}
+        etiqueta="Proyecto"
         titulo="Armar investigación"
         descripcion="Selecciona instrumentos y dale un nombre a tu proyecto."
       />
@@ -131,15 +136,15 @@ export function ArmarInvestigacionPage() {
       <Stepper pasos={PASOS} actual={paso} />
 
       {/* Contenido del paso */}
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-card md:p-8">
-        <h2 className="mb-6 font-display text-lg font-semibold">{PASOS[paso - 1]?.etiqueta}</h2>
+      <div className="superficie rounded-3xl p-6 md:p-8">
+        <h2 className="mb-6 font-display text-2xl font-bold tracking-tight">
+          {PASOS[paso - 1]?.etiqueta}
+        </h2>
 
         {paso === 1 && (
           <>
             {cargandoDatos ? (
-              <p className="py-8 text-center text-sm text-muted-foreground">
-                Cargando instrumentos…
-              </p>
+              <Cargando variante="tarjetas" cantidad={6} etiqueta="Cargando instrumentos…" />
             ) : (
               <Paso1Seleccion
                 instrumentos={instrumentosPropios}
@@ -177,6 +182,6 @@ export function ArmarInvestigacionPage() {
           />
         )}
       </div>
-    </div>
+    </Pagina>
   );
 }

@@ -22,8 +22,8 @@ export function EtiquetaOrigen({ origen }: EtiquetaOrigenProps) {
     <span
       className={
         destacado
-          ? "inline-flex items-center gap-1 rounded-full bg-accent-soft px-2 py-0.5 text-[11px] font-medium text-accent-foreground"
-          : "inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground"
+          ? "inline-flex items-center gap-1 rounded-full bg-accent-soft px-2 py-0.5 text-xs font-medium text-accent-foreground"
+          : "inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground"
       }
     >
       <Icono className="size-3" aria-hidden />

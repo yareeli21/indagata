@@ -174,7 +174,7 @@ export function GraficasKpi({ kpi, datos, cargando }: GraficasKpiProps) {
             {datos.porTipo.map((p, idx) => (
               <div
                 key={p.etiqueta}
-                className="flex items-center gap-1 text-[10px] text-muted-foreground"
+                className="flex items-center gap-1 text-xs text-muted-foreground"
               >
                 <span
                   className="size-2 rounded-full"
@@ -215,14 +215,14 @@ function EvidenciaKpi({
           <li key={ins.instrumentoId} className="space-y-2 py-3 first:pt-0 last:pb-0">
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-sm font-medium">{ins.titulo}</span>
-              <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
+              <span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
                 {ins.tipo}
               </span>
               <span
                 className={
                   ins.origen === "aceptado"
-                    ? "rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary"
-                    : "rounded-full bg-accent-soft px-2 py-0.5 text-[11px] font-medium text-accent-foreground"
+                    ? "rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
+                    : "rounded-full bg-accent-soft px-2 py-0.5 text-xs font-medium text-accent-foreground"
                 }
               >
                 {ins.origen === "aceptado" ? "KPI aceptado por su autor" : "Referencia de diseño"}

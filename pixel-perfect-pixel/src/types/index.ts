@@ -219,18 +219,51 @@ export interface KpiDeInstrumento {
 
 // ── Espacio vectorial ───────────────────────────────────────────────────────────
 
-export interface PuntoVector {
+// ── Espacio vectorial ─────────────────────────────────────────────────────────
+
+export type TipoPuntoEspacio = "kpi" | "instrumento" | "chunk";
+
+export interface PuntoEspacio {
+  /** Único en el mapa: "kpi:5", "inst:12", "chunk:inst-12-3". */
+  id: string;
+  tipo: TipoPuntoEspacio;
+  /** Id de dominio: kpi_id, id del instrumento o id del chunk. */
+  ref: string;
+  etiqueta: string;
+  /** Resumen de una línea para el tooltip. */
+  resumen: string;
+  /** Dato secundario: polaridad (KPI), "tipo · nivel · año" (instrumento), sección (chunk). */
+  detalle: string;
+  /** Coordenadas en el plano PC1/PC2. */
   x: number;
   y: number;
-  /** Colección de ChromaDB a la que pertenece el punto (p.ej. "kpis"). */
-  coleccion: string;
-  /** Etiqueta legible del punto para mostrar al pasar el cursor. */
-  label: string;
-  id: string;
+  clusterId: number | null;
+  instrumentoId: string | null;
+  /** De dónde sale el vector del instrumento. */
+  origenVector: "summary" | "calculado" | null;
 }
 
-export interface EspacioVectorial {
-  puntos: PuntoVector[];
-  /** Conteo de puntos por colección. */
-  colecciones: Record<string, number>;
+export interface ClusterEspacio {
+  id: number;
+  /** KPI más representativo del grupo. */
+  etiqueta: string;
+  representativos: string[];
+  tamano: number;
+}
+
+export interface MapaEspacio {
+  modelo: string;
+  dimension: number;
+  pca: {
+    /** Proporción de varianza explicada por PC1 y PC2 (0–1). */
+    varianza: [number, number];
+    varianzaTotal: number;
+    varianzaBaja: boolean;
+  };
+  clusters: ClusterEspacio[];
+  /** Fuente de los chunks; mientras `provisional` sea true se marca en la UI. */
+  fuenteChunks: { nombre: string; provisional: boolean };
+  conteos: { kpis: number; instrumentos: number; chunks: number };
+  puntos: PuntoEspacio[];
+  generadoEn: string;
 }

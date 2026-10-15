@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Cargando } from "@/components/shared/Cargando";
 import { getKpisDeInstrumento } from "@/api/instrumentos";
 import type { KpiDeInstrumento } from "@/types";
 
@@ -23,11 +23,7 @@ export function KpisInstrumento({ instrumentoId }: KpisInstrumentoProps) {
   }, [instrumentoId]);
 
   if (kpis === null) {
-    return (
-      <p className="flex items-center gap-2 text-sm text-muted-foreground">
-        <Loader2 className="size-4 animate-spin" /> Cargando KPIs…
-      </p>
-    );
+    return <Cargando variante="lista" cantidad={3} etiqueta="Cargando KPIs…" />;
   }
   if (kpis.length === 0) {
     return <p className="text-sm text-muted-foreground">Sin KPIs asociados todavía.</p>;
@@ -38,7 +34,7 @@ export function KpisInstrumento({ instrumentoId }: KpisInstrumentoProps) {
         <li key={k.kpiId} className="space-y-1.5 rounded-lg border px-3 py-2">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-sm font-medium">{k.nombre}</span>
-            <span className="text-[11px] text-muted-foreground">
+            <span className="text-xs text-muted-foreground">
               {k.origen === "aceptado" ? "Aceptado por su autor" : "Referencia de diseño"}
               {k.score != null && ` · ${Math.round(k.score * 100)}%`}
             </span>

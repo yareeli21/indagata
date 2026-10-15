@@ -1,4 +1,5 @@
-import { Check, Loader2, X } from "lucide-react";
+import { Check, X } from "lucide-react";
+import { ProcesandoIA } from "@/components/shared/ProcesandoIA";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { KpiSugerido } from "@/types";
@@ -14,9 +15,10 @@ interface StepKpisProps {
 export function StepKpis({ sugeridos, decisiones, onDecidir }: StepKpisProps) {
   if (!sugeridos) {
     return (
-      <div className="flex items-center justify-center gap-2 py-16 text-muted-foreground">
-        <Loader2 className="size-5 animate-spin" /> Buscando KPIs por similitud semántica…
-      </div>
+      <ProcesandoIA
+        mensaje="Buscando KPIs por similitud semántica…"
+        detalle="Comparamos el resumen de tu instrumento con el catálogo de indicadores."
+      />
     );
   }
   return (

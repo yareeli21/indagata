@@ -1,6 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { AlertTriangle, ArrowLeft, ArrowRight, Loader2, Save, ShieldCheck } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowLeft,
+  ArrowRight,
+  Loader2,
+  Save,
+  ShieldCheck,
+  Upload,
+} from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -38,6 +46,7 @@ import type {
   TipoInstrumento,
 } from "@/types";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { Pagina } from "@/components/layout/Pagina";
 import { Stepper } from "./Stepper";
 import { StepArchivo } from "./StepArchivo";
 import { StepLimpieza } from "./StepLimpieza";
@@ -323,21 +332,23 @@ export function UploadWizard() {
   const ingesta = aprobacion?.ingesta;
 
   return (
-    <div className="mx-auto max-w-4xl space-y-8 p-6 md:p-8">
+    <Pagina>
       <PageHeader
+        icono={Upload}
+        etiqueta="Nuevo instrumento"
         titulo="Subir instrumento"
         descripcion="Carga tu instrumento, revisa y aprueba sus metadatos, y asócialo a KPIs."
       />
       <Stepper pasos={PASOS} actual={paso} />
 
-      <section className="overflow-hidden rounded-3xl border border-border bg-card shadow-card">
-        <header className="border-b border-border px-6 py-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+      <section className="superficie overflow-hidden rounded-3xl">
+        <header className="border-b border-border/70 px-6 py-5 lg:px-8">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent-strong">
             Paso {paso + 1} de 7
           </p>
-          <h2 className="font-display text-lg font-semibold">{PASOS[paso]}</h2>
+          <h2 className="font-display text-2xl font-bold tracking-tight">{PASOS[paso]}</h2>
         </header>
-        <div className="p-6">
+        <div className="p-6 lg:p-8">
           {paso === 0 && (
             <StepArchivo
               archivo={archivo}
@@ -409,7 +420,7 @@ export function UploadWizard() {
             />
           )}
         </div>
-        <footer className="flex justify-between border-t border-border bg-muted/30 px-6 py-4">
+        <footer className="flex justify-between gap-3 border-t border-border/70 bg-primary-soft/40 px-6 py-5 lg:px-8">
           <Button
             variant="outline"
             disabled={paso === 0 || avanzando}
@@ -463,6 +474,6 @@ export function UploadWizard() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </div>
+    </Pagina>
   );
 }

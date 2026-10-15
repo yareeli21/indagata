@@ -46,24 +46,27 @@ export function FormularioContexto({ nombreInvestigacion, onComenzar }: Formular
   }
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center px-4 py-10">
-      <div className="w-full max-w-lg space-y-6 rounded-3xl border border-border bg-card p-6 shadow-card md:p-8">
+    <div className="w-full">
+      <div className="superficie w-full space-y-8 rounded-3xl p-6 md:p-8 lg:p-10">
         {/* Encabezado */}
-        <div className="flex items-start gap-3">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-primary-soft text-primary">
-            <BookOpen className="size-5" />
+        <div className="flex items-start gap-4">
+          <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-primary-soft text-primary">
+            <BookOpen className="size-7" />
           </span>
           <div>
-            <h2 className="font-display font-semibold leading-tight">
+            <h2 className="font-display text-2xl font-bold leading-tight tracking-tight">
               Cuéntame sobre tu investigación
             </h2>
-            <p className="text-sm text-muted-foreground">{nombreInvestigacion}</p>
+            <p className="text-base text-muted-foreground">{nombreInvestigacion}</p>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          className="grid gap-6 lg:grid-cols-2 [&>button]:lg:col-span-2 [&>button]:lg:w-auto [&>button]:lg:justify-self-start [&>button]:lg:px-12"
+        >
           {/* Objetivo */}
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             <Label htmlFor="ctx-objetivo">
               Objetivo de la investigación
               <span className="ml-1 text-destructive" aria-hidden>
@@ -81,7 +84,7 @@ export function FormularioContexto({ nombreInvestigacion, onComenzar }: Formular
           </div>
 
           {/* Población */}
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             <Label htmlFor="ctx-poblacion">
               Población de estudio
               <span className="ml-1 text-destructive" aria-hidden>
@@ -98,7 +101,7 @@ export function FormularioContexto({ nombreInvestigacion, onComenzar }: Formular
           </div>
 
           {/* Nivel educativo */}
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             <Label htmlFor="ctx-nivel">
               Nivel educativo
               <span className="ml-1 text-destructive" aria-hidden>
@@ -120,7 +123,7 @@ export function FormularioContexto({ nombreInvestigacion, onComenzar }: Formular
           </div>
 
           {/* Pregunta de investigación */}
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             <Label htmlFor="ctx-pregunta">
               Pregunta de investigación
               <span className="ml-1 text-destructive" aria-hidden>

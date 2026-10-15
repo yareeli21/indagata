@@ -1,4 +1,6 @@
-import { Loader2, SearchX } from "lucide-react";
+import { SearchX } from "lucide-react";
+import { EstadoVacio } from "@/components/shared/EstadoVacio";
+import { ProcesandoIA } from "@/components/shared/ProcesandoIA";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -56,10 +58,10 @@ export function Paso2Relacionados({
 
   if (cargando) {
     return (
-      <div className="flex flex-col items-center gap-4 py-20 text-muted-foreground">
-        <Loader2 className="size-8 animate-spin text-primary" />
-        <p className="text-sm">Buscando instrumentos relacionados…</p>
-      </div>
+      <ProcesandoIA
+        mensaje="Buscando instrumentos relacionados…"
+        detalle="Comparamos KPIs, nivel educativo y similitud semántica con tu selección."
+      />
     );
   }
 
@@ -72,17 +74,12 @@ export function Paso2Relacionados({
   if (relacionados.length === 0) {
     return (
       <div className="space-y-6">
-        <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed bg-card px-6 py-16 text-center">
-          <span className="flex size-12 items-center justify-center rounded-full bg-muted text-muted-foreground">
-            <SearchX className="size-6" />
-          </span>
-          <p className="font-semibold">
-            No encontramos instrumentos de otros investigadores relacionados con tu selección
-          </p>
-          <p className="max-w-sm text-sm text-muted-foreground">
-            Puedes continuar solo con tus instrumentos o volver a cambiar la selección.
-          </p>
-        </div>
+        <EstadoVacio
+          compacto
+          icono={SearchX}
+          titulo="No encontramos instrumentos de otros investigadores relacionados con tu selección"
+          descripcion="Puedes continuar solo con tus instrumentos o volver a cambiar la selección."
+        />
         <div className="flex flex-wrap gap-3 border-t pt-4">
           <Button onClick={onSiguiente}>Continuar sin agregar</Button>
           <Button variant="outline" onClick={onAtras}>

@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { FolderOpen, Minus, Search, TrendingDown, TrendingUp } from "lucide-react";
+import { BarChart3, FolderOpen, MousePointerClick, Search, SearchX } from "lucide-react";
+import { Pagina } from "@/components/layout/Pagina";
+import { EstadoVacio } from "@/components/shared/EstadoVacio";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getCatalogoKpis, getDatosGrafica, getKpis } from "@/api/kpis";
@@ -8,48 +10,12 @@ import { getInstrumentos } from "@/api/instrumentos";
 import { useAuth } from "@/features/auth/AuthContext";
 import { useResearch } from "@/features/research/ResearchContext";
 import { fuentesDeInvestigacion } from "@/features/research/fuentes";
-import { cn } from "@/lib/utils";
 import { PageHeader } from "@/components/layout/PageHeader";
 import type { DatosGrafica, Kpi, KpiCatalogo } from "@/types";
 import { TarjetaKpi } from "./TarjetaKpi";
+import { TarjetaMetrica } from "./TarjetaMetrica";
 import { DetalleKpi } from "./DetalleKpi";
 import { GraficasKpi } from "./GraficasKpi";
-
-function TarjetaMetrica({ kpi }: { kpi: Kpi }) {
-  const sube = kpi.variacion > 0;
-  const baja = kpi.variacion < 0;
-  const Icono = sube ? TrendingUp : baja ? TrendingDown : Minus;
-  return (
-    <div className="rounded-2xl border border-border bg-card p-4 shadow-soft">
-      <p className="text-xs font-medium text-muted-foreground">{kpi.etiqueta}</p>
-      <div className="mt-1 flex items-end justify-between gap-2">
-        <p className="font-display text-2xl font-semibold text-foreground">{kpi.valor}</p>
-        <span
-          className={cn(
-            "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium",
-            sube && "bg-primary/10 text-primary",
-            baja && "bg-destructive/10 text-destructive",
-            !sube && !baja && "bg-muted text-muted-foreground",
-          )}
-        >
-          <Icono className="size-3.5" aria-hidden />
-          <span aria-hidden>
-            {sube ? "+" : ""}
-            {kpi.variacion}%
-          </span>
-          <span className="sr-only">
-            {sube
-              ? `aumentó ${kpi.variacion}%`
-              : baja
-                ? `disminuyó ${Math.abs(kpi.variacion)}%`
-                : "sin cambio"}
-          </span>
-        </span>
-      </div>
-      <p className="mt-1 text-xs text-muted-foreground">{kpi.detalle}</p>
-    </div>
-  );
-}
 
 export function KpisPage() {
   const { usuario } = useAuth();
@@ -128,15 +94,17 @@ export function KpisPage() {
   }
 
   return (
-    <div className="space-y-10 p-6 md:p-8">
+    <Pagina>
       <PageHeader
+        icono={BarChart3}
+        etiqueta="Indicadores educativos"
         titulo="KPIs"
         descripcion="Indicadores clave del repositorio de investigación educativa universitaria."
         acciones={
-          <div className="relative w-full max-w-xs">
-            <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <div className="relative w-full sm:w-80">
+            <Search className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
             <Input
-              className="pl-9"
+              className="pl-11"
               placeholder="Buscar KPI…"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
@@ -148,7 +116,7 @@ export function KpisPage() {
 
       {/* Tira de métricas resumidas */}
       {metricas.length > 0 && (
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {metricas.map((m) => (
             <TarjetaMetrica key={m.id} kpi={m} />
           ))}
@@ -158,13 +126,18 @@ export function KpisPage() {
       {/* ── Sección 1: Catálogo ── */}
       <section className="space-y-5">
         {catalogoFiltrado.length === 0 ? (
-          <p className="py-10 text-center text-sm text-muted-foreground">
-            {busqueda.trim()
-              ? `No hay KPIs que coincidan con "${busqueda}".`
-              : "Aún no hay KPIs en el catálogo."}
-          </p>
+          <EstadoVacio
+            compacto
+            icono={SearchX}
+            titulo={busqueda.trim() ? "Sin coincidencias" : "Catálogo vacío"}
+            descripcion={
+              busqueda.trim()
+                ? `No hay KPIs que coincidan con "${busqueda}".`
+                : "Aún no hay KPIs en el catálogo."
+            }
+          />
         ) : (
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(16rem,1fr))]">
             {catalogoFiltrado.map((kpi) => (
               <TarjetaKpi
                 key={kpi.id}
@@ -210,28 +183,28 @@ export function KpisPage() {
 
         {/* Sin investigación activa */}
         {!activa ? (
-          <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-border bg-card px-6 py-14 text-center shadow-card">
-            <span className="flex size-12 items-center justify-center rounded-2xl bg-primary-soft text-primary">
-              <FolderOpen className="size-6" />
-            </span>
-            <p className="font-display font-semibold">No tienes una investigación activa</p>
-            <p className="max-w-sm text-sm text-muted-foreground">
-              Los dashboards se calculan con los instrumentos de tu investigación activa. Arma una
-              investigación para verlos.
-            </p>
-            <Button asChild>
-              <Link to="/investigacion">
-                <FolderOpen />
-                Armar investigación
-              </Link>
-            </Button>
-          </div>
+          <EstadoVacio
+            icono={FolderOpen}
+            titulo="No tienes una investigación activa"
+            descripcion="Los dashboards se calculan con los instrumentos de tu investigación activa. Arma una investigación para verlos."
+            accion={
+              <Button asChild variant="accent" size="lg">
+                <Link to="/investigacion">
+                  <FolderOpen />
+                  Armar investigación
+                </Link>
+              </Button>
+            }
+          />
         ) : !kpiDashboard ? (
           /* Sin KPI seleccionado */
-          <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-border bg-card px-6 py-14 text-center shadow-card">
-            <p className="text-sm text-muted-foreground">
-              Selecciona un KPI del catálogo para ver sus gráficas.
-            </p>
+          <div>
+            <EstadoVacio
+              compacto
+              icono={MousePointerClick}
+              titulo="Elige un KPI"
+              descripcion="Selecciona un KPI del catálogo para ver sus gráficas."
+            />
           </div>
         ) : (
           /* Gráficas */
@@ -249,6 +222,6 @@ export function KpisPage() {
 
       {/* Sheet de detalle */}
       <DetalleKpi kpi={kpiDetalle} onCerrar={() => setKpiDetalle(null)} />
-    </div>
+    </Pagina>
   );
 }

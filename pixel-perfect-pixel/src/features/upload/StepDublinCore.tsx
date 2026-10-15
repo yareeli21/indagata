@@ -1,4 +1,5 @@
-import { Info, Loader2 } from "lucide-react";
+import { Info } from "lucide-react";
+import { ProcesandoIA } from "@/components/shared/ProcesandoIA";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,10 +30,10 @@ interface StepDublinCoreProps {
 export function StepDublinCore({ valor, onChange, origen, cargando, notas }: StepDublinCoreProps) {
   if (cargando) {
     return (
-      <div className="flex items-center justify-center gap-2 py-16 text-muted-foreground">
-        <Loader2 className="size-5 animate-spin" /> Analizando el instrumento para proponer sus
-        metadatos…
-      </div>
+      <ProcesandoIA
+        mensaje="Analizando el instrumento para proponer sus metadatos…"
+        detalle="El modelo local completa los campos Dublin Core a partir del contenido."
+      />
     );
   }
 

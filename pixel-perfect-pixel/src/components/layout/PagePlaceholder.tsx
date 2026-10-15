@@ -1,5 +1,7 @@
 import type { LucideIcon } from "lucide-react";
+import { EstadoVacio } from "@/components/shared/EstadoVacio";
 import { PageHeader } from "./PageHeader";
+import { Pagina } from "./Pagina";
 
 interface PagePlaceholderProps {
   titulo: string;
@@ -7,22 +9,15 @@ interface PagePlaceholderProps {
   icono: LucideIcon;
 }
 
-export function PagePlaceholder({ titulo, descripcion, icono: Icono }: PagePlaceholderProps) {
+export function PagePlaceholder({ titulo, descripcion, icono }: PagePlaceholderProps) {
   return (
-    <section className="mx-auto w-full max-w-5xl px-4 py-10 md:px-8">
-      <PageHeader titulo={titulo} descripcion={descripcion} className="mb-8" />
-
-      <div className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-border bg-card px-6 py-20 text-center shadow-card">
-        <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft text-primary">
-          <Icono className="h-6 w-6" />
-        </span>
-        <p className="font-display text-sm font-semibold text-foreground">
-          Pantalla en construcción
-        </p>
-        <p className="max-w-sm text-sm text-muted-foreground">
-          El contenido de esta sección se agregará en el siguiente paso.
-        </p>
-      </div>
-    </section>
+    <Pagina>
+      <PageHeader titulo={titulo} descripcion={descripcion} icono={icono} />
+      <EstadoVacio
+        icono={icono}
+        titulo="Pantalla en construcción"
+        descripcion="El contenido de esta sección se agregará en el siguiente paso."
+      />
+    </Pagina>
   );
 }

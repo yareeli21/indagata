@@ -1,52 +1,49 @@
-import { useEffect, useState } from "react";
-import { AlertTriangle, Network } from "lucide-react";
-import {
-  CartesianGrid,
-  Scatter,
-  ScatterChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-  ZAxis,
-} from "recharts";
-import { ChartContainer, type ChartConfig } from "@/components/ui/chart";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { AlertTriangle, BookOpenText, Cpu, Network, RotateCw, Upload } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { getEspacioVectorial } from "@/api/espacio";
-import type { EspacioVectorial, PuntoVector } from "@/types";
+import { Pagina } from "@/components/layout/Pagina";
+import { EstadoVacio } from "@/components/shared/EstadoVacio";
+import { Panel } from "@/components/shared/Panel";
+import { getMapaEspacio } from "@/api/espacio";
+import type { MapaEspacio, PuntoEspacio, TipoPuntoEspacio } from "@/types";
+import { ComoLeerMapa } from "./ComoLeerMapa";
+import { LeyendaInteractiva } from "./LeyendaInteractiva";
+import { MapaEmbeddings } from "./MapaEmbeddings";
 
 type Estado = "cargando" | "listo" | "error";
 
-// Nombre legible y color (token semántico) por colección conocida.
-const COLECCIONES: Record<string, { etiqueta: string; color: string }> = {
-  kpis: { etiqueta: "KPIs", color: "var(--chart-1)" },
-  summary_instrument: { etiqueta: "Instrumentos", color: "var(--chart-2)" },
-};
+/** Altura del mapa: protagonista, pero sin exceder la ventana. */
+const ALTO_MAPA = "h-[clamp(26rem,72vh,56rem)]";
 
-const configGrafica: ChartConfig = {
-  kpis: { label: "KPIs", color: "var(--chart-1)" },
-  summary_instrument: { label: "Instrumentos", color: "var(--chart-2)" },
-};
-
-function etiquetaColeccion(coleccion: string): string {
-  return COLECCIONES[coleccion]?.etiqueta ?? coleccion;
-}
-
-function colorColeccion(coleccion: string): string {
-  return COLECCIONES[coleccion]?.color ?? "var(--chart-3)";
+/** ¿Los rangos de PC1 de KPIs e instrumentos no se traslapan? */
+function hayBrecha(puntos: PuntoEspacio[]): boolean {
+  const rango = (tipo: TipoPuntoEspacio): [number, number] | null => {
+    const xs = puntos.filter((p) => p.tipo === tipo).map((p) => p.x);
+    return xs.length ? [Math.min(...xs), Math.max(...xs)] : null;
+  };
+  const k = rango("kpi");
+  const i = rango("instrumento");
+  return Boolean(k && i && (k[1] < i[0] || i[1] < k[0]));
 }
 
 export function EspacioVectorialPage() {
   const [estado, setEstado] = useState<Estado>("cargando");
-  const [espacio, setEspacio] = useState<EspacioVectorial | null>(null);
+  const [mapa, setMapa] = useState<MapaEspacio | null>(null);
   const [mensajeError, setMensajeError] = useState("");
+  const [visibles, setVisibles] = useState<ReadonlySet<TipoPuntoEspacio>>(
+    () => new Set<TipoPuntoEspacio>(["kpi", "instrumento"]),
+  );
 
-  useEffect(() => {
+  const cargar = useCallback(() => {
     let activo = true;
     setEstado("cargando");
-    getEspacioVectorial()
+    getMapaEspacio()
       .then((datos) => {
         if (!activo) return;
-        setEspacio(datos);
+        setMapa(datos);
         setEstado("listo");
       })
       .catch((error: unknown) => {
@@ -61,129 +58,137 @@ export function EspacioVectorialPage() {
     };
   }, []);
 
-  // Agrupa los puntos por colección para dibujar un <Scatter> por serie.
-  const porColeccion = agruparPorColeccion(espacio?.puntos ?? []);
-  const totalPuntos = espacio?.puntos.length ?? 0;
+  useEffect(() => cargar(), [cargar]);
+
+  const alternar = useCallback((tipo: TipoPuntoEspacio) => {
+    setVisibles((prev) => {
+      const siguiente = new Set(prev);
+      if (siguiente.has(tipo)) siguiente.delete(tipo);
+      else siguiente.add(tipo);
+      return siguiente;
+    });
+  }, []);
+
+  const brecha = useMemo(() => hayBrecha(mapa?.puntos ?? []), [mapa]);
+  const total = mapa ? mapa.conteos.kpis + mapa.conteos.instrumentos : 0;
 
   return (
-    <div className="space-y-8 p-6 md:p-8">
+    <Pagina>
       <PageHeader
+        icono={Network}
+        etiqueta="Embeddings · base del RAG"
         titulo="Espacio vectorial"
-        descripcion="Proyección 2D (PCA) de los embeddings almacenados en ChromaDB, coloreada por colección."
-      />
+        descripcion="Cómo se relacionan los instrumentos con los KPIs educativos según su significado: cada punto es un texto convertido en vector y proyectado en dos dimensiones."
+      >
+        {mapa && (
+          <div className="flex flex-wrap gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-muted-foreground shadow-card">
+              <Cpu className="size-4 text-primary" aria-hidden />
+              {mapa.modelo.split("/").pop()} · {mapa.dimension} dimensiones
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-muted-foreground shadow-card">
+              {mapa.conteos.kpis} KPIs · {mapa.conteos.instrumentos} instrumentos
+            </span>
+          </div>
+        )}
+      </PageHeader>
 
       {estado === "cargando" && (
-        <div className="h-96 animate-pulse rounded-2xl border border-border bg-card" />
+        <div
+          className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]"
+          role="status"
+          aria-live="polite"
+        >
+          <span className="sr-only">Cargando el espacio vectorial…</span>
+          <Skeleton className={`${ALTO_MAPA} w-full rounded-3xl`} />
+          <div className="space-y-4">
+            <Skeleton className="h-40 rounded-3xl" />
+            <Skeleton className="h-72 rounded-3xl" />
+          </div>
+        </div>
       )}
 
       {estado === "error" && (
-        <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-border bg-card px-6 py-14 text-center shadow-card">
-          <span className="flex size-10 items-center justify-center rounded-full bg-destructive/10 text-destructive">
-            <AlertTriangle className="size-5" />
-          </span>
-          <p className="font-display text-sm font-semibold">
-            No se pudo cargar el espacio vectorial
-          </p>
-          <p className="max-w-md text-xs text-muted-foreground">{mensajeError}</p>
-        </div>
+        <EstadoVacio
+          icono={AlertTriangle}
+          titulo="No se pudo cargar el espacio vectorial"
+          descripcion={mensajeError}
+          accion={
+            <Button variant="outline" size="lg" onClick={cargar}>
+              <RotateCw /> Reintentar
+            </Button>
+          }
+        />
       )}
 
-      {estado === "listo" && totalPuntos === 0 && (
-        <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-border bg-card px-6 py-14 text-center shadow-card">
-          <span className="flex size-10 items-center justify-center rounded-full bg-muted text-muted-foreground">
-            <Network className="size-5" />
-          </span>
-          <p className="font-display text-sm font-semibold">Aún no hay vectores que mostrar</p>
-          <p className="max-w-md text-xs text-muted-foreground">
-            Cuando se complete una ingesta, los embeddings aparecerán aquí como un dispersograma.
-          </p>
-        </div>
+      {estado === "listo" && mapa && total === 0 && (
+        <EstadoVacio
+          icono={Network}
+          titulo="Aún no hay vectores que mostrar"
+          descripcion="Cuando el catálogo de KPIs esté indexado y subas instrumentos, aparecerán aquí agrupados por su significado."
+          accion={
+            <Button asChild variant="accent" size="lg">
+              <Link to="/instrumentos/nuevo">
+                <Upload /> Subir instrumento
+              </Link>
+            </Button>
+          }
+        />
       )}
 
-      {estado === "listo" && totalPuntos > 0 && (
-        <section className="space-y-4 rounded-2xl border border-border bg-card p-4 shadow-card md:p-6">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="font-display text-sm font-semibold">
-              {totalPuntos} vector{totalPuntos !== 1 ? "es" : ""} proyectado
-              {totalPuntos !== 1 ? "s" : ""}
-            </p>
-            {/* Leyenda por colección */}
-            <div className="flex flex-wrap items-center gap-4">
-              {Object.entries(espacio?.colecciones ?? {}).map(([coleccion, conteo]) => (
-                <div
-                  key={coleccion}
-                  className="flex items-center gap-1.5 text-xs text-muted-foreground"
-                >
-                  <span
-                    aria-hidden
-                    className="size-2.5 rounded-full"
-                    style={{ background: colorColeccion(coleccion) }}
-                  />
-                  {etiquetaColeccion(coleccion)} · {conteo}
+      {estado === "listo" && mapa && total > 0 && (
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
+          <Panel sinRelleno className={ALTO_MAPA} claseCuerpo="h-full">
+            <MapaEmbeddings puntos={mapa.puntos} visibles={visibles} varianza={mapa.pca.varianza}>
+              {mapa.conteos.instrumentos === 0 && (
+                <div className="absolute inset-x-4 bottom-14 mx-auto max-w-xl rounded-3xl border border-border bg-card/95 p-6 text-center shadow-elevated backdrop-blur-sm sm:inset-x-0">
+                  <p className="font-display text-xl font-bold">
+                    Todavía no hay instrumentos en el mapa
+                  </p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Sube uno para ver junto a qué KPIs queda según su significado.
+                  </p>
+                  <Button asChild variant="accent" size="lg" className="mt-4">
+                    <Link to="/instrumentos/nuevo">
+                      <Upload /> Subir instrumento
+                    </Link>
+                  </Button>
                 </div>
-              ))}
-            </div>
-          </div>
+              )}
+            </MapaEmbeddings>
+          </Panel>
 
-          <ChartContainer config={configGrafica} className="aspect-auto h-[28rem] w-full">
-            <ScatterChart margin={{ top: 12, right: 12, bottom: 12, left: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                type="number"
-                dataKey="x"
-                name="Componente 1"
-                tick={{ fontSize: 10 }}
-                tickLine={false}
-                axisLine={false}
+          <aside className="grid content-start gap-6 md:grid-cols-2 xl:grid-cols-1">
+            <Panel titulo="Qué se muestra" descripcion="Toca para mostrar u ocultar.">
+              <LeyendaInteractiva
+                visibles={visibles}
+                onAlternar={alternar}
+                elementos={[
+                  {
+                    tipo: "kpi",
+                    nombre: "KPIs educativos",
+                    descripcion: "Definición de cada indicador del catálogo.",
+                    conteo: mapa.conteos.kpis,
+                  },
+                  {
+                    tipo: "instrumento",
+                    nombre: "Instrumentos",
+                    descripcion: "Metadatos y preguntas de cada instrumento.",
+                    conteo: mapa.conteos.instrumentos,
+                  },
+                ]}
               />
-              <YAxis
-                type="number"
-                dataKey="y"
-                name="Componente 2"
-                tick={{ fontSize: 10 }}
-                tickLine={false}
-                axisLine={false}
+            </Panel>
+            <Panel titulo="Cómo leer este mapa" icono={BookOpenText}>
+              <ComoLeerMapa
+                varianzaTotal={mapa.pca.varianzaTotal}
+                varianzaBaja={mapa.pca.varianzaBaja}
+                brecha={brecha}
               />
-              <ZAxis range={[60, 60]} />
-              <Tooltip cursor={{ strokeDasharray: "3 3" }} content={<TooltipPunto />} />
-              {Object.entries(porColeccion).map(([coleccion, puntos]) => (
-                <Scatter
-                  key={coleccion}
-                  name={etiquetaColeccion(coleccion)}
-                  data={puntos}
-                  fill={colorColeccion(coleccion)}
-                />
-              ))}
-            </ScatterChart>
-          </ChartContainer>
-        </section>
+            </Panel>
+          </aside>
+        </div>
       )}
-    </div>
-  );
-}
-
-function agruparPorColeccion(puntos: PuntoVector[]): Record<string, PuntoVector[]> {
-  const grupos: Record<string, PuntoVector[]> = {};
-  for (const punto of puntos) {
-    (grupos[punto.coleccion] ??= []).push(punto);
-  }
-  return grupos;
-}
-
-function TooltipPunto({
-  active,
-  payload,
-}: {
-  active?: boolean;
-  payload?: Array<{ payload?: PuntoVector }>;
-}) {
-  const punto = payload?.[0]?.payload;
-  if (!active || !punto) return null;
-  return (
-    <div className="max-w-xs rounded-lg border bg-background px-3 py-2 text-xs shadow-md">
-      <p className="font-medium text-foreground">{punto.label}</p>
-      <p className="text-muted-foreground">{etiquetaColeccion(punto.coleccion)}</p>
-      <p className="text-muted-foreground">ID: {punto.id}</p>
-    </div>
+    </Pagina>
   );
 }

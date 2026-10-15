@@ -39,11 +39,14 @@ export function ResearchSelector() {
         <DropdownMenuTrigger asChild>
           <button
             type="button"
-            className="flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-sm font-medium text-foreground shadow-card transition-colors hover:bg-secondary"
+            className="flex h-11 max-w-full items-center gap-2.5 rounded-full border border-border bg-card px-4 text-sm font-semibold text-foreground shadow-card transition-colors hover:border-primary/40 hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            <span className="h-2 w-2 rounded-full bg-primary" aria-hidden />
-            {activa ? activa.nombre : "Sin investigación activa"}
-            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+            <span
+              className={`size-2.5 shrink-0 rounded-full ${activa ? "bg-accent ring-4 ring-accent-soft" : "bg-muted-foreground/50"}`}
+              aria-hidden
+            />
+            <span className="truncate">{activa ? activa.nombre : "Sin investigación activa"}</span>
+            <ChevronDown className="size-4 shrink-0 text-muted-foreground" />
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-64">

@@ -30,7 +30,7 @@ function LoginPage() {
   const [enviando, setEnviando] = useState(false);
 
   useEffect(() => {
-    if (usuario) navigate({ to: "/instrumentos" });
+    if (usuario) navigate({ to: "/inicio" });
   }, [usuario, navigate]);
 
   const enviar = async (e: React.FormEvent) => {
@@ -39,7 +39,7 @@ function LoginPage() {
     setEnviando(true);
     try {
       await entrar(nombreUsuario, contrasena);
-      navigate({ to: "/instrumentos" });
+      navigate({ to: "/inicio" });
     } catch (err) {
       setError(err instanceof Error ? err.message : "No fue posible iniciar sesión.");
     } finally {
@@ -92,7 +92,7 @@ function LoginPage() {
               />
               <a
                 href="#"
-                className="ml-4 shrink-0 whitespace-nowrap pb-3 text-[13px] text-primary hover:underline"
+                className="ml-4 shrink-0 whitespace-nowrap pb-3 text-xs text-primary hover:underline"
               >
                 ¿Olvidaste tu contraseña?
               </a>
@@ -110,7 +110,7 @@ function LoginPage() {
             <button
               type="submit"
               disabled={enviando}
-              className="mt-3 rounded-xl bg-primary px-4 py-4 text-[17px] font-bold text-primary-foreground transition-[background-color,transform] hover:bg-primary/90 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60"
+              className="mt-3 rounded-xl bg-primary px-4 py-4 text-base font-bold text-primary-foreground transition-[background-color,transform] hover:bg-primary/90 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60"
             >
               {enviando ? "Entrando…" : "Iniciar sesión"}
             </button>

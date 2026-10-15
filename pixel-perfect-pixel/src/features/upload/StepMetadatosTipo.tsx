@@ -1,4 +1,4 @@
-import { Loader2 } from "lucide-react";
+import { ProcesandoIA } from "@/components/shared/ProcesandoIA";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -97,11 +97,7 @@ export function StepMetadatosTipo({
   cargando,
 }: StepMetadatosTipoProps) {
   if (cargando) {
-    return (
-      <div className="flex items-center justify-center gap-2 py-16 text-muted-foreground">
-        <Loader2 className="size-5 animate-spin" /> Completando los metadatos faltantes…
-      </div>
-    );
+    return <ProcesandoIA mensaje="Completando los metadatos faltantes…" />;
   }
   return (
     <div className="space-y-4">

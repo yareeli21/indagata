@@ -19,6 +19,33 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  /*
+   * Escala tipográfica global (sustituye la de Tailwind): el texto secundario
+   * más pequeño (`text-xs`) es de 14px y el texto normal (`text-sm`) de 16px.
+   */
+  --text-xs: 0.875rem;
+  --text-xs--line-height: 1.35rem;
+  --text-sm: 1rem;
+  --text-sm--line-height: 1.6rem;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.7rem;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.85rem;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 2.1rem;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 2.4rem;
+  --text-3xl: 2.25rem;
+  --text-3xl--line-height: 2.75rem;
+  --text-4xl: 2.75rem;
+  --text-4xl--line-height: 1.15;
+  --text-5xl: 3.5rem;
+  --text-5xl--line-height: 1.08;
+  --text-6xl: 4.25rem;
+  --text-6xl--line-height: 1.05;
+  --animate-brillo: brillo 1.6s ease-in-out infinite;
+  --animate-flotar: flotar 4s ease-in-out infinite;
+  --animate-indeterminado: indeterminado 1.4s ease-in-out infinite;
   --font-sans: "Nunito", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Poppins", "Nunito", ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
@@ -61,9 +88,21 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-glow: var(--primary-glow);
+  --color-accent-strong: var(--accent-strong);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-hero: var(--hero);
+  --color-hero-foreground: var(--hero-foreground);
+  --color-hero-muted: var(--hero-muted);
   --shadow-soft: 0 1px 2px oklch(0.45 0.04 240 / 6%), 0 8px 24px oklch(0.45 0.04 240 / 8%);
   --shadow-card: 0 1px 3px oklch(0.45 0.04 240 / 8%);
   --shadow-elevated: 0 32px 64px -24px oklch(0.285 0.085 266 / 38%);
+  --shadow-lift:
+    0 2px 4px oklch(0.285 0.085 266 / 6%), 0 18px 40px -12px oklch(0.285 0.085 266 / 22%);
+  --shadow-glow:
+    0 0 0 1px oklch(0.775 0.135 68 / 35%), 0 12px 32px -8px oklch(0.775 0.135 68 / 45%);
 }
 
 :root {
@@ -107,6 +146,18 @@
   --sidebar-accent-foreground: oklch(0.3 0.085 266);
   --sidebar-border: oklch(0.922 0.012 266);
   --sidebar-ring: oklch(0.285 0.085 266);
+
+  /* Extensiones del rediseño (misma familia índigo/ámbar). */
+  --primary-strong: oklch(0.22 0.07 266);
+  --primary-glow: oklch(0.46 0.14 270);
+  /* Ámbar oscuro: texto ámbar legible (AA) sobre fondos claros. */
+  --accent-strong: oklch(0.5 0.11 62);
+  --success: oklch(0.5 0.09 175);
+  --success-soft: oklch(0.945 0.035 175);
+  /* Superficie "hero": índigo profundo con texto claro. */
+  --hero: oklch(0.255 0.08 266);
+  --hero-foreground: oklch(0.985 0.004 255);
+  --hero-muted: oklch(0.84 0.035 262);
 }
 
 .dark {
@@ -133,4 +184,96 @@
     font-family: var(--font-display);
     letter-spacing: -0.01em;
   }
+}
+
+/* Fondo de las superficies hero: degradado índigo con halos índigo/ámbar. */
+@utility bg-hero {
+  background-color: var(--hero);
+  background-image:
+    radial-gradient(60rem 30rem at 85% -10%, oklch(0.46 0.14 270 / 55%), transparent 60%),
+    radial-gradient(40rem 24rem at 0% 110%, oklch(0.775 0.135 68 / 22%), transparent 60%),
+    linear-gradient(135deg, var(--primary-strong), var(--hero) 45%, oklch(0.32 0.1 268));
+  color: var(--hero-foreground);
+}
+
+/* Cuadrícula tipo "papel milimétrico" de investigación, para fondos claros. */
+@utility bg-cuadricula {
+  background-image:
+    linear-gradient(oklch(0.285 0.085 266 / 5%) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.285 0.085 266 / 5%) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/*
+ * Lienzo del panel: fondo con profundidad (halos índigo/ámbar arriba y una
+ * cuadrícula muy tenue que se desvanece) en lugar de un gris plano.
+ */
+@utility bg-lienzo {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(70rem 26rem at 100% -6rem, oklch(0.46 0.14 270 / 9%), transparent 70%),
+    radial-gradient(50rem 22rem at 0% -4rem, oklch(0.775 0.135 68 / 8%), transparent 70%),
+    linear-gradient(180deg, oklch(0.955 0.02 266 / 70%), transparent 28rem),
+    linear-gradient(oklch(0.285 0.085 266 / 3.5%) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.285 0.085 266 / 3.5%) 1px, transparent 1px);
+  background-size:
+    auto,
+    auto,
+    auto,
+    36px 36px,
+    36px 36px;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat;
+}
+
+/* Superficie de tarjeta con un leve degradado y borde luminoso. */
+@utility superficie {
+  background-color: var(--card);
+  background-image: linear-gradient(180deg, oklch(1 0 0), oklch(0.985 0.006 262));
+  border: 1px solid var(--border);
+  box-shadow:
+    0 1px 0 oklch(1 0 0) inset,
+    0 1px 2px oklch(0.285 0.085 266 / 5%),
+    0 12px 32px -18px oklch(0.285 0.085 266 / 22%);
+}
+
+@keyframes brillo {
+  0% {
+    background-position: 150% 0;
+  }
+  100% {
+    background-position: -50% 0;
+  }
+}
+
+@keyframes flotar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes indeterminado {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-brillo,
+  .animate-flotar,
+  .animate-indeterminado {
+    animation: none;
+  }
+}
+
+/* Barra de desplazamiento discreta en paneles con scroll propio. */
+@utility scroll-discreto {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }

@@ -1,4 +1,5 @@
-import { AlertTriangle, CheckCircle2, Loader2, ShieldCheck } from "lucide-react";
+import { AlertTriangle, CheckCircle2, ShieldCheck } from "lucide-react";
+import { ProcesandoIA } from "@/components/shared/ProcesandoIA";
 import type { VistaPrevia } from "@/api/carga";
 import { JsonPreview } from "./JsonPreview";
 
@@ -10,11 +11,7 @@ interface StepAprobacionProps {
 
 export function StepAprobacion({ vistaPrevia, etiquetas }: StepAprobacionProps) {
   if (!vistaPrevia) {
-    return (
-      <div className="flex items-center justify-center gap-2 py-16 text-muted-foreground">
-        <Loader2 className="size-5 animate-spin" /> Generando el JSON estandarizado…
-      </div>
-    );
+    return <ProcesandoIA mensaje="Generando el JSON estandarizado…" />;
   }
   const errores = [
     ...Object.entries(vistaPrevia.errores.dublin_core),

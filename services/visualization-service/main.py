@@ -9,6 +9,7 @@ Muestra la información de forma amigable para el investigador:
   - Instrumentos relacionados de otros autores.
   - Descargas (crudo / JSON / .sav) con la regla de propiedad.
   - Chat RAG sobre los instrumentos de la investigación o de todo el sistema.
+  - Espacio vectorial explicable: KPIs, instrumentos y chunks en 2D (PCA).
 
 Es de solo lectura sobre la BD y ChromaDB (salvo `rag_log`); la ingesta la hace
 el storage-service.
@@ -34,7 +35,7 @@ if not (Path(__file__).resolve().parent / "shared" / "__init__.py").exists():
 from fastapi import FastAPI  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
-from routers import catalog, download, health, kpis, rag  # noqa: E402
+from routers import catalog, download, espacio, health, kpis, rag  # noqa: E402
 
 logging.basicConfig(
     level=os.getenv("LOG_LEVEL", "INFO").upper(),
@@ -54,6 +55,14 @@ async def lifespan(app: FastAPI):
         settings.CHROMA_PORT,
         settings.STORAGE_SERVICE_URL,
     )
+    if os.getenv("ESPACIO_PRECALENTAR", "true").lower() == "true":
+        # Carga el modelo de embeddings y precalcula el espacio vectorial en segundo
+        # plano, para que la primera visita al mapa no espere esa carga (~40 s en CPU).
+        import threading
+
+        from services.espacio import mapa
+
+        threading.Thread(target=mapa.precalentar, name="precalentar-espacio", daemon=True).start()
     yield
     logger.info("🛑 visualization-service detenido.")
 
@@ -79,6 +88,7 @@ app.include_router(catalog.router)
 app.include_router(kpis.router)
 app.include_router(download.router)
 app.include_router(rag.router)
+app.include_router(espacio.router)
 
 
 if __name__ == "__main__":

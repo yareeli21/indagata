@@ -107,7 +107,7 @@ export function BarraEntrada({
           </Button>
         )}
       </div>
-      <p className="mt-1 text-right text-[10px] text-muted-foreground/60">{texto.length}/2000</p>
+      <p className="mt-1 text-right text-xs text-muted-foreground/60">{texto.length}/2000</p>
     </div>
   );
 }

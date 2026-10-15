@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { UserPlus } from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { Pagina } from "@/components/layout/Pagina";
 import {
   Select,
   SelectContent,
@@ -39,14 +41,16 @@ export function GestionUsuariosPage() {
   };
 
   return (
-    <div className="space-y-8 p-6 md:p-8">
+    <Pagina>
       <PageHeader
+        icono={UserPlus}
+        etiqueta="Administración"
         titulo="Gestión de usuarios"
         descripcion="Da de alta nuevos usuarios de INDAGATA. Solo disponible para administradores."
       />
 
-      <section className="max-w-xl rounded-2xl border border-border bg-card p-6 shadow-card md:p-8">
-        <form onSubmit={enviar} className="flex flex-col gap-9">
+      <section className="superficie rounded-3xl p-6 md:p-8">
+        <form onSubmit={enviar} className="grid gap-x-10 gap-y-9 md:grid-cols-2">
           <div className="relative">
             <input
               id="nombre"
@@ -105,7 +109,7 @@ export function GestionUsuariosPage() {
           {error && (
             <p
               role="alert"
-              className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+              className="rounded-xl border border-destructive/30 md:col-span-2 bg-destructive/10 px-3 py-2 text-sm text-destructive"
             >
               {error}
             </p>
@@ -114,7 +118,7 @@ export function GestionUsuariosPage() {
           {exito && (
             <p
               role="status"
-              className="rounded-md border border-primary/30 bg-primary/10 px-3 py-2 text-sm text-primary"
+              className="rounded-xl border border-primary/30 md:col-span-2 bg-primary/10 px-3 py-2 text-sm text-primary"
             >
               {exito}
             </p>
@@ -123,12 +127,12 @@ export function GestionUsuariosPage() {
           <button
             type="submit"
             disabled={enviando}
-            className="mt-3 rounded-xl bg-primary px-4 py-4 text-[17px] font-bold text-primary-foreground transition-[background-color,transform] hover:bg-primary/90 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-3 rounded-xl bg-primary px-4 py-4 text-base md:col-span-2 md:justify-self-start md:px-12 font-bold text-primary-foreground transition-[background-color,transform] hover:bg-primary/90 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60"
           >
             {enviando ? "Creando…" : "Crear usuario"}
           </button>
         </form>
       </section>
-    </div>
+    </Pagina>
   );
 }

@@ -54,7 +54,7 @@ export function PanelNoticias() {
                   {n.titulo}
                 </p>
                 <p className="text-xs text-muted-foreground line-clamp-2">{n.resumen}</p>
-                <p className="text-[10px] text-muted-foreground/70">
+                <p className="text-xs text-muted-foreground/70">
                   INDAGATA · {formatearFechaCorta(n.fecha)}
                 </p>
               </li>
@@ -66,7 +66,7 @@ export function PanelNoticias() {
       {/* Estado colapsado: icono vertical */}
       {!abierto && (
         <div className="flex flex-1 flex-col items-center justify-center">
-          <span className="rotate-90 whitespace-nowrap text-[10px] font-medium tracking-widest text-muted-foreground/50 uppercase select-none">
+          <span className="rotate-90 whitespace-nowrap text-xs font-medium tracking-widest text-muted-foreground/50 uppercase select-none">
             Noticias
           </span>
         </div>

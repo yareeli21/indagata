@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { FileUp, Loader2, SearchX, Upload } from "lucide-react";
+import { FileUp, Library, SearchX, Upload } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -20,6 +20,8 @@ import { VistaRapida } from "./VistaRapida";
 import { DialogoEliminar } from "./DialogoEliminar";
 import { EstadoVacio } from "./EstadoVacio";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { Pagina } from "@/components/layout/Pagina";
+import { Cargando } from "@/components/shared/Cargando";
 import { FILTROS_VACIOS, aniosDisponibles, aplicarFiltros, type Filtros } from "./filtros";
 
 type Vista = "mios" | "todos";
@@ -91,11 +93,7 @@ export function InstrumentosPage() {
 
   let contenido: React.ReactNode;
   if (!lista) {
-    contenido = (
-      <div className="flex items-center justify-center gap-2 py-16 text-muted-foreground">
-        <Loader2 className="size-5 animate-spin" /> Cargando instrumentos…
-      </div>
-    );
+    contenido = <Cargando variante="tabla" cantidad={6} etiqueta="Cargando instrumentos…" />;
   } else if (base.length === 0) {
     // No hay instrumentos en la vista seleccionada (sin filtros activos)
     if (vista === "mios") {
@@ -155,8 +153,10 @@ export function InstrumentosPage() {
   }
 
   return (
-    <div className="space-y-6 p-6 md:p-8">
+    <Pagina>
       <PageHeader
+        icono={Library}
+        etiqueta="Acervo"
         titulo="Instrumentos"
         descripcion="Consulta encuestas, entrevistas y pruebas estandarizadas."
         acciones={
@@ -164,17 +164,17 @@ export function InstrumentosPage() {
             type="single"
             value={vista}
             onValueChange={(v) => v && setVista(v as Vista)}
-            className="rounded-full border border-border bg-card p-1 shadow-card"
+            className="rounded-full border border-border bg-card p-1.5 shadow-card"
           >
             <ToggleGroupItem
               value="mios"
-              className="rounded-full px-4 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+              className="h-11 rounded-full px-5 text-sm font-bold data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
             >
               Mis instrumentos
             </ToggleGroupItem>
             <ToggleGroupItem
               value="todos"
-              className="rounded-full px-4 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+              className="h-11 rounded-full px-5 text-sm font-bold data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
             >
               Todos los investigadores
             </ToggleGroupItem>
@@ -182,7 +182,7 @@ export function InstrumentosPage() {
         }
       />
 
-      <div className="grid gap-6 lg:grid-cols-[16rem_1fr]">
+      <div className="grid gap-6 lg:grid-cols-[18rem_minmax(0,1fr)] 2xl:grid-cols-[20rem_minmax(0,1fr)]">
         <FiltrosPanel
           filtros={filtros}
           catalogoKpis={catalogo}
@@ -220,6 +220,6 @@ export function InstrumentosPage() {
         onCancelar={() => setAEliminar(null)}
         onConfirmar={confirmarEliminar}
       />
-    </div>
+    </Pagina>
   );
 }

@@ -208,3 +208,57 @@ class ChatResponse(BaseModel):
     fuentes: list[FuenteChatOut]
     modelo: str
     degradado: bool = False
+
+
+# ── Espacio vectorial ──────────────────────────────────────────────────────────
+
+TipoPunto = Literal["kpi", "instrumento", "chunk"]
+
+
+class PcaOut(BaseModel):
+    varianza: list[float]
+    varianzaTotal: float
+    varianzaBaja: bool
+
+
+class ClusterOut(BaseModel):
+    id: int
+    etiqueta: str
+    representativos: list[str]
+    tamano: int
+
+
+class FuenteChunksOut(BaseModel):
+    nombre: str
+    provisional: bool
+
+
+class ConteosEspacioOut(BaseModel):
+    kpis: int
+    instrumentos: int
+    chunks: int
+
+
+class PuntoEspacioOut(BaseModel):
+    id: str
+    tipo: TipoPunto
+    ref: str
+    etiqueta: str
+    resumen: str
+    detalle: str
+    x: float
+    y: float
+    clusterId: int | None = None
+    instrumentoId: str | None = None
+    origenVector: Literal["summary", "calculado"] | None = None
+
+
+class MapaEspacioOut(BaseModel):
+    modelo: str
+    dimension: int
+    pca: PcaOut
+    clusters: list[ClusterOut]
+    fuenteChunks: FuenteChunksOut
+    conteos: ConteosEspacioOut
+    puntos: list[PuntoEspacioOut]
+    generadoEn: str

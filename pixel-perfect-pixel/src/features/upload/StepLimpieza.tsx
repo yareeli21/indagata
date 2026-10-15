@@ -1,4 +1,5 @@
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { ProcesandoIA } from "@/components/shared/ProcesandoIA";
 import type { ReporteLimpieza } from "@/types";
 
 interface StepLimpiezaProps {
@@ -8,9 +9,10 @@ interface StepLimpiezaProps {
 export function StepLimpieza({ reporte }: StepLimpiezaProps) {
   if (!reporte) {
     return (
-      <div className="flex items-center justify-center gap-2 py-16 text-muted-foreground">
-        <Loader2 className="size-5 animate-spin" /> Limpiando el archivo…
-      </div>
+      <ProcesandoIA
+        mensaje="Limpiando el archivo…"
+        detalle="Normalizamos encabezados, quitamos filas vacías y detectamos valores atípicos."
+      />
     );
   }
   const contadores = [

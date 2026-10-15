@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ShieldAlert } from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { Pagina } from "@/components/layout/Pagina";
 import { GestionUsuariosPage } from "@/features/usuarios/GestionUsuariosPage";
 import { useAuth } from "@/features/auth/AuthContext";
 
@@ -26,12 +28,13 @@ function UsuariosRoute() {
 
   if (usuario?.rol !== "Administrador") {
     return (
-      <div className="space-y-8 p-6 md:p-8">
+      <Pagina>
         <PageHeader
+          icono={ShieldAlert}
           titulo="Acceso restringido"
           descripcion="No tienes permisos para ver esta sección. Se requiere rol administrador."
         />
-      </div>
+      </Pagina>
     );
   }
 

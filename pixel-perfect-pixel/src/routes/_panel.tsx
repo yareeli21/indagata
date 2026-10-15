@@ -23,11 +23,11 @@ function PanelLayout() {
   }
 
   return (
-    <div className="flex min-h-screen w-full bg-background">
+    <div className="flex min-h-screen w-full bg-lienzo">
       <Sidebar />
       <div className="flex min-w-0 flex-1 flex-col">
         <Header />
-        <main className="flex flex-1 overflow-hidden">
+        <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
           <Outlet />
         </main>
       </div>

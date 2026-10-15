@@ -66,10 +66,7 @@ function TarjetaFuente({ fuente: f }: { fuente: FuenteChat }) {
       {f.kpis.length > 0 && (
         <div className="flex flex-wrap gap-1">
           {f.kpis.map((k) => (
-            <span
-              key={k}
-              className="rounded-md border px-1.5 py-0.5 text-[10px] text-muted-foreground"
-            >
+            <span key={k} className="rounded-md border px-1.5 py-0.5 text-xs text-muted-foreground">
               {k}
             </span>
           ))}
