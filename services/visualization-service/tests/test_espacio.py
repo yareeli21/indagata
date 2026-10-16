@@ -155,3 +155,107 @@ def test_mapa_usa_cache_mientras_no_cambian_los_datos(cliente, espacio):
     espacio.commit()
     tercero = cliente.get("/visualizacion/espacio/mapa", headers=ANA).json()
     assert tercero["generadoEn"] != primero and tercero["conteos"]["kpis"] == 7
+
+
+# ── Vista alineada ─────────────────────────────────────────────────────────────
+
+
+def test_mapa_alineado_centra_cada_grupo_sin_cambiar_vecinos(cliente, espacio):
+    normal = cliente.get("/visualizacion/espacio/mapa", headers=ANA).json()
+    alineado = cliente.get("/visualizacion/espacio/mapa?alinear=true&chunks=true", headers=ANA).json()
+    assert normal["alineado"] is False and alineado["alineado"] is True
+    assert 0 < alineado["pca"]["varianzaTotal"] <= 1
+    # Cada tipo queda centrado en el origen (su centroide proyectado es 0).
+    for tipo in ("kpi", "instrumento", "chunk"):
+        pts = [p for p in alineado["puntos"] if p["tipo"] == tipo]
+        assert abs(np.mean([p["x"] for p in pts])) < 1e-3
+        assert abs(np.mean([p["y"] for p in pts])) < 1e-3
+    # Los vecinos se miden en el espacio original: no dependen de la vista.
+    antes = cliente.get("/visualizacion/espacio/vecinos/kpi/1", headers=ANA).json()
+    assert [v["id"] for v in antes["kpis"]] == [v["id"] for v in
+            cliente.get("/visualizacion/espacio/vecinos/kpi/1", headers=ANA).json()["kpis"]]
+
+
+# ── Vecinos ────────────────────────────────────────────────────────────────────
+
+
+def test_vecinos_de_kpi_ordenados_por_coseno_original(cliente, espacio):
+    from services.espacio import mapa
+
+    r = cliente.get("/visualizacion/espacio/vecinos/kpi/3?k=3", headers=ANA)
+    assert r.status_code == 200, r.text
+    v = r.json()
+    assert v["origen"]["id"] == "kpi:3"
+    assert len(v["kpis"]) == 3 and all(x["id"] != "kpi:3" for x in v["kpis"])
+    assert v["kpis"][0]["id"] == "kpi:4"  # mismo tema (graduación)
+    assert v["instrumentos"][0]["id"] == "inst:2"
+    # Similitudes = coseno exacto entre los vectores originales, en orden descendente.
+    sims = [x["similitud"] for x in v["instrumentos"]]
+    assert sims == sorted(sims, reverse=True)
+    esp = mapa._cache["vigente"]
+    a = next(e for e in esp.kpis if e.ref == "3").vector
+    b = next(e for e in esp.instrumentos if e.ref == "2").vector
+    assert v["instrumentos"][0]["similitud"] == pytest.approx(
+        float(a @ b / np.linalg.norm(a) / np.linalg.norm(b)), abs=1e-4
+    )
+    # Para un KPI, los chunks son preguntas.
+    assert v["chunks"] and all(c["seccion"] == "pregunta" for c in v["chunks"])
+    assert v["chunks"][0]["id"] == "chunk:inst-2-1"
+    assert v["fuenteChunks"]["provisional"] is True
+
+
+def test_vecinos_de_instrumento_kpis_y_chunks_propios(cliente, espacio):
+    v = cliente.get("/visualizacion/espacio/vecinos/instrumento/1", headers=ANA).json()
+    assert v["kpis"][0]["ref"] in {"1", "2"}  # tema bienestar
+    assert {c["instrumentoId"] for c in v["chunks"]} == {"1"}
+    assert v["chunks"][0]["texto"]
+    assert all(i["id"] != "inst:1" for i in v["instrumentos"])
+
+
+def test_vecinos_de_chunk(cliente, espacio):
+    v = cliente.get("/visualizacion/espacio/vecinos/chunk/inst-2-1?k=2", headers=ANA).json()
+    assert v["origen"]["tipo"] == "chunk" and v["origen"]["texto"] == "tiempo de graduacion"
+    assert v["instrumentos"][0]["id"] == "inst:2"
+    assert len(v["chunks"]) == 2
+
+
+def test_vecinos_404_y_validacion(cliente, espacio):
+    assert cliente.get("/visualizacion/espacio/vecinos/kpi/999", headers=ANA).status_code == 404
+    assert cliente.get("/visualizacion/espacio/vecinos/otro/1", headers=ANA).status_code == 422
+    assert cliente.get("/visualizacion/espacio/vecinos/kpi/1?k=0", headers=ANA).status_code == 422
+    assert cliente.get("/visualizacion/espacio/vecinos/kpi/1").status_code == 401
+
+
+# ── Búsqueda semántica ─────────────────────────────────────────────────────────
+
+
+def test_buscar_proyecta_con_el_mismo_pca_y_ordena_por_coseno(cliente, espacio):
+    from services.espacio import mapa
+
+    cliente.get("/visualizacion/espacio/mapa", headers=ANA)
+    r = cliente.post("/visualizacion/espacio/buscar", json={"texto": "graduacion egreso", "k": 2}, headers=ANA)
+    assert r.status_code == 200, r.text
+    b = r.json()
+    esp = mapa._cache["vigente"]
+    q = np.asarray(vector_de("graduacion egreso"))
+    esperado = esp.proyeccion.proyectar(q)[0]
+    assert b["posicion"]["x"] == pytest.approx(esperado[0], abs=1e-3)
+    assert b["posicion"]["y"] == pytest.approx(esperado[1], abs=1e-3)
+    # Vista alineada: centrada con el centroide del grupo de referencia.
+    assert b["grupoReferencia"] in {"kpi", "instrumento", "chunk"}
+    centro = esp.medias.get(b["grupoReferencia"])
+    if centro is not None:
+        al = esp.proyeccion_alineada.proyectar(q - centro)[0]
+        assert b["posicionAlineada"]["x"] == pytest.approx(al[0], abs=1e-3)
+    assert len(b["kpis"]) == 2 and b["kpis"][0]["ref"] in {"3", "4"}
+    assert b["instrumentos"][0]["id"] == "inst:2"
+    assert b["chunks"][0]["id"] == "chunk:inst-2-1"
+    sims = [v["similitud"] for v in b["kpis"]]
+    assert sims == sorted(sims, reverse=True)
+
+
+def test_buscar_validacion(cliente, espacio):
+    assert cliente.post("/visualizacion/espacio/buscar", json={"texto": "ab"}, headers=ANA).status_code == 422
+    assert cliente.post("/visualizacion/espacio/buscar", json={"texto": "x" * 301}, headers=ANA).status_code == 422
+    assert cliente.post("/visualizacion/espacio/buscar", json={"texto": "  a   "}, headers=ANA).status_code == 422
+    assert cliente.post("/visualizacion/espacio/buscar", json={"texto": "graduacion"}).status_code == 401

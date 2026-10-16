@@ -1,4 +1,4 @@
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { TipoPuntoEspacio } from "@/types";
 import { SimboloTipo } from "./SimboloTipo";
@@ -7,7 +7,11 @@ interface ElementoLeyenda {
   tipo: TipoPuntoEspacio;
   nombre: string;
   descripcion: string;
-  conteo: number;
+  /** null = aún no se ha cargado (se carga al activarlo). */
+  conteo: number | null;
+  /** Insignia junto al nombre, p. ej. «provisionales». */
+  insignia?: string | undefined;
+  cargando?: boolean | undefined;
 }
 
 interface LeyendaInteractivaProps {
@@ -40,11 +44,22 @@ export function LeyendaInteractiva({ elementos, visibles, onAlternar }: LeyendaI
               </span>
               <span className="min-w-0 flex-1">
                 <span className="flex items-baseline justify-between gap-2">
-                  <span className="font-display text-base font-bold text-foreground">
-                    {e.nombre}
+                  <span className="flex flex-wrap items-center gap-2">
+                    <span className="font-display text-base font-bold text-foreground">
+                      {e.nombre}
+                    </span>
+                    {e.insignia && (
+                      <span className="rounded-full bg-accent-soft px-2 py-0.5 text-[0.75rem] font-bold text-accent-strong">
+                        {e.insignia}
+                      </span>
+                    )}
                   </span>
                   <span className="font-display text-xl font-bold tabular-nums text-foreground">
-                    {e.conteo}
+                    {e.cargando ? (
+                      <Loader2 className="size-5 animate-spin text-primary" aria-label="Cargando" />
+                    ) : (
+                      (e.conteo ?? "—")
+                    )}
                   </span>
                 </span>
                 <span className="block text-xs leading-snug text-muted-foreground">

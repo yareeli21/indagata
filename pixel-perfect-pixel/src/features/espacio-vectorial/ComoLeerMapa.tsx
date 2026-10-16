@@ -1,4 +1,11 @@
-import { AlertTriangle, Magnet, Ruler, SplitSquareHorizontal } from "lucide-react";
+import {
+  AlertTriangle,
+  Combine,
+  Magnet,
+  MousePointerClick,
+  Ruler,
+  SplitSquareHorizontal,
+} from "lucide-react";
 
 interface ComoLeerMapaProps {
   /** Proporción de varianza explicada por PC1 + PC2 (0–1). */
@@ -6,6 +13,8 @@ interface ComoLeerMapaProps {
   varianzaBaja: boolean;
   /** KPIs e instrumentos ocupan regiones separadas del eje PC1. */
   brecha: boolean;
+  /** Vista alineada (cada grupo centrado antes del PCA). */
+  alineado: boolean;
 }
 
 function porcentaje(v: number) {
@@ -13,7 +22,7 @@ function porcentaje(v: number) {
 }
 
 /** Guía breve para interpretar el mapa sin conocimientos de embeddings. */
-export function ComoLeerMapa({ varianzaTotal, varianzaBaja, brecha }: ComoLeerMapaProps) {
+export function ComoLeerMapa({ varianzaTotal, varianzaBaja, brecha, alineado }: ComoLeerMapaProps) {
   return (
     <ul className="space-y-4 text-sm leading-relaxed text-muted-foreground">
       <li className="flex gap-3">
@@ -42,14 +51,32 @@ export function ComoLeerMapa({ varianzaTotal, varianzaBaja, brecha }: ComoLeerMa
           </span>
         </li>
       )}
-      {brecha && (
+      <li className="flex gap-3">
+        <MousePointerClick className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
+        <span>
+          <strong className="text-foreground">Haz clic en un punto</strong> para ver su ficha y unir
+          con líneas a sus vecinos más parecidos; el grosor indica la similitud.
+        </span>
+      </li>
+      {alineado && (
+        <li className="flex gap-3">
+          <Combine className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
+          <span>
+            <strong className="text-foreground">Vista alineada.</strong> Antes de proyectar, cada
+            grupo (KPIs, instrumentos, chunks) se centró en su propio promedio. Así se quita la
+            diferencia de estilo de escritura y cada instrumento queda junto a los KPIs de su tema.
+            Las similitudes no cambian.
+          </span>
+        </li>
+      )}
+      {brecha && !alineado && (
         <li className="flex gap-3">
           <SplitSquareHorizontal className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
           <span>
             <strong className="text-foreground">Dos regiones.</strong> Los KPIs (definiciones) y los
             instrumentos (cuestionarios) se escriben de forma muy distinta, y esa diferencia domina
-            el eje horizontal. Compara posiciones dentro de cada grupo; la relación KPI ↔
-            instrumento se mide con su similitud.
+            el eje horizontal. Compara posiciones dentro de cada grupo o usa{" "}
+            <strong className="text-foreground">Alinear grupos</strong> para verlos juntos.
           </span>
         </li>
       )}

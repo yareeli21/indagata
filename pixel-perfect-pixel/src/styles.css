@@ -80,6 +80,14 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-cluster-1: var(--cluster-1);
+  --color-cluster-2: var(--cluster-2);
+  --color-cluster-3: var(--cluster-3);
+  --color-cluster-4: var(--cluster-4);
+  --color-cluster-5: var(--cluster-5);
+  --color-cluster-6: var(--cluster-6);
+  --color-cluster-7: var(--cluster-7);
+  --color-cluster-8: var(--cluster-8);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -158,6 +166,17 @@
   --hero: oklch(0.255 0.08 266);
   --hero-foreground: oklch(0.985 0.004 255);
   --hero-muted: oklch(0.84 0.035 262);
+
+  /* Grupos temáticos de KPIs en el espacio vectorial. Se evita el ámbar (es el
+     color de los instrumentos) y se alternan luminosidades para distinguirlos. */
+  --cluster-1: oklch(0.42 0.13 266);
+  --cluster-2: oklch(0.6 0.11 200);
+  --cluster-3: oklch(0.55 0.12 150);
+  --cluster-4: oklch(0.5 0.16 320);
+  --cluster-5: oklch(0.58 0.15 25);
+  --cluster-6: oklch(0.66 0.1 235);
+  --cluster-7: oklch(0.45 0.09 175);
+  --cluster-8: oklch(0.6 0.13 290);
 }
 
 .dark {

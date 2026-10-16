@@ -217,8 +217,6 @@ export interface KpiDeInstrumento {
   preguntas: PreguntaEvidencia[];
 }
 
-// ── Espacio vectorial ───────────────────────────────────────────────────────────
-
 // ── Espacio vectorial ─────────────────────────────────────────────────────────
 
 export type TipoPuntoEspacio = "kpi" | "instrumento" | "chunk";
@@ -266,4 +264,68 @@ export interface MapaEspacio {
   conteos: { kpis: number; instrumentos: number; chunks: number };
   puntos: PuntoEspacio[];
   generadoEn: string;
+  /** Vista alineada: cada grupo centrado en su centroide antes del PCA. */
+  alineado: boolean;
+}
+
+/** Punto cercano a otro; `similitud` = coseno en el espacio original (0–1). */
+export interface VecinoEspacio {
+  /** Mismo id que en el mapa ("kpi:5", "inst:12", "chunk:…"). */
+  id: string;
+  tipo: TipoPuntoEspacio;
+  ref: string;
+  etiqueta: string;
+  similitud: number;
+  clusterId: number | null;
+  instrumentoId: string | null;
+  /** Solo chunks. */
+  texto?: string | null;
+  seccion?: string | null;
+}
+
+export interface VecinosEspacio {
+  origen: {
+    id: string;
+    tipo: TipoPuntoEspacio;
+    ref: string;
+    etiqueta: string;
+    clusterId: number | null;
+    /** Solo chunks. */
+    texto?: string | null;
+    seccion?: string | null;
+  };
+  kpis: VecinoEspacio[];
+  instrumentos: VecinoEspacio[];
+  chunks: VecinoEspacio[];
+  fuenteChunks: { nombre: string; provisional: boolean };
+}
+
+/** Frase libre proyectada en el mapa y sus vecinos (coseno en el espacio original). */
+export interface BusquedaEspacio {
+  texto: string;
+  posicion: { x: number; y: number };
+  posicionAlineada: { x: number; y: number };
+  /** Grupo con cuyo centroide se centró la frase en la vista alineada. */
+  grupoReferencia: TipoPuntoEspacio | null;
+  kpis: VecinoEspacio[];
+  instrumentos: VecinoEspacio[];
+  chunks: VecinoEspacio[];
+  fuenteChunks: { nombre: string; provisional: boolean };
+}
+
+export interface PreguntaInstrumento {
+  id: string;
+  texto: string;
+  tipo: string;
+  seccion: string;
+}
+
+/** Ficha completa de un instrumento (GET /visualizacion/catalogo/{id}). */
+export interface DetalleInstrumento {
+  instrumento: Instrumento;
+  /** Columnas de `metadatos_dc` (dc_title, dc_creator, …). */
+  dublinCore: Record<string, unknown>;
+  /** Columnas de `metadatos_enriquecidos_*` según el tipo. */
+  enriquecidos: Record<string, unknown>;
+  preguntas: PreguntaInstrumento[];
 }

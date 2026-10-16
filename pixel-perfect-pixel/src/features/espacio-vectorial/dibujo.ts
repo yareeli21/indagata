@@ -10,7 +10,14 @@ export interface Paleta {
   ejes: string;
   texto: string;
   fondoEtiqueta: string;
+  /** Un color por grupo temático de KPIs (se repiten si hay más de 8). */
+  clusters: string[];
+  /** Estrella de la búsqueda semántica. */
+  consulta: string;
 }
+
+/** Número de colores de grupo definidos en styles.css (--cluster-1…8). */
+export const NUM_COLORES_CLUSTER = 8;
 
 export function leerPaleta(elemento: Element): Paleta {
   const css = getComputedStyle(elemento);
@@ -24,6 +31,10 @@ export function leerPaleta(elemento: Element): Paleta {
     ejes: v("--muted-foreground", "#6b7280"),
     texto: v("--foreground", "#1f2937"),
     fondoEtiqueta: v("--card", "#ffffff"),
+    consulta: v("--primary-glow", "#4b4bd6"),
+    clusters: Array.from({ length: NUM_COLORES_CLUSTER }, (_, i) =>
+      v(`--cluster-${i + 1}`, v("--primary", "#1e2a5a")),
+    ),
   };
 }
 
@@ -108,4 +119,49 @@ export function recortar(ctx: CanvasRenderingContext2D, texto: string, maximo: n
   let fin = texto.length;
   while (fin > 1 && ctx.measureText(`${texto.slice(0, fin)}…`).width > maximo) fin -= 1;
   return `${texto.slice(0, fin)}…`;
+}
+
+/** Clase de Tailwind con el color de un grupo (para la leyenda y el panel). */
+export function claseCluster(id: number | null | undefined): string {
+  const clases = [
+    "bg-cluster-1",
+    "bg-cluster-2",
+    "bg-cluster-3",
+    "bg-cluster-4",
+    "bg-cluster-5",
+    "bg-cluster-6",
+    "bg-cluster-7",
+    "bg-cluster-8",
+  ];
+  return id == null ? "bg-primary" : (clases[id % clases.length] ?? "bg-primary");
+}
+
+/** Color de canvas de un punto: KPIs por grupo, el resto por tipo. */
+export function colorPunto(paleta: Paleta, p: PuntoEspacio): string {
+  if (p.tipo === "kpi" && p.clusterId != null) {
+    return paleta.clusters[p.clusterId % paleta.clusters.length] ?? paleta.kpi;
+  }
+  return paleta[p.tipo];
+}
+
+/** Estrella de cinco puntas (la frase buscada en el mapa). */
+export function trazarEstrella(ctx: CanvasRenderingContext2D, x: number, y: number, radio: number) {
+  ctx.beginPath();
+  for (let i = 0; i < 10; i++) {
+    const r = i % 2 === 0 ? radio : radio * 0.45;
+    const a = -Math.PI / 2 + (i * Math.PI) / 5;
+    const px = x + r * Math.cos(a);
+    const py = y + r * Math.sin(a);
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+}
+
+/** Curva de entrada con un pequeño rebote (0 → 1). */
+export function rebote(u: number): number {
+  const c1 = 1.70158;
+  const c3 = c1 + 1;
+  const v = Math.min(1, Math.max(0, u));
+  return 1 + c3 * (v - 1) ** 3 + c1 * (v - 1) ** 2;
 }
