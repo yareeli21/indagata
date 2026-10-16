@@ -748,6 +748,7 @@ se cumplieron.
 | metadata-service | 21 de 21 |
 | analysis-service | 13 de 13 |
 | storage-service | 19 de 19 |
+| visualization-service | 25 de 25 |
 
 En las pruebas de punta a punta, la prueba pru_04 sin clave se procesó completa hasta la publicación del
 documento final. La entrevista ent_01 se procesó hasta el paso de KPIs; la ejecución automatizada se

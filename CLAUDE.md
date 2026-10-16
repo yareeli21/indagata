@@ -74,7 +74,7 @@ Two service layouts coexist:
 Every service follows the same layering: routers → `dependencies` (typed `Annotated` deps such as `DBSession`, `Investigador`) → services → `shared` models.
 
 ### Auth
-`api-gateway` issues the JWT (`POST /auth/login`, `/auth/me`, `/auth/register` for admins only). Every service validates it with the **same `SECRET_KEY`**, so a mismatch shows up as a 401. The token expires after 60 minutes. Dev users seeded by `infrastructure/postgres/init/05_seed_usuarios.sql` are `admin@indagata.local` / `admin123` and `investigador@indagata.local` / `investigador123`. In TestClient tests, bypass auth by overriding `get_current_user` / `get_db` through `app.dependency_overrides`.
+`api-gateway` issues the JWT (`POST /auth/login`, `/auth/me`, `/auth/register` for admins only). Every service validates it with the **same `SECRET_KEY`**, so a mismatch shows up as a 401. The token expires after 60 minutes. Dev users seeded by `infrastructure/postgres/init/05_seed_usuarios.sql` are `admin@indagata.com` / `admin123` and `investigador@indagata.com` / `investigador123`. In TestClient tests, bypass auth by overriding `get_current_user` / `get_db` through `app.dependency_overrides`.
 
 ### Gateway proxy
 `services/api-gateway/proxy/proxy.py` forwards the path **unchanged** by prefix, with no renaming and no response wrapping. Status codes and bodies pass straight through. It keeps `Authorization` and passes back `Content-Disposition`, `X-Checksum-SHA256` and `X-Nombre-Archivo`.
