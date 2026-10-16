@@ -1,7 +1,7 @@
 """Re-seed del catálogo de KPIs desde el CSV (diseño §1.3).
 
 Reemplaza por completo `tt_rag.kpi` con las filas de
-`infrastructure/postgres/seed/kpis_ampliados.csv` (fuente única de verdad):
+`infrastructure/postgres/seed/KPI_Ampliacion.csv` (fuente única de verdad):
 en una sola transacción hace `TRUNCATE tt_rag.kpi RESTART IDENTITY CASCADE` y
 re-inserta las filas en el orden del CSV, de modo que los `kpi_id` quedan
 contiguos 1..N. El conteo NO se hardcodea: se recuenta al ejecutar.
@@ -12,7 +12,7 @@ catálogo): vacía también `kpi_variable`, `kpi_inferido`,
 eliminan; solo se vacían las filas hijas.
 
 Ruta del CSV: variable de entorno `KPIS_CSV_PATH` si está definida; si no,
-`<raíz del repo>/infrastructure/postgres/seed/kpis_ampliados.csv`.
+`<raíz del repo>/infrastructure/postgres/seed/KPI_Ampliacion.csv`.
 
 Códigos de salida:
   0  éxito (imprime n_insertados)
@@ -104,7 +104,7 @@ def ruta_csv_por_defecto() -> Path:
             bases.append(script_dir.parents[idx])
         except IndexError:
             continue
-    relativa = Path("infrastructure") / "postgres" / "seed" / "kpis_ampliados.csv"
+    relativa = Path("infrastructure") / "postgres" / "seed" / "KPI_Ampliacion.csv"
     for base in bases:
         candidata = base / relativa
         if candidata.is_file():

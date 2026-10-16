@@ -8,6 +8,8 @@ from shared.models.instrumento_procesado import InstrumentoProcesado
 from shared.models.raw_data import RawData
 from shared.models.usuario import Usuario
 
+from services import chroma_indexer
+
 JSON_APROBADO = {
     "instrument": {
         "title": "Calidad académica",
@@ -162,4 +164,75 @@ def test_colecciones(cliente, servicio, db, chroma):
     cols = cliente.get("/almacenamiento/indice/colecciones", headers=servicio).json()
     assert cols[0]["nombre"] == "instrumentos"
     assert cols[0]["n_vectores"] > 0
-    assert cols[0]["chunk_size"] == 800
+    assert cols[0]["chunk_size"] == chroma_indexer.VENTANA
+
+
+# ── Troceo ─────────────────────────────────────────────────────────────────────
+
+
+def test_trocear_nunca_excede_la_ventana():
+    # Una «oración» gigante sin puntos después de un párrafo normal: antes se
+    # pegaba entera a la cola del chunk anterior y salía un chunk de miles de caracteres.
+    texto = "Párrafo inicial con algo de texto para abrir el documento.\n\n" + ("palabra " * 900)
+    chunks = chroma_indexer.trocear(texto)
+    assert len(chunks) > 1
+    assert all(len(c) <= chroma_indexer.VENTANA for c in chunks)
+    assert all(not c.startswith("alabra") for c in chunks)  # no corta palabras
+
+
+def test_trocear_entrevista_por_turnos_y_preguntas():
+    turnos = [
+        "Entrevistador: ¿Cómo describirías la retroalimentación que recibes de tus profesores durante el semestre?",
+        "Participante: Casi nunca la recibo a tiempo. Cuando llega ya entregué el siguiente trabajo y no me sirve.",
+        "Entrevistador: ¿Y eso cómo afecta tu motivación? ¿Te ha pasado en todas las materias?",
+        "Participante: Me desanima bastante, sobre todo en las materias de laboratorio donde la nota depende de eso.",
+    ] * 4
+    chunks = chroma_indexer.trocear("\n".join(turnos))
+    assert len(chunks) > 1
+    assert all(len(c) <= chroma_indexer.VENTANA for c in chunks)
+    # Los turnos siguen en su propia línea (no se aplanan a un solo renglón).
+    assert any("\nParticipante:" in c for c in chunks)
+
+
+def test_trocear_parte_lineas_largas_por_signos_de_interrogacion():
+    linea = " ".join(f"¿Pregunta número {n} sobre la experiencia en el aula?" for n in range(30))
+    chunks = chroma_indexer.trocear(linea)
+    assert all(len(c) <= chroma_indexer.VENTANA for c in chunks)
+    # Cada chunk termina en una oración completa.
+    assert all(c.endswith("?") for c in chunks)
+
+
+def test_trocear_solape_por_palabras_completas():
+    texto = "\n".join(f"Línea {n}: el estudiante comenta su experiencia con la tutoría académica." for n in range(20))
+    chunks = chroma_indexer.trocear(texto)
+    for anterior, siguiente in zip(chunks, chunks[1:]):
+        primera_palabra = siguiente.split()[0]
+        assert primera_palabra in anterior.split()
+
+
+def test_resultados_muestran_el_significado_de_la_escala():
+    stats = {
+        "n": 10,
+        "distribution": {"4": 5, "1": 2, "3": 3},
+        "etiquetas": {"1": "Nunca", "2": "Pocas veces", "3": "A veces", "4": "Frecuentemente"},
+    }
+    resumen = chroma_indexer._resumen_estadistico(stats)
+    assert resumen == "Resultados (n=10): 1 (Nunca): 2 (20%); 3 (A veces): 3 (30%); 4 (Frecuentemente): 5 (50%)"
+
+
+def test_encabezados_llevan_el_titulo_y_caben_en_la_ventana():
+    data = {
+        **JSON_APROBADO,
+        "metadata": {
+            **JSON_APROBADO["metadata"],
+            "dublin_core": {
+                **JSON_APROBADO["metadata"]["dublin_core"],
+                "dc:description": "Descripción extensa del instrumento. " * 40,
+            },
+        },
+    }
+    chunks = [c for c in chroma_indexer.construir_chunks(data, "Encuesta") if c.seccion == "encabezado"]
+    assert len(chunks) > 1
+    assert all(c.texto.startswith("Instrumento: Calidad académica\n") for c in chunks)
+    assert all(len(c.texto) <= chroma_indexer.VENTANA for c in chunks)
+    assert "KPIs asociados: Satisfacción académica" in chunks[0].texto

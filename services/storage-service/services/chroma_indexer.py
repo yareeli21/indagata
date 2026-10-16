@@ -8,9 +8,11 @@ para el RAG). Por cada instrumento:
      `metadata` (recién aprobado); si no hay, `instrumento_procesado.ruta_json`
      (instrumentos sembrados de la demo).
   2. Se trocea en chunks:
-       - chunk 0..k  `encabezado`: título, objetivo, Dublin Core, metadatos del
-                     tipo y KPIs asociados (el chunk 0 SIEMPRE es encabezado: lo
-                     usa visualization-service para comparar instrumentos);
+       - chunk 0..k  `encabezado`: primero la ficha esencial (título, tipo,
+                     objetivo, temas, dimensiones y KPIs asociados) y después el
+                     detalle (Dublin Core restante y metadatos del tipo); cada
+                     uno repite el título. El chunk 0 SIEMPRE es encabezado: lo
+                     usa visualization-service para comparar instrumentos;
        - un chunk    `pregunta` por reactivo (texto, opciones y resultados);
        - chunks      `contenido` con el texto íntegro (entrevistas/pruebas).
   3. Se vectorizan y se escriben en Chroma (reemplazando los anteriores) y se
@@ -24,6 +26,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any
@@ -41,9 +44,16 @@ from services import file_manager, vectores
 
 logger = logging.getLogger("storage-service")
 
-VENTANA = 800
-SOLAPE = 150
+# El modelo de embeddings solo vectoriza los primeros 128 tokens (max_seq_length)
+# y en español rinde ~3.9 caracteres por token: 450 caracteres (~115 tokens)
+# garantizan que todo el chunk cuente para la búsqueda, no solo su inicio.
+VENTANA = 450
+SOLAPE = 80
 MIN_LONGITUD = 40
+_MAX_TITULO_PREFIJO = 120
+
+_FIN_ORACION = re.compile(r"(?<=[.!?…])\s+")
+_LINEA_EN_BLANCO = re.compile(r"\n\s*\n")
 
 _ESTADOS_APROBADOS = {"estandarizado", "vectorizado"}
 _TIPO_UI = {
@@ -92,53 +102,103 @@ def _texto(valor: Any) -> str:
     return str(valor).strip()
 
 
-def trocear(texto: str) -> list[str]:
-    """Ventanas de ~800 caracteres con solape de 150, cortando por párrafo/oración."""
+def _partir_por_palabras(texto: str, ventana: int) -> list[str]:
+    """Piezas de palabras completas de hasta `ventana` caracteres."""
+    piezas: list[str] = []
+    actual = ""
+    for palabra in texto.split():
+        while len(palabra) > ventana:  # «palabra» sin espacios (URL, cadena larga)
+            if actual:
+                piezas.append(actual)
+                actual = ""
+            piezas.append(palabra[:ventana])
+            palabra = palabra[ventana:]
+        if not palabra:
+            continue
+        candidato = f"{actual} {palabra}" if actual else palabra
+        if len(candidato) <= ventana:
+            actual = candidato
+        else:
+            piezas.append(actual)
+            actual = palabra
+    if actual:
+        piezas.append(actual)
+    return piezas
+
+
+def _unidades(texto: str, ventana: int) -> list[tuple[str, str]]:
+    """Unidades indivisibles `(separador, texto)`, todas de hasta `ventana` caracteres.
+
+    Cada línea es una unidad (en las entrevistas, un turno de habla). Una línea
+    demasiado larga se parte en oraciones (`.`, `?`, `!`, `…`) y una oración
+    demasiado larga, en palabras. El separador recuerda cómo se unía al texto
+    anterior: párrafo nuevo, línea nueva o la misma línea.
+    """
+    unidades: list[tuple[str, str]] = []
+    for bloque in _LINEA_EN_BLANCO.split(texto):
+        separador = "\n\n"
+        for linea in bloque.splitlines():
+            linea = " ".join(linea.split())
+            if not linea:
+                continue
+            if len(linea) <= ventana:
+                piezas = [linea]
+            else:
+                piezas = []
+                for oracion in _FIN_ORACION.split(linea):
+                    piezas.extend([oracion] if len(oracion) <= ventana else _partir_por_palabras(oracion, ventana))
+            for n, pieza in enumerate(piezas):
+                unidades.append((separador if n == 0 else " ", pieza))
+            separador = "\n"
+    return unidades
+
+
+def _cola(texto: str, solape: int) -> str:
+    """Últimas palabras completas de `texto` que caben en `solape` caracteres."""
+    palabras: list[str] = []
+    for palabra in reversed(texto.split()):
+        if len(" ".join([palabra, *palabras])) > solape:
+            break
+        palabras.insert(0, palabra)
+    return " ".join(palabras)
+
+
+def trocear(texto: str, ventana: int = VENTANA, solape: int = SOLAPE) -> list[str]:
+    """Chunks de hasta `ventana` caracteres que respetan párrafos, turnos y oraciones.
+
+    Garantiza que ningún chunk exceda `ventana`. Cada chunk (salvo el primero)
+    arranca con las últimas palabras completas del anterior, hasta `solape`
+    caracteres, para no perder el hilo entre fragmentos.
+    """
     if not texto or not texto.strip():
         return []
-    unidades: list[str] = []
-    for parrafo in texto.split("\n\n"):
-        parrafo = parrafo.strip()
-        if not parrafo:
-            continue
-        if len(parrafo) <= VENTANA:
-            unidades.append(parrafo)
-            continue
-        buffer = ""
-        for oracion in parrafo.replace("\n", " ").split(". "):
-            oracion = oracion.strip()
-            if not oracion:
-                continue
-            candidato = f"{buffer}. {oracion}" if buffer else oracion
-            if len(candidato) <= VENTANA:
-                buffer = candidato
-            else:
-                if buffer:
-                    unidades.append(buffer)
-                buffer = oracion
-        if buffer:
-            unidades.append(buffer)
-
     chunks: list[str] = []
     actual = ""
-    for unidad in unidades:
-        candidato = f"{actual}\n\n{unidad}" if actual else unidad
-        if len(candidato) <= VENTANA:
+    for separador, unidad in _unidades(texto, ventana):
+        if not actual:
+            actual = unidad
+            continue
+        candidato = f"{actual}{separador}{unidad}"
+        if len(candidato) <= ventana:
             actual = candidato
             continue
-        if actual:
-            chunks.append(actual)
-            cola = actual[-SOLAPE:].strip()
-            actual = f"{cola}\n\n{unidad}" if cola else unidad
-        else:
-            inicio = 0
-            while inicio < len(unidad):
-                chunks.append(unidad[inicio : inicio + VENTANA])
-                inicio += VENTANA - SOLAPE
-            actual = ""
+        chunks.append(actual)
+        cola = _cola(actual, solape)
+        con_cola = f"{cola}{separador}{unidad}"
+        actual = con_cola if cola and len(con_cola) <= ventana else unidad
     if actual:
         chunks.append(actual)
     return [c.strip() for c in chunks if len(c.strip()) >= MIN_LONGITUD]
+
+
+def _trocear_con_titulo(lineas: list[str], titulo: str) -> list[str]:
+    """Trocea líneas de la ficha y antepone el título a cada pieza.
+
+    Así ningún chunk de encabezado pierde de qué instrumento habla, y con el
+    prefijo incluido sigue sin exceder `VENTANA`.
+    """
+    prefijo = f"Instrumento: {titulo[:_MAX_TITULO_PREFIJO]}\n"
+    return [f"{prefijo}{t}" for t in trocear("\n".join(lineas), ventana=VENTANA - len(prefijo))]
 
 
 def esta_aprobado(procesado: InstrumentoProcesado | None) -> bool:
@@ -208,11 +268,19 @@ def _resumen_estadistico(stats: dict[str, Any]) -> str:
         if stats.get("std") is not None:
             partes.append(f"desv. est. {float(stats['std']):.2f}")
     distribucion = _dict(stats.get("distribution"))
+    etiquetas = _dict(stats.get("etiquetas"))  # significado de cada valor de la escala
     total = sum(v for v in distribucion.values() if isinstance(v, (int, float))) or 0
     if distribucion and total:
-        ordenados = sorted(distribucion.items(), key=lambda kv: -float(kv[1] or 0))[:6]
+        if etiquetas:  # escala completa en su orden natural (1, 2, 3…)
+            ordenados = sorted(distribucion.items(), key=lambda kv: float(kv[0]) if str(kv[0]).isdigit() else 0.0)
+        else:
+            ordenados = sorted(distribucion.items(), key=lambda kv: -float(kv[1] or 0))[:6]
+
+        def _valor(v: Any) -> str:
+            return f"{v} ({etiquetas[str(v)]})" if str(v) in etiquetas else str(v)
+
         partes.append(
-            "; ".join(f"{valor}: {conteo} ({100 * float(conteo) / total:.0f}%)" for valor, conteo in ordenados)
+            "; ".join(f"{_valor(valor)}: {conteo} ({100 * float(conteo) / total:.0f}%)" for valor, conteo in ordenados)
         )
     n = stats.get("n") or stats.get("n_respuestas")
     prefijo = f"Resultados (n={n})" if n else "Resultados"
@@ -227,29 +295,37 @@ def construir_chunks(data: dict[str, Any], tipo_ui: str) -> list[Chunk]:
     especificos = _dict(metadata.get("survey_specific"))
     titulo = _texto(instrumento.get("title")) or _texto(dc.get("dc:title")) or "Instrumento"
 
-    lineas = [f"Instrumento: {titulo}", f"Tipo: {tipo_ui}"]
+    # Ficha esencial primero (queda en el chunk 0) y detalle después.
+    ficha = [f"Tipo: {tipo_ui}"]
     for etiqueta, valor in (
         ("Objetivo", instrumento.get("objective")),
-        ("Descripción", dc.get("dc:description")),
         ("Temas", dc.get("dc:subject")),
-        ("Cobertura", dc.get("dc:coverage")),
-        ("Autor", dc.get("dc:creator")),
-        ("Fecha", dc.get("dc:date")),
         ("Dimensiones", instrumento.get("dimensions_explored")),
     ):
         if _texto(valor):
-            lineas.append(f"{etiqueta}: {_texto(valor)}")
+            ficha.append(f"{etiqueta}: {_texto(valor)}")
+    kpis = _nombres_kpis(data)
+    if kpis:
+        ficha.append(f"KPIs asociados: {', '.join(kpis)}")
+
+    detalle: list[str] = []
+    for etiqueta, valor in (
+        ("Descripción", dc.get("dc:description")),
+        ("Cobertura", dc.get("dc:coverage")),
+        ("Autor", dc.get("dc:creator")),
+        ("Fecha", dc.get("dc:date")),
+    ):
+        if _texto(valor):
+            detalle.append(f"{etiqueta}: {_texto(valor)}")
     for clave, valor in especificos.items():
         if _texto(valor):
             etiqueta = clave.replace("_", " ").capitalize()
-            lineas.append(f"{etiqueta}: {_texto(valor)}")
-    kpis = _nombres_kpis(data)
-    if kpis:
-        lineas.append(f"KPIs asociados: {', '.join(kpis)}")
+            detalle.append(f"{etiqueta}: {_texto(valor)}")
 
-    chunks = [Chunk(texto=t, seccion="encabezado") for t in trocear("\n\n".join(lineas))]
+    chunks = [Chunk(texto=t, seccion="encabezado") for t in _trocear_con_titulo(ficha, titulo)]
     if not chunks:
-        chunks = [Chunk(texto="\n".join(lineas), seccion="encabezado")]
+        chunks = [Chunk(texto=f"Instrumento: {titulo}\nTipo: {tipo_ui}", seccion="encabezado")]
+    chunks += [Chunk(texto=t, seccion="encabezado") for t in _trocear_con_titulo(detalle, titulo)]
 
     # Los chunks de pregunta y de contenido NO repiten el título del instrumento:
     # viaja en la metadata (y el prompt del RAG lo muestra en cada fuente). Así el
@@ -324,6 +400,8 @@ def _get_or_create_coleccion(db: Session) -> ColeccionVectorial:
         )
         db.add(col)
         db.flush()
+    elif (col.chunk_size, col.chunk_overlap) != (VENTANA, SOLAPE):
+        col.chunk_size, col.chunk_overlap = VENTANA, SOLAPE
     return col
 
 

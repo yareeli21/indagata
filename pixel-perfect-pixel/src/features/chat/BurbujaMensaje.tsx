@@ -1,9 +1,18 @@
+import type { ReactNode } from "react";
 import { BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { FuenteChat, Mensaje } from "@/types";
 
 interface BurbujaMensajeProps {
   mensaje: Mensaje;
+}
+
+// Citas tal como las escribe el modelo: [Fuente 2], (Fuentes 3 y 5), [Fuente 1, 3 y 6],
+// [Fuente 5 y Fuente 6]. Cada número es el de una tarjeta de fuente.
+const RE_CITA = /[[(]\s*Fuentes?\s+(\d+(?:\s*(?:,|y|e)\s*(?:Fuente\s+)?\d+)*)\s*[\])]/gi;
+
+function idTarjeta(mensajeId: string, numero: number): string {
+  return `fuente-${mensajeId}-${numero}`;
 }
 
 export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
@@ -21,7 +30,9 @@ export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
             : "rounded-bl-md border border-border bg-card text-card-foreground",
         )}
       >
-        <p className="whitespace-pre-wrap break-words">{mensaje.contenido}</p>
+        <p className="whitespace-pre-wrap break-words">
+          {esUsuario ? mensaje.contenido : conCitas(mensaje.contenido, mensaje.id, mensaje.fuentes)}
+        </p>
         {/* Cursor parpadeante mientras se genera */}
         {mensaje.generando && (
           <span
@@ -39,8 +50,13 @@ export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
             Fuentes
           </p>
           <div className="grid gap-2 sm:grid-cols-2">
-            {mensaje.fuentes.map((f) => (
-              <TarjetaFuente key={f.instrumentoId} fuente={f} />
+            {mensaje.fuentes.map((f, i) => (
+              <TarjetaFuente
+                key={f.instrumentoId}
+                fuente={f}
+                numero={f.numero ?? i + 1}
+                id={idTarjeta(mensaje.id, f.numero ?? i + 1)}
+              />
             ))}
           </div>
         </div>
@@ -49,17 +65,81 @@ export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
   );
 }
 
-function TarjetaFuente({ fuente: f }: { fuente: FuenteChat }) {
+/** Texto de la respuesta con cada cita convertida en una marca numerada que
+ *  coincide con su tarjeta de fuente. */
+function conCitas(texto: string, mensajeId: string, fuentes?: FuenteChat[]): ReactNode[] {
+  const partes: ReactNode[] = [];
+  let desde = 0;
+  for (const m of texto.matchAll(RE_CITA)) {
+    const inicio = m.index ?? 0;
+    if (inicio > desde) partes.push(texto.slice(desde, inicio));
+    const numeros = [...new Set((m[1] ?? "").match(/\d+/g)?.map(Number) ?? [])];
+    partes.push(
+      <span key={`cita-${inicio}`} className="whitespace-nowrap">
+        {numeros.map((n) => (
+          <MarcaCita
+            key={n}
+            numero={n}
+            fuente={fuentes?.find((f) => f.numero === n)}
+            idDestino={idTarjeta(mensajeId, n)}
+          />
+        ))}
+      </span>,
+    );
+    desde = inicio + m[0].length;
+  }
+  if (desde < texto.length) partes.push(texto.slice(desde));
+  return partes;
+}
+
+function MarcaCita({
+  numero,
+  fuente,
+  idDestino,
+}: {
+  numero: number;
+  fuente: FuenteChat | undefined;
+  idDestino: string;
+}) {
   return (
-    <div className="space-y-2 rounded-2xl border border-border bg-card p-3 shadow-card">
-      {/* Título + tipo */}
-      <div className="space-y-0.5">
-        <p className="text-xs font-semibold leading-snug text-foreground line-clamp-2">
-          {f.titulo}
-        </p>
-        <p className="text-xs text-muted-foreground">
-          {f.tipo} · {f.investigador}
-        </p>
+    <button
+      type="button"
+      title={fuente ? fuente.titulo : `Fuente ${numero}`}
+      aria-label={fuente ? `Fuente ${numero}: ${fuente.titulo}` : `Fuente ${numero}`}
+      onClick={() =>
+        document.getElementById(idDestino)?.scrollIntoView({ behavior: "smooth", block: "nearest" })
+      }
+      className="mx-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded bg-primary/10 px-1 align-super text-[10px] font-semibold text-primary hover:bg-primary/20"
+    >
+      {numero}
+    </button>
+  );
+}
+
+function TarjetaFuente({
+  fuente: f,
+  numero,
+  id,
+}: {
+  fuente: FuenteChat;
+  numero: number;
+  id: string;
+}) {
+  return (
+    <div id={id} className="space-y-2 rounded-2xl border border-border bg-card p-3 shadow-card">
+      {/* Número + título + tipo */}
+      <div className="flex items-start gap-2">
+        <span className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded bg-primary/10 text-xs font-semibold text-primary">
+          {numero}
+        </span>
+        <div className="min-w-0 space-y-0.5">
+          <p className="text-xs font-semibold leading-snug text-foreground line-clamp-2">
+            {f.titulo}
+          </p>
+          <p className="text-xs text-muted-foreground">
+            {f.tipo} · {f.investigador}
+          </p>
+        </div>
       </div>
 
       {/* KPIs */}

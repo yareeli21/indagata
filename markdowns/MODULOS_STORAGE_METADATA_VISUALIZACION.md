@@ -167,7 +167,7 @@ La primera vez Postgres ejecuta `infrastructure/postgres/init/01_schema.sql` y
 # Modelo del LLM (una sola vez; queda en el volumen ollama_data)
 docker exec -it indagata_ollama ollama pull llama3.2:3b
 
-# Catálogo de 55 KPIs desde infrastructure/postgres/seed/kpis_ampliados.csv
+# Catálogo de 55 KPIs desde infrastructure/postgres/seed/KPI_Ampliacion.csv
 # (OJO: vacía la tabla kpi y, en cascada, kpi_variable y kpi_inferido)
 docker exec indagata_analysis_service python scripts/seed_kpis.py
 

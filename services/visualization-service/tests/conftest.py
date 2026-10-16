@@ -201,14 +201,16 @@ def storage(monkeypatch):
 def ollama(monkeypatch):
     from services import ollama_client
 
-    estado = {"prompts": []}
+    estado = {"prompts": [], "sistemas": []}
 
-    async def no_stream(prompt, modelo):  # noqa: ANN001
+    async def no_stream(prompt, modelo, sistema=None):  # noqa: ANN001
         estado["prompts"].append(prompt)
+        estado["sistemas"].append(sistema)
         return "Respuesta fundamentada [Fuente 1].", False
 
-    async def stream(prompt, modelo):  # noqa: ANN001
+    async def stream(prompt, modelo, sistema=None):  # noqa: ANN001
         estado["prompts"].append(prompt)
+        estado["sistemas"].append(sistema)
         for trozo in ("Hola ", "mundo"):
             yield trozo
 

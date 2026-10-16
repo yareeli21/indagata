@@ -35,7 +35,8 @@ def build_kpi_text(kpi: KPI) -> str:
 
 
 def build_kpi_metadata(kpi: KPI) -> dict:
-    """Metadata escalar del punto Chroma (sin None; simétrica a build_kpi_text)."""
+    """Metadata escalar del punto Chroma: todas las columnas del CSV salvo el texto
+    vectorizado (sin None; simétrica a build_kpi_text)."""
     return {
         "kpi_id": kpi.kpi_id,
         "nombre": kpi.nombre or "",
@@ -43,6 +44,8 @@ def build_kpi_metadata(kpi: KPI) -> dict:
         "tipo_objetivo_estrategico": kpi.tipo_objetivo_estrategico or "",
         "formula_metrica_calculo": kpi.formula_metrica_calculo or "",
         "descripcion_ampliada_educativa": kpi.descripcion_ampliada_educativa or "",
+        "comportamiento_direccional_causalidad": kpi.comportamiento_direccional_causalidad or "",
+        "razon_estrategica_decisiones": kpi.razon_estrategica_decisiones or "",
     }
 
 

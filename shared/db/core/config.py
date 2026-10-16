@@ -83,6 +83,13 @@ class AppSettings(BaseSettings):
     KPI_SEARCH_TOP_K: int = 5
     KPI_SEARCH_MIN_SCORE: float = 0.30
 
+    # ── Chat RAG ─────────────────────────────────────────────────────────────
+    # Similitud coseno mínima para que un fragmento entre al contexto del LLM.
+    # Si ninguno la alcanza, el chat responde que no tiene información
+    # relacionada en lugar de dejar que el modelo improvise. Calibrado con 30
+    # instrumentos: preguntas sin relación ≤ 0.30, relacionadas 0.60–0.77.
+    RAG_MIN_SCORE: float = 0.35
+
     model_config = SettingsConfigDict(
         # Ruta absoluta al .env de la raíz del repo, para que se encuentre sin
         # importar desde qué carpeta se arranque el servicio (local o Docker).

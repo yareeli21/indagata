@@ -133,6 +133,8 @@ export interface ContextoInvestigacion {
 }
 
 export interface FuenteChat {
+  /** Número con el que la respuesta la cita: [Fuente n]. */
+  numero: number;
   instrumentoId: string;
   titulo: string;
   tipo: TipoInstrumento;
