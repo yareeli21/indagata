@@ -17,7 +17,11 @@ _SERVICIO = Path(__file__).resolve().parents[1]
 _REPO = _SERVICIO.parents[1]
 sys.path.insert(0, str(_SERVICIO))
 sys.path.insert(1, str(_REPO))
-os.environ.update({"SECRET_KEY": "clave-de-pruebas", "DEBUG": "false", "METADATA_USAR_LLM": "false"})
+# METADATA_EXIGIR_LIMPIEZA=false: las pruebas clásicas analizan el archivo crudo; las de
+# integración con la limpieza lo activan con monkeypatch.
+os.environ.update(
+    {"SECRET_KEY": "clave-de-pruebas", "DEBUG": "false", "METADATA_USAR_LLM": "false", "METADATA_EXIGIR_LIMPIEZA": "false"}
+)
 
 import pytest  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402
@@ -56,7 +60,11 @@ class StorageFalso:
         self.fallar_indice = False
 
     def tabla(self, ruta: str, max_filas: int = 20000) -> dict:
-        filas = list(csv.reader(io.StringIO(self.archivos[ruta].decode("utf-8"))))
+        # Como el storage real: UTF-8 con o sin BOM y delimitador , o ; (el CSV limpio usa ;).
+        texto = self.archivos[ruta].decode("utf-8-sig")
+        primera = texto.splitlines()[0] if texto else ""
+        delimitador = ";" if primera.count(";") > primera.count(",") else ","
+        filas = list(csv.reader(io.StringIO(texto), delimiter=delimitador))
         cuerpo = [f for f in filas[1:] if any(c.strip() for c in f)]
         return {"headers": filas[0], "rows": cuerpo, "n_filas": len(cuerpo), "notas": [], "truncado": False}
 
@@ -202,5 +210,24 @@ def crear_instrumento(db, storage, usuarios):
         db.add(InstrumentoProcesado(id_crudo=raw.id_crudo, estado="recibido"))
         db.commit()
         return raw.id_crudo
+
+    return _crear
+
+
+@pytest.fixture()
+def crear_limpieza(db, storage):
+    """Registra una limpieza CONFIRMADA (cleaning-service) con su CSV limpio en storage."""
+    from shared.models.limpieza_ejecucion import LimpiezaEjecucion
+
+    def _crear(id_crudo: int, csv_limpio: str, reporte: dict, version: int = 1) -> str:
+        ruta = f"clean/{id_crudo}/{version}__v{version}_limpio.csv"
+        storage.archivos[ruta] = csv_limpio.encode("utf-8-sig")
+        db.add(
+            LimpiezaEjecucion(
+                id_crudo=id_crudo, version=version, estado="confirmada", ruta_csv_limpio=ruta, reporte=reporte
+            )
+        )
+        db.commit()
+        return ruta
 
     return _crear

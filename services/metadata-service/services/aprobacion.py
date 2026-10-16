@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import copy
 import logging
+import os
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any
@@ -31,6 +32,7 @@ from shared.models.instrumento_procesado import InstrumentoProcesado
 from shared.models.kpi import KPI
 from shared.models.kpi_inferido import KPIInferido
 from shared.models.kpi_inferido_chunk import KpiInferidoChunk
+from shared.models.limpieza_ejecucion import LimpiezaEjecucion
 from shared.models.raw_data import RawData
 from shared.models.usuario import Usuario
 
@@ -42,11 +44,23 @@ from services.enrichment_engine import EnrichmentEngine
 logger = logging.getLogger("metadata-service")
 
 
+# Estados de un instrumento que aún no pasa por metadatos. Para ellos se exige una
+# limpieza confirmada; los que ya avanzaron (estandarizados antes de la limpieza
+# asistida) siguen usando su archivo crudo.
+_ESTADOS_SIN_METADATOS = ("recibido", "limpieza_en_proceso", "limpio", "error")
+
+
+def _exigir_limpieza() -> bool:
+    return os.getenv("METADATA_EXIGIR_LIMPIEZA", "true").lower() == "true"
+
+
 @dataclass
 class Contexto:
     raw: RawData
     procesado: InstrumentoProcesado
     autor: Usuario | None
+    # Última limpieza confirmada: {id, version, ruta, reporte} o None.
+    limpieza: dict[str, Any] | None = None
 
     @property
     def tipo(self) -> str:
@@ -82,7 +96,31 @@ def cargar_contexto(db: Session, usuario: Usuario, id_crudo: int, *, exigir_duen
         campos_de(raw.tipo_instrumento)
     except ValueError as exc:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, str(exc)) from exc
-    return Contexto(raw=raw, procesado=procesado, autor=db.get(Usuario, raw.id_owner))
+    return Contexto(
+        raw=raw, procesado=procesado, autor=db.get(Usuario, raw.id_owner), limpieza=limpieza_confirmada(db, id_crudo)
+    )
+
+
+def limpieza_confirmada(db: Session, id_crudo: int) -> dict[str, Any] | None:
+    """La última versión CONFIRMADA de la limpieza (la que debe usar metadata-service)."""
+    fila = (
+        db.query(LimpiezaEjecucion)
+        .filter(LimpiezaEjecucion.id_crudo == id_crudo, LimpiezaEjecucion.estado == "confirmada")
+        .order_by(LimpiezaEjecucion.version.desc())
+        .first()
+    )
+    if fila is None or not fila.ruta_csv_limpio:
+        return None
+    return {"id": fila.id_limpieza, "version": fila.version, "ruta": fila.ruta_csv_limpio, "reporte": fila.reporte or {}}
+
+
+def exigir_limpieza(ctx: Contexto) -> None:
+    """Un instrumento nuevo no pasa a metadatos sin una limpieza confirmada (ni con el crudo)."""
+    if _exigir_limpieza() and ctx.limpieza is None and ctx.procesado.estado in _ESTADOS_SIN_METADATOS:
+        raise HTTPException(
+            status.HTTP_409_CONFLICT,
+            "Primero confirma la limpieza del instrumento (paso «Limpieza»): los metadatos se proponen con el archivo limpio.",
+        )
 
 
 def error_storage(exc: storage_client.StorageError) -> HTTPException:
@@ -92,8 +130,9 @@ def error_storage(exc: storage_client.StorageError) -> HTTPException:
 
 
 def analizar(ctx: Contexto) -> analizador.Analisis:
+    exigir_limpieza(ctx)
     try:
-        return analizador.analizar(ctx.raw, ctx.procesado)
+        return analizador.analizar(ctx.raw, ctx.procesado, ctx.limpieza)
     except storage_client.StorageError as exc:
         raise error_storage(exc) from exc
 
@@ -161,12 +200,14 @@ def propuesta(
         if guardados is not None:
             return {**base, "valores": guardados, "origen": {k: "aprobado" for k in guardados}}
 
+    exigir_limpieza(ctx)
     try:
         prop = propuestas.construir(
             ctx.raw,
             ctx.procesado,
             ctx.autor_nombre,
             usar_llm=settings.METADATA_USAR_LLM if usar_llm is None else usar_llm,
+            limpieza=ctx.limpieza,
         )
     except storage_client.StorageError as exc:
         raise error_storage(exc) from exc

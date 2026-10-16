@@ -1,7 +1,8 @@
 """Modelo ORM: raw_data — tabla PADRE del pipeline.
 
 Un registro por instrumento recibido en crudo. Guarda el archivo respondido
-(raw_archivo) y el instrumento original sin respuestas (raw_archivo_original).
+(raw_archivo), el instrumento original sin respuestas (raw_archivo_original) y,
+en pruebas estandarizadas tabulares, la clave de respuestas (raw_archivo_clave).
 """
 from __future__ import annotations
 
@@ -26,6 +27,8 @@ class RawData(Base):
     nombre_archivo: Mapped[str] = mapped_column(Text, nullable=False)
     raw_archivo: Mapped[str] = mapped_column(Text, nullable=False)
     raw_archivo_original: Mapped[str | None] = mapped_column(Text)
+    # Clave de respuestas de una prueba estandarizada tabular (otro archivo crudo).
+    raw_archivo_clave: Mapped[str | None] = mapped_column(Text)
     fecha_carga: Mapped[datetime] = mapped_column(server_default=func.now())
 
     def __repr__(self) -> str:  # pragma: no cover

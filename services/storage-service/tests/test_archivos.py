@@ -68,6 +68,17 @@ def test_json_ultima_version(cliente, servicio):
     assert cliente.get("/almacenamiento/artefacto/analysis/12", headers=servicio).status_code == 404
 
 
+def test_documento_final_es_un_json_versionado_aparte(cliente, servicio):
+    r = cliente.post("/almacenamiento/json", headers=servicio,
+                     json={"instrumentoId": "12", "tipo": "documento", "contenido": {"esquema_version": "1.0"}, "nombre": "v1_documento_final"})
+    assert r.status_code == 200, r.text
+    ref = r.json()
+    assert ref["key"].startswith("documento/12/1__") and ref["sha256"]
+    detalle = cliente.get("/almacenamiento/artefacto/documento/12", headers=servicio).json()
+    assert detalle["contenido"] == {"esquema_version": "1.0"}
+    assert cliente.get("/almacenamiento/artefacto/metadata/12", headers=servicio).status_code == 404  # no se mezcla
+
+
 def test_tabla_csv_punto_y_coma_latin1(cliente, servicio):
     contenido = "Carrera;Edad\nPedagogía;21\n;\nDerecho;22\n".encode("latin-1")
     ref = _subir(cliente, servicio, contenido, "r.csv").json()

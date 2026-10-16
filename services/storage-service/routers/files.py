@@ -3,7 +3,7 @@
 Prefijo /almacenamiento. Todos los endpoints son internos (token de servicio o
 administrador, ver dependencies.py).
 
-  POST   /almacenamiento/json                  guardar un JSON (metadata | analysis)
+  POST   /almacenamiento/json                  guardar un JSON (metadata | analysis | documento)
   POST   /almacenamiento/archivo               guardar un binario (raw | clean | sav | temp)
   GET    /almacenamiento/artefacto/{tipo}/{id} recuperar un artefacto (+ contenido si es JSON)
   GET    /almacenamiento/artefactos            listar/filtrar artefactos
@@ -79,7 +79,7 @@ def _content_disposition(nombre: str) -> str:
     return f"attachment; filename=\"{ascii_}\"; filename*=UTF-8''{quote(nombre)}"
 
 
-@router.post("/json", response_model=ArtefactoRef, summary="Guardar un JSON (metadata o analysis)")
+@router.post("/json", response_model=ArtefactoRef, summary="Guardar un JSON (metadata, analysis o documento)")
 def guardar_json(payload: GuardarJsonRequest, _: Interno) -> ArtefactoRef:
     if not payload.instrumentoId.strip():
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, "El instrumentoId es obligatorio.")

@@ -1,0 +1,496 @@
+{
+ "reporte": {
+  "esquema": "reporte_limpieza/1",
+  "tipo_instrumento": "entrevista",
+  "version": 1,
+  "metricas": {
+   "antes": {
+    "n_caracteres": 1735,
+    "n_palabras": 212,
+    "n_lineas": 38,
+    "ruido_detectado": 4
+   },
+   "despues": {
+    "n_caracteres": 795,
+    "n_palabras": 125,
+    "n_lineas": 17,
+    "n_turnos": 17,
+    "n_hablantes": 2,
+    "estructura_reconocida": true,
+    "ruido_detectado": 0
+   }
+  },
+  "estadistica": {
+   "antes": {
+    "n_participantes": 3,
+    "n_preguntas": 3,
+    "n_respuestas": 8,
+    "palabras_por_respuesta": {
+     "n": 8,
+     "media": 7.375,
+     "mediana": 7.0,
+     "desviacion": 2.7742,
+     "min": 4.0,
+     "max": 12.0,
+     "q1": 5.75,
+     "q3": 8.0,
+     "iqr": 2.25,
+     "asimetria": 0.8204,
+     "curtosis": -0.296
+    },
+    "preguntas": [
+     {
+      "pregunta": "P1",
+      "texto": "¿Qué factores te han ayudado a continuar tus estudios?",
+      "n_respuestas": 3,
+      "sin_respuesta": 0,
+      "palabras": {
+       "media": 7.6667,
+       "mediana": 7.0,
+       "min": 5.0,
+       "max": 11.0
+      }
+     },
+     {
+      "pregunta": "P2",
+      "texto": "¿Has pensado en abandonar la universidad?",
+      "n_respuestas": 2,
+      "sin_respuesta": 1,
+      "palabras": {
+       "media": 8.0,
+       "mediana": 8.0,
+       "min": 4.0,
+       "max": 12.0
+      }
+     },
+     {
+      "pregunta": "P3",
+      "texto": "¿Qué servicios de apoyo institucional has utilizado?",
+      "n_respuestas": 3,
+      "sin_respuesta": 0,
+      "palabras": {
+       "media": 6.6667,
+       "mediana": 7.0,
+       "min": 6.0,
+       "max": 7.0
+      }
+     }
+    ],
+    "participantes": [
+     {
+      "id": "R0001",
+      "respuestas": 3,
+      "palabras": 30,
+      "palabras_por_respuesta": 10.0
+     },
+     {
+      "id": "R0002",
+      "respuestas": 2,
+      "palabras": 14,
+      "palabras_por_respuesta": 7.0
+     },
+     {
+      "id": "R0003",
+      "respuestas": 3,
+      "palabras": 15,
+      "palabras_por_respuesta": 5.0
+     }
+    ],
+    "palabras_por_rol": [
+     {
+      "rol": "entrevistado",
+      "turnos": 8,
+      "palabras": 59,
+      "pct_palabras": 0.472
+     },
+     {
+      "rol": "entrevistador",
+      "turnos": 9,
+      "palabras": 66,
+      "pct_palabras": 0.528
+     }
+    ],
+    "hablantes": [
+     {
+      "nombre": "P",
+      "rol": "entrevistador",
+      "turnos": 9,
+      "palabras": 66,
+      "pct_palabras": 0.528,
+      "palabras_por_turno": {
+       "media": 7.3333,
+       "mediana": 7.0,
+       "desviacion": 1.3229,
+       "min": 6.0,
+       "max": 9.0
+      },
+      "pct_preguntas": 1.0
+     },
+     {
+      "nombre": "R",
+      "rol": "entrevistado",
+      "turnos": 8,
+      "palabras": 59,
+      "pct_palabras": 0.472,
+      "palabras_por_turno": {
+       "media": 7.375,
+       "mediana": 7.0,
+       "desviacion": 2.7742,
+       "min": 4.0,
+       "max": 12.0
+      },
+      "pct_preguntas": 0.0
+     }
+    ],
+    "palabras_por_turno": {
+     "n": 17,
+     "media": 7.3529,
+     "mediana": 7.0,
+     "desviacion": 2.0598,
+     "min": 4.0,
+     "max": 12.0,
+     "q1": 6.0,
+     "q3": 9.0,
+     "iqr": 3.0,
+     "asimetria": 0.8217,
+     "curtosis": 0.572
+    }
+   },
+   "despues": {
+    "n_participantes": 3,
+    "n_preguntas": 3,
+    "n_respuestas": 8,
+    "palabras_por_respuesta": {
+     "n": 8,
+     "media": 7.375,
+     "mediana": 7.0,
+     "desviacion": 2.7742,
+     "min": 4.0,
+     "max": 12.0,
+     "q1": 5.75,
+     "q3": 8.0,
+     "iqr": 2.25,
+     "asimetria": 0.8204,
+     "curtosis": -0.296
+    },
+    "preguntas": [
+     {
+      "pregunta": "P1",
+      "texto": "¿Qué factores te han ayudado a continuar tus estudios?",
+      "n_respuestas": 3,
+      "sin_respuesta": 0,
+      "palabras": {
+       "media": 7.6667,
+       "mediana": 7.0,
+       "min": 5.0,
+       "max": 11.0
+      }
+     },
+     {
+      "pregunta": "P2",
+      "texto": "¿Has pensado en abandonar la universidad?",
+      "n_respuestas": 2,
+      "sin_respuesta": 1,
+      "palabras": {
+       "media": 8.0,
+       "mediana": 8.0,
+       "min": 4.0,
+       "max": 12.0
+      }
+     },
+     {
+      "pregunta": "P3",
+      "texto": "¿Qué servicios de apoyo institucional has utilizado?",
+      "n_respuestas": 3,
+      "sin_respuesta": 0,
+      "palabras": {
+       "media": 6.6667,
+       "mediana": 7.0,
+       "min": 6.0,
+       "max": 7.0
+      }
+     }
+    ],
+    "participantes": [
+     {
+      "id": "R0001",
+      "respuestas": 3,
+      "palabras": 30,
+      "palabras_por_respuesta": 10.0
+     },
+     {
+      "id": "R0002",
+      "respuestas": 2,
+      "palabras": 14,
+      "palabras_por_respuesta": 7.0
+     },
+     {
+      "id": "R0003",
+      "respuestas": 3,
+      "palabras": 15,
+      "palabras_por_respuesta": 5.0
+     }
+    ],
+    "palabras_por_rol": [
+     {
+      "rol": "entrevistado",
+      "turnos": 8,
+      "palabras": 59,
+      "pct_palabras": 0.472
+     },
+     {
+      "rol": "entrevistador",
+      "turnos": 9,
+      "palabras": 66,
+      "pct_palabras": 0.528
+     }
+    ],
+    "hablantes": [
+     {
+      "nombre": "P",
+      "rol": "entrevistador",
+      "turnos": 9,
+      "palabras": 66,
+      "pct_palabras": 0.528,
+      "palabras_por_turno": {
+       "media": 7.3333,
+       "mediana": 7.0,
+       "desviacion": 1.3229,
+       "min": 6.0,
+       "max": 9.0
+      },
+      "pct_preguntas": 1.0
+     },
+     {
+      "nombre": "R",
+      "rol": "entrevistado",
+      "turnos": 8,
+      "palabras": 59,
+      "pct_palabras": 0.472,
+      "palabras_por_turno": {
+       "media": 7.375,
+       "mediana": 7.0,
+       "desviacion": 2.7742,
+       "min": 4.0,
+       "max": 12.0
+      },
+      "pct_preguntas": 0.0
+     }
+    ],
+    "palabras_por_turno": {
+     "n": 17,
+     "media": 7.3529,
+     "mediana": 7.0,
+     "desviacion": 2.0598,
+     "min": 4.0,
+     "max": 12.0,
+     "q1": 6.0,
+     "q3": 9.0,
+     "iqr": 3.0,
+     "asimetria": 0.8217,
+     "curtosis": 0.572
+    }
+   }
+  },
+  "especifico": {
+   "entrevista": {
+    "estructura_reconocida": true,
+    "hablantes": [
+     {
+      "nombre": "P",
+      "rol": "entrevistador",
+      "turnos": 9,
+      "palabras": 66
+     },
+     {
+      "nombre": "R",
+      "rol": "entrevistado",
+      "turnos": 8,
+      "palabras": 59
+     }
+    ],
+    "iteraciones_ruido": 1,
+    "ruido_eliminado": {
+     "identificadores": 1,
+     "separadores": 3
+    },
+    "ruido_residual": [],
+    "n_turnos": 17,
+    "participantes": [
+     {
+      "id": "R0001",
+      "contexto": {
+       "Perfil": "P2 — Promedio comprometido",
+       "Edad": "23",
+       "Género": "masculino",
+       "Semestre": "3"
+      }
+     },
+     {
+      "id": "R0002",
+      "contexto": {
+       "Perfil": "P3 — En riesgo académico",
+       "Edad": "21",
+       "Género": "femenino",
+       "Semestre": "5"
+      }
+     },
+     {
+      "id": "R0003",
+      "contexto": {
+       "Perfil": "P1 — Alto rendimiento",
+       "Edad": "20",
+       "Género": "femenino",
+       "Semestre": "4"
+      }
+     }
+    ],
+    "preambulo": [
+     "INSTRUMENTO: Entrevista sobre permanencia universitaria",
+     "Tipo: Entrevista semiestructurada",
+     "N° de respondentes: 3"
+    ]
+   }
+  },
+  "decisiones": {
+   "rol-hablante:p": {
+    "valor": "entrevistador",
+    "origen": "sugerida"
+   },
+   "rol-hablante:r": {
+    "valor": "entrevistado",
+    "origen": "sugerida"
+   }
+  }
+ },
+ "csv": {
+  "headers": [
+   "n_turno",
+   "participante",
+   "hablante",
+   "rol",
+   "texto"
+  ],
+  "rows": [
+   [
+    "1",
+    "R0001",
+    "P",
+    "entrevistador",
+    "¿Qué factores te han ayudado a continuar tus estudios?"
+   ],
+   [
+    "2",
+    "R0001",
+    "R",
+    "entrevistado",
+    "El apoyo de mi familia y de mis compañeros de clase."
+   ],
+   [
+    "3",
+    "R0001",
+    "P",
+    "entrevistador",
+    "¿Has pensado en abandonar la universidad?"
+   ],
+   [
+    "4",
+    "R0001",
+    "R",
+    "entrevistado",
+    "Sí, en el primer semestre, pero el orientador me ayudó a reorganizarme."
+   ],
+   [
+    "5",
+    "R0001",
+    "P",
+    "entrevistador",
+    "¿Qué servicios de apoyo institucional has utilizado?"
+   ],
+   [
+    "6",
+    "R0001",
+    "R",
+    "entrevistado",
+    "Las tutorías y la beca de transporte."
+   ],
+   [
+    "7",
+    "R0002",
+    "P",
+    "entrevistador",
+    "¿Qué factores te han ayudado a continuar tus estudios?"
+   ],
+   [
+    "8",
+    "R0002",
+    "R",
+    "entrevistado",
+    "Mi trabajo me permite pagar la colegiatura."
+   ],
+   [
+    "9",
+    "R0002",
+    "P",
+    "entrevistador",
+    "¿Has pensado en abandonar la universidad?"
+   ],
+   [
+    "10",
+    "R0002",
+    "P",
+    "entrevistador",
+    "¿Qué servicios de apoyo institucional has utilizado?"
+   ],
+   [
+    "11",
+    "R0002",
+    "R",
+    "entrevistado",
+    "Ninguno, no sabía que existían las tutorías."
+   ],
+   [
+    "12",
+    "R0003",
+    "P",
+    "entrevistador",
+    "¿Qué factores te han ayudado a continuar tus estudios?"
+   ],
+   [
+    "13",
+    "R0003",
+    "R",
+    "entrevistado",
+    "La motivación por mi carrera."
+   ],
+   [
+    "14",
+    "R0003",
+    "P",
+    "entrevistador",
+    "¿Has pensado en abandonar la universidad?"
+   ],
+   [
+    "15",
+    "R0003",
+    "R",
+    "entrevistado",
+    "Nunca lo he pensado."
+   ],
+   [
+    "16",
+    "R0003",
+    "P",
+    "entrevistador",
+    "¿Qué servicios de apoyo institucional has utilizado?"
+   ],
+   [
+    "17",
+    "R0003",
+    "R",
+    "entrevistado",
+    "La biblioteca y la orientación vocacional."
+   ]
+  ]
+ }
+}

@@ -32,7 +32,7 @@ _TIMEOUT = httpx.Timeout(connect=5.0, read=120.0, write=120.0, pool=5.0)
 # - num_ctx=2048: ventana de contexto suficiente para el prompt del RAG (hasta ~5
 #   fuentes + pregunta); reduce el KV-cache y deja más VRAM para los pesos, evitando
 #   el offload parcial a CPU que ralentiza la generación.
-_KEEP_ALIVE = "-1"
+_KEEP_ALIVE = -1  # número: Ollama rechaza "-1" como texto (exige unidad de tiempo)
 _OPTIONS = {"num_ctx": 2048}
 
 

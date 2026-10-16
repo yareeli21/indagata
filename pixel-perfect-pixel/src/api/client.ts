@@ -63,6 +63,8 @@ interface OpcionesPedir {
   body?: unknown;
   /** Si es true y hay token, adjunta Authorization: Bearer <token>. */
   auth?: boolean;
+  /** La petición sobrevive al cierre o recarga de la página (guardados de último momento). */
+  keepalive?: boolean;
 }
 
 /** Error de red con el código HTTP adjunto, para que las capas de `src/api`
@@ -78,7 +80,7 @@ export interface ErrorHttp extends Error {
  * significa que el token venció, así que además se cierra la sesión.
  */
 export async function pedir<T>(url: string, opciones: OpcionesPedir = {}): Promise<T> {
-  const { method = "GET", body, auth = false } = opciones;
+  const { method = "GET", body, auth = false, keepalive = false } = opciones;
 
   const headers: Record<string, string> = { "Content-Type": "application/json" };
   if (auth) {
@@ -90,6 +92,7 @@ export async function pedir<T>(url: string, opciones: OpcionesPedir = {}): Promi
     method,
     headers,
     body: body === undefined ? null : JSON.stringify(body),
+    keepalive,
   });
 
   if (!respuesta.ok) {

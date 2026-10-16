@@ -9,11 +9,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-COPY services/analysis-service/requirements.txt ./requirements.txt
 # Instalar torch CPU-only ANTES de requirements: sentence-transformers lo encuentra
 # ya instalado y NO baja la variante CUDA de NVIDIA (~7 GB). Acelera el build de
 # ~20 min a ~2 min y reduce el peso de la imagen. La GPU no se usa dentro de Docker.
+# Va antes del COPY de requirements para que cambiar requirements no vuelva a bajar torch.
 RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu torch==2.2.2
+COPY services/analysis-service/requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 FROM python:3.12-slim

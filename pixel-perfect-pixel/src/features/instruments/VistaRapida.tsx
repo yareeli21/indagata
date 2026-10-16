@@ -34,9 +34,11 @@ export function VistaRapida({
 }: VistaRapidaProps) {
   return (
     <Sheet open={!!i} onOpenChange={(o) => !o && onCerrar()}>
-      <SheetContent className="w-full overflow-hidden sm:max-w-lg">
+      {/* Con scroll vertical: el contenido (KPIs y preguntas) puede ser más alto que la pantalla. */}
+      <SheetContent className="w-full overflow-y-auto overflow-x-hidden sm:max-w-lg">
         {i && (
-          <>
+          // Envoltura del alto de TODO el contenido, para que la marca de agua lo cubra al desplazarse.
+          <div className="relative min-h-full">
             {ajeno && (
               <div
                 aria-hidden
@@ -101,7 +103,7 @@ export function VistaRapida({
                 )}
               </div>
             </div>
-          </>
+          </div>
         )}
       </SheetContent>
     </Sheet>

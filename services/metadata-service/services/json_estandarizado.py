@@ -113,6 +113,14 @@ def construir(
         },
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
+    if analisis.limpieza:
+        # Trazabilidad: qué versión de la limpieza (cleaning-service) originó estos datos.
+        data["cleaning"] = analisis.limpieza
+        data["source_files"]["limpio"] = analisis.limpieza.get("archivo_limpio") or data["source_files"]["limpio"]
+        # Fiabilidad calculada en la limpieza: alfa de Cronbach por bloque (encuestas) o KR-20 (pruebas).
+        fiabilidad = (analisis.limpieza.get("estadistica") or {}).get("fiabilidad")
+        if fiabilidad:
+            data["statistics"]["reliability"] = fiabilidad
     if kpis is not None:
         data["inferred_kpis"] = kpis
     return data

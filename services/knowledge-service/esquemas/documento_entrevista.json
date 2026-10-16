@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "documento_entrevista.json",
+  "title": "Documento final de una entrevista (v2.0)",
+  "description": "Solo texto: las preguntas del guion y, por cada persona entrevistada, la pregunta del entrevistador y su respuesta. Sin estadísticas ni conteos.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["esquema_version", "instrumento", "kpis_asociados", "preguntas", "entrevistas", "avisos"],
+  "properties": {
+    "esquema_version": {"const": "2.0"},
+    "instrumento": {
+      "allOf": [
+        {"$ref": "comun.json#/$defs/instrumento"},
+        {"properties": {"tipo": {"const": "entrevista"}}}
+      ]
+    },
+    "kpis_asociados": {"type": "array", "items": {"$ref": "comun.json#/$defs/kpi_asociado"}},
+    "preguntas": {
+      "type": "array",
+      "description": "Preguntas del guion (o del entrevistador) a las que apunta la evidencia de los KPIs.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "texto", "kpis_relacionados"],
+        "properties": {
+          "id": {"$ref": "comun.json#/$defs/id_hijo"},
+          "texto": {"type": "string"},
+          "kpis_relacionados": {"$ref": "comun.json#/$defs/kpis_relacionados"}
+        }
+      }
+    },
+    "entrevistas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["participante", "intercambios"],
+        "properties": {
+          "participante": {"$ref": "comun.json#/$defs/id_hijo"},
+          "intercambios": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["pregunta", "respuesta"],
+              "properties": {
+                "pregunta_id": {"$ref": "comun.json#/$defs/id_hijo"},
+                "pregunta": {"type": "string"},
+                "respuesta": {"type": "string", "minLength": 1}
+              }
+            }
+          }
+        }
+      }
+    },
+    "avisos": {"type": "array", "items": {"$ref": "comun.json#/$defs/aviso"}}
+  }
+}

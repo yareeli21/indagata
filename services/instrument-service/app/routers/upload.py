@@ -42,8 +42,10 @@ UsuarioQuePuedeIngestar = Annotated[
         "lo enruta a su familia de parser y lo **parsea** para conocer con qué estructura "
         "se va a trabajar:\n\n"
         "- **encuesta** → tabular (`.csv`, `.xlsx`, `.xls`): columnas y nº de filas.\n"
-        "- **entrevista** / **prueba_estandarizada** → documento (`.pdf`, `.txt`, `.docx`): "
-        "texto extraído y métricas.\n\n"
+        "- **entrevista** → documento (`.pdf`, `.txt`, `.docx`): texto extraído y métricas.\n"
+        "- **prueba_estandarizada** → tabular (respuestas de los alumnos, con la **clave de "
+        "respuestas** opcional en `archivo_clave`: si falta, la limpieza propone una) o "
+        "documento (el examen en texto).\n\n"
         "Delega el almacenamiento de ambos archivos en el servicio de storage y "
         "registra el instrumento en `raw_data` (padre) + `instrumento_procesado` "
         "(estado `recibido`). "
@@ -63,6 +65,10 @@ async def upload_instrumento(
         default=None,
         description="Instrumento ORIGINAL sin respuestas (opcional).",
     ),
+    archivo_clave: UploadFile | None = File(
+        default=None,
+        description="Clave de respuestas de una prueba tabular (opcional: si falta, se propone una).",
+    ),
 ) -> UploadResponse:
     return await UploadService.upload(
         db=db,
@@ -70,4 +76,5 @@ async def upload_instrumento(
         tipo_instrumento_raw=tipo_instrumento,
         archivo=archivo,
         archivo_original=archivo_original,
+        archivo_clave=archivo_clave,
     )

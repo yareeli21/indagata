@@ -1,0 +1,1889 @@
+{
+ "reporte": {
+  "esquema": "reporte_limpieza/1",
+  "tipo_instrumento": "encuesta",
+  "version": 1,
+  "metricas": {
+   "antes": {
+    "n_respondentes": 20,
+    "n_columnas": 15,
+    "pct_completitud": 0.98,
+    "pct_nulos": 0.02,
+    "n_duplicados": 0,
+    "n_imposibles": 0,
+    "cols_mas_nulos": [
+     {
+      "columna": "¿Qué mejorarías de tu carrera?",
+      "pct_nulos": 0.25
+     },
+     {
+      "columna": "Me siento motivado para continuar mis estudios este semestre",
+      "pct_nulos": 0.05
+     }
+    ],
+    "grupos_detectados": [
+     {
+      "padre": "Valora tu experiencia en la carrera",
+      "hijos": [
+       "Profesores",
+       "Materiales",
+       "Instalaciones"
+      ],
+      "tipo": "cuadricula"
+     }
+    ],
+    "alertas": [],
+    "n_linea_recta": 1,
+    "n_incompletos": 0
+   },
+   "despues": {
+    "n_respondentes": 20,
+    "n_columnas": 12,
+    "pct_completitud": 0.975,
+    "pct_nulos": 0.025,
+    "n_duplicados": 0,
+    "n_imposibles": 0,
+    "cols_mas_nulos": [
+     {
+      "columna": "¿Qué mejorarías de tu carrera?",
+      "pct_nulos": 0.25
+     },
+     {
+      "columna": "Me siento motivado para continuar mis estudios este semestre",
+      "pct_nulos": 0.05
+     }
+    ],
+    "grupos_detectados": [
+     {
+      "padre": "Valora tu experiencia en la carrera",
+      "hijos": [
+       "Profesores",
+       "Materiales",
+       "Instalaciones"
+      ],
+      "tipo": "cuadricula"
+     }
+    ],
+    "alertas": [],
+    "n_linea_recta": 1,
+    "n_incompletos": 0
+   }
+  },
+  "estadistica": {
+   "antes": {
+    "columnas": [
+     {
+      "id": "matricula",
+      "etiqueta": "Matrícula",
+      "tipo": "texto_corto",
+      "rol": null,
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "texto": {
+       "palabras_promedio": 1.0,
+       "respuestas_distintas": 20
+      }
+     },
+     {
+      "id": "turno",
+      "etiqueta": "Turno",
+      "tipo": "binaria",
+      "rol": null,
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Matutino",
+         "n": 10,
+         "pct": 0.5
+        },
+        {
+         "valor": "Vespertino",
+         "n": 10,
+         "pct": 0.5
+        }
+       ],
+       "moda": [
+        "Matutino",
+        "Vespertino"
+       ],
+       "n_categorias": 2,
+       "otras": 0
+      }
+     },
+     {
+      "id": "semestre",
+      "etiqueta": "Semestre",
+      "tipo": "escala_lineal",
+      "rol": null,
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "numerico": {
+       "n": 20,
+       "media": 4.1,
+       "mediana": 4.0,
+       "desviacion": 2.3147,
+       "min": 1.0,
+       "max": 8.0,
+       "q1": 2.0,
+       "q3": 6.0,
+       "iqr": 4.0,
+       "asimetria": 0.2897,
+       "curtosis": -1.095
+      },
+      "atipicos": {
+       "metodo": "sigma",
+       "sigma": 0,
+       "iqr": 0,
+       "factor_sigma": 4.0,
+       "factor_iqr": 1.5
+      }
+     },
+     {
+      "id": "idioma",
+      "etiqueta": "Idioma",
+      "tipo": "binaria",
+      "rol": null,
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Español",
+         "n": 13,
+         "pct": 0.65
+        },
+        {
+         "valor": "Inglés",
+         "n": 7,
+         "pct": 0.35
+        }
+       ],
+       "moda": "Español",
+       "n_categorias": 2,
+       "otras": 0
+      }
+     },
+     {
+      "id": "valora_tu_experiencia_en_la_carrera_prof",
+      "etiqueta": "Valora tu experiencia en la carrera [Profesores]",
+      "tipo": "cuadricula",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "numerico": {
+       "n": 20,
+       "media": 2.95,
+       "mediana": 2.0,
+       "desviacion": 1.5035,
+       "min": 1.0,
+       "max": 5.0,
+       "q1": 2.0,
+       "q3": 4.25,
+       "iqr": 2.25,
+       "asimetria": 0.3002,
+       "curtosis": -1.534
+      },
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Totalmente en desacuerdo",
+         "n": 3,
+         "pct": 0.15
+        },
+        {
+         "valor": "En desacuerdo",
+         "n": 8,
+         "pct": 0.4
+        },
+        {
+         "valor": "Ni de acuerdo ni en desacuerdo",
+         "n": 1,
+         "pct": 0.05
+        },
+        {
+         "valor": "De acuerdo",
+         "n": 3,
+         "pct": 0.15
+        },
+        {
+         "valor": "Totalmente de acuerdo",
+         "n": 5,
+         "pct": 0.25
+        }
+       ],
+       "moda": "En desacuerdo",
+       "n_categorias": 5,
+       "otras": 0
+      },
+      "n_excluidos": 0,
+      "escala": {
+       "puntos": 5,
+       "invertido": false
+      }
+     },
+     {
+      "id": "valora_tu_experiencia_en_la_carrera_mate",
+      "etiqueta": "Valora tu experiencia en la carrera [Materiales]",
+      "tipo": "cuadricula",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "numerico": {
+       "n": 20,
+       "media": 2.75,
+       "mediana": 3.0,
+       "desviacion": 1.3328,
+       "min": 1.0,
+       "max": 5.0,
+       "q1": 1.75,
+       "q3": 4.0,
+       "iqr": 2.25,
+       "asimetria": 0.0648,
+       "curtosis": -1.0462
+      },
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Totalmente en desacuerdo",
+         "n": 5,
+         "pct": 0.25
+        },
+        {
+         "valor": "En desacuerdo",
+         "n": 3,
+         "pct": 0.15
+        },
+        {
+         "valor": "Ni de acuerdo ni en desacuerdo",
+         "n": 6,
+         "pct": 0.3
+        },
+        {
+         "valor": "De acuerdo",
+         "n": 4,
+         "pct": 0.2
+        },
+        {
+         "valor": "Totalmente de acuerdo",
+         "n": 2,
+         "pct": 0.1
+        }
+       ],
+       "moda": "Ni de acuerdo ni en desacuerdo",
+       "n_categorias": 5,
+       "otras": 0
+      },
+      "n_excluidos": 0,
+      "escala": {
+       "puntos": 5,
+       "invertido": false
+      }
+     },
+     {
+      "id": "valora_tu_experiencia_en_la_carrera_inst",
+      "etiqueta": "Valora tu experiencia en la carrera [Instalaciones]",
+      "tipo": "cuadricula",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "numerico": {
+       "n": 20,
+       "media": 2.95,
+       "mediana": 2.5,
+       "desviacion": 1.6376,
+       "min": 1.0,
+       "max": 5.0,
+       "q1": 1.75,
+       "q3": 5.0,
+       "iqr": 3.25,
+       "asimetria": 0.1684,
+       "curtosis": -1.6831
+      },
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Totalmente en desacuerdo",
+         "n": 5,
+         "pct": 0.25
+        },
+        {
+         "valor": "En desacuerdo",
+         "n": 5,
+         "pct": 0.25
+        },
+        {
+         "valor": "Ni de acuerdo ni en desacuerdo",
+         "n": 2,
+         "pct": 0.1
+        },
+        {
+         "valor": "De acuerdo",
+         "n": 2,
+         "pct": 0.1
+        },
+        {
+         "valor": "Totalmente de acuerdo",
+         "n": 6,
+         "pct": 0.3
+        }
+       ],
+       "moda": "Totalmente de acuerdo",
+       "n_categorias": 5,
+       "otras": 0
+      },
+      "n_excluidos": 0,
+      "escala": {
+       "puntos": 5,
+       "invertido": false
+      }
+     },
+     {
+      "id": "me_siento_motivado_para_continuar_mis_es",
+      "etiqueta": "Me siento motivado para continuar mis estudios este semestre",
+      "tipo": "likert",
+      "rol": "pregunta",
+      "n": 19,
+      "n_nulos": 1,
+      "pct_nulos": 0.05,
+      "numerico": {
+       "n": 18,
+       "media": 2.6111,
+       "mediana": 2.5,
+       "desviacion": 1.577,
+       "min": 1.0,
+       "max": 5.0,
+       "q1": 1.0,
+       "q3": 4.0,
+       "iqr": 3.0,
+       "asimetria": 0.3271,
+       "curtosis": -1.4931
+      },
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Totalmente en desacuerdo",
+         "n": 7,
+         "pct": 0.3889
+        },
+        {
+         "valor": "En desacuerdo",
+         "n": 2,
+         "pct": 0.1111
+        },
+        {
+         "valor": "Ni de acuerdo ni en desacuerdo",
+         "n": 3,
+         "pct": 0.1667
+        },
+        {
+         "valor": "De acuerdo",
+         "n": 3,
+         "pct": 0.1667
+        },
+        {
+         "valor": "Totalmente de acuerdo",
+         "n": 3,
+         "pct": 0.1667
+        }
+       ],
+       "moda": "Totalmente en desacuerdo",
+       "n_categorias": 5,
+       "otras": 0
+      },
+      "n_excluidos": 1,
+      "escala": {
+       "puntos": 5,
+       "invertido": false
+      }
+     },
+     {
+      "id": "trabajas_actualmente",
+      "etiqueta": "¿Trabajas actualmente?",
+      "tipo": "binaria",
+      "rol": null,
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Sí",
+         "n": 11,
+         "pct": 0.55
+        },
+        {
+         "valor": "No",
+         "n": 9,
+         "pct": 0.45
+        }
+       ],
+       "moda": "Sí",
+       "n_categorias": 2,
+       "otras": 0
+      }
+     },
+     {
+      "id": "que_servicios_de_la_universidad_utilizas",
+      "etiqueta": "¿Qué servicios de la universidad utilizas?",
+      "tipo": "opcion_multiple_varias",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Cafetería",
+         "n": 13,
+         "pct": 0.4483
+        },
+        {
+         "valor": "Biblioteca",
+         "n": 13,
+         "pct": 0.4483
+        },
+        {
+         "valor": "Gimnasio",
+         "n": 3,
+         "pct": 0.1034
+        }
+       ],
+       "moda": [
+        "Cafetería",
+        "Biblioteca"
+       ],
+       "n_categorias": 3,
+       "otras": 0
+      }
+     },
+     {
+      "id": "cual_es_tu_principal_medio_de_transporte",
+      "etiqueta": "¿Cuál es tu principal medio de transporte?",
+      "tipo": "categorica",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Bicicleta",
+         "n": 8,
+         "pct": 0.4
+        },
+        {
+         "valor": "Metro",
+         "n": 5,
+         "pct": 0.25
+        },
+        {
+         "valor": "Auto",
+         "n": 5,
+         "pct": 0.25
+        },
+        {
+         "valor": "Camión",
+         "n": 2,
+         "pct": 0.1
+        }
+       ],
+       "moda": "Bicicleta",
+       "n_categorias": 4,
+       "otras": 0
+      }
+     },
+     {
+      "id": "que_mejorarias_de_tu_carrera",
+      "etiqueta": "¿Qué mejorarías de tu carrera?",
+      "tipo": "categorica",
+      "rol": "pregunta",
+      "n": 15,
+      "n_nulos": 5,
+      "pct_nulos": 0.25,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Mejores horarios",
+         "n": 6,
+         "pct": 0.4
+        },
+        {
+         "valor": "Más actividades culturales y deportivas",
+         "n": 5,
+         "pct": 0.3333
+        },
+        {
+         "valor": "Más prácticas",
+         "n": 4,
+         "pct": 0.2667
+        }
+       ],
+       "moda": "Mejores horarios",
+       "n_categorias": 3,
+       "otras": 0
+      }
+     }
+    ],
+    "fiabilidad": [
+     {
+      "bloque": "Valora tu experiencia en la carrera",
+      "items": [
+       "Profesores",
+       "Materiales",
+       "Instalaciones"
+      ],
+      "invertidos": [],
+      "n_items": 3,
+      "n_casos": 20,
+      "n_excluidos": 0,
+      "alfa": 0.9207,
+      "interpretacion": "excelente",
+      "por_item": [
+       {
+        "item": "Profesores",
+        "media": 2.95,
+        "correlacion_item_total": 0.8196,
+        "alfa_si_se_elimina": 0.9014
+       },
+       {
+        "item": "Materiales",
+        "media": 2.75,
+        "correlacion_item_total": 0.8208,
+        "alfa_si_se_elimina": 0.9069
+       },
+       {
+        "item": "Instalaciones",
+        "media": 2.95,
+        "correlacion_item_total": 0.898,
+        "alfa_si_se_elimina": 0.8396
+       }
+      ]
+     },
+     {
+      "bloque": "Todas las escalas Likert",
+      "items": [
+       "Valora tu experiencia en la carrera [Profesores]",
+       "Valora tu experiencia en la carrera [Materiales]",
+       "Valora tu experiencia en la carrera [Instalaciones]",
+       "Me siento motivado para continuar mis estudios este semestre"
+      ],
+      "invertidos": [],
+      "n_items": 4,
+      "n_casos": 18,
+      "n_excluidos": 2,
+      "alfa": 0.9399,
+      "interpretacion": "excelente",
+      "por_item": [
+       {
+        "item": "Valora tu experiencia en la carrera [Profesores]",
+        "media": 2.7778,
+        "correlacion_item_total": 0.8013,
+        "alfa_si_se_elimina": 0.9391
+       },
+       {
+        "item": "Valora tu experiencia en la carrera [Materiales]",
+        "media": 2.5,
+        "correlacion_item_total": 0.8344,
+        "alfa_si_se_elimina": 0.9359
+       },
+       {
+        "item": "Valora tu experiencia en la carrera [Instalaciones]",
+        "media": 2.7222,
+        "correlacion_item_total": 0.9155,
+        "alfa_si_se_elimina": 0.9025
+       },
+       {
+        "item": "Me siento motivado para continuar mis estudios este semestre",
+        "media": 2.6111,
+        "correlacion_item_total": 0.9167,
+        "alfa_si_se_elimina": 0.9022
+       }
+      ]
+     }
+    ],
+    "encuestados": {
+     "linea_recta": 1,
+     "incompletos": 0
+    }
+   },
+   "despues": {
+    "columnas": [
+     {
+      "id": "matricula",
+      "etiqueta": "Matrícula",
+      "tipo": "texto_corto",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "texto": {
+       "palabras_promedio": 1.0,
+       "respuestas_distintas": 20
+      }
+     },
+     {
+      "id": "turno",
+      "etiqueta": "Turno",
+      "tipo": "binaria",
+      "rol": "contexto",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Matutino",
+         "n": 10,
+         "pct": 0.5
+        },
+        {
+         "valor": "Vespertino",
+         "n": 10,
+         "pct": 0.5
+        }
+       ],
+       "moda": [
+        "Matutino",
+        "Vespertino"
+       ],
+       "n_categorias": 2,
+       "otras": 0
+      }
+     },
+     {
+      "id": "semestre",
+      "etiqueta": "Semestre",
+      "tipo": "escala_lineal",
+      "rol": "contexto",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "numerico": {
+       "n": 20,
+       "media": 4.1,
+       "mediana": 4.0,
+       "desviacion": 2.3147,
+       "min": 1.0,
+       "max": 8.0,
+       "q1": 2.0,
+       "q3": 6.0,
+       "iqr": 4.0,
+       "asimetria": 0.2897,
+       "curtosis": -1.095
+      },
+      "atipicos": {
+       "metodo": "sigma",
+       "sigma": 0,
+       "iqr": 0,
+       "factor_sigma": 4.0,
+       "factor_iqr": 1.5
+      }
+     },
+     {
+      "id": "idioma",
+      "etiqueta": "Idioma",
+      "tipo": "binaria",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Español",
+         "n": 13,
+         "pct": 0.65
+        },
+        {
+         "valor": "Inglés",
+         "n": 7,
+         "pct": 0.35
+        }
+       ],
+       "moda": "Español",
+       "n_categorias": 2,
+       "otras": 0
+      }
+     },
+     {
+      "id": "valora_tu_experiencia_en_la_carrera_prof",
+      "etiqueta": "Valora tu experiencia en la carrera [Profesores]",
+      "tipo": "cuadricula",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "numerico": {
+       "n": 20,
+       "media": 2.95,
+       "mediana": 2.0,
+       "desviacion": 1.5035,
+       "min": 1.0,
+       "max": 5.0,
+       "q1": 2.0,
+       "q3": 4.25,
+       "iqr": 2.25,
+       "asimetria": 0.3002,
+       "curtosis": -1.534
+      },
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Totalmente en desacuerdo",
+         "n": 3,
+         "pct": 0.15
+        },
+        {
+         "valor": "En desacuerdo",
+         "n": 8,
+         "pct": 0.4
+        },
+        {
+         "valor": "Ni de acuerdo ni en desacuerdo",
+         "n": 1,
+         "pct": 0.05
+        },
+        {
+         "valor": "De acuerdo",
+         "n": 3,
+         "pct": 0.15
+        },
+        {
+         "valor": "Totalmente de acuerdo",
+         "n": 5,
+         "pct": 0.25
+        }
+       ],
+       "moda": "En desacuerdo",
+       "n_categorias": 5,
+       "otras": 0
+      },
+      "n_excluidos": 0,
+      "escala": {
+       "puntos": 5,
+       "invertido": false
+      }
+     },
+     {
+      "id": "valora_tu_experiencia_en_la_carrera_mate",
+      "etiqueta": "Valora tu experiencia en la carrera [Materiales]",
+      "tipo": "cuadricula",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "numerico": {
+       "n": 20,
+       "media": 2.75,
+       "mediana": 3.0,
+       "desviacion": 1.3328,
+       "min": 1.0,
+       "max": 5.0,
+       "q1": 1.75,
+       "q3": 4.0,
+       "iqr": 2.25,
+       "asimetria": 0.0648,
+       "curtosis": -1.0462
+      },
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Totalmente en desacuerdo",
+         "n": 5,
+         "pct": 0.25
+        },
+        {
+         "valor": "En desacuerdo",
+         "n": 3,
+         "pct": 0.15
+        },
+        {
+         "valor": "Ni de acuerdo ni en desacuerdo",
+         "n": 6,
+         "pct": 0.3
+        },
+        {
+         "valor": "De acuerdo",
+         "n": 4,
+         "pct": 0.2
+        },
+        {
+         "valor": "Totalmente de acuerdo",
+         "n": 2,
+         "pct": 0.1
+        }
+       ],
+       "moda": "Ni de acuerdo ni en desacuerdo",
+       "n_categorias": 5,
+       "otras": 0
+      },
+      "n_excluidos": 0,
+      "escala": {
+       "puntos": 5,
+       "invertido": false
+      }
+     },
+     {
+      "id": "valora_tu_experiencia_en_la_carrera_inst",
+      "etiqueta": "Valora tu experiencia en la carrera [Instalaciones]",
+      "tipo": "cuadricula",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "numerico": {
+       "n": 20,
+       "media": 2.95,
+       "mediana": 2.5,
+       "desviacion": 1.6376,
+       "min": 1.0,
+       "max": 5.0,
+       "q1": 1.75,
+       "q3": 5.0,
+       "iqr": 3.25,
+       "asimetria": 0.1684,
+       "curtosis": -1.6831
+      },
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Totalmente en desacuerdo",
+         "n": 5,
+         "pct": 0.25
+        },
+        {
+         "valor": "En desacuerdo",
+         "n": 5,
+         "pct": 0.25
+        },
+        {
+         "valor": "Ni de acuerdo ni en desacuerdo",
+         "n": 2,
+         "pct": 0.1
+        },
+        {
+         "valor": "De acuerdo",
+         "n": 2,
+         "pct": 0.1
+        },
+        {
+         "valor": "Totalmente de acuerdo",
+         "n": 6,
+         "pct": 0.3
+        }
+       ],
+       "moda": "Totalmente de acuerdo",
+       "n_categorias": 5,
+       "otras": 0
+      },
+      "n_excluidos": 0,
+      "escala": {
+       "puntos": 5,
+       "invertido": false
+      }
+     },
+     {
+      "id": "me_siento_motivado_para_continuar_mis_es",
+      "etiqueta": "Me siento motivado para continuar mis estudios este semestre",
+      "tipo": "likert",
+      "rol": "pregunta",
+      "n": 19,
+      "n_nulos": 1,
+      "pct_nulos": 0.05,
+      "numerico": {
+       "n": 18,
+       "media": 2.6111,
+       "mediana": 2.5,
+       "desviacion": 1.577,
+       "min": 1.0,
+       "max": 5.0,
+       "q1": 1.0,
+       "q3": 4.0,
+       "iqr": 3.0,
+       "asimetria": 0.3271,
+       "curtosis": -1.4931
+      },
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Totalmente en desacuerdo",
+         "n": 7,
+         "pct": 0.3889
+        },
+        {
+         "valor": "En desacuerdo",
+         "n": 2,
+         "pct": 0.1111
+        },
+        {
+         "valor": "Ni de acuerdo ni en desacuerdo",
+         "n": 3,
+         "pct": 0.1667
+        },
+        {
+         "valor": "De acuerdo",
+         "n": 3,
+         "pct": 0.1667
+        },
+        {
+         "valor": "Totalmente de acuerdo",
+         "n": 3,
+         "pct": 0.1667
+        }
+       ],
+       "moda": "Totalmente en desacuerdo",
+       "n_categorias": 5,
+       "otras": 0
+      },
+      "n_excluidos": 1,
+      "escala": {
+       "puntos": 5,
+       "invertido": false
+      }
+     },
+     {
+      "id": "trabajas_actualmente",
+      "etiqueta": "¿Trabajas actualmente?",
+      "tipo": "binaria",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Sí",
+         "n": 11,
+         "pct": 0.55
+        },
+        {
+         "valor": "No",
+         "n": 9,
+         "pct": 0.45
+        }
+       ],
+       "moda": "Sí",
+       "n_categorias": 2,
+       "otras": 0
+      }
+     },
+     {
+      "id": "que_servicios_de_la_universidad_utilizas",
+      "etiqueta": "¿Qué servicios de la universidad utilizas?",
+      "tipo": "opcion_multiple_varias",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Cafetería",
+         "n": 13,
+         "pct": 0.4483
+        },
+        {
+         "valor": "Biblioteca",
+         "n": 13,
+         "pct": 0.4483
+        },
+        {
+         "valor": "Gimnasio",
+         "n": 3,
+         "pct": 0.1034
+        }
+       ],
+       "moda": [
+        "Cafetería",
+        "Biblioteca"
+       ],
+       "n_categorias": 3,
+       "otras": 0
+      }
+     },
+     {
+      "id": "cual_es_tu_principal_medio_de_transporte",
+      "etiqueta": "¿Cuál es tu principal medio de transporte?",
+      "tipo": "categorica",
+      "rol": "pregunta",
+      "n": 20,
+      "n_nulos": 0,
+      "pct_nulos": 0.0,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Bicicleta",
+         "n": 8,
+         "pct": 0.4
+        },
+        {
+         "valor": "Metro",
+         "n": 5,
+         "pct": 0.25
+        },
+        {
+         "valor": "Auto",
+         "n": 5,
+         "pct": 0.25
+        },
+        {
+         "valor": "Camión",
+         "n": 2,
+         "pct": 0.1
+        }
+       ],
+       "moda": "Bicicleta",
+       "n_categorias": 4,
+       "otras": 0
+      }
+     },
+     {
+      "id": "que_mejorarias_de_tu_carrera",
+      "etiqueta": "¿Qué mejorarías de tu carrera?",
+      "tipo": "categorica",
+      "rol": "pregunta",
+      "n": 15,
+      "n_nulos": 5,
+      "pct_nulos": 0.25,
+      "frecuencias": {
+       "tabla": [
+        {
+         "valor": "Mejores horarios",
+         "n": 6,
+         "pct": 0.4
+        },
+        {
+         "valor": "Más actividades culturales y deportivas",
+         "n": 5,
+         "pct": 0.3333
+        },
+        {
+         "valor": "Más prácticas",
+         "n": 4,
+         "pct": 0.2667
+        }
+       ],
+       "moda": "Mejores horarios",
+       "n_categorias": 3,
+       "otras": 0
+      }
+     }
+    ],
+    "fiabilidad": [
+     {
+      "bloque": "Valora tu experiencia en la carrera",
+      "items": [
+       "Profesores",
+       "Materiales",
+       "Instalaciones"
+      ],
+      "invertidos": [],
+      "n_items": 3,
+      "n_casos": 20,
+      "n_excluidos": 0,
+      "alfa": 0.9207,
+      "interpretacion": "excelente",
+      "por_item": [
+       {
+        "item": "Profesores",
+        "media": 2.95,
+        "correlacion_item_total": 0.8196,
+        "alfa_si_se_elimina": 0.9014
+       },
+       {
+        "item": "Materiales",
+        "media": 2.75,
+        "correlacion_item_total": 0.8208,
+        "alfa_si_se_elimina": 0.9069
+       },
+       {
+        "item": "Instalaciones",
+        "media": 2.95,
+        "correlacion_item_total": 0.898,
+        "alfa_si_se_elimina": 0.8396
+       }
+      ]
+     },
+     {
+      "bloque": "Todas las escalas Likert",
+      "items": [
+       "Valora tu experiencia en la carrera [Profesores]",
+       "Valora tu experiencia en la carrera [Materiales]",
+       "Valora tu experiencia en la carrera [Instalaciones]",
+       "Me siento motivado para continuar mis estudios este semestre"
+      ],
+      "invertidos": [],
+      "n_items": 4,
+      "n_casos": 18,
+      "n_excluidos": 2,
+      "alfa": 0.9399,
+      "interpretacion": "excelente",
+      "por_item": [
+       {
+        "item": "Valora tu experiencia en la carrera [Profesores]",
+        "media": 2.7778,
+        "correlacion_item_total": 0.8013,
+        "alfa_si_se_elimina": 0.9391
+       },
+       {
+        "item": "Valora tu experiencia en la carrera [Materiales]",
+        "media": 2.5,
+        "correlacion_item_total": 0.8344,
+        "alfa_si_se_elimina": 0.9359
+       },
+       {
+        "item": "Valora tu experiencia en la carrera [Instalaciones]",
+        "media": 2.7222,
+        "correlacion_item_total": 0.9155,
+        "alfa_si_se_elimina": 0.9025
+       },
+       {
+        "item": "Me siento motivado para continuar mis estudios este semestre",
+        "media": 2.6111,
+        "correlacion_item_total": 0.9167,
+        "alfa_si_se_elimina": 0.9022
+       }
+      ]
+     }
+    ],
+    "encuestados": {
+     "linea_recta": 1,
+     "incompletos": 0
+    }
+   }
+  },
+  "especifico": {
+   "encuesta": {
+    "columnas": [
+     {
+      "id": "marca_temporal",
+      "etiqueta": "Marca temporal",
+      "rol": null,
+      "tipo_canonico": "texto_corto",
+      "pct_nulos": 0.0,
+      "likert": null,
+      "rango": null,
+      "estadisticos": null,
+      "estado": "eliminada",
+      "motivo_eliminacion": "no pertenece al instrumento"
+     },
+     {
+      "id": "nombre",
+      "etiqueta": "Nombre",
+      "rol": null,
+      "tipo_canonico": "texto_corto",
+      "pct_nulos": 0.0,
+      "likert": null,
+      "rango": null,
+      "estadisticos": null,
+      "estado": "eliminada",
+      "motivo_eliminacion": "no pertenece al instrumento"
+     },
+     {
+      "id": "correo",
+      "etiqueta": "Correo",
+      "rol": null,
+      "tipo_canonico": "texto_corto",
+      "pct_nulos": 0.0,
+      "likert": null,
+      "rango": null,
+      "estadisticos": null,
+      "estado": "eliminada",
+      "motivo_eliminacion": "no pertenece al instrumento"
+     },
+     {
+      "id": "matricula",
+      "etiqueta": "Matrícula",
+      "rol": "pregunta",
+      "tipo_canonico": "texto_corto",
+      "pct_nulos": 0.0,
+      "likert": null,
+      "rango": null,
+      "estadisticos": null,
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     },
+     {
+      "id": "turno",
+      "etiqueta": "Turno",
+      "rol": "contexto",
+      "tipo_canonico": "binaria",
+      "pct_nulos": 0.0,
+      "likert": null,
+      "rango": null,
+      "estadisticos": null,
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     },
+     {
+      "id": "semestre",
+      "etiqueta": "Semestre",
+      "rol": "contexto",
+      "tipo_canonico": "escala_lineal",
+      "pct_nulos": 0.0,
+      "likert": null,
+      "rango": [
+       1.0,
+       8.0
+      ],
+      "estadisticos": {
+       "min": 1.0,
+       "max": 8.0,
+       "media": 4.1,
+       "desviacion": 2.2561
+      },
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     },
+     {
+      "id": "idioma",
+      "etiqueta": "Idioma",
+      "rol": "pregunta",
+      "tipo_canonico": "binaria",
+      "pct_nulos": 0.0,
+      "likert": null,
+      "rango": null,
+      "estadisticos": null,
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     },
+     {
+      "id": "valora_tu_experiencia_en_la_carrera_prof",
+      "etiqueta": "Valora tu experiencia en la carrera [Profesores]",
+      "rol": "pregunta",
+      "tipo_canonico": "cuadricula",
+      "pct_nulos": 0.0,
+      "likert": {
+       "escala": "acuerdo",
+       "puntos": 5,
+       "etiquetas": [
+        "Totalmente en desacuerdo",
+        "En desacuerdo",
+        "Ni de acuerdo ni en desacuerdo",
+        "De acuerdo",
+        "Totalmente de acuerdo"
+       ],
+       "neutral": 3,
+       "excluidos": [],
+       "invertido": false,
+       "codigos": {
+        "En desacuerdo": 2,
+        "Totalmente de acuerdo": 5,
+        "De acuerdo": 4,
+        "Totalmente en desacuerdo": 1,
+        "Ni de acuerdo ni en desacuerdo": 3
+       }
+      },
+      "rango": [
+       1.0,
+       5.0
+      ],
+      "estadisticos": null,
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     },
+     {
+      "id": "valora_tu_experiencia_en_la_carrera_mate",
+      "etiqueta": "Valora tu experiencia en la carrera [Materiales]",
+      "rol": "pregunta",
+      "tipo_canonico": "cuadricula",
+      "pct_nulos": 0.0,
+      "likert": {
+       "escala": "acuerdo",
+       "puntos": 5,
+       "etiquetas": [
+        "Totalmente en desacuerdo",
+        "En desacuerdo",
+        "Ni de acuerdo ni en desacuerdo",
+        "De acuerdo",
+        "Totalmente de acuerdo"
+       ],
+       "neutral": 3,
+       "excluidos": [],
+       "invertido": false,
+       "codigos": {
+        "Totalmente en desacuerdo": 1,
+        "De acuerdo": 4,
+        "Ni de acuerdo ni en desacuerdo": 3,
+        "Totalmente de acuerdo": 5,
+        "En desacuerdo": 2
+       }
+      },
+      "rango": [
+       1.0,
+       5.0
+      ],
+      "estadisticos": null,
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     },
+     {
+      "id": "valora_tu_experiencia_en_la_carrera_inst",
+      "etiqueta": "Valora tu experiencia en la carrera [Instalaciones]",
+      "rol": "pregunta",
+      "tipo_canonico": "cuadricula",
+      "pct_nulos": 0.0,
+      "likert": {
+       "escala": "acuerdo",
+       "puntos": 5,
+       "etiquetas": [
+        "Totalmente en desacuerdo",
+        "En desacuerdo",
+        "Ni de acuerdo ni en desacuerdo",
+        "De acuerdo",
+        "Totalmente de acuerdo"
+       ],
+       "neutral": 3,
+       "excluidos": [],
+       "invertido": false,
+       "codigos": {
+        "En desacuerdo": 2,
+        "Totalmente de acuerdo": 5,
+        "Totalmente en desacuerdo": 1,
+        "Ni de acuerdo ni en desacuerdo": 3,
+        "De acuerdo": 4
+       }
+      },
+      "rango": [
+       1.0,
+       5.0
+      ],
+      "estadisticos": null,
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     },
+     {
+      "id": "me_siento_motivado_para_continuar_mis_es",
+      "etiqueta": "Me siento motivado para continuar mis estudios este semestre",
+      "rol": "pregunta",
+      "tipo_canonico": "likert",
+      "pct_nulos": 0.05,
+      "likert": {
+       "escala": "acuerdo",
+       "puntos": 5,
+       "etiquetas": [
+        "Totalmente en desacuerdo",
+        "En desacuerdo",
+        "Ni de acuerdo ni en desacuerdo",
+        "De acuerdo",
+        "Totalmente de acuerdo"
+       ],
+       "neutral": 3,
+       "excluidos": [
+        "No sé"
+       ],
+       "invertido": false,
+       "codigos": {
+        "Totalmente en desacuerdo": 1,
+        "Totalmente de acuerdo": 5,
+        "De acuerdo": 4,
+        "Ni de acuerdo ni en desacuerdo": 3,
+        "En desacuerdo": 2
+       }
+      },
+      "rango": [
+       1.0,
+       5.0
+      ],
+      "estadisticos": null,
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     },
+     {
+      "id": "trabajas_actualmente",
+      "etiqueta": "¿Trabajas actualmente?",
+      "rol": "pregunta",
+      "tipo_canonico": "binaria",
+      "pct_nulos": 0.0,
+      "likert": null,
+      "rango": null,
+      "estadisticos": null,
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     },
+     {
+      "id": "que_servicios_de_la_universidad_utilizas",
+      "etiqueta": "¿Qué servicios de la universidad utilizas?",
+      "rol": "pregunta",
+      "tipo_canonico": "opcion_multiple_varias",
+      "pct_nulos": 0.0,
+      "likert": null,
+      "rango": null,
+      "estadisticos": null,
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     },
+     {
+      "id": "cual_es_tu_principal_medio_de_transporte",
+      "etiqueta": "¿Cuál es tu principal medio de transporte?",
+      "rol": "pregunta",
+      "tipo_canonico": "categorica",
+      "pct_nulos": 0.0,
+      "likert": null,
+      "rango": null,
+      "estadisticos": null,
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     },
+     {
+      "id": "que_mejorarias_de_tu_carrera",
+      "etiqueta": "¿Qué mejorarías de tu carrera?",
+      "rol": "pregunta",
+      "tipo_canonico": "categorica",
+      "pct_nulos": 0.25,
+      "likert": null,
+      "rango": null,
+      "estadisticos": null,
+      "estado": "conservada",
+      "motivo_eliminacion": null
+     }
+    ],
+    "grupos_detectados": [
+     {
+      "padre": "Valora tu experiencia en la carrera",
+      "hijos": [
+       "Profesores",
+       "Materiales",
+       "Instalaciones"
+      ],
+      "tipo": "cuadricula"
+     }
+    ],
+    "columnas_vacias_eliminadas": [],
+    "filas_eliminadas": {
+     "vacias": 0,
+     "duplicadas": 0,
+     "linea_recta": 0,
+     "incompletas": 0
+    },
+    "fiabilidad": [
+     {
+      "bloque": "Valora tu experiencia en la carrera",
+      "items": [
+       "Profesores",
+       "Materiales",
+       "Instalaciones"
+      ],
+      "invertidos": [],
+      "n_items": 3,
+      "n_casos": 20,
+      "n_excluidos": 0,
+      "alfa": 0.9207,
+      "interpretacion": "excelente",
+      "por_item": [
+       {
+        "item": "Profesores",
+        "media": 2.95,
+        "correlacion_item_total": 0.8196,
+        "alfa_si_se_elimina": 0.9014
+       },
+       {
+        "item": "Materiales",
+        "media": 2.75,
+        "correlacion_item_total": 0.8208,
+        "alfa_si_se_elimina": 0.9069
+       },
+       {
+        "item": "Instalaciones",
+        "media": 2.95,
+        "correlacion_item_total": 0.898,
+        "alfa_si_se_elimina": 0.8396
+       }
+      ]
+     },
+     {
+      "bloque": "Todas las escalas Likert",
+      "items": [
+       "Valora tu experiencia en la carrera [Profesores]",
+       "Valora tu experiencia en la carrera [Materiales]",
+       "Valora tu experiencia en la carrera [Instalaciones]",
+       "Me siento motivado para continuar mis estudios este semestre"
+      ],
+      "invertidos": [],
+      "n_items": 4,
+      "n_casos": 18,
+      "n_excluidos": 2,
+      "alfa": 0.9399,
+      "interpretacion": "excelente",
+      "por_item": [
+       {
+        "item": "Valora tu experiencia en la carrera [Profesores]",
+        "media": 2.7778,
+        "correlacion_item_total": 0.8013,
+        "alfa_si_se_elimina": 0.9391
+       },
+       {
+        "item": "Valora tu experiencia en la carrera [Materiales]",
+        "media": 2.5,
+        "correlacion_item_total": 0.8344,
+        "alfa_si_se_elimina": 0.9359
+       },
+       {
+        "item": "Valora tu experiencia en la carrera [Instalaciones]",
+        "media": 2.7222,
+        "correlacion_item_total": 0.9155,
+        "alfa_si_se_elimina": 0.9025
+       },
+       {
+        "item": "Me siento motivado para continuar mis estudios este semestre",
+        "media": 2.6111,
+        "correlacion_item_total": 0.9167,
+        "alfa_si_se_elimina": 0.9022
+       }
+      ]
+     }
+    ],
+    "no_respuestas": "marcadas"
+   }
+  },
+  "decisiones": {
+   "col-ajena:marca_temporal": {
+    "valor": "eliminar",
+    "origen": "sugerida"
+   },
+   "col-ajena:nombre": {
+    "valor": "eliminar",
+    "origen": "sugerida"
+   },
+   "col-ajena:correo": {
+    "valor": "eliminar",
+    "origen": "sugerida"
+   },
+   "rol:matricula": {
+    "valor": "pregunta",
+    "origen": "sugerida"
+   },
+   "rol:turno": {
+    "valor": "contexto",
+    "origen": "sugerida"
+   },
+   "rol:semestre": {
+    "valor": "contexto",
+    "origen": "sugerida"
+   },
+   "rol:idioma": {
+    "valor": "pregunta",
+    "origen": "sugerida"
+   },
+   "rol:trabajas_actualmente": {
+    "valor": "pregunta",
+    "origen": "sugerida"
+   },
+   "no-respuestas": {
+    "valor": "conservar_marcadas",
+    "origen": "sugerida"
+   },
+   "linea-recta": {
+    "valor": "conservar",
+    "origen": "sugerida"
+   }
+  }
+ },
+ "csv": {
+  "headers": [
+   "matricula",
+   "turno",
+   "semestre",
+   "idioma",
+   "valora_tu_experiencia_en_la_carrera_prof",
+   "valora_tu_experiencia_en_la_carrera_mate",
+   "valora_tu_experiencia_en_la_carrera_inst",
+   "me_siento_motivado_para_continuar_mis_es",
+   "trabajas_actualmente",
+   "que_servicios_de_la_universidad_utilizas",
+   "cual_es_tu_principal_medio_de_transporte",
+   "que_mejorarias_de_tu_carrera"
+  ],
+  "rows": [
+   [
+    "A03100",
+    "Matutino",
+    "1",
+    "Español",
+    "2",
+    "1",
+    "2",
+    "1",
+    "No",
+    "Cafetería",
+    "Bicicleta",
+    "Más actividades culturales y deportivas"
+   ],
+   [
+    "A03101",
+    "Vespertino",
+    "2",
+    "Inglés",
+    "5",
+    "4",
+    "5",
+    "5",
+    "Sí",
+    "Gimnasio, Biblioteca",
+    "Metro",
+    ""
+   ],
+   [
+    "A03102",
+    "Matutino",
+    "3",
+    "Español",
+    "5",
+    "4",
+    "5",
+    "5",
+    "Sí",
+    "Biblioteca, Cafetería",
+    "Metro",
+    ""
+   ],
+   [
+    "A03103",
+    "Vespertino",
+    "4",
+    "Inglés",
+    "5",
+    "3",
+    "5",
+    "4",
+    "Sí",
+    "Biblioteca, Cafetería",
+    "Metro",
+    ""
+   ],
+   [
+    "A03104",
+    "Matutino",
+    "5",
+    "Español",
+    "5",
+    "5",
+    "5",
+    "",
+    "Sí",
+    "Biblioteca",
+    "Bicicleta",
+    "Mejores horarios"
+   ],
+   [
+    "A03105",
+    "Vespertino",
+    "6",
+    "Español",
+    "4",
+    "3",
+    "2",
+    "3",
+    "No",
+    "Gimnasio, Biblioteca",
+    "Bicicleta",
+    "Más prácticas"
+   ],
+   [
+    "A03106",
+    "Matutino",
+    "7",
+    "Español",
+    "2",
+    "2",
+    "1",
+    "1",
+    "No",
+    "Biblioteca, Cafetería",
+    "Auto",
+    "Más prácticas"
+   ],
+   [
+    "A03107",
+    "Vespertino",
+    "8",
+    "Inglés",
+    "4",
+    "5",
+    "5",
+    "No sé",
+    "Sí",
+    "Cafetería",
+    "Bicicleta",
+    "Más actividades culturales y deportivas"
+   ],
+   [
+    "A03108",
+    "Matutino",
+    "1",
+    "Inglés",
+    "2",
+    "4",
+    "3",
+    "3",
+    "No",
+    "Cafetería",
+    "Auto",
+    "Más actividades culturales y deportivas"
+   ],
+   [
+    "A03109",
+    "Vespertino",
+    "2",
+    "Español",
+    "2",
+    "3",
+    "2",
+    "2",
+    "Sí",
+    "Biblioteca, Cafetería",
+    "Bicicleta",
+    "Mejores horarios"
+   ],
+   [
+    "A03110",
+    "Matutino",
+    "3",
+    "Español",
+    "2",
+    "1",
+    "1",
+    "2",
+    "No",
+    "Biblioteca",
+    "Camión",
+    "Mejores horarios"
+   ],
+   [
+    "A03111",
+    "Vespertino",
+    "4",
+    "Inglés",
+    "2",
+    "3",
+    "4",
+    "4",
+    "No",
+    "Cafetería",
+    "Metro",
+    "Más actividades culturales y deportivas"
+   ],
+   [
+    "A03112",
+    "Matutino",
+    "5",
+    "Español",
+    "2",
+    "3",
+    "3",
+    "4",
+    "No",
+    "Gimnasio, Biblioteca",
+    "Camión",
+    ""
+   ],
+   [
+    "A03113",
+    "Vespertino",
+    "6",
+    "Español",
+    "1",
+    "1",
+    "2",
+    "1",
+    "Sí",
+    "Cafetería",
+    "Auto",
+    ""
+   ],
+   [
+    "A03114",
+    "Matutino",
+    "7",
+    "Español",
+    "5",
+    "4",
+    "5",
+    "5",
+    "No",
+    "Biblioteca",
+    "Bicicleta",
+    "Mejores horarios"
+   ],
+   [
+    "A03115",
+    "Vespertino",
+    "8",
+    "Español",
+    "4",
+    "3",
+    "4",
+    "3",
+    "Sí",
+    "Cafetería",
+    "Metro",
+    "Más actividades culturales y deportivas"
+   ],
+   [
+    "A03116",
+    "Matutino",
+    "1",
+    "Inglés",
+    "1",
+    "1",
+    "1",
+    "1",
+    "Sí",
+    "Biblioteca",
+    "Auto",
+    "Más prácticas"
+   ],
+   [
+    "A03117",
+    "Vespertino",
+    "2",
+    "Inglés",
+    "2",
+    "1",
+    "1",
+    "1",
+    "Sí",
+    "Biblioteca, Cafetería",
+    "Bicicleta",
+    "Mejores horarios"
+   ],
+   [
+    "A03118",
+    "Matutino",
+    "3",
+    "Español",
+    "3",
+    "2",
+    "2",
+    "1",
+    "No",
+    "Cafetería",
+    "Auto",
+    "Más prácticas"
+   ],
+   [
+    "A03119",
+    "Vespertino",
+    "4",
+    "Español",
+    "1",
+    "2",
+    "1",
+    "1",
+    "Sí",
+    "Biblioteca, Cafetería",
+    "Bicicleta",
+    "Mejores horarios"
+   ]
+  ]
+ }
+}

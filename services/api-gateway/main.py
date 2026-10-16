@@ -11,6 +11,8 @@ Expone el módulo de AUTENTICACIÓN y el PROXY transparente a los microservicios
   *    /visualizacion/*    → visualization-service :8005 (catálogo, KPIs, descargas)
   *    /api/metadata/*     → metadata-service :8003 (passthrough)
   *    /api/enrichment/*   → metadata-service :8003 (passthrough)
+  *    /limpieza/*         → cleaning-service :8007 (passthrough)
+  *    /conocimiento/*     → knowledge-service :8009 (passthrough)
 
 Arranque:
   - Docker:  cwd=/app, con `shared/` copiado en /app/shared (ver Dockerfile).

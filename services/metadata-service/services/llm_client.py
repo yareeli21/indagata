@@ -46,7 +46,7 @@ def sugerir(tipo_ui: str, titulo: str, contexto: str, campos: dict[str, str]) ->
         "prompt": _prompt(tipo_ui, titulo, contexto, campos),
         "stream": False,
         "format": "json",
-        "keep_alive": "-1",
+        "keep_alive": -1,  # número: Ollama rechaza "-1" como texto (exige unidad de tiempo)
         "options": {"temperature": 0.2, "num_ctx": 2048},
     }
     url = f"{settings.OLLAMA_HOST.rstrip('/')}/api/generate"

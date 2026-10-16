@@ -14,8 +14,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from app.config.constants import ParserFamily
-from app.parsing.document_parser import DocumentParseError, read_document
-from app.parsing.tabular_parser import TabularParseError, read_tabular
+from shared.parsing.document_parser import DocumentParseError, read_document
+from shared.parsing.tabular_parser import TabularParseError, read_tabular
 
 # Nº de filas de muestra que se incluyen como preview en la respuesta.
 _PREVIEW_ROWS = 5

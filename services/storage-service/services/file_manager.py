@@ -31,7 +31,7 @@ from shared.db.core.config import settings
 
 from services.cache_manager import cache
 
-TIPOS_VALIDOS: frozenset[str] = frozenset({"raw", "clean", "sav", "metadata", "analysis", "temp"})
+TIPOS_VALIDOS: frozenset[str] = frozenset({"raw", "clean", "sav", "metadata", "analysis", "documento", "temp"})
 
 _MIME_EXTRA = {
     ".csv": "text/csv",
@@ -91,7 +91,7 @@ def directorio(tipo: str) -> Path:
         return settings.clean_path_abs
     if tipo == "sav":
         return settings.sav_path_abs
-    if tipo in ("metadata", "analysis"):
+    if tipo in ("metadata", "analysis", "documento"):
         return settings.json_path_abs
     if tipo == "temp":
         return settings.temp_path_abs
@@ -242,7 +242,7 @@ def guardar(
 def guardar_json(
     tipo: str, instrumento_id: str, contenido: dict[str, Any], nombre: str | None = None
 ) -> dict[str, Any]:
-    """Serializa y guarda un JSON (metadata | analysis)."""
+    """Serializa y guarda un JSON (metadata | analysis | documento)."""
     nombre_base = slug(nombre or "instrumento")
     if not nombre_base.lower().endswith(".json"):
         nombre_base = f"{Path(nombre_base).stem}.json"

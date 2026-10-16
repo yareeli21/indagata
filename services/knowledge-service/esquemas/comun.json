@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "comun.json",
+  "title": "Definiciones comunes del documento final (v1.0)",
+  "$defs": {
+    "id_ins": {"type": "string", "pattern": "^INS-\\d{4}$"},
+    "id_hijo": {"type": "string", "pattern": "^INS-\\d{4}-[a-zA-Z]+\\d+$"},
+    "kpi_ref": {"type": "string", "pattern": "^KPI-\\d{2,}$"},
+    "instrumento": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "tipo", "titulo", "objetivo", "temas", "palabras_clave", "nivel_educativo", "poblacion", "contexto"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id_ins"},
+        "tipo": {"enum": ["encuesta", "entrevista", "prueba_estandarizada"]},
+        "titulo": {"type": "string", "minLength": 1},
+        "objetivo": {"type": "string"},
+        "temas": {"type": "array", "items": {"type": "string"}},
+        "palabras_clave": {"type": "array", "items": {"type": "string"}},
+        "nivel_educativo": {"type": "string"},
+        "poblacion": {"type": "string"},
+        "contexto": {"type": "string"},
+        "n_respondentes": {"type": "integer", "minimum": 0},
+        "n_alumnos": {"type": "integer", "minimum": 0},
+        "n_participantes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "kpi_asociado": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kpi_id", "nombre", "definicion", "dimension", "que_mide", "similitud", "evidencia",
+                   "justificacion", "justificacion_origen", "aceptado_por", "fecha"],
+      "properties": {
+        "kpi_id": {"$ref": "#/$defs/kpi_ref"},
+        "nombre": {"type": "string"},
+        "definicion": {"type": "string"},
+        "dimension": {"type": "string"},
+        "que_mide": {"type": "string"},
+        "similitud": {"type": "number", "minimum": 0, "maximum": 1},
+        "evidencia": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["pregunta_id", "similitud"],
+            "properties": {"pregunta_id": {"$ref": "#/$defs/id_hijo"}, "similitud": {"type": "number"}}
+          }
+        },
+        "justificacion": {"type": "string"},
+        "justificacion_origen": {"enum": ["llm", "llm_revisada", "plantilla", "plantilla_revisada"]},
+        "aceptado_por": {"type": "string"},
+        "fecha": {"type": "string", "format": "date-time"}
+      }
+    },
+    "kpis_relacionados": {"type": "array", "items": {"$ref": "#/$defs/kpi_ref"}},
+    "seccion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "nombre"],
+      "properties": {"id": {"$ref": "#/$defs/id_hijo"}, "nombre": {"type": "string"}, "descripcion": {"type": "string"}}
+    },
+    "contexto": {"type": "object", "additionalProperties": {"type": ["string", "number", "null"]}},
+    "distribucion": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["significado", "n", "pct"],
+        "properties": {"significado": {"type": "string"}, "n": {"type": "integer"}, "pct": {"type": "number"}}
+      }
+    },
+    "aviso": {
+      "type": "object",
+      "required": ["codigo", "mensaje"],
+      "properties": {
+        "codigo": {"type": "string"},
+        "mensaje": {"type": "string"},
+        "pregunta_id": {"type": "string"},
+        "n": {"type": "integer"}
+      }
+    }
+  }
+}

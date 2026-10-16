@@ -21,6 +21,8 @@ from shared.models.valor_variable_inferido import ValorVariableInferido
 from shared.models.rag_log import RagLog
 from shared.models.documento_vectorizado import DocumentoVectorizado
 from shared.models.kpi_inferido_chunk import KpiInferidoChunk
+from shared.models.limpieza_ejecucion import LimpiezaEjecucion
+from shared.models.version_conocimiento import VersionConocimiento
 
 __all__ = [
     "Usuario",
@@ -40,4 +42,6 @@ __all__ = [
     "RagLog",
     "DocumentoVectorizado",
     "KpiInferidoChunk",
+    "LimpiezaEjecucion",
+    "VersionConocimiento",
 ]

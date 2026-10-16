@@ -17,6 +17,7 @@ class RawDataBase(BaseModel):
     nombre_archivo: str
     raw_archivo: str
     raw_archivo_original: str | None = None
+    raw_archivo_clave: str | None = None
 
 
 class RawDataCreate(RawDataBase):
@@ -29,6 +30,7 @@ class RawDataUpdate(BaseModel):
     nombre_archivo: str | None = None
     raw_archivo: str | None = None
     raw_archivo_original: str | None = None
+    raw_archivo_clave: str | None = None
 
 
 class RawDataRead(RawDataBase):

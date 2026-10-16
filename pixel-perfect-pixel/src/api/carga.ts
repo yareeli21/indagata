@@ -4,7 +4,6 @@ import type {
   MetadatosTipo,
   NivelEducativo,
   OrigenMetadato,
-  ReporteLimpieza,
   TipoInstrumento,
 } from "@/types";
 import { ANALYSIS_URL, API_URL, avisarSesionExpirada, leerToken, pedir } from "./client";
@@ -59,57 +58,12 @@ interface UploadResponse {
   mensaje: string;
 }
 
-/** Resultado del paso 1 (subir): ambos ids reales + el reporte de limpieza derivado. */
+/** Resultado del paso 1 (subir): ambos ids reales. La limpieza la hace cleaning-service (`api/limpieza.ts`). */
 export interface ResultadoCarga {
   /** PK de raw_data: id canónico (instrument-, metadata-, storage- y visualization-service). */
   idCrudo: number;
   /** PK de instrumento_procesado (lo usa el analysis-service para los KPIs). */
   idInstrumento: number;
-  /** Reporte de limpieza derivado del parseo del upload (no hay endpoint propio). */
-  reporte: ReporteLimpieza;
-}
-
-// ── Helper puro: ParseoArchivo → ReporteLimpieza ─────────────────────────────────
-
-/**
- * Deriva un `ReporteLimpieza` del resumen de parseo del upload.
- *
- * NOTA: la etapa de limpieza (imputación, duplicados, registros vacíos) no forma
- * parte de los servicios actuales; por eso `duplicadosEliminados` y
- * `nulosTratados` son 0 (valor honesto, no inventado). Cuando exista ese
- * endpoint se reemplaza este derivado sin cambiar la forma de `ReporteLimpieza`.
- */
-export function mapearParseoALimpieza(parseo: ParseoArchivo | null | undefined): ReporteLimpieza {
-  if (!parseo) {
-    return { duplicadosEliminados: 0, nulosTratados: 0, columnasNormalizadas: 0, cambios: [] };
-  }
-
-  const cambios: ReporteLimpieza["cambios"] = [];
-
-  if (parseo.headers && parseo.headers.length > 0) {
-    for (const header of parseo.headers) {
-      cambios.push({ campo: "Columna detectada", antes: header, despues: header });
-    }
-  }
-
-  if (parseo.parser_family === "documento") {
-    cambios.push({
-      campo: "Texto extraído",
-      antes: `${parseo.n_chars ?? 0} caracteres`,
-      despues: `${parseo.n_words ?? 0} palabras`,
-    });
-  }
-
-  for (const nota of parseo.notes ?? []) {
-    cambios.push({ campo: "Observación del parser", antes: nota, despues: "" });
-  }
-
-  return {
-    columnasNormalizadas: parseo.headers?.length ?? 0,
-    duplicadosEliminados: 0,
-    nulosTratados: 0,
-    cambios,
-  };
 }
 
 // ── Paso 1: subir el instrumento ──────────────────────────────────────────────────
@@ -136,11 +90,14 @@ export async function subirInstrumento(
   archivo: File,
   tipo: TipoInstrumento,
   archivoOriginal?: File | null,
+  /** Clave de respuestas (obligatoria para pruebas estandarizadas en tabla). */
+  archivoClave?: File | null,
 ): Promise<ResultadoCarga> {
   const form = new FormData();
   form.append("archivo", archivo);
   form.append("tipo_instrumento", TIPO_UI_A_BACKEND[tipo]);
   if (archivoOriginal) form.append("archivo_original", archivoOriginal);
+  if (archivoClave) form.append("archivo_clave", archivoClave);
 
   const headers: Record<string, string> = {};
   const token = leerToken();
@@ -170,7 +127,6 @@ export async function subirInstrumento(
   return {
     idCrudo: datos.id_crudo,
     idInstrumento: datos.id_instrumento,
-    reporte: mapearParseoALimpieza(datos.archivo_respondido?.parseo),
   };
 }
 

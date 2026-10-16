@@ -13,6 +13,8 @@ Prefijos passthrough:
   - /visualizacion/*    → visualization-service :8005 (GET/POST: catálogo, KPIs, descargas)
   - /api/metadata/*     → metadata-service :8003      (GET/POST/DELETE)
   - /api/enrichment/*   → metadata-service :8003      (GET/POST/DELETE)
+  - /limpieza/*         → cleaning-service :8007      (GET/POST/PATCH: limpieza asistida)
+  - /conocimiento/*     → knowledge-service :8009     (GET/POST: perfil semántico y documento final)
 
 `analysis-service` lo consume el frontend de forma directa (no se proxea aquí).
 Las cabeceras de descarga del upstream (Content-Disposition, huella SHA-256) se
@@ -37,6 +39,8 @@ SERVICES = {
     "metadata": os.getenv("METADATA_SERVICE_URL", "http://metadata-service:8003"),
     "storage": os.getenv("STORAGE_SERVICE_URL", "http://storage-service:8004"),
     "visualization": os.getenv("VISUALIZATION_SERVICE_URL", "http://visualization-service:8005"),
+    "cleaning": os.getenv("CLEANING_SERVICE_URL", "http://cleaning-service:8007"),
+    "knowledge": os.getenv("KNOWLEDGE_SERVICE_URL", "http://knowledge-service:8009"),
 }
 
 # Headers que NO se reenvían al upstream: httpx los recomputa a partir del cuerpo
@@ -216,3 +220,44 @@ async def enrichment_post(request: Request, path: str = "") -> Response:
 @router.delete("/api/enrichment/{path:path}")
 async def enrichment_delete(request: Request, path: str = "") -> Response:
     return await proxy_request("metadata", _ruta_upstream("/api/enrichment", path), request, "DELETE")
+
+
+# ---------------------------------------------------------------------------
+# Limpieza → cleaning-service :8007 (fase automática, decisiones, confirmación).
+# PATCH guarda las decisiones parciales del investigador conforme las toma.
+# ---------------------------------------------------------------------------
+
+
+@router.get("/limpieza")
+@router.get("/limpieza/{path:path}")
+async def limpieza_get(request: Request, path: str = "") -> Response:
+    return await proxy_request("cleaning", _ruta_upstream("/limpieza", path), request, "GET")
+
+
+@router.post("/limpieza")
+@router.post("/limpieza/{path:path}")
+async def limpieza_post(request: Request, path: str = "") -> Response:
+    return await proxy_request("cleaning", _ruta_upstream("/limpieza", path), request, "POST")
+
+
+@router.patch("/limpieza")
+@router.patch("/limpieza/{path:path}")
+async def limpieza_patch(request: Request, path: str = "") -> Response:
+    return await proxy_request("cleaning", _ruta_upstream("/limpieza", path), request, "PATCH")
+
+
+# ---------------------------------------------------------------------------
+# Conocimiento → knowledge-service :8009 (perfil semántico, documento final).
+# ---------------------------------------------------------------------------
+
+
+@router.get("/conocimiento")
+@router.get("/conocimiento/{path:path}")
+async def conocimiento_get(request: Request, path: str = "") -> Response:
+    return await proxy_request("knowledge", _ruta_upstream("/conocimiento", path), request, "GET")
+
+
+@router.post("/conocimiento")
+@router.post("/conocimiento/{path:path}")
+async def conocimiento_post(request: Request, path: str = "") -> Response:
+    return await proxy_request("knowledge", _ruta_upstream("/conocimiento", path), request, "POST")

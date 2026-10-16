@@ -47,6 +47,8 @@ cd pixel-perfect-pixel; npm run dev    # also: npm run build, npm run lint, npm 
 | metadata-service | 8003 | |
 | storage-service | 8004 | Internal only |
 | visualization-service | 8005 | |
+| cleaning-service | 8007 | Limpieza asistida (`/limpieza/*` vía gateway) |
+| knowledge-service | 8009 | Perfil semántico y documento final (`/conocimiento/*` vía gateway) |
 | frontend | 3000 | |
 | chromadb | **8008** → 8000 | `CHROMA_PORT` default in `shared` config is 8008 for local runs |
 | chroma-viewer | 8085 | Read-only PCA viewer (`infrastructure/chroma-viewer/`) |
@@ -57,7 +59,7 @@ When run locally with uvicorn, the gateway listens on 8000. In Docker it is expo
 ## Architecture
 
 ### Microservices + `shared/`
-Six FastAPI services live under `services/`. They share one Postgres database (schema `tt_rag`) and one Python package, `shared/`:
+Seven FastAPI services live under `services/`. They share one Postgres database (schema `tt_rag`) and one Python package, `shared/`:
 - `shared/db/core/config.py`: a single pydantic-settings `settings` object for every service. It reads the root `.env`. Defaults target localhost, and docker-compose overrides them with container hostnames. Storage paths are resolved relative to the repo root.
 - `shared/db/core/domain_constants.py`: the closed vocabularies (instrument types, pipeline `estado` values, proposal types/decisions). Schemas' `Literal[...]` types are checked against these at import time.
 - `shared/models/` (SQLAlchemy ORM) and `shared/schemas/` (Pydantic DTOs) mirror `infrastructure/postgres/init/01_schema.sql` 1:1. **The SQL file is the source of truth**: when they disagree, fix the model, never the SQL.
@@ -67,7 +69,7 @@ Six FastAPI services live under `services/`. They share one Postgres database (s
 
 Two service layouts coexist:
 - `app/` package (`instrument-service`, `analysis-service`, `api-gateway`): `app/routers`, `app/services`, `app/schemas`…
-- Flat (`metadata-service`, `storage-service`, `visualization-service`): top-level `routers/`, `services/`, `models.py` (HTTP DTOs) and `dependencies.py`.
+- Flat (`metadata-service`, `storage-service`, `visualization-service`, `cleaning-service`): top-level `routers/`, `services/`, `models.py` (HTTP DTOs) and `dependencies.py`.
 
 Every service follows the same layering: routers → `dependencies` (typed `Annotated` deps such as `DBSession`, `Investigador`) → services → `shared` models.
 
@@ -76,13 +78,14 @@ Every service follows the same layering: routers → `dependencies` (typed `Anno
 
 ### Gateway proxy
 `services/api-gateway/proxy/proxy.py` forwards the path **unchanged** by prefix, with no renaming and no response wrapping. Status codes and bodies pass straight through. It keeps `Authorization` and passes back `Content-Disposition`, `X-Checksum-SHA256` and `X-Nombre-Archivo`.
-`/instrumentos/*` → instrument, `/api/metadata/*` and `/api/enrichment/*` → metadata, `/visualizacion/*` and `/rag/*` → visualization (`/rag/chat` streams SSE), `/almacenamiento/*` → storage (admins only).
+`/instrumentos/*` → instrument, `/api/metadata/*` and `/api/enrichment/*` → metadata, `/visualizacion/*` and `/rag/*` → visualization (`/rag/chat` streams SSE), `/limpieza/*` → cleaning, `/conocimiento/*` → knowledge, `/almacenamiento/*` → storage (admins only).
 Every prefix registers both a base route and a `{path:path}` route on purpose, to avoid FastAPI's 307 redirect. When you add a new upstream prefix, follow the same pattern.
 
 ### Instrument lifecycle (data flow)
 The canonical instrument id across services and the frontend is **`id_crudo`** (the PK of `raw_data`).
 1. **instrument-service** `POST /instrumentos/upload`: detects the file type and parses it into a tabular or document form (`app/parsing/`), then hands the raw bytes to storage-service. The storage backend is a port with `http` and `local` implementations, chosen by `STORAGE_BACKEND`.
-2. **metadata-service** `/api/metadata/{id}/propuesta` proposes Dublin Core (13 fields) using heuristics. When `METADATA_USAR_LLM` is on, Ollama fills the interpretive fields and degrades gracefully if it is unavailable. `/vista-previa` previews the standardized JSON without saving. `/aprobar` (author or admin) persists `metadatos_dc` and `metadatos_enriquecidos_*`, saves the standardized JSON through storage-service, and triggers RAG ingestion.
+1b. **cleaning-service** `/limpieza/{id}/ejecuciones` (wizard step «Limpieza»): automatic phase per type (survey / interview / standardized test), assisted phase where the researcher decides the findings, then `confirmar` writes the clean CSV (`;`, UTF-8 BOM) to storage-service as a `clean` artifact and the `reporte_limpieza` JSONB to `tt_rag.limpieza_ejecucion` (one row per version). It sets `instrumento_procesado.ruta_de_archivo_limpio`. Editable rules live in `services/cleaning-service/config/*.yaml`.
+2. **metadata-service** `/api/metadata/{id}/propuesta` proposes Dublin Core (13 fields) using heuristics, from the **latest confirmed cleaning** (clean CSV + report, `services/desde_limpieza.py`). New instruments without a confirmed cleaning get a 409; instruments standardized before the cleaning step still use the raw file (`METADATA_EXIGIR_LIMPIEZA` toggles the requirement). When `METADATA_USAR_LLM` is on, Ollama fills the interpretive fields and degrades gracefully if it is unavailable. `/vista-previa` previews the standardized JSON without saving. `/aprobar` (author or admin) persists `metadatos_dc` and `metadatos_enriquecidos_*`, saves the standardized JSON through storage-service, and triggers RAG ingestion.
 3. **analysis-service** `/vectorizacion/propuestas` and `/confirmar` suggest KPIs by similarity between an instrument summary (Chroma collection `summary_instrument`) and the `kpis` collection, then record the accepted ones. metadata-service `/finalizar` adds the accepted KPIs to the JSON.
 4. **storage-service** owns **all** file storage and is the **only writer** of the Chroma `instrumentos` collection and of `documento_vectorizado`. Artifacts use versioned keys `<tipo>/<id>/<versión>__<nombre>` with a SHA-256 hash that is checked on download. Ingestion splits the approved JSON into chunks (`encabezado`, one `pregunta` per item, `contenido`), each carrying filterable metadata. It ingests only author-approved instruments and sets `estado = vectorizado`.
 5. **visualization-service** is read-only over the database and Chroma, except for writes to `rag_log`. It serves the catalog with facets, the KPI dashboards ("which questions measure a KPI" = nearest `pregunta` chunks to the KPI vector), related instruments, downloads (raw/json/`.sav` export through SPSS) and the RAG chat (Ollama, `num_ctx` kept small for a 4 GiB GPU).

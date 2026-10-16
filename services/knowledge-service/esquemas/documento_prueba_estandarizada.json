@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "documento_prueba_estandarizada.json",
+  "title": "Documento final de una prueba estandarizada (v1.0)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "esquema_version",
+    "instrumento",
+    "kpis_asociados",
+    "secciones",
+    "reactivos",
+    "alumnos",
+    "avisos"
+  ],
+  "properties": {
+    "esquema_version": {
+      "const": "1.0"
+    },
+    "instrumento": {
+      "allOf": [
+        {
+          "$ref": "comun.json#/$defs/instrumento"
+        },
+        {
+          "properties": {
+            "tipo": {
+              "const": "prueba_estandarizada"
+            }
+          },
+          "required": [
+            "n_alumnos"
+          ]
+        }
+      ]
+    },
+    "kpis_asociados": {
+      "type": "array",
+      "items": {
+        "$ref": "comun.json#/$defs/kpi_asociado"
+      }
+    },
+    "secciones": {
+      "type": "array",
+      "items": {
+        "$ref": "comun.json#/$defs/seccion"
+      }
+    },
+    "reactivos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "seccion_id",
+          "clave",
+          "texto",
+          "opciones",
+          "respuesta_correcta",
+          "kpis_relacionados",
+          "resumen"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "comun.json#/$defs/id_hijo"
+          },
+          "seccion_id": {
+            "$ref": "comun.json#/$defs/id_hijo"
+          },
+          "clave": {
+            "type": "string",
+            "description": "Nombre del reactivo en la hoja de respuestas (P3)."
+          },
+          "texto": {
+            "type": "string"
+          },
+          "opciones": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "respuesta_correcta": {
+            "type": "string"
+          },
+          "kpis_relacionados": {
+            "$ref": "comun.json#/$defs/kpis_relacionados"
+          },
+          "resumen": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "n_alumnos",
+              "pct_acierto",
+              "distribucion",
+              "n_nulas",
+              "n_sin_respuesta",
+              "interpretacion"
+            ],
+            "properties": {
+              "n_alumnos": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "pct_acierto": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "distribucion": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "n",
+                    "pct"
+                  ],
+                  "properties": {
+                    "n": {
+                      "type": "integer"
+                    },
+                    "pct": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "n_nulas": {
+                "type": "integer"
+              },
+              "n_sin_respuesta": {
+                "type": "integer"
+              },
+              "distractor_mas_elegido": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "opcion": {
+                    "type": "string"
+                  },
+                  "significado": {
+                    "type": "string"
+                  },
+                  "pct": {
+                    "type": "number"
+                  }
+                }
+              },
+              "dificultad": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "discriminacion": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "interpretacion": {
+                "type": "string"
+              }
+            }
+          },
+          "tipo_reactivo": {
+            "enum": [
+              "opcion_multiple",
+              "verdadero_falso",
+              "puntos",
+              "escala",
+              "si_no",
+              "numerica"
+            ]
+          },
+          "calificable": {
+            "type": "boolean",
+            "description": "False en escalas, Sí/No y numéricos: sin respuesta correcta ni acierto."
+          },
+          "puntos_max": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "alumnos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "contexto",
+          "puntaje",
+          "total",
+          "porcentaje",
+          "respuestas"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "comun.json#/$defs/id_hijo"
+          },
+          "contexto": {
+            "$ref": "comun.json#/$defs/contexto"
+          },
+          "puntaje": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "porcentaje": {
+            "type": "number"
+          },
+          "respuestas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "reactivo_id",
+                "pregunta",
+                "estado"
+              ],
+              "properties": {
+                "reactivo_id": {
+                  "$ref": "comun.json#/$defs/id_hijo"
+                },
+                "respuesta": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "significado": {
+                  "type": "string"
+                },
+                "correcta": {
+                  "type": "boolean",
+                  "description": "Solo en reactivos calificables."
+                },
+                "estado": {
+                  "enum": [
+                    "valida",
+                    "nula",
+                    "sin_respuesta"
+                  ]
+                },
+                "motivo": {
+                  "type": "string"
+                },
+                "pregunta": {
+                  "type": "string",
+                  "description": "Texto de la pregunta (para que la respuesta se entienda sola)."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "avisos": {
+      "type": "array",
+      "items": {
+        "$ref": "comun.json#/$defs/aviso"
+      }
+    }
+  }
+}

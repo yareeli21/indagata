@@ -44,6 +44,24 @@ _COLUMNA_TECNICA = re.compile(
     re.IGNORECASE,
 )
 _COLUMNA_CARRERA = re.compile(r"\b(carrera|programa( educativo)?|licenciatura)\b", re.IGNORECASE)
+_MAX_ENCABEZADO_CARRERA = 45
+
+
+def es_columna_carrera(encabezado: str, valores: list[str]) -> bool:
+    """¿La columna ES la carrera del respondente (y no una pregunta que la menciona)?
+
+    Regla no obvia: «Valora tu experiencia en la carrera [Profesores]» contiene la
+    palabra «carrera» pero es una escala; tomarla por carrera convertía sus códigos
+    (2, 5, 4…) en «carreras». Se exige un encabezado corto, que no sea cuadrícula
+    («Pregunta [aspecto]») y valores mayoritariamente de texto.
+    """
+    if not _COLUMNA_CARRERA.search(encabezado or ""):
+        return False
+    if len(encabezado.strip()) > _MAX_ENCABEZADO_CARRERA or _ENCABEZADO_BLOQUE.match(encabezado):
+        return False
+    presentes = [v for v in valores if v and v.strip()]
+    numericos = sum(1 for v in presentes if _numero(v) is not None)
+    return bool(presentes) and numericos <= len(presentes) / 2
 _ENCABEZADO_BLOQUE = re.compile(r"^(.*?)\s*\[(.+?)\]\s*$")
 
 _STOPWORDS_ES = set(
@@ -117,6 +135,8 @@ class Analisis:
     especificos_archivo: dict[str, Any] = field(default_factory=dict)
     kpi_hints: list[str] = field(default_factory=list)
     notas: list[str] = field(default_factory=list)
+    # Resumen de la limpieza usada (bloque `cleaning` del JSON); vacío si se leyó el crudo.
+    limpieza: dict[str, Any] = field(default_factory=dict)
     # Claves cuyo valor es una plantilla genérica (el LLM puede mejorarlas).
     plantillas: set[str] = field(default_factory=set)
 
@@ -418,9 +438,21 @@ def extraer_preguntas(texto: str) -> list[Pregunta]:
     return preguntas
 
 
+_RE_ETIQUETA_TITULO = re.compile(r"^(instrumento|t[ií]tulo|nombre( del instrumento)?)\s*:\s*", re.IGNORECASE)
+_RE_LINEA_FICHA = re.compile(r"^(id|clave|fuente|versi[oó]n|fecha|autor(es)?|c[oó]digo)\s*:", re.IGNORECASE)
+
+
 def _titulo_documento(texto: str, nombre: str) -> str:
+    """Primera línea con aspecto de título.
+
+    Se saltan las líneas decorativas («=====», «-----»: casi sin letras) y las de
+    ficha («ID: enc_05», «Fuente: …»); «INSTRUMENTO: Escala RAU» → «Escala RAU».
+    """
     for cruda in texto.splitlines()[:15]:
         linea = cruda.strip().lstrip("#").strip().strip("*_").strip()
+        if sum(c.isalpha() for c in linea) < 4 or _RE_LINEA_FICHA.match(linea):
+            continue
+        linea = _RE_ETIQUETA_TITULO.sub("", linea).strip()
         if 4 <= len(linea) <= 120 and "?" not in linea and not _RE_NUMERADA.match(linea):
             return linea
     return titulo_desde_nombre(nombre)
@@ -448,9 +480,9 @@ def _desde_tabla(tabla: dict[str, Any], tipo: str, nombre: str, texto_original: 
 
     carreras: list[str] = []
     for j, h in enumerate(headers):
-        if _COLUMNA_CARRERA.search(h):
-            conteo = Counter(f[j] for f in filas if j < len(f) and f[j].strip())
-            carreras = [c for c, _ in conteo.most_common(8)]
+        valores_col = [f[j] for f in filas if j < len(f) and f[j].strip()]
+        if es_columna_carrera(h, valores_col):
+            carreras = [c for c, _ in Counter(valores_col).most_common(8)]
             break
 
     dimensiones = [etiqueta_dimension(b) for b in bloques]
@@ -575,9 +607,29 @@ def _desde_json(data: dict[str, Any], tipo: str) -> Analisis:
     )
 
 
-def analizar_contenido(raw: Any, procesado: Any) -> Analisis:
-    """Lee el instrumento (vía storage-service) y lo analiza. Puede lanzar StorageError."""
-    ruta_datos = getattr(procesado, "ruta_de_archivo_limpio", None) or raw.raw_archivo
+def _texto_original(raw: Any) -> str:
+    original = raw.raw_archivo_original
+    if original and original != raw.raw_archivo:
+        try:
+            return storage_client.texto(original).get("texto") or ""
+        except storage_client.StorageError as exc:
+            logger.warning("No se pudo leer el instrumento original %s: %s", original, exc)
+    return ""
+
+
+def analizar_contenido(raw: Any, procesado: Any, limpieza: dict[str, Any] | None = None) -> Analisis:
+    """Lee el instrumento (vía storage-service) y lo analiza. Puede lanzar StorageError.
+
+    Con `limpieza` (la última versión confirmada en cleaning-service) se analiza el
+    CSV limpio con su reporte; sin ella, el archivo crudo (instrumentos anteriores
+    a la limpieza asistida).
+    """
+    if limpieza and limpieza.get("ruta"):
+        from services import desde_limpieza  # import diferido: ese módulo usa este
+
+        return desde_limpieza.analizar(raw, limpieza, _texto_original(raw))
+
+    ruta_datos = raw.raw_archivo
     nombre = raw.nombre_archivo or Path(raw.raw_archivo).name
     extension = Path(ruta_datos).suffix.lower() or Path(nombre).suffix.lower()
     tipo = (raw.tipo_instrumento or "encuesta").lower()
@@ -589,13 +641,7 @@ def analizar_contenido(raw: Any, procesado: Any) -> Analisis:
             raise storage_client.StorageError(f"El JSON del instrumento no es válido: {exc}", 422) from exc
         return _desde_json(data if isinstance(data, dict) else {}, tipo)
 
-    texto_original = ""
-    original = raw.raw_archivo_original
-    if original and original != raw.raw_archivo:
-        try:
-            texto_original = storage_client.texto(original).get("texto") or ""
-        except storage_client.StorageError as exc:
-            logger.warning("No se pudo leer el instrumento original %s: %s", original, exc)
+    texto_original = _texto_original(raw)
 
     if extension in _TABULARES:
         return _desde_tabla(storage_client.tabla(ruta_datos), tipo, nombre, texto_original)
@@ -613,23 +659,24 @@ _cache: dict[tuple, tuple[float, Analisis]] = {}
 _cache_lock = threading.Lock()
 
 
-def _clave(raw: Any, procesado: Any) -> tuple:
+def _clave(raw: Any, procesado: Any, limpieza: dict[str, Any] | None) -> tuple:
     return (
         raw.id_crudo,
         raw.raw_archivo,
         raw.raw_archivo_original,
-        getattr(procesado, "ruta_de_archivo_limpio", None),
+        (limpieza or {}).get("id"),
+        (limpieza or {}).get("version"),
     )
 
 
-def analizar(raw: Any, procesado: Any) -> Analisis:
-    clave = _clave(raw, procesado)
+def analizar(raw: Any, procesado: Any, limpieza: dict[str, Any] | None = None) -> Analisis:
+    clave = _clave(raw, procesado, limpieza)
     ahora = time.monotonic()
     with _cache_lock:
         entrada = _cache.get(clave)
         if entrada and entrada[0] > ahora:
             return entrada[1]
-    analisis = analizar_contenido(raw, procesado)
+    analisis = analizar_contenido(raw, procesado, limpieza)
     with _cache_lock:
         _cache[clave] = (ahora + _CACHE_TTL, analisis)
         if len(_cache) > 128:

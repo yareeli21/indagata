@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS raw_data (
     nombre_archivo       TEXT        NOT NULL,
     raw_archivo          TEXT        NOT NULL,  -- ruta del archivo respondido (crudo con datos)
     raw_archivo_original TEXT,                  -- ruta del instrumento original (solo preguntas)
+    raw_archivo_clave    TEXT,                  -- clave de respuestas (pruebas estandarizadas tabulares)
     fecha_carga          TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -274,6 +275,54 @@ CREATE TABLE IF NOT EXISTS kpi_inferido_chunk (
     FOREIGN KEY (id_procesado, kpi_id) REFERENCES kpi_inferido(id_procesado, kpi_id) ON DELETE CASCADE
 );
 
+-- ── 15. limpieza_ejecucion (cleaning-service) ─────────────────────────────────
+-- Una fila por ejecución (versión) de la limpieza de un instrumento. El CSV limpio
+-- vive en storage (ruta_csv_limpio = key); el reporte_limpieza y las decisiones
+-- del investigador, en `reporte`. metadata-service usa la última 'confirmada'.
+
+CREATE TABLE IF NOT EXISTS limpieza_ejecucion (
+    id_limpieza         SERIAL       PRIMARY KEY,
+    id_crudo            INTEGER      NOT NULL REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    version             INTEGER      NOT NULL,
+    estado              VARCHAR(30)  NOT NULL DEFAULT 'esperando_decisiones'
+                        CHECK (estado IN ('esperando_decisiones', 'confirmada', 'fallida')),
+    id_investigador     INTEGER      REFERENCES usuario(usuario_id) ON DELETE SET NULL,
+    fecha_creacion      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    fecha_actualizacion TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    fecha_confirmacion  TIMESTAMP,
+    ruta_csv_limpio     VARCHAR(255),
+    reporte             JSONB        NOT NULL DEFAULT '{}'::jsonb,
+    error               TEXT,
+    CONSTRAINT uq_limpieza_version UNIQUE (id_crudo, version)
+);
+
+-- ── 16. version_conocimiento (knowledge-service) ─────────────────────────────
+-- UNA fila por versión del conocimiento de un instrumento: perfil semántico →
+-- decisiones de KPIs (aceptados y rechazados) → documento final (archivo en
+-- storage; aquí su key). Estados: perfil_aprobado → kpis_confirmados → borrador
+-- → vigente; al publicar otra versión, la anterior pasa a reemplazado.
+
+CREATE TABLE IF NOT EXISTS version_conocimiento (
+    id_version          SERIAL       PRIMARY KEY,
+    id_crudo            INTEGER      NOT NULL REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    version             INTEGER      NOT NULL,
+    estado              VARCHAR(20)  NOT NULL DEFAULT 'perfil_aprobado'
+                        CHECK (estado IN ('perfil_aprobado', 'kpis_confirmados', 'borrador', 'vigente', 'reemplazado')),
+    perfil              JSONB        NOT NULL,
+    decisiones_kpi      JSONB        NOT NULL DEFAULT '[]'::jsonb,
+    ruta_documento      VARCHAR(255),
+    esquema_version     VARCHAR(10),
+    avisos              JSONB        NOT NULL DEFAULT '[]'::jsonb,
+    sha256              VARCHAR(64),
+    id_limpieza         INTEGER      REFERENCES limpieza_ejecucion(id_limpieza) ON DELETE SET NULL,
+    id_usuario          INTEGER      REFERENCES usuario(usuario_id) ON DELETE SET NULL,
+    fecha_creacion      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    fecha_kpis          TIMESTAMP,
+    fecha_documento     TIMESTAMP,
+    fecha_publicacion   TIMESTAMP,
+    CONSTRAINT uq_version_conocimiento UNIQUE (id_crudo, version)
+);
+
 -- ── Índices ───────────────────────────────────────────────────────────────────
 
 CREATE INDEX IF NOT EXISTS idx_raw_data_owner           ON raw_data(id_owner);
@@ -285,6 +334,8 @@ CREATE INDEX IF NOT EXISTS idx_kpi_inf_chunk_docvec     ON kpi_inferido_chunk(do
 CREATE INDEX IF NOT EXISTS idx_docvec_instrumento       ON documento_vectorizado(instrumento_id);
 CREATE INDEX IF NOT EXISTS idx_docvec_coleccion         ON documento_vectorizado(coleccion_id);
 CREATE INDEX IF NOT EXISTS idx_rag_log_timestamp        ON rag_log(timestamp);
+CREATE INDEX IF NOT EXISTS idx_limpieza_crudo_estado    ON limpieza_ejecucion(id_crudo, estado);
+CREATE INDEX IF NOT EXISTS idx_version_conocimiento_crudo_estado ON version_conocimiento(id_crudo, estado);
 
 COMMIT;
 

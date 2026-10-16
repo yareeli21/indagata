@@ -4,7 +4,7 @@ Los modelos ORM viven en `shared/models`; aquí solo están los contratos HTTP.
 
 Dos responsabilidades:
   - Archivos: el servicio custodia los binarios (raw/clean/sav/temp) y los JSON
-    (metadata/analysis) bajo una clave versionada estable y devuelve dónde
+    (metadata/analysis/documento) bajo una clave versionada estable y devuelve dónde
     quedaron guardados. El archivo crudo se guarda SIN NINGÚN CAMBIO: se registra
     su SHA-256 para poder comprobarlo al descargarlo.
   - Índice vectorial: es el único servicio que escribe la colección
@@ -18,9 +18,10 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field
 
 # Tipos de artefacto soportados (ruteo a directorio en file_manager).
-TipoArtefacto = Literal["raw", "clean", "sav", "metadata", "analysis", "temp"]
+TipoArtefacto = Literal["raw", "clean", "sav", "metadata", "analysis", "documento", "temp"]
 TIPOS_BINARIOS: frozenset[str] = frozenset({"raw", "clean", "sav", "temp"})
-TIPOS_JSON: frozenset[str] = frozenset({"metadata", "analysis"})
+# `documento`: documento final del knowledge-service (insumo de los chunks del RAG).
+TIPOS_JSON: frozenset[str] = frozenset({"metadata", "analysis", "documento"})
 
 
 # ── Archivos ───────────────────────────────────────────────────────────────────
@@ -30,7 +31,7 @@ class GuardarJsonRequest(BaseModel):
     """Cuerpo de POST /almacenamiento/json."""
 
     instrumentoId: str
-    tipo: Literal["metadata", "analysis"]
+    tipo: Literal["metadata", "analysis", "documento"]
     contenido: dict[str, Any]
     nombre: str | None = None  # para el slug del archivo; default "instrumento"
 

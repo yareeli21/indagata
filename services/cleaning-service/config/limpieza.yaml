@@ -1,0 +1,90 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Reglas configurables de limpieza (cleaning-service).
+#
+# Edita este archivo para ajustar la limpieza sin tocar código; el servicio lo
+# lee al arrancar (reinícialo tras cambiarlo). Las comparaciones de texto se
+# hacen sin distinguir mayúsculas ni acentos.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Formato del CSV limpio (igual para los tres tipos de instrumento).
+salida:
+  separador: ";"
+  codificacion: "utf-8-sig"   # UTF-8 con BOM: Excel en español muestra bien los acentos
+
+# ── Encuestas ────────────────────────────────────────────────────────────────
+encuestas:
+  # Representaciones de "vacío" que se unifican a nulo.
+  tokens_vacio: ["", "na", "n/a", "n.a.", "-", "--", "null", "none", "nan", "sin respuesta"]
+
+  # Columnas que no pertenecen al instrumento: se proponen para eliminar
+  # (preseleccionadas). Expresiones regulares sobre el encabezado normalizado.
+  columnas_ajenas:
+    - '^(id|uuid|folio|n[uú]mero de respuesta|response ?id|respondent ?id)$'
+    - '^id[_ .-]?(respuesta|respondente|participante|encuestado)?$'
+    - 'marca (temporal|de tiempo)|timestamp|time ?stamp'
+    - '^(fecha|hora)( y hora)? (de )?(inicio|fin|finalizaci[oó]n|t[eé]rmino|env[ií]o)$'
+    - '^(hora|tiempo) de (inicio|finalizaci[oó]n)$'
+    - '^(start|end|completion|submit) ?(time|date)$'
+    - '^(submitdate|lastpage|startlanguage|seed|startdate|datestamp|refurl|ipaddr|token)$'
+    - '^(correo|e-?mail|correo electr[oó]nico|direcci[oó]n de correo electr[oó]nico)$'
+    - '^(nombre|name)$'
+
+  # Un encabezado más largo que esto se clasifica como "pregunta" (texto completo
+  # de la pregunta, típico de plataformas en línea).
+  largo_minimo_pregunta: 25
+  # Encabezados cortos con estas palabras se sugieren como "dato de contexto".
+  palabras_contexto: ["edad", "sexo", "genero", "carrera", "semestre", "grupo", "turno", "escuela", "plantel", "campus", "municipio", "estado civil", "nivel", "grado", "institucion", "facultad", "ciclo", "generacion", "promedio"]
+  # Códigos cortos de microdatos (P1, P1_4_1, Q12.3…): el investigador decide el rol.
+  patron_codigo_corto: '^[A-Za-z]{1,3}\d+([_.]\d+)*$'
+
+  # Umbrales de la Tabla 3 del documento de reglas.
+  umbrales:
+    completitud_minima: 0.60     # menor → alerta (pasa a la fase asistida)
+    nulos_maximo: 0.40           # mayor → alerta (pasa a la fase asistida)
+    sigma_fuera_de_rango: 4      # ±4σ, solo en columnas numéricas (método "sigma")
+    filas_minimas_sigma: 10      # con menos respuestas no se buscan atípicos (σ/IQR poco fiables)
+    tolerancia_escala: 0.95      # una escala se reconoce si ≥95 % de los valores caen en su rango
+    nulos_sugerir_eliminar: 0.90 # columna con ≥90 % vacía: se sugiere eliminarla
+
+  # Medidas de limpieza estadística.
+  estadistica:
+    metodo_atipicos: sigma       # sigma (±4σ, umbral de arriba) | iqr (Q1 − k·IQR, Q3 + k·IQR)
+    factor_iqr: 1.5              # k del método iqr (1.5 = atípico leve; 3 = extremo)
+    linea_recta_min_items: 4     # bloque Likert mínimo para buscar respuestas en línea recta
+    encuestado_incompleto: 0.50  # encuestado que dejó sin responder más de esta fracción
+    fiabilidad_min_casos: 3      # casos completos mínimos para calcular el alfa de Cronbach
+
+  # Inferencia de tipos canónicos (Tabla 2 + likert).
+  tipos:
+    categorica_min_unicos: 3
+    categorica_max_unicos: 15
+    texto_largo_min_promedio: 60
+    likert_coincidencia_minima: 0.90
+    likert_max_unicos: 7
+    separadores_multiple: [",", ";"]
+    palabras_ranking: ["clasifica", "ordena", "prioriza", "jerarquiza", "ranking"]
+    # Palabras en el encabezado que sugieren un ítem Likert invertido.
+    palabras_invertido: ["no ", "nunca", "nada", "ningún", "ninguna", "jamás"]
+    # Encabezados de cantidades (horas, edad…): se tratan como numéricas aunque sus
+    # valores caigan en 0–10 o 0–100 (no son escalas ni calificaciones). Palabra completa.
+    palabras_numerica: ["hora", "horas", "minuto", "minutos", "edad", "año", "años", "mes", "meses",
+                        "semana", "semanas", "dia", "dias", "cantidad", "numero de", "num de",
+                        "peso", "estatura", "talla", "ingreso", "ingresos", "salario", "sueldo", "hijos",
+                        "integrantes", "personas", "kilometros", "km", "distancia", "costo", "precio"]
+
+# ── Entrevistas ──────────────────────────────────────────────────────────────
+entrevistas:
+  max_iteraciones_ruido: 3
+  # Palabras en la etiqueta del hablante que sugieren su rol.
+  # «P» se omite a propósito: puede ser «Pregunta» o «Participante»; ese rol se infiere por las preguntas.
+  etiquetas_entrevistador: ["entrevistador", "entrevistadora", "e", "investigador", "investigadora", "moderador", "moderadora", "pregunta"]
+  etiquetas_entrevistado: ["entrevistado", "entrevistada", "r", "participante", "informante", "respuesta", "estudiante", "docente"]
+
+# ── Pruebas estandarizadas ───────────────────────────────────────────────────
+pruebas:
+  opciones_validas: ["A", "B", "C", "D", "NR"]
+  caracteres_ilegibles: ["*", "?", "#"]
+  # Encabezados posibles de la columna de identificador del alumno.
+  columna_id: ['^(id|id[_ ]?alumno|matr[ií]cula|folio|boleta|clave[_ ]?alumno|alumno|estudiante)$']
+  # Análisis de reactivos: tamaño de los grupos extremos para el índice de discriminación.
+  grupo_extremo: 0.27

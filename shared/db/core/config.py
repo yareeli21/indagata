@@ -72,6 +72,8 @@ class AppSettings(BaseSettings):
     # Autoridad de archivos y del índice vectorial. En Docker, docker-compose.yml
     # inyecta http://storage-service:8004.
     STORAGE_SERVICE_URL: str = "http://localhost:8004"
+    CLEANING_SERVICE_URL: str = "http://localhost:8007"
+    KNOWLEDGE_SERVICE_URL: str = "http://localhost:8009"
 
     # ── metadata-service ─────────────────────────────────────────────────────
     # Si es True, la propuesta de metadatos pide a Ollama los campos que las
@@ -82,6 +84,19 @@ class AppSettings(BaseSettings):
     # ── Búsqueda semántica de KPIs ───────────────────────────────────────────
     KPI_SEARCH_TOP_K: int = 5
     KPI_SEARCH_MIN_SCORE: float = 0.30
+
+    # ── Asociación de KPIs por unidades del perfil semántico (analysis-service) ──
+    # score = PESO_GENERAL·g + PESO_PREGUNTAS·p + PESO_COBERTURA·c, donde g es la
+    # similitud perfil general↔KPI, p la media de las 3 preguntas más parecidas y
+    # c = min(1, preguntas con similitud ≥ UMBRAL_EVIDENCIA / 3).
+    KPI_PESO_GENERAL: float = 0.45
+    KPI_PESO_PREGUNTAS: float = 0.45
+    KPI_PESO_COBERTURA: float = 0.10
+    KPI_UMBRAL_EVIDENCIA: float = 0.45  # calibrado con instrumentos reales (scripts/comparar_kpis.py)
+    KPI_MAX_PROPUESTAS: int = 8
+    # Justificación breve por KPI con el LLM (Ollama); si falla, plantilla determinística.
+    KPI_JUSTIFICAR_LLM: bool = True
+    KPI_LLM_TIMEOUT: float = 30.0
 
     model_config = SettingsConfigDict(
         # Ruta absoluta al .env de la raíz del repo, para que se encuentre sin

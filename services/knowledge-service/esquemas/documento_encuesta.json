@@ -1,0 +1,314 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "documento_encuesta.json",
+  "title": "Documento final de una encuesta (v1.0)",
+  "description": "Cada respuesta se guarda UNA vez, dentro de su respondente; las preguntas llevan su definición y un resumen precalculado.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "esquema_version",
+    "instrumento",
+    "kpis_asociados",
+    "secciones",
+    "preguntas",
+    "respondentes",
+    "avisos"
+  ],
+  "properties": {
+    "esquema_version": {
+      "const": "1.0"
+    },
+    "instrumento": {
+      "allOf": [
+        {
+          "$ref": "comun.json#/$defs/instrumento"
+        },
+        {
+          "properties": {
+            "tipo": {
+              "const": "encuesta"
+            }
+          },
+          "required": [
+            "n_respondentes"
+          ]
+        }
+      ]
+    },
+    "kpis_asociados": {
+      "type": "array",
+      "items": {
+        "$ref": "comun.json#/$defs/kpi_asociado"
+      }
+    },
+    "secciones": {
+      "type": "array",
+      "items": {
+        "$ref": "comun.json#/$defs/seccion"
+      }
+    },
+    "preguntas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "seccion_id",
+          "texto",
+          "tipo",
+          "tipo_origen",
+          "kpis_relacionados",
+          "resumen"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "comun.json#/$defs/id_hijo"
+          },
+          "seccion_id": {
+            "$ref": "comun.json#/$defs/id_hijo"
+          },
+          "texto": {
+            "type": "string",
+            "minLength": 1
+          },
+          "grupo": {
+            "type": "string"
+          },
+          "aspecto": {
+            "type": "string"
+          },
+          "tipo": {
+            "enum": [
+              "likert",
+              "cuadricula",
+              "binaria",
+              "categorica",
+              "opcion_multiple_varias",
+              "ranking",
+              "escala_lineal",
+              "calificacion",
+              "numerica",
+              "texto_corto",
+              "texto_largo",
+              "sin_datos"
+            ]
+          },
+          "tipo_origen": {
+            "enum": [
+              "limpieza",
+              "confirmado",
+              "original"
+            ]
+          },
+          "kpis_relacionados": {
+            "$ref": "comun.json#/$defs/kpis_relacionados"
+          },
+          "opciones": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "escala": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "puntos": {
+                "type": "integer"
+              },
+              "etiquetas": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "niveles": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              },
+              "invertida": {
+                "type": "boolean"
+              },
+              "anclas": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "rango": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "unidad": {
+                "type": "string"
+              }
+            }
+          },
+          "resumen": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "n_validas",
+              "n_sin_respuesta",
+              "interpretacion"
+            ],
+            "properties": {
+              "n_validas": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "n_sin_respuesta": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "sin_respuesta_por_motivo": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer"
+                }
+              },
+              "n_no_interpretadas": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "distribucion": {
+                "$ref": "comun.json#/$defs/distribucion"
+              },
+              "por_nivel": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "number"
+                }
+              },
+              "media": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "media_recodificada": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "mediana": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "minimo": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "maximo": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "interpretacion": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "respondentes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "contexto",
+          "respuestas"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "comun.json#/$defs/id_hijo"
+          },
+          "contexto": {
+            "$ref": "comun.json#/$defs/contexto"
+          },
+          "respuestas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "pregunta_id",
+                "pregunta",
+                "estado"
+              ],
+              "properties": {
+                "pregunta_id": {
+                  "$ref": "comun.json#/$defs/id_hijo"
+                },
+                "estado": {
+                  "enum": [
+                    "respondida",
+                    "sin_respuesta",
+                    "no_interpretada"
+                  ]
+                },
+                "motivo": {
+                  "type": "string"
+                },
+                "valor": {
+                  "type": [
+                    "string",
+                    "number",
+                    "null"
+                  ]
+                },
+                "valor_recodificado": {
+                  "type": "number"
+                },
+                "significado": {
+                  "type": "string"
+                },
+                "nivel": {
+                  "type": "string"
+                },
+                "seleccion": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "texto": {
+                  "type": "string"
+                },
+                "pregunta": {
+                  "type": "string",
+                  "description": "Texto de la pregunta (para que la respuesta se entienda sola)."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "avisos": {
+      "type": "array",
+      "items": {
+        "$ref": "comun.json#/$defs/aviso"
+      }
+    }
+  }
+}

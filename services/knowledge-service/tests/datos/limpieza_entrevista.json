@@ -1,0 +1,417 @@
+{
+ "reporte": {
+  "esquema": "reporte_limpieza/1",
+  "tipo_instrumento": "entrevista",
+  "version": 1,
+  "metricas": {
+   "antes": {
+    "n_caracteres": 603,
+    "n_palabras": 88,
+    "n_lineas": 8,
+    "ruido_detectado": 0
+   },
+   "despues": {
+    "n_caracteres": 530,
+    "n_palabras": 80,
+    "n_lineas": 8,
+    "n_turnos": 8,
+    "n_hablantes": 3,
+    "estructura_reconocida": true,
+    "ruido_detectado": 0
+   }
+  },
+  "estadistica": {
+   "antes": {
+    "n_participantes": 2,
+    "n_preguntas": 3,
+    "n_respuestas": 4,
+    "palabras_por_respuesta": {
+     "n": 4,
+     "media": 11.75,
+     "mediana": 9.5,
+     "desviacion": 5.5603,
+     "min": 8.0,
+     "max": 20.0,
+     "q1": 8.75,
+     "q3": 12.5,
+     "iqr": 3.75,
+     "asimetria": 1.8717,
+     "curtosis": 3.5769
+    },
+    "preguntas": [
+     {
+      "pregunta": "Pregunta 1",
+      "texto": "Buenos días, gracias por participar. ¿Cómo ha sido tu experiencia con la evaluación en tus materias?",
+      "n_respuestas": 1,
+      "sin_respuesta": 1,
+      "palabras": {
+       "media": 20.0,
+       "mediana": 20.0,
+       "min": 20.0,
+       "max": 20.0
+      }
+     },
+     {
+      "pregunta": "Pregunta 2",
+      "texto": "¿Y qué opinas de la retroalimentación que recibes de tus profesores?",
+      "n_respuestas": 1,
+      "sin_respuesta": 1,
+      "palabras": {
+       "media": 10.0,
+       "mediana": 10.0,
+       "min": 10.0,
+       "max": 10.0
+      }
+     },
+     {
+      "pregunta": "Pregunta 3",
+      "texto": "¿Qué cambiarías del plan de estudios?",
+      "n_respuestas": 2,
+      "sin_respuesta": 0,
+      "palabras": {
+       "media": 8.5,
+       "mediana": 8.5,
+       "min": 8.0,
+       "max": 9.0
+      }
+     }
+    ],
+    "participantes": [
+     {
+      "id": "Ana",
+      "respuestas": 2,
+      "palabras": 28,
+      "palabras_por_respuesta": 14.0
+     },
+     {
+      "id": "Beto",
+      "respuestas": 2,
+      "palabras": 19,
+      "palabras_por_respuesta": 9.5
+     }
+    ],
+    "palabras_por_rol": [
+     {
+      "rol": "entrevistado",
+      "turnos": 5,
+      "palabras": 47,
+      "pct_palabras": 0.5875
+     },
+     {
+      "rol": "entrevistador",
+      "turnos": 3,
+      "palabras": 33,
+      "pct_palabras": 0.4125
+     }
+    ],
+    "hablantes": [
+     {
+      "nombre": "Entrevistador",
+      "rol": "entrevistador",
+      "turnos": 3,
+      "palabras": 33,
+      "pct_palabras": 0.4125,
+      "palabras_por_turno": {
+       "media": 11.0,
+       "mediana": 11.0,
+       "desviacion": 5.0,
+       "min": 6.0,
+       "max": 16.0
+      },
+      "pct_preguntas": 1.0
+     },
+     {
+      "nombre": "Ana",
+      "rol": "entrevistado",
+      "turnos": 3,
+      "palabras": 28,
+      "pct_palabras": 0.35,
+      "palabras_por_turno": {
+       "media": 9.3333,
+       "mediana": 8.0,
+       "desviacion": 7.0946,
+       "min": 3.0,
+       "max": 17.0
+      },
+      "pct_preguntas": 0.0
+     },
+     {
+      "nombre": "Beto",
+      "rol": "entrevistado",
+      "turnos": 2,
+      "palabras": 19,
+      "pct_palabras": 0.2375,
+      "palabras_por_turno": {
+       "media": 9.5,
+       "mediana": 9.5,
+       "desviacion": 0.7071,
+       "min": 9.0,
+       "max": 10.0
+      },
+      "pct_preguntas": 0.0
+     }
+    ],
+    "palabras_por_turno": {
+     "n": 8,
+     "media": 10.0,
+     "mediana": 9.5,
+     "desviacion": 4.7208,
+     "min": 3.0,
+     "max": 17.0,
+     "q1": 7.5,
+     "q3": 12.25,
+     "iqr": 4.75,
+     "asimetria": 0.2607,
+     "curtosis": -0.5012
+    }
+   },
+   "despues": {
+    "n_participantes": 2,
+    "n_preguntas": 3,
+    "n_respuestas": 4,
+    "palabras_por_respuesta": {
+     "n": 4,
+     "media": 11.75,
+     "mediana": 9.5,
+     "desviacion": 5.5603,
+     "min": 8.0,
+     "max": 20.0,
+     "q1": 8.75,
+     "q3": 12.5,
+     "iqr": 3.75,
+     "asimetria": 1.8717,
+     "curtosis": 3.5769
+    },
+    "preguntas": [
+     {
+      "pregunta": "Pregunta 1",
+      "texto": "Buenos días, gracias por participar. ¿Cómo ha sido tu experiencia con la evaluación en tus materias?",
+      "n_respuestas": 1,
+      "sin_respuesta": 1,
+      "palabras": {
+       "media": 20.0,
+       "mediana": 20.0,
+       "min": 20.0,
+       "max": 20.0
+      }
+     },
+     {
+      "pregunta": "Pregunta 2",
+      "texto": "¿Y qué opinas de la retroalimentación que recibes de tus profesores?",
+      "n_respuestas": 1,
+      "sin_respuesta": 1,
+      "palabras": {
+       "media": 10.0,
+       "mediana": 10.0,
+       "min": 10.0,
+       "max": 10.0
+      }
+     },
+     {
+      "pregunta": "Pregunta 3",
+      "texto": "¿Qué cambiarías del plan de estudios?",
+      "n_respuestas": 2,
+      "sin_respuesta": 0,
+      "palabras": {
+       "media": 8.5,
+       "mediana": 8.5,
+       "min": 8.0,
+       "max": 9.0
+      }
+     }
+    ],
+    "participantes": [
+     {
+      "id": "Ana",
+      "respuestas": 2,
+      "palabras": 28,
+      "palabras_por_respuesta": 14.0
+     },
+     {
+      "id": "Beto",
+      "respuestas": 2,
+      "palabras": 19,
+      "palabras_por_respuesta": 9.5
+     }
+    ],
+    "palabras_por_rol": [
+     {
+      "rol": "entrevistado",
+      "turnos": 5,
+      "palabras": 47,
+      "pct_palabras": 0.5875
+     },
+     {
+      "rol": "entrevistador",
+      "turnos": 3,
+      "palabras": 33,
+      "pct_palabras": 0.4125
+     }
+    ],
+    "hablantes": [
+     {
+      "nombre": "Entrevistador",
+      "rol": "entrevistador",
+      "turnos": 3,
+      "palabras": 33,
+      "pct_palabras": 0.4125,
+      "palabras_por_turno": {
+       "media": 11.0,
+       "mediana": 11.0,
+       "desviacion": 5.0,
+       "min": 6.0,
+       "max": 16.0
+      },
+      "pct_preguntas": 1.0
+     },
+     {
+      "nombre": "Ana",
+      "rol": "entrevistado",
+      "turnos": 3,
+      "palabras": 28,
+      "pct_palabras": 0.35,
+      "palabras_por_turno": {
+       "media": 9.3333,
+       "mediana": 8.0,
+       "desviacion": 7.0946,
+       "min": 3.0,
+       "max": 17.0
+      },
+      "pct_preguntas": 0.0
+     },
+     {
+      "nombre": "Beto",
+      "rol": "entrevistado",
+      "turnos": 2,
+      "palabras": 19,
+      "pct_palabras": 0.2375,
+      "palabras_por_turno": {
+       "media": 9.5,
+       "mediana": 9.5,
+       "desviacion": 0.7071,
+       "min": 9.0,
+       "max": 10.0
+      },
+      "pct_preguntas": 0.0
+     }
+    ],
+    "palabras_por_turno": {
+     "n": 8,
+     "media": 10.0,
+     "mediana": 9.5,
+     "desviacion": 4.7208,
+     "min": 3.0,
+     "max": 17.0,
+     "q1": 7.5,
+     "q3": 12.25,
+     "iqr": 4.75,
+     "asimetria": 0.2607,
+     "curtosis": -0.5012
+    }
+   }
+  },
+  "especifico": {
+   "entrevista": {
+    "estructura_reconocida": true,
+    "hablantes": [
+     {
+      "nombre": "Entrevistador",
+      "rol": "entrevistador",
+      "turnos": 3,
+      "palabras": 33
+     },
+     {
+      "nombre": "Ana",
+      "rol": "entrevistado",
+      "turnos": 3,
+      "palabras": 28
+     },
+     {
+      "nombre": "Beto",
+      "rol": "entrevistado",
+      "turnos": 2,
+      "palabras": 19
+     }
+    ],
+    "iteraciones_ruido": 1,
+    "ruido_eliminado": {},
+    "ruido_residual": [],
+    "n_turnos": 8,
+    "participantes": [],
+    "preambulo": []
+   }
+  },
+  "decisiones": {
+   "rol-hablante:entrevistador": {
+    "valor": "entrevistador",
+    "origen": "sugerida"
+   },
+   "rol-hablante:ana": {
+    "valor": "entrevistado",
+    "origen": "sugerida"
+   },
+   "rol-hablante:beto": {
+    "valor": "entrevistado",
+    "origen": "sugerida"
+   }
+  }
+ },
+ "csv": {
+  "headers": [
+   "n_turno",
+   "hablante",
+   "rol",
+   "texto"
+  ],
+  "rows": [
+   [
+    "1",
+    "Entrevistador",
+    "entrevistador",
+    "Buenos días, gracias por participar. ¿Cómo ha sido tu experiencia con la evaluación en tus materias?"
+   ],
+   [
+    "2",
+    "Ana",
+    "entrevistado",
+    "La evaluación me parece justa, aunque a veces los exámenes no reflejan lo que aprendimos en clase."
+   ],
+   [
+    "3",
+    "Ana",
+    "entrevistado",
+    "Preferiría más proyectos."
+   ],
+   [
+    "4",
+    "Entrevistador",
+    "entrevistador",
+    "¿Y qué opinas de la retroalimentación que recibes de tus profesores?"
+   ],
+   [
+    "5",
+    "Beto",
+    "entrevistado",
+    "Casi nunca recibo retroalimentación a tiempo, eso me frustra mucho."
+   ],
+   [
+    "6",
+    "Entrevistador",
+    "entrevistador",
+    "¿Qué cambiarías del plan de estudios?"
+   ],
+   [
+    "7",
+    "Ana",
+    "entrevistado",
+    "Agregaría más prácticas profesionales desde los primeros semestres."
+   ],
+   [
+    "8",
+    "Beto",
+    "entrevistado",
+    "Yo cambiaría la evaluación final por una evaluación continua."
+   ]
+  ]
+ }
+}

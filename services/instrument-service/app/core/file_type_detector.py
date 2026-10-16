@@ -150,8 +150,9 @@ def validate_for_instrument(
 ) -> None:
     """Valida que el archivo RESPONDIDO sea del formato esperado para el tipo.
 
-    - encuesta             → tabular (.csv, .xlsx, .xls)
-    - entrevista / prueba  → documento (.pdf, .txt, .docx)
+    - encuesta   → tabular (.csv, .xlsx, .xls)
+    - entrevista → documento (.pdf, .txt, .docx)
+    - prueba     → tabular (respuestas + clave) o documento (el examen en texto)
 
     Raises:
         FileTypeError: si la extensión no es válida para ese tipo de instrumento.
@@ -164,9 +165,10 @@ def validate_for_instrument(
             f"'{file_type.extension}'. Formatos válidos: {esperadas}."
         )
 
-    esperada = FAMILIA_POR_TIPO[tipo_instrumento]
-    if file_type.parser_family is not esperada:
+    esperadas = FAMILIA_POR_TIPO[tipo_instrumento]
+    if file_type.parser_family not in esperadas:
+        nombres = " o ".join(sorted(f.value for f in esperadas))
         raise FileTypeError(
             f"El archivo se enruta al parser '{file_type.parser_family.value}' "
-            f"pero '{tipo_instrumento.value}' requiere '{esperada.value}'."
+            f"pero '{tipo_instrumento.value}' requiere '{nombres}'."
         )

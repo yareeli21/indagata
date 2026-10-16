@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import {
   AlertTriangle,
+  History,
   ArrowLeft,
   ArrowRight,
   Loader2,
@@ -24,31 +25,47 @@ import {
 import {
   CAMPO_DC_POR_COLUMNA,
   aprobarMetadatos,
-  confirmarKpis,
   dublinCoreDesdePropuesta,
   getPropuestaDublinCore,
   getPropuestaEnriquecida,
   guardarInstrumento,
   metadatosTipoDesdePropuesta,
   previsualizarMetadatos,
-  proponerKpis,
   subirInstrumento,
   type ResultadoAprobacion,
   type VistaPrevia,
 } from "@/api/carga";
+import {
+  confirmarKpisPerfil,
+  generarDocumento,
+  generarPerfil,
+  getPerfil,
+  previsualizarPerfil,
+  proponerKpisPerfil,
+  publicarDocumento,
+} from "@/api/conocimiento";
 import { useAuth } from "@/features/auth/AuthContext";
 import type {
+  DocumentoGenerado,
   DublinCore,
-  KpiSugerido,
+  EjecucionLimpieza,
+  KpiPropuesto,
   MetadatosTipo,
   OrigenMetadato,
-  ReporteLimpieza,
+  PerfilGenerado,
   TipoInstrumento,
 } from "@/types";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Pagina } from "@/components/layout/Pagina";
 import { Stepper } from "./Stepper";
+import {
+  borrarCargaEnCurso,
+  guardarCargaEnCurso,
+  leerCargaEnCurso,
+  type CargaEnCurso,
+} from "./cargaEnCurso";
 import { StepArchivo } from "./StepArchivo";
+import { requiereClave } from "./archivos";
 import { StepLimpieza } from "./StepLimpieza";
 import { StepDublinCore } from "./StepDublinCore";
 import { CAMPOS_POR_TIPO, StepMetadatosTipo } from "./StepMetadatosTipo";
@@ -124,12 +141,26 @@ export function UploadWizard() {
   const [paso, setPaso] = useState(0);
   const [archivo, setArchivo] = useState<File | null>(null);
   const [archivoOriginal, setArchivoOriginal] = useState<File | null>(null);
+  const [archivoClave, setArchivoClave] = useState<File | null>(null);
   const [tipo, setTipo] = useState<TipoInstrumento | null>(null);
-  const [reporte, setReporte] = useState<ReporteLimpieza | null>(null);
+  // Versión vigente de la limpieza (cleaning-service); se conserva al navegar entre pasos.
+  const [limpieza, setLimpieza] = useState<EjecucionLimpieza | null>(null);
   // id_crudo: id canónico (metadatos, storage, visualización). El id_instrumento
   // que usa el analysis-service llega en el resultado de la aprobación.
   const [idCrudo, setIdCrudo] = useState<number | null>(null);
   const [avanzando, setAvanzando] = useState(false);
+  // Carga que quedó a medias (página cerrada en el paso «Limpieza»).
+  const [pendiente, setPendiente] = useState<CargaEnCurso | null>(null);
+  useEffect(() => setPendiente(leerCargaEnCurso()), []);
+
+  function retomar(carga: CargaEnCurso) {
+    reiniciarMetadatos();
+    setTipo(carga.tipo);
+    setIdCrudo(carga.idCrudo);
+    setLimpieza(null);
+    setPendiente(null);
+    setPaso(1);
+  }
 
   // Dublin Core (propuesto por el metadata-service, editable por el autor).
   const [dc, setDc] = useState<DublinCore>(() => dublinCoreInicial(usuario?.nombre ?? ""));
@@ -145,8 +176,16 @@ export function UploadWizard() {
 
   // Aprobación y KPIs.
   const [vistaPrevia, setVistaPrevia] = useState<VistaPrevia | null>(null);
+  const [perfil, setPerfil] = useState<PerfilGenerado | null>(null);
+  const [errorPerfil, setErrorPerfil] = useState<string | null>(null);
   const [aprobacion, setAprobacion] = useState<ResultadoAprobacion | null>(null);
-  const [sugeridos, setSugeridos] = useState<KpiSugerido[] | null>(null);
+  const [sugeridos, setSugeridos] = useState<KpiPropuesto[] | null>(null);
+  // Versión del conocimiento a la que pertenecen las sugerencias (se confirma sobre ella).
+  const [versionKpis, setVersionKpis] = useState<number | null>(null);
+  const [justificaciones, setJustificaciones] = useState<Record<string, string>>({});
+  // Documento final (paso «Guardar»): se genera al entrar y se publica al guardar.
+  const [documento, setDocumento] = useState<DocumentoGenerado | null>(null);
+  const [errorDocumento, setErrorDocumento] = useState<string | null>(null);
   const [decisiones, setDecisiones] = useState<Record<string, DecisionKpi>>({});
   const [confirmar, setConfirmar] = useState(false);
   const [guardando, setGuardando] = useState(false);
@@ -205,18 +244,15 @@ export function UploadWizard() {
     };
   }, [cargandoMeta, idCrudo]);
 
-  // Propuesta de KPIs (paso 6) sobre el JSON aprobado y el instrumento en texto.
+  // Propuesta de KPIs (paso 6) desde el perfil semántico aprobado (por pregunta, con evidencia).
   useEffect(() => {
-    if (paso !== 5 || sugeridos || !aprobacion || !tipo) return;
+    if (paso !== 5 || sugeridos || !aprobacion || idCrudo == null) return;
     let cancelado = false;
-    proponerKpis({
-      idInstrumento: aprobacion.idInstrumento,
-      archivoJson: new Blob([JSON.stringify(aprobacion.json)], { type: "application/json" }),
-      instrumentoOriginal: new Blob([aprobacion.textoInstrumento], { type: "text/markdown" }),
-      tipo,
-    })
-      .then((lista) => {
-        if (!cancelado) setSugeridos(lista);
+    proponerKpisPerfil(idCrudo)
+      .then((propuesta) => {
+        if (cancelado) return;
+        setSugeridos(propuesta.kpis);
+        setVersionKpis(propuesta.version);
       })
       .catch((e: unknown) => {
         if (cancelado) return;
@@ -226,9 +262,25 @@ export function UploadWizard() {
     return () => {
       cancelado = true;
     };
-  }, [paso, sugeridos, aprobacion, tipo]);
+  }, [paso, sugeridos, aprobacion, idCrudo]);
 
-  const kpisAceptados = (sugeridos ?? []).filter((k) => decisiones[k.id] === "aceptado");
+  // Documento final (paso 7): se construye con el perfil y los KPIs ya confirmados.
+  useEffect(() => {
+    if (paso !== 6 || documento || errorDocumento || idCrudo == null) return;
+    let cancelado = false;
+    generarDocumento(idCrudo)
+      .then((d) => {
+        if (!cancelado) setDocumento(d);
+      })
+      .catch((e: unknown) => {
+        if (!cancelado) setErrorDocumento(mensajeDe(e, "No se pudo generar el documento final."));
+      });
+    return () => {
+      cancelado = true;
+    };
+  }, [paso, documento, errorDocumento, idCrudo]);
+
+  const kpisAceptados = (sugeridos ?? []).filter((k) => decisiones[k.kpi_ref] === "aceptado");
 
   const etiquetas = useMemo(
     () => ({
@@ -239,8 +291,9 @@ export function UploadWizard() {
   );
 
   const puedeContinuar = [
+    // La clave de una prueba en tabla es opcional: si falta, la limpieza propone una.
     !!archivo && !!tipo,
-    !!reporte,
+    limpieza?.estado === "confirmada",
     !cargandoDc && DC_OBLIGATORIOS.every((k) => String(dc[k]).trim() !== ""),
     !cargandoMeta && obligatoriosMeta.every((k) => (meta[k] ?? "").trim() !== ""),
     !!vistaPrevia?.valido,
@@ -256,9 +309,15 @@ export function UploadWizard() {
     setOrigenMeta({});
     setObligatoriosMeta([]);
     setVistaPrevia(null);
+    setPerfil(null);
+    setErrorPerfil(null);
     setAprobacion(null);
     setSugeridos(null);
+    setVersionKpis(null);
+    setJustificaciones({});
     setDecisiones({});
+    setDocumento(null);
+    setErrorDocumento(null);
   }
 
   /** Avanza al siguiente paso, ejecutando la llamada de red que corresponde. */
@@ -267,27 +326,80 @@ export function UploadWizard() {
     try {
       if (paso === 0) {
         if (!archivo || !tipo) return;
-        const resultado = await subirInstrumento(archivo, tipo, archivoOriginal);
+        const resultado = await subirInstrumento(
+          archivo,
+          tipo,
+          archivoOriginal,
+          requiereClave(tipo, archivo) ? archivoClave : null,
+        );
         reiniciarMetadatos();
         setIdCrudo(resultado.idCrudo);
-        setReporte(resultado.reporte);
+        setLimpieza(null);
+        setPendiente(null);
+        guardarCargaEnCurso({ idCrudo: resultado.idCrudo, tipo, nombreArchivo: archivo.name });
         setPaso(1);
         return;
       }
       if (paso === 3 && idCrudo != null) {
-        setVistaPrevia(await previsualizarMetadatos(idCrudo, dc, meta));
+        // El perfil semántico se genera en paralelo; si falla, no impide aprobar.
+        const [previa, perfilPrevio] = await Promise.allSettled([
+          previsualizarMetadatos(idCrudo, dc, meta),
+          previsualizarPerfil(idCrudo, dc, meta),
+        ]);
+        if (previa.status === "rejected") throw previa.reason;
+        setVistaPrevia(previa.value);
+        setPerfil(perfilPrevio.status === "fulfilled" ? perfilPrevio.value : null);
+        setErrorPerfil(
+          perfilPrevio.status === "rejected"
+            ? mensajeDe(perfilPrevio.reason, "No se pudo generar el perfil semántico.")
+            : null,
+        );
         setPaso(4);
         return;
       }
       if (paso === 4 && idCrudo != null) {
         const resultado = await aprobarMetadatos(idCrudo, dc, meta);
         setAprobacion(resultado);
+        // Guarda el perfil con los metadatos ya aprobados (nueva versión del conocimiento).
+        try {
+          setPerfil(await generarPerfil(idCrudo));
+        } catch (e) {
+          toast.warning(mensajeDe(e, "No se pudo guardar el perfil semántico."));
+        }
         setSugeridos(null);
+        setVersionKpis(null);
+        setJustificaciones({});
         setDecisiones({});
+        setDocumento(null);
+        setErrorDocumento(null);
         if (resultado.ingesta.indexado) toast.success(resultado.mensaje);
         else toast.warning(resultado.mensaje);
         setPaso(5);
         return;
+      }
+      if (paso === 5 && idCrudo != null && versionKpis != null && (sugeridos ?? []).length > 0) {
+        // Aceptados y rechazados quedan en la versión del conocimiento; los no decididos
+        // cuentan como rechazados (no se asocian).
+        await confirmarKpisPerfil(
+          idCrudo,
+          versionKpis,
+          (sugeridos ?? []).map((k) => ({
+            kpi: k,
+            aceptado: decisiones[k.kpi_ref] === "aceptado",
+            justificacion: justificaciones[k.kpi_ref] ?? k.justificacion,
+          })),
+        );
+      }
+      if (paso === 5 && idCrudo != null) {
+        // Con KPIs nuevos, el documento final se vuelve a generar al entrar a «Guardar»,
+        // y el perfil se vuelve a leer: ya trae los KPIs integrados (kpis_asociados).
+        setDocumento(null);
+        setErrorDocumento(null);
+        try {
+          setPerfil(await getPerfil(idCrudo));
+        } catch {
+          /* el perfil anterior sigue siendo válido para mostrarse */
+        }
       }
       setPaso(paso + 1);
     } catch (e) {
@@ -301,26 +413,22 @@ export function UploadWizard() {
     if (idCrudo == null || !aprobacion) return;
     setGuardando(true);
     try {
-      if ((sugeridos ?? []).length > 0) {
+      // Los KPIs ya se confirmaron al salir del paso «KPIs sugeridos».
+      await guardarInstrumento(idCrudo);
+      if (documento) {
         try {
-          await confirmarKpis({
-            idInstrumento: aprobacion.idInstrumento,
-            decisiones: (sugeridos ?? []).map((k) => ({
-              kpiId: Number(k.id),
-              aceptado: decisiones[k.id] === "aceptado",
-              score: k.coincidencia / 100,
-            })),
-            jsonInstrumento: aprobacion.json,
-          });
+          await publicarDocumento(idCrudo, documento.version);
         } catch (e) {
-          toast.error(mensajeDe(e, "No se pudieron confirmar los KPIs."));
+          toast.warning(
+            mensajeDe(e, "El instrumento se guardó, pero no se pudo publicar el documento final."),
+          );
         }
       }
-      await guardarInstrumento(idCrudo);
       setConfirmar(false);
       toast.success("Instrumento guardado", {
         action: { label: "Ver espacio vectorial", onClick: () => navigate({ to: "/espacio" }) },
       });
+      borrarCargaEnCurso();
       navigate({ to: "/instrumentos" });
     } catch (e) {
       toast.error(mensajeDe(e, "No se pudo guardar el instrumento."));
@@ -339,6 +447,29 @@ export function UploadWizard() {
         titulo="Subir instrumento"
         descripcion="Carga tu instrumento, revisa y aprueba sus metadatos, y asócialo a KPIs."
       />
+      {pendiente && paso === 0 && (
+        <div className="flex flex-col gap-3 rounded-2xl border border-primary/20 bg-primary-soft/60 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="flex items-center gap-2 text-sm text-foreground">
+            <History className="size-5 shrink-0 text-primary" aria-hidden />
+            <span>
+              Tienes una carga sin terminar: <strong>{pendiente.nombreArchivo}</strong>. Tus
+              decisiones de limpieza se guardaron.
+            </span>
+          </p>
+          <div className="flex gap-2">
+            <Button
+              variant="ghost"
+              onClick={() => {
+                borrarCargaEnCurso();
+                setPendiente(null);
+              }}
+            >
+              Descartar
+            </Button>
+            <Button onClick={() => retomar(pendiente)}>Retomar</Button>
+          </div>
+        </div>
+      )}
       <Stepper pasos={PASOS} actual={paso} />
 
       <section className="superficie overflow-hidden rounded-3xl">
@@ -356,17 +487,28 @@ export function UploadWizard() {
               archivoOriginal={archivoOriginal}
               onArchivo={(f) => {
                 setArchivo(f);
-                setReporte(null);
+                setLimpieza(null);
                 setIdCrudo(null);
               }}
               onArchivoOriginal={setArchivoOriginal}
+              archivoClave={archivoClave}
+              onArchivoClave={setArchivoClave}
               onTipo={(t) => {
                 setTipo(t);
                 setMeta({});
               }}
             />
           )}
-          {paso === 1 && <StepLimpieza reporte={reporte} />}
+          {paso === 1 && idCrudo != null && (
+            <StepLimpieza
+              idCrudo={idCrudo}
+              tipo={tipo}
+              ejecucion={limpieza}
+              onEjecucion={setLimpieza}
+              onContinuar={() => setPaso(2)}
+              onCambiarArchivo={() => setPaso(0)}
+            />
+          )}
           {paso === 2 && (
             <StepDublinCore
               valor={dc}
@@ -386,12 +528,21 @@ export function UploadWizard() {
               cargando={cargandoMeta}
             />
           )}
-          {paso === 4 && <StepAprobacion vistaPrevia={vistaPrevia} etiquetas={etiquetas} />}
+          {paso === 4 && (
+            <StepAprobacion
+              vistaPrevia={vistaPrevia}
+              perfil={perfil}
+              errorPerfil={errorPerfil}
+              etiquetas={etiquetas}
+            />
+          )}
           {paso === 5 && (
             <StepKpis
               sugeridos={sugeridos}
               decisiones={decisiones}
-              onDecidir={(id, d) => setDecisiones({ ...decisiones, [id]: d })}
+              onDecidir={(id, d) => setDecisiones((prev) => ({ ...prev, [id]: d }))}
+              justificaciones={justificaciones}
+              onJustificar={(id, texto) => setJustificaciones((prev) => ({ ...prev, [id]: texto }))}
             />
           )}
           {paso === 6 && (
@@ -417,6 +568,10 @@ export function UploadWizard() {
                   valor: kpisAceptados.map((k) => k.nombre).join(", "),
                 },
               ]}
+              documento={documento}
+              errorDocumento={errorDocumento}
+              onReintentar={() => setErrorDocumento(null)}
+              perfil={perfil}
             />
           )}
         </div>
@@ -428,7 +583,8 @@ export function UploadWizard() {
           >
             <ArrowLeft /> Atrás
           </Button>
-          {paso < 6 ? (
+          {paso === 1 ? null : paso < 6 ? (
+            // El paso «Limpieza» tiene sus propios botones (confirmar, continuar a metadatos).
             <Button disabled={!puedeContinuar || avanzando} onClick={avanzar}>
               {avanzando && <Loader2 className="animate-spin" />}
               {paso === 4 ? (
@@ -442,7 +598,7 @@ export function UploadWizard() {
               )}
             </Button>
           ) : (
-            <Button onClick={() => setConfirmar(true)}>
+            <Button disabled={!documento && !errorDocumento} onClick={() => setConfirmar(true)}>
               <Save /> Guardar instrumento
             </Button>
           )}

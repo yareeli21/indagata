@@ -109,6 +109,8 @@ services:
       METADATA_SERVICE_URL: http://metadata-service:8003
       STORAGE_SERVICE_URL: http://storage-service:8004
       VISUALIZATION_SERVICE_URL: http://visualization-service:8005
+      CLEANING_SERVICE_URL: http://cleaning-service:8007
+      KNOWLEDGE_SERVICE_URL: http://knowledge-service:8009
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
       DEBUG: ${DEBUG:-false}
     ports:
@@ -235,6 +237,68 @@ services:
       - "8003:8003"
     volumes:
       - ./services/metadata-service:/app
+      - ./shared:/app/shared
+    networks:
+      - indagata_network
+    restart: unless-stopped
+
+  cleaning-service:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/Dockerfile.cleaning-service
+    container_name: indagata_cleaning_service
+    depends_on:
+      postgres:
+        condition: service_healthy
+      storage-service:
+        condition: service_started
+    environment:
+      SERVICE_NAME: cleaning-service
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      # Debe coincidir con la SECRET_KEY del api-gateway para validar el JWT.
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-prod}
+      # Lee el crudo y guarda el CSV limpio a través del storage-service (no toca el disco).
+      STORAGE_SERVICE_URL: http://storage-service:8004
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8007:8007"
+    volumes:
+      - ./services/cleaning-service:/app
+      - ./shared:/app/shared
+    networks:
+      - indagata_network
+    restart: unless-stopped
+
+  knowledge-service:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/Dockerfile.knowledge-service
+    container_name: indagata_knowledge_service
+    depends_on:
+      postgres:
+        condition: service_healthy
+      storage-service:
+        condition: service_started
+    environment:
+      SERVICE_NAME: knowledge-service
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-indagata_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword}
+      # Debe coincidir con la SECRET_KEY del api-gateway para validar el JWT.
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-prod}
+      # Lee el CSV limpio, el original y el JSON técnico vía storage-service.
+      STORAGE_SERVICE_URL: http://storage-service:8004
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8009:8009"
+    volumes:
+      - ./services/knowledge-service:/app
       - ./shared:/app/shared
     networks:
       - indagata_network

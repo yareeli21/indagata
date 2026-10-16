@@ -1,0 +1,68 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Reglas editables del knowledge-service (interpretación de respuestas y privacidad).
+# Las escalas Likert y sus niveles viven en shared/config/escalas_likert.yaml.
+# Se compara sin mayúsculas ni acentos, y por PALABRA COMPLETA del encabezado
+# («id» no atrapa «idioma» ni «identidad»).
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Columnas con datos personales: nunca entran al documento final (ni como contexto).
+datos_personales:
+  - nombre
+  - nombres
+  - nombre completo
+  - apellido
+  - apellidos
+  - correo
+  - correo electronico
+  - email
+  - e mail
+  - mail
+  - matricula
+  - telefono
+  - celular
+  - curp
+  - rfc
+  - nss
+  - boleta
+  - folio
+  - id
+  - identificador
+  - numero de cuenta
+  - no de cuenta
+  - direccion
+  - domicilio
+  - usuario
+  - contrasena
+  - ip
+
+# Respuestas binarias: todas las formas se unifican a «Sí» / «No».
+binaria_si: ["si", "s", "yes", "y", "true", "verdadero", "1", "cierto"]
+binaria_no: ["no", "n", "false", "falso", "0"]
+
+# Separadores de las respuestas de opción múltiple y de ranking.
+separadores_multiple: [",", ";"]
+separadores_ranking: [",", ";", ">", "|"]
+
+# Unidad de las respuestas numéricas, según una palabra del encabezado.
+unidades:
+  horas: horas
+  hora: horas
+  minutos: minutos
+  minuto: minutos
+  edad: años
+  anos: años
+  ano: años
+  meses: meses
+  dias: días
+  semanas: semanas
+  hijos: hijos
+  pesos: pesos
+  kilometros: km
+  km: km
+
+# Significado de las respuestas nulas de las pruebas, por motivo.
+motivos_prueba:
+  respuesta_multiple: Respuesta múltiple
+  caracter_invalido: Carácter inválido
+  ilegible: Ilegible
+  duplicado: Registro duplicado

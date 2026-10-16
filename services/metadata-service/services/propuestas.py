@@ -68,8 +68,10 @@ def _sugerencias(raw: Any, analisis: Analisis, pendientes: dict[str, str]) -> di
     return sugerencias
 
 
-def construir(raw: Any, procesado: Any, autor_nombre: str, *, usar_llm: bool) -> Propuesta:
-    analisis = analizador.analizar(raw, procesado)
+def construir(
+    raw: Any, procesado: Any, autor_nombre: str, *, usar_llm: bool, limpieza: dict[str, Any] | None = None
+) -> Propuesta:
+    analisis = analizador.analizar(raw, procesado, limpieza)
     dc, dc_origen = DCManager.proponer(raw, autor_nombre, analisis)
     especificos, esp_origen = EnrichmentEngine.proponer(raw, analisis, dc)
 

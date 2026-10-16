@@ -41,18 +41,24 @@ DOCUMENTO_EXTENSIONS: frozenset[str] = frozenset({".pdf", ".txt", ".docx"})
 # El archivo RESPONDIDO (raw_archivo) debe pertenecer a la familia esperada por
 # el tipo de instrumento. El archivo ORIGINAL (raw_archivo_original) es, por su
 # naturaleza (el instrumento sin respuestas), siempre un DOCUMENTO.
+# Las pruebas estandarizadas se aceptan en ambas familias: tabular (respuestas de
+# los alumnos, p. ej. de un lector óptico; requiere la clave de respuestas) o
+# documento (el examen en texto, flujo anterior).
 FORMATOS_POR_TIPO: dict[TipoInstrumento, frozenset[str]] = {
     TipoInstrumento.ENCUESTA: TABULAR_EXTENSIONS,
     TipoInstrumento.ENTREVISTA: DOCUMENTO_EXTENSIONS,
-    TipoInstrumento.PRUEBA_ESTANDARIZADA: DOCUMENTO_EXTENSIONS,
+    TipoInstrumento.PRUEBA_ESTANDARIZADA: TABULAR_EXTENSIONS | DOCUMENTO_EXTENSIONS,
 }
 
-# Familia de parser esperada para el archivo RESPONDIDO de cada tipo.
-FAMILIA_POR_TIPO: dict[TipoInstrumento, ParserFamily] = {
-    TipoInstrumento.ENCUESTA: ParserFamily.TABULAR,
-    TipoInstrumento.ENTREVISTA: ParserFamily.DOCUMENTO,
-    TipoInstrumento.PRUEBA_ESTANDARIZADA: ParserFamily.DOCUMENTO,
+# Familias de parser aceptadas para el archivo RESPONDIDO de cada tipo.
+FAMILIA_POR_TIPO: dict[TipoInstrumento, frozenset[ParserFamily]] = {
+    TipoInstrumento.ENCUESTA: frozenset({ParserFamily.TABULAR}),
+    TipoInstrumento.ENTREVISTA: frozenset({ParserFamily.DOCUMENTO}),
+    TipoInstrumento.PRUEBA_ESTANDARIZADA: frozenset({ParserFamily.TABULAR, ParserFamily.DOCUMENTO}),
 }
+
+# Tipos cuyo archivo tabular exige además la CLAVE de respuestas (raw_archivo_clave).
+TIPOS_CON_CLAVE: frozenset[TipoInstrumento] = frozenset({TipoInstrumento.PRUEBA_ESTANDARIZADA})
 
 
 # ── Mapeo extensión -> MIME canónico ─────────────────────────────────────────

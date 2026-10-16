@@ -1,0 +1,85 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Diccionario de escalas Likert en español.
+# Lo usan cleaning-service (detección de escalas) y knowledge-service (interpretación
+# de respuestas): vive en shared/ porque Docker solo comparte esa carpeta.
+#
+# Para agregar una escala: copia un bloque, cambia el nombre y escribe sus
+# etiquetas EN ORDEN (de menor a mayor). Cada etiqueta puede tener sinónimos;
+# todos valen lo mismo. Se compara sin mayúsculas ni acentos.
+#
+# - neutral: posición (1 = primera etiqueta) del punto neutral, o null.
+# - Una columna es Likert si ≥90 % de sus valores no vacíos coinciden con una
+#   escala, aunque no aparezcan todas las opciones.
+# - niveles: nombre de la agrupación de cada tramo de la escala, para consultas
+#   como «en desacuerdo» sin distinguir «En desacuerdo» de «Totalmente en
+#   desacuerdo». Se asignan por POSICIÓN, así sirven con 4, 5 o 7 puntos:
+#     · con número impar de puntos, el centro es «medio», lo de abajo «bajo» y
+#       lo de arriba «alto»;
+#     · con número par no hay «medio»: mitad inferior «bajo», superior «alto».
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Respuestas que NO son puntos de la escala: se tratan como faltantes.
+no_respuesta:
+  - "no sé"
+  - "no se"
+  - "no aplica"
+  - "n/a"
+  - "prefiero no responder"
+  - "prefiero no contestar"
+  - "no lo sé"
+  - "no tengo opinión"
+  - "ns/nc"
+
+# Niveles de las escalas numéricas o con orden propuesto por el investigador.
+niveles_por_defecto: { bajo: baja, medio: media, alto: alta }
+
+escalas:
+  acuerdo:
+    neutral: 3
+    niveles: { bajo: desacuerdo, medio: neutral, alto: acuerdo }
+    etiquetas:
+      - ["totalmente en desacuerdo", "muy en desacuerdo", "completamente en desacuerdo"]
+      - ["en desacuerdo", "desacuerdo"]
+      - ["ni de acuerdo ni en desacuerdo", "neutral", "indiferente", "neutro"]
+      - ["de acuerdo", "acuerdo"]
+      - ["totalmente de acuerdo", "muy de acuerdo", "completamente de acuerdo"]
+
+  frecuencia:
+    neutral: 3
+    niveles: { bajo: baja, medio: media, alto: alta }
+    etiquetas:
+      - ["nunca"]
+      - ["casi nunca", "rara vez", "raramente", "pocas veces"]
+      - ["a veces", "algunas veces", "ocasionalmente", "de vez en cuando"]
+      - ["casi siempre", "frecuentemente", "a menudo", "muchas veces", "con frecuencia"]
+      - ["siempre"]
+
+  satisfaccion:
+    neutral: 3
+    niveles: { bajo: insatisfaccion, medio: neutral, alto: satisfaccion }
+    etiquetas:
+      - ["muy insatisfecho", "muy insatisfecha", "totalmente insatisfecho", "totalmente insatisfecha"]
+      - ["insatisfecho", "insatisfecha", "poco satisfecho", "poco satisfecha"]
+      - ["ni satisfecho ni insatisfecho", "ni satisfecha ni insatisfecha", "neutral"]
+      - ["satisfecho", "satisfecha"]
+      - ["muy satisfecho", "muy satisfecha", "totalmente satisfecho", "totalmente satisfecha"]
+
+  importancia:
+    neutral: 3
+    niveles: { bajo: baja, medio: media, alto: alta }
+    etiquetas:
+      - ["nada importante", "sin importancia"]
+      - ["poco importante"]
+      - ["moderadamente importante", "medianamente importante", "algo importante"]
+      - ["importante"]
+      - ["muy importante", "sumamente importante", "extremadamente importante"]
+
+  calidad:
+    neutral: 3
+    niveles: { bajo: baja, medio: media, alto: alta }
+    etiquetas:
+      - ["muy malo", "muy mala", "pésimo", "pésima"]
+      - ["malo", "mala", "deficiente"]
+      - ["regular", "aceptable"]
+      - ["bueno", "buena"]
+      - ["muy bueno", "muy buena", "excelente"]

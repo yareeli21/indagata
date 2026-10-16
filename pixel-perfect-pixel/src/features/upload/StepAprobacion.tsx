@@ -1,17 +1,27 @@
 import { AlertTriangle, CheckCircle2, ShieldCheck } from "lucide-react";
 import { ProcesandoIA } from "@/components/shared/ProcesandoIA";
 import type { VistaPrevia } from "@/api/carga";
-import { JsonPreview } from "./JsonPreview";
+import type { PerfilGenerado } from "@/types";
+import { PerfilSemanticoVista } from "./conocimiento/PerfilSemanticoVista";
 
 interface StepAprobacionProps {
   vistaPrevia: VistaPrevia | null;
+  /** Perfil semántico (lo que se usará para asociar KPIs). */
+  perfil: PerfilGenerado | null;
+  /** Mensaje si no se pudo generar el perfil (no impide aprobar los metadatos). */
+  errorPerfil: string | null;
   /** Etiqueta legible de cada campo, para listar los errores. */
   etiquetas: Record<string, string>;
 }
 
-export function StepAprobacion({ vistaPrevia, etiquetas }: StepAprobacionProps) {
+export function StepAprobacion({
+  vistaPrevia,
+  perfil,
+  errorPerfil,
+  etiquetas,
+}: StepAprobacionProps) {
   if (!vistaPrevia) {
-    return <ProcesandoIA mensaje="Generando el JSON estandarizado…" />;
+    return <ProcesandoIA mensaje="Generando el perfil del instrumento…" />;
   }
   const errores = [
     ...Object.entries(vistaPrevia.errores.dublin_core),
@@ -47,7 +57,15 @@ export function StepAprobacion({ vistaPrevia, etiquetas }: StepAprobacionProps) 
           </div>
         </div>
       )}
-      <JsonPreview datos={vistaPrevia.json} />
+      {perfil ? (
+        <PerfilSemanticoVista datos={perfil} />
+      ) : (
+        <p className="flex items-start gap-2 rounded-xl border border-accent/30 bg-accent-soft p-4 text-sm text-foreground">
+          <AlertTriangle className="mt-0.5 size-4 shrink-0 text-accent-strong" aria-hidden />
+          {errorPerfil ?? "No se pudo generar el perfil semántico."} Puedes aprobar los metadatos
+          igualmente.
+        </p>
+      )}
     </div>
   );
 }

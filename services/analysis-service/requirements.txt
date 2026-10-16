@@ -8,6 +8,11 @@ python-dotenv==1.0.1
 python-multipart==0.0.6
 httpx==0.27.0
 
+# ── Autenticación (validación del JWT del api-gateway con shared.auth) ──
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+
 # ── Vectorización e inferencia de KPIs ──
 # numpy<2: el cliente de chromadb usa np.float_, removido en numpy 2.0.
 numpy==1.26.4

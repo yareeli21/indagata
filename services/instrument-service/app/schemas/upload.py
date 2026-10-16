@@ -89,6 +89,10 @@ class UploadResponse(BaseModel):
         default=None,
         description="El instrumento original sin respuestas (raw_archivo_original), si se subió.",
     )
+    archivo_clave: ArchivoRegistrado | None = Field(
+        default=None,
+        description="La clave de respuestas (raw_archivo_clave) de una prueba tabular, si se subió.",
+    )
 
     mensaje: str = Field(
         default="Instrumento recibido y almacenado en crudo.",

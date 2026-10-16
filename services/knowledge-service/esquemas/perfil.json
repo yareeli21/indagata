@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "perfil.json",
+  "title": "Perfil semántico de un instrumento (v1.0)",
+  "description": "Solo lo que describe el instrumento. Sin métricas, conteos, respuestas, IDs técnicos, rutas, formatos, fechas de carga ni tipos técnicos.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["esquema_version", "instrumento_id", "tipo", "titulo", "objetivo", "temas", "palabras_clave",
+               "nivel_educativo", "poblacion", "contexto", "secciones", "kpis_asociados"],
+  "properties": {
+    "esquema_version": {"const": "1.0"},
+    "instrumento_id": {"type": "string", "pattern": "^INS-\\d{4}$"},
+    "tipo": {"enum": ["encuesta", "entrevista", "prueba_estandarizada"]},
+    "titulo": {"type": "string", "minLength": 1},
+    "objetivo": {"type": "string"},
+    "temas": {"type": "array", "items": {"type": "string"}},
+    "palabras_clave": {"type": "array", "items": {"type": "string"}},
+    "nivel_educativo": {"type": "string"},
+    "poblacion": {"type": "string"},
+    "contexto": {"type": "string"},
+    "secciones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "nombre", "preguntas"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^INS-\\d{4}-s\\d+$"},
+          "nombre": {"type": "string"},
+          "descripcion": {"type": "string"},
+          "preguntas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "texto"],
+              "properties": {
+                "id": {"type": "string", "pattern": "^INS-\\d{4}-[pr]\\d+$"},
+                "texto": {"type": "string", "minLength": 1},
+                "opciones": {"type": "array", "items": {"type": "string"}}
+              }
+            }
+          }
+        }
+      }
+    },
+    "kpis_asociados": {"type": "array", "items": {"type": "object"}}
+  }
+}

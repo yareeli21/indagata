@@ -21,7 +21,7 @@ from fastapi import HTTPException, UploadFile, status
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
-from app.config.constants import MAX_FILE_SIZE_BYTES, TipoInstrumento
+from app.config.constants import MAX_FILE_SIZE_BYTES, TIPOS_CON_CLAVE, ParserFamily, TipoInstrumento
 from app.core import file_type_detector as detector
 from app.core.file_type_detector import FileType, FileTypeError
 from app.parsing import ParsedContent, ParseError, parse_file
@@ -135,6 +135,7 @@ class UploadService:
         tipo_instrumento_raw: str,
         archivo: UploadFile,
         archivo_original: UploadFile | None = None,
+        archivo_clave: UploadFile | None = None,
     ) -> UploadResponse:
         """Ejecuta el flujo completo de carga.
 
@@ -144,6 +145,9 @@ class UploadService:
             tipo_instrumento_raw: "encuesta" | "entrevista" | "prueba_estandarizada".
             archivo:              Archivo RESPONDIDO (raw_archivo), obligatorio.
             archivo_original:     Instrumento ORIGINAL sin respuestas, opcional.
+            archivo_clave:        Clave de respuestas de una prueba estandarizada tabular
+                                  (opcional: si falta, la limpieza propone una a partir de
+                                  las respuestas y el investigador la confirma).
 
         Returns:
             UploadResponse con id_crudo, id_instrumento y el resumen de archivos.
@@ -190,18 +194,44 @@ class UploadService:
             except ParseError as exc:
                 logger.warning("No se pudo parsear el archivo original: %s", exc)
 
+        # ── 3b. CLAVE de respuestas (pruebas estandarizadas tabulares) ────────
+        clave_content: bytes | None = None
+        clave_type: FileType | None = None
+        parsed_clave: ParsedContent | None = None
+        hay_clave = archivo_clave is not None and (archivo_clave.filename or "").strip()
+        # La clave solo aplica a pruebas en tabla y es OPCIONAL: sin ella, cleaning-service
+        # propone una con las respuestas de los alumnos de mejor desempeño.
+        admite_clave = tipo in TIPOS_CON_CLAVE and file_type.parser_family is ParserFamily.TABULAR
+        if hay_clave and admite_clave:
+            clave_content, clave_type = await _read_and_identify(archivo_clave, rol="de clave")
+            if clave_type.parser_family is not ParserFamily.TABULAR:
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail="La clave de respuestas debe ser una tabla (.csv, .xlsx o .xls).",
+                )
+            try:
+                parsed_clave = parse_file(clave_content, clave_type.extension, clave_type.parser_family)
+            except ParseError as exc:
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail=f"No se pudo leer la clave de respuestas: {exc}",
+                )
+
         # ── 4. Entregar los archivos al ALMACENAMIENTO (storage port) ────────
         # El servicio no decide dónde se guardan: delega en el puerto. Hoy el
         # backend es local (provisional); mañana será el storage-service.
         almacenamiento = get_storage()
         stored_resp: StoredRef | None = None
         stored_orig: StoredRef | None = None
+        stored_clave: StoredRef | None = None
         try:
             stored_resp = almacenamiento.guardar(content, file_type.filename)
             if original_content is not None and original_type is not None:
                 stored_orig = almacenamiento.guardar(
                     original_content, original_type.filename
                 )
+            if clave_content is not None and clave_type is not None:
+                stored_clave = almacenamiento.guardar(clave_content, clave_type.filename)
 
             # ── 5. Persistir en BD: raw_data (padre) ─────────────────────────
             raw = RawData(
@@ -212,6 +242,7 @@ class UploadService:
                 raw_archivo_original=(
                     stored_orig.ruta if stored_orig is not None else None
                 ),
+                raw_archivo_clave=stored_clave.ruta if stored_clave is not None else None,
             )
             db.add(raw)
             db.flush()  # obtiene raw.id_crudo sin cerrar la transacción
@@ -232,6 +263,8 @@ class UploadService:
                 almacenamiento.eliminar(stored_resp.ruta)
             if stored_orig is not None:
                 almacenamiento.eliminar(stored_orig.ruta)
+            if stored_clave is not None:
+                almacenamiento.eliminar(stored_clave.ruta)
             logger.exception("Error al registrar el instrumento en la base de datos.")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -243,6 +276,8 @@ class UploadService:
                 almacenamiento.eliminar(stored_resp.ruta)
             if stored_orig is not None:
                 almacenamiento.eliminar(stored_orig.ruta)
+            if stored_clave is not None:
+                almacenamiento.eliminar(stored_clave.ruta)
             logger.exception("Error del almacenamiento al guardar los archivos crudos.")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -261,6 +296,11 @@ class UploadService:
             archivo_original=(
                 _to_archivo_registrado(stored_orig, original_type, parsed_orig)
                 if stored_orig is not None and original_type is not None
+                else None
+            ),
+            archivo_clave=(
+                _to_archivo_registrado(stored_clave, clave_type, parsed_clave)
+                if stored_clave is not None and clave_type is not None
                 else None
             ),
         )

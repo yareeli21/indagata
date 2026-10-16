@@ -239,3 +239,24 @@ Si tienes instrumentos en producción que no quieres perder, ejecutar las migrac
 5. ✅ **Verificar** JSON consolidado con transformaciones
 
 **¿Proceder con el reemplazo de `01_schema.sql`?**
+
+---
+
+## 2026-10 · Limpieza de instrumentos (cleaning-service)
+
+Migración: `migrations/2026_10_limpieza.sql` (rollback: `2026_10_limpieza_ROLLBACK.sql`).
+
+| Cambio | Detalle |
+|---|---|
+| Tabla nueva `limpieza_ejecucion` | Una fila por ejecución (versión) de la limpieza: `estado` (`esperando_decisiones` / `confirmada` / `fallida`), investigador, fechas, `ruta_csv_limpio` (key en storage) y `reporte` JSONB (reporte_limpieza con decisiones). `UNIQUE (id_crudo, version)`. |
+| Columna nueva `raw_data.raw_archivo_clave` | Clave de respuestas de las pruebas estandarizadas tabulares. |
+
+---
+
+## 2026-11 · Versiones del conocimiento (knowledge-service)
+
+Migración: `migrations/2026_11_conocimiento.sql` (rollback: `2026_11_conocimiento_ROLLBACK.sql`).
+
+| Cambio | Detalle |
+|---|---|
+| Tabla nueva `version_conocimiento` | Una fila por versión: `perfil` (perfil semántico, JSONB), `decisiones_kpi` (KPIs aceptados y rechazados con score, componentes, evidencia y justificación), `ruta_documento` (key del documento final en storage), `esquema_version`, `avisos`, `sha256`, `id_limpieza`, `id_usuario` y fechas por etapa. `estado`: `perfil_aprobado` / `kpis_confirmados` / `borrador` / `vigente` / `reemplazado`. `UNIQUE (id_crudo, version)`. |

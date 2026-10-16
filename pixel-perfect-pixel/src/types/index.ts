@@ -61,17 +61,207 @@ export interface Noticia {
   resumen: string;
 }
 
-export interface CambioLimpieza {
-  campo: string;
-  antes: string;
-  despues: string;
+// ── Limpieza (cleaning-service) ───────────────────────────────────────────────
+
+export type EstadoLimpieza = "esperando_decisiones" | "confirmada" | "fallida";
+
+/** Algo que el investigador decide en la fase asistida (con una opción sugerida). */
+export interface HallazgoLimpieza {
+  id: string;
+  /** columna_ajena | rol_columna | columna_incompleta | fuera_de_rango | duplicados | likert_orden | item_invertido… */
+  tipo: string;
+  /** Agrupación para la interfaz. */
+  tema: string;
+  objetivo: string;
+  titulo: string;
+  descripcion: string;
+  opciones: string[];
+  sugerida: string | null;
+  obligatoria: boolean;
+  detalle: Record<string, unknown>;
+  /** Lo que eligió el investigador (null = se usará la sugerida). */
+  decision: string | null;
 }
 
-export interface ReporteLimpieza {
-  duplicadosEliminados: number;
-  nulosTratados: number;
-  columnasNormalizadas: number;
-  cambios: CambioLimpieza[];
+export interface TransformacionLimpieza {
+  regla: string;
+  detalle: string;
+  afectados: number | null;
+}
+
+/** Una métrica antes y después de la limpieza. */
+export interface ComparacionMetrica {
+  metrica: string;
+  antes: number | null;
+  despues: number | null;
+  formato: "num" | "pct" | "dec";
+}
+
+export interface DescriptivosNumericos {
+  n: number;
+  media: number | null;
+  mediana: number | null;
+  desviacion: number | null;
+  min: number | null;
+  max: number | null;
+  q1: number | null;
+  q3: number | null;
+  iqr: number | null;
+  asimetria: number | null;
+  curtosis: number | null;
+}
+
+export interface Frecuencias {
+  tabla: { valor: string; n: number; pct: number }[];
+  moda: string | string[] | null;
+  n_categorias: number;
+  otras: number;
+}
+
+/** Medidas de una columna de encuesta. */
+export interface ColumnaEstadistica {
+  id: string;
+  etiqueta: string;
+  tipo: string;
+  rol: string | null;
+  n: number;
+  n_nulos: number;
+  pct_nulos: number;
+  numerico?: DescriptivosNumericos | null;
+  frecuencias?: Frecuencias;
+  atipicos?: {
+    metodo: string;
+    sigma: number;
+    iqr: number;
+    factor_sigma: number;
+    factor_iqr: number;
+  };
+  texto?: { palabras_promedio: number; respuestas_distintas: number };
+  n_excluidos?: number;
+  escala?: { puntos: number; invertido: boolean };
+}
+
+/** Alfa de Cronbach de un bloque de ítems Likert. */
+export interface FiabilidadBloque {
+  bloque: string;
+  items: string[];
+  invertidos: string[];
+  n_items: number;
+  n_casos: number;
+  alfa: number | null;
+  interpretacion: string | null;
+  por_item: {
+    item: string;
+    media: number | null;
+    correlacion_item_total: number | null;
+    alfa_si_se_elimina: number | null;
+  }[];
+}
+
+/** Análisis de un reactivo de una prueba estandarizada. */
+export interface ReactivoEstadistica {
+  pregunta: string;
+  respuesta_correcta: string;
+  dificultad: number | null;
+  nivel_dificultad: string | null;
+  discriminacion: number | null;
+  nivel_discriminacion: string | null;
+  correlacion_punto_biserial: number | null;
+  distribucion: { opcion: string; n: number; pct: number; correcta: boolean }[];
+  distractores_sin_elegir: string[];
+}
+
+export interface HablanteEstadistica {
+  nombre: string;
+  rol: string | null;
+  turnos: number;
+  palabras: number;
+  pct_palabras: number;
+  pct_preguntas: number;
+  palabras_por_turno: Partial<DescriptivosNumericos>;
+}
+
+/** Medidas estadísticas de la limpieza (dependen del tipo de instrumento). */
+export interface EstadisticaLimpieza {
+  // Encuestas
+  columnas?: ColumnaEstadistica[];
+  encuestados?: { linea_recta: number; incompletos: number };
+  // Encuestas: lista de bloques (alfa); pruebas: KR-20.
+  fiabilidad?:
+    | FiabilidadBloque[]
+    | {
+        kr20: number | null;
+        interpretacion: string | null;
+        n_alumnos: number;
+        n_reactivos: number;
+      };
+  // Pruebas
+  reactivos?: ReactivoEstadistica[];
+  puntajes?: Partial<DescriptivosNumericos> & { maximo_posible: number };
+  resumen_reactivos?: {
+    faciles: number;
+    medios: number;
+    dificiles: number;
+    discriminacion_pobre: number;
+  };
+  // Entrevistas
+  hablantes?: HablanteEstadistica[];
+  palabras_por_turno?: Partial<DescriptivosNumericos>;
+  n_participantes?: number;
+  n_preguntas?: number;
+  n_respuestas?: number;
+  palabras_por_respuesta?: Partial<DescriptivosNumericos>;
+  preguntas?: PreguntaEntrevistaEstadistica[];
+  participantes?: {
+    id: string;
+    respuestas: number;
+    palabras: number;
+    palabras_por_respuesta: number | null;
+  }[];
+  palabras_por_rol?: { rol: string; turnos: number; palabras: number; pct_palabras: number }[];
+}
+
+/** Respuestas que recibió una pregunta del entrevistador. */
+export interface PreguntaEntrevistaEstadistica {
+  pregunta: string;
+  texto: string;
+  n_respuestas: number;
+  sin_respuesta: number;
+  palabras: Partial<DescriptivosNumericos>;
+}
+
+/** Una frase del resumen «En pocas palabras» (reglas fijas del cleaning-service). */
+export interface FraseResumen {
+  nivel: "bien" | "info" | "atencion" | "alerta";
+  texto: string;
+}
+
+export interface VistaFinalLimpieza {
+  cifras: { etiqueta: string; valor: number | string }[];
+  forma: "tabla" | "turnos";
+  columnas: string[];
+  filas: string[][];
+  total_filas: number;
+  /** Ausentes en limpiezas confirmadas antes de las medidas estadísticas. */
+  comparacion?: ComparacionMetrica[];
+  estadistica?: EstadisticaLimpieza | null;
+  estadistica_antes?: EstadisticaLimpieza | null;
+  resumen?: FraseResumen[];
+}
+
+/** Una versión de la limpieza de un instrumento. */
+export interface EjecucionLimpieza {
+  idCrudo: number;
+  version: number;
+  estado: EstadoLimpieza;
+  tipoInstrumento: string;
+  error: string | null;
+  avisos: string[];
+  metricasAntes: Record<string, unknown>;
+  transformaciones: TransformacionLimpieza[];
+  hallazgos: HallazgoLimpieza[];
+  pendientesObligatorias: number;
+  vistaFinal: VistaFinalLimpieza | null;
 }
 
 /** Los 13 campos Dublin Core de `metadatos_dc` (la cobertura se captura como
@@ -100,6 +290,194 @@ export type MetadatosTipo = Record<string, string>;
 
 /** De dónde salió un metadato propuesto por el metadata-service. */
 export type OrigenMetadato = "automatico" | "archivo" | "inferido" | "llm" | "aprobado";
+
+// ── Conocimiento (knowledge-service): perfil semántico y documento final ──────
+
+export interface PreguntaPerfil {
+  id: string;
+  texto: string;
+  /** Solo en preguntas categóricas y de opción múltiple (nunca anclas Likert). */
+  opciones?: string[] | undefined;
+}
+
+export interface SeccionPerfil {
+  id: string;
+  nombre: string;
+  descripcion?: string | undefined;
+  preguntas: PreguntaPerfil[];
+}
+
+/** Lo que describe al instrumento; es lo único que se usa para asociar KPIs. */
+export interface PerfilSemantico {
+  esquema_version: string;
+  instrumento_id: string;
+  tipo: "encuesta" | "entrevista" | "prueba_estandarizada";
+  titulo: string;
+  objetivo: string;
+  temas: string[];
+  palabras_clave: string[];
+  nivel_educativo: string;
+  poblacion: string;
+  contexto: string;
+  secciones: SeccionPerfil[];
+  kpis_asociados: Record<string, unknown>[];
+}
+
+export interface AvisoConocimiento {
+  codigo: string;
+  mensaje: string;
+  n?: number | null | undefined;
+}
+
+/** De dónde salieron las preguntas del perfil. */
+export type FuentePerfil = "original" | "encabezados" | "json_tecnico";
+
+export interface PerfilGenerado {
+  perfil: PerfilSemantico;
+  fuente: FuentePerfil;
+  n_preguntas: number;
+  avisos: AvisoConocimiento[];
+  /** Solo en perfiles guardados (versión del conocimiento). */
+  version?: number | undefined;
+  estado?: string | undefined;
+}
+
+/** KPI aceptado, con el mismo formato en el perfil y en el documento final. */
+export interface KpiAsociado {
+  kpi_id: string;
+  nombre: string;
+  definicion: string;
+  dimension: string;
+  que_mide: string;
+  similitud: number;
+  evidencia: { pregunta_id: string; similitud: number }[];
+  justificacion: string;
+  justificacion_origen: string;
+  aceptado_por: string;
+  fecha: string;
+}
+
+export interface ResumenPreguntaDoc {
+  n_validas: number;
+  n_sin_respuesta: number;
+  sin_respuesta_por_motivo?: Record<string, number> | undefined;
+  n_no_interpretadas?: number | undefined;
+  distribucion?: { significado: string; n: number; pct: number }[] | undefined;
+  por_nivel?: Record<string, number> | undefined;
+  media?: number | null | undefined;
+  interpretacion: string;
+}
+
+export interface PreguntaDoc {
+  id: string;
+  seccion_id: string;
+  texto: string;
+  tipo?: string | undefined;
+  kpis_relacionados: string[];
+  resumen?: ResumenPreguntaDoc | undefined;
+}
+
+export interface ReactivoDoc {
+  id: string;
+  seccion_id: string;
+  clave: string;
+  texto: string;
+  /** opcion_multiple | verdadero_falso | puntos | escala | si_no | numerica */
+  tipo_reactivo?: string | undefined;
+  /** False en escalas, Sí/No y numéricos: sin respuesta correcta. */
+  calificable?: boolean | undefined;
+  respuesta_correcta: string;
+  kpis_relacionados: string[];
+  resumen: {
+    pct_acierto: number | null;
+    n_alumnos: number;
+    distractor_mas_elegido: { opcion: string; significado: string; pct: number } | null;
+    interpretacion: string;
+  };
+}
+
+export interface RespuestaDoc {
+  pregunta?: string;
+  estado: string;
+  significado?: string;
+  texto?: string;
+  nivel?: string;
+  correcta?: boolean;
+}
+
+/** Un intercambio de una entrevista: solo la pregunta del entrevistador y la respuesta. */
+export interface IntercambioDoc {
+  pregunta_id?: string | undefined;
+  pregunta: string;
+  respuesta: string;
+}
+
+/** La entrevista de una persona (ID anónimo) en el documento final. */
+export interface EntrevistaDoc {
+  participante: string;
+  intercambios: IntercambioDoc[];
+}
+
+/** Vista ligera del documento final (sin respuestas individuales, con una muestra). */
+export interface DocumentoVista {
+  esquema_version: string;
+  instrumento: { id: string; tipo: string; titulo: string } & Record<string, unknown>;
+  kpis_asociados: KpiAsociado[];
+  /** Encuestas y pruebas (las entrevistas no llevan secciones). */
+  secciones?: { id: string; nombre: string }[] | undefined;
+  preguntas?: PreguntaDoc[] | undefined;
+  reactivos?: ReactivoDoc[] | undefined;
+  n_respondentes?: number | undefined;
+  n_alumnos?: number | undefined;
+  /** Entrevistas: una por persona, con pregunta y respuesta (sin estadísticas). */
+  n_entrevistas?: number | undefined;
+  muestra_entrevistas?: EntrevistaDoc[] | undefined;
+  /** Primeros respondentes/alumnos con todas sus respuestas (cada una con el texto de su pregunta). */
+  muestra_respondentes?: { id: string; respuestas: RespuestaDoc[] }[] | undefined;
+  muestra_alumnos?: { id: string; respuestas: RespuestaDoc[] }[] | undefined;
+}
+
+export interface DocumentoGenerado {
+  id_crudo: number;
+  version: number;
+  estado: string;
+  esquema_version: string;
+  sha256: string | null;
+  avisos: AvisoConocimiento[];
+  documento: DocumentoVista;
+}
+
+export interface EvidenciaKpi {
+  pregunta_id: string;
+  texto: string;
+  similitud: number;
+}
+
+/** KPI sugerido desde el perfil semántico (analysis-service). */
+export interface KpiPropuesto {
+  kpi_id: number;
+  /** ID global en los documentos (KPI-07). */
+  kpi_ref: string;
+  nombre: string;
+  definicion: string;
+  que_mide: string;
+  dimension: string;
+  polaridad: string;
+  /** Puntaje 0–1 de la fórmula (perfil general + preguntas + cobertura). */
+  score: number;
+  componentes: { g: number; p: number; c: number };
+  /** Preguntas que lo sustentan. */
+  evidencia: EvidenciaKpi[];
+  justificacion: string;
+  justificacion_origen: "llm" | "plantilla";
+}
+
+export interface PropuestaKpis {
+  id_crudo: number;
+  version: number;
+  n_preguntas: number;
+  kpis: KpiPropuesto[];
+}
 
 export interface KpiSugerido {
   id: string;
