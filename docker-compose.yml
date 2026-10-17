@@ -35,9 +35,15 @@ services:
       - OLLAMA_DEBUG=1
       # Mantener el modelo cargado en VRAM indefinidamente (no descargarlo tras 5 min
       # inactivo). Evita el recargado de ~20 s en cada pregunta tras una pausa. En una
-      # GPU de 4 GiB (GTX 1650) esto, junto con num_ctx=2048 en el cliente, mantiene el
-      # modelo 100% en GPU y las respuestas en ~2 s en vez de ~24 s.
+      # GPU de 4 GiB (GTX 1650) esto, junto con num_ctx=4096 en el cliente (~3 GiB de
+      # VRAM con llama3.2:3b), mantiene el modelo 100% en GPU. Requiere driver NVIDIA
+      # >= 531: con uno anterior Ollama descarta CUDA y corre en CPU.
       - OLLAMA_KEEP_ALIVE=-1
+      # Flash attention + caché KV en q8_0: reducen la memoria del contexto (4096)
+      # para que llama3.2:3b quepa 100% en los 4 GiB de la GTX 1650 junto con lo
+      # que ya ocupa Windows, en vez de repartirse CPU/GPU.
+      - OLLAMA_FLASH_ATTENTION=1
+      - OLLAMA_KV_CACHE_TYPE=q8_0
     ports:
       - "11434:11434"
     volumes:

@@ -40,7 +40,7 @@ _TABULARES = {".csv", ".xlsx", ".xls"}
 # Columnas técnicas de las plataformas de encuestas (no son reactivos).
 _COLUMNA_TECNICA = re.compile(
     r"^(marca temporal|timestamp|fecha( y hora)?|hora|direcci[oó]n de correo.*|correo( electr[oó]nico)?|"
-    r"e-?mail|id|folio|respondent_id|n[uú]mero de respuesta|response id|ip)$",
+    r"e-?mail|id|id[_ ]\w+|\w+[_ ]id|folio|respondent_id|n[uú]mero de respuesta|response id|ip)$",
     re.IGNORECASE,
 )
 _COLUMNA_CARRERA = re.compile(r"\b(carrera|programa( educativo)?|licenciatura)\b", re.IGNORECASE)
@@ -416,7 +416,7 @@ def extraer_preguntas(texto: str) -> list[Pregunta]:
         if not linea or linea.startswith("# "):
             continue
         if _es_titulo_seccion(linea):
-            seccion = linea.lstrip("# ").strip()[:80] or SECCION_GENERAL
+            seccion = linea.strip(" #-=*_").strip()[:80] or SECCION_GENERAL  # «--- MOTIVACIÓN ---»
             actual = None
             continue
         if m := _RE_TURNO.match(linea):
@@ -438,27 +438,105 @@ def extraer_preguntas(texto: str) -> list[Pregunta]:
     return preguntas
 
 
-_RE_ETIQUETA_TITULO = re.compile(r"^(instrumento|t[ií]tulo|nombre( del instrumento)?)\s*:\s*", re.IGNORECASE)
+_RE_PALABRA = re.compile(r"[^\W\d_]{3}")
+_RE_ETIQUETA_TITULO = re.compile(
+    r"^(?:instrumento|t[íi]tulo|title|nombre(?:\s+del\s+instrumento)?)\s*:\s*(.+)$", re.IGNORECASE
+)
 _RE_LINEA_FICHA = re.compile(r"^(id|clave|fuente|versi[oó]n|fecha|autor(es)?|c[oó]digo)\s*:", re.IGNORECASE)
 
 
 def _titulo_documento(texto: str, nombre: str) -> str:
     """Primera línea con aspecto de título.
 
-    Se saltan las líneas decorativas («=====», «-----»: casi sin letras) y las de
-    ficha («ID: enc_05», «Fuente: …»); «INSTRUMENTO: Escala RAU» → «Escala RAU».
+    Se saltan las líneas decorativas («=====», «-----»: sin una palabra de 3 letras)
+    y las de ficha («ID: enc_05», «Fuente: …»); de etiquetas como
+    «INSTRUMENTO: Escala RAU» o «Título: …» se toma el valor («Escala RAU»).
     """
     for cruda in texto.splitlines()[:15]:
         linea = cruda.strip().lstrip("#").strip().strip("*_").strip()
-        if sum(c.isalpha() for c in linea) < 4 or _RE_LINEA_FICHA.match(linea):
-            continue
-        linea = _RE_ETIQUETA_TITULO.sub("", linea).strip()
+        if not _RE_PALABRA.search(linea) or _RE_LINEA_FICHA.match(linea):
+            continue  # línea decorativa, vacía o de ficha
+        if m := _RE_ETIQUETA_TITULO.match(linea):
+            linea = m.group(1).strip()
         if 4 <= len(linea) <= 120 and "?" not in linea and not _RE_NUMERADA.match(linea):
             return linea
     return titulo_desde_nombre(nombre)
 
 
 # ── Construcción del análisis ──────────────────────────────────────────────────
+
+# Encabezado en código de exportación («Motivación_item2», «Organización_y__item1»,
+# «Bloque_q3»): prefijo del nombre de la sección + número del reactivo en ella.
+_RE_COLUMNA_CODIGO = re.compile(
+    r"^(\S*?)[_\-\.]*(?:item|q|p|preg(?:unta)?|reactivo)[_\-\.]?(\d{1,3})$", re.IGNORECASE
+)
+
+
+def _nombre_normalizado(texto: str) -> str:
+    return " ".join(sin_acentos(texto).replace("_", " ").strip(" -=#*").split())
+
+
+def _textos_desde_original(columnas: list[tuple[str, Pregunta]], texto_original: str) -> None:
+    """Da el texto de la pregunta del instrumento original a los reactivos cuyo
+    encabezado es un código.
+
+    Empareja el prefijo del código con el nombre de una sección del original y el
+    número con la posición del reactivo en esa sección. Si una sección comparte
+    prefijo con otra (p. ej. «Habilidades_par» → «Habilidades para el examen» y
+    «Habilidades para jerarquizar»), el reinicio de la numeración marca el paso a
+    la siguiente. Si alguna columna no empareja no se cambia nada: es preferible
+    conservar el código que asignar una pregunta equivocada.
+    """
+    codificadas = [(m, p) for h, p in columnas if (m := _RE_COLUMNA_CODIGO.match(h.strip()))]
+    if not codificadas or not texto_original:
+        return
+    secciones: list[tuple[str, list[Pregunta]]] = []
+    for reactivo in extraer_preguntas(texto_original):
+        if not secciones or secciones[-1][0] != reactivo.seccion:
+            secciones.append((reactivo.seccion, []))
+        secciones[-1][1].append(reactivo)
+
+    estado: dict[str, tuple[int, int]] = {}
+    asignaciones: list[tuple[Pregunta, str, Pregunta]] = []
+    for m, pregunta in codificadas:
+        prefijo, numero = _nombre_normalizado(m.group(1)), int(m.group(2))
+        candidatas = [s for s in secciones if len(prefijo) >= 3 and _nombre_normalizado(s[0]).startswith(prefijo)]
+        posicion, ultimo = estado.get(prefijo, (0, 0))
+        if numero <= ultimo:
+            posicion += 1
+        estado[prefijo] = (posicion, numero)
+        if posicion >= len(candidatas) or not 1 <= numero <= len(candidatas[posicion][1]):
+            return
+        nombre_seccion, reactivos = candidatas[posicion]
+        asignaciones.append((pregunta, nombre_seccion, reactivos[numero - 1]))
+    for pregunta, nombre_seccion, original in asignaciones:
+        pregunta.texto = original.texto
+        pregunta.seccion = nombre_seccion
+
+
+# Leyenda de escala en el instrumento original: «1 = Totalmente en desacuerdo / Nunca».
+_RE_LEYENDA = re.compile(r"^\s*(\d{1,2})\s*[=:]\s*(\S.{1,100})$")
+
+
+def _leyenda_escala(texto_original: str) -> dict[str, str]:
+    """{valor: significado} de la escala del original (al menos 3 valores), o {}."""
+    leyenda = {}
+    for linea in (texto_original or "").splitlines():
+        if m := _RE_LEYENDA.match(linea):
+            leyenda.setdefault(m.group(1), m.group(2).strip())
+    return leyenda if len(leyenda) >= 3 else {}
+
+
+def _etiquetar_escalas(preguntas: list[Pregunta], texto_original: str) -> None:
+    """Guarda en las estadísticas de cada reactivo numérico el significado de sus
+    valores, para que el RAG diga «32% respondió 3 (A veces)» y no solo «3: 32%»."""
+    leyenda = _leyenda_escala(texto_original)
+    if not leyenda:
+        return
+    for p in preguntas:
+        valores = [str(v) for v in (p.estadisticas.get("distribution") or {})]
+        if p.tipo == "escala_numerica" and valores and all(v in leyenda for v in valores):
+            p.estadisticas["etiquetas"] = {v: leyenda[v] for v in sorted(leyenda, key=int)}
 
 
 def _desde_tabla(tabla: dict[str, Any], tipo: str, nombre: str, texto_original: str) -> Analisis:
@@ -467,7 +545,6 @@ def _desde_tabla(tabla: dict[str, Any], tipo: str, nombre: str, texto_original: 
     indices = [j for j, h in enumerate(headers) if h and not _COLUMNA_TECNICA.match(h.strip())]
 
     preguntas: list[Pregunta] = []
-    bloques: list[str] = []
     vacias = 0
     for k, j in enumerate(indices, start=1):
         bloque, texto = _partir_encabezado(headers[j])
@@ -475,8 +552,12 @@ def _desde_tabla(tabla: dict[str, Any], tipo: str, nombre: str, texto_original: 
         vacias += len(filas) - len(valores)
         tipo_p, opciones, stats = _perfilar(valores, len(filas))
         preguntas.append(Pregunta(f"q{k}", texto, tipo_p, opciones[:15], bloque, stats))
-        if bloque != SECCION_GENERAL and bloque not in bloques:
-            bloques.append(bloque)
+    _textos_desde_original([(headers[j], p) for j, p in zip(indices, preguntas)], texto_original)
+    _etiquetar_escalas(preguntas, texto_original)
+    bloques: list[str] = []
+    for p in preguntas:
+        if p.seccion != SECCION_GENERAL and p.seccion not in bloques:
+            bloques.append(p.seccion)
 
     carreras: list[str] = []
     for j, h in enumerate(headers):

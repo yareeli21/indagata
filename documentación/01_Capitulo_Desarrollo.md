@@ -411,7 +411,7 @@ correo electrónico), de modo que ejecutar el script más de una vez no genera
 duplicados ni errores.
 
 El catálogo de indicadores se carga por separado desde el archivo
-`kpis_ampliados.csv`, que funciona como fuente de verdad del catálogo. El script
+`KPI_Ampliacion.csv`, que funciona como fuente de verdad del catálogo. El script
 `seed_kpis.py` del servicio de análisis lee ese archivo, inserta los KPIs en la
 tabla `kpi` y genera sus *embeddings* en la colección `kpis` de ChromaDB. El
 catálogo actual contiene 55 indicadores. [Confirmar la cifra si el catálogo

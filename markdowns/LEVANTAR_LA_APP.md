@@ -112,13 +112,27 @@ justificación de KPIs:
 docker compose exec ollama ollama pull llama3.2:3b
 ```
 
-**7.2 Catálogo de KPIs.** Lo carga en PostgreSQL y en la colección `kpis` de ChromaDB. Sin este
-paso, el paso «KPIs sugeridos» del asistente sale vacío:
+**7.2 Catálogo de KPIs.** Son dos comandos. Sin ellos, el paso «KPIs sugeridos» del asistente sale
+vacío.
+
+Primero, cargar el catálogo en PostgreSQL desde `infrastructure/postgres/seed/KPI_Ampliacion.csv`:
 ```powershell
 docker compose exec analysis-service python scripts/seed_kpis.py
 ```
-La primera ejecución descarga el modelo de embeddings (unos cientos de MB). Queda en caché en el
-volumen `hf_cache`.
+
+Después, vectorizarlo en la colección `kpis` de ChromaDB. Este paso pide iniciar sesión:
+```powershell
+$token = (curl.exe -s -X POST http://localhost:8006/auth/login -H "Content-Type: application/json" -d '{\"email\":\"admin@indagata.com\",\"password\":\"admin123\"}' | ConvertFrom-Json).access_token
+curl.exe -s -X POST http://localhost:8002/vectorizacion/kpis/reindex -H "Authorization: Bearer $token"
+```
+La respuesta indica cuántos KPIs se indexaron. La primera vez se descarga el modelo de embeddings
+(unos cientos de MB), que queda en caché en el volumen `hf_cache`.
+
+> **Atención: volver a sembrar borra los KPIs aceptados.** `seed_kpis.py` reemplaza el catálogo
+> completo con `TRUNCATE … CASCADE`, así que también borra los KPIs que ya se aceptaron para cada
+> instrumento (`kpi_inferido`). Si la base de datos ya tenía instrumentos con KPIs (por ejemplo,
+> porque se cambió de catálogo), hay que repetir con cada uno los pasos «KPIs sugeridos» y «Guardar»
+> del asistente.
 
 ## 8. Comprobar que funciona
 
@@ -188,7 +202,7 @@ No ejecutes pytest de varios servicios en un solo comando: sus módulos se llama
 |---|---|
 | `401 Unauthorized` en todas las pantallas | El token expiró (dura 60 min) o cambió `SECRET_KEY`. Cierra sesión y entra de nuevo |
 | `409` en el paso «Dublin Core» | El instrumento no tiene una limpieza confirmada. Vuelve al paso «Limpieza» y confírmala |
-| «KPIs sugeridos» vacío | Falta el paso 7.2 (`seed_kpis.py`) |
+| «KPIs sugeridos» vacío | Falta el paso 7.2 (`seed_kpis.py` y el reindex) |
 | El chat no responde o tarda mucho | Falta el modelo (paso 7.1) o no hay GPU. Revisa `docker compose logs ollama` |
 | Un contenedor se cae con *Killed* o exit 137 | Falta memoria. Sube la RAM de Docker Desktop o apaga `chroma-viewer` y `ollama` si no los usas |
 | `port is already allocated` | Otro programa usa ese puerto, por ejemplo un Postgres local en 5432. Ciérralo o cambia el puerto del host en `docker-compose.yml` |

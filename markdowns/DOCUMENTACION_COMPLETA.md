@@ -231,7 +231,7 @@ de `infrastructure/postgres/init/`:
 ### 1.6.1 Sembrar los 55 KPIs reales
 
 El catálogo real de KPIs vive en
-`infrastructure/postgres/seed/kpis_ampliados.csv` (**55 KPIs**, cada uno con 8
+`infrastructure/postgres/seed/KPI_Ampliacion.csv` (**55 KPIs**, cada uno con 8
 columnas). Para cargarlos en la tabla `tt_rag.kpi` se ejecuta un script dentro
 del contenedor del analysis-service:
 
@@ -561,7 +561,7 @@ Plantillas de prompt versionadas: `prompt_id`, `tipo`, `version`, `contenido`,
 
 ### `kpi` (catálogo de KPIs — reconstruido desde el CSV)
 Esta tabla tiene **`kpi_id`** más las **8 columnas del CSV**
-`kpis_ampliados.csv`:
+`KPI_Ampliacion.csv`:
 
 | Columna de la tabla | Columna del CSV | Rol |
 |---|---|---|

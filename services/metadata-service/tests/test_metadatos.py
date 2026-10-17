@@ -314,3 +314,58 @@ def test_campos_del_tipo(cliente, ana):
     r = cliente.get("/api/enrichment/campos/entrevista", headers=ana).json()
     assert [c["clave"] for c in r] == ["identificador_propio", "objetivo", "metodologia", "institucion", "derechos"]
     assert cliente.get("/api/enrichment/campos/otro", headers=ana).status_code == 404
+
+
+def test_titulo_ignora_separadores_y_toma_el_valor_de_la_etiqueta():
+    from services.analizador import _titulo_documento
+
+    texto = (
+        "======================================================================\n"
+        "INSTRUMENTO: Inventario de Estrategias de Aprendizaje y Estudio (IEAE)\n"
+        "ID: enc_01\n"
+        "======================================================================\n"
+    )
+    assert _titulo_documento(texto, "enc_01_original.txt") == "Inventario de Estrategias de Aprendizaje y Estudio (IEAE)"
+    assert _titulo_documento("-----\n# Encuesta de clima escolar\n", "x.txt") == "Encuesta de clima escolar"
+
+def test_encabezados_en_codigo_toman_el_texto_del_original():
+    from services.analizador import Pregunta, _textos_desde_original
+
+    original = (
+        "--- HABILIDADES PARA EL EXAMEN ---\n"
+        "1. Repaso los temas antes del examen.\n"
+        "2. Administro el tiempo durante el examen.\n"
+        "--- MOTIVACIÓN ---\n"
+        "1. Me esfuerzo aunque la materia no me guste.\n"
+        "--- HABILIDADES PARA JERARQUIZAR ---\n"
+        "1. Distingo las ideas principales de las secundarias.\n"
+    )
+    columnas = ["Habilidades_par_item1", "Habilidades_par_item2", "Motivación_item1", "Habilidades_par_item1"]
+    preguntas = [Pregunta(f"q{n}", c, "likert", [], "Reactivos", {}) for n, c in enumerate(columnas, 1)]
+    _textos_desde_original(list(zip(columnas, preguntas)), original)
+    assert [p.texto for p in preguntas] == [
+        "Repaso los temas antes del examen.",
+        "Administro el tiempo durante el examen.",
+        "Me esfuerzo aunque la materia no me guste.",
+        "Distingo las ideas principales de las secundarias.",
+    ]
+    assert preguntas[2].seccion == "MOTIVACIÓN"
+    assert preguntas[3].seccion == "HABILIDADES PARA JERARQUIZAR"
+
+
+def test_encabezados_en_codigo_sin_emparejar_no_cambian():
+    from services.analizador import Pregunta, _textos_desde_original
+
+    preguntas = [Pregunta("q1", "Motivación_item9", "likert", [], "Reactivos", {})]
+    _textos_desde_original([("Motivación_item9", preguntas[0])], "--- MOTIVACIÓN ---\n1. Me esfuerzo siempre.\n")
+    assert preguntas[0].texto == "Motivación_item9"
+
+def test_leyenda_de_escala_se_guarda_en_las_estadisticas():
+    from services.analizador import Pregunta, _etiquetar_escalas
+
+    original = "INSTRUCCIONES:\n  1 = Nunca\n  2 = A veces\n  3 = Siempre\n\n1. Organizo mi material.\n"
+    p = Pregunta("q1", "Organizo mi material.", "escala_numerica", ["1", "2", "3"], "Reactivos", {"distribution": {"3": 4, "1": 1}})
+    abierta = Pregunta("q2", "Comentarios", "abierta", [], "Reactivos", {"distribution": {"bien": 1}})
+    _etiquetar_escalas([p, abierta], original)
+    assert p.estadisticas["etiquetas"] == {"1": "Nunca", "2": "A veces", "3": "Siempre"}
+    assert "etiquetas" not in abierta.estadisticas

@@ -230,7 +230,12 @@ def test_rag_index(cliente, acervo, storage):
     assert r["coleccion"] == "instrumentos"
 
 
-def test_chat_json_filtrado_por_investigacion_y_registrado(cliente, acervo, chroma, ollama, db):
+def test_chat_json_filtrado_por_investigacion_y_registrado(cliente, acervo, chroma, ollama, db, monkeypatch):
+    from shared.db.core.config import settings
+
+    # Los embeddings falsos no son semánticos: aquí se prueba el filtro y el
+    # registro, no el umbral (cubierto en test_chat_sin_fragmentos_relacionados...).
+    monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.0)
     r = cliente.post(
         "/rag/chat",
         json={
@@ -249,6 +254,9 @@ def test_chat_json_filtrado_por_investigacion_y_registrado(cliente, acervo, chro
     assert cuerpo["fuentes"][0]["kpis"] == ["Compromiso académico"]
     assert chroma.colecciones["instrumentos"].consultas[-1]["where"] == {"instrumentoId": {"$in": ["1"]}}
     assert "Analizar el compromiso" in ollama["prompts"][-1]
+    from services import prompt
+
+    assert ollama["sistemas"][-1] == prompt.SISTEMA  # las reglas viajan en `system`
     db.expire_all()
     log = db.query(RagLog).one()
     assert log.pregunta == "¿qué tanto se esfuerzan en clase?" and log.chunks_usados == 3
@@ -264,6 +272,137 @@ def test_chat_sse_y_sin_coleccion(cliente, acervo, chroma):
 
     chroma.colecciones.clear()
     assert cliente.post("/rag/chat", json={"pregunta": "x", "stream": False}, headers=ANA).status_code == 409
+
+
+def test_chat_sin_fragmentos_relacionados_no_llama_al_llm(cliente, acervo, chroma, ollama, monkeypatch):
+    from shared.db.core.config import settings
+
+    from services import prompt
+
+    monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.99)  # nada alcanza el umbral
+    r = cliente.post("/rag/chat", json={"pregunta": "¿receta de pastel?", "stream": False}, headers=ANA)
+    assert r.status_code == 200, r.text
+    cuerpo = r.json()
+    assert cuerpo["respuesta"].startswith(prompt.SIN_INFORMACION)
+    assert cuerpo["fuentes"] == []
+    assert ollama["prompts"] == []
+
+
+def test_recuperacion_diversa_una_ficha_por_instrumento(chroma, monkeypatch):
+    from shared.db.core.config import settings
+
+    from models import ChatRequest
+    from services import rag_service
+
+    monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.0)
+    col = chroma.crear("instrumentos")
+    for n in range(5):  # muchas fichas casi idénticas a la pregunta
+        col.agregar(f"a-{n}", f"compromiso académico ficha {n}", {"instrumentoId": "1", "seccion": "encabezado", "titulo": "A"})
+    for n in range(5):
+        col.agregar(f"b-{n}", f"compromiso reactivo {n}", {"instrumentoId": "2", "seccion": "pregunta", "titulo": "B"})
+    col.agregar("c-0", "compromiso entrevista", {"instrumentoId": "3", "seccion": "contenido", "titulo": "C"})
+    fragmentos, _ = rag_service.recuperar(ChatRequest(pregunta="compromiso académico", top_k=6, stream=False))
+    fichas_a = [f for f in fragmentos if f["instrumentoId"] == "1" and f["seccion"] == "encabezado"]
+    assert len(fichas_a) == 1
+    assert sum(f["instrumentoId"] == "2" for f in fragmentos) <= 3
+    assert {f["instrumentoId"] for f in fragmentos} == {"1", "2", "3"}
+
+
+def test_numero_de_fuente_coincide_con_la_cita_del_prompt(chroma, monkeypatch):
+    from shared.db.core.config import settings
+
+    from models import ChatRequest
+    from services import prompt, rag_service
+
+    monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.0)
+    col = chroma.crear("instrumentos")
+    col.agregar("a-0", "compromiso académico ficha", {"instrumentoId": "7", "seccion": "encabezado", "titulo": "Encuesta A"})
+    col.agregar("b-0", "compromiso reactivo uno", {"instrumentoId": "9", "seccion": "pregunta", "titulo": "Encuesta B"})
+    col.agregar("a-1", "compromiso reactivo dos", {"instrumentoId": "7", "seccion": "pregunta", "titulo": "Encuesta A"})
+    fragmentos, fuentes = rag_service.recuperar(ChatRequest(pregunta="compromiso académico", top_k=6, stream=False))
+    texto = prompt.construir("compromiso", fragmentos)
+
+    assert [f.numero for f in fuentes] == list(range(1, len(fuentes) + 1))
+    for f in fuentes:
+        assert f"[Fuente {f.numero}] {f.titulo}" in texto
+    # Cada instrumento aparece una sola vez como fuente, con todos sus fragmentos debajo.
+    assert texto.count("Encuesta A") == 1 and texto.count("[Fuente") == len(fuentes)
+
+
+def test_se_quita_la_frase_sin_informacion_pegada_a_una_respuesta():
+    from services import prompt
+    from services.rag_service import quitar_sin_informacion_sobrante
+
+    frase = prompt.SIN_INFORMACION
+    assert quitar_sin_informacion_sobrante(f"Evalúa 6 dimensiones [Fuente 1].\n\n{frase}") == "Evalúa 6 dimensiones [Fuente 1]."
+    assert quitar_sin_informacion_sobrante(frase) == frase  # negativa legítima: se conserva
+
+
+def test_sse_no_envia_la_frase_sin_informacion_sobrante(cliente, acervo, chroma, monkeypatch):
+    import json as _json
+
+    from shared.db.core.config import settings
+
+    from services import ollama_client, prompt
+
+    monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.0)
+
+    async def stream(texto, modelo, sistema=None):  # noqa: ANN001
+        for trozo in ["El instrumento ", "evalúa el compromiso ", "académico [Fuente 1].", "\n\n", prompt.SIN_INFORMACION]:
+            yield trozo
+
+    monkeypatch.setattr(ollama_client, "generar_stream", stream)
+    r = cliente.post("/rag/chat", json={"pregunta": "compromiso", "stream": True}, headers=ANA)
+    tokens = [
+        _json.loads(linea[len("data: "):])["t"]
+        for bloque in r.text.split("\n\n")
+        if bloque.startswith("event: token")
+        for linea in bloque.splitlines()
+        if linea.startswith("data: ")
+    ]
+    texto = "".join(tokens)
+    assert texto.strip() == "El instrumento evalúa el compromiso académico [Fuente 1]."
+
+
+def test_negativa_del_modelo_no_muestra_fuentes(cliente, acervo, chroma, ollama, monkeypatch, db):
+    import json as _json
+
+    from shared.db.core.config import settings
+    from shared.models.rag_log import RagLog
+
+    from services import ollama_client, rag_service
+
+    monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.0)
+    negativa = "No tengo información relacionada con la pregunta sobre qué es una buena educación."
+
+    async def no_stream(texto, modelo, sistema=None):  # noqa: ANN001
+        return negativa, False
+
+    async def stream(texto, modelo, sistema=None):  # noqa: ANN001
+        yield negativa
+
+    monkeypatch.setattr(ollama_client, "generar_no_stream", no_stream)
+    monkeypatch.setattr(ollama_client, "generar_stream", stream)
+
+    r = cliente.post("/rag/chat", json={"pregunta": "¿qué es una buena educación?", "stream": False}, headers=ANA).json()
+    assert r["respuesta"] == negativa and r["fuentes"] == []
+
+    texto = cliente.post("/rag/chat", json={"pregunta": "¿qué es una buena educación?", "stream": True}, headers=ANA).text
+    bloque = next(b for b in texto.split("\n\n") if b.startswith("event: fuentes"))
+    assert _json.loads(bloque.split("data: ", 1)[1])["fuentes"] == []
+
+    db.expire_all()
+    assert {log.chunks_usados for log in db.query(RagLog).all()} == {0}
+    assert rag_service.es_negativa("Lo siento, pero no tengo información sobre eso.")
+    assert not rag_service.es_negativa("El IEAE evalúa 6 dimensiones [Fuente 1].")
+
+
+def test_chat_limita_top_k_y_baja_temperatura():
+    from models import ChatRequest
+    from services import ollama_client
+
+    assert ChatRequest(pregunta="x", top_k=20).top_k == 8
+    assert ollama_client._OPTIONS["temperature"] == 0.2
 
 
 def test_vector_de_es_determinista():

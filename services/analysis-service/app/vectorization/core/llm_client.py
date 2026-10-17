@@ -25,7 +25,7 @@ def generar_json(prompt: str, *, timeout: float | None = None) -> dict[str, Any]
         "stream": False,
         "format": "json",
         "keep_alive": -1,  # número: Ollama rechaza "-1" como texto (exige unidad de tiempo)
-        "options": {"temperature": 0.2, "num_ctx": 2048},
+        "options": {"temperature": 0.2, "num_ctx": 4096},  # igual que el chat: Ollama no recarga el modelo
     }
     url = f"{settings.OLLAMA_HOST.rstrip('/')}/api/generate"
     try:

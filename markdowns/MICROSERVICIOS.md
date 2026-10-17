@@ -183,7 +183,7 @@ crea una versión nueva.
   - `GET /vectorizacion/espacio`.
   - `GET /vectorizacion/kpis/catalogo`.
 - **Scripts:**
-  - `scripts/seed_kpis.py` carga el catálogo de KPIs desde `infrastructure/postgres/seed/kpis_ampliados.csv`.
+  - `scripts/seed_kpis.py` carga el catálogo de KPIs desde `infrastructure/postgres/seed/KPI_Ampliacion.csv` (después: `POST /vectorizacion/kpis/reindex`).
   - `scripts/comparar_kpis.py` compara el método nuevo con el anterior.
 
 ### 2.7 storage-service (8004, solo interno)

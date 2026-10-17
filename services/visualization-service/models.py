@@ -190,11 +190,12 @@ class ChatRequest(BaseModel):
     @field_validator("top_k")
     @classmethod
     def _limitar_top_k(cls, v: int) -> int:
-        """Se normaliza al rango [1, 20] en lugar de rechazarse."""
-        return max(1, min(20, v))
+        """Se normaliza al rango [1, 8] en lugar de rechazarse (cabe en num_ctx)."""
+        return max(1, min(8, v))
 
 
 class FuenteChatOut(BaseModel):
+    numero: int  # el n de las citas [Fuente n] de la respuesta
     instrumentoId: str
     titulo: str
     tipo: TipoInstrumento

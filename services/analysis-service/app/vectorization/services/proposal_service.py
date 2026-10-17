@@ -4,7 +4,8 @@ Flujo:
   1. Parsea el tipo de instrumento y el JSON recibido.
   2. Extrae los metadatos clave del JSON (según el tipo).
   3. Construye el summary (metadatos clave + instrumento original en texto).
-  4. Vectoriza el summary y lo guarda en la colección `summary_instrument`.
+  4. Vectoriza el summary y los fragmentos del instrumento, los combina en un
+     solo vector y lo guarda en la colección `summary_instrument`.
   5. Busca en la colección `kpis` los top_k más cercanos y los devuelve con score.
 
 No modifica el JSON (eso ocurre en el paso 2, tras la decisión del usuario).
@@ -19,7 +20,7 @@ from fastapi import HTTPException, status
 from app.vectorization.config.constants import TipoInstrumento
 from app.vectorization.core import embeddings, kpi_search
 from app.vectorization.core.metadata_extractor import extract_key_metadata
-from app.vectorization.core.summary_builder import build_summary
+from app.vectorization.core.summary_builder import build_summary, trocear_instrumento
 from app.vectorization.schemas.vectorizacion import PropuestaKPI, PropuestasResponse
 
 logger = logging.getLogger(__name__)
@@ -80,9 +81,12 @@ class ProposalService:
                 detail="No se pudo construir el summary (sin metadatos ni instrumento original).",
             )
 
-        # 4. Vectorizar el summary e indexarlo.
+        # 4. Vectorizar summary + fragmentos del instrumento e indexar la mezcla.
         try:
-            summary_vector = embeddings.embed_text(summary_text)
+            summary_vector = kpi_search.vector_instrumento(
+                embeddings.embed_text(summary_text),
+                embeddings.embed_texts(trocear_instrumento(instrumento_original)),
+            )
             kpi_search.index_summary(
                 id_instrumento, tipo.value, summary_text, summary_vector
             )

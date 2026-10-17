@@ -206,6 +206,17 @@ def test_conservar_duplicados_y_columnas_ajenas(cliente, db, storage, ejecucion)
     assert next(c for c in rep["especifico"]["encuesta"]["columnas"] if c["id"] == "id")["rol"] == "contexto"
 
 
+def test_turno_se_sugiere_como_dato_de_contexto(cliente, db, storage):
+    """Una columna «Turno» (matutino/vespertino) es un dato del respondente, no una
+    pregunta: se sugiere como contexto para poder filtrar por grupo en el RAG."""
+    encabezados = ["Turno", "¿Qué tan de acuerdo estás con que los profesores explican con claridad?"]
+    filas = [["Matutino", "De acuerdo"], ["Vespertino", "En desacuerdo"], ["Vespertino", "Totalmente de acuerdo"],
+             ["Matutino", "Ni de acuerdo ni en desacuerdo"]]
+    id_crudo = crear_instrumento(db, storage, "turnos.csv", _csv(encabezados, filas))
+    e = cliente.post(f"/limpieza/{id_crudo}/ejecuciones", headers=ANA).json()
+    assert _hallazgo(e, "rol:turno")["sugerida"] == "contexto"
+
+
 def test_xlsx_y_punto_y_coma(cliente, db, storage):
     import openpyxl
 

@@ -6,6 +6,8 @@ instrumentos de una investigación; los no aprobados se reportan como omitidos.
 
 Consulta: se vectoriza la pregunta y se recuperan los fragmentos más cercanos
 (ficha del instrumento, reactivos con sus resultados, texto de entrevistas).
+Solo pasan los que alcanzan `RAG_MIN_SCORE`; si ninguno lo hace, se responde
+`MENSAJE_SIN_CONTEXTO` sin llamar al LLM.
   - Con `instrumentoIds`: solo la investigación activa.
   - Sin ellos: todo el acervo aprobado del sistema.
 La respuesta la genera Ollama (SSE o JSON) y cada consulta queda en `rag_log`.
@@ -15,6 +17,7 @@ from __future__ import annotations
 import json
 import logging
 import time
+import unicodedata
 from typing import Any
 
 from fastapi import HTTPException, status
@@ -29,10 +32,13 @@ from services import ollama_client, prompt, storage_client, vectores
 logger = logging.getLogger("visualization-service")
 
 _TIPOS = {"Encuesta", "Entrevista", "Prueba estandarizada"}
+# Se piden más candidatos de los que caben y se eligen con tope por instrumento.
+_CANDIDATOS_POR_FRAGMENTO = 4
+_MAX_FICHAS_POR_INSTRUMENTO = 1
+_MAX_FRAGMENTOS_POR_INSTRUMENTO = 3
 MENSAJE_SIN_CONTEXTO = (
-    "No encontré información sobre eso en los instrumentos consultados. Recuerda que "
-    "solo entran al RAG los instrumentos con metadatos aprobados por su autor; "
-    "puedes ampliar la selección de tu investigación."
+    f"{prompt.SIN_INFORMACION} Recuerda que solo entran al RAG los instrumentos con "
+    "metadatos aprobados por su autor; puedes ampliar la selección de tu investigación."
 )
 
 
@@ -119,7 +125,7 @@ def recuperar(peticion: ChatRequest) -> tuple[list[dict[str, Any]], list[FuenteC
     try:
         res = coleccion.query(
             query_embeddings=[vector],
-            n_results=peticion.top_k,
+            n_results=peticion.top_k * _CANDIDATOS_POR_FRAGMENTO,
             where=where,
             include=["metadatas", "documents", "distances"],
         )
@@ -128,10 +134,27 @@ def recuperar(peticion: ChatRequest) -> tuple[list[dict[str, Any]], list[FuenteC
         raise HTTPException(status.HTTP_502_BAD_GATEWAY, "Vector store no disponible.") from exc
 
     fragmentos: list[dict[str, Any]] = []
+    encabezados: dict[str, int] = {}
+    por_instrumento: dict[str, int] = {}
     for meta, doc, dist in zip(
         (res.get("metadatas") or [[]])[0], (res.get("documents") or [[]])[0], (res.get("distances") or [[]])[0]
     ):
         meta = meta or {}
+        score = round(1.0 - float(dist), 4)
+        if score < settings.RAG_MIN_SCORE:
+            continue  # poco relacionado: no se le da al LLM para que no improvise
+        if len(fragmentos) >= peticion.top_k:
+            break
+        # Diversidad: las fichas (encabezado) se parecen a casi cualquier pregunta y,
+        # sin tope, desplazan a los reactivos con resultados y al texto de entrevistas.
+        inst, seccion = str(meta.get("instrumentoId", "")), str(meta.get("seccion", ""))
+        if seccion == "encabezado" and encabezados.get(inst, 0) >= _MAX_FICHAS_POR_INSTRUMENTO:
+            continue
+        if por_instrumento.get(inst, 0) >= _MAX_FRAGMENTOS_POR_INSTRUMENTO:
+            continue
+        if seccion == "encabezado":
+            encabezados[inst] = encabezados.get(inst, 0) + 1
+        por_instrumento[inst] = por_instrumento.get(inst, 0) + 1
         fragmentos.append(
             {
                 "instrumentoId": str(meta.get("instrumentoId", "")),
@@ -141,18 +164,22 @@ def recuperar(peticion: ChatRequest) -> tuple[list[dict[str, Any]], list[FuenteC
                 "kpis": _kpis(meta.get("kpis")),
                 "seccion": str(meta.get("seccion", "")),
                 "fragmento": str(doc or ""),
-                "score": round(1.0 - float(dist), 4),
+                "score": score,
             }
         )
 
+    # Una fuente por instrumento, numerada en orden de relevancia. El prompt cita
+    # con ese mismo número, así que [Fuente n] es la n-ésima tarjeta de la UI.
     fuentes: list[FuenteChatOut] = []
-    vistos: set[str] = set()
+    numeros: dict[str, int] = {}
     for f in fragmentos:
-        if f["instrumentoId"] in vistos:
+        if f["instrumentoId"] in numeros:
+            f["numero"] = numeros[f["instrumentoId"]]
             continue
-        vistos.add(f["instrumentoId"])
+        numeros[f["instrumentoId"]] = f["numero"] = len(numeros) + 1
         fuentes.append(
             FuenteChatOut(
+                numero=f["numero"],
                 instrumentoId=f["instrumentoId"],
                 titulo=f["titulo"],
                 tipo=f["tipo"],
@@ -187,6 +214,34 @@ def registrar_consulta(pregunta: str, respuesta: str, modelo: str, chunks: int, 
 
 # ── Respuesta ──────────────────────────────────────────────────────────────────
 
+# Caracteres que el streaming retiene al final para poder quitar la frase de
+# «sin información» si el modelo la pega tras una respuesta que sí dio.
+_RETENCION = len(prompt.SIN_INFORMACION) + 8
+
+
+def quitar_sin_informacion_sobrante(texto: str) -> str:
+    """Quita la frase de «sin información» cuando acompaña a una respuesta real.
+
+    El modelo de 3B a veces la añade al final aunque sí respondió; si es lo único
+    que dijo, se conserva (es la negativa correcta).
+    """
+    frase = prompt.SIN_INFORMACION
+    sin_frase = texto.replace(frase, "").strip()
+    if frase not in texto or len(sin_frase) < 20:
+        return texto
+    return sin_frase
+
+
+# Inicios con los que el modelo dice que no puede responder (la frase exacta del
+# prompt o sus variantes: «No tengo información relacionada con la pregunta…»).
+_NEGATIVAS = ("no tengo informacion relacionada", "lo siento, pero no tengo informacion", "no encontre informacion")
+
+
+def es_negativa(texto: str) -> bool:
+    """La respuesta es «no tengo información» (y no una respuesta real)."""
+    normalizado = unicodedata.normalize("NFKD", texto.strip().lower()).encode("ascii", "ignore").decode()
+    return len(normalizado) < 400 and normalizado.startswith(_NEGATIVAS)
+
 
 async def responder(peticion: ChatRequest):
     inicio = time.monotonic()
@@ -204,21 +259,44 @@ async def responder(peticion: ChatRequest):
     if not fragmentos:
         respuesta, degradado = MENSAJE_SIN_CONTEXTO, False
     else:
-        respuesta, degradado = await ollama_client.generar_no_stream(texto_prompt, modelo)
-    registrar_consulta(peticion.pregunta, respuesta, modelo, len(fragmentos), inicio)
+        respuesta, degradado = await ollama_client.generar_no_stream(texto_prompt, modelo, sistema=prompt.SISTEMA)
+        respuesta = quitar_sin_informacion_sobrante(respuesta)
+    usados = len(fragmentos)
+    if es_negativa(respuesta):  # no respondió con ellas: no se muestran como fuentes
+        fuentes, usados = [], 0
+    registrar_consulta(peticion.pregunta, respuesta, modelo, usados, inicio)
     return ChatResponse(respuesta=respuesta, fuentes=fuentes, modelo=modelo, degradado=degradado)
 
 
 async def _sse(pregunta, texto_prompt, modelo, fragmentos, fuentes, inicio):  # noqa: ANN001
     partes: list[str] = []
     if fragmentos:
-        async for trozo in ollama_client.generar_stream(texto_prompt, modelo):
-            partes.append(trozo)
-            yield f"event: token\ndata: {json.dumps({'t': trozo}, ensure_ascii=False)}\n\n"
+        # Se emite con un retraso de `_RETENCION` caracteres: al terminar, el
+        # remanente se limpia de la frase de «sin información» sobrante.
+        generado, enviados = "", 0
+        async for trozo in ollama_client.generar_stream(texto_prompt, modelo, sistema=prompt.SISTEMA):
+            generado += trozo
+            hasta = len(generado) - _RETENCION
+            if hasta > enviados:
+                yield f"event: token\ndata: {json.dumps({'t': generado[enviados:hasta]}, ensure_ascii=False)}\n\n"
+                enviados = hasta
+        final = quitar_sin_informacion_sobrante(generado)
+        if final.startswith(generado[:enviados]):
+            resto = final[enviados:]
+        else:  # la frase quedó antes de lo ya enviado: no se puede retirar
+            resto = generado[enviados:]
+            final = generado
+        if resto:
+            yield f"event: token\ndata: {json.dumps({'t': resto}, ensure_ascii=False)}\n\n"
+        partes.append(final)
     else:
         partes.append(MENSAJE_SIN_CONTEXTO)
         yield f"event: token\ndata: {json.dumps({'t': MENSAJE_SIN_CONTEXTO}, ensure_ascii=False)}\n\n"
+    respuesta = "".join(partes)
+    usados = len(fragmentos)
+    if es_negativa(respuesta):  # no respondió con ellas: no se muestran como fuentes
+        fuentes, usados = [], 0
     datos_fuentes = json.dumps({"fuentes": [f.model_dump() for f in fuentes]}, ensure_ascii=False)
     yield f"event: fuentes\ndata: {datos_fuentes}\n\n"
     yield "event: fin\ndata: {}\n\n"
-    registrar_consulta(pregunta, "".join(partes), modelo, len(fragmentos), inicio)
+    registrar_consulta(pregunta, respuesta, modelo, usados, inicio)
