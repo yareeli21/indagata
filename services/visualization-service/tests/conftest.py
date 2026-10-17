@@ -201,9 +201,15 @@ def storage(monkeypatch):
 def ollama(monkeypatch):
     from services import ollama_client
 
-    estado = {"prompts": [], "sistemas": []}
+    # `clasificador`: veredicto del clasificador de dominio de la zona gris (llamada con formato JSON).
+    estado = {"prompts": [], "sistemas": [], "clasificaciones": [], "clasificador": {"dentro": True, "motivo": "prueba"}}
 
-    async def no_stream(prompt, modelo, sistema=None):  # noqa: ANN001
+    async def no_stream(prompt, modelo, sistema=None, *, formato=None, opciones=None):  # noqa: ANN001
+        if formato == "json":
+            estado["clasificaciones"].append(prompt)
+            import json as _json
+
+            return _json.dumps(estado["clasificador"]), False
         estado["prompts"].append(prompt)
         estado["sistemas"].append(sistema)
         return "Respuesta fundamentada [Fuente 1].", False

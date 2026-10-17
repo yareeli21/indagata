@@ -1,0 +1,102 @@
+# Ayuda de la plataforma: base curada y versionada (dentro del dominio del chat).
+#
+# El chat responde las preguntas de uso SOLO con estas entradas y las cita como
+# [Ayuda: título]; nunca con lo que el modelo «cree» de la plataforma. Cuando cambie
+# una pantalla, actualiza su entrada aquí (y reinicia visualization-service).
+#
+# Cada entrada: titulo (lo que se cita), claves (palabras que ayudan a encontrarla) y
+# texto (breve, en segunda persona, con los nombres que se ven en la interfaz).
+
+entradas:
+  - titulo: Subir un instrumento
+    claves: [subir, subo, cargar, cargo, nuevo instrumento, asistente, pasos]
+    texto: >-
+      En el menú «Crear», entra a «Subir instrumento». Un asistente te guía en 7 pasos: Archivo,
+      Limpieza, Dublin Core, Metadatos del tipo, Aprobar metadatos, KPIs sugeridos y Guardar. Puedes
+      salir y retomar la carga después.
+  - titulo: Paso 1, Archivo
+    claves: [archivo, formato, csv, excel, spss, pdf, docx, original, clave, tipo de instrumento]
+    texto: >-
+      Elige el tipo de instrumento (encuesta, entrevista o prueba estandarizada), sube el archivo con
+      las respuestas (CSV, Excel, SPSS, TXT, DOCX o PDF) y, de preferencia, el instrumento original con
+      las preguntas. En una prueba puedes subir la clave de respuestas; es opcional, porque si falta el
+      sistema propone una y tú la confirmas.
+  - titulo: Paso 2, Limpieza
+    claves: [limpieza, limpiar, fase automatica, fase asistida, hallazgos, decisiones, columnas, hablantes, roles]
+    texto: >-
+      Primero el sistema hace una limpieza automática y te muestra «Lo que hicimos automáticamente».
+      Después, en «Requiere tu decisión», revisas cada hallazgo con su opción sugerida: aceptar o
+      rechazar columnas, el papel de cada columna (pregunta o dato de contexto), respuestas en línea
+      recta, el rol de cada hablante en una entrevista o la clave propuesta de una prueba. Las
+      decisiones obligatorias deben resolverse para confirmar. El archivo original nunca se modifica;
+      cada repetición crea una versión nueva.
+  - titulo: Estadística y vista final de la limpieza
+    claves: [estadistica, alfa, kr-20, antes y despues, vista previa, en pocas palabras]
+    texto: >-
+      Al confirmar la limpieza ves sus pestañas: «Estadística» (con el resumen «En pocas palabras», el
+      alfa de Cronbach por bloque en encuestas, KR-20, dificultad y discriminación en pruebas, o
+      respuestas por pregunta en entrevistas), «Antes y después» y «Vista previa» del archivo limpio.
+  - titulo: Pasos 3 y 4, metadatos
+    claves: [dublin core, metadatos, metadatos del tipo, titulo, autor, campos]
+    texto: >-
+      En «Dublin Core» revisas los 13 campos propuestos a partir de la limpieza (título, autor, temas,
+      cobertura, etc.) y en «Metadatos del tipo» los campos propios de una encuesta, entrevista o
+      prueba. Puedes corregir cualquier campo antes de continuar.
+  - titulo: Paso 5, Aprobar metadatos
+    claves: [aprobar, perfil semantico, aprobacion, ver json]
+    texto: >-
+      Revisas el perfil semántico del instrumento (título, objetivo, temas, población y sus preguntas)
+      y lo apruebas. Solo la autora o un administrador puede aprobar. Aprobar es requisito para que el
+      instrumento entre al chat.
+  - titulo: Paso 6, KPIs sugeridos
+    claves: [kpis sugeridos, aceptar, acepto, rechazar, rechazo, justificacion, puntaje, evidencia]
+    texto: >-
+      El sistema sugiere KPIs por similitud con el perfil semántico. Cada uno muestra su puntaje, las
+      preguntas que lo sustentan y una justificación que puedes editar. Usa «Aceptar» o «Rechazar» en
+      cada KPI.
+  - titulo: Paso 7, Guardar y documento final
+    claves: [guardar, documento final, publicar, terminar]
+    texto: >-
+      Se genera el documento final del instrumento: las respuestas interpretadas de cada persona, los
+      resúmenes por pregunta y los KPIs aceptados. Al guardar se publica y el chat empieza a usarlo.
+  - titulo: Usar el chat
+    claves: [chat, preguntar, fuentes, citas, alcance, investigacion, instrumentos seleccionados]
+    texto: >-
+      En «Chat» pregunta en lenguaje natural sobre tus instrumentos. Arriba eliges el alcance: tu
+      investigación, algunos instrumentos o todo el acervo. Cada respuesta cita sus fuentes como
+      [Fuente n] y las tarjetas debajo muestran de qué instrumento salió cada dato. Puedes preguntar por
+      una persona usando su ID anónimo (por ejemplo R017, A005 o E02).
+  - titulo: Armar una investigación
+    claves: [investigacion, armar investigacion, seleccionar instrumentos, contexto]
+    texto: >-
+      En «Armar investigación» eliges los instrumentos con los que vas a trabajar y describes tu
+      investigación (objetivo, población, nivel y pregunta). El chat usa esa selección como alcance
+      y ese contexto para orientar sus respuestas.
+  - titulo: Por qué un instrumento no aparece en el chat
+    claves: [no aparece, no encuentra, no responde, falta instrumento, sin informacion]
+    texto: >-
+      Un instrumento entra al chat solo si sus metadatos están aprobados (paso 5) y se guardó (paso 7).
+      Revisa también que esté dentro del alcance elegido en el chat. Si lo acabas de guardar, espera unos
+      segundos a que se actualice el índice.
+  - titulo: Mis instrumentos y descargas
+    claves: [mis instrumentos, catalogo, descargar, descargo, crudo, json, sav, spss]
+    texto: >-
+      En «Mis instrumentos» ves el catálogo con filtros. Desde cada ficha puedes descargar el
+      instrumento crudo, el JSON o un archivo .sav para SPSS. De los instrumentos de otras personas
+      solo puedes descargar el crudo.
+  - titulo: Tablero de KPIs
+    claves: [kpis, tablero, dashboard, indicadores, que preguntas miden]
+    texto: >-
+      En «KPIs» exploras los indicadores del catálogo por nivel, año y tipo de instrumento, y ves qué
+      preguntas de cada instrumento miden un KPI con su evidencia.
+  - titulo: Espacio vectorial
+    claves: [espacio vectorial, mapa, vectores, embeddings, puntos]
+    texto: >-
+      En «Espacio vectorial» ves un mapa donde cada punto es un texto convertido en vector (KPIs,
+      instrumentos y fragmentos); los puntos cercanos tienen significados parecidos. Puedes buscar una
+      frase y ver qué KPIs e instrumentos se le parecen.
+  - titulo: Gestión de usuarios
+    claves: [usuarios, alta de usuario, registrar, administrador, rol]
+    texto: >-
+      Solo un administrador ve «Gestión de usuarios», donde da de alta a nuevas personas con rol de
+      investigador o administrador.

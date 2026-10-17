@@ -233,14 +233,26 @@ CREATE TABLE IF NOT EXISTS valor_variable_inferido (
 
 -- ── 12. rag_log ───────────────────────────────────────────────────────────────
 
+-- Una fila por consulta al chat. decision_dominio: dentro | fuera | privacidad |
+-- manipulacion | sin_informacion | ayuda; ruta: semantica | estructurada | mixta |
+-- ayuda. Las métricas (RAGAS) se calculan después de responder y se agregan aquí.
 CREATE TABLE IF NOT EXISTS rag_log (
-    rag_log_id    SERIAL      PRIMARY KEY,
-    pregunta      TEXT        NOT NULL,
-    respuesta     TEXT,
-    modelo_usado  VARCHAR(100),
-    chunks_usados INTEGER,
-    latencia_ms   INTEGER,
-    timestamp     TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
+    rag_log_id       SERIAL      PRIMARY KEY,
+    pregunta         TEXT        NOT NULL,
+    respuesta        TEXT,
+    modelo_usado     VARCHAR(100),
+    chunks_usados    INTEGER,
+    latencia_ms      INTEGER,
+    timestamp        TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
+    decision_dominio VARCHAR(20),
+    motivo           TEXT,
+    score_max        REAL,
+    ruta             VARCHAR(20),
+    instrumentos     JSONB       NOT NULL DEFAULT '[]'::jsonb,
+    contexto_usado   JSONB       NOT NULL DEFAULT '[]'::jsonb,
+    metricas         JSONB,
+    modelo_juez      VARCHAR(100),
+    fecha_metricas   TIMESTAMP
 );
 
 -- ── 13. documento_vectorizado (chunks vectorizados de cada instrumento) ───────
@@ -323,6 +335,25 @@ CREATE TABLE IF NOT EXISTS version_conocimiento (
     CONSTRAINT uq_version_conocimiento UNIQUE (id_crudo, version)
 );
 
+-- ── 17. respuesta_interpretada (knowledge-service, al publicar) ───────────────
+-- Una fila por respuesta (respondente × pregunta) del documento final VIGENTE.
+-- Insumo de los conteos y porcentajes exactos del chat; `contexto` guarda los
+-- datos del respondente (turno, carrera…) para filtrar por grupo.
+
+CREATE TABLE IF NOT EXISTS respuesta_interpretada (
+    id_respuesta    SERIAL       PRIMARY KEY,
+    id_crudo        INTEGER      NOT NULL REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    version         INTEGER      NOT NULL,
+    respondente_id  VARCHAR(40)  NOT NULL,
+    pregunta_id     VARCHAR(40)  NOT NULL,
+    valor           TEXT,
+    significado     TEXT,
+    nivel           VARCHAR(30),
+    estado          VARCHAR(20)  NOT NULL,
+    contexto        JSONB        NOT NULL DEFAULT '{}'::jsonb,
+    fecha_creacion  TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+);
+
 -- ── Índices ───────────────────────────────────────────────────────────────────
 
 CREATE INDEX IF NOT EXISTS idx_raw_data_owner           ON raw_data(id_owner);
@@ -336,6 +367,8 @@ CREATE INDEX IF NOT EXISTS idx_docvec_coleccion         ON documento_vectorizado
 CREATE INDEX IF NOT EXISTS idx_rag_log_timestamp        ON rag_log(timestamp);
 CREATE INDEX IF NOT EXISTS idx_limpieza_crudo_estado    ON limpieza_ejecucion(id_crudo, estado);
 CREATE INDEX IF NOT EXISTS idx_version_conocimiento_crudo_estado ON version_conocimiento(id_crudo, estado);
+CREATE INDEX IF NOT EXISTS idx_respuesta_crudo_pregunta    ON respuesta_interpretada(id_crudo, pregunta_id);
+CREATE INDEX IF NOT EXISTS idx_respuesta_crudo_respondente ON respuesta_interpretada(id_crudo, respondente_id);
 
 COMMIT;
 

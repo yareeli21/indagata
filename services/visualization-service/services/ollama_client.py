@@ -39,17 +39,31 @@ _KEEP_ALIVE = -1
 _OPTIONS = {"num_ctx": 4096, "temperature": 0.2}
 
 
-def _payload(modelo: str, prompt: str, *, stream: bool, sistema: str | None = None) -> dict:
-    """Arma el cuerpo de /api/generate con las opciones de rendimiento."""
+def _payload(
+    modelo: str,
+    prompt: str,
+    *,
+    stream: bool,
+    sistema: str | None = None,
+    formato: str | None = None,
+    opciones: dict | None = None,
+) -> dict:
+    """Arma el cuerpo de /api/generate con las opciones de rendimiento.
+
+    `opciones` se suma a las de rendimiento (p. ej. temperature 0 para el
+    clasificador de dominio) y `formato="json"` obliga a Ollama a devolver JSON.
+    """
     cuerpo = {
         "model": modelo,
         "prompt": prompt,
         "stream": stream,
         "keep_alive": _KEEP_ALIVE,
-        "options": _OPTIONS,
+        "options": {**_OPTIONS, **(opciones or {})},
     }
     if sistema:
         cuerpo["system"] = sistema
+    if formato:
+        cuerpo["format"] = formato
     return cuerpo
 
 MENSAJE_DEGRADADO = (
@@ -94,12 +108,19 @@ async def generar_stream(prompt: str, modelo: str, sistema: str | None = None) -
         yield MENSAJE_DEGRADADO
 
 
-async def generar_no_stream(prompt: str, modelo: str, sistema: str | None = None) -> tuple[str, bool]:
+async def generar_no_stream(
+    prompt: str,
+    modelo: str,
+    sistema: str | None = None,
+    *,
+    formato: str | None = None,
+    opciones: dict | None = None,
+) -> tuple[str, bool]:
     """Genera texto completo. Devuelve `(texto, degradado)` (§4.10).
 
     `degradado=True` si Ollama no estuvo disponible o devolvió error.
     """
-    payload = _payload(modelo, prompt, stream=False, sistema=sistema)
+    payload = _payload(modelo, prompt, stream=False, sistema=sistema, formato=formato, opciones=opciones)
     try:
         async with httpx.AsyncClient(timeout=_TIMEOUT) as cliente:
             resp = await cliente.post(_url(), json=payload)

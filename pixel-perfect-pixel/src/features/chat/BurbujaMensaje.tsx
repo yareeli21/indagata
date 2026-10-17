@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { BookOpen } from "lucide-react";
+import { BookOpen, CircleHelp, GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { FuenteChat, Mensaje } from "@/types";
+import type { FuenteChat, Mensaje, ReferenciaChat } from "@/types";
 
 interface BurbujaMensajeProps {
   mensaje: Mensaje;
@@ -61,7 +61,33 @@ export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
           </div>
         </div>
       )}
+
+      {/* Glosario metodológico o ayuda de la plataforma que respaldan la respuesta */}
+      {!esUsuario &&
+        !mensaje.generando &&
+        mensaje.referencias &&
+        mensaje.referencias.length > 0 && (
+          <div className="flex w-full max-w-[80%] flex-col gap-2">
+            {mensaje.referencias.map((r) => (
+              <TarjetaReferencia key={`${r.tipo}-${r.titulo}`} referencia={r} />
+            ))}
+          </div>
+        )}
     </div>
+  );
+}
+
+function TarjetaReferencia({ referencia }: { referencia: ReferenciaChat }) {
+  const esAyuda = referencia.tipo === "ayuda";
+  const Icono = esAyuda ? CircleHelp : GraduationCap;
+  return (
+    <details className="rounded-xl border border-border bg-card px-3 py-2 text-xs">
+      <summary className="flex cursor-pointer items-center gap-1.5 font-medium text-card-foreground">
+        <Icono className="size-3.5 shrink-0 text-primary" aria-hidden />
+        {esAyuda ? "Ayuda" : "Glosario"}: {referencia.titulo}
+      </summary>
+      <p className="mt-1.5 leading-relaxed text-muted-foreground">{referencia.texto}</p>
+    </details>
   );
 }
 

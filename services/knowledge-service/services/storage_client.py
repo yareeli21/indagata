@@ -27,10 +27,10 @@ class StorageError(Exception):
         self.status_code = status_code
 
 
-def _pedir(metodo: str, ruta: str, **kwargs: Any) -> httpx.Response:
+def _pedir(metodo: str, ruta: str, *, timeout: httpx.Timeout = _TIMEOUT, **kwargs: Any) -> httpx.Response:
     url = f"{settings.STORAGE_SERVICE_URL.rstrip('/')}{ruta}"
     try:
-        with httpx.Client(timeout=_TIMEOUT) as cliente:
+        with httpx.Client(timeout=timeout) as cliente:
             resp = cliente.request(metodo, url, headers=cabeceras_servicio(), **kwargs)
     except httpx.HTTPError as exc:
         logger.warning("storage-service no disponible (%s %s): %s", metodo, ruta, exc)
@@ -80,3 +80,10 @@ def descargar_json(ruta: str) -> dict[str, Any]:
     import json
 
     return json.loads(_pedir("GET", "/almacenamiento/descarga", params={"ruta": ruta}).content.decode("utf-8"))
+
+
+def indexar(id_crudo: int) -> dict[str, Any]:
+    """Pide a storage-service (único escritor de Chroma) reingerir el instrumento al RAG."""
+    # Vectorizar cientos de respondentes en CPU tarda minutos (corre en segundo plano).
+    largo = httpx.Timeout(connect=5.0, read=1800.0, write=60.0, pool=5.0)
+    return _pedir("POST", f"/almacenamiento/indice/instrumentos/{id_crudo}", json={"reindexar": True}, timeout=largo).json()

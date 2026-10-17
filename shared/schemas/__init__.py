@@ -80,6 +80,11 @@ from shared.schemas.metadatos_pruebasestandarizadas import (
 )
 from shared.schemas.prompt import PromptBase, PromptCreate, PromptRead, PromptUpdate
 from shared.schemas.rag_log import RagLogBase, RagLogCreate, RagLogRead
+from shared.schemas.respuesta_interpretada import (
+    RespuestaInterpretadaBase,
+    RespuestaInterpretadaCreate,
+    RespuestaInterpretadaRead,
+)
 from shared.schemas.raw_data import (
     RawDataBase,
     RawDataCreate,
@@ -185,6 +190,10 @@ __all__ = [
     "RagLogBase",
     "RagLogCreate",
     "RagLogRead",
+    # respuesta_interpretada
+    "RespuestaInterpretadaBase",
+    "RespuestaInterpretadaCreate",
+    "RespuestaInterpretadaRead",
     # documento_vectorizado
     "DocumentoVectorizadoBase",
     "DocumentoVectorizadoCreate",

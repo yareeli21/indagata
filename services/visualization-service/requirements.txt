@@ -23,3 +23,6 @@ sentence-transformers==3.0.0
 # ── Exportación a SPSS (.sav) ──
 pandas==2.2.2
 pyreadstat==1.2.7
+
+# ── Dominio acotado del chat (config/dominio.yaml y config/ayuda.yaml) ──
+pyyaml==6.0.3

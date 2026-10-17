@@ -521,6 +521,32 @@ export interface FuenteChat {
   fragmento: string;
 }
 
+/** Entrada curada que respalda una respuesta: glosario metodológico o ayuda de la plataforma. */
+export interface ReferenciaChat {
+  tipo: "glosario" | "ayuda";
+  titulo: string;
+  texto: string;
+}
+
+/** Decisión del dominio acotado del chat (también se guarda en rag_log). */
+export type DecisionChat =
+  "dentro" | "fuera" | "privacidad" | "manipulacion" | "sin_informacion" | "ayuda";
+
+/** Cómo se respondió: búsqueda semántica, cálculo exacto, ambos o la ayuda de la plataforma. */
+export type RutaChat = "semantica" | "estructurada" | "mixta" | "ayuda";
+
+/** Lo que llega al terminar una respuesta (evento SSE `fuentes`). */
+export interface ResultadoChat {
+  fuentes: FuenteChat[];
+  referencias: ReferenciaChat[];
+  decision?: DecisionChat | undefined;
+  ruta?: RutaChat | null;
+  consultaId?: number | null;
+}
+
+/** Instrumentos que consulta el chat: los de la investigación, unos elegidos o todo el acervo. */
+export type AlcanceChat = "investigacion" | "elegidos" | "acervo";
+
 export type RolMensaje = "usuario" | "asistente";
 
 export interface Mensaje {
@@ -529,6 +555,10 @@ export interface Mensaje {
   contenido: string;
   /** Solo en mensajes del asistente */
   fuentes?: FuenteChat[];
+  referencias?: ReferenciaChat[];
+  decision?: DecisionChat | undefined;
+  ruta?: RutaChat | null;
+  consultaId?: number | null;
   /** true mientras se está generando (streaming) */
   generando?: boolean;
 }

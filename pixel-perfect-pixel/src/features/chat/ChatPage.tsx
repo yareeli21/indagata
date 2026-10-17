@@ -4,7 +4,7 @@ import { getInstrumentos } from "@/api/instrumentos";
 import { useAuth } from "@/features/auth/AuthContext";
 import { useResearch } from "@/features/research/ResearchContext";
 import { fuentesDeInvestigacion } from "@/features/research/fuentes";
-import type { ContextoInvestigacion, Instrumento, Mensaje, ModeloLLM } from "@/types";
+import type { AlcanceChat, ContextoInvestigacion, Instrumento, Mensaje, ModeloLLM } from "@/types";
 import { MessageSquare } from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Pagina } from "@/components/layout/Pagina";
@@ -14,6 +14,7 @@ import { ChipsFuentes } from "./ChipsFuentes";
 import { EstadoVacioChat } from "./EstadoVacioChat";
 import { FormularioContexto } from "./FormularioContexto";
 import { PanelNoticias } from "./PanelNoticias";
+import { SelectorAlcance } from "./SelectorAlcance";
 
 type Fase = "vacio" | "contexto" | "chat";
 
@@ -22,15 +23,24 @@ export function ChatPage() {
   const { activa, cargando: cargandoResearch } = useResearch();
   const miId = usuario?.investigadorId ?? "";
 
-  // Instrumentos de la investigación activa (los elegidos al armarla).
+  // Instrumentos de la investigación activa (los elegidos al armarla) y todo el catálogo
+  // (para elegir instrumentos sueltos en el alcance del chat).
   const [instrumentosFuentes, setInstrumentosFuentes] = useState<Instrumento[]>([]);
+  const [catalogo, setCatalogo] = useState<Instrumento[]>([]);
 
   useEffect(() => {
     if (!activa) return;
     getInstrumentos()
-      .then((todos) => setInstrumentosFuentes(fuentesDeInvestigacion(todos, activa.id, miId)))
+      .then((todos) => {
+        setCatalogo(todos);
+        setInstrumentosFuentes(fuentesDeInvestigacion(todos, activa.id, miId));
+      })
       .catch(() => setInstrumentosFuentes([]));
   }, [activa, miId]);
+
+  // Alcance del chat: la investigación (por defecto), instrumentos elegidos o todo el acervo.
+  const [alcance, setAlcance] = useState<AlcanceChat>("investigacion");
+  const [elegidos, setElegidos] = useState<string[]>([]);
 
   // Fase del asistente
   const [fase, setFase] = useState<Fase>("vacio");
@@ -91,19 +101,25 @@ export function ChatPage() {
             prev.map((m) => (m.id === idAsistente ? { ...m, contenido: m.contenido + token } : m)),
           );
         },
-        (fuentes) => {
+        (resultado) => {
           setMensajes((prev) =>
-            prev.map((m) => (m.id === idAsistente ? { ...m, generando: false, fuentes } : m)),
+            prev.map((m) => (m.id === idAsistente ? { ...m, generando: false, ...resultado } : m)),
           );
           setGenerando(false);
           cancelarRef.current = null;
         },
         activa?.id ?? "",
+        // [] = todo el acervo; sin indicar = los instrumentos de la investigación.
+        alcance === "acervo"
+          ? []
+          : alcance === "elegidos" && elegidos.length > 0
+            ? elegidos
+            : undefined,
       );
 
       cancelarRef.current = cancelar;
     },
-    [contexto, modelo, activa],
+    [contexto, modelo, activa, alcance, elegidos],
   );
 
   function handleDetener() {
@@ -157,9 +173,20 @@ export function ChatPage() {
     <div className="flex h-full flex-1 overflow-hidden">
       {/* Área principal del chat */}
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* Chips de fuentes */}
+        {/* Alcance y chips de fuentes */}
         <div className="border-b bg-card">
-          <ChipsFuentes instrumentos={instrumentosFuentes} miId={miId} />
+          <SelectorAlcance
+            alcance={alcance}
+            elegidos={elegidos}
+            instrumentos={catalogo}
+            deshabilitado={generando}
+            onCambiarAlcance={setAlcance}
+            onCambiarElegidos={setElegidos}
+          />
+          {alcance === "investigacion" && (
+            <ChipsFuentes instrumentos={instrumentosFuentes} miId={miId} />
+          )}
+          {alcance !== "investigacion" && <div className="pb-3" />}
         </div>
 
         {/* Mensajes */}

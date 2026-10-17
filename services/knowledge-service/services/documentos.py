@@ -10,6 +10,7 @@ SHA-256); su registro, en la MISMA fila de `version_conocimiento` del perfil:
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from datetime import datetime, timezone
 from typing import Any
 
@@ -19,7 +20,7 @@ from sqlalchemy.orm import Session
 from shared.models.usuario import Usuario
 from shared.models.version_conocimiento import VersionConocimiento
 
-from services import documento, fuentes, storage_client, versiones
+from services import documento, fuentes, respuestas, storage_client, versiones
 
 logger = logging.getLogger("knowledge-service")
 
@@ -101,6 +102,10 @@ def publicar(db: Session, usuario: Usuario, id_crudo: int, version: int) -> Vers
         return fila
     if fila.estado != "borrador" or not fila.ruta_documento:
         raise HTTPException(status.HTTP_409_CONFLICT, "Primero genera el documento final de esta versión.")
+    try:
+        doc = storage_client.descargar_json(fila.ruta_documento)
+    except storage_client.StorageError as exc:
+        raise _error_storage(exc) from exc
     (
         db.query(VersionConocimiento)
         .filter(VersionConocimiento.id_crudo == id_crudo, VersionConocimiento.estado == "vigente")
@@ -108,9 +113,37 @@ def publicar(db: Session, usuario: Usuario, id_crudo: int, version: int) -> Vers
     )
     fila.estado = "vigente"
     fila.fecha_publicacion = _ahora()
+    # Misma transacción: el documento vigente y sus respuestas en formato largo.
+    n = respuestas.reemplazar(db, doc, id_crudo, fila.version)
     db.commit()
+    logger.info("Documento v%s de id_crudo=%s publicado (%d respuestas).", fila.version, id_crudo, n)
     db.refresh(fila)
     return fila
+
+
+def reingerir(fabrica: Callable[[], Session], id_crudo: int, version: int) -> None:
+    """Pide a storage-service reingerir el instrumento al RAG con el documento vigente.
+
+    Corre en SEGUNDO PLANO después de responder la publicación: vectorizar un
+    documento con cientos de respondentes tarda minutos en CPU y no debe bloquear
+    el «Guardar» del asistente. Si falla, la publicación NO se revierte (el
+    documento ya es válido y vigente): se deja un aviso `reingesta_pendiente` para
+    reintentar con `POST /rag/index` o `scripts/poblar_respuestas.py`.
+    """
+    try:
+        storage_client.indexar(id_crudo)
+        return
+    except storage_client.StorageError as exc:
+        logger.warning("No se pudo reingerir id_crudo=%s al RAG: %s", id_crudo, exc)
+        mensaje = f"El documento se publicó, pero no se pudo actualizar el RAG: {exc}"
+    db = fabrica()
+    try:
+        fila = db.query(VersionConocimiento).filter_by(id_crudo=id_crudo, version=version).one_or_none()
+        if fila is not None:
+            fila.avisos = [*(fila.avisos or []), {"codigo": "reingesta_pendiente", "origen": "publicacion", "mensaje": mensaje}]
+            db.commit()
+    finally:
+        db.close()
 
 
 def vista(doc: dict[str, Any]) -> dict[str, Any]:

@@ -77,7 +77,9 @@ class StorageFalso:
         self.textos: dict[str, str] = {}
         self.jsons: dict[tuple[int, str], dict[str, Any]] = {}
         self.guardados: dict[str, dict[str, Any]] = {}
+        self.indexados: list[int] = []
         self.caido = False
+        self.indice_caido = False
 
     def _revisar(self, ruta: str, almacen: dict) -> None:  # noqa: ANN001
         from services.storage_client import StorageError
@@ -111,6 +113,14 @@ class StorageFalso:
     def descargar_json(self, ruta: str) -> dict[str, Any]:
         self._revisar(ruta, self.guardados)
         return self.guardados[ruta]
+
+    def indexar(self, id_crudo: int) -> dict[str, Any]:
+        from services.storage_client import StorageError
+
+        if self.caido or self.indice_caido:
+            raise StorageError("El servicio de almacenamiento no está disponible.")
+        self.indexados.append(id_crudo)
+        return {"instrumentoId": str(id_crudo), "chunks": 1, "estado": "indexado"}
 
 
 @pytest.fixture()
@@ -150,6 +160,7 @@ def storage(monkeypatch):
     monkeypatch.setattr(storage_client, "obtener_json", falso.obtener_json)
     monkeypatch.setattr(storage_client, "guardar_json", falso.guardar_json)
     monkeypatch.setattr(storage_client, "descargar_json", falso.descargar_json)
+    monkeypatch.setattr(storage_client, "indexar", falso.indexar)
     return falso
 
 

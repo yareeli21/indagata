@@ -6,6 +6,7 @@ llama literalmente `timestamp`.
 from __future__ import annotations
 
 from datetime import datetime
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict
 
@@ -16,6 +17,15 @@ class RagLogBase(BaseModel):
     modelo_usado: str | None = None
     chunks_usados: int | None = None
     latencia_ms: int | None = None
+    decision_dominio: str | None = None
+    motivo: str | None = None
+    score_max: float | None = None
+    ruta: str | None = None
+    instrumentos: list[str] = []
+    contexto_usado: list[dict[str, Any]] = []
+    metricas: dict[str, Any] | None = None
+    modelo_juez: str | None = None
+    fecha_metricas: datetime | None = None
 
 
 class RagLogCreate(RagLogBase):

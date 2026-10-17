@@ -104,6 +104,19 @@ class AppSettings(BaseSettings):
     # relacionada en lugar de dejar que el modelo improvise. Calibrado con 30
     # instrumentos: preguntas sin relación ≤ 0.30, relacionadas 0.60–0.77.
     RAG_MIN_SCORE: float = 0.35
+    # Dominio acotado (visualization-service/services/dominio.py). Zona gris: similitud
+    # en [RAG_MIN_SCORE, RAG_ZONA_GRIS_MAX) sin que una regla decida; ahí un clasificador
+    # con Ollama (JSON, temperatura 0) decide si la pregunta es del dominio. Medido en la
+    # auditoría: «poema sobre motivación» 0.58, «nombre de R0017» 0.48 (los resuelven las
+    # reglas), preguntas del acervo 0.60–0.70.
+    RAG_ZONA_GRIS_MAX: float = 0.50
+    # Sin fragmentos y con similitud máxima (acervo, glosario, ayuda y KPIs) por debajo
+    # de esto, la pregunta es ajena al dominio y recibe el mensaje de «fuera» con
+    # ejemplos; entre este valor y RAG_MIN_SCORE, el de «sin información». Auditoría:
+    # «¿quién ganó el mundial?» 0.25; preguntas sin relación ≤ 0.30.
+    RAG_FUERA_MAX: float = 0.30
+    RAG_CLASIFICADOR_LLM: bool = True
+    RAG_CLASIFICADOR_MODELO: str = ""  # vacío = OLLAMA_MODEL
 
     model_config = SettingsConfigDict(
         # Ruta absoluta al .env de la raíz del repo, para que se encuentre sin

@@ -4,10 +4,15 @@ El storage-service es el ÚNICO escritor de la colección `instrumentos` de Chro
 Un instrumento solo se ingiere cuando su autor ya aprobó los metadatos (requisito
 para el RAG). Por cada instrumento:
 
-  1. Se resuelve su JSON estandarizado: último artefacto `analysis` (con KPIs) o
-     `metadata` (recién aprobado); si no hay, `instrumento_procesado.ruta_json`
-     (instrumentos sembrados de la demo).
-  2. Se trocea en chunks:
+  1. Fuente de los chunks:
+       - si tiene DOCUMENTO FINAL vigente (knowledge-service, `version_conocimiento`
+         con estado `vigente`), se usa ese documento: respuestas interpretadas por
+         respondente, resúmenes y KPIs aceptados (ver `chunks_documento.py`);
+       - si no, su JSON estandarizado: último artefacto `analysis` (con KPIs) o
+         `metadata` (recién aprobado); si no hay, `instrumento_procesado.ruta_json`
+         (instrumentos sembrados de la demo). Es el camino de los instrumentos
+         anteriores al documento final.
+  2. Con el JSON estandarizado se trocea en chunks:
        - chunk 0..k  `encabezado`: primero la ficha esencial (título, tipo,
                      objetivo, temas, dimensiones y KPIs asociados) y después el
                      detalle (Dublin Core restante y metadatos del tipo); cada
@@ -39,6 +44,7 @@ from shared.models.documento_vectorizado import DocumentoVectorizado
 from shared.models.instrumento_procesado import InstrumentoProcesado
 from shared.models.raw_data import RawData
 from shared.models.usuario import Usuario
+from shared.models.version_conocimiento import VersionConocimiento
 
 from services import file_manager, vectores
 
@@ -243,6 +249,27 @@ def resolver_json(id_crudo: int, procesado: InstrumentoProcesado | None) -> dict
     return None
 
 
+def resolver_documento_vigente(db: Session, id_crudo: int) -> dict[str, Any] | None:
+    """Documento final publicado (vigente) del instrumento, o None si no tiene."""
+    fila = (
+        db.query(VersionConocimiento)
+        .filter(VersionConocimiento.id_crudo == id_crudo, VersionConocimiento.estado == "vigente")
+        .order_by(VersionConocimiento.version.desc())
+        .first()
+    )
+    if fila is None or not fila.ruta_documento:
+        return None
+    entrada = file_manager.buscar_por_key(fila.ruta_documento)
+    if entrada is None:
+        logger.warning("El documento vigente %s no está en el almacenamiento.", fila.ruta_documento)
+        return None
+    try:
+        return file_manager.leer_json(entrada)
+    except (file_manager.NoEncontradoError, file_manager.AlmacenamientoError) as exc:
+        logger.warning("Documento vigente ilegible (%s): %s", fila.ruta_documento, exc)
+        return None
+
+
 # ── Construcción de chunks ─────────────────────────────────────────────────────
 
 
@@ -444,15 +471,25 @@ def indexar_instrumento(db: Session, id_crudo: int, *, reindexar: bool = True) -
             "motivo": "Ya estaba indexado.",
         }
 
-    data = resolver_json(id_crudo, procesado)
-    if not data:
+    from services import chunks_documento  # import diferido: ese módulo usa este
+
+    documento = resolver_documento_vigente(db, id_crudo)
+    data = resolver_json(id_crudo, procesado) or {}
+    if not documento and not data:
         raise IndiceError("El instrumento no tiene JSON estandarizado para indexar.", 422)
 
     tipo_ui = _TIPO_UI.get((raw.tipo_instrumento or "").lower(), "Encuesta")
-    chunks = construir_chunks(data, tipo_ui)
     dc = _dict(_dict(data.get("metadata")).get("dublin_core"))
     autor = db.get(Usuario, raw.id_owner)
-    titulo = _texto(_dict(data.get("instrument")).get("title")) or _texto(dc.get("dc:title")) or raw.nombre_archivo
+    if documento:
+        chunks = chunks_documento.construir(documento, tipo_ui)
+        titulo = _texto(_dict(documento.get("instrumento")).get("titulo"))
+        kpis = chunks_documento.nombres_kpis(documento)
+    else:
+        chunks = construir_chunks(data, tipo_ui)
+        titulo = _texto(_dict(data.get("instrument")).get("title"))
+        kpis = _nombres_kpis(data)
+    titulo = titulo or _texto(dc.get("dc:title")) or raw.nombre_archivo
     base_meta = {
         "instrumentoId": str(id_crudo),
         "idInstrumento": int(procesado.id_instrumento),
@@ -462,15 +499,22 @@ def indexar_instrumento(db: Session, id_crudo: int, *, reindexar: bool = True) -
         "autorId": str(raw.id_owner),
         "nivel": _nivel(data),
         "anio": _anio(data, raw),
-        "kpis": json.dumps(_nombres_kpis(data), ensure_ascii=False),
+        "kpis": json.dumps(kpis, ensure_ascii=False),
+        # De dónde salieron los chunks: `documento` (documento final) o `json_tecnico`.
+        "fuente": "documento" if documento else "json_tecnico",
     }
     ids = [f"inst-{id_crudo}-{n}" for n in range(len(chunks))]
+    # Chroma no admite None en la metadata: los campos opcionales van como "".
     metadatas = [
         {
             **base_meta,
             "seccion": c.seccion,
             "preguntaId": c.pregunta_id,
             "pregunta": c.pregunta,
+            "respondenteId": str(c.extra.get("respondenteId", "")),
+            "seccionInstrumento": str(c.extra.get("seccionInstrumento", "")),
+            "kpiId": str(c.extra.get("kpiId", "")),
+            "kpisChunk": str(c.extra.get("kpisChunk", "[]")),
             "chunk_index": n,
         }
         for n, c in enumerate(chunks)

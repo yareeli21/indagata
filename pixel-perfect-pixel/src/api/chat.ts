@@ -1,4 +1,4 @@
-import type { ContextoInvestigacion, FuenteChat, ModeloLLM } from "@/types";
+import type { ContextoInvestigacion, ModeloLLM, ResultadoChat } from "@/types";
 import { API_URL, avisarSesionExpirada, leerToken } from "./client";
 
 export const MODELOS_DISPONIBLES: { id: ModeloLLM; etiqueta: string }[] = [
@@ -45,10 +45,8 @@ export function getInstrumentosDeInvestigacion(investigacionId: string): string[
 
 // ── Chat RAG con streaming SSE ──────────────────────────────────────────────────
 
-/** Datos del evento SSE `fuentes` emitido por el visualization-service. */
-interface EventoFuentes {
-  fuentes: FuenteChat[];
-}
+/** Datos del evento SSE `fuentes` emitido por el visualization-service (al final). */
+type EventoFuentes = Partial<ResultadoChat>;
 
 /** Datos del evento SSE `token`. */
 interface EventoToken {
@@ -59,17 +57,20 @@ interface EventoToken {
  * Envía una pregunta al RAG y recibe la respuesta por streaming (SSE sobre fetch).
  * POST ${API_URL}/rag/chat con Authorization Bearer. El servicio emite eventos
  * `token` (fragmentos), un `fuentes` al final y `fin` para cerrar (§4.9 del diseño).
+ * El evento `fuentes` trae además las referencias (glosario o ayuda), la decisión
+ * del dominio, la ruta y el id de la consulta en rag_log.
  *
- * @param onToken  se llama con cada fragmento de texto generado
- * @param onDone   se llama al terminar, con las fuentes recuperadas
- * @returns        función para cancelar el streaming (AbortController)
+ * @param onToken        se llama con cada fragmento de texto generado
+ * @param onDone         se llama al terminar, con las fuentes y la decisión
+ * @param instrumentoIds alcance explícito; [] = todo el acervo; sin indicar = la investigación
+ * @returns              función para cancelar el streaming (AbortController)
  */
 export function enviarMensaje(
   pregunta: string,
   contexto: ContextoInvestigacion,
   modelo: ModeloLLM,
   onToken: (token: string) => void,
-  onDone: (fuentes: FuenteChat[]) => void,
+  onDone: (resultado: ResultadoChat) => void,
   investigacionId: string,
   instrumentoIds?: string[],
 ): () => void {
@@ -80,7 +81,7 @@ export function enviarMensaje(
   const token = leerToken();
   if (token) encabezados["Authorization"] = `Bearer ${token}`;
 
-  let fuentes: FuenteChat[] = [];
+  let resultado: ResultadoChat = { fuentes: [], referencias: [] };
 
   async function ejecutar(): Promise<void> {
     const respuesta = await fetch(`${API_URL}/rag/chat`, {
@@ -101,7 +102,7 @@ export function enviarMensaje(
 
     if (!respuesta.ok || !respuesta.body) {
       if (respuesta.status === 401) avisarSesionExpirada();
-      onDone(fuentes);
+      onDone(resultado);
       return;
     }
 
@@ -130,7 +131,14 @@ export function enviarMensaje(
           }
         } else if (eventoActual === "fuentes") {
           try {
-            fuentes = (JSON.parse(datos) as EventoFuentes).fuentes ?? [];
+            const evento = JSON.parse(datos) as EventoFuentes;
+            resultado = {
+              fuentes: evento.fuentes ?? [],
+              referencias: evento.referencias ?? [],
+              decision: evento.decision,
+              ruta: evento.ruta ?? null,
+              consultaId: evento.consultaId ?? null,
+            };
           } catch {
             /* se ignora */
           }
@@ -150,12 +158,12 @@ export function enviarMensaje(
       }
     }
 
-    onDone(fuentes);
+    onDone(resultado);
   }
 
   ejecutar().catch(() => {
     // Cancelación (AbortError) o fallo de red: no se notifica onDone en aborto.
-    if (!controlador.signal.aborted) onDone(fuentes);
+    if (!controlador.signal.aborted) onDone(resultado);
   });
 
   return () => controlador.abort();

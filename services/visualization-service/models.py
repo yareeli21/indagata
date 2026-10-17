@@ -204,11 +204,24 @@ class FuenteChatOut(BaseModel):
     fragmento: str
 
 
+class ReferenciaChatOut(BaseModel):
+    """Entrada curada que respalda la respuesta: glosario metodológico o ayuda de la plataforma."""
+
+    tipo: Literal["glosario", "ayuda"]
+    titulo: str
+    texto: str
+
+
 class ChatResponse(BaseModel):
     respuesta: str
     fuentes: list[FuenteChatOut]
     modelo: str
     degradado: bool = False
+    referencias: list[ReferenciaChatOut] = []
+    # Dominio acotado y enrutador (también en rag_log).
+    decision: str = "dentro"  # dentro | fuera | privacidad | manipulacion | sin_informacion | ayuda
+    ruta: str | None = None  # semantica | estructurada | mixta | ayuda
+    consultaId: int | None = None  # rag_log_id (para pedir las métricas de esta respuesta)
 
 
 # ── Espacio vectorial ──────────────────────────────────────────────────────────

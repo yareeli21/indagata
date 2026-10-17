@@ -23,6 +23,7 @@ from shared.models.documento_vectorizado import DocumentoVectorizado
 from shared.models.kpi_inferido_chunk import KpiInferidoChunk
 from shared.models.limpieza_ejecucion import LimpiezaEjecucion
 from shared.models.version_conocimiento import VersionConocimiento
+from shared.models.respuesta_interpretada import RespuestaInterpretada
 
 __all__ = [
     "Usuario",
@@ -44,4 +45,5 @@ __all__ = [
     "KpiInferidoChunk",
     "LimpiezaEjecucion",
     "VersionConocimiento",
+    "RespuestaInterpretada",
 ]

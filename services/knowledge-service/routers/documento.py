@@ -9,7 +9,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from fastapi import APIRouter
+from fastapi import APIRouter, BackgroundTasks
+from sqlalchemy.orm import sessionmaker
 
 from dependencies import DBSession, Investigador
 from models import DocumentoOut, PublicadoOut
@@ -50,6 +51,8 @@ def obtener_json(id_crudo: int, db: DBSession, usuario: Investigador) -> dict[st
 
 
 @router.post("/{id_crudo}/documento/{version}/publicar", response_model=PublicadoOut, summary="Publica el documento final (vigente)")
-def publicar(id_crudo: int, version: int, db: DBSession, usuario: Investigador) -> PublicadoOut:
+def publicar(id_crudo: int, version: int, db: DBSession, usuario: Investigador, tareas: BackgroundTasks) -> PublicadoOut:
     fila = documentos.publicar(db, usuario, id_crudo, version)
+    # La reingesta al RAG va después de responder (puede tardar minutos en CPU).
+    tareas.add_task(documentos.reingerir, sessionmaker(bind=db.get_bind(), future=True), fila.id_crudo, fila.version)
     return PublicadoOut(id_crudo=fila.id_crudo, version=fila.version, estado=fila.estado, fecha_publicacion=fila.fecha_publicacion)

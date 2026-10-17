@@ -280,7 +280,8 @@ def test_chat_sin_fragmentos_relacionados_no_llama_al_llm(cliente, acervo, chrom
     from services import prompt
 
     monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.99)  # nada alcanza el umbral
-    r = cliente.post("/rag/chat", json={"pregunta": "¿receta de pastel?", "stream": False}, headers=ANA)
+    monkeypatch.setattr(settings, "RAG_FUERA_MAX", 0.0)  # «sin información», no «fuera del dominio»
+    r = cliente.post("/rag/chat", json={"pregunta": "¿pastel de chocolate?", "stream": False}, headers=ANA)
     assert r.status_code == 200, r.text
     cuerpo = r.json()
     assert cuerpo["respuesta"].startswith(prompt.SIN_INFORMACION)

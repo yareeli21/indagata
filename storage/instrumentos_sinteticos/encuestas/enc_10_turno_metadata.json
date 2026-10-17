@@ -1,0 +1,29 @@
+{
+  "titulo": "Encuesta de evaluación y ambiente escolar por turno",
+  "tipo": "encuesta",
+  "fuente": "sintetico",
+  "n_respondentes": 60,
+  "n_items": 8,
+  "tipo_escala": "likert_1_5",
+  "dimensiones": [
+    "Evaluación del aprendizaje",
+    "Ambiente escolar"
+  ],
+  "variables_contexto": [
+    "turno",
+    "semestre",
+    "genero"
+  ],
+  "parametros_estadisticos": {
+    "semilla": 20261017,
+    "medias_latentes": {
+      "Matutino/Evaluación": 3.9,
+      "Vespertino/Evaluación": 2.7,
+      "Matutino/Ambiente": 3.6,
+      "Vespertino/Ambiente": 3.4
+    },
+    "ruido_item": 0.6,
+    "dispersion_latente": 0.8
+  },
+  "proposito": "Probar consultas por grupo (turno) en el chat RAG."
+}

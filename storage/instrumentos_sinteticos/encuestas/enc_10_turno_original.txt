@@ -1,0 +1,45 @@
+======================================================================
+INSTRUMENTO: Encuesta de evaluación y ambiente escolar por turno
+ID: enc_10
+Fuente: SINTÉTICO — generado con tools/data_synthesis/generar_enc_10_turno.py
+======================================================================
+
+INSTRUCCIONES:
+Lee cada afirmación y marca la opción que mejor describe tu experiencia
+utilizando la siguiente escala:
+
+  1 = Totalmente en desacuerdo
+  2 = En desacuerdo
+  3 = Ni de acuerdo ni en desacuerdo
+  4 = De acuerdo
+  5 = Totalmente de acuerdo
+
+DATOS GENERALES: turno (matutino o vespertino), semestre y género.
+
+--- EVALUACIÓN DEL APRENDIZAJE ---
+
+1. Los criterios de evaluación se explican con claridad al inicio del curso.
+   [ ] 1   [ ] 2   [ ] 3   [ ] 4   [ ] 5
+
+2. Las calificaciones reflejan lo que realmente aprendí.
+   [ ] 1   [ ] 2   [ ] 3   [ ] 4   [ ] 5
+
+3. Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.
+   [ ] 1   [ ] 2   [ ] 3   [ ] 4   [ ] 5
+
+4. Las evaluaciones están relacionadas con lo que se ve en clase.
+   [ ] 1   [ ] 2   [ ] 3   [ ] 4   [ ] 5
+
+--- AMBIENTE ESCOLAR ---
+
+5. Me siento seguro dentro de las instalaciones de la escuela.
+   [ ] 1   [ ] 2   [ ] 3   [ ] 4   [ ] 5
+
+6. Las relaciones entre compañeros son respetuosas.
+   [ ] 1   [ ] 2   [ ] 3   [ ] 4   [ ] 5
+
+7. Los profesores están disponibles para resolver dudas.
+   [ ] 1   [ ] 2   [ ] 3   [ ] 4   [ ] 5
+
+8. Me siento parte de la comunidad escolar.
+   [ ] 1   [ ] 2   [ ] 3   [ ] 4   [ ] 5

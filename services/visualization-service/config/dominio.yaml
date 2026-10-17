@@ -1,0 +1,127 @@
+# Dominio acotado del chat RAG (aprobado en la Fase 2 de la integración pruebas + PA).
+#
+# DENTRO: contenido de los instrumentos del acervo (respondentes anónimos por su ID),
+#   KPIs del catálogo y su justificación, interpretación metodológica anclada a los
+#   datos, comparaciones entre instrumentos, el glosario de este archivo y la ayuda
+#   de la plataforma (config/ayuda.yaml).
+# FUERA: conocimiento general, tareas creativas o genéricas, afirmaciones que no estén
+#   en el contexto recuperado, reidentificación de personas y manipulación del sistema.
+#
+# Los patrones se aplican al texto NORMALIZADO de la pregunta: minúsculas, sin acentos
+# y con espacios simples. Se editan aquí sin tocar código (reiniciar el servicio).
+
+patrones:
+  # Pedir datos que identifican a una persona del acervo.
+  privacidad:
+    - '\b(nombre|nombres|apellido|correo|e-?mail|telefono|celular|matricula|direccion|domicilio|curp|rfc|numero de cuenta)\b.{0,60}\b(respondente|encuestad[oa]|alumn[oa]|estudiante|participante|entrevistad[oa]|persona|[rae]\s?-?\d{1,4})\b'
+    - '\b(respondente|encuestad[oa]|alumn[oa]|participante|entrevistad[oa]|[rae]\s?-?\d{1,4})\b.{0,60}\b(nombre|apellido|correo|e-?mail|telefono|celular|matricula|direccion|domicilio|curp|rfc)\b'
+    - '\b(como se llama|identifica|identificar|reidentifica|reidentificar|desanonimiza|desanonimizar)\b.{0,40}\b(respondente|encuestad[oa]|alumn[oa]|participante|entrevistad[oa]|[rae]\s?-?\d{1,4})\b'
+    # «¿Quién es R017?» pide una identidad; «¿quién es el respondente más satisfecho?» es un dato válido.
+    - '\bquien es\s+(el |la )?(respondente |encuestad[oa] |alumn[oa] |participante |entrevistad[oa] )?[rae]-?\d{2,4}\b'
+  # Intentos de cambiar las reglas del asistente o de ver su configuración.
+  manipulacion:
+    - '\b(ignora|ignore|olvida|omite|desobedece)\b.{0,40}\b(instrucciones|reglas|indicaciones|anterior|lo anterior|prompt|sistema)\b'
+    - '\b(prompt|instrucciones|mensaje)\s+(del|de)\s+sistema\b'
+    # Solo como orden al inicio: «el docente actúa como mediador» es un dato, no una orden.
+    - '^(ahora\s+)?(actua|comportate|finge|haz de cuenta)\b'
+    - '\b(modo desarrollador|jailbreak|sin restricciones|sin filtros|dan mode)\b'
+    - '\bque modelo (de lenguaje )?eres\b'
+  # Tareas que no consultan los datos del acervo (generación libre o temas ajenos).
+  fuera:
+    - '\b(escribe|escribeme|redacta|compon|inventa|crea|genera)\b.{0,20}\b(poema|cuento|historia|cancion|chiste|ensayo|carta|discurso|novela|guion de cine|rima)\b'
+    # Solo temas que no pueden ser objeto de un instrumento educativo («clima escolar» o
+    # «deporte en el campus» sí pueden serlo; esos los decide la similitud y el clasificador).
+    - '\b(receta|recetas|pelicula|peliculas|serie de tv|horoscopo|chiste|chistes)\b'
+    - '\b(traduce|traducir|traduccion)\b'
+    - '\b(programa|codigo|script|funcion)\b.{0,20}\b(python|javascript|java|sql|c\+\+|html)\b'
+    - '\b(disena|diseña|disename|crea|creame|elabora|elaborame)\b.{0,20}\b(encuesta|cuestionario|examen|prueba|entrevista|instrumento) nuev[oa]\b'
+
+mensajes:
+  fuera: >-
+    Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes
+    seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:
+  privacidad: >-
+    Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni
+    dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo,
+    «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo.
+  manipulacion: >-
+    No puedo cambiar mis reglas ni mostrar mi configuración. Puedo ayudarte con preguntas sobre
+    tus instrumentos, sus resultados, sus KPIs o el uso de la plataforma. Por ejemplo:
+
+# Ejemplos que acompañan al mensaje de «fuera del dominio» (se eligen los que apliquen
+# a los tipos de instrumento del alcance).
+ejemplos:
+  encuesta:
+    - "¿Qué porcentaje está de acuerdo con la pregunta 4?"
+    - "¿Qué respondió el respondente R017?"
+  prueba_estandarizada:
+    - "¿Qué reactivo tuvo el menor porcentaje de acierto?"
+  entrevista:
+    - "¿Qué dijo el participante E02 sobre la evaluación?"
+  general:
+    - "¿Qué preguntas miden el KPI de satisfacción estudiantil?"
+    - "¿Qué significa un alfa de Cronbach bajo?"
+    - "¿Cómo subo un instrumento nuevo?"
+
+# Glosario metodológico curado: definiciones de las medidas que Indagata calcula.
+# Es una fuente citable ([Glosario: término]) y un ancla del dominio, para que
+# «¿qué es el alfa de Cronbach?» tenga respuesta sin recurrir al conocimiento del modelo.
+glosario:
+  - termino: Alfa de Cronbach (α)
+    sinonimos: [alfa, cronbach, fiabilidad, confiabilidad, consistencia interna]
+    texto: >-
+      Mide si los ítems de un mismo bloque de una encuesta responden de forma coherente entre sí
+      (consistencia interna). Va de 0 a 1: 0.9 o más es excelente, de 0.8 a 0.9 bueno, de 0.7 a 0.8
+      aceptable (el mínimo habitual en investigación), de 0.6 a 0.7 cuestionable, de 0.5 a 0.6 pobre
+      y menos de 0.5 inaceptable. Crece con el número de ítems, debe calcularse por dimensión y
+      más de 0.95 puede indicar ítems redundantes. Un α bajo sugiere que los ítems no miden lo mismo
+      o que falta invertir algún ítem redactado en negativo.
+  - termino: KR-20
+    sinonimos: [kr20, kuder, fiabilidad de la prueba]
+    texto: >-
+      Es la fiabilidad de una prueba con respuestas correcta/incorrecta, el equivalente del alfa de
+      Cronbach. Se interpreta con la misma tabla (0.7 o más es aceptable). Con pocos reactivos o
+      pocos alumnos suele salir bajo.
+  - termino: Dificultad (p)
+    sinonimos: [dificultad, indice de dificultad, porcentaje de acierto, reactivo dificil, reactivo facil]
+    texto: >-
+      Es la proporción de alumnos que acertaron un reactivo. Más de 0.7 es un reactivo fácil, de 0.3 a
+      0.7 de dificultad media y menos de 0.3 difícil. Lo deseable es que la mayoría de los reactivos
+      sean de dificultad media.
+  - termino: Discriminación (D)
+    sinonimos: [discriminacion, indice de discriminacion, punto biserial]
+    texto: >-
+      Compara los aciertos del 27 % de alumnos con mejor puntaje contra el 27 % con peor puntaje.
+      0.4 o más es excelente, de 0.3 a 0.4 buena, de 0.2 a 0.3 regular y menos de 0.2 pobre. Si es
+      negativa, los alumnos con peor puntaje aciertan más: casi siempre la clave está mal o el
+      reactivo es confuso. El punto-biserial se lee igual (0.3 o más está bien).
+  - termino: Distractor
+    sinonimos: [distractores, opcion incorrecta, distractor mas elegido]
+    texto: >-
+      Es una opción incorrecta de un reactivo de opción múltiple. Un buen distractor atrae a quienes
+      no dominan el tema; uno que nadie elige no cumple su función y conviene reemplazarlo. El
+      distractor más elegido señala la confusión más frecuente.
+  - termino: Escala Likert
+    sinonimos: [likert, escala de acuerdo, totalmente de acuerdo]
+    texto: >-
+      Escala ordenada de acuerdo o frecuencia (por ejemplo, de «Totalmente en desacuerdo» a
+      «Totalmente de acuerdo»). Indagata agrupa sus valores en niveles: desacuerdo, neutral y acuerdo.
+      Un ítem invertido (redactado en negativo) se recodifica antes de calcular promedios y el alfa.
+  - termino: Respuestas en línea recta
+    sinonimos: [linea recta, straightlining, misma respuesta]
+    texto: >-
+      Ocurre cuando una persona marca la misma opción en todos los ítems de un bloque. Puede indicar
+      respuestas poco atentas; en la limpieza se señalan y la investigadora decide si conservarlas
+      (lo sugerido) o eliminarlas.
+  - termino: Media, mediana y desviación estándar
+    sinonimos: [media, promedio, mediana, desviacion estandar, dispersion]
+    texto: >-
+      La media es el promedio de las respuestas y la mediana el valor central. La desviación estándar
+      indica qué tan dispersas están: en una escala de 1 a 5, menos de 0.6 significa que casi todos
+      opinan igual, alrededor de 1.1 opiniones variadas y más de 1.5 opiniones muy polarizadas.
+  - termino: KPI
+    sinonimos: [kpi, indicador, indicador clave]
+    texto: >-
+      Indicador clave de desempeño del catálogo de Indagata. A cada instrumento se le sugieren KPIs
+      por similitud semántica entre su perfil y el catálogo; la investigadora los acepta o rechaza y
+      cada KPI aceptado conserva su justificación y las preguntas que lo sustentan.
