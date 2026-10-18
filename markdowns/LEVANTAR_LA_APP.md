@@ -96,6 +96,14 @@ idempotentes: ejecutarlas dos veces no hace daño.
 ```powershell
 docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_10_limpieza.sql
 docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_11_conocimiento.sql
+docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_12_rag.sql
+```
+
+Si ya había documentos finales publicados antes de `2026_12_rag`, ponlos al día para el chat. Este
+comando llena la tabla de respuestas y los reingiere al RAG desde el documento final, y puede
+tardar varios minutos por instrumento:
+```powershell
+docker compose exec knowledge-service python scripts/poblar_respuestas.py
 ```
 
 **Alternativa: empezar de cero.** Esto **borra** todos los datos, instrumentos y usuarios creados:
@@ -183,6 +191,19 @@ cd services\cleaning-service
 
 No ejecutes pytest de varios servicios en un solo comando: sus módulos se llaman igual (`main`,
 `models`…) y chocan.
+
+### (Opcional) Evaluar el chat con RAGAS
+RAGAS se instala en un entorno aparte, porque sus dependencias chocan con las de los servicios.
+Necesita Python 3.12 y la app levantada:
+```powershell
+py -3.12 -m venv .venv-ragas
+.\.venv-ragas\Scripts\python.exe -m pip install -r tools\rag\requirements-ragas.txt
+docker compose exec ollama ollama pull nomic-embed-text
+.\.venv-ragas\Scripts\python.exe tools\rag\evaluar_ragas.py --ids enc_10=<id>,pru_01=<id>,ent_01=<id>,enc_04=<id>
+```
+Los `<id>` son los `id_crudo` de esos instrumentos en tu instalación. Procésalos antes con
+`tools\rag\procesar_instrumento.py`. El reporte queda en `tools\rag\reportes\`; si la corrida se
+interrumpe, repite el comando con `--continuar`.
 
 ## 10. Trabajar en el día a día
 

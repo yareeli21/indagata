@@ -137,3 +137,8 @@ def test_sin_documento_vigente_usa_el_json_tecnico(cliente, servicio, db, chroma
     assert cliente.post(f"/almacenamiento/indice/instrumentos/{id_crudo}", headers=servicio).status_code == 200
     puntos = chroma.colecciones["instrumentos"].puntos.values()
     assert {p["metadata"]["fuente"] for p in puntos} == {"json_tecnico"}
+
+
+def test_la_ficha_dice_cuando_no_hay_kpis():
+    ficha = "".join(c.texto for c in chunks_documento.construir(PRUEBA, "Prueba estandarizada") if c.seccion == "encabezado")
+    assert "KPIs asociados: ninguno" in ficha

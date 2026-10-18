@@ -109,8 +109,9 @@ def _ficha(doc: dict[str, Any], tipo_ui: str) -> list[Chunk]:
     if doc.get("entrevistas") is not None:
         lineas.append(f"Entrevistas: {len(doc['entrevistas'])}")
     nombres = [k.get("nombre") for k in doc.get("kpis_asociados") or [] if k.get("nombre")]
-    if nombres:
-        lineas.append("KPIs asociados: " + ", ".join(nombres))
+    # Se dice también cuando no hay: sin esta línea, al comparar instrumentos el modelo
+    # atribuía a uno los KPIs del otro (verificación de la Fase 5).
+    lineas.append("KPIs asociados: " + (", ".join(nombres) if nombres else "ninguno"))
     titulo = _recortar(ins.get("titulo") or "Instrumento", 120)
     return _chunks(f"Instrumento: {titulo}", "\n".join(lineas), "encabezado")
 
