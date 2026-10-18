@@ -26,6 +26,8 @@ class RagLogBase(BaseModel):
     metricas: dict[str, Any] | None = None
     modelo_juez: str | None = None
     fecha_metricas: datetime | None = None
+    clave_cache: str | None = None
+    salida: dict[str, Any] | None = None
 
 
 class RagLogCreate(RagLogBase):

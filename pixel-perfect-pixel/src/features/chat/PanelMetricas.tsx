@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Gauge, Loader2 } from "lucide-react";
 import { getMetricas } from "@/api/chat";
 import { Progress } from "@/components/ui/progress";
+import { cn } from "@/lib/utils";
 import type { MetricasRespuesta } from "@/types";
 
 interface PanelMetricasProps {
@@ -11,27 +12,46 @@ interface PanelMetricasProps {
 const INTERVALO_MS = 4000;
 const MAX_INTENTOS = 90; // ~6 minutos: el juez comparte Ollama con el chat
 
+/** Las tres métricas de RAGAS sin respuesta de referencia, en el orden del resumen. */
 const METRICAS: {
   clave: "fidelidad" | "relevancia" | "precisionContexto";
   nombre: string;
+  corto: string;
+  ragas: string;
   explicacion: string;
 }[] = [
   {
     clave: "fidelidad",
     nombre: "Fidelidad",
-    explicacion: "Qué parte de lo que dice la respuesta está respaldada por las fuentes.",
+    corto: "Fidelidad",
+    ragas: "faithfulness",
+    explicacion:
+      "Qué parte de lo que afirma la respuesta está respaldada por las fuentes. Baja = posible invención.",
   },
   {
     clave: "relevancia",
-    nombre: "Relevancia",
+    nombre: "Relevancia de la respuesta",
+    corto: "Relevancia",
+    ragas: "answer relevancy",
     explicacion: "Qué tan directo contesta lo que preguntaste, sin rodeos ni datos de más.",
   },
   {
     clave: "precisionContexto",
     nombre: "Precisión del contexto",
-    explicacion: "Si los fragmentos que sí sirvieron para responder estaban entre los primeros.",
+    corto: "Precisión",
+    ragas: "context precision",
+    explicacion:
+      "Si los fragmentos recuperados sirvieron y los útiles estaban primero. Baja = la búsqueda trajo ruido.",
   },
 ];
+
+/** Rango de lectura: ≥ 70 % bien, 40–69 % revisar, < 40 % bajo. */
+function tono(valor: number | null): string {
+  if (valor == null) return "text-muted-foreground";
+  if (valor >= 0.7) return "text-success";
+  if (valor >= 0.4) return "text-accent-strong";
+  return "text-destructive";
+}
 
 /** Métricas automáticas de una respuesta: se consultan hasta que el cálculo termina. */
 export function PanelMetricas({ consultaId }: PanelMetricasProps) {
@@ -77,7 +97,16 @@ export function PanelMetricas({ consultaId }: PanelMetricasProps) {
         )}
         {metricas.estado === "listo" && (
           <span className="ml-1 font-normal text-muted-foreground">
-            {METRICAS.map((m) => formato(metricas[m.clave])).join(" · ")}
+            (RAGAS){" "}
+            {METRICAS.map((m, i) => (
+              <span key={m.clave}>
+                {i > 0 && " · "}
+                {m.corto}{" "}
+                <span className={cn("font-semibold tabular-nums", tono(metricas[m.clave]))}>
+                  {formato(metricas[m.clave])}
+                </span>
+              </span>
+            ))}
           </span>
         )}
         {metricas.estado === "error" && (
@@ -91,8 +120,13 @@ export function PanelMetricas({ consultaId }: PanelMetricasProps) {
           return (
             <div key={m.clave}>
               <div className="flex items-center justify-between gap-2">
-                <span className="font-medium text-card-foreground">{m.nombre}</span>
-                <span className="tabular-nums text-muted-foreground">{formato(valor)}</span>
+                <span className="font-medium text-card-foreground">
+                  {m.nombre}{" "}
+                  <span className="font-normal italic text-muted-foreground">({m.ragas})</span>
+                </span>
+                <span className={cn("font-semibold tabular-nums", tono(valor))}>
+                  {formato(valor)}
+                </span>
               </div>
               <Progress
                 value={valor == null ? 0 : Math.round(valor * 100)}
@@ -118,9 +152,9 @@ export function PanelMetricas({ consultaId }: PanelMetricasProps) {
         )}
 
         <p className="border-t border-border pt-2 leading-snug text-muted-foreground">
-          Evaluación automática aproximada: la hace un modelo pequeño
-          {metricas.modeloJuez ? ` (${metricas.modeloJuez})` : ""}, no una persona. Úsala como
-          orientación y revisa las fuentes.
+          Evaluación automática aproximada al estilo RAGAS, sin respuesta de referencia: la hace un
+          modelo pequeño{metricas.modeloJuez ? ` (${metricas.modeloJuez})` : ""}, no una persona.
+          Verde ≥ 70 %, ámbar 40–69 %, rojo &lt; 40 %. Úsala como orientación y revisa las fuentes.
         </p>
       </div>
     </details>

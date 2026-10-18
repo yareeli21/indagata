@@ -130,3 +130,52 @@ def dijo(doc: dict[str, Any], participante: str, tema: str) -> list[dict[str, An
         return []
     return [{"pregunta_id": i.get("pregunta_id"), "pregunta": i["pregunta"], "respuesta": i["respuesta"]}
             for i in e["intercambios"] if buscado in _norm(i["pregunta"]) or buscado in _norm(i["respuesta"])]
+
+
+# 8. Respondentes que cumplen condiciones sobre sus respuestas («los que sí reprobaron por falta de tiempo»).
+_OPERADORES = {">": lambda a, b: a > b, ">=": lambda a, b: a >= b, "<": lambda a, b: a < b, "<=": lambda a, b: a <= b}
+
+
+def _numero(valor: Any) -> float | None:
+    try:
+        return float(str(valor).replace(",", "."))
+    except (TypeError, ValueError):
+        return None
+
+
+def cumple(respuesta: dict[str, Any] | None, condicion: dict[str, Any]) -> bool:
+    """¿La respuesta cumple la condición?
+
+    `{"nivel": "acuerdo"}`, `{"valores": [...]}` (significados) o `{"comparacion": [op, n]}`.
+    """
+    if not respuesta or respuesta.get("estado") != "respondida":
+        return False
+    if condicion.get("nivel"):
+        return respuesta.get("nivel") == condicion["nivel"]
+    if condicion.get("valores"):
+        aceptados = {_norm(v) for v in condicion["valores"]}
+        return _norm(respuesta.get("significado") or respuesta.get("valor") or "") in aceptados
+    if condicion.get("comparacion"):
+        op, n = condicion["comparacion"]
+        valor = _numero(respuesta.get("valor"))
+        return valor is not None and _OPERADORES[op](valor, float(n))
+    return False
+
+
+def filtrar(doc: dict[str, Any], condiciones: list[dict[str, Any]], contexto: dict[str, str] | None = None) -> list[dict[str, Any]]:
+    """Respondentes del grupo (contexto) que cumplen TODAS las condiciones, en orden de ID.
+
+    Cada condición: `{"pregunta_id": "p13", "valores": ["Sí, una vez", …]}` o
+    `{"pregunta_id": "p17", "comparacion": [">", 20]}`.
+    """
+    objetivo = [{**c, "pregunta_id": _id(doc, c["pregunta_id"])} for c in condiciones]
+    filtro = {_norm(k): _norm(v) for k, v in (contexto or {}).items()}
+    salida = []
+    for r in doc.get("respondentes") or []:
+        ctx = {_norm(k): _norm(v) for k, v in (r.get("contexto") or {}).items() if v is not None}
+        if any(ctx.get(k) != v for k, v in filtro.items()):
+            continue
+        por_pregunta = {x["pregunta_id"]: x for x in r["respuestas"]}
+        if all(cumple(por_pregunta.get(c["pregunta_id"]), c) for c in objetivo):
+            salida.append(r)
+    return sorted(salida, key=lambda r: r["id"])

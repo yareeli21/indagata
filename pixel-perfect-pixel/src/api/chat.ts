@@ -138,6 +138,7 @@ export function enviarMensaje(
               decision: evento.decision,
               ruta: evento.ruta ?? null,
               consultaId: evento.consultaId ?? null,
+              enCache: evento.enCache ?? false,
             };
           } catch {
             /* se ignora */

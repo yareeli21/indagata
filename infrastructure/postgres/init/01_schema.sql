@@ -198,6 +198,19 @@ CREATE TABLE IF NOT EXISTS variable (
     unidad          TEXT
 );
 
+-- ── 8b. kpi_fuente (fuentes de referencia verificadas de cada KPI) ────────────
+-- Se carga desde seed/KPI_Fuentes.csv (scripts/seed_kpis.py), aparte del catálogo.
+
+CREATE TABLE IF NOT EXISTS kpi_fuente (
+    kpi_fuente_id  SERIAL   PRIMARY KEY,
+    kpi_id         INTEGER  NOT NULL REFERENCES kpi(kpi_id) ON DELETE CASCADE,
+    organismo      TEXT     NOT NULL,
+    titulo         TEXT     NOT NULL,
+    url            TEXT     NOT NULL,
+    anio           INTEGER,
+    nota           TEXT
+);
+
 -- ── 9. kpi_variable ───────────────────────────────────────────────────────────
 
 CREATE TABLE IF NOT EXISTS kpi_variable (
@@ -252,7 +265,9 @@ CREATE TABLE IF NOT EXISTS rag_log (
     contexto_usado   JSONB       NOT NULL DEFAULT '[]'::jsonb,
     metricas         JSONB,
     modelo_juez      VARCHAR(100),
-    fecha_metricas   TIMESTAMP
+    fecha_metricas   TIMESTAMP,
+    clave_cache      VARCHAR(64),  -- huella de la consulta: una idéntica reutiliza la respuesta
+    salida           JSONB         -- fuentes y referencias mostradas
 );
 
 -- ── 13. documento_vectorizado (chunks vectorizados de cada instrumento) ───────
@@ -369,6 +384,8 @@ CREATE INDEX IF NOT EXISTS idx_limpieza_crudo_estado    ON limpieza_ejecucion(id
 CREATE INDEX IF NOT EXISTS idx_version_conocimiento_crudo_estado ON version_conocimiento(id_crudo, estado);
 CREATE INDEX IF NOT EXISTS idx_respuesta_crudo_pregunta    ON respuesta_interpretada(id_crudo, pregunta_id);
 CREATE INDEX IF NOT EXISTS idx_respuesta_crudo_respondente ON respuesta_interpretada(id_crudo, respondente_id);
+CREATE INDEX IF NOT EXISTS idx_rag_log_clave_cache       ON rag_log(clave_cache);
+CREATE INDEX IF NOT EXISTS idx_kpi_fuente_kpi            ON kpi_fuente(kpi_id);
 
 COMMIT;
 

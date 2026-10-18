@@ -1,4 +1,4 @@
-import type { EjecucionLimpieza } from "@/types";
+import type { EjecucionLimpieza, ResumenLimpieza } from "@/types";
 import { API_URL, pedir } from "./client";
 
 /**
@@ -56,4 +56,12 @@ export function confirmarLimpieza(idCrudo: number, version: number): Promise<Eje
     `${API_URL}/limpieza/${idCrudo}/ejecuciones/${version}/confirmar`,
     { method: "POST", auth: true },
   );
+}
+
+/**
+ * Medidas de la última limpieza confirmada y sugerencias de análisis, para verlas
+ * después de guardar el instrumento (catálogo). Sin filas de respondentes.
+ */
+export function getResumenLimpieza(idCrudo: number): Promise<ResumenLimpieza> {
+  return pedir<ResumenLimpieza>(`${API_URL}/limpieza/${idCrudo}/resumen`, { auth: true });
 }

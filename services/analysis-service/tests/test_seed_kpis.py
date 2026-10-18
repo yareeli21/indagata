@@ -55,3 +55,60 @@ def test_texto_rag_vacio_aborta(tmp_path: Path) -> None:
     ruta = _escribir_csv(tmp_path, [_CABECERA, fila_mala])
     with pytest.raises(ErrorValidacionCSV):
         leer_kpis_csv(ruta)
+
+
+# ── Fuentes de referencia (seed/KPI_Fuentes.csv → tt_rag.kpi_fuente) ──────────
+
+
+def _sesion():
+    from sqlalchemy import create_engine, event
+    from sqlalchemy.orm import sessionmaker
+    from sqlalchemy.pool import StaticPool
+
+    from shared.db.base import Base
+    from shared.models.kpi import KPI
+    from shared.models.kpi_fuente import KPIFuente
+
+    motor = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
+
+    @event.listens_for(motor, "connect")
+    def _adjuntar(dbapi_conn, _):  # noqa: ANN001
+        dbapi_conn.execute("ATTACH DATABASE ':memory:' AS tt_rag")
+
+    Base.metadata.create_all(motor, tables=[KPI.__table__, KPIFuente.__table__])
+    return sessionmaker(bind=motor)()
+
+
+def test_csv_de_fuentes_del_repo_es_valido_y_liga_con_el_catalogo() -> None:
+    from scripts.seed_kpis import leer_fuentes_csv, ruta_csv_por_defecto, ruta_fuentes_por_defecto
+
+    fuentes = leer_fuentes_csv(ruta_fuentes_por_defecto())
+    catalogo = {f["KPI"] for f in leer_kpis_csv(ruta_csv_por_defecto())}
+    assert fuentes and {f["KPI"] for f in fuentes} <= catalogo
+    assert all(f["URL"].startswith("https://") for f in fuentes)
+
+
+def test_cargar_fuentes_reemplaza_y_reporta_kpis_inexistentes() -> None:
+    from scripts.seed_kpis import cargar_fuentes
+    from shared.models.kpi import KPI
+    from shared.models.kpi_fuente import KPIFuente
+
+    db = _sesion()
+    db.add(KPI(nombre="Tasa de Retención", texto_contexto_rag_vectorial="x"))
+    db.commit()
+    fila = {"KPI": "Tasa de Retención", "Organismo": "NCES", "Titulo": "COE", "URL": "https://nces.ed.gov", "Anio": "2024", "Nota": ""}
+    assert cargar_fuentes(db, [fila, {**fila, "KPI": "No existe"}]) == (1, ["No existe"])
+    db.commit()
+    assert cargar_fuentes(db, [fila]) == (1, [])  # se reemplaza, no se duplica
+    db.commit()
+    [f] = db.query(KPIFuente).all()
+    assert f.anio == 2024 and f.nota is None
+
+
+def test_fuente_sin_https_aborta(tmp_path: Path) -> None:
+    from scripts.seed_kpis import leer_fuentes_csv
+
+    p = tmp_path / "f.csv"
+    p.write_text("KPI,Organismo,Titulo,URL,Anio,Nota\nX,O,T,http://a.b,,\n", encoding="utf-8")
+    with pytest.raises(ErrorValidacionCSV):
+        leer_fuentes_csv(p)

@@ -74,6 +74,28 @@ class VistaFinalOut(BaseModel):
     resumen: list[FraseResumenOut] = Field(default_factory=list)
 
 
+class SugerenciaOut(BaseModel):
+    """Una sugerencia de análisis derivada de las medidas estadísticas (shared/conocimiento/sugerencias.py)."""
+
+    nivel: Literal["bien", "info", "atencion", "alerta"]
+    texto: str
+    porque: str
+
+
+class ResumenLimpiezaOut(BaseModel):
+    """Medidas de la última limpieza confirmada y sugerencias de análisis (sin filas de muestra)."""
+
+    idCrudo: int
+    version: int
+    tipoInstrumento: str
+    fechaConfirmacion: datetime | None = None
+    cifras: list[CifraOut] = Field(default_factory=list)
+    estadistica: dict[str, Any] | None = None
+    estadistica_antes: dict[str, Any] | None = None
+    resumen: list[FraseResumenOut] = Field(default_factory=list)
+    sugerencias: list[SugerenciaOut] = Field(default_factory=list)
+
+
 class EjecucionOut(BaseModel):
     """Estado de una ejecución de limpieza para la interfaz."""
 

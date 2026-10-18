@@ -85,6 +85,28 @@ def cargar_contexto(db: Session, usuario: Usuario, id_crudo: int) -> Contexto:
     return Contexto(raw=raw, procesado=procesado)
 
 
+_ESTADOS_APROBADOS = {"estandarizado", "vectorizado"}
+
+
+def leer_resumen_permitido(db: Session, usuario: Usuario, id_crudo: int) -> RawData:
+    """Para el resumen de la limpieza: el autor o un admin siempre; otro investigador
+    solo si el instrumento ya está aprobado (son cifras agregadas, sin filas)."""
+    raw = db.get(RawData, id_crudo)
+    if raw is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, f"Instrumento (id_crudo={id_crudo}) no encontrado.")
+    if usuario.rol == ROL_ADMINISTRADOR or raw.id_owner == usuario.usuario_id:
+        return raw
+    procesado = (
+        db.query(InstrumentoProcesado)
+        .filter(InstrumentoProcesado.id_crudo == id_crudo)
+        .order_by(InstrumentoProcesado.id_instrumento.desc())
+        .first()
+    )
+    if procesado is None or not (procesado.fecha_aprobado is not None or procesado.estado in _ESTADOS_APROBADOS):
+        raise HTTPException(status.HTTP_403_FORBIDDEN, "El instrumento aún no está aprobado por su autor.")
+    return raw
+
+
 def _extension(raw: RawData) -> str:
     """Extensión del crudo: la de la key en storage o, si no tiene, la del nombre original."""
     ext = PurePosixPath(raw.raw_archivo or "").suffix or PurePosixPath(raw.nombre_archivo or "").suffix

@@ -28,6 +28,8 @@ export interface Investigacion {
   id: string;
   nombre: string;
   propietarioId: string;
+  /** ISO; ausente en investigaciones creadas antes de guardarla. */
+  fechaCreacion?: string;
 }
 
 export interface Instrumento {
@@ -59,6 +61,15 @@ export interface Noticia {
   titulo: string;
   fecha: string;
   resumen: string;
+  /** Medio que la publicó y enlace a la nota original. */
+  medio?: string;
+  url?: string;
+}
+
+export interface NoticiasRespuesta {
+  noticias: Noticia[];
+  actualizado: string | null;
+  aviso: string | null;
 }
 
 // ── Limpieza (cleaning-service) ───────────────────────────────────────────────
@@ -234,6 +245,26 @@ export interface PreguntaEntrevistaEstadistica {
 export interface FraseResumen {
   nivel: "bien" | "info" | "atencion" | "alerta";
   texto: string;
+}
+
+/** Sugerencia de análisis derivada de las medidas de la limpieza. */
+export interface SugerenciaAnalisis {
+  nivel: "bien" | "info" | "atencion" | "alerta";
+  texto: string;
+  porque: string;
+}
+
+/** Medidas de la última limpieza confirmada y sugerencias (GET /limpieza/{id}/resumen). */
+export interface ResumenLimpieza {
+  idCrudo: number;
+  version: number;
+  tipoInstrumento: string;
+  fechaConfirmacion: string | null;
+  cifras: { etiqueta: string; valor: number | string }[];
+  estadistica: EstadisticaLimpieza | null;
+  estadistica_antes: EstadisticaLimpieza | null;
+  resumen: FraseResumen[];
+  sugerencias: SugerenciaAnalisis[];
 }
 
 export interface VistaFinalLimpieza {
@@ -523,9 +554,11 @@ export interface FuenteChat {
 
 /** Entrada curada que respalda una respuesta: glosario metodológico o ayuda de la plataforma. */
 export interface ReferenciaChat {
-  tipo: "glosario" | "ayuda";
+  tipo: "glosario" | "ayuda" | "fuente_kpi";
   titulo: string;
   texto: string;
+  /** fuente_kpi: enlace a la fuente de referencia verificada. */
+  url?: string;
 }
 
 /** Decisión del dominio acotado del chat (también se guarda en rag_log). */
@@ -542,6 +575,8 @@ export interface ResultadoChat {
   decision?: DecisionChat | undefined;
   ruta?: RutaChat | null;
   consultaId?: number | null;
+  /** true si se reutilizó una respuesta guardada (misma pregunta, alcance y versiones). */
+  enCache?: boolean;
 }
 
 /** Métricas automáticas de una respuesta (juez local: evaluación aproximada). */
@@ -572,8 +607,16 @@ export interface Mensaje {
   decision?: DecisionChat | undefined;
   ruta?: RutaChat | null;
   consultaId?: number | null;
+  enCache?: boolean;
   /** true mientras se está generando (streaming) */
   generando?: boolean;
+}
+
+/** Conversación guardada de una investigación (para retomarla). */
+export interface SesionChat {
+  contexto: ContextoInvestigacion;
+  mensajes: Mensaje[];
+  actualizada: string;
 }
 
 // ── KPIs ──────────────────────────────────────────────────────────────────────
@@ -591,6 +634,16 @@ export interface KpiCatalogo {
   icono: string;
   /** Etiquetas de búsqueda */
   etiquetas: string[];
+  /** Fuentes de referencia verificadas (organismos oficiales); puede venir vacío. */
+  fuentes?: FuenteKpi[];
+}
+
+export interface FuenteKpi {
+  organismo: string;
+  titulo: string;
+  url: string;
+  anio?: number | null;
+  nota?: string | null;
 }
 
 export interface PuntoDato {

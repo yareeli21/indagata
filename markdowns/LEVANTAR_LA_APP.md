@@ -45,6 +45,11 @@ Los valores por defecto sirven para desarrollo. Lo único importante es que `SEC
 para todos los servicios (el `docker-compose.yml` ya la reparte). Si la cambias, cierra sesión en la
 app y vuelve a entrar.
 
+**Noticias (opcional).** El panel de noticias del chat lee fuentes RSS públicas y no necesita clave.
+Si quieres sumar resultados de [GNews](https://gnews.io), agrega tu clave al `.env`:
+`NOTICIAS_API_KEY=...`. Las fuentes RSS se editan en
+`services/visualization-service/config/noticias.yaml`.
+
 ## 4. Si tu equipo **no** tiene GPU NVIDIA
 
 El servicio `ollama` de `docker-compose.yml` reserva una GPU NVIDIA. Sin ella, `docker compose up`
@@ -97,6 +102,13 @@ idempotentes: ejecutarlas dos veces no hace daño.
 docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_10_limpieza.sql
 docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_11_conocimiento.sql
 docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_12_rag.sql
+docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_13_ajustes.sql
+```
+
+La migración `2026_13` agrega la caché de respuestas del chat y la tabla de fuentes de los KPIs.
+Después carga las fuentes, sin tocar el catálogo ni los KPIs ya aceptados:
+```powershell
+docker compose exec analysis-service python scripts/seed_kpis.py --solo-fuentes
 ```
 
 Si ya había documentos finales publicados antes de `2026_12_rag`, ponlos al día para el chat. Este

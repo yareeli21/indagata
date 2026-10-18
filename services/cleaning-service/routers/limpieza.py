@@ -6,16 +6,21 @@
   PATCH /limpieza/{id}/ejecuciones/{version}/decisiones  guardado parcial de decisiones
   POST  /limpieza/{id}/ejecuciones/{version}/confirmar   aplica, guarda el CSV limpio y cierra
   GET   /limpieza/{id}/ejecuciones/{version}/vista-final cifras clave + muestra del resultado
+  GET   /limpieza/{id}/resumen                           medidas de la última limpieza confirmada
+                                                         + sugerencias de análisis (catálogo)
 
-`{id}` es el id_crudo del instrumento. Solo el autor (o un admin) puede limpiarlo.
+`{id}` es el id_crudo del instrumento. Solo el autor (o un admin) puede limpiarlo. El
+resumen (cifras agregadas, sin filas) lo puede leer cualquier investigador cuando el
+instrumento ya está aprobado.
 """
 from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException, Query, status
 
 from dependencies import DBSession, Investigador
-from models import DecisionesIn, EjecucionOut, VistaFinalOut
+from models import DecisionesIn, EjecucionOut, ResumenLimpiezaOut, VistaFinalOut
 from services import ejecuciones
+from shared.conocimiento import sugerencias
 
 router = APIRouter(prefix="/limpieza", tags=["limpieza"])
 
@@ -39,6 +44,31 @@ def _dto(db, usuario, ejecucion) -> EjecucionOut:  # noqa: ANN001
 def ejecutar(id_crudo: int, usuario: Investigador, db: DBSession, nueva: bool = Query(False)) -> EjecucionOut:
     ejecucion = ejecuciones.crear(db, usuario, id_crudo, nueva=nueva)
     return _dto(db, usuario, ejecucion)
+
+
+@router.get(
+    "/{id_crudo}/resumen",
+    response_model=ResumenLimpiezaOut,
+    summary="Medidas de la limpieza y sugerencias de análisis",
+    description=(
+        "Medidas estadísticas de la última limpieza confirmada (descriptivos, fiabilidad, "
+        "reactivos), su resumen y sugerencias de análisis. No incluye filas de muestra. "
+        "Autor o admin siempre; los demás investigadores, si el instrumento está aprobado."
+    ),
+)
+def resumen(id_crudo: int, usuario: Investigador, db: DBSession) -> ResumenLimpiezaOut:
+    raw = ejecuciones.leer_resumen_permitido(db, usuario, id_crudo)
+    ejecucion = ejecuciones.ultima_confirmada(db, id_crudo)
+    vista = ((ejecucion.reporte or {}).get("vista_final") or {}) if ejecucion else {}
+    if ejecucion is None or not vista:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Este instrumento no tiene una limpieza confirmada.")
+    return ResumenLimpiezaOut(
+        idCrudo=id_crudo, version=ejecucion.version, tipoInstrumento=raw.tipo_instrumento,
+        fechaConfirmacion=ejecucion.fecha_confirmacion, cifras=vista.get("cifras") or [],
+        estadistica=vista.get("estadistica"), estadistica_antes=vista.get("estadistica_antes"),
+        resumen=vista.get("resumen") or [],
+        sugerencias=sugerencias.sugerir(raw.tipo_instrumento, vista.get("estadistica")),
+    )
 
 
 @router.get("/{id_crudo}/ejecuciones/actual", response_model=EjecucionOut, summary="Última versión de la limpieza")

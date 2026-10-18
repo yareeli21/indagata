@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { BookOpen, CircleHelp, GraduationCap } from "lucide-react";
+import { BookOpen, CircleHelp, ExternalLink, GraduationCap, History, Landmark } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { FuenteChat, Mensaje, ReferenciaChat } from "@/types";
 import { PanelMetricas } from "./PanelMetricas";
@@ -43,6 +43,13 @@ export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
         )}
       </div>
 
+      {!esUsuario && !mensaje.generando && mensaje.enCache && (
+        <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <History className="size-3.5" aria-hidden />
+          Respuesta guardada: ya se había respondido esta misma pregunta con los mismos datos.
+        </p>
+      )}
+
       {/* Tarjetas de fuentes (solo asistente, cuando terminó de generar) */}
       {!esUsuario && !mensaje.generando && mensaje.fuentes && mensaje.fuentes.length > 0 && (
         <div className="flex w-full max-w-[80%] flex-col gap-2">
@@ -83,16 +90,31 @@ export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
   );
 }
 
+const REFERENCIA = {
+  ayuda: { icono: CircleHelp, etiqueta: "Ayuda" },
+  glosario: { icono: GraduationCap, etiqueta: "Glosario" },
+  fuente_kpi: { icono: Landmark, etiqueta: "Fuente del KPI" },
+} as const;
+
 function TarjetaReferencia({ referencia }: { referencia: ReferenciaChat }) {
-  const esAyuda = referencia.tipo === "ayuda";
-  const Icono = esAyuda ? CircleHelp : GraduationCap;
+  const { icono: Icono, etiqueta } = REFERENCIA[referencia.tipo] ?? REFERENCIA.glosario;
   return (
     <details className="rounded-xl border border-border bg-card px-3 py-2 text-xs">
       <summary className="flex cursor-pointer items-center gap-1.5 font-medium text-card-foreground">
         <Icono className="size-3.5 shrink-0 text-primary" aria-hidden />
-        {esAyuda ? "Ayuda" : "Glosario"}: {referencia.titulo}
+        {etiqueta}: {referencia.titulo}
       </summary>
       <p className="mt-1.5 leading-relaxed text-muted-foreground">{referencia.texto}</p>
+      {referencia.url && (
+        <a
+          href={referencia.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-1 inline-flex items-center gap-1 font-medium text-primary underline-offset-2 hover:underline"
+        >
+          Abrir la fuente <ExternalLink className="size-3" aria-hidden />
+        </a>
+      )}
     </details>
   );
 }

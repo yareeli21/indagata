@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import { OtherResearcherBadge } from "@/components/shared/OtherResearcherBadge";
 import type { FormatoDescarga, Instrumento } from "@/types";
+import { CalidadInstrumento } from "./CalidadInstrumento";
 import { KpisInstrumento } from "./KpisInstrumento";
 import { MenuDescarga } from "./MenuDescarga";
 import { TipoBadge } from "./TipoBadge";
@@ -90,6 +91,7 @@ export function VistaRapida({
                 <p className="text-sm text-muted-foreground">KPIs y preguntas que los miden</p>
                 <KpisInstrumento instrumentoId={i.id} />
               </div>
+              <CalidadInstrumento instrumentoId={i.id} />
               <div className="flex flex-wrap gap-2 border-t pt-4">
                 <MenuDescarga instrumento={i} ajeno={ajeno} onDescargar={onDescargar} />
                 {!ajeno && (

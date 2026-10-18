@@ -387,6 +387,8 @@ services:
       EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/paraphrase-multilingual-mpnet-base-v2}
       STORAGE_SERVICE_URL: http://storage-service:8004
       INSTRUMENT_SERVICE_URL: http://instrument-service:8001
+      # Opcional: clave de GNews para el panel de noticias (sin ella, solo fuentes RSS).
+      NOTICIAS_API_KEY: ${NOTICIAS_API_KEY:-}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
       - "8005:8005"

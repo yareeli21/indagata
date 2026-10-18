@@ -14,6 +14,7 @@ from shared.models.metadatos_pruebasestandarizadas import MetadatosEnriquecidosP
 from shared.models.coleccion_vectorial import ColeccionVectorial
 from shared.models.prompt import Prompt
 from shared.models.kpi import KPI
+from shared.models.kpi_fuente import KPIFuente
 from shared.models.variable import Variable
 from shared.models.kpi_variable import KPIVariable
 from shared.models.kpi_inferido import KPIInferido
@@ -36,6 +37,7 @@ __all__ = [
     "ColeccionVectorial",
     "Prompt",
     "KPI",
+    "KPIFuente",
     "Variable",
     "KPIVariable",
     "KPIInferido",

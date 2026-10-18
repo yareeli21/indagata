@@ -24,22 +24,32 @@ Antes de generar (`planear`):
      clasificador de la zona gris cuando la similitud es ambigua.
 Después de generar: se quita la frase de «sin información» sobrante y se tachan
 datos personales. La decisión, la ruta y el contexto usado quedan en rag_log.
+
+Caché: antes de todo se calcula la huella de la consulta (pregunta normalizada,
+alcance, versión vigente de cada instrumento, contexto y modelo). Si ya se respondió
+igual hace menos de `RAG_CACHE_HORAS`, se repite esa respuesta sin llamar a Ollama
+(publicar una versión nueva cambia la huella, así que nunca se sirve algo viejo).
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 import re
 import time
 import unicodedata
 from dataclasses import dataclass, field
+from datetime import datetime, timedelta
 from typing import Any
 
 from fastapi import HTTPException, status
 from fastapi.responses import StreamingResponse
 
 from shared.db.core.config import settings
+from shared.models.kpi import KPI
+from shared.models.kpi_fuente import KPIFuente
 from shared.models.rag_log import RagLog
+from shared.models.version_conocimiento import VersionConocimiento
 
 from models import ChatRequest, ChatResponse, FuenteChatOut, IndexRequest, ReferenciaChatOut
 from services import dominio, enrutador, evaluacion, ollama_client, prompt, storage_client, vectores
@@ -238,6 +248,9 @@ def registrar_consulta(
     chunks: int,
     inicio: float,
     plan: "Plan | None" = None,
+    *,
+    clave: str | None = None,
+    salida: dict[str, Any] | None = None,
 ) -> int | None:
     """Guarda la consulta en rag_log y devuelve su id (mejor esfuerzo: nunca rompe el chat)."""
     try:
@@ -249,6 +262,8 @@ def registrar_consulta(
                 modelo_usado=modelo,
                 chunks_usados=chunks,
                 latencia_ms=int((time.monotonic() - inicio) * 1000),
+                clave_cache=clave,
+                salida=salida,
             )
             evaluar = False
             if plan is not None:
@@ -278,6 +293,98 @@ def registrar_consulta(
         return None
 
 
+# ── Caché de respuestas ────────────────────────────────────────────────────────
+
+_DECISIONES_REUTILIZABLES = {dominio.DENTRO, dominio.AYUDA}
+# Súbelo cuando cambie cómo se calculan o redactan las respuestas (enrutador, consultas):
+# las guardadas con la versión anterior dejan de reutilizarse. Las reglas del prompt
+# (`prompt.SISTEMA`) ya entran en la huella.
+_VERSION_RESPUESTAS = 3
+
+
+def clave_cache(peticion: ChatRequest, modelo: str) -> str | None:
+    """Huella de la consulta, o None si la caché está apagada o no hay BD."""
+    if settings.RAG_CACHE_HORAS <= 0:
+        return None
+    ids = sorted({i for i in (peticion.instrumentoIds or []) if i})
+    try:
+        sesion = fabrica_sesiones()
+        try:
+            consulta = sesion.query(VersionConocimiento.id_crudo, VersionConocimiento.version).filter(
+                VersionConocimiento.estado == "vigente")
+            if ids:
+                consulta = consulta.filter(VersionConocimiento.id_crudo.in_([int(i) for i in ids if i.isdigit()]))
+            versiones = sorted(f"{a}:{b}" for a, b in consulta.all())
+        finally:
+            sesion.close()
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Caché no disponible: %s", exc)
+        return None
+    huella = {
+        "pregunta": dominio.normalizar(peticion.pregunta).strip(" ?.!"),
+        "ids": ids,
+        "versiones": versiones,
+        "contexto": peticion.contexto.model_dump() if peticion.contexto else None,
+        "modelo": modelo,
+        "version": _VERSION_RESPUESTAS,
+        "reglas": hashlib.sha256(prompt.SISTEMA.encode("utf-8")).hexdigest()[:16],
+    }
+    return hashlib.sha256(json.dumps(huella, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
+
+
+@dataclass
+class Guardada:
+    """Respuesta reutilizada de la caché (ya registrada como consulta nueva)."""
+
+    respuesta: str
+    salida: dict[str, Any]
+    decision: str | None
+    ruta: str | None
+    consulta_id: int | None
+
+
+def buscar_en_cache(clave: str | None, pregunta: str, modelo: str, inicio: float) -> Guardada | None:
+    """La respuesta guardada para esta huella (reciente y no degradada), registrada como consulta nueva."""
+    if clave is None:
+        return None
+    try:
+        sesion = fabrica_sesiones()
+        try:
+            limite = datetime.now() - timedelta(hours=settings.RAG_CACHE_HORAS)
+            previa = (
+                sesion.query(RagLog)
+                .filter(RagLog.clave_cache == clave, RagLog.timestamp >= limite)
+                .order_by(RagLog.rag_log_id.desc())
+                .first()
+            )
+            salida = (previa.salida or {}) if previa is not None else {}
+            if (previa is None or not previa.respuesta or salida.get("degradado")
+                    or previa.decision_dominio not in _DECISIONES_REUTILIZABLES):
+                return None
+            origen = (previa.metricas or {}).get("origen") or previa.rag_log_id
+            fila = RagLog(
+                pregunta=pregunta, respuesta=previa.respuesta, modelo_usado=modelo, chunks_usados=previa.chunks_usados,
+                latencia_ms=int((time.monotonic() - inicio) * 1000), decision_dominio=previa.decision_dominio,
+                motivo=f"cache:{origen}", score_max=previa.score_max, ruta=previa.ruta, instrumentos=previa.instrumentos,
+                contexto_usado=previa.contexto_usado, clave_cache=clave, salida=salida,
+                # Las métricas son las de la respuesta original: se leen de ahí, sin volver a juzgar.
+                metricas={"estado": "calculando", "origen": origen},
+            )
+            sesion.add(fila)
+            sesion.commit()
+            return Guardada(previa.respuesta, salida, previa.decision_dominio, previa.ruta, fila.rag_log_id)
+        finally:
+            sesion.close()
+    except Exception as exc:  # noqa: BLE001 — la caché nunca rompe el chat
+        logger.warning("Caché no disponible: %s", exc)
+        return None
+
+
+def _salida(fuentes: list[FuenteChatOut], referencias: list[ReferenciaChatOut], degradado: bool) -> dict[str, Any]:
+    return {"fuentes": [f.model_dump() for f in fuentes], "referencias": [r.model_dump() for r in referencias],
+            "degradado": degradado}
+
+
 # ── Respuesta ──────────────────────────────────────────────────────────────────
 
 # Caracteres que el streaming retiene al final para poder quitar la frase de
@@ -293,9 +400,14 @@ def quitar_sin_informacion_sobrante(texto: str) -> str:
     """
     frase = prompt.SIN_INFORMACION
     sin_frase = texto.replace(frase, "").strip()
-    if frase not in texto or len(sin_frase) < 20:
-        return texto
-    return sin_frase
+    if frase in texto and len(sin_frase) >= 20:
+        return sin_frase
+    # Variantes («No tengo información relacionada con los instrumentos consultados.») como
+    # último párrafo de una respuesta que sí respondió.
+    parrafos = [p for p in re.split(r"\n\s*\n", texto.strip()) if p.strip()]
+    if len(parrafos) > 1 and es_negativa(parrafos[-1]) and len("\n\n".join(parrafos[:-1])) >= 20:
+        return "\n\n".join(parrafos[:-1])
+    return texto
 
 
 # Inicios con los que el modelo dice que no puede responder (la frase exacta del
@@ -349,7 +461,7 @@ class Plan:
         return salida
 
     def referencias_out(self) -> list[ReferenciaChatOut]:
-        return [ReferenciaChatOut(tipo=r.tipo, titulo=r.titulo, texto=r.texto) for r in self.referencias]
+        return [ReferenciaChatOut(tipo=r.tipo, titulo=r.titulo, texto=r.texto, url=r.url) for r in self.referencias]
 
 
 _UMBRAL_ANCLA = 0.6  # similitud con una entrada del glosario o de la ayuda para usarla
@@ -393,6 +505,8 @@ async def planear(peticion: ChatRequest) -> Plan:
         sesion = fabrica_sesiones()
         try:
             resultado = enrutador.resolver(pregunta, sesion, ids)
+            if resultado is None:  # filtro que las reglas no entendieron: Ollama propone la condición
+                resultado = await enrutador.filtro_llm(pregunta, sesion, ids)
         finally:
             sesion.close()
     except Exception as exc:  # noqa: BLE001 — sin BD o storage: sigue la ruta semántica
@@ -428,6 +542,8 @@ async def planear(peticion: ChatRequest) -> Plan:
             plan.fija = resultado.respuesta_directa(numeros)
             return plan
         plan.motivo = f"estructurada:{resultado.consulta}"
+        if resultado.consulta in _CONSULTAS_MIXTAS:  # la definición del KPI, respaldada por fuentes verificadas
+            plan.referencias = plan.referencias + _fuentes_kpi(pregunta, resultado)
         plan.resultado = resultado.texto(numeros)
         plan.respuesta_directa = resultado.respuesta_directa(numeros)
         plan.admite_negativa = resultado.admite_negativa
@@ -459,7 +575,26 @@ async def planear(peticion: ChatRequest) -> Plan:
     return plan
 
 
-_CITA_CURADA = re.compile(r"\s*\[(Glosario|Ayuda):\s*([^\]]+)\]")
+def _fuentes_kpi(pregunta: str, resultado: enrutador.Resultado) -> list[dominio.Ancla]:
+    """Fuentes de referencia (tabla kpi_fuente) de los KPIs que menciona la consulta."""
+    texto = dominio.normalizar(pregunta)
+    nombres = {k["nombre"] for ins in resultado.instrumentos if (k := enrutador._kpi_mencionado(ins.doc, texto))}
+    if not nombres:
+        return []
+    try:
+        sesion = fabrica_sesiones()
+        try:
+            filas = (sesion.query(KPIFuente).join(KPI, KPI.kpi_id == KPIFuente.kpi_id)
+                     .filter(KPI.nombre.in_(nombres)).order_by(KPIFuente.kpi_fuente_id).limit(4).all())
+        finally:
+            sesion.close()
+    except Exception as exc:  # noqa: BLE001 — sin la tabla (BD sin migrar) se responde sin fuentes
+        logger.warning("Fuentes de KPI no disponibles: %s", exc)
+        return []
+    return [dominio.Ancla("fuente_kpi", f.organismo, f"{f.titulo}. {f.nota or ''}".strip(), url=f.url) for f in filas]
+
+
+_CITA_CURADA = re.compile(r"\s*\[(Glosario|Ayuda|Fuente KPI):\s*([^\]]+)\]")
 
 
 def quitar_citas_inventadas(texto: str, referencias: list[dominio.Ancla]) -> str:
@@ -472,7 +607,7 @@ def quitar_citas_inventadas(texto: str, referencias: list[dominio.Ancla]) -> str
     validas = {(r.tipo, dominio.normalizar(r.titulo)) for r in referencias}
 
     def _filtrar(m: re.Match) -> str:
-        tipo = "glosario" if m.group(1) == "Glosario" else "ayuda"
+        tipo = {"Glosario": "glosario", "Ayuda": "ayuda", "Fuente KPI": "fuente_kpi"}[m.group(1)]
         return m.group(0) if (tipo, dominio.normalizar(m.group(2))) in validas else ""
 
     return _CITA_CURADA.sub(_filtrar, texto)
@@ -530,10 +665,18 @@ async def _generar_estructurada(plan: Plan, modelo: str) -> tuple[str, bool]:
 async def responder(peticion: ChatRequest):
     inicio = time.monotonic()
     modelo = peticion.modelo or settings.OLLAMA_MODEL
+    clave = clave_cache(peticion, modelo)
+    if (guardada := buscar_en_cache(clave, peticion.pregunta, modelo, inicio)) is not None:
+        if peticion.stream:
+            return StreamingResponse(_sse_guardada(guardada), media_type="text/event-stream")
+        return ChatResponse(respuesta=guardada.respuesta, fuentes=guardada.salida.get("fuentes") or [], modelo=modelo,
+                            referencias=guardada.salida.get("referencias") or [], decision=guardada.decision,
+                            ruta=guardada.ruta, consultaId=guardada.consulta_id, enCache=True)
+
     plan = await planear(peticion)
 
     if peticion.stream:
-        return StreamingResponse(_sse(peticion.pregunta, modelo, plan, inicio), media_type="text/event-stream")
+        return StreamingResponse(_sse(peticion.pregunta, modelo, plan, inicio, clave), media_type="text/event-stream")
 
     degradado = False
     if plan.fija is not None:
@@ -544,9 +687,11 @@ async def responder(peticion: ChatRequest):
         respuesta, degradado = await ollama_client.generar_no_stream(plan.texto_prompt, modelo, sistema=prompt.SISTEMA)
         respuesta = _pulir(respuesta, plan)
     fuentes, usados = _fuentes_finales(plan, respuesta)
-    consulta_id = registrar_consulta(peticion.pregunta, respuesta, modelo, usados, inicio, plan)
+    referencias = plan.referencias_out() if usados else []
+    consulta_id = registrar_consulta(peticion.pregunta, respuesta, modelo, usados, inicio, plan, clave=clave,
+                                     salida=_salida(fuentes, referencias, degradado))
     return ChatResponse(respuesta=respuesta, fuentes=fuentes, modelo=modelo, degradado=degradado,
-                        referencias=plan.referencias_out() if usados else [], decision=plan.decision, ruta=plan.ruta,
+                        referencias=referencias, decision=plan.decision, ruta=plan.ruta,
                         consultaId=consulta_id)
 
 
@@ -565,7 +710,20 @@ def _evento(nombre: str, datos: dict[str, Any]) -> str:
     return f"event: {nombre}\ndata: {json.dumps(datos, ensure_ascii=False)}\n\n"
 
 
-async def _sse(pregunta: str, modelo: str, plan: Plan, inicio: float):
+async def _sse_guardada(guardada: Guardada):
+    yield _evento("token", {"t": guardada.respuesta})
+    yield _evento("fuentes", {
+        "fuentes": guardada.salida.get("fuentes") or [],
+        "referencias": guardada.salida.get("referencias") or [],
+        "decision": guardada.decision,
+        "ruta": guardada.ruta,
+        "consultaId": guardada.consulta_id,
+        "enCache": True,
+    })
+    yield "event: fin\ndata: {}\n\n"
+
+
+async def _sse(pregunta: str, modelo: str, plan: Plan, inicio: float, clave: str | None = None):
     if plan.fija is not None:
         respuesta = plan.fija
         yield _evento("token", {"t": respuesta})
@@ -594,10 +752,14 @@ async def _sse(pregunta: str, modelo: str, plan: Plan, inicio: float):
             yield _evento("token", {"t": _pulir(resto, plan)})
         respuesta = _pulir(final, plan)
     fuentes, usados = _fuentes_finales(plan, respuesta)
-    consulta_id = registrar_consulta(pregunta, respuesta, modelo, usados, inicio, plan)
+    referencias = plan.referencias_out() if usados else []
+    # El mensaje de Ollama no disponible no se guarda como respuesta reutilizable.
+    degradado = ollama_client.MENSAJE_DEGRADADO in respuesta
+    consulta_id = registrar_consulta(pregunta, respuesta, modelo, usados, inicio, plan, clave=clave,
+                                     salida=_salida(fuentes, referencias, degradado))
     yield _evento("fuentes", {
         "fuentes": [f.model_dump() for f in fuentes],
-        "referencias": [r.model_dump() for r in plan.referencias_out()] if usados else [],
+        "referencias": [r.model_dump() for r in referencias],
         "decision": plan.decision,
         "ruta": plan.ruta,
         "consultaId": consulta_id,

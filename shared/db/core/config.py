@@ -121,6 +121,16 @@ class AppSettings(BaseSettings):
     RAG_JUEZ_MODELO: str = ""  # vacío = OLLAMA_MODEL; cámbialo por un juez más grande cuando haya
     RAG_CLASIFICADOR_LLM: bool = True
     RAG_CLASIFICADOR_MODELO: str = ""  # vacío = OLLAMA_MODEL
+    # Consultas con filtro («los que sí reprobaron…»): si las reglas no hallan la
+    # condición, Ollama la propone y se valida contra el catálogo del documento.
+    RAG_FILTRO_LLM: bool = True
+    # Caché de respuestas: una pregunta idéntica (mismo alcance, versiones vigentes,
+    # contexto y modelo) se responde con la guardada sin llamar a Ollama. 0 = sin caché.
+    RAG_CACHE_HORAS: float = 24
+    # Noticias del panel del chat (visualization-service/services/noticias.py): fuentes
+    # RSS de config/noticias.yaml; con NOTICIAS_API_KEY se usa además GNews.
+    NOTICIAS_API_KEY: str = ""
+    NOTICIAS_CACHE_MIN: int = 60
 
     model_config = SettingsConfigDict(
         # Ruta absoluta al .env de la raíz del repo, para que se encuentre sin

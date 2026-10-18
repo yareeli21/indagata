@@ -26,8 +26,14 @@ recreando el volumen (`docker compose down -v && docker compose up -d`); este
 script re-siembra los datos y es re-ejecutable. Tras sembrar hay que ejecutar
 el reindex: `POST /vectorizacion/kpis/reindex`.
 
+Fuentes de referencia: después del catálogo carga `seed/KPI_Fuentes.csv` en
+`tt_rag.kpi_fuente` (ligadas por el nombre exacto del KPI; el TRUNCATE las vacía).
+Con `--solo-fuentes` recarga únicamente las fuentes, SIN tocar el catálogo ni los
+KPIs aceptados (úsalo en una BD con instrumentos ya procesados).
+
 Ejecutar desde la carpeta del servicio:
     python scripts/seed_kpis.py
+    python scripts/seed_kpis.py --solo-fuentes
 """
 from __future__ import annotations
 
@@ -67,6 +73,7 @@ from sqlalchemy.exc import SQLAlchemyError  # noqa: E402
 
 from shared.db.session import SessionLocal  # noqa: E402
 from shared.models.kpi import KPI  # noqa: E402
+from shared.models.kpi_fuente import KPIFuente  # noqa: E402
 
 logging.basicConfig(level="INFO", format="%(levelname)s %(message)s")
 logger = logging.getLogger("seed_kpis")
@@ -111,6 +118,50 @@ def ruta_csv_por_defecto() -> Path:
             return candidata
     # Fallback: la primera base conocida (mensaje de error claro si no existe).
     return (bases[0] if bases else script_dir.parent) / relativa
+
+
+_COLUMNAS_FUENTES: tuple[str, ...] = ("KPI", "Organismo", "Titulo", "URL", "Anio", "Nota")
+
+
+def ruta_fuentes_por_defecto() -> Path:
+    """`KPI_Fuentes.csv` junto al catálogo (o `KPIS_FUENTES_CSV_PATH`)."""
+    env = os.environ.get("KPIS_FUENTES_CSV_PATH")
+    return Path(env) if env else ruta_csv_por_defecto().with_name("KPI_Fuentes.csv")
+
+
+def leer_fuentes_csv(path: str | os.PathLike[str]) -> list[dict]:
+    """Lee y valida el CSV de fuentes (cabecera exacta; KPI, organismo, título y URL obligatorios)."""
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        lector = csv.DictReader(f)
+        cabecera = tuple(lector.fieldnames or ())
+        if cabecera != _COLUMNAS_FUENTES:
+            raise ErrorValidacionCSV(f"Cabecera de fuentes inválida. Esperada: {list(_COLUMNAS_FUENTES)}. Hallada: {list(cabecera)}.")
+        filas = []
+        for n_fila, fila in enumerate(lector, start=2):
+            for columna in ("KPI", "Organismo", "Titulo", "URL"):
+                if not (fila.get(columna) or "").strip():
+                    raise ErrorValidacionCSV(f"Fila {n_fila} de fuentes: la columna '{columna}' no puede estar vacía.")
+            if not fila["URL"].startswith("https://"):
+                raise ErrorValidacionCSV(f"Fila {n_fila} de fuentes: la URL debe empezar con https://.")
+            filas.append(fila)
+    return filas
+
+
+def cargar_fuentes(db, filas: list[dict]) -> tuple[int, list[str]]:  # noqa: ANN001
+    """Reemplaza `kpi_fuente`. Devuelve (insertadas, nombres de KPI que no están en el catálogo)."""
+    ids = {k.nombre: k.kpi_id for k in db.query(KPI)}
+    db.query(KPIFuente).delete()
+    insertadas, faltantes = 0, []
+    for fila in filas:
+        kpi_id = ids.get(fila["KPI"])
+        if kpi_id is None:
+            faltantes.append(fila["KPI"])
+            continue
+        anio = (fila.get("Anio") or "").strip()
+        db.add(KPIFuente(kpi_id=kpi_id, organismo=fila["Organismo"], titulo=fila["Titulo"], url=fila["URL"],
+                         anio=int(anio) if anio.isdigit() else None, nota=(fila.get("Nota") or "").strip() or None))
+        insertadas += 1
+    return insertadas, faltantes
 
 
 def leer_kpis_csv(path: str | os.PathLike[str]) -> list[dict]:
@@ -163,7 +214,37 @@ def _a_kpi(fila: dict) -> KPI:
     )
 
 
-def main() -> int:
+def _sembrar_fuentes(db) -> int:  # noqa: ANN001
+    """Carga las fuentes (si el CSV existe); devuelve cuántas se insertaron."""
+    ruta = ruta_fuentes_por_defecto()
+    if not ruta.is_file():
+        logger.warning("Sin %s: no se cargan fuentes de referencia.", ruta)
+        return 0
+    insertadas, faltantes = cargar_fuentes(db, leer_fuentes_csv(ruta))
+    for nombre in faltantes:
+        logger.warning("Fuente omitida: el KPI %r no está en el catálogo.", nombre)
+    return insertadas
+
+
+def main(argv: list[str] | None = None) -> int:
+    argv = sys.argv[1:] if argv is None else argv
+    if "--solo-fuentes" in argv:
+        db = SessionLocal()
+        try:
+            n = _sembrar_fuentes(db)
+            db.commit()
+        except ErrorValidacionCSV as exc:
+            logger.error("CSV de fuentes inválido: %s", exc)
+            return 3
+        except SQLAlchemyError:
+            db.rollback()
+            logger.exception("Error de base de datos al cargar las fuentes; rollback.")
+            return 4
+        finally:
+            db.close()
+        logger.info("Fuentes de KPIs cargadas: %d.", n)
+        return 0
+
     ruta = ruta_csv_por_defecto()
 
     try:
@@ -183,7 +264,13 @@ def main() -> int:
     try:
         db.execute(text("TRUNCATE tt_rag.kpi RESTART IDENTITY CASCADE"))
         db.add_all(_a_kpi(fila) for fila in filas)
+        db.flush()
+        n_fuentes = _sembrar_fuentes(db)
         db.commit()
+    except ErrorValidacionCSV as exc:
+        db.rollback()
+        logger.error("CSV de fuentes inválido: %s", exc)
+        return 3
     except SQLAlchemyError:
         db.rollback()
         logger.exception("Error de base de datos al sembrar los KPIs; rollback.")
@@ -192,7 +279,7 @@ def main() -> int:
         db.close()
 
     n_insertados = len(filas)
-    logger.info("Seed de KPIs completo: %d insertados.", n_insertados)
+    logger.info("Seed de KPIs completo: %d insertados (%d fuentes de referencia).", n_insertados, n_fuentes)
     logger.info(
         "Recuerda ejecutar el reindex de Chroma: POST /vectorizacion/kpis/reindex"
     )

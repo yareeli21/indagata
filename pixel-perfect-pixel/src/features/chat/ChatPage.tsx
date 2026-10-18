@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { enviarMensaje, guardarContexto } from "@/api/chat";
 import { getInstrumentos } from "@/api/instrumentos";
+import { guardarSesionChat, leerSesionChat } from "@/api/investigaciones";
 import { useAuth } from "@/features/auth/AuthContext";
 import { useResearch } from "@/features/research/ResearchContext";
 import { fuentesDeInvestigacion } from "@/features/research/fuentes";
 import type { AlcanceChat, ContextoInvestigacion, Instrumento, Mensaje, ModeloLLM } from "@/types";
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, RotateCcw } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Pagina } from "@/components/layout/Pagina";
 import { BarraEntrada } from "./BarraEntrada";
@@ -46,12 +48,14 @@ export function ChatPage() {
   const [fase, setFase] = useState<Fase>("vacio");
   const [contexto, setContexto] = useState<ContextoInvestigacion | null>(null);
 
-  // Actualizar fase cuando cambia la investigación activa
+  // Al cambiar de investigación se retoma su conversación guardada (si la hay):
+  // las respuestas ya generadas no se vuelven a pedir al modelo.
   useEffect(() => {
     if (cargandoResearch) return;
-    setFase(activa ? "contexto" : "vacio");
-    setMensajes([]);
-    setContexto(null);
+    const sesion = activa ? leerSesionChat(activa.id) : null;
+    setFase(!activa ? "vacio" : sesion ? "chat" : "contexto");
+    setMensajes(sesion?.mensajes ?? []);
+    setContexto(sesion?.contexto ?? null);
   }, [activa, cargandoResearch]);
 
   // Chat
@@ -65,6 +69,17 @@ export function ChatPage() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [mensajes]);
+
+  // Guarda la conversación cada vez que termina una respuesta.
+  useEffect(() => {
+    if (!activa || !contexto || generando) return;
+    guardarSesionChat(activa.id, contexto, mensajes);
+  }, [activa, contexto, mensajes, generando]);
+
+  function nuevaConversacion() {
+    setMensajes([]);
+    if (activa && contexto) guardarSesionChat(activa.id, contexto, []);
+  }
 
   async function handleComenzar(ctx: ContextoInvestigacion) {
     if (!activa) return;
@@ -187,6 +202,19 @@ export function ChatPage() {
             <ChipsFuentes instrumentos={instrumentosFuentes} miId={miId} />
           )}
           {alcance !== "investigacion" && <div className="pb-3" />}
+          {mensajes.length > 0 && (
+            <div className="flex justify-end px-4 pb-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={nuevaConversacion}
+                disabled={generando}
+                className="text-muted-foreground"
+              >
+                <RotateCcw /> Nueva conversación
+              </Button>
+            </div>
+          )}
         </div>
 
         {/* Mensajes */}

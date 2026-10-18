@@ -35,7 +35,7 @@ if not (Path(__file__).resolve().parent / "shared" / "__init__.py").exists():
 from fastapi import FastAPI  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
-from routers import catalog, download, espacio, health, kpis, rag  # noqa: E402
+from routers import catalog, download, espacio, health, kpis, noticias, rag  # noqa: E402
 
 logging.basicConfig(
     level=os.getenv("LOG_LEVEL", "INFO").upper(),
@@ -89,6 +89,7 @@ app.include_router(kpis.router)
 app.include_router(download.router)
 app.include_router(rag.router)
 app.include_router(espacio.router)
+app.include_router(noticias.router)
 
 
 if __name__ == "__main__":

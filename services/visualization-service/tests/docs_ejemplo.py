@@ -92,3 +92,40 @@ def entrevista(ins: str = "INS-0003") -> dict:
         ],
         "avisos": [],
     }
+
+
+# Encuesta de carga académica (consultas con filtro): una pregunta con variantes de «Sí»,
+# una sí/no, una categórica con frases y una numérica. Valores por respondente:
+# (turno, reprobado, dificultades, carga laboral, horas de estudio)
+CARGA = [
+    ("Matutino", "Sí, una vez", "Sí", "No trabajo", 12),
+    ("Vespertino", "Sí, varias veces", "Sí", "Trabajo más de 30h", 4),
+    ("Vespertino", "No, nunca", "No", "Trabajo menos de 20h", 25),
+    ("Matutino", "Casi lo hago", "No", "No trabajo", 30),
+    ("Vespertino", "Sí, una vez", "No", "Trabajo más de 30h", 8),
+]
+TEXTOS_CARGA = {
+    1: ("¿Has reprobado alguna materia por falta de tiempo para estudiar?", "opcion_multiple"),
+    2: ("¿Tienes dificultades para equilibrar trabajo y estudios?", "binaria"),
+    3: ("¿Cuál es tu carga laboral actual?", "categorica"),
+    4: ("¿Cuántas horas por semana dedicas al estudio fuera de clases? (número)", "numerica"),
+}
+
+
+def encuesta_carga(ins: str = "INS-0004") -> dict:
+    preguntas = [{"id": f"{ins}-p{k:02d}", "seccion_id": f"{ins}-s1", "texto": t, "tipo": tipo, "kpis_relacionados": [],
+                  "resumen": {"n_validas": 5}} for k, (t, tipo) in TEXTOS_CARGA.items()]
+    respondentes = []
+    for i, (turno, *valores) in enumerate(CARGA, start=1):
+        respuestas = []
+        for k, v in enumerate(valores, start=1):
+            respuestas.append({"pregunta_id": f"{ins}-p{k:02d}", "pregunta": TEXTOS_CARGA[k][0], "estado": "respondida",
+                               "valor": v, "significado": f"{v} horas" if k == 4 else v})
+        respondentes.append({"id": f"{ins}-R{i:03d}", "contexto": {"Turno": turno}, "respuestas": respuestas})
+    return {
+        "esquema_version": "1.0",
+        "instrumento": {"id": ins, "tipo": "encuesta", "titulo": "Encuesta de carga académica y gestión del tiempo",
+                        "n_respondentes": 5},
+        "kpis_asociados": [], "secciones": [{"id": f"{ins}-s1", "nombre": "Carga"}],
+        "preguntas": preguntas, "respondentes": respondentes, "avisos": [],
+    }

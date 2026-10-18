@@ -105,14 +105,16 @@ def es_definicion(pregunta: str) -> bool:
 
 @dataclass(frozen=True)
 class Ancla:
-    tipo: str  # glosario | ayuda
+    tipo: str  # glosario | ayuda | fuente_kpi
     titulo: str
     texto: str
     claves: tuple[str, ...] = ()
+    url: str = ""  # fuente_kpi: enlace a la fuente de referencia
 
     @property
     def cita(self) -> str:
-        return f"[{'Glosario' if self.tipo == 'glosario' else 'Ayuda'}: {self.titulo}]"
+        etiqueta = {"glosario": "Glosario", "ayuda": "Ayuda", "fuente_kpi": "Fuente KPI"}.get(self.tipo, "Ayuda")
+        return f"[{etiqueta}: {self.titulo}]"
 
 
 @lru_cache(maxsize=1)

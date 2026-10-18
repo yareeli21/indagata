@@ -26,11 +26,13 @@ from pathlib import Path
 from typing import Any
 
 from sqlalchemy import func
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from shared.db.core.config import settings
 from shared.models.instrumento_procesado import InstrumentoProcesado
 from shared.models.kpi import KPI
+from shared.models.kpi_fuente import KPIFuente
 from shared.models.kpi_inferido import KPIInferido
 from shared.models.kpi_inferido_chunk import KpiInferidoChunk
 from shared.models.kpi_variable import KPIVariable
@@ -452,6 +454,14 @@ def catalogo_kpis(db: Session, fichas: list[Ficha]) -> list[dict[str, Any]]:
     for kpi_id, variable in db.query(KPIVariable.kpi_id, Variable).join(Variable, Variable.variable_id == KPIVariable.variable_id):
         variables.setdefault(kpi_id, []).append(variable)
 
+    fuentes: dict[int, list[dict[str, Any]]] = {}
+    try:
+        for f in db.query(KPIFuente).order_by(KPIFuente.kpi_fuente_id):
+            fuentes.setdefault(f.kpi_id, []).append(
+                {"organismo": f.organismo, "titulo": f.titulo, "url": f.url, "anio": f.anio, "nota": f.nota})
+    except SQLAlchemyError:  # BD sin la migración 2026_13: el catálogo sigue sin fuentes
+        db.rollback()
+
     salida: list[dict[str, Any]] = []
     filas = db.query(KPI).order_by(KPI.nombre).all()
     refs = [(_kpi_ref(k), k) for k in filas]
@@ -489,6 +499,7 @@ def catalogo_kpis(db: Session, fichas: list[Ficha]) -> list[dict[str, Any]]:
                 "instrumentos": n,
                 "categoria": ref.categoria,
                 "ambito": ref.ambito,
+                "fuentes": fuentes.get(ref.kpi_id or -1, []),
             }
         )
     return salida

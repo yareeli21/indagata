@@ -151,6 +151,14 @@ class StorageFalso:
         return {"estado": "indexado", "chunks": self.indice[id_crudo]["chunks"]}
 
 
+@pytest.fixture(autouse=True)
+def _sin_cache_de_respuestas(monkeypatch):
+    """Las pruebas repiten preguntas a propósito: la caché se prueba aparte (test_cache.py)."""
+    from shared.db.core.config import settings
+
+    monkeypatch.setattr(settings, "RAG_CACHE_HORAS", 0)
+
+
 @pytest.fixture()
 def engine():
     eng = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)

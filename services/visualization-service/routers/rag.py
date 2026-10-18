@@ -39,9 +39,18 @@ def _consulta(db, consulta_id: int) -> RagLog:  # noqa: ANN001
     return fila
 
 
+def _metricas(db, fila: RagLog) -> dict:  # noqa: ANN001
+    """Métricas públicas; una respuesta reutilizada de la caché muestra las de la original."""
+    origen = (fila.metricas or {}).get("origen")
+    original = db.get(RagLog, origen) if origen else None
+    datos = evaluacion.estado_publico(original or fila)
+    datos["consultaId"] = fila.rag_log_id
+    return datos
+
+
 @router.get("/consultas/{consulta_id}/metricas", response_model=MetricasConsultaOut, summary="Métricas automáticas de una respuesta")
 def metricas(consulta_id: int, _: Investigador, db: DBSession) -> MetricasConsultaOut:
-    return MetricasConsultaOut(**evaluacion.estado_publico(_consulta(db, consulta_id)))
+    return MetricasConsultaOut(**_metricas(db, _consulta(db, consulta_id)))
 
 
 @router.get("/consultas/{consulta_id}", summary="Consulta registrada: respuesta, contexto usado y métricas")
@@ -49,4 +58,4 @@ def consulta(consulta_id: int, _: Investigador, db: DBSession) -> dict:
     fila = _consulta(db, consulta_id)
     return {"consultaId": fila.rag_log_id, "pregunta": fila.pregunta, "respuesta": fila.respuesta,
             "decision": fila.decision_dominio, "ruta": fila.ruta, "motivo": fila.motivo,
-            "contexto": fila.contexto_usado or [], "metricas": evaluacion.estado_publico(fila)}
+            "contexto": fila.contexto_usado or [], "metricas": _metricas(db, fila)}

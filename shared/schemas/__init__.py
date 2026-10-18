@@ -38,6 +38,7 @@ from shared.schemas.instrumento_procesado import (
     InstrumentoProcesadoUpdate,
 )
 from shared.schemas.kpi import KPIBase, KPICreate, KPIRead, KPIUpdate
+from shared.schemas.kpi_fuente import KPIFuenteBase, KPIFuenteCreate, KPIFuenteRead
 from shared.schemas.kpi_inferido import (
     KPIInferidoBase,
     KPIInferidoCreate,
@@ -172,6 +173,10 @@ __all__ = [
     "VariableCreate",
     "VariableUpdate",
     "VariableRead",
+    # kpi_fuente
+    "KPIFuenteBase",
+    "KPIFuenteCreate",
+    "KPIFuenteRead",
     # kpi_variable
     "KPIVariableBase",
     "KPIVariableCreate",

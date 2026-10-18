@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Check, ChevronDown, FolderPlus } from "lucide-react";
+import { Check, ChevronDown, FolderCog, FolderPlus } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,6 +26,13 @@ export function ResearchSelector() {
   const { investigaciones, activa, seleccionar, crear } = useResearch();
   const [abierto, setAbierto] = useState(false);
   const [nombre, setNombre] = useState("");
+  const navigate = useNavigate();
+
+  // Elegir una investigación la retoma: se abre su chat con la conversación guardada.
+  const retomar = (id: string) => {
+    seleccionar(id);
+    void navigate({ to: "/chat" });
+  };
 
   const guardar = async () => {
     if (!nombre.trim()) return;
@@ -53,12 +61,16 @@ export function ResearchSelector() {
           <DropdownMenuLabel>Investigación activa</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {investigaciones.map((inv) => (
-            <DropdownMenuItem key={inv.id} onSelect={() => seleccionar(inv.id)}>
+            <DropdownMenuItem key={inv.id} onSelect={() => retomar(inv.id)}>
               <Check className={`h-4 w-4 ${activa?.id === inv.id ? "opacity-100" : "opacity-0"}`} />
               <span className="truncate">{inv.nombre}</span>
             </DropdownMenuItem>
           ))}
           <DropdownMenuSeparator />
+          <DropdownMenuItem onSelect={() => void navigate({ to: "/investigacion" })}>
+            <FolderCog className="h-4 w-4" />
+            Gestionar investigaciones
+          </DropdownMenuItem>
           <DropdownMenuItem onSelect={() => setAbierto(true)}>
             <FolderPlus className="h-4 w-4" />
             Crear investigación

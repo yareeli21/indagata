@@ -84,6 +84,16 @@ class RelacionadoOut(BaseModel):
 # ── KPIs ───────────────────────────────────────────────────────────────────────
 
 
+class FuenteKpiOut(BaseModel):
+    """Fuente de referencia verificada de un KPI (tabla kpi_fuente)."""
+
+    organismo: str
+    titulo: str
+    url: str
+    anio: int | None = None
+    nota: str | None = None
+
+
 class KpiCatalogoOut(BaseModel):
     id: str
     nombre: str
@@ -98,6 +108,7 @@ class KpiCatalogoOut(BaseModel):
     instrumentos: int = 0
     categoria: str = ""
     ambito: str = ""
+    fuentes: list[FuenteKpiOut] = []
 
 
 class KpiResumenOut(BaseModel):
@@ -208,9 +219,10 @@ class FuenteChatOut(BaseModel):
 class ReferenciaChatOut(BaseModel):
     """Entrada curada que respalda la respuesta: glosario metodológico o ayuda de la plataforma."""
 
-    tipo: Literal["glosario", "ayuda"]
+    tipo: Literal["glosario", "ayuda", "fuente_kpi"]
     titulo: str
     texto: str
+    url: str = ""  # fuente_kpi: enlace a la fuente de referencia verificada
 
 
 class ChatResponse(BaseModel):
@@ -223,6 +235,7 @@ class ChatResponse(BaseModel):
     decision: str = "dentro"  # dentro | fuera | privacidad | manipulacion | sin_informacion | ayuda
     ruta: str | None = None  # semantica | estructurada | mixta | ayuda
     consultaId: int | None = None  # rag_log_id (para pedir las métricas de esta respuesta)
+    enCache: bool = False  # se reutilizó la respuesta guardada de una consulta idéntica
 
 
 class MetricasConsultaOut(BaseModel):

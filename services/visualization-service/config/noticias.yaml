@@ -1,0 +1,22 @@
+# Fuentes del panel de noticias del chat (visualization-service/services/noticias.py).
+#
+# RSS o Atom públicos, sin clave. Cada URL se verificó el 2026-10-18 (responde con
+# entradas). Para agregar una fuente basta con otra entrada; si deja de responder,
+# el panel muestra las demás.
+#
+# Con NOTICIAS_API_KEY en el .env se consulta además GNews (gnews.io) con `consulta_api`.
+
+fuentes:
+  - nombre: Google Noticias
+    url: "https://news.google.com/rss/search?q=%22investigaci%C3%B3n+educativa%22+OR+%22educaci%C3%B3n+superior%22&hl=es-419&gl=MX&ceid=MX:es-419"
+  - nombre: ONU Noticias · Cultura y educación
+    url: "https://news.un.org/feed/subscribe/es/news/topic/culture-and-education/feed/rss.xml"
+  - nombre: Campus Milenio
+    url: "https://suplementocampus.com/feed/"
+  - nombre: Educación Futura
+    url: "https://www.educacionfutura.org/feed"
+
+# Noticias que se devuelven (las más recientes, sin repetir título).
+maximo: 12
+# Búsqueda en GNews cuando hay NOTICIAS_API_KEY.
+consulta_api: "investigación educativa OR educación superior"

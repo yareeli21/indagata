@@ -1,6 +1,5 @@
-import { noticias } from "@/mocks/data";
-import type { DatosGrafica, Kpi, KpiCatalogo, Noticia } from "@/types";
-import { API_URL, ErrorHttp, pedir, simularRed } from "./client";
+import type { DatosGrafica, Kpi, KpiCatalogo, NoticiasRespuesta } from "@/types";
+import { API_URL, ErrorHttp, pedir } from "./client";
 
 /**
  * Métricas del acervo (instrumentos, aprobados para el RAG, KPIs con evidencia,
@@ -14,9 +13,20 @@ export async function getKpis(): Promise<Kpi[]> {
   }
 }
 
-// TODO: no hay servicio de noticias en el backend; queda mock.
-export function getNoticias(): Promise<Noticia[]> {
-  return simularRed(noticias);
+/**
+ * Noticias reales de educación e investigación (RSS de medios y organismos, y GNews
+ * si el servidor tiene clave). Sin conexión llega una lista vacía con `aviso`: nunca
+ * se muestran noticias inventadas. GET /visualizacion/noticias[?actualizar=true]
+ */
+export async function getNoticias(actualizar = false): Promise<NoticiasRespuesta> {
+  try {
+    return await pedir<NoticiasRespuesta>(
+      `${API_URL}/visualizacion/noticias${actualizar ? "?actualizar=true" : ""}`,
+      { auth: true },
+    );
+  } catch {
+    return { noticias: [], actualizado: null, aviso: "No se pudieron cargar las noticias." };
+  }
 }
 
 /**

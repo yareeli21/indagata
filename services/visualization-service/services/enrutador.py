@@ -14,6 +14,12 @@ El LLM solo redacta: recibe el `RESULTADO CALCULADO` con la orden de no recalcul
 Si el resultado es «no existe», la respuesta se arma aquí sin LLM (más fiable que
 pedirle a un modelo pequeño que comunique una ausencia sin inventar).
 
+Las consultas con FILTRO («uno de los estudiantes que sí reprobaron por falta de
+tiempo», «cuántos trabajan más de 30 horas») arman sus condiciones con reglas sobre el
+catálogo de preguntas y opciones del propio documento; si las reglas no alcanzan,
+`filtro_llm` le pide a Ollama SOLO la condición (pregunta y opciones), que se valida
+contra ese catálogo antes de contar. Nunca se ejecuta SQL generado por el modelo.
+
 Si ninguna intención aplica, o el alcance no tiene instrumentos del tipo necesario,
 `resolver` devuelve None y el chat sigue por la ruta semántica.
 """
@@ -28,17 +34,21 @@ from typing import Any
 
 from sqlalchemy.orm import Session
 
-from shared.conocimiento import consultas
+from shared.conocimiento import consultas, sugerencias
+from shared.db.core.config import settings
+from shared.models.limpieza_ejecucion import LimpiezaEjecucion
 from shared.models.respuesta_interpretada import RespuestaInterpretada
 from shared.models.version_conocimiento import VersionConocimiento
 
 from services import storage_client
-from services.dominio import normalizar
+from services.dominio import es_definicion, normalizar
 
 logger = logging.getLogger("visualization-service")
 
 _MAX_INSTRUMENTOS = 10  # tope de documentos que se leen por consulta
 _MAX_LINEAS_PERSONA = 15
+_MAX_LINEAS_FILTRO = 40  # «dame todas las respuestas de uno de…»: la persona completa
+_MAX_IDS_LISTA = 30
 
 _TIPO_UI = {"encuesta": "Encuesta", "entrevista": "Entrevista", "prueba_estandarizada": "Prueba estandarizada"}
 
@@ -114,21 +124,56 @@ _TEMA = re.compile(r"\b(?:sobre|acerca de|respecto a|respecto de|en relacion con
 _PORCENTAJE = re.compile(r"\b(porcentaje|por ciento|proporcion|cuantos|cuantas|que parte)\b|%")
 _ALGUIEN = re.compile(r"\b(un|una|algun|alguna|algunos|que|cual|cuales|hay)\s+(respondente|persona|estudiante|encuestad[oa]|alumn[oa])s?\b")
 _DIFICIL = re.compile(r"\b(menor|mas bajo|peor)\s+(porcentaje|%|indice|tasa)\s+de\s+acierto|\breactivo\s+mas\s+(dificil|fallado)|\bmas\s+dificil\b|\bmenos\s+acertad")
+# Calidad de los datos y sugerencias de análisis (medidas de la limpieza).
+_CALIDAD = re.compile(
+    r"\b(alfa|cronbach|kr-?20|confiabilidad|confiable|fiabilidad|consistencia interna|calidad de (?:los )?datos"
+    r"|que analisis|analisis (?:me )?(?:sugieres|recomiendas|puedo|conviene)|sugerencias? de analisis"
+    r"|como (?:lo |la )?analizo|que prueba estadistica|linea recta|discriminacion de los reactivos)\b"
+)
 _KPI = re.compile(r"\b(kpi|kpis|indicador|indicadores)\b")
 _KPI_PREGUNTAS = re.compile(r"\b(que|cuales)\s+(preguntas|reactivos|items)\b|\bcomo\s+respondieron\b")
+# Consultas con filtro: quién cumple una condición sobre sus respuestas.
+_FILTRO = re.compile(
+    r"\b(?:que|quienes)\s+(?:respondieron|contestaron|dijeron|eligieron|marcaron|seleccionaron|escogieron)\b"
+    r"|\bque\s+(?:si|no)\s+\w+|\b(?:los|las|aquellos|aquellas)\s+que\b|\bquienes\b|\bfiltra(?:r)?\b"
+    r"|\b(?:estudiantes|alumn[oa]s|respondentes|encuestad[oa]s|personas|participantes|jovenes)\s+que\b"
+    r"|\b(?:cuantos|cuantas|porcentaje de)\s+(?:estudiantes|alumn[oa]s|respondentes|encuestad[oa]s|personas|jovenes)\b"
+    r"|\b(?:cuantos|cuantas)\s+(?:respondieron|contestaron|dijeron|eligieron|marcaron)\b"
+)
+_ACCION_UNO = re.compile(r"\b(?:uno|una)\s+de\b|\b(?:un|una|algun|alguna)\s+(?:estudiante|alumn[oa]|respondente|persona|encuestad[oa]|joven)\b|\bejemplo\b")
+_ACCION_LISTA = re.compile(r"\b(?:quienes|cuales|lista|enlista|listado|todos los|todas las)\b")
+_POLARIDAD = re.compile(
+    r"\b(?:que|dijeron|respondieron|contestaron|marcaron|eligieron)\s+(si|no)\b"
+    r"|\b(si|no)\s+(?:han|ha|hayan|haya|\w+(?:aron|ieron|ado|ido|an|en))\b"
+)
+_COMPARACION = re.compile(
+    r"\b(mas|menos|mayor|menor)\s+(?:de|que|a)\s+(\d+(?:[.,]\d+)?)"
+    r"|\b(?:al menos|por lo menos|minimo)\s+(\d+(?:[.,]\d+)?)|\b(?:como maximo|maximo|a lo mucho)\s+(\d+(?:[.,]\d+)?)"
+)
+_TIPOS_NUMERICOS = {"numerica", "escala_lineal", "calificacion"}
 _STOP = set("que cual cuales como donde cuando para por con sin sobre los las del una uno unos unas este esta estos estas "
             "pregunta preguntas respondio respondieron respondente dijo dice instrumento kpi kpis mide miden relacionado "
             "relacionada porque esta estan tiene tienen hay cuanto cuantos".split())
+# Palabras de la petición que no dicen nada de la condición («dame todas las respuestas de uno de los estudiantes…»).
+_STOP_FILTRO = _STOP | set(
+    "dame todas todos todo resumen resume tantos tanto ese esa esos esas estudiante estudiantes alumno alumnos alumna "
+    "alumnas respondentes persona personas encuestados encuestadas encuesta encuestas prueba entrevista ellos ellas "
+    "alguno alguna algunos algunas quienes uno una han sido fueron favor quiero saber respuestas respuesta contestaron "
+    "dijeron eligieron marcaron cuantas porcentaje muestrame muestra".split()
+)
+_VACIAS_VALOR = {"de", "la", "el", "en", "y", "a", "o", "lo", "los", "las", "del", "al", "un", "una", "h"}
+_GENERICAS_TITULO = {"encue", "prueb", "entre", "instr", "cuest", "estud"}
 
 
 @dataclass
 class Intencion:
-    tipo: str  # respuesta | persona | respondente_con_nivel | pct_nivel | kpi | kpi_preguntas | reactivo_dificil | dijo
+    tipo: str  # respuesta | persona | respondente_con_nivel | pct_nivel | kpi | kpi_preguntas | reactivo_dificil | dijo | filtro | calidad
     persona: tuple[str, int] | None = None
     preguntas: list[int] = field(default_factory=list)
     nivel: str | None = None
     tema: str = ""
     texto: str = ""  # pregunta normalizada (para grupos y KPIs por nombre)
+    accion: str = ""  # filtro: uno | contar | lista | resumen
 
 
 def _persona(texto: str) -> tuple[str, int] | None:
@@ -159,18 +204,35 @@ def _nivel(texto: str) -> str | None:
     return None
 
 
-def detectar(pregunta: str) -> Intencion | None:
+def pide_filtro(pregunta: str) -> bool:
+    """¿La pregunta pide los respondentes que cumplen algo («los que sí reprobaron…»)?"""
+    return bool(_FILTRO.search(normalizar(pregunta)))
+
+
+def _accion(texto: str) -> str:
+    if _ACCION_UNO.search(texto):
+        return "uno"
+    if _PORCENTAJE.search(texto):
+        return "contar"
+    return "lista" if _ACCION_LISTA.search(texto) else "resumen"
+
+
+def detectar(pregunta: str, *, sin_filtro: bool = False) -> Intencion | None:
     """Intención estructurada de la pregunta, o None si es una pregunta abierta."""
     texto = normalizar(pregunta)
     persona, preguntas, nivel = _persona(texto), _preguntas(texto), _nivel(texto)
     tema = (m.group(1).strip() if (m := _TEMA.search(texto)) else "")
     base = {"persona": persona, "preguntas": preguntas, "nivel": nivel, "tema": tema, "texto": texto}
+    if _CALIDAD.search(texto) and not persona and not es_definicion(pregunta):
+        return Intencion("calidad", **base)
     if _DIFICIL.search(texto):
         return Intencion("reactivo_dificil", **base)
     if _KPI.search(texto):
         return Intencion("kpi_preguntas" if _KPI_PREGUNTAS.search(texto) else "kpi", **base)
     if persona and persona[0] == "E":
         return Intencion("dijo", **base)
+    if not sin_filtro and not persona and _FILTRO.search(texto):
+        return Intencion("filtro", accion=_accion(texto), **base)
     if nivel and _PORCENTAJE.search(texto) and (preguntas or tema):
         return Intencion("pct_nivel", **base)
     if nivel and preguntas and (_ALGUIEN.search(texto) or not persona):
@@ -261,6 +323,232 @@ _FRASE_NIVEL = {"acuerdo": "de acuerdo", "desacuerdo": "en desacuerdo", "neutral
                 "satisfaccion": "satisfecho", "insatisfaccion": "insatisfecho"}
 
 
+# ── Filtros: condiciones sobre las respuestas ──────────────────────────────────
+
+
+def _raices(texto: str) -> set[str]:
+    """Raíces de 5 letras (y números) de las palabras con contenido: «reprobado» y «reprobaron» → «repro»."""
+    return {t if t[0].isdigit() else t[:5] for t in re.findall(r"\d+(?:[.,]\d+)?|[a-z]+", normalizar(texto))
+            if (t[0].isdigit() or len(t) >= 4) and t not in _STOP_FILTRO}
+
+
+def _fichas_valor(texto: str) -> set[str]:
+    """Palabras de una opción de respuesta («Trabajo más de 30h» → trabajo, mas, 30), con raíz de 5 letras."""
+    return {t if t[0].isdigit() else t[:5] for t in re.findall(r"\d+(?:[.,]\d+)?|[a-z]+", normalizar(texto))
+            if t not in _VACIAS_VALOR}
+
+
+@dataclass
+class _DatosPregunta:
+    valores: list[str]  # opciones que alguien eligió (significados), en orden de aparición
+    numerica: bool
+    con_nivel: bool
+
+    @property
+    def binaria(self) -> bool:
+        primeras = {normalizar(v).split(" ")[0].strip(",.") for v in self.valores}
+        return bool(self.valores) and primeras <= {"si", "no"}
+
+
+def _indice(doc: dict[str, Any]) -> dict[str, _DatosPregunta]:
+    valores: dict[str, dict[str, None]] = {}
+    numeros: dict[str, list[bool]] = {}
+    nivel: dict[str, bool] = {}
+    for r in doc.get("respondentes") or []:
+        for x in r["respuestas"]:
+            if x.get("estado") != "respondida":
+                continue
+            pid = x["pregunta_id"]
+            valores.setdefault(pid, {})[str(x.get("significado") or x.get("valor"))] = None
+            numeros.setdefault(pid, []).append(consultas._numero(x.get("valor")) is not None)
+            nivel[pid] = nivel.get(pid, False) or bool(x.get("nivel"))
+    tipos = {p["id"]: p.get("tipo") for p in _items(doc)}
+    return {pid: _DatosPregunta(list(v)[:40], tipos.get(pid) in _TIPOS_NUMERICOS or (bool(numeros[pid]) and all(numeros[pid])),
+                                nivel.get(pid, False))
+            for pid, v in valores.items()}
+
+
+def _comparacion(texto: str) -> list[Any] | None:
+    if not (m := _COMPARACION.search(texto)):
+        return None
+    if m.group(1):
+        return [">" if m.group(1) in ("mas", "mayor") else "<", float(m.group(2).replace(",", "."))]
+    if m.group(3):
+        return [">=", float(m.group(3).replace(",", "."))]
+    return ["<=", float(m.group(4).replace(",", "."))]
+
+
+def _primera(valor: str) -> str:
+    return normalizar(valor).split(" ")[0].strip(",.")
+
+
+def _condicion_en(doc: dict[str, Any], indice: dict[str, _DatosPregunta], texto: str, quitar: set[str],
+                  excluir: set[str], estricta: bool) -> tuple[dict[str, Any], str, int] | None:
+    """La condición mejor expresada en la consulta («que sí han reprobado por falta de tiempo»), o None.
+
+    Elige la pregunta con más palabras en común (o la nombrada «p13») que además tenga
+    una opción mencionada: completa («Sí, una vez»), por sus palabras («más de 30h»),
+    por polaridad («que sí…» → todas las que empiezan con «Sí»), un nivel («de acuerdo»)
+    o una comparación numérica («más de 20»). `estricta` (segunda condición en adelante)
+    exige más evidencia para no inventar condiciones.
+    """
+    raices, fichas = _raices(texto) - quitar, _fichas_valor(texto) - quitar
+    numeros = _preguntas(texto)
+    nivel, comparacion = _nivel(texto), _comparacion(texto)
+    m = _POLARIDAD.search(texto)
+    polaridad = (m.group(1) or m.group(2)) if m else None
+    mejor: tuple[dict[str, Any], str, int] | None = None
+    for p in _items(doc):
+        datos = indice.get(p["id"])
+        if datos is None or p["id"] in excluir:
+            continue
+        explicita = any(re.fullmatch(rf"[a-z]+0*{n}", _corto(p["id"])) for n in numeros)
+        solape = len(raices & _raices(p.get("texto", "")))
+        completos: list[str] = []
+        por_fichas: list[str] = []
+        # En las preguntas numéricas «más de 30» es una comparación, no la opción «30 horas».
+        if not (datos.numerica and comparacion):
+            completos = [v for v in datos.valores if re.search(rf"(?<![a-z0-9]){re.escape(normalizar(v))}(?![a-z0-9])", texto)]
+            completos = [v for v in completos if not any(v != w and normalizar(v) in normalizar(w) for w in completos)]
+            por_fichas = [] if completos else [v for v in datos.valores if (f := _fichas_valor(v)) and f <= fichas and len(f) >= 2]
+        condicion, fuerza, nota = None, 0, ""
+        if nivel and datos.con_nivel and not any("totalmente" in normalizar(v) for v in completos):
+            condicion, fuerza = {"nivel": nivel}, 2
+        elif completos or por_fichas:
+            elegidos = completos or por_fichas
+            condicion, fuerza = {"valores": elegidos}, 3 + max(len(_fichas_valor(v)) for v in elegidos)
+        elif polaridad and (con_polaridad := [v for v in datos.valores if _primera(v) == polaridad]):
+            condicion, fuerza = {"valores": con_polaridad}, 1
+        elif comparacion and datos.numerica:
+            condicion, fuerza = {"comparacion": comparacion}, 1
+        elif solape >= 2 and datos.binaria:
+            condicion, nota = {"valores": [v for v in datos.valores if _primera(v) == "si"]}, "se interpretó como «sí»"
+        if condicion is None:
+            continue
+        fuerte = fuerza >= 5  # una opción nombrada con al menos dos palabras («Trabajo más de 30h»)
+        if not (explicita or solape >= (2 if estricta else 1) or fuerte):
+            continue
+        puntos = solape * 2 + (6 if explicita else 0) + fuerza
+        if mejor is None or puntos > mejor[2]:
+            mejor = ({"pregunta_id": p["id"], **condicion}, nota, puntos)
+    return mejor
+
+
+def _condiciones(doc: dict[str, Any], texto: str) -> list[tuple[dict[str, Any], str]]:
+    """Condiciones de la consulta (hasta 3: «… que reprobaron una vez y tienen dificultades para…»).
+
+    Se busca la mejor; sus palabras se descuentan y se busca otra con más exigencia.
+    """
+    indice = _indice(doc)
+    titulo = _raices((doc.get("instrumento") or {}).get("titulo", "")) - _GENERICAS_TITULO
+    # Si la consulta nombra el instrumento, sus palabras no cuentan para elegir la pregunta.
+    quitar = set(titulo) if len(_raices(texto) & titulo) >= 2 else set()
+    salida: list[tuple[dict[str, Any], str]] = []
+    usadas: set[str] = set()
+    for _ in range(3):
+        hallada = _condicion_en(doc, indice, texto, quitar, usadas, estricta=bool(salida))
+        if hallada is None:
+            break
+        condicion = hallada[0]
+        salida.append(hallada[:2])
+        usadas.add(condicion["pregunta_id"])
+        p = next(x for x in _items(doc) if x["id"] == condicion["pregunta_id"])
+        quitar |= _raices(p.get("texto", ""))
+    return salida
+
+
+def _describir(doc: dict[str, Any], condicion: dict[str, Any]) -> str:
+    p = next((x for x in _items(doc) if x["id"] == condicion["pregunta_id"]), {"texto": ""})
+    base = f"{_corto(condicion['pregunta_id'])} «{p['texto']}»"
+    if condicion.get("nivel"):
+        return f"{base}: {_FRASE_NIVEL.get(condicion['nivel'], condicion['nivel'])}"
+    if condicion.get("valores"):
+        return f"{base} = " + " o ".join(f"«{v}»" for v in condicion["valores"])
+    op, n = condicion["comparacion"]
+    return f"{base} {op} {n:g}"
+
+
+def _lineas_calidad(ins: Instrumento, sesion: Session) -> tuple[list[str], bool]:
+    """Medidas de la última limpieza confirmada del instrumento y las sugerencias de análisis."""
+    ejecucion = (
+        sesion.query(LimpiezaEjecucion)
+        .filter(LimpiezaEjecucion.id_crudo == int(ins.id_crudo), LimpiezaEjecucion.estado == "confirmada")
+        .order_by(LimpiezaEjecucion.version.desc())
+        .first()
+    )
+    estadistica = (((ejecucion.reporte or {}).get("vista_final") or {}).get("estadistica")) if ejecucion else None
+    if not estadistica:
+        return ["Este instrumento no tiene medidas de la limpieza (se cargó antes de la limpieza asistida)."], False
+    lineas: list[str] = []
+    fiabilidad = estadistica.get("fiabilidad")
+    if isinstance(fiabilidad, list):
+        for b in fiabilidad:
+            if b.get("alfa") is not None:
+                lineas.append(f"Fiabilidad del bloque «{b.get('bloque')}»: α de Cronbach = {b['alfa']} "
+                              f"({b.get('interpretacion') or 'sin interpretación'}), {b.get('n_items')} ítems.")
+    elif isinstance(fiabilidad, dict) and fiabilidad.get("kr20") is not None:
+        lineas.append(f"Fiabilidad de la prueba: KR-20 = {fiabilidad['kr20']} ({fiabilidad.get('interpretacion')}), "
+                      f"{fiabilidad.get('n_reactivos')} reactivos y {fiabilidad.get('n_alumnos')} alumnos.")
+    if r := estadistica.get("resumen_reactivos"):
+        lineas.append(f"Reactivos: {r.get('faciles')} fáciles, {r.get('medios')} medios, {r.get('dificiles')} difíciles; "
+                      f"{r.get('discriminacion_pobre')} con discriminación pobre.")
+    if e := estadistica.get("encuestados"):
+        n = max((c.get("n") or 0 for c in estadistica.get("columnas") or []), default=0)
+        lineas.append(f"Encuestados que respondieron en línea recta: {e.get('linea_recta', 0)}" + (f" de {n}." if n else "."))
+    lineas += [f"Sugerencia ({s['nivel']}): {s['texto']} {s['porque']}" for s in sugerencias.sugerir(ins.tipo, estadistica)]
+    return lineas, True
+
+
+def _resumen_persona(doc: dict[str, Any], persona: dict[str, Any]) -> str:
+    """Resumen calculado de una persona: sus respuestas de escala agrupadas por opción.
+
+    Sirve aunque el modelo no redacte (y le da al modelo el resumen ya hecho).
+    """
+    tipos = {p["id"]: p.get("tipo") for p in _items(doc)}
+    grupos: dict[str, list[str]] = {}
+    sin_respuesta = []
+    for x in persona["respuestas"]:
+        if x.get("estado") != "respondida":
+            sin_respuesta.append(_corto(x["pregunta_id"]))
+        elif tipos.get(x["pregunta_id"]) == "likert":
+            grupos.setdefault(str(x.get("significado") or x.get("valor")), []).append(_corto(x["pregunta_id"]))
+    partes = [f"«{v}» en {', '.join(ps)}" for v, ps in sorted(grupos.items(), key=lambda g: -len(g[1]))]
+    if sin_respuesta:
+        partes.append(f"sin respuesta en {', '.join(sin_respuesta)}")
+    return "Resumen calculado de sus respuestas de escala: " + ("; ".join(partes) if partes else "no tiene preguntas de escala") + "."
+
+
+def _lineas_filtro(intencion: Intencion, ins: Instrumento, condiciones: list[tuple[dict[str, Any], str]]) -> tuple[list[str], bool]:
+    """Resultado de una consulta con filtro: cuántos cumplen y, según la acción, quiénes o uno completo."""
+    doc = ins.doc
+    grupo = _grupo(doc, intencion.texto)
+    total = len(consultas.filtrar(doc, [], grupo))
+    personas = consultas.filtrar(doc, [c for c, _ in condiciones], grupo)
+    lineas = [f"Condición: {_describir(doc, c)}" + (f" ({nota})" if nota else "") for c, nota in condiciones]
+    if grupo:
+        lineas.append("Grupo: " + ", ".join(f"{k} = {v}" for k, v in grupo.items()))
+    if not personas:
+        return lineas + [f"Ninguno de los {total} respondentes cumple la condición."], False
+    pct = round(100 * len(personas) / total, 1) if total else 0.0
+    lineas.append(f"Cumplen la condición {len(personas)} de {total} respondentes ({pct} %).")
+    ids = [_corto(r["id"]) for r in personas]
+    if intencion.accion == "uno":
+        elegido = personas[0]
+        contexto = "; ".join(f"{k}: {v}" for k, v in (elegido.get("contexto") or {}).items() if v not in (None, ""))
+        lineas.append(f"Respondente elegido como ejemplo: {ids[0]}" + (f" ({contexto})" if contexto else "") + ".")
+        lineas.append(_resumen_persona(doc, elegido))
+        lineas.append("Sus respuestas:")
+        for x in elegido["respuestas"][:_MAX_LINEAS_FILTRO]:
+            valor = x.get("significado") or x.get("valor") if x.get("estado") == "respondida" else f"sin respuesta ({x.get('motivo') or x.get('estado')})"
+            lineas.append(f"{_corto(x['pregunta_id'])} «{x['pregunta']}»: {valor}")
+        if len(ids) > 1:
+            lineas.append(f"Otros que cumplen la condición: {', '.join(ids[1:11])}" + (f" y {len(ids) - 11} más." if len(ids) > 11 else "."))
+    elif intencion.accion in ("lista", "resumen"):
+        tope = _MAX_IDS_LISTA if intencion.accion == "lista" else 10
+        lineas.append(f"Respondentes que la cumplen: {', '.join(ids[:tope])}" + (f" y {len(ids) - tope} más." if len(ids) > tope else "."))
+    return lineas, True
+
+
 # ── Ejecución ──────────────────────────────────────────────────────────────────
 
 
@@ -324,6 +612,14 @@ def _ejecutar_en(intencion: Intencion, ins: Instrumento, sesion: Session) -> tup
             como = res.get("interpretacion") or (f"{res.get('pct_acierto')} % de acierto" if res.get("pct_acierto") is not None else "")
             lineas.append(f"{_corto(p['pregunta_id'])} «{p['texto']}»: {como}".rstrip(": "))
         return lineas, True
+
+    if t == "calidad":
+        return _lineas_calidad(ins, sesion)
+
+    if t == "filtro":
+        if ins.tipo != "encuesta" or not (condiciones := _condiciones(doc, intencion.texto)):
+            return None
+        return _lineas_filtro(intencion, ins, condiciones)
 
     if t == "dijo":
         if ins.tipo != "entrevista":
@@ -416,20 +712,20 @@ def _kpi_mencionado(doc: dict[str, Any], texto: str) -> dict[str, Any] | None:
     return mejor
 
 
-def resolver(pregunta: str, sesion: Session, ids: list[str] | None) -> Resultado | None:
-    """Resultado calculado para la pregunta, o None si va por la ruta semántica."""
-    intencion = detectar(pregunta)
-    if intencion is None:
-        return None
-    partes: list[tuple[Instrumento, list[str], bool]] = []
-    for ins in cargar_documentos(sesion, ids):
-        try:
-            salida = _ejecutar_en(intencion, ins, sesion)
-        except (KeyError, TypeError, ValueError) as exc:  # documento con una forma inesperada
-            logger.warning("Consulta %s falló en el instrumento %s: %s", intencion.tipo, ins.id_crudo, exc)
-            continue
-        if salida is not None:
-            partes.append((ins, *salida))
+def nombrados(instrumentos: list[Instrumento], texto: str) -> list[Instrumento]:
+    """Los instrumentos que la pregunta nombra por su título («la encuesta de carga académica»)."""
+    raices = _raices(texto)
+    puntos = {ins.id_crudo: len(raices & (_raices(ins.titulo) - _GENERICAS_TITULO)) for ins in instrumentos}
+    maximo = max(puntos.values(), default=0)
+    return [ins for ins in instrumentos if maximo >= 2 and puntos[ins.id_crudo] == maximo]
+
+
+def _alcance(sesion: Session, ids: list[str] | None, texto: str) -> list[Instrumento]:
+    instrumentos = cargar_documentos(sesion, ids)
+    return nombrados(instrumentos, texto) or instrumentos
+
+
+def _juntar(intencion: Intencion, partes: list[tuple[Instrumento, list[str], bool]]) -> Resultado | None:
     if not partes:
         return None
     # Si en algún instrumento sí se encontró, los «no existe» de los demás sobran.
@@ -437,3 +733,112 @@ def resolver(pregunta: str, sesion: Session, ids: list[str] | None) -> Resultado
         partes = [p for p in partes if p[2]]
     sin_coincidencia = intencion.tipo == "dijo" and any(l.startswith("(Ninguna respuesta") for _, ls, _ in partes for l in ls)
     return Resultado(intencion.tipo, any(p[2] for p in partes), partes, admite_negativa=sin_coincidencia)
+
+
+def resolver(pregunta: str, sesion: Session, ids: list[str] | None) -> Resultado | None:
+    """Resultado calculado para la pregunta, o None si va por la ruta semántica."""
+    intencion = detectar(pregunta)
+    if intencion is None:
+        return None
+    instrumentos = _alcance(sesion, ids, intencion.texto)
+    resultado = _juntar(intencion, _ejecutar_todos(intencion, instrumentos, sesion))
+    if resultado is None and intencion.tipo == "filtro":
+        # Las reglas no hallaron la condición: quizá es otra intención («cuántos están de acuerdo con p4»).
+        otra = detectar(pregunta, sin_filtro=True)
+        if otra is not None:
+            resultado = _juntar(otra, _ejecutar_todos(otra, instrumentos, sesion))
+    return resultado
+
+
+def _ejecutar_todos(intencion: Intencion, instrumentos: list[Instrumento], sesion: Session) -> list[tuple[Instrumento, list[str], bool]]:
+    partes: list[tuple[Instrumento, list[str], bool]] = []
+    for ins in instrumentos:
+        try:
+            salida = _ejecutar_en(intencion, ins, sesion)
+        except (KeyError, TypeError, ValueError) as exc:  # documento con una forma inesperada
+            logger.warning("Consulta %s falló en el instrumento %s: %s", intencion.tipo, ins.id_crudo, exc)
+            continue
+        if salida is not None:
+            partes.append((ins, *salida))
+    return partes
+
+
+# ── Respaldo con Ollama para los filtros que las reglas no entienden ───────────
+
+_MAX_PREGUNTAS_CATALOGO = 40
+_PROMPT_FILTRO = (
+    "Traduce la PETICIÓN a una condición sobre las respuestas de una encuesta. Usa SOLO las preguntas y "
+    "opciones del CATÁLOGO, copiadas tal cual. No respondas la petición.\n"
+    'Responde solo JSON: {{"instrumento": "<id>", "condiciones": [{{"pregunta": "p13", "valores": ["<opción>"]}}]}}\n'
+    'Para preguntas numéricas usa {{"pregunta": "p17", "comparacion": [">", 20]}} (operadores >, >=, <, <=).\n'
+    'Si ninguna pregunta del catálogo corresponde, responde {{"condiciones": []}}.\n\n'
+    "CATÁLOGO:\n{catalogo}\n\nPETICIÓN: {pregunta}"
+)
+
+
+def _catalogo(instrumentos: list[Instrumento]) -> str:
+    bloques = []
+    for ins in instrumentos:
+        indice = _indice(ins.doc)
+        lineas = [f"Instrumento {ins.id_crudo}: {ins.titulo}"]
+        for p in _items(ins.doc)[:_MAX_PREGUNTAS_CATALOGO]:
+            datos = indice.get(p["id"])
+            if datos is None:
+                continue
+            opciones = "número" if datos.numerica else "; ".join(datos.valores[:8])
+            lineas.append(f"{_corto(p['id'])} | {p['texto'][:90]} | opciones: {opciones}")
+        bloques.append("\n".join(lineas))
+    return "\n\n".join(bloques)
+
+
+def _validar(ins: Instrumento, crudas: Any) -> list[tuple[dict[str, Any], str]]:
+    """Condiciones del modelo que existen en el catálogo del documento (las demás se descartan)."""
+    indice, salida = _indice(ins.doc), []
+    for c in crudas if isinstance(crudas, list) else []:
+        numero = re.search(r"\d+", str(c.get("pregunta"))) if isinstance(c, dict) else None
+        p = _por_numero(ins.doc, int(numero.group())) if numero else None
+        if p is None:
+            continue
+        datos = indice.get(p["id"])
+        if datos is None:
+            continue
+        if isinstance(c.get("valores"), list):
+            pedidos = {normalizar(str(v)) for v in c["valores"]}
+            valores = [v for v in datos.valores if normalizar(v) in pedidos]
+            if valores:
+                salida.append(({"pregunta_id": p["id"], "valores": valores}, "condición interpretada por el modelo"))
+        elif isinstance(c.get("comparacion"), list) and len(c["comparacion"]) == 2 and datos.numerica:
+            op, n = c["comparacion"]
+            if op in (">", ">=", "<", "<=") and consultas._numero(n) is not None:
+                salida.append(({"pregunta_id": p["id"], "comparacion": [op, consultas._numero(n)]}, "condición interpretada por el modelo"))
+    return salida[:3]
+
+
+async def filtro_llm(pregunta: str, sesion: Session, ids: list[str] | None) -> Resultado | None:
+    """Condición del filtro según Ollama (validada contra el catálogo), o None."""
+    if not settings.RAG_FILTRO_LLM or not pide_filtro(pregunta):
+        return None
+    from services import ollama_client
+
+    texto = normalizar(pregunta)
+    instrumentos = [i for i in _alcance(sesion, ids, texto) if i.tipo == "encuesta"][:3]
+    if not instrumentos:
+        return None
+    modelo = settings.RAG_CLASIFICADOR_MODELO or settings.OLLAMA_MODEL
+    salida, degradado = await ollama_client.generar_no_stream(
+        _PROMPT_FILTRO.format(catalogo=_catalogo(instrumentos), pregunta=pregunta), modelo,
+        formato="json", opciones={"temperature": 0, "num_predict": 200},
+    )
+    if degradado:
+        return None
+    try:
+        datos = json.loads(salida)
+    except ValueError:
+        logger.warning("Filtro por modelo: respuesta no válida %r", salida[:200])
+        return None
+    ins = next((i for i in instrumentos if str(datos.get("instrumento", "")) == i.id_crudo), instrumentos[0])
+    condiciones = _validar(ins, datos.get("condiciones"))
+    if not condiciones:
+        return None
+    intencion = Intencion("filtro", texto=texto, accion=_accion(texto))
+    return _juntar(intencion, [(ins, *_lineas_filtro(intencion, ins, condiciones))])

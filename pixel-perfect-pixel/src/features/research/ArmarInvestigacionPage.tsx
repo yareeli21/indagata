@@ -10,6 +10,7 @@ import { FolderOpen } from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Pagina } from "@/components/layout/Pagina";
 import { Cargando } from "@/components/shared/Cargando";
+import { MisInvestigaciones } from "./MisInvestigaciones";
 import { Stepper } from "./Stepper";
 import { Paso1Seleccion } from "./Paso1Seleccion";
 import { Paso2Relacionados } from "./Paso2Relacionados";
@@ -129,8 +130,10 @@ export function ArmarInvestigacionPage() {
         icono={FolderOpen}
         etiqueta="Proyecto"
         titulo="Armar investigación"
-        descripcion="Selecciona instrumentos y dale un nombre a tu proyecto."
+        descripcion="Retoma una investigación o arma una nueva: selecciona instrumentos y dale un nombre."
       />
+
+      <MisInvestigaciones />
 
       {/* Stepper */}
       <Stepper pasos={PASOS} actual={paso} />
