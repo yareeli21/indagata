@@ -56,7 +56,18 @@ class Api:
         return r.json()
 
 
-def procesar(api: Api, archivo: Path, tipo: str, original: Path | None, n_kpis: int) -> int:
+def _llenar(propuesta: dict[str, Any], prefijo: str = "") -> dict[str, str]:
+    """Valores propuestos como texto; los obligatorios vacíos llevan «No especificado»."""
+    valores = {k: _texto(v) for k, v in propuesta["valores"].items() if k.startswith(prefijo)}
+    for campo in propuesta.get("obligatorios") or []:
+        if campo.startswith(prefijo) and not valores.get(campo, "").strip():
+            valores[campo] = "No especificado"
+    return valores
+
+
+def procesar(api: Api, archivo: Path, tipo: str, original: Path | None, n_kpis: int, desde: int | None = None) -> int:
+    if desde is not None:  # retoma un instrumento ya subido y limpio, desde los metadatos
+        return _desde_metadatos(api, desde, n_kpis)
     archivos = {"archivo": (archivo.name, archivo.read_bytes())}
     if original:
         archivos["archivo_original"] = (original.name, original.read_bytes())
@@ -70,11 +81,13 @@ def procesar(api: Api, archivo: Path, tipo: str, original: Path | None, n_kpis: 
         api.pedir("PATCH", f"{GATEWAY}/limpieza/{id_crudo}/ejecuciones/{ejec['version']}/decisiones", json={"decisiones": decisiones})
     api.pedir("POST", f"{GATEWAY}/limpieza/{id_crudo}/ejecuciones/{ejec['version']}/confirmar")
     print(f"2. Limpieza: v{ejec['version']} confirmada con {len(decisiones)} decisiones sugeridas")
+    return _desde_metadatos(api, id_crudo, n_kpis)
 
-    dc = api.pedir("GET", f"{GATEWAY}/api/metadata/{id_crudo}/propuesta")["valores"]
-    enr = api.pedir("GET", f"{GATEWAY}/api/enrichment/{id_crudo}/propuesta")["valores"]
-    cuerpo = {"dublin_core": {k: _texto(v) for k, v in dc.items() if k.startswith("dc_")},
-              "enriquecidos": {k: _texto(v) for k, v in enr.items()}}
+
+def _desde_metadatos(api: Api, id_crudo: int, n_kpis: int) -> int:
+    dc = api.pedir("GET", f"{GATEWAY}/api/metadata/{id_crudo}/propuesta")
+    enr = api.pedir("GET", f"{GATEWAY}/api/enrichment/{id_crudo}/propuesta")
+    cuerpo = {"dublin_core": _llenar(dc, "dc_"), "enriquecidos": _llenar(enr)}
     print(f"3-4. Metadatos: «{cuerpo['dublin_core'].get('dc_title')}»")
 
     api.pedir("POST", f"{GATEWAY}/api/metadata/{id_crudo}/aprobar", json=cuerpo)
@@ -107,8 +120,9 @@ def main() -> None:
     p.add_argument("--kpis", type=int, default=2, help="KPIs sugeridos que se aceptan (los de mayor puntaje)")
     p.add_argument("--email", default="admin@indagata.com")
     p.add_argument("--password", default="admin123")
+    p.add_argument("--desde-metadatos", type=int, metavar="ID_CRUDO", help="retoma un instrumento ya subido y limpio")
     a = p.parse_args()
-    procesar(Api(a.email, a.password), a.archivo, a.tipo, a.original, a.kpis)
+    procesar(Api(a.email, a.password), a.archivo, a.tipo, a.original, a.kpis, a.desde_metadatos)
 
 
 if __name__ == "__main__":
