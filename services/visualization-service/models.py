@@ -6,6 +6,7 @@ Las formas espejan los tipos del frontend (`pixel-perfect-pixel/src/types`):
 """
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Any, Literal
 
 from pydantic import BaseModel, Field, field_validator
@@ -222,6 +223,20 @@ class ChatResponse(BaseModel):
     decision: str = "dentro"  # dentro | fuera | privacidad | manipulacion | sin_informacion | ayuda
     ruta: str | None = None  # semantica | estructurada | mixta | ayuda
     consultaId: int | None = None  # rag_log_id (para pedir las métricas de esta respuesta)
+
+
+class MetricasConsultaOut(BaseModel):
+    """Métricas automáticas de una respuesta del chat (juez local: evaluación aproximada)."""
+
+    consultaId: int
+    estado: Literal["calculando", "listo", "omitida", "error"]
+    motivo: str | None = None
+    fidelidad: float | None = None  # afirmaciones sustentadas por el contexto
+    relevancia: float | None = None  # qué tan directo contesta la pregunta
+    precisionContexto: float | None = None  # si los fragmentos útiles estaban primero
+    noSustentadas: list[str] = []
+    modeloJuez: str | None = None
+    fecha: datetime | None = None
 
 
 # ── Espacio vectorial ──────────────────────────────────────────────────────────

@@ -264,3 +264,26 @@ def test_se_quitan_las_citas_curadas_inventadas():
     limpio = quitar_citas_inventadas(texto, [alfa])
     assert "Tamaño Promedio de Clase]" not in limpio and "[Ayuda: x]" not in limpio
     assert "[Glosario: Alfa de Cronbach (α)]" in limpio
+
+
+def test_si_el_llm_niega_un_resultado_calculado_se_responde_con_el_resultado(cliente, acervo_doc, monkeypatch):
+    from services import ollama_client, prompt
+
+    async def no_stream(texto, modelo, sistema=None, **kwargs):  # noqa: ANN001
+        return prompt.SIN_INFORMACION, False
+
+    monkeypatch.setattr(ollama_client, "generar_no_stream", no_stream)
+    r = _chat(cliente, "Dame un respondente en desacuerdo en p3, p5 y p7")
+    assert r["respuesta"].startswith("El respondente R003 está en desacuerdo") and r["decision"] == "dentro"
+    assert _ultimo_log(acervo_doc).motivo == "estructurada:respondente_con_nivel:negativa_corregida"
+
+
+def test_que_dijo_sin_mencion_literal_admite_no_hay_informacion(cliente, acervo_doc, monkeypatch):
+    from services import ollama_client
+
+    async def no_stream(texto, modelo, sistema=None, **kwargs):  # noqa: ANN001
+        return "No tiene información relacionada con lo que solicitas en los instrumentos consultados.", False
+
+    monkeypatch.setattr(ollama_client, "generar_no_stream", no_stream)
+    r = _chat(cliente, "¿Qué dijo el participante E02 sobre la cafetería?")
+    assert r["respuesta"].startswith("No tiene información") and r["decision"] == "sin_informacion"

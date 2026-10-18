@@ -178,6 +178,13 @@ async def rag_post(request: Request, path: str = "") -> Response:
     return await proxy_request("visualization", _ruta_upstream("/rag", path), request, "POST")
 
 
+# Métricas automáticas de cada respuesta y consulta registrada (GET /rag/consultas/…).
+@router.get("/rag")
+@router.get("/rag/{path:path}")
+async def rag_get(request: Request, path: str = "") -> Response:
+    return await proxy_request("visualization", _ruta_upstream("/rag", path), request, "GET")
+
+
 # ---------------------------------------------------------------------------
 # Metadatos (Dublin Core + aprobación) → metadata-service :8003
 # El path se reenvía TAL CUAL (p. ej. `/api/metadata/{id_crudo}/aprobar`). Rutas

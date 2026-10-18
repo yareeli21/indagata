@@ -270,6 +270,9 @@ class Resultado:
     encontrado: bool
     # Por instrumento: (instrumento, líneas del resultado calculado, ¿encontró algo?)
     partes: list[tuple[Instrumento, list[str], bool]]
+    # «Qué dijo E02 sobre X» sin ninguna mención literal de X: se le dan al modelo todas
+    # las respuestas de la persona y es VÁLIDO que concluya que no habló de X.
+    admite_negativa: bool = False
 
     @property
     def instrumentos(self) -> list[Instrumento]:
@@ -432,4 +435,5 @@ def resolver(pregunta: str, sesion: Session, ids: list[str] | None) -> Resultado
     # Si en algún instrumento sí se encontró, los «no existe» de los demás sobran.
     if any(encontro for _, _, encontro in partes):
         partes = [p for p in partes if p[2]]
-    return Resultado(intencion.tipo, any(p[2] for p in partes), partes)
+    sin_coincidencia = intencion.tipo == "dijo" and any(l.startswith("(Ninguna respuesta") for _, ls, _ in partes for l in ls)
+    return Resultado(intencion.tipo, any(p[2] for p in partes), partes, admite_negativa=sin_coincidencia)

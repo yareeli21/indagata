@@ -1,0 +1,19 @@
+# Entorno AISLADO para la evaluación fuera de línea con RAGAS (no se instala en los servicios).
+#   py -3.12 -m venv .venv-ragas
+#   .venv-ragas\Scripts\python.exe -m pip install -r tools\rag\requirements-ragas.txt
+# Por qué está aislado: RAGAS agrega ~48 paquetes (LangChain 0.3, openai, instructor,
+# datasets…) y, sobre todo, su pyarrow 26 EXIGE NumPy 2 al importarse (no lo declara en sus
+# metadatos: uv/pip lo dan por compatible), mientras el proyecto fija numpy==1.26.4 porque
+# chromadb-client no funciona con NumPy 2. Comprobado al instalarlo (Fase 4).
+# Embeddings: los da Ollama (nomic-embed-text, API compatible con OpenAI), así no se instala
+# torch ni sentence-transformers aquí (ahorra ~1 GB de RAM en el equipo).
+ragas==0.4.3
+# RAGAS 0.4.3 importa langchain_community.chat_models.vertexai, que langchain-community 0.4
+# ya no trae: sin estas versiones pip instala LangChain 1.x y RAGAS no carga. Son las de la
+# resolución verificada con uv (Linux, Python 3.12).
+langchain==0.3.30
+langchain-core==0.3.86
+langchain-community==0.3.27
+langchain-openai==0.3.35
+instructor==1.17.0
+openai==2.54.0

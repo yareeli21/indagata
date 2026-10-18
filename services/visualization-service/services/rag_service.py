@@ -42,7 +42,7 @@ from shared.db.core.config import settings
 from shared.models.rag_log import RagLog
 
 from models import ChatRequest, ChatResponse, FuenteChatOut, IndexRequest, ReferenciaChatOut
-from services import dominio, enrutador, ollama_client, prompt, storage_client, vectores
+from services import dominio, enrutador, evaluacion, ollama_client, prompt, storage_client, vectores
 
 logger = logging.getLogger("visualization-service")
 
@@ -250,6 +250,7 @@ def registrar_consulta(
                 chunks_usados=chunks,
                 latencia_ms=int((time.monotonic() - inicio) * 1000),
             )
+            evaluar = False
             if plan is not None:
                 fila.decision_dominio = plan.decision
                 fila.motivo = plan.motivo
@@ -257,8 +258,18 @@ def registrar_consulta(
                 fila.ruta = plan.ruta
                 fila.instrumentos = list(plan.instrumentos)
                 fila.contexto_usado = plan.contexto_usado() if chunks else []
+                # Solo se evalúan las respuestas que redactó el LLM con contexto; los
+                # rechazos, «no existe» y «sin información» no tienen qué medir.
+                if not settings.RAG_METRICAS:
+                    fila.metricas = evaluacion.omitida("Métricas desactivadas.")
+                elif plan.fija is not None or not chunks:
+                    fila.metricas = evaluacion.omitida("Respuesta sin redacción del modelo (rechazo, «no existe» o sin información).")
+                else:
+                    evaluar = True
             sesion.add(fila)
             sesion.commit()
+            if evaluar:  # después de entregar la respuesta, en segundo plano
+                evaluacion.programar(fila.rag_log_id, fabrica_sesiones)
             return fila.rag_log_id
         finally:
             sesion.close()
@@ -289,7 +300,10 @@ def quitar_sin_informacion_sobrante(texto: str) -> str:
 
 # Inicios con los que el modelo dice que no puede responder (la frase exacta del
 # prompt o sus variantes: «No tengo información relacionada con la pregunta…»).
-_NEGATIVAS = ("no tengo informacion relacionada", "lo siento, pero no tengo informacion", "no encontre informacion")
+_NEGATIVAS = (
+    "no tengo informacion relacionada", "no tiene informacion relacionada", "no hay informacion",
+    "lo siento, pero no tengo informacion", "no encontre informacion",
+)
 
 
 def es_negativa(texto: str) -> bool:
@@ -317,6 +331,7 @@ class Plan:
     referencias: list[dominio.Ancla] = field(default_factory=list)
     resultado: str | None = None
     respuesta_directa: str | None = None  # el resultado sin redactar (respaldo de la ruta estructurada)
+    admite_negativa: bool = False  # en la ruta estructurada, «no hay información» puede ser correcto
     instrumentos: list[str] = field(default_factory=list)
 
     @property
@@ -415,6 +430,7 @@ async def planear(peticion: ChatRequest) -> Plan:
         plan.motivo = f"estructurada:{resultado.consulta}"
         plan.resultado = resultado.texto(numeros)
         plan.respuesta_directa = resultado.respuesta_directa(numeros)
+        plan.admite_negativa = resultado.admite_negativa
     else:
         plan.ruta = "semantica"
         plan.fuentes = _numerar(fragmentos)
@@ -496,10 +512,17 @@ async def _generar_estructurada(plan: Plan, modelo: str) -> tuple[str, bool]:
     respuesta, degradado = await ollama_client.generar_no_stream(plan.texto_prompt, modelo, sistema=prompt.SISTEMA)
     respuesta = _pulir(respuesta, plan)
     contexto = "\n".join(c["texto"] for c in plan.contexto_usado())
-    if degradado or not cifras_fieles(respuesta, contexto):
-        if not degradado:
-            logger.warning("La redacción cambió cifras del resultado calculado; se responde con el resultado.")
-            plan.motivo = f"{plan.motivo}:cifras_corregidas"
+    if degradado:
+        respuesta = plan.respuesta_directa or respuesta
+    elif es_negativa(respuesta) and not plan.admite_negativa:
+        # Con un resultado calculado SÍ hay respuesta: el modelo pequeño a veces dice
+        # «no tengo información» porque no ve una sección CONTEXTO (auditoría Fase 4).
+        logger.warning("La redacción negó un resultado calculado; se responde con el resultado.")
+        plan.motivo = f"{plan.motivo}:negativa_corregida"
+        respuesta = plan.respuesta_directa or respuesta
+    elif not cifras_fieles(respuesta, contexto):
+        logger.warning("La redacción cambió cifras del resultado calculado; se responde con el resultado.")
+        plan.motivo = f"{plan.motivo}:cifras_corregidas"
         respuesta = plan.respuesta_directa or respuesta
     return respuesta, degradado
 

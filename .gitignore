@@ -37,3 +37,5 @@ Thumbs.db
 # ── Artefactos de verificación / runtime ──────────────────────────────────────
 docker-compose.verify.yml
 storage/raw/*.txt
+.venv-ragas/
+tools/rag/reportes/parcial.json

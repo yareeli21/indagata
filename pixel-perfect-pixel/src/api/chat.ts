@@ -1,5 +1,5 @@
-import type { ContextoInvestigacion, ModeloLLM, ResultadoChat } from "@/types";
-import { API_URL, avisarSesionExpirada, leerToken } from "./client";
+import type { ContextoInvestigacion, MetricasRespuesta, ModeloLLM, ResultadoChat } from "@/types";
+import { API_URL, avisarSesionExpirada, leerToken, pedir } from "./client";
 
 export const MODELOS_DISPONIBLES: { id: ModeloLLM; etiqueta: string }[] = [
   { id: "llama3.2:3b", etiqueta: "Llama 3.2 (3B) — local" },
@@ -191,4 +191,11 @@ export async function guardarContexto(
     body: JSON.stringify({ investigacionId, instrumentoIds }),
   });
   if (respuesta.status === 401) avisarSesionExpirada();
+}
+
+/** Métricas automáticas de una respuesta (se calculan en segundo plano tras responder). */
+export function getMetricas(consultaId: number): Promise<MetricasRespuesta> {
+  return pedir<MetricasRespuesta>(`${API_URL}/rag/consultas/${consultaId}/metricas`, {
+    auth: true,
+  });
 }

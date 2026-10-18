@@ -544,6 +544,19 @@ export interface ResultadoChat {
   consultaId?: number | null;
 }
 
+/** Métricas automáticas de una respuesta (juez local: evaluación aproximada). */
+export interface MetricasRespuesta {
+  consultaId: number;
+  estado: "calculando" | "listo" | "omitida" | "error";
+  motivo: string | null;
+  fidelidad: number | null;
+  relevancia: number | null;
+  precisionContexto: number | null;
+  noSustentadas: string[];
+  modeloJuez: string | null;
+  fecha: string | null;
+}
+
 /** Instrumentos que consulta el chat: los de la investigación, unos elegidos o todo el acervo. */
 export type AlcanceChat = "investigacion" | "elegidos" | "acervo";
 

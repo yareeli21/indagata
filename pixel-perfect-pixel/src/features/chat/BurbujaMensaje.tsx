@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { BookOpen, CircleHelp, GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { FuenteChat, Mensaje, ReferenciaChat } from "@/types";
+import { PanelMetricas } from "./PanelMetricas";
 
 interface BurbujaMensajeProps {
   mensaje: Mensaje;
@@ -60,6 +61,11 @@ export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
             ))}
           </div>
         </div>
+      )}
+
+      {/* Métricas automáticas (fidelidad, relevancia, precisión del contexto) */}
+      {!esUsuario && !mensaje.generando && mensaje.consultaId != null && (
+        <PanelMetricas consultaId={mensaje.consultaId} />
       )}
 
       {/* Glosario metodológico o ayuda de la plataforma que respaldan la respuesta */}

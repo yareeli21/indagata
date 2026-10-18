@@ -115,6 +115,10 @@ class AppSettings(BaseSettings):
     # ejemplos; entre este valor y RAG_MIN_SCORE, el de «sin información». Auditoría:
     # «¿quién ganó el mundial?» 0.25; preguntas sin relación ≤ 0.30.
     RAG_FUERA_MAX: float = 0.30
+    # Métricas automáticas por respuesta (visualization-service/services/evaluacion.py):
+    # fidelidad, relevancia y precisión del contexto, en segundo plano, con un juez local.
+    RAG_METRICAS: bool = True
+    RAG_JUEZ_MODELO: str = ""  # vacío = OLLAMA_MODEL; cámbialo por un juez más grande cuando haya
     RAG_CLASIFICADOR_LLM: bool = True
     RAG_CLASIFICADOR_MODELO: str = ""  # vacío = OLLAMA_MODEL
 
