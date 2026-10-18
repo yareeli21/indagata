@@ -1,0 +1,496 @@
+{
+ "resumen": {
+  "fecha": "2026-10-17T20:30:44",
+  "juez": "llama3.2:3b",
+  "n_preguntas": 20,
+  "decision_correcta": 1.0,
+  "propias": {
+   "fidelidad": 0.51,
+   "relevancia": 0.771,
+   "precision_contexto": 1.0,
+   "recall_contexto": 0.505
+  },
+  "ragas": {
+   "fidelidad": 0.738,
+   "relevancia": 0.561,
+   "precision_contexto": 0.9,
+   "recall_contexto": 0.891
+  }
+ },
+ "resultados": [
+  {
+   "id": "Q01",
+   "tipo": "respuesta_respondente",
+   "pregunta": "¿Qué respondió el respondente R017 en la pregunta sobre la retroalimentación?",
+   "esperada": "R017 respondió «De acuerdo» en la pregunta p03 «Recibo retroalimentación sobre mis trabajos a tiempo para mejorar».",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "respuesta": "R017 respondió \"De acuerdo\" [Fuente 1].",
+   "fuentes": [
+    "Encuesta de evaluación y ambiente escolar por turno"
+   ],
+   "propias": {
+    "fidelidad": 0.5,
+    "relevancia": 0.754,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.5
+   },
+   "ragas": {
+    "fidelidad": 0.667,
+    "relevancia": 0.604,
+    "precision_contexto": 1.0,
+    "recall_contexto": 1.0
+   }
+  },
+  {
+   "id": "Q02",
+   "tipo": "respuesta_respondente",
+   "pregunta": "¿Qué respondió R005 en la pregunta 8?",
+   "esperada": "R005 respondió «Ni de acuerdo ni en desacuerdo» en la pregunta p08 «Me siento parte de la comunidad escolar».",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "respuesta": "R005 respondió \"Ni de acuerdo ni en desacuerdo\" [Fuente 1].",
+   "fuentes": [
+    "Encuesta de evaluación y ambiente escolar por turno"
+   ],
+   "propias": {
+    "fidelidad": 0.0,
+    "relevancia": 0.725,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.125
+   },
+   "ragas": {
+    "fidelidad": 0.5,
+    "relevancia": 0.694,
+    "precision_contexto": 1.0,
+    "recall_contexto": 1.0
+   }
+  },
+  {
+   "id": "Q03",
+   "tipo": "respondente_con_nivel",
+   "pregunta": "Dame un respondente en desacuerdo en p1, p2 y p3",
+   "esperada": "El respondente R002 está en desacuerdo en p01, p02 y p03.",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "respuesta": "El respondente R002 está en desacuerdo en p01, p02 y p03. [Fuente 1]",
+   "fuentes": [
+    "Encuesta de evaluación y ambiente escolar por turno"
+   ],
+   "propias": {
+    "fidelidad": 0.667,
+    "relevancia": 0.806,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.667
+   },
+   "ragas": {
+    "fidelidad": 0.4,
+    "relevancia": 0.409,
+    "precision_contexto": 1.0,
+    "recall_contexto": 1.0
+   }
+  },
+  {
+   "id": "Q04",
+   "tipo": "respondente_con_nivel_no_existe",
+   "pregunta": "¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6, 7 y 8?",
+   "esperada": "No existe ningún respondente que esté en posición neutral en las ocho preguntas a la vez.",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "respuesta": "No existe ningún respondente que esté en posición neutral en p01, p02, p03, p04, p05, p06, p07 y p08 a la vez. [Fuente 1]",
+   "fuentes": [
+    "Encuesta de evaluación y ambiente escolar por turno"
+   ],
+   "propias": {
+    "fidelidad": null,
+    "relevancia": null,
+    "precision_contexto": null,
+    "estado": "omitida"
+   }
+  },
+  {
+   "id": "Q05",
+   "tipo": "porcentaje_grupo",
+   "pregunta": "¿Qué porcentaje del turno vespertino está de acuerdo con p4?",
+   "esperada": "El 13.3 % (4 de 30) del turno vespertino está de acuerdo con la pregunta p04 «Las evaluaciones están relacionadas con lo que se ve en clase».",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "respuesta": "En la pregunta p04 «Las evaluaciones están relacionadas con lo que se ve en clase.», el 13.3 % (4 de 30) de quienes respondieron del grupo turno = Vespertino está de acuerdo. [Fuente 1]",
+   "fuentes": [
+    "Encuesta de evaluación y ambiente escolar por turno"
+   ],
+   "propias": {
+    "fidelidad": 0.5,
+    "relevancia": 0.48,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.0
+   },
+   "ragas": {
+    "fidelidad": 1.0,
+    "relevancia": 0.514,
+    "precision_contexto": 1.0,
+    "recall_contexto": 1.0
+   }
+  },
+  {
+   "id": "Q06",
+   "tipo": "porcentaje",
+   "pregunta": "¿Qué porcentaje está en desacuerdo con la pregunta 8?",
+   "esperada": "El 16.7 % (10 de 60) está en desacuerdo con la pregunta p08 «Me siento parte de la comunidad escolar».",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "respuesta": "En la pregunta p08 «Me siento parte de la comunidad escolar.», el 16.7 % (10 de 60) de quienes respondieron está en desacuerdo. [Fuente 1]",
+   "fuentes": [
+    "Encuesta de evaluación y ambiente escolar por turno"
+   ],
+   "propias": {
+    "fidelidad": 0.5,
+    "relevancia": 0.846,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.25
+   },
+   "ragas": {
+    "fidelidad": 1.0,
+    "relevancia": 0.397,
+    "precision_contexto": 1.0,
+    "recall_contexto": 0.5
+   }
+  },
+  {
+   "id": "Q07",
+   "tipo": "kpi_por_que",
+   "pregunta": "¿Por qué el KPI Tamaño Promedio de Clase está relacionado con este instrumento y qué mide?",
+   "esperada": "Mide el promedio de alumnos inscritos por aula o sección académica y evalúa la capacidad de la institución para ofrecer personalización docente y un entorno propicio para la participación activa; se asoció porque las preguntas del instrumento tratan sobre la evaluación del aprendizaje y el ambiente escolar.",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "mixta",
+   "respuesta": "El KPI Tamaño Promedio de Clase está relacionado con este instrumento porque mide el promedio de alumnos por aula, lo que evalúa la capacidad de la institución para ofrecer personalización docente y un entorno propicio para la participación activa. [Fuente 1]\n\nEste KPI se relaciona con las preguntas de evidencia p04, p02, p03, p07 y p01, que se centran en aspectos como las evaluaciones, calificaciones, retroalimentación y disponibilidad de los profesores, que están relacionados con lo que se ve en clase y reflejan la experiencia del estudiante. [Fuente 1]",
+   "fuentes": [
+    "Encuesta de evaluación y ambiente escolar por turno"
+   ],
+   "propias": {
+    "fidelidad": null,
+    "relevancia": 0.657,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.6
+   },
+   "ragas": {
+    "fidelidad": 1.0,
+    "relevancia": 0.813,
+    "precision_contexto": 1.0,
+    "recall_contexto": 1.0
+   }
+  },
+  {
+   "id": "Q08",
+   "tipo": "kpi_preguntas",
+   "pregunta": "¿Qué preguntas miden el KPI Puntajes en Pruebas Estandarizadas de Referencia y cómo respondieron?",
+   "esperada": "Lo miden las preguntas p01 (criterios de evaluación claros), p02 (las calificaciones reflejan lo aprendido), p03 (retroalimentación a tiempo) y p04 (evaluaciones relacionadas con la clase); en las cuatro las opiniones están repartidas, con alrededor de un tercio de acuerdo.",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "mixta",
+   "respuesta": "El instrumento que se relaciona con este KPI es la Encuesta de evaluación y ambiente escolar por turno. Según la fuente, las preguntas que miden el KPI \"Puntajes en Pruebas Estandarizadas de Referencia\" son:\n\n- p01: \"Los criterios de evaluación se explican con claridad al inicio del curso.\"\n  - Desacuerdo: 25.0%\n  - Acuerdo: 38.3%\n  - Media: 3.17\n  - Mediana: 3.0\n\n- p02: \"Las calificaciones reflejan lo que realmente aprendí.\"\n  - Neutral: 41.7%\n  - Acuerdo: 33.3%\n  - Desacuerdo: 25.0%\n\n- p03: \"Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.\"\n  - Acuerdo: 45.0%\n  - Neutral: 28.3%\n  - Desacuerdo: 26.7%\n\n- p04: \"Las evaluaciones están relacionadas con lo que se ve en clase.\"\n  - Acuerdo: 35.0%\n  - Neutral: 33.3%\n  - Desacuerdo: 31.7%",
+   "fuentes": [
+    "Encuesta de evaluación y ambiente escolar por turno"
+   ],
+   "propias": {
+    "fidelidad": 0.6,
+    "relevancia": 0.83,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.75
+   },
+   "ragas": {
+    "fidelidad": 1.0,
+    "relevancia": 0.602,
+    "precision_contexto": 1.0,
+    "recall_contexto": 1.0
+   }
+  },
+  {
+   "id": "Q09",
+   "tipo": "reactivo_dificil",
+   "pregunta": "¿Qué reactivo tuvo el menor % de acierto y qué distractor fue el más elegido?",
+   "esperada": "El reactivo r06 tuvo el menor acierto, 34.0 %; el distractor más elegido fue la opción 1, con 52.0 %.",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "respuesta": "El reactivo que tuvo el menor porcentaje de acierto fue R06, \"¿Qué implica la metacognición en el contexto del ABP?\", con un 34.0% de acierto. El distractor más elegido fue la opción 1 (Opción 1), con un 52.0% de selección.\n\n[Fuente 1]",
+   "fuentes": [
+    "Prueba de Comprensión Lectora Universitaria"
+   ],
+   "propias": {
+    "fidelidad": 0.5,
+    "relevancia": 0.551,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.75
+   },
+   "ragas": {
+    "fidelidad": 0.75,
+    "relevancia": 0.558,
+    "precision_contexto": 1.0,
+    "recall_contexto": 1.0
+   }
+  },
+  {
+   "id": "Q10",
+   "tipo": "alumno",
+   "pregunta": "¿Cómo le fue al alumno A010?",
+   "esperada": "El alumno A010 acertó 21 de 25 reactivos (84 %).",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "respuesta": "El estudiante A010 obtuvo una puntuación de 84.0% en la prueba de Comprensión Lectora Universitaria, lo que indica un buen desempeño. En términos específicos, el estudiante:\n\n* Respondió correctamente a las preguntas r02 y r12.\n* Se equivocó en una pregunta (r06).\n* Obtuvo una puntuación de 21 de 25.\n\nEn general, el estudiante A010 demostró un buen conocimiento del material leído, pero tuvo algunos errores en la comprensión. [Fuente 1]",
+   "fuentes": [
+    "Prueba de Comprensión Lectora Universitaria"
+   ],
+   "propias": {
+    "fidelidad": 0.5,
+    "relevancia": 0.747,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.5
+   },
+   "ragas": {
+    "fidelidad": 0.714,
+    "relevancia": 0.56,
+    "precision_contexto": 1.0,
+    "recall_contexto": 1.0
+   }
+  },
+  {
+   "id": "Q11",
+   "tipo": "participante_tema",
+   "pregunta": "¿Qué dijo el participante E02 sobre el orientador?",
+   "esperada": "E02 contó que hubo un semestre en que casi abandona, pero el orientador le ayudó a reorganizarse y siguió adelante; también menciona el apoyo de sus compañeros.",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "respuesta": "Según la entrevista, el participante E02 mencionó que el orientador le ayudó a reorganizarse y seguir adelante cuando casi abandonó la universidad en un semestre. También destacó que los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\n\n[Fuente 1]",
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "propias": {
+    "fidelidad": 1.0,
+    "relevancia": 0.854,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.333
+   },
+   "ragas": {
+    "fidelidad": 0.667,
+    "relevancia": 0.561,
+    "precision_contexto": 1.0,
+    "recall_contexto": 1.0
+   }
+  },
+  {
+   "id": "Q12",
+   "tipo": "participante_tema",
+   "pregunta": "¿Qué dijo el participante E10 sobre su trabajo?",
+   "esperada": "E10 dijo que trabaja por las noches y a veces llega cansado a clases, y que ha pensado seriamente en dejar los estudios, aunque no se rinde porque su familia cuenta con él.",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "respuesta": "El participante E10 mencionó que \"he tenido que reprimir materias\" y que es \"frustrante porque veo a otros avanzar más rápido\". También expresó que su familia lo apoya y que no se va a rendir. No mencionó literalmente \"su trabajo\", sino que habló de las materias que tiene que reprimir debido al sistema universitario.\n\n[Fuente 1]",
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "propias": {
+    "fidelidad": null,
+    "relevancia": 0.652,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 1.0
+   },
+   "ragas": {
+    "fidelidad": 1.0,
+    "relevancia": 0.519,
+    "precision_contexto": 1.0,
+    "recall_contexto": 1.0
+   }
+  },
+  {
+   "id": "Q13",
+   "tipo": "participante_sin_dato",
+   "pregunta": "¿Qué dijo el participante E02 sobre la evaluación?",
+   "esperada": "No hay información: ninguna respuesta de E02 habla de la evaluación.",
+   "decision_esperada": "sin_informacion",
+   "decision": "sin_informacion",
+   "ruta": "estructurada",
+   "respuesta": "No tiene información relacionada con lo que solicitas en los instrumentos consultados.",
+   "fuentes": [],
+   "propias": {
+    "fidelidad": null,
+    "relevancia": null,
+    "precision_contexto": null,
+    "estado": "omitida"
+   }
+  },
+  {
+   "id": "Q14",
+   "tipo": "general_un_instrumento",
+   "pregunta": "¿Qué evalúa la encuesta de evaluación y ambiente escolar?",
+   "esperada": "Evalúa la experiencia del estudiante en dos dimensiones, la evaluación del aprendizaje y el ambiente escolar, con 8 preguntas en escala de acuerdo respondidas por 60 estudiantes de los turnos matutino y vespertino.",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "semantica",
+   "respuesta": "La encuesta de evaluación y ambiente escolar evalúa la experiencia del estudiante en términos de evaluación del aprendizaje y ambiente escolar. [Fuente 1]",
+   "fuentes": [
+    "Encuesta de evaluación y ambiente escolar por turno"
+   ],
+   "propias": {
+    "fidelidad": 0.333,
+    "relevancia": 0.93,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.4
+   },
+   "ragas": {
+    "fidelidad": 0.5,
+    "relevancia": 0.616,
+    "precision_contexto": 0.5,
+    "recall_contexto": 0.692
+   }
+  },
+  {
+   "id": "Q15",
+   "tipo": "comparativa",
+   "pregunta": "Compara qué miden las dos encuestas",
+   "esperada": "El MSLQ-SF mide motivación y estrategias de aprendizaje de 200 estudiantes; la encuesta de evaluación y ambiente escolar mide la evaluación del aprendizaje y el ambiente escolar de 60 estudiantes por turno.",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "semantica",
+   "respuesta": "Según el CONTEXTO proporcionado, ambas encuestas (Encuesta de evaluación y ambiente escolar por turno y MSLQ-SF) miden los siguientes KPIs:\n\n* Tamaño Promedio de Clase (Alumnos por Aula)\n* Puntajes en Pruebas Estandarizadas de Referencia\n\nAmbas encuestas también tienen preguntas que evalúan la relación entre las calificaciones y el aprendizaje, pero con diferentes enfoques. La primera encuesta (Pregunta p02) pregunta si las calificaciones reflejan lo que realmente aprendió, mientras que la segunda encuesta (Pregunta p15) pregunta si se hace preguntas para verificar si se entendió lo que estudió.\n\nEn cuanto a los resultados, la primera encuesta muestra una distribución de respuestas en desacuerdo (25.0%), neutral (41.7%) y acuerdo (33.3%) con una media de 3.12 y mediana de 3.0, mientras que la segunda encuesta muestra una distribución similar, pero con un nivel de acuerdo más alto (42.0% para Pregunta p15) y una media ligeramente mayor (3.13).",
+   "fuentes": [
+    "Encuesta de evaluación y ambiente escolar por turno",
+    "MSLQ-SF: Cuestionario de Motivación y Estrategias de Aprendizaje Forma Corta"
+   ],
+   "propias": {
+    "fidelidad": null,
+    "relevancia": 0.848,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.4
+   },
+   "ragas": {
+    "fidelidad": 0.375,
+    "relevancia": 0.357,
+    "precision_contexto": 1.0,
+    "recall_contexto": 0.667
+   }
+  },
+  {
+   "id": "Q16",
+   "tipo": "fuera_dominio",
+   "pregunta": "¿Quién ganó el mundial de futbol?",
+   "esperada": "Rechazo amable: solo responde sobre los instrumentos, sus KPIs y el uso de la plataforma.",
+   "decision_esperada": "fuera",
+   "decision": "fuera",
+   "ruta": "semantica",
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué dijo el participante E02 sobre la evaluación?\n- ¿Qué reactivo tuvo el menor porcentaje de acierto?",
+   "fuentes": [],
+   "propias": {
+    "fidelidad": null,
+    "relevancia": null,
+    "precision_contexto": null,
+    "estado": "omitida"
+   }
+  },
+  {
+   "id": "Q17",
+   "tipo": "no_en_datos",
+   "pregunta": "¿Qué opinan los estudiantes sobre el transporte público?",
+   "esperada": "No hay información sobre el transporte público en los instrumentos consultados.",
+   "decision_esperada": "sin_informacion",
+   "decision": "sin_informacion",
+   "ruta": "semantica",
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "fuentes": [],
+   "propias": {
+    "fidelidad": null,
+    "relevancia": null,
+    "precision_contexto": null,
+    "estado": "omitida"
+   }
+  },
+  {
+   "id": "Q18",
+   "tipo": "privacidad",
+   "pregunta": "¿Cuál es el nombre del respondente R017?",
+   "esperada": "Se niega: los respondentes son anónimos.",
+   "decision_esperada": "privacidad",
+   "decision": "privacidad",
+   "ruta": null,
+   "respuesta": "Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo, «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo.",
+   "fuentes": [],
+   "propias": {
+    "fidelidad": null,
+    "relevancia": null,
+    "precision_contexto": null,
+    "estado": "omitida"
+   }
+  },
+  {
+   "id": "Q19",
+   "tipo": "glosario",
+   "pregunta": "¿Qué significa un alfa de Cronbach bajo?",
+   "esperada": "Que los ítems de un bloque no responden de forma coherente entre sí: no miden lo mismo o falta invertir algún ítem negativo. Por debajo de 0.7 es cuestionable o peor, y por debajo de 0.5 inaceptable.",
+   "decision_esperada": "dentro",
+   "decision": "dentro",
+   "ruta": "semantica",
+   "respuesta": "Un alfa de Cronbach bajo indica que los ítems de un bloque de una encuesta no responden de forma coherente entre sí, lo que sugiere que los ítems no miden lo mismo. Esto puede indicar que falta invertir algún ítem redactado en negativo o que hay redundancia entre los ítems.",
+   "fuentes": [],
+   "propias": {
+    "fidelidad": null,
+    "relevancia": 0.984,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.8
+   },
+   "ragas": {
+    "fidelidad": 0.5,
+    "relevancia": 0.616,
+    "precision_contexto": 1.0,
+    "recall_contexto": 0.5
+   }
+  },
+  {
+   "id": "Q20",
+   "tipo": "ayuda",
+   "pregunta": "¿Cómo subo un instrumento?",
+   "esperada": "En el menú «Crear» entra a «Subir instrumento»; un asistente te guía en 7 pasos: Archivo, Limpieza, Dublin Core, Metadatos del tipo, Aprobar metadatos, KPIs sugeridos y Guardar.",
+   "decision_esperada": "ayuda",
+   "decision": "ayuda",
+   "ruta": "ayuda",
+   "respuesta": "Para subir un instrumento, sigue estos pasos:\n\n1. Entra a \"Crear\" y selecciona \"Subir instrumento\".\n2. Sigue las instrucciones del asistente en los 7 pasos:\n   - Archivo\n   - Limpieza\n   - Dublin Core\n   - Metadatos del tipo\n   - Aprobar metadatos\n   - KPIs sugeridos\n   - Guardar\n\nPuedes salir y retomar la carga después de completar estos pasos.",
+   "fuentes": [],
+   "propias": {
+    "fidelidad": null,
+    "relevancia": 0.898,
+    "precision_contexto": 1.0,
+    "estado": "listo",
+    "recall_contexto": 0.5
+   },
+   "ragas": {
+    "fidelidad": 1.0,
+    "relevancia": 0.592,
+    "precision_contexto": 0.0,
+    "recall_contexto": 1.0
+   }
+  }
+ ]
+}

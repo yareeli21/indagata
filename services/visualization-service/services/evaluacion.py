@@ -57,11 +57,14 @@ _P_AFIRMACIONES = (
     'Responde solo JSON: {{"afirmaciones": ["...", "..."]}}\n\n'
     "PREGUNTA: {pregunta}\nRESPUESTA: {respuesta}"
 )
+# Veredictos por NÚMERO y con la razón antes del veredicto (el orden de RAGAS): cuando se
+# le pedía copiar cada afirmación, el juez de 3B se trababa al copiarla («R005 respondño…»)
+# y marcaba 0 afirmaciones que estaban literalmente en el contexto (evaluación de la Fase 4).
 _P_VEREDICTOS = (
-    "Para cada AFIRMACIÓN decide si se puede deducir DIRECTAMENTE del CONTEXTO (1) o no (0). "
-    "No uses conocimiento propio. Una afirmación que repite con otras palabras lo que dice el CONTEXTO "
-    "vale 1; una cifra distinta a la del CONTEXTO vale 0.\n"
-    'Responde solo JSON: {{"veredictos": [{{"afirmacion": "...", "veredicto": 0 o 1}}]}}\n\n'
+    "Para cada AFIRMACIÓN numerada decide si se puede deducir DIRECTAMENTE del CONTEXTO (1) o no (0). "
+    "No uses conocimiento propio. Si la afirmación dice lo mismo que el CONTEXTO con otras palabras o comillas "
+    "distintas, vale 1; si una cifra o un dato es distinto, vale 0. No copies las afirmaciones: usa su número.\n"
+    'Responde solo JSON: {{"veredictos": [{{"n": 1, "razon": "<máximo 12 palabras>", "veredicto": 0 o 1}}]}}\n\n'
     "CONTEXTO:\n{contexto}\n\nAFIRMACIONES:\n{afirmaciones}"
 )
 _P_PREGUNTA = (
@@ -100,6 +103,19 @@ def _coseno(a: list[float], b: list[float]) -> float:
     return num / den if den else 0.0
 
 
+def veredictos_por_numero(items: list[Any], total: int) -> list[int]:
+    """Veredictos 0/1 en el orden de las afirmaciones (por su `n`, o por posición si no lo trae)."""
+    def _uno(v: Any) -> int:
+        return 1 if str((v or {}).get("veredicto") if isinstance(v, dict) else v).strip() in ("1", "True", "true") else 0
+
+    con_numero = {int(i["n"]): _uno(i) for i in items if isinstance(i, dict) and str(i.get("n", "")).isdigit()}
+    if len(con_numero) == total and set(con_numero) == set(range(1, total + 1)):
+        return [con_numero[n] for n in range(1, total + 1)]
+    if len(items) != total:
+        raise ValueError(f"El juez devolvió {len(items)} veredictos para {total} afirmaciones.")
+    return [_uno(i) for i in items]
+
+
 def precision_media(veredictos: list[int]) -> float:
     """Precisión media ponderada de RAGAS (ContextPrecision / ContextUtilization)."""
     numerador = sum((sum(veredictos[: i + 1]) / (i + 1)) * v for i, v in enumerate(veredictos))
@@ -118,10 +134,7 @@ async def fidelidad(pregunta: str, respuesta: str, contextos: list[str], juez: J
     contexto = "\n".join(contextos)[:_MAX_CONTEXTO]
     lista = "\n".join(f"{i}. {a}" for i, a in enumerate(afirmaciones, start=1))
     datos = await juez(_P_VEREDICTOS.format(contexto=contexto, afirmaciones=lista))
-    veredictos = [(v or {}).get("veredicto") for v in (datos or {}).get("veredictos") or []]
-    if len(veredictos) != len(afirmaciones):
-        raise ValueError(f"El juez devolvió {len(veredictos)} veredictos para {len(afirmaciones)} afirmaciones.")
-    marcas = [1 if str(v).strip() in ("1", "True", "true") else 0 for v in veredictos]
+    marcas = veredictos_por_numero((datos or {}).get("veredictos") or [], len(afirmaciones))
     no_sustentadas = [a for a, m in zip(afirmaciones, marcas) if not m]
     return sum(marcas) / len(marcas), {"afirmaciones": len(afirmaciones), "no_sustentadas": no_sustentadas}
 

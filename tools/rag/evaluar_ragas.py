@@ -47,9 +47,12 @@ _P_AFIRMACIONES_REF = (
     "Divide la RESPUESTA ESPERADA en afirmaciones simples y autónomas.\n"
     'Responde solo JSON: {{"afirmaciones": ["..."]}}\n\nRESPUESTA ESPERADA: {referencia}'
 )
+# Mismo formato que el juez de fidelidad del servicio (veredictos por número, razón primero).
 _P_ATRIBUCION = (
-    "Para cada AFIRMACIÓN decide si el CONTEXTO la sustenta (1) o no (0). No uses conocimiento propio.\n"
-    'Responde solo JSON: {{"veredictos": [{{"afirmacion": "...", "veredicto": 0 o 1}}]}}\n\n'
+    "Para cada AFIRMACIÓN numerada decide si el CONTEXTO la sustenta (1) o no (0). No uses conocimiento propio. "
+    "Si dice lo mismo con otras palabras, vale 1; si una cifra o un dato es distinto, vale 0. "
+    "No copies las afirmaciones: usa su número.\n"
+    'Responde solo JSON: {{"veredictos": [{{"n": 1, "razon": "<máximo 12 palabras>", "veredicto": 0 o 1}}]}}\n\n'
     "CONTEXTO:\n{contexto}\n\nAFIRMACIONES:\n{afirmaciones}"
 )
 
@@ -126,8 +129,12 @@ def recall_contexto(referencia: str, contextos: list[str], modelo: str) -> float
         return None if not afirmaciones else 0.0
     lista = "\n".join(f"{i}. {a}" for i, a in enumerate(afirmaciones, start=1))
     datos = _juez(_P_ATRIBUCION.format(contexto="\n".join(contextos)[:6000], afirmaciones=lista), modelo) or {}
-    veredictos = [str((v or {}).get("veredicto")).strip() in ("1", "True", "true") for v in datos.get("veredictos") or []]
-    return round(sum(veredictos) / len(afirmaciones), 3) if veredictos else None
+    veredictos = {}
+    for i, v in enumerate(datos.get("veredictos") or [], start=1):
+        if isinstance(v, dict):
+            n = int(v["n"]) if str(v.get("n", "")).isdigit() else i
+            veredictos[n] = str(v.get("veredicto")).strip() in ("1", "True", "true")
+    return round(sum(veredictos.get(n, False) for n in range(1, len(afirmaciones) + 1)) / len(afirmaciones), 3) if veredictos else None
 
 
 # ── RAGAS real (opcional) ──────────────────────────────────────────────────────

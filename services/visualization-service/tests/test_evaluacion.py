@@ -150,3 +150,10 @@ def test_rag_log_guarda_metricas_y_juez(fabrica):
     s.add(RagLog(pregunta="p", respuesta="r", metricas={"estado": "listo", "fidelidad": 0.5}, modelo_juez="llama3.2:3b"))
     s.commit()
     assert s.query(RagLog).one().metricas["fidelidad"] == 0.5
+
+
+def test_veredictos_por_numero_o_por_posicion():
+    assert evaluacion.veredictos_por_numero([{"n": 2, "veredicto": 0}, {"n": 1, "veredicto": 1}], 2) == [1, 0]
+    assert evaluacion.veredictos_por_numero([{"veredicto": "1"}, {"veredicto": 0}], 2) == [1, 0]
+    with pytest.raises(ValueError):
+        evaluacion.veredictos_por_numero([{"veredicto": 1}], 2)
