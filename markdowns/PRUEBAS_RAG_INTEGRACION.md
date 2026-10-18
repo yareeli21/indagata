@@ -659,14 +659,20 @@ necesitan los servicios levantados. Archivos de prueba nuevos durante la integra
    respuestas se niega a resumir. Se muestra el resultado calculado, que es correcto y ya trae su
    resumen.
 2. **Comparaciones entre instrumentos.** El caso 9 se corrigió en los chunks («KPIs asociados:
-   ninguno»), pero falta reindexar el instrumento 50 para que tome la ficha nueva.
+   ninguno»). El instrumento 50 ya no está en la base, y los instrumentos actuales tienen KPIs,
+   así que su ficha no cambia. La corrección aplica a cualquier instrumento sin KPIs que se
+   publique después. Conviene repetir la comparación cuando haya dos encuestas publicadas.
 3. **Las métricas son aproximadas.** El juez de 3B parte mal algunas afirmaciones y no reconoce
    paráfrasis. Por eso la interfaz lo advierte.
 4. **Solo 17 de los 55 KPIs tienen fuente verificada.** Se agregan más en
    `infrastructure/postgres/seed/KPI_Fuentes.csv`, siempre con la URL comprobada.
 5. **Las conversaciones se guardan en el navegador** (localStorage): en otra computadora no aparecen.
-6. **Instrumentos viejos.** 42, 48, 51, 52 y 53 perdieron sus KPIs al adoptar el catálogo de `PA`
-   y no tienen documento final con el formato nuevo. El 53 además necesita repetir su limpieza.
+6. **Instrumentos viejos.** 42, 48, 50, 51 y 52 ya no están en la base. El 53 (entrevista
+   `ent_01`) se volvió a limpiar y publicar el 18 de octubre con el formato nuevo de entrevistas:
+   limpieza v3, 4 KPIs, documento v3, 480 respuestas en `respuesta_interpretada` y 534 chunks
+   (antes 19). Se probó en el chat: «¿Qué dijo E02 sobre el orientador?» responde por la ruta
+   estructurada, «E77» da «No existe el participante E77» sin modelo, y una pregunta general
+   cita los intercambios.
 
 ---
 
