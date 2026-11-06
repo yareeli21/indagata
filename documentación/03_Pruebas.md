@@ -934,8 +934,9 @@ El detalle por respuesta está en Desarrollo, Tabla D.29a. Se adoptó `qwen2.5:3
   (consultas 1344–1365) y se repiten tal cual con los demás redactores. Como se escribieron reaccionando a las
   respuestas de llama (por ejemplo, «Me sigues dando una pregunta»), con otro modelo pueden no venir al caso; se hacen
   igual para que la comparación sea con las mismas preguntas.
-- **Redactores:** `llama3.2:3b`, `qwen2.5:3b`, `qwen3:4b` y `gemma3:4b`. Cada uno hace **todas** las etapas del chat
-  (`OLLAMA_MODEL`), no solo la redacción.
+- **Redactores:** `llama3.2:3b`, `qwen2.5:3b`, `qwen3:4b-instruct` y `gemma3:4b` (Tabla P.21a). Cada uno hace
+  **todas** las etapas del chat (`OLLAMA_MODEL`), no solo la redacción. Se planeó `qwen3:4b`, pero esa variante razona
+  antes de responder; tras una consulta (1396) se cambió por la variante *instruct*, que responde directo.
 - **Jueces:** cada redactor responde una vez y los cuatro modelos juzgan todas las respuestas, así que salen
   16 combinaciones.
 - **Referencia:** los turnos de dato tienen sus cifras correctas, calculadas directo de la base. Por ejemplo:
@@ -947,6 +948,24 @@ El detalle por respuesta está en Desarrollo, Tabla D.29a. Se adoptó `qwen2.5:3
 - **Cuidados:** la caché se apaga durante el experimento (`RAG_CACHE_HORAS=0`) y la temperatura no se mueve.
 
 <!-- fuente: services/visualization-service/scripts/modelos/ (README.md, generar_casos.py, casos.json, juzgar.py, calificar.py, reporte.py); rag_log 1344–1365 (31 oct); Desarrollo X.10.8 -->
+
+**Tabla P.21a.** Versiones exactas de los modelos (Ollama 0.32.9).
+
+| Modelo (etiqueta de Ollama) | Familia | Parámetros | Cuantización | Contexto máximo del modelo | ID (digest) | Tamaño |
+|---|---|---|---|---|---|---|
+| `llama3.2:3b` | Llama 3.2 (Meta) | 3.2 B | Q4_K_M | 131 072 | `a80c4f17acd5` | 2.0 GB |
+| `qwen2.5:3b` | Qwen 2.5 (Alibaba) | 3.1 B | Q4_K_M | 32 768 | `357c53fb659c` | 1.9 GB |
+| `qwen3:4b-instruct` | Qwen 3, variante *instruct* (sin razonamiento) | 4.0 B | Q4_K_M | 262 144 | `0edcdef34593` | 2.5 GB |
+| `gemma3:4b` | Gemma 3 (Google) | 3.9 B, más 0.4 B del módulo de visión, que no se usa | Q4_K_M | 131 072 | `68ceab7e468a` | 3.4 GB |
+
+Embeddings:
+- Del sistema: `paraphrase-multilingual-mpnet-base-v2`.
+- Solo del RAGAS fuera de línea: `nomic-embed-text` (`0a109f422b47`).
+
+En el chat todos corren con contexto de 4096 tokens. La temperatura es 0.2 al redactar y 0 al interpretar y al
+juzgar. Se reporta el ID porque una etiqueta de Ollama puede apuntar a otra versión si se vuelve a publicar con el
+mismo nombre.
+<!-- fuente: ollama show y ollama list en el contenedor indagata_ollama (5 nov 2026); shared/db/core/config.py (RAG_TEMPERATURA_REDACCION); services/visualization-service/services/ollama_client.py (num_ctx 4096) -->
 
 **Ensayo de las herramientas.** Se probaron con la sesión anterior de la investigadora con `llama3.2:3b` (consultas
 1290–1326): se emparejaron los 27 turnos que tenían entonces los casos. Por ser un ensayo, sin calificación humana ni varios jueces, sus cifras no

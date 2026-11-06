@@ -224,7 +224,7 @@ cd services\cleaning-service
 No ejecutes pytest de varios servicios en un solo comando: sus módulos se llaman igual (`main`,
 `models`…) y chocan.
 
-### (Opcional) Evaluar el chat con RAGAS
+### (Opcional) Validar con el RAGAS oficial
 RAGAS se instala en un entorno aparte, porque sus dependencias chocan con las de los servicios.
 Necesita Python 3.12 y la app levantada:
 ```powershell
@@ -237,7 +237,50 @@ Los `<id>` son los `id_crudo` de esos instrumentos en tu instalación. Procésal
 `tools\rag\procesar_instrumento.py`. El reporte queda en `tools\rag\reportes\`; si la corrida se
 interrumpe, repite el comando con `--continuar`.
 
-## 10. Trabajar en el día a día
+## 10. Evaluar el chat: tu calificación, el juez y dónde ver los resultados
+
+Cada respuesta del chat se evalúa de tres formas. Las tres quedan en tu base de datos (`rag_log`, `rag_calificacion` y
+`rag_metrica_juez`), y cada quien evalúa en su propia instalación.
+
+| Qué | Quién lo calcula | Cuándo |
+|---|---|---|
+| **Indicadores del sistema**: intención, si respondió el modelo o el cálculo, qué recuperó el RAG, cifras con respaldo, tiempo por etapa | El código, sin modelo | Al llegar la respuesta, en el panel |
+| **Tu calificación**: Mal, Parcial o Bien, «¿entendió?», «¿fundamentó?» y comentario | Tú | Debajo de cada respuesta, en el panel |
+| **Métricas del juez**: fidelidad, relevancia y precisión del contexto, con las fórmulas de RAGAS 0.4.3 | Un segundo modelo (LLM-as-a-judge), `RAG_JUEZ_MODELO` | Solo cuando se pide (ver abajo) |
+
+**10.1 Una respuesta suelta.** En el panel de la respuesta, pulsa **«Calcular evaluación»**. Tarda de 30 s a 2 min:
+el juez y el redactor no caben juntos en una GPU de 4 GiB y Ollama cambia de modelo. Las métricas aparecen en el mismo
+panel.
+
+**10.2 Muchas respuestas a la vez (lo que se usa para comparar).** Primero anota el rango de consultas: es el número
+de consulta del panel, o la línea `Corrida: <modelo>=<inicio>-<fin>` que imprime `correr_casos.py`. Después corre el
+juez sobre ese rango, una vez por archivo de casos (`casos.json`, `casos_pru03.json`, `casos_ent11.json`):
+```powershell
+docker compose exec visualization-service python scripts/modelos/juzgar.py --casos casos.json --juez qwen3:4b-instruct --corrida gemma3:4b=<inicio>-<fin>
+```
+- Varias corridas a la vez: repite `--corrida <modelo>=<inicio>-<fin>`. El juez se carga una sola vez.
+- Muestra el avance en la terminal. Si se corta, repite el comando: salta lo que ya evaluó. `--rehacer` lo repite.
+- Tarda de 30 s a 1 min por respuesta. Para cientos de respuestas, déjalo corriendo de noche, con los programas
+  pesados cerrados.
+- Si el juez es el mismo modelo que redactó, se juzga a sí mismo: mejor usa otro.
+
+**10.3 Dónde ver los resultados.**
+
+| Dónde | Comando | Qué trae |
+|---|---|---|
+| Panel del chat | — | La evaluación de cada respuesta, con una tabla por juez si hay varios |
+| Reporte | `docker compose exec visualization-service python scripts/modelos/reporte.py --casos casos.json --corrida gemma3:4b=<inicio>-<fin>` | En `storage/evaluacion_modelos/<fecha>/`: un `<modelo>.md` con cada turno, su respuesta, las métricas del juez, los indicadores y tu calificación, y `resumen.md` con los promedios por modelo, la exactitud contra la respuesta esperada y el acuerdo juez–humano (kappa, Spearman). Ábrelos en VS Code con Ctrl+Shift+V |
+| CSV para Excel | `docker compose exec visualization-service python scripts/modelos/exportar.py` | En `storage/evaluacion_modelos/exportes/`: una fila por consulta calificada, con quién calificó, la calificación, el comentario, lo recuperado del RAG y las métricas de cada juez. Sirve para juntar los resultados del equipo |
+
+Para calificar desde la terminal lo que quedó sin calificar en el panel:
+`docker compose exec visualization-service python scripts/modelos/calificar.py --casos casos.json --corrida <modelo>=<inicio>-<fin>`.
+El paso a paso completo para repetir las pruebas de la tesis está en `markdowns/GUIA_PRUEBAS.md`, sección 7.
+
+**10.4 (Opcional) RAGAS oficial.** Las métricas del juez siguen las fórmulas de RAGAS, pero la biblioteca no se
+instala en los servicios: exige NumPy 2 y ChromaDB necesita NumPy 1.26. Para contrastar con la biblioteca oficial se
+usa un entorno aparte; ver «(Opcional) Validar con el RAGAS oficial» en la sección 9.
+
+## 11. Trabajar en el día a día
 
 | Situación | Qué hacer |
 |---|---|
@@ -249,7 +292,7 @@ interrumpe, repite el comando con `--continuar`.
 | Llegó una migración nueva en `infrastructure/postgres/migrations/` | Ejecutarla como en el paso 6.b |
 | Apagar todo (conserva los datos) | `docker compose down` |
 
-## 11. Problemas frecuentes
+## 12. Problemas frecuentes
 
 | Síntoma | Causa y solución |
 |---|---|
