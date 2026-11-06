@@ -1,0 +1,332 @@
+{
+  "base": "enc_06_respondido.csv",
+  "archivo": "enc_06_sucio_no_contemplado.csv",
+  "generador": "tools/limpieza/ensuciar_enc_06_no_contemplado.py",
+  "semilla": 13,
+  "resumen": {
+    "numero_con_etiqueta": 3,
+    "numero_en_palabra": 3,
+    "apostrofo_de_excel": 2,
+    "coma_decimal": 4,
+    "unidad_en_el_numero": 3,
+    "error_ortografico_en_categoria": 3,
+    "sinonimo_de_categoria": 3,
+    "otro_con_texto": 3,
+    "si_no_codificado": 3,
+    "mojibake": 2,
+    "casi_duplicado": 2,
+    "fila_desplazada": 1,
+    "fila_de_promedios": 1,
+    "segunda_fila_de_encabezado": 1
+  },
+  "estructura": {
+    "casi_duplicado": [
+      {
+        "original": "R0153",
+        "copia": "R0161",
+        "columna_distinta": "Seguridad_item3"
+      },
+      {
+        "original": "R0115",
+        "copia": "R0162",
+        "columna_distinta": "Infraestructura_item4"
+      }
+    ],
+    "fila_desplazada": {
+      "id": "R0157",
+      "nota": "falta «genero»: todo lo demás se corre una columna a la izquierda"
+    },
+    "fila_de_promedios": "última fila «Promedio» con la media de cada ítem: debe descartarse, no contarse como respondente",
+    "segunda_fila_de_encabezado": "la fila 2 trae el texto de las preguntas: debe tomarse como etiqueta, no como respondente"
+  },
+  "detalle": [
+    {
+      "tipo": "numero_con_etiqueta",
+      "id": "R0067",
+      "columna": "Servicios_acadé_item1",
+      "original": "5",
+      "inyectado": "5 - Totalmente de acuerdo",
+      "esperado": "5",
+      "nota": "exportación que pega la etiqueta al número de la escala",
+      "fila": 68
+    },
+    {
+      "tipo": "numero_con_etiqueta",
+      "id": "R0075",
+      "columna": "Servicios_acadé_item2",
+      "original": "4",
+      "inyectado": "4 (De acuerdo)",
+      "esperado": "4",
+      "nota": "exportación que pega la etiqueta al número de la escala",
+      "fila": 76
+    },
+    {
+      "tipo": "numero_con_etiqueta",
+      "id": "R0048",
+      "columna": "Servicios_acadé_item3",
+      "original": "2",
+      "inyectado": "2 - En desacuerdo",
+      "esperado": "2",
+      "nota": "exportación que pega la etiqueta al número de la escala",
+      "fila": 49
+    },
+    {
+      "tipo": "numero_en_palabra",
+      "id": "R0060",
+      "columna": "Servicios_acadé_item1",
+      "original": "5",
+      "inyectado": "cinco",
+      "esperado": "5",
+      "fila": 61
+    },
+    {
+      "tipo": "numero_en_palabra",
+      "id": "R0038",
+      "columna": "Servicios_acadé_item2",
+      "original": "1",
+      "inyectado": "uno",
+      "esperado": "1",
+      "fila": 39
+    },
+    {
+      "tipo": "numero_en_palabra",
+      "id": "R0058",
+      "columna": "Servicios_acadé_item3",
+      "original": "4",
+      "inyectado": "cuatro",
+      "esperado": "4",
+      "fila": 59
+    },
+    {
+      "tipo": "apostrofo_de_excel",
+      "id": "R0034",
+      "columna": "Servicios_acadé_item1",
+      "original": "1",
+      "inyectado": "'1",
+      "esperado": "1",
+      "nota": "Excel marca así un número guardado como texto",
+      "fila": 35
+    },
+    {
+      "tipo": "apostrofo_de_excel",
+      "id": "R0019",
+      "columna": "Servicios_acadé_item2",
+      "original": "2",
+      "inyectado": "'2",
+      "esperado": "2",
+      "nota": "Excel marca así un número guardado como texto",
+      "fila": 20
+    },
+    {
+      "tipo": "coma_decimal",
+      "id": "R0055",
+      "columna": "En_una_escala_del_0_al_10,_cuán_satisfe",
+      "original": "4",
+      "inyectado": "4,5",
+      "esperado": "4.5",
+      "fila": 56
+    },
+    {
+      "tipo": "coma_decimal",
+      "id": "R0076",
+      "columna": "En_una_escala_del_0_al_10,_qué_tan_prob",
+      "original": "0",
+      "inyectado": "0,5",
+      "esperado": "0.5",
+      "fila": 77
+    },
+    {
+      "tipo": "coma_decimal",
+      "id": "R0008",
+      "columna": "promedio_gpa",
+      "original": "3.82",
+      "inyectado": "3,82",
+      "esperado": "3.82",
+      "fila": 9
+    },
+    {
+      "tipo": "coma_decimal",
+      "id": "R0111",
+      "columna": "En_una_escala_del_0_al_10,_cuán_satisfe",
+      "original": "3",
+      "inyectado": "3,5",
+      "esperado": "3.5",
+      "fila": 112
+    },
+    {
+      "tipo": "unidad_en_el_numero",
+      "id": "R0033",
+      "columna": "edad",
+      "original": "19",
+      "inyectado": "19 años",
+      "esperado": "19",
+      "fila": 34
+    },
+    {
+      "tipo": "unidad_en_el_numero",
+      "id": "R0156",
+      "columna": "horas_trabajo_semana",
+      "original": "19",
+      "inyectado": "19 hrs",
+      "esperado": "19",
+      "fila": 157
+    },
+    {
+      "tipo": "unidad_en_el_numero",
+      "id": "R0004",
+      "columna": "edad",
+      "original": "20",
+      "inyectado": "20 años",
+      "esperado": "20",
+      "fila": 5
+    },
+    {
+      "tipo": "error_ortografico_en_categoria",
+      "id": "R0071",
+      "columna": "Con_qué_frecuencia_utilizas_los_servici",
+      "original": "Una vez al mes",
+      "inyectado": "Una vez al mse",
+      "esperado": "Una vez al mes",
+      "fila": 72
+    },
+    {
+      "tipo": "error_ortografico_en_categoria",
+      "id": "R0022",
+      "columna": "Con_qué_frecuencia_utilizas_los_servici",
+      "original": "Una vez al mes",
+      "inyectado": "Una vez al mse",
+      "esperado": "Una vez al mes",
+      "fila": 23
+    },
+    {
+      "tipo": "error_ortografico_en_categoria",
+      "id": "R0068",
+      "columna": "Con_qué_frecuencia_utilizas_los_servici",
+      "original": "Una vez al mes",
+      "inyectado": "Una vez al mse",
+      "esperado": "Una vez al mes",
+      "fila": 69
+    },
+    {
+      "tipo": "sinonimo_de_categoria",
+      "id": "R0116",
+      "columna": "Con_qué_frecuencia_utilizas_los_servici",
+      "original": "Una vez al semestre",
+      "inyectado": "1 vez por semestre",
+      "esperado": "Una vez al semestre",
+      "fila": 117
+    },
+    {
+      "tipo": "sinonimo_de_categoria",
+      "id": "R0112",
+      "columna": "Con_qué_frecuencia_utilizas_los_servici",
+      "original": "Nunca",
+      "inyectado": "Jamás",
+      "esperado": "Nunca",
+      "fila": 113
+    },
+    {
+      "tipo": "sinonimo_de_categoria",
+      "id": "R0036",
+      "columna": "Con_qué_frecuencia_utilizas_los_servici",
+      "original": "Nunca",
+      "inyectado": "Jamás",
+      "esperado": "Nunca",
+      "fila": 37
+    },
+    {
+      "tipo": "otro_con_texto",
+      "id": "R0066",
+      "columna": "Cuál_servicio_usas_con_más_frecuencia",
+      "original": "Laboratorios",
+      "inyectado": "Otro: cafetería",
+      "esperado": "Otro (con el texto aparte)",
+      "fila": 67
+    },
+    {
+      "tipo": "otro_con_texto",
+      "id": "R0092",
+      "columna": "Cuál_servicio_usas_con_más_frecuencia",
+      "original": "Cafetería",
+      "inyectado": "Otro (enfermería)",
+      "esperado": "Otro (con el texto aparte)",
+      "fila": 93
+    },
+    {
+      "tipo": "otro_con_texto",
+      "id": "R0125",
+      "columna": "Cuál_servicio_usas_con_más_frecuencia",
+      "original": "Laboratorios",
+      "inyectado": "Otro - transporte",
+      "esperado": "Otro (con el texto aparte)",
+      "fila": 126
+    },
+    {
+      "tipo": "si_no_codificado",
+      "id": "R0141",
+      "columna": "Has_utilizado_el_servicio_de_bolsa_de_t",
+      "original": "Sí",
+      "inyectado": "1",
+      "esperado": "Sí",
+      "fila": 142
+    },
+    {
+      "tipo": "si_no_codificado",
+      "id": "R0145",
+      "columna": "Has_recibido_atención_de_los_servicios_",
+      "original": "Sí",
+      "inyectado": "Yes",
+      "esperado": "Sí",
+      "fila": 146
+    },
+    {
+      "tipo": "si_no_codificado",
+      "id": "R0110",
+      "columna": "Conoces_los_programas_de_becas_disponib",
+      "original": "No",
+      "inyectado": "0",
+      "esperado": "No",
+      "fila": 111
+    },
+    {
+      "tipo": "mojibake",
+      "id": "R0031",
+      "columna": "Has_utilizado_el_servicio_de_bolsa_de_t",
+      "original": "Sí",
+      "inyectado": "SÃ­",
+      "esperado": "Sí",
+      "nota": "UTF-8 leído como latin-1 en una sola celda",
+      "fila": 32
+    },
+    {
+      "tipo": "mojibake",
+      "id": "R0089",
+      "columna": "Has_recibido_atención_de_los_servicios_",
+      "original": "Sí",
+      "inyectado": "SÃ­",
+      "esperado": "Sí",
+      "nota": "UTF-8 leído como latin-1 en una sola celda",
+      "fila": 90
+    }
+  ],
+  "resultado_medido": {
+    "verificado": "2026-11-02, motor del cleaning-service (MotorEncuestas.automatica) sobre la base y la versión sucia; efectos en cascada atribuidos quitando una alteración a la vez",
+    "por_tipo": {
+      "numero_con_etiqueta": "3/3 señalados como fuera de escala, con sugerencia de anular (se pierde el número que sí venía)",
+      "numero_en_palabra": "3/3 señalados como fuera de escala, con sugerencia de anular",
+      "unidad_en_el_numero": "3/3 señalados como fuera de rango, con sugerencia de anular",
+      "apostrofo_de_excel": "2/2 corregidos en silencio por la homologación ('1 → 1): contemplado sin querer",
+      "coma_decimal": "0/4: sin aviso (4,5 / 3,82 quedan como texto en una columna numérica)",
+      "error_ortografico_en_categoria": "0/3: sin aviso; «Una vez al mse» queda como una categoría nueva",
+      "sinonimo_de_categoria": "0/3: sin aviso; «Jamás» y «1 vez por semestre» quedan como categorías nuevas",
+      "otro_con_texto": "0/3: sin aviso; cada «Otro: …» es una categoría distinta",
+      "si_no_codificado": "0/3: sin aviso; 1, 0 y Yes conviven con Sí/No",
+      "mojibake": "0/2: sin aviso; «SÃ» queda como otra categoría",
+      "casi_duplicado": "0/2: no se detectan (solo se detectan duplicados exactos)",
+      "fila_desplazada": "no se detecta; además cambia el tipo de columnas de contexto: tiene_beca, primera_generacion y nivel_estudio pasan de binaria a categórica y semestre de escala 1–10 a calificación",
+      "fila_de_promedios": "se señala como encuestado incompleto y se sugiere eliminarla (detección parcial, por otra razón). Mientras no se elimine, sus decimales hacen que los 15 ítems Likert 1–5 se tomen como calificación 0–10 y la detección de respuestas en línea recta pasa de 38 encuestados a 0",
+      "segunda_fila_de_encabezado": "se cuenta como un respondente; sus textos salen como valores fuera de rango en cada columna numérica"
+    },
+    "efecto": "164 respondentes en vez de 160; valores imposibles 7 → 44; respuestas en línea recta 38 → 0"
+  }
+}

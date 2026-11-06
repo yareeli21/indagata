@@ -1,0 +1,133 @@
+{
+  "archivo_limpio": "ent_11_salud_mental_limpia.txt",
+  "archivo_con_ruido": "ent_11_salud_mental_ruido.txt",
+  "resumen": {
+    "identificador": 2,
+    "separador": 6,
+    "marca_de_tiempo": 26,
+    "espacios": 7,
+    "palabra_partida": 5,
+    "tabulador": 5,
+    "negritas_markdown": 8,
+    "muletilla": 4,
+    "invisibles": 4,
+    "numero_de_pagina": 4,
+    "letras_espaciadas": 2,
+    "fin_de_linea": 1
+  },
+  "detalle": {
+    "identificador": [
+      "ID: ENT-0011",
+      "Folio 2026-114"
+    ],
+    "separador": [
+      "****************************************",
+      "****************************************",
+      "------------------------------",
+      "------------------------------",
+      "------------------------------",
+      "------------------------------"
+    ],
+    "marca_de_tiempo": [
+      "[00:01:35]",
+      "00:03:10",
+      "[00:04:45]",
+      "00:06:20",
+      "[00:07:55]",
+      "00:09:30",
+      "[00:11:05]",
+      "00:12:40",
+      "[00:14:15]",
+      "00:15:50",
+      "[00:17:25]",
+      "00:19:00",
+      "[00:20:35]",
+      "00:22:10",
+      "[00:23:45]",
+      "00:25:20",
+      "[00:26:55]",
+      "00:28:30",
+      "[00:30:05]",
+      "00:31:40",
+      "[00:33:15]",
+      "00:34:50",
+      "[00:36:25]",
+      "00:38:00",
+      "[00:39:35]",
+      "00:41:10"
+    ],
+    "espacios": [
+      "turno 1: espacio antes de coma y doble espacio",
+      "turno 5: espacio antes de coma y doble espacio",
+      "turno 9: espacio antes de coma y doble espacio",
+      "turno 13: espacio antes de coma y doble espacio",
+      "turno 17: espacio antes de coma y doble espacio",
+      "turno 21: espacio antes de coma y doble espacio",
+      "turno 25: espacio antes de coma y doble espacio"
+    ],
+    "palabra_partida": [
+      "confid-/encial",
+      "psico-/lógica",
+      "coordi-/nación",
+      "respi-/ración",
+      "confid-/encial"
+    ],
+    "tabulador": [
+      "turno 2",
+      "turno 7",
+      "turno 12",
+      "turno 17",
+      "turno 22"
+    ],
+    "negritas_markdown": [
+      "**Entrevistadora:**",
+      "**Entrevistada:**",
+      "**Entrevistadora:**",
+      "**Entrevistada:**",
+      "**Entrevistadora:**",
+      "**Entrevistada:**",
+      "**Entrevistadora:**",
+      "**Entrevistada:**"
+    ],
+    "muletilla": [
+      "Eh,",
+      "Mmm...",
+      "Em,",
+      "Ehm,"
+    ],
+    "invisibles": [
+      "turno 6: U+200B y U+00A0",
+      "turno 12: U+200B y U+00A0",
+      "turno 18: U+200B y U+00A0",
+      "turno 24: U+200B y U+00A0"
+    ],
+    "numero_de_pagina": [
+      "- 1 -",
+      "Página 2 de 5",
+      "- 3 -",
+      "Página 4 de 5"
+    ],
+    "letras_espaciadas": [
+      "a n s i e d a d",
+      "e s t a d í s t i c a"
+    ],
+    "fin_de_linea": [
+      "CRLF en todo el archivo"
+    ]
+  },
+  "generador": "tools/limpieza/ensuciar_ent_11.py",
+  "resultado_esperado": {
+    "estructura": "1 participante (E01) con 6 datos de contexto; 26 turnos; Entrevistadora → entrevistador y Entrevistada → entrevistado, sugeridos por su etiqueta",
+    "ruido_eliminado": {
+      "marcas_de_tiempo": 26,
+      "numeros_de_pagina": 4,
+      "identificadores": 2,
+      "separadores": 6,
+      "palabras_reconstruidas": 7,
+      "muletillas": 4
+    },
+    "ruido_residual": 0,
+    "comparacion": "Tras limpiar, 25 de 26 turnos quedan idénticos a la versión limpia. En el turno 3, «o a n s i e d a d» queda «oansiedad»: la regla de letras espaciadas también absorbe la palabra de una letra que va antes («o», «y», «a»).",
+    "verificado": "2026-11-02, motor del cleaning-service (transcripcion.normalizar + texto.limpiar + hablantes.segmentar) sobre ambos archivos"
+  }
+}

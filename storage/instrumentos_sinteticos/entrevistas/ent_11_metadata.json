@@ -1,0 +1,24 @@
+{
+  "titulo": "Entrevista sobre el uso de los servicios de salud mental y apoyo psicológico",
+  "tipo": "entrevista",
+  "fuente": "sintetico",
+  "n_respondentes": 1,
+  "n_items": 12,
+  "tipo_escala": "texto_cualitativo",
+  "dimensiones": [
+    "Semiestructurada"
+  ],
+  "kpis_asociados": [
+    "Uso de Servicios de Salud Mental y Apoyo Psicológico",
+    "Cobertura y Calidad de Servicios de Apoyo Estudiantil"
+  ],
+  "archivos": {
+    "original": "ent_11_original.txt",
+    "sin_ruido": "ent_11_salud_mental_limpia.txt",
+    "con_ruido": "ent_11_salud_mental_ruido.txt",
+    "verdad_del_ruido": "ent_11_ruido_inyectado.json",
+    "con_ruido_no_contemplado": "ent_11_salud_mental_ruido_no_contemplado.txt",
+    "verdad_del_ruido_no_contemplado": "ent_11_ruido_no_contemplado.json"
+  },
+  "fecha_generacion": "2026-11-02"
+}

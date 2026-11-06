@@ -1,0 +1,166 @@
+{
+  "archivo_limpio": "ent_11_salud_mental_limpia.txt",
+  "archivo_con_ruido": "ent_11_salud_mental_ruido_no_contemplado.txt",
+  "generador": "tools/limpieza/ensuciar_ent_11_no_contemplado.py",
+  "resumen": {
+    "encabezado_repetido": 4,
+    "muletilla_no_contemplada": 4,
+    "anotacion_transcriptor": 5,
+    "etiqueta_inconsistente": 2,
+    "arranque_en_falso": 2,
+    "error_reconocimiento_voz": 3,
+    "pie_repetido": 3,
+    "nota_del_entrevistador": 1,
+    "mojibake": 1,
+    "marca_de_tiempo_no_contemplada": 1
+  },
+  "detalle": [
+    {
+      "tipo": "encabezado_repetido",
+      "inyectado": "Universidad Tecnológica — Transcripción confidencial — Proyecto Bienestar 2026",
+      "nota": "encabezado con texto al inicio de cada página"
+    },
+    {
+      "tipo": "muletilla_no_contemplada",
+      "inyectado": "Ha sido un semestre pesado, o sea,",
+      "nota": "respuesta 1; original: «Ha sido un semestre pesado.»"
+    },
+    {
+      "tipo": "anotacion_transcriptor",
+      "inyectado": "no por flojera [risas]",
+      "nota": "respuesta 1; original: «no por flojera»"
+    },
+    {
+      "tipo": "muletilla_no_contemplada",
+      "inyectado": "Este... pues sobre todo la carga",
+      "nota": "respuesta 2; original: «Sobre todo la carga»"
+    },
+    {
+      "tipo": "anotacion_transcriptor",
+      "inyectado": "en una [inaudible 00:05:41] papelería",
+      "nota": "respuesta 2; original: «en una papelería»"
+    },
+    {
+      "tipo": "etiqueta_inconsistente",
+      "inyectado": "E:",
+      "nota": "turno 5: «Entrevistadora» abreviada a «E»"
+    },
+    {
+      "tipo": "arranque_en_falso",
+      "inyectado": "Yo, yo sabía que existía algo",
+      "nota": "respuesta 3; original: «Sabía que existía algo»"
+    },
+    {
+      "tipo": "muletilla_no_contemplada",
+      "inyectado": "orientación psicológica, ¿no?,",
+      "nota": "respuesta 4; original: «orientación psicológica»"
+    },
+    {
+      "tipo": "error_reconocimiento_voz",
+      "inyectado": "ejercicios de res piración",
+      "nota": "respuesta 4; original: «ejercicios de respiración»"
+    },
+    {
+      "tipo": "pie_repetido",
+      "inyectado": "Documento de uso interno. Prohibida su reproducción.",
+      "nota": "después del turno 8"
+    },
+    {
+      "tipo": "encabezado_repetido",
+      "inyectado": "Universidad Tecnológica — Transcripción confidencial — Proyecto Bienestar 2026",
+      "nota": "después del turno 8"
+    },
+    {
+      "tipo": "anotacion_transcriptor",
+      "inyectado": "Pasaron casi dos semanas. (silencio)",
+      "nota": "respuesta 5; original: «Pasaron casi dos semanas.»"
+    },
+    {
+      "tipo": "arranque_en_falso",
+      "inyectado": "Me daba, me daba pena",
+      "nota": "respuesta 6; original: «Me daba pena»"
+    },
+    {
+      "tipo": "anotacion_transcriptor",
+      "inyectado": "está loca [hablan al mismo tiempo]",
+      "nota": "respuesta 6; original: «está loca»"
+    },
+    {
+      "tipo": "nota_del_entrevistador",
+      "inyectado": "La psicóloga fue muy amable (la entrevistada sonríe)",
+      "nota": "respuesta 7; original: «La psicóloga fue muy amable»"
+    },
+    {
+      "tipo": "mojibake",
+      "inyectado": "SÃ­, un poco. EmpecÃ© a usar una agenda y a dividir los proy",
+      "nota": "respuesta 8; original: «Sí, un poco. Empecé a usar una agenda y a dividir los proyec»"
+    },
+    {
+      "tipo": "etiqueta_inconsistente",
+      "inyectado": "ENTREVISTADA:",
+      "nota": "turno 16: en mayúsculas"
+    },
+    {
+      "tipo": "pie_repetido",
+      "inyectado": "Documento de uso interno. Prohibida su reproducción.",
+      "nota": "después del turno 16"
+    },
+    {
+      "tipo": "encabezado_repetido",
+      "inyectado": "Universidad Tecnológica — Transcripción confidencial — Proyecto Bienestar 2026",
+      "nota": "después del turno 16"
+    },
+    {
+      "tipo": "error_reconocimiento_voz",
+      "inyectado": "Mi tu tor académico",
+      "nota": "respuesta 9; original: «Mi tutor académico»"
+    },
+    {
+      "tipo": "muletilla_no_contemplada",
+      "inyectado": "En mi grupo somos treinta y dos, este,",
+      "nota": "respuesta 10; original: «En mi grupo somos treinta y dos»"
+    },
+    {
+      "tipo": "marca_de_tiempo_no_contemplada",
+      "inyectado": "(min 23)",
+      "nota": "turno 20: hora en minutos junto a la etiqueta"
+    },
+    {
+      "tipo": "error_reconocimiento_voz",
+      "inyectado": "Primero, que hubiera más sicólogos",
+      "nota": "respuesta 11; original: «Primero, que hubiera más psicólogos»"
+    },
+    {
+      "tipo": "anotacion_transcriptor",
+      "inyectado": "Que no espere a estar muy mal [pausa larga]",
+      "nota": "respuesta 12; original: «Que no espere a estar muy mal»"
+    },
+    {
+      "tipo": "pie_repetido",
+      "inyectado": "Documento de uso interno. Prohibida su reproducción.",
+      "nota": "después del turno 24"
+    },
+    {
+      "tipo": "encabezado_repetido",
+      "inyectado": "Universidad Tecnológica — Transcripción confidencial — Proyecto Bienestar 2026",
+      "nota": "después del turno 24"
+    }
+  ],
+  "resultado_medido": {
+    "verificado": "2026-11-02, motor del cleaning-service (read_document + transcripcion.normalizar + texto.limpiar + hablantes.segmentar)",
+    "ruido_eliminado_reportado": "ninguno; ruido residual reportado: 0 (la limpieza no avisa de nada)",
+    "por_tipo": {
+      "anotacion_transcriptor": "5 de 5 quedan en el texto ([risas], [inaudible 00:05:41], (silencio), [hablan al mismo tiempo], [pausa larga])",
+      "muletilla_no_contemplada": "4 de 4 quedan (o sea, este, pues, ¿no?)",
+      "arranque_en_falso": "2 de 2 quedan",
+      "error_reconocimiento_voz": "3 de 3 quedan (res piración, tu tor, sicólogos)",
+      "nota_del_entrevistador": "1 de 1 queda",
+      "pie_repetido": "3 de 3 quedan, pegados al final de la respuesta anterior",
+      "encabezado_repetido": "el primero cae en el preámbulo y se descarta; los otros 3 se vuelven un hablante falso «Universidad Tecnológica» (el « — » se lee como separador de etiqueta)",
+      "etiqueta_inconsistente": "«E» y «ENTREVISTADA» quedan como hablantes aparte; se corrigen en la fase asistida asignándoles su rol",
+      "marca_de_tiempo_no_contemplada": "«Entrevistada (min 23):» no se reconoce como etiqueta: esa respuesta se pega a la pregunta anterior de la entrevistadora",
+      "mojibake": "queda («SÃ, un poco. EmpecÃ©…»); solo desaparece el guion suave invisible, lo que lo empeora"
+    },
+    "estructura": "28 turnos en vez de 26; 5 hablantes (Entrevistadora 12, Entrevistada 11, Universidad Tecnológica 3, E 1, ENTREVISTADA 1); participante E01 con sus 6 datos reconocido bien"
+  }
+}

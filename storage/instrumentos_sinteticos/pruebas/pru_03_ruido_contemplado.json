@@ -1,0 +1,263 @@
+{
+  "base": "pru_03_respondido.csv",
+  "archivo": "pru_03_sucio_contemplado.csv",
+  "generador": "tools/limpieza/ensuciar_pru_03.py",
+  "semilla": 11,
+  "resumen": {
+    "respuesta_multiple": 6,
+    "ilegible": 5,
+    "caracter_invalido": 4,
+    "minusculas_o_espacios": 4,
+    "vf_escrito_completo": 4,
+    "no_respondida": 4,
+    "id_duplicado": 3,
+    "filas_vacias": 2
+  },
+  "id_duplicado": [
+    "R0009",
+    "R0028",
+    "R0088"
+  ],
+  "filas_vacias": 2,
+  "detalle": [
+    {
+      "tipo": "respuesta_multiple",
+      "id_alumno": "R0058",
+      "pregunta": "pru_03_Ordenamien_q4",
+      "original": "D",
+      "inyectado": "A,B",
+      "esperado": "nula/respuesta_multiple"
+    },
+    {
+      "tipo": "respuesta_multiple",
+      "id_alumno": "R0072",
+      "pregunta": "pru_03_Ordenamien_q4",
+      "original": "A",
+      "inyectado": "BC",
+      "esperado": "nula/respuesta_multiple"
+    },
+    {
+      "tipo": "respuesta_multiple",
+      "id_alumno": "R0060",
+      "pregunta": "pru_03_Competenci_q8",
+      "original": "C",
+      "inyectado": "A/D",
+      "esperado": "nula/respuesta_multiple"
+    },
+    {
+      "tipo": "respuesta_multiple",
+      "id_alumno": "R0066",
+      "pregunta": "pru_03_Ordenamien_q4",
+      "original": "C",
+      "inyectado": "C;D",
+      "esperado": "nula/respuesta_multiple"
+    },
+    {
+      "tipo": "respuesta_multiple",
+      "id_alumno": "R0076",
+      "pregunta": "pru_03_Competenci_q4",
+      "original": "B",
+      "inyectado": "AB",
+      "esperado": "nula/respuesta_multiple"
+    },
+    {
+      "tipo": "respuesta_multiple",
+      "id_alumno": "R0024",
+      "pregunta": "pru_03_Ordenamien_q3",
+      "original": "D",
+      "inyectado": "B C",
+      "esperado": "nula/respuesta_multiple"
+    },
+    {
+      "tipo": "ilegible",
+      "id_alumno": "R0081",
+      "pregunta": "pru_03_Verdadero _q5",
+      "original": "V",
+      "inyectado": "?",
+      "esperado": "nula/ilegible"
+    },
+    {
+      "tipo": "ilegible",
+      "id_alumno": "R0019",
+      "pregunta": "pru_03_Competenci_q3",
+      "original": "C",
+      "inyectado": "#",
+      "esperado": "nula/ilegible"
+    },
+    {
+      "tipo": "ilegible",
+      "id_alumno": "R0069",
+      "pregunta": "pru_03_Verdadero _q6",
+      "original": "V",
+      "inyectado": "*",
+      "esperado": "nula/ilegible"
+    },
+    {
+      "tipo": "ilegible",
+      "id_alumno": "R0006",
+      "pregunta": "pru_03_Verdadero _q5",
+      "original": "V",
+      "inyectado": "B?",
+      "esperado": "nula/ilegible"
+    },
+    {
+      "tipo": "ilegible",
+      "id_alumno": "R0051",
+      "pregunta": "pru_03_Ordenamien_q5",
+      "original": "D",
+      "inyectado": "#C",
+      "esperado": "nula/ilegible"
+    },
+    {
+      "tipo": "caracter_invalido",
+      "id_alumno": "R0084",
+      "pregunta": "pru_03_Ordenamien_q2",
+      "original": "C",
+      "inyectado": "Z",
+      "esperado": "nula/caracter_invalido"
+    },
+    {
+      "tipo": "caracter_invalido",
+      "id_alumno": "R0079",
+      "pregunta": "pru_03_Ordenamien_q1",
+      "original": "C",
+      "inyectado": "E",
+      "esperado": "nula/caracter_invalido"
+    },
+    {
+      "tipo": "caracter_invalido",
+      "id_alumno": "R0021",
+      "pregunta": "pru_03_Competenci_q10",
+      "original": "D",
+      "inyectado": "X",
+      "esperado": "nula/caracter_invalido"
+    },
+    {
+      "tipo": "caracter_invalido",
+      "id_alumno": "R0002",
+      "pregunta": "pru_03_Ordenamien_q4",
+      "original": "B",
+      "inyectado": "G",
+      "esperado": "nula/caracter_invalido"
+    },
+    {
+      "tipo": "minusculas_o_espacios",
+      "id_alumno": "R0068",
+      "pregunta": "pru_03_Competenci_q2",
+      "original": "D",
+      "inyectado": "b",
+      "esperado": "valida",
+      "nota": "se normaliza a la letra en mayúscula"
+    },
+    {
+      "tipo": "minusculas_o_espacios",
+      "id_alumno": "R0008",
+      "pregunta": "pru_03_Competenci_q1",
+      "original": "D",
+      "inyectado": " C ",
+      "esperado": "valida",
+      "nota": "se normaliza a la letra en mayúscula"
+    },
+    {
+      "tipo": "minusculas_o_espacios",
+      "id_alumno": "R0025",
+      "pregunta": "pru_03_Ordenamien_q5",
+      "original": "B",
+      "inyectado": "d ",
+      "esperado": "valida",
+      "nota": "se normaliza a la letra en mayúscula"
+    },
+    {
+      "tipo": "minusculas_o_espacios",
+      "id_alumno": "R0031",
+      "pregunta": "pru_03_Competenci_q10",
+      "original": "B",
+      "inyectado": " a",
+      "esperado": "valida",
+      "nota": "se normaliza a la letra en mayúscula"
+    },
+    {
+      "tipo": "vf_escrito_completo",
+      "id_alumno": "R0004",
+      "pregunta": "pru_03_Verdadero _q7",
+      "original": "F",
+      "inyectado": "Verdadero",
+      "esperado": "valida",
+      "nota": "se normaliza a V/F"
+    },
+    {
+      "tipo": "vf_escrito_completo",
+      "id_alumno": "R0057",
+      "pregunta": "pru_03_Verdadero _q5",
+      "original": "V",
+      "inyectado": "falso",
+      "esperado": "valida",
+      "nota": "se normaliza a V/F"
+    },
+    {
+      "tipo": "vf_escrito_completo",
+      "id_alumno": "R0026",
+      "pregunta": "pru_03_Verdadero _q5",
+      "original": "V",
+      "inyectado": "f",
+      "esperado": "valida",
+      "nota": "se normaliza a V/F"
+    },
+    {
+      "tipo": "vf_escrito_completo",
+      "id_alumno": "R0030",
+      "pregunta": "pru_03_Verdadero _q6",
+      "original": "F",
+      "inyectado": "VERDADERO",
+      "esperado": "valida",
+      "nota": "se normaliza a V/F"
+    },
+    {
+      "tipo": "no_respondida",
+      "id_alumno": "R0038",
+      "pregunta": "pru_03_Verdadero _q1",
+      "original": "V",
+      "inyectado": "",
+      "esperado": "NR/no_respondida"
+    },
+    {
+      "tipo": "no_respondida",
+      "id_alumno": "R0001",
+      "pregunta": "pru_03_Verdadero _q7",
+      "original": "F",
+      "inyectado": "NR",
+      "esperado": "NR/no_respondida"
+    },
+    {
+      "tipo": "no_respondida",
+      "id_alumno": "R0011",
+      "pregunta": "pru_03_Ordenamien_q5",
+      "original": "D",
+      "inyectado": "nr",
+      "esperado": "NR/no_respondida"
+    },
+    {
+      "tipo": "no_respondida",
+      "id_alumno": "R0053",
+      "pregunta": "pru_03_Verdadero _q3",
+      "original": "V",
+      "inyectado": "",
+      "esperado": "NR/no_respondida"
+    }
+  ],
+  "resultado_medido": {
+    "verificado": "2026-11-02, motor del cleaning-service (pruebas/motor.py: _estructura + _evaluar, decisiones por defecto) sobre la base y la versión sucia",
+    "base_sin_errores": "95 alumnos, 22 reactivos (15 opción múltiple, 7 V/F), 2090 válidas, 0 nulas, 0 NR",
+    "por_tipo": {
+      "respuesta_multiple": "6/6",
+      "ilegible": "5/5",
+      "caracter_invalido": "4/4",
+      "minusculas_o_espacios": "4/4 válidas",
+      "vf_escrito_completo": "4/4 válidas",
+      "no_respondida": "4/4 NR",
+      "id_duplicado": "3/3 detectados (R0009, R0028, R0088); con «conservar el primero» se anulan las 66 respuestas repetidas",
+      "filas_vacias": "2/2 eliminadas"
+    },
+    "total": "29 de 29 errores de celda y 5 de 5 de estructura tratados como se esperaba"
+  }
+}

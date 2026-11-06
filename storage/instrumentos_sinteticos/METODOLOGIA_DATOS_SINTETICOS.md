@@ -101,22 +101,24 @@ Para mayor realismo, se inyectaron tres patrones de sesgo de respuesta típicos 
 | Rechazo | 1.5% | Respondente marca todo 1–2 |
 | Zigzag | 1.0% | Alternancia 5-1-5-1... |
 
-### 3.4 Modelo de rendimiento en pruebas
+### 3.4 Respuestas de las pruebas (sin respuesta correcta)
 
-El rendimiento en pruebas estandarizadas se modeló con rangos por perfil:
+El instrumento de cada prueba (reactivos y opciones) es fijo; **solo las respuestas son sintéticas y
+aleatorias**. No hay clave de respuestas ni respuestas correctas o incorrectas: Indagata no califica las
+pruebas. Para que las distribuciones no salgan planas, cada reactivo recibe pesos al azar una sola vez y
+cada alumno responde con esos pesos:
 
-| Perfil | Rango score | Descripción |
-|--------|-------------|-------------|
-| P1 | 75–95% | Alto rendimiento académico |
-| P2 | 55–75% | Rendimiento promedio |
-| P3 | 35–60% | Bajo rendimiento, riesgo académico |
-| P4 | 50–70% | Rendimiento moderado con irregularidad |
-| P5 | 60–75% | Competente pero desmotivado |
-| P6 | 45–80% | Alta variabilidad (contexto cultural) |
-| P7 | 75–95% | Alto rendimiento (posgrado) |
-| P8 | 35–60% | Afectado por condiciones económicas |
+| Tipo de reactivo | Cómo se genera la respuesta |
+|--------|-------------|
+| Opción múltiple | Pesos de Dirichlet (concentración 1.5) para las letras; el alumno elige una letra con esos pesos |
+| Verdadero/Falso, Sí/No | Proporción de «V» / «Sí» al azar entre 25 % y 75 % por reactivo |
+| Cálculo numérico | Valor típico al azar (5–400) por reactivo; respuesta normal alrededor de él (desviación 15 %) |
+| Respuesta corta | Valor 0–2 con pesos de Dirichlet (concentración 2) |
+| Likert conductual | Parámetros Likert del perfil del alumno, como en las encuestas |
 
-Para ítems de opción múltiple, los distractores más cercanos a la respuesta correcta tienen mayor probabilidad de ser seleccionados como error (patrón de error realista, no aleatorio).
+El perfil solo influye en los datos de contexto y en las escalas Likert. Hasta el 25 oct 2026 el generador
+usaba una respuesta correcta por reactivo y un «rendimiento» por perfil; se retiró y las pruebas se
+regeneraron con la semilla 42 (originales idénticos, sin la columna `score_estimado`).
 
 ### 3.5 Detección de valores atípicos
 

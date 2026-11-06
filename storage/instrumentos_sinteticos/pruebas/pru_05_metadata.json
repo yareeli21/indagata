@@ -16,28 +16,18 @@
   ],
   "parametros_estadisticos": {
     "perfiles_usados": [
-      "P3",
-      "P6",
       "P2",
       "P5",
       "P1",
+      "P3",
+      "P8",
       "P7",
       "P4",
-      "P8"
+      "P6"
     ],
-    "distribucion_base": "beta_rendimiento_por_perfil",
+    "modelo_respuestas": "aleatorio por reactivo (pesos Dirichlet); Likert por perfil; sin clave",
     "alpha_cronbach_estimado": null,
-    "modelo_rendimiento": {
-      "P1": "75-95%",
-      "P2": "55-75%",
-      "P3": "35-60%",
-      "P4": "50-70%",
-      "P5": "60-75%",
-      "P6": "45-80%",
-      "P7": "75-95%",
-      "P8": "35-60%"
-    },
     "n_secciones": 2
   },
-  "fecha_generacion": "2026-10-10"
+  "fecha_generacion": "2026-10-25"
 }

@@ -160,67 +160,99 @@
     "pass_reason": "alpha=0.165 < 0.7"
   },
   {
-    "id": "pru_01",
-    "tipo": "pruebas",
-    "alpha_cronbach": 0.4221,
+    "id": "enc_10_turno",
+    "tipo": "encuestas",
+    "alpha_cronbach": 0.7834,
     "pct_outliers": 0.0,
     "inter_item_corr": {
-      "mean": 0.126,
-      "std": 0.083,
-      "min": 0.002,
-      "max": 0.247
+      "mean": 0.313,
+      "std": 0.257,
+      "min": -0.108,
+      "max": 0.684
     },
-    "n_respondents": 100,
-    "n_items_numeric": 5,
-    "pass": false,
-    "pass_reason": "alpha=0.422 < 0.7"
+    "n_respondents": 60,
+    "n_items_numeric": 8,
+    "pass": true,
+    "pass_reason": "alpha=0.783 ≥ 0.7"
   },
   {
-    "id": "pru_02",
+    "id": "enc_11",
+    "tipo": "encuestas",
+    "alpha_cronbach": 0.7642,
+    "pct_outliers": 0.0,
+    "inter_item_corr": {
+      "mean": 0.468,
+      "std": 0.139,
+      "min": 0.286,
+      "max": 0.707
+    },
+    "n_respondents": 160,
+    "n_items_numeric": 10,
+    "pass": true,
+    "pass_reason": "alpha=0.764 ≥ 0.7"
+  },
+  {
+    "id": "pru_01",
     "tipo": "pruebas",
     "alpha_cronbach": 0.0,
     "pct_outliers": 0.0,
     "inter_item_corr": {
-      "mean": -0.002,
-      "std": 0.062,
-      "min": -0.073,
-      "max": 0.099
+      "mean": -0.029,
+      "std": 0.091,
+      "min": -0.201,
+      "max": 0.095
     },
-    "n_respondents": 110,
-    "n_items_numeric": 4,
+    "n_respondents": 100,
+    "n_items_numeric": 5,
     "pass": false,
     "pass_reason": "alpha=0.0 < 0.7"
   },
   {
+    "id": "pru_02",
+    "tipo": "pruebas",
+    "alpha_cronbach": 0.2052,
+    "pct_outliers": 0.91,
+    "inter_item_corr": {
+      "mean": 0.061,
+      "std": 0.096,
+      "min": -0.052,
+      "max": 0.24
+    },
+    "n_respondents": 110,
+    "n_items_numeric": 4,
+    "pass": false,
+    "pass_reason": "alpha=0.205 < 0.7"
+  },
+  {
     "id": "pru_04",
     "tipo": "pruebas",
-    "alpha_cronbach": 0.9294,
+    "alpha_cronbach": 0.9439,
     "pct_outliers": 0.0,
     "inter_item_corr": {
-      "mean": 0.623,
-      "std": 0.058,
-      "min": 0.531,
-      "max": 0.731
+      "mean": 0.679,
+      "std": 0.049,
+      "min": 0.566,
+      "max": 0.761
     },
     "n_respondents": 90,
     "n_items_numeric": 8,
     "pass": true,
-    "pass_reason": "alpha=0.929 ≥ 0.7"
+    "pass_reason": "alpha=0.944 ≥ 0.7"
   },
   {
     "id": "pru_07",
     "tipo": "pruebas",
-    "alpha_cronbach": 0.9363,
+    "alpha_cronbach": 0.9497,
     "pct_outliers": 0.0,
     "inter_item_corr": {
-      "mean": 0.596,
-      "std": 0.052,
-      "min": 0.473,
-      "max": 0.704
+      "mean": 0.654,
+      "std": 0.045,
+      "min": 0.548,
+      "max": 0.738
     },
     "n_respondents": 110,
     "n_items_numeric": 10,
     "pass": true,
-    "pass_reason": "alpha=0.936 ≥ 0.7"
+    "pass_reason": "alpha=0.95 ≥ 0.7"
   }
 ]

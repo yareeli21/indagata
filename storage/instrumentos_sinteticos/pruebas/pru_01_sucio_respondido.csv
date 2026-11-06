@@ -1,0 +1,104 @@
+id_respondente;Correo electrónico;perfil;edad;genero;semestre;promedio_gpa;horas_trabajo_semana;tipo_universidad;nivel_ses;nivel_estudio;primera_generacion;tiene_beca;pru_01_Comprensió_q1;pru_01_Comprensió_q2;pru_01_Comprensió_q3;pru_01_Comprensió_q4;pru_01_Comprensió_q5;pru_01_Comprensió_q6;pru_01_Comprensió_q7;pru_01_Comprensió_q8;pru_01_Comprensió_q9;pru_01_Comprensió_q10;pru_01_Identifica_q1;pru_01_Identifica_q2;pru_01_Identifica_q3;pru_01_Identifica_q4;pru_01_Identifica_q5;pru_01_Verdadero _q1;pru_01_Verdadero _q2;pru_01_Verdadero _q3;pru_01_Verdadero _q4;pru_01_Verdadero _q5;pru_01_Respuesta _q1;pru_01_Respuesta _q2;pru_01_Respuesta _q3;pru_01_Respuesta _q4;pru_01_Respuesta _q5;Observaciones
+R0001;alumno001@correo.ejemplo;P1;20;femenino;8;3.92;10;privada;alto;pregrado;False;False;?;D;C;C;A;B;B;A;C;D;C;B;D;A;C;V;F;F;V;F;0;2;0;1;2;
+R0002;alumno002@correo.ejemplo;P7;29;masculino;1;3.86;14;privada;alto;posgrado;False;False;D;D;C;B;A;A;A;D;B;C;C;C;D;D;A;V;F;F;V;V;0;2;2;0;1;
+R0003;alumno003@correo.ejemplo;P3;19;masculino;4;1.77;26;publica;bajo;pregrado;True;False;A;D;B;A;B;D;A;C;C;B;C;B;B;C;B;V;F;V;F;V;0;1;0;0;1;
+R0004;alumno004@correo.ejemplo;P2;22;masculino;2;3.44;7;publica;medio;pregrado;False;False;C;A;C;D;B;A;A;A;A;C;C;A;D;D;C;F;V;F;V;F;0;2;0;0;2;
+R0005;alumno005@correo.ejemplo;P6;20;femenino;1;3.56;2;privada;medio_alto;pregrado;False;False;;D;C;D;B;B;D;C;A;D;C;C;D;C;A;F;V;V;V;F;1;1;0;0;2;Salió antes de terminar
+R0006;alumno006@correo.ejemplo;P2;20;masculino;2;3.11;7;publica;medio;pregrado;False;False; b ;A;C;A;A;C;B;A;C;D;C;A;C;D;C;V;V;F;V;F;0;0;0;0;2;
+R0007;alumno007@correo.ejemplo;P3;21;femenino;3;2.75;37;publica;bajo;pregrado;True;False;C;D;C;A;B;B;B;B;C;B;D;C;D;C;D;Si;F;F;F;F;0;0;0;0;1;
+R0028;alumno008@correo.ejemplo;P5;27;femenino;10;3.01;20;mixta;medio;pregrado;False;False;B;B;B;C;A;A;B;A;D;B;C;D;B;B;B;F;V;F;V;V;0;1;2;0;2;
+R0009;alumno009@correo.ejemplo;P6;18;masculino;5;3.1;7;privada;medio_alto;pregrado;False;False;C;D;C;C;;A;A;A;B;C;C;D;C;C;A;F;F;F;V;F;0;1;2;0;1;
+R0010;alumno010@correo.ejemplo;P7;34;masculino;4;3.8;30;privada;alto;posgrado;False;False;E;D;C;A;B;B;A;A;C;A;C;C;C;B;C;F;V;F;F;F;0;1;0;0;0;
+R0011;alumno011@correo.ejemplo;P3;19;femenino;5;2.18;39;publica;bajo;pregrado;True;False;A,B;D;D;A;C;B;B;B;C;C;C;C;D;C;B;V;F;V;F;F;0;0;0;0;2;
+R0012;alumno012@correo.ejemplo;P2;19;femenino;7;3.33;13;publica;medio;pregrado;False;False;B;B;C;D;B;B;A;A;A;D;C;C;D;C;D;F;F;F;V;V;0;1;0;0;0;Pidió más tiempo
+R0013;alumno013@correo.ejemplo;P5;22;femenino;8;3.23;17;mixta;medio;pregrado;False;False;A;D;C;D;B;D;B;C;C;B;B;A;C;D;C;F;V;F;V;V;0;1;0;1;1;
+R0014;alumno014@correo.ejemplo;P5;26;otro;11;3.36;12;mixta;medio;pregrado;False;False;A;D;C;B;C;B;B;C;B;D;D;D;D;A;A;F;V;F;V;F;0;2;0;1;0;
+R0015;alumno015@correo.ejemplo;P7;24;femenino;5;3.92;19;privada;alto;posgrado;False;False;C;D;C;A;B;Z;B;D;C;B;B;C;D;C;B;V;F;F;F;F;0;1;0;1;2;Usó calculadora
+R0016;alumno016@correo.ejemplo;P2;20;femenino;3;3.41;0;publica;medio;pregrado;False;False;NR;D;B;A;B;D;B;A;B;D;B;B;D;C;A;F;V;V;F;F;0;2;2;0;1;
+R0017;alumno017@correo.ejemplo;P5;27;masculino;11;3.16;14;mixta;medio;pregrado;False;False;A;D;B;D;C;B;D;A;C;D;C;A;C;C;C;F;V;V;V;F;0;1;0;0;1;
+R0018;alumno018@correo.ejemplo;P1;22;femenino;3;3.55;10;privada;alto;pregrado;False;False;A;B;B;D;A;B;A;B;;C;A;B;C;C;A;F;V;F;F;F;0;2;0;0;1;Pidió más tiempo
+R0019;alumno019@correo.ejemplo;P2;23;femenino;3;3.42;1;publica;medio;pregrado;False;False;A;D;C;D;A;A;B;B;C;B;B;D;C;D;D;F;F;V;V;F;2;2;0;2;0;
+R0020;alumno020@correo.ejemplo;P8;20;femenino;4;2.26;35;publica;muy_bajo;pregrado;False;True;A;D;B;A;B;B;A;D;C;C;B;B;D;C;B;V;V;X;V;F;0;2;0;0;2;
+R0021;alumno021@correo.ejemplo;P8;22;masculino;2;2.84;24;publica;muy_bajo;pregrado;False;True;A;B;C;A;B;B;C;B;B;D;C;A;D;C;A;F;F;V;F;F;1;1;2;1;0;
+R0022;alumno022@correo.ejemplo;P7;28;femenino;6;3.71;29;privada;alto;posgrado;False;False;A;D;C;A;B;B;B;B;B;B;D;C;D;D;A;F;F;V;F;F;2;2;0;2;1;
+R0023;alumno023@correo.ejemplo;P3;18;otro;5;2.01;35;publica;bajo;pregrado;True;False;C;B;B;BC;A;D;A;B;D;D;B;B;A;A;C;F;F;V;V;F;0;2;0;1;1;
+R0024;alumno024@correo.ejemplo;P7;28;femenino;5;3.97;27;privada;alto;posgrado;False;False;C;A;C;A;A;B;B;B;D;D;C;B;D;B;B;F;F;V;F;F;0;2;0;0;2;
+R0025;alumno025@correo.ejemplo;P7;32;masculino;1;3.84;24;privada;alto;posgrado;False;False;C;D;C;B;B;C;A;A;B;D;C;C;D;C;A;F;F;F;F;V;0;2;0;1;1;
+R0026;alumno026@correo.ejemplo;P7;31;femenino;5;3.8;27;privada;alto;posgrado;False;False;C;A;C;D;B;D;D;A;D;D;B;C;D;C;A;F;V;V;F;F;0;2;0;1;2;
+R0027;alumno027@correo.ejemplo;P5;25;femenino;8;3.23;18;mixta;medio;pregrado;False;False;C;D;C;A;B;D;A;B;C;B;B;D;D;A;B;V;V;V;F;V;0;2;0;1;1;
+R0028;alumno028@correo.ejemplo;P1;21;femenino;7;3.84;2;privada;alto;pregrado;False;False;C;D;C;C;B;B;A;A;C;C;C;C;D;B;C;V;F;V;F;F;1;2;0;0;1;
+R0029;alumno029@correo.ejemplo;P3;19;femenino;5;1.6;26;publica;bajo;pregrado;True;False;A;D;C;D;B;A;B;A;C;D;A;A;B;D;A;F;F;V;V;F;0;2;2;1;0;
+R0030;alumno030@correo.ejemplo;P2;21;femenino;5;3.2;8;publica;medio;pregrado;False;False;C;D;B;A;C;B;D;C;B;C;B;C;D;D;D;V;V;V;F;V;0;1;0;0;2;
+R0031;alumno031@correo.ejemplo;P1;21;femenino;2;3.93;2;privada;alto;pregrado;False;False;C;D;C;D;C;C;A;A;B;B;C;D;D;A;A;F;F;V;V;F;0;2;1;2;2;
+R0032;alumno032@correo.ejemplo;P2;24;femenino;7;3.03;14;publica;medio;pregrado;False;False;C;D;B;B;#;B;B;B;C;D;B;B;D;C;B;V;V;F;V;V;0;2;0;1;1;Usó calculadora
+R0033;alumno033@correo.ejemplo;P5;25;masculino;11;3.19;13;mixta;medio;pregrado;False;False;C;D;D;A;C;D;A;A;B;B;C;A;D;C;D;F;F;F;V;F;0;1;0;1;0;
+R0034;alumno034@correo.ejemplo;P2;23;femenino;8;3.31;12;publica;medio;pregrado;False;False;A;A;C;A;B;D;B;B;C;C;A;D;D;C;C;F;F;V;V;F;0;2;2;0;1;
+R0035;alumno035@correo.ejemplo;P7;30;femenino;4;3.83;11;privada;alto;posgrado;False;False;A;A;C;D;A;A;D;D;D;B;C;A;D;B;D;V;F;V;F;V;0;2;2;0;1;
+R0036;alumno036@correo.ejemplo;P2;23;masculino;5;3.49;7;publica;medio;pregrado;False;False;C;D;B;D;A;B;D;A;C;B;C;B;D;C;B;V;F;F;F;F;uno;1;0;1;1;
+R0037;alumno037@correo.ejemplo;P2;22;masculino;4;3.2;14;publica;medio;pregrado;False;False;C;B;C;A;C;B;B;NR;A;D;A;C;D;C;B;V;F;F;V;F;1;2;0;0;1;
+R0038;alumno038@correo.ejemplo;P2;24;masculino;5;3.34;1;publica;medio;pregrado;False;False;C;D;D;A;B;B;B;C;C;C;C;C;D;C;A;V;F;V;F;F;0;1;2;0;2;
+R0039;alumno039@correo.ejemplo;P8;20;femenino;7;2.82;23;publica;muy_bajo;pregrado;False;True;C;A;C;A;B;A;c;B;B;C;C;C;D;D;A;F;F;V;V;F;0;0;2;1;2;
+R0040;alumno040@correo.ejemplo;P2;20;masculino;8;3.08;14;publica;medio;pregrado;False;False;C;D;A;A;B;B;B;A;B;D;C;A;B;D;B;F;F;F;V;F;0;2;0;0;1;
+R0041;alumno041@correo.ejemplo;P2;21;otro;2;2.91;3;publica;medio;pregrado;False;False;A;B;D;D;C;D;D;B;C;B;C;C;D;C;B;F;V;F;V;F;0;0;2;2;1;
+R0042;alumno042@correo.ejemplo;P3;21;masculino;3;2.68;21;publica;bajo;pregrado;True;False;C;B;C;D;A;D;B;B;A;D;C;A;C;D;B;F;V;F;V;F;0;1;0;0;1;
+R0043;alumno043@correo.ejemplo;P3;19;masculino;1;2.55;35;publica;bajo;pregrado;True;False;A;D;C;D;C;B;B;B;C;C;D;C;C;C;A;F;V;V;V;V;1;2;0;0;2;
+R0044;alumno044@correo.ejemplo;P5;25;masculino;10;3.78;8;mixta;medio;pregrado;False;False;A;D;D;A;A;B;C;B;D;B;D;A; a;C;A;F;V;V;V;F;0;0;2;0;2;
+R0045;alumno045@correo.ejemplo;P8;19;masculino;1;2.5;33;publica;muy_bajo;pregrado;False;True;C;D;C;D;A;B;B;A;C;C;B;A;D;D;A;V;V;V;F;F;0;1;1;0;1;
+R0046;alumno046@correo.ejemplo;P2;24;masculino;5;3.22;9;publica;medio;pregrado;False;False;C;B;A;C;B;D;A;B;C;D;C;C;D;D;A;F;F;F;F;F;1;1;0;0;2;
+R0047;alumno047@correo.ejemplo;P7;31;masculino;1;3.73;25;privada;alto;posgrado;False;False;A;D;C;A;B;D;B;D;B;C;C;C;C;A;C;F;V;V;V;F;0;1;1;1;2;
+R0048;alumno048@correo.ejemplo;P6;28;masculino;3;3.88;10;privada;medio_alto;pregrado;False;False;C;D;C;A;B;A;A;A;D;D;A;A;D;B;B;V;F;V;V;F;0;1;0;1;1;Llegó tarde
+R0049;alumno049@correo.ejemplo;P7;26;masculino;5;3.82;18;privada;alto;posgrado;False;False;C;D;B;A;C;A;A;C;B;C;C;A;D;A;B;F;V;F;V;F;0;0;0;2;1;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+R0050;alumno050@correo.ejemplo;P1;21;femenino;1;3.65;4;privada;alto;pregrado;False;False;C;D;C;A;C;B;B;A;*;B;C;C;B;C;A;F;F;V;V;F;0;1;2;0;1;
+R0051;alumno051@correo.ejemplo;P4;31;masculino;6;2.77;46;publica;medio;pregrado;False;False;C;A;C;D;B;B;D;A;C;D;C;A;B?;C;A;F;V;F;F;V;0;2;0;0;1;
+R0052;alumno052@correo.ejemplo;P6;28;femenino;7;3.78;5;privada;medio_alto;pregrado;False;False;D;D;C;A;B;D;A;A;C;D;B;A;D;A;C;F;F;V;F;F;0;2;0;0;1;
+R0053;alumno053@correo.ejemplo;P5;23;femenino;8;3.53;9;mixta;medio;pregrado;False;False;C;A;C;D;B;D;D;B;C;B;D;B;C;D;A;V;V;V;F;F;0;2;0;1;1;
+R0054;alumno054@correo.ejemplo;P1;18;masculino;1;3.8;0;privada;alto;pregrado;False;False;A;A;C;A;B;A;B;B;C;B;C;C;D;C;C;F;F;V;F;F;0;2;0;0;1;
+R0055;alumno055@correo.ejemplo;P7;26;otro;3;3.75;27;privada;alto;posgrado;False;False;D;D;C;D;A;B;A;B;A;B;x;A;C;D;A;F;F;V;V;F;0;2;0;1;1;
+R0056;alumno056@correo.ejemplo;P7;32;femenino;1;3.93;12;privada;alto;posgrado;False;False;C;A;B;C;B;D;A;D;C;B;C;C;A;A;D;V;V;F;F;F;0;2;0;0;1;
+R0057;alumno057@correo.ejemplo;P4;27;masculino;11;2.5;50;publica;medio;pregrado;False;False;D;D;C;A;A;D;A;A;C;D;B;C;C;C;B;F;V;V;F;F;0;2;0;1;2;
+R0058;alumno058@correo.ejemplo;P8;25;femenino;8;2.47;27;publica;muy_bajo;pregrado;False;True;F;A;C;A;C;B;D;C;D;D;D;B;C;C;B;F;V;V;F;F;0;2;0;0;1;
+R0059;alumno059@correo.ejemplo;P3;18;masculino;3;2.33;21;publica;bajo;pregrado;True;False;A;B;C;A;A;B;B;A;B;C;C;A;B;B;B;F;F;V;F;V;1;1;0;0;1;Usó calculadora
+R0060;alumno060@correo.ejemplo;P3;20;masculino;5;2.8;35;publica;bajo;pregrado;True;False;A;B;B;A;B;A;B;A;A;D;A;A;C;D;A;F;V;V;V;V;1;1;2;2;2;
+R0061;alumno061@correo.ejemplo;P4;32;femenino;5;2.99;48;publica;medio;pregrado;False;False;C;D;C;D;A;B;B;B;B;D;C;A;C;C;A;F;V;V;V;F;0;2;2.5;1;1;
+R0062;alumno062@correo.ejemplo;P6;22;masculino;5;3.69;8;privada;medio_alto;pregrado;False;False;A;D;B;A;A;D;A/D;C;B;B;C;A;D;B;C;F;V;V;V;F;0;2;0;1;2;
+R0063;alumno063@correo.ejemplo;P6;20;femenino;5;3.33;2;privada;medio_alto;pregrado;False;False;A;D;A;C;B;A;B;C;C;D;D;C;A;B;C;F;F;F;F;F;1;2;2;1;1;
+R0064;alumno064@correo.ejemplo;P5;22;femenino;12;3.44;7;mixta;medio;pregrado;False;False;C;D;C;A;B;B;A;A;D;B;C;B;B;A;A;F;V;F;F;F;0;0;2;2;2;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+R0065;alumno065@correo.ejemplo;P5;25;femenino;10;3.41;5;mixta;medio;pregrado;False;False;A;D;D;C;A;B;A;A;C;D;C;C;C;C;C;F;F;F;V;F;0;1;0;0;1;
+R0066;alumno066@correo.ejemplo;P4;25;masculino;3;3.07;31;publica;medio;pregrado;False;False;A;D;C;C;A;B;B;D;B;B;C;A;C;C;B;V;F;V;V;V;0;1;1;0;1;
+R0067;alumno067@correo.ejemplo;P4;30;masculino;12;2.53;46;publica;medio;pregrado;False;False;D;D;C;D;B;A;B;C;D;D;C;C;A;B;C;V;F;V;V;V;2;0;0;1;1;
+R0068;alumno068@correo.ejemplo;P2;20;masculino;2;2.88;10;publica;medio;pregrado;False;False;C;D;C;A;B;A;B;D;C;C,D;C;C;D;C;B;V;V;V;F;F;1;2;1;0;2;
+R0069;alumno069@correo.ejemplo;P2;19;masculino;2;3.34;1;publica;medio;pregrado;False;False;C;D;A;D;A;B;C;A;D;C;C;D;;C;A;V;F;F;V;F;2;1;1;0;2;
+R0070;alumno070@correo.ejemplo;P3;19;masculino;1;2.06;36;publica;bajo;pregrado;True;False;C;A;C;C;D;A;D;B;B;D;C;A;D;D;C;F;V;F;V;F;0;2;0;1;0;
+R0043;alumno071@correo.ejemplo;P7;35;masculino;3;3.81;28;privada;alto;posgrado;False;False;C;D;C;D;B;B;A;A;C;B;C;A;B;D;B;F;F;V;V;F;0;2;0;0;0;Pidió más tiempo
+R0072;alumno072@correo.ejemplo;P3;20;femenino;2;1.97;40;publica;bajo;pregrado;True;False;A;D;B;C;C;A;A;D;D;D;D;C;AB;D;D;V;V;V;F;F;0;1;1;0;2;
+R0073;alumno073@correo.ejemplo;P5;22;masculino;9;3.77;16;mixta;medio;pregrado;False;False;B;A;C;D;C;B;A;C;C;B;C;C;D;A;A;F;F;V;V;V;2;2;0;0;1;
+R0074;alumno074@correo.ejemplo;P1;18;femenino;2;3.77;9;privada;alto;pregrado;False;False;A;B;C;d  ;A;B;A;A;D;D;A;C;D;D;C;F;F;F;V;F;0;1;1;0;1;
+R0075;alumno075@correo.ejemplo;P2;21;masculino;2;3.37;2;publica;medio;pregrado;False;False;C;D;C;A;B;B;D;C;A;B;D;A;A;B;B;F;V;F;V;F;0;0;1;0;2;
+R0076;alumno076@correo.ejemplo;P2;23;masculino;3;2.83;10;publica;medio;pregrado;False;False;C;D;C;D;B;D;D;B;D;B;B;D;D;D;D;F;V;F;F;F;0;1;0;1;1;Llegó tarde
+R0077;alumno077@correo.ejemplo;P2;19;otro;8;2.94;7;publica;medio;pregrado;False;False;A;D;C;B;B;C;C;B;C;C;C;A;B;A;A;F;V;F;V;F;0;1;0;1;2;
+R0078;alumno078@correo.ejemplo;P8;20;femenino;3;2.47;30;publica;muy_bajo;pregrado;False;True;C;*;C;C;B;D;B;D;C;B;B;C;C;D;B;V;V;V;F;F;0;2;0;2;0;Pidió más tiempo
+R0079;alumno079@correo.ejemplo;P7;29;masculino;1;3.75;17;privada;alto;posgrado;False;False;A;D;A;A;C;A;B;A;C;C;C;A;D;D;C;V;V;F;F;F;0;0;2;1;1;
+R0080;alumno080@correo.ejemplo;P2;22;masculino;9;2.94;13;publica;medio;pregrado;False;False;C;B;D;C;B;B;B;A;A;C;A;A;D;A;C;F;F;V;F;F;0;2;2;0;1;
+R0081;alumno081@correo.ejemplo;P3;18;femenino;3;2.1;25;publica;bajo;pregrado;True;False;C;B;C;B;D;D;A;B;C;B;B;A;C;C;A;V;V;V;V;F;0;2;2;0;1;
+R0082;alumno082@correo.ejemplo;P7;33;femenino;3;3.75;10;privada;alto;posgrado;False;False;C;B;C;D;A;A;D;B;C;D;C;B;D;C;C;V;F;F;F;V;0;2;1;0;1;
+R0083;alumno083@correo.ejemplo;P3;19;masculino;2;1.54;32;publica;bajo;pregrado;True;False;"B;C";B;C;A;B;B;A;B;C;C;D;B;D;B;C;F;F;F;V;F;0;2;0;1;1;
+R0084;alumno084@correo.ejemplo;P7;30;femenino;2;3.81;10;privada;alto;posgrado;False;False;A;D;D;D;C;B;D;B;C; B ;C;B;D;D;D;F;F;F;V;F;0;0;2;0;0;
+R0085;alumno085@correo.ejemplo;P3;17;femenino;1;2.27;20;publica;bajo;pregrado;True;False;A;D;B;D;C;A;B;B;C;D;B;C;D;A;B;V;;V;V;F;0;1;0;1;1;
+R0086;alumno086@correo.ejemplo;P1;22;otro;4;3.78;5;privada;alto;pregrado;False;False;C;D;D;A;A;B;B;A;C;D;D;A;D;B;B;V;V;F;F;F;0;2;0;0;2;
+R0087;alumno087@correo.ejemplo;P4;28;masculino;6;2.88;32;publica;medio;pregrado;False;False;C;D;C;C;A;B;B;A;D;C;B;C;B;C;C;F;V;F;V;F;0;0;0;0;1;
+R0088;alumno088@correo.ejemplo;P2;22;masculino;5;3.02;12;publica;medio;pregrado;False;False;C;B;C;A;C;B;C;D;C;D;D;B;C;C;C;F;F;F;V;F;0;0;1;1;1;
+R0089;alumno089@correo.ejemplo;P7;31;masculino;3;3.97;21;privada;alto;posgrado;False;False;A;D;C;D;C;A;C;B;B;C;C;C;D;A;B;F;F;V;V;F;0;1;1;0;1;
+R0090;alumno090@correo.ejemplo;P1;22;femenino;4;3.9;7;privada;alto;pregrado;False;False;A;D;B;C;A;A;D;A;B;B;A;A;D;C;A;F;V;F;V;F;;1;0;0;2;
+R0091;alumno091@correo.ejemplo;P5;24;masculino;7;3.49;13;mixta;medio;pregrado;False;False;A;A;C;D;B;A;B;A;C;B;D;D;A;C;D;F;F;V;F;F;0;1;0;1;0;
+R0092;alumno092@correo.ejemplo;P1;21;otro;4;3.75;3;privada;alto;pregrado;False;False;A;D;D;A;B;A;A;B;A;B;C;C;C;D;B;V;F;F;F;F;0;1;0;1;1;
+R0093;alumno093@correo.ejemplo;P2;21;masculino;5;3.49;10;publica;medio;pregrado;False;False;D;D;C;D;A;A;A;A;C;A;B;D;D;D;C;F;V;V;F;V;0;2;1;0;1;
+R0094;alumno094@correo.ejemplo;P6;23;femenino;4;3.42;10;privada;medio_alto;pregrado;False;False;C;D;C;A;C;B;D;D;B;B;C;C;B;C;A;F;V;F;F;V;2;2;0;1;1;
+R0095;alumno095@correo.ejemplo;P8;26;femenino;4;2.71;27;publica;muy_bajo;pregrado;False;True;A;D;C;A;C;D;C;B;C;D;C;C;C;A;B;V;F;F;V;F;0;1;0;0;1;
+R0096;alumno096@correo.ejemplo;P7;28;masculino;5;3.98;21;privada;alto;posgrado;False;False;A;D;B;A;C;B;B;A;D;D;C;B;D;D;A;F;V;V;V;F;0;2;0;0;1;
+R0097;alumno097@correo.ejemplo;P2;24;masculino;6;3.38;7;publica;medio;pregrado;False;False;A;B;C;D;B;B;D;A;B;B;B;D;B;C;A;V;F;V;V;V;0;2;0;1;1;
+R0098;alumno098@correo.ejemplo;P2;20;masculino;9;2.89;5;publica;medio;pregrado;False;False;A;D;B;D;B;C;A;A;C;C;C;B;C;D;A;F;F;V;V;V;0;2;1;2;1;Salió antes de terminar
+R0045;alumno099@correo.ejemplo;P7;35;masculino;5;3.91;16;privada;alto;posgrado;False;False;D;A;C;A;B;A;D;A;C;D;C;B;B;C;D;F;F;V;V;F;2;1;1;0;1;
+R0100;alumno100@correo.ejemplo;P2;19;femenino;7;3.05;7;publica;medio;pregrado;False;False;B;B;B;C;C;B;A;B;A;C;B;C;D;D;A;F;V;F;F;F;0;0;0;0;1;
+R0019;alumno101@correo.ejemplo;P2;23;femenino;3;3.42;1;publica;medio;pregrado;False;False;A;D;C;D;A;A;B;B;C;B;B;D;C;D;D;F;F;V;V;F;2;2;0;2;0;Pidió más tiempo

@@ -1,0 +1,200 @@
+{
+  "base": "pru_03_respondido.csv",
+  "archivo": "pru_03_sucio_no_contemplado.csv",
+  "generador": "tools/limpieza/ensuciar_pru_03.py",
+  "semilla": 11,
+  "resumen": {
+    "numero_en_lugar_de_letra": 4,
+    "letra_con_signo": 4,
+    "no_respuesta_escrita_distinto": 5,
+    "letra_parecida_otro_alfabeto": 2,
+    "misma_letra_dos_veces": 2,
+    "columna_reactivo_vacia": 1,
+    "fila_desplazada": 1,
+    "alumno_repetido_con_id_distinto": 3,
+    "encabezado_repetido": 1
+  },
+  "estructura": {
+    "columna_reactivo_vacia": "pru_03_Competenci_q10: el reactivo debe seguir apareciendo, con 100 % sin respuesta",
+    "fila_desplazada": "R0057: falta «genero»; sus 22 respuestas quedan en el reactivo equivocado",
+    "alumno_repetido_con_id_distinto": [
+      {
+        "original": "R0067",
+        "copia": "r0067"
+      },
+      {
+        "original": "R0082",
+        "copia": "R082"
+      },
+      {
+        "original": "R0064",
+        "copia": "R9999"
+      }
+    ],
+    "encabezado_repetido": "una fila igual al encabezado en medio de los datos: debe descartarse, no contarse como alumno"
+  },
+  "detalle": [
+    {
+      "tipo": "numero_en_lugar_de_letra",
+      "id_alumno": "R0058",
+      "pregunta": "pru_03_Ordenamien_q5",
+      "original": "D",
+      "inyectado": "1",
+      "esperado": "valida (1→A, 2→B, 3→C, 4→D)",
+      "nota": "lectoras ópticas y algunos formularios exportan la opción como número"
+    },
+    {
+      "tipo": "numero_en_lugar_de_letra",
+      "id_alumno": "R0072",
+      "pregunta": "pru_03_Ordenamien_q5",
+      "original": "D",
+      "inyectado": "2",
+      "esperado": "valida (1→A, 2→B, 3→C, 4→D)",
+      "nota": "lectoras ópticas y algunos formularios exportan la opción como número"
+    },
+    {
+      "tipo": "numero_en_lugar_de_letra",
+      "id_alumno": "R0060",
+      "pregunta": "pru_03_Competenci_q8",
+      "original": "C",
+      "inyectado": "3",
+      "esperado": "valida (1→A, 2→B, 3→C, 4→D)",
+      "nota": "lectoras ópticas y algunos formularios exportan la opción como número"
+    },
+    {
+      "tipo": "numero_en_lugar_de_letra",
+      "id_alumno": "R0066",
+      "pregunta": "pru_03_Ordenamien_q5",
+      "original": "D",
+      "inyectado": "4",
+      "esperado": "valida (1→A, 2→B, 3→C, 4→D)",
+      "nota": "lectoras ópticas y algunos formularios exportan la opción como número"
+    },
+    {
+      "tipo": "letra_con_signo",
+      "id_alumno": "R0076",
+      "pregunta": "pru_03_Competenci_q4",
+      "original": "B",
+      "inyectado": "B)",
+      "esperado": "valida (la letra sin el signo)"
+    },
+    {
+      "tipo": "letra_con_signo",
+      "id_alumno": "R0024",
+      "pregunta": "pru_03_Ordenamien_q4",
+      "original": "B",
+      "inyectado": "(C)",
+      "esperado": "valida (la letra sin el signo)"
+    },
+    {
+      "tipo": "letra_con_signo",
+      "id_alumno": "R0081",
+      "pregunta": "pru_03_Ordenamien_q1",
+      "original": "D",
+      "inyectado": "c.",
+      "esperado": "valida (la letra sin el signo)"
+    },
+    {
+      "tipo": "letra_con_signo",
+      "id_alumno": "R0019",
+      "pregunta": "pru_03_Competenci_q2",
+      "original": "C",
+      "inyectado": "D-",
+      "esperado": "valida (la letra sin el signo)"
+    },
+    {
+      "tipo": "no_respuesta_escrita_distinto",
+      "id_alumno": "R0069",
+      "pregunta": "pru_03_Verdadero _q7",
+      "original": "V",
+      "inyectado": "N/R",
+      "esperado": "NR/no_respondida",
+      "nota": "otras formas de decir «no respondió»"
+    },
+    {
+      "tipo": "no_respuesta_escrita_distinto",
+      "id_alumno": "R0006",
+      "pregunta": "pru_03_Verdadero _q6",
+      "original": "V",
+      "inyectado": "Sin respuesta",
+      "esperado": "NR/no_respondida",
+      "nota": "otras formas de decir «no respondió»"
+    },
+    {
+      "tipo": "no_respuesta_escrita_distinto",
+      "id_alumno": "R0051",
+      "pregunta": "pru_03_Verdadero _q1",
+      "original": "V",
+      "inyectado": "-",
+      "esperado": "NR/no_respondida",
+      "nota": "otras formas de decir «no respondió»"
+    },
+    {
+      "tipo": "no_respuesta_escrita_distinto",
+      "id_alumno": "R0084",
+      "pregunta": "pru_03_Verdadero _q6",
+      "original": "V",
+      "inyectado": "N/A",
+      "esperado": "NR/no_respondida",
+      "nota": "otras formas de decir «no respondió»"
+    },
+    {
+      "tipo": "no_respuesta_escrita_distinto",
+      "id_alumno": "R0080",
+      "pregunta": "pru_03_Competenci_q1",
+      "original": "A",
+      "inyectado": "0",
+      "esperado": "NR/no_respondida",
+      "nota": "otras formas de decir «no respondió»"
+    },
+    {
+      "tipo": "letra_parecida_otro_alfabeto",
+      "id_alumno": "R0068",
+      "pregunta": "pru_03_Competenci_q2",
+      "original": "D",
+      "inyectado": "А",
+      "esperado": "valida (A y C)",
+      "nota": "«А» cirílica y «Ｃ» de ancho completo: se ven iguales a A y C"
+    },
+    {
+      "tipo": "letra_parecida_otro_alfabeto",
+      "id_alumno": "R0008",
+      "pregunta": "pru_03_Competenci_q1",
+      "original": "D",
+      "inyectado": "Ｃ",
+      "esperado": "valida (A y C)",
+      "nota": "«А» cirílica y «Ｃ» de ancho completo: se ven iguales a A y C"
+    },
+    {
+      "tipo": "misma_letra_dos_veces",
+      "id_alumno": "R0025",
+      "pregunta": "pru_03_Competenci_q4",
+      "original": "B",
+      "inyectado": "AA",
+      "esperado": "valida (una sola opción marcada dos veces)"
+    },
+    {
+      "tipo": "misma_letra_dos_veces",
+      "id_alumno": "R0077",
+      "pregunta": "pru_03_Competenci_q1",
+      "original": "D",
+      "inyectado": "CC",
+      "esperado": "valida (una sola opción marcada dos veces)"
+    }
+  ],
+  "resultado_medido": {
+    "verificado": "2026-11-02, motor del cleaning-service (pruebas/motor.py: _estructura + _evaluar, decisiones por defecto) sobre la base y la versión sucia",
+    "por_tipo": {
+      "numero_en_lugar_de_letra": "0/4: se anulan como carácter inválido (se pierde la respuesta)",
+      "letra_con_signo": "0/4: se anulan como carácter inválido",
+      "no_respuesta_escrita_distinto": "0/5: se cuentan como nulas por carácter inválido, no como NR",
+      "letra_parecida_otro_alfabeto": "0/2: se anulan como carácter inválido; en pantalla se ven como A y C",
+      "misma_letra_dos_veces": "0/2: se anulan como respuesta múltiple",
+      "columna_reactivo_vacia": "el reactivo desaparece: queda como columna extra y la prueba sale con 21 reactivos en vez de 22, sin decir que nadie lo respondió",
+      "fila_desplazada": "no se detecta: las respuestas del alumno quedan en el reactivo equivocado y todas cuentan como válidas",
+      "alumno_repetido_con_id_distinto": "0/3: las 3 copias (ID en minúscula, sin un cero y con otro ID) cuentan como alumnos distintos",
+      "encabezado_repetido": "se cuenta como un alumno llamado «id_respondente» con sus respuestas anuladas"
+    },
+    "efecto": "99 alumnos en vez de 95; 21 reactivos en vez de 22; los errores de celda sí se ven (salen como nulas en el reporte) pero con un motivo equivocado; los de estructura no se ven"
+  }
+}
