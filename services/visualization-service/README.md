@@ -40,9 +40,15 @@ vectorial, las descargas, las noticias y el **chat RAG**. Es de solo lectura sob
    contar, ordenar, limitar, agrupar por contexto, hallazgos). Las preguntas abiertas van a la búsqueda semántica
    en Chroma (`rag_service.py`); las reglas deterministas del enrutador anterior (`enrutador.py`) siguen como
    respaldo cuando no hay plan.
+0. **RAG primero** (`rag_service._recuperar_primero`, 5 nov): antes de interpretar se buscan en Chroma los fragmentos
+   del alcance más parecidos a la pregunta (o al seguimiento con su pregunta anterior). Orientan a la interpretación
+   (`pistas`), responden por sí mismos cuando el plan solo sabría pedir aclaración y la pregunta es del alcance, y
+   complementan cualquier cálculo. Las preguntas sobre el instrumento reciben su ficha (`_fichas`).
 4. **Recuperación (RAG)** (`rag_service._apoyo_rag`, 4 nov): cada resultado calculado se acompaña con los fragmentos
    de Chroma más parecidos a la pregunta, del mismo instrumento (de las personas del resultado, o de las preguntas de
-   los patrones calculados). En una entrevista, las preguntas de los intercambios recuperados se suman a la tabla de
+   los patrones calculados); si con el filtro nada pasa el umbral, entran los más cercanos igual. Si el cálculo y lo
+   recuperado difieren, manda el cálculo. Listados, patrones, filtros y pruebas sin calificar también se redactan con
+   el texto recuperado, con el cálculo de respaldo. En una entrevista, las preguntas de los intercambios recuperados se suman a la tabla de
    la persona («¿cuántas sesiones le dieron?» está en p04, que no nombra el tema), y los patrones salen del texto
    recuperado. El panel muestra qué se recuperó («Recuperado del RAG»).
 5. **Redacción y verificación** (`consulta_planificada.py`, `prompt.py`): el modelo redacta con el RESULTADO CALCULADO

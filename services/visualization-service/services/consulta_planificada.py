@@ -36,8 +36,10 @@ from services.plan_consulta import PlanConsulta
 # la tabla sale del cálculo. Al redactarlas, el modelo de 3B llegó a inventar una tabla con respuestas falsas que
 # no traía cifras y pasaba la verificación (28 oct, «qué respondió el primer respondente»). Desde el 4 nov
 # `datos_respondente` sí se redacta: el modelo interpreta lo que dijo la persona (en las entrevistas solo se veía la
-# transcripción), con la tabla en el prompt y la verificación de tablas, IDs, cifras y citas textuales.
-SIN_REDACCION = {"filtrar_respondentes"}
+# transcripción), con la tabla en el prompt y la verificación de tablas, IDs, cifras y citas textuales. Desde el 5 nov
+# (RAG primero) también `filtrar_respondentes`: el modelo escribe el criterio y el conteo con el texto recuperado, y la
+# tabla se sigue anexando del cálculo.
+SIN_REDACCION: set[str] = set()
 # Qué tablas van también en el prompt (las chicas); las de respuestas por persona solo se anexan, salvo las de
 # `datos_respondente`, que el modelo debe leer para interpretarlas (recortadas a `_MAX_TABLA_EN_PROMPT`).
 _TABLAS_EN_PROMPT = {"comparar_grupos", "resumen_pregunta", "kpi", "datos_respondente"}
@@ -104,13 +106,13 @@ class Preparada:
 
 
 async def preparar(pregunta: str, historial: list[tuple[str, str]], ids: list[str], sesion: Any,
-                   tema: str = "") -> Preparada:
+                   tema: str = "", pistas: str = "") -> Preparada:
     """Interpreta la pregunta con el catálogo del alcance y, si la intención es estructurada, ejecuta el plan.
 
-    `tema`: de qué trató la respuesta anterior (seguimientos)."""
+    `tema`: de qué trató la respuesta anterior (seguimientos). `pistas`: lo que recuperó el RAG."""
     instrumentos = enrutador.cargar_documentos(sesion, ids)
     catalogos = [construir_catalogo(i.id_crudo, i.titulo, i.tipo, i.doc) for i in instrumentos]
-    interp = await interpretacion.interpretar(pregunta, historial, catalogos, tema)
+    interp = await interpretacion.interpretar(pregunta, historial, catalogos, tema, pistas)
     preparada = Preparada(interp, instrumentos, catalogos)
     if interp.plan is not None:
         inicio = time.perf_counter()

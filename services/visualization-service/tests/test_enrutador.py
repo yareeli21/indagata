@@ -205,30 +205,30 @@ def test_chat_ruta_estructurada_el_llm_solo_redacta(cliente, acervo_doc, ollama)
     assert r["consultaId"] == log.rag_log_id
 
 
-def test_chat_estructura_se_responde_con_el_listado_sin_llm(cliente, acervo_doc, ollama):
+def test_chat_estructura_redactada_con_rag_y_respaldo_del_listado(cliente, acervo_doc, ollama):
+    """RAG primero (5 nov): el listado calculado va como RESULTADO CALCULADO junto al texto recuperado y el modelo
+    lo explica; si la redacción no pasara la verificación, se mostraría el listado."""
     r = _chat(cliente, "los instrumentos tienen secciones?", instrumentoIds=["1", "3"])
-    assert r["ruta"] == "estructurada" and r["decision"] == "dentro" and ollama["prompts"] == []
-    assert "Experiencia estudiantil (Encuesta) [Fuente " in r["respuesta"] and "Sección 1 «Experiencia»" in r["respuesta"]
-    assert "no está dividido en secciones" in r["respuesta"] and len(r["fuentes"]) == 2
+    assert r["ruta"] == "mixta" and r["decision"] == "dentro" and "<datos" in ollama["prompts"][-1]
+    texto = ollama["prompts"][-1]
+    assert "Experiencia estudiantil (Encuesta) [Fuente " in texto and "Sección 1 «Experiencia»" in texto
+    assert "no está dividido en secciones" in texto and len(r["fuentes"]) == 2
+    assert r["respuesta"] == "Respuesta fundamentada [Fuente 1]."
     assert _ultimo_log(acervo_doc).motivo == "estructurada:estructura"
 
 
-def test_chat_descripcion_se_responde_con_el_listado_y_el_ordinal_resuelto(cliente, acervo_doc, ollama):
+def test_chat_descripcion_con_el_listado_de_respaldo_y_el_ordinal_resuelto(cliente, acervo_doc, ollama):
     r = _chat(cliente, "de que habla el primer instrumento?", instrumentoIds=["3", "1"])
-    assert r["ruta"] == "estructurada" and r["decision"] == "dentro" and ollama["prompts"] == []
-    # La aclaración va primero: la persona ve cuál es «el primer instrumento».
-    assert r["respuesta"].startswith("«primer instrumento» es «Entrevistas sobre evaluación»")
-    assert "Entrevistas sobre evaluación (Entrevista) [Fuente 1]:\n- Tipo: Entrevista." in r["respuesta"]
-    assert "Experiencia estudiantil" not in r["respuesta"]
+    assert r["ruta"] == "mixta" and r["decision"] == "dentro" and "RESULTADO CALCULADO" in ollama["prompts"][-1]
+    # El modelo ve cuál es «el primer instrumento» y la descripción de ese.
+    assert "«primer instrumento» es «Entrevistas sobre evaluación»" in ollama["prompts"][-1]
+    assert "Entrevistas sobre evaluación (Entrevista) [Fuente 1]:\n- Tipo: Entrevista." in ollama["prompts"][-1]
     r2 = _resolver(acervo_doc, "de que habla el primer instrumeto?", ids=["3", "1"])  # errata: la aclaración va corregida
     assert r2.aclaracion.startswith("«primer instrumento» es «Entrevistas sobre evaluación»")
     log = _ultimo_log(acervo_doc)
-    # Es el resultado tal cual: fiel por construcción, sin pedirle al juez que lo califique.
-    assert log.motivo == "estructurada:descripcion" and log.metricas["estado"] == "calculada"
-    assert log.metricas["fidelidad"] == 1.0
+    assert log.motivo == "estructurada:descripcion"
     r = _chat(cliente, "dime la relación entre uno y otro instrumento", instrumentoIds=["1", "3"])
-    assert "Relación entre los instrumentos (calculada; no hay más relaciones que estas):\n- Tipos: Encuesta, Entrevista" in r["respuesta"]
-    assert ollama["prompts"] == []
+    assert "Relación entre los instrumentos (calculada; no hay más relaciones que estas):\n- Tipos: Encuesta, Entrevista" in ollama["prompts"][-1]
 
 
 def test_chat_redaccion_que_niega_el_resultado_se_reemplaza(cliente, acervo_doc, ollama, monkeypatch):
@@ -350,9 +350,9 @@ def test_chat_patrones_no_lo_rechaza_el_clasificador(cliente, acervo_doc, ollama
     ollama["clasificador"] = {"dentro": False, "motivo": "Análisis de tendencias en el comportamiento estudiantil"}
     r = _chat(cliente, "qué patrón de información consideras más interesante de los datos de estos instrumentos?",
               instrumentoIds=["2", "3"])
-    assert r["decision"] == "dentro" and r["ruta"] == "estructurada"
+    assert r["decision"] == "dentro" and r["ruta"] == "mixta"
     assert not any(c.startswith("Clasifica si la PREGUNTA") for c in ollama["clasificaciones"])
-    assert "Reactivo con las respuestas más repartidas: r02" in r["respuesta"] and ollama["prompts"] == []  # cálculo directo
+    assert "Reactivo con las respuestas más repartidas: r02" in ollama["prompts"][-1]  # el cálculo va al modelo
     assert enrutador.refiere_al_alcance("¿Qué opinas de los datos de estos instrumentos?")
     assert not enrutador.refiere_al_alcance("Escríbeme un poema sobre la motivación")
 
@@ -458,12 +458,17 @@ def test_si_el_llm_cambia_una_cifra_se_responde_con_el_resultado(cliente, acervo
     assert _ultimo_log(acervo_doc).motivo == "estructurada:pct_nivel:cifras_corregidas"
 
 
-def test_consulta_exacta_va_sola_y_la_de_kpi_es_mixta(cliente, acervo_doc, ollama, monkeypatch):
+def test_consulta_exacta_lleva_texto_recuperado_sin_cifras(cliente, acervo_doc, ollama, monkeypatch):
+    """RAG primero (5 nov): la consulta exacta también lleva el texto recuperado, pero sin sus cifras (Fase 3: con
+    ellas el modelo tomó el % de toda la muestra en lugar del % del grupo calculado)."""
     from shared.db.core.config import settings
 
     monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.0)
     r = _chat(cliente, "¿Qué porcentaje del turno vespertino está de acuerdo con p4?")
-    assert r["ruta"] == "estructurada" and "<datos" not in ollama["prompts"][-1]
+    assert r["ruta"] == "mixta" and "<datos" in ollama["prompts"][-1]
+    datos = ollama["prompts"][-1].split("TEXTO RECUPERADO", 1)[-1].split("PREGUNTA", 1)[0]
+    lineas = [l for l in datos.splitlines() if l.strip() and not l.lstrip().startswith(("<", "["))]
+    assert lineas and all(not any(c.isdigit() for c in l) for l in lineas[1:] if not l.startswith(("Reactivo", "Pregunta")))
 
 
 def test_pregunta_ajena_recibe_mensaje_de_fuera_del_dominio(cliente, acervo_doc, ollama, monkeypatch):

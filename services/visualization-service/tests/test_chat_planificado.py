@@ -71,8 +71,10 @@ _FILTRO = {"intencion": "filtrar_respondentes", "filtros": [{"pregunta": "p03", 
            "campos": "todas_las_respuestas", "orden": {"dir": "asc"}, "limite": 5}
 
 
-def test_filtro_con_todas_las_respuestas_presentacion_fija_y_tabla_del_calculo(chat):
-    """La tabla de respondentes no pasa por el modelo: el de 3B inventó una tabla con respuestas falsas (28 oct)."""
+def test_filtro_con_todas_las_respuestas_redaccion_con_rag_y_tabla_del_calculo(chat):
+    """La tabla de respondentes sale del cálculo (el de 3B inventó una tabla con respuestas falsas, 28 oct). Desde el
+    5 nov el criterio y el conteo los redacta el modelo con el texto recuperado; si la redacción falla, se muestra la
+    presentación calculada."""
     chat["plan"] = _FILTRO
     datos, fila = chat["preguntar"]("dame los primeros 5 que no trabajan con todas sus respuestas", ["4"])
     assert datos["respuesta"].startswith("Criterio: p03 «¿Cuál es tu carga laboral actual?» = «No trabajo».")
@@ -80,10 +82,10 @@ def test_filtro_con_todas_las_respuestas_presentacion_fija_y_tabla_del_calculo(c
     assert "| Pregunta | R001 | R004 |" in datos["respuesta"] and "[Fuente 1]**" in datos["respuesta"]
     (fuente,) = datos["fuentes"]
     assert fuente["kpis"] == [] and "Respondentes: R001, R004" in fuente["fragmento"]
-    assert fila.ruta == "estructurada" and fila.motivo == "plan:filtrar_respondentes:tabla"
+    assert fila.ruta == "mixta" and fila.motivo == "plan:filtrar_respondentes:vacia"
     assert fila.plan["plan"]["intencion"] == "filtrar_respondentes"
     assert "p03: «no trabajo» → «No trabajo»" in fila.plan["correcciones"]
-    assert set(fila.tiempos) == {"interpretacion", "ejecucion", "recuperacion"} and chat["redacciones"] == []
+    assert {"interpretacion", "ejecucion", "recuperacion"} <= set(fila.tiempos) and len(chat["redacciones"]) == 2
     assert fila.metricas["fidelidad"] == 1.0 and fila.metricas["estado"] in ("calculando", "calculada")
 
 
@@ -222,10 +224,11 @@ def test_semantica_anota_cifras_sin_respaldo(chat):
 
 
 def test_semantica_con_regla_determinista_usa_la_regla(chat):
-    """«¿los instrumentos tienen secciones?» lo resuelve la regla de estructura aunque el plan diga semántica."""
+    """«¿los instrumentos tienen secciones?» lo resuelve la regla de estructura aunque el plan diga semántica; con
+    texto recuperado lo redacta el modelo y, si la redacción falla (aquí, vacía), se muestra el listado."""
     chat["plan"] = {"intencion": "semantica_abierta", "consulta_semantica": "secciones de los instrumentos"}
     _, fila = chat["preguntar"]("los instrumentos tienen secciones?", ["4"])
-    assert fila.motivo == "estructurada:estructura" and fila.ruta == "estructurada"
+    assert fila.motivo == "estructurada:estructura:vacia" and fila.ruta == "mixta"
 
 
 def test_aclaracion_de_una_pregunta_ajena_es_fuera_de_dominio(chat):
@@ -237,9 +240,12 @@ def test_aclaracion_de_una_pregunta_ajena_es_fuera_de_dominio(chat):
     assert fila.decision_dominio == "dentro" and fila.motivo == "plan:aclaracion"
 
 
-def test_aclaracion_en_un_seguimiento_se_muestra(chat):
+def test_aclaracion_en_un_seguimiento_se_muestra(chat, monkeypatch):
     """Fase 6 (consultas 1519 y 1537): «¿Le parecieron suficientes?» sigue a la pregunta anterior sin repetir sus
-    palabras y recibía el mensaje de fuera de dominio."""
+    palabras y recibía el mensaje de fuera de dominio. Si el RAG no recupera nada relevante, se pide aclaración."""
+    from shared.db.core.config import settings
+
+    monkeypatch.setattr(settings, "RAG_MIN_SCORE", 1.01)
     chat["plan"] = {"intencion": "aclaracion", "aclaracion": "¿A qué te refieres con suficientes?"}
     historial = [{"rol": "usuario", "texto": "¿cuántos trabajan más de 30 horas?"},
                  {"rol": "asistente", "texto": "Cumplen la condición 1 de 5 respondentes."}]
@@ -410,6 +416,25 @@ def test_que_significa_eso_retoma_el_plan_de_la_respuesta_anterior(chat):
     datos, fila = chat["preguntar"]("y eso, ¿qué puede significar?", ["4"], historial)
     assert fila.motivo == "plan:conteo_porcentaje" and datos["respuesta"].startswith("Que 2 de 5")
     assert "aclaración → plan de la respuesta anterior (la pregunta se refiere a ella)" in fila.plan["correcciones"]
-    chat["plan"] = {"intencion": "aclaracion", "aclaracion": "¿De qué grupo?"}  # algo nuevo y ambiguo: se aclara
-    _, fila = chat["preguntar"]("¿y en el otro grupo?", ["4"], historial)
+    chat["plan"] = {"intencion": "aclaracion", "aclaracion": "¿De qué grupo?"}  # algo nuevo, ambiguo y sin RAG
+    from shared.db.core.config import settings
+
+    minimo, settings.RAG_MIN_SCORE = settings.RAG_MIN_SCORE, 1.01
+    try:
+        _, fila = chat["preguntar"]("¿y en el otro grupo?", ["4"], historial)
+    finally:
+        settings.RAG_MIN_SCORE = minimo
+    assert fila.motivo == "plan:aclaracion"
+
+
+def test_antes_de_pedir_aclaracion_responde_con_lo_recuperado(chat):
+    """RAG primero (5 nov): «¿cuántos estudian ingeniería?» o «¿a qué carrera está aplicada?» recibían una aclaración
+    sin buscar en el RAG. Si la pregunta es del alcance y el RAG recupera algo relevante, responde con eso."""
+    chat["plan"] = {"intencion": "aclaracion", "aclaracion": "¿De qué pregunta hablas?"}
+    chat["redaccion"] = "Los respondentes describen su carga laboral actual [Fuente 1]."
+    datos, fila = chat["preguntar"]("¿qué dicen los respondentes de su carga laboral actual?", ["4"])
+    assert fila.ruta == "semantica" and datos["respuesta"].startswith("Los respondentes describen")
+    assert "aclaración → respuesta con lo recuperado del RAG" in fila.plan["correcciones"]
+    chat["plan"] = {"intencion": "aclaracion", "aclaracion": "¿Te refieres a R0067?"}  # una persona por su ID: no
+    _, fila = chat["preguntar"]("¿qué respondió R0067 sobre su carga laboral actual?", ["4"])
     assert fila.motivo == "plan:aclaracion"

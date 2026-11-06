@@ -283,8 +283,12 @@ _SECCIONES_APOYO = {
     "datos_respondente": ["intercambio", "respondente", "alumno"],
     "kpi": ["kpi", "pregunta", "reactivo"],
 }
-_SECCIONES_APOYO_DEFECTO = ["pregunta", "reactivo", "intercambio"]
+_SECCIONES_APOYO_DEFECTO = ["encabezado", "pregunta", "reactivo", "intercambio"]
 _MAX_APOYO = 4
+# Si con el filtro nada pasa el umbral, entran los más cercanos igual: el RAG no se descarta (5 nov, corrida 1709–1771:
+# «¿por qué consideras que es preocupante?» o «¿de qué trata el instrumento?» se respondían solo con el cálculo).
+_MIN_APOYO_SIN_UMBRAL = 2
+_MAX_FICHA_APOYO = 1200
 # En los patrones de una entrevista el texto ES la evidencia: entran más intercambios y sin umbral de similitud
 # («¿qué patrones encuentras?» se parece poco a cualquier respuesta concreta).
 _MAX_APOYO_ENTREVISTA = 8
@@ -336,23 +340,124 @@ def _apoyo_rag(peticion: ChatRequest, preparada: "consulta_planificada.Preparada
         logger.warning("Texto de apoyo del RAG no disponible: %s", exc)
         return []
     numeros = {e.instrumento.id_crudo: n for n, e in enumerate(ejecuciones, start=1)}
+    candidatos = _fragmentos_de(res, coleccion)
+    for f in candidatos:
+        f["numero"] = numeros.get(f["instrumentoId"], 1)
+    salida = [f for f in candidatos if f["score"] >= settings.RAG_MIN_SCORE or patrones_texto][:limite]
+    return salida or candidatos[:_MIN_APOYO_SIN_UMBRAL]
+
+
+def _fragmentos_de(res: dict[str, Any], coleccion: Any) -> list[dict[str, Any]]:
+    """Fragmentos de una consulta a Chroma, sin repetidos, en orden de similitud. La ficha (`encabezado`) se completa:
+    su primer fragmento solo trae el título."""
     salida: list[dict[str, Any]] = []
     vistos: set[str] = set()
     for meta, doc, dist in zip((res.get("metadatas") or [[]])[0], (res.get("documents") or [[]])[0],
                                (res.get("distances") or [[]])[0]):
         meta, score = meta or {}, round(1.0 - float(dist), 4)
-        if (score < settings.RAG_MIN_SCORE and not patrones_texto) or str(doc) in vistos:
+        inst, seccion = str(meta.get("instrumentoId", "")), str(meta.get("seccion", ""))
+        if seccion == "encabezado":
+            if f"ficha {inst}" in vistos:
+                continue
+            vistos.add(f"ficha {inst}")
+            doc = (_ficha_completa(coleccion, inst) or doc)[:_MAX_FICHA_APOYO]
+        if str(doc) in vistos:
             continue
         vistos.add(str(doc))
-        inst = str(meta.get("instrumentoId", ""))
-        salida.append({"instrumentoId": inst, "numero": numeros.get(inst, 1), "titulo": str(meta.get("titulo", "")),
+        salida.append({"instrumentoId": inst, "numero": 1, "titulo": str(meta.get("titulo", "")),
                        "tipo": meta.get("tipo") if meta.get("tipo") in _TIPOS else "Encuesta",
                        "investigador": str(meta.get("investigador", "")), "kpis": _kpis(meta.get("kpis")),
-                       "seccion": str(meta.get("seccion", "")), "fragmento": str(doc or ""), "score": score,
+                       "seccion": seccion, "fragmento": str(doc or ""), "score": score,
                        "preguntaId": str(meta.get("preguntaId", "")), "respondenteId": str(meta.get("respondenteId", ""))})
-        if len(salida) >= limite:
-            break
     return salida
+
+
+# ── RAG primero (5 nov) ───────────────────────────────────────────────────────
+# Toda pregunta (salvo las que bloquean las reglas de dominio y la ayuda) empieza buscando en Chroma. Lo recuperado:
+#   1. orienta a la interpretación (qué pregunta o parte del instrumento se parece más a lo que se pide);
+#   2. responde por sí mismo cuando no hace falta calcular (o cuando el plan solo sabría pedir aclaración);
+#   3. complementa el cálculo cuando la pregunta implica contar o filtrar: si difieren, manda el cálculo.
+_MAX_RECUPERADOS = 5
+_MIN_RECUPERADOS = 3  # aunque ninguno pase el umbral, entran los más cercanos (sobre RAG_FUERA_MAX)
+_MAX_PISTAS = 3
+
+
+def _recuperar_primero(peticion: ChatRequest) -> tuple[list[dict[str, Any]], float]:
+    """Los fragmentos del alcance más parecidos a la pregunta (o al seguimiento con su pregunta anterior) y la
+    similitud máxima. Sin Chroma devuelve vacío: las demás etapas siguen."""
+    ids = [i for i in (peticion.instrumentoIds or []) if i]
+    try:
+        coleccion = vectores.coleccion_existente(settings.CHROMA_COLLECTION_INSTRUMENTOS)
+        if coleccion is None:
+            return [], 0.0
+        res = coleccion.query(query_embeddings=[_vector(_consulta_apoyo(peticion.pregunta, peticion.historial))],
+                              n_results=_MAX_RECUPERADOS * 3, where={"instrumentoId": {"$in": ids}} if ids else None,
+                              include=["metadatas", "documents", "distances"])
+    except HTTPException:
+        raise
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Recuperación del RAG no disponible: %s", exc)
+        return [], 0.0
+    candidatos = _fragmentos_de(res, coleccion)
+    score_max = max((f["score"] for f in candidatos), default=0.0)
+    sobre_umbral = [f for f in candidatos if f["score"] >= settings.RAG_MIN_SCORE][:_MAX_RECUPERADOS]
+    if len(sobre_umbral) < _MIN_RECUPERADOS:
+        cercanos = [f for f in candidatos if f not in sobre_umbral and f["score"] >= settings.RAG_FUERA_MAX]
+        sobre_umbral += cercanos[:_MIN_RECUPERADOS - len(sobre_umbral)]
+    return sobre_umbral, score_max
+
+
+_SOBRE_EL_INSTRUMENTO = {"descripcion", "estructura"}
+
+
+def _fichas(instrumentos: list[enrutador.Instrumento]) -> list[dict[str, Any]]:
+    """La ficha de cada instrumento, leída de Chroma por sus metadatos. «¿De qué trata el instrumento?» se parece poco
+    a cualquier fragmento (similitud 0.29 con el 127, 5 nov) y no recuperaba nada, aunque la ficha es la respuesta."""
+    try:
+        coleccion = vectores.coleccion_existente(settings.CHROMA_COLLECTION_INSTRUMENTOS)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Fichas del RAG no disponibles: %s", exc)
+        return []
+    if coleccion is None:
+        return []
+    salida = []
+    for ins in instrumentos:
+        if ficha := _ficha_completa(coleccion, ins.id_crudo):
+            salida.append({"instrumentoId": ins.id_crudo, "numero": 1, "titulo": ins.titulo, "tipo": ins.tipo_ui,
+                           "investigador": "", "kpis": [], "seccion": "encabezado",
+                           "fragmento": ficha[:_MAX_FICHA_APOYO], "score": None, "preguntaId": "", "respondenteId": ""})
+    return salida
+
+
+def _pistas(recuperados: list[dict[str, Any]]) -> str:
+    """Para la interpretación: qué partes del instrumento recuperó el RAG («r03 (0.62): ¿Cuál es la principal función
+    de una VPN?»). Solo la primera línea de cada fragmento: las cifras no le sirven para elegir el plan."""
+    return "\n".join(f"- {_etiqueta_fragmento(f)} (similitud {f['score']:.2f}): "
+                     f"{(f['fragmento'].splitlines() or [''])[0][:160]}" for f in recuperados[:_MAX_PISTAS])
+
+
+def _apoyo_de_recuperados(recuperados: list[dict[str, Any]],
+                          preparada: "consulta_planificada.Preparada") -> list[dict[str, Any]]:
+    """Si la búsqueda filtrada del cálculo no trajo nada, lo que recuperó la búsqueda general de sus instrumentos."""
+    numeros = {e.instrumento.id_crudo: n for n, e in enumerate(preparada.ejecuciones, start=1)}
+    return [{**f, "numero": numeros[f["instrumentoId"]]} for f in recuperados if f["instrumentoId"] in numeros][:_MAX_APOYO]
+
+
+_ID_EXPLICITO = re.compile(r"\b[RAE]\d{2,5}\b")  # sin IGNORECASE: «r03» es un reactivo, no una persona
+
+
+def _rag_responde_aclaracion(preparada: "consulta_planificada.Preparada", pregunta: str, seguimiento: bool,
+                             score_max: float) -> bool:
+    """¿La aclaración del plan se cambia por una respuesta con lo recuperado? Sí, si la pregunta es del alcance (o un
+    seguimiento) y el RAG encontró algo sobre el umbral. No si nombra una persona por su ID: el fragmento más parecido
+    sería de otra persona («¿Y R0067?» se contestaría con lo que dijo R0023). Tampoco «¿qué opinan de eso?» sin
+    conversación previa: no hay a qué se refiera «eso»."""
+    p = preparada.plan
+    if p is None or p.intencion != "aclaracion" or score_max < settings.RAG_MIN_SCORE or _ID_EXPLICITO.search(pregunta):
+        return False
+    # Con similitud alta la pregunta es del alcance aunque no use sus palabras («¿cuántos estudian ingeniería?»).
+    return seguimiento or score_max >= settings.RAG_ZONA_GRIS_MAX \
+        or consulta_planificada.del_alcance(pregunta, preparada.catalogos)
 
 
 def _completar_con_recuperados(preparada: "consulta_planificada.Preparada", apoyo: list[dict[str, Any]]) -> None:
@@ -530,7 +635,7 @@ _DECISIONES_REUTILIZABLES = {dominio.DENTRO, dominio.AYUDA}
 # Súbelo cuando cambie cómo se calculan o redactan las respuestas (enrutador, consultas):
 # las guardadas con la versión anterior dejan de reutilizarse. Las reglas del prompt
 # (`prompt.SISTEMA`) ya entran en la huella.
-_VERSION_RESPUESTAS = 27  # 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
+_VERSION_RESPUESTAS = 28  # 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
 
 
 def clave_cache(peticion: ChatRequest, modelo: str) -> str | None:
@@ -765,13 +870,20 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
     tiempos: dict[str, int] = {}
     consulta_semantica: str | None = None  # la interpretación decidió buscar en el RAG
     conversacion = _conversacion(peticion.historial)
+    # RAG primero: la búsqueda en Chroma va antes que la interpretación y que cualquier cálculo.
+    inicio_rag = time.perf_counter()
+    recuperados, score_rag = _recuperar_primero(peticion)
+    ms_rag = round((time.perf_counter() - inicio_rag) * 1000)
+    tiempos["recuperacion"] = ms_rag
+    estado["tiempos"] = tiempos
     if settings.RAG_INTERPRETACION_LLM and peticion.usarInterpretacion:
         try:
             sesion = fabrica_sesiones()
             tema, plan_anterior = _anterior(peticion.historial)
             try:
                 preparada = await consulta_planificada.preparar(
-                    pregunta, [(m.rol, m.texto) for m in peticion.historial], ids, sesion, tema=tema)
+                    pregunta, [(m.rol, m.texto) for m in peticion.historial], ids, sesion, tema=tema,
+                    pistas=_pistas(recuperados))
             finally:
                 sesion.close()
         except Exception as exc:  # noqa: BLE001 — sin BD o storage: siguen las reglas
@@ -779,21 +891,30 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
             preparada = None
         if preparada is not None:
             _retomar_anterior(preparada, pregunta, plan_anterior)
-            inicio_rag = time.perf_counter()
+            inicio_apoyo = time.perf_counter()
             apoyo = _apoyo_rag(peticion, preparada)
-            _completar_con_recuperados(preparada, apoyo)
-            registro = preparada.registro()
-            tiempos = {"interpretacion": preparada.interp.ms, "ejecucion": preparada.ms_ejecucion,
-                       "recuperacion": round((time.perf_counter() - inicio_rag) * 1000)}
-            estado.update(registro=registro, tiempos=tiempos)
-            decidido = _plan_desde_preparada(preparada, pregunta, ids, contexto, seguimiento=bool(peticion.historial),
-                                             apoyo=apoyo, conversacion=conversacion)
-            if decidido is not None:
-                decidido.plan_consulta, decidido.tiempos = registro, tiempos
-                return decidido
             p = preparada.plan
-            if p is not None and p.intencion in ("semantica_abierta", "metodologia", "fuera_de_dominio"):
-                consulta_semantica = p.consulta_semantica or pregunta
+            if not apoyo and p is not None and p.intencion in ESTRUCTURADAS and preparada.ejecuciones:
+                apoyo = _apoyo_de_recuperados(recuperados, preparada)
+            _completar_con_recuperados(preparada, apoyo)
+            tiempos = {"recuperacion": ms_rag + round((time.perf_counter() - inicio_apoyo) * 1000),
+                       "interpretacion": preparada.interp.ms, "ejecucion": preparada.ms_ejecucion}
+            if _rag_responde_aclaracion(preparada, pregunta, bool(peticion.historial), score_rag):
+                # Antes de preguntarle al usuario se intenta responder con lo recuperado (5 nov: «¿cuántos estudian
+                # ingeniería?» o «¿a qué carrera está aplicada?» recibían una aclaración sin buscar en el RAG).
+                preparada.interp.correcciones.append("aclaración → respuesta con lo recuperado del RAG")
+                consulta_semantica = _consulta_apoyo(pregunta, peticion.historial)
+            registro = preparada.registro()
+            estado.update(registro=registro, tiempos=tiempos)
+            if consulta_semantica is None:
+                decidido = _plan_desde_preparada(preparada, pregunta, ids, contexto,
+                                                 seguimiento=bool(peticion.historial), apoyo=apoyo,
+                                                 conversacion=conversacion)
+                if decidido is not None:
+                    decidido.plan_consulta, decidido.tiempos = registro, tiempos
+                    return decidido
+                if p is not None and p.intencion in ("semantica_abierta", "metodologia", "fuera_de_dominio"):
+                    consulta_semantica = p.consulta_semantica or pregunta
 
     vector = _vector(consulta_semantica or pregunta)
     # Ruta estructurada (cálculo exacto sobre el documento vigente).
@@ -833,13 +954,16 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
 
     fragmentos, score_chunks = _buscar(peticion, vector)
     if resultado is not None:
-        # Ruta MIXTA solo en las consultas de KPI (la justificación y las preguntas se
-        # complementan con sus fragmentos). En las demás el resultado va SOLO: con los
-        # fragmentos al lado, el modelo llegó a tomar el % de toda la muestra en lugar
-        # del % del grupo calculado (auditoría de la Fase 3).
+        # RAG primero (5 nov): todo resultado de las reglas lleva el texto recuperado de sus instrumentos. Antes solo
+        # los KPIs lo llevaban porque, con los fragmentos al lado, el modelo llegó a tomar el % de toda la muestra en
+        # lugar del % del grupo calculado (auditoría de la Fase 3): fuera de los KPIs los fragmentos llegan sin cifras
+        # y las cifras salen solo del cálculo.
         propios = {i.id_crudo for i in resultado.instrumentos}
         fragmentos = ([f for f in fragmentos if f["instrumentoId"] in propios][:3]
-                      if resultado.consulta in _CONSULTAS_MIXTAS else [])
+                      or [f for f in recuperados if f["instrumentoId"] in propios][:3]
+                      or (_fichas(resultado.instrumentos) if resultado.consulta in _SOBRE_EL_INSTRUMENTO else []))
+        if resultado.consulta not in _CONSULTAS_MIXTAS:
+            fragmentos = [{**f, "fragmento": _sin_cifras(f["fragmento"])} for f in fragmentos]
     # El glosario solo entra en preguntas de definición («qué es», «qué significa»…) que
     # no tienen ya un resultado calculado: en las demás no es evidencia sobre los datos.
     glosario = (
@@ -862,9 +986,20 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
             plan.literal = True
             return plan
         plan.motivo = f"estructurada:{resultado.consulta}"
-        if resultado.consulta in _CONSULTAS_SIN_LLM:  # listado de hechos: el modelo solo podría alterarlo
-            plan.fija = resultado.listado(numeros)
-            plan.literal = True
+        if resultado.consulta in _CONSULTAS_SIN_LLM:
+            listado = resultado.listado(numeros)
+            if not fragmentos:  # sin texto recuperado: el listado de hechos tal cual
+                plan.fija, plan.literal = listado, True
+                return plan
+            # Con texto recuperado el modelo lo explica con el listado como RESULTADO CALCULADO; la verificación del
+            # plan (cifras, IDs, citas, reintento) cae al listado si cambia algo.
+            plan.resultado = plan.respuesta_directa = listado
+            plan.cifras_obligatorias, plan.cifras_solo_resultado = set(), True
+            pregunta_regla = f"{pregunta}\n({resultado.aclaracion})" if resultado.aclaracion else pregunta
+            plan.texto_prompt = prompt.construir(pregunta_regla, plan.fragmentos, contexto, resultado=listado,
+                                                 formato=_FORMATO_REGLA.get(resultado.consulta, ""),
+                                                 conversacion=conversacion)
+            plan.plan_consulta, plan.tiempos = registro, tiempos
             return plan
         if resultado.consulta in _CONSULTAS_MIXTAS:  # la definición del KPI, respaldada por fuentes verificadas
             plan.referencias = plan.referencias + _fuentes_kpi(pregunta, resultado)
@@ -1091,6 +1226,21 @@ _CONSULTAS_MIXTAS = {"kpi", "kpi_preguntas"}
 # 35 a 57 s; en 3 de 4 pruebas (22–23 oct, con llama3.2:3b y con qwen2.5:3b como juez) la redacción se
 # descartó, y la cuarta pasó solo porque el juez falló (rag_log 737, «55 % de acuerdo» por «55 % eligió Sí»).
 _CONSULTAS_SIN_LLM = {"estructura", "descripcion", "patrones", "sin_calificar"}
+# Desde el 5 nov esas consultas se redactan cuando hay texto recuperado (RAG primero), con la verificación del plan y
+# el listado como respaldo.
+_FORMATO_REGLA = {
+    "descripcion": "Describe el instrumento en un párrafo breve: de qué trata, a quién se aplicó y qué temas cubre, "
+                   "con lo que dicen el RESULTADO CALCULADO y el TEXTO RECUPERADO. No inventes temas.",
+    "estructura": "Di qué secciones o partes tiene el instrumento y qué trata cada una, en una lista breve, con lo que "
+                  "dice el RESULTADO CALCULADO; usa el TEXTO RECUPERADO para explicar de qué trata cada parte.",
+    "patrones": "Presenta los patrones del RESULTADO CALCULADO como una lista con viñetas, con su cifra exacta, y "
+                "explica cada uno con una frase prudente apoyada en el TEXTO RECUPERADO.",
+    "sin_calificar": "Empieza diciendo que Indagata no califica las pruebas porque no tiene clave de respuestas. Después "
+                     "describe con el RESULTADO CALCULADO qué opción eligieron más los alumnos en los reactivos que "
+                     "tienen que ver con la pregunta. Nunca digas qué opción es correcta, quién aprobó ni quién sacó "
+                     "más puntos.",
+}
+_DICE_SIN_CALIFICAR = re.compile(r"\bno\s+califica|\bclave\s+de\s+respuestas?\b|\bsin\s+clave\b")
 # Formas en que el modelo niega un resultado calculado sin empezar por «no tengo información»
 # («El primer instrumento no se menciona explícitamente en el contexto…», prueba del 22 oct).
 _NIEGA = re.compile(
@@ -1249,7 +1399,9 @@ def _verificar_redaccion(plan: Plan, respuesta: str, degradado: bool) -> tuple[s
             plan.motivo = f"{plan.motivo}:cita_inventada"
         elif not plan.cifras_obligatorias <= _cifras(respuesta):
             plan.motivo = f"{plan.motivo}:cifras_completadas"
-        elif _CALIFICA.search(dominio.normalizar(respuesta)) and not _CALIFICA.search(dominio.normalizar(contexto)):
+        elif (_CALIFICA.search(dominio.normalizar(respuesta)) and not _CALIFICA.search(dominio.normalizar(contexto))) \
+                or (plan.motivo.startswith("estructurada:sin_calificar")
+                    and not _DICE_SIN_CALIFICAR.search(dominio.normalizar(respuesta))):
             plan.motivo = f"{plan.motivo}:calificada"
         else:
             return respuesta, degradado

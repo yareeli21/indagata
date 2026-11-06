@@ -1416,6 +1416,59 @@ resultado calculado, así que el sistema era «LLM + cálculo». Las consecuenci
 sus mejoras están infladas. La medición que vale es un conjunto nuevo de preguntas, escrito por la investigadora sin
 mostrarse antes de corregir, de preferencia sobre un instrumento nuevo. [PENDIENTE: conjunto nuevo y su resultado]
 
+#### RAG primero (5 nov)
+
+**Cuánto se usaba el RAG.** Se contó la ruta de cada consulta. Antes del rediseño del 4 nov casi ninguna respuesta
+consultaba Chroma: en 1290–1461 (instrumento 127) solo 13 de 170, y en 1462–1687 (130, 129 y 131) 44 de 213; las demás
+eran cálculo, aclaraciones o mensajes fijos. Esas corridas quedan como la condición **«sin RAG»**.
+<!-- fuente: tt_rag.rag_log.ruta, consultas 1290–1687 -->
+
+**Versión 1 (RAG como complemento del cálculo).** Con el código congelado (huella SHA-256 de los archivos del chat
+antes de correr), los tres juegos de casos (127: 28 turnos; prueba 130: 22; entrevista 129: 13) se corrieron con los dos
+redactores elegidos, con `scripts/modelos/correr_casos.py`: una conversación nueva por caso y el historial igual que el
+chat.
+
+| Redactor | Consultas | Con RAG | Sin RAG | Aclaración | Mensaje fijo de dominio |
+|---|---|---|---|---|---|
+| `gemma3:4b` | 1709–1771 | 38 (60 %) | 13 | 10 | 2 |
+| `qwen3:4b-instruct` | 1776–1838 | 39 (62 %) | 12 | 9 | 3 |
+<!-- fuente: tt_rag.rag_log.ruta, consultas 1709–1771 y 1776–1838 -->
+
+Con `gemma3:4b` los huecos fueron de cuatro tipos:
+- **La búsqueda filtrada no pasaba el umbral** y la respuesta salía solo del cálculo (seguimiento «¿por qué consideras
+  que es preocupante?» 1727; conteos 1742, 1746).
+- **Preguntas sobre el instrumento** («¿de qué trata?», «¿qué secciones tiene?», 1732–1735): la ficha se parece poco a la
+  pregunta (similitud 0.29) y no se recuperaba.
+- **Aclaraciones sin buscar** (1716–1718, 1724, 1745, 1752).
+- **Mensajes fijos** de pruebas sin calificar (1740, 1741, 1758) y del reporte de limpieza (1755, 1756).
+<!-- fuente: tt_rag.rag_log.motivo, consultas 1709–1771 -->
+
+**Versión 2: RAG primero.** El RAG pasa a ser la base de toda respuesta; el cálculo queda como herramienta para lo que
+ningún fragmento contiene (contar o filtrar sobre todos los respondentes).
+1. **La búsqueda va primero**, antes de interpretar. Lo recuperado orienta a la interpretación («la pregunta de la VPN» →
+   el reactivo r03 recuperado) y responde por sí mismo cuando no hay que calcular.
+2. **Antes de pedir aclaración se responde con lo recuperado**, si la pregunta es del alcance o un seguimiento y la
+   similitud pasa el umbral. No se hace si la pregunta nombra a una persona por su ID, porque el fragmento más parecido
+   sería de otra persona.
+3. **Toda respuesta calculada lleva texto recuperado.** Si con el filtro nada pasa el umbral, entran los fragmentos más
+   cercanos; las preguntas sobre el instrumento reciben su ficha, leída de Chroma por sus metadatos. Si el cálculo y lo
+   recuperado difieren, manda el cálculo: los fragmentos llegan sin sus cifras en las intenciones numéricas y la regla
+   15 del prompt pide adaptar lo recuperado al resultado, sin descartarlo.
+4. **Listados, patrones, filtros y pruebas sin calificar los redacta el modelo** con el texto recuperado; si la redacción
+   no pasa la verificación, se muestra el cálculo. En las pruebas, la redacción debe decir que no se califica.
+5. **El modelo tiene el rol de analista de investigación educativa universitaria**: instrumentos, estudiantes, docentes
+   y KPIs.
+6. Privacidad y manipulación siguen bloqueándose antes de buscar. El reporte de limpieza no está en Chroma: esa respuesta
+   sale de la base, con el texto recuperado como contexto.
+<!-- fuente: services/visualization-service/services/rag_service.py (_recuperar_primero, _pistas, _fichas, _apoyo_de_recuperados, _rag_responde_aclaracion, _FORMATO_REGLA; _VERSION_RESPUESTAS 28); interpretacion.py (TEXTO RECUPERADO DEL RAG); prompt.py (rol y regla 15); consulta_planificada.py (SIN_REDACCION vacío); tests (337 pruebas) -->
+
+[PENDIENTE: corrida de la versión 2 con `gemma3:4b` y `qwen3:4b-instruct`, porcentaje de respuestas con RAG,
+calificación de la investigadora, juez `qwen3:4b-instruct` y comparación sin RAG / versión 1 / versión 2]
+
+**Validez.** Los tres juegos de casos se usaron durante el desarrollo, así que miden regresión, no generalización. La
+medición honesta es el conjunto nuevo de preguntas de la investigadora, hecho después de congelar la versión 2.
+[PENDIENTE: conjunto nuevo]
+
 ---
 
 ## Y.6 Duración del procesamiento
