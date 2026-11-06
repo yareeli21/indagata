@@ -50,25 +50,38 @@ docker compose exec visualization-service python scripts/modelos/reporte.py --ca
 `2026-11-03_pru03`). En `intenciones`, `null` significa que el turno lo resuelve una regla de dominio (privacidad o
 manipulación) sin plan.
 
-## Paso a paso (lo hace la investigadora)
+## Paso a paso
 
-1. En `.env`, pon `RAG_CACHE_HORAS=0` mientras dure el experimento, para que una pregunta repetida se responda de
-   nuevo.
-2. Por cada redactor (`llama3.2:3b`, `qwen2.5:3b`, `qwen3:4b`, `gemma3:4b`):
+Modelos elegidos en el experimento (`documentación/03_Pruebas.md`): redactores `gemma3:4b` (el principal) y
+`qwen3:4b-instruct` (el segundo); juez `qwen3:4b-instruct`. En otra computadora, primero sube los instrumentos y
+regenera los casos con sus ids (`markdowns/GUIA_PRUEBAS.md`, sección 7).
+
+1. **Una vez:** descarga los modelos y, mientras dure la prueba, desactiva la caché.
+   ```powershell
+   docker compose exec ollama ollama pull gemma3:4b
+   docker compose exec ollama ollama pull qwen3:4b-instruct
+   ```
+   En `.env`: `RAG_CACHE_HORAS=0`, para que una pregunta repetida se responda de nuevo.
+2. **Por cada redactor** (`gemma3:4b`, después `qwen3:4b-instruct`):
    1. En `.env`, pon `OLLAMA_MODEL=<modelo>`.
    2. Libera la GPU: `docker compose exec ollama ollama stop <modelo anterior>`.
-   3. Recrea los servicios:
-      `docker compose up -d analysis-service metadata-service knowledge-service visualization-service`.
+   3. Recrea el chat: `docker compose up -d visualization-service`.
    4. Comprueba: `docker compose exec visualization-service printenv OLLAMA_MODEL`.
-   5. En el chat: Ctrl+F5, instrumento 127, «Modelo del servidor». Pregunta «hola» para calentar el modelo y anota el
-      número de consulta del panel o la hora.
-   6. Revisa la carga en la GPU con `docker compose exec ollama ollama ps` (columnas `PROCESSOR` y `CONTEXT`).
-   7. Haz los 14 casos: una «Nueva conversación» por caso, las preguntas tal cual (con sus erratas), **sin** pulsar
-      «Calcular evaluación». Califica cada respuesta en el panel; lo que se quede sin calificar (p. ej., porque
-      «Nueva conversación» lo quitó de la pantalla) se califica después con `calificar.py`.
-3. Jueces: una corrida de `juzgar.py` por juez, con todas las corridas de redactores.
-4. Reporte: `reporte.py` con todas las corridas. Después se copia a `evidencias/modelos_<fecha>/`.
-5. Al terminar: `.env` con `OLLAMA_MODEL=llama3.2:3b` y `RAG_CACHE_HORAS=24`, y el mismo `up -d`.
+   5. Corre los casos desde la carpeta del repositorio, sin usar el chat mientras tanto (unos 45 min con gemma):
+      ```powershell
+      $env:PYTHONIOENCODING="utf-8"; .venv\Scripts\python.exe -u services\visualization-service\scripts\modelos\correr_casos.py casos.json casos_pru03.json casos_ent11.json
+      ```
+      Al final imprime la corrida (`gemma3:4b=1845-1910`): anótala. Si la memoria no alcanza, cierra los programas
+      pesados; si se corta, vuelve a correr solo los archivos de casos que faltan.
+   6. Para preguntar a mano en lugar del script: Ctrl+F5 en el chat, el instrumento, «Modelo del servidor», una
+      «Nueva conversación» por caso, las preguntas tal cual y **sin** pulsar «Calcular evaluación».
+3. **Califica** cada corrida, una vez por archivo de casos:
+   `docker compose exec visualization-service python scripts/modelos/calificar.py --casos casos.json --corrida gemma3:4b=<inicio>-<fin>`.
+4. **Juez:** `juzgar.py --juez qwen3:4b-instruct` con todas las corridas, una vez por archivo de casos. Tarda horas;
+   puede quedarse de noche.
+5. **Reporte:** `reporte.py` con todas las corridas; después se copia a `evidencias/modelos_<fecha>/`. Para compartir
+   las calificaciones: `exportar.py` (CSV).
+6. **Al terminar:** `.env` con `OLLAMA_MODEL=gemma3:4b` y `RAG_CACHE_HORAS=24`, y `docker compose up -d visualization-service`.
 
 ## Qué mide
 
