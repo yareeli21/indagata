@@ -1034,14 +1034,19 @@ Referencias:
 
 **Tabla P.22.** Confiabilidad de cada juez (78 respuestas por juez, todas con calificación humana).
 
-| Juez | Kappa fidelidad vs cifras con respaldo | Kappa aprobado vs «Bien» humano | Spearman promedio vs humana | Spearman relevancia vs humana | Precisión del contexto alta con contexto insuficiente |
+| Juez | Fidelidad vs cifras con respaldo (kappa / π) | Aprobado vs «Bien» humano (kappa / π) | Spearman promedio vs humana | Spearman relevancia vs humana | Precisión del contexto alta con contexto insuficiente |
 |---|---|---|---|---|---|
-| `gemma3:4b` | 0.159 (n=37) | 0.143 | 0.203 | 0.326 | 22 de 36 |
-| `llama3.2:3b` | 0.043 (n=38) | 0.121 | 0.136 | 0.317 | 22 de 36 |
-| `qwen2.5:3b` | 0.023 (n=39) | 0.108 | 0.266 | 0.281 | 11 de 36 |
-| **`qwen3:4b-instruct`** | 0.033 (n=37) | **0.226** | **0.331** | **0.446** | 20 de 36 |
+| `gemma3:4b` | 0.159 / 0.075 (n=37) | 0.143 / 0.088 | 0.203 | 0.326 | 22 de 36 |
+| `llama3.2:3b` | 0.043 / −0.279 (n=38) | 0.121 / 0.099 | 0.136 | 0.317 | 22 de 36 |
+| `qwen2.5:3b` | 0.023 / −0.449 (n=39) | 0.108 / 0.090 | 0.266 | 0.281 | 11 de 36 |
+| **`qwen3:4b-instruct`** | 0.033 / −0.357 (n=37) | **0.226 / 0.218** | **0.331** | **0.446** | 20 de 36 |
 
-<!-- fuente: evidencias/modelos_2026-11-02/resumen.md, sección 4 -->
+La π de Scott se agregó el 6 nov regenerando el reporte con las mismas corridas; las kappas salieron idénticas. En
+«juez aprobado vs Bien» las dos medidas casi coinciden. En «fidelidad vs cifras con respaldo» la π es mucho menor, y
+negativa en tres jueces: el juez y el detector de cifras reparten sus «sí» y «no» en proporciones muy distintas, y
+la π castiga esa diferencia, que la kappa absorbe. Las dos llevan a la misma conclusión: ningún juez alcanza el acuerdo moderado.
+
+<!-- fuente: evidencias/modelos_2026-11-02/resumen.md, sección 4; π de Scott: storage/evaluacion_modelos/2026-11-02_con_pi/resumen.md (reporte.py con --corrida llama3.2:3b=1328-1365 qwen2.5:3b=1366-1395 qwen3:4b-instruct=1397-1429 gemma3:4b=1430-1461, 6 nov) -->
 
 **Decisión (2 nov).**
 - **Redactor: `gemma3:4b`.** El primer criterio era no inventar IDs ni cifras; lo cumplen `llama3.2:3b`, `qwen2.5:3b`
