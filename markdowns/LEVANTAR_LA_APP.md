@@ -269,7 +269,7 @@ docker compose exec visualization-service python scripts/modelos/juzgar.py --cas
 | Dónde | Comando | Qué trae |
 |---|---|---|
 | Panel del chat | — | La evaluación de cada respuesta, con una tabla por juez si hay varios |
-| Reporte | `docker compose exec visualization-service python scripts/modelos/reporte.py --casos casos.json --corrida gemma3:4b=<inicio>-<fin>` | En `storage/evaluacion_modelos/<fecha>/`: un `<modelo>.md` con cada turno, su respuesta, las métricas del juez, los indicadores y tu calificación, y `resumen.md` con los promedios por modelo, la exactitud contra la respuesta esperada y el acuerdo juez–humano (kappa, Spearman). Ábrelos en VS Code con Ctrl+Shift+V |
+| Reporte | `docker compose exec visualization-service python scripts/modelos/reporte.py --casos casos.json --corrida gemma3:4b=<inicio>-<fin>` | En `storage/evaluacion_modelos/<fecha>/`: un `<modelo>.md` con cada turno, su respuesta, las métricas del juez, los indicadores y tu calificación, y `resumen.md` con los promedios por modelo, la exactitud contra la respuesta esperada y el acuerdo juez–humano (kappa de Cohen, π de Scott, Spearman). Ábrelos en VS Code con Ctrl+Shift+V |
 | CSV para Excel | `docker compose exec visualization-service python scripts/modelos/exportar.py` | En `storage/evaluacion_modelos/exportes/`: una fila por consulta calificada, con quién calificó, la calificación, el comentario, lo recuperado del RAG y las métricas de cada juez. Sirve para juntar los resultados del equipo |
 
 Para calificar desde la terminal lo que quedó sin calificar en el panel:

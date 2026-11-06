@@ -28,7 +28,7 @@ from pathlib import Path
 from statistics import median
 
 import comun  # noqa: F401  (ajusta sys.path)
-from comun import CASOS, Corrida, clave_texto, emparejar, kappa, leer_casos, media, parsear_corrida, spearman
+from comun import CASOS, Corrida, clave_texto, emparejar, kappa, leer_casos, media, parsear_corrida, pi_scott, spearman
 
 from shared.db.session import SessionLocal
 from shared.models.rag_evaluacion import RagCalificacion, RagMetricaJuez
@@ -201,11 +201,13 @@ def cruce(todos: list[dict]) -> dict:
         con = [t for t in todos if juez in t["jueces"]]
         red = [t for t in con if t["indicadores"]["respuesta"] == "redactada" and t["indicadores"]["cifrasTotal"]
                and t["jueces"][juez]["fidelidad"] is not None]
-        fid_vs_cifras = kappa([t["jueces"][juez]["fidelidad"] >= 0.8 for t in red],
-                              [t["indicadores"]["cifrasConRespaldo"] == t["indicadores"]["cifrasTotal"] for t in red])
+        juez_fid = [t["jueces"][juez]["fidelidad"] >= 0.8 for t in red]
+        con_respaldo = [t["indicadores"]["cifrasConRespaldo"] == t["indicadores"]["cifrasTotal"] for t in red]
+        fid_vs_cifras, pi_fid_vs_cifras = kappa(juez_fid, con_respaldo), pi_scott(juez_fid, con_respaldo)
         hum = [t for t in con if t["humana"] and t["jueces"][juez]["promedio"] is not None]
-        ap_vs_humana = kappa([t["jueces"][juez]["promedio"] >= APROBADO for t in hum],
-                             [t["humana"]["calificacion"] == 2 for t in hum])
+        juez_ap = [t["jueces"][juez]["promedio"] >= APROBADO for t in hum]
+        humana_bien = [t["humana"]["calificacion"] == 2 for t in hum]
+        ap_vs_humana, pi_ap_vs_humana = kappa(juez_ap, humana_bien), pi_scott(juez_ap, humana_bien)
         rho_prom = spearman([t["jueces"][juez]["promedio"] for t in hum], [t["humana"]["calificacion"] for t in hum])
         hum_rel = [t for t in hum if t["jueces"][juez]["relevancia"] is not None]
         rho_rel = spearman([t["jueces"][juez]["relevancia"] for t in hum_rel], [t["humana"]["calificacion"] for t in hum_rel])
@@ -216,6 +218,7 @@ def cruce(todos: list[dict]) -> dict:
                 continue
             conf[f"prec_{'alta' if p >= 0.5 else 'baja'}_ctx_{'si' if t['contexto_suficiente'] else 'no'}"] += 1
         salida[juez] = {"n": len(con), "kappa_fidelidad_vs_cifras": fid_vs_cifras, "n_fidelidad": len(red),
+                        "pi_fidelidad_vs_cifras": pi_fid_vs_cifras, "pi_aprobado_vs_humana": pi_ap_vs_humana,
                         "kappa_aprobado_vs_humana": ap_vs_humana, "spearman_promedio_vs_humana": rho_prom,
                         "spearman_relevancia_vs_humana": rho_rel, "n_humana": len(hum), "confusion_precision": conf}
     return salida
@@ -286,12 +289,14 @@ def md_resumen(resumenes: dict, mat: dict, cru: dict, ej: dict, por_redactor: di
         l.append("Todavía no hay evaluaciones de jueces: corre `juzgar.py`.")
 
     l += ["", "## 4. ¿Se puede confiar en cada juez? (cruce)", "",
-          "Kappa: 1 = acuerdo total, 0 = el del azar. Spearman: 1 = ordenan igual, 0 = sin relación.", "",
-          "| Juez | Fidelidad vs cifras con respaldo (kappa) | Juez aprobado vs «Bien» humano (kappa) | "
+          "Kappa de Cohen y π de Scott: 1 = acuerdo total, 0 = el del azar (π estima el azar con la distribución "
+          "conjunta; coinciden si juez y referencia reparten igual). Spearman: 1 = ordenan igual, 0 = sin relación.", "",
+          "| Juez | Fidelidad vs cifras con respaldo (kappa / π) | Juez aprobado vs «Bien» humano (kappa / π) | "
           "Promedio vs humana (Spearman) | Relevancia vs humana (Spearman) | Respuestas |", "|---|---|---|---|---|---|"]
     for j, c in cru.items():
-        l.append(f"| {j} | {_fmt(c['kappa_fidelidad_vs_cifras'])} (n={c['n_fidelidad']}) | "
-                 f"{_fmt(c['kappa_aprobado_vs_humana'])} | {_fmt(c['spearman_promedio_vs_humana'])} | "
+        l.append(f"| {j} | {_fmt(c['kappa_fidelidad_vs_cifras'])} / {_fmt(c['pi_fidelidad_vs_cifras'])} "
+                 f"(n={c['n_fidelidad']}) | {_fmt(c['kappa_aprobado_vs_humana'])} / {_fmt(c['pi_aprobado_vs_humana'])} | "
+                 f"{_fmt(c['spearman_promedio_vs_humana'])} | "
                  f"{_fmt(c['spearman_relevancia_vs_humana'])} | {c['n']} ({c['n_humana']} calificadas) |")
     l += ["", "**Precisión del contexto del juez contra «contexto suficiente» (turnos de dato)**", "",
           "| Juez | Alta y suficiente | Alta e insuficiente | Baja y suficiente | Baja e insuficiente |", "|---|---|---|---|---|"]

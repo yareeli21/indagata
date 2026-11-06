@@ -90,6 +90,18 @@ def kappa(a: list[bool], b: list[bool]) -> float | None:
     return None if pe == 1 else round((po - pe) / (1 - pe), 3)
 
 
+def pi_scott(a: list[bool], b: list[bool]) -> float | None:
+    """π de Scott: como kappa, pero el azar se estima con la distribución conjunta de los dos evaluadores (Thakur et
+    al., 2025, la prefieren por los problemas teóricos de kappa). Coinciden si los dos reparten igual."""
+    n = len(a)
+    if n < 2:
+        return None
+    po = sum(x == y for x, y in zip(a, b)) / n
+    p = (sum(a) + sum(b)) / (2 * n)
+    pe = p * p + (1 - p) * (1 - p)
+    return None if pe == 1 else round((po - pe) / (1 - pe), 3)
+
+
 def _rangos(valores: list[float]) -> list[float]:
     orden = sorted(range(len(valores)), key=lambda i: valores[i])
     rangos = [0.0] * len(valores)

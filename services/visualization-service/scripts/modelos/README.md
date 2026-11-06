@@ -12,7 +12,7 @@ respuestas de todos los redactores. Así sale la matriz redactor × juez sin rep
 | `juzgar.py` | Evalúa con **un** juez las respuestas de una o varias corridas y muestra el avance en la terminal (`rag_metrica_juez`) |
 | `calificar.py` | Califica en la terminal los turnos de una corrida que no tienen calificación humana (la misma tabla que el panel) |
 | `reporte.py` | Calcula las métricas contra la referencia y el cruce juez / sin juez / persona, y escribe `storage/evaluacion_modelos/<fecha>/` |
-| `comun.py` | Corridas, emparejamiento de consultas con turnos, kappa de Cohen y Spearman |
+| `comun.py` | Corridas, emparejamiento de consultas con turnos, kappa de Cohen, π de Scott y Spearman |
 
 Todos se corren dentro del contenedor del chat, que tiene la base, los embeddings y `./storage` montado:
 
@@ -97,8 +97,8 @@ regenera los casos con sus ids (`markdowns/GUIA_PRUEBAS.md`, sección 7).
   persona.
 - **Juez** (LLM-as-a-judge): fidelidad, relevancia y precisión del contexto, una evaluación por juez.
 - **Cruce:**
-  - kappa entre la fidelidad del juez y las cifras con respaldo;
-  - kappa entre «juez aprobado» (promedio ≥ 0.7) y la calificación humana «Bien»;
+  - kappa de Cohen y π de Scott entre la fidelidad del juez y las cifras con respaldo;
+  - kappa de Cohen y π de Scott entre «juez aprobado» (promedio ≥ 0.7) y la calificación humana «Bien»;
   - Spearman entre el juez y la calificación humana;
   - acuerdo entre jueces;
   - sesgo de autoevaluación (la diagonal menos el resto);
