@@ -1,7 +1,16 @@
-import type { ContextoInvestigacion, MetricasRespuesta, ModeloLLM, ResultadoChat } from "@/types";
+import type {
+  CalificacionRespuesta,
+  ContextoInvestigacion,
+  Mensaje,
+  MetricasRespuesta,
+  ModeloLLM,
+  ResultadoChat,
+} from "@/types";
 import { API_URL, avisarSesionExpirada, leerToken, pedir } from "./client";
 
 export const MODELOS_DISPONIBLES: { id: ModeloLLM; etiqueta: string }[] = [
+  // Sin modelo en la petición: el servicio usa OLLAMA_MODEL (.env) para entender, redactar y clasificar.
+  { id: "servidor", etiqueta: "Modelo del servidor" },
   { id: "llama3.2:3b", etiqueta: "Llama 3.2 (3B) — local" },
 ];
 
@@ -63,6 +72,8 @@ interface EventoToken {
  * @param onToken        se llama con cada fragmento de texto generado
  * @param onDone         se llama al terminar, con las fuentes y la decisión
  * @param instrumentoIds alcance explícito; [] = todo el acervo; sin indicar = la investigación
+ * @param anteriores     mensajes previos de la sesión: el servicio usa los últimos 4 para entender
+ *                       preguntas de seguimiento («¿y de ellos…?»)
  * @returns              función para cancelar el streaming (AbortController)
  */
 export function enviarMensaje(
@@ -73,6 +84,7 @@ export function enviarMensaje(
   onDone: (resultado: ResultadoChat) => void,
   investigacionId: string,
   instrumentoIds?: string[],
+  anteriores: Mensaje[] = [],
 ): () => void {
   const controlador = new AbortController();
   const ids = instrumentoIds ?? getInstrumentosDeInvestigacion(investigacionId);
@@ -82,6 +94,7 @@ export function enviarMensaje(
   if (token) encabezados["Authorization"] = `Bearer ${token}`;
 
   let resultado: ResultadoChat = { fuentes: [], referencias: [] };
+  let recibioTexto = false;
 
   async function ejecutar(): Promise<void> {
     const respuesta = await fetch(`${API_URL}/rag/chat`, {
@@ -91,17 +104,26 @@ export function enviarMensaje(
         investigacionId,
         pregunta,
         instrumentoIds: ids,
-        modelo,
+        modelo: modelo === "servidor" ? undefined : modelo,
         stream: true,
         top_k: 6,
         // Orienta la respuesta hacia la investigación (objetivo, población, nivel).
         contexto,
+        historial: historialReciente(anteriores),
       }),
       signal: controlador.signal,
     });
 
     if (!respuesta.ok || !respuesta.body) {
-      if (respuesta.status === 401) avisarSesionExpirada();
+      // Sin este mensaje la burbuja quedaba vacía y parecía que el chat no respondía.
+      if (respuesta.status === 401) {
+        onToken("Tu sesión expiró. Vuelve a iniciar sesión para seguir consultando.");
+        avisarSesionExpirada();
+      } else {
+        onToken(
+          `No se pudo obtener la respuesta (HTTP ${respuesta.status}). Intenta de nuevo en un momento.`,
+        );
+      }
       onDone(resultado);
       return;
     }
@@ -125,7 +147,10 @@ export function enviarMensaje(
         if (eventoActual === "token") {
           try {
             const { t } = JSON.parse(datos) as EventoToken;
-            if (t) onToken(t);
+            if (t) {
+              recibioTexto = true;
+              onToken(t);
+            }
           } catch {
             /* trozo no-JSON: se ignora */
           }
@@ -139,6 +164,7 @@ export function enviarMensaje(
               ruta: evento.ruta ?? null,
               consultaId: evento.consultaId ?? null,
               enCache: evento.enCache ?? false,
+              latenciaMs: evento.latenciaMs ?? null,
             };
           } catch {
             /* se ignora */
@@ -164,7 +190,14 @@ export function enviarMensaje(
 
   ejecutar().catch(() => {
     // Cancelación (AbortError) o fallo de red: no se notifica onDone en aborto.
-    if (!controlador.signal.aborted) onDone(resultado);
+    if (!controlador.signal.aborted) {
+      if (!recibioTexto) {
+        onToken(
+          "No se pudo conectar con el chat. Revisa que los servicios estén encendidos e intenta de nuevo.",
+        );
+      }
+      onDone(resultado);
+    }
   });
 
   return () => controlador.abort();
@@ -194,9 +227,44 @@ export async function guardarContexto(
   if (respuesta.status === 401) avisarSesionExpirada();
 }
 
-/** Métricas automáticas de una respuesta (se calculan en segundo plano tras responder). */
+/** Pide calcular las métricas de una respuesta pendiente (bajo demanda); devuelve su estado. */
+export function calcularMetricas(consultaId: number): Promise<MetricasRespuesta> {
+  return pedir<MetricasRespuesta>(`${API_URL}/rag/consultas/${consultaId}/metricas`, {
+    method: "POST",
+    auth: true,
+  });
+}
+
+/** Guarda (o reemplaza) la calificación humana de una respuesta. */
+export function calificarRespuesta(
+  consultaId: number,
+  calificacion: CalificacionRespuesta,
+): Promise<CalificacionRespuesta> {
+  return pedir<CalificacionRespuesta>(`${API_URL}/rag/consultas/${consultaId}/calificacion`, {
+    method: "PUT",
+    body: calificacion,
+    auth: true,
+  });
+}
+
+/** Métricas automáticas de una respuesta: «pendiente» hasta que se piden, luego «calculando» y el resultado. */
 export function getMetricas(consultaId: number): Promise<MetricasRespuesta> {
   return pedir<MetricasRespuesta>(`${API_URL}/rag/consultas/${consultaId}/metricas`, {
     auth: true,
   });
+}
+
+/** Últimos mensajes terminados de la sesión, recortados, para que el servicio entienda los seguimientos. */
+function historialReciente(
+  mensajes: Mensaje[],
+): { rol: "usuario" | "asistente"; texto: string; consultaId?: number }[] {
+  return mensajes
+    .filter((m) => !m.generando && m.contenido.trim())
+    .slice(-4)
+    .map((m) => ({
+      rol: m.rol === "usuario" ? "usuario" : "asistente",
+      texto: m.contenido.slice(0, 1500),
+      // El servicio lee de esa consulta de qué trató la respuesta (respondentes, preguntas, criterio).
+      ...(m.rol !== "usuario" && m.consultaId ? { consultaId: m.consultaId } : {}),
+    }));
 }

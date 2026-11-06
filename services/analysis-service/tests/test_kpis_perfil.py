@@ -276,6 +276,11 @@ def test_confirmar_guarda_aceptados_y_rechazados(cliente, db):
     assert [k["kpi_id"] for k in fila.perfil["kpis_asociados"]] == ["KPI-01"]  # …pero no entran al perfil
     inferidos = db.query(KPIInferido).filter_by(id_procesado=70).all()
     assert [(i.kpi_id, i.razon) for i in inferidos] == [(1, "Mi justificación revisada.")]
+    # Tiempos de cómputo de la propuesta y de la confirmación (Pruebas: duración del procesamiento).
+    from shared.models.tiempo_proceso import TiempoProceso
+
+    tiempos_ = {t.paso: t.detalle for t in db.query(TiempoProceso).filter_by(id_crudo=7)}
+    assert tiempos_["propuesta_kpis"]["kpis_sugeridos"] == len(props) and tiempos_["confirmar_kpis"] == {"aceptados": 1}
 
     # Reconfirmar rechazando el que antes se aceptó lo quita de kpi_inferido.
     cuerpo["decisiones"] = [dict(cuerpo["decisiones"][0], aceptado=False)]

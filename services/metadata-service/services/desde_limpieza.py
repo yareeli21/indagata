@@ -9,8 +9,9 @@ limpio (vía storage-service) y el reporte_limpieza de la última versión confi
     provisional de cada columna. Solo las columnas «pregunta» son reactivos.
   - Entrevista: un turno por fila (n_turno, hablante, rol, texto); las preguntas son
     los turnos del entrevistador.
-  - Prueba estandarizada (tabla): una fila por alumno y pregunta; los reactivos salen
-    de la clave de respuestas, con sus estadísticas (aciertos, nulas, no respondidas).
+  - Prueba estandarizada (tabla): una fila por alumno y reactivo; los reactivos son los
+    que detectó la limpieza, con sus estadísticas (distribución, opción más elegida, nulas,
+    no respondidas). No se califican: no hay clave de respuestas.
   - Prueba en documento: un bloque de texto por fila; se analiza como documento.
 """
 from __future__ import annotations
@@ -89,6 +90,15 @@ def _encuesta(tabla: dict[str, Any], limpieza: dict[str, Any], nombre: str, text
             pregunta.estadisticas["likert"] = likert
         pregunta.estadisticas["columna"] = spec.get("id")
 
+    # Dimensiones sugeridas por la limpieza y confirmadas (el instrumento no trae secciones):
+    # se guardan los textos de sus preguntas para que el LLM proponga un nombre por grupo.
+    dimensiones = _especifico(limpieza, "encuesta").get("dimensiones") or []
+    if dimensiones and not analisis.dimensiones:
+        texto_de = {p.estadisticas.get("columna"): p.texto for p in analisis.preguntas}
+        analisis.grupos_dimensiones = [[texto_de.get(c) or c for c in d.get("columnas") or []] for d in dimensiones]
+        analisis.dimensiones = [d.get("nombre") or f"Dimensión {i}" for i, d in enumerate(dimensiones, start=1)]
+        analisis.plantillas.add("dimensiones")
+
     # Población desde las columnas de contexto (carrera, programa…).
     for j, h in enumerate(headers):
         spec = columnas.get(h) or {}
@@ -144,48 +154,49 @@ def _entrevista(tabla: dict[str, Any], nombre: str, texto_original: str) -> Anal
 
 def _prueba_tabular(tabla: dict[str, Any], limpieza: dict[str, Any], nombre: str, texto_original: str) -> Analisis:
     esp = _especifico(limpieza, "prueba_estandarizada")
-    clave: dict[str, str] = esp.get("clave") or {}
+    tipos: dict[str, str] = esp.get("tipos_reactivo") or {}
+    # El orden de la hoja sale de la lista (el JSONB reordena las llaves de los diccionarios).
+    orden = [r for r in esp.get("orden_reactivos") or [] if r in tipos] or list(tipos)
     opciones = [o for o in esp.get("opciones_validas") or ["A", "B", "C", "D"] if o != "NR"]
     headers = [h.lower() for h in tabla.get("headers") or []]
     filas = tabla.get("rows") or []
-    idx = {c: headers.index(c) for c in ("id_alumno", "pregunta", "correcta", "estado") if c in headers}
+    idx = {c: headers.index(c) for c in ("id_alumno", "pregunta", "estado") if c in headers}
 
     por_pregunta: dict[str, Counter] = defaultdict(Counter)
     alumnos: set[str] = set()
-    if len(idx) == 4:
+    if len(idx) == 3:
         for f in filas:
             p = f[idx["pregunta"]]
             alumnos.add(f[idx["id_alumno"]])
             por_pregunta[p]["n"] += 1
             por_pregunta[p][f[idx["estado"]]] += 1
-            por_pregunta[p]["aciertos"] += 1 if f[idx["correcta"]] == "1" else 0
+    if not orden:
+        orden = list(por_pregunta)
 
     # Si el examen original trae las preguntas en el mismo número, se usa su texto.
     del_examen = extraer_preguntas(texto_original) if texto_original else []
-    usar_examen = len(del_examen) == len(clave) and bool(clave)
+    usar_examen = len(del_examen) == len(orden) and bool(orden)
     reactivos = {r["pregunta"]: r for r in _estadistica(limpieza).get("reactivos", [])}
     preguntas = []
-    for k, (pregunta, correcta) in enumerate(clave.items()):
+    for k, pregunta in enumerate(orden):
         c = por_pregunta.get(pregunta, Counter())
-        analisis_reactivo = {
-            clave_r: v for clave_r, v in (reactivos.get(pregunta) or {}).items() if clave_r not in ("pregunta", "respuesta_correcta")
-        }
+        tipo = tipos.get(pregunta, "opcion_multiple")
+        descripcion = {clave_r: v for clave_r, v in (reactivos.get(pregunta) or {}).items() if clave_r != "pregunta"}
         n = c["n"] or 1
         preguntas.append(
             Pregunta(
                 id=pregunta,
                 texto=del_examen[k].texto if usar_examen else f"Reactivo {pregunta}",
-                tipo="opcion_multiple",
-                opciones=del_examen[k].opciones if usar_examen and del_examen[k].opciones else opciones,
+                tipo=tipo,
+                opciones=(del_examen[k].opciones if usar_examen and del_examen[k].opciones else opciones)
+                if tipo == "opcion_multiple" else [],
                 seccion=SECCION_GENERAL,
                 estadisticas={
-                    "type": "opcion_multiple",
-                    "respuesta_correcta": correcta,
+                    "type": tipo,
                     "n": c["n"],
-                    "pct_correctas": round(c["aciertos"] / n, 4),
                     "pct_nulas": round(c["nula"] / n, 4),
                     "pct_no_respondidas": round(c["NR"] / n, 4),
-                    **analisis_reactivo,  # dificultad, discriminación, punto-biserial, distractores
+                    **descripcion,  # distribución, opción más elegida, opciones sin elegir
                 },
             )
         )
@@ -194,9 +205,7 @@ def _prueba_tabular(tabla: dict[str, Any], limpieza: dict[str, Any], nombre: str
     base.preguntas = preguntas
     base.familia = "tabular"
     base.n_registros = len(alumnos) or esp.get("n_alumnos")
-    base.descripcion = (
-        f"Prueba estandarizada de {len(preguntas)} reactivos de opción múltiple aplicada a {base.n_registros} alumnos."
-    )
+    base.descripcion = f"Prueba estandarizada de {len(preguntas)} reactivos aplicada a {base.n_registros} alumnos."
     conteos = esp.get("conteos") or {}
     total = sum(conteos.values()) or 0
     base.pct_vacios = round((conteos.get("NR", 0)) / total, 4) if total else None

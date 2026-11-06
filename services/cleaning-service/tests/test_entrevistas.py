@@ -249,3 +249,110 @@ def test_estadistica_centrada_en_respuestas(cliente, db, storage):
     assert cifras["Entrevistados"] == 2 and cifras["Hablantes"] == 2
     esp = db.query(LimpiezaEjecucion).one().reporte["especifico"]["entrevista"]
     assert esp["participantes"][1] == {"id": "R0002", "contexto": {"Perfil": "P3 — En riesgo", "Edad": "21", "Género": "femenino", "Semestre": "5"}}
+
+
+# ── Transcripciones automáticas y sin etiquetas ───────────────────────────────
+
+TEAMS_VTT = """WEBVTT
+
+NOTE Transcripción generada por Teams
+
+1
+00:00:01.000 --> 00:00:04.000
+<v Ana López>¿Consideras que las actividades extracurriculares tienen impacto en tus calificaciones?</v>
+
+2
+00:00:05.000 --> 00:00:12.000
+<v Luis Pérez>Eh, cuando iba en la primaria no lo pensaba así, mmm, pero ahora creo que sí.</v>
+
+3
+00:00:13.000 --> 00:00:15.000
+<v Ana López>¿Por qué ahora sí?</v>
+
+4
+00:00:16.000 --> 00:00:20.000
+<v Luis Pérez>Porque quiero mantener la beca deportiva.</v>
+"""
+
+ZOOM_TXT = """Hablante 1   00:03
+¿Qué opinas del servicio de tutorías?
+Hablante 2   00:09
+Em... me ayudó mucho
+el primer semestre.
+Hablante 1   00:20
+¿Y ahora?
+Hablante 2   00:24
+Ahora ya no voy.
+"""
+
+SIN_ETIQUETAS = """Entrevista realizada en la biblioteca.
+
+¿Consideras que las actividades extracurriculares tienen impacto en tus calificaciones?
+
+Cuando iba en la primaria no lo pensaba así, pero ahora creo que sí.
+
+Me llenan de energía.
+
+¿Qué te motiva a seguir?
+
+Mantener la beca deportiva.
+"""
+
+
+def test_vtt_de_teams_queda_con_hablantes_sin_marcas(cliente, db, storage):
+    id_crudo, e = _ejecutar(cliente, db, storage, "teams.vtt.txt", TEAMS_VTT.encode("utf-8"))
+    assert {h["objetivo"] for h in e["hallazgos"] if h["tipo"] == "rol_hablante"} == {"Ana López", "Luis Pérez"}
+    reglas = {t["regla"] for t in e["transformaciones"]}
+    assert {"transcripcion_voces_teams", "transcripcion_marcas_subtitulos"} <= reglas
+    assert "transcripcion_muletillas" not in reglas
+    cliente.post(f"/limpieza/{id_crudo}/ejecuciones/1/confirmar", headers=ANA)
+    textos = [f[-1] for f in _limpio(storage, db)[1:]]
+    assert not any("-->" in t or "<v" in t or "WEBVTT" in t for t in textos)
+
+
+def test_muletillas_se_conservan_por_defecto(cliente, db, storage):
+    id_crudo, e = _ejecutar(cliente, db, storage, "teams.vtt.txt", TEAMS_VTT.encode("utf-8"))
+    h = next(h for h in e["hallazgos"] if h["id"] == "muletillas")
+    assert h["sugerida"] == "conservar" and h["opciones"] == ["conservar", "quitar"]
+    assert h["detalle"]["total"] == 2
+    assert any("Eh, cuando iba en la primaria" in x for x in h["detalle"]["ejemplos"])
+    cliente.post(f"/limpieza/{id_crudo}/ejecuciones/1/confirmar", headers=ANA)
+    assert [f[-1] for f in _limpio(storage, db)[1:]][1] == "Eh, cuando iba en la primaria no lo pensaba así, mmm, pero ahora creo que sí."
+
+
+def test_muletillas_se_quitan_si_lo_decide(cliente, db, storage):
+    id_crudo, _ = _ejecutar(cliente, db, storage, "teams.vtt.txt", TEAMS_VTT.encode("utf-8"))
+    cliente.patch(f"/limpieza/{id_crudo}/ejecuciones/1/decisiones", json={"decisiones": {"muletillas": "quitar"}}, headers=ANA)
+    r = cliente.post(f"/limpieza/{id_crudo}/ejecuciones/1/confirmar", headers=ANA)
+    assert r.status_code == 200, r.text
+    assert [f[-1] for f in _limpio(storage, db)[1:]][1] == "cuando iba en la primaria no lo pensaba así, pero ahora creo que sí."
+
+
+def test_zoom_con_hora_al_final_de_la_etiqueta(cliente, db, storage):
+    id_crudo, e = _ejecutar(cliente, db, storage, "zoom.txt", ZOOM_TXT.encode("utf-8"))
+    roles = {h["objetivo"]: h["sugerida"] for h in e["hallazgos"] if h["tipo"] == "rol_hablante"}
+    assert roles == {"Hablante 1": "entrevistador", "Hablante 2": "entrevistado"}
+    cliente.post(f"/limpieza/{id_crudo}/ejecuciones/1/confirmar", headers=ANA)
+    assert [f[-1] for f in _limpio(storage, db)[1:]][1] == "Em... me ayudó mucho el primer semestre."
+
+
+def test_sin_etiquetas_se_reconstruyen_preguntas_y_respuestas(cliente, db, storage):
+    id_crudo, e = _ejecutar(cliente, db, storage, "sin_etiquetas.txt", SIN_ETIQUETAS.encode("utf-8"))
+    h = next(h for h in e["hallazgos"] if h["tipo"] == "segmentacion_inferida")
+    assert h["sugerida"] == "usar_segmentacion" and h["detalle"]["preguntas"] == 2 and e["pendientesObligatorias"] == 0
+    cliente.post(f"/limpieza/{id_crudo}/ejecuciones/1/confirmar", headers=ANA)
+    filas = [(f[-3], f[-2], f[-1]) for f in _limpio(storage, db)[1:]]
+    assert filas[1:] == [
+        ("Entrevistador", "entrevistador", "¿Consideras que las actividades extracurriculares tienen impacto en tus calificaciones?"),
+        ("Entrevistado", "entrevistado", "Cuando iba en la primaria no lo pensaba así, pero ahora creo que sí. Me llenan de energía."),
+        ("Entrevistador", "entrevistador", "¿Qué te motiva a seguir?"),
+        ("Entrevistado", "entrevistado", "Mantener la beca deportiva."),
+    ]
+
+
+def test_sin_etiquetas_el_investigador_puede_volver_a_parrafos(cliente, db, storage):
+    id_crudo, _ = _ejecutar(cliente, db, storage, "sin_etiquetas.txt", SIN_ETIQUETAS.encode("utf-8"))
+    cliente.patch(f"/limpieza/{id_crudo}/ejecuciones/1/decisiones", headers=ANA,
+                  json={"decisiones": {"segmentacion-inferida": "continuar_por_parrafos"}})
+    cliente.post(f"/limpieza/{id_crudo}/ejecuciones/1/confirmar", headers=ANA)
+    assert {f[-2] for f in _limpio(storage, db)[1:]} == {"desconocido"}

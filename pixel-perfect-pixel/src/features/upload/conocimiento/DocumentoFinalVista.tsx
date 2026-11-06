@@ -38,7 +38,6 @@ type RespuestaMuestra = {
   significado?: string;
   texto?: string;
   estado: string;
-  correcta?: boolean;
 };
 
 function MuestraPersonas({
@@ -65,7 +64,6 @@ function MuestraPersonas({
                   {r.estado === "sin_respuesta" && !r.significado
                     ? "Sin respuesta"
                     : (r.significado ?? r.texto ?? "—")}
-                  {r.correcta !== undefined && (r.correcta ? " ✓ correcta" : " ✗ incorrecta")}
                 </p>
               </li>
             ))}
@@ -345,11 +343,7 @@ export function DocumentoFinalVista({ datos }: { datos: DocumentoGenerado }) {
                         </p>
                         <ChipsKpi ids={r.kpis_relacionados} />
                       </div>
-                      <p className="text-xs text-muted-foreground">
-                        {r.calificable === false
-                          ? r.resumen.interpretacion
-                          : `Respuesta correcta: ${r.respuesta_correcta}. ${r.resumen.interpretacion}`}
-                      </p>
+                      <p className="text-xs text-muted-foreground">{r.resumen.interpretacion}</p>
                     </li>
                   ))}
                 </ol>

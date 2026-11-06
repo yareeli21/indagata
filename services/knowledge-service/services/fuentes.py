@@ -121,7 +121,7 @@ def filas_limpias(ctx: Contexto) -> list[dict[str, str]]:
     return [dict(zip(encabezados, fila)) for fila in tabla.get("rows") or []]
 
 
-def estructura_de(ctx: Contexto) -> Estructura:
+def estructura_de(ctx: Contexto, nombres_dimensiones: list[str] | None = None) -> Estructura:
     """Secciones y preguntas del instrumento a partir de la mejor fuente disponible."""
     texto = texto_original(ctx)
     instrumento_original = original.leer(texto) if texto.strip() else None
@@ -130,13 +130,16 @@ def estructura_de(ctx: Contexto) -> Estructura:
     if ctx.limpieza is not None:
         reporte = ctx.limpieza.reporte or {}
         if ctx.tipo == "encuesta":
-            return estructura.encuesta(id_crudo, reporte, instrumento_original)
+            return estructura.encuesta(id_crudo, reporte, instrumento_original, nombres_dimensiones)
         if ctx.tipo == "entrevista":
             return estructura.entrevista(id_crudo, filas_limpias(ctx), instrumento_original)
         if ctx.tipo == "prueba_estandarizada":
             clave = ((reporte.get("especifico") or {}).get("prueba_estandarizada") or {}).get("clave")
-            documento = "" if clave else "\n".join(f.get("texto", "") for f in filas_limpias(ctx))
-            return estructura.prueba(id_crudo, reporte, instrumento_original, documento)
+            filas = filas_limpias(ctx)
+            documento = "" if clave else "\n".join(f.get("texto", "") for f in filas)
+            # El CSV limpio (una fila por alumno y reactivo) conserva el orden real de los reactivos.
+            orden = [f["pregunta"] for f in filas if f.get("pregunta")]
+            return estructura.prueba(id_crudo, reporte, instrumento_original, documento, orden_columnas=orden)
 
     # Instrumentos anteriores a la limpieza: el JSON técnico que ya existe en storage.
     try:

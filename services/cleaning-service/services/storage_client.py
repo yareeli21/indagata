@@ -45,7 +45,7 @@ def _pedir(metodo: str, ruta: str, **kwargs: Any) -> httpx.Response:
 
 
 def descargar(ruta: str) -> bytes:
-    """Bytes de un artefacto (el crudo o la clave de respuestas) tal cual se subió."""
+    """Bytes de un artefacto (el crudo) tal cual se subió."""
     return _pedir("GET", "/almacenamiento/descarga", params={"ruta": ruta}).content
 
 

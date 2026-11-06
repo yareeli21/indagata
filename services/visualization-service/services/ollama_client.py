@@ -34,9 +34,10 @@ _TIMEOUT = httpx.Timeout(connect=5.0, read=120.0, write=120.0, pool=5.0)
 #   sobra espacio para la respuesta. Con 2048 el prompt + la respuesta rebasaban
 #   la ventana y Ollama recortaba el inicio del prompt, que es la instrucción de
 #   responder solo con el contexto.
-# - temperature=0.2: respuestas apegadas al contexto recuperado (requisito del RAG).
+# - temperature: la de la redacción, `RAG_TEMPERATURA_REDACCION` (0.2 por defecto: respuestas apegadas al
+#   contexto). La interpretación, los clasificadores y el juez la sobrescriben con 0 en `opciones`.
 _KEEP_ALIVE = -1
-_OPTIONS = {"num_ctx": 4096, "temperature": 0.2}
+_NUM_CTX = 4096
 
 
 def _payload(
@@ -45,20 +46,21 @@ def _payload(
     *,
     stream: bool,
     sistema: str | None = None,
-    formato: str | None = None,
+    formato: str | dict | None = None,
     opciones: dict | None = None,
 ) -> dict:
     """Arma el cuerpo de /api/generate con las opciones de rendimiento.
 
     `opciones` se suma a las de rendimiento (p. ej. temperature 0 para el
-    clasificador de dominio) y `formato="json"` obliga a Ollama a devolver JSON.
+    clasificador de dominio) y `formato="json"` obliga a Ollama a devolver JSON; con un JSON Schema
+    (dict), Ollama restringe la salida a ese esquema (plan de la interpretación).
     """
     cuerpo = {
         "model": modelo,
         "prompt": prompt,
         "stream": stream,
         "keep_alive": _KEEP_ALIVE,
-        "options": {**_OPTIONS, **(opciones or {})},
+        "options": {"num_ctx": _NUM_CTX, "temperature": settings.RAG_TEMPERATURA_REDACCION, **(opciones or {})},
     }
     if sistema:
         cuerpo["system"] = sistema
@@ -113,7 +115,7 @@ async def generar_no_stream(
     modelo: str,
     sistema: str | None = None,
     *,
-    formato: str | None = None,
+    formato: str | dict | None = None,
     opciones: dict | None = None,
 ) -> tuple[str, bool]:
     """Genera texto completo. Devuelve `(texto, degradado)` (§4.10).

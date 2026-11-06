@@ -1,164 +1,44 @@
-# Alta de usuarios (registro) — INDAGATA
+# Alta de usuarios — Indagata
 
-> Cómo dar de alta nuevos usuarios (investigadores o administradores) en el
-> sistema. Documento verificado contra el backend en ejecución.
+Indagata tiene dos roles: **investigador** (sube y consulta instrumentos) y **administrador** (además da de alta
+usuarios). Solo un administrador puede crear cuentas.
 
----
+## Usuarios de desarrollo
 
-## 1. Concepto: quién puede crear usuarios
+Se crean solos cuando la base arranca vacía (`infrastructure/postgres/init/05_seed_usuarios.sql`):
 
-El sistema usa autenticación JWT. La regla de negocio es:
+| Rol | Correo | Contraseña |
+|---|---|---|
+| Administrador | `admin@indagata.com` | `admin123` |
+| Investigador | `investigador@indagata.com` | `investigador123` |
 
-- **Solo un ADMINISTRADOR puede dar de alta usuarios nuevos.**
-- Un investigador NO puede crear usuarios (recibe error 403).
-- Nadie sin iniciar sesión puede crear usuarios (recibe error 401).
+Son credenciales de desarrollo: cámbialas antes de usar Indagata con datos reales.
 
-Esto resuelve el problema del "huevo y la gallina": el PRIMER administrador se
-siembra automáticamente al crear la base de datos (ver `05_seed_usuarios.sql`).
-A partir de ese admin, se crean todos los demás.
+## Desde la interfaz
 
-### Usuarios demo ya existentes
+1. Entra con una cuenta de administrador.
+2. En el menú lateral abre **Gestión de usuarios** (`/usuarios`). Un investigador ve un aviso de permisos.
+3. Llena nombre, correo, contraseña (6 caracteres o más) y rol, y guarda.
 
-| Rol           | Email                        | Contraseña        |
-|---------------|------------------------------|-------------------|
-| Administrador | `admin@indagata.com`         | `admin123`        |
-| Investigador  | `investigador@indagata.com`  | `investigador123` |
+La pantalla llama a `POST /auth/register` del api-gateway a través de `src/api/usuarios.ts`.
 
-> Son credenciales de desarrollo. CAMBIARLAS en producción.
+## Por la API
 
----
-
-## 2. El endpoint de registro
-
-- **Ruta:** `POST /auth/register`
-- **Servicio:** api-gateway (`http://localhost:8000` en local).
-- **Requiere:** cabecera `Authorization: Bearer <token-de-ADMIN>`.
-- **Respuesta exitosa:** HTTP 201 con los datos del usuario creado.
-
-### Cuerpo de la petición (JSON)
-
-```json
-{
-  "nombre": "Nombre Apellido",
-  "email": "persona@dominio.com",
-  "password": "mínimo 6 caracteres",
-  "rol": "investigador"
-}
-```
-
-Reglas de los campos (validadas por el backend):
-
-| Campo      | Regla                                                              |
-|------------|--------------------------------------------------------------------|
-| `nombre`   | obligatorio, mínimo 1 carácter                                     |
-| `email`    | obligatorio, formato de email **válido**. NO usar dominios reservados como `.local` (los rechaza la validación). Usar `.com`, `.org`, etc. Debe ser **único**. |
-| `password` | obligatorio, **mínimo 6 caracteres**. Se guarda hasheada con bcrypt (nunca en texto plano). |
-| `rol`      | `investigador` (por defecto) o `administrador`.                    |
-
----
-
-## 3. Proceso paso a paso (vía terminal / API)
-
-Este es el flujo real, verificado. Son dos pasos: obtener el token de admin y
-luego registrar.
-
-### Paso 1 — Iniciar sesión como administrador para obtener el token
+El api-gateway está en `http://localhost:8006` (Docker; con uvicorn local es el puerto 8000).
 
 ```powershell
-$login = Invoke-RestMethod -Uri "http://localhost:8000/auth/login" `
-  -Method POST -ContentType "application/json" `
-  -Body '{"email":"admin@indagata.com","password":"admin123"}'
-$token = $login.access_token
+$login = Invoke-RestMethod -Uri "http://localhost:8006/auth/login" -Method POST `
+  -ContentType "application/json" -Body '{"email":"admin@indagata.com","password":"admin123"}'
+Invoke-RestMethod -Uri "http://localhost:8006/auth/register" -Method POST -ContentType "application/json" `
+  -Headers @{ Authorization = "Bearer $($login.access_token)" } `
+  -Body '{"nombre":"María Investigadora","email":"maria@indagata.com","password":"maria123","rol":"investigador"}'
 ```
 
-### Paso 2 — Registrar el nuevo usuario (con el token del admin)
+Respuestas: 201 si se creó; 401 sin token o con token vencido (dura 60 minutos); 403 si quien la pide no es
+administrador; 409 si el correo ya existe; 422 si falta un campo o la contraseña es corta.
 
-```powershell
-$nuevo = '{
-  "nombre": "María Investigadora",
-  "email": "maria@indagata.com",
-  "password": "maria123",
-  "rol": "investigador"
-}'
+## Dónde quedan
 
-Invoke-RestMethod -Uri "http://localhost:8000/auth/register" `
-  -Method POST -ContentType "application/json" `
-  -Headers @{ Authorization = "Bearer $token" } `
-  -Body $nuevo
-```
-
-Respuesta esperada (HTTP 201):
-
-```json
-{
-  "usuario_id": 3,
-  "nombre": "María Investigadora",
-  "email": "maria@indagata.com",
-  "rol": "investigador"
-}
-```
-
-A partir de ahí, ese usuario puede iniciar sesión con su email y contraseña.
-
-### Equivalente con curl (multiplataforma)
-
-```bash
-# Paso 1: login admin, guardar el token
-TOKEN=$(curl -s -X POST http://localhost:8000/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"admin@indagata.com","password":"admin123"}' \
-  | python -c "import sys,json;print(json.load(sys.stdin)['access_token'])")
-
-# Paso 2: registrar
-curl -X POST http://localhost:8000/auth/register \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"nombre":"María Investigadora","email":"maria@indagata.com","password":"maria123","rol":"investigador"}'
-```
-
----
-
-## 4. Errores posibles (y qué significan)
-
-| HTTP | Cuándo ocurre                                               | Qué hacer                                  |
-|------|------------------------------------------------------------|--------------------------------------------|
-| 401  | No se envió token (no autenticado)                         | Inicia sesión como admin y envía el Bearer |
-| 403  | El token es de un investigador, no de un admin             | Usa un token de administrador              |
-| 409  | Ya existe un usuario con ese email                         | Usa otro email                             |
-| 422  | Email con formato inválido (p.ej. `.local`) o password < 6 | Corrige el email / usa password ≥ 6        |
-
----
-
-## 5. Estado en la interfaz web (pixel-perfect-pixel)
-
-**Importante:** a día de hoy, el **login** del front ya está conectado al backend
-real, pero la **pantalla de alta de usuarios NO existe todavía** en la interfaz.
-Es decir, hoy el registro solo se puede hacer por la API (los pasos de la
-sección 3), no desde un formulario en la web.
-
-Cuando se desarrolle esa parte (fase futura), lo natural sería:
-
-- Una pantalla visible **solo para administradores** (p.ej. "Gestión de usuarios").
-- Un formulario que llame a `POST /auth/register` reutilizando el helper `pedir`
-  de `src/api/client.ts` con `auth: true` (adjunta el JWT del admin).
-- Una nueva función en `src/api/` (p.ej. `src/api/usuarios.ts`) siguiendo el
-  patrón del proyecto (toda la UI pasa por `src/api/`).
-
-Mientras tanto, para crear usuarios reales se usa la API directamente.
-
----
-
-## 6. Nota sobre persistencia
-
-- Los usuarios creados por `POST /auth/register` quedan guardados en la tabla
-  `tt_rag.usuario` de PostgreSQL (persisten en el volumen `postgres_data`).
-- Los dos usuarios demo (admin, investigador) se recrean automáticamente en cada
-  arranque limpio de la base (`05_seed_usuarios.sql`), porque es idempotente
-  (`ON CONFLICT (email) DO NOTHING`). Los usuarios que tú crees por la API NO se
-  recrean solos: si borras el volumen (`docker compose down -v`), se pierden y
-  habría que volver a darlos de alta.
-
----
-
-*Documento de referencia del proceso de alta de usuarios de INDAGATA.
-Credenciales mostradas son de desarrollo; cambiarlas en producción.*
+En la tabla `tt_rag.usuario` de PostgreSQL, dentro del volumen `postgres_data`. Los usuarios de desarrollo se
+recrean en cada arranque limpio; los que tú crees no: si borras el volumen (`docker compose down -v`) hay que
+volver a darlos de alta.

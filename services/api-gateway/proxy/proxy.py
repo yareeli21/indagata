@@ -9,12 +9,12 @@ JSON de dominio directo con el status HTTP real (incluye 401/404/409/422).
 Prefijos passthrough:
   - /instrumentos/*     → instrument-service :8001    (GET/POST/DELETE)
   - /almacenamiento/*   → storage-service :8004       (GET/POST/DELETE; interno: solo administradores)
-  - /rag/*              → visualization-service :8005 (POST; /rag/chat es SSE)
+  - /rag/*              → visualization-service :8005 (POST, GET y PUT; /rag/chat es SSE)
   - /visualizacion/*    → visualization-service :8005 (GET/POST: catálogo, KPIs, descargas)
   - /api/metadata/*     → metadata-service :8003      (GET/POST/DELETE)
   - /api/enrichment/*   → metadata-service :8003      (GET/POST/DELETE)
   - /limpieza/*         → cleaning-service :8007      (GET/POST/PATCH: limpieza asistida)
-  - /conocimiento/*     → knowledge-service :8009     (GET/POST: perfil semántico y documento final)
+  - /conocimiento/*     → knowledge-service :8009     (GET/POST/PATCH: perfil, documento final y análisis de entrevistas)
 
 `analysis-service` lo consume el frontend de forma directa (no se proxea aquí).
 Las cabeceras de descarga del upstream (Content-Disposition, huella SHA-256) se
@@ -69,7 +69,9 @@ async def proxy_request(service: str, path: str, request: Request, method: str) 
             content=body,
             headers=headers,
             params=request.query_params,
-            timeout=httpx.Timeout(connect=5.0, read=120.0, write=120.0, pool=5.0),
+            # 600 s de lectura: aprobar los metadatos reindexa el instrumento de forma síncrona y con 160
+            # respondentes tardó más de 120 s; el gateway cortaba con 500 aunque la aprobación sí se guardaba (24 oct).
+            timeout=httpx.Timeout(connect=5.0, read=600.0, write=120.0, pool=5.0),
         )
 
     return Response(
@@ -151,25 +153,40 @@ async def visualizacion_post(request: Request, path: str) -> Response:
 # `/rag/chat` es SSE: se streamea sin bufferizar preservando text/event-stream.
 # ---------------------------------------------------------------------------
 @router.post("/rag/chat")
-async def rag_chat(request: Request) -> StreamingResponse:
+async def rag_chat(request: Request) -> Response:
+    """Streamea el SSE del chat; un error del upstream (401 por token vencido, 422…) se
+    devuelve con su status real ANTES de abrir el stream, para que el frontend lo vea
+    (si se streameara, el navegador recibiría 200 con el cuerpo del error y no sabría
+    que la sesión expiró)."""
     url = f"{SERVICES['visualization']}/rag/chat"
     headers = _headers_reenvio(request)
     body = await request.body()
+    client = httpx.AsyncClient(timeout=httpx.Timeout(connect=5.0, read=None, write=120.0, pool=5.0))
+    try:
+        upstream = await client.send(
+            client.build_request("POST", url, content=body, headers=headers, params=request.query_params),
+            stream=True,
+        )
+    except httpx.RequestError:
+        await client.aclose()
+        return Response(content=b'{"detail":"El servicio del chat no est\xc3\xa1 disponible."}', status_code=503,
+                        media_type="application/json")
+    if upstream.status_code >= 400:
+        contenido = await upstream.aread()
+        await upstream.aclose()
+        await client.aclose()
+        return Response(content=contenido, status_code=upstream.status_code, media_type=upstream.headers.get("content-type"))
 
     async def flujo():
-        client = httpx.AsyncClient(
-            timeout=httpx.Timeout(connect=5.0, read=None, write=120.0, pool=5.0),
-        )
         try:
-            async with client.stream(
-                "POST", url, content=body, headers=headers, params=request.query_params
-            ) as upstream:
-                async for chunk in upstream.aiter_bytes():
-                    yield chunk
+            async for chunk in upstream.aiter_bytes():
+                yield chunk
         finally:
+            await upstream.aclose()
             await client.aclose()
 
-    return StreamingResponse(flujo(), media_type="text/event-stream")
+    return StreamingResponse(flujo(), status_code=upstream.status_code,
+                             media_type=upstream.headers.get("content-type", "text/event-stream"))
 
 
 @router.post("/rag")
@@ -183,6 +200,13 @@ async def rag_post(request: Request, path: str = "") -> Response:
 @router.get("/rag/{path:path}")
 async def rag_get(request: Request, path: str = "") -> Response:
     return await proxy_request("visualization", _ruta_upstream("/rag", path), request, "GET")
+
+
+# Calificación humana de una respuesta (PUT /rag/consultas/{id}/calificacion).
+@router.put("/rag")
+@router.put("/rag/{path:path}")
+async def rag_put(request: Request, path: str = "") -> Response:
+    return await proxy_request("visualization", _ruta_upstream("/rag", path), request, "PUT")
 
 
 # ---------------------------------------------------------------------------
@@ -268,3 +292,10 @@ async def conocimiento_get(request: Request, path: str = "") -> Response:
 @router.post("/conocimiento/{path:path}")
 async def conocimiento_post(request: Request, path: str = "") -> Response:
     return await proxy_request("knowledge", _ruta_upstream("/conocimiento", path), request, "POST")
+
+
+@router.patch("/conocimiento")
+@router.patch("/conocimiento/{path:path}")
+async def conocimiento_patch(request: Request, path: str = "") -> Response:
+    # Corrección del análisis de respuestas de entrevista.
+    return await proxy_request("knowledge", _ruta_upstream("/conocimiento", path), request, "PATCH")

@@ -1,114 +1,40 @@
-# API — Routers
+# api-gateway (puerto 8006 → 8000)
 
-> Flujo vigente del wizard de carga. Sustituye a la versión anterior, que documentaba
-> los endpoints `etl/extract` y `etl/approve` y el estado `etl_pendiente` (flujo antiguo, ya reemplazado).
+Único punto de entrada HTTP del frontend (salvo analysis-service, que el frontend llama directo en el 8002).
+Hace dos cosas:
 
-## Endpoints disponibles
+1. **Autenticación** (`app/auth/`): emite y valida el JWT que usan todos los servicios.
+2. **Proxy** (`proxy/proxy.py`): reenvía cada ruta, sin cambiarla, al servicio que le corresponde.
 
-### **Carga de instrumentos** (`routers_carga.py`)
+## Autenticación
 
-| Endpoint | Método | Descripción |
-|----------|--------|-------------|
-| `/instrumentos/upload` | POST | Subir archivo (.csv, .xlsx, .sav, .pdf) + tipo de instrumento. Codebook opcional (encuestas). |
-| `/instrumentos/{id}/metadata/init` | GET | Obtener metadatos autocompletados (para pre-poblar el formulario) |
-| `/instrumentos/{id}/metadata` | POST | Registrar los 13 metadatos Dublin Core (7 manuales). Inmutable |
-| `/instrumentos/{id}/analyze` | POST | Analizar con el SIS (limpieza, profiling, enriquecimiento, KPIs, mejoras) ⚠️ requiere Ollama |
-| `/instrumentos/{id}/etl/proposals` | GET | Ver propuestas generadas por el SIS (idempotente) |
-| `/instrumentos/{id}/approve/cleaning` | POST | Paso 4a — decidir propuestas de limpieza (transformaciones) |
-| `/instrumentos/{id}/approve/enrichment` | POST | Paso 4b — decidir metadatos enriquecidos + KPIs. Genera JSON consolidado (y .SAV si es encuesta) |
+| Ruta | Método | Qué hace |
+|---|---|---|
+| `/auth/login` | POST | Correo y contraseña → `access_token` (JWT, 60 minutos) |
+| `/auth/me` | GET | Usuario del token |
+| `/auth/register` | POST | Alta de usuario; solo administradores (ver `markdowns/ALTA_DE_USUARIOS.md`) |
 
-> **Nota:** el endpoint `POST /instrumentos/ingesta` está **deshabilitado (comentado)** en `routers_carga.py`.
-> No es código muerto: es un punto de extensión reservado para el **módulo de vectorización futuro**,
-> que procesará instrumentos en estado `etl_aprobado`.
+El token se firma con `SECRET_KEY` (raíz `.env`); todos los servicios lo validan con la misma clave, así que una
+clave distinta se ve como 401.
 
-### **Visualización de instrumentos** (`routers_visualizacion.py`)
+## Proxy
 
-| Endpoint | Método | Descripción |
-|----------|--------|-------------|
-| `/kpis` | GET | Catálogo de KPIs disponibles |
-| `/instrumentos` | GET | Listar instrumentos (con filtros) |
-| `/instrumentos/{id}` | GET | Detalle completo del instrumento |
-| `/instrumentos/{id}/download` | GET | Descargar (`?type=original\|json\|sav`) |
-| `/instrumentos/{id}` | DELETE | Eliminar instrumento (solo propietario) |
+| Prefijo | Servicio |
+|---|---|
+| `/instrumentos/*` | instrument-service (8001) |
+| `/api/metadata/*`, `/api/enrichment/*` | metadata-service (8003) |
+| `/limpieza/*` | cleaning-service (8007) |
+| `/conocimiento/*` | knowledge-service (8009) |
+| `/visualizacion/*`, `/rag/*` | visualization-service (8005); `/rag/chat` transmite por SSE |
+| `/almacenamiento/*` | storage-service (8004), solo administradores |
 
----
+La ruta, el código de estado y el cuerpo pasan sin cambios; se conservan `Authorization`, `Content-Disposition`,
+`X-Checksum-SHA256` y `X-Nombre-Archivo`. Cada prefijo registra la ruta base y `{path:path}` para evitar la
+redirección 307 de FastAPI: un prefijo nuevo debe seguir el mismo patrón.
 
-## Flujo wizard de carga (vigente)
+## Correr
 
+```powershell
+docker compose up -d api-gateway        # con el resto del stack
+docker compose restart api-gateway      # después de cambiar el código (no corre con --reload)
 ```
-1. upload → archivo + tipo (+ codebook opcional en encuestas)
-   Estado: pendiente
-
-2. metadata/init → autocompletados
-   metadata → 7 campos manuales
-   Estado: metadata_registrado
-
-3. analyze → ejecuta el SIS completo (S1..S9, requiere Ollama)
-   Persiste propuestas de limpieza, metadatos enriquecidos, KPIs y mejoras.
-   Estado: etl_pendiente_limpieza
-   (Reanalizable: puede repetirse desde 'metadata_registrado' o 'etl_pendiente_limpieza')
-
-4a. approve/cleaning → decidir transformaciones (drop_columns, normalize_scale)
-    Genera el dataset limpio.
-    Estado: etl_pendiente_enriquecimiento
-
-4b. approve/enrichment → decidir metadatos enriquecidos + KPIs
-    Genera storage/json/{id}.json (consolidado) y, si es encuesta, el .SAV.
-    Estado: etl_aprobado ✅
-```
-
-> **Estado final del módulo de carga:** `etl_aprobado`. El JSON consolidado queda disponible para descarga.
-> La transición a `vectorizado` corresponde al futuro módulo de vectorización (RAG principal), aún no implementado.
-
----
-
-## Permisos
-
-### **Lectura (público):**
-- ✅ Todos pueden ver/descargar cualquier instrumento (RAG colaborativo)
-
-### **Escritura (solo propietario):**
-- ✅ Analizar y aprobar (cleaning/enrichment)
-- ✅ Eliminar instrumento
-
-### **Eliminación:**
-Operación irreversible que borra:
-- Registro en BD + archivos en disco
-- (El borrado en ChromaDB es un no-op hoy; se activará con el módulo de vectorización)
-- Para modificar: eliminar y re-subir
-
----
-
-## Autenticación (estado actual y futuro)
-
-> **Modo desarrollo.** `get_current_user` en `dependencies_instrumentos.py` devuelve un usuario fijo
-> (`_DEV_USER_ID = 1`) sin pedir token. El bloque de **autenticación real (JWT)** ya está escrito pero
-> comentado: **NO es código muerto**, es funcionalidad futura pendiente de integración. Se activará cuando
-> exista `POST /auth/token`. Ver `backend/README.md` para el procedimiento de reactivación.
-
----
-
-## Testing
-
-- **Swagger UI:** http://localhost:8000/docs
-- **Timeout:** el paso `analyze` (SIS + Ollama) puede tardar 30-180s (configurar timeout en el cliente: 300000ms)
-
----
-
-## Errores comunes
-
-| Código | Causa | Solución |
-|--------|-------|----------|
-| 404 | Instrumento no existe | Verificar ID con `GET /instrumentos` |
-| 409 | Estado incorrecto para el paso | Revisar estado actual con `GET /instrumentos/{id}` |
-| 422 | El SIS no pudo procesar el archivo (ilegible/vacío) | Revisar el archivo subido |
-| 403 | Sin permiso de propietario | Usar el usuario creador |
-| 500 | Ollama no responde (paso `analyze`) | Verificar `http://localhost:11434` |
-
----
-
-## Documentación relacionada
-
-- **Visión general del backend y capas:** `../../README.md`
-- **Auditoría arquitectónica:** `../../ARCHITECTURE_AUDIT_REPORT.md`
-- **Arquitectura del SIS y extensión por instrumento:** `../../survey_intelligence/docs/ARQUITECTURA_SIS.md`, `../../survey_intelligence/docs/GUIA_EXTENSION_INSTRUMENTOS.md`

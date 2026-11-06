@@ -35,7 +35,6 @@ from shared.models.kpi import KPI
 from shared.models.kpi_fuente import KPIFuente
 from shared.models.kpi_inferido import KPIInferido
 from shared.models.kpi_inferido_chunk import KpiInferidoChunk
-from shared.models.kpi_variable import KPIVariable
 from shared.models.metadatos_dc import MetadatosDC
 from shared.models.metadatos_encuestas import MetadatosEnriquecidosEncuestas
 from shared.models.metadatos_entrevistas import MetadatosEnriquecidosEntrevistas
@@ -43,7 +42,6 @@ from shared.models.metadatos_pruebasestandarizadas import MetadatosEnriquecidosP
 from shared.models.rag_log import RagLog
 from shared.models.raw_data import RawData
 from shared.models.usuario import Usuario
-from shared.models.variable import Variable
 
 from services import vectores
 
@@ -450,10 +448,6 @@ def resolver_kpi(db: Session, kpi_id: str, fichas: list[Ficha]) -> KpiRef | None
 
 
 def catalogo_kpis(db: Session, fichas: list[Ficha]) -> list[dict[str, Any]]:
-    variables: dict[int, list[Variable]] = {}
-    for kpi_id, variable in db.query(KPIVariable.kpi_id, Variable).join(Variable, Variable.variable_id == KPIVariable.variable_id):
-        variables.setdefault(kpi_id, []).append(variable)
-
     fuentes: dict[int, list[dict[str, Any]]] = {}
     try:
         for f in db.query(KPIFuente).order_by(KPIFuente.kpi_fuente_id):
@@ -472,15 +466,7 @@ def catalogo_kpis(db: Session, fichas: list[Ficha]) -> list[dict[str, Any]]:
 
     for ref, fila in refs:
         n = sum(1 for f in fichas if asociado(f, ref))
-        vars_kpi = variables.get(ref.kpi_id or -1, [])
-        como = (
-            "Variables: " + "; ".join(
-                f"{v.nombre_variable}" + (f" ({v.unidad})" if v.unidad else "") + (f": {v.descripcion}" if v.descripcion else "")
-                for v in vars_kpi
-            )
-            if vars_kpi
-            else "Se estima con los reactivos de los instrumentos asociados, identificados por similitud semántica."
-        )
+        como = "Se estima con los reactivos de los instrumentos asociados, identificados por similitud semántica."
         info = f"{n} instrumento{'s' if n != 1 else ''} del acervo asociado{'s' if n != 1 else ''} a este KPI."
         if fila is not None and fila.razon_estrategica_decisiones:
             info = f"{fila.razon_estrategica_decisiones} {info}"

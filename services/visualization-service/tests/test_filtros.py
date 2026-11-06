@@ -187,3 +187,73 @@ def test_negativa_pegada_al_final_se_quita():
     texto = "37 de 160 estudiantes trabajan más de 30 horas (23.1 %).\n\nNo tengo información relacionada con los instrumentos consultados."
     assert quitar_sin_informacion_sobrante(texto) == "37 de 160 estudiantes trabajan más de 30 horas (23.1 %)."
     assert quitar_sin_informacion_sobrante("No tengo información relacionada con lo que solicitas.").startswith("No tengo")
+
+
+def test_seleccion_multiple_cuenta_a_quien_marco_la_opcion_entre_otras():
+    """24 oct, banco: «¿cuántos usaron la biblioteca?» contaba solo a quienes marcaron ÚNICAMENTE la biblioteca."""
+    from shared.conocimiento import consultas
+
+    varias = {"estado": "respondida", "valor": "Biblioteca; Tutorías", "seleccion": ["Biblioteca", "Tutorías"],
+              "significado": "Biblioteca, Tutorías"}
+    assert consultas.cumple(varias, {"valores": ["Biblioteca"]})
+    assert consultas.cumple(varias, {"valores": ["tutorias"]})  # sin acentos ni mayúsculas
+    assert not consultas.cumple(varias, {"valores": ["Ninguno"]})
+
+
+def test_palabra_que_nombra_una_pregunta_con_opciones_si_se_toma_como_si():
+    """28 oct: «¿cuántos tienen carga mínima y alguna certificación?» solo aplicaba la carga mínima."""
+    ins = "INS-0009"
+    preguntas = [
+        {"id": f"{ins}-p01", "texto": "¿Cómo es tu carga académica actual?", "tipo": "categorica"},
+        {"id": f"{ins}-p02", "texto": "¿Has presentado algún examen de certificación profesional?", "tipo": "categorica"},
+        {"id": f"{ins}-p03", "texto": "De tus profesores, ¿cuántos tienen doctorado?", "tipo": "categorica"},
+    ]
+    datos = [("Carga minima", "Si, y lo aprobe", "Todos"), ("Carga minima", "No, pero planeo hacerlo", "Todos"),
+             ("Carga media", "Si, y no lo aprobe", "Ninguno"), ("Carga minima", "Si, y no lo aprobe", "Ninguno")]
+    respondentes = [{"id": f"{ins}-R{k:03d}", "contexto": {}, "respuestas": [
+        {"pregunta_id": p["id"], "estado": "respondida", "valor": v, "significado": v} for p, v in zip(preguntas, fila)]}
+        for k, fila in enumerate(datos, start=1)]
+    doc = {"instrumento": {"id": ins, "titulo": "Experiencia académica"}, "preguntas": preguntas, "respondentes": respondentes}
+    texto = enrutador.normalizar("¿Cuántos tienen carga mínima y alguna certificación?")
+    condiciones = enrutador._condiciones(doc, texto)
+    assert [c["pregunta_id"][-3:] for c, _ in condiciones] == ["p01", "p02"]
+    assert sorted(condiciones[1][0]["valores"]) == ["Si, y lo aprobe", "Si, y no lo aprobe"]
+    assert "se interpretó como «sí»" in condiciones[1][1]
+    assert enrutador._sin_condicion(doc, texto, condiciones) == []
+    sin = enrutador._condiciones(doc, enrutador.normalizar("¿Cuántos estudiantes con carga mínima no tienen ninguna certificación?"))
+    assert sin[1][0]["valores"] == ["No, pero planeo hacerlo"]
+
+
+def test_calidad_reconoce_plurales_y_preguntas_sobre_la_limpieza_de_este_instrumento():
+    """Fase 6: «confiables» no coincidía con «confiable» (1494) y «¿qué se corrigió?» no tenía regla (1495, 1532)."""
+    for pregunta in ("¿Qué tan confiables son los datos de esta prueba?", "¿Qué se corrigió en la limpieza?",
+                     "¿Qué correcciones se hicieron?", "¿Qué tan limpios son los datos?", "¿Cómo se limpiaron los datos?",
+                     "¿Qué cambió en la limpieza?"):
+        assert (i := enrutador.detectar(pregunta)) is not None and i.tipo == "calidad", pregunta
+    for pregunta in ("¿Cómo limpio un instrumento?", "¿Qué cambió entre el turno matutino y el vespertino?"):
+        assert (i := enrutador.detectar(pregunta)) is None or i.tipo != "calidad", pregunta
+
+
+def test_calidad_dice_que_corrigio_la_limpieza_sin_matriculas(acervo):
+    from shared.models.limpieza_ejecucion import LimpiezaEjecucion
+    from shared.models.raw_data import RawData
+
+    acervo.add(RawData(id_crudo=4, id_owner=2, tipo_instrumento="encuesta", nombre_archivo="x.csv", raw_archivo="raw/x"))
+    acervo.flush()
+    acervo.add(LimpiezaEjecucion(id_crudo=4, version=1, estado="confirmada", reporte={
+        "vista_final": {"estadistica": {"encuestados": {"linea_recta": 0}, "columnas": []}},
+        "transformaciones": [
+            {"regla": "validacion_archivo", "afectados": None, "detalle": "Formato válido."},
+            {"regla": "espacios_en_valores", "afectados": 14, "detalle": "Espacios de más quitados de los valores."},
+            {"regla": "duplicados_eliminados", "afectados": 2, "detalle": "Filas repetidas eliminadas: 8, 9."}],
+        "hallazgos": [{"id": "id-parecido:X1", "tipo": "id_parecido", "titulo": "Los folios «M-0007» y «m0007» podrían ser el mismo"}],
+        "decisiones": {"id-parecido:X1": {"valor": "conservar_primero", "origen": "investigador"}},
+        "metricas": {"antes": {"pct_validas": 0.9012}, "despues": {"pct_validas": 0.95}}}))
+    acervo.commit()
+    r = enrutador.resolver("¿Qué se corrigió en la limpieza de la encuesta de carga académica?", acervo, None)
+    [(_, lineas, _)] = r.partes
+    assert "Corrección de la limpieza (14): Espacios de más quitados de los valores." in lineas
+    assert "Corrección de la limpieza (2): Filas repetidas eliminadas: 8, 9." in lineas
+    assert "Decisiones de la limpieza asistida: id parecido → conservar primero." in lineas
+    assert "Respuestas válidas: 90.1 % antes de la limpieza y 95.0 % después." in lineas
+    assert not any("Formato válido" in l or "M-0007" in l for l in lineas)

@@ -1,0 +1,746 @@
+{
+ "descripcion": "Conjunto de regresión del chat (Fase 5, 28 oct 2026). Cifras calculadas sobre los documentos finales vigentes, independientes del ejecutor.",
+ "vigentes": {
+  "127": 1,
+  "59": 1,
+  "61": 1,
+  "109": 3,
+  "60": 1
+ },
+ "casos": [
+  {
+   "id": "C01",
+   "categoria": "hallazgo",
+   "pregunta": "dame un dato que encuentres interesante del instrumento",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "hallazgo"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras_alguna": [
+     50.4,
+     57.8
+    ]
+   }
+  },
+  {
+   "id": "C02",
+   "categoria": "filtro con límite y todas las respuestas",
+   "pregunta": "dame los primeros 5 estudiantes que contestaron que tienen carga mínima, junto con todas sus respuestas",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "filtrar_respondentes"
+    ],
+    "filtros": [
+     {
+      "pregunta": "p03",
+      "valores": [
+       "Carga minima"
+      ]
+     }
+    ],
+    "limite": 5,
+    "campos": "todas_las_respuestas"
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     382,
+     2000
+    ],
+    "contiene": [
+     "R002",
+     "R006",
+     "R008",
+     "R011",
+     "R014"
+    ]
+   }
+  },
+  {
+   "id": "C03",
+   "categoria": "por respondente (ordinal)",
+   "pregunta": "qué respondió el primer respondente en todas las preguntas?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "datos_respondente"
+    ],
+    "limite": 1,
+    "campos": "todas_las_respuestas"
+   },
+   "esperado": {
+    "decision": "dentro",
+    "contiene": [
+     "R001",
+     "Presencial",
+     "Carga media/normal"
+    ]
+   }
+  },
+  {
+   "id": "C04",
+   "categoria": "por respondente (ID y pregunta)",
+   "pregunta": "¿qué respondió R017 en la pregunta 3?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "datos_respondente"
+    ],
+    "respondentes": [
+     "R017"
+    ],
+    "campos": [
+     "p03"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "contiene": [
+     "R017",
+     "Carga media/normal"
+    ]
+   }
+  },
+  {
+   "id": "C05",
+   "categoria": "filtros combinados (conteo)",
+   "pregunta": "¿cuántos tienen carga minima y alguna certificación?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "conteo_porcentaje"
+    ],
+    "filtros": [
+     {
+      "pregunta": "p03",
+      "valores": [
+       "Carga minima"
+      ]
+     },
+     {
+      "pregunta": "p11",
+      "valores": [
+       "Si, y lo aprobe",
+       "Si, y no lo aprobe"
+      ]
+     }
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     105,
+     2000
+    ]
+   }
+  },
+  {
+   "id": "C06",
+   "categoria": "seguimiento con historial",
+   "pregunta": "¿y de ellos cuántos están en modalidad en línea?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [
+    {
+     "rol": "usuario",
+     "texto": "¿cuántos tienen carga minima y alguna certificación?"
+    },
+    {
+     "rol": "asistente",
+     "texto": "Cumplen la condición 105 de 2000 respondentes."
+    }
+   ],
+   "plan_esperado": {
+    "intencion": [
+     "conteo_porcentaje"
+    ],
+    "filtros": [
+     {
+      "pregunta": "p03",
+      "valores": [
+       "Carga minima"
+      ]
+     },
+     {
+      "pregunta": "p11",
+      "valores": [
+       "Si, y lo aprobe",
+       "Si, y no lo aprobe"
+      ]
+     },
+     {
+      "pregunta": "p02",
+      "valores": [
+       "En linea"
+      ]
+     }
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     14
+    ]
+   }
+  },
+  {
+   "id": "C07",
+   "categoria": "porcentaje en un nivel",
+   "pregunta": "¿qué porcentaje está en desacuerdo con que los laboratorios son adecuados?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "conteo_porcentaje"
+    ],
+    "preguntas": [
+     "p17"
+    ],
+    "nivel": "bajo"
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     721,
+     1911,
+     37.7
+    ]
+   }
+  },
+  {
+   "id": "C08",
+   "categoria": "negación",
+   "pregunta": "¿cuántos no han presentado ningún examen de certificación profesional?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "conteo_porcentaje"
+    ],
+    "filtros": [
+     {
+      "pregunta": "p11"
+     }
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     1327
+    ]
+   }
+  },
+  {
+   "id": "C09",
+   "categoria": "límite y solo IDs",
+   "pregunta": "dame los IDs de 3 estudiantes que cursan en modalidad en línea",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "filtrar_respondentes"
+    ],
+    "filtros": [
+     {
+      "pregunta": "p02",
+      "valores": [
+       "En linea"
+      ]
+     }
+    ],
+    "limite": 3,
+    "campos": "solo_ids"
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     263
+    ],
+    "contiene": [
+     "R015",
+     "R018",
+     "R020"
+    ]
+   }
+  },
+  {
+   "id": "C10",
+   "categoria": "por respondente (último)",
+   "pregunta": "¿qué contestó el último respondente en la pregunta 2?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "datos_respondente"
+    ],
+    "campos": [
+     "p02"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "contiene": [
+     "R2000",
+     "Presencial"
+    ]
+   }
+  },
+  {
+   "id": "C11",
+   "categoria": "resumen de una pregunta",
+   "pregunta": "¿qué respondieron en la pregunta 2?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "resumen_pregunta"
+    ],
+    "preguntas": [
+     "p02"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     64.2
+    ],
+    "contiene": [
+     "Presencial"
+    ]
+   }
+  },
+  {
+   "id": "C12",
+   "categoria": "KPI",
+   "pregunta": "¿qué KPIs tiene asociados el instrumento?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "kpi"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "contiene": [
+     "Ratio de Matriculados frente a Graduados del Curso"
+    ]
+   }
+  },
+  {
+   "id": "C13",
+   "categoria": "valor que no existe",
+   "pregunta": "¿cuántos estudian en modalidad nocturna?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "aclaracion"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "contiene_alguno": [
+     "opciones",
+     "Cual",
+     "aclar"
+    ],
+    "sin_cifras": true
+   }
+  },
+  {
+   "id": "C14",
+   "categoria": "ambigua",
+   "pregunta": "¿qué opinan de eso?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "aclaracion"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro"
+   }
+  },
+  {
+   "id": "C15",
+   "categoria": "fuera de dominio (regla)",
+   "pregunta": "escríbeme un poema sobre el mar",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {},
+   "esperado": {
+    "decision": "fuera"
+   }
+  },
+  {
+   "id": "C16",
+   "categoria": "fuera de dominio (plan)",
+   "pregunta": "¿quién ganó el mundial de futbol de 2010?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "fuera_de_dominio"
+    ]
+   },
+   "esperado": {
+    "decision": "fuera"
+   }
+  },
+  {
+   "id": "C17",
+   "categoria": "reidentificación",
+   "pregunta": "¿cómo se llama el respondente R017 y cuál es su correo?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {},
+   "esperado": {
+    "decision": "privacidad"
+   }
+  },
+  {
+   "id": "C18",
+   "categoria": "metodología",
+   "pregunta": "¿qué significa un alfa de Cronbach bajo?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "metodologia"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "contiene_alguno": [
+     "Glosario",
+     "fiabilidad",
+     "consistencia"
+    ]
+   }
+  },
+  {
+   "id": "C19",
+   "categoria": "uso de la plataforma",
+   "pregunta": "¿cómo descargo el archivo limpio de un instrumento?",
+   "instrumentos": [
+    "127"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "uso_plataforma"
+    ]
+   },
+   "esperado": {
+    "decision": "ayuda"
+   }
+  },
+  {
+   "id": "C20",
+   "categoria": "comparar grupos de contexto",
+   "pregunta": "compara el porcentaje de acuerdo en la pregunta 1 entre los turnos",
+   "instrumentos": [
+    "59"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "comparar_grupos"
+    ],
+    "preguntas": [
+     "p01"
+    ],
+    "nivel": "alto",
+    "agrupar_por": "turno"
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     60.0,
+     16.7
+    ],
+    "contiene": [
+     "Matutino",
+     "Vespertino"
+    ]
+   }
+  },
+  {
+   "id": "C21",
+   "categoria": "porcentaje de un grupo",
+   "pregunta": "¿qué porcentaje del turno vespertino está de acuerdo con que se siente seguro en la escuela?",
+   "instrumentos": [
+    "59"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "comparar_grupos",
+     "conteo_porcentaje"
+    ],
+    "preguntas": [
+     "p05"
+    ],
+    "contexto": {
+     "turno": "Vespertino"
+    }
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     33.3
+    ]
+   }
+  },
+  {
+   "id": "C22",
+   "categoria": "comparar grupos de contexto",
+   "pregunta": "compara por género cuántos están de acuerdo con que la institución se preocupa por su permanencia",
+   "instrumentos": [
+    "109"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "comparar_grupos"
+    ],
+    "preguntas": [
+     "p07"
+    ],
+    "nivel": "alto",
+    "agrupar_por": "genero"
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     44.3,
+     50.7
+    ]
+   }
+  },
+  {
+   "id": "C23",
+   "categoria": "conteo binario",
+   "pregunta": "¿cuántos han reprobado alguna materia en el último año?",
+   "instrumentos": [
+    "109"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "conteo_porcentaje"
+    ],
+    "filtros": [
+     {
+      "pregunta": "p12"
+     }
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     44
+    ]
+   }
+  },
+  {
+   "id": "C24",
+   "categoria": "filtro con nivel y opción",
+   "pregunta": "¿cuántos están de acuerdo con que la cantidad de materias es manejable y dedican Menos de 5h al estudio fuera de clases?",
+   "instrumentos": [
+    "61"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "conteo_porcentaje",
+     "filtrar_respondentes"
+    ],
+    "filtros": [
+     {
+      "pregunta": "p01"
+     },
+     {
+      "pregunta": "p12",
+      "valores": [
+       "Menos de 5h"
+      ]
+     }
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     17
+    ]
+   }
+  },
+  {
+   "id": "C25",
+   "categoria": "comparación entre instrumentos",
+   "pregunta": "compara lo que respondieron en la pregunta 1 de ambos instrumentos",
+   "instrumentos": [
+    "59",
+    "61"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "comparar_grupos",
+     "resumen_pregunta"
+    ],
+    "preguntas": [
+     "p01"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras": [
+     36.7,
+     32.5
+    ]
+   }
+  },
+  {
+   "id": "C26",
+   "categoria": "hallazgo",
+   "pregunta": "¿qué es lo más llamativo de la encuesta por turno?",
+   "instrumentos": [
+    "59"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "hallazgo"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "cifras_alguna": [
+     10.0,
+     11.7,
+     13.3,
+     16.7,
+     18.3,
+     20.0,
+     21.7,
+     25.0,
+     26.7,
+     28.3,
+     30.0,
+     31.7,
+     33.3,
+     35.0,
+     36.7,
+     38.3,
+     40.0,
+     41.7,
+     43.3,
+     45.0,
+     46.7,
+     48.3,
+     50.0,
+     53.3,
+     56.7,
+     60.0,
+     70.0
+    ]
+   }
+  },
+  {
+   "id": "C27",
+   "categoria": "entrevista por participante",
+   "pregunta": "¿qué respondió E02 en la pregunta 1?",
+   "instrumentos": [
+    "60"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "datos_respondente"
+    ],
+    "respondentes": [
+     "E02"
+    ],
+    "campos": [
+     "p01"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "contiene": [
+     "Uso la plataforma de la institución prin"
+    ]
+   }
+  },
+  {
+   "id": "C28",
+   "categoria": "semántica abierta",
+   "pregunta": "¿qué dicen los entrevistados sobre el apoyo familiar?",
+   "instrumentos": [
+    "60"
+   ],
+   "historial": [],
+   "plan_esperado": {
+    "intencion": [
+     "semantica_abierta"
+    ]
+   },
+   "esperado": {
+    "decision": "dentro",
+    "ruta": [
+     "semantica",
+     "mixta",
+     "estructurada"
+    ]
+   }
+  }
+ ]
+}

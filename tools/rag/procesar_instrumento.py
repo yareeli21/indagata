@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+import time
 from pathlib import Path
 from typing import Any
 
@@ -84,7 +85,7 @@ def procesar(api: Api, archivo: Path, tipo: str, original: Path | None, n_kpis: 
     return _desde_metadatos(api, id_crudo, n_kpis)
 
 
-def _desde_metadatos(api: Api, id_crudo: int, n_kpis: int) -> int:
+def _desde_metadatos(api: Api, id_crudo: int, n_kpis: int, analizar: bool = False) -> int:
     dc = api.pedir("GET", f"{GATEWAY}/api/metadata/{id_crudo}/propuesta")
     enr = api.pedir("GET", f"{GATEWAY}/api/enrichment/{id_crudo}/propuesta")
     cuerpo = {"dublin_core": _llenar(dc, "dc_"), "enriquecidos": _llenar(enr)}
@@ -106,6 +107,14 @@ def _desde_metadatos(api: Api, id_crudo: int, n_kpis: int) -> int:
           f"{[k['nombre'] for k in prop['kpis'][:n_kpis]]}")
 
     doc = api.pedir("POST", f"{GATEWAY}/conocimiento/{id_crudo}/documento")
+    if analizar:  # entrevistas: análisis de respuestas (unidades, postura) antes de publicar
+        api.pedir("POST", f"{GATEWAY}/conocimiento/{id_crudo}/documento/analisis")
+        inicio = time.monotonic()
+        while (a := api.pedir("GET", f"{GATEWAY}/conocimiento/{id_crudo}/documento/analisis"))["estado"] == "en_curso":
+            if time.monotonic() - inicio > 1800:
+                sys.exit("El análisis de respuestas no terminó en 30 minutos.")
+            time.sleep(5)
+        print(f"6b. Análisis de respuestas: {a['estado']} ({a['hechos']} de {a['total']})")
     api.pedir("POST", f"{GATEWAY}/api/metadata/{id_crudo}/finalizar")
     api.pedir("POST", f"{GATEWAY}/conocimiento/{id_crudo}/documento/{doc['version']}/publicar")
     print(f"7. Documento v{doc['version']} publicado (la reingesta al RAG sigue en segundo plano)")

@@ -2,12 +2,13 @@
 
 Lee la `estadistica` que cleaning-service guarda en `reporte_limpieza.vista_final`
 (la misma que se ve en el paso «Limpieza») y propone qué análisis conviene hacer y
-con qué cautelas. Los umbrales son los de `markdowns/METRICAS_LIMPIEZA.md`:
-  - α de Cronbach / KR-20: ≥ 0.7 aceptable, 0.6–0.7 cuestionable, < 0.6 pobre; > 0.95 posible redundancia.
+con qué cautelas. Los umbrales son los de `documentación/02_Desarrollo.md` (X.7.2, Tabla D.21a):
+  - α de Cronbach: ≥ 0.7 aceptable, 0.6–0.7 cuestionable, < 0.6 pobre; > 0.95 posible redundancia.
   - correlación ítem-total < 0.3: el ítem «va por su lado».
   - vacíos > 20 %: pregunta confusa, opcional o mal ubicada.
   - asimetría fuera de ±1: distribución sesgada (mejor mediana y rango intercuartílico).
-  - discriminación < 0.2 o negativa: reactivo a revisar.
+  - pruebas (no se califican): reactivo con más de 20 % de nulas o sin responder; opciones
+    que nadie eligió; reactivos casi unánimes (≥ 90 % de las respuestas en una opción).
 
 La usan cleaning-service (`GET /limpieza/{id}/resumen`, que se ve en el catálogo) y el
 chat (intención `calidad` del enrutador de visualization-service).
@@ -89,35 +90,27 @@ def _encuesta(e: dict[str, Any]) -> list[dict[str, str]]:
 
 
 def _prueba(e: dict[str, Any]) -> list[dict[str, str]]:
+    """La prueba no se califica (no hay clave): se sugiere cómo analizar lo que respondieron los alumnos."""
     salida: list[dict[str, str]] = []
-    fiab = e.get("fiabilidad") if isinstance(e.get("fiabilidad"), dict) else {}
-    kr20 = fiab.get("kr20")
-    if kr20 is not None:
-        if kr20 >= 0.7:
-            salida.append(_s(BIEN, f"La prueba es confiable en conjunto (KR-20 = {_fmt(kr20)}): puedes usar el puntaje total.",
-                             "Con KR-20 ≥ 0.7 los reactivos miden la misma habilidad."))
-        else:
-            salida.append(_s(ATENCION, f"KR-20 = {_fmt(kr20)} ({fiab.get('interpretacion') or 'bajo'}): usa el puntaje total con cautela y "
-                                       "analiza también por reactivo.",
-                             f"Con {fiab.get('n_reactivos')} reactivos y {fiab.get('n_alumnos')} alumnos la fiabilidad está por debajo de 0.7."))
-    reactivos = [r for r in e.get("reactivos") or [] if r.get("discriminacion") is not None]
-    malos = [r for r in reactivos if r["discriminacion"] < 0.2]
-    if malos:
-        lista = ", ".join(f"{r.get('pregunta')} (D = {_fmt(r['discriminacion'])})" for r in malos[:6])
-        salida.append(_s(ALERTA, f"Revisa los reactivos que no distinguen a quienes saben más: {lista}.",
-                         "Discriminación < 0.2 es pobre; negativa casi siempre es una clave mal capturada o un reactivo confuso."))
-    sin_elegir = [r for r in e.get("reactivos") or [] if r.get("distractores_sin_elegir")]
+    reactivos = [r for r in e.get("reactivos") or [] if isinstance(r, dict)]
+    mucha = [r.get("pregunta") for r in reactivos if r.get("mucha_no_respuesta")]
+    if mucha:
+        lista = ", ".join(str(p) for p in mucha[:6]) + ("…" if len(mucha) > 6 else "")
+        salida.append(_s(ATENCION, f"Reactivos con muchas respuestas nulas o vacías: {lista}. Repórtalos aparte o interpreta sus "
+                                   "distribuciones con cautela.",
+                         "Más del 20 % sin respuesta válida puede indicar un reactivo confuso o falta de tiempo."))
+    sin_elegir = [r for r in reactivos if r.get("opciones_sin_elegir")]
     if sin_elegir:
-        salida.append(_s(INFO, f"{len(sin_elegir)} reactivos tienen distractores que nadie eligió: conviene reescribirlos.",
-                         "Un distractor que nadie elige no aporta; el reactivo se vuelve más fácil de lo que parece."))
-    resumen = e.get("resumen_reactivos") or {}
-    total = sum(resumen.get(k) or 0 for k in ("faciles", "medios", "dificiles"))
-    if total and (resumen.get("faciles") or 0) / total > 0.5:
-        salida.append(_s(INFO, f"{resumen['faciles']} de {total} reactivos son fáciles: la prueba distingue poco entre alumnos con buen nivel.",
-                         "Lo ideal es que la mayoría tenga dificultad media (0.3–0.7)."))
+        salida.append(_s(INFO, f"{len(sin_elegir)} reactivos tienen opciones que nadie eligió: revisa si esas opciones son creíbles.",
+                         "Una opción que nadie elige no aporta información sobre el grupo."))
+    unanimes = [r for r in reactivos if r.get("casi_unanime")]
+    if unanimes:
+        salida.append(_s(INFO, f"{len(unanimes)} reactivos son casi unánimes: sirven para describir al grupo, pero no para compararlo.",
+                         "Si casi todos eligen lo mismo, no hay variación que comparar entre grupos."))
     if reactivos:
-        salida.append(_s(INFO, "Para comparar grupos de alumnos usa el puntaje total (t de Student o Mann-Whitney si no es normal).",
-                         "El puntaje total resume la prueba cuando la fiabilidad lo permite."))
+        salida.append(_s(INFO, "Describe cada reactivo con su distribución de respuestas y compara grupos de alumnos (turno, "
+                               "semestre…) con tablas de contingencia y χ².",
+                         "Indagata no califica las pruebas: el análisis se basa en lo que eligieron los alumnos, no en aciertos."))
     return salida
 
 

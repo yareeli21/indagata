@@ -9,6 +9,7 @@ Los IDs se aceptan completos («INS-0012-R017») o cortos («R017», «p03», «
 from __future__ import annotations
 
 import unicodedata
+from collections import Counter
 from typing import Any
 
 
@@ -100,28 +101,6 @@ def preguntas_de_kpi(doc: dict[str, Any], kpi: str) -> list[dict[str, Any]]:
     return [{"pregunta_id": p["id"], "texto": p["texto"], "resumen": p.get("resumen")} for p in preguntas if kpi in p.get("kpis_relacionados", [])]
 
 
-# 6a. ¿Qué reactivo tuvo el menor porcentaje de acierto y qué distractor fue el más elegido?
-def reactivo_mas_dificil(doc: dict[str, Any]) -> dict[str, Any] | None:
-    reactivos = [r for r in doc.get("reactivos") or [] if r["resumen"].get("pct_acierto") is not None]
-    if not reactivos:
-        return None
-    r = min(reactivos, key=lambda x: (x["resumen"]["pct_acierto"], x["id"]))
-    return {"reactivo_id": r["id"], "texto": r["texto"], "pct_acierto": r["resumen"]["pct_acierto"],
-            "distractor_mas_elegido": r["resumen"]["distractor_mas_elegido"]}
-
-
-# 6b. ¿Qué alumnos fallaron los reactivos del KPI X?
-def alumnos_que_fallaron_kpi(doc: dict[str, Any], kpi: str) -> dict[str, list[str]]:
-    """{reactivo_id: [alumnos que no lo acertaron (incorrecta, nula o sin respuesta)]}."""
-    ids = [r["id"] for r in doc.get("reactivos") or [] if kpi in r.get("kpis_relacionados", [])]
-    salida: dict[str, list[str]] = {i: [] for i in ids}
-    for a in doc.get("alumnos") or []:
-        for x in a["respuestas"]:
-            if x["reactivo_id"] in salida and x.get("correcta") is False:
-                salida[x["reactivo_id"]].append(a["id"])
-    return salida
-
-
 # 7. ¿Qué dijo el participante E02 sobre el tema Y?
 def dijo(doc: dict[str, Any], participante: str, tema: str) -> list[dict[str, Any]]:
     objetivo, buscado = _id(doc, participante), _norm(tema)
@@ -154,6 +133,11 @@ def cumple(respuesta: dict[str, Any] | None, condicion: dict[str, Any]) -> bool:
         return respuesta.get("nivel") == condicion["nivel"]
     if condicion.get("valores"):
         aceptados = {_norm(v) for v in condicion["valores"]}
+        # Selección múltiple: basta con que una de las opciones marcadas sea la pedida. Antes se comparaba el
+        # texto completo («Biblioteca, Tutorías») y solo contaban quienes marcaron ÚNICAMENTE esa opción
+        # (24 oct, banco de preguntas: 45 en lugar de 93 en «¿cuántos usaron la biblioteca?»).
+        if isinstance(respuesta.get("seleccion"), list):
+            return any(_norm(s) in aceptados for s in respuesta["seleccion"])
         return _norm(respuesta.get("significado") or respuesta.get("valor") or "") in aceptados
     if condicion.get("comparacion"):
         op, n = condicion["comparacion"]
@@ -179,3 +163,17 @@ def filtrar(doc: dict[str, Any], condiciones: list[dict[str, Any]], contexto: di
         if all(cumple(por_pregunta.get(c["pregunta_id"]), c) for c in objetivo):
             salida.append(r)
     return sorted(salida, key=lambda r: r["id"])
+
+
+# 9. ¿Cuántos entrevistados dicen que sí (o no) a la pregunta X y qué motivos dan? (esquema 2.1)
+def posturas(doc: dict[str, Any], pregunta_id: str) -> dict[str, Any]:
+    """Posturas de los intercambios con análisis de respuesta para una pregunta del guion."""
+    objetivo = _id(doc, pregunta_id)
+    detalle = []
+    for e in doc.get("entrevistas") or []:
+        for i in e.get("intercambios") or []:
+            an = i.get("analisis") or {}
+            if i.get("pregunta_id") == objetivo and an.get("nucleo"):
+                detalle.append({"participante": e["participante"], "postura": an.get("postura") or "sin_determinar",
+                                "motivo": an.get("motivo") or "", "nucleo": an["nucleo"], "revisado": an.get("estado") == "revisado"})
+    return {"total": len(detalle), "conteo": dict(Counter(d["postura"] for d in detalle)), "detalle": detalle}

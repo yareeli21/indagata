@@ -98,6 +98,10 @@ export interface TransformacionLimpieza {
   regla: string;
   detalle: string;
   afectados: number | null;
+  /** Dónde: cada cambio con su fila, pregunta, valor antes y después (los primeros cientos). */
+  casos?: { fila: number; columna?: string; antes?: string; despues?: string }[];
+  /** Cuántos cambios hubo en cada pregunta. */
+  columnas?: Record<string, number>;
 }
 
 /** Una métrica antes y después de la limpieza. */
@@ -169,17 +173,21 @@ export interface FiabilidadBloque {
   }[];
 }
 
-/** Análisis de un reactivo de una prueba estandarizada. */
+/** Descripción de un reactivo de una prueba estandarizada (no se califica: sin respuesta correcta). */
 export interface ReactivoEstadistica {
   pregunta: string;
-  respuesta_correcta: string;
-  dificultad: number | null;
-  nivel_dificultad: string | null;
-  discriminacion: number | null;
-  nivel_discriminacion: string | null;
-  correlacion_punto_biserial: number | null;
-  distribucion: { opcion: string; n: number; pct: number; correcta: boolean }[];
-  distractores_sin_elegir: string[];
+  tipo_reactivo: string;
+  n: number;
+  distribucion: { opcion: string; n: number; pct: number }[];
+  opcion_mas_elegida: { opcion: string; n: number; pct: number; pct_validas: number } | null;
+  opciones_sin_elegir: string[];
+  n_nulas: number;
+  n_no_respondidas: number;
+  pct_sin_respuesta: number;
+  mucha_no_respuesta: boolean;
+  casi_unanime: boolean;
+  puntos_max?: number;
+  descriptivos?: Partial<DescriptivosNumericos> | null;
 }
 
 export interface HablanteEstadistica {
@@ -197,24 +205,17 @@ export interface EstadisticaLimpieza {
   // Encuestas
   columnas?: ColumnaEstadistica[];
   encuestados?: { linea_recta: number; incompletos: number };
-  // Encuestas: lista de bloques (alfa); pruebas: KR-20.
-  fiabilidad?:
-    | FiabilidadBloque[]
-    | {
-        kr20: number | null;
-        interpretacion: string | null;
-        n_alumnos: number;
-        n_reactivos: number;
-      };
-  // Pruebas
+  // Encuestas: alfa de Cronbach por bloque.
+  fiabilidad?: FiabilidadBloque[];
+  // Pruebas (no se califican: se describe lo que respondieron los alumnos)
   reactivos?: ReactivoEstadistica[];
-  puntajes?: Partial<DescriptivosNumericos> & { maximo_posible: number };
+  respuestas?: { n_alumnos: number; n_reactivos: number; pct_sin_respuesta: number };
   resumen_reactivos?: {
-    faciles: number;
-    medios: number;
-    dificiles: number;
-    discriminacion_pobre: number;
+    con_opciones_sin_elegir: number;
+    mucha_no_respuesta: number;
+    casi_unanimes: number;
   };
+  umbrales?: { sin_respuesta: number; casi_unanime: number };
   // Entrevistas
   hablantes?: HablanteEstadistica[];
   palabras_por_turno?: Partial<DescriptivosNumericos>;
@@ -415,14 +416,15 @@ export interface ReactivoDoc {
   texto: string;
   /** opcion_multiple | verdadero_falso | puntos | escala | si_no | numerica */
   tipo_reactivo?: string | undefined;
-  /** False en escalas, Sí/No y numéricos: sin respuesta correcta. */
-  calificable?: boolean | undefined;
-  respuesta_correcta: string;
   kpis_relacionados: string[];
+  /** Lo que respondieron los alumnos (las pruebas no se califican). */
   resumen: {
-    pct_acierto: number | null;
     n_alumnos: number;
-    distractor_mas_elegido: { opcion: string; significado: string; pct: number } | null;
+    opcion_mas_elegida: { opcion: string; significado: string; n: number; pct: number } | null;
+    opciones_sin_elegir?: string[];
+    n_nulas: number;
+    n_sin_respuesta: number;
+    media?: number | null;
     interpretacion: string;
   };
 }
@@ -433,7 +435,6 @@ export interface RespuestaDoc {
   significado?: string;
   texto?: string;
   nivel?: string;
-  correcta?: boolean;
 }
 
 /** Un intercambio de una entrevista: solo la pregunta del entrevistador y la respuesta. */
@@ -476,6 +477,47 @@ export interface DocumentoGenerado {
   sha256: string | null;
   avisos: AvisoConocimiento[];
   documento: DocumentoVista;
+}
+
+/** Análisis de una respuesta de entrevista (knowledge-service, documento final 2.1). */
+export type MarcoTemporal = "actual" | "pasado" | "hipotetico" | "general";
+export type FuncionUnidad = "responde" | "contexto" | "digresion";
+export type PosturaUnidad = "si" | "no" | "ambivalente" | "no_aplica";
+
+export interface UnidadRespuesta {
+  texto: string;
+  marco_temporal: MarcoTemporal;
+  funcion: FuncionUnidad;
+  postura: PosturaUnidad;
+}
+
+export interface AnalisisRespuesta {
+  unidades: UnidadRespuesta[];
+  nucleo: string;
+  postura: PosturaUnidad | "sin_determinar";
+  motivo?: string;
+  marco_pregunta?: MarcoTemporal;
+  metodo: "llm" | "reglas";
+  estado: "propuesto" | "revisado";
+  descartadas?: number;
+}
+
+export interface IntercambioAnalizado {
+  participante: string;
+  n: number;
+  pregunta_id: string | null;
+  pregunta: string;
+  respuesta: string;
+  analisis: AnalisisRespuesta | null;
+}
+
+export interface AnalisisEntrevista {
+  estado: "sin_analisis" | "en_curso" | "listo" | "error";
+  hechos: number;
+  total: number;
+  revisados: number;
+  mensaje?: string;
+  intercambios: IntercambioAnalizado[];
 }
 
 export interface EvidenciaKpi {
@@ -532,7 +574,8 @@ export interface InstrumentoRelacionado {
   razones: RazonCoincidencia[];
 }
 
-export type ModeloLLM = "llama3.2:3b";
+/** «servidor»: no se envía modelo y el chat usa el de `OLLAMA_MODEL` (.env) en todas sus etapas. */
+export type ModeloLLM = "servidor" | "llama3.2:3b";
 
 export interface ContextoInvestigacion {
   objetivo: string;
@@ -577,12 +620,18 @@ export interface ResultadoChat {
   consultaId?: number | null;
   /** true si se reutilizó una respuesta guardada (misma pregunta, alcance y versiones). */
   enCache?: boolean;
+  /** Milisegundos que tardó la respuesta (Pruebas: duración). */
+  latenciaMs?: number | null;
 }
 
 /** Métricas automáticas de una respuesta (juez local: evaluación aproximada). */
 export interface MetricasRespuesta {
   consultaId: number;
-  estado: "calculando" | "listo" | "omitida" | "error";
+  /**
+   * «pendiente»: bajo demanda, se calcula cuando la persona la pide (el juez y el redactor no caben juntos en la
+   * GPU). «calculada»: la respuesta es el resultado calculado tal cual (fiel por construcción).
+   */
+  estado: "pendiente" | "calculando" | "listo" | "omitida" | "error" | "calculada";
   motivo: string | null;
   fidelidad: number | null;
   relevancia: number | null;
@@ -590,6 +639,52 @@ export interface MetricasRespuesta {
   noSustentadas: string[];
   modeloJuez: string | null;
   fecha: string | null;
+  /** Indicadores del sistema: deterministas, sin juez. */
+  indicadores: IndicadoresRespuesta | null;
+  /** Evaluaciones de la misma respuesta por cada juez (experimento redactor × juez). */
+  jueces: EvaluacionJuez[];
+  calificacion: CalificacionRespuesta | null;
+}
+
+/** Indicadores del sistema de una respuesta (sin juez): quién la escribió, si inventó cifras o IDs, tiempos. */
+export interface IndicadoresRespuesta {
+  modelo: string | null;
+  intencion: string | null;
+  ruta: string | null;
+  decision: string | null;
+  /** «redactada»: la escribió el modelo; «presentacion_fija»: el cálculo tal cual; «plantilla»: mensaje fijo. */
+  respuesta: "redactada" | "presentacion_fija" | "plantilla";
+  plantilla: string | null;
+  plantillaDetalle: string | null;
+  regeneraciones: number | null;
+  primerFallo: string | null;
+  verificacion: string | null;
+  cifrasTotal: number | null;
+  cifrasConRespaldo: number | null;
+  cifrasSinRespaldo: string[];
+  idsInventados: string[];
+  /** Partes del instrumento que recuperó la búsqueda vectorial (Chroma) y vio el modelo: «E01 en p04», «p03». */
+  fragmentosRag: string[];
+  tiempos: Record<string, number>;
+  latenciaMs: number | null;
+}
+
+export interface EvaluacionJuez {
+  modeloJuez: string;
+  estado: string;
+  fidelidad: number | null;
+  relevancia: number | null;
+  precisionContexto: number | null;
+  fecha: string | null;
+}
+
+/** Calificación humana: 0 mal, 1 parcial, 2 bien; `fundamenta` null = no aplica. */
+export interface CalificacionRespuesta {
+  calificacion: 0 | 1 | 2;
+  entendio: boolean | null;
+  fundamenta: boolean | null;
+  comentario: string | null;
+  fecha?: string | null;
 }
 
 /** Instrumentos que consulta el chat: los de la investigación, unos elegidos o todo el acervo. */
@@ -608,6 +703,7 @@ export interface Mensaje {
   ruta?: RutaChat | null;
   consultaId?: number | null;
   enCache?: boolean;
+  latenciaMs?: number | null;
   /** true mientras se está generando (streaming) */
   generando?: boolean;
 }
@@ -804,4 +900,28 @@ export interface DetalleInstrumento {
   /** Columnas de `metadatos_enriquecidos_*` según el tipo. */
   enriquecidos: Record<string, unknown>;
   preguntas: PreguntaInstrumento[];
+}
+
+/** Un paso del procesamiento de un instrumento con su tiempo de cómputo (GET /visualizacion/catalogo/{id}/tiempos). */
+export interface TiempoPaso {
+  paso: string;
+  etiqueta: string;
+  servicio: string;
+  inicio: string;
+  fin: string;
+  duracion_ms: number;
+  /** Corre después de responder (indexación, análisis de entrevista): la persona no lo espera. */
+  segundo_plano: boolean;
+  detalle: Record<string, unknown>;
+}
+
+/** Tiempos del procesamiento: cómputo por paso, total sin esperas y latencia del chat. */
+export interface TiemposProceso {
+  id_crudo: number;
+  pasos: TiempoPaso[];
+  /** Suma de los pasos: lo que tardaría la máquina sin esperas. */
+  computo_ms: number;
+  /** De la carga a la última operación: incluye el tiempo de decisión de la persona. */
+  punta_a_punta_ms: number | null;
+  chat: { consultas: number; p50_ms: number | null; p95_ms: number | null };
 }

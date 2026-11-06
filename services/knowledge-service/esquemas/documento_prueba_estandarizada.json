@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "documento_prueba_estandarizada.json",
-  "title": "Documento final de una prueba estandarizada (v1.0)",
+  "title": "Documento final de una prueba estandarizada (v2.0: sin calificar)",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -15,7 +15,7 @@
   ],
   "properties": {
     "esquema_version": {
-      "const": "1.0"
+      "const": "2.0"
     },
     "instrumento": {
       "allOf": [
@@ -57,7 +57,6 @@
           "clave",
           "texto",
           "opciones",
-          "respuesta_correcta",
           "kpis_relacionados",
           "resumen"
         ],
@@ -81,9 +80,6 @@
               "type": "string"
             }
           },
-          "respuesta_correcta": {
-            "type": "string"
-          },
           "kpis_relacionados": {
             "$ref": "comun.json#/$defs/kpis_relacionados"
           },
@@ -92,8 +88,8 @@
             "additionalProperties": false,
             "required": [
               "n_alumnos",
-              "pct_acierto",
               "distribucion",
+              "opcion_mas_elegida",
               "n_nulas",
               "n_sin_respuesta",
               "interpretacion"
@@ -102,12 +98,6 @@
               "n_alumnos": {
                 "type": "integer",
                 "minimum": 0
-              },
-              "pct_acierto": {
-                "type": [
-                  "number",
-                  "null"
-                ]
               },
               "distribucion": {
                 "type": "object",
@@ -128,18 +118,18 @@
                   }
                 }
               },
-              "n_nulas": {
-                "type": "integer"
-              },
-              "n_sin_respuesta": {
-                "type": "integer"
-              },
-              "distractor_mas_elegido": {
+              "opcion_mas_elegida": {
                 "type": [
                   "object",
                   "null"
                 ],
                 "additionalProperties": false,
+                "required": [
+                  "opcion",
+                  "significado",
+                  "n",
+                  "pct"
+                ],
                 "properties": {
                   "opcion": {
                     "type": "string"
@@ -147,22 +137,33 @@
                   "significado": {
                     "type": "string"
                   },
+                  "n": {
+                    "type": "integer"
+                  },
                   "pct": {
                     "type": "number"
                   }
                 }
               },
-              "dificultad": {
-                "type": [
-                  "number",
-                  "null"
-                ]
+              "opciones_sin_elegir": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Opciones que ningún alumno eligió (opción múltiple y V/F)."
               },
-              "discriminacion": {
+              "n_nulas": {
+                "type": "integer"
+              },
+              "n_sin_respuesta": {
+                "type": "integer"
+              },
+              "media": {
                 "type": [
                   "number",
                   "null"
-                ]
+                ],
+                "description": "Solo en reactivos numéricos (puntos, escala, numérica)."
               },
               "interpretacion": {
                 "type": "string"
@@ -178,10 +179,6 @@
               "si_no",
               "numerica"
             ]
-          },
-          "calificable": {
-            "type": "boolean",
-            "description": "False en escalas, Sí/No y numéricos: sin respuesta correcta ni acierto."
           },
           "puntos_max": {
             "type": [
@@ -200,9 +197,9 @@
         "required": [
           "id",
           "contexto",
-          "puntaje",
-          "total",
-          "porcentaje",
+          "n_respondidas",
+          "n_nulas",
+          "n_sin_respuesta",
           "respuestas"
         ],
         "properties": {
@@ -212,16 +209,17 @@
           "contexto": {
             "$ref": "comun.json#/$defs/contexto"
           },
-          "puntaje": {
+          "n_respondidas": {
             "type": "integer",
             "minimum": 0
           },
-          "total": {
+          "n_nulas": {
             "type": "integer",
             "minimum": 0
           },
-          "porcentaje": {
-            "type": "number"
+          "n_sin_respuesta": {
+            "type": "integer",
+            "minimum": 0
           },
           "respuestas": {
             "type": "array",
@@ -245,10 +243,6 @@
                 },
                 "significado": {
                   "type": "string"
-                },
-                "correcta": {
-                  "type": "boolean",
-                  "description": "Solo en reactivos calificables."
                 },
                 "estado": {
                   "enum": [
@@ -276,5 +270,6 @@
         "$ref": "comun.json#/$defs/aviso"
       }
     }
-  }
+  },
+  "description": "Indagata no califica las pruebas: describe lo que respondieron los alumnos, sin respuesta correcta."
 }

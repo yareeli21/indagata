@@ -74,26 +74,23 @@ def test_encuesta_columna_numerica_asimetrica_con_atipicos():
     assert "suben el promedio a 17.7" in frase["texto"] and "Hay 2 valores atípicos" in frase["texto"]
 
 
-def test_prueba_kr20_dificultad_y_discriminacion():
+def test_prueba_describe_respuestas_sin_calificar():
     reactivos = [
-        {"pregunta": "P1", "discriminacion": 0.5, "nivel_discriminacion": "excelente", "distractores_sin_elegir": []},
-        {"pregunta": "P2", "discriminacion": -0.25, "nivel_discriminacion": "pobre", "distractores_sin_elegir": ["D"]},
-        {"pregunta": "P3", "discriminacion": 0.1, "nivel_discriminacion": "pobre", "distractores_sin_elegir": []},
+        {"pregunta": "P1", "mucha_no_respuesta": False, "casi_unanime": True, "opciones_sin_elegir": []},
+        {"pregunta": "P2", "mucha_no_respuesta": True, "casi_unanime": False, "opciones_sin_elegir": ["D"]},
+        {"pregunta": "P3", "mucha_no_respuesta": False, "casi_unanime": False, "opciones_sin_elegir": []},
     ]
     est = {
-        "fiabilidad": {"kr20": 0.42, "interpretacion": "inaceptable", "n_alumnos": 30, "n_reactivos": 3},
-        "puntajes": {"media": 1.5, "mediana": 1, "maximo_posible": 3},
         "reactivos": reactivos,
-        "resumen_reactivos": {"faciles": 2, "medios": 1, "dificiles": 0},
+        "respuestas": {"n_alumnos": 30, "n_reactivos": 3, "pct_sin_respuesta": 0.1},
+        "umbrales": {"sin_respuesta": 0.2, "casi_unanime": 0.9},
     }
     texto = _textos(resumir("prueba_estandarizada", est))
-    assert "alerta: La prueba tiene poca consistencia interna: KR-20 = 0.42" in texto and "pocos reactivos" in texto
-    assert "acertaron 1.5 de 3 reactivos (50 %" in texto
-    assert "2 fáciles, 1 de dificultad media y 0 difíciles. La prueba resultó fácil" in texto
-    assert "alerta: En «P2» aciertan más los alumnos con peor puntaje" in texto
-    assert "atencion: «P3» casi no distingue" in texto
+    assert "bien: 30 alumnos respondieron 3 reactivos; el 10 % de las respuestas quedó nula o sin responder." in texto
+    assert "atencion: «P2» tiene muchas respuestas nulas o vacías" in texto
+    assert "En «P1» casi todos eligieron la misma respuesta" in texto
     assert "1 reactivo tiene opciones que ningún alumno eligió («P2»)" in texto
-
+    assert "KR-20" not in texto and "acert" not in texto
 
 def test_entrevista_participacion():
     est = {

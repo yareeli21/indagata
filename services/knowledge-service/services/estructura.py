@@ -124,8 +124,37 @@ def _opciones_de_frecuencias(estadistica_col: dict[str, Any] | None) -> list[str
 # ── Encuestas ──────────────────────────────────────────────────────────────────
 
 
-def encuesta(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOriginal | None) -> Estructura:
+def encuesta(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOriginal | None,
+             nombres_dimensiones: list[str] | None = None) -> Estructura:
     """Preguntas de una encuesta a partir del reporte de limpieza (y del original, si hay)."""
+    e = _encuesta(id_crudo, reporte, original)
+    dimensiones = ((reporte.get("especifico") or {}).get("encuesta") or {}).get("dimensiones") or []
+    _secciones_por_dimension(e, id_instrumento(id_crudo), dimensiones, nombres_dimensiones or [])
+    return e
+
+
+def _secciones_por_dimension(e: Estructura, id_ins: str, dimensiones: list[dict[str, Any]], nombres: list[str]) -> None:
+    """Sin secciones en el original, las dimensiones confirmadas en la limpieza hacen de secciones.
+
+    Los nombres vienen de los metadatos aprobados (el LLM los propone y el investigador los
+    edita); si no cuadran en número, se usan los de la limpieza («Dimensión 1»…).
+    """
+    if not dimensiones or any(s.nombre != orig.SECCION_GENERAL for s in e.secciones
+                              if any(p.seccion_id == s.id for p in e.preguntas)):
+        return
+    if len(nombres) != len(dimensiones):
+        nombres = [d.get("nombre") or f"Dimensión {i}" for i, d in enumerate(dimensiones, start=1)]
+    de_columna = {col: nombres[i] for i, d in enumerate(dimensiones) for col in d.get("columnas") or []}
+    secciones: dict[str, Seccion] = {}
+    for p in e.preguntas:
+        nombre = de_columna.get(p.columna or "", orig.SECCION_GENERAL)
+        if nombre not in secciones:
+            secciones[nombre] = Seccion(id=f"{id_ins}-s{len(secciones) + 1}", nombre=nombre)
+        p.seccion_id = secciones[nombre].id
+    e.secciones = list(secciones.values())
+
+
+def _encuesta(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOriginal | None) -> Estructura:
     c = _Constructor(id_instrumento(id_crudo))
     esp = (reporte.get("especifico") or {}).get("encuesta") or {}
     # Las columnas con datos personales (nombre, correo, matrícula…) nunca son preguntas.
@@ -162,6 +191,13 @@ def encuesta(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOrigin
         clave_de_col: list[int] = []
         for col, g in zip(columnas, grupos):
             clave = g[0] if g and g[2] else (col.get("etiqueta") or "")
+            if not (g and g[2]) and clave in claves:
+                # Encabezado repetido que NO es cuadrícula (enc_01: dos bloques «Habilidades_par_item1…3»):
+                # son columnas distintas y cada una necesita su propia pareja en el original (26 oct).
+                n = 2
+                while f"{clave}#{n}" in claves:
+                    n += 1
+                clave = f"{clave}#{n}"
             if clave not in claves:
                 claves.append(clave)
             clave_de_col.append(claves.index(clave))
@@ -173,11 +209,34 @@ def encuesta(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOrigin
         pareja = {k: j for k, j in pareja_total.items() if k < len(claves)}  # {clave: pregunta original}
         de_contexto = {j for k, j in pareja_total.items() if k >= len(claves)}
         # Encabezados codificados («Falta_de_organi_item3»): se emparejan por sección + posición.
-        _por_seccion_y_posicion(claves, grupos, clave_de_col, original, pareja, usadas=set(pareja_total.values()))
+        usadas = set(pareja_total.values())
+        aspecto_es_pregunta: set[int] = set()  # columnas de cuadrícula emparejadas por su aspecto
+        pareja_aspecto: set[int] = set()
+        _por_seccion_y_posicion(claves, grupos, clave_de_col, original, pareja, usadas=usadas)
+        # Original sin secciones con códigos («P3», «Evaluación_item3»): por orden, si cuadran.
+        if n_posicion := _por_orden(claves, grupos, clave_de_col, original, pareja, usadas=usadas):
+            c.aviso(
+                "emparejadas_por_posicion",
+                f"{n_posicion} columna(s) con encabezado codificado se emparejaron con las preguntas del original "
+                "por su orden; verifica que correspondan.",
+                n=n_posicion,
+            )
         cols_de_preg: dict[int, list[int]] = {}
         for i, k in enumerate(clave_de_col):
             if k in pareja:
                 cols_de_preg.setdefault(pareja[k], []).append(i)
+        # Cuadrícula cuya instrucción no es una pregunta del original («Indica qué tan de acuerdo
+        # estás… [Los criterios…]»): cada aspecto es la pregunta; se empareja por su propio texto.
+        por_aspecto = [i for i, (k, g) in enumerate(zip(clave_de_col, grupos)) if k not in pareja and g and g[2]]
+        libres = [j for j in range(len(original.preguntas)) if j not in usadas]
+        if por_aspecto and libres:
+            parejas = orig.emparejar([grupos[i][1] for i in por_aspecto], [original.preguntas[j] for j in libres])
+            for n, m in parejas.items():
+                i, j = por_aspecto[n], libres[m]
+                cols_de_preg.setdefault(j, []).append(i)
+                usadas.add(j)
+                aspecto_es_pregunta.add(i)
+                pareja_aspecto.add(i)
 
         for j, p in enumerate(original.preguntas):
             if j in de_contexto:
@@ -189,9 +248,18 @@ def encuesta(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOrigin
                 continue
             for i in indices:
                 col, g = columnas[i], grupos[i]
-                texto = f"{p.texto}: {g[1]}" if g and g[2] else p.texto
-                c.pregunta(p.seccion, texto, opciones=opciones(col, p), anclas=p.anclas or original.anclas_globales, **kw(col, g if g and g[2] else None))
-        sueltas = [i for i, k in enumerate(clave_de_col) if k not in pareja]
+                cuadricula = g if g and g[2] and i not in aspecto_es_pregunta else None
+                texto = f"{p.texto}: {g[1]}" if cuadricula else p.texto
+                c.pregunta(p.seccion, texto, opciones=opciones(col, p), anclas=p.anclas or original.anclas_globales, **kw(col, cuadricula))
+        sueltas = [i for i, k in enumerate(clave_de_col) if k not in pareja and i not in pareja_aspecto]
+        # Enunciados que están escritos tal cual en el original aunque el lector no los aisló como pregunta
+        # (PDF de Google Forms): son preguntas del original, con el texto del encabezado.
+        literales = [i for i in sueltas if orig.aparece_en(columnas[i].get("etiqueta") or "", original)]
+        for i in literales:
+            col = columnas[i]
+            texto = " ".join((col.get("etiqueta") or "").split())
+            c.pregunta(orig.SECCION_GENERAL, texto, opciones=opciones(col, None), anclas=original.anclas_globales, **kw(col, grupos[i]))
+        sueltas = [i for i in sueltas if i not in literales]
         for i in sueltas:
             col = columnas[i]
             c.pregunta("Otras preguntas del archivo", col.get("etiqueta") or col.get("id"), opciones=opciones(col, None), **kw(col, grupos[i]))
@@ -235,10 +303,20 @@ def _por_seccion_y_posicion(
     prefijo del nombre de la sección más el número del ítem («Falta_de_organi_item3»
     = 3.ª pregunta de «FALTA DE ORGANIZACIÓN DE RECURSOS»). Se acepta la sección cuyo
     nombre EMPIEZA con el prefijo (la última palabra puede venir truncada).
+
+    Si el prefijo encaja en varias secciones («Habilidades_par» = «HABILIDADES PARA EL EXAMEN» y «HABILIDADES
+    PARA JERARQUIZAR»), se decide por orden de aparición: la 1.ª columna con ese prefijo y número va a la 1.ª de
+    esas secciones en el original, la 2.ª a la siguiente (26 oct, enc_01).
     """
     secciones: dict[str, list[int]] = {}
     for j, p in enumerate(original.preguntas):
         secciones.setdefault(p.seccion, []).append(j)
+    vistas: dict[tuple[str, str], int] = {}  # (prefijo, número) → columnas ya vistas con esa forma
+    total: dict[tuple[str, str], int] = {}  # (prefijo, número) → cuántas columnas tienen esa forma
+    for g in grupos:
+        if g and not g[2] and (num := re.search(r"\d+", g[1])):
+            forma = (_clave_seccion(g[0]), num.group())
+            total[forma] = total.get(forma, 0) + 1
     for i, k in enumerate(clave_de_col):
         g = grupos[i]
         if k in pareja or not g or g[2]:
@@ -249,13 +327,43 @@ def _por_seccion_y_posicion(
             continue
         exactas = [s for s in secciones if _clave_seccion(s) == prefijo]
         candidatas = exactas or [s for s in secciones if _clave_seccion(s).startswith(prefijo)]
-        if len(candidatas) != 1:
-            continue  # ninguna o ambigua: mejor no adivinar
-        indices = secciones[candidatas[0]]
+        vez = vistas.get((prefijo, numero.group()), 0)
+        vistas[(prefijo, numero.group())] = vez + 1
+        if not candidatas or (len(candidatas) > 1 and total.get((prefijo, numero.group())) != len(candidatas)):
+            continue  # ninguna, o ambigua sin una columna por cada sección candidata: mejor no adivinar
+        indices = secciones[candidatas[vez if len(candidatas) > 1 else 0]]
         posicion = int(numero.group()) - 1
         if 0 <= posicion < len(indices) and indices[posicion] not in usadas:
             pareja[k] = indices[posicion]
             usadas.add(indices[posicion])
+
+
+def _por_orden(
+    claves: list[str],
+    grupos: list[tuple[str, str, bool] | None],
+    clave_de_col: list[int],
+    original: InstrumentoOriginal,
+    pareja: dict[int, int],
+    usadas: set[int],
+) -> int:
+    """Empareja por orden los encabezados codificados que quedaron sueltos (en sitio).
+
+    Caso: el original no tiene secciones (o no coinciden con los prefijos) y el archivo
+    trae «P1…P8» o «Evaluación_item1…». Solo se aplica si TODAS las columnas sueltas son
+    codificadas (prefijo + número, no cuadrículas) y hay exactamente tantas como preguntas
+    libres del original; si no, mejor no adivinar. Devuelve cuántas se emparejaron.
+    """
+    sueltas = [k for k in range(len(claves)) if k not in pareja]
+    libres = [j for j in range(len(original.preguntas)) if j not in usadas]
+    if len(sueltas) < 2 or len(sueltas) != len(libres):
+        return 0
+    grupo_de_clave = {k: grupos[i] for i, k in enumerate(clave_de_col)}
+    if not all((g := grupo_de_clave.get(k)) and not g[2] for k in sueltas):
+        return 0
+    for k, j in zip(sueltas, libres):
+        pareja[k] = j
+        usadas.add(j)
+    return len(sueltas)
 
 
 # ── Entrevistas ────────────────────────────────────────────────────────────────
@@ -302,18 +410,33 @@ def _numero(clave: str) -> int | None:
     return int(numeros[-1]) if numeros else None
 
 
-def prueba(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOriginal | None, texto_documento: str = "") -> Estructura:
-    """Reactivos de la hoja de respuestas (todos: calificables o no); texto y opciones del original.
+def _en_orden(columnas: list[str], orden: list[str]) -> list[str]:
+    """Las columnas en el orden de la hoja de respuestas; las que no aparecen en `orden`, al final."""
+    if not orden:
+        return columnas
+    presentes = set(columnas)
+    ordenadas = [c for c in dict.fromkeys(orden) if c in presentes]
+    return ordenadas + [c for c in columnas if c not in set(ordenadas)]
 
-    El orden y el tipo de cada reactivo salen de `tipos_reactivo` del reporte (opción
-    múltiple, V/F, puntos, escala, Sí/No, numérico); en reportes anteriores, de la clave.
+
+def prueba(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOriginal | None, texto_documento: str = "",
+           orden_columnas: list[str] | None = None) -> Estructura:
+    """Reactivos de la hoja de respuestas; texto y opciones del original.
+
+    El tipo de cada reactivo sale de `tipos_reactivo` del reporte (opción múltiple, V/F, puntos, escala,
+    Sí/No, numérico).
+
+    Regla no obvia: el ORDEN no puede salir de esos diccionarios. El reporte se guarda como JSONB y
+    PostgreSQL reordena sus llaves (primero las cortas; a igual largo, por bytes), y como los reactivos se
+    emparejan con el original por posición, cada texto quedaba en la columna equivocada (24 oct: en pru_10
+    los enunciados Likert caían en las columnas de opción múltiple). El orden sale de `orden_reactivos`
+    (lista, que JSONB sí conserva) o de `orden_columnas` (el orden del CSV limpio).
     """
     c = _Constructor(id_instrumento(id_crudo), prefijo="r")
     esp = (reporte.get("especifico") or {}).get("prueba_estandarizada") or {}
-    clave: dict[str, str] = esp.get("clave") or {}
     tipos: dict[str, str] = esp.get("tipos_reactivo") or {}
     puntos_max: dict[str, int] = esp.get("puntos_max") or {}
-    reactivos = list(tipos) or list(clave)
+    reactivos = _en_orden(list(tipos), esp.get("orden_reactivos") or orden_columnas or [])
     if not reactivos:
         # Prueba subida como documento: el propio texto (o el original) son las preguntas.
         fuente = original if original and original.preguntas else orig.leer(texto_documento)
@@ -331,9 +454,8 @@ def prueba(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOriginal
     mismo_largo = len(preguntas_orig) == len(reactivos)
     if preguntas_orig:
         c.e.fuente = "original"
-    # La respuesta correcta no es parte de la estructura (va en el documento final).
     for k, reactivo in enumerate(reactivos):
-        # Regla: si el original tiene tantas preguntas como la clave, se emparejan en orden;
+        # Regla: si el original tiene tantas preguntas como la hoja tiene reactivos, se emparejan en orden;
         # si no, por número («P3» ↔ pregunta 3).
         p = preguntas_orig[k] if mismo_largo else por_numero.get(_numero(reactivo))
         letras = _letras(p) if p else {}
@@ -349,7 +471,7 @@ def prueba(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOriginal
     if not preguntas_orig:
         c.aviso("sin_original", "No se subió la prueba original: los reactivos no tienen texto ni opciones.")
     elif not mismo_largo and not por_numero:
-        c.aviso("reactivos_sin_texto", "No se pudo emparejar la prueba original con la clave de respuestas.")
+        c.aviso("reactivos_sin_texto", "No se pudo emparejar la prueba original con los reactivos de la hoja de respuestas.")
     return c.e
 
 

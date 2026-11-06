@@ -73,7 +73,7 @@ Convierte cada valor crudo del CSV limpio en una respuesta con `valor`, `signifi
 | calificación / numérica | «8.5 (escala 0–10)» / «14 horas» (la unidad sale del encabezado) |
 | texto | Tal cual |
 | vacías | `sin_respuesta`: nunca se omiten |
-| pruebas | Letra → texto de la opción del original, o «Opción C», más `correcta`, `estado` y `motivo` |
+| pruebas | Letra → texto de la opción del original, o «Opción C», más `estado` y `motivo` (no se califican) |
 
 - **Niveles:** salen de `shared/config/escalas_likert.yaml` (`niveles` de cada escala), por posición, así que sirven para escalas de 4, 5 o 7 puntos.
 - **Datos personales:** se detectan con la lista `datos_personales` de `config/conocimiento.yaml`, por palabra completa.
@@ -82,7 +82,7 @@ Convierte cada valor crudo del CSV limpio en una respuesta con `valor`, `signifi
 Es el insumo de los chunks del RAG. Se construye después de la asociación de KPIs; la vista y el almacenamiento llegan en la fase 5.
 
 - **Encuesta:** `preguntas` (definición, escala con niveles, opciones, KPIs relacionados y resumen precalculado) y `respondentes` (R001…, con su contexto y sus respuestas interpretadas, una por pregunta).
-- **Prueba:** `reactivos` (texto, opciones, respuesta correcta, % de acierto, distribución, distractor más elegido, dificultad y discriminación) y `alumnos` (A001…, contexto, puntaje, total, % y respuestas).
+- **Prueba** (esquema 2.0, sin calificar): `reactivos` (texto, opciones, distribución de respuestas, opción más elegida, opciones que nadie eligió, nulas, sin respuesta y media en los numéricos) y `alumnos` (A001…, contexto, cuántos respondió, nulas, sin respuesta y respuestas).
 - **Entrevista:** `preguntas_guia` y `participantes` (E01…) con `intercambios`. Lo que dice el entrevistador es la pregunta; lo que dice cada participante hasta la siguiente intervención del entrevistador es su respuesta. Los turnos consecutivos del mismo hablante se unen.
 
 **Principios del documento:**

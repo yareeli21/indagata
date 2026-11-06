@@ -1,8 +1,7 @@
 import { useRef, useState } from "react";
-import { ClipboardList, FileUp, FlaskConical, KeyRound, MessagesSquare } from "lucide-react";
+import { ClipboardList, FileUp, FlaskConical, MessagesSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TIPOS_INSTRUMENTO, type TipoInstrumento } from "@/types";
-import { requiereClave } from "./archivos";
 
 const ICONOS = {
   Encuesta: ClipboardList,
@@ -12,7 +11,7 @@ const ICONOS = {
 const DESCRIPCION = {
   Encuesta: "Cuestionarios con reactivos cerrados o escalas.",
   Entrevista: "Guías y transcripciones de preguntas abiertas.",
-  "Prueba estandarizada": "Evaluaciones con clave de respuestas y puntajes.",
+  "Prueba estandarizada": "Hojas de respuestas de los alumnos (no se califican).",
 };
 
 interface StepArchivoProps {
@@ -23,9 +22,6 @@ interface StepArchivoProps {
   /** Instrumento original sin respuestas (opcional): mejora los metadatos y los KPIs. */
   archivoOriginal: File | null;
   onArchivoOriginal: (f: File | null) => void;
-  /** Clave de respuestas (pruebas estandarizadas en tabla). */
-  archivoClave: File | null;
-  onArchivoClave: (f: File | null) => void;
 }
 
 export function StepArchivo({
@@ -35,13 +31,9 @@ export function StepArchivo({
   onTipo,
   archivoOriginal,
   onArchivoOriginal,
-  archivoClave,
-  onArchivoClave,
 }: StepArchivoProps) {
   const input = useRef<HTMLInputElement>(null);
   const inputOriginal = useRef<HTMLInputElement>(null);
-  const inputClave = useRef<HTMLInputElement>(null);
-  const conClave = requiereClave(tipo, archivo);
   const [arrastrando, setArrastrando] = useState(false);
 
   return (
@@ -130,42 +122,6 @@ export function StepArchivo({
           onChange={(e) => onArchivoOriginal(e.target.files?.[0] ?? null)}
         />
       </div>
-
-      {conClave && (
-        <div
-          className={cn(
-            "flex flex-wrap items-center justify-between gap-3 rounded-xl border px-4 py-3 text-sm",
-            "border-border bg-muted/30",
-          )}
-        >
-          <div className="flex min-w-0 items-start gap-3">
-            <KeyRound className="mt-0.5 size-5 shrink-0 text-accent-strong" aria-hidden />
-            <div className="min-w-0">
-              <p className="font-medium">Clave de respuestas (opcional)</p>
-              <p className="text-muted-foreground">
-                {archivoClave
-                  ? archivoClave.name
-                  : "CSV o XLSX con la respuesta correcta de cada pregunta. Si no la tienes, te propondremos una a partir de las respuestas y la revisarás en la limpieza."}
-              </p>
-            </div>
-          </div>
-          <button
-            type="button"
-            className="rounded-lg border border-border bg-card px-3 py-1.5 text-sm font-medium hover:border-primary/60"
-            onClick={() => inputClave.current?.click()}
-          >
-            {archivoClave ? "Cambiar" : "Adjuntar clave"}
-          </button>
-          <input
-            ref={inputClave}
-            type="file"
-            className="hidden"
-            aria-label="Clave de respuestas"
-            accept=".csv,.xlsx,.xls"
-            onChange={(e) => onArchivoClave(e.target.files?.[0] ?? null)}
-          />
-        </div>
-      )}
 
       <div className="space-y-3">
         <h3 className="font-semibold">Tipo de instrumento</h3>

@@ -42,3 +42,5 @@ class RagLog(Base):
     # Caché: huella de la consulta (una idéntica reutiliza la respuesta) y lo que se mostró.
     clave_cache: Mapped[str | None] = mapped_column(String(64), index=True)
     salida: Mapped[dict | None] = mapped_column(JSONB)
+    plan: Mapped[dict | None] = mapped_column(JSONB)  # plan de la interpretación (rediseño en cuatro etapas)
+    tiempos: Mapped[dict | None] = mapped_column(JSONB)  # ms por etapa

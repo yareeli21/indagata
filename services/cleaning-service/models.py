@@ -36,6 +36,10 @@ class TransformacionOut(BaseModel):
     regla: str
     detalle: str
     afectados: int | None = None
+    # Dónde: cada caso con su fila, columna y valor antes y después (los primeros cientos; el total va en
+    # «afectados»), y cuántos cambios hubo por columna.
+    casos: list[dict[str, Any]] = Field(default_factory=list)
+    columnas: dict[str, int] = Field(default_factory=dict)
 
 
 class CifraOut(BaseModel):

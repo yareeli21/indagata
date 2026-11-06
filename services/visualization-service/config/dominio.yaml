@@ -15,7 +15,7 @@ patrones:
   privacidad:
     - '\b(nombre|nombres|apellido|correo|e-?mail|telefono|celular|matricula|direccion|domicilio|curp|rfc|numero de cuenta)\b.{0,60}\b(respondente|encuestad[oa]|alumn[oa]|estudiante|participante|entrevistad[oa]|persona|[rae]\s?-?\d{1,4})\b'
     - '\b(respondente|encuestad[oa]|alumn[oa]|participante|entrevistad[oa]|[rae]\s?-?\d{1,4})\b.{0,60}\b(nombre|apellido|correo|e-?mail|telefono|celular|matricula|direccion|domicilio|curp|rfc)\b'
-    - '\b(como se llama|identifica|identificar|reidentifica|reidentificar|desanonimiza|desanonimizar)\b.{0,40}\b(respondente|encuestad[oa]|alumn[oa]|participante|entrevistad[oa]|[rae]\s?-?\d{1,4})\b'
+    - '\b(como se llama|identifica|identificar|reidentifica|reidentificar|desanonimiza|desanonimizar)\b.{0,40}\b(respondente|encuestad[oa]|alumn[oa]|estudiante|participante|entrevistad[oa]|[rae]\s?-?\d{1,4})\b'
     # «¿Quién es R017?» pide una identidad; «¿quién es el respondente más satisfecho?» es un dato válido.
     - '\bquien es\s+(el |la )?(respondente |encuestad[oa] |alumn[oa] |participante |entrevistad[oa] )?[rae]-?\d{2,4}\b'
   # Intentos de cambiar las reglas del asistente o de ver su configuración.
@@ -55,7 +55,7 @@ ejemplos:
     - "¿Qué porcentaje está de acuerdo con la pregunta 4?"
     - "¿Qué respondió el respondente R017?"
   prueba_estandarizada:
-    - "¿Qué reactivo tuvo el menor porcentaje de acierto?"
+    - "¿Qué opción eligió la mayoría en el reactivo 3?"
   entrevista:
     - "¿Qué dijo el participante E02 sobre la evaluación?"
   general:
@@ -76,31 +76,13 @@ glosario:
       y menos de 0.5 inaceptable. Crece con el número de ítems, debe calcularse por dimensión y
       más de 0.95 puede indicar ítems redundantes. Un α bajo sugiere que los ítems no miden lo mismo
       o que falta invertir algún ítem redactado en negativo.
-  - termino: KR-20
-    sinonimos: [kr20, kuder, fiabilidad de la prueba]
+  - termino: Pruebas estandarizadas en Indagata
+    sinonimos: [acierto, aciertos, respuesta correcta, calificacion, puntaje de la prueba, dificultad, discriminacion, distractor, kr-20]
     texto: >-
-      Es la fiabilidad de una prueba con respuestas correcta/incorrecta, el equivalente del alfa de
-      Cronbach. Se interpreta con la misma tabla (0.7 o más es aceptable). Con pocos reactivos o
-      pocos alumnos suele salir bajo.
-  - termino: Dificultad (p)
-    sinonimos: [dificultad, indice de dificultad, porcentaje de acierto, reactivo dificil, reactivo facil]
-    texto: >-
-      Es la proporción de alumnos que acertaron un reactivo. Más de 0.7 es un reactivo fácil, de 0.3 a
-      0.7 de dificultad media y menos de 0.3 difícil. Lo deseable es que la mayoría de los reactivos
-      sean de dificultad media.
-  - termino: Discriminación (D)
-    sinonimos: [discriminacion, indice de discriminacion, punto biserial]
-    texto: >-
-      Compara los aciertos del 27 % de alumnos con mejor puntaje contra el 27 % con peor puntaje.
-      0.4 o más es excelente, de 0.3 a 0.4 buena, de 0.2 a 0.3 regular y menos de 0.2 pobre. Si es
-      negativa, los alumnos con peor puntaje aciertan más: casi siempre la clave está mal o el
-      reactivo es confuso. El punto-biserial se lee igual (0.3 o más está bien).
-  - termino: Distractor
-    sinonimos: [distractores, opcion incorrecta, distractor mas elegido]
-    texto: >-
-      Es una opción incorrecta de un reactivo de opción múltiple. Un buen distractor atrae a quienes
-      no dominan el tema; uno que nadie elige no cumple su función y conviene reemplazarlo. El
-      distractor más elegido señala la confusión más frecuente.
+      Indagata no califica las pruebas: no recibe clave de respuestas, así que no calcula aciertos,
+      puntajes, dificultad, discriminación ni KR-20. Describe lo que respondieron los alumnos: la
+      distribución de respuestas de cada reactivo, la opción más elegida, las opciones que nadie eligió
+      y cuántas respuestas quedaron nulas o sin responder.
   - termino: Escala Likert
     sinonimos: [likert, escala de acuerdo, totalmente de acuerdo]
     texto: >-

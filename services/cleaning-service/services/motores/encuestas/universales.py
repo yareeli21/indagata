@@ -4,7 +4,7 @@ Sobre la tabla ya leída por `shared.parsing` (que ya detecta la codificación y
 normaliza saltos de línea y espacios de borde en encabezados y celdas):
 
   1. Texto en UTF-8 (se registra la codificación de origen).
-  2. Espacios internos repetidos en valores → uno solo.
+  2. Espacios repetidos o de borde en valores → uno solo / ninguno (cada caso se reporta con su fila).
   3. Representaciones de vacío ("", "NA", "N/A", "-", "null", "sin respuesta"…) → nulo.
   4. Filas y columnas completamente vacías → se eliminan.
   5. Cada columna conserva su encabezado original como ETIQUETA y recibe un
@@ -22,6 +22,8 @@ from services.configuracion import normalizar_texto
 
 _NO_ALFANUM = re.compile(r"[^a-z0-9]+")
 _LARGO_ID = 40
+# Casos que se guardan por transformación para mostrar «dónde» (el total va en «afectados»).
+MAX_CASOS = 300
 
 
 @dataclass
@@ -77,22 +79,42 @@ def preparar(tabla: RawTable, tokens_vacio: list[str]) -> TablaPreparada:
     n_cols = len(tabla.headers)
     espacios = 0
     unificados = 0
+    casos_espacios: list[tuple[int, int, str, str]] = []  # (fila cruda, columna, antes, después)
+    casos_vacios: list[tuple[int, int, str, str]] = []
     columnas_valores: list[list[str | None]] = [[] for _ in range(n_cols)]
-    for fila in tabla.rows:
+    # La lectura ya recortó los bordes; se recupera el valor crudo para contarlos y mostrarlos.
+    con_bordes = {(i, j): crudo for i, j, crudo in getattr(tabla, "bordes", [])}
+    for i, fila in enumerate(tabla.rows):
         for j in range(n_cols):
-            crudo = fila[j] if j < len(fila) else ""
+            crudo = con_bordes.get((i, j)) or (fila[j] if j < len(fila) else "")
             limpio = " ".join(crudo.split())
-            if limpio != crudo.strip():
+            # También los espacios de borde («  Presencial »): antes se quitaban sin contarse (28 oct).
+            if limpio != crudo and limpio:
                 espacios += 1
+                if len(casos_espacios) < MAX_CASOS:
+                    casos_espacios.append((i, j, crudo, limpio))
             if normalizar_texto(limpio) in vacios:
                 if limpio:
                     unificados += 1
+                    if len(casos_vacios) < MAX_CASOS:
+                        casos_vacios.append((i, j, limpio, ""))
                 columnas_valores[j].append(None)
             else:
                 columnas_valores[j].append(limpio)
+    # Filas completamente vacías.
+    n_filas = len(tabla.rows)
+    conservar = [i for i in range(n_filas) if any(columnas_valores[j][i] is not None for j in range(n_cols))]
+    # Las filas se reportan como en los hallazgos: posición en la tabla ya sin filas vacías, desde 1.
+    posicion = {cruda: k + 1 for k, cruda in enumerate(conservar)}
+
+    def casos(lista: list[tuple[int, int, str, str]]) -> list[dict]:
+        return [{"fila": posicion[i], "columna": (tabla.headers[j].strip() or f"Columna {j + 1}"), "antes": a, "despues": d}
+                for i, j, a, d in lista if i in posicion]
+
     if espacios:
         transformaciones.append(
-            {"regla": "espacios_en_valores", "detalle": "Espacios repetidos dentro de los valores.", "afectados": espacios}
+            {"regla": "espacios_en_valores", "detalle": "Espacios de más (repetidos o al inicio y al final) quitados de los valores.",
+             "afectados": espacios, "casos": casos(casos_espacios)}
         )
     if unificados:
         transformaciones.append(
@@ -100,12 +122,9 @@ def preparar(tabla: RawTable, tokens_vacio: list[str]) -> TablaPreparada:
                 "regla": "vacios_unificados",
                 "detalle": "Respuestas como «NA», «N/A», «-» o «sin respuesta» se tratan como vacías.",
                 "afectados": unificados,
+                "casos": casos(casos_vacios),
             }
         )
-
-    # Filas completamente vacías.
-    n_filas = len(tabla.rows)
-    conservar = [i for i in range(n_filas) if any(columnas_valores[j][i] is not None for j in range(n_cols))]
     filas_vacias = n_filas - len(conservar)
     if filas_vacias:
         columnas_valores = [[col[i] for i in conservar] for col in columnas_valores]

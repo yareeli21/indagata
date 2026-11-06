@@ -3,6 +3,7 @@ import { EstadoVacio } from "@/components/shared/EstadoVacio";
 import { ProcesandoIA } from "@/components/shared/ProcesandoIA";
 import { Button } from "@/components/ui/button";
 import type { DocumentoGenerado, PerfilGenerado } from "@/types";
+import { AnalisisRespuestas } from "./conocimiento/AnalisisRespuestas";
 import { DocumentoFinalVista } from "./conocimiento/DocumentoFinalVista";
 import { PerfilSemanticoVista } from "./conocimiento/PerfilSemanticoVista";
 
@@ -38,7 +39,12 @@ export function StepGuardar({
       </dl>
       {perfil && <PerfilSemanticoVista datos={perfil} conKpis />}
       {documento ? (
-        <DocumentoFinalVista datos={documento} />
+        <>
+          <DocumentoFinalVista datos={documento} />
+          {documento.documento.instrumento.tipo === "entrevista" && (
+            <AnalisisRespuestas idCrudo={documento.id_crudo} />
+          )}
+        </>
       ) : errorDocumento ? (
         <EstadoVacio
           icono={FileWarning}

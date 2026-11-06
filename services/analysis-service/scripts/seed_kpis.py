@@ -7,8 +7,7 @@ re-inserta las filas en el orden del CSV, de modo que los `kpi_id` quedan
 contiguos 1..N. El conteo NO se hardcodea: se recuenta al ejecutar.
 
 El `TRUNCATE ... CASCADE` es destructivo y AUTORIZADO (reemplazo completo del
-catálogo): vacía también `kpi_variable`, `kpi_inferido`,
-`valor_variable_inferido` y `kpi_inferido_chunk`. Las constraints FK NO se
+catálogo): vacía también `kpi_inferido` y `kpi_inferido_chunk`. Las constraints FK NO se
 eliminan; solo se vacían las filas hijas.
 
 Ruta del CSV: variable de entorno `KPIS_CSV_PATH` si está definida; si no,

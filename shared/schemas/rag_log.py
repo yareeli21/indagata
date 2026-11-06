@@ -28,6 +28,8 @@ class RagLogBase(BaseModel):
     fecha_metricas: datetime | None = None
     clave_cache: str | None = None
     salida: dict[str, Any] | None = None
+    plan: dict[str, Any] | None = None
+    tiempos: dict[str, Any] | None = None
 
 
 class RagLogCreate(RagLogBase):

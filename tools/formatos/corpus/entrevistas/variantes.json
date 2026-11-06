@@ -1,0 +1,42 @@
+[
+  {
+    "clave": "I01",
+    "descripcion": "Etiquetas «Entrevistador:/Entrevistado:» y bloques «RESPONDENTE»",
+    "nivel": "ideal",
+    "archivo": "I01_transcripcion.txt",
+    "original": "guion_original.txt",
+    "participantes": 4
+  },
+  {
+    "clave": "I02",
+    "descripcion": "Preguntas numeradas «P1:» y «R:» por bloque",
+    "nivel": "ideal",
+    "archivo": "I02_transcripcion.txt",
+    "original": "guion_original.txt",
+    "participantes": 4
+  },
+  {
+    "clave": "I03",
+    "descripcion": "Transcripción de Zoom («Hablante n  mm:ss», muletillas), grupal",
+    "nivel": "aceptado",
+    "archivo": "I03_zoom.txt",
+    "original": "guion_original.txt",
+    "participantes": 4
+  },
+  {
+    "clave": "I04",
+    "descripcion": "WebVTT de Teams con voces «<v Nombre>», grupal",
+    "nivel": "aceptado",
+    "archivo": "I04_teams.vtt",
+    "original": "guion_original.txt",
+    "participantes": 4
+  },
+  {
+    "clave": "I05",
+    "descripcion": "Sin etiquetas de hablante (una persona, párrafos)",
+    "nivel": "aceptado",
+    "archivo": "I05_sin_etiquetas.txt",
+    "original": "guion_original.txt",
+    "participantes": 1
+  }
+]

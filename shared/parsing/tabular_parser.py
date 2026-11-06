@@ -69,19 +69,30 @@ def read_csv(data: bytes) -> RawTable:
     n_cols = len(headers)
 
     data_rows: list[list[str]] = []
+    bordes: list[tuple[int, int, str]] = []
+    irregulares: list[tuple[int, list[str]]] = []
     for row in all_rows[1:]:
+        for j, cell in enumerate(row[:n_cols]):
+            if cell.strip() and cell != cell.strip():
+                bordes.append((len(data_rows), j, cell))
         if not any(cell.strip() for cell in row):
-            if len(row) >= n_cols and any(row):
+            # Una fila de solo separadores («,,,,») es un registro vacío: se conserva para que la
+            # limpieza la cuente y la reporte. Antes `any(row)` la descartaba sin aviso (24 oct). Las
+            # líneas en blanco sin separadores (p. ej. al final del archivo) sí se omiten.
+            if len(row) >= n_cols:
                 data_rows.append([normalize_cell(c) for c in row[:n_cols]])
             continue
         normalized = [normalize_cell(c) for c in row]
+        if len(normalized) != n_cols:
+            irregulares.append((len(data_rows), list(normalized)))
         if len(normalized) < n_cols:
             normalized += [""] * (n_cols - len(normalized))
         elif len(normalized) > n_cols:
             normalized = normalized[:n_cols]
         data_rows.append(normalized)
 
-    return RawTable(headers=headers, rows=data_rows, encoding=encoding, sheet=None, notes=notes)
+    return RawTable(headers=headers, rows=data_rows, encoding=encoding, sheet=None, notes=notes, bordes=bordes,
+                    irregulares=irregulares)
 
 
 # ─────────────────────────────── XLSX ────────────────────────────────────────
@@ -136,17 +147,21 @@ def read_xlsx(data: bytes, sheet: str | None = None) -> RawTable:
     n_cols = len(headers)
 
     data_rows: list[list[str]] = []
+    irregulares: list[tuple[int, list[str]]] = []
     for row in raw_rows[1:]:
         cells = [_cell_to_str(c) for c in row]
         if not any(c.strip() for c in cells):
             continue
+        # En Excel las celdas de más casi siempre están vacías: solo cuentan si traen algo.
+        if any(c.strip() for c in cells[n_cols:]):
+            irregulares.append((len(data_rows), list(cells)))
         if len(cells) < n_cols:
             cells += [""] * (n_cols - len(cells))
         elif len(cells) > n_cols:
             cells = cells[:n_cols]
         data_rows.append(cells)
 
-    return RawTable(headers=headers, rows=data_rows, encoding=None, sheet=sheet_title, notes=[])
+    return RawTable(headers=headers, rows=data_rows, encoding=None, sheet=sheet_title, notes=[], irregulares=irregulares)
 
 
 # ─────────────────────────────── XLS ─────────────────────────────────────────
@@ -206,13 +221,28 @@ def read_xls(data: bytes, sheet: str | None = None) -> RawTable:
     return RawTable(headers=headers, rows=data_rows, encoding=None, sheet=hoja.name, notes=[])
 
 
+def _exporte_qualtrics(tabla: RawTable) -> RawTable:
+    """Qualtrics exporta 3 filas de encabezado: código, texto de la pregunta y {"ImportId":…}.
+
+    Se usa el texto como encabezado (el código si la celda está vacía) y se descartan las
+    dos filas extra; sin esto, el texto y el ImportId quedaban como dos «respondentes».
+    """
+    if len(tabla.rows) < 2 or not any(c.strip().startswith('{"ImportId"') for c in tabla.rows[1]):
+        return tabla
+    encabezados = [normalize_header(t) or h for h, t in zip(tabla.headers, tabla.rows[0])]
+    notas = [*tabla.notes, "Exporte de Qualtrics: se usó la fila del texto de las preguntas como encabezado."]
+    return RawTable(headers=encabezados, rows=tabla.rows[2:], encoding=tabla.encoding, sheet=tabla.sheet, notes=notas,
+                    bordes=[(i - 2, j, v) for i, j, v in tabla.bordes if i >= 2],
+                    irregulares=[(i - 2, celdas) for i, celdas in tabla.irregulares if i >= 2])
+
+
 def read_tabular(data: bytes, extension: str, sheet: str | None = None) -> RawTable:
     """Enruta a read_csv/read_xlsx/read_xls según la extensión."""
     ext = extension.lower()
     if ext == ".csv":
-        return read_csv(data)
+        return _exporte_qualtrics(read_csv(data))
     if ext == ".xlsx":
-        return read_xlsx(data, sheet=sheet)
+        return _exporte_qualtrics(read_xlsx(data, sheet=sheet))
     if ext == ".xls":
-        return read_xls(data, sheet=sheet)
+        return _exporte_qualtrics(read_xls(data, sheet=sheet))
     raise TabularParseError(f"Extensión tabular no soportada: {extension}")

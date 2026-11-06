@@ -20,7 +20,6 @@
 --
 -- Referencias a Chroma:
 --   - instrumento_procesado.collection_id → colección donde vive el instrumento
---   - prompts.collection_id               → colección sobre la que actúa el prompt
 --   - documento_vectorizado.collection_id → colección del chunk
 --   - documento_vectorizado.chunk_id      → ID del punto/vector del chunk en Chroma
 --
@@ -59,7 +58,6 @@ CREATE TABLE IF NOT EXISTS raw_data (
     nombre_archivo       TEXT        NOT NULL,
     raw_archivo          TEXT        NOT NULL,  -- ruta del archivo respondido (crudo con datos)
     raw_archivo_original TEXT,                  -- ruta del instrumento original (solo preguntas)
-    raw_archivo_clave    TEXT,                  -- clave de respuestas (pruebas estandarizadas tabulares)
     fecha_carga          TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -100,7 +98,7 @@ CREATE TABLE IF NOT EXISTS metadatos_dc (
     dc_subject     TEXT,
     dc_publisher   TEXT,
     dc_rights      VARCHAR(255),
-    dc_format      VARCHAR(50),
+    dc_format      VARCHAR(120),
     dc_source      TEXT,
     dc_relation    TEXT
 );
@@ -151,7 +149,7 @@ CREATE TABLE IF NOT EXISTS metadatos_enriquecidos_pruebas (
 -- ── 5b. coleccion_vectorial (config de la colección Chroma) ───────────────────
 -- Una colección Chroma por configuración de embedding. Guarda los parámetros con
 -- los que se vectorizó, para poder reindexar de forma reproducible. La referencian
--- prompts y documento_vectorizado.
+-- documento_vectorizado.
 
 CREATE TABLE IF NOT EXISTS coleccion_vectorial (
     coleccion_id    SERIAL      PRIMARY KEY,
@@ -160,18 +158,6 @@ CREATE TABLE IF NOT EXISTS coleccion_vectorial (
     chunk_size      INTEGER,
     chunk_overlap   INTEGER,
     creado_en       TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
-);
-
--- ── 6. prompts ────────────────────────────────────────────────────────────────
-
-CREATE TABLE IF NOT EXISTS prompts (
-    prompt_id     SERIAL      PRIMARY KEY,
-    tipo          VARCHAR(50) NOT NULL,
-    version       VARCHAR(10) NOT NULL,
-    contenido     TEXT        NOT NULL,
-    coleccion_id  INTEGER     REFERENCES coleccion_vectorial(coleccion_id) ON DELETE SET NULL,  -- colección sobre la que actúa el prompt
-    activo        BOOLEAN     DEFAULT TRUE,
-    creado_en     TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ── 7. kpi ────────────────────────────────────────────────────────────────────
@@ -188,16 +174,6 @@ CREATE TABLE IF NOT EXISTS kpi (
     texto_contexto_rag_vectorial          TEXT   NOT NULL   -- CSV: Texto_Contexto_RAG_Vectorial (texto a embeber)
 );
 
--- ── 8. variable ───────────────────────────────────────────────────────────────
-
-CREATE TABLE IF NOT EXISTS variable (
-    variable_id     SERIAL PRIMARY KEY,
-    nombre_variable TEXT   NOT NULL,
-    descripcion     TEXT,
-    tipo_dato       VARCHAR(20),
-    unidad          TEXT
-);
-
 -- ── 8b. kpi_fuente (fuentes de referencia verificadas de cada KPI) ────────────
 -- Se carga desde seed/KPI_Fuentes.csv (scripts/seed_kpis.py), aparte del catálogo.
 
@@ -211,14 +187,6 @@ CREATE TABLE IF NOT EXISTS kpi_fuente (
     nota           TEXT
 );
 
--- ── 9. kpi_variable ───────────────────────────────────────────────────────────
-
-CREATE TABLE IF NOT EXISTS kpi_variable (
-    kpi_id      INTEGER NOT NULL REFERENCES kpi(kpi_id) ON DELETE CASCADE,
-    variable_id INTEGER NOT NULL REFERENCES variable(variable_id) ON DELETE CASCADE,
-    PRIMARY KEY (kpi_id, variable_id)
-);
-
 -- ── 10. kpi_inferido (sin puntuación LLM ni RAG) ──────────────────────────────
 
 CREATE TABLE IF NOT EXISTS kpi_inferido (
@@ -228,20 +196,6 @@ CREATE TABLE IF NOT EXISTS kpi_inferido (
     resultado        NUMERIC,
     fecha_inferencia TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id_procesado, kpi_id)
-);
-
--- ── 11. valor_variable_inferido ───────────────────────────────────────────────
-
-CREATE TABLE IF NOT EXISTS valor_variable_inferido (
-    id_procesado       INTEGER NOT NULL,
-    kpi_id             INTEGER NOT NULL,
-    variable_id        INTEGER NOT NULL REFERENCES variable(variable_id) ON DELETE CASCADE,
-    valor_numerico     NUMERIC,
-    valor_texto        TEXT,
-    valor_booleano     BOOLEAN,
-    confianza_variable NUMERIC,
-    PRIMARY KEY (id_procesado, kpi_id, variable_id),
-    FOREIGN KEY (id_procesado, kpi_id) REFERENCES kpi_inferido(id_procesado, kpi_id) ON DELETE CASCADE
 );
 
 -- ── 12. rag_log ───────────────────────────────────────────────────────────────
@@ -267,7 +221,32 @@ CREATE TABLE IF NOT EXISTS rag_log (
     modelo_juez      VARCHAR(100),
     fecha_metricas   TIMESTAMP,
     clave_cache      VARCHAR(64),  -- huella de la consulta: una idéntica reutiliza la respuesta
-    salida           JSONB         -- fuentes y referencias mostradas
+    salida           JSONB,        -- fuentes y referencias mostradas
+    plan             JSONB,        -- plan de la etapa de interpretación (intención, filtros…) y correcciones
+    tiempos          JSONB         -- milisegundos por etapa: interpretación, ejecución, redacción, verificación
+);
+
+-- ── 12b. rag_metrica_juez y rag_calificacion (evaluación del chat) ────────────
+-- Una evaluación por respuesta y por modelo juez (experimento redactor × juez; rag_log.metricas guarda la del
+-- juez por defecto) y la calificación humana de cada respuesta (0 mal, 1 parcial, 2 bien).
+CREATE TABLE IF NOT EXISTS rag_metrica_juez (
+    rag_metrica_juez_id SERIAL       PRIMARY KEY,
+    rag_log_id          INTEGER      NOT NULL REFERENCES rag_log(rag_log_id) ON DELETE CASCADE,
+    modelo_juez         VARCHAR(100) NOT NULL,
+    metricas            JSONB        NOT NULL DEFAULT '{}'::jsonb,
+    version             VARCHAR(10),
+    fecha               TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (rag_log_id, modelo_juez)
+);
+
+CREATE TABLE IF NOT EXISTS rag_calificacion (
+    rag_log_id   INTEGER   PRIMARY KEY REFERENCES rag_log(rag_log_id) ON DELETE CASCADE,
+    calificacion SMALLINT  NOT NULL CHECK (calificacion BETWEEN 0 AND 2),
+    entendio     BOOLEAN,
+    fundamenta   BOOLEAN,  -- NULL = no aplica
+    comentario   TEXT,
+    usuario_id   INTEGER   REFERENCES usuario(usuario_id) ON DELETE SET NULL,
+    fecha        TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ── 13. documento_vectorizado (chunks vectorizados de cada instrumento) ───────
@@ -369,9 +348,25 @@ CREATE TABLE IF NOT EXISTS respuesta_interpretada (
     fecha_creacion  TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
 );
 
+-- ── tiempo_proceso (tiempo de cómputo de cada paso de un instrumento) ─────────
+-- Una fila por operación automática (carga, limpieza, metadatos, aprobación, perfil, KPIs,
+-- documento, indexación…). Registra solo el cómputo, sin el tiempo que la investigadora tarda
+-- en decidir, para estimar cuánto tardaría el procesamiento en un servidor.
+CREATE TABLE IF NOT EXISTS tiempo_proceso (
+    tiempo_proceso_id SERIAL       PRIMARY KEY,
+    id_crudo          INTEGER      NOT NULL REFERENCES raw_data(id_crudo) ON DELETE CASCADE,
+    servicio          VARCHAR(40)  NOT NULL,
+    paso              VARCHAR(60)  NOT NULL,
+    inicio            TIMESTAMP    NOT NULL,
+    fin               TIMESTAMP    NOT NULL,
+    duracion_ms       INTEGER      NOT NULL,
+    detalle           JSONB        NOT NULL DEFAULT '{}'::jsonb
+);
+
 -- ── Índices ───────────────────────────────────────────────────────────────────
 
 CREATE INDEX IF NOT EXISTS idx_raw_data_owner           ON raw_data(id_owner);
+CREATE INDEX IF NOT EXISTS idx_tiempo_proceso_crudo     ON tiempo_proceso(id_crudo, inicio);
 CREATE INDEX IF NOT EXISTS idx_instrumento_crudo        ON instrumento_procesado(id_crudo);
 CREATE INDEX IF NOT EXISTS idx_instrumento_estado       ON instrumento_procesado(estado);
 CREATE INDEX IF NOT EXISTS idx_kpi_inferido_procesado   ON kpi_inferido(id_procesado);

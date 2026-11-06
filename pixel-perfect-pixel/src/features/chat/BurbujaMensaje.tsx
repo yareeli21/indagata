@@ -1,5 +1,13 @@
 import type { ReactNode } from "react";
-import { BookOpen, CircleHelp, ExternalLink, GraduationCap, History, Landmark } from "lucide-react";
+import {
+  BookOpen,
+  CircleHelp,
+  ExternalLink,
+  GraduationCap,
+  History,
+  Landmark,
+  Timer,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { FuenteChat, Mensaje, ReferenciaChat } from "@/types";
 import { PanelMetricas } from "./PanelMetricas";
@@ -31,9 +39,15 @@ export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
             : "rounded-bl-md border border-border bg-card text-card-foreground",
         )}
       >
-        <p className="whitespace-pre-wrap break-words">
-          {esUsuario ? mensaje.contenido : conCitas(mensaje.contenido, mensaje.id, mensaje.fuentes)}
-        </p>
+        {esUsuario ? (
+          <p className="whitespace-pre-wrap break-words">{mensaje.contenido}</p>
+        ) : (
+          <ContenidoAsistente
+            texto={mensaje.contenido}
+            mensajeId={mensaje.id}
+            fuentes={mensaje.fuentes}
+          />
+        )}
         {/* Cursor parpadeante mientras se genera */}
         {mensaje.generando && (
           <span
@@ -42,6 +56,13 @@ export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
           />
         )}
       </div>
+
+      {!esUsuario && !mensaje.generando && !mensaje.enCache && mensaje.latenciaMs != null && (
+        <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <Timer className="size-3.5" aria-hidden />
+          Respondió en {(mensaje.latenciaMs / 1000).toFixed(1)} s
+        </p>
+      )}
 
       {!esUsuario && !mensaje.generando && mensaje.enCache && (
         <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -121,6 +142,111 @@ function TarjetaReferencia({ referencia }: { referencia: ReferenciaChat }) {
 
 /** Texto de la respuesta con cada cita convertida en una marca numerada que
  *  coincide con su tarjeta de fuente. */
+type Bloque =
+  | { tipo: "texto"; texto: string }
+  | { tipo: "titulo"; texto: string }
+  | { tipo: "tabla"; columnas: string[]; filas: string[][] };
+
+function celdas(linea: string): string[] {
+  return linea
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((c) => c.trim());
+}
+
+/**
+ * Divide la respuesta en texto, títulos («**Respuestas interpretadas [Fuente 1]**») y tablas en Markdown: las
+ * respuestas con respondentes traen la tabla calculada tal cual, debajo de la redacción del modelo.
+ */
+function bloques(texto: string): Bloque[] {
+  const salida: Bloque[] = [];
+  const lineas = texto.split("\n");
+  let i = 0;
+  while (i < lineas.length) {
+    const linea = lineas[i] ?? "";
+    if (linea.trim().startsWith("|") && (lineas[i + 1] ?? "").trim().startsWith("|---")) {
+      const columnas = celdas(linea);
+      const filas: string[][] = [];
+      i += 2;
+      while (i < lineas.length && (lineas[i] ?? "").trim().startsWith("|")) {
+        filas.push(celdas(lineas[i] ?? ""));
+        i += 1;
+      }
+      salida.push({ tipo: "tabla", columnas, filas });
+      continue;
+    }
+    const titulo = /^\*\*(.+)\*\*$/.exec(linea.trim());
+    if (titulo?.[1]) {
+      salida.push({ tipo: "titulo", texto: titulo[1] });
+    } else {
+      const ultimo = salida[salida.length - 1];
+      if (ultimo?.tipo === "texto") ultimo.texto += `\n${linea}`;
+      else salida.push({ tipo: "texto", texto: linea });
+    }
+    i += 1;
+  }
+  return salida.filter((b) => b.tipo !== "texto" || b.texto.trim());
+}
+
+function ContenidoAsistente({
+  texto,
+  mensajeId,
+  fuentes,
+}: {
+  texto: string;
+  mensajeId: string;
+  fuentes?: FuenteChat[] | undefined;
+}) {
+  return (
+    <div className="space-y-3">
+      {bloques(texto).map((b, n) => {
+        if (b.tipo === "titulo") {
+          return (
+            <p key={n} className="font-semibold text-foreground">
+              {conCitas(b.texto, mensajeId, fuentes)}
+            </p>
+          );
+        }
+        if (b.tipo === "tabla") {
+          return (
+            <div key={n} className="max-h-96 overflow-auto rounded-xl border border-border">
+              <table className="w-full text-xs">
+                <thead className="sticky top-0 bg-muted text-left text-muted-foreground">
+                  <tr>
+                    {b.columnas.map((c, j) => (
+                      <th key={j} className="px-2 py-1.5 font-semibold">
+                        {c}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {b.filas.map((fila, j) => (
+                    <tr key={j} className="border-t border-border/60 align-top">
+                      {fila.map((c, k) => (
+                        <td key={k} className={cn("px-2 py-1", k === 0 && "font-medium")}>
+                          {c}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+        return (
+          <p key={n} className="whitespace-pre-wrap break-words">
+            {conCitas(b.texto, mensajeId, fuentes)}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 function conCitas(texto: string, mensajeId: string, fuentes?: FuenteChat[]): ReactNode[] {
   const partes: ReactNode[] = [];
   let desde = 0;

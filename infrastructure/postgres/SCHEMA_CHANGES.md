@@ -249,7 +249,7 @@ Migración: `migrations/2026_10_limpieza.sql` (rollback: `2026_10_limpieza_ROLLB
 | Cambio | Detalle |
 |---|---|
 | Tabla nueva `limpieza_ejecucion` | Una fila por ejecución (versión) de la limpieza: `estado` (`esperando_decisiones` / `confirmada` / `fallida`), investigador, fechas, `ruta_csv_limpio` (key en storage) y `reporte` JSONB (reporte_limpieza con decisiones). `UNIQUE (id_crudo, version)`. |
-| Columna nueva `raw_data.raw_archivo_clave` | Clave de respuestas de las pruebas estandarizadas tabulares. |
+| Columna nueva `raw_data.raw_archivo_clave` | Clave de respuestas de las pruebas estandarizadas tabulares. Se eliminó en `2026_16_sin_clave` (las pruebas ya no se califican). |
 
 ---
 
@@ -260,3 +260,60 @@ Migración: `migrations/2026_11_conocimiento.sql` (rollback: `2026_11_conocimien
 | Cambio | Detalle |
 |---|---|
 | Tabla nueva `version_conocimiento` | Una fila por versión: `perfil` (perfil semántico, JSONB), `decisiones_kpi` (KPIs aceptados y rechazados con score, componentes, evidencia y justificación), `ruta_documento` (key del documento final en storage), `esquema_version`, `avisos`, `sha256`, `id_limpieza`, `id_usuario` y fechas por etapa. `estado`: `perfil_aprobado` / `kpis_confirmados` / `borrador` / `vigente` / `reemplazado`. `UNIQUE (id_crudo, version)`. |
+
+---
+
+## 2026-15 · Tiempos de cómputo de cada paso
+
+Migración: `migrations/2026_15_tiempo_proceso.sql` (rollback: `2026_15_tiempo_proceso_ROLLBACK.sql`).
+
+| Cambio | Detalle |
+|---|---|
+| Tabla nueva `tiempo_proceso` | Una fila por operación automática de un instrumento (carga, limpieza, metadatos, aprobación, perfil, KPIs, documento, indexación): `servicio`, `paso`, `inicio`, `fin`, `duracion_ms` y `detalle` JSONB. Borrado en cascada con `raw_data`. |
+
+---
+
+## 2026-16 · Las pruebas estandarizadas ya no se califican
+
+Migración: `migrations/2026_16_sin_clave.sql` (rollback: `2026_16_sin_clave_ROLLBACK.sql`, que recrea la columna vacía).
+
+| Cambio | Detalle |
+|---|---|
+| Columna eliminada `raw_data.raw_archivo_clave` | Indagata ya no recibe clave de respuestas: describe lo que contestaron los alumnos, sin marcar respuestas como correctas (25 oct 2026). |
+
+---
+
+## 2026-17 · Plan y tiempos por etapa en `rag_log`
+
+Migración: `migrations/2026_17_rag_log_plan.sql` (rollback: `2026_17_rag_log_plan_ROLLBACK.sql`).
+
+| Cambio | Detalle |
+|---|---|
+| Columna nueva `rag_log.plan` (JSONB) | Plan JSON de la etapa de interpretación del chat (intención, filtros, límite, campos…), con las correcciones del catálogo y del anclaje y los intentos (28 oct 2026). |
+| Columna nueva `rag_log.tiempos` (JSONB) | Milisegundos de cada etapa: interpretación, ejecución, redacción y verificación. |
+
+---
+
+## 2026-18 · Evaluación por juez y calificación humana del chat
+
+Migración: `migrations/2026_18_rag_evaluacion.sql` (rollback: `2026_18_rag_evaluacion_ROLLBACK.sql`).
+
+| Cambio | Detalle |
+|---|---|
+| Tabla nueva `rag_metrica_juez` | Una evaluación (fidelidad, relevancia, precisión del contexto) por respuesta y por modelo juez, `UNIQUE (rag_log_id, modelo_juez)`. Permite que varios jueces califiquen las mismas respuestas (experimento redactor × juez, 28 oct 2026). `rag_log.metricas` conserva la del juez por defecto. |
+| Tabla nueva `rag_calificacion` | Calificación humana de cada respuesta: `calificacion` 0–2 (mal, parcial, bien), `entendio`, `fundamenta` (NULL = no aplica), `comentario`, `usuario_id`. |
+
+---
+
+## 2026-19 · Se quitan las tablas sin uso
+
+Migración: `migrations/2026_19_quitar_tablas_sin_uso.sql` (rollback: `2026_19_quitar_tablas_sin_uso_ROLLBACK.sql`, las vuelve a crear vacías).
+
+| Tabla quitada | Por qué (las cuatro tenían 0 filas, 28 oct 2026) |
+|---|---|
+| `prompts` | Los prompts viven en el código (`visualization-service/services/prompt.py`); ningún servicio la leía ni la escribía. |
+| `variable`, `kpi_variable` | `seed_kpis.py` nunca las llenó; el catálogo de KPIs mostraba siempre el texto de respaldo. Se quitó su lectura en `query_engine.catalogo_kpis`. |
+| `valor_variable_inferido` | Ningún servicio la escribía ni la leía. |
+
+Las secciones anteriores de este archivo son historia: mencionan estas tablas tal como existían entonces.
+

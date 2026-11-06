@@ -60,7 +60,7 @@ export function ChatPage() {
 
   // Chat
   const [mensajes, setMensajes] = useState<Mensaje[]>([]);
-  const [modelo, setModelo] = useState<ModeloLLM>("llama3.2:3b");
+  const [modelo, setModelo] = useState<ModeloLLM>("servidor");
   const [generando, setGenerando] = useState(false);
   const cancelarRef = useRef<(() => void) | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -100,6 +100,7 @@ export function ChatPage() {
       const idUsuario = `msg-${Date.now()}-u`;
       const idAsistente = `msg-${Date.now()}-a`;
 
+      const anteriores = mensajes;
       setMensajes((prev) => [
         ...prev,
         { id: idUsuario, rol: "usuario", contenido: texto },
@@ -130,11 +131,12 @@ export function ChatPage() {
           : alcance === "elegidos" && elegidos.length > 0
             ? elegidos
             : undefined,
+        anteriores,
       );
 
       cancelarRef.current = cancelar;
     },
-    [contexto, modelo, activa, alcance, elegidos],
+    [contexto, modelo, activa, alcance, elegidos, mensajes],
   );
 
   function handleDetener() {

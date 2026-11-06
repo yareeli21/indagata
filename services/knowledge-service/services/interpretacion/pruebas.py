@@ -1,11 +1,10 @@
 """Intérprete de respuestas de pruebas estandarizadas (CSV largo de la limpieza).
 
-Cada fila del CSV limpio trae: id_alumno; pregunta; respuesta; respuesta_correcta;
-correcta (1/0); estado (valida | nula | NR); motivo. Se convierte en:
+Cada fila del CSV limpio trae: id_alumno; pregunta; respuesta; estado (valida | nula | NR);
+motivo. Indagata no califica las pruebas: no hay respuesta correcta. Se convierte en:
   - respuesta:    la letra tal cual (None si vacía)
   - significado:  texto de la opción si el original lo tiene; si no, «Opción C».
                   En las nulas, el motivo legible («Respuesta múltiple (AB)»).
-  - correcta:     bool
   - estado:       valida | nula | sin_respuesta     (NR → sin_respuesta)
   - motivo:       el de la limpieza (no_respondida, respuesta_multiple, ilegible…)
 """
@@ -37,15 +36,11 @@ def _significado(respuesta: str, tipo: str, letras: dict[str, str], puntos_max: 
 
 
 def interpretar(fila: dict[str, str], letras: dict[str, str], tipo: str = "opcion_multiple", puntos_max: int | None = None) -> dict[str, Any]:
-    """Respuesta interpretada. En los reactivos NO calificables (escala, Sí/No, numérico) no
-    hay `correcta`: la limpieza deja esa celda vacía."""
+    """Respuesta interpretada: qué eligió el alumno y qué significa (sin calificarla)."""
     respuesta = (fila.get("respuesta") or "").strip()
     estado = (fila.get("estado") or "").strip()
     motivo = (fila.get("motivo") or "").strip()
-    correcta = (fila.get("correcta") or "").strip()
     salida: dict[str, Any] = {"respuesta": respuesta or None}
-    if correcta != "":
-        salida["correcta"] = correcta == "1"
     if estado == "valida":
         salida.update(estado="valida", significado=_significado(respuesta, tipo, letras, puntos_max))
         return salida

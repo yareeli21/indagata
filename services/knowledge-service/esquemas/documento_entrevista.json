@@ -1,31 +1,66 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "documento_entrevista.json",
-  "title": "Documento final de una entrevista (v2.0)",
+  "title": "Documento final de una entrevista (v2.0 / v2.1 con análisis de respuestas)",
   "description": "Solo texto: las preguntas del guion y, por cada persona entrevistada, la pregunta del entrevistador y su respuesta. Sin estadísticas ni conteos.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["esquema_version", "instrumento", "kpis_asociados", "preguntas", "entrevistas", "avisos"],
+  "required": [
+    "esquema_version",
+    "instrumento",
+    "kpis_asociados",
+    "preguntas",
+    "entrevistas",
+    "avisos"
+  ],
   "properties": {
-    "esquema_version": {"const": "2.0"},
-    "instrumento": {
-      "allOf": [
-        {"$ref": "comun.json#/$defs/instrumento"},
-        {"properties": {"tipo": {"const": "entrevista"}}}
+    "esquema_version": {
+      "enum": [
+        "2.0",
+        "2.1"
       ]
     },
-    "kpis_asociados": {"type": "array", "items": {"$ref": "comun.json#/$defs/kpi_asociado"}},
+    "instrumento": {
+      "allOf": [
+        {
+          "$ref": "comun.json#/$defs/instrumento"
+        },
+        {
+          "properties": {
+            "tipo": {
+              "const": "entrevista"
+            }
+          }
+        }
+      ]
+    },
+    "kpis_asociados": {
+      "type": "array",
+      "items": {
+        "$ref": "comun.json#/$defs/kpi_asociado"
+      }
+    },
     "preguntas": {
       "type": "array",
       "description": "Preguntas del guion (o del entrevistador) a las que apunta la evidencia de los KPIs.",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "texto", "kpis_relacionados"],
+        "required": [
+          "id",
+          "texto",
+          "kpis_relacionados"
+        ],
         "properties": {
-          "id": {"$ref": "comun.json#/$defs/id_hijo"},
-          "texto": {"type": "string"},
-          "kpis_relacionados": {"$ref": "comun.json#/$defs/kpis_relacionados"}
+          "id": {
+            "$ref": "comun.json#/$defs/id_hijo"
+          },
+          "texto": {
+            "type": "string"
+          },
+          "kpis_relacionados": {
+            "$ref": "comun.json#/$defs/kpis_relacionados"
+          }
         }
       }
     },
@@ -34,25 +69,144 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["participante", "intercambios"],
+        "required": [
+          "participante",
+          "intercambios"
+        ],
         "properties": {
-          "participante": {"$ref": "comun.json#/$defs/id_hijo"},
+          "participante": {
+            "$ref": "comun.json#/$defs/id_hijo"
+          },
+          "contexto": {
+            "$ref": "comun.json#/$defs/contexto",
+            "description": "Datos de la persona del encabezado de su bloque («Edad: 21 | Turno: matutino»), sin datos personales."
+          },
           "intercambios": {
             "type": "array",
             "items": {
               "type": "object",
               "additionalProperties": false,
-              "required": ["pregunta", "respuesta"],
+              "required": [
+                "pregunta",
+                "respuesta"
+              ],
               "properties": {
-                "pregunta_id": {"$ref": "comun.json#/$defs/id_hijo"},
-                "pregunta": {"type": "string"},
-                "respuesta": {"type": "string", "minLength": 1}
+                "pregunta_id": {
+                  "$ref": "comun.json#/$defs/id_hijo"
+                },
+                "pregunta": {
+                  "type": "string"
+                },
+                "respuesta": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "analisis": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "Unidades literales de la respuesta con su marco temporal, función y postura; núcleo que responde a la pregunta (v2.1).",
+                  "required": [
+                    "unidades",
+                    "nucleo",
+                    "postura",
+                    "estado",
+                    "metodo"
+                  ],
+                  "properties": {
+                    "unidades": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "texto",
+                          "marco_temporal",
+                          "funcion",
+                          "postura"
+                        ],
+                        "properties": {
+                          "texto": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "marco_temporal": {
+                            "enum": [
+                              "actual",
+                              "pasado",
+                              "hipotetico",
+                              "general"
+                            ]
+                          },
+                          "funcion": {
+                            "enum": [
+                              "responde",
+                              "contexto",
+                              "digresion"
+                            ]
+                          },
+                          "postura": {
+                            "enum": [
+                              "si",
+                              "no",
+                              "ambivalente",
+                              "no_aplica"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "nucleo": {
+                      "type": "string"
+                    },
+                    "postura": {
+                      "enum": [
+                        "si",
+                        "no",
+                        "ambivalente",
+                        "no_aplica",
+                        "sin_determinar"
+                      ]
+                    },
+                    "motivo": {
+                      "type": "string"
+                    },
+                    "marco_pregunta": {
+                      "enum": [
+                        "actual",
+                        "pasado",
+                        "hipotetico",
+                        "general"
+                      ]
+                    },
+                    "metodo": {
+                      "enum": [
+                        "llm",
+                        "reglas"
+                      ]
+                    },
+                    "estado": {
+                      "enum": [
+                        "propuesto",
+                        "revisado"
+                      ]
+                    },
+                    "descartadas": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                }
               }
             }
           }
         }
       }
     },
-    "avisos": {"type": "array", "items": {"$ref": "comun.json#/$defs/aviso"}}
+    "avisos": {
+      "type": "array",
+      "items": {
+        "$ref": "comun.json#/$defs/aviso"
+      }
+    }
   }
 }

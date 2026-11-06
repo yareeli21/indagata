@@ -47,7 +47,12 @@ SISTEMA = (
     "11. Nunca intentes identificar a una persona: usa solo sus IDs anónimos (R017, A005, E02).\n"
     "12. Al citar una respuesta individual menciona el ID de la persona y la pregunta (por ejemplo, R017 en p04). "
     "Para definiciones usa solo el GLOSARIO y cítalo como [Glosario: término]; para el uso de la plataforma usa "
-    "solo la AYUDA y cítala como [Ayuda: título]."
+    "solo la AYUDA y cítala como [Ayuda: título].\n"
+    "13. En las entrevistas, responde con lo que la persona dice del momento que la pregunta pide (de ahora, si "
+    "la pregunta es sobre ahora). Lo que cuenta de otro momento («Antecedente (pasado): …») es contexto: "
+    "menciónalo como tal, sin confundirlo con su respuesta.\n"
+    "14. La CONVERSACIÓN PREVIA solo sirve para entender a qué se refiere la PREGUNTA («eso», «¿por qué?», «¿y "
+    "sobre…?»). No es fuente: no tomes de ahí cifras ni afirmaciones."
 )
 
 _SECCION = {
@@ -71,11 +76,18 @@ def construir(
     *,
     resultado: str | None = None,
     referencias: list[Any] | None = None,
+    formato: str = "",
+    conversacion: str = "",
 ) -> str:
     """Mensaje del usuario para Ollama (las reglas van aparte, en `SISTEMA`).
 
     `resultado`: bloque ya calculado por el enrutador (cifras exactas).
     `referencias`: anclas del glosario o de la ayuda (`dominio.Ancla`).
+    `formato`: cómo presentar la respuesta según la intención del plan (rediseño en cuatro etapas).
+    `conversacion`: los últimos mensajes, sin tablas, para entender los seguimientos (4 nov).
+
+    Con un RESULTADO CALCULADO, los fragmentos son el TEXTO RECUPERADO del RAG: contexto para interpretar el
+    resultado, nunca de donde salen las cifras (en la Fase 3 el modelo tomó el % de toda la muestra de un fragmento).
     """
     investigacion = ""
     if contexto_investigacion:
@@ -120,7 +132,14 @@ def construir(
         partes.append("GLOSARIO:\n" + "\n".join(f"{r.cita} {r.texto}" for r in glosario) + "\n\n")
     if ayuda:
         partes.append("AYUDA DE LA PLATAFORMA:\n" + "\n".join(f"{r.cita} {r.texto}" for r in ayuda) + "\n\n")
-    if lineas or not (resultado or referencias):
+    if lineas and resultado:
+        partes.append("TEXTO RECUPERADO (fragmentos del RAG más parecidos a la pregunta; úsalos para contextualizar e "
+                      "interpretar, las cifras salen solo del RESULTADO CALCULADO):\n" + "\n".join(lineas).strip() + "\n\n")
+    elif lineas or not (resultado or referencias):
         contexto = "\n".join(lineas).strip() if lineas else "(sin fragmentos)"
         partes.append(f"CONTEXTO:\n{contexto}\n\n")
+    if conversacion:
+        partes.append(f"CONVERSACIÓN PREVIA (no es fuente):\n{conversacion}\n\n")
+    if formato:
+        partes.append(f"FORMATO DE LA RESPUESTA: {formato}\n\n")
     return "".join(partes) + f"PREGUNTA: {pregunta}"

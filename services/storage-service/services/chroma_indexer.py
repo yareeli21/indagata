@@ -56,6 +56,9 @@ logger = logging.getLogger("storage-service")
 VENTANA = 450
 SOLAPE = 80
 MIN_LONGITUD = 40
+# Chroma rechaza un upsert de más de ~5,461 puntos. Una encuesta de 2000 respondentes da 6,691 chunks
+# (28 oct): se envían por lotes.
+LOTE_CHROMA = 1000
 _MAX_TITULO_PREFIJO = 120
 
 _FIN_ORACION = re.compile(r"(?<=[.!?…])\s+")
@@ -529,7 +532,10 @@ def indexar_instrumento(db: Session, id_crudo: int, *, reindexar: bool = True) -
     try:
         coleccion = vectores.coleccion(nombre_col)
         coleccion.delete(where={"instrumentoId": str(id_crudo)})
-        coleccion.upsert(ids=ids, embeddings=embeddings, documents=[c.texto for c in chunks], metadatas=metadatas)
+        for i in range(0, len(chunks), LOTE_CHROMA):
+            fin = i + LOTE_CHROMA
+            coleccion.upsert(ids=ids[i:fin], embeddings=embeddings[i:fin],
+                             documents=[c.texto for c in chunks[i:fin]], metadatas=metadatas[i:fin])
     except Exception as exc:  # noqa: BLE001 - Chroma caído
         logger.exception("Vector store no disponible.")
         raise IndiceError(f"Vector store no disponible: {exc}", 502) from exc

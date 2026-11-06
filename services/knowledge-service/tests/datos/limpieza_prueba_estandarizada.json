@@ -23,8 +23,7 @@
      "caracter_invalido": 0,
      "ilegible": 1
     },
-    "pct_correctas_validas": 0.5484,
-    "kr20": 0.214
+    "pct_validas": 0.9538
    },
    "despues": {
     "n_alumnos": 13,
@@ -43,8 +42,7 @@
      "caracter_invalido": 0,
      "ilegible": 1
     },
-    "pct_correctas_validas": 0.5484,
-    "kr20": 0.214
+    "pct_validas": 0.9538
    }
   },
   "estadistica": {
@@ -53,282 +51,265 @@
      {
       "pregunta": "P1",
       "tipo_reactivo": "opcion_multiple",
-      "calificable": true,
-      "respuesta_correcta": "A",
-      "dificultad": 0.8462,
-      "nivel_dificultad": "fácil",
-      "discriminacion": 0.0,
-      "nivel_discriminacion": "pobre",
-      "correlacion_punto_biserial": -0.2626,
+      "n": 13,
       "distribucion": [
        {
         "opcion": "A",
         "n": 11,
-        "pct": 0.8462,
-        "correcta": true
+        "pct": 0.8462
        },
        {
         "opcion": "B",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        },
        {
         "opcion": "C",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "D",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        },
        {
         "opcion": "nula",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "NR",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        }
       ],
-      "distractores_sin_elegir": [
+      "opcion_mas_elegida": {
+       "opcion": "A",
+       "n": 11,
+       "pct": 0.8462,
+       "pct_validas": 0.9167
+      },
+      "opciones_sin_elegir": [
        "B",
        "D"
-      ]
+      ],
+      "n_nulas": 1,
+      "n_no_respondidas": 0,
+      "pct_sin_respuesta": 0.0769,
+      "mucha_no_respuesta": false,
+      "casi_unanime": true
      },
      {
       "pregunta": "P2",
       "tipo_reactivo": "opcion_multiple",
-      "calificable": true,
-      "respuesta_correcta": "C",
-      "dificultad": 0.4615,
-      "nivel_dificultad": "media",
-      "discriminacion": 0.75,
-      "nivel_discriminacion": "excelente",
-      "correlacion_punto_biserial": 0.3712,
+      "n": 13,
       "distribucion": [
        {
         "opcion": "A",
         "n": 2,
-        "pct": 0.1538,
-        "correcta": false
+        "pct": 0.1538
        },
        {
         "opcion": "B",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "C",
         "n": 6,
-        "pct": 0.4615,
-        "correcta": true
+        "pct": 0.4615
        },
        {
         "opcion": "D",
         "n": 3,
-        "pct": 0.2308,
-        "correcta": false
+        "pct": 0.2308
        },
        {
         "opcion": "nula",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        },
        {
         "opcion": "NR",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        }
       ],
-      "distractores_sin_elegir": []
+      "opcion_mas_elegida": {
+       "opcion": "C",
+       "n": 6,
+       "pct": 0.4615,
+       "pct_validas": 0.5
+      },
+      "opciones_sin_elegir": [],
+      "n_nulas": 0,
+      "n_no_respondidas": 1,
+      "pct_sin_respuesta": 0.0769,
+      "mucha_no_respuesta": false,
+      "casi_unanime": false
      },
      {
       "pregunta": "P3",
       "tipo_reactivo": "opcion_multiple",
-      "calificable": true,
-      "respuesta_correcta": "B",
-      "dificultad": 0.4615,
-      "nivel_dificultad": "media",
-      "discriminacion": 0.5,
-      "nivel_discriminacion": "excelente",
-      "correlacion_punto_biserial": 0.1752,
+      "n": 13,
       "distribucion": [
        {
         "opcion": "A",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "B",
         "n": 6,
-        "pct": 0.4615,
-        "correcta": true
+        "pct": 0.4615
        },
        {
         "opcion": "C",
         "n": 3,
-        "pct": 0.2308,
-        "correcta": false
+        "pct": 0.2308
        },
        {
         "opcion": "D",
         "n": 2,
-        "pct": 0.1538,
-        "correcta": false
+        "pct": 0.1538
        },
        {
         "opcion": "nula",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "NR",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        }
       ],
-      "distractores_sin_elegir": []
+      "opcion_mas_elegida": {
+       "opcion": "B",
+       "n": 6,
+       "pct": 0.4615,
+       "pct_validas": 0.5
+      },
+      "opciones_sin_elegir": [],
+      "n_nulas": 1,
+      "n_no_respondidas": 0,
+      "pct_sin_respuesta": 0.0769,
+      "mucha_no_respuesta": false,
+      "casi_unanime": false
      },
      {
       "pregunta": "P4",
       "tipo_reactivo": "opcion_multiple",
-      "calificable": true,
-      "respuesta_correcta": "D",
-      "dificultad": 0.5385,
-      "nivel_dificultad": "media",
-      "discriminacion": 1.0,
-      "nivel_discriminacion": "excelente",
-      "correlacion_punto_biserial": 0.246,
+      "n": 13,
       "distribucion": [
        {
         "opcion": "A",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "B",
         "n": 2,
-        "pct": 0.1538,
-        "correcta": false
+        "pct": 0.1538
        },
        {
         "opcion": "C",
         "n": 3,
-        "pct": 0.2308,
-        "correcta": false
+        "pct": 0.2308
        },
        {
         "opcion": "D",
         "n": 7,
-        "pct": 0.5385,
-        "correcta": true
+        "pct": 0.5385
        },
        {
         "opcion": "nula",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        },
        {
         "opcion": "NR",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        }
       ],
-      "distractores_sin_elegir": []
+      "opcion_mas_elegida": {
+       "opcion": "D",
+       "n": 7,
+       "pct": 0.5385,
+       "pct_validas": 0.5385
+      },
+      "opciones_sin_elegir": [],
+      "n_nulas": 0,
+      "n_no_respondidas": 0,
+      "pct_sin_respuesta": 0.0,
+      "mucha_no_respuesta": false,
+      "casi_unanime": false
      },
      {
       "pregunta": "P5",
       "tipo_reactivo": "opcion_multiple",
-      "calificable": true,
-      "respuesta_correcta": "A",
-      "dificultad": 0.3077,
-      "nivel_dificultad": "media",
-      "discriminacion": 0.5,
-      "nivel_discriminacion": "excelente",
-      "correlacion_punto_biserial": -0.0361,
+      "n": 13,
       "distribucion": [
        {
         "opcion": "A",
         "n": 4,
-        "pct": 0.3077,
-        "correcta": true
+        "pct": 0.3077
        },
        {
         "opcion": "B",
         "n": 2,
-        "pct": 0.1538,
-        "correcta": false
+        "pct": 0.1538
        },
        {
         "opcion": "C",
         "n": 4,
-        "pct": 0.3077,
-        "correcta": false
+        "pct": 0.3077
        },
        {
         "opcion": "D",
         "n": 3,
-        "pct": 0.2308,
-        "correcta": false
+        "pct": 0.2308
        },
        {
         "opcion": "nula",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        },
        {
         "opcion": "NR",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        }
       ],
-      "distractores_sin_elegir": []
+      "opcion_mas_elegida": {
+       "opcion": "A",
+       "n": 4,
+       "pct": 0.3077,
+       "pct_validas": 0.3077
+      },
+      "opciones_sin_elegir": [],
+      "n_nulas": 0,
+      "n_no_respondidas": 0,
+      "pct_sin_respuesta": 0.0,
+      "mucha_no_respuesta": false,
+      "casi_unanime": false
      }
     ],
-    "puntajes": {
-     "n": 13,
-     "media": 2.6154,
-     "mediana": 3.0,
-     "desviacion": 1.1929,
-     "min": 1.0,
-     "max": 4.0,
-     "q1": 2.0,
-     "q3": 4.0,
-     "iqr": 2.0,
-     "asimetria": -0.1483,
-     "curtosis": -1.5017,
-     "maximo_posible": 5
-    },
-    "fiabilidad": {
-     "kr20": 0.214,
-     "interpretacion": "inaceptable",
+    "respuestas": {
      "n_alumnos": 13,
-     "n_reactivos": 5
+     "n_reactivos": 5,
+     "pct_sin_respuesta": 0.0462
     },
     "resumen_reactivos": {
-     "faciles": 1,
-     "medios": 4,
-     "dificiles": 0,
-     "discriminacion_pobre": 1
+     "con_opciones_sin_elegir": 1,
+     "mucha_no_respuesta": 0,
+     "casi_unanimes": 1
+    },
+    "umbrales": {
+     "sin_respuesta": 0.2,
+     "casi_unanime": 0.9
     }
    },
    "despues": {
@@ -336,282 +317,265 @@
      {
       "pregunta": "P1",
       "tipo_reactivo": "opcion_multiple",
-      "calificable": true,
-      "respuesta_correcta": "A",
-      "dificultad": 0.8462,
-      "nivel_dificultad": "fácil",
-      "discriminacion": 0.0,
-      "nivel_discriminacion": "pobre",
-      "correlacion_punto_biserial": -0.2626,
+      "n": 13,
       "distribucion": [
        {
         "opcion": "A",
         "n": 11,
-        "pct": 0.8462,
-        "correcta": true
+        "pct": 0.8462
        },
        {
         "opcion": "B",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        },
        {
         "opcion": "C",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "D",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        },
        {
         "opcion": "nula",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "NR",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        }
       ],
-      "distractores_sin_elegir": [
+      "opcion_mas_elegida": {
+       "opcion": "A",
+       "n": 11,
+       "pct": 0.8462,
+       "pct_validas": 0.9167
+      },
+      "opciones_sin_elegir": [
        "B",
        "D"
-      ]
+      ],
+      "n_nulas": 1,
+      "n_no_respondidas": 0,
+      "pct_sin_respuesta": 0.0769,
+      "mucha_no_respuesta": false,
+      "casi_unanime": true
      },
      {
       "pregunta": "P2",
       "tipo_reactivo": "opcion_multiple",
-      "calificable": true,
-      "respuesta_correcta": "C",
-      "dificultad": 0.4615,
-      "nivel_dificultad": "media",
-      "discriminacion": 0.75,
-      "nivel_discriminacion": "excelente",
-      "correlacion_punto_biserial": 0.3712,
+      "n": 13,
       "distribucion": [
        {
         "opcion": "A",
         "n": 2,
-        "pct": 0.1538,
-        "correcta": false
+        "pct": 0.1538
        },
        {
         "opcion": "B",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "C",
         "n": 6,
-        "pct": 0.4615,
-        "correcta": true
+        "pct": 0.4615
        },
        {
         "opcion": "D",
         "n": 3,
-        "pct": 0.2308,
-        "correcta": false
+        "pct": 0.2308
        },
        {
         "opcion": "nula",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        },
        {
         "opcion": "NR",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        }
       ],
-      "distractores_sin_elegir": []
+      "opcion_mas_elegida": {
+       "opcion": "C",
+       "n": 6,
+       "pct": 0.4615,
+       "pct_validas": 0.5
+      },
+      "opciones_sin_elegir": [],
+      "n_nulas": 0,
+      "n_no_respondidas": 1,
+      "pct_sin_respuesta": 0.0769,
+      "mucha_no_respuesta": false,
+      "casi_unanime": false
      },
      {
       "pregunta": "P3",
       "tipo_reactivo": "opcion_multiple",
-      "calificable": true,
-      "respuesta_correcta": "B",
-      "dificultad": 0.4615,
-      "nivel_dificultad": "media",
-      "discriminacion": 0.5,
-      "nivel_discriminacion": "excelente",
-      "correlacion_punto_biserial": 0.1752,
+      "n": 13,
       "distribucion": [
        {
         "opcion": "A",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "B",
         "n": 6,
-        "pct": 0.4615,
-        "correcta": true
+        "pct": 0.4615
        },
        {
         "opcion": "C",
         "n": 3,
-        "pct": 0.2308,
-        "correcta": false
+        "pct": 0.2308
        },
        {
         "opcion": "D",
         "n": 2,
-        "pct": 0.1538,
-        "correcta": false
+        "pct": 0.1538
        },
        {
         "opcion": "nula",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "NR",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        }
       ],
-      "distractores_sin_elegir": []
+      "opcion_mas_elegida": {
+       "opcion": "B",
+       "n": 6,
+       "pct": 0.4615,
+       "pct_validas": 0.5
+      },
+      "opciones_sin_elegir": [],
+      "n_nulas": 1,
+      "n_no_respondidas": 0,
+      "pct_sin_respuesta": 0.0769,
+      "mucha_no_respuesta": false,
+      "casi_unanime": false
      },
      {
       "pregunta": "P4",
       "tipo_reactivo": "opcion_multiple",
-      "calificable": true,
-      "respuesta_correcta": "D",
-      "dificultad": 0.5385,
-      "nivel_dificultad": "media",
-      "discriminacion": 1.0,
-      "nivel_discriminacion": "excelente",
-      "correlacion_punto_biserial": 0.246,
+      "n": 13,
       "distribucion": [
        {
         "opcion": "A",
         "n": 1,
-        "pct": 0.0769,
-        "correcta": false
+        "pct": 0.0769
        },
        {
         "opcion": "B",
         "n": 2,
-        "pct": 0.1538,
-        "correcta": false
+        "pct": 0.1538
        },
        {
         "opcion": "C",
         "n": 3,
-        "pct": 0.2308,
-        "correcta": false
+        "pct": 0.2308
        },
        {
         "opcion": "D",
         "n": 7,
-        "pct": 0.5385,
-        "correcta": true
+        "pct": 0.5385
        },
        {
         "opcion": "nula",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        },
        {
         "opcion": "NR",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        }
       ],
-      "distractores_sin_elegir": []
+      "opcion_mas_elegida": {
+       "opcion": "D",
+       "n": 7,
+       "pct": 0.5385,
+       "pct_validas": 0.5385
+      },
+      "opciones_sin_elegir": [],
+      "n_nulas": 0,
+      "n_no_respondidas": 0,
+      "pct_sin_respuesta": 0.0,
+      "mucha_no_respuesta": false,
+      "casi_unanime": false
      },
      {
       "pregunta": "P5",
       "tipo_reactivo": "opcion_multiple",
-      "calificable": true,
-      "respuesta_correcta": "A",
-      "dificultad": 0.3077,
-      "nivel_dificultad": "media",
-      "discriminacion": 0.5,
-      "nivel_discriminacion": "excelente",
-      "correlacion_punto_biserial": -0.0361,
+      "n": 13,
       "distribucion": [
        {
         "opcion": "A",
         "n": 4,
-        "pct": 0.3077,
-        "correcta": true
+        "pct": 0.3077
        },
        {
         "opcion": "B",
         "n": 2,
-        "pct": 0.1538,
-        "correcta": false
+        "pct": 0.1538
        },
        {
         "opcion": "C",
         "n": 4,
-        "pct": 0.3077,
-        "correcta": false
+        "pct": 0.3077
        },
        {
         "opcion": "D",
         "n": 3,
-        "pct": 0.2308,
-        "correcta": false
+        "pct": 0.2308
        },
        {
         "opcion": "nula",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        },
        {
         "opcion": "NR",
         "n": 0,
-        "pct": 0.0,
-        "correcta": false
+        "pct": 0.0
        }
       ],
-      "distractores_sin_elegir": []
+      "opcion_mas_elegida": {
+       "opcion": "A",
+       "n": 4,
+       "pct": 0.3077,
+       "pct_validas": 0.3077
+      },
+      "opciones_sin_elegir": [],
+      "n_nulas": 0,
+      "n_no_respondidas": 0,
+      "pct_sin_respuesta": 0.0,
+      "mucha_no_respuesta": false,
+      "casi_unanime": false
      }
     ],
-    "puntajes": {
-     "n": 13,
-     "media": 2.6154,
-     "mediana": 3.0,
-     "desviacion": 1.1929,
-     "min": 1.0,
-     "max": 4.0,
-     "q1": 2.0,
-     "q3": 4.0,
-     "iqr": 2.0,
-     "asimetria": -0.1483,
-     "curtosis": -1.5017,
-     "maximo_posible": 5
-    },
-    "fiabilidad": {
-     "kr20": 0.214,
-     "interpretacion": "inaceptable",
+    "respuestas": {
      "n_alumnos": 13,
-     "n_reactivos": 5
+     "n_reactivos": 5,
+     "pct_sin_respuesta": 0.0462
     },
     "resumen_reactivos": {
-     "faciles": 1,
-     "medios": 4,
-     "dificiles": 0,
-     "discriminacion_pobre": 1
+     "con_opciones_sin_elegir": 1,
+     "mucha_no_respuesta": 0,
+     "casi_unanimes": 1
+    },
+    "umbrales": {
+     "sin_respuesta": 0.2,
+     "casi_unanime": 0.9
     }
    }
   },
@@ -629,13 +593,6 @@
      "?",
      "#"
     ],
-    "clave": {
-     "P1": "A",
-     "P2": "C",
-     "P3": "B",
-     "P4": "D",
-     "P5": "A"
-    },
     "ids_duplicados": [],
     "columnas_extra": [],
     "columnas_contexto": [
@@ -644,7 +601,6 @@
       "etiqueta": "turno"
      }
     ],
-    "clave_origen": "archivo",
     "tipos_reactivo": {
      "P1": "opcion_multiple",
      "P2": "opcion_multiple",
@@ -652,6 +608,13 @@
      "P4": "opcion_multiple",
      "P5": "opcion_multiple"
     },
+    "orden_reactivos": [
+     "P1",
+     "P2",
+     "P3",
+     "P4",
+     "P5"
+    ],
     "puntos_max": {},
     "n_alumnos": 13,
     "n_preguntas": 5,
@@ -667,14 +630,7 @@
      "caracter_invalido": 0,
      "ilegible": 1
     },
-    "pct_correctas_validas": 0.5484,
-    "aciertos_promedio": 2.62,
-    "fiabilidad": {
-     "kr20": 0.214,
-     "interpretacion": "inaceptable",
-     "n_alumnos": 13,
-     "n_reactivos": 5
-    }
+    "pct_validas": 0.9538
    }
   },
   "decisiones": {}
@@ -684,8 +640,6 @@
    "id_alumno",
    "pregunta",
    "respuesta",
-   "respuesta_correcta",
-   "correcta",
    "estado",
    "motivo",
    "turno"
@@ -695,8 +649,6 @@
     "20260000",
     "P1",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -705,8 +657,6 @@
     "20260000",
     "P2",
     "C",
-    "C",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -715,8 +665,6 @@
     "20260000",
     "P3",
     "B",
-    "B",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -725,8 +673,6 @@
     "20260000",
     "P4",
     "D",
-    "D",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -735,8 +681,6 @@
     "20260000",
     "P5",
     "D",
-    "A",
-    "0",
     "valida",
     "",
     "Matutino"
@@ -745,8 +689,6 @@
     "20260001",
     "P1",
     "C",
-    "A",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -755,8 +697,6 @@
     "20260001",
     "P2",
     "C",
-    "C",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -765,8 +705,6 @@
     "20260001",
     "P3",
     "B",
-    "B",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -775,8 +713,6 @@
     "20260001",
     "P4",
     "C",
-    "D",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -785,8 +721,6 @@
     "20260001",
     "P5",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -795,8 +729,6 @@
     "20260002",
     "P1",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -805,8 +737,6 @@
     "20260002",
     "P2",
     "A",
-    "C",
-    "0",
     "valida",
     "",
     "Matutino"
@@ -815,8 +745,6 @@
     "20260002",
     "P3",
     "B",
-    "B",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -825,8 +753,6 @@
     "20260002",
     "P4",
     "B",
-    "D",
-    "0",
     "valida",
     "",
     "Matutino"
@@ -835,8 +761,6 @@
     "20260002",
     "P5",
     "C",
-    "A",
-    "0",
     "valida",
     "",
     "Matutino"
@@ -845,8 +769,6 @@
     "20260003",
     "P1",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -855,8 +777,6 @@
     "20260003",
     "P2",
     "D",
-    "C",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -865,8 +785,6 @@
     "20260003",
     "P3",
     "C",
-    "B",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -875,8 +793,6 @@
     "20260003",
     "P4",
     "D",
-    "D",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -885,8 +801,6 @@
     "20260003",
     "P5",
     "C",
-    "A",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -895,8 +809,6 @@
     "20260004",
     "P1",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -905,8 +817,6 @@
     "20260004",
     "P2",
     "D",
-    "C",
-    "0",
     "valida",
     "",
     "Matutino"
@@ -915,8 +825,6 @@
     "20260004",
     "P3",
     "B",
-    "B",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -925,8 +833,6 @@
     "20260004",
     "P4",
     "D",
-    "D",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -935,8 +841,6 @@
     "20260004",
     "P5",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -945,8 +849,6 @@
     "20260005",
     "P1",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -955,8 +857,6 @@
     "20260005",
     "P2",
     "C",
-    "C",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -965,8 +865,6 @@
     "20260005",
     "P3",
     "B",
-    "B",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -975,8 +873,6 @@
     "20260005",
     "P4",
     "B",
-    "D",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -985,8 +881,6 @@
     "20260005",
     "P5",
     "D",
-    "A",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -995,8 +889,6 @@
     "20260006",
     "P1",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -1005,8 +897,6 @@
     "20260006",
     "P2",
     "C",
-    "C",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -1015,8 +905,6 @@
     "20260006",
     "P3",
     "D",
-    "B",
-    "0",
     "valida",
     "",
     "Matutino"
@@ -1025,8 +913,6 @@
     "20260006",
     "P4",
     "D",
-    "D",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -1035,8 +921,6 @@
     "20260006",
     "P5",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -1045,8 +929,6 @@
     "20260007",
     "P1",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -1055,8 +937,6 @@
     "20260007",
     "P2",
     "D",
-    "C",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -1065,8 +945,6 @@
     "20260007",
     "P3",
     "C",
-    "B",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -1075,8 +953,6 @@
     "20260007",
     "P4",
     "C",
-    "D",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -1085,8 +961,6 @@
     "20260007",
     "P5",
     "C",
-    "A",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -1095,8 +969,6 @@
     "20260008",
     "P1",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -1105,8 +977,6 @@
     "20260008",
     "P2",
     "C",
-    "C",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -1115,8 +985,6 @@
     "20260008",
     "P3",
     "B",
-    "B",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -1125,8 +993,6 @@
     "20260008",
     "P4",
     "D",
-    "D",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -1135,8 +1001,6 @@
     "20260008",
     "P5",
     "B",
-    "A",
-    "0",
     "valida",
     "",
     "Matutino"
@@ -1145,8 +1009,6 @@
     "20260009",
     "P1",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -1155,8 +1017,6 @@
     "20260009",
     "P2",
     "A",
-    "C",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -1165,8 +1025,6 @@
     "20260009",
     "P3",
     "D",
-    "B",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -1175,8 +1033,6 @@
     "20260009",
     "P4",
     "C",
-    "D",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -1185,8 +1041,6 @@
     "20260009",
     "P5",
     "D",
-    "A",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -1195,8 +1049,6 @@
     "20260010",
     "P1",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Matutino"
@@ -1205,8 +1057,6 @@
     "20260010",
     "P2",
     "B",
-    "C",
-    "0",
     "valida",
     "",
     "Matutino"
@@ -1215,8 +1065,6 @@
     "20260010",
     "P3",
     "C",
-    "B",
-    "0",
     "valida",
     "",
     "Matutino"
@@ -1225,8 +1073,6 @@
     "20260010",
     "P4",
     "A",
-    "D",
-    "0",
     "valida",
     "",
     "Matutino"
@@ -1235,8 +1081,6 @@
     "20260010",
     "P5",
     "B",
-    "A",
-    "0",
     "valida",
     "",
     "Matutino"
@@ -1245,8 +1089,6 @@
     "20260011",
     "P1",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -1255,8 +1097,6 @@
     "20260011",
     "P2",
     "C",
-    "C",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -1265,8 +1105,6 @@
     "20260011",
     "P3",
     "A",
-    "B",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -1275,8 +1113,6 @@
     "20260011",
     "P4",
     "D",
-    "D",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -1285,8 +1121,6 @@
     "20260011",
     "P5",
     "C",
-    "A",
-    "0",
     "valida",
     "",
     "Vespertino"
@@ -1295,8 +1129,6 @@
     "20260012",
     "P1",
     "AB",
-    "A",
-    "0",
     "nula",
     "respuesta_multiple",
     "Vespertino"
@@ -1305,8 +1137,6 @@
     "20260012",
     "P2",
     "",
-    "C",
-    "0",
     "NR",
     "no_respondida",
     "Vespertino"
@@ -1315,8 +1145,6 @@
     "20260012",
     "P3",
     "*",
-    "B",
-    "0",
     "nula",
     "ilegible",
     "Vespertino"
@@ -1325,8 +1153,6 @@
     "20260012",
     "P4",
     "D",
-    "D",
-    "1",
     "valida",
     "",
     "Vespertino"
@@ -1335,8 +1161,6 @@
     "20260012",
     "P5",
     "A",
-    "A",
-    "1",
     "valida",
     "",
     "Vespertino"

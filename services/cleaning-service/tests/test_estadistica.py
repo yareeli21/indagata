@@ -1,12 +1,13 @@
 """Medidas de limpieza estadística: descriptivos, atípicos, fiabilidad (alfa de
-Cronbach y KR-20), análisis de reactivos, respuestas en línea recta y encuestados
-incompletos. Los valores de referencia se calcularon a mano o coinciden con Excel
+Cronbach), descripción de reactivos de pruebas (sin calificar), respuestas en línea recta
+y encuestados incompletos. Los valores de referencia se calcularon a mano o coinciden con Excel
 (SKEW, KURT, QUARTILE.INC).
 """
 from __future__ import annotations
 
 import csv
 import io
+import random
 
 import pytest
 
@@ -50,18 +51,6 @@ def test_alfa_de_cronbach():
     assert r["alfa"] == pytest.approx(1.0) and r["n_casos"] == 3 and r["n_excluidos"] == 1
     assert [i["alfa_si_se_elimina"] for i in r["por_item"]] == [1.0, 1.0, 1.0]
     assert est.cronbach([[1, 2]], ["x", "y"]) is None  # muy pocos casos
-
-
-MATRIZ = [[1, 1, 1], [1, 1, 0], [1, 0, 0], [0, 0, 0]]
-
-
-def test_kr20_y_analisis_de_reactivos():
-    # p = .75, .5, .25 → Σpq = .625; varianza de totales = 1.25 → KR-20 = 1.5 · (1 − .5) = .75
-    assert est.kr20(MATRIZ) == pytest.approx(0.75)
-    reactivos = est.analisis_reactivos(MATRIZ)
-    assert [r["dificultad"] for r in reactivos] == [0.75, 0.5, 0.25]
-    assert [r["nivel_dificultad"] for r in reactivos] == ["fácil", "media", "difícil"]
-    assert all(r["discriminacion"] == 1 and r["nivel_discriminacion"] == "excelente" for r in reactivos)
 
 
 # ── Encuestas ──────────────────────────────────────────────────────────────────
@@ -163,24 +152,21 @@ def test_item_invertido_se_recodifica_para_el_alfa(cliente, db, storage):
 # ── Pruebas estandarizadas ─────────────────────────────────────────────────────
 
 
-def test_prueba_analisis_de_reactivos_y_kr20(cliente, db, storage):
+def test_prueba_descripcion_de_reactivos_sin_calificar(cliente, db, storage):
     respuestas = "matricula;P1;P2;P3\nS1;A;B;C\nS2;A;B;D\nS3;A;C;D\nS4;B;C;D\n"
-    id_crudo = crear_instrumento(
-        db, storage, "respuestas.csv", respuestas.encode("utf-8"), tipo="prueba_estandarizada",
-        clave=("clave.csv", b"pregunta,respuesta\nP1,A\nP2,B\nP3,C\n"),
-    )
+    id_crudo = crear_instrumento(db, storage, "respuestas.csv", respuestas.encode("utf-8"), tipo="prueba_estandarizada")
     cliente.post(f"/limpieza/{id_crudo}/ejecuciones", headers=ANA)
     vista = cliente.post(f"/limpieza/{id_crudo}/ejecuciones/1/confirmar", headers=ANA).json()["vistaFinal"]
     e = vista["estadistica"]
-    assert e["fiabilidad"]["kr20"] == pytest.approx(0.75) and e["fiabilidad"]["n_alumnos"] == 4
+    assert "fiabilidad" not in e and "puntajes" not in e
     p1 = e["reactivos"][0]
-    assert p1["dificultad"] == 0.75 and p1["nivel_dificultad"] == "fácil" and p1["discriminacion"] == 1
-    assert p1["distractores_sin_elegir"] == ["C", "D"]
+    assert p1["opcion_mas_elegida"] == {"opcion": "A", "n": 3, "pct": 0.75, "pct_validas": 0.75}
+    assert p1["opciones_sin_elegir"] == ["C", "D"]
     dist = {d["opcion"]: d["n"] for d in p1["distribucion"]}
-    assert dist["A"] == 3 and dist["B"] == 1 and next(d for d in p1["distribucion"] if d["opcion"] == "A")["correcta"]
-    assert e["puntajes"]["media"] == 1.5 and e["puntajes"]["maximo_posible"] == 3
-    assert e["resumen_reactivos"] == {"faciles": 1, "medios": 1, "dificiles": 1, "discriminacion_pobre": 0}
-    assert {c["metrica"] for c in vista["comparacion"]} >= {"Alumnos", "Fiabilidad KR-20", "Respuestas nulas"}
+    assert dist["A"] == 3 and dist["B"] == 1 and "correcta" not in p1["distribucion"][0]
+    assert e["reactivos"][2]["casi_unanime"] is False  # D en 3 de 4 (75 %) no llega al 90 %
+    assert e["resumen_reactivos"] == {"con_opciones_sin_elegir": 3, "mucha_no_respuesta": 0, "casi_unanimes": 0}
+    assert {c["metrica"] for c in vista["comparacion"]} >= {"Alumnos", "Respuestas válidas", "Respuestas nulas"}
 
 
 # ── Entrevistas ────────────────────────────────────────────────────────────────
@@ -237,3 +223,53 @@ def test_bloques_con_sufijo_numerado_tienen_alfa_propio_y_resumen(cliente, db, s
     assert resumen and all(f["nivel"] in ("bien", "info", "atencion", "alerta") for f in resumen)
     assert any("bloques de escalas son consistentes" in f["texto"] for f in resumen)
     assert any("«horas_trabajo_semana»: la mitad" in f["texto"] for f in resumen)
+
+
+# ── Dimensiones sugeridas (sin secciones ni prefijos) ──────────────────────────
+
+
+def _dos_escalas(n: int = 80, semilla: int = 5) -> list[list[float]]:
+    azar = random.Random(semilla)
+    filas = []
+    for _ in range(n):
+        a, d = azar.randint(1, 5), azar.randint(1, 5)
+        cerca = lambda x: max(1, min(5, x + azar.choice((-1, 0, 0, 1))))  # noqa: E731
+        filas.append([cerca(a) for _ in range(4)] + [cerca(d) for _ in range(4)])
+    return filas
+
+
+def test_dimensiones_recupera_dos_escalas_y_no_inventa_con_una():
+    from services.motores.encuestas import dimensiones
+
+    sug = dimensiones.sugerir(_dos_escalas())
+    assert [d.indices for d in sug.dimensiones] == [[0, 1, 2, 3], [4, 5, 6, 7]]
+    assert all(d.alfa > 0.7 for d in sug.dimensiones) and sug.kaiser == 2
+    una = [[f[0]] * 4 + [f[0]] * 4 for f in _dos_escalas()]  # una sola escala
+    assert dimensiones.sugerir([[max(1, min(5, x + (j % 2))) for j, x in enumerate(f)] for f in una]).dimensiones == []
+    assert dimensiones.sugerir(_dos_escalas(n=10)).dimensiones == []  # muy pocos casos
+
+
+def test_sin_prefijos_se_sugieren_dimensiones_y_el_alfa_sale_por_dimension(cliente, db, storage):
+    textos = ["Me explican los criterios", "Mis notas reflejan lo aprendido", "Recibo retroalimentación",
+              "Las evaluaciones van con la clase", "Me siento seguro", "Mis compañeros me respetan",
+              "Los profesores me ayudan", "Me siento parte de la escuela"]
+    buffer = io.StringIO()
+    csv.writer(buffer).writerows([textos, *_dos_escalas()])
+    id_crudo = crear_instrumento(db, storage, "sin_prefijos.csv", buffer.getvalue().encode("utf-8"))
+    ejec = cliente.post(f"/limpieza/{id_crudo}/ejecuciones", headers=ANA).json()
+    h = next(h for h in ejec["hallazgos"] if h["tipo"] == "dimensiones_sugeridas")
+    assert h["sugerida"] == "usar" and [g["etiquetas"] for g in h["detalle"]["grupos"]] == [textos[:4], textos[4:]]
+
+    vista = cliente.post(f"/limpieza/{id_crudo}/ejecuciones/1/confirmar", headers=ANA).json()["vistaFinal"]
+    fiab = {b["bloque"]: b for b in vista["estadistica"]["fiabilidad"]}
+    assert set(fiab) == {"Dimensión 1", "Dimensión 2", "Todas las escalas Likert"} and fiab["Dimensión 1"]["alfa"] > 0.7
+
+
+def test_dimensiones_ignoradas_dejan_solo_el_alfa_global(cliente, db, storage):
+    buffer = io.StringIO()
+    csv.writer(buffer).writerows([[f"Afirmación número {i} sobre la escuela" for i in range(1, 9)], *_dos_escalas()])
+    id_crudo = crear_instrumento(db, storage, "ignorar.csv", buffer.getvalue().encode("utf-8"))
+    cliente.post(f"/limpieza/{id_crudo}/ejecuciones", headers=ANA)
+    cliente.patch(f"/limpieza/{id_crudo}/ejecuciones/1/decisiones", headers=ANA, json={"decisiones": {"dimensiones": "ignorar"}})
+    vista = cliente.post(f"/limpieza/{id_crudo}/ejecuciones/1/confirmar", headers=ANA).json()["vistaFinal"]
+    assert [b["bloque"] for b in vista["estadistica"]["fiabilidad"]] == ["Todas las escalas Likert"]

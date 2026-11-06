@@ -1,8 +1,14 @@
 """Motor de limpieza de encuestas (CSV, XLSX, XLS).
 
 Fase automática (sin decisiones):
-  transformaciones universales → columnas ajenas al instrumento (propuestas) →
-  roles sugeridos → tipos canónicos provisionales → métricas (Tabla 3) → hallazgos.
+  estructura de las filas (acentos rotos, encabezado repetido, fila de totales, segunda fila de encabezado,
+  filas corridas; ver `motores/filas.py`) → transformaciones universales → números escritos de otra forma
+  (`numeros.py`) → Sí / No y opciones parecidas (`categorias.py`) → columnas ajenas al instrumento
+  (propuestas) → roles sugeridos → tipos canónicos provisionales → métricas (Tabla 3) → hallazgos.
+
+Las decisiones que cambian la estructura (fila de totales, segunda fila de encabezado, filas corridas, «1» / «0»
+en Sí / No, opciones parecidas) se aplican ANTES de inferir los tipos: la fila «Promedio» convertía una escala
+1–5 en una calificación 0–10. En la fase automática se usa la opción sugerida de cada una.
 
 Fase asistida (decide el investigador): columnas ajenas, roles dudosos, columnas
 muy incompletas, filas duplicadas, valores fuera de rango, escalas que parecen
@@ -17,6 +23,9 @@ atípicos (±4σ e IQR) y fiabilidad (alfa de Cronbach por bloque de ítems Like
 """
 from __future__ import annotations
 
+from collections import Counter
+
+import dataclasses
 import re
 from dataclasses import dataclass, field
 from typing import Any
@@ -25,14 +34,21 @@ from shared.parsing import TabularParseError, read_tabular
 
 from services import configuracion
 from services.configuracion import normalizar_texto
+from services.motores import codificacion
 from services.motores import estadistica as est
+from services.motores import filas as estructura_filas
 from services.motores.base import Entrada, ErrorLimpieza, Hallazgo, ResultadoAutomatico, ResultadoFinal
+from services.motores.encuestas import categorias
+from services.motores.encuestas import dimensiones as dims
+from services.motores.encuestas import numeros
 from services.motores.encuestas import universales
-from services.motores.encuestas.likert import Likert, likert_desde_orden, no_respuestas, numero
+from services.motores.encuestas.likert import Likert, equivalente, likert_desde_orden, no_respuestas, numero
 from services.motores.encuestas.tipos import InfoTipo, grupo_bloque, grupo_de, inferir, metodo_atipicos
 
 _FILAS_VISTA = 10
 _EJEMPLOS = 4
+# «2026/10/10 10:00:00», «2026-10-10T10:00», «10/10/2026 10:00 a. m.»: marcas de tiempo de las plataformas.
+_FECHA_HORA = re.compile(r"\d{1,4}[/.-]\d{1,2}[/.-]\d{1,4}[ T]\d{1,2}:\d{2}(:\d{2})?( ?[ap]\.? ?m\.?)?", re.IGNORECASE)
 
 
 @dataclass
@@ -48,6 +64,21 @@ class Estado:
     linea_recta: list[int] = field(default_factory=list)  # encuestados con la misma respuesta en todo un bloque
     bloques_linea_recta: list[str] = field(default_factory=list)
     incompletos: list[int] = field(default_factory=list)  # encuestados que dejaron casi todo vacío
+    # Dimensiones por correlación (sin secciones ni prefijos): propuestas y las confirmadas.
+    dimensiones_sugeridas: list[dict[str, Any]] = field(default_factory=list)
+    info_dimensiones: dict[str, int] = field(default_factory=dict)
+    dimensiones: list[dict[str, Any]] = field(default_factory=list)
+    # Selecciones múltiples que marcan «Ninguno» junto con otras opciones: {columna: filas}.
+    contradictorias: dict[str, list[int]] = field(default_factory=dict)
+    # Estructura de las filas del archivo (antes de las transformaciones universales).
+    revision: estructura_filas.RevisionFilas = field(default_factory=estructura_filas.RevisionFilas)
+    encabezados_crudos: list[str] = field(default_factory=list)
+    filas_crudas: list[list[str]] = field(default_factory=list)  # ya con los acentos reparados
+    # Columnas de Sí / No con «1» y «0», y opciones poco frecuentes parecidas a otra.
+    si_no: list[categorias.SiNoCodigos] = field(default_factory=list)
+    parecidas: list[categorias.Parecida] = field(default_factory=list)
+    # Transformaciones que resultan de decisiones (se reportan al aplicar, no en la fase automática).
+    aplicado: list[dict] = field(default_factory=list)
 
 
 def _cfg() -> dict[str, Any]:
@@ -74,13 +105,195 @@ def _es_ajena(etiqueta: str, patrones: list[str]) -> bool:
     return any(re.search(p, texto) for p in patrones)
 
 
-def _preparar(entrada: Entrada) -> Estado:
+_SEPARADOR_OPCIONES = ";"
+# Opciones que excluyen a las demás en una selección múltiple.
+_EXCLUYENTES = {"ninguno", "ninguna", "ninguno de los anteriores", "ninguna de las anteriores", "no aplica", "nada"}
+
+
+def _homologar(tabla: universales.TablaPreparada) -> dict | None:
+    """Escribe cada respuesta con la forma más frecuente entre las que solo difieren en mayúsculas, acentos o
+    signos de borde («PRESENCIAL», «presencial», «Presencial.» → «Presencial»; «3.» → «3»). En las selecciones
+    múltiples («A;B») se homologa cada opción. Cambia los valores en sitio y devuelve la transformación con
+    cada caso y su ubicación (28 oct: antes solo se homologaban, en silencio, las escalas Likert de texto).
+
+    Va antes de inferir tipos y buscar duplicados: dos filas que solo difieren en «PRESENCIAL» y «Presencial»
+    son la misma respuesta.
+    """
+    total = 0
+    casos: list[dict] = []
+    por_columna: dict[str, int] = {}
+    for c in tabla.columnas:
+        presentes = [v for v in c.valores if v is not None]
+        if not presentes:
+            continue
+        multiple = sum(_SEPARADOR_OPCIONES in v for v in presentes) >= max(2, 0.05 * len(presentes))
+        partes = [p.strip() for v in presentes for p in (v.split(_SEPARADOR_OPCIONES) if multiple else [v])]
+        frecuencia: dict[str, Counter] = {}
+        for p in partes:
+            if p:
+                frecuencia.setdefault(normalizar_texto(p), Counter())[p] += 1
+        canon = {clave: max(formas.items(), key=lambda x: (x[1], x[0]))[0] for clave, formas in frecuencia.items() if len(formas) > 1}
+        if not canon:
+            continue
+
+        def forma(p: str) -> str:
+            p = p.strip()
+            return canon.get(normalizar_texto(p), p) if p else p
+
+        for i, v in enumerate(c.valores):
+            if v is None:
+                continue
+            nuevo = _SEPARADOR_OPCIONES.join(forma(p) for p in v.split(_SEPARADOR_OPCIONES)) if multiple else forma(v)
+            if nuevo != v:
+                c.valores[i] = nuevo
+                total += 1
+                por_columna[c.etiqueta] = por_columna.get(c.etiqueta, 0) + 1
+                if len(casos) < universales.MAX_CASOS:
+                    casos.append({"fila": i + 1, "columna": c.etiqueta, "antes": v, "despues": nuevo})
+    if not total:
+        return None
+    return {
+        "regla": "escritura_homologada",
+        "detalle": "Respuestas que solo difieren en mayúsculas, acentos o signos al inicio o al final se escriben igual "
+                   "(con su forma más frecuente).",
+        "afectados": total,
+        "casos": casos,
+        "columnas": por_columna,
+    }
+
+
+_TEXTO_SI_NO = {
+    "uno_es_si": "1 = Sí, 0 = No",
+    "uno_es_no": "1 = No, 0 = Sí",
+    "anular": "se dejaron vacíos",
+    "conservar": "se conservaron tal cual",
+}
+
+
+def _lista(filas: list[int], maximo: int = 10) -> str:
+    return ", ".join(str(i + 1) for i in filas[:maximo]) + ("…" if len(filas) > maximo else "")
+
+
+def _estructura(crudo, decisiones: dict[str, str]):  # noqa: ANN001, ANN202
+    """Acentos rotos y estructura de las filas, con las decisiones del investigador (o las sugeridas).
+
+    Devuelve (tabla cruda ya ordenada, transformaciones automáticas, transformaciones por decisión, revisión,
+    filas con los acentos reparados, texto de las preguntas o None).
+    """
+    filas, casos_acentos = codificacion.reparar_filas(crudo.rows)
+    revision = estructura_filas.revisar(crudo.headers, filas, crudo.irregulares)
+
+    def encabezado(j: int) -> str:
+        return (crudo.headers[j].strip() if j < len(crudo.headers) else "") or f"Columna {j + 1}"
+
+    automaticas: list[dict] = []
+    aplicado: list[dict] = []
+    if casos_acentos:
+        automaticas.append({
+            "regla": "acentos_reparados",
+            "detalle": "Acentos rotos al copiar entre programas, reparados («SÃ­» → «Sí»).",
+            "afectados": len(casos_acentos),
+            "casos": [{"fila": i + 1, "columna": encabezado(j), "antes": a, "despues": d}
+                      for i, j, a, d in casos_acentos[: universales.MAX_CASOS]],
+        })
+    quitar = set(revision.repetidas)
+    if revision.repetidas:
+        automaticas.append({
+            "regla": "encabezado_repetido",
+            "detalle": f"Filas iguales al encabezado (dos exportaciones pegadas) descartadas: {_lista(revision.repetidas)}.",
+            "afectados": len(revision.repetidas),
+        })
+    if revision.cortas:
+        automaticas.append({
+            "regla": "filas_completadas",
+            "detalle": f"Filas con menos celdas que el encabezado, completadas con celdas vacías al final: {_lista(revision.cortas)}.",
+            "afectados": len(revision.cortas),
+        })
+    resumen = [i for i in revision.resumen if decisiones.get(f"fila-resumen:{i + 1}", "eliminar") == "eliminar"]
+    quitar |= set(resumen)
+    if resumen:
+        aplicado.append({"regla": "filas_resumen_eliminadas", "detalle": f"Filas de totales o promedios eliminadas: {_lista(resumen)}.",
+                         "afectados": len(resumen)})
+    textos = None
+    if revision.segunda_encabezado and decisiones.get("encabezado-texto", "usar_como_texto") == "usar_como_texto":
+        textos = filas[0]
+        quitar.add(0)
+        aplicado.append({"regla": "texto_de_preguntas", "detalle": "La primera fila (texto de las preguntas) se quitó de los "
+                         "encuestados y se guardó como descripción de cada columna.", "afectados": 1})
+    ordenadas = list(filas)
+    reparadas, eliminadas = [], []
+    for fc in revision.corridas:
+        decision = decisiones.get(f"fila-corrida:{fc.fila + 1}", "reparar")
+        if decision == "reparar":
+            ordenadas[fc.fila] = fc.reparada
+            reparadas.append(fc.fila)
+        elif decision == "eliminar":
+            eliminadas.append(fc.fila)
+    eliminadas += [i for i, _ in revision.largas if decisiones.get(f"fila-larga:{i + 1}", "recortar") == "eliminar"]
+    quitar |= set(eliminadas)
+    if reparadas:
+        aplicado.append({"regla": "filas_corridas_reparadas", "detalle": f"Filas corridas una columna, devueltas a su lugar: {_lista(reparadas)}.",
+                         "afectados": len(reparadas)})
+    if eliminadas:
+        aplicado.append({"regla": "filas_irregulares_eliminadas", "detalle": f"Filas corridas o con celdas de más, eliminadas: {_lista(sorted(eliminadas))}.",
+                         "afectados": len(eliminadas)})
+    nuevo_indice: dict[int, int] = {}
+    conservadas: list[list[str]] = []
+    for i, f in enumerate(ordenadas):
+        if i not in quitar:
+            nuevo_indice[i] = len(conservadas)
+            conservadas.append(f)
+    cambiadas = {fc.fila for fc in revision.corridas}
+    bordes = [(nuevo_indice[i], j, codificacion.reparar(v)[0]) for i, j, v in crudo.bordes
+              if i in nuevo_indice and i not in cambiadas]
+    tabla = dataclasses.replace(crudo, rows=conservadas, bordes=bordes, irregulares=[])
+    return tabla, automaticas, aplicado, revision, filas, textos
+
+
+def _id_parecida(p: categorias.Parecida) -> str:
+    return f"categoria-parecida:{p.columna}={p.clave}"
+
+
+def _preparar(entrada: Entrada, decisiones: dict[str, str] | None = None) -> Estado:
     cfg = _cfg()
-    crudo = _leer(entrada)
-    metricas_antes = _metricas_crudas(crudo, cfg)
+    decisiones = decisiones or {}
+    leido = _leer(entrada)
+    metricas_antes = _metricas_crudas(leido, cfg)
+    crudo, automaticas, aplicado, revision, filas_crudas, textos = _estructura(leido, decisiones)
+    if not crudo.rows:
+        raise ErrorLimpieza("Después de revisar la estructura de las filas, la encuesta no tiene respuestas.")
     tabla = universales.preparar(crudo, cfg.get("tokens_vacio", []))
     if not tabla.columnas or tabla.n_filas == 0:
         raise ErrorLimpieza("Después de quitar filas y columnas vacías, la encuesta no tiene datos.")
+    tabla.transformaciones[1:1] = automaticas  # después de «Texto en UTF-8»
+    if textos:
+        for c in tabla.columnas:
+            if c.indice_original < len(textos) and textos[c.indice_original].strip():
+                c.extra["texto"] = textos[c.indice_original].strip()
+    tabla.transformaciones.extend(numeros.normalizar(tabla))
+    unificado, si_no = categorias.si_no(tabla)
+    if unificado:
+        tabla.transformaciones.append(unificado)
+    for pendiente in si_no:
+        decision = decisiones.get(f"si-no-codigos:{pendiente.columna}", "uno_es_si")
+        if n := categorias.aplicar_si_no(tabla, pendiente, decision):
+            aplicado.append({"regla": "si_no_codigos", "detalle": f"«1» y «0» en «{pendiente.etiqueta}»: {_TEXTO_SI_NO[decision]}.",
+                             "afectados": n})
+    if (homologacion := _homologar(tabla)) is not None:
+        tabla.transformaciones.append(homologacion)
+    parecidas = categorias.parecidas(tabla)
+    casos_parecidas = []
+    for p in parecidas:
+        decision = decisiones.get(_id_parecida(p)) or f"cambiar:{p.destino}"
+        if decision.startswith("cambiar:"):
+            columna = next(c for c in tabla.columnas if c.id == p.columna)
+            destino = decision.split(":", 1)[1]
+            for i in p.filas:
+                casos_parecidas.append({"fila": i + 1, "columna": p.etiqueta, "antes": columna.valores[i], "despues": destino})
+                columna.valores[i] = destino
+    if casos_parecidas:
+        aplicado.append({"regla": "opciones_parecidas_cambiadas", "detalle": "Opciones poco frecuentes cambiadas por la opción "
+                         "frecuente a la que se parecen.", "afectados": len(casos_parecidas), "casos": casos_parecidas})
 
     tipos = {c.id: inferir(c.etiqueta, c.valores, cfg) for c in tabla.columnas}
     ajenas = {c.id for c in tabla.columnas if _es_ajena(c.etiqueta, cfg.get("columnas_ajenas", []))}
@@ -88,8 +301,19 @@ def _preparar(entrada: Entrada) -> Estado:
     rol_auto = {c.id: "pregunta" for c in tabla.columnas if c.id not in ajenas and len(c.etiqueta) > largo}
 
     # Duplicados: filas idénticas sin contar las columnas ajenas (marcas de tiempo e IDs
-    # hacen única cualquier fila aunque las respuestas sean las mismas).
-    instrumento = [c for c in tabla.columnas if c.id not in ajenas] or tabla.columnas
+    # hacen única cualquier fila aunque las respuestas sean las mismas). Tampoco cuentan las
+    # columnas en las que TODOS los valores son distintos: no sirven para distinguir dos envíos
+    # iguales y, si no se reconocieron como ajenas, escondían los duplicados (24 oct: con una
+    # columna «Dirección IP» no reconocida, 5 duplicados inyectados pasaron sin detectarse).
+    # Solo columnas con forma de identificador (sin espacios: IDs, IP, códigos) o de fecha y hora: una
+    # pregunta abierta también tiene valores únicos y sí distingue a dos personas.
+    def _todos_distintos(c) -> bool:  # noqa: ANN001
+        presentes = [v for v in c.valores if v is not None]
+        if len(presentes) != tabla.n_filas or len(set(presentes)) != tabla.n_filas or tabla.n_filas < 2:
+            return False
+        return all(not re.search(r"\s", v) or _FECHA_HORA.fullmatch(v.strip()) for v in presentes)
+
+    instrumento = [c for c in tabla.columnas if c.id not in ajenas and not _todos_distintos(c)] or tabla.columnas
     vistos: set[tuple] = set()
     duplicadas: list[int] = []
     for i in range(tabla.n_filas):
@@ -98,12 +322,16 @@ def _preparar(entrada: Entrada) -> Estado:
             duplicadas.append(i)
         vistos.add(clave)
 
-    estado = Estado(tabla, tipos, ajenas, rol_auto, duplicadas, metricas_antes)
+    estado = Estado(tabla, tipos, ajenas, rol_auto, duplicadas, metricas_antes, revision=revision,
+                    encabezados_crudos=list(leido.headers), filas_crudas=filas_crudas, si_no=si_no,
+                    parecidas=parecidas, aplicado=aplicado)
     todas = list(range(tabla.n_filas))
     propias = [c for c in tabla.columnas if c.id not in ajenas]
     lr, bloques = _linea_recta(estado, propias, todas)
     estado.linea_recta, estado.bloques_linea_recta = sorted(lr), bloques
     estado.incompletos = sorted(_incompletos(propias, todas))
+    estado.contradictorias = _contradictorias(propias)
+    _sugerir_dimensiones(estado, propias)
     metricas_antes["n_linea_recta"] = len(lr)
     metricas_antes["n_incompletos"] = len(estado.incompletos)
     return estado
@@ -150,9 +378,39 @@ def _bloques_likert(estado: Estado, columnas: list) -> list[tuple[str, list]]:  
         if g:
             grupos.setdefault(g[0], []).append(c)
     bloques = [(padre, cols) for padre, cols in grupos.items() if len(cols) >= 2]
+    if estado.dimensiones and _sin_dimensiones(bloques, likert):
+        # Dimensiones confirmadas por el investigador (sin secciones ni prefijos en el archivo).
+        por_id = {c.id: c for c in likert}
+        bloques = [(d["nombre"], [por_id[i] for i in d["columnas"] if i in por_id]) for d in estado.dimensiones]
+        bloques = [(n, cols) for n, cols in bloques if len(cols) >= 2]
     if len(likert) >= 2 and not (len(bloques) == 1 and len(bloques[0][1]) == len(likert)):
         bloques.append((_TODAS, likert))
     return bloques
+
+
+def _sin_dimensiones(bloques: list[tuple[str, list]], likert: list) -> bool:  # noqa: ANN001
+    """Sin bloques que separen escalas: ninguno, o una sola cuadrícula con todos los ítems."""
+    return not bloques or (len(bloques) == 1 and len(bloques[0][1]) == len(likert))
+
+
+def _sugerir_dimensiones(estado: Estado, columnas: list) -> None:  # noqa: ANN001
+    """Propone dimensiones si los ítems Likert no traen bloques por prefijo o cuadrícula."""
+    likert = [c for c in columnas if estado.tipos[c.id].likert]
+    grupos: dict[str, list] = {}
+    for c in likert:
+        if g := grupo_bloque(c.etiqueta):
+            grupos.setdefault(g[0], []).append(c)
+    if not _sin_dimensiones([(k, v) for k, v in grupos.items() if len(v) >= 2], likert) or len(likert) < 6:
+        return
+    excluir = no_respuestas()
+    matriz = [[_codigo(estado.tipos[c.id], c.valores[k], excluir) for c in likert] for k in range(estado.tabla.n_filas)]
+    sugerencia = dims.sugerir(matriz)
+    estado.info_dimensiones = {"kaiser": sugerencia.kaiser, "horn": sugerencia.horn}
+    estado.dimensiones_sugeridas = [
+        {"nombre": f"Dimensión {n}", "columnas": [likert[j].id for j in d.indices],
+         "etiquetas": [likert[j].etiqueta for j in d.indices], "alfa": round(d.alfa, 4)}
+        for n, d in enumerate(sugerencia.dimensiones, start=1)
+    ]
 
 
 def _linea_recta(estado: Estado, columnas: list, filas: list[int]) -> tuple[set[int], list[str]]:  # noqa: ANN001
@@ -387,16 +645,18 @@ def _ejemplos(valores: list[str | None]) -> list[str]:
 
 
 def _no_respuestas_por_columna(estado: Estado) -> dict[str, list[str]]:
-    """{id de columna: valores «No sé / No aplica» (tal cual)} en las escalas Likert de texto.
+    """{id de columna: valores «No sé / No aplica» (tal cual)} en las escalas Likert, de texto o numéricas.
 
     No son puntos de la escala (no cuentan en promedios ni en la fiabilidad), pero
-    tampoco son celdas vacías: el investigador decide si se conservan marcadas.
+    tampoco son celdas vacías: el investigador decide si se conservan marcadas. Antes
+    solo se buscaban en las escalas de texto: en una escala 1–5, «No sé» quedaba en el
+    CSV limpio mezclado con los números y sin aviso (24 oct, errores inyectados).
     """
     excluir = no_respuestas()
     salida: dict[str, list[str]] = {}
     for c in estado.tabla.columnas:
         info = estado.tipos[c.id]
-        if c.id in estado.ajenas or not info.likert or info.likert.escala == "numerica":
+        if c.id in estado.ajenas or not info.likert:
             continue
         valores = [v for v in c.valores if v is not None and normalizar_texto(v) in excluir]
         if valores:
@@ -404,14 +664,243 @@ def _no_respuestas_por_columna(estado: Estado) -> dict[str, list[str]]:
     return salida
 
 
+def _contradictorias(columnas: list) -> dict[str, list[int]]:
+    """{columna: filas} donde una selección múltiple marca «Ninguno» (u otra opción excluyente) junto con otras."""
+    salida: dict[str, list[int]] = {}
+    for c in columnas:
+        presentes = [v for v in c.valores if v is not None]
+        if not presentes or sum(_SEPARADOR_OPCIONES in v for v in presentes) < max(2, 0.05 * len(presentes)):
+            continue
+        filas = [i for i, v in enumerate(c.valores) if v is not None and _SEPARADOR_OPCIONES in v
+                 and any(normalizar_texto(p) in _EXCLUYENTES for p in v.split(_SEPARADOR_OPCIONES))]
+        if filas:
+            salida[c.id] = filas
+    return salida
+
+
+def _celdas(c, filas: list[int]) -> list[dict]:  # noqa: ANN001
+    """Ubicación exacta de un hallazgo por celda: fila (desde 1) y valor."""
+    return [{"fila": i + 1, "columna": c.etiqueta, "valor": c.valores[i]} for i in filas[: universales.MAX_CASOS]]
+
+
+def _filas_con_respuestas(estado: "Estado", filas: list[int], columnas: list | None = None, max_columnas: int = 8) -> list[dict]:
+    """Ubicación de un hallazgo por fila: fila (desde 1) y sus respuestas en las columnas que importan."""
+    cols = columnas or [c for c in estado.tabla.columnas if c.id not in estado.ajenas][:max_columnas]
+    return [{"fila": i + 1, "valores": {c.etiqueta: c.valores[i] for c in cols}} for i in filas[: universales.MAX_CASOS]]
+
+
+# Valores distintos fuera de la escala con tarjeta propia por columna; el resto va en una tarjeta de la columna.
+_MAX_VALORES_FUERA = 8
+
+
+def _aceptados(info: InfoTipo) -> list[str]:
+    """Valores de la escala a los que se puede cambiar un valor fuera de rango ([] si no hay un conjunto cerrado)."""
+    if info.likert:
+        return list(info.likert.etiquetas)
+    if info.tipo in ("escala_lineal", "calificacion") and info.rango and info.rango[1] - info.rango[0] <= 10:
+        return [str(x) for x in range(int(info.rango[0]), int(info.rango[1]) + 1)]
+    return []
+
+
+def _grupos_fuera(c, info: InfoTipo) -> list[tuple[str, str, list[int]]]:  # noqa: ANN001
+    """Valores fuera de rango agrupados por valor: [(clave, valor tal cual, filas)].
+
+    En las escalas cada valor distinto tiene su tarjeta, con su motivo y la opción de cambiarlo a un valor de la
+    escala (28 oct). Las numéricas (atípicos) y lo que pasa de `_MAX_VALORES_FUERA` valores distintos quedan en
+    una tarjeta de la columna (clave "").
+    """
+    if not info.fuera:
+        return []
+    if not _aceptados(info):
+        return [("", "", sorted(info.fuera))]
+    por_valor: dict[str, tuple[str, list[int]]] = {}
+    for i in sorted(info.fuera):
+        v = c.valores[i]
+        if v is not None:
+            por_valor.setdefault(normalizar_texto(v) or v, (v, []))[1].append(i)
+    orden = sorted(por_valor.items(), key=lambda kv: (-len(kv[1][1]), kv[0]))
+    grupos = [(k, v, filas) for k, (v, filas) in orden[:_MAX_VALORES_FUERA]]
+    resto = sorted(i for _, (_, filas) in orden[_MAX_VALORES_FUERA:] for i in filas)
+    if resto:
+        grupos.append(("", "", resto))
+    return grupos
+
+
+def _id_rango(c, clave: str) -> str:  # noqa: ANN001
+    return f"rango:{c.id}={clave}" if clave else f"rango:{c.id}"
+
+
+def _por_que_fuera(info: InfoTipo, valor: str) -> tuple[str, str]:
+    """(por qué `valor` está fuera de la escala, opción sugerida: «anular» o «cambiar:<valor aceptado>»)."""
+    aceptados = _aceptados(info)
+    numerica = not info.likert or info.likert.escala == "numerica"
+    x = numero(valor)
+    if numerica:
+        lo, hi = aceptados[0], aceptados[-1]
+        if x is None:
+            texto = f"«{valor}» está escrito con palabras, pero esta pregunta se respondió con números del {lo} al {hi}."
+            eq = equivalente(valor, len(aceptados))
+            if eq:
+                pos, nombre, etiquetas = eq
+                destino = aceptados[pos - 1]
+                return (texto + f" En la escala de {nombre} («{etiquetas[0]}» … «{etiquetas[-1]}») es la opción {pos} "
+                        f"de {len(etiquetas)}, que equivale a {destino}: te sugerimos cambiarlo a {destino}.",
+                        f"cambiar:{destino}")
+            return texto + " No corresponde a ningún punto de la escala: te sugerimos dejarlo vacío.", "anular"
+        if x > float(hi):
+            return (f"«{valor}» es mayor que {hi}, el valor más alto de la escala (del {lo} al {hi}). "
+                    "Te sugerimos dejarlo vacío.", "anular")
+        if x < float(lo):
+            return (f"«{valor}» es menor que {lo}, el valor más bajo de la escala (del {lo} al {hi}). "
+                    "Te sugerimos dejarlo vacío.", "anular")
+        return (f"«{valor}» no es uno de los valores de la escala: solo se aceptan los enteros del {lo} al {hi}. "
+                "Te sugerimos dejarlo vacío.", "anular")
+    opciones = ", ".join(f"«{e}»" for e in aceptados)
+    if x is not None and float(x).is_integer() and 1 <= x <= len(aceptados):
+        destino = aceptados[int(x) - 1]
+        return (f"«{valor}» es un número, pero esta pregunta se respondió con las opciones de la escala ({opciones}). "
+                f"Como posición {int(x)} corresponde a «{destino}»: te sugerimos cambiarlo, si así lo quiso decir el "
+                "encuestado.", f"cambiar:{destino}")
+    return f"«{valor}» no es ninguna de las opciones de la escala: {opciones}. Te sugerimos dejarlo vacío.", "anular"
+
+
+def _decision_fuera(c, info: InfoTipo, decisiones: dict[str, str]) -> dict[int, str]:  # noqa: ANN001
+    """{fila: decisión} para cada valor fuera de rango (la del investigador o la sugerida)."""
+    salida: dict[int, str] = {}
+    for clave, valor, filas in _grupos_fuera(c, info):
+        sugerida = _por_que_fuera(info, valor)[1] if clave else "anular"
+        decision = decisiones.get(_id_rango(c, clave)) or sugerida
+        salida.update({i: decision for i in filas})
+    return salida
+
+
+def _fila_con_valores(estado: Estado, celdas: list[str], fila: int, maximo: int = 10) -> dict:
+    """Una fila del archivo con sus primeras celdas con dato (para «Ver dónde»)."""
+    valores: dict[str, str] = {}
+    for j, h in enumerate(estado.encabezados_crudos):
+        if j < len(celdas) and celdas[j].strip():
+            valores[h or f"Columna {j + 1}"] = celdas[j]
+        if len(valores) >= maximo:
+            break
+    return {"fila": fila, "valores": valores}
+
+
+def _hallazgos_estructura(estado: Estado) -> list[Hallazgo]:
+    """Fila de totales, segunda fila de encabezado, filas corridas o con celdas de más."""
+    rev = estado.revision
+    encabezados = estado.encabezados_crudos
+
+    def nombre(j: int) -> str:
+        return (encabezados[j] if j < len(encabezados) else "") or f"Columna {j + 1}"
+
+    tema = "Estructura del archivo"
+    salida: list[Hallazgo] = []
+    for i in rev.resumen:
+        celdas = estado.filas_crudas[i]
+        etiqueta = next(c for c in celdas if c.strip())
+        salida.append(Hallazgo(
+            id=f"fila-resumen:{i + 1}", tipo="fila_resumen", tema=tema, objetivo=str(i + 1),
+            titulo=f"La fila {i + 1} parece de totales («{etiqueta}»), no de un encuestado",
+            descripcion=(
+                f"Trae «{etiqueta}» en la primera celda y números en las demás. Si se queda, cuenta como un encuestado "
+                "más y sus decimales pueden cambiar el tipo de las preguntas (una escala de 1 a 5 parecería una "
+                "calificación de 0 a 10). Te sugerimos eliminarla."
+            ),
+            opciones=["eliminar", "conservar"], sugerida="eliminar",
+            detalle={"filas": [i + 1], "total": 1, "ubicacion": [_fila_con_valores(estado, celdas, i + 1)]},
+        ))
+    if rev.segunda_encabezado:
+        primera = estado.filas_crudas[0]
+        pares = [(nombre(j), t.strip()) for j, t in enumerate(primera) if t.strip()]
+        salida.append(Hallazgo(
+            id="encabezado-texto", tipo="segunda_fila_encabezado", tema=tema, objetivo="1",
+            titulo="La primera fila trae el texto de las preguntas, no respuestas",
+            descripcion=(
+                "En las columnas que se respondieron con números trae texto (por ejemplo, "
+                + "; ".join(f"«{t}» en «{h}»" for h, t in pares[2:4]) + "). Te sugerimos quitarla de los encuestados y "
+                "guardar ese texto como descripción de cada columna; los encabezados del archivo no cambian."
+            ),
+            opciones=["usar_como_texto", "es_respondente"], sugerida="usar_como_texto",
+            detalle={"ejemplos": [f"{h} → {t}" for h, t in pares[:4]], "total": 1,
+                     "ubicacion": [_fila_con_valores(estado, primera, 1)]},
+        ))
+    for fc in rev.corridas:
+        n, k = fc.fila + 1, fc.columna
+        h = nombre(k)
+        if fc.tipo == "falta":
+            titulo = f"La fila {n} está corrida una columna: falta el dato de «{h}»"
+            explicacion = (
+                f"Desde «{h}», cada valor quedó una columna a la izquierda (por ejemplo, «{fc.celdas[k]}» quedó en «{h}» "
+                f"y corresponde a «{nombre(k + 1)}»). Si la reparas, «{h}» queda vacía y los demás valores vuelven a su columna."
+            )
+        else:
+            titulo = f"La fila {n} está corrida una columna: sobra una celda en «{h}»"
+            explicacion = (
+                f"Hay una celda de más en «{h}» («{fc.celdas[k]}»): desde ahí, cada valor quedó una columna a la derecha. "
+                "Si la reparas, se quita esa celda y los demás valores vuelven a su columna."
+            )
+        ubicacion = [{"fila": n, "columna": nombre(j), "antes": fc.celdas[j] if j < len(fc.celdas) else "", "despues": fc.reparada[j]}
+                     for j in range(max(0, k - 1), min(len(encabezados), k + 6))]
+        salida.append(Hallazgo(
+            id=f"fila-corrida:{n}", tipo="fila_corrida", tema=tema, objetivo=str(n), titulo=titulo,
+            descripcion=(f"{explicacion} Tal como viene, {fc.fallas_antes} valores no corresponden a su columna; reparada, "
+                         f"{fc.fallas_despues}. Así todas las filas quedan con las mismas columnas."),
+            opciones=["reparar", "eliminar", "conservar"], sugerida="reparar",
+            detalle={"filas": [n], "total": len(ubicacion), "ubicacion": ubicacion},
+        ))
+    for i, celdas in rev.largas:
+        extra = [c for c in celdas[len(encabezados):] if c.strip()]
+        salida.append(Hallazgo(
+            id=f"fila-larga:{i + 1}", tipo="fila_larga", tema=tema, objetivo=str(i + 1),
+            titulo=f"La fila {i + 1} tiene {len(celdas) - len(encabezados)} celda(s) más que el encabezado",
+            descripcion=(
+                f"No encontramos en qué columna sobra. Si la recortas, se conservan sus primeras {len(encabezados)} "
+                f"celdas y se pierden las de más («{' · '.join(extra[:3])}»); también puedes eliminar la fila."
+            ),
+            opciones=["recortar", "eliminar"], sugerida="recortar",
+            detalle={"filas": [i + 1], "total": 1, "ubicacion": [_fila_con_valores(estado, celdas, i + 1)]},
+        ))
+    return salida
+
+
+def _hallazgos_categorias(estado: Estado) -> list[Hallazgo]:
+    """«1» / «0» en columnas de Sí / No y opciones poco frecuentes parecidas a otra."""
+    salida: list[Hallazgo] = []
+    for p in estado.si_no:
+        salida.append(Hallazgo(
+            id=f"si-no-codigos:{p.columna}", tipo="si_no_codigos", tema="Calidad de los datos", objetivo=p.columna,
+            titulo=f"«{p.etiqueta}» mezcla «{p.forma_si}» / «{p.forma_no}» con «1» y «0» ({len(p.filas)} respuestas)",
+            descripcion=(
+                f"Hay {p.unos} «1» y {p.ceros} «0». Lo más común es que 1 signifique «{p.forma_si}» y 0 «{p.forma_no}», "
+                "pero depende de cómo se capturó. Elige qué significa cada uno, déjalos vacíos o consérvalos tal cual."
+            ),
+            opciones=["uno_es_si", "uno_es_no", "anular", "conservar"], sugerida="uno_es_si",
+            detalle={"columna": p.etiqueta, "total": len(p.filas),
+                     "ubicacion": [{"fila": i + 1, "columna": p.etiqueta, "valor": v} for i, v in zip(p.filas, p.originales)]},
+        ))
+    for p in estado.parecidas:
+        veces = "1 vez" if len(p.filas) == 1 else f"{len(p.filas)} veces"
+        salida.append(Hallazgo(
+            id=_id_parecida(p), tipo="opcion_parecida", tema="Calidad de los datos", objetivo=p.columna,
+            titulo=f"«{p.valor}» se parece a «{p.destino}» en «{p.etiqueta}»",
+            descripcion=(
+                f"«{p.valor}» aparece {veces} y «{p.destino}», {p.veces_destino}; se parecen en un {round(p.similitud * 100)} %. "
+                f"Puede ser un error de escritura: te sugerimos cambiarlo por «{p.destino}». Si es otra opción, consérvalo."
+            ),
+            opciones=[f"cambiar:{p.destino}", "conservar"], sugerida=f"cambiar:{p.destino}",
+            detalle={"columna": p.etiqueta, "valores": [p.valor], "filas": [i + 1 for i in p.filas], "total": len(p.filas),
+                     "ubicacion": [{"fila": i + 1, "columna": p.etiqueta, "valor": p.valor} for i in p.filas]},
+        ))
+    return salida
+
+
 def _hallazgos(estado: Estado) -> list[Hallazgo]:
     cfg = _cfg()
     umbrales = cfg["umbrales"]
     patron_codigo = re.compile(cfg.get("patron_codigo_corto", r"^[A-Za-z]{1,3}\d+([_.]\d+)*$"))
-    contexto = [normalizar_texto(p) for p in cfg.get("palabras_contexto", [])]
     invertidas = [normalizar_texto(p).strip() for p in cfg["tipos"].get("palabras_invertido", [])]
     n = estado.tabla.n_filas
-    salida: list[Hallazgo] = []
+    salida: list[Hallazgo] = [*_hallazgos_estructura(estado), *_hallazgos_categorias(estado)]
 
     for c in estado.tabla.columnas:
         info = estado.tipos[c.id]
@@ -434,8 +923,7 @@ def _hallazgos(estado: Estado) -> list[Hallazgo]:
         # Roles: > 25 caracteres ya es pregunta; códigos cortos los decide el investigador.
         if c.id not in estado.rol_auto:
             es_codigo = bool(patron_codigo.match(c.etiqueta.strip()))
-            etq = f" {normalizar_texto(c.etiqueta)} "
-            sugerida = None if es_codigo else ("contexto" if any(f" {p} " in etq for p in contexto) else "pregunta")
+            sugerida = None if es_codigo else ("contexto" if configuracion.es_contexto(c.etiqueta) else "pregunta")
             salida.append(
                 Hallazgo(
                     id=f"rol:{c.id}", tipo="rol_columna", tema="Rol de las columnas", objetivo=c.id,
@@ -462,9 +950,28 @@ def _hallazgos(estado: Estado) -> list[Hallazgo]:
                 )
             )
 
-        # Valores fuera de rango.
-        if info.fuera:
-            filas = sorted(info.fuera)
+        # Valores fuera de la escala: una tarjeta por valor, con su motivo y la opción de cambiarlo (28 oct).
+        for clave, valor, filas_valor in _grupos_fuera(c, info):
+            if not clave:
+                continue
+            motivo, sugerida = _por_que_fuera(info, valor)
+            aceptados = _aceptados(info)
+            veces = "1 vez" if len(filas_valor) == 1 else f"{len(filas_valor)} veces"
+            salida.append(
+                Hallazgo(
+                    id=_id_rango(c, clave), tipo="fuera_de_rango", tema="Calidad de los datos", objetivo=c.id,
+                    titulo=f"«{valor}» está fuera de la escala en «{c.etiqueta}» ({veces})",
+                    descripcion=motivo + " También puedes conservarlo tal cual o cambiarlo por otro valor de la escala.",
+                    opciones=["anular", "conservar", *(f"cambiar:{a}" for a in aceptados)], sugerida=sugerida,
+                    detalle={**base, "valores": [valor], "filas": [i + 1 for i in filas_valor[:20]],
+                             "total": len(filas_valor), "rango": info.rango, "aceptados": aceptados, "motivo": motivo,
+                             "ubicacion": _celdas(c, filas_valor)},
+                )
+            )
+        # Atípicos de una numérica (o demasiados valores distintos en una escala): una tarjeta para la columna.
+        resto = next((filas_valor for clave, _, filas_valor in _grupos_fuera(c, info) if not clave), None)
+        if resto:
+            filas = resto
             valores = _ejemplos([c.valores[i] for i in filas])
             rango = (
                 f"entre {_fmt(info.rango[0])} y {_fmt(info.rango[1])}" if info.rango else "dentro de la escala"
@@ -482,7 +989,8 @@ def _hallazgos(estado: Estado) -> list[Hallazgo]:
                     titulo=f"{len(filas)} valor(es) fuera de rango en «{c.etiqueta}»",
                     descripcion=explicacion + " Te sugerimos dejarlos vacíos.",
                     opciones=["anular", "conservar"], sugerida="anular",
-                    detalle={**base, "valores": valores, "filas": [i + 1 for i in filas[:20]], "rango": info.rango},
+                    detalle={**base, "valores": valores, "filas": [i + 1 for i in filas[:20]], "total": len(filas),
+                             "rango": info.rango, "ubicacion": _celdas(c, filas)},
                 )
             )
 
@@ -534,6 +1042,11 @@ def _hallazgos(estado: Estado) -> list[Hallazgo]:
                     "ejemplos": distintos[:6],
                     "total": total,
                     "columnas": [{"columna": etiquetas[cid], "n": len(v)} for cid, v in no_resp.items()][:20],
+                    "ubicacion": [
+                        {"fila": i + 1, "columna": etiquetas[c.id], "valor": c.valores[i]}
+                        for c in estado.tabla.columnas if c.id in no_resp
+                        for i, v in enumerate(c.valores) if v is not None and normalizar_texto(v) in no_respuestas()
+                    ][: universales.MAX_CASOS],
                 },
             )
         )
@@ -544,7 +1057,8 @@ def _hallazgos(estado: Estado) -> list[Hallazgo]:
                 titulo=f"{len(estado.duplicadas)} fila(s) duplicada(s)",
                 descripcion="Tienen exactamente las mismas respuestas que otra fila (sin contar identificadores ni marcas de tiempo). Te sugerimos eliminarlas y conservar la primera.",
                 opciones=["eliminar", "conservar"], sugerida="eliminar",
-                detalle={"filas": [i + 1 for i in estado.duplicadas[:20]], "total": len(estado.duplicadas)},
+                detalle={"filas": [i + 1 for i in estado.duplicadas[:20]], "total": len(estado.duplicadas),
+                         "ubicacion": _filas_con_respuestas(estado, estado.duplicadas)},
             )
         )
     if estado.linea_recta:
@@ -558,7 +1072,8 @@ def _hallazgos(estado: Estado) -> list[Hallazgo]:
                     "sin leer, aunque también puede ser una opinión genuina. Te sugerimos conservarlos y tenerlo en cuenta en el análisis."
                 ),
                 opciones=["conservar", "eliminar"], sugerida="conservar",
-                detalle={"filas": [i + 1 for i in estado.linea_recta[:20]], "total": len(estado.linea_recta), "bloques": estado.bloques_linea_recta},
+                detalle={"filas": [i + 1 for i in estado.linea_recta[:20]], "total": len(estado.linea_recta), "bloques": estado.bloques_linea_recta,
+                         "ubicacion": _filas_con_respuestas(estado, estado.linea_recta, max_columnas=12)},
             )
         )
     if estado.incompletos:
@@ -569,7 +1084,44 @@ def _hallazgos(estado: Estado) -> list[Hallazgo]:
                 titulo=f"{len(estado.incompletos)} encuestado(s) dejaron sin responder más del {round(umbral * 100)} %",
                 descripcion="Sus respuestas aportan poca información y pueden sesgar los resultados. Te sugerimos eliminarlos.",
                 opciones=["eliminar", "conservar"], sugerida="eliminar",
-                detalle={"filas": [i + 1 for i in estado.incompletos[:20]], "total": len(estado.incompletos), "umbral": umbral},
+                detalle={"filas": [i + 1 for i in estado.incompletos[:20]], "total": len(estado.incompletos), "umbral": umbral,
+                         "ubicacion": _filas_con_respuestas(estado, estado.incompletos)},
+            )
+        )
+    if estado.contradictorias:
+        columnas = {c.id: c for c in estado.tabla.columnas}
+        total = sum(len(f) for f in estado.contradictorias.values())
+        salida.append(
+            Hallazgo(
+                id="seleccion-contradictoria", tipo="seleccion_contradictoria", tema="Calidad de las respuestas", objetivo="celdas",
+                titulo=f"{total} respuesta(s) marcan «Ninguno» junto con otras opciones",
+                descripcion=(
+                    "En una pregunta de selección múltiple, «Ninguno» excluye a las demás opciones, así que esas "
+                    "respuestas se contradicen. Puedes conservarlas como vienen, quitar «Ninguno» y dejar las otras "
+                    "opciones, o dejarlas vacías."
+                ),
+                opciones=["conservar", "quitar_ninguno", "vaciar"], sugerida="conservar",
+                detalle={
+                    "total": total,
+                    "columnas": [{"columna": columnas[cid].etiqueta, "n": len(f)} for cid, f in estado.contradictorias.items()],
+                    "ubicacion": [u for cid, f in estado.contradictorias.items() for u in _celdas(columnas[cid], f)][: universales.MAX_CASOS],
+                },
+            )
+        )
+    if estado.dimensiones_sugeridas:
+        n_items = sum(len(d["columnas"]) for d in estado.dimensiones_sugeridas)
+        salida.append(
+            Hallazgo(
+                id="dimensiones", tipo="dimensiones_sugeridas", tema="Escalas", objetivo="items",
+                titulo=f"{len(estado.dimensiones_sugeridas)} dimensiones sugeridas en {n_items} ítems de escala",
+                descripcion=(
+                    "El instrumento no tiene secciones ni prefijos que agrupen los ítems. Por cómo se responden "
+                    "(correlaciones entre ítems), estos grupos parecen medir lo mismo. Si los usas, el alfa de "
+                    "Cronbach se calcula por dimensión en vez de mezclar todas las escalas. Revisa que cada grupo "
+                    "tenga sentido con el contenido de las preguntas."
+                ),
+                opciones=["usar", "ignorar"], sugerida="usar",
+                detalle={"grupos": estado.dimensiones_sugeridas, **estado.info_dimensiones},
             )
         )
     return salida
@@ -596,13 +1148,24 @@ def _especifico(estado: Estado, roles: dict[str, str], eliminadas: dict[str, str
                 "estadisticos": info.estadisticos or None,
                 "estado": "eliminada" if c.id in eliminadas else "conservada",
                 "motivo_eliminacion": eliminadas.get(c.id),
+                **({"texto": c.extra["texto"]} if c.extra.get("texto") else {}),
             }
         )
     return {
         "columnas": columnas,
         "grupos_detectados": _grupos([(c.etiqueta, estado.tipos[c.id]) for c in estado.tabla.columnas]),
+        "dimensiones": [{k: d[k] for k in ("nombre", "columnas", "etiquetas")} for d in estado.dimensiones],
         "columnas_vacias_eliminadas": estado.tabla.columnas_vacias,
         "filas_eliminadas": {"vacias": estado.tabla.filas_vacias, "duplicadas": 0},
+        "estructura": {
+            "encabezados_repetidos": [i + 1 for i in estado.revision.repetidas],
+            "filas_resumen": [i + 1 for i in estado.revision.resumen],
+            "segunda_fila_encabezado": estado.revision.segunda_encabezado,
+            "filas_corridas": [{"fila": fc.fila + 1, "tipo": fc.tipo, "columna": estado.encabezados_crudos[fc.columna]}
+                               for fc in estado.revision.corridas],
+            "filas_largas": [i + 1 for i, _ in estado.revision.largas],
+            "filas_cortas": [i + 1 for i in estado.revision.cortas],
+        },
     }
 
 
@@ -643,7 +1206,9 @@ class MotorEncuestas:
         )
 
     def aplicar(self, entrada: Entrada, automatico: ResultadoAutomatico, decisiones: dict[str, str]) -> ResultadoFinal:
-        estado = _preparar(entrada)
+        estado = _preparar(entrada, decisiones)
+        if decisiones.get("dimensiones", "usar") == "usar":
+            estado.dimensiones = estado.dimensiones_sugeridas
         cfg = _cfg()
         excluir = no_respuestas()
 
@@ -691,7 +1256,10 @@ class MotorEncuestas:
             raise ErrorLimpieza("Con las decisiones tomadas no queda ninguna columna. Conserva al menos una.")
 
         anulados = 0
+        casos_anulados: list[dict] = []
+        casos_cambiados: list[dict] = []
         convertidos = 0
+        contradictorias_cambiadas = 0
         # «No sé / No aplica»: conservarlas marcadas (texto original) o dejarlas vacías.
         marcar_no_resp = decisiones.get("no-respuestas", "conservar_marcadas") == "conservar_marcadas"
         no_resp_conservadas = 0
@@ -700,16 +1268,34 @@ class MotorEncuestas:
         sin_codificar: dict[str, list[str | None]] = {}  # para la estadística (etiquetas originales)
         for c in conservadas:
             info = estado.tipos[c.id]
-            anular = decisiones.get(f"rango:{c.id}", "anular") == "anular" and info.fuera
+            decision_fuera = _decision_fuera(c, info, decisiones)
+            codigo_etiqueta = (
+                {normalizar_texto(e): p for p, e in enumerate(info.likert.etiquetas, start=1)} if info.likert else {}
+            )
+            contradictorias = set(estado.contradictorias.get(c.id, []))
+            decision_contra = decisiones.get("seleccion-contradictoria", "conservar")
             valores: list[str | None] = []
             originales: list[str | None] = []
             for i in filas_idx:
                 v = c.valores[i]
-                if v is not None and anular and i in info.fuera:
-                    v = None
-                    anulados += 1
+                if v is not None and i in contradictorias and decision_contra != "conservar":
+                    if decision_contra == "vaciar":
+                        v = None
+                    else:
+                        v = _SEPARADOR_OPCIONES.join(p for p in v.split(_SEPARADOR_OPCIONES) if normalizar_texto(p) not in _EXCLUYENTES) or None
+                    contradictorias_cambiadas += 1
+                if v is not None and i in decision_fuera:
+                    decision = decision_fuera[i]
+                    if decision == "anular":
+                        casos_anulados.append({"fila": i + 1, "columna": c.etiqueta, "antes": v, "despues": ""})
+                        v = None
+                        anulados += 1
+                    elif decision.startswith("cambiar:"):
+                        nuevo = decision.split(":", 1)[1]
+                        casos_cambiados.append({"fila": i + 1, "columna": c.etiqueta, "antes": v, "despues": nuevo})
+                        v = nuevo
                 originales.append(v)
-                if v is not None and info.likert and info.likert.escala != "numerica":
+                if v is not None and info.likert:
                     n = normalizar_texto(v)
                     if n in excluir:
                         # No es punto de la escala: queda marcada con su texto original
@@ -719,14 +1305,14 @@ class MotorEncuestas:
                         else:
                             v = None
                             no_resp_vaciadas += 1
-                    elif n in info.likert.codigos:
-                        v = str(info.likert.codigos[n])
+                    elif info.likert.escala != "numerica" and (n in info.likert.codigos or n in codigo_etiqueta):
+                        v = str(info.likert.codigos.get(n) or codigo_etiqueta[n])
                         convertidos += 1
                 valores.append(v)
             columnas_finales.append((c.id, valores))
             sin_codificar[c.id] = originales
 
-        transformaciones = []
+        transformaciones = list(estado.aplicado)
         if eliminadas:
             transformaciones.append(
                 {"regla": "columnas_eliminadas", "detalle": ", ".join(c.etiqueta for c in estado.tabla.columnas if c.id in eliminadas), "afectados": len(eliminadas)}
@@ -738,7 +1324,12 @@ class MotorEncuestas:
         if quitar_inc:
             transformaciones.append({"regla": "incompletos_eliminados", "detalle": "Encuestados con demasiadas preguntas sin responder eliminados.", "afectados": len(quitar_inc)})
         if anulados:
-            transformaciones.append({"regla": "fuera_de_rango_anulados", "detalle": "Valores fuera de rango dejados vacíos.", "afectados": anulados})
+            transformaciones.append({"regla": "fuera_de_rango_anulados", "detalle": "Valores fuera de rango dejados vacíos.",
+                                     "afectados": anulados, "casos": casos_anulados[: universales.MAX_CASOS]})
+        if casos_cambiados:
+            transformaciones.append({"regla": "fuera_de_rango_cambiados",
+                                     "detalle": "Valores fuera de rango cambiados por un valor de la escala.",
+                                     "afectados": len(casos_cambiados), "casos": casos_cambiados[: universales.MAX_CASOS]})
         if no_resp_conservadas:
             transformaciones.append({"regla": "no_respuestas_conservadas", "detalle": "Respuestas «No sé / No aplica» conservadas con su texto (no son puntos de la escala).", "afectados": no_resp_conservadas})
         if no_resp_vaciadas:
@@ -748,8 +1339,10 @@ class MotorEncuestas:
 
         # Métricas después: duplicados e imposibles que quedan tras aplicar las decisiones.
         restantes_dup = len(estado.duplicadas) - len(quitar_dup)
+        en_filas = set(filas_idx)
         restantes_imp = sum(
-            0 if decisiones.get(f"rango:{c.id}", "anular") == "anular" else len(estado.tipos[c.id].fuera) for c in conservadas
+            1 for c in conservadas for i, d in _decision_fuera(c, estado.tipos[c.id], decisiones).items()
+            if d == "conservar" and i in en_filas
         )
         etiquetas = {c.id: c.etiqueta for c in conservadas}
         metricas = _metricas(

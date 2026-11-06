@@ -1,5 +1,11 @@
 # Pruebas del RAG: de la integración `pruebas` + `PA` a la versión actual
 
+> **Nota (25 oct 2026).** Desde esta fecha Indagata **no califica las pruebas estandarizadas**: no recibe
+> clave de respuestas ni calcula aciertos, puntajes, dificultad, discriminación ni KR-20 (Desarrollo X.5.4).
+> Las rondas de este registro (17 y 18 oct) se hicieron con la versión anterior; sus filas sobre el reactivo
+> con menor acierto y el puntaje de un alumno describen esa versión. Las descripciones del sistema de abajo
+> ya están actualizadas.
+
 Este documento reúne **todas las pruebas** hechas desde que empezó la integración de las ramas
 `pruebas` y `PA` (17 de octubre de 2026) hasta los ajustes posteriores a la prueba local (18 de
 octubre de 2026). Muestra, ronda por ronda, qué se preguntó al chat, qué respondió, qué falló, qué
@@ -59,7 +65,7 @@ Respaldo de las ramas originales: etiquetas `respaldo-pruebas-2026-10-17` (`975e
 | `id_crudo` | Archivo | Tipo | Tamaño | Para qué se usó |
 |---|---|---|---|---|
 | 50 | `enc_04` (MSLQ-SF) | Encuesta | 200 respondentes, 7,600 respuestas | Comparación entre instrumentos |
-| 55 | `pru_01` (Comprensión Lectora) | Prueba estandarizada | 100 alumnos, 2,500 respuestas | Reactivos, distractores, alumnos |
+| 55 | `pru_01` (Comprensión Lectora) | Prueba estandarizada | 100 alumnos, 2,500 respuestas (borrado el 25 oct) | Reactivos, alumnos |
 | 59 | `enc_10` (evaluación y ambiente escolar **por turno**) | Encuesta sintética creada en la Fase 3 | 60 respondentes, 480 respuestas | Respondentes, grupos (turno), KPIs |
 | 60 | `ent_01` (estrategias de permanencia) | Entrevista | 40 participantes, 480 respuestas | Lo que dijo un participante |
 | 61 | `enc_09` (carga académica) | Encuesta | 160 respondentes | Consultas con filtros y calidad |
@@ -100,7 +106,7 @@ metadatos, no lo que contestó cada persona (ver la sección 7.3).
 | Tipo | Chunks |
 |---|---|
 | Encuesta | `encabezado` (ficha, siempre el chunk 0) · un `pregunta` por pregunta, con su resumen precalculado · uno o más `respondente` por persona (contexto + respuestas por significado) · un `kpi` por KPI aceptado, con su justificación y sus preguntas de evidencia |
-| Prueba estandarizada | `encabezado` · un `reactivo` por reactivo (opciones, respuesta correcta, % de acierto, distractor más elegido) · `alumno` por alumno (puntaje y aciertos) · `kpi` |
+| Prueba estandarizada | `encabezado` · un `reactivo` por reactivo (opciones, distribución, opción más elegida; sin calificar) · `alumno` por alumno (sus respuestas por significado) · `kpi` |
 | Entrevista | `encabezado` · un `pregunta` por pregunta guía · un `intercambio` por par pregunta-respuesta de cada participante · `kpi` |
 
 **Reglas no obvias que salieron de las pruebas:**
@@ -145,7 +151,7 @@ p03 «Recibo retroalimentación sobre mis trab…»: Ni de acuerdo ni en desacue
 …
 ```
 
-Reactivo de `pru_01`:
+Reactivo de `pru_01` (formato del 18 oct, cuando las pruebas se calificaban):
 ```
 Reactivo r01: Según el texto, ¿cuál es el objetivo principal del aprendizaje basado en problemas?
 Opciones: A) Memorizar conceptos teóricos; B) Desarrollar competencias para resolver situaciones reales; …
@@ -249,9 +255,10 @@ pregunta ─► Capa 1a: reglas de intención (config/dominio.yaml, < 1 ms, sin 
 campus» y «actúa como». Esos temas pueden ser objeto de un instrumento educativo, así que los
 deciden la similitud y el clasificador.
 
-**Glosario metodológico** (9 términos curados, con los umbrales de `METRICAS_LIMPIEZA.md`): alfa de
-Cronbach, KR-20, dificultad, discriminación, distractor, escala Likert, respuestas en línea recta,
-media/mediana/desviación estándar y KPI.
+**Glosario metodológico** (términos curados, con los umbrales de Desarrollo, Tabla D.21a): alfa de
+Cronbach, pruebas estandarizadas en Indagata (no se califican), escala Likert, respuestas en línea recta,
+media/mediana/desviación estándar y KPI. Hasta el 25 oct incluía también KR-20, dificultad, discriminación
+y distractor.
 
 **Tres mensajes distintos** en lugar de uno: fuera del dominio (con ejemplos del alcance), sin
 información, y privacidad («los respondentes son anónimos… sí puedo decirte qué respondió R017»).
@@ -311,8 +318,8 @@ El modelo solo redacta.
 | Porcentaje por nivel y por grupo de contexto | «¿Qué porcentaje del turno vespertino está de acuerdo con p4?» | Fase 3 |
 | KPI: por qué se asoció y qué mide (ruta `mixta`) | «¿Por qué el KPI Tamaño Promedio de Clase está relacionado…?» | Fase 3 |
 | Preguntas que miden un KPI | «¿Qué preguntas miden el KPI Puntajes…?» | Fase 3 |
-| Reactivo más difícil y distractor | «¿Qué reactivo tuvo el menor % de acierto…?» | Fase 3 |
-| Alumno | «¿Cómo le fue al alumno A010?» | Fase 3 |
+| Pruebas sin calificar (antes: reactivo más difícil) | «¿Qué reactivo tuvo el menor % de acierto…?» → aclara que no se califica | Fase 3; cambiado el 25 oct |
+| Alumno | «¿Qué respondió el alumno A010?» | Fase 3 |
 | Participante y tema | «¿Qué dijo E02 sobre el orientador?» | Fase 3 |
 | **Filtro** (contar, listar, uno de ejemplo) | «uno de los estudiantes que sí han reprobado por falta de tiempo» | Ajustes |
 | **Calidad** (fiabilidad y sugerencias de análisis) | «¿Qué análisis me sugieres para la encuesta de carga académica?» | Ajustes |

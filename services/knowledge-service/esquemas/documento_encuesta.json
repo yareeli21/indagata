@@ -190,6 +190,13 @@
                   "type": "number"
                 }
               },
+              "posicion_media": {
+                "type": "object",
+                "description": "Jerarquización: posición media de cada opción (1 = la más importante).",
+                "additionalProperties": {
+                  "type": "number"
+                }
+              },
               "media": {
                 "type": [
                   "number",

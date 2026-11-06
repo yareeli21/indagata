@@ -15,6 +15,7 @@ from __future__ import annotations
 import csv
 import io
 import logging
+import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import PurePosixPath
@@ -25,6 +26,7 @@ from sqlalchemy import func
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+from shared import tiempos
 from shared.auth import ROL_ADMINISTRADOR
 from shared.models.instrumento_procesado import InstrumentoProcesado
 from shared.models.limpieza_ejecucion import LimpiezaEjecucion
@@ -114,10 +116,9 @@ def _extension(raw: RawData) -> str:
 
 
 def _entrada(raw: RawData) -> Entrada:
-    """Descarga el crudo (y la clave, si hay) desde storage-service."""
+    """Descarga el crudo desde storage-service."""
     try:
         contenido = storage_client.descargar(raw.raw_archivo)
-        clave = storage_client.descargar(raw.raw_archivo_clave) if raw.raw_archivo_clave else None
     except storage_client.StorageError as exc:
         if exc.status_code is None:
             raise HTTPException(status.HTTP_502_BAD_GATEWAY, str(exc)) from exc
@@ -130,8 +131,6 @@ def _entrada(raw: RawData) -> Entrada:
         nombre_archivo=raw.nombre_archivo,
         extension=_extension(raw),
         contenido=contenido,
-        clave=clave,
-        extension_clave=PurePosixPath(raw.raw_archivo_clave).suffix.lower() if raw.raw_archivo_clave else None,
     )
 
 
@@ -190,7 +189,6 @@ def _reporte_inicial(
         "fecha_confirmacion": None,
         "archivos": {
             "crudo": ctx.raw.raw_archivo,
-            "clave": ctx.raw.raw_archivo_clave,
             "limpio": None,
             "formato_limpio": {
                 "separador": salida.get("separador", ";"),
@@ -236,6 +234,7 @@ def crear(db: Session, usuario: Usuario, id_crudo: int, *, nueva: bool = False) 
     except MotorNoDisponible as exc:
         raise HTTPException(status.HTTP_501_NOT_IMPLEMENTED, str(exc)) from exc
 
+    inicio, t0 = tiempos._ahora(), time.perf_counter()  # tiempo de cómputo de la fase automática
     entrada = _entrada(ctx.raw)
     version = _siguiente_version(db, id_crudo)
     ejecucion = LimpiezaEjecucion(id_crudo=id_crudo, version=version, id_investigador=usuario.usuario_id)
@@ -266,7 +265,11 @@ def crear(db: Session, usuario: Usuario, id_crudo: int, *, nueva: bool = False) 
     ejecucion.reporte = _reporte_inicial(ctx, version, automatico, decisiones)
     _avanzar_estado(ctx.procesado, "limpieza_en_proceso")
     db.add(ejecucion)
-    return _guardar_nueva(db, ejecucion, id_crudo, nueva)
+    guardada = _guardar_nueva(db, ejecucion, id_crudo, nueva)
+    tiempos.registrar(db, id_crudo, "cleaning", "limpieza_automatica", inicio, tiempos._ahora(),
+                      round((time.perf_counter() - t0) * 1000),
+                      {"version": guardada.version, "hallazgos": len(automatico.hallazgos)})
+    return guardada
 
 
 def _guardar_nueva(db: Session, ejecucion: LimpiezaEjecucion, id_crudo: int, nueva: bool) -> LimpiezaEjecucion:
@@ -345,6 +348,7 @@ def confirmar(db: Session, usuario: Usuario, ejecucion: LimpiezaEjecucion) -> Li
         )
 
     ctx = cargar_contexto(db, usuario, ejecucion.id_crudo)
+    inicio, t0 = tiempos._ahora(), time.perf_counter()  # tiempo de cómputo de aplicar las decisiones
     try:
         motor = motores.obtener(ctx.raw.tipo_instrumento, _extension(ctx.raw))
     except MotorNoDisponible as exc:
@@ -409,6 +413,9 @@ def confirmar(db: Session, usuario: Usuario, ejecucion: LimpiezaEjecucion) -> Li
     ctx.procesado.ruta_de_archivo_limpio = ruta
     db.commit()
     db.refresh(ejecucion)
+    tiempos.registrar(db, ejecucion.id_crudo, "cleaning", "limpieza_confirmar", inicio, tiempos._ahora(),
+                      round((time.perf_counter() - t0) * 1000),
+                      {"version": ejecucion.version, "filas_limpias": len(final.filas), "decisiones": len(decisiones)})
     return ejecucion
 
 
@@ -428,8 +435,7 @@ _COMPARABLES = (
     ("n_ids_duplicados", "IDs repetidos", "num"),
     ("conteos.nula", "Respuestas nulas", "num"),
     ("conteos.NR", "No respondidas", "num"),
-    ("pct_correctas_validas", "Aciertos entre respuestas válidas", "pct"),
-    ("kr20", "Fiabilidad KR-20", "dec"),
+    ("pct_validas", "Respuestas válidas", "pct"),
     ("n_turnos", "Turnos", "num"),
     ("n_palabras", "Palabras", "num"),
     ("ruido_detectado", "Ruido detectado", "num"),
@@ -452,7 +458,7 @@ def comparacion(
         a, d = _valor(antes, ruta), _valor(despues, ruta)
         if a is not None or d is not None:
             filas.append({"metrica": etiqueta, "antes": a, "despues": d, "formato": formato})
-    # Alfa de Cronbach por bloque Likert (encuestas); en pruebas la fiabilidad es el KR-20 de arriba.
+    # Alfa de Cronbach por bloque Likert (encuestas); las pruebas no se califican y no tienen fiabilidad.
     def bloques(estadistica: dict[str, Any] | None) -> list[dict[str, Any]]:
         fiabilidad = (estadistica or {}).get("fiabilidad")
         return fiabilidad if isinstance(fiabilidad, list) else []
@@ -495,7 +501,8 @@ def a_dto(ejecucion: LimpiezaEjecucion, tipo_instrumento: str) -> dict[str, Any]
         "avisos": reporte.get("avisos", []),
         "metricasAntes": (reporte.get("metricas") or {}).get("antes") or {},
         "transformaciones": [
-            {"regla": t.get("regla", ""), "detalle": t.get("detalle", ""), "afectados": t.get("afectados")}
+            {"regla": t.get("regla", ""), "detalle": t.get("detalle", ""), "afectados": t.get("afectados"),
+             "casos": t.get("casos") or [], "columnas": t.get("columnas") or {}}
             for t in reporte.get("transformaciones", [])
             if t.get("origen", "automatica") == "automatica"
         ],

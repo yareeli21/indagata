@@ -26,6 +26,12 @@ encuestas:
     - '^(hora|tiempo) de (inicio|finalizaci[oó]n)$'
     - '^(start|end|completion|submit) ?(time|date)$'
     - '^(submitdate|lastpage|startlanguage|seed|startdate|datestamp|refurl|ipaddr|token)$'
+    # Qualtrics (con la fila del texto como encabezado): sistema, progreso y datos de quien responde.
+    - '^(start|end|recorded) ?date$'
+    - '^(response ?type|status|progress|finished|duration( \(in seconds\))?|distribution ?channel|user ?language|external ?(data )?reference)$'
+    - '^(ip ?address|location ?(latitude|longitude)|recipient ?(first|last) ?name|recipient ?email)$'
+    # IP en español (MS Forms y hojas hechas a mano): sin esto, la IP hacía única cada fila y escondía duplicados.
+    - '^(ip|direcci[oó]n ip|direcci[oó]n de ip|ip del encuestado)$'
     - '^(correo|e-?mail|correo electr[oó]nico|direcci[oó]n de correo electr[oó]nico)$'
     - '^(nombre|name)$'
 
@@ -33,7 +39,9 @@ encuestas:
   # de la pregunta, típico de plataformas en línea).
   largo_minimo_pregunta: 25
   # Encabezados cortos con estas palabras se sugieren como "dato de contexto".
-  palabras_contexto: ["edad", "sexo", "genero", "carrera", "semestre", "grupo", "turno", "escuela", "plantel", "campus", "municipio", "estado civil", "nivel", "grado", "institucion", "facultad", "ciclo", "generacion", "promedio"]
+  # Se buscan como palabras completas; «_», «.», «-» y «/» del encabezado cuentan como espacio
+  # (nivel_ses → «nivel ses»).
+  palabras_contexto: ["edad", "sexo", "genero", "carrera", "semestre", "grupo", "turno", "escuela", "plantel", "campus", "municipio", "estado civil", "nivel", "grado", "institucion", "facultad", "ciclo", "generacion", "promedio", "perfil", "beca", "trabajo", "universidad", "ses", "ocupacion"]
   # Códigos cortos de microdatos (P1, P1_4_1, Q12.3…): el investigador decide el rol.
   patron_codigo_corto: '^[A-Za-z]{1,3}\d+([_.]\d+)*$'
 
@@ -75,16 +83,33 @@ encuestas:
 # ── Entrevistas ──────────────────────────────────────────────────────────────
 entrevistas:
   max_iteraciones_ruido: 3
+  # Una línea idéntica que se repite al menos estas veces, sin etiqueta de hablante, es encabezado o pie de página.
+  repeticiones_encabezado: 3
+  # Anotaciones del transcriptor entre corchetes o paréntesis: «[inaudible]», «(risas)», «[pausa larga]».
+  # El investigador decide si se quitan o se conservan. Expresiones regulares sobre el texto en minúsculas.
+  anotaciones_transcriptor: ["inaudible", "ininteligible", "incomprensible", "risas?", "r[ií]e", "se r[ií]e", "silencio",
+                             "pausa", "hablan al mismo tiempo", "habla[n]? a la vez", "superposici[oó]n", "m[uú]sica",
+                             "ruido", "tos", "tose", "llanto", "llora", "suspira", "suspiro", "aplausos", "interrupci[oó]n",
+                             "corte", "se corta", "duda", "palabra no clara"]
   # Palabras en la etiqueta del hablante que sugieren su rol.
   # «P» se omite a propósito: puede ser «Pregunta» o «Participante»; ese rol se infiere por las preguntas.
   etiquetas_entrevistador: ["entrevistador", "entrevistadora", "e", "investigador", "investigadora", "moderador", "moderadora", "pregunta"]
   etiquetas_entrevistado: ["entrevistado", "entrevistada", "r", "participante", "informante", "respuesta", "estudiante", "docente"]
+  # Muletillas que se buscan SOLO como palabra suelta (expresiones regulares). No se quitan solas:
+  # el investigador decide conservarlas (sugerido) o quitarlas. «este» no está: también es demostrativo.
+  muletillas: ["e+h+", "e+m+", "m{2,}", "u+m+", "ehm+"]
 
 # ── Pruebas estandarizadas ───────────────────────────────────────────────────
 pruebas:
   opciones_validas: ["A", "B", "C", "D", "NR"]
   caracteres_ilegibles: ["*", "?", "#"]
+  # Otras formas de escribir «no respondió»: se cuentan como NR. «0» no está a propósito (puede ser un puntaje).
+  tokens_no_respondida: ["n/r", "n.r.", "n/a", "na", "-", "--", "sin respuesta", "no respondio", "no contesto",
+                         "en blanco", "blanco", "omitida", "omitio"]
   # Encabezados posibles de la columna de identificador del alumno.
   columna_id: ['^(id|id[_ ]?alumno|matr[ií]cula|folio|boleta|clave[_ ]?alumno|alumno|estudiante)$']
-  # Análisis de reactivos: tamaño de los grupos extremos para el índice de discriminación.
-  grupo_extremo: 0.27
+  # Descripción de reactivos (no se califican: no hay clave de respuestas).
+  # Reactivo con más de esta proporción de nulas + no respondidas: se señala.
+  umbral_sin_respuesta: 0.2
+  # Reactivo donde la opción más elegida reúne al menos esta proporción de las respuestas válidas.
+  umbral_casi_unanime: 0.9

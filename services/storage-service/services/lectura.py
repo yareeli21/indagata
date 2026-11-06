@@ -270,7 +270,7 @@ def extraer_texto(data: bytes, extension: str) -> Documento:
         return _texto_pdf(data)
     if ext == ".docx":
         return _texto_docx(data)
-    if ext in (".txt", ".md", ".csv"):
+    if ext in (".txt", ".md", ".csv", ".vtt", ".srt"):
         texto, encoding = _decodificar(data)
         notas = [] if encoding in ("utf-8-sig", "utf-8") else [f"Codificación de respaldo: {encoding}"]
         return Documento(texto=texto.strip(), notas=notas)

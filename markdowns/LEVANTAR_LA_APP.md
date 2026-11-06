@@ -4,8 +4,7 @@ Esta guía es para quien baja el repositorio por primera vez, o para quien ya lo
 cambios nuevos de la rama `pruebas`. Los comandos son para **Windows con PowerShell**; en Linux o
 macOS funcionan igual, salvo donde se indica.
 
-> Qué hace cada servicio: [MICROSERVICIOS.md](MICROSERVICIOS.md).
-> Nota: `markdowns/QUICKSTART.md` está desactualizado (puertos viejos). Usa esta guía.
+> Qué hace cada servicio: `documentación/02_Desarrollo.md`, sección X.4.
 
 ---
 

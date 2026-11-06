@@ -33,7 +33,7 @@ if not (Path(__file__).resolve().parent / "shared" / "__init__.py").exists():
 from fastapi import FastAPI  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
-from routers import documento, health, perfil  # noqa: E402
+from routers import analisis, documento, health, perfil  # noqa: E402
 from services import VERSION_SERVICIO  # noqa: E402
 
 logging.basicConfig(
@@ -61,6 +61,7 @@ app.add_middleware(
 app.include_router(health.router)
 app.include_router(perfil.router)
 app.include_router(documento.router)
+app.include_router(analisis.router)
 
 
 if __name__ == "__main__":

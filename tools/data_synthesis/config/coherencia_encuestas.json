@@ -1,0 +1,86 @@
+{
+  "_descripcion": "Reglas de coherencia de las preguntas de encuesta que no son Likert (modelo 'coherente', generators/coherencia.py). Clave: id del instrumento → texto exacto de la pregunta → regla. 'factores': {factor: peso}; peso positivo = a más factor, más 'Sí', número más alto u opción más al final de 'orden'; |peso| = fuerza (0 a 1). Factores: 'likert', 'dimension:<nombre>', edad, semestre, promedio_gpa, horas_trabajo_semana, tiene_beca, primera_generacion, 'pregunta:<texto>'. 'orden': opciones de menor a mayor tendencia. 'proporciones': parte de la muestra en cada opción de 'orden'. 'prob_si': proporción de 'Sí'. 'media'/'desviacion': escalas numéricas. 'cortes' + 'variable': tramos de un número. 'mapa' + 'variable': categoría → probabilidad por opción ('*' = cualquier otro valor). Las preguntas sin regla conservan el sorteo uniforme.",
+  "enc_06": {
+    "¿Con qué frecuencia utilizas los servicios de orientación psicológica?": {"proporciones": [0.45, 0.3, 0.15, 0.1]},
+    "¿Cómo calificarías la comunicación institucional contigo?": {"factores": {"likert": 0.6}, "proporciones": [0.08, 0.17, 0.35, 0.28, 0.12]},
+    "¿Cuál servicio usas con más frecuencia?": {"proporciones": [0.35, 0.2, 0.2, 0.1, 0.15]},
+    "¿Recomendarías esta institución a otras personas?": {"factores": {"likert": 0.7}, "proporciones": [0.08, 0.17, 0.45, 0.3]},
+    "¿El costo de los servicios complementarios es razonable?": {"factores": {"likert": 0.4}},
+    "¿Has utilizado el servicio de bolsa de trabajo institucional?": {"factores": {"semestre": 0.5}, "prob_si": 0.3},
+    "¿Has recibido atención de los servicios de salud del campus?": {"factores": {"dimension:Servicios académicos": 0.2}, "prob_si": 0.35},
+    "¿Conoces los programas de becas disponibles en tu institución?": {"factores": {"tiene_beca": 0.6}, "prob_si": 0.55},
+    "En una escala del 0 al 10, ¿cuán satisfecho/a estás con tu experiencia universitaria en general?": {"factores": {"likert": 0.7}, "media": 7, "desviacion": 1.8},
+    "En una escala del 0 al 10, ¿qué tan probable es que recomiendes esta institución?": {"factores": {"likert": 0.7}, "media": 7, "desviacion": 2}
+  },
+  "enc_07": {
+    "¿Con qué frecuencia participas en actividades de celebración de la diversidad?": {"factores": {"dimension:Diversidad cultural": 0.4}, "proporciones": [0.3, 0.3, 0.3, 0.1]},
+    "¿Tu institución ofrece programas de inclusión para personas con discapacidad?": {"factores": {"dimension:Inclusión académica": 0.5}, "orden": ["No existen", "No los conozco", "Sí, pero son limitados", "Sí, y son efectivos"], "proporciones": [0.1, 0.35, 0.35, 0.2]},
+    "¿Cuál es tu identidad de género?": {"variable": "genero", "mapa": {"masculino": {"Hombre cisgénero": 0.95, "Prefiero no decir": 0.05}, "femenino": {"Mujer cisgénero": 0.95, "Prefiero no decir": 0.05}, "*": {"No binario/a": 0.5, "Otro": 0.25, "Prefiero no decir": 0.25}}},
+    "¿Eres estudiante de intercambio internacional?": {"variable": "perfil", "mapa": {"P6": {"Sí": 0.6, "No": 0.4}, "*": {"Sí": 0.03, "No": 0.97}}},
+    "¿Has experimentado algún tipo de discriminación en tu institución?": {"factores": {"dimension:Equidad de género": -0.5}, "prob_si": 0.2},
+    "¿Tienes acceso a becas o apoyos financieros por condición socioeconómica?": {"variable": "tiene_beca", "mapa": {"True": {"Sí": 0.9, "No": 0.1}, "*": {"Sí": 0.15, "No": 0.85}}},
+    "¿Tu institución cuenta con protocolos contra el acoso escolar?": {"factores": {"likert": 0.3}, "prob_si": 0.6},
+    "¿Participas en organizaciones estudiantiles de diversidad o inclusión?": {"factores": {"dimension:Diversidad cultural": 0.4}, "prob_si": 0.25}
+  },
+  "enc_08": {
+    "En una escala del 1 al 10, ¿cómo calificarías tu nivel de bienestar general?": {"factores": {"dimension:Bienestar emocional": 0.75}, "media": 6.5, "desviacion": 1.8},
+    "En una escala del 1 al 10, ¿cuánto estrés sientes actualmente por la vida universitaria?": {"factores": {"dimension:Estrés académico": 0.75}, "media": 6.5, "desviacion": 1.8},
+    "En una escala del 1 al 10, ¿cuán satisfecho/a estás con el apoyo emocional recibido?": {"factores": {"dimension:Apoyo institucional": 0.7}, "media": 6, "desviacion": 2},
+    "¿Con qué frecuencia has sentido síntomas de agotamiento (burnout) en el último semestre?": {"factores": {"dimension:Estrés académico": 0.6}, "proporciones": [0.1, 0.2, 0.35, 0.25, 0.1]},
+    "¿Has buscado ayuda psicológica profesional durante tu carrera?": {"proporciones": [0.5, 0.2, 0.15, 0.15]},
+    "¿Cuál es el principal factor de estrés en tu vida académica?": {"proporciones": [0.35, 0.15, 0.15, 0.1, 0.25]},
+    "¿Con qué frecuencia realizas actividades de autocuidado (deporte, meditación, etc.)?": {"factores": {"dimension:Bienestar emocional": 0.4}, "proporciones": [0.15, 0.3, 0.4, 0.15]},
+    "¿Has pensado en abandonar los estudios por razones emocionales?": {"factores": {"dimension:Bienestar emocional": -0.6}, "proporciones": [0.55, 0.3, 0.1, 0.05]},
+    "¿Duermes al menos 7 horas diarias en promedio?": {"factores": {"dimension:Bienestar emocional": 0.4}, "prob_si": 0.45},
+    "¿Tu institución tiene un programa formal de atención a la salud mental estudiantil?": {"factores": {"dimension:Apoyo institucional": 0.5}, "prob_si": 0.6}
+  },
+  "enc_09": {
+    "¿Cuántas materias cursas actualmente?": {"proporciones": [0.05, 0.25, 0.5, 0.2]},
+    "¿Con qué frecuencia dejas tareas para el último momento?": {"factores": {"dimension:Organización del tiempo": -0.65}, "proporciones": [0.08, 0.22, 0.35, 0.25, 0.1]},
+    "¿Qué estrategia usas más para gestionar tu tiempo?": {"factores": {"dimension:Organización del tiempo": 0.5}, "orden": ["Sin estrategia definida", "Lista de tareas informal", "Agenda física", "App digital"], "proporciones": [0.2, 0.35, 0.15, 0.3]},
+    "¿Cuántas horas por semana dedicas al estudio fuera de clases? (número)": {"factores": {"dimension:Organización del tiempo": 0.5, "horas_trabajo_semana": -0.3}, "media": 12, "desviacion": 6},
+    "¿Cuántas horas dedicas al estudio fuera de clases por semana?": {"variable": "pregunta:¿Cuántas horas por semana dedicas al estudio fuera de clases? (número)", "cortes": [5, 10, 15, 20]},
+    "¿Has reprobado alguna materia por falta de tiempo para estudiar?": {"factores": {"promedio_gpa": -0.5, "horas_trabajo_semana": 0.4}, "orden": ["No, nunca", "Casi lo hago", "Sí, una vez", "Sí, varias veces"], "proporciones": [0.45, 0.2, 0.2, 0.15]},
+    "¿Cuál es tu carga laboral actual?": {"variable": "horas_trabajo_semana", "cortes": [1, 20, 31]},
+    "Del 1 al 10, ¿cuánta presión sientes por la carga académica?": {"factores": {"dimension:Carga horaria percibida": -0.6, "horas_trabajo_semana": 0.3}, "media": 6.5, "desviacion": 1.8},
+    "Del 1 al 10, ¿qué tan efectivo/a eres gestionando tu tiempo?": {"factores": {"dimension:Organización del tiempo": 0.7}, "media": 6, "desviacion": 1.8},
+    "¿Cuántos créditos cursas este semestre? (número)": {"media": 26, "desviacion": 5},
+    "¿Tienes dificultades para equilibrar trabajo y estudios?": {"factores": {"horas_trabajo_semana": 0.7}, "prob_si": 0.4},
+    "¿Tu institución ofrece talleres de gestión del tiempo?": {"factores": {"likert": 0.2}, "prob_si": 0.5}
+  },
+  "enc_10": {
+    "¿Tienes experiencia laboral en tu área de formación?": {"factores": {"dimension:Competencias profesionales": 0.4, "semestre": 0.3, "horas_trabajo_semana": 0.3}, "orden": ["No tengo experiencia", "Sí, como freelance", "Sí, en prácticas/pasantías", "Sí, tiempo completo"], "proporciones": [0.3, 0.15, 0.35, 0.2]},
+    "¿Cuál es tu principal motivación para estudiar esta carrera?": {"proporciones": [0.4, 0.3, 0.1, 0.2]},
+    "¿Tienes planes de continuar con estudios de posgrado?": {"factores": {"promedio_gpa": 0.4}, "orden": ["No tengo planes", "Lo estoy considerando", "Sí, en algunos años", "Sí, inmediatamente"], "proporciones": [0.2, 0.35, 0.3, 0.15]},
+    "¿En qué sector laboral esperas trabajar al graduarte?": {"proporciones": [0.2, 0.45, 0.08, 0.15, 0.12]},
+    "¿Has realizado prácticas profesionales o pasantías durante tu carrera?": {"factores": {"semestre": 0.5, "dimension:Competencias profesionales": 0.3}, "prob_si": 0.55},
+    "¿Tu institución te ha conectado con empleadores potenciales?": {"factores": {"dimension:Redes de contacto": 0.6}, "prob_si": 0.35},
+    "¿Conoces los servicios de bolsa de trabajo de tu institución?": {"factores": {"dimension:Redes de contacto": 0.4}, "prob_si": 0.5},
+    "Del 1 al 10, ¿cuán preparado/a te sientes para el mercado laboral?": {"factores": {"dimension:Competencias profesionales": 0.75}, "media": 6.5, "desviacion": 1.8},
+    "Del 1 al 10, ¿cuánto crees que tu carrera tendrá retorno económico?": {"factores": {"dimension:Expectativas laborales": 0.7}, "media": 7, "desviacion": 1.8},
+    "¿Cuál es el salario mensual mínimo que esperarías recibir al graduarte? (en miles)": {"factores": {"dimension:Expectativas laborales": 0.3, "promedio_gpa": 0.2}, "media": 15, "desviacion": 6}
+  },
+  "enc_11": {
+    "¿Cuál es tu carga laboral actual?": {"variable": "horas_trabajo_semana", "cortes": [1, 20, 31]},
+    "¿Con qué frecuencia asistes a asesorías con tus profesores?": {"factores": {"dimension:Compromiso académico": 0.6}, "proporciones": [0.2, 0.35, 0.3, 0.15]},
+    "¿Cuál es tu principal medio de transporte a la universidad?": {"proporciones": [0.55, 0.15, 0.2, 0.1]},
+    "¿Has reprobado alguna materia en el último año?": {"factores": {"promedio_gpa": -0.6, "horas_trabajo_semana": 0.3}, "prob_si": 0.3},
+    "¿Cuentas con una beca?": {"variable": "tiene_beca", "mapa": {"True": "Sí", "*": {"Sí": 0.1, "No": 0.9}}},
+    "Del 1 al 10, ¿qué tan satisfecho/a estás con tu carrera?": {"factores": {"likert": 0.7}, "media": 7, "desviacion": 1.8},
+    "¿Cuántas horas a la semana estudias fuera de clase? (número)": {"factores": {"dimension:Compromiso académico": 0.6, "horas_trabajo_semana": -0.3}, "media": 12, "desviacion": 6},
+    "¿Qué servicios de la institución usaste este semestre? (marca todos los que apliquen)": {"opciones": {
+      "Biblioteca": {"prob": 0.6, "factores": {"dimension:Compromiso académico": 0.5}},
+      "Tutorías": {"prob": 0.3, "factores": {"promedio_gpa": -0.5}},
+      "Asesoría psicológica": {"prob": 0.15, "factores": {"dimension:Apoyo institucional": 0.3}},
+      "Bolsa de trabajo": {"prob": 0.2, "factores": {"semestre": 0.5}},
+      "Oficina de becas": {"prob": 0.2, "factores": {"tiene_beca": 0.8}}
+    }},
+    "Ordena de mayor a menor importancia los motivos por los que estudias": {"opciones": {
+      "Interés por la disciplina": {"base": 0.3, "factores": {"dimension:Compromiso académico": 0.6}},
+      "Conseguir un buen empleo": {"base": 0.3, "factores": {"semestre": 0.3}},
+      "Ingreso económico": {"base": 0, "factores": {"horas_trabajo_semana": 0.5}},
+      "Expectativa familiar": {"base": -0.3, "factores": {"primera_generacion": 0.4}}
+    }},
+    "¿Qué cambiarías de tu experiencia en la institución? Explica brevemente.": {"factores": {"dimension:Apoyo institucional": 0.7}}
+  }
+}

@@ -25,6 +25,6 @@ class MetadatosDC(Base):
     dc_subject: Mapped[str | None] = mapped_column(Text)
     dc_publisher: Mapped[str | None] = mapped_column(Text)
     dc_rights: Mapped[str | None] = mapped_column(String(255))
-    dc_format: Mapped[str | None] = mapped_column(String(50))
+    dc_format: Mapped[str | None] = mapped_column(String(120))
     dc_source: Mapped[str | None] = mapped_column(Text)
     dc_relation: Mapped[str | None] = mapped_column(Text)

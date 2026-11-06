@@ -160,15 +160,15 @@ def test_encuesta_real_sin_respuestas_no_interpretadas():
 # ── Pruebas estandarizadas ─────────────────────────────────────────────────────
 
 
-def test_pruebas_letra_a_opcion_correcta_estado_y_motivo():
+def test_pruebas_letra_a_opcion_estado_y_motivo_sin_calificar():
     letras = {"A": "56", "B": "54"}
-    assert pruebas.interpretar({"respuesta": "A", "correcta": "1", "estado": "valida", "motivo": ""}, letras) == {
-        "respuesta": "A", "correcta": True, "estado": "valida", "significado": "56"}
-    assert pruebas.interpretar({"respuesta": "c", "correcta": "0", "estado": "valida"}, letras)["significado"] == "Opción C"
-    nula = pruebas.interpretar({"respuesta": "AB", "correcta": "0", "estado": "nula", "motivo": "respuesta_multiple"}, letras)
-    assert nula == {"respuesta": "AB", "correcta": False, "estado": "nula", "motivo": "respuesta_multiple", "significado": "Respuesta múltiple (AB)"}
-    nr = pruebas.interpretar({"respuesta": "", "correcta": "0", "estado": "NR", "motivo": "no_respondida"}, letras)
-    assert nr == {"respuesta": None, "correcta": False, "estado": "sin_respuesta", "motivo": "no_respondida"}
+    assert pruebas.interpretar({"respuesta": "A", "estado": "valida", "motivo": ""}, letras) == {
+        "respuesta": "A", "estado": "valida", "significado": "56"}
+    assert pruebas.interpretar({"respuesta": "c", "estado": "valida"}, letras)["significado"] == "Opción C"
+    nula = pruebas.interpretar({"respuesta": "AB", "estado": "nula", "motivo": "respuesta_multiple"}, letras)
+    assert nula == {"respuesta": "AB", "estado": "nula", "motivo": "respuesta_multiple", "significado": "Respuesta múltiple (AB)"}
+    nr = pruebas.interpretar({"respuesta": "", "estado": "NR", "motivo": "no_respondida"}, letras)
+    assert nr == {"respuesta": None, "estado": "sin_respuesta", "motivo": "no_respondida"}
     assert pruebas.interpretar({"respuesta": "*", "estado": "nula", "motivo": "ilegible"}, {})["significado"] == "Ilegible (*)"
 
 
@@ -196,3 +196,34 @@ def test_escala_numerica_con_anclas_del_original():
     r = encuestas.interpretar_columna(spec, ["4", "2"], anclas=anclas).respuestas
     assert (r[0]["significado"], r[0]["nivel"]) == ("De acuerdo / Frecuentemente", "acuerdo")
     assert r[1]["nivel"] == "desacuerdo"
+
+
+def test_resumen_de_ranking_por_primer_lugar_y_posicion_media():
+    """24 oct, banco: el resumen decía «la eligió el 100 %» porque todos ordenan todas las opciones."""
+    from services.documento import comun
+
+    orden = ["Empleo > Interés > Familia", "Empleo > Familia > Interés", "Interés > Empleo > Familia"]
+    respuestas = [encuestas.interpretar_columna({"tipo_canonico": "ranking"}, [o]).respuestas[0] for o in orden]
+    res = comun.resumen_pregunta("ranking", respuestas, None)
+    assert res["distribucion"][0] == {"significado": "Empleo", "n": 2, "pct": 66.7}
+    assert list(res["posicion_media"]) == ["Empleo", "Interés", "Familia"] and res["posicion_media"]["Empleo"] == 1.33
+    assert res["interpretacion"].startswith("En primer lugar se puso más veces «Empleo» (66.7 %")
+    assert "100 %" not in res["interpretacion"]
+
+
+def test_el_esquema_acepta_la_posicion_media_del_ranking():
+    import json
+    from pathlib import Path
+
+    import jsonschema
+
+    esquema = json.loads((Path(__file__).resolve().parents[1] / "esquemas" / "documento_encuesta.json").read_text(encoding="utf-8"))
+    resumen = esquema["properties"]["preguntas"]["items"]["properties"]["resumen"]
+    jsonschema.validate({"n_validas": 3, "n_sin_respuesta": 0, "interpretacion": "x", "posicion_media": {"Empleo": 1.33}}, resumen)
+
+
+def test_seleccion_con_punto_y_coma_no_parte_opciones_con_coma():
+    """28 oct: con «;» como separador, «Sí, en una empresa con convenio» es una sola opción."""
+    valores = ["Sí, en una empresa con convenio;Movilidad", "Movilidad", "Sí, en una empresa con convenio"]
+    col = encuestas.interpretar_columna({"tipo_canonico": "opcion_multiple_varias"}, valores)
+    assert col.respuestas[0]["seleccion"] == ["Sí, en una empresa con convenio", "Movilidad"]

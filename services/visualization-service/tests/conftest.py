@@ -153,10 +153,18 @@ class StorageFalso:
 
 @pytest.fixture(autouse=True)
 def _sin_cache_de_respuestas(monkeypatch):
-    """Las pruebas repiten preguntas a propósito: la caché se prueba aparte (test_cache.py)."""
+    """Las pruebas repiten preguntas a propósito: la caché se prueba aparte (test_cache.py).
+
+    La etapa de interpretación (plan JSON) se prueba en test_chat_planificado.py; las pruebas del flujo de reglas
+    la tienen apagada para que su Ollama simulado no tenga que responder planes.
+    """
     from shared.db.core.config import settings
 
     monkeypatch.setattr(settings, "RAG_CACHE_HORAS", 0)
+    monkeypatch.setattr(settings, "RAG_INTERPRETACION_LLM", False)
+    # Las pruebas del chat verifican la evaluación en segundo plano; el modo bajo demanda (el de producción) se
+    # prueba en test_evaluacion.py::test_bajo_demanda_*.
+    monkeypatch.setattr(settings, "RAG_METRICAS_BAJO_DEMANDA", False)
 
 
 @pytest.fixture()

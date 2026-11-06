@@ -13,6 +13,9 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+import zlib
+
+from . import coherencia
 from .base_generator import BaseGenerator
 
 # ---------------------------------------------------------------------------
@@ -608,14 +611,102 @@ INSTRUMENT_DEFS: dict[str, dict] = {
             "Tasa de Donaciones de Exalumnos (Filantropía de Egresados)",
         ],
     },
+    # enc_11 (motor v1.1): una encuesta con TODOS los tipos de pregunta que reconoce la
+    # limpieza, para mostrar las respuestas coherentes (config/coherencia_encuestas.json).
+    "enc_11": {
+        "titulo": "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios",
+        "fuente": "sintetico",
+        "referencia": "Generada sintéticamente – Indagata v1.1 (respuestas coherentes)",
+        "n_respondentes": 160,
+        "perfiles_permitidos": None,
+        "dimensiones": [
+            {"nombre": "Compromiso académico", "n_items": 4, "item_type": "normal",
+             "items": [
+                 "Asisto puntualmente a todas mis clases.",
+                 "Entrego mis tareas completas y a tiempo.",
+                 "Repaso los temas vistos en clase aunque no haya examen.",
+                 "Busco material adicional cuando un tema no me queda claro.",
+             ]},
+            {"nombre": "Apoyo institucional", "n_items": 4, "item_type": "normal",
+             "items": [
+                 "La institución me informa a tiempo sobre trámites y servicios.",
+                 "Los servicios de apoyo responden cuando los necesito.",
+                 "Siento que la institución se preocupa por mi permanencia.",
+                 "Los horarios de los servicios se adaptan a mis necesidades.",
+             ]},
+        ],
+        "preguntas_adicionales": {
+            "opcion_multiple": [
+                {"texto": "¿Cuál es tu carga laboral actual?",
+                 "opciones": ["No trabajo", "Menos de 20 h a la semana", "De 20 a 30 h a la semana", "Más de 30 h a la semana"]},
+                {"texto": "¿Con qué frecuencia asistes a asesorías con tus profesores?",
+                 "opciones": ["Nunca", "Pocas veces", "Algunas veces", "Con frecuencia"]},
+                {"texto": "¿Cuál es tu principal medio de transporte a la universidad?",
+                 "opciones": ["Transporte público", "Automóvil", "Caminando", "Bicicleta"]},
+            ],
+            "si_no": [
+                {"texto": "¿Has reprobado alguna materia en el último año?"},
+                {"texto": "¿Cuentas con una beca?"},
+            ],
+            "escala_numerica": [
+                {"texto": "Del 1 al 10, ¿qué tan satisfecho/a estás con tu carrera?", "min": 1, "max": 10},
+                {"texto": "¿Cuántas horas a la semana estudias fuera de clase? (número)", "min": 0, "max": 40},
+            ],
+            "seleccion_multiple": [
+                {"texto": "¿Qué servicios de la institución usaste este semestre? (marca todos los que apliquen)",
+                 "opciones": ["Biblioteca", "Tutorías", "Asesoría psicológica", "Bolsa de trabajo", "Oficina de becas"]},
+            ],
+            "jerarquizacion": [
+                {"texto": "Ordena de mayor a menor importancia los motivos por los que estudias",
+                 "opciones": ["Interés por la disciplina", "Conseguir un buen empleo", "Ingreso económico", "Expectativa familiar"]},
+            ],
+            "abierta": [
+                {"texto": "¿Qué cambiarías de tu experiencia en la institución? Explica brevemente.",
+                 "plantillas": {
+                     "baja": [
+                         "Cambiaría casi todo lo administrativo: los trámites tardan semanas y nadie responde los correos a tiempo.",
+                         "Que los servicios de apoyo existieran de verdad; cuando los necesité no encontré a nadie que me atendiera.",
+                         "Me gustaría que la institución escuchara a los estudiantes; siento que mi permanencia no le importa a nadie.",
+                     ],
+                     "media": [
+                         "Mejoraría los horarios de la biblioteca y de las tutorías, que casi siempre chocan con mis clases.",
+                         "En general está bien, aunque la información sobre becas y trámites debería llegar con más anticipación.",
+                         "Algunos servicios funcionan bien, pero otros son lentos; ampliaría la atención en línea para no perder clases.",
+                     ],
+                     "alta": [
+                         "Cambiaría muy poco; los servicios me han apoyado cuando lo necesité y la información llega a tiempo.",
+                         "Solo agregaría más espacios de estudio, porque el resto de la experiencia en la institución ha sido muy buena.",
+                         "Estoy satisfecho/a con el apoyo recibido; tal vez sumaría más talleres prácticos relacionados con mi carrera.",
+                     ],
+                 }},
+            ],
+        },
+        "kpis_asociados": [
+            "Tasa de Retención / Permanencia Estudiantil",
+            "Servicios de Apoyo al Estudiante",
+            "Porcentaje de Estudiantes que Reciben Ayuda Financiera",
+            "Satisfacción Estudiantil",
+        ],
+    },
 }
+
+# Tipos de pregunta adicionales, en el orden en que se escriben las columnas y el original.
+TIPOS_ADICIONALES = ["opcion_multiple", "si_no", "escala_numerica", "seleccion_multiple", "jerarquizacion", "abierta"]
+_CONFIG_COHERENCIA = Path(__file__).resolve().parent.parent / "config" / "coherencia_encuestas.json"
 
 
 class EncuestaGenerator(BaseGenerator):
     """Generator for survey instruments."""
 
-    def __init__(self, output_dir: Path, seed: int | None = None):
+    def __init__(self, output_dir: Path, seed: int | None = None, modelo: str = "coherente"):
+        """`modelo`: «coherente» (v1.1: las preguntas que no son Likert dependen del respondente,
+        reglas en config/coherencia_encuestas.json) o «uniforme» (v1.0: sorteo uniforme; reproduce
+        exactamente el acervo original con la semilla 42)."""
         super().__init__(seed=seed)
+        self.seed = 0 if seed is None else seed
+        self.modelo = modelo
+        with open(_CONFIG_COHERENCIA, encoding="utf-8") as fh:
+            self.reglas: dict = json.load(fh)
         self.output_dir = output_dir / "encuestas"
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -632,10 +723,8 @@ class EncuestaGenerator(BaseGenerator):
 
     def generate_n_more(self, n: int) -> list[str]:
         """Generate n more encuestas, continuing from the last generated number."""
-        existing = self.read_existing_metadata(self.output_dir, "enc")
-        last_num = len(existing)
-        all_ids = list(INSTRUMENT_DEFS.keys())
-        to_generate = all_ids[last_num: last_num + n]
+        # Por archivo existente (no por conteo): enc_10_turno también deja un metadata.json.
+        to_generate = [i for i in INSTRUMENT_DEFS if not (self.output_dir / f"{i}_metadata.json").exists()][:n]
         return self.generate_all(to_generate)
 
     # ------------------------------------------------------------------
@@ -676,19 +765,37 @@ class EncuestaGenerator(BaseGenerator):
         response_matrix = np.array(all_responses)
 
         # --- Generate additional question responses ---
+        # Primero el sorteo uniforme de la v1.0, SIEMPRE con self.rng: así la secuencia de números
+        # al azar no cambia y los ítems Likert de todos los instrumentos salen idénticos en ambos
+        # modelos. En el modelo «coherente», después se reemplazan con un generador aparte.
         extra_cols = {}
         for q in additional.get("opcion_multiple", []):
-            col_name = q["texto"][:40].replace(" ", "_").replace("¿", "").replace("?", "")
+            col_name = self._columna(q["texto"])
             opciones = q["opciones"]
             extra_cols[col_name] = [opciones[self.rng.integers(0, len(opciones))] for _ in range(n_resp)]
 
         for q in additional.get("si_no", []):
-            col_name = q["texto"][:40].replace(" ", "_").replace("¿", "").replace("?", "")
+            col_name = self._columna(q["texto"])
             extra_cols[col_name] = [self.rng.choice(["Sí", "No"]) for _ in range(n_resp)]
 
         for q in additional.get("escala_numerica", []):
-            col_name = q["texto"][:40].replace(" ", "_").replace("¿", "").replace("?", "")
+            col_name = self._columna(q["texto"])
             extra_cols[col_name] = [int(self.rng.integers(q["min"], q["max"] + 1)) for _ in range(n_resp)]
+
+        # Tipos agregados en la v1.1 (solo enc_11): uniformes también en el modelo «uniforme».
+        for q in additional.get("seleccion_multiple", []):
+            marcadas = self.rng.random((n_resp, len(q["opciones"]))) < 0.5
+            extra_cols[self._columna(q["texto"])] = [
+                "; ".join(o for o, m in zip(q["opciones"], fila) if m) or "Ninguno" for fila in marcadas]
+        for q in additional.get("jerarquizacion", []):
+            extra_cols[self._columna(q["texto"])] = [
+                ", ".join(q["opciones"][j] for j in self.rng.permutation(len(q["opciones"]))) for _ in range(n_resp)]
+        for q in additional.get("abierta", []):
+            todas = [t for nivel in q["plantillas"].values() for t in nivel]
+            extra_cols[self._columna(q["texto"])] = [todas[self.rng.integers(0, len(todas))] for _ in range(n_resp)]
+
+        if self.modelo == "coherente" and additional:
+            self._coherentes(enc_id, additional, response_matrix, dimensions, all_demographics, extra_cols)
 
         # --- Build CSV ---
         demo_df = pd.DataFrame(all_demographics)
@@ -717,13 +824,9 @@ class EncuestaGenerator(BaseGenerator):
             "fuente": defn["fuente"],
             "referencia": defn.get("referencia", ""),
             "n_respondentes": n_resp,
-            "n_items": total_likert + sum(
-                len(additional.get("opcion_multiple", [])) +
-                len(additional.get("si_no", [])) +
-                len(additional.get("escala_numerica", []))
-                for _ in [1]
-            ),
+            "n_items": total_likert + sum(len(additional.get(t, [])) for t in TIPOS_ADICIONALES),
             "tipo_escala": "mixta" if additional else "likert_1_5",
+            "modelo_respuestas_adicionales": (self.modelo if additional else None),
             "dimensiones": [d["nombre"] for d in dimensions],
             "kpis_asociados": defn["kpis_asociados"],
             "parametros_estadisticos": {
@@ -751,6 +854,42 @@ class EncuestaGenerator(BaseGenerator):
         weights /= weights.sum()
         idxs = self.rng.choice(len(profiles), size=n_resp, p=weights)
         return [profiles[i] for i in idxs]
+
+    @staticmethod
+    def _columna(texto: str) -> str:
+        return texto[:40].replace(" ", "_").replace("¿", "").replace("?", "")
+
+    def _coherentes(self, enc_id: str, additional: dict, likert: np.ndarray, dimensions: list[dict],
+                    demografia: list[dict], extra_cols: dict) -> None:
+        """Reemplaza las respuestas uniformes por respuestas coherentes con el respondente.
+
+        Usa un generador de números al azar propio de cada instrumento (semilla + id), para no
+        alterar la secuencia de `self.rng` de la que salen los ítems Likert. Las preguntas que
+        dependen de otra respuesta («pregunta:<texto>») se generan al final.
+        """
+        reglas = self.reglas.get(enc_id, {})
+        rng = np.random.default_rng([self.seed, zlib.crc32(enc_id.encode("utf-8"))])
+        factores = coherencia.Factores(likert, dimensions, demografia)
+        preguntas = [(t, q) for t in TIPOS_ADICIONALES for q in additional.get(t, [])]
+        depende_de_otra = lambda q: str(reglas.get(q["texto"], {}).get("variable", "")).startswith("pregunta:")  # noqa: E731
+        for tipo, q in sorted(preguntas, key=lambda par: depende_de_otra(par[1])):
+            regla = reglas.get(q["texto"])
+            if regla is None:  # sin regla: se queda el sorteo uniforme de la v1.0
+                continue
+            if tipo == "opcion_multiple":
+                valores = coherencia.opcion(regla, q["opciones"], factores, rng)
+            elif tipo == "si_no":
+                valores = coherencia.si_no(regla, factores, rng)
+            elif tipo == "escala_numerica":
+                valores = coherencia.escala(regla, q["min"], q["max"], factores, rng)
+            elif tipo == "seleccion_multiple":
+                valores = coherencia.seleccion_multiple(regla["opciones"], factores, rng)
+            elif tipo == "jerarquizacion":
+                valores = coherencia.jerarquizacion(regla["opciones"], factores, rng)
+            else:
+                valores = coherencia.abierta(regla, q["plantillas"], factores, rng)
+            extra_cols[self._columna(q["texto"])] = valores
+            factores.respuestas[q["texto"]] = valores
 
     def _build_item_labels(self, dimensions: list[dict]) -> list[str]:
         labels = []
@@ -817,6 +956,35 @@ class EncuestaGenerator(BaseGenerator):
                     lines.append(f"{item_num}. {q['texto']}")
                     lines.append(f"   Rango: {q['min']} — {q['max']}")
                     lines.append(f"   Respuesta: _______")
+                    lines.append("")
+                    item_num += 1
+
+            if additional.get("seleccion_multiple"):
+                lines.append("--- PREGUNTAS DE SELECCIÓN MÚLTIPLE ---")
+                lines.append("")
+                for q in additional["seleccion_multiple"]:
+                    lines.append(f"{item_num}. {q['texto']}")
+                    for opt in q["opciones"]:
+                        lines.append(f"   [ ] {opt}")
+                    lines.append("")
+                    item_num += 1
+
+            if additional.get("jerarquizacion"):
+                lines.append("--- PREGUNTAS DE JERARQUIZACIÓN ---")
+                lines.append("")
+                for q in additional["jerarquizacion"]:
+                    lines.append(f"{item_num}. {q['texto']}")
+                    for opt in q["opciones"]:
+                        lines.append(f"   ___ {opt}")
+                    lines.append("")
+                    item_num += 1
+
+            if additional.get("abierta"):
+                lines.append("--- PREGUNTAS ABIERTAS ---")
+                lines.append("")
+                for q in additional["abierta"]:
+                    lines.append(f"{item_num}. {q['texto']}")
+                    lines.append("   Respuesta: ______________________________________")
                     lines.append("")
                     item_num += 1
 

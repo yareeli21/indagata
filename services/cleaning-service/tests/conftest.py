@@ -140,22 +140,16 @@ def crear_instrumento(
     contenido: bytes,
     tipo: str = "encuesta",
     id_owner: int = 2,
-    clave: tuple[str, bytes] | None = None,
 ) -> int:
     """Crea raw_data + instrumento_procesado con el crudo en el storage falso."""
     n = len(storage.archivos) + 1
     ruta = f"raw/_/{n}__{nombre}"
     storage.archivos[ruta] = contenido
-    ruta_clave = None
-    if clave:
-        ruta_clave = f"raw/_/{n}c__{clave[0]}"
-        storage.archivos[ruta_clave] = clave[1]
     raw = RawData(
         id_owner=id_owner,
         tipo_instrumento=tipo,
         nombre_archivo=nombre,
         raw_archivo=ruta,
-        raw_archivo_clave=ruta_clave,
     )
     db.add(raw)
     db.flush()

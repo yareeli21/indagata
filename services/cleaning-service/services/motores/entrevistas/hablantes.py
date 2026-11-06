@@ -81,6 +81,7 @@ class Estructura:
     hablantes: list[Hablante]
     participantes: list[Participante] = field(default_factory=list)
     preambulo: list[str] = field(default_factory=list)
+    inferida: bool = False  # sin etiquetas: hablantes reconstruidos por las preguntas («?»)
 
 
 def _etiqueta(linea: str) -> tuple[str, str] | None:
@@ -203,7 +204,32 @@ def segmentar(texto: str, etiquetas_rol: set[str]) -> Estructura:
     parrafos = [" ".join(p.split()) for p in re.split(r"\n\s*\n", texto) if p.strip()]
     if len(parrafos) <= 1:
         parrafos = [l.strip() for l in lineas if l.strip()]
+    if reconstruidos := _por_preguntas(parrafos):
+        con_hablante = [t for t in reconstruidos if t.hablante]
+        return Estructura(True, reconstruidos, _resumen(con_hablante, set()), inferida=True)
     return Estructura(False, [Turno("", p) for p in parrafos], [])
+
+
+ENTREVISTADOR_INFERIDO = "Entrevistador"
+ENTREVISTADO_INFERIDO = "Entrevistado"
+
+
+def _por_preguntas(parrafos: list[str]) -> list[Turno] | None:
+    """Transcripción sin etiquetas: el párrafo que termina en «?» es la pregunta y lo que sigue,
+    hasta la siguiente, la respuesta. Exige al menos dos preguntas con respuesta; el texto
+    previo a la primera pregunta queda sin hablante. El investigador lo confirma."""
+    es_pregunta = [p.rstrip(" »\"'").endswith("?") and len(p.split()) <= 60 for p in parrafos]
+    turnos: list[Turno] = []
+    for p, pregunta in zip(parrafos, es_pregunta):
+        if pregunta:
+            turnos.append(Turno(ENTREVISTADOR_INFERIDO, p))
+        elif turnos and turnos[-1].hablante == ENTREVISTADO_INFERIDO:
+            turnos[-1].texto = f"{turnos[-1].texto} {p}"
+        else:
+            turnos.append(Turno(ENTREVISTADO_INFERIDO if turnos else "", p))
+    respondidas = sum(1 for a, b in zip(turnos, turnos[1:])
+                      if a.hablante == ENTREVISTADOR_INFERIDO and b.hablante == ENTREVISTADO_INFERIDO)
+    return turnos if respondidas >= 2 else None
 
 
 def _resumen(turnos: list[Turno], numeradas: set[str]) -> list[Hablante]:

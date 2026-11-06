@@ -10,17 +10,19 @@ SHA-256); su registro, en la MISMA fila de `version_conocimiento` del perfil:
 from __future__ import annotations
 
 import logging
+import time
 from collections.abc import Callable
 from datetime import datetime, timezone
 from typing import Any
 
 from fastapi import HTTPException, status
+from shared import tiempos
 from sqlalchemy.orm import Session
 
 from shared.models.usuario import Usuario
 from shared.models.version_conocimiento import VersionConocimiento
 
-from services import documento, fuentes, respuestas, storage_client, versiones
+from services import documento, fuentes, perfil, respuestas, storage_client, versiones
 
 logger = logging.getLogger("knowledge-service")
 
@@ -51,7 +53,9 @@ def generar(db: Session, usuario: Usuario, id_crudo: int) -> tuple[VersionConoci
     fila = _fila_actual(db, id_crudo)
     if fila.estado not in _GENERABLE:
         raise HTTPException(status.HTTP_409_CONFLICT, "Esta versión ya está publicada; para cambiarla vuelve a aprobar los metadatos.")
-    est = fuentes.estructura_de(ctx)
+    inicio, t0 = tiempos._ahora(), time.perf_counter()  # tiempo de cómputo del documento final
+    _, esp = fuentes.metadatos_aprobados(db, ctx)
+    est = fuentes.estructura_de(ctx, perfil.nombres_dimensiones(esp))
     reporte = (ctx.limpieza.reporte or {}) if ctx.limpieza else {}
     filas = fuentes.filas_limpias(ctx)
     try:
@@ -73,6 +77,9 @@ def generar(db: Session, usuario: Usuario, id_crudo: int) -> tuple[VersionConoci
     fila.fecha_documento = _ahora()
     db.commit()
     db.refresh(fila)
+    personas = len(doc.get("respondentes") or doc.get("alumnos") or doc.get("entrevistas") or [])
+    tiempos.registrar(db, id_crudo, "knowledge", "documento_final", inicio, tiempos._ahora(),
+                      round((time.perf_counter() - t0) * 1000), {"version": fila.version, "personas": personas})
     return fila, doc
 
 
@@ -111,11 +118,14 @@ def publicar(db: Session, usuario: Usuario, id_crudo: int, version: int) -> Vers
         .filter(VersionConocimiento.id_crudo == id_crudo, VersionConocimiento.estado == "vigente")
         .update({"estado": "reemplazado"}, synchronize_session=False)
     )
+    inicio, t0 = tiempos._ahora(), time.perf_counter()
     fila.estado = "vigente"
     fila.fecha_publicacion = _ahora()
     # Misma transacción: el documento vigente y sus respuestas en formato largo.
     n = respuestas.reemplazar(db, doc, id_crudo, fila.version)
     db.commit()
+    tiempos.registrar(db, id_crudo, "knowledge", "publicacion", inicio, tiempos._ahora(),
+                      round((time.perf_counter() - t0) * 1000), {"version": fila.version, "respuestas": n})
     logger.info("Documento v%s de id_crudo=%s publicado (%d respuestas).", fila.version, id_crudo, n)
     db.refresh(fila)
     return fila
@@ -130,8 +140,16 @@ def reingerir(fabrica: Callable[[], Session], id_crudo: int, version: int) -> No
     documento ya es válido y vigente): se deja un aviso `reingesta_pendiente` para
     reintentar con `POST /rag/index` o `scripts/poblar_respuestas.py`.
     """
+    inicio, t0 = tiempos._ahora(), time.perf_counter()
     try:
-        storage_client.indexar(id_crudo)
+        r = storage_client.indexar(id_crudo)
+        db = fabrica()  # el registro del tiempo usa su propia sesión (corre en segundo plano)
+        try:
+            chunks = r.get("chunks") if isinstance(r, dict) else None
+            tiempos.registrar(db, id_crudo, "knowledge", "indexacion_rag", inicio, tiempos._ahora(),
+                              round((time.perf_counter() - t0) * 1000), {"version": version, "chunks": chunks})
+        finally:
+            db.close()
         return
     except storage_client.StorageError as exc:
         logger.warning("No se pudo reingerir id_crudo=%s al RAG: %s", id_crudo, exc)

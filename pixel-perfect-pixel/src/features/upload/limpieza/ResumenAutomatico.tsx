@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { Sparkles } from "lucide-react";
+import { cn } from "@/lib/utils";
 import type { TransformacionLimpieza } from "@/types";
+import { TablaUbicacion } from "./TablaUbicacion";
 import { ETIQUETA_REGLA } from "./textos";
 
 interface ResumenAutomaticoProps {
@@ -13,6 +16,10 @@ function numero(valor: unknown): number | null {
 
 /** Qué hizo la fase automática y en qué estado llegó el archivo. */
 export function ResumenAutomatico({ transformaciones, metricas }: ResumenAutomaticoProps) {
+  const [abierta, setAbierta] = useState<string | null>(null);
+  const seleccionada = transformaciones.find(
+    (t) => t.regla === abierta && (t.casos?.length ?? 0) > 0,
+  );
   const completitud = numero(metricas["pct_completitud"]);
   // Las métricas dependen del tipo: tabla (encuestas, pruebas) o texto (entrevistas).
   const datos = [
@@ -37,21 +44,64 @@ export function ResumenAutomatico({ transformaciones, metricas }: ResumenAutomat
         <Sparkles className="size-5 text-primary" aria-hidden /> Lo que hicimos automáticamente
       </h3>
       <ul className="flex flex-wrap gap-2">
-        {transformaciones.map((t) => (
-          <li
-            key={t.regla}
-            title={t.detalle}
-            className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-foreground"
-          >
-            {ETIQUETA_REGLA[t.regla] ?? t.detalle}
-            {t.afectados !== null && t.afectados > 0 && (
-              <span className="rounded-full bg-primary-soft px-1.5 font-bold tabular-nums text-primary">
-                {t.afectados}
-              </span>
-            )}
-          </li>
-        ))}
+        {transformaciones.map((t) => {
+          const conCasos = (t.casos?.length ?? 0) > 0;
+          const contenido = (
+            <>
+              {ETIQUETA_REGLA[t.regla] ?? t.detalle}
+              {t.afectados !== null && t.afectados > 0 && (
+                <span className="rounded-full bg-primary-soft px-1.5 font-bold tabular-nums text-primary">
+                  {t.afectados}
+                </span>
+              )}
+            </>
+          );
+          const clase =
+            "inline-flex items-center gap-1.5 rounded-full border bg-card px-3 py-1 text-xs font-semibold text-foreground";
+          return (
+            <li key={t.regla} title={t.detalle}>
+              {conCasos ? (
+                <button
+                  type="button"
+                  aria-expanded={abierta === t.regla}
+                  onClick={() => setAbierta(abierta === t.regla ? null : t.regla)}
+                  className={cn(
+                    clase,
+                    "underline-offset-2 hover:underline",
+                    abierta === t.regla ? "border-primary" : "border-border",
+                  )}
+                >
+                  {contenido}
+                </button>
+              ) : (
+                <span className={cn(clase, "border-border")}>{contenido}</span>
+              )}
+            </li>
+          );
+        })}
       </ul>
+      {transformaciones.some((t) => (t.casos?.length ?? 0) > 0) && !seleccionada && (
+        <p className="text-xs text-muted-foreground">
+          Haz clic en un cambio para ver exactamente en qué filas se hizo.
+        </p>
+      )}
+      {seleccionada && (
+        <div className="space-y-2 rounded-xl bg-card p-3">
+          <p className="text-sm text-foreground">{seleccionada.detalle}</p>
+          {seleccionada.columnas && Object.keys(seleccionada.columnas).length > 0 && (
+            <p className="text-xs text-muted-foreground">
+              Por pregunta:{" "}
+              {Object.entries(seleccionada.columnas)
+                .map(([c, n]) => `${c.length > 50 ? `${c.slice(0, 50)}…` : c} (${n})`)
+                .join(" · ")}
+            </p>
+          )}
+          <TablaUbicacion
+            celdas={seleccionada.casos ?? []}
+            total={seleccionada.afectados ?? undefined}
+          />
+        </div>
+      )}
       {datos.length > 0 && (
         <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {datos.map((d) => (

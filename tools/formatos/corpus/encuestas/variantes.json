@@ -1,0 +1,106 @@
+[
+  {
+    "clave": "E01",
+    "descripcion": "Con secciones; encabezados con prefijo de sección (Evaluación_item1…)",
+    "nivel": "ideal",
+    "archivo": "E01_respuestas.csv",
+    "original": "E01_original.txt",
+    "dimensiones": 2
+  },
+  {
+    "clave": "E02",
+    "descripcion": "Google Forms: marca temporal + texto completo de la pregunta; original con secciones",
+    "nivel": "ideal",
+    "archivo": "E02_respuestas.csv",
+    "original": "E02_original.txt",
+    "dimensiones": 2
+  },
+  {
+    "clave": "E03",
+    "descripcion": "Sin secciones; encabezado = texto de la pregunta",
+    "nivel": "aceptado",
+    "archivo": "E03_respuestas.csv",
+    "original": "E03_original.txt",
+    "dimensiones": 2
+  },
+  {
+    "clave": "E04",
+    "descripcion": "Sin secciones; encabezados con prefijo (Evaluación_item1…)",
+    "nivel": "aceptado",
+    "archivo": "E04_respuestas.csv",
+    "original": "E04_original.txt",
+    "dimensiones": 2
+  },
+  {
+    "clave": "E05",
+    "descripcion": "Sin secciones; encabezados en código P1…P8 con original",
+    "nivel": "aceptado",
+    "archivo": "E05_respuestas.csv",
+    "original": "E05_original.txt",
+    "dimensiones": 2
+  },
+  {
+    "clave": "E06",
+    "descripcion": "Google Forms con cuadrícula «Instrucción [afirmación]» y etiquetas de la escala",
+    "nivel": "ideal",
+    "archivo": "E06_respuestas.csv",
+    "original": "E06_original.txt",
+    "dimensiones": 2
+  },
+  {
+    "clave": "E07",
+    "descripcion": "Exporte de Qualtrics (3 filas de encabezado, columnas de sistema, IP y ubicación)",
+    "nivel": "aceptado",
+    "archivo": "E07_respuestas.csv",
+    "original": "E07_original.txt",
+    "dimensiones": 2
+  },
+  {
+    "clave": "E08",
+    "descripcion": "Exporte de LimeSurvey con códigos G01Q01…G02Q08 y columnas de sistema",
+    "nivel": "aceptado",
+    "archivo": "E08_respuestas.csv",
+    "original": "E08_original.txt",
+    "dimensiones": 2
+  },
+  {
+    "clave": "E09",
+    "descripcion": "XLSX sin secciones con texto de la pregunta",
+    "nivel": "ideal",
+    "archivo": "E09_respuestas.xlsx",
+    "original": "E09_original.txt",
+    "dimensiones": 2
+  },
+  {
+    "clave": "E10",
+    "descripcion": "CSV con «;» y BOM UTF-8, encabezados con prefijo, original con secciones",
+    "nivel": "ideal",
+    "archivo": "E10_respuestas.csv",
+    "original": "E10_original.txt",
+    "dimensiones": 2
+  },
+  {
+    "clave": "E11",
+    "descripcion": "Códigos P1…P8 SIN original",
+    "nivel": "rechazado",
+    "archivo": "E11_respuestas.csv",
+    "original": null,
+    "rechazo": "instrumento original"
+  },
+  {
+    "clave": "E12",
+    "descripcion": "Formato largo (respondente, pregunta, respuesta)",
+    "nivel": "rechazado",
+    "archivo": "E12_respuestas.csv",
+    "original": "E12_original.txt",
+    "rechazo": "formato largo"
+  },
+  {
+    "clave": "E13",
+    "descripcion": "Sin fila de encabezados",
+    "nivel": "rechazado",
+    "archivo": "E13_respuestas.csv",
+    "original": "E13_original.txt",
+    "rechazo": "encabezados"
+  }
+]

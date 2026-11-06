@@ -1,73 +1,60 @@
 import { cn } from "@/lib/utils";
 import type { EstadisticaLimpieza } from "@/types";
 import { AYUDA, num, pct } from "./formato";
-import { Cifra, Nivel, Subtitulo, TablaDesplazable, Td, Th } from "./piezas";
+import { Cifra, Subtitulo, TablaDesplazable, Td, Th } from "./piezas";
 
-/** Análisis de reactivos de una prueba: dificultad, discriminación, distractores y KR-20. */
+/** Qué respondieron los alumnos en cada reactivo. Las pruebas no se califican: no hay respuesta correcta. */
 export function EstadisticaPrueba({ estadistica }: { estadistica: EstadisticaLimpieza }) {
-  const fiabilidad =
-    estadistica.fiabilidad && !Array.isArray(estadistica.fiabilidad)
-      ? estadistica.fiabilidad
-      : null;
-  const puntajes = estadistica.puntajes;
+  const respuestas = estadistica.respuestas;
   const resumen = estadistica.resumen_reactivos;
   const reactivos = estadistica.reactivos ?? [];
 
   return (
     <div className="space-y-8">
       <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Cifra etiqueta="Fiabilidad KR-20" valor={num(fiabilidad?.kr20, 3)} ayuda={AYUDA.kr20}>
-          <Nivel nivel={fiabilidad?.interpretacion} />
+        <Cifra etiqueta="Alumnos" valor={num(respuestas?.n_alumnos, 0)}>
+          <span className="text-xs text-muted-foreground">
+            {respuestas?.n_reactivos ?? 0} reactivos
+          </span>
         </Cifra>
         <Cifra
-          etiqueta="Puntaje promedio"
-          valor={
-            <>
-              {num(puntajes?.media)}
-              <span className="text-base text-muted-foreground"> / {puntajes?.maximo_posible}</span>
-            </>
-          }
+          etiqueta="Sin respuesta válida"
+          valor={pct(respuestas?.pct_sin_respuesta)}
+          ayuda={AYUDA.sinRespuesta}
         >
-          <span className="text-xs text-muted-foreground">
-            mediana {num(puntajes?.mediana)} · desv. est. {num(puntajes?.desviacion)}
-          </span>
-        </Cifra>
-        <Cifra etiqueta="Rango de puntajes" valor={`${num(puntajes?.min)} – ${num(puntajes?.max)}`}>
-          <span className="text-xs text-muted-foreground">
-            {fiabilidad?.n_alumnos ?? 0} alumnos analizados
-          </span>
+          <span className="text-xs text-muted-foreground">nulas y no respondidas</span>
         </Cifra>
         {resumen && (
-          <Cifra
-            etiqueta="Reactivos por dificultad"
-            valor={`${resumen.faciles} · ${resumen.medios} · ${resumen.dificiles}`}
-          >
-            <span className="text-xs text-muted-foreground">
-              fáciles · medios · difíciles
-              {resumen.discriminacion_pobre > 0 &&
-                ` · ${resumen.discriminacion_pobre} discriminan poco`}
-            </span>
-          </Cifra>
+          <>
+            <Cifra etiqueta="Reactivos con mucha no respuesta" valor={resumen.mucha_no_respuesta}>
+              <span className="text-xs text-muted-foreground">
+                más del 20 % sin respuesta válida
+              </span>
+            </Cifra>
+            <Cifra
+              etiqueta="Reactivos casi unánimes"
+              valor={resumen.casi_unanimes}
+              ayuda={AYUDA.casiUnanime}
+            >
+              <span className="text-xs text-muted-foreground">
+                {resumen.con_opciones_sin_elegir} con opciones que nadie eligió
+              </span>
+            </Cifra>
+          </>
         )}
       </dl>
 
       <section className="space-y-3">
-        <Subtitulo detalle="las nulas y no respondidas cuentan como incorrectas">
-          Análisis de reactivos
+        <Subtitulo detalle="la prueba no se califica: se describe lo que eligieron los alumnos">
+          Respuestas por reactivo
         </Subtitulo>
-        <TablaDesplazable etiqueta="Análisis de reactivos">
+        <TablaDesplazable etiqueta="Respuestas por reactivo">
           <thead>
             <tr>
               <Th>Reactivo</Th>
-              <Th>Clave</Th>
-              <Th alinear="derecha" titulo={AYUDA.dificultad}>
-                Dificultad p
-              </Th>
-              <Th alinear="derecha" titulo={AYUDA.discriminacion}>
-                Discriminación D
-              </Th>
-              <Th alinear="derecha" titulo={AYUDA.puntoBiserial}>
-                r punto-biserial
+              <Th titulo={AYUDA.opcionMasElegida}>Opción más elegida</Th>
+              <Th alinear="derecha" titulo={AYUDA.sinRespuesta}>
+                Sin respuesta
               </Th>
               <Th>Opciones elegidas</Th>
             </tr>
@@ -76,18 +63,28 @@ export function EstadisticaPrueba({ estadistica }: { estadistica: EstadisticaLim
             {reactivos.map((r) => (
               <tr key={r.pregunta} className="border-t border-border/70">
                 <Td className="font-semibold">{r.pregunta}</Td>
-                <Td className="font-mono">{r.respuesta_correcta}</Td>
-                <Td alinear="derecha">
-                  <span className="inline-flex items-center gap-2">
-                    {num(r.dificultad)} <Nivel nivel={r.nivel_dificultad} />
-                  </span>
+                <Td>
+                  {r.opcion_mas_elegida ? (
+                    <span className="font-mono">
+                      {r.opcion_mas_elegida.opcion}{" "}
+                      <span className="text-muted-foreground">
+                        ({pct(r.opcion_mas_elegida.pct)})
+                      </span>
+                    </span>
+                  ) : (
+                    "—"
+                  )}
+                  {r.descriptivos?.media != null && (
+                    <span className="block text-xs text-muted-foreground">
+                      media {num(r.descriptivos.media)}
+                    </span>
+                  )}
                 </Td>
                 <Td alinear="derecha">
-                  <span className="inline-flex items-center gap-2">
-                    {num(r.discriminacion)} <Nivel nivel={r.nivel_discriminacion} />
+                  <span className={cn(r.mucha_no_respuesta && "font-semibold text-accent-strong")}>
+                    {pct(r.pct_sin_respuesta)}
                   </span>
                 </Td>
-                <Td alinear="derecha">{num(r.correlacion_punto_biserial, 3)}</Td>
                 <Td>
                   <ul
                     className="flex flex-wrap gap-1.5"
@@ -101,9 +98,9 @@ export function EstadisticaPrueba({ estadistica }: { estadistica: EstadisticaLim
                           title={`${d.n} alumno(s) · ${pct(d.pct)}`}
                           className={cn(
                             "rounded-md px-1.5 py-0.5 text-xs tabular-nums",
-                            d.correcta
-                              ? "bg-success-soft font-bold text-success"
-                              : r.distractores_sin_elegir.includes(d.opcion)
+                            r.opcion_mas_elegida?.opcion === d.opcion
+                              ? "bg-primary/10 font-bold text-primary"
+                              : r.opciones_sin_elegir.includes(d.opcion)
                                 ? "bg-accent-soft text-accent-strong"
                                 : "bg-muted text-foreground",
                           )}
@@ -118,8 +115,8 @@ export function EstadisticaPrueba({ estadistica }: { estadistica: EstadisticaLim
           </tbody>
         </TablaDesplazable>
         <p className="text-xs text-muted-foreground">
-          En verde, la respuesta correcta; en naranja, distractores que nadie eligió (no funcionan
-          como opción plausible).
+          Resaltada, la opción más elegida (no significa que sea la correcta: Indagata no califica
+          las pruebas); en naranja, las opciones que ningún alumno eligió.
         </p>
       </section>
     </div>

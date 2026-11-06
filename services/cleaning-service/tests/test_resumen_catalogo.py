@@ -71,16 +71,14 @@ def test_linea_recta_y_vacios_piden_cautela_y_van_primero():
     assert any("«P1»" in s["texto"] and "20 %" in s["texto"] for s in salida)
 
 
-def test_prueba_kr20_y_reactivos_que_no_discriminan():
-    e = {"fiabilidad": {"kr20": 0.62, "interpretacion": "cuestionable", "n_alumnos": 40, "n_reactivos": 10},
-         "reactivos": [{"pregunta": "q1", "discriminacion": 0.45, "distractores_sin_elegir": []},
-                       {"pregunta": "q7", "discriminacion": -0.1, "distractores_sin_elegir": ["D"]}],
-         "resumen_reactivos": {"faciles": 1, "medios": 1, "dificiles": 0}}
+def test_prueba_sin_calificar_sugiere_distribuciones_y_avisa_no_respuesta():
+    e = {"reactivos": [{"pregunta": "q1", "mucha_no_respuesta": False, "casi_unanime": True, "opciones_sin_elegir": []},
+                       {"pregunta": "q7", "mucha_no_respuesta": True, "casi_unanime": False, "opciones_sin_elegir": ["D"]}]}
     salida = sugerencias.sugerir("prueba_estandarizada", e)
-    assert salida[0]["nivel"] == "alerta" and "q7 (D = -0.1)" in salida[0]["texto"]
-    assert any("KR-20 = 0.62" in s["texto"] for s in salida)
-    assert any("1 reactivos tienen distractores" in s["texto"] for s in salida)
-
+    assert salida[0]["nivel"] == "atencion" and "q7" in salida[0]["texto"]
+    assert any("1 reactivos tienen opciones que nadie eligió" in s["texto"] for s in salida)
+    assert any("tablas de contingencia" in s["texto"] for s in salida)
+    assert not any("KR-20" in s["texto"] or "puntaje" in s["texto"] for s in salida)
 
 def test_entrevista_participacion_desigual():
     e = {"n_preguntas": 3, "participantes": [{"id": "E01", "palabras": 900}, {"id": "E02", "palabras": 100}]}

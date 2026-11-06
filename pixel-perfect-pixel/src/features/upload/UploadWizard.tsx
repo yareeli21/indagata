@@ -65,7 +65,6 @@ import {
   type CargaEnCurso,
 } from "./cargaEnCurso";
 import { StepArchivo } from "./StepArchivo";
-import { requiereClave } from "./archivos";
 import { StepLimpieza } from "./StepLimpieza";
 import { StepDublinCore } from "./StepDublinCore";
 import { CAMPOS_POR_TIPO, StepMetadatosTipo } from "./StepMetadatosTipo";
@@ -141,7 +140,6 @@ export function UploadWizard() {
   const [paso, setPaso] = useState(0);
   const [archivo, setArchivo] = useState<File | null>(null);
   const [archivoOriginal, setArchivoOriginal] = useState<File | null>(null);
-  const [archivoClave, setArchivoClave] = useState<File | null>(null);
   const [tipo, setTipo] = useState<TipoInstrumento | null>(null);
   // Versión vigente de la limpieza (cleaning-service); se conserva al navegar entre pasos.
   const [limpieza, setLimpieza] = useState<EjecucionLimpieza | null>(null);
@@ -291,7 +289,6 @@ export function UploadWizard() {
   );
 
   const puedeContinuar = [
-    // La clave de una prueba en tabla es opcional: si falta, la limpieza propone una.
     !!archivo && !!tipo,
     limpieza?.estado === "confirmada",
     !cargandoDc && DC_OBLIGATORIOS.every((k) => String(dc[k]).trim() !== ""),
@@ -326,12 +323,7 @@ export function UploadWizard() {
     try {
       if (paso === 0) {
         if (!archivo || !tipo) return;
-        const resultado = await subirInstrumento(
-          archivo,
-          tipo,
-          archivoOriginal,
-          requiereClave(tipo, archivo) ? archivoClave : null,
-        );
+        const resultado = await subirInstrumento(archivo, tipo, archivoOriginal);
         reiniciarMetadatos();
         setIdCrudo(resultado.idCrudo);
         setLimpieza(null);
@@ -491,8 +483,6 @@ export function UploadWizard() {
                 setIdCrudo(null);
               }}
               onArchivoOriginal={setArchivoOriginal}
-              archivoClave={archivoClave}
-              onArchivoClave={setArchivoClave}
               onTipo={(t) => {
                 setTipo(t);
                 setMeta({});

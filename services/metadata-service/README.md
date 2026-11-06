@@ -73,6 +73,7 @@ metadata-service/
     ├── enrichment_engine.py  metadatos del tipo: propuesta, tipado, upsert
     ├── campos.py             catálogo de campos (1:1 con 01_schema.sql)
     ├── analizador.py         lectura y análisis del instrumento
+    ├── desde_limpieza.py     propuesta desde la última limpieza confirmada (CSV limpio + reporte)
     ├── propuestas.py         heurísticas + LLM
     ├── aprobacion.py         aprobar / vista previa / finalizar / retirar
     ├── json_estandarizado.py JSON que se ingiere al RAG

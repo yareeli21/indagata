@@ -4,8 +4,13 @@ Fase automática: extracción de texto → ciclo de limpieza de ruido (Figura 1)
 identificación de hablantes y turnos → roles sugeridos.
 
 Fase asistida: el investigador confirma o corrige el rol de cada hablante, decide
-qué hacer con el ruido que quedó y, si no se reconoce la estructura de hablantes,
-recibe un aviso claro y confirma que se continúe por párrafos.
+qué hacer con el ruido que quedó y con las anotaciones del transcriptor («[inaudible]»,
+«(risas)»), y, si no se reconoce la estructura de hablantes, recibe un aviso claro y
+confirma que se continúe por párrafos.
+
+Antes del ciclo de ruido se quitan los encabezados y pies de página repetidos (la misma
+línea 3 veces o más, sin etiqueta de hablante): el encabezado «Universidad … — Transcripción»
+se leía como un hablante más.
 
 Salida: CSV con un turno por fila: n_turno; [participante;] hablante; rol; texto.
 `participante` solo aparece si el archivo trae varias entrevistas («RESPONDENTE: R0001»).
@@ -19,12 +24,22 @@ from shared.parsing import DocumentParseError, read_document
 
 from services import configuracion
 from services.configuracion import normalizar_texto
+from services.motores import codificacion
 from services.motores import estadistica as estad
 from services.motores import texto as limpieza_texto
 from services.motores.base import Entrada, ErrorLimpieza, Hallazgo, ResultadoAutomatico, ResultadoFinal
 from services.motores.entrevistas.hablantes import Estructura, Turno, segmentar, sugerir_roles
+from services.motores.entrevistas import transcripcion
 
 ROLES = ["entrevistador", "entrevistado", "otro"]
+_DETALLE_TRANSCRIPCION = {
+    "cabeceras_subtitulos": "Cabecera y notas de subtítulos (WEBVTT) eliminadas.",
+    "marcas_subtitulos": "Rangos de tiempo y números de subtítulo eliminados.",
+    "voces_teams": "Voces de Teams («<v Nombre>») convertidas en etiquetas de hablante.",
+    "encabezados_con_hora": "Encabezados «Hablante 1   00:03» convertidos en etiquetas de hablante.",
+    "muletillas": "Muletillas aisladas («eh», «mmm»…) quitadas (decisión del investigador).",
+    "minutos_en_etiqueta": "Minuto pegado a la etiqueta del hablante quitado («Entrevistada (min 23):»).",
+}
 _TURNOS_VISTA = 12
 _LARGO_TEXTO_VISTA = 280
 
@@ -50,10 +65,43 @@ def _leer(entrada: Entrada) -> str:
     return doc.text
 
 
-def _preparar(entrada: Entrada) -> tuple[str, limpieza_texto.ResultadoTexto, Estructura]:
+def _patron_anotaciones() -> re.Pattern[str] | None:
+    palabras = _cfg().get("anotaciones_transcriptor") or []
+    if not palabras:
+        return None
+    alternativas = "|".join(f"(?:{p})" for p in palabras)
+    return re.compile(rf"\s*[\[(]\s*(?:{alternativas})\b[^\])\n]{{0,40}}[\])]", re.I)
+
+
+def anotaciones(texto: str) -> list[str]:
+    """Anotaciones del transcriptor en el texto, tal cual («[inaudible 00:05:41]», «(risas)»)."""
+    patron = _patron_anotaciones()
+    return [m.group(0).strip() for m in patron.finditer(texto)] if patron else []
+
+
+def _preparar(entrada: Entrada, decisiones: dict[str, str] | None = None) -> tuple[str, limpieza_texto.ResultadoTexto, Estructura]:
     cfg = _cfg()
+    decisiones = decisiones or {}
     crudo = _leer(entrada)
-    resultado = limpieza_texto.limpiar(crudo, int(cfg.get("max_iteraciones_ruido", 3)))
+    # Acentos rotos antes que todo: la normalización de texto borra los caracteres de control que deja el mojibake.
+    reparado, acentos = codificacion.reparar(crudo)
+    # Transcripciones automáticas (VTT de Teams, TXT de Zoom) antes del ciclo de ruido. Las muletillas solo se
+    # quitan si el investigador lo decide: pueden expresar duda o incomodidad (sugerido: conservarlas).
+    quitar_muletillas = decisiones.get("muletillas", "conservar") == "quitar"
+    normal = transcripcion.normalizar(reparado, (cfg.get("muletillas") or []) if quitar_muletillas else [])
+    sin_repetidas, repetidas = limpieza_texto.quitar_lineas_repetidas(normal.texto, int(cfg.get("repeticiones_encabezado", 3)))
+    resultado = limpieza_texto.limpiar(sin_repetidas, int(cfg.get("max_iteraciones_ruido", 3)))
+    if repetidas:
+        resultado.transformaciones.insert(0, {"regla": "encabezados_repetidos", "detalle": "Encabezados y pies de página repetidos "
+                                              "(la misma línea en cada página) eliminados.", "afectados": repetidas})
+    for regla, n in normal.cambios.items():
+        resultado.transformaciones.insert(0, {"regla": f"transcripcion_{regla}", "detalle": _DETALLE_TRANSCRIPCION.get(regla, regla), "afectados": n})
+    if acentos:
+        resultado.transformaciones.insert(0, {"regla": "acentos_reparados", "detalle": "Acentos rotos al copiar entre programas, "
+                                              "reparados («educaciÃ³n» → «educación»).", "afectados": acentos})
+    # Anotaciones del transcriptor: se quitan o se conservan según decida el investigador (sugerido: quitarlas).
+    if decisiones.get("anotaciones", "quitar") == "quitar" and (patron := _patron_anotaciones()) is not None:
+        resultado.texto = limpieza_texto.normalizar_espacios(patron.sub("", resultado.texto))
     if not resultado.texto.strip():
         raise ErrorLimpieza("Después de quitar el ruido, la entrevista quedó sin texto.")
     etiquetas_rol = {normalizar_texto(e) for e in cfg.get("etiquetas_entrevistador", []) + cfg.get("etiquetas_entrevistado", [])}
@@ -199,6 +247,10 @@ class MotorEntrevistas:
     def automatica(self, entrada: Entrada) -> ResultadoAutomatico:
         cfg = _cfg()
         crudo, resultado, estructura = _preparar(entrada)
+        # Las anotaciones se buscan en el texto ya limpio, pero antes de quitarlas (para mostrarlas).
+        conservado = _preparar(entrada, {"anotaciones": "conservar"})[1].texto
+        notas = anotaciones(conservado)
+        muletillas = transcripcion.buscar_muletillas(conservado, cfg.get("muletillas") or [])
         metricas = _metricas(limpieza_texto.normalizar(crudo))
         metricas["ruido_detectado"] = len(limpieza_texto.detectar_ruido(limpieza_texto.normalizar(crudo)))
 
@@ -209,6 +261,26 @@ class MotorEntrevistas:
             {normalizar_texto(e) for e in cfg.get("etiquetas_entrevistador", [])},
             {normalizar_texto(e) for e in cfg.get("etiquetas_entrevistado", [])},
         )
+        if estructura.inferida:
+            n_preguntas = sum(1 for t in estructura.turnos if t.hablante == "Entrevistador")
+            avisos.append(
+                "La transcripción no marca quién habla: reconstruimos las preguntas (párrafos que terminan en «?») "
+                "y sus respuestas. Revisa que la división sea correcta."
+            )
+            hallazgos.append(
+                Hallazgo(
+                    id="segmentacion-inferida", tipo="segmentacion_inferida", tema="Hablantes", objetivo="estructura",
+                    titulo=f"{n_preguntas} preguntas y sus respuestas reconstruidas",
+                    descripcion=(
+                        "Tomamos como pregunta del entrevistador cada párrafo que termina en «?» y como respuesta "
+                        "lo que sigue hasta la siguiente pregunta. Úsalo si la división es correcta; si no, el texto "
+                        "se dividirá por párrafos, sin preguntas ni respuestas."
+                    ),
+                    opciones=["usar_segmentacion", "continuar_por_parrafos"], sugerida="usar_segmentacion",
+                    detalle={"ejemplos": [f"{t.hablante or '—'}: {t.texto[:90]}" for t in estructura.turnos[:4]],
+                             "preguntas": n_preguntas},
+                )
+            )
         if estructura.reconocida:
             for h in estructura.hablantes:
                 sugerido, motivo = roles[h.nombre]
@@ -246,6 +318,41 @@ class MotorEntrevistas:
                 )
             )
 
+        if notas:
+            distintas = list(dict.fromkeys(notas))
+            hallazgos.append(
+                Hallazgo(
+                    id="anotaciones", tipo="anotaciones_transcriptor", tema="Ruido", objetivo="texto",
+                    titulo=f"{len(notas)} anotación(es) del transcriptor («{distintas[0]}»…)",
+                    descripcion=(
+                        "Son notas de quien transcribió, no palabras de los hablantes. Te sugerimos quitarlas para que no se "
+                        "mezclen con las respuestas; si te sirven para el análisis cualitativo (por ejemplo, «[risas]» o "
+                        "«[inaudible]» para saber dónde falta texto), consérvalas."
+                    ),
+                    opciones=["quitar", "conservar"], sugerida="quitar",
+                    detalle={"ejemplos": distintas[:6], "total": len(notas)},
+                )
+            )
+        if muletillas:
+            hallazgos.append(
+                Hallazgo(
+                    id="muletillas", tipo="muletillas", tema="Ruido", objetivo="texto",
+                    titulo=f"{len(muletillas)} muletilla(s) («eh», «mmm»…)",
+                    descripcion=(
+                        "Son sonidos de duda dichos por los hablantes. Te sugerimos conservarlos: en una transcripción "
+                        "literal pueden expresar duda, incomodidad o una pausa antes de responder. Quítalos si prefieres "
+                        "una transcripción limpia (por ejemplo, para un análisis temático)."
+                    ),
+                    opciones=["conservar", "quitar"], sugerida="conservar",
+                    detalle={"ejemplos": muletillas[:6], "total": len(muletillas)},
+                )
+            )
+        if resultado.dudosas:
+            avisos.append(
+                "Unimos letras separadas por espacios que empiezan con una palabra de una letra («y», «o», «a», «e», «u») sin "
+                f"poder confirmar si esa letra era una palabra aparte: {', '.join(f'«{d}»' for d in resultado.dudosas[:5])}. "
+                "Revísalas en el texto limpio (por ejemplo, «oansiedad» debería ser «o ansiedad»)."
+            )
         if resultado.residual:
             avisos.append(f"Quedó ruido que no pudimos quitar automáticamente ({len(resultado.residual)} fragmento(s)).")
             hallazgos.append(
@@ -267,6 +374,9 @@ class MotorEntrevistas:
             "iteraciones_ruido": resultado.iteraciones,
             "ruido_eliminado": resultado.eliminado,
             "ruido_residual": resultado.residual,
+            "uniones_dudosas": resultado.dudosas,
+            "anotaciones_transcriptor": list(dict.fromkeys(notas)),
+            "muletillas": muletillas,
             "n_turnos": len(estructura.turnos),
             # Varias entrevistas en un archivo: un bloque por persona con su contexto.
             "participantes": [{"id": p.id, "contexto": p.contexto} for p in estructura.participantes],
@@ -279,8 +389,12 @@ class MotorEntrevistas:
 
     def aplicar(self, entrada: Entrada, automatico: ResultadoAutomatico, decisiones: dict[str, str]) -> ResultadoFinal:
         cfg = _cfg()
-        _, resultado, estructura = _preparar(entrada)
+        _, resultado, estructura = _preparar(entrada, decisiones)
         transformaciones: list[dict] = []
+        if decisiones.get("anotaciones", "quitar") == "quitar" and (n := len(anotaciones(_preparar(entrada, {"anotaciones": "conservar"})[1].texto))):
+            transformaciones.append({"regla": "anotaciones_quitadas", "detalle": "Anotaciones del transcriptor («[inaudible]», «(risas)») quitadas.", "afectados": n})
+        if decisiones.get("muletillas", "conservar") == "quitar" and (n := len(automatico.especifico.get("muletillas") or [])):
+            transformaciones.append({"regla": "muletillas_quitadas", "detalle": "Muletillas («eh», «mmm»…) quitadas por decisión del investigador.", "afectados": n})
 
         if resultado.residual and decisiones.get("ruido-residual") == "eliminar":
             lineas = {r["linea"] for r in resultado.residual}
@@ -288,6 +402,9 @@ class MotorEntrevistas:
             etiquetas_rol = {normalizar_texto(e) for e in cfg.get("etiquetas_entrevistador", []) + cfg.get("etiquetas_entrevistado", [])}
             estructura = segmentar(limpieza_texto.normalizar_espacios(texto), etiquetas_rol)
             transformaciones.append({"regla": "ruido_residual_eliminado", "detalle": "Líneas con ruido residual eliminadas.", "afectados": len(lineas)})
+
+        if estructura.inferida and decisiones.get("segmentacion-inferida") == "continuar_por_parrafos":
+            estructura = Estructura(False, [Turno("", t.texto) for t in estructura.turnos], [])
 
         roles: dict[str, str] = {}
         if estructura.reconocida:

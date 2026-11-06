@@ -8,7 +8,7 @@ from __future__ import annotations
 from services.motores.base import Entrada, ErrorLimpieza, Hallazgo, Motor, ResultadoAutomatico, ResultadoFinal
 
 TABULARES = frozenset({".csv", ".xlsx", ".xls"})
-DOCUMENTOS = frozenset({".txt", ".pdf", ".docx"})
+DOCUMENTOS = frozenset({".txt", ".pdf", ".docx", ".vtt", ".srt"})
 
 # (tipo_instrumento, familia) → motor. familia: "tabular" | "documento".
 _REGISTRO: dict[tuple[str, str], Motor] = {}

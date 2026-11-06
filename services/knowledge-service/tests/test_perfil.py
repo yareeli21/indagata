@@ -155,6 +155,13 @@ def test_parecido_tolera_encabezados_truncados():
     completo = "¿Con qué frecuencia utilizas la biblioteca de tu facultad para estudiar?"
     assert original.parecido("¿Con qué frecuencia utilizas la biblioteca…", completo) >= original.UMBRAL_PARECIDO
     assert original.parecido("Edad", completo) < original.UMBRAL_PARECIDO
+    # Recorte a 40 caracteres que corta la última palabra o deja menos de 3 palabras (enc_11).
+    assert original.parecido("Cuál_es_tu_principal_medio_de_transport",
+                             "¿Cuál es tu principal medio de transporte a la universidad?") >= original.UMBRAL_PARECIDO
+    assert original.parecido("Qué_cambiarías_de_tu_experiencia_en_la_",
+                             "¿Qué cambiarías de tu experiencia en la institución? Explica brevemente.") >= original.UMBRAL_PARECIDO
+    # Un inicio común corto no basta.
+    assert original.parecido("¿Cuál es tu edad?", "¿Cuál es tu carrera?") < original.UMBRAL_PARECIDO
 
 
 # ── API ────────────────────────────────────────────────────────────────────────
@@ -268,3 +275,153 @@ def test_escala_general_de_las_instrucciones_y_secciones_con_el_mismo_inicio():
     assert [(p.texto, p.columna) for p in con_columna] == [
         ("Relaciono lo que leo con lo que ya sé.", "e1"), ("Elaboro mis propios ejemplos.", "e2")]
     assert con_columna[0].anclas[1] == "Totalmente en desacuerdo / Nunca"  # escala general aplicada
+
+
+def test_encabezados_repetidos_en_dos_secciones_con_el_mismo_inicio():
+    """26 oct, enc_01: «HABILIDADES PARA EL EXAMEN» y «HABILIDADES PARA JERARQUIZAR» salen en el CSV con el mismo
+    encabezado «Habilidades_par_item1…3». Se unían en una sola columna, quedaban sin pareja y el perfil mostraba
+    6 preguntas de más («Otras preguntas del archivo»). Se asignan por orden de aparición."""
+    columnas = [{"id": f"a{i}", "etiqueta": f"Habilidades_par_item{i}", "rol": "pregunta", "tipo_canonico": "likert"} for i in (1, 2)]
+    columnas += [{"id": "m1", "etiqueta": "Motivación_item1", "rol": "pregunta", "tipo_canonico": "likert"}]
+    columnas += [{"id": f"b{i}", "etiqueta": f"Habilidades_par_item{i}", "rol": "pregunta", "tipo_canonico": "likert"} for i in (1, 2)]
+    texto = (
+        "--- HABILIDADES PARA EL EXAMEN ---\n1. Practico con exámenes anteriores.\n2. Reviso mis errores.\n"
+        "--- MOTIVACIÓN ---\n3. Me siento motivado.\n"
+        "--- HABILIDADES PARA JERARQUIZAR ---\n4. Distingo lo principal de lo secundario.\n5. Elaboro resúmenes.\n"
+    )
+    est = estructura.encuesta(7, {"especifico": {"encuesta": {"columnas": columnas}}}, original.leer(texto))
+    assert [(p.texto, p.columna) for p in est.preguntas] == [
+        ("Practico con exámenes anteriores.", "a1"), ("Reviso mis errores.", "a2"), ("Me siento motivado.", "m1"),
+        ("Distingo lo principal de lo secundario.", "b1"), ("Elaboro resúmenes.", "b2"),
+    ]
+    assert est.avisos == []
+
+
+def test_prefijo_ambiguo_sin_una_columna_por_seccion_no_adivina():
+    columnas = [{"id": "a1", "etiqueta": "Habilidades_par_item1", "rol": "pregunta", "tipo_canonico": "likert"}]
+    texto = ("--- HABILIDADES PARA EL EXAMEN ---\n1. Practico con exámenes anteriores.\n"
+             "--- HABILIDADES PARA JERARQUIZAR ---\n2. Distingo lo principal de lo secundario.\n")
+    est = estructura.encuesta(7, {"especifico": {"encuesta": {"columnas": columnas}}}, original.leer(texto))
+    assert not any(p.columna == "a1" and p.seccion_id and p.texto != "Habilidades_par_item1" for p in est.preguntas)
+
+
+# ── Encuesta sin secciones con encabezados codificados ──────────────────────────
+
+_ORIGINAL_SIN_SECCIONES = """INSTRUCCIONES:
+Marca la opción que mejor describa tu experiencia (1 = Totalmente en desacuerdo, 5 = Totalmente de acuerdo).
+
+1. Los criterios de evaluación se explican con claridad.
+2. Las calificaciones reflejan lo que aprendí.
+3. Me siento seguro dentro de la escuela.
+4. Me siento parte de la comunidad escolar.
+"""
+
+
+def _reporte_codificado(etiquetas: list[str]) -> dict:
+    cols = [{"id": f"c{i}", "etiqueta": e, "rol": "pregunta", "tipo_canonico": "likert"} for i, e in enumerate(etiquetas)]
+    cols.insert(0, {"id": "turno", "etiqueta": "turno", "rol": "contexto", "tipo_canonico": "categorica"})
+    return {"especifico": {"encuesta": {"columnas": cols}}}
+
+
+@pytest.mark.parametrize("etiquetas", [
+    ["P1", "P2", "P3", "P4"],
+    ["Evaluación_item1", "Evaluación_item2", "Ambiente_item1", "Ambiente_item2"],
+])
+def test_sin_secciones_codificadas_se_emparejan_por_orden(etiquetas):
+    o = original.leer(_ORIGINAL_SIN_SECCIONES)
+    assert {p.seccion for p in o.preguntas} == {original.SECCION_GENERAL}  # «INSTRUCCIONES» no es sección
+    est = estructura.encuesta(12, _reporte_codificado(etiquetas), o)
+    assert [(p.texto, p.columna) for p in est.preguntas] == [
+        ("Los criterios de evaluación se explican con claridad.", "c0"),
+        ("Las calificaciones reflejan lo que aprendí.", "c1"),
+        ("Me siento seguro dentro de la escuela.", "c2"),
+        ("Me siento parte de la comunidad escolar.", "c3"),
+    ]
+    assert [a["codigo"] for a in est.avisos] == ["emparejadas_por_posicion"]
+
+
+def test_sin_secciones_no_adivina_si_no_cuadran():
+    o = original.leer(_ORIGINAL_SIN_SECCIONES)
+    est = estructura.encuesta(12, _reporte_codificado(["P1", "P2", "P3"]), o)  # 3 columnas, 4 preguntas
+    assert len(est.preguntas) == 7 and est.avisos[0]["codigo"] == "preguntas_sin_original"
+
+
+def test_sin_secciones_las_dimensiones_de_la_limpieza_hacen_de_secciones():
+    o = original.leer(_ORIGINAL_SIN_SECCIONES)
+    reporte = _reporte_codificado(["P1", "P2", "P3", "P4"])
+    reporte["especifico"]["encuesta"]["dimensiones"] = [
+        {"nombre": "Dimensión 1", "columnas": ["c0", "c1"]}, {"nombre": "Dimensión 2", "columnas": ["c2", "c3"]}]
+    est = estructura.encuesta(12, reporte, o, ["Evaluación del aprendizaje", "Ambiente escolar"])
+    nombre = {s.id: s.nombre for s in est.secciones}
+    assert [nombre[p.seccion_id] for p in est.preguntas] == ["Evaluación del aprendizaje"] * 2 + ["Ambiente escolar"] * 2
+    # Si los nombres de los metadatos no cuadran en número, se usan los de la limpieza.
+    est = estructura.encuesta(12, reporte, o, ["Solo uno"])
+    assert [s.nombre for s in est.secciones] == ["Dimensión 1", "Dimensión 2"]
+
+
+def test_con_secciones_en_el_original_las_dimensiones_no_las_reemplazan():
+    p, est = _perfil("encuesta", "encuesta_original.txt")
+    antes = [s.nombre for s in est.secciones]
+    reporte = limpieza("encuesta")["reporte"]
+    reporte["especifico"]["encuesta"]["dimensiones"] = [{"nombre": "Dimensión 1", "columnas": ["x"]}]
+    o = original.leer(texto_dato("encuesta_original.txt"))
+    assert [s.nombre for s in estructura.encuesta(12, reporte, o).secciones] == antes
+
+
+def test_cuadricula_cuya_instruccion_no_es_pregunta_se_empareja_por_aspecto():
+    o = original.leer(_ORIGINAL_SIN_SECCIONES)
+    instruccion = "Indica qué tan de acuerdo estás con las siguientes afirmaciones"
+    textos = [p.texto.rstrip(".") for p in o.preguntas]
+    est = estructura.encuesta(12, _reporte_codificado([f"{instruccion} [{t}]" for t in textos]), o)
+    assert [(p.texto, p.columna) for p in est.preguntas] == [(p.texto, f"c{i}") for i, p in enumerate(o.preguntas)]
+    assert not any(a["codigo"] == "preguntas_sin_original" for a in est.avisos)
+
+
+def test_enunciado_escrito_tal_cual_en_el_original_no_queda_suelto():
+    """28 oct: el PDF de Google Forms separa los números del texto y los enunciados de escala no llevan «¿?»;
+    el lector no los aislaba y el perfil los mandaba a «Otras preguntas del archivo»."""
+    texto = (
+        "La oferta de programas, materias optativas y cursos de mi institución responde a mis intereses académicos y\n"
+        "profesionales.\n*\n2.\nSelecciona todas las opciones que correspondan.\nSí\nNo\n"
+        "¿Tu programa académico cuenta con acreditación vigente?\n"
+    )
+    columnas = [
+        {"id": "a", "etiqueta": "  La oferta de programas, materias optativas y cursos de mi institución responde a mis intereses académicos y profesionales.  ",
+         "rol": "pregunta", "tipo_canonico": "likert"},
+        {"id": "b", "etiqueta": "¿Tu programa académico cuenta con acreditación vigente?", "rol": "pregunta", "tipo_canonico": "categorica"},
+    ]
+    est = estructura.encuesta(7, {"especifico": {"encuesta": {"columnas": columnas}}}, original.leer(texto))
+    por_columna = {p.columna: p for p in est.preguntas if p.columna}
+    assert por_columna["a"].texto.startswith("La oferta de programas") and not por_columna["a"].texto.startswith(" ")
+    assert "Otras preguntas del archivo" not in [s.nombre for s in est.secciones]
+    assert not any(a.codigo == "preguntas_sin_original" for a in est.avisos)
+
+
+def test_pregunta_partida_en_dos_lineas_no_crea_otra():
+    texto = ("¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor\n"
+             "asignado?\n¿Cuándo esperas titularte?\n")
+    o = original.leer(texto)
+    assert [p.texto for p in o.preguntas] == [
+        "¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?",
+        "¿Cuándo esperas titularte?",
+    ]
+
+
+
+def test_opcion_anterior_o_pie_de_pagina_en_la_misma_linea_no_se_pega_a_la_pregunta():
+    """28 oct, PDF de Google Forms (instrumento 127): «Cargas máxima ¿Tu programa…?» y «Google no creó ni aprobó
+    este contenido. ¿En qué programas…?» quedaban como texto de la pregunta en el documento final y en el chat."""
+    texto = ("Cargas máxima  ¿Tu programa académico cuenta con acreditación vigente (COP AES, SEAES CONAIC, u otro   )?  *\n"
+             "Siempre  De tus profesores de este periodo, ¿cuántos tienen doctorado?  *\n"
+             "Google no cr eó ni apr obó este contenido.  ¿En qué programas de cooperación has participado?  *\n"
+             "1.  ¿Cuándo esperas titularte?\n"
+             "En tu opinión, ¿qué tan útil es la biblioteca?\n")
+    o = original.leer(texto)
+    assert [p.texto for p in o.preguntas] == [
+        "¿Tu programa académico cuenta con acreditación vigente (COP AES, SEAES CONAIC, u otro )?",
+        "De tus profesores de este periodo, ¿cuántos tienen doctorado?",
+        "¿En qué programas de cooperación has participado?",
+        "¿Cuándo esperas titularte?",
+        "En tu opinión, ¿qué tan útil es la biblioteca?",
+    ]
+    assert o.preguntas[3].numero == 1

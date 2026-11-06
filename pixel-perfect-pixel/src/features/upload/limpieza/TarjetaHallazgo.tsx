@@ -1,7 +1,9 @@
-import { AlertCircle } from "lucide-react";
+import { useState } from "react";
+import { AlertCircle, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { HallazgoLimpieza } from "@/types";
 import { OpcionesDecision } from "./OpcionesDecision";
+import { TablaUbicacion, type CeldaUbicacion } from "./TablaUbicacion";
 import { ETIQUETA_TIPO } from "./textos";
 
 interface TarjetaHallazgoProps {
@@ -15,14 +17,36 @@ const FILAS_HALLAZGO: Record<string, string> = {
   id_duplicado: "En las filas",
   linea_recta: "Filas",
   encuestados_incompletos: "Filas",
+  id_parecido: "En las filas",
 };
 
 function lista(valor: unknown): string[] {
   return Array.isArray(valor) ? valor.map(String) : [];
 }
 
+interface GrupoDimension {
+  nombre: string;
+  etiquetas: string[];
+  alfa: number;
+}
+
+function grupos(valor: unknown): GrupoDimension[] {
+  return Array.isArray(valor)
+    ? valor.filter(
+        (g): g is GrupoDimension =>
+          typeof g === "object" && g !== null && Array.isArray((g as GrupoDimension).etiquetas),
+      )
+    : [];
+}
+
 /** Una decisión de la fase asistida: qué encontramos, por qué y qué hacer. */
 export function TarjetaHallazgo({ hallazgo: h, onElegir }: TarjetaHallazgoProps) {
+  const [verDonde, setVerDonde] = useState(false);
+  const ubicacion = Array.isArray(h.detalle["ubicacion"])
+    ? (h.detalle["ubicacion"] as CeldaUbicacion[])
+    : [];
+  const totalUbicacion =
+    typeof h.detalle["total"] === "number" ? h.detalle["total"] : ubicacion.length;
   const valor = h.decision ?? h.sugerida;
   const pendiente = h.obligatoria && h.decision === null;
   const ejemplos = lista(h.detalle["ejemplos"]);
@@ -32,7 +56,14 @@ export function TarjetaHallazgo({ hallazgo: h, onElegir }: TarjetaHallazgoProps)
   const tipo = typeof h.detalle["tipo"] === "string" ? ETIQUETA_TIPO[h.detalle["tipo"]] : undefined;
   const pctNulos = typeof h.detalle["pct_nulos"] === "number" ? h.detalle["pct_nulos"] : null;
   // En entrevistas los ejemplos son frases: se muestran como citas, no como valores.
-  const comoCitas = ["rol_hablante", "sin_hablantes", "ruido_residual"].includes(h.tipo);
+  const comoCitas = [
+    "rol_hablante",
+    "sin_hablantes",
+    "ruido_residual",
+    "segmentacion_inferida",
+    "anotaciones_transcriptor",
+    "muletillas",
+  ].includes(h.tipo);
   const pctPreguntas =
     typeof h.detalle["pct_preguntas"] === "number" ? h.detalle["pct_preguntas"] : null;
 
@@ -132,6 +163,39 @@ export function TarjetaHallazgo({ hallazgo: h, onElegir }: TarjetaHallazgoProps)
             </li>
           ))}
         </ol>
+      )}
+
+      {h.tipo === "dimensiones_sugeridas" && (
+        <ul className="grid gap-2 sm:grid-cols-2" aria-label="Dimensiones sugeridas">
+          {grupos(h.detalle["grupos"]).map((g) => (
+            <li key={g.nombre} className="rounded-xl border border-border bg-muted/40 p-3 text-sm">
+              <p className="font-semibold text-foreground">
+                {g.nombre}{" "}
+                <span className="font-normal text-muted-foreground">
+                  · {g.etiquetas.length} ítems · α = {g.alfa.toFixed(2)}
+                </span>
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                {g.etiquetas.join(" · ")}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {ubicacion.length > 0 && (
+        <div className="space-y-2">
+          <button
+            type="button"
+            aria-expanded={verDonde}
+            onClick={() => setVerDonde((v) => !v)}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-2 hover:underline"
+          >
+            <MapPin className="size-4" aria-hidden />
+            {verDonde ? "Ocultar dónde" : `Ver dónde (${totalUbicacion})`}
+          </button>
+          {verDonde && <TablaUbicacion celdas={ubicacion} total={totalUbicacion} />}
+        </div>
       )}
 
       <OpcionesDecision

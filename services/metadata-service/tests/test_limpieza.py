@@ -109,17 +109,18 @@ def test_entrevista_preguntas_desde_turnos_del_entrevistador(cliente, ana, crear
     assert data["statistics"]["global"]["n_registros"] == 4
 
 
-def test_prueba_reactivos_desde_la_clave_con_estadisticas(cliente, ana, crear_instrumento, crear_limpieza, exigir):
+def test_prueba_reactivos_de_la_limpieza_sin_calificar(cliente, ana, crear_instrumento, crear_limpieza, exigir):
     id_crudo = crear_instrumento("respuestas.csv", "matricula,P1\nA1,A\n", tipo="prueba_estandarizada")
     limpio = (
-        "id_alumno;pregunta;respuesta;respuesta_correcta;correcta;estado;motivo\n"
-        "A1;P1;A;A;1;valida;\nA1;P2;AB;B;0;nula;respuesta_multiple\n"
-        "A2;P1;C;A;0;valida;\nA2;P2;;B;0;NR;no_respondida\n"
+        "id_alumno;pregunta;respuesta;estado;motivo\n"
+        "A1;P1;A;valida;\nA1;P2;AB;nula;respuesta_multiple\n"
+        "A2;P1;C;valida;\nA2;P2;;NR;no_respondida\n"
     )
     reporte = {
         "especifico": {
             "prueba_estandarizada": {
-                "clave": {"P1": "A", "P2": "B"},
+                "tipos_reactivo": {"P2": "opcion_multiple", "P1": "opcion_multiple"},  # como lo devuelve JSONB
+                "orden_reactivos": ["P1", "P2"],
                 "opciones_validas": ["A", "B", "C", "D", "NR"],
                 "conteos": {"valida": 2, "nula": 1, "NR": 1},
                 "n_alumnos": 2,
@@ -127,8 +128,8 @@ def test_prueba_reactivos_desde_la_clave_con_estadisticas(cliente, ana, crear_in
         },
         "estadistica": {
             "despues": {
-                "reactivos": [{"pregunta": "P1", "respuesta_correcta": "A", "dificultad": 0.5, "nivel_discriminacion": "buena"}],
-                "fiabilidad": {"kr20": 0.42, "interpretacion": "inaceptable"},
+                "reactivos": [{"pregunta": "P1", "opcion_mas_elegida": {"opcion": "A", "n": 1, "pct": 0.5, "pct_validas": 0.5},
+                               "opciones_sin_elegir": ["B", "D"]}],
             }
         },
     }
@@ -138,9 +139,9 @@ def test_prueba_reactivos_desde_la_clave_con_estadisticas(cliente, ana, crear_in
     assert [q["question_id"] for q in preguntas] == ["P1", "P2"]
     assert preguntas[0]["options"] == ["A", "B", "C", "D"]
     p1 = data["statistics"]["per_question"]["P1"]
-    assert p1["respuesta_correcta"] == "A" and p1["pct_correctas"] == 0.5
-    assert p1["dificultad"] == 0.5 and p1["nivel_discriminacion"] == "buena"
-    assert data["statistics"]["reliability"]["kr20"] == 0.42
+    assert p1["opcion_mas_elegida"]["opcion"] == "A" and p1["opciones_sin_elegir"] == ["B", "D"]
+    assert not any(k in p1 for k in ("respuesta_correcta", "pct_correctas", "dificultad"))
+    assert "reliability" not in data["statistics"]
     assert data["statistics"]["per_question"]["P2"]["pct_no_respondidas"] == 0.5
     assert data["statistics"]["global"]["n_registros"] == 2
 

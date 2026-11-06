@@ -90,14 +90,11 @@ export async function subirInstrumento(
   archivo: File,
   tipo: TipoInstrumento,
   archivoOriginal?: File | null,
-  /** Clave de respuestas (obligatoria para pruebas estandarizadas en tabla). */
-  archivoClave?: File | null,
 ): Promise<ResultadoCarga> {
   const form = new FormData();
   form.append("archivo", archivo);
   form.append("tipo_instrumento", TIPO_UI_A_BACKEND[tipo]);
   if (archivoOriginal) form.append("archivo_original", archivoOriginal);
-  if (archivoClave) form.append("archivo_clave", archivoClave);
 
   const headers: Record<string, string> = {};
   const token = leerToken();

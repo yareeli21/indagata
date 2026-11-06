@@ -17,8 +17,11 @@ Cómo se arman los intercambios:
 
 Privacidad: las personas se anonimizan (E01, E02… por orden de aparición) y los
 nombres de los hablantes se reemplazan también dentro de los textos. El contexto de
-cada persona (edad, género…) queda en el reporte de limpieza y no entra al documento.
-Otros nombres mencionados en el texto libre NO se pueden detectar con certeza: se avisa.
+cada persona (las líneas «Edad: 21 | Turno: matutino» de su bloque) entra al documento
+como en las encuestas: sin datos personales (nombre, correo, matrícula…), que se avisan.
+Antes no entraba, y el chat no podía responder «¿en qué turno estudia?» (Fase 6, 2 nov;
+decisión de la investigadora). Otros nombres mencionados en el texto libre NO se pueden
+detectar con certeza: se avisa.
 """
 from __future__ import annotations
 
@@ -27,6 +30,7 @@ from typing import Any
 
 from services.documento import comun
 from services.estructura import Estructura
+from services.interpretacion.privacidad import es_dato_personal
 from services.original import UMBRAL_PARECIDO, parecido
 
 ESQUEMA_VERSION = "2.0"
@@ -38,6 +42,23 @@ def _anonimizar(texto: str, reemplazos: list[tuple[re.Pattern[str], str]]) -> st
     for patron, id_corto in reemplazos:
         texto = patron.sub(id_corto, texto)
     return texto
+
+
+def _contextos(reporte: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """{participante del bloque: contexto} del reporte de limpieza («Edad: 21 | Turno: matutino»), sin datos personales
+    (la misma regla que el contexto de las encuestas). Las claves quitadas quedan en «__personales__» para el aviso."""
+    especifico = reporte.get("especifico") or {}
+    participantes = (especifico.get("entrevista") or especifico).get("participantes") or []
+    salida: dict[str, dict[str, Any]] = {}
+    for p in participantes:
+        contexto = {str(k): v for k, v in (p.get("contexto") or {}).items() if v not in (None, "")}
+        personales = [k for k in contexto if es_dato_personal(k)]
+        limpio: dict[str, Any] = {k: v for k, v in contexto.items() if k not in personales}
+        if personales:
+            limpio["__personales__"] = personales
+        if limpio:
+            salida[str(p.get("id") or "").strip()] = limpio
+    return salida
 
 
 def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str, Any], filas: list[dict[str, str]]) -> dict[str, Any]:
@@ -55,10 +76,19 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
     def persona(f: dict[str, str]) -> str:
         return (f.get("participante") or "").strip() if con_bloques else hablante(f)
 
+    # Texto sin hablante (rol «desconocido») en una entrevista que sí tiene entrevistador: es un
+    # preámbulo («Entrevista realizada en la biblioteca…»), no otra persona entrevistada.
+    hay_entrevistador = any(es_entrevistador(f) for f in filas)
+
+    def fuera(f: dict[str, str]) -> bool:
+        return hay_entrevistador and (f.get("rol") or "").strip() in ("", "desconocido")
+
+    omitidas = sum(1 for f in filas if fuera(f) and (f.get("texto") or "").strip())
+
     # IDs anónimos por orden de aparición de cada persona entrevistada.
     ids: dict[str, str] = {}
     for f in filas:
-        if not es_entrevistador(f) and (clave := persona(f)) and clave not in ids:
+        if not es_entrevistador(f) and not fuera(f) and (clave := persona(f)) and clave not in ids:
             ids[clave] = f"{ins}-E{len(ids) + 1:02d}"
     # Los nombres de los hablantes (más largos primero) se reemplazan dentro de los textos.
     nombres = {hablante(f): ids.get(persona(f), "") for f in filas if not con_bloques and not es_entrevistador(f)}
@@ -79,7 +109,7 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
     pregunta_continua = False
     for f in filas:
         texto = " ".join((f.get("texto") or "").split())
-        if not texto:
+        if not texto or fuera(f):
             continue
         if con_bloques and persona(f) != bloque:
             bloque, pregunta, ultimo, pregunta_continua = persona(f), _SIN_PREGUNTA, None, False
@@ -103,6 +133,12 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
         entrevistas.setdefault(clave, []).append(item)
         ultimo = (clave, item)
 
+    contextos = _contextos(reporte) if con_bloques else {}
+    if quitados := sorted({k for c in contextos.values() for k in c.pop("__personales__", [])}):
+        avisos.append({"codigo": "contexto_personal", "mensaje": f"Datos personales del contexto no incluidos: {', '.join(quitados)}."})
+
+    if omitidas:
+        avisos.append({"codigo": "texto_sin_hablante", "mensaje": f"{omitidas} fragmento(s) sin hablante (por ejemplo, un preámbulo) no se tomaron como respuestas."})
     if ids:
         avisos.append({"codigo": "texto_libre", "mensaje": "Las personas entrevistadas se identifican con un ID anónimo; otros nombres mencionados en el texto libre podrían seguir presentes."})
     if not any(es_entrevistador(f) for f in filas):
@@ -113,6 +149,7 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
         "instrumento": comun.instrumento(perfil),
         "kpis_asociados": perfil.get("kpis_asociados") or [],
         "preguntas": [{"id": g.id, "texto": g.texto, "kpis_relacionados": kpis_de.get(g.id, [])} for g in guia],
-        "entrevistas": [{"participante": ids[k], "intercambios": v} for k, v in entrevistas.items()],
+        "entrevistas": [{"participante": ids[k], **({"contexto": contextos[k]} if contextos.get(k) else {}), "intercambios": v}
+                        for k, v in entrevistas.items()],
         "avisos": avisos,
     }

@@ -22,7 +22,7 @@ const ESTILO: Record<
   alerta: { icono: OctagonAlert, clase: CLASE_TONO.mal, etiqueta: "Posible problema" },
 };
 
-/** Glosario en lenguaje sencillo (el detalle completo está en markdowns/METRICAS_LIMPIEZA.md). */
+/** Glosario en lenguaje sencillo (el detalle completo está en documentación/02_Desarrollo.md, X.7.2). */
 const GLOSARIO: { termino: string; texto: string }[] = [
   { termino: "Media", texto: "El promedio de las respuestas." },
   {
@@ -45,10 +45,9 @@ const GLOSARIO: { termino: string; texto: string }[] = [
   { termino: "Alfa de Cronbach", texto: AYUDA.alfa },
   { termino: "Correlación ítem-total", texto: AYUDA.itemTotal },
   { termino: "Alfa si se elimina el ítem", texto: AYUDA.alfaSiSeElimina },
-  { termino: "KR-20", texto: AYUDA.kr20 },
-  { termino: "Dificultad (p)", texto: AYUDA.dificultad },
-  { termino: "Discriminación (D)", texto: AYUDA.discriminacion },
-  { termino: "Punto-biserial", texto: AYUDA.puntoBiserial },
+  { termino: "Opción más elegida (pruebas)", texto: AYUDA.opcionMasElegida },
+  { termino: "Sin respuesta válida", texto: AYUDA.sinRespuesta },
+  { termino: "Reactivo casi unánime", texto: AYUDA.casiUnanime },
 ];
 
 export function GlosarioEstadistico() {

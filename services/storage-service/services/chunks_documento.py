@@ -6,8 +6,9 @@ convierte cada unidad con sentido propio en uno o más chunks:
 
   Encuesta    → ficha · una `pregunta` por pregunta (con su resumen) · uno o más
                 `respondente` por persona (contexto + respuestas) · un `kpi` por KPI
-  Prueba      → ficha · un `reactivo` por reactivo (% de acierto, distractores) ·
-                `alumno` por alumno (puntaje y aciertos) · `kpi`
+  Prueba      → ficha · un `reactivo` por reactivo (distribución, opción más elegida) ·
+                `alumno` por alumno (sus respuestas por significado) · `kpi`
+                (las pruebas no se califican: no hay respuesta correcta ni puntaje)
   Entrevista  → ficha · una `pregunta` por pregunta guía · un `intercambio` por par
                 pregunta-respuesta de cada participante · `kpi`
 
@@ -46,7 +47,7 @@ def _recortar(texto: Any, n: int) -> str:
 
 
 def _por_lineas(cuerpo: str, ventana: int) -> list[str]:
-    """Empaca líneas completas, sin solape (listas: respuestas de una persona, aciertos).
+    """Empaca líneas completas, sin solape (listas: respuestas de una persona).
 
     Repetir media línea de la pieza anterior («…semestre»: En desacuerdo) confunde más
     de lo que ayuda en una lista; solo una línea que por sí sola no cabe se trocea.
@@ -94,15 +95,44 @@ def _kpis_json(ids: list[str] | None) -> str:
 # ── Ficha y KPIs (comunes) ─────────────────────────────────────────────────────
 
 
+_SIN_TEMA = {"general", "otras preguntas del archivo"}
+_ETIQUETA_ASPECTOS = "Aspectos que pregunta: "
+_MAX_ASPECTOS = 600  # el chat recibe la ficha completa (todas sus piezas), no solo la primera
+
+
+def _aspectos_sin_secciones(doc: dict[str, Any], maximo: int) -> str:
+    """Encuesta sin secciones con nombre: lo que pregunta, desde los textos de sus preguntas.
+
+    Con secciones, sus nombres ya dicen qué evalúa (van en «Temas»). Sin ellas, la ficha
+    quedaba sin contenido y el modelo describía el instrumento por sus KPIs. Va junto al
+    objetivo, recortado a `maximo` caracteres.
+    """
+    secciones = [s.get("nombre", "") for s in doc.get("secciones") or []]
+    if not doc.get("respondentes") or any(" ".join(s.lower().split()) not in _SIN_TEMA for s in secciones):
+        return ""
+    salida = ""
+    for p in doc.get("preguntas") or []:
+        texto = _recortar(" ".join(str(p.get("texto") or "").split()).rstrip(".?¿"), 60)
+        siguiente = f"{salida}; {texto}" if salida else texto
+        if len(siguiente) + 3 > maximo:
+            return f"{salida}; …" if salida else ""
+        salida = siguiente
+    return salida
+
+
 def _ficha(doc: dict[str, Any], tipo_ui: str) -> list[Chunk]:
     ins = doc.get("instrumento") or {}
+    titulo = _recortar(ins.get("titulo") or "Instrumento", 120)
     lineas = [f"Tipo: {tipo_ui}"]
     for etiqueta, clave in (("Objetivo", "objetivo"), ("Población", "poblacion"), ("Nivel educativo", "nivel_educativo"),
                             ("Contexto", "contexto")):
         if ins.get(clave) and ins.get(clave) != "No especificado":
             lineas.append(f"{etiqueta}: {ins[clave]}")
-    if ins.get("temas"):
-        lineas.append("Temas: " + ", ".join(map(str, ins["temas"])))
+        if clave == "objetivo" and (aspectos := _aspectos_sin_secciones(doc, _MAX_ASPECTOS)):
+            lineas.append(_ETIQUETA_ASPECTOS + aspectos)
+    temas = [str(t) for t in ins.get("temas") or [] if str(t).strip() and str(t) != "No especificado"]
+    if temas:
+        lineas.append("Temas: " + ", ".join(temas))
     for etiqueta, clave in (("Respondentes", "n_respondentes"), ("Alumnos", "n_alumnos")):
         if ins.get(clave) is not None:
             lineas.append(f"{etiqueta}: {ins[clave]}")
@@ -112,7 +142,6 @@ def _ficha(doc: dict[str, Any], tipo_ui: str) -> list[Chunk]:
     # Se dice también cuando no hay: sin esta línea, al comparar instrumentos el modelo
     # atribuía a uno los KPIs del otro (verificación de la Fase 5).
     lineas.append("KPIs asociados: " + (", ".join(nombres) if nombres else "ninguno"))
-    titulo = _recortar(ins.get("titulo") or "Instrumento", 120)
     return _chunks(f"Instrumento: {titulo}", "\n".join(lineas), "encabezado")
 
 
@@ -195,20 +224,16 @@ def _prueba(doc: dict[str, Any]) -> list[Chunk]:
         cuerpo = []
         if opciones:
             cuerpo.append("Opciones: " + "; ".join(f"{k}) {v}" for k, v in opciones.items()))
-        if r.get("calificable"):
-            correcta = r.get("respuesta_correcta") or ""
-            cuerpo.append(f"Respuesta correcta: {correcta} ({opciones.get(correcta, '')})")
-            cuerpo.append(f"Porcentaje de acierto: {res.get('pct_acierto')} % de {res.get('n_alumnos')} alumnos")
-            d = res.get("distractor_mas_elegido")
-            if d:
-                cuerpo.append(f"Distractor más elegido: {d['opcion']} ({d.get('significado')}), {d['pct']} %")
-        else:
-            cuerpo.append(f"Reactivo no calificable ({r.get('tipo_reactivo')}): no tiene respuesta correcta")
+        mas = res.get("opcion_mas_elegida")
+        if mas:
+            cuerpo.append(f"Opción más elegida: {mas['opcion']} ({mas.get('significado')}), {mas['pct']} % de {res.get('n_alumnos')} alumnos")
         dist = res.get("distribucion") or {}
         if dist:
             cuerpo.append("Distribución: " + "; ".join(f"{k} {v['pct']} %" for k, v in dist.items()))
-        if res.get("dificultad") is not None:
-            cuerpo.append(f"Dificultad (p): {res['dificultad']}; discriminación (D): {res.get('discriminacion')}")
+        if res.get("media") is not None:
+            cuerpo.append(f"Media: {res['media']}")
+        if res.get("opciones_sin_elegir"):
+            cuerpo.append("Nadie eligió: " + ", ".join(res["opciones_sin_elegir"]))
         kpis = [nombres_kpi.get(str(k), str(k)) for k in r.get("kpis_relacionados") or []]
         if kpis:
             cuerpo.append("KPIs que mide: " + ", ".join(kpis))
@@ -218,17 +243,39 @@ def _prueba(doc: dict[str, Any]) -> list[Chunk]:
     for a in doc.get("alumnos") or []:
         lineas = []
         for x in a.get("respuestas") or []:
-            marca = "correcta" if x.get("correcta") is True else "incorrecta" if x.get("correcta") is False else x.get("estado", "")
             respuesta = x.get("respuesta") or "sin respuesta"
             significado = f" ({x['significado']})" if x.get("significado") else ""
-            lineas.append(f"{corto(x['reactivo_id'])}: {respuesta}{significado} {marca}".rstrip())
-        prefijo = (f"Alumno {corto(a['id'])}{_contexto(a.get('contexto'))}: puntaje {a.get('puntaje')} de {a.get('total')}"
-                   f" ({a.get('porcentaje')} %)")
+            estado = "" if x.get("estado") in (None, "valida") else f" [{x['estado'].replace('_', ' ')}]"
+            lineas.append(f"{corto(x['reactivo_id'])}: {respuesta}{significado}{estado}")
+        prefijo = (f"Alumno {corto(a['id'])}{_contexto(a.get('contexto'))}: respondió {a.get('n_respondidas', 0)} reactivos"
+                   + (f", {a['n_nulas']} nulas" if a.get("n_nulas") else "")
+                   + (f", {a['n_sin_respuesta']} sin respuesta" if a.get("n_sin_respuesta") else ""))
         chunks += _chunks(prefijo, "\n".join(lineas), "alumno", lista=True, respondenteId=a["id"])
     return chunks + _kpis(doc, textos)
 
 
 # ── Entrevista ─────────────────────────────────────────────────────────────────
+
+
+_MARCO = {"actual": "presente", "pasado": "pasado", "hipotetico": "supuesto", "general": "general"}
+_POSTURA = {"si": "sí", "no": "no", "ambivalente": "ambivalente", "no_aplica": "no aplica", "sin_determinar": "sin determinar"}
+
+
+def _cuerpo_intercambio(i: dict[str, Any]) -> str:
+    """Con análisis (esquema 2.1): primero lo que responde a la pregunta y su postura, luego
+    el antecedente (relato de otro momento) y la respuesta completa; sin análisis, la respuesta."""
+    respuesta = f"Respuesta: {i.get('respuesta') or ''}"
+    an = i.get("analisis") or {}
+    if not an.get("nucleo"):
+        return respuesta
+    lineas = [f"Postura: {_POSTURA.get(an.get('postura'), an.get('postura'))} "
+              f"(en {_MARCO.get(an.get('marco_pregunta'), 'presente')}). Responde: {an['nucleo']}"]
+    if an.get("motivo"):
+        lineas.append(f"Motivo: {an['motivo']}")
+    for u in an.get("unidades") or []:
+        if u.get("funcion") == "contexto":
+            lineas.append(f"Antecedente ({_MARCO.get(u.get('marco_temporal'), 'general')}): {u['texto']}")
+    return "\n".join([*lineas, respuesta])
 
 
 def _entrevista(doc: dict[str, Any]) -> list[Chunk]:
@@ -245,8 +292,10 @@ def _entrevista(doc: dict[str, Any]) -> list[Chunk]:
             pid = i.get("pregunta_id") or ""
             etiqueta = f"pregunta {corto(pid)}" if pid else "pregunta"
             prefijo = f"Participante {corto(e['participante'])}, {etiqueta}: {_recortar(i.get('pregunta'), _MAX_TEXTO_PREFIJO)}"
-            chunks += _chunks(prefijo, f"Respuesta: {i.get('respuesta') or ''}", "intercambio", pregunta_id=pid,
-                              pregunta=_recortar(i.get("pregunta"), 300), respondenteId=e["participante"])
+            an = i.get("analisis") or {}
+            extra = {"postura": an["postura"], "marcoTemporal": an.get("marco_pregunta") or ""} if an.get("nucleo") else {}
+            chunks += _chunks(prefijo, _cuerpo_intercambio(i), "intercambio", pregunta_id=pid,
+                              pregunta=_recortar(i.get("pregunta"), 300), respondenteId=e["participante"], **extra)
     return chunks + _kpis(doc, textos)
 
 

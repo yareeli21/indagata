@@ -95,6 +95,13 @@ def construir(
                 especificos[clave] = valor
                 esp_origen[clave] = "llm"
 
+        # Dimensiones sugeridas por la limpieza: un nombre por grupo (el investigador lo edita).
+        if analisis.grupos_dimensiones and "dimensiones" in especificos:
+            tipo_ui = TIPO_UI.get((raw.tipo_instrumento or "").lower(), "instrumento")
+            if nombres := llm_client.nombrar_grupos(tipo_ui, analisis.titulo, analisis.grupos_dimensiones):
+                especificos["dimensiones"] = nombres
+                esp_origen["dimensiones"] = "llm"
+
     return Propuesta(analisis, dc, dc_origen, especificos, esp_origen)
 
 

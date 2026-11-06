@@ -86,6 +86,24 @@ def test_otro_alcance_otra_version_o_sin_cache_vuelve_a_generar(cliente, acervo,
     assert len(ollama["prompts"]) == 4
 
 
+def test_la_evaluacion_puede_saltarse_la_cache_y_las_metricas(cliente, acervo, ollama, monkeypatch):
+    from services import evaluacion, ollama_client
+
+    async def redacta_bien(prompt, modelo, sistema=None, **kwargs):  # noqa: ANN001
+        ollama["prompts"].append(prompt)  # una redacción fiel: pasa las verificaciones y va al juez
+        return "El 33.3 % (1 de 3) del turno vespertino está de acuerdo con p04. [Fuente 1]", False
+
+    monkeypatch.setattr(ollama_client, "generar_no_stream", redacta_bien)
+    programadas = []
+    monkeypatch.setattr(evaluacion, "programar", lambda rag_log_id, fabrica, modelo_juez=None: programadas.append(rag_log_id))
+    _chat(cliente)
+    repetida = _chat(cliente, usarCache=False)  # la misma pregunta, generada de nuevo
+    assert not repetida["enCache"] and len(ollama["prompts"]) == 2
+    sin_metricas = _chat(cliente, usarCache=False, calcularMetricas=False)
+    assert len(programadas) == 2  # la tercera no entra a la cola del juez
+    assert acervo.get(RagLog, sin_metricas["consultaId"]).metricas["estado"] == "omitida"
+
+
 def test_no_se_reutiliza_una_respuesta_degradada(cliente, acervo, monkeypatch):
     from services import ollama_client
 
@@ -99,3 +117,21 @@ def test_no_se_reutiliza_una_respuesta_degradada(cliente, acervo, monkeypatch):
     _chat(cliente)
     _chat(cliente)
     assert sum("RESULTADO CALCULADO" in p for p in llamadas) == 2  # (las demás son del juez de métricas)
+
+
+def test_la_ficha_llega_completa_aunque_coincida_solo_su_cola():
+    """Cada pieza repite el título y arranca con el solape de la anterior (con espacios)."""
+    from services.rag_service import _ficha_completa
+
+    titulo = "Instrumento: Encuesta de clima escolar"
+
+    class _Coleccion:
+        def get(self, where=None, include=None):  # noqa: ANN001
+            return {"metadatas": [{"chunk_index": 2}, {"chunk_index": 0}, {"chunk_index": 1}],
+                    "documents": [f"{titulo}\nsiento, ambiente escolar Respondentes: 60\nKPIs asociados: ninguno",
+                                  f"{titulo}\nTipo: Encuesta\nObjetivo: Conocer el clima escolar",
+                                  f"{titulo}\nConocer el clima escolar\nTemas: siento, ambiente escolar\nRespondentes: 60"]}
+
+    assert _ficha_completa(_Coleccion(), "1") == (
+        f"{titulo}\nTipo: Encuesta\nObjetivo: Conocer el clima escolar\nTemas: siento, ambiente escolar\n"
+        "Respondentes: 60\nKPIs asociados: ninguno")

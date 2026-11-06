@@ -74,7 +74,17 @@ def resumen_pregunta(tipo: str, respuestas: list[dict[str, Any]], escala: dict[s
         res["n_no_interpretadas"] = malas
 
     # Distribución por significado (en opción múltiple, cada opción elegida cuenta).
-    if tipo in ("opcion_multiple_varias", "ranking"):
+    if tipo == "ranking":
+        # En una jerarquización todos ordenan todas las opciones: contar «quién la eligió» daba 100 % a cada una
+        # (24 oct, banco: «Ingreso económico: la eligió el 100 %»). Cuenta cuántas veces quedó en PRIMER lugar,
+        # y se agrega la posición media de cada opción (1 = la más importante).
+        conteo = Counter((r.get("seleccion") or [None])[0] for r in validas if r.get("seleccion"))
+        posiciones: dict[str, list[int]] = {}
+        for r in validas:
+            for i, o in enumerate(r.get("seleccion") or [], start=1):
+                posiciones.setdefault(o, []).append(i)
+        res["posicion_media"] = {o: round(statistics.fmean(v), 2) for o, v in sorted(posiciones.items(), key=lambda x: statistics.fmean(x[1]))}
+    elif tipo == "opcion_multiple_varias":
         conteo = Counter(o for r in validas for o in r.get("seleccion") or [])
     elif tipo in ("texto_corto", "texto_largo"):
         conteo = Counter()
@@ -121,7 +131,12 @@ def _interpretacion(tipo: str, res: dict[str, Any], escala: dict[str, Any] | Non
         return f"{n} respuesta{'s' if n != 1 else ''} abierta{'s' if n != 1 else ''}."
     if conteo:
         opcion, c = conteo.most_common(1)[0]
-        if tipo in ("opcion_multiple_varias", "ranking"):
+        if tipo == "ranking":
+            medias = res.get("posicion_media") or {}
+            orden = ", ".join(f"«{o}» {_fmt(m)}" for o, m in list(medias.items())[:4])
+            return (f"En primer lugar se puso más veces «{opcion}» ({_fmt(pct(c, n))} % de quienes respondieron). "
+                    f"Posición media (1 = la más importante): {orden}.")
+        if tipo == "opcion_multiple_varias":
             return f"La opción más elegida es «{opcion}»: la eligió el {_fmt(pct(c, n))} % de quienes respondieron."
         return f"La opción más frecuente es «{opcion}» ({_fmt(pct(c, n))} % de las respuestas)."
     return f"{n} respuesta{'s' if n != 1 else ''}."

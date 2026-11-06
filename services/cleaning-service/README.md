@@ -51,11 +51,12 @@ docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 
   de Cronbach por bloque Likert (con «alfa si se elimina» y correlación ítem-total; los ítems
   invertidos se recodifican). Hallazgos nuevos: respuestas en línea recta y encuestados
   incompletos.
-- **Pruebas:** dificultad p, discriminación D (grupos extremos del 27 %), punto-biserial
-  corregida, distractores, puntajes y KR-20.
+- **Pruebas** (no se califican): por reactivo, distribución de respuestas, opción más elegida,
+  opciones que nadie eligió, nulas, no respondidas y media en los numéricos; reactivos con mucha
+  no respuesta y casi unánimes.
 - **Entrevistas:** participación por hablante y palabras por turno.
 
-Umbrales en `config/limpieza.yaml` (`encuestas.estadistica`, `pruebas.grupo_extremo`).
+Umbrales en `config/limpieza.yaml` (`encuestas.estadistica`, `pruebas.umbral_sin_respuesta`, `pruebas.umbral_casi_unanime`).
 
 Los bloques para el alfa se forman con «Pregunta [aspecto]» o con un prefijo numerado
 (`Aportacion_item1`, `Dedicacion_2`…). Los encabezados de cantidades (horas, edad, hijos…;
@@ -64,7 +65,21 @@ Los bloques para el alfa se forman con «Pregunta [aspecto]» o con un prefijo n
 **Resumen «En pocas palabras»** (`services/motores/resumen.py`): frases en lenguaje sencillo
 con nivel `bien | info | atencion | alerta`, generadas con reglas fijas (sin LLM) a partir de
 las medidas. Se calcula al servir la vista final (`vistaFinal.resumen`), así que también
-aparece en limpiezas ya confirmadas. Guía para investigadores: `markdowns/METRICAS_LIMPIEZA.md`.
+aparece en limpiezas ya confirmadas. Cómo leer cada medida: `documentación/02_Desarrollo.md`, X.7.2.
+
+## Errores de archivos reales (2 nov)
+
+Medidos con los generadores de `tools/limpieza/` (versiones «no contempladas» de enc_06, pru_03 y ent_11).
+
+| Tipo | Se corrige solo (y se reporta) | Lo decide el investigador | No se detecta (limitación) |
+|---|---|---|---|
+| Todos | Acentos rotos («SÃ­» → «Sí», `motores/codificacion.py`); encabezado repetido a mitad del archivo | Fila corrida una columna o con celdas de más (`motores/filas.py`: reparar, eliminar o conservar) | — |
+| Encuestas | Coma decimal, número con su etiqueta («4 (De acuerdo)»), número con palabras, unidad («19 años») (`encuestas/numeros.py`); «Yes»/«S»/«True» en columnas Sí/No | Fila de totales o promedios; segunda fila con el texto de las preguntas; «1»/«0» en columnas Sí/No; opción poco frecuente casi igual a otra («Una vez al mse») (`encuestas/categorias.py`) | Sinónimos («Jamás»), «Otro: texto», casi duplicados con otro ID |
+| Pruebas | «B)», «(C)», «AA», letras de otro alfabeto, «N/R», «Sin respuesta», «-» (`tokens_no_respondida`) | Reactivo sin ninguna respuesta (conservar con 100 % NR o eliminar); ID escrito distinto («r0067», «R082») | Números en lugar de letras (1 → A), mismo alumno con otro ID |
+| Entrevistas | Encabezados y pies de página repetidos; minuto pegado a la etiqueta («Entrevistada (min 23):») | Anotaciones del transcriptor («[inaudible]», «(risas)»: quitar o conservar; lista en `anotaciones_transcriptor`); muletillas «eh», «mmm» (conservar, sugerido, o quitar; lista en `muletillas`) | Muletillas ambiguas («este», «o sea»), arranques en falso, errores del reconocimiento de voz, etiquetas abreviadas («E:») |
+
+Las letras espaciadas que empiezan con una palabra de una letra («o a n s i e d a d») se resuelven con el
+vocabulario del propio documento; si no alcanza, se unen y se avisa («uniones dudosas»).
 
 ## Pruebas
 
@@ -72,15 +87,14 @@ aparece en limpiezas ya confirmadas. Guía para investigadores: `markdowns/METRI
 cd services/cleaning-service; ..\..\.venv\Scripts\python.exe -m pytest tests -q
 ```
 
-## Pruebas estandarizadas: tipos de reactivo y clave propuesta
-- **Tipos calificables**, que cuentan en aciertos, puntaje y KR-20:
-  - opción múltiple (A–D);
-  - verdadero/falso (V/F);
-  - **puntos**: respuesta ya calificada 0..máx. El máximo cuenta como acierto y el parcial queda en la respuesta.
-- **No calificables**, que se conservan sin respuesta correcta: **escala** (1..máx, sin 0), **Sí/No** y **numérico** libre.
-- **La clave es opcional.** Si falta, `services/motores/pruebas/clave.py`:
-  1. Detecta los reactivos por sus valores.
-  2. Propone, para cada reactivo, la respuesta más elegida por el 27 % de mejor desempeño. Usa la columna de puntaje global (score, puntaje…) si existe; si no, el acuerdo entre alumnos.
-  3. Crea la decisión obligatoria `clave-confirmar`, más un hallazgo `clave:<reactivo>` por reactivo para corregir la propuesta.
+## Pruebas estandarizadas: tipos de reactivo (sin calificar)
+Indagata no califica las pruebas: no recibe clave de respuestas ni marca respuestas como correctas.
+`services/motores/pruebas/tipos.py` reconoce el tipo de cada columna por sus valores:
+- opción múltiple (A–D) y verdadero/falso (V/F);
+- **puntos**: enteros 0..máx con algún 0 (una respuesta corta ya puntuada);
+- **escala**: enteros 1..máx sin 0; **Sí/No**; **numérico** libre.
 
-  El reporte registra `clave_origen: inferida`, `tipos_reactivo` y `puntos_max`.
+Puntos, escala, Sí/No y numérico solo se reconocen si el encabezado parece un reactivo (P3, item_2…). En esas
+columnas se toleran respuestas sucias (ilegibles y de varias letras no cuentan; basta el 60 % de letras
+válidas). Las columnas de contexto (`services/configuracion.py::es_contexto`, la misma regla que en encuestas)
+se conservan al final del CSV limpio. El reporte registra `tipos_reactivo`, `orden_reactivos` y `puntos_max`.

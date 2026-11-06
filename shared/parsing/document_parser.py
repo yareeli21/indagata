@@ -113,7 +113,7 @@ def read_document(data: bytes, extension: str) -> ExtractedDocument:
     ext = extension.lower()
     if ext == ".pdf":
         return _read_pdf(data)
-    if ext == ".txt":
+    if ext in (".txt", ".vtt", ".srt"):  # subtítulos: texto plano (la limpieza quita las marcas)
         return _read_txt(data)
     if ext == ".docx":
         return _read_docx(data)

@@ -34,7 +34,8 @@ class ParserFamily(str, Enum):
 # ── Extensiones aceptadas por familia de parser ──────────────────────────────
 # En minúsculas y con el punto incluido.
 TABULAR_EXTENSIONS: frozenset[str] = frozenset({".csv", ".xlsx", ".xls"})
-DOCUMENTO_EXTENSIONS: frozenset[str] = frozenset({".pdf", ".txt", ".docx"})
+# .vtt / .srt: subtítulos de transcripciones automáticas (Teams, Zoom, Whisper), texto plano.
+DOCUMENTO_EXTENSIONS: frozenset[str] = frozenset({".pdf", ".txt", ".docx", ".vtt", ".srt"})
 
 
 # ── Formatos aceptados por tipo de instrumento ───────────────────────────────
@@ -42,7 +43,7 @@ DOCUMENTO_EXTENSIONS: frozenset[str] = frozenset({".pdf", ".txt", ".docx"})
 # el tipo de instrumento. El archivo ORIGINAL (raw_archivo_original) es, por su
 # naturaleza (el instrumento sin respuestas), siempre un DOCUMENTO.
 # Las pruebas estandarizadas se aceptan en ambas familias: tabular (respuestas de
-# los alumnos, p. ej. de un lector óptico; requiere la clave de respuestas) o
+# los alumnos, p. ej. de un lector óptico; no se califican, no hay clave) o
 # documento (el examen en texto, flujo anterior).
 FORMATOS_POR_TIPO: dict[TipoInstrumento, frozenset[str]] = {
     TipoInstrumento.ENCUESTA: TABULAR_EXTENSIONS,
@@ -57,10 +58,6 @@ FAMILIA_POR_TIPO: dict[TipoInstrumento, frozenset[ParserFamily]] = {
     TipoInstrumento.PRUEBA_ESTANDARIZADA: frozenset({ParserFamily.TABULAR, ParserFamily.DOCUMENTO}),
 }
 
-# Tipos cuyo archivo tabular exige además la CLAVE de respuestas (raw_archivo_clave).
-TIPOS_CON_CLAVE: frozenset[TipoInstrumento] = frozenset({TipoInstrumento.PRUEBA_ESTANDARIZADA})
-
-
 # ── Mapeo extensión -> MIME canónico ─────────────────────────────────────────
 # Se usa para enriquecer la respuesta y validar coherencia extensión/contenido.
 EXTENSION_TO_MIME: dict[str, str] = {
@@ -69,6 +66,8 @@ EXTENSION_TO_MIME: dict[str, str] = {
     ".xls": "application/vnd.ms-excel",
     ".pdf": "application/pdf",
     ".txt": "text/plain",
+    ".vtt": "text/vtt",
+    ".srt": "application/x-subrip",
     ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 }
 

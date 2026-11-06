@@ -161,6 +161,22 @@ def detectar_texto(valores: list[str | None], umbral: float) -> tuple[Likert | N
     return None, {"orden_propuesto": orden, "escala_parecida": nombre, "cobertura": round(cobertura, 4), "excluidos": excluidos}
 
 
+def posiciones(valor: str) -> set[int]:
+    """Posiciones (desde 1) que tiene `valor` en las escalas del diccionario («De acuerdo» → {4})."""
+    n = normalizar_texto(valor)
+    return {mapa[n] for mapa, _, _ in _diccionario().values() if n in mapa}
+
+
+def equivalente(valor: str, puntos: int) -> tuple[int, str, list[str]] | None:
+    """(posición 1..puntos, nombre de la escala, etiquetas) de `valor` en una escala del diccionario con `puntos`
+    opciones. «Totalmente de acuerdo» en una escala de 5 puntos → (5, "acuerdo", […])."""
+    n = normalizar_texto(valor)
+    for nombre, (mapa, canonicas, _) in _diccionario().items():
+        if n in mapa and len(canonicas) == puntos:
+            return mapa[n], nombre, canonicas
+    return None
+
+
 def likert_desde_orden(orden: list[str], excluidos: list[str], valores: list[str | None]) -> Likert:
     """Likert a partir de un orden confirmado por el investigador."""
     codigos = {normalizar_texto(e): i for i, e in enumerate(orden, start=1)}

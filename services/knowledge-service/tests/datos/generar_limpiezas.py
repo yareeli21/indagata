@@ -25,19 +25,18 @@ from services.motores.base import Entrada
 
 d = Path(sys.argv[1])
 casos = [
-    ("encuesta", "encuesta.csv", None),
-    ("entrevista", "entrevista.txt", None),
+    ("encuesta", "encuesta.csv"),
+    ("entrevista", "entrevista.txt"),
     # Varias entrevistas en un archivo (RESPONDENTE + preguntas numeradas), como ent_01.
-    ("entrevista_bloques", "entrevista_bloques.txt", None),
-    ("prueba_estandarizada", "prueba_respuestas.csv", "prueba_clave.csv"),
-    # Sintético real sin clave (opción múltiple + escala + Sí/No): la clave se propone.
-    ("prueba_sin_clave", "pru_04_respondido.csv", None),
+    ("entrevista_bloques", "entrevista_bloques.txt"),
+    ("prueba_estandarizada", "prueba_respuestas.csv"),
+    # Sintético real con varios tipos de reactivo (opción múltiple + escala + Sí/No).
+    ("prueba_mixta", "pru_04_respondido.csv"),
 ]
-for tipo, archivo, clave in casos:
+for tipo, archivo in casos:
     ext = Path(archivo).suffix
-    tipo_real = {"prueba_sin_clave": "prueba_estandarizada", "entrevista_bloques": "entrevista"}.get(tipo, tipo)
-    entrada = Entrada(1, tipo_real, archivo, ext, (d / archivo).read_bytes(),
-                      (d / clave).read_bytes() if clave else None, Path(clave).suffix if clave else None)
+    tipo_real = {"prueba_mixta": "prueba_estandarizada", "entrevista_bloques": "entrevista"}.get(tipo, tipo)
+    entrada = Entrada(1, tipo_real, archivo, ext, (d / archivo).read_bytes())
     motor = motores.obtener(tipo_real, ext)
     auto = motor.automatica(entrada)
     # Como «Confirmar limpieza» sin cambios: la sugerida o, en las obligatorias, la primera opción.

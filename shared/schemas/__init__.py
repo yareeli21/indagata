@@ -50,11 +50,6 @@ from shared.schemas.kpi_inferido_chunk import (
     KpiInferidoChunkCreate,
     KpiInferidoChunkRead,
 )
-from shared.schemas.kpi_variable import (
-    KPIVariableBase,
-    KPIVariableCreate,
-    KPIVariableRead,
-)
 from shared.schemas.metadatos_dc import (
     MetadatosDCBase,
     MetadatosDCCreate,
@@ -79,12 +74,17 @@ from shared.schemas.metadatos_pruebasestandarizadas import (
     MetadatosPruebasRead,
     MetadatosPruebasUpdate,
 )
-from shared.schemas.prompt import PromptBase, PromptCreate, PromptRead, PromptUpdate
 from shared.schemas.rag_log import RagLogBase, RagLogCreate, RagLogRead
+from shared.schemas.rag_evaluacion import RagCalificacionBase, RagCalificacionRead, RagMetricaJuezRead
 from shared.schemas.respuesta_interpretada import (
     RespuestaInterpretadaBase,
     RespuestaInterpretadaCreate,
     RespuestaInterpretadaRead,
+)
+from shared.schemas.tiempo_proceso import (
+    TiempoProcesoBase,
+    TiempoProcesoCreate,
+    TiempoProcesoRead,
 )
 from shared.schemas.raw_data import (
     RawDataBase,
@@ -97,18 +97,6 @@ from shared.schemas.usuario import (
     UsuarioCreate,
     UsuarioRead,
     UsuarioUpdate,
-)
-from shared.schemas.valor_variable_inferido import (
-    ValorVariableInferidoBase,
-    ValorVariableInferidoCreate,
-    ValorVariableInferidoRead,
-    ValorVariableInferidoUpdate,
-)
-from shared.schemas.variable import (
-    VariableBase,
-    VariableCreate,
-    VariableRead,
-    VariableUpdate,
 )
 
 # ── Alias de compatibilidad ──────────────────────────────────────────────────
@@ -158,47 +146,36 @@ __all__ = [
     "ColeccionVectorialCreate",
     "ColeccionVectorialUpdate",
     "ColeccionVectorialRead",
-    # prompt
-    "PromptBase",
-    "PromptCreate",
-    "PromptUpdate",
-    "PromptRead",
     # kpi
     "KPIBase",
     "KPICreate",
     "KPIUpdate",
     "KPIRead",
-    # variable
-    "VariableBase",
-    "VariableCreate",
-    "VariableUpdate",
-    "VariableRead",
     # kpi_fuente
     "KPIFuenteBase",
     "KPIFuenteCreate",
     "KPIFuenteRead",
-    # kpi_variable
-    "KPIVariableBase",
-    "KPIVariableCreate",
-    "KPIVariableRead",
     # kpi_inferido
     "KPIInferidoBase",
     "KPIInferidoCreate",
     "KPIInferidoUpdate",
     "KPIInferidoRead",
-    # valor_variable_inferido
-    "ValorVariableInferidoBase",
-    "ValorVariableInferidoCreate",
-    "ValorVariableInferidoUpdate",
-    "ValorVariableInferidoRead",
     # rag_log
     "RagLogBase",
     "RagLogCreate",
     "RagLogRead",
+    # rag_metrica_juez / rag_calificacion
+    "RagMetricaJuezRead",
+    "RagCalificacionBase",
+    "RagCalificacionRead",
     # respuesta_interpretada
     "RespuestaInterpretadaBase",
     "RespuestaInterpretadaCreate",
     "RespuestaInterpretadaRead",
+    # tiempo_proceso
+    "TiempoProcesoBase",
+    "TiempoProcesoCreate",
+    "TiempoProcesoRead",
     # documento_vectorizado
     "DocumentoVectorizadoBase",
     "DocumentoVectorizadoCreate",

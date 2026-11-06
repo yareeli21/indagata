@@ -313,3 +313,72 @@ def test_no_se_y_no_aplica_las_decide_el_investigador(cliente, db, storage, ejec
     rep = db.query(LimpiezaEjecucion).one().reporte
     assert rep["especifico"]["encuesta"]["no_respuestas"] == "vacias"
     assert any(t["regla"] == "no_respuestas_vaciadas" for t in rep["transformaciones"])
+
+
+def _encuesta_con(columnas: dict[str, list[str]]) -> bytes:
+    nombres = list(columnas)
+    return _csv(nombres, [list(f) for f in zip(*columnas.values())])
+
+
+def test_ip_en_espanol_y_columnas_de_valores_unicos_no_esconden_duplicados(cliente, db, storage):
+    """24 oct, errores inyectados: una «Dirección IP» no reconocida hacía única cada fila y 5 duplicados pasaron."""
+    n = 24
+    likert = [str(1 + (i * 7) % 5) for i in range(n)]
+    abierta = [f"Me gustaría que mejorara el servicio número {i}" for i in range(n)]
+    columnas = {
+        "Dirección IP": [f"189.203.0.{i}" for i in range(n + 2)],
+        "Folio interno": [f"F{i:03d}" for i in range(n + 2)],  # no está en los patrones: se ignora por ser único
+        "Califica del 1 al 5 tu satisfacción general con la carrera": likert + [likert[0], likert[1]],
+        "¿Qué tan de acuerdo estás con que los profesores explican con claridad?": ["De acuerdo"] * (n + 2),
+        "Comentarios adicionales sobre tu experiencia en la universidad": abierta + [abierta[0], "Otra respuesta distinta"],
+    }
+    id_crudo = crear_instrumento(db, storage, "ip.csv", _encuesta_con(columnas))
+    e = cliente.post(f"/limpieza/{id_crudo}/ejecuciones", headers=ANA).json()
+    assert any(h["tipo"] == "columna_ajena" and h["detalle"]["columna"] == "Dirección IP" for h in e["hallazgos"])
+    dup = next(h for h in e["hallazgos"] if h["tipo"] == "duplicados")
+    # La fila 25 repite la 1 (solo cambian IP y folio). La 26 difiere en su respuesta abierta: no es duplicado.
+    assert dup["detalle"]["filas"] == [n + 1]
+
+
+def test_no_se_en_una_escala_numerica_tambien_se_decide(cliente, db, storage):
+    """24 oct, errores inyectados: en una escala 1–5, «No sé» quedaba en el CSV limpio sin aviso."""
+    n = 30
+    valores = [str(1 + i % 5) for i in range(n)]
+    valores[4] = "No sé"
+    columnas = {"ID": [str(i) for i in range(n)], "Califica del 1 al 5 tu satisfacción general con la carrera": valores}
+    id_crudo = crear_instrumento(db, storage, "nose.csv", _encuesta_con(columnas))
+    e = cliente.post(f"/limpieza/{id_crudo}/ejecuciones", headers=ANA).json()
+    h = next(h for h in e["hallazgos"] if h["id"] == "no-respuestas")
+    assert "No sé" in h["detalle"]["ejemplos"]
+    cliente.patch(f"/limpieza/{id_crudo}/ejecuciones/1/decisiones", json={"decisiones": {"no-respuestas": "vaciar"}}, headers=ANA)
+    assert cliente.post(f"/limpieza/{id_crudo}/ejecuciones/1/confirmar", headers=ANA).status_code == 200
+    filas = _limpio(storage, db)
+    col = _col(filas[0], "califica_del_1_al_5")
+    assert filas[5][col] == "" and all(f[col] != "No sé" for f in filas[1:])
+
+
+def test_se_registra_el_tiempo_de_computo_de_cada_fase(cliente, db, ejecucion):
+    """La fase automática y la confirmación quedan en tiempo_proceso (para estimar la duración en un servidor)."""
+    from shared.models.tiempo_proceso import TiempoProceso
+
+    id_crudo, _ = ejecucion
+    assert cliente.post(f"/limpieza/{id_crudo}/ejecuciones/1/confirmar", headers=ANA).status_code in (200, 409)
+    filas = {t.paso: t for t in db.query(TiempoProceso).filter_by(id_crudo=id_crudo)}
+    assert "limpieza_automatica" in filas and filas["limpieza_automatica"].servicio == "cleaning"
+    assert filas["limpieza_automatica"].duracion_ms >= 0 and filas["limpieza_automatica"].detalle["hallazgos"] > 0
+
+
+@pytest.mark.parametrize(
+    ("encabezado", "esperado"),
+    [
+        # enc_11 (25 oct): con «_» pegado, estas columnas se proponían como pregunta.
+        ("nivel_ses", True), ("tiene_beca", True), ("primera_generacion", True), ("horas_trabajo_semana", True),
+        ("tipo_universidad", True), ("promedio_gpa", True), ("perfil", True), ("Turno", True),
+        # Ítems numerados y preguntas reales no son contexto.
+        ("Trabajo_equipo_item3", False), ("Compromiso_acad_item1", False), ("Ingreso mensual", False), ("P12", False),
+    ],
+)
+def test_columnas_de_contexto_con_guion_bajo(encabezado, esperado):
+    from services.configuracion import es_contexto
+
+    assert es_contexto(encabezado) is esperado

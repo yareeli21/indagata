@@ -124,6 +124,8 @@ class Analisis:
     texto: str = ""
     preguntas: list[Pregunta] = field(default_factory=list)
     dimensiones: list[str] = field(default_factory=list)
+    # Dimensiones confirmadas en la limpieza (sin secciones): textos de sus preguntas, para nombrarlas.
+    grupos_dimensiones: list[list[str]] = field(default_factory=list)
     palabras_clave: list[str] = field(default_factory=list)
     idioma: str = "es"
     n_registros: int | None = None
@@ -206,6 +208,14 @@ def titulo_desde_nombre(nombre: str) -> str:
 
 def _oraciones(texto: str) -> list[str]:
     return [o.strip() for o in re.split(r"(?<=[\.\!\?])\s+|\n+", texto) if o.strip()]
+
+
+_RE_REACTIVO = re.compile(r"^\s*(?:(?:p|pregunta|reactivo|[ií]tem)\s*)?\d{1,3}\s*[\.\)\-:]\s+\S", re.IGNORECASE)
+
+
+def _sin_reactivos(texto: str) -> str:
+    """El texto sin las líneas de preguntas numeradas ni preguntas con «?»."""
+    return "\n".join(l for l in texto.splitlines() if not _RE_REACTIVO.match(l) and "?" not in l)
 
 
 def _oracion_con(texto: str, patron: str, minimo: int = 20, maximo: int = 400) -> str:
@@ -355,7 +365,8 @@ def hallazgos_texto(texto: str, preguntas: list[Pregunta]) -> dict[str, str]:
         ),
         "competencias": _buscar(r"competencias?\s*[:\-]\s*([^\n]{5,300})", texto),
         "subareas": _buscar(r"(?:sub[áa]reas?|temas? evaluados?|contenidos?)\s*[:\-]\s*([^\n]{3,200})", texto),
-        "poblacion": _oracion_con(texto, r"\b(estudiantes|alumn[oa]s|docentes|profesor(es|as)|egresad[oa]s|padres de familia)\b", 15, 250),
+        # Fuera de los reactivos: «7. Los profesores están disponibles…» no es la población.
+        "poblacion": _oracion_con(_sin_reactivos(texto), r"\b(estudiantes|alumn[oa]s|docentes|profesor(es|as)|egresad[oa]s|padres de familia)\b", 15, 250),
         "taxonomia_bloom": _bloom(preguntas),
     }
     # La oración del objetivo suele mencionar a los estudiantes: no es la población.

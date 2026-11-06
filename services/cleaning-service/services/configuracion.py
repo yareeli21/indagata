@@ -10,6 +10,7 @@ esa tiene prioridad.
 from __future__ import annotations
 
 import os
+import re
 import unicodedata
 from functools import lru_cache
 from pathlib import Path
@@ -65,9 +66,34 @@ def recargar() -> None:
     escalas_likert.cache_clear()
 
 
+# Signos que no cambian el sentido de una respuesta cuando van al inicio o al final: «Nunca.», «¡Siempre!»,
+# «"De acuerdo"». Sin quitarlos, «Nunca.» no coincidía con «Nunca» y salía como valor fuera de rango (28 oct,
+# encuesta de 2000 respondentes: 19 valores).
+_BORDES = " 	.,;:!¡?¿\"'«»“”‘’`"
+
+
 def normalizar_texto(valor: str) -> str:
-    """Minúsculas, sin acentos y con espacios colapsados (para comparar con los diccionarios)."""
+    """Minúsculas, sin acentos, con espacios colapsados y sin signos al inicio o al final
+    (para comparar con los diccionarios)."""
     sin_acentos = "".join(
         c for c in unicodedata.normalize("NFD", valor) if unicodedata.category(c) != "Mn"
     )
-    return " ".join(sin_acentos.lower().split())
+    return " ".join(sin_acentos.lower().split()).strip(_BORDES)
+
+
+_SEPARADORES = re.compile(r"[_.\-/()]+")
+# Encabezado de un reactivo o ítem numerado (Trabajo_equipo_item3, P12, q_4): nunca es contexto.
+_ITEM_NUMERADO = re.compile(r"(^|\s)(item|ítem|reactivo|pregunta|preg|p|q)\s?\d+$")
+
+
+def es_contexto(encabezado: str) -> bool:
+    """¿El encabezado nombra un dato de contexto de la persona (turno, semestre, tiene_beca…)?
+
+    Busca palabras completas de `encuestas.palabras_contexto`; «_», «.», «-», «/» y paréntesis
+    cuentan como espacio, para que `nivel_ses` contenga «nivel». Los ítems numerados no son contexto.
+    """
+    texto = " ".join(_SEPARADORES.sub(" ", normalizar_texto(encabezado)).split())
+    if _ITEM_NUMERADO.search(texto):
+        return False
+    palabras = [normalizar_texto(p) for p in reglas()["encuestas"].get("palabras_contexto", [])]
+    return any(f" {p} " in f" {texto} " for p in palabras)

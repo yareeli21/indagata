@@ -28,6 +28,12 @@ class RawTable:
     encoding: str | None = None
     sheet: str | None = None
     notes: list[str] = field(default_factory=list)
+    # Celdas a las que la lectura les quitó espacios de borde: (fila, columna, valor crudo). La tabla ya viene
+    # recortada; esto solo permite que la limpieza REPORTE dónde hubo espacios de más (28 oct).
+    bordes: list[tuple[int, int, str]] = field(default_factory=list)
+    # Filas con un número de celdas distinto al del encabezado: (fila, celdas tal como venían). La tabla ya viene
+    # recortada o rellenada al ancho del encabezado; esto permite que la limpieza lo REPORTE y repare filas corridas.
+    irregulares: list[tuple[int, list[str]]] = field(default_factory=list)
 
     @property
     def n_rows(self) -> int:

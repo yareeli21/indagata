@@ -7,7 +7,7 @@ instrumento siguen corriendo sobre el documento (`consultas.py`).
 
 Qué va en cada columna según el tipo:
   encuesta    valor (código o texto original) · significado · nivel de la escala
-  prueba      opción elegida · su significado · nivel `correcta`/`incorrecta`
+  prueba      opción elegida · su significado · sin nivel (las pruebas no se califican)
   entrevista  la respuesta (texto) · sin nivel; `pregunta_id` vacío si el turno
               no se pudo asociar a una pregunta del guion
 """
@@ -39,9 +39,8 @@ def filas(doc: dict[str, Any], id_crudo: int, version: int) -> list[dict[str, An
                            "nivel": x.get("nivel"), "estado": x.get("estado") or "respondida", "contexto": r.get("contexto") or {}})
     for a in doc.get("alumnos") or []:
         for x in a.get("respuestas") or []:
-            nivel = "correcta" if x.get("correcta") is True else "incorrecta" if x.get("correcta") is False else None
             salida.append({**base, "respondente_id": a["id"], "pregunta_id": x["reactivo_id"], "valor": _texto(x.get("respuesta")),
-                           "significado": _texto(x.get("significado")), "nivel": nivel, "estado": x.get("estado") or "valida",
+                           "significado": _texto(x.get("significado")), "nivel": None, "estado": x.get("estado") or "valida",
                            "contexto": a.get("contexto") or {}})
     for e in doc.get("entrevistas") or []:
         for i in e.get("intercambios") or []:

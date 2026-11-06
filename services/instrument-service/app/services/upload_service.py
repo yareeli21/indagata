@@ -16,19 +16,22 @@ escritos en disco para no dejar huérfanos.
 from __future__ import annotations
 
 import logging
+import time
 
 from fastapi import HTTPException, UploadFile, status
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
-from app.config.constants import MAX_FILE_SIZE_BYTES, TIPOS_CON_CLAVE, ParserFamily, TipoInstrumento
+from app.config.constants import MAX_FILE_SIZE_BYTES, ParserFamily, TipoInstrumento
 from app.core import file_type_detector as detector
 from app.core.file_type_detector import FileType, FileTypeError
 from app.parsing import ParsedContent, ParseError, parse_file
 from app.schemas.upload import ArchivoRegistrado, ParseoArchivo, UploadResponse
 from app.storage import StorageError, StoredRef, get_storage
 from shared.models.instrumento_procesado import InstrumentoProcesado
+from shared.parsing.formato import motivo_rechazo_encuesta
 from shared.models.raw_data import RawData
+from shared import tiempos
 
 logger = logging.getLogger(__name__)
 
@@ -145,14 +148,20 @@ class UploadService:
             tipo_instrumento_raw: "encuesta" | "entrevista" | "prueba_estandarizada".
             archivo:              Archivo RESPONDIDO (raw_archivo), obligatorio.
             archivo_original:     Instrumento ORIGINAL sin respuestas, opcional.
-            archivo_clave:        Clave de respuestas de una prueba estandarizada tabular
-                                  (opcional: si falta, la limpieza propone una a partir de
-                                  las respuestas y el investigador la confirma).
+            archivo_clave:        Ya no se acepta (Indagata no califica las pruebas): si
+                                  llega un archivo, se responde 400.
 
         Returns:
             UploadResponse con id_crudo, id_instrumento y el resumen de archivos.
         """
         tipo = _parse_tipo(tipo_instrumento_raw)
+        if archivo_clave is not None and (archivo_clave.filename or "").strip():
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Indagata no califica las pruebas: sube solo la hoja de respuestas, sin clave de respuestas.",
+            )
+        # Tiempo de cómputo de la carga (lectura, parseo y guardado); se registra al final, ya con el id.
+        inicio_carga, t0_carga = tiempos._ahora(), time.perf_counter()
 
         # ── 1. Leer e identificar el archivo RESPONDIDO ──────────────────────
         content, file_type = await _read_and_identify(archivo, rol="respondido")
@@ -194,28 +203,14 @@ class UploadService:
             except ParseError as exc:
                 logger.warning("No se pudo parsear el archivo original: %s", exc)
 
-        # ── 3b. CLAVE de respuestas (pruebas estandarizadas tabulares) ────────
-        clave_content: bytes | None = None
-        clave_type: FileType | None = None
-        parsed_clave: ParsedContent | None = None
-        hay_clave = archivo_clave is not None and (archivo_clave.filename or "").strip()
-        # La clave solo aplica a pruebas en tabla y es OPCIONAL: sin ella, cleaning-service
-        # propone una con las respuestas de los alumnos de mejor desempeño.
-        admite_clave = tipo in TIPOS_CON_CLAVE and file_type.parser_family is ParserFamily.TABULAR
-        if hay_clave and admite_clave:
-            clave_content, clave_type = await _read_and_identify(archivo_clave, rol="de clave")
-            if clave_type.parser_family is not ParserFamily.TABULAR:
-                raise HTTPException(
-                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                    detail="La clave de respuestas debe ser una tabla (.csv, .xlsx o .xls).",
-                )
-            try:
-                parsed_clave = parse_file(clave_content, clave_type.extension, clave_type.parser_family)
-            except ParseError as exc:
-                raise HTTPException(
-                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                    detail=f"No se pudo leer la clave de respuestas: {exc}",
-                )
+        # ── 3a. Contrato de formato de las encuestas (documentación/02_Desarrollo.md, X.5.2) ──
+        # Formato largo, sin encabezados o códigos sin original: se rechaza con el motivo
+        # y lo que hay que hacer, en vez de procesarlo y responder mal después.
+        if tipo is TipoInstrumento.ENCUESTA and file_type.parser_family is ParserFamily.TABULAR:
+            motivo = motivo_rechazo_encuesta(parsed_resp.headers or [], parsed_resp.preview_rows or [],
+                                             hay_original=original_content is not None)
+            if motivo:
+                raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=motivo)
 
         # ── 4. Entregar los archivos al ALMACENAMIENTO (storage port) ────────
         # El servicio no decide dónde se guardan: delega en el puerto. Hoy el
@@ -223,15 +218,12 @@ class UploadService:
         almacenamiento = get_storage()
         stored_resp: StoredRef | None = None
         stored_orig: StoredRef | None = None
-        stored_clave: StoredRef | None = None
         try:
             stored_resp = almacenamiento.guardar(content, file_type.filename)
             if original_content is not None and original_type is not None:
                 stored_orig = almacenamiento.guardar(
                     original_content, original_type.filename
                 )
-            if clave_content is not None and clave_type is not None:
-                stored_clave = almacenamiento.guardar(clave_content, clave_type.filename)
 
             # ── 5. Persistir en BD: raw_data (padre) ─────────────────────────
             raw = RawData(
@@ -242,7 +234,6 @@ class UploadService:
                 raw_archivo_original=(
                     stored_orig.ruta if stored_orig is not None else None
                 ),
-                raw_archivo_clave=stored_clave.ruta if stored_clave is not None else None,
             )
             db.add(raw)
             db.flush()  # obtiene raw.id_crudo sin cerrar la transacción
@@ -263,8 +254,6 @@ class UploadService:
                 almacenamiento.eliminar(stored_resp.ruta)
             if stored_orig is not None:
                 almacenamiento.eliminar(stored_orig.ruta)
-            if stored_clave is not None:
-                almacenamiento.eliminar(stored_clave.ruta)
             logger.exception("Error al registrar el instrumento en la base de datos.")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -276,13 +265,17 @@ class UploadService:
                 almacenamiento.eliminar(stored_resp.ruta)
             if stored_orig is not None:
                 almacenamiento.eliminar(stored_orig.ruta)
-            if stored_clave is not None:
-                almacenamiento.eliminar(stored_clave.ruta)
             logger.exception("Error del almacenamiento al guardar los archivos crudos.")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail="No se pudieron almacenar los archivos del instrumento.",
             ) from exc
+
+        tiempos.registrar(
+            db, raw.id_crudo, "instrument", "carga", inicio_carga, tiempos._ahora(),
+            round((time.perf_counter() - t0_carga) * 1000),
+            {"archivo": file_type.filename, "bytes": len(content), "con_original": original_content is not None},
+        )
 
         # ── 7. Construir la respuesta ────────────────────────────────────────
         return UploadResponse(
@@ -296,11 +289,6 @@ class UploadService:
             archivo_original=(
                 _to_archivo_registrado(stored_orig, original_type, parsed_orig)
                 if stored_orig is not None and original_type is not None
-                else None
-            ),
-            archivo_clave=(
-                _to_archivo_registrado(stored_clave, clave_type, parsed_clave)
-                if stored_clave is not None and clave_type is not None
                 else None
             ),
         )

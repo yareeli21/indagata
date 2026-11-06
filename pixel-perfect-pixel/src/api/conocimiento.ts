@@ -1,10 +1,13 @@
 import type {
+  AnalisisEntrevista,
+  AnalisisRespuesta,
   DocumentoGenerado,
   DublinCore,
   KpiPropuesto,
   MetadatosTipo,
   PerfilGenerado,
   PropuestaKpis,
+  UnidadRespuesta,
 } from "@/types";
 import { dublinCoreAPayload } from "./carga";
 import { ANALYSIS_URL, API_URL, pedir } from "./client";
@@ -112,4 +115,34 @@ export function publicarDocumento(idCrudo: number, version: number): Promise<{ e
     method: "POST",
     auth: true,
   });
+}
+
+// ── Análisis de respuestas de entrevista (documento final en borrador) ─────────────
+
+/** Inicia el análisis en segundo plano (una consulta al modelo por respuesta). */
+export function analizarRespuestas(idCrudo: number): Promise<{ estado: string; total: number }> {
+  return pedir(`${API_URL}/conocimiento/${idCrudo}/documento/analisis`, {
+    method: "POST",
+    auth: true,
+  });
+}
+
+/** Avance y análisis de cada respuesta (unidades, núcleo, postura y motivo). */
+export function getAnalisisRespuestas(idCrudo: number): Promise<AnalisisEntrevista> {
+  return pedir<AnalisisEntrevista>(`${API_URL}/conocimiento/${idCrudo}/documento/analisis`, {
+    auth: true,
+  });
+}
+
+/** Corrección del investigador: la respuesta queda «revisada» y no se vuelve a analizar. */
+export function corregirAnalisis(
+  idCrudo: number,
+  participante: string,
+  n: number,
+  cambios: { unidades?: UnidadRespuesta[]; postura?: string; motivo?: string },
+): Promise<{ participante: string; n: number; analisis: AnalisisRespuesta }> {
+  return pedir(
+    `${API_URL}/conocimiento/${idCrudo}/documento/analisis/${encodeURIComponent(participante)}/${n}`,
+    { method: "PATCH", auth: true, body: cambios },
+  );
 }

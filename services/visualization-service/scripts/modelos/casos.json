@@ -1,0 +1,574 @@
+{
+ "instrumento": 127,
+ "esperado": {
+  "total": 2000,
+  "carga_maxima": [
+   [
+    486,
+    2000,
+    24.3
+   ]
+  ],
+  "doctorado": [
+   [
+    274,
+    2000,
+    13.7
+   ]
+  ],
+  "doctorado_primero": "R008",
+  "sin_certificacion": [
+   [
+    1327,
+    2000,
+    66.3
+   ],
+   [
+    1573,
+    2000,
+    78.7
+   ]
+  ],
+  "modalidades": [
+   "En linea",
+   "Mixta/hibrida",
+   "Presencial"
+  ],
+  "en_blanco": [
+   [
+    833
+   ],
+   [
+    833,
+    2000,
+    41.6
+   ],
+   [
+    1071
+   ]
+  ],
+  "afirmaciones": {
+   "p16": {
+    "validas": 1874,
+    "bajos": 476,
+    "pct_bajo": 25.4,
+    "desviacion": 1.26
+   },
+   "p17": {
+    "validas": 1911,
+    "bajos": 721,
+    "pct_bajo": 37.7,
+    "desviacion": 1.08
+   },
+   "p18": {
+    "validas": 1892,
+    "bajos": 699,
+    "pct_bajo": 36.9,
+    "desviacion": 1.15
+   }
+  },
+  "mas_desacuerdo": {
+   "pregunta": "p17",
+   "cifras": [
+    [
+     37.7
+    ],
+    [
+     721,
+     1911
+    ]
+   ]
+  },
+  "mas_dividida": {
+   "pregunta": "p16",
+   "cifras": [
+    [
+     1.26
+    ]
+   ]
+  },
+  "p13_alto": [
+   [
+    50.4
+   ]
+  ],
+  "carrera": "Inteligencia artificial",
+  "n_preguntas": 18,
+  "kpi_mas_relacionado": [
+   "Ratio de Matriculados frente a Graduados del Curso",
+   "Tasa de Continuidad en Estudios de Posgrado"
+  ],
+  "kpi_puntaje": 0.6194,
+  "version_respuestas": 1
+ },
+ "casos": [
+  {
+   "caso": 1,
+   "titulo": "KPI más relacionado",
+   "turnos": [
+    {
+     "texto": "qué KPI consideras que está más relacionado con el contenido de la encuesta?",
+     "tipo": "dato",
+     "intenciones": [
+      "kpi"
+     ],
+     "debe_mencionar_alguno": [
+      "Ratio de Matriculados frente a Graduados del Curso",
+      "Tasa de Continuidad en Estudios de Posgrado"
+     ],
+     "referencia": "El KPI más relacionado es «Ratio de Matriculados frente a Graduados del Curso» o «Tasa de Continuidad en Estudios de Posgrado» (puntaje 0.6194, el más alto de los aceptados)."
+    },
+    {
+     "texto": "Pero me estás regresando una pregunta interesante a tu parecer, y yo quiero el KPI que está más relacionado al instrumento, ¿cuál es? fundamentado",
+     "tipo": "dato",
+     "intenciones": [
+      "kpi"
+     ],
+     "debe_mencionar_alguno": [
+      "Ratio de Matriculados frente a Graduados del Curso",
+      "Tasa de Continuidad en Estudios de Posgrado"
+     ],
+     "referencia": "El KPI más relacionado con el instrumento es «Ratio de Matriculados frente a Graduados del Curso» o «Tasa de Continuidad en Estudios de Posgrado».",
+     "criterios": [
+      "Da un KPI, no una pregunta.",
+      "Fundamenta con la justificación o el puntaje de la asociación."
+     ]
+    },
+    {
+     "texto": "Me sigues dando una pregunta, el instrumento ya tiene KPIs asociados, cuál consideras que es el que tiene mayor relevancia con el contenido del instrumento?",
+     "tipo": "dato",
+     "intenciones": [
+      "kpi"
+     ],
+     "debe_mencionar_alguno": [
+      "Ratio de Matriculados frente a Graduados del Curso",
+      "Tasa de Continuidad en Estudios de Posgrado"
+     ],
+     "referencia": "El KPI con mayor relevancia es «Ratio de Matriculados frente a Graduados del Curso» o «Tasa de Continuidad en Estudios de Posgrado» (puntaje 0.6194)."
+    }
+   ]
+  },
+  {
+   "caso": 2,
+   "titulo": "Patrones interesantes y su significado",
+   "turnos": [
+    {
+     "texto": "qué patrones interesantes encontraste entre los alumnos que respondieron?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "hallazgo"
+     ],
+     "criterios": [
+      "Da un patrón con una cifra real del instrumento."
+     ]
+    },
+    {
+     "texto": "y eso, ¿qué puede significarse?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "hallazgo",
+      "resumen_pregunta"
+     ],
+     "criterios": [
+      "Sigue el hilo del patrón anterior.",
+      "Explica qué puede significar, sin inventar datos."
+     ]
+    },
+    {
+     "texto": "De acuerdo al análisis del instrumento, la relación con todas las preguntas, ¿qué puede significarse más a fondo ese patrón interesante que me dices? y ¿por qué?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "hallazgo",
+      "resumen_pregunta"
+     ],
+     "criterios": [
+      "Profundiza en el patrón anterior relacionándolo con otras preguntas, con cifras reales.",
+      "Fundamenta el porqué sin inventar datos."
+     ]
+    }
+   ]
+  },
+  {
+   "caso": 3,
+   "titulo": "Opinión sobre un dato",
+   "turnos": [
+    {
+     "texto": "¿qué opinas de que el 50.4% de respondentes estén dispuesto a volver a estudiar algo más adelante?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "resumen_pregunta",
+      "hallazgo"
+     ],
+     "debe_mencionar": [
+      "50.4"
+     ],
+     "criterios": [
+      "Reconoce el dato de p13 (50.4 % en nivel alto).",
+      "Da una opinión controlada basada en los datos."
+     ]
+    }
+   ]
+  },
+  {
+   "caso": 4,
+   "titulo": "Comparaciones",
+   "turnos": [
+    {
+     "texto": "compara los primeros 100 respondentes con los siguientes 100, ¿qué observas?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "comparar_grupos"
+     ],
+     "criterios": [
+      "Compara los dos bloques de respondentes o explica con claridad por qué no puede."
+     ],
+     "nota": "El plan no puede expresar rangos de respondentes (solo agrupa por variables de contexto)."
+    },
+    {
+     "texto": "Haz comparación entre los resultados de los primeros 100 respondentes y los siguientes (101-200), porque no estás entendiendo. Y dame un análisis de esos resultados.",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "comparar_grupos"
+     ],
+     "criterios": [
+      "Compara los dos bloques de respondentes con cifras reales o explica con claridad por qué no puede.",
+      "No responde con el mensaje de fuera de dominio."
+     ]
+    }
+   ]
+  },
+  {
+   "caso": 5,
+   "titulo": "Valor inexistente",
+   "turnos": [
+    {
+     "texto": "¿cuántos estudian en modalidad nocturna?",
+     "tipo": "inexistente",
+     "intenciones": [
+      "aclaracion",
+      "conteo_porcentaje"
+     ],
+     "debe_mencionar": [
+      "En linea",
+      "Mixta/hibrida",
+      "Presencial"
+     ],
+     "sin_cifras": true,
+     "referencia": "No existe la modalidad nocturna; las opciones de p02 son En linea, Mixta/hibrida, Presencial."
+    }
+   ]
+  },
+  {
+   "caso": 6,
+   "titulo": "Conteo y seguimiento sobre algo que no existe",
+   "turnos": [
+    {
+     "texto": "cuántos llevan carga máxima?",
+     "tipo": "dato",
+     "intenciones": [
+      "conteo_porcentaje"
+     ],
+     "cifras": [
+      [
+       486,
+       2000,
+       24.3
+      ]
+     ],
+     "referencia": "Llevan carga máxima 486 de 2000 respondentes (24.3 %)."
+    },
+    {
+     "texto": "De ellos que llevan carga máxima, ¿cuántos trabajan?",
+     "tipo": "inexistente",
+     "intenciones": [
+      "aclaracion",
+      "conteo_porcentaje"
+     ],
+     "sin_cifras": true,
+     "referencia": "El instrumento no tiene ninguna pregunta sobre si los estudiantes trabajan."
+    }
+   ]
+  },
+  {
+   "caso": 7,
+   "titulo": "Sin certificaciones",
+   "turnos": [
+    {
+     "texto": "¿cuántos y quiénes son los que no tienen certificaciones?",
+     "tipo": "dato",
+     "intenciones": [
+      "filtrar_respondentes",
+      "conteo_porcentaje"
+     ],
+     "cifras": [
+      [
+       1327,
+       2000,
+       66.3
+      ],
+      [
+       1573,
+       2000,
+       78.7
+      ]
+     ],
+     "referencia": "Según p11, 1327 de 2000 (66.3 %) no han presentado un examen de certificación; con quienes no lo aprobaron son 1573 (78.7 %).",
+     "nota": "Dos lecturas válidas de «no tienen certificaciones»."
+    }
+   ]
+  },
+  {
+   "caso": 8,
+   "titulo": "Control: filtro y respondente",
+   "turnos": [
+    {
+     "texto": "dime quiénes son los que tienen más de la mitad profesores que tienen doctorado?",
+     "tipo": "control",
+     "intenciones": [
+      "filtrar_respondentes"
+     ],
+     "cifras": [
+      [
+       274,
+       2000,
+       13.7
+      ]
+     ],
+     "referencia": "Cumplen la condición 274 de 2000 (13.7 %)."
+    },
+    {
+     "texto": "y, ¿qué respondió R008 a las demás preguntas?",
+     "tipo": "control",
+     "intenciones": [
+      "datos_respondente"
+     ],
+     "debe_mencionar": [
+      "R008"
+     ]
+    }
+   ]
+  },
+  {
+   "caso": 9,
+   "titulo": "Metadato: carrera",
+   "turnos": [
+    {
+     "texto": "a qué carrera está aplicada esta encuesta?",
+     "tipo": "dato",
+     "intenciones": [
+      "semantica_abierta",
+      "metodologia"
+     ],
+     "debe_mencionar": [
+      "Inteligencia artificial"
+     ],
+     "referencia": "La encuesta está aplicada a la carrera de Inteligencia artificial."
+    },
+    {
+     "texto": "Del instrumento actual con el que estamos trabajando",
+     "tipo": "dato",
+     "intenciones": [
+      "semantica_abierta",
+      "metodologia"
+     ],
+     "debe_mencionar": [
+      "Inteligencia artificial"
+     ],
+     "referencia": "La encuesta está aplicada a la carrera de Inteligencia artificial."
+    }
+   ]
+  },
+  {
+   "caso": 10,
+   "titulo": "Lo más preocupante y por qué",
+   "turnos": [
+    {
+     "texto": "qué es lo más preocupante que encuentras en las respuestas?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "hallazgo"
+     ],
+     "criterios": [
+      "Elige un dato realmente negativo (p. ej., desacuerdo en una afirmación) con su cifra.",
+      "La polaridad es coherente: que casi nunca cambien de profesor (p05) no es preocupante."
+     ]
+    },
+    {
+     "texto": "¿por qué consideras que es preocupante?, ¿en qué te basas para decir que es preocupante?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "hallazgo",
+      "resumen_pregunta"
+     ],
+     "criterios": [
+      "Fundamenta con los datos; no repite la pregunta."
+     ]
+    },
+    {
+     "texto": "te estoy preguntando que por qué consideras que el dato que me dijiste lo crees preocupante, en qué aspecto",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "hallazgo",
+      "resumen_pregunta"
+     ],
+     "criterios": [
+      "Fundamenta el dato anterior; no repite la pregunta."
+     ]
+    },
+    {
+     "texto": "Tú respóndeme",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "hallazgo",
+      "resumen_pregunta"
+     ],
+     "criterios": [
+      "Responde el porqué con los datos; no pide aclaración ni responde con un mensaje fijo."
+     ]
+    }
+   ]
+  },
+  {
+   "caso": 11,
+   "titulo": "Desacuerdo y opinión dividida",
+   "turnos": [
+    {
+     "texto": "¿en qué pregunta hay más desacuerdo?",
+     "tipo": "dato",
+     "intenciones": [
+      "hallazgo",
+      "resumen_pregunta"
+     ],
+     "debe_mencionar": [
+      "p17"
+     ],
+     "cifras": [
+      [
+       37.7
+      ],
+      [
+       721,
+       1911
+      ]
+     ],
+     "referencia": "La pregunta con más desacuerdo es p17: 37.7 % eligió 1 o 2 en la escala de acuerdo."
+    },
+    {
+     "texto": "¿qué opinión está más dividida?",
+     "tipo": "dato",
+     "intenciones": [
+      "hallazgo",
+      "resumen_pregunta"
+     ],
+     "debe_mencionar": [
+      "p16"
+     ],
+     "cifras": [
+      [
+       1.26
+      ]
+     ],
+     "referencia": "La opinión más dividida es p16 (desviación estándar 1.26)."
+    }
+   ]
+  },
+  {
+   "caso": 12,
+   "titulo": "De qué trata el instrumento",
+   "turnos": [
+    {
+     "texto": "¿de qué trata el instrumento?",
+     "tipo": "dato",
+     "intenciones": [
+      "semantica_abierta",
+      "metodologia"
+     ],
+     "cifras": [
+      [
+       18,
+       2000
+      ]
+     ],
+     "debe_mencionar": [
+      "calidad academica"
+     ],
+     "referencia": "Encuesta sobre la percepción de los estudiantes de la calidad académica de su institución: 18 preguntas y 2000 respondentes, carrera de Inteligencia artificial."
+    },
+    {
+     "texto": "pero dame el de qué trata más descriptivo, contextual",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "semantica_abierta",
+      "metodologia"
+     ],
+     "criterios": [
+      "Contextualiza el objetivo y las dimensiones con los metadatos reales; no inventa."
+     ]
+    }
+   ]
+  },
+  {
+   "caso": 13,
+   "titulo": "Secciones (con errata)",
+   "turnos": [
+    {
+     "texto": "el instrumento tiene secciones}'",
+     "tipo": "control",
+     "intenciones": [
+      "metodologia",
+      "semantica_abierta"
+     ],
+     "cifras": [
+      [
+       18
+      ]
+     ],
+     "referencia": "No tiene secciones en los datos: sus 18 preguntas forman un solo bloque.",
+     "nota": "La descripción del cuestionario dice «cinco secciones», pero los datos no traen encabezados de sección."
+    },
+    {
+     "texto": "qué secciones tiene?",
+     "tipo": "control",
+     "intenciones": [
+      "metodologia",
+      "semantica_abierta"
+     ],
+     "cifras": [
+      [
+       18
+      ]
+     ],
+     "referencia": "No tiene secciones en los datos: sus 18 preguntas forman un solo bloque."
+    }
+   ]
+  },
+  {
+   "caso": 14,
+   "titulo": "Respuestas en blanco",
+   "turnos": [
+    {
+     "texto": "hay respondentes que dejaron en blanco alugunas preguntas?",
+     "tipo": "dato",
+     "intenciones": [
+      "conteo_porcentaje",
+      "resumen_pregunta"
+     ],
+     "cifras": [
+      [
+       833
+      ],
+      [
+       833,
+       2000,
+       41.6
+      ],
+      [
+       1071
+      ]
+     ],
+     "referencia": "Sí: 833 de 2000 respondentes (41.6 %) dejaron al menos una pregunta en blanco (1071 respuestas vacías en total)."
+    }
+   ]
+  }
+ ]
+}

@@ -88,7 +88,7 @@ def _csv(tipo: str) -> list[dict]:
 def test_los_tres_tipos_cumplen_su_json_schema(tipo, con_original):
     doc = construir(tipo, con_original)
     assert documento.esquema.errores(doc) == []
-    version = "2.0" if tipo.startswith("entrevista") else "1.0"
+    version = "1.0" if tipo == "encuesta" else "2.0"  # entrevistas con análisis; pruebas sin calificar
     assert doc["esquema_version"] == version and doc["instrumento"]["id"] == "INS-0012"
 
 
@@ -208,30 +208,32 @@ def test_criterio_5_preguntas_que_miden_un_kpi_y_como_respondieron(enc):
     assert dist.get("De acuerdo", 0) + dist.get("Totalmente de acuerdo", 0) == esperado
 
 
-def test_criterio_6_reactivo_mas_dificil_y_alumnos_que_fallaron(pru):
+def test_criterio_6_que_respondieron_los_alumnos_en_cada_reactivo(pru):
+    """Las pruebas no se califican: cada reactivo dice qué eligieron los alumnos, igual que contar en el CSV."""
     filas = [f for f in _csv("prueba_estandarizada") if f["motivo"] != "duplicado"]
     por_reactivo: dict[str, list[dict]] = {}
     for f in filas:
         por_reactivo.setdefault(f["pregunta"], []).append(f)
-    pct = {p: round(100 * sum(f["correcta"] == "1" for f in fs) / len(fs), 1) for p, fs in por_reactivo.items()}
-    peor = min(pct, key=lambda p: (pct[p], p))
-    res = consultas.reactivo_mas_dificil(pru)
-    assert res["pct_acierto"] == pct[peor] and res["reactivo_id"] == f"INS-0012-r0{peor[1:]}"
-    erradas = [f["respuesta"] for f in por_reactivo[peor] if f["estado"] == "valida" and f["correcta"] == "0"]
-    if erradas:
-        mas = max(sorted(set(erradas)), key=erradas.count)
-        assert res["distractor_mas_elegido"]["opcion"] == mas
-    assert res["texto"]  # texto real del reactivo (del original)
-
-    fallaron = consultas.alumnos_que_fallaron_kpi(pru, "KPI-03")
-    orden = list(dict.fromkeys(f["id_alumno"] for f in filas))  # A001… en orden de aparición
-    for clave, reactivo in (("P4", "INS-0012-r04"), ("P5", "INS-0012-r05")):
-        esperado = [f"INS-0012-A{orden.index(f['id_alumno']) + 1:03d}" for f in por_reactivo[clave] if f["correcta"] != "1"]
-        assert fallaron[reactivo] == esperado
-    alumno = pru["alumnos"][0]
-    assert alumno["total"] == 5 and alumno["puntaje"] == sum(r["correcta"] for r in alumno["respuestas"])
-    assert alumno["contexto"] == {"turno": "Matutino"}
+    for reactivo in pru["reactivos"]:
+        fs = por_reactivo[reactivo["clave"]]
+        validas = [f["respuesta"].strip().upper() for f in fs if f["estado"] == "valida"]
+        mas = max(sorted(set(validas)), key=validas.count)
+        res = reactivo["resumen"]
+        assert res["opcion_mas_elegida"]["opcion"] == mas
+        assert res["opcion_mas_elegida"]["n"] == validas.count(mas)
+        assert res["n_nulas"] == sum(f["estado"] == "nula" for f in fs)
+        assert res["n_sin_respuesta"] == sum(f["estado"] == "NR" for f in fs)
+        assert sorted(res["opciones_sin_elegir"]) == sorted(o for o in "ABCD" if o not in validas)
+        assert not any(k in res for k in ("pct_acierto", "distractor_mas_elegido", "dificultad"))
+        assert "respuesta_correcta" not in reactivo
     assert pru["reactivos"][0]["opciones"]["A"] == "56"
+    assert pru["reactivos"][0]["resumen"]["interpretacion"].startswith("La opción más elegida fue «")
+
+    alumno = pru["alumnos"][0]
+    assert alumno["contexto"] == {"turno": "Matutino"}
+    assert alumno["n_respondidas"] + alumno["n_nulas"] + alumno["n_sin_respuesta"] == 5
+    assert not any(k in alumno for k in ("puntaje", "total", "porcentaje"))
+    assert all("correcta" not in r for r in alumno["respuestas"])
 
 
 def test_criterio_7_que_dijo_un_participante_sobre_un_tema(ent):
@@ -256,9 +258,9 @@ def test_cada_respuesta_lleva_el_texto_de_su_pregunta(enc, pru):
     assert all(x["pregunta"] == reactivos[x["reactivo_id"]] for x in pru["alumnos"][0]["respuestas"])
 
 
-def test_prueba_sin_clave_con_reactivos_no_calificables():
-    """Sintético real (pru_04): opción múltiple + escala 1–5 + Sí/No, con clave propuesta."""
-    datos = limpieza("prueba_sin_clave")
+def test_prueba_con_varios_tipos_de_reactivo():
+    """Sintético real (pru_04): opción múltiple + escala 1–5 + Sí/No, descritos sin calificar."""
+    datos = limpieza("prueba_mixta")
     filas = [dict(zip(datos["csv"]["headers"], f)) for f in datos["csv"]["rows"]]
     est = estructura.prueba(12, datos["reporte"], original.leer(texto_dato("pru_04_original.txt")))
     p = perfil.construir(12, "prueba_estandarizada", *METADATOS["prueba_estandarizada"], est)
@@ -267,18 +269,41 @@ def test_prueba_sin_clave_con_reactivos_no_calificables():
     tipos = [r["tipo_reactivo"] for r in doc["reactivos"]]
     assert tipos.count("opcion_multiple") == 6 and tipos.count("escala") == 8 and tipos.count("si_no") == 4
     escala = next(r for r in doc["reactivos"] if r["tipo_reactivo"] == "escala")
-    assert escala["calificable"] is False and escala["respuesta_correcta"] == "" and escala["resumen"]["pct_acierto"] is None
-    assert escala["resumen"]["interpretacion"].startswith("Media") and "no calificable" in escala["resumen"]["interpretacion"]
-    assert any(a["codigo"] == "clave_inferida" for a in doc["avisos"])
+    assert escala["resumen"]["interpretacion"].startswith("Media") and escala["resumen"]["media"] is not None
+    assert not any(a["codigo"] == "clave_inferida" for a in doc["avisos"])
     alumno = doc["alumnos"][0]
-    assert alumno["total"] == 6  # solo los reactivos calificables cuentan en el puntaje
+    assert alumno["n_respondidas"] + alumno["n_nulas"] + alumno["n_sin_respuesta"] == 18
     r_escala = next(x for x in alumno["respuestas"] if x["reactivo_id"] == escala["id"])
     assert "correcta" not in r_escala and r_escala["significado"].endswith("en escala 1–5")
-    r_sino = next(x for x in alumno["respuestas"] if x["reactivo_id"] == next(r["id"] for r in doc["reactivos"] if r["tipo_reactivo"] == "si_no"))
+    sino = next(r for r in doc["reactivos"] if r["tipo_reactivo"] == "si_no")
+    r_sino = next(x for x in alumno["respuestas"] if x["reactivo_id"] == sino["id"])
     assert r_sino["significado"] in ("Sí", "No")
-    assert "score_estimado" in alumno["contexto"]
-    # El reactivo más difícil solo se busca entre los calificables.
-    assert consultas.reactivo_mas_dificil(doc)["pct_acierto"] is not None
+    assert sino["resumen"]["opcion_mas_elegida"]["opcion"] in ("Sí", "No")
+    assert "tiene_beca" in alumno["contexto"] and "score_estimado" not in alumno["contexto"]
+
+
+def test_prueba_el_orden_de_los_reactivos_no_sale_del_jsonb():
+    """El reporte vuelve de PostgreSQL (JSONB) con las llaves reordenadas: el texto de cada reactivo debe
+    seguir cayendo en su columna (24 oct: en pru_10 los enunciados Likert quedaban en las de opción múltiple)."""
+    datos = limpieza("prueba_mixta")
+    filas = [dict(zip(datos["csv"]["headers"], f)) for f in datos["csv"]["rows"]]
+    orden_csv = list(dict.fromkeys(f["pregunta"] for f in filas))
+    reporte = copy.deepcopy(datos["reporte"])
+    esp = reporte["especifico"]["prueba_estandarizada"]
+    esp.pop("orden_reactivos", None)
+    esp["tipos_reactivo"] = dict(reversed(list(esp["tipos_reactivo"].items())))  # como lo devolvería JSONB
+    o = original.leer(texto_dato("pru_04_original.txt"))
+
+    revuelta = estructura.prueba(12, reporte, o)  # sin el orden real: el comportamiento anterior
+    assert revuelta.preguntas[0].tipo == "si_no"  # el texto de la pregunta 1 (escala) quedó en una columna Sí/No
+
+    ordenada = estructura.prueba(12, reporte, o, orden_columnas=[f["pregunta"] for f in filas])
+    assert [p.columna for p in ordenada.preguntas] == orden_csv
+    assert ordenada.preguntas[0].tipo == "escala" and ordenada.preguntas[0].texto == o.preguntas[0].texto
+    assert ordenada.preguntas[-1].tipo == "si_no" and ordenada.preguntas[-1].texto == o.preguntas[-1].texto
+
+    esp["orden_reactivos"] = orden_csv  # reportes nuevos: la lista guardada por la limpieza tiene prioridad
+    assert [p.columna for p in estructura.prueba(12, reporte, o).preguntas] == orden_csv
 
 
 # ── Entrevistas: solo pregunta y respuesta ─────────────────────────────────────
@@ -289,7 +314,7 @@ def test_entrevista_solo_texto_sin_estadisticas(ent, bloques):
         assert set(doc) == {"esquema_version", "instrumento", "kpis_asociados", "preguntas", "entrevistas", "avisos"}
         assert not any(k.startswith("n_") for k in doc["instrumento"])
         for e in doc["entrevistas"]:
-            assert set(e) == {"participante", "intercambios"}
+            assert set(e) - {"contexto"} == {"participante", "intercambios"}
             for i in e["intercambios"]:
                 assert set(i) <= {"pregunta_id", "pregunta", "respuesta"} and i["respuesta"]
 
@@ -308,11 +333,27 @@ def test_entrevista_con_bloques_de_respondentes(bloques):
     assert e01[1]["respuesta"] == "Sí, en el primer semestre, pero el orientador me ayudó a reorganizarme."
     # R0002 dejó P2 sin respuesta: no hay intercambio vacío.
     assert [i["pregunta_id"] for i in bloques["entrevistas"][1]["intercambios"]] == ["INS-0012-p01", "INS-0012-p03"]
-    # Ni el ID del bloque ni el contexto (edad, género…) llegan al documento.
+    # El ID del bloque no llega al documento; el contexto de cada persona sí, como en las encuestas (Fase 6, 2 nov:
+    # antes no entraba y el chat no podía responder «¿en qué turno estudia?»).
     texto = json.dumps(bloques, ensure_ascii=False)
-    assert "R0001" not in texto and "Edad" not in texto and "masculino" not in texto
+    assert "R0001" not in texto
+    assert bloques["entrevistas"][0]["contexto"] == {"Perfil": "P2 — Promedio comprometido", "Edad": "23",
+                                                     "Género": "masculino", "Semestre": "3"}
     respuestas = [f["texto"] for f in filas if f["rol"] == "entrevistado"]
     assert sorted(respuestas) == sorted(i["respuesta"] for e in bloques["entrevistas"] for i in e["intercambios"])
     servicios = consultas.preguntas_de_kpi(bloques, "KPI-11")
     assert [p["pregunta_id"] for p in servicios] == ["INS-0012-p03"]
     assert consultas.dijo(bloques, "E02", "tutorías")[0]["respuesta"] == "Ninguno, no sabía que existían las tutorías."
+
+
+def test_contexto_de_la_entrevista_sin_datos_personales():
+    """El contexto del bloque entra sin nombre, correo ni matrícula (la regla de las encuestas), con aviso."""
+    from services.documento.entrevista import _contextos
+
+    reporte = {"especifico": {"entrevista": {"participantes": [
+        {"id": "R0001", "contexto": {"Nombre": "Ana Ruiz", "Correo": "ana@x.mx", "Turno": "vespertino", "Edad": "22", "Carrera": ""}},
+        {"id": "R0002", "contexto": {}}]}}}
+    contextos = _contextos(reporte)
+    assert set(contextos) == {"R0001"}
+    assert sorted(contextos["R0001"].pop("__personales__")) == ["Correo", "Nombre"]
+    assert contextos["R0001"] == {"Turno": "vespertino", "Edad": "22"}

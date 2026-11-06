@@ -47,7 +47,6 @@ export function claseNivel(nivel: string | null | undefined): string {
 /** Explicación breve de cada medida, para el atributo title y las ayudas. */
 export const AYUDA = {
   alfa: "Alfa de Cronbach: qué tan consistentes son las respuestas a los ítems de un mismo bloque. ≥ 0.7 se considera aceptable.",
-  kr20: "KR-20: consistencia interna de una prueba con respuestas correctas/incorrectas. ≥ 0.7 se considera aceptable.",
   itemTotal:
     "Correlación ítem-total corregida: qué tanto se relaciona el ítem con el resto del bloque. Menor a 0.3 sugiere revisarlo.",
   alfaSiSeElimina:
@@ -58,10 +57,10 @@ export const AYUDA = {
     "Curtosis (en exceso): 0 es como la normal; positiva, más concentrada; negativa, más plana.",
   atipicos:
     "Atípicos según ±kσ (desviaciones estándar) y según el rango intercuartílico (Q1 − k·IQR, Q3 + k·IQR).",
-  dificultad:
-    "Índice de dificultad p: proporción de alumnos que acertaron. > 0.7 fácil, < 0.3 difícil.",
-  discriminacion:
-    "Índice de discriminación D: aciertos del 27 % con mejor puntaje menos los del 27 % con peor puntaje. ≥ 0.3 es bueno.",
-  puntoBiserial:
-    "Correlación punto-biserial corregida: relación entre acertar el reactivo y el puntaje en el resto de la prueba.",
+  opcionMasElegida:
+    "Opción más elegida: la respuesta que más alumnos marcaron en el reactivo. Las pruebas no se califican: no indica si es correcta.",
+  sinRespuesta:
+    "Sin respuesta válida: respuestas nulas (varias opciones, ilegibles o inválidas) más las no respondidas. Más del 20 % sugiere revisar el reactivo.",
+  casiUnanime:
+    "Casi unánime: al menos el 90 % de las respuestas válidas está en una sola opción; el reactivo apenas distingue entre alumnos.",
 } as const;

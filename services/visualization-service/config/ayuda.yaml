@@ -15,26 +15,26 @@ entradas:
       Limpieza, Dublin Core, Metadatos del tipo, Aprobar metadatos, KPIs sugeridos y Guardar. Puedes
       salir y retomar la carga después.
   - titulo: Paso 1, Archivo
-    claves: [archivo, formato, csv, excel, spss, pdf, docx, original, clave, tipo de instrumento]
+    claves: [archivo, formato, csv, excel, spss, pdf, docx, original, clave de respuestas, tipo de instrumento]
     texto: >-
       Elige el tipo de instrumento (encuesta, entrevista o prueba estandarizada), sube el archivo con
       las respuestas (CSV, Excel, SPSS, TXT, DOCX o PDF) y, de preferencia, el instrumento original con
-      las preguntas. En una prueba puedes subir la clave de respuestas; es opcional, porque si falta el
-      sistema propone una y tú la confirmas.
+      las preguntas. En una prueba se sube solo la hoja de respuestas de los alumnos: Indagata no
+      califica las pruebas, así que no se usa clave de respuestas.
   - titulo: Paso 2, Limpieza
     claves: [limpieza, limpiar, fase automatica, fase asistida, hallazgos, decisiones, columnas, hablantes, roles]
     texto: >-
       Primero el sistema hace una limpieza automática y te muestra «Lo que hicimos automáticamente».
       Después, en «Requiere tu decisión», revisas cada hallazgo con su opción sugerida: aceptar o
       rechazar columnas, el papel de cada columna (pregunta o dato de contexto), respuestas en línea
-      recta, el rol de cada hablante en una entrevista o la clave propuesta de una prueba. Las
+      recta, el rol de cada hablante en una entrevista o los alumnos repetidos de una prueba. Las
       decisiones obligatorias deben resolverse para confirmar. El archivo original nunca se modifica;
       cada repetición crea una versión nueva.
   - titulo: Estadística y vista final de la limpieza
-    claves: [estadistica, alfa, kr-20, antes y despues, vista previa, en pocas palabras]
+    claves: [estadistica, alfa, opcion mas elegida, antes y despues, vista previa, en pocas palabras]
     texto: >-
       Al confirmar la limpieza ves sus pestañas: «Estadística» (con el resumen «En pocas palabras», el
-      alfa de Cronbach por bloque en encuestas, KR-20, dificultad y discriminación en pruebas, o
+      alfa de Cronbach por bloque en encuestas, la distribución y la opción más elegida de cada reactivo en pruebas, o
       respuestas por pregunta en entrevistas), «Antes y después» y «Vista previa» del archivo limpio.
   - titulo: Pasos 3 y 4, metadatos
     claves: [dublin core, metadatos, metadatos del tipo, titulo, autor, campos]

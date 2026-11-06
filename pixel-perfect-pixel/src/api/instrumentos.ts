@@ -8,6 +8,7 @@ import type {
   NivelCoincidencia,
   NivelEducativo,
   RazonCoincidencia,
+  TiemposProceso,
   TipoInstrumento,
 } from "@/types";
 import { API_URL, ErrorHttp, avisarSesionExpirada, leerToken, pedir } from "./client";
@@ -57,6 +58,11 @@ function mapear(d: InstrumentoDTO): Instrumento {
 export async function getInstrumentos(): Promise<Instrumento[]> {
   const dtos = await pedir<InstrumentoDTO[]>(`${API_URL}/instrumentos`, { auth: true });
   return dtos.map(mapear);
+}
+
+/** Tiempo de cómputo de cada paso del procesamiento y latencia del chat (Pruebas: duración). */
+export async function getTiemposProceso(id: string): Promise<TiemposProceso> {
+  return pedir<TiemposProceso>(`${API_URL}/visualizacion/catalogo/${id}/tiempos`, { auth: true });
 }
 
 export async function getInstrumento(id: string): Promise<Instrumento | null> {

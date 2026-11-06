@@ -43,6 +43,8 @@ _MIME_EXTRA = {
     ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     ".pdf": "application/pdf",
     ".txt": "text/plain",
+    ".vtt": "text/vtt",
+    ".srt": "application/x-subrip",
 }
 
 # Prefijos que los backends ponen delante del nombre real ("3__" o "<uuid hex>__").

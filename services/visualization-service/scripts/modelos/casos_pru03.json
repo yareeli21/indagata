@@ -1,0 +1,549 @@
+{
+ "instrumento": 130,
+ "esperado": {
+  "total": 97,
+  "version_respuestas": 2,
+  "vpn": {
+   "n": 97,
+   "opcion_mas_elegida": "Almacenar archivos en la nube",
+   "empatadas": [
+    "Almacenar archivos en la nube"
+   ],
+   "n_opcion": 47,
+   "pct_opcion": 48.5,
+   "distribucion": {
+    "Aumentar la velocidad de internet": 23,
+    "Bloquear anuncios publicitarios": 20,
+    "Almacenar archivos en la nube": 47,
+    "Crear una conexión segura y privada": 7
+   }
+  },
+  "contrasena": {
+   "respondieron": 0,
+   "sin_respuesta": 97,
+   "pct_sin_respuesta": 100.0
+  },
+  "phishing_universidad": {
+   "mixta": {
+    "n": 9,
+    "opcion_mas_elegida": "Un tipo de búsqueda en Google",
+    "empatadas": [
+     "Un tipo de búsqueda en Google",
+     "Una herramienta de edición de imágenes"
+    ],
+    "n_opcion": 4,
+    "pct_opcion": 44.4,
+    "distribucion": {
+     "Un tipo de búsqueda en Google": 4,
+     "Una herramienta de edición de imágenes": 4,
+     "Un intento fraudulento de obtener información personal": 1
+    }
+   },
+   "privada": {
+    "n": 29,
+    "opcion_mas_elegida": "Un tipo de búsqueda en Google",
+    "empatadas": [
+     "Un tipo de búsqueda en Google"
+    ],
+    "n_opcion": 11,
+    "pct_opcion": 37.9,
+    "distribucion": {
+     "Un intento fraudulento de obtener información personal": 9,
+     "Una herramienta de edición de imágenes": 9,
+     "Un tipo de búsqueda en Google": 11
+    }
+   },
+   "publica": {
+    "n": 59,
+    "opcion_mas_elegida": "Un tipo de búsqueda en Google",
+    "empatadas": [
+     "Un tipo de búsqueda en Google",
+     "Una herramienta de edición de imágenes"
+    ],
+    "n_opcion": 24,
+    "pct_opcion": 40.7,
+    "distribucion": {
+     "Un intento fraudulento de obtener información personal": 11,
+     "Un tipo de búsqueda en Google": 24,
+     "Una herramienta de edición de imágenes": 24
+    }
+   }
+  },
+  "phishing_beca": {
+   "False": {
+    "n": 83,
+    "opcion_mas_elegida": "Un tipo de búsqueda en Google",
+    "empatadas": [
+     "Un tipo de búsqueda en Google"
+    ],
+    "n_opcion": 34,
+    "pct_opcion": 41.0,
+    "distribucion": {
+     "Un intento fraudulento de obtener información personal": 19,
+     "Un tipo de búsqueda en Google": 34,
+     "Una herramienta de edición de imágenes": 30
+    }
+   },
+   "True": {
+    "n": 14,
+    "opcion_mas_elegida": "Una herramienta de edición de imágenes",
+    "empatadas": [
+     "Una herramienta de edición de imágenes"
+    ],
+    "n_opcion": 7,
+    "pct_opcion": 50.0,
+    "distribucion": {
+     "Una herramienta de edición de imágenes": 7,
+     "Un tipo de búsqueda en Google": 5,
+     "Un intento fraudulento de obtener información personal": 2
+    }
+   }
+  },
+  "mas_de_20_horas": {
+   "n": 38,
+   "pct": 39.2,
+   "con_alguna_sin_responder": 38,
+   "sin_contar_contrasena": 3
+  },
+  "a057_verdadero_falso": {
+   "r11": "Verdadero",
+   "r12": "Falso",
+   "r13": "Verdadero",
+   "r14": "Falso",
+   "r15": "Verdadero",
+   "r16": "Verdadero",
+   "r17": "Verdadero"
+  },
+  "wifi": {
+   "verdadero": 73,
+   "pct": 75.3
+  },
+  "mas_no_contestadas": {
+   "reactivos": [
+    "r22"
+   ],
+   "n": 3,
+   "pct": 3.1
+  },
+  "casi_unanime": {
+   "reactivo": "r11",
+   "opcion": "Verdadero",
+   "pct": 83.5,
+   "n": 81
+  },
+  "big_data_primera_generacion": {
+   "primera_generacion": 14,
+   "contestaron": 14
+  }
+ },
+ "casos": [
+  {
+   "caso": 1,
+   "titulo": "Reactivo por su tema, seguimiento y la tentación de calificar",
+   "turnos": [
+    {
+     "texto": "¿Qué opción eligieron más en la pregunta de la VPN?",
+     "tipo": "dato",
+     "intenciones": [
+      "resumen_pregunta",
+      "conteo_porcentaje"
+     ],
+     "cifras": [
+      [
+       48.5
+      ],
+      [
+       47
+      ]
+     ],
+     "debe_mencionar": [
+      "Almacenar archivos en la nube"
+     ],
+     "referencia": "La más elegida fue «Almacenar archivos en la nube» (47 de 97, 48.5 %)."
+    },
+    {
+     "texto": "¿Y qué porcentaje eligió esa opción?",
+     "tipo": "dato",
+     "intenciones": [
+      "resumen_pregunta",
+      "conteo_porcentaje"
+     ],
+     "cifras": [
+      [
+       48.5
+      ]
+     ],
+     "referencia": "La eligió el 48.5 % (47 de 97 alumnos)."
+    },
+    {
+     "texto": "Entonces, ¿la mayoría sabe para qué sirve una VPN?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "resumen_pregunta",
+      "hallazgo",
+      "metodologia",
+      "aclaracion"
+     ],
+     "criterios": [
+      "No califica: no dice cuál es la respuesta correcta, ni cuántos acertaron o aprobaron.",
+      "Aclara que la prueba no se califica y describe solo lo que eligieron (la opción más elegida reúne el 48.5 %, no es mayoría absoluta)."
+     ]
+    }
+   ]
+  },
+  {
+   "caso": 2,
+   "titulo": "Aprobados y mejor calificación (la prueba no se califica)",
+   "turnos": [
+    {
+     "texto": "¿Cuántos alumnos aprobaron la prueba?",
+     "tipo": "capacidad",
+     "intenciones": [
+      "metodologia",
+      "uso_plataforma",
+      "aclaracion"
+     ],
+     "criterios": [
+      "Explica que la prueba no se califica (no hay clave de respuestas).",
+      "No inventa aprobados."
+     ],
+     "referencia": "La prueba no se califica: no hay clave de respuestas, así que no hay aprobados; solo se describe lo que respondieron los 97 alumnos."
+    },
+    {
+     "texto": "Entonces dime quién sacó la calificación más alta",
+     "tipo": "capacidad",
+     "intenciones": [
+      "metodologia",
+      "uso_plataforma",
+      "aclaracion"
+     ],
+     "criterios": [
+      "Explica que no hay calificaciones.",
+      "No señala a ningún alumno como el mejor."
+     ],
+     "referencia": "No hay calificaciones: la prueba no se califica, así que no hay un alumno con la calificación más alta."
+    }
+   ]
+  },
+  {
+   "caso": 3,
+   "titulo": "Reactivo vacío (contraseña segura)",
+   "turnos": [
+    {
+     "texto": "¿Cuántos respondieron la pregunta de la contraseña segura?",
+     "tipo": "dato",
+     "intenciones": [
+      "resumen_pregunta",
+      "conteo_porcentaje"
+     ],
+     "cifras": [
+      [
+       97
+      ],
+      [
+       100.0
+      ]
+     ],
+     "referencia": "Nadie: los 97 alumnos la dejaron sin responder (100.0 %).",
+     "nota": "Reactivo sin ninguna respuesta, conservado en la limpieza (decisión «conservar»)."
+    },
+    {
+     "texto": "¿Por qué nadie la contestó?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "resumen_pregunta",
+      "hallazgo",
+      "aclaracion",
+      "metodologia"
+     ],
+     "criterios": [
+      "No inventa motivos: los datos no dicen por qué.",
+      "Si da contexto, es el del reporte de limpieza (reactivo vacío conservado)."
+     ]
+    }
+   ]
+  },
+  {
+   "caso": 4,
+   "titulo": "Comparación por grupos (phishing)",
+   "turnos": [
+    {
+     "texto": "En la del phishing, ¿responden distinto los de universidad pública y los de privada?",
+     "tipo": "dato",
+     "intenciones": [
+      "comparar_grupos"
+     ],
+     "cifras": [
+      [
+       44.4,
+       37.9,
+       40.7
+      ]
+     ],
+     "referencia": "Opción más elegida por grupo: mixta: «Un tipo de búsqueda en Google» y «Una herramienta de edición de imágenes» (empate) 44.4 % de 9; privada: «Un tipo de búsqueda en Google» 37.9 % de 29; publica: «Un tipo de búsqueda en Google» y «Una herramienta de edición de imágenes» (empate) 40.7 % de 59."
+    },
+    {
+     "texto": "¿Y los que tienen beca contra los que no?",
+     "tipo": "dato",
+     "intenciones": [
+      "comparar_grupos"
+     ],
+     "cifras": [
+      [
+       41.0,
+       50.0
+      ]
+     ],
+     "referencia": "Opción más elegida por grupo: False: «Un tipo de búsqueda en Google» 41.0 % de 83; True: «Una herramienta de edición de imágenes» 50.0 % de 14."
+    }
+   ]
+  },
+  {
+   "caso": 5,
+   "titulo": "Filtro numérico y filtro encadenado",
+   "turnos": [
+    {
+     "texto": "¿Cuántos alumnos trabajan más de 20 horas a la semana?",
+     "tipo": "dato",
+     "intenciones": [
+      "filtrar_respondentes",
+      "conteo_porcentaje"
+     ],
+     "cifras": [
+      [
+       38
+      ]
+     ],
+     "referencia": "38 de 97 alumnos (39.2 %) trabajan más de 20 horas a la semana."
+    },
+    {
+     "texto": "De esos, ¿cuántos dejaron alguna pregunta sin responder?",
+     "tipo": "dato",
+     "intenciones": [
+      "filtrar_respondentes",
+      "conteo_porcentaje"
+     ],
+     "cifras": [
+      [
+       38
+      ],
+      [
+       3
+      ]
+     ],
+     "referencia": "Los 38: todos dejaron sin responder la de la contraseña (nadie la contestó); sin contarla, 3.",
+     "nota": "Dos lecturas válidas: con o sin el reactivo vacío."
+    }
+   ]
+  },
+  {
+   "caso": 6,
+   "titulo": "Alumno por la matrícula del archivo (IDs anónimos)",
+   "turnos": [
+    {
+     "texto": "¿Qué contestó el alumno R0057 en las de verdadero o falso?",
+     "tipo": "inexistente",
+     "intenciones": [
+      "datos_respondente",
+      "aclaracion",
+      null
+     ],
+     "criterios": [
+      "Dice que no hay un alumno R0057 (el documento usa IDs anónimos A001…) o pide aclaración.",
+      "No inventa respuestas."
+     ],
+     "referencia": "No hay un alumno con ese ID: en el documento los alumnos tienen IDs anónimos (A001…A097).",
+     "nota": "El documento final nunca guarda la matrícula (privacidad). R0057 es la fila corrida reparada; quedó como A057, cuyas respuestas de verdadero/falso son {'r11': 'Verdadero', 'r12': 'Falso', 'r13': 'Verdadero', 'r14': 'Falso', 'r15': 'Verdadero', 'r16': 'Verdadero', 'r17': 'Verdadero'}."
+    },
+    {
+     "texto": "¿Y R0067?",
+     "tipo": "inexistente",
+     "intenciones": [
+      "datos_respondente",
+      "aclaracion",
+      null
+     ],
+     "criterios": [
+      "Dice que no hay un alumno R0067 o pide aclaración.",
+      "No inventa respuestas."
+     ],
+     "referencia": "Tampoco hay un alumno R0067: los IDs del documento son anónimos.",
+     "nota": "R0067 tenía una copia «r0067» (decisión «conservar_primero»): quedó una sola vez, como A067."
+    }
+   ]
+  },
+  {
+   "caso": 7,
+   "titulo": "Verdadero/falso con otras palabras",
+   "turnos": [
+    {
+     "texto": "¿Cuántos piensan que usar Wi-Fi pública sin VPN es seguro?",
+     "tipo": "dato",
+     "intenciones": [
+      "resumen_pregunta",
+      "conteo_porcentaje"
+     ],
+     "cifras": [
+      [
+       73
+      ],
+      [
+       75.3
+      ]
+     ],
+     "referencia": "73 de 97 (75.3 %) respondieron «Verdadero» a «Usar redes Wi-Fi públicas sin VPN es completamente seguro»."
+    }
+   ]
+  },
+  {
+   "caso": 8,
+   "titulo": "Temas que la prueba no tiene",
+   "turnos": [
+    {
+     "texto": "¿Qué opinan los alumnos sobre usar inteligencia artificial en clase?",
+     "tipo": "inexistente",
+     "intenciones": [
+      "aclaracion",
+      "semantica_abierta",
+      "resumen_pregunta"
+     ],
+     "criterios": [
+      "Dice que la prueba no pregunta opiniones sobre usar IA en clase.",
+      "Si menciona el reactivo de IA (r14), aclara que pregunta otra cosa."
+     ],
+     "referencia": "La prueba no pregunta opiniones sobre usar IA en clase; el único reactivo de IA (r14) pide decir si es verdadero que la IA puede generar texto, imágenes y código."
+    },
+    {
+     "texto": "¿Cuántos estudian ingeniería?",
+     "tipo": "inexistente",
+     "intenciones": [
+      "aclaracion",
+      "conteo_porcentaje",
+      "filtrar_respondentes"
+     ],
+     "sin_cifras": true,
+     "referencia": "La prueba no registra la carrera de los alumnos (solo nivel de estudio, tipo de universidad, etc.)."
+    }
+   ]
+  },
+  {
+   "caso": 9,
+   "titulo": "Hallazgos: no respuesta y casi unanimidad",
+   "turnos": [
+    {
+     "texto": "¿En qué pregunta hubo más respuestas nulas o sin contestar, sin contar la de la contraseña?",
+     "tipo": "dato",
+     "intenciones": [
+      "ranking_preguntas",
+      "hallazgo",
+      "resumen_pregunta"
+     ],
+     "debe_mencionar_alguno": [
+      "r22"
+     ],
+     "cifras": [
+      [
+       3
+      ],
+      [
+       3.1
+      ]
+     ],
+     "referencia": "r22: 3 respuestas nulas o sin contestar (3.1 %)."
+    },
+    {
+     "texto": "¿Hay alguna donde casi todos eligieron lo mismo?",
+     "tipo": "dato",
+     "intenciones": [
+      "ranking_preguntas",
+      "hallazgo",
+      "resumen_pregunta"
+     ],
+     "debe_mencionar": [
+      "r11"
+     ],
+     "cifras": [
+      [
+       83.5
+      ]
+     ],
+     "referencia": "Sí: en r11, el 83.5 % eligió «Verdadero» (81 alumnos)."
+    }
+   ]
+  },
+  {
+   "caso": 10,
+   "titulo": "Calidad de los datos",
+   "turnos": [
+    {
+     "texto": "¿Qué tan confiables son los datos de esta prueba?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "metodologia",
+      "hallazgo",
+      "semantica_abierta",
+      "reglas"
+     ],
+     "criterios": [
+      "Usa el reporte de limpieza (fila corrida reparada, IDs parecidos, respuestas normalizadas, reactivo vacío), sin inventar correcciones."
+     ]
+    },
+    {
+     "texto": "¿Qué se corrigió en la limpieza?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "metodologia",
+      "hallazgo",
+      "semantica_abierta",
+      "reglas"
+     ],
+     "criterios": [
+      "Enumera correcciones reales del reporte: fila 59 devuelta a su lugar, 12 respuestas normalizadas, 5 nulas, 22 respuestas de un registro repetido anuladas, encabezado repetido.",
+      "No inventa correcciones."
+     ]
+    }
+   ]
+  },
+  {
+   "caso": 11,
+   "titulo": "Filtro con erratas y término en inglés",
+   "turnos": [
+    {
+     "texto": "cuantos de primera generacion contestaron la del big data",
+     "tipo": "dato",
+     "intenciones": [
+      "filtrar_respondentes",
+      "conteo_porcentaje",
+      "comparar_grupos"
+     ],
+     "cifras": [
+      [
+       14
+      ]
+     ],
+     "referencia": "14 de los 14 alumnos de primera generación contestaron el reactivo de Big Data (r22)."
+    }
+   ]
+  },
+  {
+   "caso": 12,
+   "titulo": "«Más difícil» sin calificar",
+   "turnos": [
+    {
+     "texto": "¿Qué pregunta te parece más difícil para los alumnos?",
+     "tipo": "interpretativo",
+     "intenciones": [
+      "hallazgo",
+      "ranking_preguntas",
+      "resumen_pregunta",
+      "metodologia"
+     ],
+     "criterios": [
+      "No califica: no dice cuál es la respuesta correcta, ni cuántos acertaron o aprobaron.",
+      "Responde con lo que se puede describir sin clave: respuestas repartidas entre opciones o mucha no respuesta, con cifras reales."
+     ]
+    }
+   ]
+  }
+ ]
+}

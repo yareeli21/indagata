@@ -1,0 +1,24 @@
+[
+  {
+    "clave": "D01",
+    "descripcion": "Docentes: etiquetas «Entrevistadora:/Docente:» y bloques",
+    "nivel": "ideal",
+    "archivo": "D01_transcripcion.txt",
+    "original": "guion_original.txt",
+    "participantes": 4,
+    "pregunta_postura": "¿Cuántos docentes entrevistados usan rúbricas actualmente para evaluar a sus estudiantes?",
+    "pregunta_dijo": "¿Qué dijo el participante E02 sobre la capacitación?",
+    "dijo_contiene": "diplomado"
+  },
+  {
+    "clave": "D02",
+    "descripcion": "Docentes: transcripción de Zoom, grupal",
+    "nivel": "aceptado",
+    "archivo": "D02_zoom.txt",
+    "original": "guion_original.txt",
+    "participantes": 4,
+    "pregunta_postura": "¿Cuántos docentes entrevistados usan rúbricas actualmente para evaluar a sus estudiantes?",
+    "pregunta_dijo": "¿Qué dijo el participante E02 sobre la capacitación?",
+    "dijo_contiene": "diplomado"
+  }
+]

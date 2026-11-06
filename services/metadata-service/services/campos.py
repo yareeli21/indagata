@@ -48,7 +48,7 @@ CAMPOS_DC: tuple[Campo, ...] = (
     Campo("dc_coverage", "Cobertura", requerido=True, ayuda="Nivel educativo y alcance (población, lugar, periodo)."),
     Campo("dc_publisher", "Editor", requerido=True, automatico=True, ayuda="Institución que pone a disposición el instrumento."),
     Campo("dc_rights", "Derechos", requerido=True, max_longitud=255, ayuda="Licencia o condiciones de uso."),
-    Campo("dc_format", "Formato", requerido=True, automatico=True, max_longitud=50),
+    Campo("dc_format", "Formato", requerido=True, automatico=True, max_longitud=120),
     Campo("dc_source", "Fuente", requerido=True, automatico=True, ayuda="Archivo u obra de origen."),
     Campo("dc_relation", "Relación", ayuda="Instrumentos o proyectos relacionados (opcional)."),
 )

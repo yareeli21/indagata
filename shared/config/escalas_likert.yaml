@@ -78,7 +78,7 @@ escalas:
     neutral: 3
     niveles: { bajo: baja, medio: media, alto: alta }
     etiquetas:
-      - ["muy malo", "muy mala", "pésimo", "pésima"]
+      - ["muy malo", "muy mala", "pésimo", "pésima", "muy deficiente"]
       - ["malo", "mala", "deficiente"]
       - ["regular", "aceptable"]
       - ["bueno", "buena"]

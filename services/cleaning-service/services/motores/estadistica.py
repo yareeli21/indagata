@@ -5,14 +5,11 @@
   curtosis en exceso (G2), con las fórmulas muestrales de Excel/SPSS.
 - Frecuencias y moda de variables categóricas, binarias y Likert.
 - Atípicos por ±kσ o por rango intercuartílico (Q1 − k·IQR, Q3 + k·IQR).
-- Fiabilidad: alfa de Cronbach (con «alfa si se elimina el ítem» y correlación
-  ítem-total corregida) y KR-20 para reactivos dicotómicos.
-- Análisis de reactivos: índice de dificultad (p), índice de discriminación D con
-  grupos extremos del 27 % y correlación punto-biserial corregida.
+- Fiabilidad de las encuestas: alfa de Cronbach (con «alfa si se elimina el ítem» y
+  correlación ítem-total corregida), interpretada con George y Mallery (2003).
 
-Las interpretaciones siguen criterios usuales en investigación educativa:
-alfa (George y Mallery, 2003), dificultad (p > 0.7 fácil, < 0.3 difícil) y
-discriminación (Ebel: ≥ 0.4 excelente, ≥ 0.3 buena, ≥ 0.2 regular, < 0.2 pobre).
+Las pruebas estandarizadas no se califican (no hay clave de respuestas), así que aquí no
+hay KR-20 ni análisis de dificultad o discriminación.
 """
 from __future__ import annotations
 
@@ -194,71 +191,3 @@ def cronbach(matriz: list[list[float | None]], items: list[str], min_casos: int 
         "interpretacion": interpretar_alfa(alfa),
         "por_item": por_item,
     }
-
-
-def kr20(matriz: list[list[int]]) -> float | None:
-    """Kuder-Richardson 20 para reactivos dicotómicos (1 = correcta, 0 = incorrecta)."""
-    k = len(matriz[0]) if matriz else 0
-    if k < 2 or len(matriz) < 2:
-        return None
-    var_total = statistics.pvariance([sum(f) for f in matriz])
-    if var_total == 0:
-        return None
-    n = len(matriz)
-    pq = 0.0
-    for j in range(k):
-        p = sum(f[j] for f in matriz) / n
-        pq += p * (1 - p)
-    return k / (k - 1) * (1 - pq / var_total)
-
-
-# ── Análisis de reactivos ──────────────────────────────────────────────────────
-
-
-def nivel_dificultad(p: float | None) -> str | None:
-    if p is None:
-        return None
-    if p > 0.7:
-        return "fácil"
-    if p >= 0.3:
-        return "media"
-    return "difícil"
-
-
-def nivel_discriminacion(d: float | None) -> str | None:
-    """Criterios de Ebel."""
-    if d is None:
-        return None
-    if d >= 0.4:
-        return "excelente"
-    if d >= 0.3:
-        return "buena"
-    if d >= 0.2:
-        return "regular"
-    return "pobre"
-
-
-def analisis_reactivos(matriz: list[list[int]], grupo: float = 0.27) -> list[dict[str, Any]]:
-    """Por reactivo: dificultad p, discriminación D (grupos extremos) y punto-biserial corregida."""
-    n = len(matriz)
-    k = len(matriz[0]) if matriz else 0
-    totales = [sum(f) for f in matriz]
-    orden = sorted(range(n), key=lambda i: totales[i])
-    tam = max(1, round(grupo * n)) if n >= 4 else 0
-    bajos, altos = orden[:tam], orden[-tam:] if tam else []
-    salida = []
-    for j in range(k):
-        columna = [f[j] for f in matriz]
-        p = sum(columna) / n if n else None
-        d = (sum(matriz[i][j] for i in altos) - sum(matriz[i][j] for i in bajos)) / tam if tam else None
-        rpb = pearson([float(x) for x in columna], [float(t - x) for t, x in zip(totales, columna)])
-        salida.append(
-            {
-                "dificultad": _r(p),
-                "nivel_dificultad": nivel_dificultad(p),
-                "discriminacion": _r(d),
-                "nivel_discriminacion": nivel_discriminacion(d),
-                "correlacion_punto_biserial": _r(rpb),
-            }
-        )
-    return salida

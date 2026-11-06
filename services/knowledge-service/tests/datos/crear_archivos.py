@@ -82,17 +82,17 @@ BLOQUE 2: PLAN DE ESTUDIOS
 3. ¿Qué cambiarías del plan de estudios?
 """, encoding="utf-8")
 
-clave = {"P1": "A", "P2": "C", "P3": "B", "P4": "D", "P5": "A"}
-with open(D / "prueba_clave.csv", "w", newline="", encoding="utf-8") as f:
-    w = csv.writer(f); w.writerow(["pregunta", "respuesta"]); w.writerows(clave.items())
+# Indagata no califica las pruebas: no hay clave. Cada reactivo tiene una opción que se elige
+# más a menudo (cada vez menos marcada), para que la distribución tenga una «opción más elegida».
+frecuente = {"P1": "A", "P2": "C", "P3": "B", "P4": "D", "P5": "A"}
 with open(D / "prueba_respuestas.csv", "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f, delimiter=";")
-    w.writerow(["matricula", "turno", *clave])
+    w.writerow(["matricula", "turno", *frecuente])
     for a in range(12):
         fila = [f"2026{a:04d}", "Matutino" if a % 2 == 0 else "Vespertino"]
-        for k, (p, c) in enumerate(clave.items()):
-            acierto = random.random() < (0.85 - 0.15 * k)
-            fila.append(c if acierto else random.choice([o for o in "ABCD" if o != c]))
+        for k, (p, c) in enumerate(frecuente.items()):
+            elige = random.random() < (0.85 - 0.15 * k)
+            fila.append(c if elige else random.choice([o for o in "ABCD" if o != c]))
         w.writerow(fila)
     w.writerow(["20260012", "Vespertino", "AB", "", "*", "D", "A"])
 (D / "prueba_original.txt").write_text("""Examen diagnóstico de matemáticas

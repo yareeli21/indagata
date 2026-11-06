@@ -118,12 +118,23 @@ class AppSettings(BaseSettings):
     # Métricas automáticas por respuesta (visualization-service/services/evaluacion.py):
     # fidelidad, relevancia y precisión del contexto, en segundo plano, con un juez local.
     RAG_METRICAS: bool = True
+    # Métricas bajo demanda (28 oct): se calculan solo cuando la persona abre la evaluación de una respuesta. El juez
+    # y el redactor no caben juntos en una GPU de 4 GiB; evaluar cada respuesta en segundo plano recargaba el modelo
+    # y la pregunta siguiente pasaba de 4–8 s a 31–38 s. False = evaluar todas en segundo plano, como antes.
+    RAG_METRICAS_BAJO_DEMANDA: bool = True
     RAG_JUEZ_MODELO: str = ""  # vacío = OLLAMA_MODEL; cámbialo por un juez más grande cuando haya
     RAG_CLASIFICADOR_LLM: bool = True
     RAG_CLASIFICADOR_MODELO: str = ""  # vacío = OLLAMA_MODEL
     # Consultas con filtro («los que sí reprobaron…»): si las reglas no hallan la
     # condición, Ollama la propone y se valida contra el catálogo del documento.
     RAG_FILTRO_LLM: bool = True
+    # Etapa de interpretación del chat (visualization-service/services/interpretacion.py): el LLM convierte la
+    # pregunta en un plan JSON validado contra el catálogo del instrumento. Vacío = OLLAMA_MODEL.
+    RAG_INTERPRETACION_LLM: bool = True
+    RAG_INTERPRETACION_MODELO: str = ""
+    # Temperatura de la REDACCIÓN del chat (la interpretación, los clasificadores y el juez van en 0). 0.2 desde el
+    # inicio; configurable para un experimento aparte (0 / 0.2 / 0.7). No se mueve al comparar modelos.
+    RAG_TEMPERATURA_REDACCION: float = 0.2
     # Caché de respuestas: una pregunta idéntica (mismo alcance, versiones vigentes,
     # contexto y modelo) se responde con la guardada sin llamar a Ollama. 0 = sin caché.
     RAG_CACHE_HORAS: float = 24

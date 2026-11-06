@@ -146,10 +146,26 @@ def test_filas_de_prueba_y_entrevista():
     from services import respuestas
 
     prueba = {"alumnos": [{"id": "INS-1-A001", "contexto": {"turno": "Vespertino"}, "respuestas": [
-        {"reactivo_id": "INS-1-r01", "respuesta": "B", "correcta": False, "estado": "valida", "significado": "54"}]}]}
+        {"reactivo_id": "INS-1-r01", "respuesta": "B", "estado": "valida", "significado": "54"}]}]}
     [f] = respuestas.filas(prueba, 1, 3)
-    assert (f["respondente_id"], f["pregunta_id"], f["valor"], f["nivel"], f["contexto"]) == ("INS-1-A001", "INS-1-r01", "B", "incorrecta", {"turno": "Vespertino"})
+    # Las pruebas no se califican: sin nivel «correcta/incorrecta».
+    assert (f["respondente_id"], f["pregunta_id"], f["valor"], f["significado"], f["nivel"], f["contexto"]) == (
+        "INS-1-A001", "INS-1-r01", "B", "54", None, {"turno": "Vespertino"})
     entrevista = {"entrevistas": [{"participante": "INS-1-E02", "intercambios": [
         {"pregunta_id": "INS-1-p01", "pregunta": "¿Cómo te evalúan?", "respuesta": "Con proyectos."}, {"pregunta": "Otra", "respuesta": "x"}]}]}
     filas = respuestas.filas(entrevista, 1, 1)
     assert [(f["respondente_id"], f["pregunta_id"], f["valor"]) for f in filas] == [("INS-1-E02", "INS-1-p01", "Con proyectos."), ("INS-1-E02", "", "x")]
+
+
+def test_se_registra_el_tiempo_del_perfil_el_documento_la_publicacion_y_la_indexacion(cliente, db, storage):
+    from shared.models.tiempo_proceso import TiempoProceso
+
+    id_crudo = crear_instrumento(db, storage, original="encuesta_original.txt", aprobado=True)
+    cliente.post(f"/conocimiento/{id_crudo}/perfil", headers=ANA)
+    cliente.post(f"/conocimiento/{id_crudo}/documento", headers=ANA)
+    assert cliente.post(f"/conocimiento/{id_crudo}/documento/1/publicar", headers=ANA).status_code == 200
+    db.expire_all()
+    filas = {t.paso: t for t in db.query(TiempoProceso).filter_by(id_crudo=id_crudo)}
+    assert {"perfil", "documento_final", "publicacion", "indexacion_rag"} <= set(filas)
+    assert filas["documento_final"].detalle["personas"] > 0 and filas["publicacion"].detalle["respuestas"] > 0
+    assert all(t.servicio == "knowledge" and t.duracion_ms >= 0 for t in filas.values())

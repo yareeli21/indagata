@@ -16,6 +16,7 @@ import unicodedata
 from dataclasses import dataclass, field
 
 SECCION_GENERAL = "General"
+_NO_SON_SECCION = {"instrucciones", "instruccion", "indicaciones", "indicacion"}
 _MAX_PREGUNTAS = 400
 _MAX_OPCIONES = 20
 
@@ -37,6 +38,11 @@ _RE_OPCION_VINETA = re.compile(r"^[-•*○◦☐□▪]\s+(.+)$")
 _RE_ANCLA = re.compile(r"(?<![\d.])(\d{1,2})\s*(?:=|:|–|-)\s*([A-Za-zÁÉÍÓÚÑáéíóúñü][^,;=()\d]{0,40}?)(?=\s*(?:[,;]|\d{1,2}\s*(?:=|:|–|-|\()|$|\)))")
 _RE_ANCLA_PAREN = re.compile(r"(?<![\d.])(\d{1,2})\s*\(\s*([^()\d]{2,40}?)\s*\)")
 # Una línea de la escala general de las instrucciones: «1 = Totalmente en desacuerdo / Nunca».
+# PDF de Google Forms: la última opción de la pregunta anterior («Cargas máxima», «Siempre») o el pie de página
+# («Google no creó ni aprobó este contenido.») queda en la MISMA línea que la pregunta siguiente, separada por dos
+# o más espacios: «Siempre  De tus profesores de este periodo, ¿cuántos tienen doctorado?  *» (28 oct).
+_HUECO_PDF = re.compile(r"\s{2,}")
+_MARCADOR = re.compile(r"^\(?\s*(?:\d{1,3}|[a-hA-H])\s*[.)\-:]?\s*\)?$")  # «1.», «a)»: numeración, no arrastre
 _RE_ANCLA_LINEA = re.compile(r"^(\d{1,2})\s*=\s*([^\d=].{1,80})$")
 
 
@@ -55,6 +61,8 @@ class InstrumentoOriginal:
     # Escala general de las instrucciones (antes de la primera pregunta), que aplica a las
     # preguntas que no traen su propia escala: {1: "Totalmente en desacuerdo / Nunca", …}.
     anclas_globales: dict[int, str] = field(default_factory=dict)
+    # Texto completo del original, para reconocer enunciados que el lector no tomó como pregunta.
+    texto: str = ""
 
     @property
     def secciones(self) -> list[str]:
@@ -93,9 +101,22 @@ def _es_titulo_seccion(linea: str) -> bool:
     return len(letras) >= 4 and linea.isupper() and len(linea) <= 80
 
 
+def _sin_arrastre(linea: str) -> str:
+    """La línea sin el texto arrastrado de la pregunta anterior o del pie de página (ver `_HUECO_PDF`).
+
+    Solo se quita el primer tramo si no tiene «¿» ni «?», no es numeración («1.», «a)») y lo que sigue sí es una
+    pregunta. «En tu opinión, ¿qué…?» no tiene hueco doble y se queda igual.
+    """
+    tramos = _HUECO_PDF.split(linea.strip())
+    if (len(tramos) > 1 and not re.search(r"[¿?]", tramos[0]) and not _MARCADOR.match(tramos[0])
+            and len(tramos[0]) <= 80 and re.search(r"[¿?]", " ".join(tramos[1:]))):
+        return " ".join(tramos[1:])
+    return linea
+
+
 def leer(texto: str) -> InstrumentoOriginal:
     """Secciones, preguntas, opciones y anclas del instrumento original."""
-    resultado = InstrumentoOriginal()
+    resultado = InstrumentoOriginal(texto=texto)
     vistas: set[str] = set()
     seccion = SECCION_GENERAL
     actual: PreguntaOriginal | None = None
@@ -111,12 +132,15 @@ def leer(texto: str) -> InstrumentoOriginal:
         resultado.preguntas.append(actual)
 
     for cruda in texto.splitlines():
-        linea = cruda.strip().strip("*_").strip()
+        linea = _sin_arrastre(cruda).strip().strip("*_").strip()
         if not linea or linea.startswith("# "):
             continue
         if _es_titulo_seccion(linea):
             # Sin decoración: «--- DEDICACIÓN AL ESTUDIO ---» → «DEDICACIÓN AL ESTUDIO».
             seccion = linea.lstrip("# ").strip(" :-=*_—")[:100] or SECCION_GENERAL
+            # «INSTRUCCIONES:» encabeza indicaciones, no preguntas: lo que siga es «General».
+            if normalizar(seccion) in _NO_SON_SECCION:
+                seccion = SECCION_GENERAL
             actual = None
             continue
         if actual is not None and (m := _RE_OPCION_LETRA.match(linea)):
@@ -144,6 +168,14 @@ def leer(texto: str) -> InstrumentoOriginal:
             # Línea de escala debajo de la pregunta («1 = Nada … 5 = Mucho»).
             actual.anclas.update(anclas)
             continue
+        if (actual is not None and actual.texto.count("¿") > actual.texto.count("?") and not linea.startswith("¿")
+                and len(actual.texto) + len(linea) <= 600):
+            # Pregunta partida en dos líneas («…una materia sin profesor» / «asignado?»): la segunda la completa
+            # (28 oct, PDF de Google Forms: los finales de línea se tomaban como preguntas nuevas).
+            vistas.discard(normalizar(actual.texto))
+            actual.texto = f"{actual.texto} {linea}"
+            vistas.add(normalizar(actual.texto))
+            continue
         if ("?" in linea or linea.startswith("¿")) and len(linea) <= 400:
             agregar(linea)
     if len(resultado.anclas_globales) < 2:
@@ -164,6 +196,14 @@ def tokens(texto: str) -> set[str]:
     return {t for t in re.findall(r"[a-zñü]+", normalizar(texto)) if len(t) > 2 and t not in _VACIAS}
 
 
+_MIN_PREFIJO = 25  # caracteres: menos que eso, un inicio común puede ser casualidad («¿Cuál es tu…»)
+
+
+def _compacto(texto: str) -> str:
+    """Solo letras y números separados por un espacio («Cuál_es_tu…» → «cual es tu…»)."""
+    return " ".join(re.findall(r"[a-zñü0-9]+", normalizar(texto)))
+
+
 def parecido(a: str, b: str) -> float:
     """Similitud entre un encabezado y una pregunta del original (0–1).
 
@@ -171,7 +211,14 @@ def parecido(a: str, b: str) -> float:
     («¿Con qué frecuencia usas la biblioteca…»), así que además de Jaccard se usa
     el coeficiente de solapamiento (∩ / el conjunto menor), pero solo cuando hay
     al menos 3 palabras en común, para que dos palabras genéricas no basten.
+    Si el recorte deja menos de 3 palabras o corta la última («…medio de transport»), basta
+    con que el encabezado sea el INICIO literal de la pregunta (o al revés) con al menos
+    `_MIN_PREFIJO` caracteres.
     """
+    ca, cb = _compacto(a), _compacto(b)
+    corto, largo = sorted((ca, cb), key=len)
+    if len(corto) >= _MIN_PREFIJO and largo.startswith(corto):
+        return 0.9
     ta, tb = tokens(a), tokens(b)
     if not ta or not tb:
         return 0.0
@@ -182,6 +229,18 @@ def parecido(a: str, b: str) -> float:
 
 
 UMBRAL_PARECIDO = 0.5
+
+
+def aparece_en(encabezado: str, original: InstrumentoOriginal) -> bool:
+    """¿El encabezado (completo, de al menos `_MIN_PREFIJO` caracteres) está escrito tal cual en el original?
+
+    Caso real (28 oct): el PDF que exporta Google Forms separa los números de las preguntas de su texto, y
+    los enunciados de escala («La oferta de programas… responde a mis intereses») no llevan «¿?» ni número,
+    así que el lector no los toma como preguntas. Si el encabezado aparece literal en el texto, la pregunta
+    sí es del original aunque no se haya podido aislar.
+    """
+    corto = _compacto(encabezado)
+    return len(corto) >= _MIN_PREFIJO and corto in _compacto(original.texto)
 
 
 def emparejar(etiquetas: list[str], preguntas: list[PreguntaOriginal]) -> dict[int, int]:

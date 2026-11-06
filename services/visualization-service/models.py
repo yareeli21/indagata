@@ -57,6 +57,33 @@ class InstrumentoDetalle(BaseModel):
     estadisticas: dict[str, Any] = Field(default_factory=dict)
 
 
+class TiempoPasoOut(BaseModel):
+    paso: str
+    etiqueta: str
+    servicio: str
+    inicio: datetime
+    fin: datetime
+    duracion_ms: int
+    segundo_plano: bool = False  # corre después de responder (no lo espera la persona)
+    detalle: dict[str, Any] = Field(default_factory=dict)
+
+
+class LatenciaChatOut(BaseModel):
+    consultas: int
+    p50_ms: int | None = None
+    p95_ms: int | None = None
+
+
+class TiemposOut(BaseModel):
+    """Tiempo de cómputo de cada paso del procesamiento de un instrumento (tabla tiempo_proceso)."""
+
+    id_crudo: int
+    pasos: list[TiempoPasoOut]
+    computo_ms: int  # suma de los pasos: lo que tardaría la máquina sin esperas
+    punta_a_punta_ms: int | None  # de la carga a la última operación: incluye el tiempo de decisión de la persona
+    chat: LatenciaChatOut
+
+
 class InvestigadorOut(BaseModel):
     id: str
     nombre: str
@@ -190,6 +217,15 @@ class ContextoInvestigacion(BaseModel):
     pregunta: str = ""
 
 
+class MensajeHistorial(BaseModel):
+    """Un mensaje previo del chat: la interpretación lo usa para resolver «¿y de ellos…?»."""
+
+    rol: Literal["usuario", "asistente"]
+    texto: str = Field(max_length=4000)
+    # 4 nov: la consulta (rag_log) de una respuesta del asistente; de ahí se lee de qué trató (tema anterior).
+    consultaId: int | None = None
+
+
 class ChatRequest(BaseModel):
     investigacionId: str = ""
     pregunta: str = Field(min_length=1, max_length=4000)
@@ -198,12 +234,34 @@ class ChatRequest(BaseModel):
     stream: bool = True
     top_k: int = 6
     contexto: ContextoInvestigacion | None = None
+    # Para la evaluación (tools/rag/evaluar_banco.py): sin caché, las repeticiones y paráfrasis miden de
+    # verdad la estabilidad y la latencia; sin métricas, las paráfrasis no llenan la cola del juez.
+    usarCache: bool = True
+    calcularMetricas: bool = True
+    # Para el conjunto de regresión (tools/rag/regresion): False responde con el flujo anterior (solo reglas), para
+    # comparar antes y después del rediseño sin reiniciar el servicio.
+    usarInterpretacion: bool = True
+    # Mensajes recientes de la sesión (los más nuevos al final); solo se usan los últimos 4.
+    historial: list[MensajeHistorial] = Field(default_factory=list, max_length=20)
 
     @field_validator("top_k")
     @classmethod
     def _limitar_top_k(cls, v: int) -> int:
         """Se normaliza al rango [1, 8] en lugar de rechazarse (cabe en num_ctx)."""
         return max(1, min(8, v))
+
+
+class InterpretarOut(BaseModel):
+    """Plan de la etapa de interpretación (POST /rag/interpretar, para revisar y depurar)."""
+
+    plan: dict | None
+    correcciones: list[str]
+    intentos: int
+    ms: int
+    error: str
+    # Etapa 2: resultado calculado del plan por instrumento (texto con criterio, cifras y tablas) y su tiempo.
+    ejecucion: list[str] = []
+    ms_ejecucion: int = 0
 
 
 class FuenteChatOut(BaseModel):
@@ -238,11 +296,58 @@ class ChatResponse(BaseModel):
     enCache: bool = False  # se reutilizó la respuesta guardada de una consulta idéntica
 
 
+class IndicadoresOut(BaseModel):
+    """Indicadores del sistema de una respuesta: deterministas, sin juez (services/indicadores.py)."""
+
+    modelo: str | None = None
+    intencion: str | None = None
+    ruta: str | None = None
+    decision: str | None = None
+    respuesta: Literal["redactada", "presentacion_fija", "plantilla"]
+    plantilla: str | None = None
+    plantillaDetalle: str | None = None
+    regeneraciones: int | None = None  # None: no hubo verificación de una redacción
+    primerFallo: str | None = None
+    verificacion: str | None = None
+    cifrasTotal: int | None = None  # solo en respuestas redactadas por el modelo
+    cifrasConRespaldo: int | None = None
+    cifrasSinRespaldo: list[str] = []
+    idsInventados: list[str] = []
+    fragmentosRag: list[str] = []  # partes del instrumento que recuperó Chroma y vio el modelo
+    tiempos: dict[str, int] = {}
+    latenciaMs: int | None = None
+
+
+class JuezOut(BaseModel):
+    """La evaluación de una respuesta por un juez (experimento redactor × juez)."""
+
+    modeloJuez: str
+    estado: str
+    fidelidad: float | None = None
+    relevancia: float | None = None
+    precisionContexto: float | None = None
+    fecha: datetime | None = None
+
+
+class CalificacionIn(BaseModel):
+    """Calificación humana de una respuesta."""
+
+    calificacion: int = Field(ge=0, le=2)  # 0 mal, 1 parcial, 2 bien
+    entendio: bool | None = None  # ¿entendió lo que se pidió?
+    fundamenta: bool | None = None  # None = no aplica
+    comentario: str | None = Field(default=None, max_length=2000)
+
+
+class CalificacionOut(CalificacionIn):
+    fecha: datetime | None = None
+
+
 class MetricasConsultaOut(BaseModel):
-    """Métricas automáticas de una respuesta del chat (juez local: evaluación aproximada)."""
+    """Métricas de una respuesta del chat: las del juez (aproximadas), los indicadores sin juez y la calificación
+    humana."""
 
     consultaId: int
-    estado: Literal["calculando", "listo", "omitida", "error"]
+    estado: Literal["pendiente", "calculando", "listo", "omitida", "error", "calculada"]
     motivo: str | None = None
     fidelidad: float | None = None  # afirmaciones sustentadas por el contexto
     relevancia: float | None = None  # qué tan directo contesta la pregunta
@@ -250,6 +355,9 @@ class MetricasConsultaOut(BaseModel):
     noSustentadas: list[str] = []
     modeloJuez: str | None = None
     fecha: datetime | None = None
+    indicadores: IndicadoresOut | None = None
+    jueces: list[JuezOut] = []
+    calificacion: CalificacionOut | None = None
 
 
 # ── Espacio vectorial ──────────────────────────────────────────────────────────

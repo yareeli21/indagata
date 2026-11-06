@@ -62,6 +62,11 @@ def _lista(valor: Any) -> list[str]:
     return [" ".join(str(p).split()) for p in partes if str(p).strip()]
 
 
+def nombres_dimensiones(esp: dict[str, Any]) -> list[str]:
+    """Nombres de dimensiones aprobados en los metadatos del tipo (para nombrar las sugeridas)."""
+    return _lista(esp.get("dimensiones"))
+
+
 def _sin_repetidos(valores: list[str]) -> list[str]:
     vistos: set[str] = set()
     salida = []

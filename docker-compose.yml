@@ -300,6 +300,9 @@ services:
       SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-prod}
       # Lee el CSV limpio, el original y el JSON técnico vía storage-service.
       STORAGE_SERVICE_URL: http://storage-service:8004
+      # Análisis de respuestas de entrevista (unidades, postura y motivo); sin Ollama usa reglas.
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
       - "8009:8009"
@@ -382,6 +385,14 @@ services:
       TEMP_PATH: /app/storage/temp
       OLLAMA_HOST: http://ollama:11434
       OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
+      # Juez de las métricas: qwen2.5:3b calificó 0.95 las copias
+      # literales del cálculo contra 0.40 de llama3.2:3b (evidencias/jueces_2026-10-23).
+      RAG_JUEZ_MODELO: ${RAG_JUEZ_MODELO:-qwen2.5:3b}
+      # Temperatura de la redacción del chat (la interpretación y el juez van en 0).
+      RAG_TEMPERATURA_REDACCION: ${RAG_TEMPERATURA_REDACCION:-0.2}
+      # Caché de respuestas (horas; 0 = sin caché). En el experimento de modelos se pone 0 para que una pregunta
+      # repetida se vuelva a responder.
+      RAG_CACHE_HORAS: ${RAG_CACHE_HORAS:-24}
       CHROMA_HOST: chromadb
       CHROMA_PORT: 8000
       EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/paraphrase-multilingual-mpnet-base-v2}

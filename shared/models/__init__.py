@@ -12,19 +12,17 @@ from shared.models.metadatos_encuestas import MetadatosEnriquecidosEncuestas
 from shared.models.metadatos_entrevistas import MetadatosEnriquecidosEntrevistas
 from shared.models.metadatos_pruebasestandarizadas import MetadatosEnriquecidosPruebas
 from shared.models.coleccion_vectorial import ColeccionVectorial
-from shared.models.prompt import Prompt
 from shared.models.kpi import KPI
 from shared.models.kpi_fuente import KPIFuente
-from shared.models.variable import Variable
-from shared.models.kpi_variable import KPIVariable
 from shared.models.kpi_inferido import KPIInferido
-from shared.models.valor_variable_inferido import ValorVariableInferido
 from shared.models.rag_log import RagLog
+from shared.models.rag_evaluacion import RagCalificacion, RagMetricaJuez
 from shared.models.documento_vectorizado import DocumentoVectorizado
 from shared.models.kpi_inferido_chunk import KpiInferidoChunk
 from shared.models.limpieza_ejecucion import LimpiezaEjecucion
 from shared.models.version_conocimiento import VersionConocimiento
 from shared.models.respuesta_interpretada import RespuestaInterpretada
+from shared.models.tiempo_proceso import TiempoProceso
 
 __all__ = [
     "Usuario",
@@ -35,17 +33,16 @@ __all__ = [
     "MetadatosEnriquecidosEntrevistas",
     "MetadatosEnriquecidosPruebas",
     "ColeccionVectorial",
-    "Prompt",
     "KPI",
     "KPIFuente",
-    "Variable",
-    "KPIVariable",
     "KPIInferido",
-    "ValorVariableInferido",
     "RagLog",
+    "RagMetricaJuez",
+    "RagCalificacion",
     "DocumentoVectorizado",
     "KpiInferidoChunk",
     "LimpiezaEjecucion",
     "VersionConocimiento",
     "RespuestaInterpretada",
+    "TiempoProceso",
 ]

@@ -7,6 +7,7 @@ from shared.models.version_conocimiento import VersionConocimiento
 
 from services import chunks_documento
 from services.chroma_indexer import VENTANA
+from tests.conftest import ColeccionFalsa
 from tests.test_indice import JSON_APROBADO, _guardar_json, _sembrar
 
 KPI = {
@@ -41,16 +42,17 @@ def _encuesta(n: int = 30) -> dict:
 
 
 PRUEBA = {
-    "esquema_version": "1.0",
+    "esquema_version": "2.0",
     "instrumento": {"id": "INS-0002", "tipo": "prueba_estandarizada", "titulo": "Diagnóstico", "n_alumnos": 2},
     "kpis_asociados": [], "secciones": [],
-    "reactivos": [{"id": "INS-0002-r01", "texto": "¿Cuánto es 7 × 8?", "tipo_reactivo": "opcion_multiple", "calificable": True,
-                   "opciones": {"A": "56", "B": "54"}, "respuesta_correcta": "A", "kpis_relacionados": [],
-                   "resumen": {"n_alumnos": 2, "pct_acierto": 50.0, "distribucion": {"A": {"n": 1, "pct": 50.0}, "B": {"n": 1, "pct": 50.0}},
-                               "distractor_mas_elegido": {"opcion": "B", "significado": "54", "pct": 50.0}, "dificultad": 0.5,
-                               "discriminacion": 1.0}}],
-    "alumnos": [{"id": "INS-0002-A001", "contexto": {}, "puntaje": 1, "total": 1, "porcentaje": 100.0,
-                 "respuestas": [{"reactivo_id": "INS-0002-r01", "respuesta": "A", "correcta": True, "significado": "56"}]}],
+    "reactivos": [{"id": "INS-0002-r01", "texto": "¿Cuánto es 7 × 8?", "tipo_reactivo": "opcion_multiple",
+                   "opciones": {"A": "56", "B": "54", "C": "48"}, "kpis_relacionados": [],
+                   "resumen": {"n_alumnos": 2, "distribucion": {"A": {"n": 1, "pct": 50.0}, "B": {"n": 1, "pct": 50.0}, "C": {"n": 0, "pct": 0.0}},
+                               "opcion_mas_elegida": {"opcion": "A", "significado": "56", "n": 1, "pct": 50.0},
+                               "opciones_sin_elegir": ["C"], "n_nulas": 0, "n_sin_respuesta": 0, "media": None,
+                               "interpretacion": "La opción más elegida fue «A) 56» (50 % de los alumnos)."}}],
+    "alumnos": [{"id": "INS-0002-A001", "contexto": {}, "n_respondidas": 1, "n_nulas": 0, "n_sin_respuesta": 0,
+                 "respuestas": [{"reactivo_id": "INS-0002-r01", "respuesta": "A", "estado": "valida", "significado": "56"}]}],
     "avisos": [],
 }
 
@@ -93,12 +95,14 @@ def test_ningun_chunk_excede_la_ventana_ni_parte_lineas_de_una_lista():
                 assert all(re.match(r"p\d\d «", linea) for linea in c.texto.splitlines()[1:])
 
 
-def test_prueba_reactivo_con_acierto_y_distractor_y_alumno():
+def test_prueba_reactivo_con_opcion_mas_elegida_y_alumno_sin_calificar():
     chunks = chunks_documento.construir(PRUEBA, "Prueba estandarizada")
     reactivo = next(c for c in chunks if c.seccion == "reactivo")
-    assert "Porcentaje de acierto: 50.0 %" in reactivo.texto and "Distractor más elegido: B (54), 50.0 %" in reactivo.texto
+    assert "Opción más elegida: A (56), 50.0 % de 2 alumnos" in reactivo.texto and "Nadie eligió: C" in reactivo.texto
+    assert not any(p in reactivo.texto.lower() for p in ("correcta", "acierto", "distractor", "dificultad"))
     alumno = next(c for c in chunks if c.seccion == "alumno")
-    assert alumno.texto.startswith("Alumno A001") and "r01: A (56) correcta" in alumno.texto
+    assert alumno.texto.startswith("Alumno A001: respondió 1 reactivos") and "r01: A (56)" in alumno.texto
+    assert "correcta" not in alumno.texto and "puntaje" not in alumno.texto
     assert alumno.extra["respondenteId"] == "INS-0002-A001"
 
 
@@ -127,6 +131,22 @@ def test_indexa_desde_el_documento_vigente(cliente, servicio, db, chroma):
     assert not any("Calidad académica" in p["document"] for p in puntos)
 
 
+def test_documento_grande_se_envia_a_chroma_por_lotes(cliente, servicio, db, chroma, monkeypatch):
+    from services import chroma_indexer
+
+    monkeypatch.setattr(chroma_indexer, "LOTE_CHROMA", 3)
+    monkeypatch.setattr(ColeccionFalsa, "limite_lote", 3)
+    id_crudo, _ = _sembrar(db, aprobado=True)
+    r = cliente.post("/almacenamiento/json", headers=servicio,
+                     json={"instrumentoId": str(id_crudo), "tipo": "documento", "contenido": _encuesta(4)})
+    db.add(VersionConocimiento(id_crudo=id_crudo, version=1, estado="vigente", perfil={}, ruta_documento=r.json()["key"]))
+    db.commit()
+
+    r = cliente.post(f"/almacenamiento/indice/instrumentos/{id_crudo}", headers=servicio)
+    assert r.status_code == 200, r.text
+    assert chroma.colecciones["instrumentos"].count() == r.json()["chunks"] > 3
+
+
 def test_sin_documento_vigente_usa_el_json_tecnico(cliente, servicio, db, chroma):
     id_crudo, _ = _sembrar(db, aprobado=True)
     _guardar_json(cliente, servicio, id_crudo, JSON_APROBADO)
@@ -142,3 +162,37 @@ def test_sin_documento_vigente_usa_el_json_tecnico(cliente, servicio, db, chroma
 def test_la_ficha_dice_cuando_no_hay_kpis():
     ficha = "".join(c.texto for c in chunks_documento.construir(PRUEBA, "Prueba estandarizada") if c.seccion == "encabezado")
     assert "KPIs asociados: ninguno" in ficha
+
+
+def test_encuesta_sin_secciones_la_ficha_dice_que_pregunta():
+    doc = _encuesta()
+    doc["secciones"] = [{"id": "INS-0001-s1", "nombre": "General"}]
+    doc["instrumento"]["titulo"] = "Encuesta de evaluación y ambiente escolar por turno"
+    doc["instrumento"]["objetivo"] = "Evaluar el ambiente escolar y la experiencia del estudiante en diferentes aspectos"
+    doc["instrumento"]["temas"] = ["satisfacción", "No especificado"]
+    chunks = chunks_documento.construir(doc, "Encuesta")
+    assert "No especificado" not in "".join(c.texto for c in chunks if c.seccion == "encabezado")
+    ficha = [c for c in chunks if c.seccion == "encabezado"]
+    assert "Aspectos que pregunta: Pregunta larga número 1 sobre" in " ".join(c.texto for c in ficha)
+    assert all(len(c.texto) <= VENTANA for c in ficha)
+
+
+def test_encuesta_con_secciones_no_repite_las_preguntas_en_la_ficha():
+    ficha = "".join(c.texto for c in chunks_documento.construir(_encuesta(), "Encuesta") if c.seccion == "encabezado")
+    assert "Aspectos que pregunta" not in ficha
+
+
+def test_entrevista_con_analisis_pone_primero_lo_que_responde():
+    doc = {**ENTREVISTA, "esquema_version": "2.1", "entrevistas": [{"participante": "INS-0003-E02", "intercambios": [{
+        "pregunta_id": "INS-0003-p01", "pregunta": "¿Las actividades extracurriculares influyen hoy en tus calificaciones?",
+        "respuesta": "En la primaria no lo pensaba así, pero ahora creo que sí, por la beca deportiva.",
+        "analisis": {"unidades": [
+            {"texto": "En la primaria no lo pensaba así", "marco_temporal": "pasado", "funcion": "contexto", "postura": "no"},
+            {"texto": "pero ahora creo que sí, por la beca deportiva", "marco_temporal": "actual", "funcion": "responde", "postura": "si"}],
+            "nucleo": "pero ahora creo que sí, por la beca deportiva", "postura": "si", "motivo": "la beca deportiva",
+            "marco_pregunta": "actual", "metodo": "llm", "estado": "revisado"}}]}]}
+    c = next(c for c in chunks_documento.construir(doc, "Entrevista") if c.seccion == "intercambio")
+    cuerpo = c.texto.split("\n", 1)[1]
+    assert cuerpo.startswith("Postura: sí (en presente). Responde: pero ahora creo que sí, por la beca deportiva")
+    assert "Motivo: la beca deportiva" in cuerpo and "Antecedente (pasado): En la primaria no lo pensaba así" in cuerpo
+    assert "Respuesta: En la primaria" in cuerpo and c.extra["postura"] == "si" and c.extra["marcoTemporal"] == "actual"

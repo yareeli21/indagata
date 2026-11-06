@@ -10,14 +10,17 @@ tools/data_synthesis/
   config/
     perfiles_estudiantes.json   # 8 perfiles de estudiantes con parámetros estadísticos
     kpi_mapping.json            # Mapeo de KPIs por instrumento
+    coherencia_encuestas.json   # Reglas de las preguntas no Likert (modelo «coherente», v1.1)
   generators/
     __init__.py
     base_generator.py           # Utilidades compartidas: muestreo, beta, demografía
-    encuesta_generator.py       # Generador de encuestas (10 instrumentos)
+    encuesta_generator.py       # Generador de encuestas (11 instrumentos)
+    coherencia.py               # Respuestas coherentes de las preguntas no Likert
     entrevista_generator.py     # Generador de entrevistas (10 instrumentos)
     prueba_generator.py         # Generador de pruebas estandarizadas (10 instrumentos)
   quality/
     checker.py                  # Validación: alpha Cronbach, outliers, correlación
+    verificar_coherencia.py     # ¿Las preguntas no Likert dependen del respondente? (uniforme vs coherente)
   visualization/
     chart_generator.py          # Gráficas por instrumento y resumen general
 ```
@@ -61,6 +64,7 @@ python generate.py --all --output /ruta/personalizada
 | enc_08 | Bienestar y Salud Mental | Encuesta | Sintético | 160 |
 | enc_09 | Carga Académica y Tiempo | Encuesta | Sintético | 160 |
 | enc_10 | Inserción Laboral | Encuesta | Sintético | 150 |
+| enc_11 | Trayectoria Académica, Trabajo y Servicios (todos los tipos de pregunta, v1.1) | Encuesta | Sintético | 160 |
 | ent_01 | Estrategias de permanencia | Entrevista | Sintético | 40 |
 | ent_02 | Experiencia docente | Entrevista | Sintético | 30 |
 | ent_03 | Tecnología y aprendizaje | Entrevista | Sintético | 35 |
@@ -96,6 +100,35 @@ Los datos se generan a partir de 8 perfiles estadísticamente calibrados:
 | P6 | Internacional/contexto diverso | 8% | 3.35 | ~3.1 |
 | P7 | Posgrado alta competencia | 12% | 3.85 | ~4.5 |
 | P8 | Dificultades socioeconómicas | 10% | 2.60 | ~2.8 |
+
+## Preguntas que no son Likert: modelo «coherente» (v1.1) y «uniforme» (v1.0)
+
+Las encuestas mezclan ítems Likert con otros tipos de pregunta. Los ítems Likert siempre
+dependen del perfil del estudiante. Para los demás tipos hay dos modelos:
+
+| Modelo | Cómo se genera la respuesta | Para qué |
+|---|---|---|
+| `coherente` (por defecto, v1.1) | Depende de factores del propio respondente (sus Likert, una dimensión, promedio, horas de trabajo, semestre, beca…) con las reglas de `config/coherencia_encuestas.json` | Datos con relaciones realistas y verificables (p. ej., a menor promedio, más «Sí» en «¿has reprobado?») |
+| `uniforme` (v1.0) | Sorteo con la misma probabilidad para todas las opciones | Reproducir exactamente el acervo original |
+
+```bash
+python generate.py --tipo encuesta                                # coherente
+python generate.py --tipo encuesta --modelo-adicionales uniforme  # acervo v1.0, idéntico byte a byte con --seed 42
+```
+
+Los ítems Likert y los datos de contexto salen **idénticos** en ambos modelos (las respuestas
+coherentes usan un generador de números al azar propio de cada instrumento). Tipos soportados:
+opción múltiple, Sí/No, escala numérica y, desde la v1.1, selección múltiple (`; `),
+jerarquización («Ordena…», `, `) y preguntas abiertas (plantillas por tono). Cómo escribir una
+regla: ver la cabecera de `generators/coherencia.py` y la clave `_descripcion` del JSON.
+
+Comprobar las relaciones:
+
+```bash
+python generate.py --tipo encuesta --modelo-adicionales uniforme --output /tmp/u --no-charts --no-quality
+python generate.py --tipo encuesta --output /tmp/c --no-charts --no-quality
+python quality/verificar_coherencia.py /tmp/u /tmp/c
+```
 
 ## Reproducibilidad
 

@@ -23,7 +23,7 @@ from typing import Any
 
 from services.configuracion import normalizar_texto
 from services.motores import estadistica
-from services.motores.encuestas.likert import Likert, casi_todos, detectar_numerica, detectar_texto, numero
+from services.motores.encuestas.likert import Likert, casi_todos, detectar_numerica, detectar_texto, no_respuestas, numero
 
 # «Pregunta [aspecto]»: grupos padre-hijo (cuadrículas, opción múltiple tipo LimeSurvey).
 PATRON_GRUPO = re.compile(r"^(?P<padre>.+?)\s*\[(?P<hijo>[^\]]+)\]\s*$")
@@ -72,18 +72,48 @@ def es_cantidad(etiqueta: str, palabras: list[str]) -> bool:
 
 
 def _separados(presentes: list[str], separadores: list[str]) -> bool:
-    """¿Los valores son listas («A, B; C») de opciones que se repiten entre filas?"""
-    con_sep = [v for v in presentes if any(s in v for s in separadores) and numero(v) is None]
-    if len(con_sep) < max(2, 0.3 * len(presentes)):
-        return False
-    tokens: dict[str, int] = {}
-    for v in presentes:
-        for t in re.split("|".join(re.escape(s) for s in separadores), v):
-            t = normalizar_texto(t)
-            if t:
-                tokens[t] = tokens.get(t, 0) + 1
-    repetidos = [t for t, n in tokens.items() if n >= 2]
-    return bool(repetidos) and len(tokens) <= 40 and statistics.mean(len(t) for t in tokens) < 40
+    """¿Los valores son listas («A, B; C») de opciones que se repiten entre filas?
+
+    Regla (28 oct, encuesta de 2000 respondentes): una lista es una selección múltiple si sus partes también
+    aparecen SOLAS en otras filas («Carga mínima;Carga media/normal» y «Carga mínima»). Así:
+      - «Sí, y no lo aprobé» no es una lista: «y no lo aprobé» nunca aparece sola (la coma es del texto de la
+        opción). Antes, con el 30 % de las respuestas con coma, se tomaba como selección múltiple y cada
+        respuesta se partía en dos.
+      - Una selección múltiple que pocos usan (15 % eligió más de una opción) sí se reconoce.
+    Con «;» (que casi nunca va dentro de una opción) se conserva además el criterio anterior: listas en al
+    menos el 30 % de las respuestas, con opciones que se repiten.
+    """
+    def norm(t: str) -> str:
+        return normalizar_texto(t)
+
+    for sep in separadores:
+        con_sep = [v for v in presentes if sep in v and numero(v) is None]
+        if len(con_sep) < max(3, 0.03 * len(presentes)):
+            continue
+        solos = {norm(v) for v in presentes if sep not in v}
+        combinadas = [v for v in con_sep if all(norm(p) in solos for p in v.split(sep) if norm(p))]
+        if len(combinadas) >= 0.5 * len(con_sep):
+            return True
+        # Las mismas opciones combinadas de formas distintas («Biblioteca, Cafetería», «Biblioteca, Gimnasio»…),
+        # sin partes que empiecen con conjunción («Sí, y no lo aprobé», «No, pero planeo hacerlo» son UNA opción).
+        distintos = {norm(v) for v in con_sep}
+        en_cuantos: dict[str, int] = {}
+        for v in distintos:
+            for p in {norm(x) for x in v.split(sep) if norm(x)}:
+                en_cuantos[p] = en_cuantos.get(p, 0) + 1
+        con_conjuncion = any(re.match(r"(?:y|e|o|u|ni|pero|aunque|porque|sino|mas)\b", p) for p in en_cuantos)
+        if (len(distintos) >= 3 and not con_conjuncion
+                and sum(1 for n in en_cuantos.values() if n >= 2) >= 0.5 * len(en_cuantos)):
+            return True
+        if sep == ";" and len(con_sep) >= max(2, 0.3 * len(presentes)):
+            tokens: dict[str, int] = {}
+            for v in presentes:
+                for t in v.split(sep):
+                    if (t := norm(t)):
+                        tokens[t] = tokens.get(t, 0) + 1
+            if any(n >= 2 for n in tokens.values()) and len(tokens) <= 40 and statistics.mean(len(t) for t in tokens) < 40:
+                return True
+    return False
 
 
 def inferir(etiqueta: str, valores: list[str | None], cfg: dict[str, Any]) -> InfoTipo:
@@ -112,6 +142,13 @@ def inferir(etiqueta: str, valores: list[str | None], cfg: dict[str, Any]) -> In
         else None
     )
     likert = lik_texto or lik_num
+    if likert is not None and likert is lik_num:
+        # Texto en una escala respondida con números («Totalmente de acuerdo» entre 1–5): fuera de la escala.
+        # Antes solo contaban los números fuera del rango y el texto llegaba sin aviso al documento final,
+        # donde no se podía interpretar (28 oct, encuesta de 2000 respondentes). «No sé» no cuenta: es no respuesta.
+        excluir = no_respuestas()
+        likert.fuera |= {i for i, v in enumerate(valores)
+                         if v is not None and numeros[i] is None and normalizar_texto(v) not in excluir}
 
     # 1. Cuadrícula: «Pregunta [aspecto]» con valores de escala evaluativa.
     if grupo and likert:

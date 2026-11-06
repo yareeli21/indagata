@@ -43,9 +43,9 @@ UsuarioQuePuedeIngestar = Annotated[
         "se va a trabajar:\n\n"
         "- **encuesta** → tabular (`.csv`, `.xlsx`, `.xls`): columnas y nº de filas.\n"
         "- **entrevista** → documento (`.pdf`, `.txt`, `.docx`): texto extraído y métricas.\n"
-        "- **prueba_estandarizada** → tabular (respuestas de los alumnos, con la **clave de "
-        "respuestas** opcional en `archivo_clave`: si falta, la limpieza propone una) o "
-        "documento (el examen en texto).\n\n"
+        "- **prueba_estandarizada** → tabular (respuestas de los alumnos) o documento "
+        "(el examen en texto). Indagata **no califica** las pruebas: no se acepta clave de "
+        "respuestas (`archivo_clave` → 400).\n\n"
         "Delega el almacenamiento de ambos archivos en el servicio de storage y "
         "registra el instrumento en `raw_data` (padre) + `instrumento_procesado` "
         "(estado `recibido`). "
@@ -67,7 +67,7 @@ async def upload_instrumento(
     ),
     archivo_clave: UploadFile | None = File(
         default=None,
-        description="Clave de respuestas de una prueba tabular (opcional: si falta, se propone una).",
+        description="Ya no se acepta: Indagata no califica las pruebas (si se envía → 400).",
     ),
 ) -> UploadResponse:
     return await UploadService.upload(

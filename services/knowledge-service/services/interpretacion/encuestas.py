@@ -271,6 +271,10 @@ def opcion_multiple(valores: list[str], ranking: bool = False) -> ColumnaInterpr
     """Lista de opciones seleccionadas (en ranking, ordenada: posición 1 = primera)."""
     clave = "separadores_ranking" if ranking else "separadores_multiple"
     separadores = reglas().get(clave) or [",", ";"]
+    # Si alguna parte de una lista con «;» lleva coma, la coma es del texto de la opción.
+    coma_dentro = any("," in parte for v in valores if not _vacia(v) and ";" in v for parte in v.split(";"))
+    if not ranking and ";" in separadores and coma_dentro:
+        separadores = [";"]
     listas = [[] if _vacia(v) else _partir(v, separadores) for v in valores]
     canon = _formas_canonicas([o for lista in listas for o in lista])
     salida = []

@@ -1,0 +1,27 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Marcadores para el análisis de respuestas de entrevista SIN el modelo de lenguaje
+# (respaldo de `services/documento/analisis_entrevista.py`). Comparación sin
+# mayúsculas ni acentos, por palabra completa. Reinicia knowledge-service al editar.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Marco temporal de un fragmento (el primero que aparezca decide).
+tiempo:
+  pasado: ["cuando iba", "cuando era", "cuando estaba", "de nino", "de nina", "de pequeno", "de pequena",
+           "en la primaria", "en la secundaria", "en la prepa", "antes", "en ese entonces", "solia", "hace anos",
+           "el ano pasado", "al principio"]
+  actual: ["ahora", "actualmente", "hoy", "hoy en dia", "en este momento", "este semestre", "ultimamente",
+           "en la universidad", "ya no", "todavia"]
+  hipotetico: ["si pudiera", "si tuviera", "me gustaria", "quisiera", "seria", "podria", "en el futuro"]
+
+# Conectores que separan unidades dentro de una oración.
+conectores: [", pero ", ", aunque ", ", entonces ", ", sin embargo ", " pero ahora ", ", por eso "]
+
+# Ambivalencia: si la respuesta (o un fragmento que responde) EMPIEZA con una de estas
+# frases, la postura es «ambivalente» («Depende; en matemáticas sí, en redacción no tanto»).
+# Solo al inicio: «Sí, a veces voy» sigue siendo «sí». «No del todo» no está: se lee como «no».
+ambivalencia: ["depende", "mas o menos", "a veces", "en parte", "segun", "ni si ni no", "hay de todo"]
+
+# Postura explícita en un fragmento.
+postura:
+  "si": ["si", "claro", "por supuesto", "definitivamente", "creo que si", "diria que si", "totalmente"]
+  "no": ["no", "para nada", "nunca", "creo que no", "diria que no"]

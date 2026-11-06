@@ -5,7 +5,7 @@ dan siempre el mismo resumen. Cada frase lleva un nivel para la interfaz:
   - bien:      algo que está en orden.
   - info:      una descripción de los datos (tendencia, dispersión…).
   - atencion:  conviene revisarlo.
-  - alerta:    probablemente hay un problema (p. ej. una clave mal capturada).
+  - alerta:    probablemente hay un problema (p. ej. un bloque con α muy bajo).
 """
 from __future__ import annotations
 
@@ -318,73 +318,48 @@ def _encuesta(estadistica: dict[str, Any], antes: dict[str, Any], despues: dict[
 
 
 def _prueba(estadistica: dict[str, Any]) -> list[dict[str, str]]:
+    """La prueba no se califica: las frases describen cómo respondieron los alumnos."""
     frases = []
-    fiab = estadistica.get("fiabilidad") or {}
-    kr, interp = fiab.get("kr20"), fiab.get("interpretacion") or ""
-    n_alumnos, n_reactivos = fiab.get("n_alumnos") or 0, fiab.get("n_reactivos") or 0
-    if kr is not None:
-        if kr >= 0.7:
-            frases.append(_frase("bien", f"La prueba es consistente: KR-20 = {_n(kr, 3)} ({interp})."))
-        else:
-            causa = " Con pocos reactivos o pocos alumnos suele salir bajo." if n_reactivos < 20 or n_alumnos < 30 else ""
-            frases.append(
-                _frase(
-                    "alerta" if kr < 0.5 else "atencion",
-                    f"La prueba tiene poca consistencia interna: KR-20 = {_n(kr, 3)} ({interp}).{causa}",
-                )
-            )
-
-    punt = estadistica.get("puntajes") or {}
-    maximo = punt.get("maximo_posible")
-    if punt.get("media") is not None and maximo:
-        frases.append(
-            _frase(
-                "info",
-                f"En promedio, los alumnos acertaron {_n(punt['media'], 1)} de {maximo} reactivos "
-                f"({_pct(punt['media'] / maximo)}; mediana {_n(punt.get('mediana'), 1)}).",
-            )
-        )
-
     reactivos = [r for r in estadistica.get("reactivos") or [] if isinstance(r, dict)]
-    res = estadistica.get("resumen_reactivos") or {}
+    resp = estadistica.get("respuestas") or {}
+    umbrales = estadistica.get("umbrales") or {}
     total = len(reactivos)
-    if total:
-        faciles, medios, dificiles = res.get("faciles", 0), res.get("medios", 0), res.get("dificiles", 0)
-        texto = f"De {total} reactivos: {faciles} fácil{'es' if faciles != 1 else ''}, {medios} de dificultad media y {dificiles} difícil{'es' if dificiles != 1 else ''}."
-        if faciles > total / 2:
-            texto += " La prueba resultó fácil para este grupo."
-        elif dificiles > total / 2:
-            texto += " La prueba resultó difícil para este grupo."
-        frases.append(_frase("info", texto))
-
-    negativos = [r["pregunta"] for r in reactivos if (r.get("discriminacion") or 0) < 0]
-    pobres = [r["pregunta"] for r in reactivos if r.get("nivel_discriminacion") == "pobre" and (r.get("discriminacion") or 0) >= 0]
-    if negativos:
+    if total and resp.get("pct_sin_respuesta") is not None:
+        pct = resp["pct_sin_respuesta"]
         frases.append(
             _frase(
-                "alerta",
-                f"En {_nombres(negativos)} aciertan más los alumnos con peor puntaje que los de mejor puntaje: "
-                "revisa que la respuesta correcta de la clave sea la adecuada.",
+                "atencion" if pct > (umbrales.get("sin_respuesta") or 0.2) else "bien",
+                f"{resp.get('n_alumnos', 0)} alumnos respondieron {total} reactivos; el {_pct(pct)} de las respuestas "
+                "quedó nula o sin responder.",
             )
         )
-    if pobres:
+
+    mucha = [r["pregunta"] for r in reactivos if r.get("mucha_no_respuesta")]
+    if mucha:
         frases.append(
             _frase(
                 "atencion",
-                f"{_nombres(pobres)} casi no distingue{'n' if len(pobres) > 1 else ''} a quienes dominan el tema de quienes no "
-                "(discriminación pobre); conviene revisar su redacción.",
+                f"{_nombres(mucha)} {'tienen' if len(mucha) > 1 else 'tiene'} muchas respuestas nulas o vacías: "
+                "revisa si el reactivo se entendía o si a los alumnos les faltó tiempo.",
             )
         )
-    elif total and not negativos:
-        frases.append(_frase("bien", "Todos los reactivos distinguen al menos regularmente a quienes dominan el tema de quienes no."))
 
-    sin_elegir = [r["pregunta"] for r in reactivos if r.get("distractores_sin_elegir")]
+    unanimes = [r["pregunta"] for r in reactivos if r.get("casi_unanime")]
+    if unanimes:
+        frases.append(
+            _frase(
+                "info",
+                f"En {_nombres(unanimes)} casi todos eligieron la misma respuesta: ese reactivo apenas distingue entre alumnos.",
+            )
+        )
+
+    sin_elegir = [r["pregunta"] for r in reactivos if r.get("opciones_sin_elegir")]
     if sin_elegir:
         frases.append(
             _frase(
                 "atencion",
                 f"{len(sin_elegir)} reactivo{'s tienen' if len(sin_elegir) > 1 else ' tiene'} opciones que ningún alumno eligió "
-                f"({_nombres(sin_elegir)}): esas opciones no funcionan como distractores creíbles.",
+                f"({_nombres(sin_elegir)}): conviene revisar si esas opciones son creíbles.",
             )
         )
     return frases

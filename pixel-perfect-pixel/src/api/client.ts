@@ -1,11 +1,7 @@
 /**
- * Punto único de acceso a datos. Hoy resuelve con datos de ejemplo (src/mocks).
- * Para conectar la API FastAPI basta con reemplazar el cuerpo de estas funciones
- * por llamadas HTTP: la firma (promesas) no cambia.
+ * Punto único de acceso al backend: todas las pantallas piden sus datos con `pedir()` a través de las funciones de
+ * `src/api/`. (Los datos de ejemplo de `src/mocks/` se retiraron el 28 oct: todo viene ya de los servicios.)
  */
-export function simularRed<T>(dato: T, ms = 300): Promise<T> {
-  return new Promise((resolve) => setTimeout(() => resolve(dato), ms));
-}
 
 /** URL base del api-gateway (login y servicios proxeados). */
 export const API_URL: string = import.meta.env["VITE_API_URL"] ?? "http://localhost:8006";

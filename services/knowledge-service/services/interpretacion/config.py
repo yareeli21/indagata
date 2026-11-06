@@ -35,10 +35,14 @@ def escalas() -> dict[str, Any]:
     return _leer(Path(shared.__file__).resolve().parent / "config" / "escalas_likert.yaml")
 
 
+# Signos al inicio o al final que no cambian el sentido («Nunca.» = «Nunca»); igual que en cleaning-service.
+_BORDES = " 	.,;:!¡?¿\"'«»“”‘’`"
+
+
 def normalizar(texto: str) -> str:
-    """Minúsculas, sin acentos y con espacios colapsados."""
+    """Minúsculas, sin acentos, con espacios colapsados y sin signos al inicio o al final."""
     sin = "".join(c for c in unicodedata.normalize("NFD", str(texto)) if unicodedata.category(c) != "Mn")
-    return " ".join(sin.lower().split())
+    return " ".join(sin.lower().split()).strip(_BORDES)
 
 
 def palabras(texto: str) -> str:

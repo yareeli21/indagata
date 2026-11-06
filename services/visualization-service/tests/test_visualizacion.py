@@ -251,7 +251,8 @@ def test_chat_json_filtrado_por_investigacion_y_registrado(cliente, acervo, chro
     cuerpo = r.json()
     assert cuerpo["respuesta"].startswith("Respuesta fundamentada")
     assert [f["instrumentoId"] for f in cuerpo["fuentes"]] == ["1"]
-    assert cuerpo["fuentes"][0]["kpis"] == ["Compromiso académico"]
+    # Los KPIs solo se muestran si la consulta trata de KPIs o se recuperó un fragmento de KPI (rediseño, 28 oct).
+    assert cuerpo["fuentes"][0]["kpis"] == []
     assert chroma.colecciones["instrumentos"].consultas[-1]["where"] == {"instrumentoId": {"$in": ["1"]}}
     assert "Analizar el compromiso" in ollama["prompts"][-1]
     from services import prompt
@@ -403,8 +404,34 @@ def test_chat_limita_top_k_y_baja_temperatura():
     from services import ollama_client
 
     assert ChatRequest(pregunta="x", top_k=20).top_k == 8
-    assert ollama_client._OPTIONS["temperature"] == 0.2
+    assert ollama_client._payload("m", "p", stream=False)["options"] == {"num_ctx": 4096, "temperature": 0.2}
+    # La interpretación, los clasificadores y el juez la fijan en 0 aunque la redacción use otra.
+    assert ollama_client._payload("m", "p", stream=False, opciones={"temperature": 0})["options"]["temperature"] == 0
 
 
 def test_vector_de_es_determinista():
     assert vector_de("hola mundo") == vector_de("hola mundo")
+
+
+def test_tiempos_del_procesamiento_y_latencia_del_chat(cliente, acervo):
+    """Cómputo = suma de los pasos; punta a punta incluye las esperas; el chat da p50/p95 de sus consultas."""
+    from shared.models.tiempo_proceso import TiempoProceso
+
+    def t(minuto: int, segundo: int = 0) -> datetime:
+        return datetime(2026, 10, 25, 10, minuto, segundo)
+
+    acervo.add_all([
+        TiempoProceso(id_crudo=1, servicio="instrument", paso="carga", inicio=t(0), fin=t(0, 2), duracion_ms=2000, detalle={}),
+        TiempoProceso(id_crudo=1, servicio="cleaning", paso="limpieza_automatica", inicio=t(1), fin=t(1, 3), duracion_ms=3000, detalle={}),
+        # La persona decide las tarjetas durante 5 minutos: no es cómputo.
+        TiempoProceso(id_crudo=1, servicio="knowledge", paso="indexacion_rag", inicio=t(6), fin=t(7), duracion_ms=60000, detalle={"chunks": 40}),
+        RagLog(pregunta="a", latencia_ms=1000, instrumentos=["1"]), RagLog(pregunta="b", latencia_ms=3000, instrumentos=["1", "2"]),
+        RagLog(pregunta="c", latencia_ms=9000, instrumentos=["2"]),
+    ])
+    acervo.commit()
+    d = cliente.get("/visualizacion/catalogo/1/tiempos", headers=ANA).json()
+    assert [p["paso"] for p in d["pasos"]] == ["carga", "limpieza_automatica", "indexacion_rag"]
+    assert d["pasos"][0]["etiqueta"] == "Carga y lectura del archivo" and d["pasos"][2]["segundo_plano"] is True
+    assert d["computo_ms"] == 65000 and d["punta_a_punta_ms"] == 7 * 60 * 1000
+    assert d["chat"] == {"consultas": 2, "p50_ms": 1000, "p95_ms": 3000}  # la del instrumento 2 no cuenta
+    assert cliente.get("/visualizacion/catalogo/99/tiempos", headers=ANA).json()["pasos"] == []

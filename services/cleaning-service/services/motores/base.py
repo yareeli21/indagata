@@ -32,8 +32,6 @@ class Entrada:
     nombre_archivo: str
     extension: str  # con punto y en minúsculas: ".csv", ".docx"…
     contenido: bytes
-    clave: bytes | None = None  # clave de respuestas (pruebas tabulares)
-    extension_clave: str | None = None
 
 
 @dataclass

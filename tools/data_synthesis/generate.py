@@ -12,6 +12,7 @@ Uso:
   python generate.py --charts-only                 # Solo genera gráficas
   python generate.py --quality-only                # Solo corre validación de calidad
   python generate.py --seed 42 --all               # Generación reproducible
+  python generate.py --tipo encuesta --modelo-adicionales uniforme  # Acervo v1.0 exacto
 
 El sistema lee los metadatos existentes para continuar la numeración
 y puede calibrar nuevos instrumentos con los ya generados.
@@ -42,12 +43,14 @@ def run_generation(
     n: int | None,
     seed: int,
     output_dir: Path,
+    modelo: str = "coherente",
 ) -> None:
     """Run the generation pipeline."""
     print(f"\n{'='*60}")
     print("  INDAGATA — Motor de Datos Sintéticos v1.0")
     print(f"  Salida: {output_dir}")
     print(f"  Semilla aleatoria: {seed}")
+    print(f"  Preguntas no Likert de encuestas: {modelo}")
     print(f"{'='*60}\n")
 
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -57,7 +60,7 @@ def run_generation(
     # --- Encuestas ---
     if tipo is None or tipo == "encuesta":
         print("📋 Generando ENCUESTAS...")
-        gen = EncuestaGenerator(output_dir=output_dir, seed=seed)
+        gen = EncuestaGenerator(output_dir=output_dir, seed=seed, modelo=modelo)
         if n is not None:
             ids = gen.generate_n_more(n)
         else:
@@ -131,6 +134,12 @@ def main() -> None:
         help="Semilla para reproducibilidad (default: 42)"
     )
     parser.add_argument(
+        "--modelo-adicionales", choices=["coherente", "uniforme"], default="coherente",
+        help="Encuestas: cómo se generan las preguntas que no son Likert. «coherente» (v1.1) las hace "
+             "depender del respondente (config/coherencia_encuestas.json); «uniforme» (v1.0) las sortea "
+             "al azar y reproduce el acervo original con --seed 42. Los ítems Likert son iguales en ambos."
+    )
+    parser.add_argument(
         "--output", type=str, default=None,
         help=f"Directorio de salida (default: {OUTPUT_DIR})"
     )
@@ -180,6 +189,7 @@ def main() -> None:
         n=args.n,
         seed=args.seed,
         output_dir=output_dir,
+        modelo=args.modelo_adicionales,
     )
 
     # Post-generation charts

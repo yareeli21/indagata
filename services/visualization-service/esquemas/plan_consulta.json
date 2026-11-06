@@ -1,0 +1,343 @@
+{
+  "$defs": {
+    "CondicionContexto": {
+      "additionalProperties": false,
+      "description": "Una comparación sobre un dato de contexto numérico: «horas_trabajo_semana > 20», «edad < 20».\n\nAntes el contexto solo admitía igualdad y «¿cuántos trabajan más de 20 horas?» no tenía cómo expresarse cuando\nlas horas eran un dato de contexto y no una pregunta (Fase 6, consultas 1486 y 1522).",
+      "properties": {
+        "variable": {
+          "description": "Variable del «Contexto numérico» del catálogo.",
+          "title": "Variable",
+          "type": "string"
+        },
+        "op": {
+          "default": ">",
+          "enum": [
+            "=",
+            "!=",
+            ">",
+            ">=",
+            "<",
+            "<="
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "valor": {
+          "title": "Valor",
+          "type": "number"
+        }
+      },
+      "required": [
+        "variable",
+        "valor"
+      ],
+      "title": "CondicionContexto",
+      "type": "object"
+    },
+    "Filtro": {
+      "additionalProperties": false,
+      "description": "Una condición sobre una pregunta: «p03 = Carga minima», «p04 >= 4» o «p01 en nivel acuerdo».",
+      "properties": {
+        "pregunta": {
+          "description": "ID corto de la pregunta del catálogo, p. ej. «p03».",
+          "title": "Pregunta",
+          "type": "string"
+        },
+        "op": {
+          "default": "=",
+          "enum": [
+            "=",
+            "!=",
+            ">",
+            ">=",
+            "<",
+            "<="
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "valor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Opción tal como aparece en el catálogo, número o lista de opciones.",
+          "title": "Valor"
+        },
+        "nivel": {
+          "anyOf": [
+            {
+              "enum": [
+                "alto",
+                "medio",
+                "bajo",
+                "acuerdo",
+                "neutral",
+                "desacuerdo"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Nivel de la escala en lugar de una opción.",
+          "title": "Nivel"
+        }
+      },
+      "required": [
+        "pregunta"
+      ],
+      "title": "Filtro",
+      "type": "object"
+    },
+    "Orden": {
+      "additionalProperties": false,
+      "properties": {
+        "por": {
+          "const": "id_respondente",
+          "default": "id_respondente",
+          "title": "Por",
+          "type": "string"
+        },
+        "dir": {
+          "default": "asc",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "title": "Dir",
+          "type": "string"
+        }
+      },
+      "title": "Orden",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Lo que el LLM entendió de la pregunta. Todos los campos menos `intencion` son opcionales.",
+  "properties": {
+    "intencion": {
+      "enum": [
+        "datos_respondente",
+        "filtrar_respondentes",
+        "conteo_porcentaje",
+        "comparar_grupos",
+        "hallazgo",
+        "resumen_pregunta",
+        "ranking_preguntas",
+        "kpi",
+        "semantica_abierta",
+        "metodologia",
+        "uso_plataforma",
+        "fuera_de_dominio",
+        "aclaracion"
+      ],
+      "title": "Intencion",
+      "type": "string"
+    },
+    "instrumentos": {
+      "description": "IDs de instrumento; vacío = todos los seleccionados.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Instrumentos",
+      "type": "array"
+    },
+    "respondentes": {
+      "description": "IDs cortos de respondente («R001») si la pregunta los nombra.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Respondentes",
+      "type": "array"
+    },
+    "preguntas": {
+      "description": "IDs cortos de las preguntas de las que trata.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Preguntas",
+      "type": "array"
+    },
+    "filtros": {
+      "items": {
+        "$ref": "#/$defs/Filtro"
+      },
+      "maxItems": 5,
+      "title": "Filtros",
+      "type": "array"
+    },
+    "nivel": {
+      "anyOf": [
+        {
+          "enum": [
+            "alto",
+            "medio",
+            "bajo",
+            "acuerdo",
+            "neutral",
+            "desacuerdo"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Nivel"
+    },
+    "agrupar_por": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Variable de contexto del catálogo (p. ej. «Turno»).",
+      "title": "Agrupar Por"
+    },
+    "contexto": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Grupo de contexto al que se limita la consulta.",
+      "title": "Contexto",
+      "type": "object"
+    },
+    "contexto_num": {
+      "description": "Comparaciones sobre el contexto numérico («más de 20 horas»).",
+      "items": {
+        "$ref": "#/$defs/CondicionContexto"
+      },
+      "maxItems": 3,
+      "title": "Contexto Num",
+      "type": "array"
+    },
+    "criterio_ranking": {
+      "anyOf": [
+        {
+          "enum": [
+            "no_respuesta",
+            "coincidencia",
+            "repartida"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "En ranking_preguntas: no_respuesta, coincidencia o repartida.",
+      "title": "Criterio Ranking"
+    },
+    "excluir_preguntas": {
+      "description": "IDs cortos de preguntas que no se cuentan.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Excluir Preguntas",
+      "type": "array"
+    },
+    "menciona": {
+      "default": "",
+      "description": "Término que se busca en las respuestas abiertas.",
+      "maxLength": 60,
+      "title": "Menciona",
+      "type": "string"
+    },
+    "kpi": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "ID o nombre del KPI si la pregunta trata de uno.",
+      "title": "Kpi"
+    },
+    "campos": {
+      "anyOf": [
+        {
+          "enum": [
+            "todas_las_respuestas",
+            "solo_ids"
+          ],
+          "type": "string"
+        },
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      ],
+      "default": "solo_ids",
+      "title": "Campos"
+    },
+    "orden": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Orden"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "limite": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Limite"
+    },
+    "consulta_semantica": {
+      "default": "",
+      "maxLength": 300,
+      "title": "Consulta Semantica",
+      "type": "string"
+    },
+    "aclaracion": {
+      "default": "",
+      "maxLength": 300,
+      "title": "Aclaracion",
+      "type": "string"
+    }
+  },
+  "required": [
+    "intencion"
+  ],
+  "title": "PlanConsulta",
+  "type": "object"
+}

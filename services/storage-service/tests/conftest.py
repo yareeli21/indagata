@@ -82,7 +82,10 @@ class ColeccionFalsa:
         self.name = nombre
         self.puntos: dict[str, dict] = {}
 
+    limite_lote: int | None = None  # como el máximo de Chroma real
+
     def upsert(self, ids, embeddings, documents, metadatas):  # noqa: ANN001
+        assert self.limite_lote is None or len(ids) <= self.limite_lote, len(ids)
         for i, e, d, m in zip(ids, embeddings, documents, metadatas):
             for valor in m.values():
                 assert valor is not None and isinstance(valor, (str, int, float, bool)), m

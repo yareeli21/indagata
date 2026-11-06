@@ -152,7 +152,7 @@ def validate_for_instrument(
 
     - encuesta   → tabular (.csv, .xlsx, .xls)
     - entrevista → documento (.pdf, .txt, .docx)
-    - prueba     → tabular (respuestas + clave) o documento (el examen en texto)
+    - prueba     → tabular (hoja de respuestas, sin clave) o documento (el examen en texto)
 
     Raises:
         FileTypeError: si la extensión no es válida para ese tipo de instrumento.

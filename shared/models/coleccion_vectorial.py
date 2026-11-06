@@ -1,6 +1,6 @@
 """Modelo ORM: coleccion_vectorial — configuración de colección Chroma.
 
-Una colección por configuración de embedding. La referencian prompts y
+Una colección por configuración de embedding. La referencia
 documento_vectorizado.
 """
 from __future__ import annotations

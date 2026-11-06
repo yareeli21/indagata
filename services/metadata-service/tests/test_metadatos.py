@@ -369,3 +369,84 @@ def test_leyenda_de_escala_se_guarda_en_las_estadisticas():
     _etiquetar_escalas([p, abierta], original)
     assert p.estadisticas["etiquetas"] == {"1": "Nunca", "2": "A veces", "3": "Siempre"}
     assert "etiquetas" not in abierta.estadisticas
+
+def test_la_poblacion_no_se_toma_de_una_pregunta():
+    from services.analizador import hallazgos_texto
+
+    texto = (
+        "INSTRUCCIONES:\nMarca la opción que mejor describe tu experiencia.\n\n"
+        "6. Las relaciones entre compañeros son respetuosas.\n"
+        "7. Los profesores están disponibles para resolver dudas.\n"
+    )
+    assert not hallazgos_texto(texto, []).get("poblacion")
+    con_poblacion = "Dirigida a estudiantes de licenciatura del turno matutino.\n" + texto
+    assert hallazgos_texto(con_poblacion, [])["poblacion"].startswith("Dirigida a estudiantes")
+
+
+def test_listas_del_llm_solo_aceptan_cadenas_que_no_sean_codigos(monkeypatch):
+    import json
+
+    from services import llm_client
+
+    respuesta = {"dimensiones": ["Evaluación del aprendizaje", ["Evaluación", ["Evaluación_item1"]], "Ambiente_item6", "P3",
+                                 "Ambiente escolar"], "objetivo": "Conocer la experiencia."}
+
+    class _Resp:
+        def raise_for_status(self) -> None: ...
+        def json(self) -> dict:
+            return {"response": json.dumps(respuesta)}
+
+    class _Cliente:
+        def __init__(self, *a, **k) -> None: ...
+        def __enter__(self):  # noqa: ANN204
+            return self
+        def __exit__(self, *a) -> None: ...
+        def post(self, *a, **k) -> _Resp:
+            return _Resp()
+
+    monkeypatch.setattr(llm_client.httpx, "Client", _Cliente)
+    salida = llm_client.sugerir("Encuesta", "T", "contexto", {"dimensiones": "lista", "objetivo": "texto"})
+    assert salida == {"dimensiones": ["Evaluación del aprendizaje", "Ambiente escolar"], "objetivo": "Conocer la experiencia."}
+
+
+def test_nombres_de_dimensiones_solo_si_cuadran(monkeypatch):
+    import json
+
+    from services import llm_client
+
+    respuestas = iter([{"nombres": ["Evaluación del aprendizaje", "Ambiente escolar"]},
+                       {"nombres": ["Solo uno"]},
+                       {"nombres": ["Evaluación", "Ambiente_item2"]}])
+
+    class _Resp:
+        def __init__(self) -> None:
+            self.datos = next(respuestas)
+        def raise_for_status(self) -> None: ...
+        def json(self) -> dict:
+            return {"response": json.dumps(self.datos)}
+
+    class _Cliente:
+        def __init__(self, *a, **k) -> None: ...
+        def __enter__(self):  # noqa: ANN204
+            return self
+        def __exit__(self, *a) -> None: ...
+        def post(self, *a, **k) -> _Resp:
+            return _Resp()
+
+    monkeypatch.setattr(llm_client.httpx, "Client", _Cliente)
+    grupos = [["Me explican los criterios", "Mis notas reflejan lo aprendido"], ["Me siento seguro", "Me respetan"]]
+    assert llm_client.nombrar_grupos("encuesta", "Clima", grupos) == ["Evaluación del aprendizaje", "Ambiente escolar"]
+    assert llm_client.nombrar_grupos("encuesta", "Clima", grupos) == []  # no trae un nombre por grupo
+    assert llm_client.nombrar_grupos("encuesta", "Clima", grupos) == []  # trae un código de columna
+
+
+def test_se_registra_el_tiempo_de_la_propuesta_la_aprobacion_y_la_indexacion(cliente, ana, crear_instrumento, db):
+    from shared.models.tiempo_proceso import TiempoProceso
+
+    id_crudo = crear_instrumento("compromiso.csv", ENCUESTA_CSV)
+    cliente.get(f"/api/metadata/{id_crudo}/propuesta", headers=ana)
+    payload = {"dublin_core": _dc_completo(), "enriquecidos": ENCUESTA_ESPECIFICOS}
+    assert cliente.post(f"/api/metadata/{id_crudo}/aprobar", json=payload, headers=ana).status_code == 200
+    filas = {t.paso: t for t in db.query(TiempoProceso).filter_by(id_crudo=id_crudo)}
+    assert {"propuesta_dublin_core", "aprobacion", "indexacion_aprobacion"} <= set(filas)
+    assert filas["indexacion_aprobacion"].detalle == {"chunks": 7, "indexado": True}

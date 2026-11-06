@@ -10,6 +10,8 @@ import logging
 
 from fastapi import APIRouter, HTTPException, status
 
+from shared import tiempos
+
 from dependencies import DBSession, Investigador
 from models import MetadatosPayload, PerfilOut, PerfilVistaPreviaOut
 from services import fuentes, perfil, versiones
@@ -34,7 +36,7 @@ def _construir(id_crudo: int, tipo: str, dc: dict, esp: dict, est) -> dict:  # n
 @router.post("/{id_crudo}/perfil/vista-previa", response_model=PerfilVistaPreviaOut, summary="Vista previa del perfil semántico")
 def vista_previa(id_crudo: int, cuerpo: MetadatosPayload, db: DBSession, usuario: Investigador) -> PerfilVistaPreviaOut:
     ctx = fuentes.cargar(db, usuario, id_crudo)
-    est = fuentes.estructura_de(ctx)
+    est = fuentes.estructura_de(ctx, perfil.nombres_dimensiones(cuerpo.enriquecidos))
     datos = _construir(id_crudo, ctx.tipo, cuerpo.dublin_core, cuerpo.enriquecidos, est)
     return PerfilVistaPreviaOut(perfil=datos, fuente=est.fuente, n_preguntas=perfil.n_preguntas(datos), avisos=est.avisos)
 
@@ -42,14 +44,16 @@ def vista_previa(id_crudo: int, cuerpo: MetadatosPayload, db: DBSession, usuario
 @router.post("/{id_crudo}/perfil", response_model=PerfilOut, summary="Genera y guarda el perfil semántico aprobado")
 def generar(id_crudo: int, db: DBSession, usuario: Investigador) -> PerfilOut:
     ctx = fuentes.cargar(db, usuario, id_crudo)
-    dc, esp = fuentes.metadatos_aprobados(db, ctx)
-    est = fuentes.estructura_de(ctx)
-    datos = _construir(id_crudo, ctx.tipo, dc, esp, est)
-    fila = versiones.crear_con_perfil(
-        db, id_crudo, datos, usuario,
-        id_limpieza=ctx.limpieza.id_limpieza if ctx.limpieza else None,
-        avisos=[dict(a, origen="perfil") for a in est.avisos],
-    )
+    with tiempos.medir(db, id_crudo, "knowledge", "perfil") as detalle:
+        dc, esp = fuentes.metadatos_aprobados(db, ctx)
+        est = fuentes.estructura_de(ctx, perfil.nombres_dimensiones(esp))
+        datos = _construir(id_crudo, ctx.tipo, dc, esp, est)
+        fila = versiones.crear_con_perfil(
+            db, id_crudo, datos, usuario,
+            id_limpieza=ctx.limpieza.id_limpieza if ctx.limpieza else None,
+            avisos=[dict(a, origen="perfil") for a in est.avisos],
+        )
+        detalle.update(preguntas=len(est.preguntas), version=fila.version)
     return _salida(fila, est.fuente)
 
 

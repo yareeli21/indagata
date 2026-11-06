@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import copy
 import logging
+import time
 import os
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -27,6 +28,7 @@ from sqlalchemy import func
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
+from shared import tiempos
 from shared.auth import ROL_ADMINISTRADOR
 from shared.models.instrumento_procesado import InstrumentoProcesado
 from shared.models.kpi import KPI
@@ -201,14 +203,10 @@ def propuesta(
             return {**base, "valores": guardados, "origen": {k: "aprobado" for k in guardados}}
 
     exigir_limpieza(ctx)
+    con_llm = settings.METADATA_USAR_LLM if usar_llm is None else usar_llm
     try:
-        prop = propuestas.construir(
-            ctx.raw,
-            ctx.procesado,
-            ctx.autor_nombre,
-            usar_llm=settings.METADATA_USAR_LLM if usar_llm is None else usar_llm,
-            limpieza=ctx.limpieza,
-        )
+        with tiempos.medir(db, id_crudo, "metadata", f"propuesta_{grupo}", {"modelo": bool(con_llm)}):
+            prop = propuestas.construir(ctx.raw, ctx.procesado, ctx.autor_nombre, usar_llm=con_llm, limpieza=ctx.limpieza)
     except storage_client.StorageError as exc:
         raise error_storage(exc) from exc
     if grupo == "dublin_core":
@@ -235,6 +233,7 @@ def aprobar(db: Session, usuario: Usuario, id_crudo: int, payload: dict[str, Any
     if any(errores.values()):
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, _mensaje_errores(ctx, errores))
 
+    inicio, t0 = tiempos._ahora(), time.perf_counter()  # tiempo de cómputo de la aprobación (sin la indexación)
     analisis = analizar(ctx)
     ahora = datetime.now(timezone.utc)
     data = json_estandarizado.construir(
@@ -258,7 +257,11 @@ def aprobar(db: Session, usuario: Usuario, id_crudo: int, payload: dict[str, Any
         logger.exception("No se pudieron guardar los metadatos de %s.", id_crudo)
         raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR, "No se pudieron guardar los metadatos.") from exc
 
-    ingesta = _ingerir(id_crudo)
+    tiempos.registrar(db, id_crudo, "metadata", "aprobacion", inicio, tiempos._ahora(),
+                      round((time.perf_counter() - t0) * 1000), {})
+    with tiempos.medir(db, id_crudo, "metadata", "indexacion_aprobacion") as detalle:
+        ingesta = _ingerir(id_crudo)
+        detalle.update(chunks=ingesta["chunks"], indexado=ingesta["indexado"])
     db.refresh(ctx.procesado)
     mensaje = (
         "Metadatos aprobados e instrumento ingerido al RAG."
