@@ -2747,6 +2747,31 @@ contexto; Resultados Z.4.1) las calcula un modelo de lenguaje al que se le pide 
 - genera preguntas a partir de la respuesta;
 - marca qué fragmentos fueron útiles.
 
+**Fundamento en la literatura.** Que un modelo de lenguaje califique las respuestas de otro es la técnica
+*LLM-as-a-judge*. Zheng et al. (2023) la evaluaron contra preferencias humanas: un juez fuerte alcanza un acuerdo con
+las personas comparable al que tienen las personas entre sí, pero con sesgos documentados:
+- favorece sus propias respuestas (autoevaluación);
+- favorece las respuestas largas;
+- se deja llevar por el orden en que se le presentan.
+
+Por eso recomiendan validar al juez contra calificaciones humanas antes de confiar en él. RAGAS (Es et al., 2024)
+aplica esta técnica a los sistemas RAG con métricas sin respuesta de referencia: la fidelidad (afirmaciones de la
+respuesta que se deducen del contexto), la relevancia de la respuesta (preguntas generadas desde la respuesta,
+comparadas con la original por similitud de *embeddings*) y la calidad del contexto recuperado. Indagata sigue esas
+definiciones (Tabla D.29b) y atiende la recomendación de Zheng et al. de tres formas:
+- la calificación de la investigadora es la referencia humana;
+- el acuerdo juez–humano se mide con kappa de Cohen y correlación de Spearman;
+- la matriz redactor × juez mide el sesgo de autoevaluación (Pruebas).
+
+Referencias:
+- Zheng, L., Chiang, W.-L., Sheng, Y., Zhuang, S., Wu, Z., Zhuang, Y., Lin, Z., Li, Z., Li, D., Xing, E. P., Zhang,
+  H., Gonzalez, J. E. y Stoica, I. (2023). *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena*. NeurIPS 2023,
+  Datasets and Benchmarks Track. arXiv:2306.05685. https://arxiv.org/abs/2306.05685
+- Es, S., James, J., Espinosa Anke, L. y Schockaert, S. (2024). *RAGAs: Automated Evaluation of Retrieval Augmented
+  Generation*. En *Proceedings of the 18th Conference of the European Chapter of the Association for Computational
+  Linguistics: System Demonstrations* (pp. 150–158). https://doi.org/10.18653/v1/2024.eacl-demo.16
+<!-- fuente: https://arxiv.org/abs/2306.05685 y https://aclanthology.org/2024.eacl-demo.16/ (consultadas el 5 nov 2026) -->
+
 **Cómo está estructurado.** Después de entregar la respuesta, un trabajador en segundo plano le hace al
 juez cuatro tipos de consulta, siempre en formato JSON, con temperatura 0 y semilla fija. Las métricas
 siguen las definiciones de RAGAS 0.4.3, reescritas como prompts cortos en español.

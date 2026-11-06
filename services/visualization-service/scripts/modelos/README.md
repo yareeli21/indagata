@@ -8,6 +8,7 @@ respuestas de todos los redactores. Así sale la matriz redactor × juez sin rep
 |---|---|
 | `generar_casos.py` | Escribe `casos.json`: los 14 casos, el tipo de cada turno (dato, inexistente, interpretativo, capacidad, control), las intenciones aceptadas y las cifras correctas, calculadas directo de la base |
 | `correr_casos.py` | Hace en el chat real las preguntas de uno o varios archivos de casos, una conversación por caso y con el historial igual que la interfaz; imprime la corrida. Se corre desde el host |
+| `exportar.py` | Exporta a CSV (Excel) las consultas con su calificación humana, quién calificó, lo recuperado del RAG y las métricas de cada juez; por defecto solo lo calificado (`--todas`, `--desde`, `--hasta`). Escribe `storage/evaluacion_modelos/exportes/` |
 | `juzgar.py` | Evalúa con **un** juez las respuestas de una o varias corridas y muestra el avance en la terminal (`rag_metrica_juez`) |
 | `calificar.py` | Califica en la terminal los turnos de una corrida que no tienen calificación humana (la misma tabla que el panel) |
 | `reporte.py` | Calcula las métricas contra la referencia y el cruce juez / sin juez / persona, y escribe `storage/evaluacion_modelos/<fecha>/` |

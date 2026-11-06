@@ -265,3 +265,13 @@ docker compose exec visualization-service python scripts/modelos/reporte.py --ca
 ```
 El reporte queda en `storage/evaluacion_modelos/<fecha>/`. Detalles en
 `services/visualization-service/scripts/modelos/README.md`.
+
+**7. Exporta tus calificaciones a CSV** para revisarlas en Excel o compartirlas con el equipo. Cada quien las guarda en
+su propia base, así que cada quien exporta las suyas cuando termina de calificar:
+```powershell
+docker compose exec visualization-service python scripts/modelos/exportar.py
+```
+Queda en `storage/evaluacion_modelos/exportes/<fecha-hora>_calificaciones.csv`: una fila por consulta calificada, con
+la pregunta, la respuesta, quién calificó, la calificación, el comentario, lo recuperado del RAG y las métricas de cada
+juez. `--desde 1845 --hasta 1910` exporta solo un rango de consultas; `--todas` incluye las que no tienen calificación.
+Si lo vuelves a correr después de calificar más, sale un archivo nuevo con todo lo calificado hasta ese momento.
