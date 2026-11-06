@@ -1000,6 +1000,38 @@ detector: el «1» de la cita «[Fuente 1]». La otra, «18 indicadores», no es
 investigadora calificó ese turno con 0.
 <!-- fuente: tt_rag.rag_log 1414 (contexto_usado y salida); evidencias/modelos_2026-11-02/qwen3_4b-instruct.json, turno 9.2 -->
 
+**Cómo se mide la confiabilidad del juez.** Las métricas tipo RAGAS evalúan las respuestas; para saber si se puede
+confiar en el juez que las calcula, se compara con la calificación humana y con los indicadores sin modelo, usando dos
+estadísticos clásicos que hoy se usan para validar evaluadores automáticos:
+- **Kappa de Cohen** (Cohen, 1960): acuerdo entre dos evaluadores que clasifican en categorías, descontado el acuerdo
+  esperable por azar. Va de −1 a 1; 0 equivale al azar. Se calcula sobre «el juez aprueba» (promedio de sus tres
+  métricas ≥ 0.7) contra «la investigadora calificó Bien», y sobre «fidelidad ≥ 0.8» contra «todas las cifras tienen
+  respaldo». El umbral de 0.41 corresponde al acuerdo «moderado» de la escala de Landis y Koch (1977).
+- **Correlación de Spearman** (Spearman, 1904): si los dos ordenan las respuestas igual aunque usen escalas distintas
+  (el juez de 0 a 1 y la investigadora 0, 1 o 2). El umbral fijado fue 0.5.
+
+La correlación de rangos con el juicio humano es la forma habitual de reportar un evaluador automático; G-Eval (Liu et
+al., 2023), por ejemplo, reporta Spearman contra calificaciones humanas. Thakur et al. (2025) advierten que el
+porcentaje de acuerdo solo puede engañar: jueces con mucho acuerdo pueden dar puntajes muy distintos. Por eso
+recomiendan medidas corregidas por azar junto con un análisis cualitativo. Ellos usan la π de Scott, porque la kappa de
+Cohen tiene problemas teóricos documentados; las dos coinciden cuando los evaluadores reparten sus calificaciones de
+forma parecida. En esta tesis se usa la kappa de Cohen, junto con Spearman y la revisión turno por turno.
+
+Referencias:
+- Cohen, J. (1960). A coefficient of agreement for nominal scales. *Educational and Psychological Measurement*,
+  20(1), 37–46. https://doi.org/10.1177/001316446002000104
+- Landis, J. R. y Koch, G. G. (1977). The measurement of observer agreement for categorical data. *Biometrics*, 33(1),
+  159–174. https://doi.org/10.2307/2529310
+- Spearman, C. (1904). The proof and measurement of association between two things. *The American Journal of
+  Psychology*, 15(1), 72–101. https://doi.org/10.2307/1412159
+- Liu, Y., Iter, D., Xu, Y., Wang, S., Xu, R. y Zhu, C. (2023). G-Eval: NLG evaluation using GPT-4 with better human
+  alignment. En *Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing*
+  (pp. 2511–2522). https://doi.org/10.18653/v1/2023.emnlp-main.153
+- Thakur, A. S., Choudhary, K., Ramayapally, V. S., Vaidyanathan, S. y Hupkes, D. (2025). Judging the judges:
+  Evaluating alignment and vulnerabilities in LLMs-as-judges. En *Proceedings of the Fourth Workshop on Generation,
+  Evaluation and Metrics (GEM²)* (pp. 404–430). Association for Computational Linguistics. arXiv:2406.12624.
+<!-- fuente: Crossref (api.crossref.org) para Cohen, Landis y Koch, y Spearman; https://aclanthology.org/2023.emnlp-main.153/; https://arxiv.org/abs/2406.12624 y su versión HTML v6 (nota 2 y apéndice B); consultadas el 6 nov 2026. Fórmulas: scripts/modelos/comun.py (kappa, spearman) y reporte.py (cruce, APROBADO = 0.7) -->
+
 **Tabla P.22.** Confiabilidad de cada juez (78 respuestas por juez, todas con calificación humana).
 
 | Juez | Kappa fidelidad vs cifras con respaldo | Kappa aprobado vs «Bien» humano | Spearman promedio vs humana | Spearman relevancia vs humana | Precisión del contexto alta con contexto insuficiente |
