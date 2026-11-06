@@ -216,3 +216,52 @@ Para la duración, usa esta otra (capítulo de Pruebas, Tabla P.23):
 
 Consejo: haz **un cambio a la vez** (un tipo de error por archivo, o anótalos todos con su fila y columna),
 así sabes exactamente qué tarjeta corresponde a qué error.
+
+---
+
+## 7. Repetir las pruebas del chat de la tesis
+
+Así cualquier persona del equipo repite, en su computadora, las corridas del capítulo de Pruebas con los mismos
+instrumentos y las mismas preguntas.
+
+**1. Configura los modelos.** En `.env` deben quedar `OLLAMA_MODEL=gemma3:4b`,
+`RAG_JUEZ_MODELO=qwen3:4b-instruct` y, mientras pruebas, `RAG_CACHE_HORAS=0`, para que una pregunta repetida se
+responda de nuevo. Descarga los modelos como dice `LEVANTAR_LA_APP.md`, paso 7.1, y recrea los servicios:
+`docker compose up -d`.
+
+**2. Sube los tres instrumentos** con el asistente completo: carga, limpieza, metadatos, KPIs, documento final y
+publicar. Anota el **id** que recibe cada uno, porque en tu computadora será distinto:
+
+| En la tesis | Archivo (`storage/instrumentos_sinteticos/`) | Casos |
+|---|---|---|
+| 127 (encuesta) | `encuestas/Encuesta2_Simulada_2000_SUCIA.csv` | `casos.json`: 14 casos, 28 turnos |
+| 130 (prueba) | `pruebas/pru_03_sucio_no_contemplado.csv` | `casos_pru03.json`: 12 casos, 22 turnos |
+| 129 (entrevista) | `entrevistas/ent_11_salud_mental_ruido.txt` | `casos_ent11.json`: 8 casos, 13 turnos |
+| 131 (entrevista, ruido no contemplado) | `entrevistas/ent_11_salud_mental_ruido_no_contemplado.txt` | Prueba de ruido; mismas preguntas que la 129 |
+
+**3. Regenera los casos con tus ids.** Las cifras esperadas se calculan de tu base:
+```powershell
+docker compose exec visualization-service python scripts/modelos/generar_casos.py --instrumento <id de la encuesta>
+docker compose exec visualization-service python scripts/modelos/generar_casos_fase6.py --prueba <id de la prueba> --entrevista <id de la entrevista>
+```
+
+**4. Corre las preguntas en el chat**, una conversación por caso. Corre desde el host, con el chat sin usar mientras
+tanto:
+```powershell
+$env:PYTHONIOENCODING="utf-8"; .venv\Scripts\python.exe -u services\visualization-service\scripts\modelos\correr_casos.py casos.json casos_pru03.json casos_ent11.json
+```
+Al final imprime la corrida, por ejemplo `gemma3:4b=1845-1910`. Con otro redactor, cambia `OLLAMA_MODEL`, recrea
+`visualization-service` y repite.
+
+**5. Califica** las respuestas, una vez por archivo de casos (0 mal, 1 parcial, 2 bien):
+```powershell
+docker compose exec visualization-service python scripts/modelos/calificar.py --casos casos.json --corrida gemma3:4b=<inicio>-<fin>
+```
+
+**6. Juez y reporte**, también por archivo de casos:
+```powershell
+docker compose exec visualization-service python scripts/modelos/juzgar.py --casos casos.json --juez qwen3:4b-instruct --corrida gemma3:4b=<inicio>-<fin>
+docker compose exec visualization-service python scripts/modelos/reporte.py --casos casos.json --corrida gemma3:4b=<inicio>-<fin>
+```
+El reporte queda en `storage/evaluacion_modelos/<fecha>/`. Detalles en
+`services/visualization-service/scripts/modelos/README.md`.

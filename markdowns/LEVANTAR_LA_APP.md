@@ -102,7 +102,23 @@ docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 
 docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_11_conocimiento.sql
 docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_12_rag.sql
 docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_13_ajustes.sql
+docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_14_formato_mime.sql
+docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_15_tiempo_proceso.sql
+docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_16_sin_clave.sql
+docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_17_rag_log_plan.sql
+docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_18_rag_evaluacion.sql
+docker compose exec postgres psql -U postgres -d indagata_db -v ON_ERROR_STOP=1 -f /migrations/2026_19_quitar_tablas_sin_uso.sql
 ```
+
+Qué agrega cada una a partir de la 14:
+- `2026_14`: el formato Dublin Core con el tipo MIME completo.
+- `2026_15`: los tiempos de cada paso del procesamiento.
+- `2026_16`: las pruebas estandarizadas ya no se califican.
+- `2026_17`: el plan y los tiempos de cada consulta del chat.
+- `2026_18`: las métricas por juez y la calificación humana del chat.
+- `2026_19`: quita cuatro tablas vacías que ningún flujo usaba.
+
+Sin la 17 y la 18, el chat falla al guardar cada consulta.
 
 La migración `2026_13` agrega la caché de respuestas del chat y la tabla de fuentes de los KPIs.
 Después carga las fuentes, sin tocar el catálogo ni los KPIs ya aceptados:
@@ -125,11 +141,16 @@ docker compose up -d --build
 
 ## 7. Cargar los modelos y los KPIs (solo la primera vez)
 
-**7.1 Modelo de lenguaje de Ollama.** Se usa para el chat, los metadatos interpretativos y la
-justificación de KPIs:
+**7.1 Modelos de lenguaje de Ollama.** El redactor (`gemma3:4b`) se usa para el chat, los metadatos
+interpretativos y la justificación de KPIs; el juez (`qwen3:4b-instruct`) solo calcula las métricas
+del chat cuando se piden. Son los elegidos en el experimento de modelos y los que pone
+`.env.example`:
 ```powershell
-docker compose exec ollama ollama pull llama3.2:3b
+docker compose exec ollama ollama pull gemma3:4b
+docker compose exec ollama ollama pull qwen3:4b-instruct
 ```
+`gemma3:4b` no cabe completo en una GPU de 4 GiB: usa también RAM y cada respuesta del chat tarda de
+20 a 60 s. Con poca memoria, cierra los programas pesados mientras pruebas.
 
 **7.2 Catálogo de KPIs.** Son dos comandos. Sin ellos, el paso «KPIs sugeridos» del asistente sale
 vacío.
