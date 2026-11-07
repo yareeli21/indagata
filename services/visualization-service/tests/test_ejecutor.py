@@ -56,6 +56,36 @@ def test_entrevista_y_prueba_por_participante():
     assert [f[1] for f in e.tablas[0].filas] == ["56", "11"]
 
 
+def test_resumen_de_un_reactivo_con_distribucion_por_opcion():
+    """La prueba guarda la distribución como {opción: {n, pct}}: el resumen tronaba con 'str' sin .get (2228, 2230)."""
+    doc = docs_ejemplo.prueba()
+    doc["reactivos"][1]["resumen"]["distribucion"] = {"C": {"n": 6, "pct": 46.2}, "D": {"n": 5, "pct": 38.5},
+                                                      "nula": {"n": 1, "pct": 7.7}, "NR": {"n": 1, "pct": 7.7}}
+    pru = Instrumento("2", "Diagnóstico", "prueba_estandarizada", doc)
+    e = _uno(_plan(intencion="resumen_pregunta", preguntas=["r02"]), pru)
+    assert e.lineas[0].endswith("11 respuestas válidas, 2 sin respuesta.")
+    assert e.tablas[0].filas[0] == ["C", "6", "46.2 %"]
+
+
+def test_filtros_imposibles_se_quitan():
+    """«r01 de acuerdo» en un reactivo sin escala y «r04 > 30» en opción múltiple (consulta 2231)."""
+    from services import catalogo
+    from services.plan_consulta import validar_contra_catalogo
+    preguntas = {
+        "r01": catalogo.PreguntaCatalogo("r01", "¿Extensión de Excel?", "opcion_multiple", ["A) .xlsx", "B) .doc"]),
+        "r04": catalogo.PreguntaCatalogo("r04", "¿Qué es el phishing?", "opcion_multiple", ["A) Pesca", "B) Fraude"]),
+        "p05": catalogo.PreguntaCatalogo("p05", "Satisfacción", "likert", ["Nada", "Mucho"], "escala 1–5"),
+    }
+    cat = catalogo.Catalogo("130", "Prueba", "prueba_estandarizada", preguntas, ["A001"],
+                            {"tiene_beca": ["False", "True"]}, [])
+    plan = PlanConsulta(intencion="comparar_grupos", agrupar_por="tiene_beca",
+                        filtros=[{"pregunta": "r01", "nivel": "acuerdo"}, {"pregunta": "r04", "op": ">", "valor": 30},
+                                 {"pregunta": "p05", "op": ">=", "valor": 4}])
+    v = validar_contra_catalogo(plan, [cat])
+    assert [f.pregunta for f in v.plan.filtros] == ["p05"]
+    assert any("r01 en nivel acuerdo quitado" in c for c in v.correcciones)
+
+
 # ── Filtros ────────────────────────────────────────────────────────────────────
 
 

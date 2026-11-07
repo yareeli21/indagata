@@ -57,7 +57,18 @@ SISTEMA = (
     "sobre…?»). No es fuente: no tomes de ahí cifras ni afirmaciones.\n"
     "15. Si hay RESULTADO CALCULADO y TEXTO RECUPERADO, usa los dos: el RESULTADO CALCULADO da las cifras y el "
     "TEXTO RECUPERADO explica de qué tratan (la pregunta, lo que dijeron, el KPI). Si dicen cosas distintas, manda el "
-    "RESULTADO CALCULADO: adapta lo recuperado a él, sin descartarlo."
+    "RESULTADO CALCULADO: adapta lo recuperado a él, sin descartarlo.\n"
+    # Bloque D (7 nov): comentarios de la investigadora a las consultas 2144, 2172, 2174, 2186, 2193 y 2248.
+    "16. Cada porcentaje va con su número de personas: «73 de 97 (75.3 %)».\n"
+    "17. Al comparar, revisa las cifras antes de escribir «mayor» o «menor». No llames «significativa» a una "
+    "diferencia ni afirmes causas: el sistema no calcula pruebas estadísticas.\n"
+    "18. Si una cifra o un patrón viene de pocas personas (una sola entrevista, un grupo de menos de cinco), dilo y no "
+    "generalices: habla de esa persona o de ese grupo, no de «los estudiantes» ni de «varios».\n"
+    "19. Los datos marcados «Contexto:» son datos registrados de la persona, no algo que dijo: preséntalos así («según "
+    "sus datos registrados»). Si la pregunta pide algo que la persona no menciona en sus respuestas, di que no lo "
+    "menciona.\n"
+    "20. Si la PREGUNTA pide tu opinión o qué te parece un resultado, da una interpretación prudente apoyada en los "
+    "datos (qué podría significar y qué convendría revisar), dicha como interpretación («podría indicar»)."
 )
 
 _SECCION = {

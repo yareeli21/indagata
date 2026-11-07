@@ -138,7 +138,14 @@ _CALIFICACION = re.compile(
     r"\b(aciertos?|acert\w*|respuestas? correctas?|respuestas? incorrectas?|calificacion\w*|calificad[oa]s?|puntajes?"
     r"|reactivo\s+mas\s+(?:dificil|facil|fallado)|mas\s+dificil|mas\s+facil|menos\s+acertad\w*|distractor\w*"
     # «¿Cuántos aprobaron la prueba?»; con «la prueba» para no tocar filtros de encuestas («los que reprobaron…»).
-    r"|(?:aprob|reprob|pas)\w*\s+(?:la|esta)\s+prueba)\b"
+    r"|(?:aprob|reprob|pas)\w*\s+(?:la|esta)\s+prueba"
+    r"|quien\s+(?:saco|obtuvo|tuvo)\s+(?:la\s+)?(?:mejor|mayor|mas\s+alta))\b"
+)
+# Solo con pruebas en el alcance: «¿la mayoría sabe para qué sirve una VPN?» pregunta si acertaron, y sin clave no se
+# sabe (consulta 2181, 7 nov). En una encuesta «¿cuántos conocen la plataforma?» es un filtro.
+_SABER = re.compile(
+    r"\b(?:la\s+mayoria|cuant[oa]s|quienes|todos|nadie|alguien)\s+(?:si\s+|no\s+)?(?:sabe|saben|conoce|conocen|domina"
+    r"|dominan|entiende|entienden|respondio\s+bien|respondieron\s+bien|contesto\s+bien|contestaron\s+bien)\b"
 )
 # Calidad de los datos y sugerencias de análisis (medidas de la limpieza).
 _CALIDAD = re.compile(
@@ -190,6 +197,12 @@ _DESCRIPCION = re.compile(
     r"(?:\s+(?:hay|existe|existen|tienen|tiene))?(?:\s+(?:entre|de))?\s+(?:(?:el|la|los|las|un|una|unos|unas|estos|estas|mis)\s+)?"
     r"(?:dos\s+|tres\s+)?(?:" + _INSTRUMENTO_PALABRA + r"|uno\s+y\s+otro|una\s+y\s+otra|ambos|ambas)"
     r"|\ben\s+que\s+se\s+(?:parecen|diferencian|distinguen|relacionan)\b|\bcomo\s+se\s+relacionan\b"
+    # A quién o a qué carrera se aplicó («¿a qué carrera está aplicada esta encuesta?», consulta 2153) y «de qué trata»
+    # sin nombrar el instrumento («dame el de qué trata más descriptivo», 2162).
+    r"|\b(?:carrera|licenciatura|poblacion|programa)s?\s+(?:\w+\s+){0,4}(?:aplic|dirig|levant|realiz)\w*"
+    r"|\b(?:aplic|dirig|levant|realiz)\w*\s+(?:\w+\s+){0,4}(?:carrera|licenciatura|poblacion)s?\b"
+    r"|\ba\s+quien(?:es)?\s+(?:se\s+)?(?:le\s+|les\s+)?(?:aplic|dirig)\w*"
+    r"|\bde\s+que\s+(?:trata|se\s+trata)\s*(?:$|[?,.]|\s+(?:mas|todo|esto|eso|en\s+general)\b)"
 )
 # Patrones o hallazgos de los datos («¿qué patrón de información consideras más interesante…?»,
 # «¿qué muestran los resultados?»): se calculan sobre los datos completos y el modelo solo redacta.
@@ -328,15 +341,16 @@ def _accion(texto: str) -> str:
     return "lista" if _ACCION_LISTA.search(texto) else "resumen"
 
 
-def detectar(pregunta: str, *, sin_filtro: bool = False) -> Intencion | None:
-    """Intención estructurada de la pregunta, o None si es una pregunta abierta."""
+def detectar(pregunta: str, *, sin_filtro: bool = False, solo_pruebas: bool = False) -> Intencion | None:
+    """Intención estructurada de la pregunta, o None si es una pregunta abierta. `solo_pruebas`: todo el alcance son
+    pruebas estandarizadas («¿la mayoría sabe…?» pregunta por aciertos)."""
     texto = normalizar(pregunta)
     persona, preguntas, nivel = _persona(texto), _preguntas(texto), _nivel(texto)
     tema = (m.group(1).strip() if (m := _TEMA.search(texto)) else "")
     base = {"persona": persona, "preguntas": preguntas, "nivel": nivel, "tema": tema, "texto": texto}
     if _CALIDAD.search(texto) and not persona and not es_definicion(pregunta):
         return Intencion("calidad", **base)
-    if _CALIFICACION.search(texto) and not persona:
+    if (_CALIFICACION.search(texto) or (solo_pruebas and _SABER.search(texto))) and not persona:
         return Intencion("sin_calificar", **base)
     if _KPI.search(texto):
         return Intencion("kpi_preguntas" if _KPI_PREGUNTAS.search(texto) else "kpi", **base)
@@ -782,6 +796,8 @@ def _lineas_descripcion(ins: Instrumento) -> list[str]:
         lineas.append(f"Población: {poblacion.rstrip('.')}.")
     if nivel := _dato(meta.get("nivel_educativo")):
         lineas.append(f"Nivel educativo: {nivel}.")
+    if contexto := _dato(meta.get("contexto")):  # institución, carrera(s), cobertura (consulta 2153: «¿a qué carrera…?»)
+        lineas.append(f"Contexto: {contexto.split(' Notas:')[0].rstrip('.')}.")
     if ins.tipo == "entrevista":
         lineas.append(f"Guion de {_cuantas(len(items), 'preguntas')}; se entrevistó a {len(doc.get('entrevistas') or [])} participantes.")
     else:
@@ -1262,10 +1278,10 @@ def resolver(pregunta: str, sesion: Session, ids: list[str] | None) -> Resultado
     """Resultado calculado para la pregunta, o None si va por la ruta semántica."""
     if (por_postura := _postura(pregunta, sesion, ids)) is not None:
         return por_postura
-    intencion = detectar(pregunta)
+    todos = cargar_documentos(sesion, ids)
+    intencion = detectar(pregunta, solo_pruebas=bool(todos) and all(i.tipo == "prueba_estandarizada" for i in todos))
     if intencion is None:
         return None
-    todos = cargar_documentos(sesion, ids)
     elegido = por_ordinal(todos, intencion.texto)
     instrumentos = elegido or nombrados(todos, intencion.texto) or todos
     resultado = _juntar(intencion, _ejecutar_todos(intencion, instrumentos, sesion))

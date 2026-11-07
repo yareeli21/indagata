@@ -21,7 +21,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
-from services.catalogo import Catalogo
+from services.catalogo import Catalogo, PreguntaCatalogo, _numero
 from services.dominio import normalizar
 
 # «Agrupar por instrumento» no es una variable de contexto: es comparar los instrumentos seleccionados.
@@ -51,6 +51,12 @@ ESTRUCTURADAS = frozenset({"datos_respondente", "filtrar_respondentes", "conteo_
                            "hallazgo", "resumen_pregunta", "ranking_preguntas", "kpi"})
 # Criterios del ranking de preguntas: más nulas o sin responder, opción más elegida más alta o más baja.
 CriterioRanking = Literal["no_respuesta", "coincidencia", "repartida"]
+
+# Relación con el turno anterior (B, 7 nov): «nueva» empieza limpio aunque venga después de otra cosa; «continua»
+# conserva las condiciones del plan anterior y suma las nuevas («de ellos, ¿cuántos trabajan?»); «profundiza» repite
+# el plan anterior para explicarlo («¿por qué?», «¿qué significa eso?»). La interpretación la propone y
+# `seguimiento.combinar` la aplica sobre el plan anterior guardado en rag_log, no sobre el texto.
+Relacion = Literal["nueva", "continua", "profundiza"]
 
 Operador = Literal["=", "!=", ">", ">=", "<", "<="]
 Nivel = Literal["alto", "medio", "bajo", "acuerdo", "neutral", "desacuerdo"]
@@ -118,6 +124,10 @@ class PlanConsulta(BaseModel):
     excluir_preguntas: list[str] = Field(default_factory=list, description="IDs cortos de preguntas que no se cuentan.")
     # «¿cuántos mencionaron la ansiedad?»: término que se busca en las respuestas abiertas (Fase 6, consultas 1468, 1540).
     menciona: str = Field(default="", max_length=60, description="Término que se busca en las respuestas abiertas.")
+    # «¿cuántos dejaron alguna pregunta sin responder?»: personas con al menos una pregunta sin respuesta válida
+    # (consultas 2165 y 2189, 7 nov: se contestaba con el ranking de preguntas o con el total de respondentes).
+    con_omisiones: bool = Field(default=False, description="Solo quienes dejaron alguna pregunta sin responder.")
+    relacion: Relacion = Field(default="nueva", description="Relación con la pregunta anterior: nueva, continua o profundiza.")
     kpi: str | None = Field(default=None, description="ID o nombre del KPI si la pregunta trata de uno.")
     campos: Literal["todas_las_respuestas", "solo_ids"] | list[str] = "solo_ids"
     orden: Orden | None = None
@@ -185,6 +195,14 @@ def _id_respondente(texto: str, catalogo: Catalogo) -> str | None:
     return next((r for r in catalogo.respondentes if r[0] == letra and int(r[1:]) == n), None)
 
 
+_ESCALAS = ("likert", "escala_lineal", "cuadricula")
+_NUMERICAS = re.compile(r"numer|entero|decimal|puntos|escala|rango")
+
+
+def _es_escala(p: PreguntaCatalogo) -> bool:
+    return bool(p.escala) or p.tipo in _ESCALAS
+
+
 def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> PlanValidado:
     """Comprueba el plan contra los catálogos del alcance; corrige lo cercano y pide aclaración si algo no existe."""
     correcciones: list[str] = []
@@ -216,6 +234,15 @@ def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> Pl
             return aclarar(f"No encontré la pregunta «{f.pregunta}» en «{cat.titulo}». ¿A cuál te refieres?")
         opciones = cat.preguntas[pid].opciones
         valor = f.valor
+        # Condiciones que la pregunta no puede cumplir: un nivel en una pregunta sin escala o «> 30» en una de opción
+        # múltiple. El modelo las inventa (consulta 2231: «r01 de acuerdo» y «r04 > 30» en una prueba); se quitan.
+        if f.nivel is not None and not _es_escala(cat.preguntas[pid]):
+            correcciones.append(f"filtro {pid} en nivel {f.nivel} quitado ({pid} no es de escala)")
+            continue
+        if isinstance(valor, (int, float)) and opciones and not _es_escala(cat.preguntas[pid]) \
+                and not _NUMERICAS.search(cat.preguntas[pid].tipo) and all(_numero(o) is None for o in opciones):
+            correcciones.append(f"filtro {pid} {f.op} {valor:g} quitado ({pid} no tiene opciones numéricas)")
+            continue
         if f.nivel is not None:  # nivel de la escala: no hay opción que emparejar
             filtros.append(Filtro(pregunta=pid, op=f.op, nivel=f.nivel))
             continue

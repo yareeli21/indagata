@@ -266,6 +266,23 @@
       "title": "Menciona",
       "type": "string"
     },
+    "con_omisiones": {
+      "default": false,
+      "description": "Solo quienes dejaron alguna pregunta sin responder.",
+      "title": "Con Omisiones",
+      "type": "boolean"
+    },
+    "relacion": {
+      "default": "nueva",
+      "description": "Relación con la pregunta anterior: nueva, continua o profundiza.",
+      "enum": [
+        "nueva",
+        "continua",
+        "profundiza"
+      ],
+      "title": "Relacion",
+      "type": "string"
+    },
     "kpi": {
       "anyOf": [
         {

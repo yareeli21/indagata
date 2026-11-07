@@ -270,6 +270,24 @@ def _tabla_menciones(doc: dict[str, Any], personas: list[dict[str, Any]], plan: 
     return Tabla(f"Dónde se menciona «{plan.menciona}»", ["Respondente", "Pregunta", "Fragmento"], filas[:_MAX_CITAS])
 
 
+def _omisiones(persona: dict[str, Any], preguntas: list[str]) -> int:
+    """Cuántas de las preguntas dejó sin respuesta válida (sin respuesta, nula o sin dato)."""
+    return sum((persona["por_pregunta"].get(q) or {}).get("estado") != "respondida" for q in preguntas)
+
+
+MAS_OMITIDAS = "Preguntas que más dejaron sin responder"
+_TOP_OMITIDAS = 3
+
+
+def _mas_omitidas(doc: dict[str, Any], grupo: list[dict[str, Any]], plan: PlanConsulta) -> str:
+    """Qué preguntas explican las omisiones del grupo: «38 de 38 dejaron alguna sin responder» se entiende cuando se
+    ve que nadie respondió r10 (consulta 2233, 7 nov)."""
+    preguntas = [_corto(p["id"]) for p in _items(doc) if _corto(p["id"]) not in plan.excluir_preguntas]
+    conteo = sorted(((sum(_omisiones(p, [q]) for p in grupo), q) for q in preguntas), key=lambda x: -x[0])
+    partes = [f"{_texto_pregunta(doc, q)} ({n} de {len(grupo)})" for n, q in conteo[:_TOP_OMITIDAS] if n]
+    return f"{MAS_OMITIDAS}: " + "; ".join(partes) + "."
+
+
 def _filtrados(ins: Instrumento, plan: PlanConsulta) -> tuple[list[dict[str, Any]], list[str]]:
     """Personas que cumplen TODOS los filtros (y el nivel en las preguntas del plan, si lo hay)."""
     doc = ins.doc
@@ -277,12 +295,15 @@ def _filtrados(ins: Instrumento, plan: PlanConsulta) -> tuple[list[dict[str, Any
                    + [f"{c.variable} {c.op} {_numero_texto(c.valor)}" for c in plan.contexto_num]
                    + [_describir(doc, f) for f in plan.filtros]
                    + ([f"mencionan «{plan.menciona}» en sus respuestas abiertas"
-                       + (f" ({', '.join(plan.preguntas)})" if plan.preguntas else "")] if plan.menciona else []))
+                       + (f" ({', '.join(plan.preguntas)})" if plan.preguntas else "")] if plan.menciona else [])
+                   + (["dejaron alguna pregunta sin responder"] if plan.con_omisiones else []))
+    preguntas = [_corto(p["id"]) for p in _items(doc) if _corto(p["id"]) not in plan.excluir_preguntas]
     personas = [p for p in _personas(doc)
                 if all(normalizar(str(p["contexto"].get(k, ""))) == normalizar(v) for k, v in plan.contexto.items())
                 and all(_cumple_contexto(p, c) for c in plan.contexto_num)
                 and all(_cumple(p, f) for f in plan.filtros)
-                and (not plan.menciona or _menciones(doc, p, plan))]
+                and (not plan.menciona or _menciones(doc, p, plan))
+                and (not plan.con_omisiones or _omisiones(p, preguntas))]
     if plan.nivel and plan.preguntas and plan.intencion == "filtrar_respondentes":
         personas = [p for p in personas if all(_en_nivel(p["por_pregunta"].get(q), plan.nivel) for q in plan.preguntas)]
         condiciones += [f"{_texto_pregunta(doc, q)} en {_NOMBRE_NIVEL[plan.nivel]}" for q in plan.preguntas]
@@ -304,6 +325,8 @@ def _filtrar_respondentes(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) ->
     if not cumplen:
         e.vacio = True
         return
+    if plan.con_omisiones:
+        e.lineas.append(_mas_omitidas(doc, cumplen, plan))
     e.lineas.append(f"Se muestran {_frase_orden(plan, len(mostrados))} que la cumplen: {len(mostrados)} de {len(cumplen)}.")
     e.respondentes = [p["id"] for p in mostrados]
     if plan.menciona:
@@ -320,7 +343,7 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
     doc = ins.doc
     total = len(_personas(doc))
     grupo, condiciones = _filtrados(ins, plan)
-    hay_condicion = bool(plan.filtros or plan.contexto or plan.contexto_num or plan.menciona)
+    hay_condicion = bool(plan.filtros or plan.contexto or plan.contexto_num or plan.menciona or plan.con_omisiones)
     if hay_condicion:
         pct = round(100 * len(grupo) / total, 1) if total else 0.0
         e.criterio = " y ".join(condiciones)
@@ -329,6 +352,15 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
         e.vacio = not grupo
         if plan.menciona and grupo:
             e.tablas.append(_tabla_menciones(doc, grupo, plan))
+        if plan.con_omisiones and (plan.filtros or plan.contexto or plan.contexto_num or plan.menciona):
+            # «De esos, ¿cuántos dejaron alguna sin responder?»: la base es el grupo anterior, no todo el instrumento
+            # (consulta 2261: «38 de 97 dejaron alguna pregunta sin responder» eran 38 de 38).
+            base, _ = _filtrados(ins, plan.model_copy(update={"con_omisiones": False}))
+            pct_base = round(100 * len(grupo) / len(base), 1) if base else 0.0
+            e.lineas.append(f"De los {len(base)} que cumplen las demás condiciones, {len(grupo)} ({pct_base} %) "
+                            "dejaron alguna pregunta sin responder.")
+        if plan.con_omisiones and grupo:
+            e.lineas.append(_mas_omitidas(doc, grupo, plan))
     preguntas = plan.preguntas
     if plan.nivel and preguntas:
         base = grupo if hay_condicion else _personas(doc)
@@ -347,6 +379,15 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
     e.preguntas = [p["id"] for p in _items(doc) if _corto(p["id"]) in {f.pregunta for f in plan.filtros} | set(preguntas)]
 
 
+_BOOLEANOS = {"true": "Sí", "false": "No"}
+
+
+def _legible(valor: Any) -> str:
+    """«True»/«False» de una variable de sí/no se muestran «Sí»/«No»: con «True | 14» y «False | 83» el modelo dio a
+    los becados las cifras de los no becados (consulta 2264)."""
+    return _BOOLEANOS.get(str(valor).strip().lower(), str(valor))
+
+
 def _comparar_grupos(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> None:
     doc = ins.doc
     if not plan.agrupar_por:
@@ -358,7 +399,7 @@ def _comparar_grupos(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> None
     for p in base:
         valor = p["contexto"].get(var)
         if valor not in (None, ""):
-            grupos.setdefault(str(valor), []).append(p)
+            grupos.setdefault(_legible(valor), []).append(p)
     e.criterio = f"por {var}" + (f", entre quienes cumplen {' y '.join(condiciones)}" if condiciones else "")
     if not grupos:
         e.vacio = True
@@ -413,11 +454,16 @@ def _resumen_pregunta(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> Non
             e.lineas.append(f"{_texto_pregunta(doc, q)}: sin resumen calculado.")
             continue
         validas, sin = resumen.get("n_validas"), resumen.get("n_sin_respuesta")
+        if validas is None and resumen.get("n_alumnos") is not None:  # reactivo de una prueba: n_alumnos y nulas aparte
+            sin = (sin or 0) + (resumen.get("n_nulas") or 0)
+            validas = resumen["n_alumnos"] - sin
         e.lineas.append(f"{_texto_pregunta(doc, q)}: {validas} respuestas válidas" + (f", {sin} sin respuesta" if sin else "")
                         + (f"; media {resumen['media']}" if resumen.get("media") is not None else "") + ".")
         if resumen.get("interpretacion"):
             e.lineas.append(f"Interpretación calculada: {resumen['interpretacion']}")
         dist = resumen.get("distribucion") or []
+        if isinstance(dist, dict):  # reactivo de una prueba: {opción: {n, pct}} (Fase 7, consultas 2228 y 2230)
+            dist = [{"significado": o, **(v if isinstance(v, dict) else {})} for o, v in dist.items()]
         if dist:
             e.tablas.append(Tabla(f"Distribución de {q}", ["Opción", "Respondentes", "%"],
                                   [[str(d.get("significado")), str(d.get("n")), f"{d.get('pct')} %"] for d in dist]))

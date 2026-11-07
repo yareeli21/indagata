@@ -52,8 +52,8 @@ from shared.models.rag_log import RagLog
 from shared.models.version_conocimiento import VersionConocimiento
 
 from models import ChatRequest, ChatResponse, FuenteChatOut, IndexRequest, ReferenciaChatOut
-from services import (consulta_planificada, dominio, ejecutor, enrutador, evaluacion, interpretacion, ollama_client, prompt,
-                      storage_client, vectores)
+from services import (anclaje, consulta_planificada, dominio, ejecutor, enrutador, evaluacion, interpretacion, ollama_client,
+                      prompt, seguimiento, storage_client, vectores)
 from services.plan_consulta import ESTRUCTURADAS, PlanConsulta
 
 logger = logging.getLogger("visualization-service")
@@ -410,6 +410,12 @@ def _recuperar_primero(peticion: ChatRequest) -> tuple[list[dict[str, Any]], flo
 _SOBRE_EL_INSTRUMENTO = {"descripcion", "estructura"}
 
 
+def _sobre_el_instrumento(pregunta: str) -> bool:
+    """¿Pregunta por el instrumento mismo (de qué trata, a quién se aplicó, secciones)? Lo responde su ficha."""
+    regla = enrutador.detectar(pregunta)
+    return regla is not None and regla.tipo in _SOBRE_EL_INSTRUMENTO
+
+
 def _fichas(instrumentos: list[enrutador.Instrumento]) -> list[dict[str, Any]]:
     """La ficha de cada instrumento, leída de Chroma por sus metadatos. «¿De qué trata el instrumento?» se parece poco
     a cualquier fragmento (similitud 0.29 con el 127, 5 nov) y no recuperaba nada, aunque la ficha es la respuesta."""
@@ -429,11 +435,27 @@ def _fichas(instrumentos: list[enrutador.Instrumento]) -> list[dict[str, Any]]:
     return salida
 
 
+_DISTRIBUCION = re.compile(r"^\s*(?:Distribuci[oó]n|Opciones):\s*(.+)$", re.MULTILINE)
+_CIFRA_OPCION = re.compile(r"\s*\d+(?:[.,]\d+)?\s*%(?:\s*\(n=\d+\))?|\s*\(n=\d+\)")
+
+
 def _pistas(recuperados: list[dict[str, Any]]) -> str:
     """Para la interpretación: qué partes del instrumento recuperó el RAG («r03 (0.62): ¿Cuál es la principal función
-    de una VPN?»). Solo la primera línea de cada fragmento: las cifras no le sirven para elegir el plan."""
-    return "\n".join(f"- {_etiqueta_fragmento(f)} (similitud {f['score']:.2f}): "
-                     f"{(f['fragmento'].splitlines() or [''])[0][:160]}" for f in recuperados[:_MAX_PISTAS])
+    de una VPN?»), con las opciones de cada pregunta sin sus cifras: lo que se pide puede estar en una opción y no en
+    el enunciado («¿cuántos trabajan?» → «Trabajo en un área relacionada…» de p12, consulta 2149)."""
+    lineas = []
+    for f in recuperados[:_MAX_PISTAS]:
+        linea = f"- {_etiqueta_fragmento(f)} (similitud {f['score']:.2f}): {(f['fragmento'].splitlines() or [''])[0][:160]}"
+        if m := _DISTRIBUCION.search(f["fragmento"]):
+            linea += f" → opciones: {_CIFRA_OPCION.sub('', m.group(1))[:200]}"
+        lineas.append(linea)
+    return "\n".join(lineas)
+
+
+def _preguntas_recuperadas(recuperados: list[dict[str, Any]]) -> list[str]:
+    """Preguntas de los intercambios recuperados (entrevistas): dónde habló la persona del tema que se pregunta."""
+    return list(dict.fromkeys(f["preguntaId"].rsplit("-", 1)[-1] for f in recuperados
+                              if f["seccion"] == "intercambio" and f["preguntaId"]))[:_CAMPOS_RECUPERADOS]
 
 
 def _apoyo_de_recuperados(recuperados: list[dict[str, Any]],
@@ -454,6 +476,10 @@ def _rag_responde_aclaracion(preparada: "consulta_planificada.Preparada", pregun
     conversación previa: no hay a qué se refiera «eso»."""
     p = preparada.plan
     if p is None or p.intencion != "aclaracion" or score_max < settings.RAG_MIN_SCORE or _ID_EXPLICITO.search(pregunta):
+        return False
+    if anclaje.NINGUNA_CONDICION in preparada.interp.correcciones or _sobre_el_instrumento(pregunta):
+        # La condición no existe (la aclaración ya lo dice, con las opciones reales: consulta 2147) o la pregunta es
+        # sobre el instrumento mismo (la responde su ficha: consulta 2161).
         return False
     # Con similitud alta la pregunta es del alcance aunque no use sus palabras («¿cuántos estudian ingeniería?»).
     return seguimiento or score_max >= settings.RAG_ZONA_GRIS_MAX \
@@ -499,6 +525,8 @@ def _anterior(historial: list[Any]) -> tuple[str, dict[str, Any] | None]:
             lineas = [f"Pregunta anterior: «{fila.pregunta[:200]}»"]
             if plan.get("intencion"):
                 lineas.append(f"Intención: {plan['intencion']}")
+            if condiciones := seguimiento.resumen_plan(plan):
+                lineas.append(condiciones)
             lineas += [f"{f.get('titulo') or 'Instrumento'}: {str(f.get('fragmento') or '')[:300]}"
                        for f in ((fila.salida or {}).get("fuentes") or [])[:2] if f.get("fragmento")]
             return "\n".join(lineas), plan or None
@@ -635,7 +663,7 @@ _DECISIONES_REUTILIZABLES = {dominio.DENTRO, dominio.AYUDA}
 # Súbelo cuando cambie cómo se calculan o redactan las respuestas (enrutador, consultas):
 # las guardadas con la versión anterior dejan de reutilizarse. Las reglas del prompt
 # (`prompt.SISTEMA`) ya entran en la huella.
-_VERSION_RESPUESTAS = 28  # 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
+_VERSION_RESPUESTAS = 31  # 31: redacción del bloque D (cifras derivables, comparación invertida, inferencias, porcentaje con su n, negación cierta, borradores guardados, explicar lo anterior, lo más X, pocas personas, preguntas más omitidas); 30: resumen de reactivos de pruebas (distribución por opción) y filtros imposibles quitados; 29: hilo de la conversación (relación nueva/continua/profundiza sobre el plan anterior), condiciones en las opciones, condición inexistente dicha tal cual, preguntas sobre el instrumento con su ficha, personas con omisiones; 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
 
 
 def clave_cache(peticion: ChatRequest, modelo: str) -> str | None:
@@ -883,7 +911,8 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
             try:
                 preparada = await consulta_planificada.preparar(
                     pregunta, [(m.rol, m.texto) for m in peticion.historial], ids, sesion, tema=tema,
-                    pistas=_pistas(recuperados))
+                    pistas=_pistas(recuperados), plan_anterior=plan_anterior,
+                    recuperadas=_preguntas_recuperadas(recuperados))
             finally:
                 sesion.close()
         except Exception as exc:  # noqa: BLE001 — sin BD o storage: siguen las reglas
@@ -960,10 +989,17 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
         # y las cifras salen solo del cálculo.
         propios = {i.id_crudo for i in resultado.instrumentos}
         fragmentos = ([f for f in fragmentos if f["instrumentoId"] in propios][:3]
-                      or [f for f in recuperados if f["instrumentoId"] in propios][:3]
-                      or (_fichas(resultado.instrumentos) if resultado.consulta in _SOBRE_EL_INSTRUMENTO else []))
+                      or [f for f in recuperados if f["instrumentoId"] in propios][:3])
+        if resultado.consulta in _SOBRE_EL_INSTRUMENTO:
+            # La ficha va primero: es la respuesta (objetivo, población, carrera); lo demás recuperado la acompaña.
+            # Solo la ficha y las preguntas: un respondente cualquiera no dice de qué trata el instrumento (2205).
+            if fichas := _fichas(resultado.instrumentos):
+                fragmentos = [*fichas, *(f for f in fragmentos if f["seccion"] in ("pregunta", "reactivo"))][:3]
         if resultado.consulta not in _CONSULTAS_MIXTAS:
-            fragmentos = [{**f, "fragmento": _sin_cifras(f["fragmento"])} for f in fragmentos]
+            # La ficha no lleva resultados: sin esta excepción se perdía su línea de contexto (la carrera) porque dice
+            # «alimentan 18 indicadores» (consulta 2153).
+            fragmentos = [f if f["seccion"] == "encabezado" else {**f, "fragmento": _sin_cifras(f["fragmento"])}
+                          for f in fragmentos]
     # El glosario solo entra en preguntas de definición («qué es», «qué significa»…) que
     # no tienen ya un resultado calculado: en las demás no es evidencia sobre los datos.
     glosario = (
@@ -1063,10 +1099,16 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
     if p is None:
         return None
     if preparada.instrumentos and all(i.tipo == "prueba_estandarizada" for i in preparada.instrumentos) \
-            and (regla := enrutador.detectar(pregunta)) is not None and regla.tipo == "sin_calificar":
+            and (regla := enrutador.detectar(pregunta, solo_pruebas=True)) is not None and regla.tipo == "sin_calificar":
         # «¿Cuántos aprobaron la prueba?», «¿quién sacó la calificación más alta?» o «¿qué pregunta es más difícil?»:
         # sin clave no se sabe, y el plan inventaba un filtro («A» en r01), la descartaba como ajena o la respondía
         # con un ranking de no respuesta (Fase 6, consultas 1577, 1578, 1595, 1600, 1618). La regla lo aclara.
+        return None
+    if _sobre_el_instrumento(pregunta) and not (p.filtros or p.respondentes or p.contexto or p.contexto_num
+                                                or p.menciona or p.con_omisiones):
+        # «¿De qué trata el instrumento?», «¿a qué carrera se aplicó?», «¿qué secciones tiene?»: la regla responde con
+        # la ficha y la estructura del documento. El plan las volvía una aclaración que repetía la pregunta, un
+        # hallazgo, la ayuda o el resumen de una pregunta (consultas 2153 y 2161–2164, 7 nov).
         return None
     if p.intencion == "aclaracion" and not seguimiento \
             and not consulta_planificada.del_alcance(pregunta, preparada.catalogos) \
@@ -1103,7 +1145,10 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
     plan.cifras_obligatorias = consulta_planificada.cifras_clave(ejecuciones)
     plan.admite_negativa = all(e.vacio for e in ejecuciones)
     formato = consulta_planificada.FORMATO.get(p.intencion, "")
-    texto_entrevista = p.intencion == "hallazgo" and all(e.instrumento.tipo == "entrevista" for e in ejecuciones)
+    entrevistas = [e for e in ejecuciones if e.instrumento.tipo == "entrevista"]
+    adicional = consulta_planificada.formato_adicional(
+        pregunta, p.relacion, len(ejecutor._personas(entrevistas[0].instrumento.doc)) if len(entrevistas) == 1 else None)
+    texto_entrevista =p.intencion == "hallazgo" and all(e.instrumento.tipo == "entrevista" for e in ejecuciones)
     if texto_entrevista and apoyo and plan.admite_negativa:
         # Entrevistas: con uno o pocos participantes no hay conteos de posturas («No hay resúmenes calculados», 4 nov,
         # consulta 1681); los patrones salen del texto recuperado y el modelo los agrupa en temas con citas.
@@ -1137,7 +1182,7 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
                 fuente.fragmento = f"{fuente.fragmento} · Texto recuperado del RAG: {recuperado}"[:600]
     plan.texto_prompt = prompt.construir(
         pregunta, apoyo, contexto, resultado=consulta_planificada.resultado_para_prompt(ejecuciones, p.intencion),
-        formato=formato, conversacion=conversacion)
+        formato=f"{formato} {adicional}".strip(), conversacion=conversacion)
     return plan
 
 
@@ -1207,9 +1252,28 @@ def quitar_citas_inventadas(texto: str, referencias: list[dominio.Ancla]) -> str
 _CORCHETE_NO_CITA = re.compile(r"\s*\[(?!\s*(?:Fuente|Glosario|Ayuda)\b)[^\]\n]{1,40}\]")
 
 
+# Las secciones del prompt no son del usuario: «Según el RESULTADO CALCULADO, ninguno…» o «El TEXTO RECUPERADO
+# indica que…» (consulta 2257). Se quitan las muletillas y el nombre que quede se cambia por uno legible.
+_MULETILLA_INTERNA = re.compile(r"(?:seg[uú]n|de acuerdo con|como (?:indica|muestra))\s+(?:el|lo que (?:dice|indica) el)\s+"
+                                r"(?:RESULTADO CALCULADO|TEXTO RECUPERADO)\s*,?\s*", re.IGNORECASE)
+_ETIQUETA_INTERNA = {"RESULTADO CALCULADO": "resultado", "TEXTO RECUPERADO": "texto del instrumento"}
+
+
+def _sin_etiquetas_internas(texto: str) -> str:
+    sin_muletilla = _MULETILLA_INTERNA.sub("\x00", texto)
+    if sin_muletilla != texto:
+        # La muletilla iba al inicio de la oración: la palabra que sigue recupera su mayúscula.
+        texto = re.sub(r"(^|[.!?]\s+)\x00([a-záéíóúñ]?)", lambda m: m.group(1) + m.group(2).upper(),
+                       sin_muletilla).replace("\x00", "")
+    for etiqueta, legible in _ETIQUETA_INTERNA.items():
+        texto = re.sub(etiqueta, legible, texto, flags=re.IGNORECASE)
+    return texto
+
+
 def _pulir(texto: str, plan: Plan | None = None) -> str:
     """Capa 3: frase de «sin información» sobrante, citas inventadas y datos personales."""
     texto = quitar_sin_informacion_sobrante(texto)
+    texto = _sin_etiquetas_internas(texto)
     if plan is not None:
         texto = quitar_citas_inventadas(texto, plan.referencias)
         texto = _CORCHETE_NO_CITA.sub("", texto)
@@ -1229,16 +1293,21 @@ _CONSULTAS_SIN_LLM = {"estructura", "descripcion", "patrones", "sin_calificar"}
 # Desde el 5 nov esas consultas se redactan cuando hay texto recuperado (RAG primero), con la verificación del plan y
 # el listado como respaldo.
 _FORMATO_REGLA = {
-    "descripcion": "Describe el instrumento en un párrafo breve: de qué trata, a quién se aplicó y qué temas cubre, "
-                   "con lo que dicen el RESULTADO CALCULADO y el TEXTO RECUPERADO. No inventes temas.",
-    "estructura": "Di qué secciones o partes tiene el instrumento y qué trata cada una, en una lista breve, con lo que "
-                  "dice el RESULTADO CALCULADO; usa el TEXTO RECUPERADO para explicar de qué trata cada parte.",
+    "descripcion": "Empieza respondiendo exactamente lo que pregunta la PREGUNTA (si pregunta la carrera, la población, "
+                   "el nivel o el objetivo, dilo en la primera oración, tal como aparece). Después describe el "
+                   "instrumento en UN párrafo de redacción propia: de qué trata, a quién se aplicó y qué temas cubre, "
+                   "con lo que dicen el RESULTADO CALCULADO y el TEXTO RECUPERADO. No copies el listado ni uses viñetas. "
+                   "No inventes temas.",
+    "estructura": "Responde en una o dos oraciones de redacción propia si el instrumento tiene secciones o partes; si "
+                  "el RESULTADO CALCULADO dice que no tiene, dilo claramente y cuántas preguntas forman su único bloque. "
+                  "Si las tiene, nómbralas y di brevemente qué trata cada una con el TEXTO RECUPERADO.",
     "patrones": "Presenta los patrones del RESULTADO CALCULADO como una lista con viñetas, con su cifra exacta, y "
                 "explica cada uno con una frase prudente apoyada en el TEXTO RECUPERADO.",
-    "sin_calificar": "Empieza diciendo que Indagata no califica las pruebas porque no tiene clave de respuestas. Después "
-                     "describe con el RESULTADO CALCULADO qué opción eligieron más los alumnos en los reactivos que "
-                     "tienen que ver con la pregunta. Nunca digas qué opción es correcta, quién aprobó ni quién sacó "
-                     "más puntos.",
+    "sin_calificar": "Empieza diciendo que Indagata no califica las pruebas porque no tiene clave de respuestas, así que "
+                     "no se sabe si acertaron. Si la pregunta trata de un reactivo concreto, describe con el RESULTADO "
+                     "CALCULADO qué opción eligieron más los alumnos en ese reactivo; si no trata de ninguno (quién sacó "
+                     "más, cuántos aprobaron), no describas reactivos. Nunca digas qué opción es correcta o incorrecta, "
+                     "quién aprobó ni quién sacó más puntos.",
 }
 _DICE_SIN_CALIFICAR = re.compile(r"\bno\s+califica|\bclave\s+de\s+respuestas?\b|\bsin\s+clave\b")
 # Formas en que el modelo niega un resultado calculado sin empezar por «no tengo información»
@@ -1264,17 +1333,118 @@ def cifras_fieles(respuesta: str, contexto: str) -> bool:
     escribe una cifra que no está en el RESULTADO CALCULADO (o en sus fragmentos),
     se descarta su redacción y se responde con el resultado tal cual.
     """
-    return _cifras(respuesta) <= _cifras(contexto)
+    propias = _cifras(respuesta)
+    base = _cifras(contexto)
+    pcts = {round(float(p.replace(",", ".")), 1) for p in _PORCENTAJE.findall(_NO_CIFRA.sub(" ", contexto))}
+    return propias <= base or propias <= base | _derivables(base, pcts, propias - base)
+
+
+_MAX_CIFRAS_DERIVABLES = 60  # pares de cifras del contexto que se combinan (60² ≈ 3600 operaciones)
+
+
+def _derivables(base: set[float], porcentajes: set[float], faltantes: set[float]) -> set[float]:
+    """Cifras que se deducen del contexto sin recalcular nada nuevo (bloque D, 7 nov): el redondeo de una cifra
+    («40.7 %» → «41 %»), el porcentaje de dos cifras («7 de 14» → «50 %») y la diferencia entre dos porcentajes («2.8
+    puntos más»). Antes una redacción correcta con «50 %» por «7 de 14» o «2.8 puntos de diferencia» caía al cálculo
+    literal (12 de 66 respuestas de la corrida v2 con gemma). Sumas y restas de conteos no: casi cualquier número
+    pequeño saldría de alguna («Son 7 personas» con 2 y 5 en el resultado)."""
+    valores = sorted(base)[:_MAX_CIFRAS_DERIVABLES]
+    salida = {float(round(v)) for v in valores}
+    for a in valores:
+        for b in valores:
+            if b > 0 and a <= b:
+                salida |= {round(100 * a / b, 1), float(round(100 * a / b))}
+    pcts = sorted(porcentajes)[:_MAX_CIFRAS_DERIVABLES]
+    salida |= {round(abs(a - b), 1) for a in pcts for b in pcts if a != b}
+    return salida & faltantes
+
+
+# Comparaciones que contradicen sus propias cifras: «mayor preferencia (37.9 %) en comparación con… 44.4 %»
+# (consultas 2186, 2245 y 2247). En la misma oración, el primer porcentaje debe ser el mayor (o el menor).
+_MAYOR = re.compile(r"\b(?:mayor(?:es)?|mas alt[oa]s?|superior\w*|supera\w*|predomina\w*)\b")  # no «mayoría»
+_MENOR = re.compile(r"\b(?:menor(?:es)?|mas baj[oa]s?|inferior\w*)\b")
+_PORCENTAJE = re.compile(r"(\d+(?:[.,]\d+)?)\s*%")
+
+
+def comparacion_invertida(respuesta: str) -> bool:
+    for oracion in re.split(r"(?<=[.;])\s+|\n", dominio.normalizar(respuesta)):
+        pcts = [float(p.replace(",", ".")) for p in _PORCENTAJE.findall(oracion)]
+        if len(pcts) < 2:
+            continue
+        mayor, menor = _MAYOR.search(oracion), _MENOR.search(oracion)
+        if mayor and not menor and pcts[0] < max(pcts[1:]):
+            return True
+        if menor and not mayor and pcts[0] > min(pcts[1:]):
+            return True
+    return False
+
+
+# Inferencias que el cálculo no hace: no hay pruebas de significancia, correlaciones ni causas (consulta 2248:
+# «preferencia significativa» con 7 de 14).
+_INFERENCIA = re.compile(r"\b(?:significativ\w*|estadisticamente|correlacion\w*|causad[oa]s? por|se debe a que)\b")
+
+
+def inferencia_sin_respaldo(respuesta: str, contexto: str) -> bool:
+    return bool(_INFERENCIA.search(dominio.normalizar(respuesta))) and not _INFERENCIA.search(dominio.normalizar(contexto))
+
+
+# «73 de 97 (75.3 %)» en el resultado: cada porcentaje de la redacción lleva su número de personas (consulta 2193:
+# «75.3 % respondieron Verdadero» sin decir cuántos).
+_PCT_CON_N = (
+    re.compile(r"(\d+) de \d+\D{0,40}?\((\d+(?:\.\d+)?) ?%"),  # «7 de 14 … (50.0 %»
+    re.compile(r"\((\d+(?:\.\d+)?) ?%,? (\d+) (?:alumn|respond|particip|estudiant|persona)"),  # «(75.3 %, 73 alumnos)»
+    re.compile(r"^\|[^|\n]*\|\s*(\d+)\s*\|\s*(\d+(?:\.\d+)?) ?%\s*\|", re.MULTILINE),  # «| B | 73 | 75.3 % |»
+)
+
+
+def porcentajes_sin_n(respuesta: str, resultado: str) -> bool:
+    """¿Algún porcentaje del resultado aparece en la redacción sin su número de personas?"""
+    n_de: dict[float, float] = {}
+    for i, patron in enumerate(_PCT_CON_N):
+        for a, b in patron.findall(resultado):
+            n, pct = (float(b), float(a)) if i == 1 else (float(a), float(b))
+            if pct not in (0.0, 100.0):  # «0 de 97» o «97 de 97» se dicen con palabras («nadie», «todos»)
+                n_de.setdefault(round(pct, 1), n)
+    cifras = _cifras(respuesta)
+    pcts = {round(float(p.replace(",", ".")), 1) for p in _PORCENTAJE.findall(respuesta)}
+    return any(p in n_de and n_de[p] not in cifras for p in pcts)
+
+
+# «No se menciona X» es cierto cuando X no está en lo que vio el modelo: la entrevistada no habló de risas (2170) ni
+# dijo su turno (2174). Solo se rechaza la negación de algo que sí está en el contexto.
+_OBJETO_NEGADO = 60  # caracteres después de la negación donde se busca de qué se habla
+
+
+def negacion_cierta(respuesta: str, contexto: str) -> bool:
+    texto = dominio.normalizar(respuesta)
+    palabras_contexto = {p[:5] for p in _palabras(contexto)}
+    for m in _NIEGA.finditer(texto):
+        objeto = [p for p in re.findall(r"[a-z]{5,}", texto[m.end():m.end() + _OBJETO_NEGADO])
+                  if p not in _PALABRAS_NEGACION]
+        if not objeto or any(p[:5] in palabras_contexto for p in objeto[:3]):
+            return False
+    return True
+
+
+_PALABRAS_NEGACION = {"explicitamente", "claramente", "directamente", "informacion", "contexto", "respuesta",
+                      "respuestas", "entrevista", "datos", "sobre", "ningun", "ninguna", "momento", "nada"}
 
 
 _AVISOS_REINTENTO = {
     "negativa_corregida": "dice que no hay información, y el RESULTADO CALCULADO sí la tiene",
     "inventada": "escribe una tabla o menciona IDs que no están en el RESULTADO CALCULADO",
     "cifras_corregidas": "usa cifras que no están en el RESULTADO CALCULADO",
-    "cifras_completadas": "omite cuántos cumplen, de cuántos y el porcentaje",
+    "cifras_completadas": "omite cuántos cumplen, de cuántos y el porcentaje (cada porcentaje va con su número de "
+                          "personas, por ejemplo «73 de 97 (75.3 %)»)",
+    "comparacion_invertida": "dice «mayor» o «menor» y sus porcentajes muestran lo contrario; compara las cifras antes "
+                             "de escribir quién tiene más",
+    "inferencia": "afirma algo significativo, una correlación o una causa, y el resultado no calcula ninguna prueba "
+                  "estadística; describe la diferencia sin llamarla significativa",
     "calificada": "habla de respuestas correctas, aciertos o calificaciones, y la prueba no se califica",
     "vacia": "está vacía",
     "cita_inventada": "pone entre comillas frases que no aparecen así en el RESULTADO CALCULADO ni en el TEXTO RECUPERADO",
+    "copia_listado": "copia el RESULTADO CALCULADO en viñetas en lugar de responder lo que se pregunta con un párrafo "
+                     "de redacción propia",
 }
 # Citas textuales de la redacción: «…», “…” o "…" de cuatro palabras o más.
 _CITA = re.compile(r"«([^»]{8,})»|“([^”]{8,})”|\"([^\"]{8,})\"")
@@ -1348,6 +1518,9 @@ def cifras_completas(respuesta: str, directa: str | None, consulta: str = "") ->
     return _cifras(conteo) <= _cifras(respuesta)
 
 
+_MAX_BORRADOR = 1500  # caracteres de cada borrador rechazado que se guardan en rag_log.plan.verificacion
+
+
 async def _generar_estructurada(plan: Plan, modelo: str) -> tuple[str, bool]:
     """Redacción del resultado calculado, verificada cifra por cifra; las tablas calculadas se anexan al final."""
     inicio = time.perf_counter()
@@ -1356,7 +1529,9 @@ async def _generar_estructurada(plan: Plan, modelo: str) -> tuple[str, bool]:
     inicio = time.perf_counter()
     motivo_antes = plan.motivo
     verificada, degradado = _verificar_redaccion(plan, respuesta, degradado)
-    verificacion = {"intentos": 1, "resultado": "aceptada"}
+    # Si Ollama no respondió a tiempo se muestra el resultado calculado: no es una redacción aceptada (consultas
+    # 2205 y 2223, 7 nov: con poca memoria el listado parecía una redacción copiada).
+    verificacion = {"intentos": 1, "resultado": "modelo_no_disponible" if degradado else "aceptada"}
     if plan.cifras_obligatorias is not None and plan.motivo != motivo_antes and not degradado:
         # Fase 4: un reintento con el motivo antes de caer al resultado calculado.
         fallo = plan.motivo.rsplit(":", 1)[-1]
@@ -1368,11 +1543,17 @@ async def _generar_estructurada(plan: Plan, modelo: str) -> tuple[str, bool]:
         plan.tiempos["redaccion"] += round((time.perf_counter() - inicio) * 1000)
         verificada, degradado = _verificar_redaccion(plan, reintento, degradado)
         verificacion = {"intentos": 2, "primer_fallo": fallo,
-                        "resultado": "respaldo" if plan.motivo != motivo_antes else "regenerada"}
+                        "resultado": "respaldo" if plan.motivo != motivo_antes else "regenerada",
+                        # Los borradores rechazados se guardan para auditar qué escribió el modelo (bloque D, 7 nov).
+                        "borradores": [respuesta[:_MAX_BORRADOR]]}
         if plan.motivo == motivo_antes:
             plan.motivo = f"{plan.motivo}:regenerada"
+        else:
+            verificacion["segundo_fallo"] = plan.motivo.rsplit(":", 1)[-1]
+            verificacion["borradores"].append(reintento[:_MAX_BORRADOR])
     elif plan.motivo != motivo_antes:
         verificacion["resultado"] = "respaldo"
+        verificacion["borradores"] = [respuesta[:_MAX_BORRADOR]]
     respuesta = verificada
     if plan.plan_consulta is not None:
         plan.plan_consulta = {**plan.plan_consulta, "verificacion": verificacion}
@@ -1382,6 +1563,16 @@ async def _generar_estructurada(plan: Plan, modelo: str) -> tuple[str, bool]:
     return respuesta, degradado
 
 
+_REDACTADAS_EN_PROSA = ("estructurada:descripcion", "estructurada:estructura")
+
+
+def _copia_listado(respuesta: str, listado: str | None) -> bool:
+    """¿La «redacción» es el listado calculado copiado? gemma devolvía la ficha en viñetas tal cual aunque el formato
+    pide un párrafo que responda primero lo preguntado (consultas 2205 y 2213, 7 nov)."""
+    lineas = [l.strip(" -") for l in (listado or "").splitlines() if len(l.strip(" -")) > 20]
+    return bool(lineas) and sum(l in respuesta for l in lineas) >= max(2, len(lineas) // 2)
+
+
 def _verificar_redaccion(plan: Plan, respuesta: str, degradado: bool) -> tuple[str, bool]:
     respuesta = _pulir(respuesta, plan)
     contexto = "\n".join(c["texto"] for c in plan.contexto_usado())
@@ -1389,7 +1580,8 @@ def _verificar_redaccion(plan: Plan, respuesta: str, degradado: bool) -> tuple[s
         # Ruta del plan (28 oct): toda cifra de la redacción debe estar en el resultado y deben estar las del conteo.
         if not respuesta.strip():
             plan.motivo = f"{plan.motivo}:vacia"
-        elif es_negativa(respuesta) or _NIEGA.search(dominio.normalizar(respuesta)):
+        elif es_negativa(respuesta) or (_NIEGA.search(dominio.normalizar(respuesta))
+                                        and not negacion_cierta(respuesta, contexto)):
             plan.motivo = f"{plan.motivo}:negativa_corregida"
         elif _TABLA_MD.search(respuesta) or not ids_fieles(respuesta, contexto):
             plan.motivo = f"{plan.motivo}:inventada"
@@ -1397,8 +1589,14 @@ def _verificar_redaccion(plan: Plan, respuesta: str, degradado: bool) -> tuple[s
             plan.motivo = f"{plan.motivo}:cifras_corregidas"
         elif not citas_fieles(respuesta, contexto):
             plan.motivo = f"{plan.motivo}:cita_inventada"
-        elif not plan.cifras_obligatorias <= _cifras(respuesta):
+        elif not plan.cifras_obligatorias <= _cifras(respuesta) or porcentajes_sin_n(respuesta, plan.resultado or ""):
             plan.motivo = f"{plan.motivo}:cifras_completadas"
+        elif comparacion_invertida(respuesta):
+            plan.motivo = f"{plan.motivo}:comparacion_invertida"
+        elif inferencia_sin_respaldo(respuesta, contexto):
+            plan.motivo = f"{plan.motivo}:inferencia"
+        elif plan.motivo.startswith(_REDACTADAS_EN_PROSA) and _copia_listado(respuesta, plan.respuesta_directa):
+            plan.motivo = f"{plan.motivo}:copia_listado"
         elif (_CALIFICA.search(dominio.normalizar(respuesta)) and not _CALIFICA.search(dominio.normalizar(contexto))) \
                 or (plan.motivo.startswith("estructurada:sin_calificar")
                     and not _DICE_SIN_CALIFICAR.search(dominio.normalizar(respuesta))):

@@ -20,6 +20,7 @@ import re
 from services import enrutador
 from services.catalogo import Catalogo
 from services.dominio import normalizar
+from services import plan_consulta
 from services.plan_consulta import CondicionContexto, Filtro, Orden, PlanConsulta
 
 _CONTEO = re.compile(r"\b(?:cuantos|cuantas|cuanto|que\s+porcentaje|que\s+tanto\s+por\s+ciento|numero\s+de)\b")
@@ -62,6 +63,12 @@ _MENCION = re.compile(r"\b(?:mencion\w*|nombr(?:an|aron|a|o)|habl(?:an|aron|a|o)
 _RELLENO_MENCION = {"la", "el", "los", "las", "lo", "un", "una", "algo", "de", "del", "al", "a", "sobre", "su", "sus",
                     "tema", "temas", "que", "alguna", "algun", "vez"}
 _SEGUIMIENTO = re.compile(r"\b(?:de|entre) (?:ellos|ellas|esos|esas|estos|estas)\b")
+# «¿Y los que tienen beca contra los que no?»: comparar los grupos de una variable, no quedarse con uno (consulta 2187).
+_CONTRA = re.compile(r"\b(?:contra|versus|vs|frente a|comparad[oa]s? con|en comparacion con|a diferencia de)\b")
+# «¿cuántos dejaron alguna pregunta sin responder?»: se pregunta por personas, no por la pregunta con más omisiones.
+_PERSONAS = re.compile(r"\b(?:cuant[oa]s|quienes|respondentes?|alumn[oa]s?|estudiantes?|encuestad[oa]s?|personas?|"
+                       r"participantes?|alguien|nadie)\b")
+_NEGACION_OPCION = ("no", "ningun", "ninguna", "ninguno", "nunca", "nada")
 
 
 def _menciona(texto: str, opcion: str) -> bool:
@@ -159,7 +166,11 @@ def sin_inventos(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, s
 
     cambios: dict = {}
     notas: list[str] = []
-    contexto = {k: v for k, v in plan.contexto.items() if dicho(k, str(v))}
+    # Un grupo de contexto se sostiene si la consulta dice su valor; en una variable de sí/no basta con nombrarla
+    # («los que tienen beca»). Nombrar solo la variable no basta: «¿cuántos estudian ingeniería?» se convertía en
+    # nivel_estudio = «pregrado» porque «estudian» comparte raíz con la variable (consulta 2195, 7 nov).
+    contexto = {k: v for k, v in plan.contexto.items()
+                if dicho(str(v)) or (normalizar(str(v)) in _VERDADEROS | _FALSOS and dicho(k))}
     if contexto != plan.contexto:
         cambios["contexto"] = contexto
         notas += [f"contexto {k} = «{v}» descartado (la pregunta no lo menciona)" for k, v in plan.contexto.items()
@@ -174,14 +185,61 @@ def sin_inventos(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, s
         notas.append(f"mención «{plan.menciona}» descartada (la pregunta no pregunta quién lo mencionó)")
     if catalogos and plan.filtros:
         cat = next((c for c in catalogos if c.id in plan.instrumentos), catalogos[0])
-        _filtros_sin_inventos(plan, cat, raices, dicho, cambios, notas)
-        if not cambios.get("filtros", plan.filtros) and not cambios.get("contexto", plan.contexto) \
+        variable_nombrada = _filtros_sin_inventos(plan, cat, raices, dicho, cambios, notas)
+        if not variable_nombrada and not cambios.get("filtros", plan.filtros) and not cambios.get("contexto", plan.contexto) \
                 and not cambios.get("contexto_num", plan.contexto_num) and not cambios.get("preguntas", plan.preguntas):
-            # Pedía una condición y ninguna se sostiene: se pregunta en lugar de contar a todos («¿cuántos estudian
-            # ingeniería?» en una prueba sin carrera, consulta 1612).
-            notas.append("ninguna condición respaldada: se pide aclaración")
-            return _aclarar_condicion(plan, texto, cat), notas
+            # Antes de rendirse: la condición puede estar en las opciones de una pregunta que no usa las palabras de
+            # la consulta («¿cuántos trabajan?» → p12 «¿Cuál es tu situación laboral actual?», consulta 2149).
+            if por_opcion := opciones_por_raiz(pregunta, cat):
+                cambios["filtros"] = [Filtro(pregunta=pid, valor=ops) for pid, ops in por_opcion.items()]
+                notas += [f"filtro {pid} = «{', '.join(ops)}» (sus opciones dicen lo que pide la pregunta)"
+                          for pid, ops in por_opcion.items()]
+                return plan.model_copy(update=cambios), notas
+            # Pedía una condición y ninguna se sostiene: se dice que no existe en lugar de contar a todos
+            # («¿cuántos estudian ingeniería?» en una prueba sin carrera, consulta 1612).
+            notas.append(NINGUNA_CONDICION)
+            return _aclarar_condicion(plan, pregunta, cat), notas
     return (plan.model_copy(update=cambios) if cambios else plan), notas
+
+
+# Nota que marca un plan cuya condición no existe en el instrumento: su aclaración ya es la respuesta (dice que no
+# existe y qué opciones hay), así que no se cambia por una respuesta con lo recuperado del RAG (consulta 2147).
+NINGUNA_CONDICION = "ninguna condición respaldada: se pide aclaración"
+
+
+def opciones_por_raiz(pregunta: str, cat: Catalogo, ya_usadas: set[str] | None = None,
+                      explicadas: set[str] | None = None) -> dict[str, list[str]]:
+    """{pregunta: opciones} cuya redacción contiene una palabra de la consulta que no está explicada por otra
+    condición. La palabra debe estar en las opciones de UNA sola pregunta y no en todas sus opciones (eso no filtra):
+    «trabajan» → p12 «Trabajo en un area relacionada…», «Trabajo en un area no relacionada». Se respeta la polaridad:
+    sin negación en la consulta no entran las opciones que empiezan negando («No trabajo ni busco empleo»), y con
+    negación solo entran esas."""
+    texto = normalizar(pregunta)
+    if _ausentes(pregunta, cat):
+        # Una palabra que el instrumento no registra es la condición («modalidad nocturna»): no se cambia por otra
+        # palabra que sí aparece en alguna opción («estudian» → «…mi plan de estudios», consulta 2204, 7 nov).
+        return {}
+    ya_usadas, explicadas = ya_usadas or set(), explicadas or set()
+    salida: dict[str, list[str]] = {}
+    for palabra in dict.fromkeys(re.findall(r"[a-z]+", texto)):
+        raiz = palabra[:5]
+        if len(palabra) < 5 or palabra in enrutador._STOP_FILTRO or raiz in explicadas or raiz in _VERBOS_CONSULTA:
+            continue
+        candidatas = {}
+        for pid, p in cat.preguntas.items():
+            ops = [o for o in p.opciones if raiz in enrutador._raices(o)]
+            if ops and len(ops) < len(p.opciones):
+                candidatas[pid] = ops
+        if len(candidatas) != 1:
+            continue
+        pid, ops = next(iter(candidatas.items()))
+        if pid in ya_usadas or pid in salida:
+            continue
+        negada = re.search(rf"\b(?:no|sin|ningun\w*|ni|nunca)\s+(?:\w+\s+){{0,2}}{palabra}", texto) is not None
+        ops = [o for o in ops if (normalizar(o).split(" ")[0].strip(",.") in _NEGACION_OPCION) == negada]
+        if ops:
+            salida[pid] = ops
+    return salida
 
 
 _VERDADEROS = {"true", "si", "verdadero"}
@@ -209,8 +267,14 @@ def _es_opcion(valor: str, opciones: list[str]) -> bool:
         len(v) >= 3 and any(v in normalizar(o) or normalizar(o).split(") ", 1)[-1] in v for o in opciones))
 
 
+def _raices_de_variables(cat: Catalogo) -> set[str]:
+    """Raíces de los nombres de las variables de contexto («tiene_beca» → «beca»), sin las genéricas («tiene»)."""
+    nombres = [*cat.contexto, *cat.numericas]
+    return {r for v in nombres for r in enrutador._raices(v.replace("_", " ")) if r not in _VARIABLE_GENERICA}
+
+
 def _filtros_sin_inventos(plan: PlanConsulta, cat: Catalogo, raices: set[str], dicho, cambios: dict,  # noqa: ANN001
-                          notas: list[str]) -> None:
+                          notas: list[str]) -> bool:
     """Filtros que la validación volvía una aclaración absurda antes de que el anclaje los revisara (Fase 6):
     - un dato de contexto puesto como pregunta («horas_trabajo_semana > 20», «primera_generacion = sí»; consultas
       1583 y 1594: «No encontré la pregunta "horas_trabajo_semana"») pasa al contexto;
@@ -219,6 +283,7 @@ def _filtros_sin_inventos(plan: PlanConsulta, cat: Catalogo, raices: set[str], d
     - un valor que son palabras del enunciado del reactivo («Big Data» en r22, cuyo texto es «… Big Data ↔», 1617) se
       descarta y el reactivo queda como la pregunta de la que se habla."""
     filtros: list[Filtro] = []
+    variable_nombrada = False  # True: un valor descartado nombraba un dato de contexto (la condición existe)
     contexto = dict(cambios.get("contexto", plan.contexto))
     numericas = list(cambios.get("contexto_num", plan.contexto_num))
     preguntas = list(plan.preguntas)
@@ -239,17 +304,24 @@ def _filtros_sin_inventos(plan: PlanConsulta, cat: Catalogo, raices: set[str], d
             else:
                 notas.append(f"filtro {f.pregunta} = «{f.valor}» descartado (dato de contexto sin valor reconocible)")
             continue
-        p = cat.preguntas.get(f.pregunta)
+        # «p04» en una prueba es r04: la validación lo corregiría después, cuando el filtro ya pasó (consulta 2246).
+        p = cat.preguntas.get(plan_consulta._id_pregunta(f.pregunta, cat) or f.pregunta)
         if p is None or f.nivel is not None or isinstance(f.valor, (int, float)) or not valores \
                 or all(_es_opcion(v, p.opciones) for v in valores):
             filtros.append(f)  # la validación decide (pregunta inexistente, nivel, número u opción reconocible)
             continue
         del_reactivo = enrutador._raices(p.texto)
-        del_valor = set().union(*(enrutador._raices(v) for v in valores))
+        del_valor = set().union(*(enrutador._raices(v.replace("_", " ")) for v in valores))  # «tiene_beca» → beca
         if del_valor and del_valor <= del_reactivo and del_valor & raices:
             notas.append(f"filtro {f.pregunta} = «{f.valor}» descartado (son palabras del enunciado, no una opción)")
             if f.pregunta not in preguntas:
                 preguntas.append(f.pregunta)
+        elif (del_valor & raices) and (del_valor & raices) <= _raices_de_variables(cat) \
+                and not (del_valor & set().union(*(enrutador._raices(o) for o in p.opciones))):
+            # Las palabras dichas nombran un dato de contexto, no una opción del reactivo: «no_beca» en r04 para «¿y
+            # los que tienen beca contra los que no?» pedía elegir una opción del phishing (consulta 2242).
+            notas.append(f"filtro {f.pregunta} = «{f.valor}» descartado (nombra un dato de contexto, no una opción)")
+            variable_nombrada = True
         elif del_valor & raices:
             filtros.append(f)  # la consulta sí dice ese valor: la validación pregunta cuál opción es
         else:
@@ -262,6 +334,7 @@ def _filtros_sin_inventos(plan: PlanConsulta, cat: Catalogo, raices: set[str], d
         cambios["contexto_num"] = numericas
     if preguntas != list(plan.preguntas):
         cambios["preguntas"] = preguntas
+    return variable_nombrada
 
 
 def _termino_mencionado(texto: str) -> str:
@@ -281,8 +354,13 @@ def _id_pregunta(cat: Catalogo, numero: int) -> str | None:
     return next((pid for pid in cat.preguntas if re.fullmatch(rf"[a-z]+0*{numero}", pid)), None)
 
 
-def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], cat: Catalogo) -> tuple[PlanConsulta, list[str]]:
-    """El plan corregido con las menciones explícitas de la pregunta, y las correcciones aplicadas."""
+def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], cat: Catalogo,
+           heredar_texto: bool = True) -> tuple[PlanConsulta, list[str]]:
+    """El plan corregido con las menciones explícitas de la pregunta, y las correcciones aplicadas.
+
+    `heredar_texto`: en un seguimiento («de ellos…») busca las condiciones en el TEXTO de la pregunta anterior. Con el
+    plan anterior a mano no hace falta (`seguimiento.combinar` hereda sus condiciones exactas): desde el texto se heredó
+    «p01 = Sí» porque el enunciado sucio de p01 empieza con «Cargas máxima» (consulta 2149, 7 nov)."""
     texto = normalizar(pregunta)
     notas: list[str] = []
     cambios: dict = {}
@@ -302,6 +380,21 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
         if plan.criterio_ranking != criterio:
             cambios["criterio_ranking"] = criterio
             notas.append(f"criterio del ranking: {criterio} (lo que dice la pregunta)")
+    # 0c. «¿Cuántos dejaron alguna pregunta sin responder?» / «¿hay respondentes que dejaron en blanco algunas?»:
+    # se cuentan personas con omisiones, no se ordena las preguntas (consultas 2165 y 2189, 7 nov).
+    elif criterio == "no_respuesta" and _PERSONAS.search(texto) and not enrutador._persona(texto) \
+            and intencion in ("hallazgo", "resumen_pregunta", "semantica_abierta", "aclaracion", "ranking_preguntas",
+                              *_FILTRADO):
+        nueva = "filtrar_respondentes" if _LISTAR.search(texto) and not _CONTEO.search(texto) else "conteo_porcentaje"
+        cambios.update(intencion=nueva, con_omisiones=True, criterio_ranking=None, nivel=None, aclaracion="",
+                       consulta_semantica="", preguntas=[], filtros=[f for f in plan.filtros if f.pregunta in cat.preguntas]
+                       if intencion in _FILTRADO else [])
+        notas.append((f"intención {intencion} → {nueva}: " if nueva != intencion else "")
+                     + "personas que dejaron alguna pregunta sin responder")
+        excluidas = _excluidas(texto, cat)
+        if excluidas:
+            cambios["excluir_preguntas"] = excluidas
+        return plan.model_copy(update=cambios), notas
     # 0b. Menciones de un tema en las respuestas abiertas, si la consulta pide cuántos o quiénes: no hay resumen ni
     # nivel que las cuente (Fase 6: «0 de 1 en nivel alto» en 1468, «sin resumen calculado» en 1540).
     termino = _termino_mencionado(texto)
@@ -354,15 +447,25 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
             cambios["preguntas"] = list(dict.fromkeys([*plan.preguntas, *pids]))
             notas.append(f"preguntas {', '.join(pids)} tomadas de la pregunta")
 
-    # 3. Grupo de contexto escrito tal cual («del turno vespertino» → {turno: Vespertino}).
-    if not plan.contexto and intencion in (*_FILTRADO, "comparar_grupos", "resumen_pregunta"):
+    # 3. Grupo de contexto escrito tal cual («del turno vespertino» → {turno: Vespertino}). Con «contra» / «frente a»
+    # se comparan los grupos de esa variable («los de pública contra los de privada»).
+    contra = _CONTRA.search(texto) is not None
+    # Dos valores de la misma variable también son una comparación: «¿responden distinto los de universidad pública
+    # y los de privada?» filtraba solo «publica» (consulta 2239).
+    nombrados = {var: [v for v in valores if len(v) >= 3 and not v.isdigit() and _menciona(texto, v)]
+                 for var, valores in cat.contexto.items()}
+    varios = any(len(set(vs)) >= 2 for vs in nombrados.values())
+    if (not plan.contexto or contra or varios) and intencion in (*_FILTRADO, "comparar_grupos", "resumen_pregunta"):
         for var, valores in cat.contexto.items():
             if var == plan.agrupar_por:
                 continue
-            valor = next((v for v in valores if len(v) >= 3 and not v.isdigit() and _menciona(texto, v)), None)
+            valor = next(iter(nombrados[var]), None)
             if valor and _valor_de_un_reactivo(texto, var, valor, cat):
                 notas.append(f"contexto {var} = «{valor}» no se toma («{valor}» es parte del reactivo citado)")
                 continue
+            if valor and (contra or len(set(nombrados[var])) >= 2):
+                intencion = _comparar_por(var, intencion, cambios, notas)
+                break
             if valor:
                 cambios["contexto"] = {var: valor}
                 notas.append(f"contexto {var} = «{valor}» (escrito en la pregunta)")
@@ -370,7 +473,8 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
 
     # 3c. Variable de sí/no nombrada («los de primera generación», «los que no tienen beca»): su valor no se escribe,
     # se deduce del nombre y de una negación justo antes (Fase 6, consultas 1594 y 1617).
-    if not cambios.get("contexto", plan.contexto) and intencion in (*_FILTRADO, "comparar_grupos", "resumen_pregunta"):
+    if (not cambios.get("contexto", plan.contexto) or contra) and not cambios.get("agrupar_por") \
+            and intencion in (*_FILTRADO, "comparar_grupos", "resumen_pregunta"):
         for var, valores in cat.contexto.items():
             nombre = [t[:5] for t in re.findall(r"[a-z]+", normalizar(var.replace("_", " ")))  # en orden
                       if len(t) >= 4 and t[:5] not in _VARIABLE_GENERICA]
@@ -378,6 +482,9 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
                 continue
             if not (m := re.search(r"\b" + r"\w*\s+(?:\w+\s+)?".join(map(re.escape, nombre)), texto)):
                 continue
+            if contra:  # «¿y los que tienen beca contra los que no?» (consulta 2187)
+                intencion = _comparar_por(var, intencion, cambios, notas)
+                break
             negada = re.search(r"\b(?:no|sin|ni)\s+(?:\w+\s+){0,2}$", texto[:m.start()]) is not None
             if valor := _booleano(valores, not negada):
                 cambios["contexto"] = {var: valor}
@@ -395,6 +502,13 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
 
     # 4. Nivel de la escala («de acuerdo», «en desacuerdo») en comparaciones y porcentajes de una pregunta.
     preguntas_plan = cambios.get("preguntas", plan.preguntas)
+    # Un nivel solo existe en preguntas de escala y si la consulta lo dice: «¿cuántos respondieron la de la
+    # contraseña?» salía «0 de 0 están de acuerdo (nivel alto)» en un reactivo de opción múltiple (consulta 2220).
+    if plan.nivel and not nivel and preguntas_plan and not any(
+            cat.preguntas[q].escala or cat.preguntas[q].tipo in ("likert", "escala_lineal", "cuadricula")
+            for q in preguntas_plan if q in cat.preguntas):
+        cambios["nivel"] = None
+        notas.append(f"nivel {plan.nivel} quitado (ni la consulta lo dice ni la pregunta es de escala)")
     if nivel and not plan.nivel and preguntas_plan and intencion in ("comparar_grupos", "conteo_porcentaje"):
         cambios["nivel"] = nivel
         notas.append(f"nivel {nivel} tomado de la pregunta")
@@ -411,6 +525,12 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
             elif actual.nivel is None and not any(_menciona(texto, str(v)) for v in _valores(actual)):
                 filtros[filtros.index(actual)] = Filtro(pregunta=pid, op=actual.op, valor=valor)
                 notas.append(f"filtro {pid}: «{actual.valor}» → «{', '.join(ops)}» (lo que dice la pregunta)")
+        # Palabras de la consulta que solo aparecen en las opciones de una pregunta («trabajan» → p12 «Trabajo en…»),
+        # si ninguna condición del plan las explica (consulta 2149: el modelo copió «horas > 30» del ejemplo).
+        explicadas = _raices_explicadas(plan, cambios, filtros, cat)
+        for pid, ops in opciones_por_raiz(pregunta, cat, {f.pregunta for f in filtros}, explicadas).items():
+            filtros.append(Filtro(pregunta=pid, op="=", valor=ops[0] if len(ops) == 1 else ops))
+            notas.append(f"filtro {pid} = «{', '.join(ops)}» (sus opciones dicen lo que pide la pregunta)")
         filtros = [_ajustar_filtro(f, texto, nivel, cat, notas) for f in filtros]
         # El número de «más de 20 horas» ya es la condición de contexto: un filtro numérico con ese número en una
         # pregunta que no habla de eso es la misma condición mal ubicada (gemma: «r04 > 20», consulta 1486).
@@ -422,7 +542,7 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
                     notas.append(f"filtro {f.pregunta} {f.op} {f.valor:g} → contexto {c.variable}")
         # Seguimiento («¿y de ellos…?»): las condiciones de la pregunta anterior se heredan aunque el modelo las
         # olvide (regresión C06: contó a todos los de «en línea» y no a los de carga mínima con certificación).
-        if _SEGUIMIENTO.search(texto):
+        if heredar_texto and _SEGUIMIENTO.search(texto):
             previa = next((normalizar(t) for rol, t in reversed(historial) if rol == "usuario"), "")
             for f in _condiciones_de(previa, cat):
                 if not any(x.pregunta == f.pregunta for x in filtros):
@@ -459,7 +579,7 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
         # («¿cuántos estudian en modalidad nocturna?», regresión C13).
         if plan.filtros and not respaldados and not preguntas_plan and not cambios.get("contexto", plan.contexto) \
                 and not cambios.get("contexto_num", plan.contexto_num):
-            return _aclarar_condicion(plan, texto, cat), notas + ["ninguna condición respaldada: se pide aclaración"]
+            return _aclarar_condicion(plan, pregunta, cat), notas + [NINGUNA_CONDICION]
 
     # 6. «¿Cuántos…?» sin pedir quiénes: es un conteo, no una lista.
     if intencion == "filtrar_respondentes" and _CONTEO.search(texto) and not _LISTAR.search(texto) \
@@ -520,13 +640,71 @@ def _ajustar_filtro(f: Filtro, texto: str, nivel: str | None, cat: Catalogo, not
     return f
 
 
-def _aclarar_condicion(plan: PlanConsulta, texto: str, cat: Catalogo) -> PlanConsulta:
-    """Pregunta de aclaración con las opciones reales de la pregunta del instrumento que más se parece a la consulta."""
-    raices = enrutador._raices(texto)
+def _comparar_por(var: str, intencion: str, cambios: dict, notas: list[str]) -> str:
+    """«contra los que no» / «frente a»: comparación de los grupos de `var` en lugar de quedarse con uno."""
+    cambios.update(agrupar_por=var, contexto={}, limite=None, orden=None, campos="solo_ids")
+    notas.append(f"comparar por {var} («contra» o dos de sus valores en la pregunta)")
+    if intencion != "comparar_grupos":
+        notas.append(f"intención {intencion} → comparar_grupos")
+    return "comparar_grupos"
+
+
+def _raices_explicadas(plan: PlanConsulta, cambios: dict, filtros: list[Filtro], cat: Catalogo) -> set[str]:
+    """Raíces que ya explica alguna condición del plan (sus opciones, sus preguntas, sus variables de contexto)."""
+    raices: set[str] = set()
+    for f in filtros:
+        raices |= set().union(*(enrutador._raices(str(v)) for v in _valores(f))) if _valores(f) else set()
+        if f.pregunta in cat.preguntas:
+            raices |= enrutador._raices(cat.preguntas[f.pregunta].texto)
+    for k, v in cambios.get("contexto", plan.contexto).items():
+        raices |= enrutador._raices(f"{k.replace('_', ' ')} {v}")
+    for c in cambios.get("contexto_num", plan.contexto_num):
+        raices |= enrutador._raices(c.variable.replace("_", " "))
+    for q in cambios.get("preguntas", plan.preguntas):
+        if q in cat.preguntas:
+            raices |= enrutador._raices(cat.preguntas[q].texto)
+    return raices
+
+
+def _vocabulario(cat: Catalogo) -> set[str]:
+    """Raíces de todo lo que el instrumento registra: título, preguntas, opciones y datos de contexto."""
+    partes = [cat.titulo, *(p.texto for p in cat.preguntas.values()), *(o for p in cat.preguntas.values() for o in p.opciones),
+              *(k.replace("_", " ") for k in (*cat.contexto, *cat.numericas)), *(v for vs in cat.contexto.values() for v in vs)]
+    return set().union(*(enrutador._raices(t) for t in partes)) if partes else set()
+
+
+def _ausentes(pregunta: str, cat: Catalogo) -> list[str]:
+    """Palabras de la consulta que el instrumento no registra en ninguna parte («nocturna», «ingeniería»)."""
+    vocabulario = _vocabulario(cat)
+    salida = []
+    for palabra in re.findall(r"\w+", pregunta):
+        n = normalizar(palabra)
+        if len(n) >= 5 and n.isalpha() and n not in enrutador._STOP_FILTRO and n[:5] not in vocabulario \
+                and n[:5] not in _VERBOS_CONSULTA and palabra not in salida:
+            salida.append(palabra)
+    return salida[:3]
+
+
+# Verbos y palabras de la consulta que no nombran una condición («¿cuántos ESTUDIAN…?», «¿quiénes LLEVAN…?»).
+_VERBOS_CONSULTA = {"estud", "lleva", "tiene", "hacen", "estan", "fuero", "eligi", "respo", "conte", "dijer", "cuant",
+                    "quien", "cuale", "porce", "mayor", "menor", "hubie", "habia", "puede", "deber", "sabes",
+                    "dimel", "decir", "mostr", "segun", "entre", "sobre", "donde", "cuand", "aquel", "ellos", "ellas"}
+
+
+def _aclarar_condicion(plan: PlanConsulta, pregunta: str, cat: Catalogo) -> PlanConsulta:
+    """La condición no existe en el instrumento: se dice qué palabra no registra y, si hay una pregunta parecida, cuáles
+    son sus opciones reales; si no, qué datos de contexto sí registra. La investigadora pidió que dijera que no existe,
+    no que preguntara cuál quiere (consultas 2147 y 2195, 7 nov)."""
+    raices = enrutador._raices(normalizar(pregunta))
+    ausentes = _ausentes(pregunta, cat)
+    inicio = (f"«{cat.titulo}» no registra «{', '.join(ausentes)}»." if ausentes
+              else f"No encontré esa condición en «{cat.titulo}».")
     parecida = max(cat.preguntas.values(), key=lambda q: len(raices & enrutador._raices(q.texto)), default=None)
     if parecida is not None and raices & enrutador._raices(parecida.texto) and parecida.opciones:
-        mensaje = (f"No encontré esa condición en «{cat.titulo}». En {parecida.id} («{parecida.texto[:80]}») las opciones "
-                   f"son: {', '.join(parecida.opciones[:10])}. ¿Cuál quieres?")
+        mensaje = f"{inicio} En {parecida.id} («{parecida.texto[:80]}») las opciones son: {', '.join(parecida.opciones[:10])}."
+    elif cat.contexto or cat.numericas:
+        mensaje = (f"{inicio} Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: "
+                   f"{', '.join([*cat.contexto, *cat.numericas][:10])}.")
     else:
-        mensaje = f"No encontré esa condición en «{cat.titulo}». ¿A qué pregunta u opción te refieres?"
+        mensaje = f"{inicio} Ninguna pregunta ni dato de contexto lo registra."
     return PlanConsulta(intencion="aclaracion", instrumentos=plan.instrumentos, aclaracion=mensaje[:300])

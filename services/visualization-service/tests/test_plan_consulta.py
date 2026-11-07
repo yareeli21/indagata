@@ -532,7 +532,9 @@ def test_valor_que_no_es_opcion_ni_se_menciona_se_descarta_antes_de_validar():
     plan = PlanConsulta.model_validate({"intencion": "conteo_porcentaje", "instrumentos": ["9"],
                                         "filtros": [{"pregunta": "r02", "valor": "A)"}]})
     nuevo, notas = anclaje.sin_inventos(plan, "¿cuántos estudian medicina?", [], [vf])
-    assert nuevo.intencion == "aclaracion" and "No encontré esa condición" in nuevo.aclaracion
+    # 7 nov: dice qué no registra y qué datos sí, en lugar de preguntar cuál quiere (consultas 2147 y 2195).
+    assert nuevo.intencion == "aclaracion" and "no registra «medicina»" in nuevo.aclaracion
+    assert "tipo_escuela, tiene_beca" in nuevo.aclaracion
     assert "no es una opción" in notas[0]
     # Si la consulta sí escribe ese valor, la validación pregunta cuál opción es (como antes).
     plan = PlanConsulta.model_validate({"intencion": "conteo_porcentaje", "instrumentos": ["9"],

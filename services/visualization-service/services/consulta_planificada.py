@@ -25,12 +25,12 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from models import FuenteChatOut
-from services import ejecutor, enrutador, interpretacion
+from services import ejecutor, enrutador, interpretacion, seguimiento
 from services.catalogo import Catalogo, construir as construir_catalogo
 from services.dominio import normalizar
 from services.ejecutor import Ejecucion
 from services.interpretacion import Interpretacion
-from services.plan_consulta import PlanConsulta
+from services.plan_consulta import PlanConsulta, validar_contra_catalogo
 
 # Intenciones cuya respuesta es una tabla de respondentes: la presentación es fija (criterio y conteo calculados) y
 # la tabla sale del cálculo. Al redactarlas, el modelo de 3B llegó a inventar una tabla con respuestas falsas que
@@ -84,6 +84,40 @@ FORMATO = {
                       "Si un tema se relaciona con otro, dilo. No inventes temas que no estén en el texto.",
 }
 
+# Bloque D (7 nov): lo que la pregunta pide además del dato. Se agregan al formato de la intención.
+FORMATO_PROFUNDIZA = (
+    "La PREGUNTA pide explicar el resultado anterior: di qué muestra el RESULTADO CALCULADO y qué significa con el "
+    "TEXTO RECUPERADO. Los datos no registran por qué respondieron así: dilo claramente y, si sirve, menciona una o "
+    "dos posibles razones como hipótesis a revisar («podría deberse a…»). Si nadie respondió una pregunta (100 % sin "
+    "respuesta), sugiere revisar cómo se aplicó o se limpió esa pregunta."
+)
+# «¿Qué opinas de que el 50.4 % …?» recibía solo la cifra (consultas 2144 y 2249).
+FORMATO_OPINION = ("La PREGUNTA pide tu opinión: después del dato, da en una o dos oraciones una interpretación prudente "
+                   "(qué podría significar para la investigación y qué convendría revisar), dicha como interpretación.")
+_OPINION = re.compile(r"\b(?:que opinas|que te parece|tu opinion|que piensas|que interpretas|como lo interpretas|"
+                      r"que concluyes)\b")
+FORMATO_SUPERLATIVO ="Termina diciendo cuál consideras «{}» y por qué, en una oración prudente."
+FORMATO_POCAS_PERSONAS = ("El instrumento tiene solo {} participante(s): habla de esa(s) persona(s) por su ID, no de «los "
+                          "estudiantes» ni de «varios». Escribe ese número con letra.")
+_SUPERLATIVO = re.compile(r"\blo (?:mas|menos) (preocupante|importante|interesante|destacad[oa]|relevante|grave|"
+                          r"positivo|negativo|llamativo|urgente)\b|\blo (peor|mejor)\b")
+_NUMEROS_LETRA = {1: "una", 2: "dos", 3: "tres", 4: "cuatro"}
+MAX_POCAS_PERSONAS = 4
+
+
+def formato_adicional(pregunta: str, relacion: str, n_participantes: int | None) -> str:
+    """Instrucciones según lo que pide la pregunta: explicar lo anterior, elegir lo más X, o pocas personas."""
+    partes = []
+    if relacion == "profundiza":
+        partes.append(FORMATO_PROFUNDIZA)
+    if _OPINION.search(normalizar(pregunta)):
+        partes.append(FORMATO_OPINION)
+    if m := _SUPERLATIVO.search(normalizar(pregunta)):
+        partes.append(FORMATO_SUPERLATIVO.format(m.group(0)))
+    if n_participantes is not None and n_participantes <= MAX_POCAS_PERSONAS:
+        partes.append(FORMATO_POCAS_PERSONAS.format(_NUMEROS_LETRA.get(n_participantes, n_participantes)))
+    return " ".join(partes)
+
 
 @dataclass
 class Preparada:
@@ -106,13 +140,25 @@ class Preparada:
 
 
 async def preparar(pregunta: str, historial: list[tuple[str, str]], ids: list[str], sesion: Any,
-                   tema: str = "", pistas: str = "") -> Preparada:
-    """Interpreta la pregunta con el catálogo del alcance y, si la intención es estructurada, ejecuta el plan.
+                   tema: str = "", pistas: str = "", plan_anterior: dict[str, Any] | None = None,
+                   recuperadas: list[str] | None = None) -> Preparada:
+    """Interpreta la pregunta con el catálogo del alcance, la relaciona con el plan anterior (`seguimiento`) y, si la
+    intención es estructurada, ejecuta el plan.
 
-    `tema`: de qué trató la respuesta anterior (seguimientos). `pistas`: lo que recuperó el RAG."""
+    `tema`: de qué trató la respuesta anterior (seguimientos). `pistas`: lo que recuperó el RAG. `plan_anterior`: el
+    plan de la respuesta anterior (rag_log). `recuperadas`: preguntas de los intercambios que recuperó el RAG."""
     instrumentos = enrutador.cargar_documentos(sesion, ids)
     catalogos = [construir_catalogo(i.id_crudo, i.titulo, i.tipo, i.doc) for i in instrumentos]
-    interp = await interpretacion.interpretar(pregunta, historial, catalogos, tema, pistas)
+    interp = await interpretacion.interpretar(pregunta, historial, catalogos, tema, pistas,
+                                              con_plan_anterior=plan_anterior is not None)
+    if interp.plan is not None:
+        rel = seguimiento.relacion(pregunta, interp.plan, plan_anterior)
+        plan, notas = seguimiento.combinar(interp.plan, plan_anterior, rel, recuperadas, pregunta, catalogos)
+        if notas:
+            validado = validar_contra_catalogo(plan, catalogos)
+            interp.plan, interp.correcciones = validado.plan, [*interp.correcciones, *notas, *validado.correcciones]
+        else:
+            interp.plan = plan
     preparada = Preparada(interp, instrumentos, catalogos)
     if interp.plan is not None:
         inicio = time.perf_counter()
@@ -237,6 +283,8 @@ def cifras_clave(ejecuciones: list[Ejecucion]) -> set[float]:
         if e.intencion == "hallazgo":
             continue
         for l in e.lineas:
+            if l.startswith(ejecutor.MAS_OMITIDAS):  # contexto del conteo: la redacción puede resumirlo
+                continue
             if e.intencion == "conteo_porcentaje" or l.startswith(("Cumplen la condición", "Se muestran")):
                 for m in _CONTEO.finditer(l):
                     claves |= {float(x) for x in m.groups() if x}

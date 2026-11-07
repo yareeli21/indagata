@@ -33,6 +33,10 @@ const FALLOS: Record<string, string> = {
   calificada: "habló de respuestas correctas o calificaciones",
   vacia: "respondió vacío",
   cita_inventada: "puso entre comillas una frase que no está en los datos",
+  copia_listado: "copió el listado calculado en lugar de redactar",
+  comparacion_invertida: "dijo «mayor» o «menor» al revés de sus cifras",
+  inferencia: "afirmó algo significativo o una causa que no se calculó",
+  modelo_no_disponible: "el modelo no respondió a tiempo",
 };
 
 const ETAPAS: [string, string][] = [

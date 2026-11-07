@@ -204,7 +204,8 @@ def test_redaccion_invalida_se_regenera_una_vez_con_el_motivo(chat):
     datos, fila = chat["preguntar"]("¿cuántos tienen dificultades para equilibrar?", ["4"])
     assert fila.motivo == "plan:conteo_porcentaje:regenerada"
     assert datos["respuesta"] == "Cumplen la condición 2 de 5 respondentes (40.0 %) [Fuente 1]."
-    assert fila.plan["verificacion"] == {"intentos": 2, "primer_fallo": "cifras_corregidas", "resultado": "regenerada"}
+    assert fila.plan["verificacion"] == {"intentos": 2, "primer_fallo": "cifras_corregidas", "resultado": "regenerada",
+                                         "borradores": ["Son 7 personas [Fuente 1]."]}
     assert "No es válida porque usa cifras que no están" in chat["redacciones"][1]
 
 
@@ -286,11 +287,11 @@ def test_redaccion_con_lenguaje_de_calificacion_se_descarta(chat, db, storage):
     """Fase 6 (consulta 1575): «0 de 97 eligieron la opción correcta» en una prueba que no se califica."""
     _publicar(db, storage, 2, docs_ejemplo.prueba())
     chat["plan"] = {"intencion": "resumen_pregunta", "preguntas": ["r01"]}
-    chat["redaccion"] = "En r01 el 84.6 % eligió la opción correcta, «A) 56» [Fuente 1]."
+    chat["redaccion"] = "En r01 el 84.6 % (11 alumnos) eligió la opción correcta, «A) 56» [Fuente 1]."
     datos, fila = chat["preguntar"]("¿qué eligieron en el reactivo 1?", ["2"])
     assert fila.motivo.endswith(":calificada")
     assert "correcta" not in datos["respuesta"] and "84.6 %" in datos["respuesta"]
-    chat["redaccion"] = "En r01 la mayoría (84.6 %) eligió «A) 56» [Fuente 1]."
+    chat["redaccion"] = "En r01 la mayoría, 11 alumnos (84.6 %), eligió «A) 56» [Fuente 1]."
     _, fila = chat["preguntar"]("¿qué opción eligieron más en el reactivo 1?", ["2"])
     assert fila.motivo == "plan:resumen_pregunta"
 
@@ -405,7 +406,8 @@ def test_el_seguimiento_recibe_el_tema_de_la_respuesta_anterior(entrevista):
 
 def test_que_significa_eso_retoma_el_plan_de_la_respuesta_anterior(chat):
     """Consultas 1697 y 1702: «y eso, ¿qué puede significar?» recibía una pregunta de aclaración aunque la
-    interpretación veía el tema anterior. Se vuelve a calcular el plan anterior y la redacción explica."""
+    interpretación veía el tema anterior. Se vuelve a calcular el plan anterior y la redacción explica. Desde el 7 nov
+    lo decide la relación «profundiza» del hilo (`seguimiento`), con el plan anterior guardado."""
     chat["plan"] = {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p02", "valor": "Sí"}]}
     chat["redaccion"] = "Cumplen la condición 2 de 5 respondentes (40.0 %) [Fuente 1]."
     primera, _ = chat["preguntar"]("¿cuántos tienen dificultades para equilibrar trabajo y estudios?", ["4"])
@@ -415,7 +417,8 @@ def test_que_significa_eso_retoma_el_plan_de_la_respuesta_anterior(chat):
     chat["redaccion"] = "Que 2 de 5 respondentes (40.0 %) tienen dificultades sugiere que les cuesta [Fuente 1]."
     datos, fila = chat["preguntar"]("y eso, ¿qué puede significar?", ["4"], historial)
     assert fila.motivo == "plan:conteo_porcentaje" and datos["respuesta"].startswith("Que 2 de 5")
-    assert "aclaración → plan de la respuesta anterior (la pregunta se refiere a ella)" in fila.plan["correcciones"]
+    assert "profundiza: se repite el plan anterior (conteo_porcentaje) para explicarlo" in fila.plan["correcciones"]
+    assert fila.plan["plan"]["relacion"] == "profundiza"
     chat["plan"] = {"intencion": "aclaracion", "aclaracion": "¿De qué grupo?"}  # algo nuevo, ambiguo y sin RAG
     from shared.db.core.config import settings
 
@@ -438,3 +441,36 @@ def test_antes_de_pedir_aclaracion_responde_con_lo_recuperado(chat):
     chat["plan"] = {"intencion": "aclaracion", "aclaracion": "¿Te refieres a R0067?"}  # una persona por su ID: no
     _, fila = chat["preguntar"]("¿qué respondió R0067 sobre su carga laboral actual?", ["4"])
     assert fila.motivo == "plan:aclaracion"
+
+
+def test_de_ellos_hereda_las_condiciones_exactas_del_plan_anterior(chat):
+    """7 nov (consultas 2149 y 2189): el modelo olvida las condiciones de la pregunta anterior; se heredan del plan
+    guardado en rag_log, no del texto."""
+    chat["plan"] = {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p03", "valor": "No trabajo"}]}
+    chat["redaccion"] = "Cumplen la condición 2 de 5 respondentes (40.0 %) [Fuente 1]."
+    primera, _ = chat["preguntar"]("¿cuántos no trabajan?", ["4"])
+    historial = [{"rol": "usuario", "texto": "¿cuántos no trabajan?"},
+                 {"rol": "asistente", "texto": primera["respuesta"], "consultaId": primera["consultaId"]}]
+    chat["plan"] = {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p02", "valor": "Sí"}]}
+    chat["redaccion"] = "Cumplen la condición 1 de 5 respondentes (20.0 %) [Fuente 1]."
+    datos, fila = chat["preguntar"]("de ellos, ¿cuántos tienen dificultades?", ["4"], historial)
+    assert "filtro p03 heredado del plan anterior" in fila.plan["correcciones"]
+    assert fila.plan["plan"]["relacion"] == "continua" and "1 de 5" in datos["respuesta"]
+    assert "Condiciones: p03 = No trabajo" in chat["interpretaciones"][-1]  # la interpretación ve el tema anterior
+
+
+def test_pregunta_sobre_el_instrumento_va_a_su_ficha_aunque_el_plan_pida_aclaracion(chat):
+    """7 nov (consultas 2153 y 2161): «¿a qué carrera está aplicada esta encuesta?» o «¿de qué trata el instrumento?»
+    recibían una aclaración que repetía la pregunta."""
+    chat["plan"] = {"intencion": "aclaracion", "aclaracion": "¿De qué trata el instrumento?"}
+    chat["redaccion"] = "Es una encuesta de carga académica [Fuente 1]."
+    _, fila = chat["preguntar"]("¿de qué trata el instrumento?", ["4"])
+    assert fila.motivo.startswith("estructurada:descripcion")
+    assert "aclaración → respuesta con lo recuperado del RAG" not in fila.plan["correcciones"]
+
+
+def test_condicion_inexistente_no_se_cambia_por_lo_recuperado(chat):
+    """7 nov (consulta 2147): la aclaración «no registra "nocturna"» ya es la respuesta."""
+    chat["plan"] = {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p03", "valor": "Trabajo menos de 20h"}]}
+    datos, fila = chat["preguntar"]("¿cuántos tienen una carga laboral nocturna?", ["4"])
+    assert fila.motivo == "plan:aclaracion" and "no registra «nocturna»" in datos["respuesta"]
