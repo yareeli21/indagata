@@ -24,7 +24,9 @@ from shared.db.core.config import settings
 
 logger = logging.getLogger("visualization-service")
 
-_TIMEOUT = httpx.Timeout(connect=5.0, read=120.0, write=120.0, pool=5.0)
+# 300 s: con gemma3:4b repartido entre CPU y GPU y poca memoria libre una redacción tarda 150–200 s, y con 120 s se
+# mostraba el cálculo literal como si la redacción hubiera fallado (consultas 2267 y 2268, 7 nov).
+_TIMEOUT = httpx.Timeout(connect=5.0, read=300.0, write=120.0, pool=5.0)
 
 # Opciones de rendimiento para GPUs con poca VRAM (p. ej. GTX 1650, 4 GiB).
 # - keep_alive=-1: mantiene el modelo cargado en VRAM mientras viva el contenedor,
