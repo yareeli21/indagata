@@ -36,6 +36,9 @@ PLANTILLAS = {
     "calculo_literal": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado "
                        "calculado.",
     "modelo_no_disponible": "El modelo local no respondió.",
+    "frase_calculada": "La oración con las cifras la escribió el sistema; lo que agregó el modelo no pasó la revisión "
+                       "y no se muestra.",
+    "cita_literal": "Se pidieron las palabras exactas: se muestra la respuesta tal como está en la transcripción.",
 }
 
 
@@ -57,6 +60,10 @@ def _plantilla(fila: RagLog, verificacion: dict[str, Any]) -> str | None:
         return "modelo_no_disponible"
     if verificacion.get("resultado") == "respaldo":
         return "calculo_literal"
+    if verificacion.get("resultado") == "frase_dato":  # ronda posterior (8 nov)
+        return "frase_calculada"
+    if motivo.endswith(":literal"):
+        return "cita_literal"
     return None
 
 

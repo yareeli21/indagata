@@ -95,6 +95,39 @@ FORMATO = {
 # Bloque D (7 nov): lo que la pregunta pide además del dato. Se agregan al formato de la intención.
 # 7 nov (Fase 4): redacción en dos capas para «¿qué significa eso?» / «¿por qué?». Los datos ya se mostraron en la
 # respuesta anterior y van arriba tal cual (capa 1, `Plan.hechos`); el modelo escribe SOLO la interpretación (capa 2).
+# Ronda posterior (8 nov): en conteos, «de ellos» y cruces la oración con las cifras la escribe el sistema
+# (`Ejecucion.frase_dato`); el modelo solo agrega el contexto, sin números.
+FORMATO_CONTEXTO = (
+    "La respuesta ya empieza con esta oración, que tiene todas las cifras: «{frase}». Escribe SOLO lo que va después: "
+    "una o dos oraciones SIN NÚMEROS que expliquen qué pregunta es y qué significa el criterio, con el TEXTO RECUPERADO. "
+    "No repitas la oración ni sus cifras, no digas si es mucho o poco y no digas por qué respondieron así."
+)
+# «Muéstrame exactamente lo que dijo»: la respuesta literal del documento, sin redactar (la redacción parafraseaba).
+PIDE_LITERAL = re.compile(r"\b(?:exactamente|textual\w*|literal\w*|sus (?:propias )?palabras|tal (?:cual|como) (?:lo )?dijo|"
+                          r"palabra por palabra|la cita)\b")
+
+
+def frase_dato(ejecuciones: list[Ejecucion]) -> str:
+    """Las oraciones con las cifras de cada instrumento, con su fuente («… [Fuente 1]»)."""
+    return " ".join(f"{e.frase_dato} [Fuente {n}]" for n, e in enumerate(ejecuciones, start=1) if e.frase_dato)
+
+
+def literal_entrevista(ejecuciones: list[Ejecucion]) -> str:
+    """Lo que dijo cada participante, tal cual, en las preguntas de la tabla de sus respuestas."""
+    lineas: list[str] = []
+    for n, e in enumerate(ejecuciones, start=1):
+        for tabla in e.tablas:
+            if len(tabla.columnas) < 2:
+                continue
+            for fila in tabla.filas:
+                if fila[0].startswith("Contexto:"):
+                    continue
+                for persona, respuesta in zip(tabla.columnas[1:], fila[1:]):
+                    if respuesta and respuesta != "—":
+                        lineas.append(f"- {persona} en {fila[0]}: «{respuesta}» [Fuente {n}]")
+    return ("Sus palabras, tal como están en la transcripción:\n" + "\n".join(lineas)) if lineas else ""
+
+
 FORMATO_INTERPRETA = (
     "Escribe SOLO una interpretación del RESULTADO CALCULADO para la investigación, en dos o tres oraciones, SIN NÚMEROS "
     "(las cifras ya se mostraron): qué podría significar, con cautela («podría», «sugiere»). Los datos no registran por "

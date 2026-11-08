@@ -98,6 +98,10 @@ def plantilla(fila: dict) -> str | None:
         return "aclaracion"
     if verif == "respaldo":
         return "calculo_literal"
+    if verif == "frase_dato":  # ronda posterior (8 nov): solo la oración calculada, sin el contexto del modelo
+        return "frase_calculada"
+    if motivo.endswith(":literal"):
+        return "cita_literal"
     if verif == "modelo_no_disponible" or "No se pudo contactar" in str(fila.get("respuesta") or ""):
         return "modelo_no_disponible"
     if fila.get("ruta") == "ayuda":

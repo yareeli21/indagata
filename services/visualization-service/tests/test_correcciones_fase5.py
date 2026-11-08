@@ -165,3 +165,11 @@ def test_no_se_resume_una_pregunta_filtrada_por_su_propia_opcion():
                         filtros=[{"pregunta": "r01", "valor": "B) Para borrar"}])
     anclado, _ = anclaje.anclar(plan, "De ellos, ¿qué eligieron en el reactivo del índice?", [], cat)
     assert anclado.filtros == []
+
+
+def test_contexto_que_acompana_a_la_frase_del_dato():
+    plan = rag_service.Plan()
+    assert rag_service.contexto_aceptable("La pregunta trata de la carga laboral (p03) [Fuente 1].", plan)
+    assert not rag_service.contexto_aceptable("Son 3 de cada 5 [Fuente 1].", plan)       # cifras: ya van en la frase
+    assert not rag_service.contexto_aceptable("No tengo información sobre eso.", plan)    # niega el resultado
+    assert not rag_service.contexto_aceptable("Criterio: p03 = No trabajo.", plan)

@@ -103,15 +103,17 @@ def test_primer_respondente_con_sus_respuestas(chat):
     assert fila.plan["verificacion"]["primer_fallo"] == "vacia"
 
 
-def test_redaccion_con_cifra_inventada_se_reemplaza_por_el_resultado(chat):
+def test_en_un_conteo_la_frase_con_las_cifras_la_escribe_el_sistema(chat):
+    """Ronda posterior (8 nov): la oración con las cifras sale del cálculo; lo que el modelo agrega con cifras (aquí,
+    inventadas) no se muestra."""
     chat["plan"] = {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p02", "valor": "Sí"}]}
     chat["redaccion"] = "Cumplen 3 de 5 respondentes (60 %) [Fuente 1]."
     datos, fila = chat["preguntar"]("¿cuántos tienen dificultades?", ["4"])
-    assert fila.motivo == "plan:conteo_porcentaje:cifras_corregidas"
-    assert "Cumplen la condición 2 de 5 respondentes (40.0 %)." in datos["respuesta"]
+    assert datos["respuesta"].startswith("2 de 5 respondentes (40.0 %) cumplen el criterio: p02 «¿Tienes dificultades para equilibrar trabajo y estudios?» = «Sí». [Fuente 1]") and "60 %" not in datos["respuesta"]
+    assert fila.motivo == "plan:conteo_porcentaje:frase_dato" and fila.plan["verificacion"]["resultado"] == "frase_dato"
     assert fila.metricas["fidelidad"] == 1.0 and fila.metricas["estado"] in ("calculando", "calculada")
     assert set(fila.tiempos) == {"interpretacion", "ejecucion", "recuperacion", "redaccion", "verificacion"}
-    assert "FORMATO DE LA RESPUESTA" in chat["redacciones"][0]
+    assert "La respuesta ya empieza con esta oración" in chat["redacciones"][0]
 
 
 def test_redaccion_con_id_o_tabla_inventados_se_descarta(chat):
@@ -124,11 +126,13 @@ def test_redaccion_con_id_o_tabla_inventados_se_descarta(chat):
     assert fila.motivo == "plan:kpi:inventada"
 
 
-def test_conteo_que_omite_el_total_se_completa(chat):
+def test_en_un_conteo_el_contexto_sin_cifras_va_despues_de_la_frase(chat):
     chat["plan"] = {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p02", "valor": "Sí"}]}
-    chat["redaccion"] = "Son 2 personas [Fuente 1]."
+    chat["redaccion"] = "La pregunta trata de equilibrar el trabajo con los estudios [Fuente 1]."
     datos, fila = chat["preguntar"]("¿cuántos tienen dificultades para equilibrar trabajo y estudios?", ["4"])
-    assert fila.motivo.endswith(":cifras_completadas") and "2 de 5 respondentes (40.0 %)" in datos["respuesta"]
+    assert datos["respuesta"] == "2 de 5 respondentes (40.0 %) cumplen el criterio: p02 «¿Tienes dificultades para equilibrar trabajo y estudios?» = «Sí». [Fuente 1] La pregunta trata de equilibrar el trabajo con los estudios [Fuente 1]."
+    assert fila.motivo == "plan:conteo_porcentaje"
+    assert fila.plan["verificacion"]["resultado"] == "frase_dato_con_contexto"
 
 
 def test_resultado_vacio_se_dice_sin_redaccion(chat):
@@ -198,22 +202,26 @@ def test_el_historial_cambia_la_huella_de_la_cache(monkeypatch):
 
 
 def test_redaccion_invalida_se_regenera_una_vez_con_el_motivo(chat):
-    """Fase 4: antes de responder con el resultado calculado se le da al modelo una segunda oportunidad."""
-    chat["plan"] = {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p02", "valor": "Sí"}]}
-    chat["redaccion"] = ["Son 7 personas [Fuente 1].", "Cumplen la condición 2 de 5 respondentes (40.0 %) [Fuente 1]."]
-    datos, fila = chat["preguntar"]("¿cuántos tienen dificultades para equilibrar?", ["4"])
-    assert fila.motivo == "plan:conteo_porcentaje:regenerada"
-    assert datos["respuesta"] == "Cumplen la condición 2 de 5 respondentes (40.0 %) [Fuente 1]."
+    """Fase 4: antes de responder con el resultado calculado se le da al modelo una segunda oportunidad (en las
+    intenciones sin frase del dato; aquí, un listado de IDs)."""
+    chat["plan"] = {"intencion": "filtrar_respondentes", "filtros": [{"pregunta": "p02", "valor": "Sí"}],
+                    "campos": "solo_ids"}
+    chat["redaccion"] = ["Son 7 personas [Fuente 1].",
+                         "Cumplen la condición 2 de 5 respondentes (40.0 %): R001 y R002 [Fuente 1]."]
+    datos, fila = chat["preguntar"]("¿quiénes tienen dificultades para equilibrar?", ["4"])
+    assert fila.motivo == "plan:filtrar_respondentes:regenerada"
+    assert datos["respuesta"].startswith("Cumplen la condición 2 de 5 respondentes (40.0 %): R001 y R002 [Fuente 1].")
     assert fila.plan["verificacion"] == {"intentos": 2, "primer_fallo": "cifras_corregidas", "resultado": "regenerada",
                                          "borradores": ["Son 7 personas [Fuente 1]."]}
     assert "No es válida porque usa cifras que no están" in chat["redacciones"][1]
 
 
 def test_dos_redacciones_invalidas_dan_el_resultado_calculado(chat):
-    chat["plan"] = {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p02", "valor": "Sí"}]}
+    chat["plan"] = {"intencion": "filtrar_respondentes", "filtros": [{"pregunta": "p02", "valor": "Sí"}],
+                    "campos": "solo_ids"}
     chat["redaccion"] = ["Son 7 personas [Fuente 1].", "Son 9 personas [Fuente 1]."]
-    datos, fila = chat["preguntar"]("¿cuántos tienen dificultades para equilibrar el trabajo?", ["4"])
-    assert fila.motivo == "plan:conteo_porcentaje:cifras_corregidas"
+    datos, fila = chat["preguntar"]("¿quiénes tienen dificultades para equilibrar el trabajo?", ["4"])
+    assert fila.motivo == "plan:filtrar_respondentes:cifras_corregidas"
     assert "Cumplen la condición 2 de 5 respondentes (40.0 %)." in datos["respuesta"]
     assert fila.plan["verificacion"]["resultado"] == "respaldo" and fila.metricas["fidelidad"] == 1.0
 
@@ -330,7 +338,7 @@ def test_respuesta_calculada_lleva_el_texto_recuperado_del_rag(chat, chroma):
     datos, fila = chat["preguntar"]("¿cuántos tienen dificultades para equilibrar trabajo y estudios?", ["4"])
     recuperado = chat["redacciones"][0].split("TEXTO RECUPERADO")[1]
     assert "Pregunta p02: ¿Tienes dificultades" in recuperado and "Distribución" not in recuperado  # sin sus cifras
-    assert fila.ruta == "mixta" and fila.motivo == "plan:conteo_porcentaje"
+    assert fila.ruta == "mixta" and fila.motivo.startswith("plan:conteo_porcentaje")
     assert any(c["tipo"] == "fragmento" and c["etiqueta"] == "p02" for c in fila.contexto_usado)
     assert "Texto recuperado del RAG: p02" in datos["fuentes"][0]["fragmento"]
 
@@ -341,8 +349,8 @@ def test_en_un_conteo_la_cifra_de_un_fragmento_no_vale(chat, chroma):
                "73.5 % dijo que sí", "4", "pregunta", "p02")
     chat["plan"] = {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p02", "valor": "Sí"}]}
     chat["redaccion"] = "Cumplen la condición 2 de 5 respondentes (40.0 %); en general, 73.5 % [Fuente 1]."
-    _, fila = chat["preguntar"]("¿cuántos tienen dificultades para equilibrar trabajo y estudios?", ["4"])
-    assert fila.plan["verificacion"]["primer_fallo"] == "cifras_corregidas"
+    datos, fila = chat["preguntar"]("¿cuántos tienen dificultades para equilibrar trabajo y estudios?", ["4"])
+    assert fila.plan["verificacion"]["resultado"] == "frase_dato" and "73.5" not in datos["respuesta"]
     assert "73.5" not in chat["redacciones"][0]  # en un conteo el fragmento llega sin sus cifras
 
 
@@ -480,3 +488,37 @@ def test_condicion_inexistente_no_se_cambia_por_lo_recuperado(chat):
     # 7 nov (Fase 3): el aviso y las opciones que sí existen con su número de respuestas, tal cual.
     assert fila.motivo == "plan:no_existe" and "no registra «nocturna»" in datos["respuesta"]
     assert "Criterio: resumen de p03" in datos["respuesta"]
+
+
+def test_en_un_cruce_la_frase_trae_el_reparto_del_grupo(chat):
+    """Ronda posterior (8 nov): la redacción decía «57 cumplieron la condición r15» cuando los 57 eran del otro reactivo;
+    ahora la oración del cruce sale del cálculo."""
+    chat["plan"] = {"intencion": "resumen_pregunta", "preguntas": ["p02"],
+                    "filtros": [{"pregunta": "p03", "valor": "No trabajo"}]}
+    chat["redaccion"] = "De ellos, 3 dicen que sí [Fuente 1]."
+    datos, fila = chat["preguntar"]("de los que no trabajan, ¿qué respondieron sobre las dificultades?", ["4"])
+    assert datos["respuesta"].startswith("Entre los 2 que cumplen p03")
+    assert "respondieron: «Sí» 1 (50.0 %); «No» 1 (50.0 %). [Fuente 1]" in datos["respuesta"]
+    assert "3 dicen" not in datos["respuesta"] and fila.motivo.endswith(":frase_dato")
+
+
+def test_entrevista_cita_literal_cuando_se_pide_textual(entrevista):
+    """Ronda posterior (8 nov): «muéstrame exactamente lo que dijo» se parafraseaba; ahora es la respuesta tal cual."""
+    entrevista["plan"] = {"intencion": "datos_respondente", "respondentes": ["E02"], "campos": ["p02"]}
+    datos, fila = entrevista["preguntar"]("Muéstrame exactamente lo que dijo E02 sobre los servicios", ["3"])
+    assert datos["respuesta"].startswith("Sus palabras, tal como están en la transcripción:")
+    assert "- E02 en p02 «¿Qué servicios usas?»: «La biblioteca.» [Fuente 1]" in datos["respuesta"]
+    assert fila.motivo == "plan:datos_respondente:literal" and entrevista["redacciones"] == []
+
+
+def test_entrevista_de_una_persona_avisa_que_no_se_generaliza(entrevista, db, storage):
+    """Ronda posterior (8 nov): con una sola participante, una respuesta que interpreta lo dice siempre."""
+    doc = docs_ejemplo.entrevista("INS-0005")
+    doc["entrevistas"] = doc["entrevistas"][1:]  # solo E02
+    _publicar(db, storage, 5, doc)
+    entrevista["plan"] = {"intencion": "datos_respondente", "respondentes": ["E02"], "campos": ["p02"]}
+    entrevista["redaccion"] = "E02 usa la biblioteca (p02) [Fuente 1]."
+    datos, _ = entrevista["preguntar"]("¿Eso qué dice sobre los servicios de la universidad?", ["5"])
+    assert "Es el testimonio de una sola persona (E02); no permite generalizar" in datos["respuesta"]
+    datos, _ = entrevista["preguntar"]("¿Qué servicios usa E02?", ["5"])  # pide un dato: sin nota
+    assert "testimonio de una sola persona" not in datos["respuesta"]

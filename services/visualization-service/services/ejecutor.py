@@ -76,6 +76,10 @@ class Ejecucion:
     preguntas: list[str] = field(default_factory=list)  # IDs completos usados (fuentes)
     respondentes: list[str] = field(default_factory=list)
     kpis: list[str] = field(default_factory=list)
+    # Ronda posterior (8 nov): la oración con las cifras de un conteo o un cruce, armada aquí y no por el modelo. Una
+    # frase sin cifras que contradecía el resultado pasaba la verificación («34.6 % sobre el total» cuando era sobre el
+    # grupo anterior; «57 cumplieron la condición r15» cuando los 57 eran del otro reactivo).
+    frase_dato: str = ""
 
     def texto(self) -> str:
         """El resultado como texto para la redacción (y para verificar sus cifras)."""
@@ -381,6 +385,7 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
         pct = round(100 * len(grupo) / total, 1) if total else 0.0
         e.criterio = " y ".join(condiciones)
         e.total = len(grupo)
+        e.frase_dato = f"{len(grupo)} de {total} respondentes ({pct} %) cumplen el criterio: {e.criterio}."
         if plan.grupo_anterior:
             # «¿Y de ellos, cuántos la consiguieron por convenio?»: la base es el grupo de la pregunta anterior
             # (8 nov, Fase 5, ENC-13 y CEN-03: se daba «382 de 2000» y no «382 de 1104»).
@@ -391,6 +396,8 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
             pct_base = round(100 * dentro / len(base), 1) if base else 0.0
             e.lineas.append(f"Cumplen la condición {dentro} de los {len(base)} del grupo anterior ({pct_base} %); "
                             f"sobre el total, {len(grupo)} de {total} respondentes ({pct} %).")
+            e.frase_dato = (f"{dentro} de los {len(base)} del grupo anterior ({pct_base} %) cumplen el criterio: "
+                            f"{e.criterio}. Sobre el total son {len(grupo)} de {total} respondentes ({pct} %).")
         else:
             e.lineas.append(f"Cumplen la condición {len(grupo)} de {total} respondentes ({pct} %).")
         e.vacio = not grupo
@@ -597,6 +604,10 @@ def _cruce(ins: Instrumento, plan: PlanConsulta, e: Ejecucion, grupo: list[dict[
                         f"{validas} respuestas válidas" + (f", {sin} sin respuesta" if sin else "")
                         + (f"; media {media}" if media is not None else "") + ".")
         if conteo:
+            reparto = "; ".join(f"«{o}» {n} ({round(100 * n / validas, 1) if validas else 0.0} %)" for o, n in conteo.items())
+            e.frase_dato += (" " if e.frase_dato else "") + (
+                f"Entre los {len(grupo)} que cumplen {' y '.join(condiciones)}, en {_texto_pregunta(doc, q)} "
+                f"respondieron: {reparto}.")
             e.tablas.append(Tabla(f"{q} entre quienes cumplen la condición", ["Opción", "Personas", "% del grupo"],
                                   [[o, str(n), f"{round(100 * n / validas, 1) if validas else 0.0} %"] for o, n in conteo.items()]))
 
