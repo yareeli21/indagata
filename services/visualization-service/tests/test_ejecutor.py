@@ -419,3 +419,14 @@ def test_lo_mas_preocupante_usa_la_polaridad_de_cada_pregunta():
     # Sin polaridad en ninguna pregunta se avisa y se muestran los datos notables.
     e = _uno(_plan(intencion="hallazgo", sentido="desfavorable"), _enc())
     assert e.lineas[0].startswith("Ninguna pregunta tiene decidido")
+
+
+def test_por_seccion_sin_respuestas_en_blanco_lo_dice():
+    """Sin respuestas en blanco no hay «sección con más» (8 nov, set de control: decía «la que más: 0»)."""
+    enc = Instrumento("1", "Experiencia", "encuesta", docs_ejemplo.encuesta())
+    e = _uno(_plan(intencion="comparar_grupos", agrupar_por="seccion"), enc)
+    assert e.lineas[-1].startswith("Ninguna sección tiene respuestas en blanco o nulas")
+    doc = docs_ejemplo.encuesta()
+    doc["respondentes"][0]["respuestas"][0]["estado"] = "sin_respuesta"
+    e = _uno(_plan(intencion="comparar_grupos", agrupar_por="seccion"), Instrumento("1", "Experiencia", "encuesta", doc))
+    assert e.lineas[-1].startswith("La sección con más respuestas en blanco o nulas es «Experiencia»: 1")

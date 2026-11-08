@@ -531,8 +531,12 @@ def _comparar_secciones(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> N
     e.tablas.append(Tabla("Respuestas en blanco o nulas por sección", ["Sección", "Reactivos", "En blanco o nulas",
                                                                        "% de sus respuestas"], filas))
     mayor = max(filas, key=lambda f: float(f[3].rstrip(" %")))
-    e.lineas.append(f"La sección con más respuestas en blanco o nulas es «{mayor[0]}»: {mayor[2]} ({mayor[3]} de sus "
-                    f"respuestas posibles, {mayor[1]} reactivos × {len(personas)} alumnos).")
+    if mayor[2] == "0":
+        # Sin respuestas en blanco no hay «sección con más» (8 nov, set de control: decía «la que más: 0»).
+        e.lineas.append(f"Ninguna sección tiene respuestas en blanco o nulas ({len(filas)} secciones, {len(personas)} alumnos).")
+    else:
+        e.lineas.append(f"La sección con más respuestas en blanco o nulas es «{mayor[0]}»: {mayor[2]} ({mayor[3]} de sus "
+                        f"respuestas posibles, {mayor[1]} reactivos × {len(personas)} alumnos).")
     e.total = len(personas)
 
 
