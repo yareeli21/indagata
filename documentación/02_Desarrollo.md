@@ -2825,6 +2825,35 @@ llevan los temas del análisis de lo que se cuenta.
 Las preguntas sobre el instrumento («¿de qué trata?», «¿cuánto dura la entrevista?») no se resuelven por similitud,
 porque se parecen más a las preguntas que a la ficha: van directo a la ficha por su intención.
 
+#### Correcciones posteriores a la evaluación final
+
+La evaluación final (Pruebas Y.4.14) dejó dos tipos de falla que la verificación no detecta. Se corrigen con dos
+cambios deterministas, generales para cualquier instrumento. [PENDIENTE: confirmar que quedaron implementados, con su
+commit.]
+
+**1. La frase del dato la escribe el sistema.** Una oración sin cifras puede contradecir el resultado y pasar la
+verificación, que revisa cifras, IDs, citas, porcentajes y opciones, pero no el sentido de una frase. Ejemplos de la
+evaluación final:
+- «el 34.6 % sobre el total», cuando el resultado decía que era sobre el grupo anterior;
+- «57 cumplieron la condición r15», cuando los 57 son del otro reactivo;
+- «no mencionó haber buscado ayuda», cuando lo cuenta en otra respuesta.
+
+En los conteos, los seguimientos «de ellos» y los cruces, la primera oración de la respuesta la arma el código a
+partir del resultado («382 de los 1104 del grupo anterior (34.6 %); sobre el total, 382 de 2000 (19.1 %)»). El
+modelo solo agrega el contexto después. Es la redacción en dos capas que ya se usa para explicar un resultado
+(«¿qué significa?»), extendida a las intenciones donde la redacción falló.
+- **Por qué no un juez:** pedirle al modelo que revise si cada frase contradice el resultado agrega una llamada por
+  respuesta, y los jueces de 3–4B no fueron confiables (Pruebas Y.5).
+- **Costo:** la primera oración es menos fluida que una redactada.
+
+**2. Citas textuales y un solo testimonio en entrevistas.**
+- Si la pregunta pide las palabras exactas («exactamente», «textual», «sus palabras»), se muestra la respuesta literal
+  del documento, sin redactar. La redacción parafraseaba aunque se pidiera la cita.
+- Si la entrevista tiene una sola participante y la respuesta interpreta u opina, el sistema agrega al final que es el
+  testimonio de una sola persona y no se puede generalizar. Antes dependía de que el modelo lo dijera.
+
+[PENDIENTE: archivos y funciones que cambiaron, y pruebas automáticas agregadas.]
+
 #### Interfaz y registro
 
 Debajo de cada respuesta, **«Ver datos»** despliega las tablas calculadas y **«Cómo lo calculé»** muestra el criterio

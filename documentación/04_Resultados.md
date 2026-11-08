@@ -433,7 +433,9 @@ R.11a resume el resultado.
 - El modelo de 4B necesita al sistema: su plan se usó sin cambios en 23 % de los turnos; en el resto lo corrigieron la
   validación, las reglas o el hilo de la conversación (Desarrollo X.9.6).
 - Lo que sigue fallando son frases sin cifras que contradicen el resultado, citas que se parafrasean y dos
-  operaciones que no se implementaron (Z.7).
+  operaciones que no se implementaron (Z.7). Las dos primeras se corrigieron después, con la frase del dato escrita
+  por el sistema y la cita literal en entrevistas (Desarrollo X.9.6). [PENDIENTE: resultado de la ronda posterior,
+  Pruebas Y.4.14c y Y.4.14d.]
 
 ---
 
@@ -658,7 +660,9 @@ RAG) y en la versión final.
     generales que corrige el plan del modelo (Desarrollo X.9.6). Esas reglas forman una lista que crece: una forma de
     preguntar que nunca se ha visto puede fallar hasta que se detecte. La verificación detecta cifras falsas, porcentajes
     atribuidos a otra opción, opciones omitidas y lenguaje de calificación, pero no toda afirmación falsa: una frase sin
-    cifras que contradice el resultado puede pasar.
+    cifras que contradice el resultado puede pasar. En conteos, seguimientos y cruces, la frase del dato la escribe el
+    sistema para evitarlo (Desarrollo X.9.6); en las demás intenciones el riesgo sigue. [PENDIENTE: confirmar con la
+    ronda posterior.]
 14. **Evaluación final con las baterías.** Las baterías orientaron qué capacidades se construyeron, la calificación
     contra el «Debe» la hizo el mismo asistente que programó los cambios y cada caso se preguntó una sola vez (Pruebas
     Y.4.14). El set de control, con instrumentos ajenos al diseño, es la medida de generalización.

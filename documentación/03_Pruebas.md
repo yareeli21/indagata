@@ -1617,6 +1617,35 @@ corrección (la frase «ninguna sección tiene respuestas en blanco») no se vol
   vez el modelo puso otro filtro.
 <!-- fuente: evidencias/chat_2026-11-08_final/ (README.md, resumen.md, calificacion_debe.json, recuperacion.json, pytest/, textos_instrumentos_en_codigo.txt); evidencias/chat_2026-11-08_final_control/; commits 9519768, 2e8862d, 73525c1, 51c96e5, d138f67, af2e458 -->
 
+**Ronda posterior: frase del dato calculada y entrevistas** (Desarrollo X.9.6, «Correcciones posteriores a la
+evaluación final»). [PENDIENTE: fecha y commit.]
+- **Qué se repite:** los casos afectados (la batería de la entrevista, ENC-13, ENC-11, PRU-14 y los de conteo, «de
+  ellos» y cruce) y después la batería completa y el control, para descartar regresiones.
+- **Procedimiento:** el mismo de la corrida final (`documentación/guia_reprueba_chat.md`).
+
+**Tabla Y.4.14c.** Casos afectados, antes y después de la ronda posterior.
+
+| Caso | Corrida final | Ronda posterior |
+|---|---|---|
+| ENC-11 | parcial: atribuye las dos opciones de retraso al grupo de carga media | [PENDIENTE] |
+| ENC-13 | parcial: «34.6 % sobre el total» | [PENDIENTE] |
+| PRU-14 | parcial: «57 cumplieron la condición r15» | [PENDIENTE] |
+| ENT-04, ENT-08, ENT-14 | parcial: parafrasea en lugar de citar | [PENDIENTE] |
+| ENT-13 | parcial: «no mencionó haber buscado ayuda» | [PENDIENTE] |
+| ENT-15, ENT-17 | no / parcial: sin aclarar que es un solo testimonio | [PENDIENTE] |
+
+**Tabla Y.4.14d.** Batería completa y control después de la ronda posterior.
+
+| Medida | Corrida final | Ronda posterior |
+|---|---|---|
+| Baterías: cumplen (de 79) | 63 | [PENDIENTE] |
+| Control: cumplen (de 24) | 19 | [PENDIENTE] |
+| Plan del modelo usado sin cambios | 18 de 77 | [PENDIENTE] |
+| Caídas a plantilla | 34 de 102 | [PENDIENTE] |
+| Tiempo por turno: mediana / p90 | 35 s / 115 s | [PENDIENTE] |
+
+[PENDIENTE: lectura de la ronda posterior y regresiones, si las hubo.]
+
 **Amenazas a la validez.**
 - **Las baterías orientaron qué capacidades se construyeron.** Por eso el set de control es la medida de
   generalización.
