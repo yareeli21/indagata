@@ -61,7 +61,7 @@ FORMATO = {
                             "cuántos se muestran. No copies la tabla ni la lista de respuestas: se muestra debajo.",
     "conteo_porcentaje": "Responde en UNA o DOS oraciones con la cifra exacta, de cuántos y el porcentaje, y el criterio "
                          "aplicado. Nombra las opciones del criterio tal como aparecen, todas, sin resumirlas ni "
-                         "cambiarlas (si dice «Sí, y lo aprobé» o «Sí, y no lo aprobé», no escribas «aprobada»).",
+                         "cambiarlas (si dice «Sí, y lo terminé» o «Sí, pero lo dejé», no escribas «terminado»).",
     "comparar_grupos": "Escribe DOS o TRES oraciones con la diferencia principal entre los grupos, con sus cifras. La "
                        "tabla completa se muestra debajo.",
     "resumen_pregunta": "Escribe DOS o TRES oraciones con lo más importante de la distribución, con sus cifras. La tabla "

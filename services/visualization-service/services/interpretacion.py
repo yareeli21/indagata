@@ -100,7 +100,7 @@ Contexto numérico: Edad (17–45)
 Preguntas:
 - p01 [likert] Los profesores explican con claridad → escala 1–5 (Totalmente en desacuerdo … Totalmente de acuerdo); niveles baja 1/2; media 3; alta 4/5
 - p02 [categorica] ¿Con qué frecuencia asistes a tutorías? → Nunca; A veces; Siempre
-- p03 [categorica] ¿Has presentado algún examen de certificación? → Sí, y lo aprobé; Sí, y no lo aprobé; No, pero planeo hacerlo; No
+- p03 [categorica] ¿Has tomado algún curso de idiomas? → Sí, y lo terminé; Sí, pero lo dejé; No, pero me interesa; No
 - p04 [numerica] ¿Cuántas horas trabajas a la semana?
 - p05 [texto_largo] Comentarios sobre la institución
 - p06 [categorica] ¿Cómo llegas a la escuela? → Transporte público; Auto o moto; Bicicleta; Caminando
@@ -115,9 +115,9 @@ _EJEMPLOS: list[tuple[str, dict]] = [
      {"intencion": "datos_respondente", "campos": "todas_las_respuestas",
       "orden": {"por": "id_respondente", "dir": "asc"}, "limite": 1}),
     ("¿qué contestó R017 en la pregunta 1?", {"intencion": "datos_respondente", "respondentes": ["R017"], "campos": ["p01"]}),
-    ("¿cuántos nunca van a tutorías y tienen alguna certificación?",
+    ("¿cuántos nunca van a tutorías y han tomado algún curso de idiomas?",
      {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p02", "op": "=", "valor": "Nunca"},
-                                                    {"pregunta": "p03", "op": "=", "valor": ["Sí, y lo aprobé", "Sí, y no lo aprobé"]}]}),
+                                                    {"pregunta": "p03", "op": "=", "valor": ["Sí, y lo terminé", "Sí, pero lo dejé"]}]}),
     ("¿qué porcentaje está en desacuerdo con que los profesores explican con claridad?",
      {"intencion": "conteo_porcentaje", "preguntas": ["p01"], "nivel": "desacuerdo"}),
     ("¿quiénes trabajan más de 30 horas?", {"intencion": "filtrar_respondentes",
