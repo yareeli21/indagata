@@ -69,6 +69,8 @@ class Estructura:
     preguntas: list[Pregunta] = field(default_factory=list)
     fuente: str = "encabezados"  # original | encabezados | json_tecnico | ninguna
     avisos: list[dict[str, Any]] = field(default_factory=list)
+    # Entrevistas: lo que el entrevistador dice antes de su primera pregunta («Todo lo que digas es confidencial…»).
+    indicaciones: list[str] = field(default_factory=list)
 
 
 class _Constructor:
@@ -128,9 +130,32 @@ def encuesta(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOrigin
              nombres_dimensiones: list[str] | None = None) -> Estructura:
     """Preguntas de una encuesta a partir del reporte de limpieza (y del original, si hay)."""
     e = _encuesta(id_crudo, reporte, original)
+    if original is not None:
+        _anclas_de_escalas_lineales(e, original.escalas_lineales)
     dimensiones = ((reporte.get("especifico") or {}).get("encuesta") or {}).get("dimensiones") or []
     _secciones_por_dimension(e, id_instrumento(id_crudo), dimensiones, nombres_dimensiones or [])
     return e
+
+
+def _anclas_de_escalas_lineales(e: Estructura, escalas: list[dict[int, str]]) -> None:
+    """Extremos de las escalas sin anclas (PDF de Google Forms, donde la escala no queda junto a su pregunta).
+
+    Se elige por palabras, no por posición: la escala cuyas etiquetas comparten una palabra con la pregunta
+    («Nada probable / Muy probable» ↔ «¿Qué tan probable…?»); si ninguna, un enunciado sin «¿» toma la escala de
+    acuerdo («Totalmente en desacuerdo / Totalmente de acuerdo»). Si no hay una sola candidata, se queda sin anclas.
+    """
+    if not escalas:
+        return
+    for p in e.preguntas:
+        if p.tipo not in ("likert", "escala") or p.anclas:
+            continue
+        propias = orig.tokens(p.texto)
+        por_palabra = [x for x in escalas if propias & orig.tokens(" ".join(x.values()))]
+        acuerdo = [x for x in escalas if "acuerdo" in normalizar(" ".join(x.values()))]
+        candidatas = por_palabra or (acuerdo if "¿" not in p.texto and "?" not in p.texto else [])
+        distintas = {tuple(sorted(x.items())) for x in candidatas}
+        if len(distintas) == 1:
+            p.anclas = dict(candidatas[0])
 
 
 def _secciones_por_dimension(e: Estructura, id_ins: str, dimensiones: list[dict[str, Any]], nombres: list[str]) -> None:
@@ -371,8 +396,37 @@ def _por_orden(
 _GUION = "Guion de la entrevista"
 
 
+_ORACION = re.compile(r"(?<=[.!?…])\s+")
+# Turno del entrevistador que cierra la entrevista («Muchas gracias por compartir tu experiencia.»): no es pregunta.
+_CIERRE = re.compile(r"^(?:muchas gracias|gracias|eso es todo|hemos terminado|terminamos|fin de la entrevista)\b")
+
+
+def partir_turno(texto: str) -> tuple[str, str]:
+    """(indicaciones, pregunta) de un turno del entrevistador.
+
+    Las oraciones ANTES de la primera que pregunta («Gracias por aceptar la entrevista. Todo lo que digas es
+    confidencial… Para empezar, ¿cómo…?») son indicaciones, no parte de la pregunta guía (7 nov: la guía de ent_11
+    quedaba con las indicaciones pegadas a p01). Lo que sigue a la pregunta («¿Has usado…? Cuéntame cómo fue.») sí es
+    parte de ella. Sin «?» no se parte.
+    """
+    texto = " ".join(texto.split())
+    oraciones = _ORACION.split(texto)
+    primera = next((n for n, o in enumerate(oraciones) if "?" in o or "¿" in o), None)
+    if not primera:
+        return "", texto
+    return " ".join(oraciones[:primera]), " ".join(oraciones[primera:])
+
+
+def es_cierre(texto: str) -> bool:
+    """¿El turno del entrevistador solo agradece o cierra (sin preguntar)?"""
+    return "?" not in texto and bool(_CIERRE.match(normalizar(texto)))
+
+
 def entrevista(id_crudo: int, filas: list[dict[str, str]], original: InstrumentoOriginal | None) -> Estructura:
-    """Preguntas de una entrevista: el guion original o, si no hay, los turnos del entrevistador."""
+    """Preguntas de una entrevista: el guion original o, si no hay, los turnos del entrevistador.
+
+    De los turnos se separan las indicaciones del entrevistador (`Estructura.indicaciones`) y se omiten los cierres.
+    """
     c = _Constructor(id_instrumento(id_crudo))
     if original and original.preguntas:
         c.e.fuente = "original"
@@ -383,14 +437,16 @@ def entrevista(id_crudo: int, filas: list[dict[str, str]], original: Instrumento
     for f in filas:
         if (f.get("rol") or "") != "entrevistador":
             continue
-        texto = " ".join((f.get("texto") or "").split())
-        # Solo turnos con forma de pregunta (evita «Ajá», «Claro, continúa»).
-        if not ("?" in texto or len(texto.split()) >= 6):
+        indicaciones, texto = partir_turno(f.get("texto") or "")
+        # Solo turnos con forma de pregunta (evita «Ajá», «Claro, continúa» y el agradecimiento final).
+        if not ("?" in texto or len(texto.split()) >= 6) or es_cierre(texto):
             continue
         clave = normalizar(texto)
         if clave in vistas:
             continue
         vistas.add(clave)
+        if indicaciones and indicaciones not in c.e.indicaciones:
+            c.e.indicaciones.append(indicaciones)
         c.pregunta(_GUION, texto[:400])
     if not c.e.preguntas:
         c.aviso("sin_preguntas", "No se identificaron preguntas del entrevistador; revisa los roles en la limpieza.")

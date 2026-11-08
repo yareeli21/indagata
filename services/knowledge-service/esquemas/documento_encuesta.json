@@ -62,6 +62,17 @@
           "resumen"
         ],
         "properties": {
+          "polaridad": {
+            "type": "object",
+            "description": "Qué respuestas son favorables o desfavorables (7 nov); origen llm, investigador o sin_determinar.",
+            "required": ["favorables", "desfavorables", "origen", "estado"],
+            "properties": {
+              "favorables": {"type": "array", "items": {"type": "string"}},
+              "desfavorables": {"type": "array", "items": {"type": "string"}},
+              "origen": {"enum": ["llm", "investigador", "sin_determinar"]},
+              "estado": {"enum": ["propuesto", "revisado"]}
+            }
+          },
           "id": {
             "$ref": "comun.json#/$defs/id_hijo"
           },

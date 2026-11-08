@@ -84,16 +84,32 @@ def test_api_analiza_corrige_y_no_reanaliza_lo_revisado(cliente, db, storage, mo
     llamadas.clear()
     cliente.post(f"/conocimiento/{id_crudo}/documento/analisis", headers=ANA)
     datos = cliente.get(f"/conocimiento/{id_crudo}/documento/analisis", headers=ANA).json()
-    assert datos["revisados"] == 1 and len(llamadas) == datos["total"] == len(datos["intercambios"]) - 1  # lo revisado no se reanaliza
+    # Lo revisado no se reanaliza; cada intercambio pendiente hace cuatro llamadas: unidades y las tres partes del
+    # análisis de lo que se cuenta (nlp por partes, 7 nov).
+    assert datos["revisados"] == 1 and len(llamadas) == 4 * datos["total"] and datos["total"] == len(datos["intercambios"]) - 1
     doc = cliente.get(f"/conocimiento/{id_crudo}/documento/json", headers=ANA).json()
     assert doc["esquema_version"] == "2.1"
+    assert all("nlp" in i["analisis"] for e in doc["entrevistas"] for i in e["intercambios"])
 
 
-def test_api_solo_para_entrevistas_en_borrador(cliente, db, storage):
+def test_api_encuesta_infiere_polaridad_en_borrador(cliente, db, storage):
+    """Desde el 7 nov el análisis también aplica a encuestas: infiere la polaridad de cada pregunta (sin modelo,
+    `sin_determinar`) y el investigador la corrige; sin documento en borrador sigue siendo 409."""
     id_crudo = crear_instrumento(db, storage, original="encuesta_original.txt", aprobado=True)
     cliente.post(f"/conocimiento/{id_crudo}/perfil", headers=ANA)
-    cliente.post(f"/conocimiento/{id_crudo}/documento", headers=ANA)
     assert cliente.post(f"/conocimiento/{id_crudo}/documento/analisis", headers=ANA).status_code == 409
+    cliente.post(f"/conocimiento/{id_crudo}/documento", headers=ANA)  # la polaridad se infiere sola al generar
+    doc = cliente.get(f"/conocimiento/{id_crudo}/documento/json", headers=ANA).json()
+    con = [p for p in doc["preguntas"] if "polaridad" in p]
+    assert con and all(p["polaridad"]["origen"] == "sin_determinar" for p in con)
+    from services.documento import polaridad
+    p = con[0]
+    opciones = polaridad.opciones_de(p)
+    r = cliente.patch(f"/conocimiento/{id_crudo}/documento/polaridad/{p['id']}", headers=ANA,
+                      json={"favorables": [opciones[-1]], "desfavorables": [opciones[0]]})
+    assert r.status_code == 200 and r.json()["polaridad"]["origen"] == "investigador"
+    assert cliente.patch(f"/conocimiento/{id_crudo}/documento/polaridad/{p['id']}", headers=ANA,
+                         json={"favorables": ["no existe"]}).status_code == 422
 
 
 def test_la_postura_global_sale_de_lo_que_responde_y_lo_explicito_manda():

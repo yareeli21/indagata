@@ -14,7 +14,7 @@ from sqlalchemy.orm import sessionmaker
 
 from dependencies import DBSession, Investigador
 from models import DocumentoOut, PublicadoOut
-from services import documentos
+from services import analisis, documentos
 
 router = APIRouter(prefix="/conocimiento", tags=["documento final"])
 
@@ -33,8 +33,12 @@ def _salida(fila, doc: dict[str, Any]) -> DocumentoOut:  # noqa: ANN001
 
 
 @router.post("/{id_crudo}/documento", response_model=DocumentoOut, summary="Genera y guarda el documento final (borrador)")
-def generar(id_crudo: int, db: DBSession, usuario: Investigador) -> DocumentoOut:
+def generar(id_crudo: int, db: DBSession, usuario: Investigador, tareas: BackgroundTasks) -> DocumentoOut:
     fila, doc = documentos.generar(db, usuario, id_crudo)
+    # Encuestas: la polaridad de cada pregunta se infiere sola, en segundo plano (7 nov). En las entrevistas el
+    # análisis de respuestas lo pide el asistente, porque el investigador lo revisa antes de publicar.
+    if (doc.get("instrumento") or {}).get("tipo") == "encuesta" and analisis.iniciar(db, usuario, id_crudo).pop("nuevo"):
+        tareas.add_task(analisis.correr, sessionmaker(bind=db.get_bind(), future=True), id_crudo)
     return _salida(fila, doc)
 
 

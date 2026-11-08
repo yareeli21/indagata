@@ -60,6 +60,14 @@ DocumentoVectorizado.__table__.c.chunk_metadata.server_default = None
 DATOS = Path(__file__).resolve().parent / "datos"
 
 
+@pytest.fixture(autouse=True)
+def _sin_ollama(monkeypatch):
+    """Ninguna prueba llama al Ollama real (la polaridad de encuestas se infiere sola al generar el documento)."""
+    from services import ollama
+
+    monkeypatch.setattr(ollama, "generar_json", lambda prompt: None)
+
+
 def limpieza(tipo: str) -> dict[str, Any]:
     """{"reporte": …, "csv": {"headers", "rows"}} generado con los motores de cleaning-service."""
     return json.loads((DATOS / f"limpieza_{tipo}.json").read_text(encoding="utf-8"))

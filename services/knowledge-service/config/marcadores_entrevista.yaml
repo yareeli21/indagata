@@ -25,3 +25,37 @@ ambivalencia: ["depende", "mas o menos", "a veces", "en parte", "segun", "ni si 
 postura:
   "si": ["si", "claro", "por supuesto", "definitivamente", "creo que si", "diria que si", "totalmente"]
   "no": ["no", "para nada", "nunca", "creo que no", "diria que no"]
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Análisis de lo que se cuenta (`services/documento/nlp_entrevista.py`, 7 nov 2026).
+# Respaldo por reglas del análisis del modelo: cada etiqueta lleva la oración literal
+# que la sustenta. Raíces sin acentos; se buscan al inicio de palabra.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Actores que la persona menciona (categoría: raíces).
+actores:
+  profesores: ["profesor", "profesora", "profe", "maestro", "maestra", "docente"]
+  tutor: ["tutor", "tutora", "asesor", "asesora"]
+  servicios de apoyo: ["orientacion", "orientador", "orientadora", "psicolog", "consultorio", "terapia", "terapeuta",
+                       "servicio", "enfermeria", "becas"]
+  institucion: ["universidad", "escuela", "institucion", "coordinacion", "direccion", "administracion"]
+  companeros: ["companero", "companera", "amigo", "amiga", "grupo"]
+  familia: ["familia", "mama", "papa", "padres", "madre", "padre", "hermano", "hermana", "pareja"]
+  trabajo: ["trabajo", "jefe", "empleo"]
+
+# Valoración: palabras que inclinan una oración (se cuentan; gana la que tenga más).
+valoracion:
+  positivo: ["amable", "bien", "buena", "bueno", "ayudo", "ayuda mucho", "me sirvio", "util", "mejor", "tranquila",
+             "tranquilo", "comoda", "comodo", "contenta", "contento", "gusto", "excelente", "apoyo", "logre"]
+  negativo: ["mal", "pesado", "pesada", "estres", "ansiedad", "cansada", "cansado", "dificil", "pena", "miedo",
+             "verguenza", "no me gusto", "insuficiente", "poquito", "tarde", "tardaron", "nadie", "solo hay",
+             "falta", "presion", "agobi", "triste", "frustr", "peor"]
+
+# Oraciones que expresan una barrera, una propuesta o una experiencia vivida.
+barreras: ["me daba pena", "no sabia", "no sabe", "no tenia tiempo", "no tengo tiempo", "miedo", "verguenza",
+           "no hay", "solo hay", "tardaron", "tarda", "lejos", "no me atrevia", "juzgad", "no era tan grave",
+           "lista de espera", "no alcanza", "dificil"]
+propuestas: ["que hubiera", "que haya", "deberian", "deberia", "me gustaria", "propondria", "cambiaria",
+             "seria bueno", "seria mejor", "hace falta", "estaria bien", "que no espere", "que pidan", "que busque"]
+experiencias: ["fui", "tuve", "me paso", "me atendieron", "empece", "me dijeron", "me recomendo", "pedi", "acudi",
+               "me ayudo", "me senti", "estuve"]

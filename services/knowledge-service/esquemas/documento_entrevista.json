@@ -193,6 +193,23 @@
                     "descartadas": {
                       "type": "integer",
                       "minimum": 0
+                    },
+                    "nlp": {
+                      "type": "object",
+                      "description": "Qué cuenta la persona (7 nov): temas, valoración, actores, barreras, experiencias y propuestas, cada uno con su cita literal y su origen (llm o regla).",
+                      "required": ["temas", "valoracion", "actores", "barreras", "experiencias", "propuestas", "citas_clave", "metodo"],
+                      "properties": {
+                        "temas": {"type": "array", "items": {"type": "object", "required": ["tema", "cita", "origen"]}},
+                        "valoracion": {"type": "object", "required": ["valor", "cita", "origen"],
+                                       "properties": {"valor": {"enum": ["positivo", "negativo", "mixto", "neutro"]}}},
+                        "actores": {"type": "array", "items": {"type": "object", "required": ["actor", "cita", "origen"]}},
+                        "barreras": {"type": "array", "items": {"type": "object", "required": ["texto", "origen"]}},
+                        "experiencias": {"type": "array", "items": {"type": "object", "required": ["texto", "origen"]}},
+                        "propuestas": {"type": "array", "items": {"type": "object", "required": ["texto", "origen"]}},
+                        "citas_clave": {"type": "array", "items": {"type": "string"}},
+                        "metodo": {"enum": ["llm", "reglas"]},
+                        "descartadas": {"type": "integer", "minimum": 0}
+                      }
                     }
                   }
                 }

@@ -103,5 +103,13 @@ El documento completo se guarda en storage-service como artefacto JSON tipo `doc
 | `GET /conocimiento/{id}/documento` | Vista ligera: todo menos las respuestas individuales, con su conteo y una muestra |
 | `GET /conocimiento/{id}/documento/json` | Documento completo («Ver JSON») |
 | `POST /conocimiento/{id}/documento/{versión}/publicar` | Lo deja `vigente`; la versión vigente anterior pasa a `reemplazado` |
+| `POST /conocimiento/{id}/documento/analisis[?modelo=false]` | Análisis del borrador en segundo plano: entrevistas (unidades, postura y lo que se cuenta) o polaridad de encuestas |
+| `GET /conocimiento/{id}/documento/analisis` | Avance y análisis de cada respuesta |
+| `PATCH /conocimiento/{id}/documento/polaridad/{pregunta}` | Polaridad decidida por el investigador (borrador o vigente) |
+
+### Análisis del documento (7 nov 2026)
+- **Entrevistas** (`documento/nlp_entrevista.py`): por respuesta, temas, valoración, actores, barreras, experiencias, propuestas y citas clave, cada uno con una cita que se guarda tal como está en la respuesta (`anclar`) y su origen (`llm` o `regla`). Se pide en tres peticiones cortas con esquema de salida; esa forma ganó una comparación sobre la entrevista 129 (`scripts/comparar_formato_nlp.py`). `?modelo=false` usa solo reglas (`config/marcadores_entrevista.yaml`). Las indicaciones del entrevistador antes de su primera pregunta van en `instrumento.indicaciones` y el agradecimiento final no es un intercambio.
+- **Encuestas** (`documento/polaridad.py`): qué respuestas de cada pregunta son favorables o desfavorables. El modelo propone (juicio de cada extremo en escalas, opciones clasificadas dos veces en orden distinto) y solo se acepta si es consistente; lo demás queda `sin_determinar`. La decide el investigador (`origen: investigador`). Se infiere sola al generar el documento; `scripts/recalcular_polaridad.py` la recalcula sobre el documento vigente sin reingestar.
+- Las escalas lineales de un PDF de Google Forms («Nada probable 1 2 3 4 5 Muy probable») se leen del original y se asignan a su pregunta por palabras.
 
 En el wizard, «Guardar» genera el documento al entrar y lo publica al guardar el instrumento. La tabla de respuestas en formato largo (`respuesta_interpretada`) queda para la etapa del RAG y se derivará del documento vigente.

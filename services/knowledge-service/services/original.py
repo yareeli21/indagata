@@ -44,6 +44,10 @@ _RE_ANCLA_PAREN = re.compile(r"(?<![\d.])(\d{1,2})\s*\(\s*([^()\d]{2,40}?)\s*\)"
 _HUECO_PDF = re.compile(r"\s{2,}")
 _MARCADOR = re.compile(r"^\(?\s*(?:\d{1,3}|[a-hA-H])\s*[.)\-:]?\s*\)?$")  # «1.», «a)»: numeración, no arrastre
 _RE_ANCLA_LINEA = re.compile(r"^(\d{1,2})\s*=\s*([^\d=].{1,80})$")
+# Escala lineal de Google Forms en PDF: «Totalmente en desacuerdo1 2 3 4 5» y en la línea siguiente el extremo alto
+# («Totalmente de acuerdo», a veces pegado a lo que sigue: «Muy probable  ¿Cuál…?», «…acuerdoIndicadores de…»).
+_RE_ESCALA_LINEAL = re.compile(r"^(?P<baja>[^\d]{2,60}?)\s*1(?P<resto>(?:\s+\d{1,2}){2,9})\s*$")
+_PEGADO = re.compile(r"(?<=[a-záéíóúñ])(?=[A-ZÁÉÍÓÚÑ])")
 
 
 @dataclass
@@ -63,6 +67,9 @@ class InstrumentoOriginal:
     anclas_globales: dict[int, str] = field(default_factory=dict)
     # Texto completo del original, para reconocer enunciados que el lector no tomó como pregunta.
     texto: str = ""
+    # Escalas lineales sueltas (PDF de Google Forms), en orden de aparición: [{1: "Nada probable", 5: "Muy probable"}].
+    # En esos PDF la escala no queda junto a su pregunta; estructura.encuesta las asigna por sus palabras (7 nov).
+    escalas_lineales: list[dict[int, str]] = field(default_factory=list)
 
     @property
     def secciones(self) -> list[str]:
@@ -131,7 +138,15 @@ def leer(texto: str) -> InstrumentoOriginal:
         actual = PreguntaOriginal(texto=contenido[:600], seccion=seccion, numero=numero, anclas=anclas_de(contenido))
         resultado.preguntas.append(actual)
 
-    for cruda in texto.splitlines():
+    lineas = texto.splitlines()
+    for n, cruda in enumerate(lineas):
+        if (m := _RE_ESCALA_LINEAL.match(cruda.strip())) and n + 1 < len(lineas):
+            alta = _HUECO_PDF.split(lineas[n + 1].strip())[0]
+            alta = _PEGADO.split(alta)[0].strip(" .*")
+            if 2 <= len(alta) <= 60:
+                maximo = int(m.group("resto").split()[-1])
+                resultado.escalas_lineales.append({1: m.group("baja").strip(" .*"), maximo: alta})
+    for cruda in lineas:
         linea = _sin_arrastre(cruda).strip().strip("*_").strip()
         if not linea or linea.startswith("# "):
             continue

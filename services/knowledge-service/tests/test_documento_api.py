@@ -39,7 +39,8 @@ def test_generar_leer_y_publicar(cliente, db, storage):
     assert any(a["codigo"] == "datos_personales_excluidos" for a in datos["avisos"])
 
     fila = db.query(VersionConocimiento).filter_by(id_crudo=id_crudo).one()
-    assert fila.ruta_documento.startswith(f"documento/{id_crudo}/1__v1_documento_final") and fila.sha256
+    # La polaridad (7 nov) se infiere al generar y vuelve a guardar el documento: puede ir en la segunda versión del artefacto.
+    assert fila.ruta_documento.startswith(f"documento/{id_crudo}/") and "__v1_documento_final" in fila.ruta_documento and fila.sha256
     assert fila.fecha_documento is not None and fila.decisiones_kpi[1]["decision"] == "rechazado"
     assert {a["origen"] for a in fila.avisos} == {"perfil", "documento"}
     completo = cliente.get(f"/conocimiento/{id_crudo}/documento/json", headers=ANA).json()
@@ -48,8 +49,9 @@ def test_generar_leer_y_publicar(cliente, db, storage):
 
     # Regenerar en borrador crea un artefacto nuevo; publicar lo vuelve vigente.
     assert cliente.post(f"/conocimiento/{id_crudo}/documento", headers=ANA).status_code == 200
+    antes = fila.ruta_documento
     db.refresh(fila)
-    assert fila.ruta_documento.startswith(f"documento/{id_crudo}/2__")
+    assert fila.ruta_documento != antes and fila.ruta_documento.startswith(f"documento/{id_crudo}/")
     p = cliente.post(f"/conocimiento/{id_crudo}/documento/1/publicar", headers=ANA)
     assert p.status_code == 200 and p.json()["estado"] == "vigente"
     assert cliente.post(f"/conocimiento/{id_crudo}/documento", headers=ANA).status_code == 409  # ya publicada

@@ -22,7 +22,8 @@
         "contexto": {"type": "string"},
         "n_respondentes": {"type": "integer", "minimum": 0},
         "n_alumnos": {"type": "integer", "minimum": 0},
-        "n_participantes": {"type": "integer", "minimum": 0}
+        "n_participantes": {"type": "integer", "minimum": 0},
+        "indicaciones": {"type": "array", "items": {"type": "string"}, "description": "Entrevistas: lo que el entrevistador dice antes de su primera pregunta."}
       }
     },
     "kpi_asociado": {

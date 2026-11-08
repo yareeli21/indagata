@@ -29,7 +29,7 @@ import re
 from typing import Any
 
 from services.documento import comun
-from services.estructura import Estructura
+from services.estructura import Estructura, es_cierre, partir_turno
 from services.interpretacion.privacidad import es_dato_personal
 from services.original import UMBRAL_PARECIDO, parecido
 
@@ -107,6 +107,7 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
     entrevistas: dict[str, list[dict[str, Any]]] = {}
     pregunta, bloque, ultimo = _SIN_PREGUNTA, None, None  # ultimo: (persona, intercambio) para unir turnos
     pregunta_continua = False
+    cierres = 0
     for f in filas:
         texto = " ".join((f.get("texto") or "").split())
         if not texto or fuera(f):
@@ -124,11 +125,17 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
         if ultimo is not None and ultimo[0] == clave:
             ultimo[1]["respuesta"] = f"{ultimo[1]['respuesta']} {_anonimizar(texto, reemplazos)}"
             continue
+        # Las indicaciones previas a la pregunta van en `instrumento.indicaciones`; el intercambio guarda solo la
+        # pregunta. El cierre («Muchas gracias…» → «Gracias a usted») no es un intercambio (7 nov).
+        _, solo = partir_turno(pregunta) if pregunta != _SIN_PREGUNTA else ("", pregunta)
+        if pregunta != _SIN_PREGUNTA and es_cierre(solo):
+            cierres += 1
+            continue
         item: dict[str, Any] = {}
-        g = pregunta_guia(pregunta) if pregunta != _SIN_PREGUNTA else None
+        g = pregunta_guia(solo) if pregunta != _SIN_PREGUNTA else None
         if g is not None:
             item["pregunta_id"] = g.id
-        item["pregunta"] = _anonimizar(pregunta, reemplazos)
+        item["pregunta"] = _anonimizar(solo, reemplazos)
         item["respuesta"] = _anonimizar(texto, reemplazos)
         entrevistas.setdefault(clave, []).append(item)
         ultimo = (clave, item)
@@ -137,6 +144,8 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
     if quitados := sorted({k for c in contextos.values() for k in c.pop("__personales__", [])}):
         avisos.append({"codigo": "contexto_personal", "mensaje": f"Datos personales del contexto no incluidos: {', '.join(quitados)}."})
 
+    if cierres:
+        avisos.append({"codigo": "cierre", "mensaje": f"{cierres} intercambio(s) de cierre (agradecimiento final) no se tomaron como respuestas."})
     if omitidas:
         avisos.append({"codigo": "texto_sin_hablante", "mensaje": f"{omitidas} fragmento(s) sin hablante (por ejemplo, un preámbulo) no se tomaron como respuestas."})
     if ids:
@@ -146,7 +155,8 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
 
     return {
         "esquema_version": ESQUEMA_VERSION,
-        "instrumento": comun.instrumento(perfil),
+        "instrumento": {**comun.instrumento(perfil),
+                        **({"indicaciones": estructura.indicaciones} if estructura.indicaciones else {})},
         "kpis_asociados": perfil.get("kpis_asociados") or [],
         "preguntas": [{"id": g.id, "texto": g.texto, "kpis_relacionados": kpis_de.get(g.id, [])} for g in guia],
         "entrevistas": [{"participante": ids[k], **({"contexto": contextos[k]} if contextos.get(k) else {}), "intercambios": v}
