@@ -1686,7 +1686,8 @@ _CITADO = re.compile(r"«[^»]*»|“[^”]*”|\"[^\"]*\"")
 
 
 def _es_prueba(plan: "Plan") -> bool:
-    return any(str(f.tipo) == "prueba" for f in plan.fuentes)
+    # El tipo de la tarjeta es el de la interfaz: «Prueba estandarizada» (comparar con «prueba» no se cumplía nunca).
+    return any(dominio.normalizar(str(f.tipo)).startswith("prueba") for f in plan.fuentes)
 
 
 def califica_prueba(respuesta: str, contexto: str = "") -> bool:

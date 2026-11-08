@@ -127,3 +127,15 @@ def test_que_conviene_revisar_es_un_ranking_sin_calificar():
     assert anclaje._criterio_ranking("que reactivos convendria revisar por como se respondieron") == "revisar"
     assert rag_service.califica_prueba("Esto indica una falta de comprensión del tema.")
     assert rag_service.califica_prueba("Su respuesta se corresponde con la definición de la prueba.")
+
+
+def test_la_comprobacion_de_pruebas_reconoce_el_tipo_de_la_tarjeta():
+    """El tipo de la fuente es el de la interfaz («Prueba estandarizada»); la primera versión comparaba con «prueba» y
+    nunca se activaba (8 nov, corrida final)."""
+    from models import FuenteChatOut
+
+    def plan_con(tipo: str) -> rag_service.Plan:
+        return rag_service.Plan(fuentes=[FuenteChatOut(numero=1, instrumentoId="9", titulo="X", tipo=tipo,
+                                                       investigador="", kpis=[], fragmento="")])
+    assert rag_service._es_prueba(plan_con("Prueba estandarizada"))
+    assert not rag_service._es_prueba(plan_con("Encuesta"))
