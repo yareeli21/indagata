@@ -59,33 +59,25 @@ antes de reiniciar Docker. Con todo el sistema encendido quedaron unos 3.6 GB li
 
 ### Y.1.3 Datos de prueba
 
-Los datos vienen de los dos métodos de generación descritos en X.6 (Tabla D.18a): el **método A**
-da volumen y variedad, y el **método B** da casos en los que se sabe de antemano qué resultado debe dar el sistema. La
-Tabla D.20a relaciona cada prueba con sus datos.
+Todos los datos son sintéticos y salen de los dos métodos de Desarrollo X.6: el **método A** da volumen y variedad, y
+el **método B** da casos en los que se sabe de antemano qué debe responder el sistema. La Tabla D.18b los ordena por
+fecha y la Tabla D.20a dice qué datos se usaron en cada prueba. En resumen:
 
-- **Método A, generación estadística por perfiles (X.6.2).** Del acervo de 31 instrumentos, se
-  procesaron en el sistema:
-  - enc_04 (MSLQ-SF, 200 respondentes), enc_05 (RAU, 180) y enc_09 (carga académica, 160);
-  - pru_01, pru_02 y pru_04;
-  - ent_01 (40 entrevistas en un archivo);
-  - enc_11 (22 oct, modelo coherente v1.1): los seis tipos de pregunta de encuesta en un solo
-    instrumento. Recorrió los 7 pasos por la API y quedó como instrumento 109.
-  
-  enc_01 (IEAE: preguntas y dimensiones reales, 180 respondentes sintéticos) **no se subió al
-  sistema**. Se usó solo su CSV, fuera del sistema, para validar las dimensiones sugeridas (Y.3.5).
-<!-- fuente: evidencias/datos_sinteticos_2026-10-22/procesar_enc_11.log -->
-<!-- fuente: evidencias/datos_sinteticos_2026-10-22/coherencia.md -->
-
-- **Método B, generación dirigida por casos de prueba (X.6.3):**
-  - **B1, enc_10_turno:** preguntas por grupo, con el resultado esperado de 4 de 30 del turno
-    vespertino de acuerdo con p04;
-  - **B2, variantes de formato:** las mismas 60 respuestas de enc_10_turno en 3 variantes sin
-    secciones y en 13 formatos de encuesta;
-  - **B3, entrevistas escritas a mano:** estudiantes y docentes, 4 × 4 cada una, con respuestas que
-    divagan y su anotación de referencia, en cinco y dos formatos;
-  - **B4, archivos sucios:** los de las pruebas automatizadas (Tabla D.20).
-<!-- fuente: storage/instrumentos_sinteticos/*/*_metadata.json; tools/data_synthesis/generar_enc_10_turno.py; tools/formatos/generar_corpus.py, corpus_entrevistas.py, corpus_docentes.py -->
-<!-- fuente: storage/instrumentos_sinteticos/encuestas/enc_01_metadata.json; confirmación de la autora (18 oct) -->
+- **Método A, estadístico por perfiles (X.6.2).** Del acervo de 31 instrumentos se procesaron en el sistema enc_04,
+  enc_05, enc_09, enc_11 (instrumento 109), pru_01, pru_02, pru_04 y ent_01. enc_01, el cuestionario real con
+  respuestas sintéticas, no se subió: su CSV se usó fuera del sistema para validar las dimensiones sugeridas (Y.3.5).
+- **Método B, dirigido por casos de prueba (X.6.3):**
+  - **B1, enc_10_turno (17 oct):** preguntas por grupo, con el resultado esperado de 4 de 30 del turno vespertino de
+    acuerdo con p04;
+  - **B2, variantes de formato (20–22 oct):** las mismas 60 respuestas de enc_10_turno en 3 variantes sin secciones
+    y 13 formatos;
+  - **B3, entrevistas escritas a mano (22 oct):** estudiantes y docentes, 4 × 4 cada una, con su clave de respuestas;
+  - **B4, archivos sucios pequeños:** los de las pruebas automatizadas (Tabla D.20);
+  - **B5, copias con errores inyectados y su verdad (24 oct, 2 nov y 7 nov):** enc_11, pru_01, enc_06, pru_03, ent_11
+    y ent_02.
+- **Encuesta de la investigadora:** una encuesta simulada de 2000 respondentes con su formulario de Google Forms
+  (instrumento 127).
+<!-- fuente: storage/instrumentos_sinteticos/*/*_metadata.json; tools/data_synthesis/generar_enc_10_turno.py; tools/formatos/generar_corpus.py, corpus_entrevistas.py, corpus_docentes.py; tools/limpieza/*.py; evidencias/datos_sinteticos_2026-10-22/procesar_enc_11.log -->
 
 [PENDIENTE: el avance dice que enc_01 tiene 20 preguntas; sus metadatos registran 21 ítems.
 Confirmar la cifra.]
@@ -97,7 +89,7 @@ sobre estudiantes.
 
 La Tabla P.1a lista, en orden cronológico, cada instrumento que pasó por el sistema: con qué archivo,
 con qué número quedó (`id_crudo`), qué se comprobó y dónde se reporta. Las rutas son relativas a la
-raíz del repositorio. El inventario sale de la base de datos al 22 oct y del registro de las
+raíz del repositorio. El inventario sale de la base de datos (22 oct y 7 nov) y del registro de las
 sesiones.
 
 **Tabla P.1a.** Instrumentos procesados en el sistema.
@@ -109,21 +101,29 @@ sesiones.
 | 15 oct | 22 | `storage/instrumentos_sinteticos/encuestas/enc_04_respondido.csv` | Asociación de KPIs: método anterior contra el nuevo. Borrado el 28 oct | Y.3.6 |
 | 16 oct | — (borrados) | `…/pruebas/pru_02_respondido.csv`, `…/pruebas/pru_04_respondido.csv`, `…/encuestas/enc_05_respondido.csv` (id 39 en Y.3.6) | pru_04 de punta a punta; justificaciones de KPIs | Y.2.1, Y.3.6 |
 | 16 oct | 53 | `storage/instrumentos_sinteticos/entrevistas/ent_01_respondido.txt` | Segmentación por `RESPONDENTE`: 40 entrevistados, 480 respuestas. Republicado el 18 oct (534 chunks) | Y.2.1 |
-| 16 oct | 55 | `storage/instrumentos_sinteticos/pruebas/pru_01_respondido.csv` | 100 alumnos × 25 reactivos = 2500 respuestas. Borrado el 25 oct | Y.2.1, Y.4.6 |
+| 16 oct | 55 | `storage/instrumentos_sinteticos/pruebas/pru_01_respondido.csv` | 100 alumnos × 25 reactivos = 2500 respuestas. Borrado el 25 oct | Y.2.1, Y.4.7 |
 | 17 oct | 59 | `storage/instrumentos_sinteticos/encuestas/enc_10_turno_respondido.csv` | 4 de 30 del turno vespertino = 13.3 %, igual que el valor esperado | Y.2.1, Y.4 |
 | 17 oct | 60 | `storage/instrumentos_sinteticos/entrevistas/ent_01_respondido.txt` | ent_01 como instrumento nuevo: 480 respuestas, 521 chunks | Y.2.1 |
-| 18 oct | 61 | `storage/instrumentos_sinteticos/encuestas/enc_09_respondido.csv` | Filtros 88, 37 y 23 de 160 (comprobados con SQL); calidad de los datos | Y.2.1, Y.4.2, Y.4.5 |
+| 18 oct | 61 | `storage/instrumentos_sinteticos/encuestas/enc_09_respondido.csv` | Filtros 88, 37 y 23 de 160 (comprobados con SQL); calidad de los datos | Y.2.1, Y.4.3, Y.4.6 |
 | 19 oct | 62, 63 | `storage/instrumentos_sinteticos/encuestas/enc_04_respondido.csv` | Cargas de enc_04 sin documento final (62 quedó en «limpio»). No se reportan | — |
 | 20 oct | 64–66 | `evidencias/encuesta_sin_secciones_2026-10-20/enc_10_sinsec_{A,B,C}_respondido.csv` | Encuesta sin secciones, antes de corregir: 1/6, 6/6 y 1/6 | Y.3.3 |
 | 22 oct | 67–74 | Las mismas variantes A, B y C, más `enc_10_turno` (71) | Después de corregir: 6/6 en las tres; 19/19 en las preguntas de referencia | Y.3.3 |
 | 22 oct | 75–83 | `tools/formatos/corpus/encuestas/E01…E09` | Corrida 1 de la matriz de encuestas, detenida en E09 (83 quedó en «limpio») | Y.3.4 |
 | 22 oct | 84–93 | `tools/formatos/corpus/encuestas/E01…E10` | Corrida válida: 143/143. E11–E13 se rechazaron con 422, como se esperaba, y por eso no tienen id | Y.3.4 |
 | 22 oct | 94 | `tools/formatos/corpus/entrevistas/I01_transcripcion.txt` | Intento sin documento publicado. No se reporta | — |
-| 22 oct | 95–99 | `tools/formatos/corpus/entrevistas/I01…I05` | Corridas 1 y 2 de la matriz de entrevistas: 36/39 y 37/39 | Y.4.8 |
-| 22 oct | 100–104 | Las mismas I01…I05 | Corrida final: 39/39; postura 0.875 / κ 0.785 | Y.4.8 |
-| 22 oct | 105–106 | `tools/formatos/corpus/entrevistas_docentes/D01_transcripcion.txt`, `D02_zoom.txt` | Segundo tema: 16/16; κ 0.804 | Y.4.8 |
-| 22 oct | 107–108 | I01 y D01, reprocesadas | Contra la anotación de la investigadora: 81.2 % → 87.5 % | Y.4.9 |
+| 22 oct | 95–99 | `tools/formatos/corpus/entrevistas/I01…I05` | Corridas 1 y 2 de la matriz de entrevistas: 36/39 y 37/39 | Y.4.9 |
+| 22 oct | 100–104 | Las mismas I01…I05 | Corrida final: 39/39; postura 0.875 / κ 0.785 | Y.4.9 |
+| 22 oct | 105–106 | `tools/formatos/corpus/entrevistas_docentes/D01_transcripcion.txt`, `D02_zoom.txt` | Segundo tema: 16/16; κ 0.804 | Y.4.9 |
+| 22 oct | 107–108 | I01 y D01, reprocesadas | Contra la anotación de la investigadora: 81.2 % → 87.5 % | Y.4.10 |
 | 22 oct | 109 | `storage/instrumentos_sinteticos/encuestas/enc_11_respondido.csv` | Seis tipos de pregunta; 44 y 33 de 160, iguales al CSV; estructura con sus secciones | Y.2.1 |
+| 24 oct | 113–122 | `evidencias/limpieza_2026-10-24/enc_11_*` y `pru_01_*` (control y con errores) | Limpieza con errores inyectados: 35 de 47 antes y 47 de 47 después de corregir. Borrados el 25 oct | Y.2.3 |
+| 24–25 oct | 110–112 | `…/pruebas/pru_02_respondido.csv`, `pru_04_respondido.csv`, `pru_10_respondido.csv` | Pruebas procesadas con la versión que las calificaba. Borradas el 25 oct | — |
+| 26–28 oct | 124–126 | enc_01 limpia y sucia; `Encuesta2_Simulada_2000_SUCIA.csv` | Subidas por la investigadora; la de 2000 se volvió a subir como 127 después de los arreglos de la limpieza. Borradas | Desarrollo X.7.2 |
+| 28 oct | 127 | `Encuesta2_Simulada_2000_SUCIA.csv` con su PDF de Google Forms | Encuesta de 2000 respondentes; regresión del chat y comparación de modelos | Y.4.12, Y.5.2 |
+| 2 nov | 129 | `storage/instrumentos_sinteticos/entrevistas/ent_11_salud_mental_ruido.txt` | Entrevista nueva con ruido contemplado; chat con un instrumento no visto | Y.4.13 |
+| 2 nov | 130 | `storage/instrumentos_sinteticos/pruebas/pru_03_sucio_no_contemplado.csv` | Prueba nueva con errores no contemplados; chat con un instrumento no visto | Y.4.13 |
+| 4 nov | 131 | `…/entrevistas/ent_11_salud_mental_ruido_no_contemplado.txt` | La misma entrevista con ruido no contemplado | Y.4.13 |
+| 4 nov | 132 | `…/entrevistas/ent_11_salud_mental_ruido.txt` | Segunda carga de la 129; se quedó en «limpio». No se reporta | — |
 <!-- fuente: evidencias/pruebas_2026-10-22/inventario_instrumentos.txt (consulta a tt_rag.raw_data, instrumento_procesado, limpieza_ejecucion, version_conocimiento, respuesta_interpretada y kpi_inferido, 22 oct); registro 15–22 oct; RESULTADO.md de evidencias/encuesta_sin_secciones_2026-10-20 y evidencias/formatos_2026-10-21 -->
 
 **Usados solo fuera del sistema** (cálculos sobre el CSV):
@@ -142,12 +142,12 @@ las calificaba; desde ese día las pruebas no se califican (Desarrollo X.5.4).
 Entre el 26 y el 28 oct la investigadora subió y borró enc_01 limpia y sucia (124 y 125) y la encuesta de 2000
 respondentes (126, que se volvió a subir como 127 después de los arreglos de la limpieza). **El 28 oct se borraron
 los JSON iniciales de la demostración (2–20) y enc_04 (22)**, por la misma vía, para dejar una versión limpia del
-sistema; con ellos se retiraron `seed_demo.py` y los archivos `inst_XX` de `storage/raw/`. **Al 28 oct quedan en la
-base 59, 60, 61, 109 y 127**, que son los instrumentos del conjunto de regresión del chat (Y.4.11b). No queda
-ninguna prueba estandarizada: las vuelve a subir la investigadora con el sistema nuevo (Y.2.4).
+sistema; con ellos se retiraron `seed_demo.py` y los archivos `inst_XX` de `storage/raw/`. **Al 28 oct quedaban en la
+base 59, 60, 61, 109 y 127**, los instrumentos del conjunto de regresión del chat (Y.4.12), y ninguna prueba
+estandarizada. El 2 y el 4 nov se agregaron 129 a 132 (Tabla P.1b).
 <!-- fuente: DELETE /instrumentos/{id} de 2–20 y 22 (28 oct, 200 en los 20); consulta a tt_rag.raw_data (28 oct: 59, 60, 61, 109, 127) -->
 
-**Tabla P.1b.** Instrumentos en la base al 28 oct
+**Tabla P.1b.** Instrumentos en la base al 7 nov.
 
 | id | Archivo | Tipo | Respondentes |
 |---|---|---|---|
@@ -156,7 +156,11 @@ ninguna prueba estandarizada: las vuelve a subir la investigadora con el sistema
 | 61 | `enc_09_respondido.csv` | Encuesta (tipo de universidad) | 160 |
 | 109 | `enc_11_respondido.csv` | Encuesta (edad, semestre, género) | 160 |
 | 127 | `Encuesta2_Simulada_2000_SUCIA.csv` con su PDF de Google Forms | Encuesta | 2000 |
-<!-- fuente: documentos finales vigentes de 59, 60, 61, 109 y 127 (storage/json/<id>/…documento_final.json) -->
+| 129 | `ent_11_salud_mental_ruido.txt` | Entrevista | 1 |
+| 130 | `pru_03_sucio_no_contemplado.csv` | Prueba estandarizada | 97 |
+| 131 | `ent_11_salud_mental_ruido_no_contemplado.txt` | Entrevista | 1 |
+| 132 | `ent_11_salud_mental_ruido.txt` | Entrevista (sin publicar, en «limpio») | 1 |
+<!-- fuente: documentos finales vigentes de 59, 60, 61, 109 y 127 (storage/json/<id>/…documento_final.json); consulta a tt_rag.raw_data e instrumento_procesado (7 nov) -->
 
 
 ---
@@ -185,10 +189,10 @@ consultable). La Tabla P.2 resume lo que se encontró en cada ronda.
 | 16 oct | Asistente | Al aceptar varios KPIs muy rápido se perdían decisiones | Corrección del manejo de clics en el paso | Decisiones completas |
 | 16 oct | ent_01 (instrumento 53) | P1…P12 como 12 hablantes, 40 personas fusionadas en «R», líneas de perfil como hablantes | Segmentación por bloque `RESPONDENTE` (X.5.3) | 40 entrevistados, 12 preguntas, 480 respuestas; 76 % de palabras del entrevistado |
 | 16 oct | Documento de ent_01 | Estadística numérica en un documento de texto libre | Documento 2.0: solo pregunta y respuesta | 40 entrevistas × 12 intercambios |
-| 16 oct | pru_01 (instrumento 55) | — | — | 100 alumnos × 25 reactivos (opción múltiple, V/F y respuesta corta por puntos) = 2500 respuestas. Se usó en las preguntas de referencia (Y.4.6); se borró el 25 oct |
+| 16 oct | pru_01 (instrumento 55) | — | — | 100 alumnos × 25 reactivos (opción múltiple, V/F y respuesta corta por puntos) = 2500 respuestas. Se usó en las preguntas de referencia (Y.4.7); se borró el 25 oct |
 | 17 oct | enc_10_turno por la API (7 pasos) | — | — | `id_crudo` 59, 145 chunks, 480 respuestas; 4 de 30 del turno vespertino de acuerdo con p04, igual que el valor esperado |
 | 17 oct | ent_01 como instrumento nuevo | La aprobación exigía «Institución», que quedaba vacía | El script llena obligatorios vacíos con «No especificado» | `id_crudo` 60: 480 respuestas, 521 chunks |
-| 18 oct | enc_09 (instrumento 61) | La consulta con filtro respondía «No tengo información» | Intención `filtro` (Y.4.2) | 88 de 160, igual que SQL |
+| 18 oct | enc_09 (instrumento 61) | La consulta con filtro respondía «No tengo información» | Intención `filtro` (Y.4.3) | 88 de 160, igual que SQL |
 | 18 oct | Instrumento 53 republicado | Seguía con el documento anterior (19 chunks) | Limpieza v3 y documento v3 | 480 respuestas, 534 chunks |
 | 22 oct | enc_11 por la API (7 pasos), instrumento 109 | Dos encabezados recortados a 40 caracteres no se emparejaban con su pregunta; el listado decía «1 preguntas»; 8 columnas de contexto quedan como preguntas | Regla de prefijo en `original.parecido` (≥ 25 caracteres) y singular en el listado | Seis tipos de pregunta reconocidos; 4160 respuestas; el chat da 44 de 160 reprobados (27.5 %) y 33 de 160 con beca (20.6 %), igual que el CSV; estructura con sus secciones. Las columnas de contexto se corrigieron el 25 oct (Desarrollo X.7.2) |
 <!-- fuente: registro 15 oct 22:58 (tres errores de la captura); registro 15 oct (resumen: α 0.586→0.892); registro 16 oct 01:00–01:10, 06:30–06:37, 07:00 y resumen 09:54; registro 17 oct 22:53–00:01; registro 18 oct 05:38–06:16 y 07:40 -->
@@ -262,6 +266,75 @@ vacías.
 
 Esta medición de la prueba pru_01 se hizo el 24 oct, cuando las pruebas todavía se calificaban. Las reglas que
 mide (respuesta múltiple, ilegible o inválida → nula; ID repetido; filas vacías) no cambiaron el 25 oct.
+
+**Entrevista (7 nov).** El 24 oct solo se midieron la encuesta y la prueba. Para medir la entrevista con el mismo
+método se tomó ent_02: 30 entrevistas en un archivo, 600 turnos y 15 711 palabras, sin usar antes en ninguna prueba.
+Se le inyectaron 89 errores típicos de una transcripción real, con semilla fija (7), cada uno en un turno distinto.
+
+La limpieza se aplicó con las decisiones sugeridas al archivo original (control) y al archivo con errores, y se
+comparó turno por turno con lo esperado: el control, más las muletillas, porque lo sugerido es conservarlas. El
+motor de limpieza se llamó directamente, sin red ni base de datos, así que no se creó ningún instrumento.
+
+**Tabla P.19b.** Errores inyectados en la entrevista ent_02 y corregidos.
+
+| Error | Inyectados | Corregidos |
+|---|---|---|
+| Marcas de tiempo («[00:12:31]» y al inicio de la línea) | 12 | 12 |
+| Números de página / encabezado repetido | 6 / 5 | 6 / 5 |
+| Separadores / folios | 4 / 3 | 4 / 3 |
+| Palabras partidas por guion / letras espaciadas | 6 / 4 | 6 / 4 |
+| Caracteres invisibles | 6 | 6 |
+| Acentos rotos (una entrevista completa) | 20 turnos | 20 |
+| Minuto pegado a la etiqueta | 4 | 4 |
+| Etiquetas inconsistentes | 5 | 5 |
+| Anotaciones del transcriptor (quitadas, como se sugiere) | 8 | 8 |
+| Muletillas (detectadas y conservadas, como se sugiere) | 6 | 6 |
+| Saltos de línea CRLF | todo el archivo | sí |
+| **Total** | **89** | **89 (recall 1.00)** |
+<!-- fuente: tools/limpieza/medir_limpieza_entrevista.py; evidencias/limpieza_2026-11-07/ent_02_control.txt, ent_02_con_errores.txt, ent_02_verdad.json y ent_02_resultado.json -->
+
+En el contenido no se perdió nada:
+- salieron los 600 turnos, todos iguales a lo esperado;
+- no se perdió ni sobró ninguna palabra;
+- ningún turno sin errores salió alterado, así que no hubo falsos positivos;
+- los cuatro hablantes («P», «R», «Entrevistador», «Entrevistado») recibieron el rol correcto.
+
+Con la decisión «quitar muletillas» se quitaron las 6, también sin alterar ningún otro turno.
+
+Esta medición dice que la limpieza cubre los tipos de ruido que contempla, sobre un archivo que nunca se usó para
+ajustarla. No dice cómo le iría con ruido de otro tipo. Para eso es la medición siguiente.
+
+**Ruido no contemplado: 2 nov contra 7 nov.** El 2 nov se generó un archivo por tipo de instrumento con errores
+reales que la limpieza todavía no contemplaba:
+- la encuesta enc_06 (instrumento sin usar);
+- la prueba pru_03 (instrumento 130);
+- la entrevista ent_11 (instrumento 131).
+
+Ese día se midió qué pasaba con cada error (`resultado_medido` en su verdad). El 5 nov se agregaron reglas para
+parte de esos casos. El 7 nov se volvieron a limpiar los mismos tres archivos con la versión actual, con las
+decisiones sugeridas, y se revisó cada error.
+
+**Tabla P.19c.** Ruido no contemplado, antes y después de las reglas del 5 nov.
+
+| Instrumento | Errores | Bien el 2 nov | Bien el 7 nov | Lo que sigue sin resolverse |
+|---|---|---|---|---|
+| Encuesta enc_06 | 29 de celda + 4 de estructura | 2 | 28 | Sinónimos de una opción (0/3), un «Otro: …» (2/3), casi duplicados |
+| Prueba pru_03 | 17 de celda + 4 de estructura | 0 | 15 | Número en lugar de letra (0/4), «0» como no respuesta, copia con otro ID |
+| Entrevista ent_11 | 26 | 1 | 16 | Muletillas fuera de la lista (0/4), arranques en falso (0/2), errores del reconocimiento de voz (0/3), una nota del entrevistador |
+| **Total** | **80** | **3** | **59** | |
+<!-- fuente: tools/limpieza/remedir_no_contemplado.py; evidencias/limpieza_2026-11-07/no_contemplado_hoy.json; storage/instrumentos_sinteticos/encuestas/enc_06_ruido_no_contemplado.json, pruebas/pru_03_ruido_no_contemplado.json y entrevistas/ent_11_ruido_no_contemplado.json (resultado_medido, 2 nov) -->
+
+Antes, la mayoría de esos errores pasaban sin aviso, o se anulaba un dato que sí venía bien. Por ejemplo, «4,5» se
+quedaba como texto en una columna numérica y «cinco» se anulaba como fuera de escala. En la prueba, el reactivo que
+nadie respondió desaparecía, y el encabezado repetido se contaba como un alumno.
+
+Los 10 casos de la entrevista que siguen sin resolverse no se corrigen **a propósito**, porque corregirlos cambiaría
+las palabras del participante. El catálogo completo, con lo que hace la limpieza con cada error, está en Desarrollo
+X.7.2 (tablas D.21e a D.21g).
+
+**Advertencia.** Estos tres archivos guiaron las reglas del 5 nov. Por eso su resultado dice qué se cubrió, no cuánto
+generaliza la limpieza. La medición de la entrevista ent_02 complementa esto: las reglas funcionaron en un archivo
+distinto de los que las motivaron.
 
 ### Y.2.4 Pruebas de la investigadora
 
@@ -341,7 +414,7 @@ Los hallazgos y sus correcciones fueron:
    (X.7.4).
 2. **«¿Qué evalúa la encuesta?» se respondía con los KPIs.** El chat recibía una sola pieza de la ficha,
    la de «KPIs asociados», y sin secciones la ficha no decía qué preguntaba el instrumento. → Ficha
-   completa en la recuperación y «Aspectos que pregunta» en la ficha (X.9.1, X.9.3).
+   completa en la recuperación y «Aspectos que pregunta» en la ficha (X.9.1, X.9.7).
 3. **Metadatos con basura:** el modelo devolvía las dimensiones como listas anidadas de columnas, y la
    población se tomaba de una pregunta del instrumento. → Listas solo de texto; población buscada fuera
    de las preguntas.
@@ -483,8 +556,11 @@ Qué se revisa: que el chat responda con exactitud (cifras correctas, sin invent
 | v4 | `1b04c3d` (17 oct) | `system` (12 reglas) | + `<datos>`, resultado calculado, privacidad, glosario y ayuda | Auditoría del dominio; 23.3 % inventado; citas inventadas |
 | v4.1 | `b62f7db` (17 oct) | `system` | Regla 7 considera resultado calculado, glosario y ayuda | Negativas aunque había resultado calculado |
 | v5 | `c42f42e` (18 oct) | `system` | Regla 10: «Con un RESULTADO CALCULADO SÍ tienes la información…» | El modelo negaba el resultado de los filtros |
-| v6 | `extensiones-semantica` (22 oct, sin commit) | `system` (13 reglas) | Regla 13: en entrevistas, responder con el momento que pide la pregunta; lo de otro momento es antecedente | Respuestas que divagan (relato del pasado frente a postura actual) |
-<!-- fuente: git show <commit>:…/prompt.py; diff entre versiones (18 oct) -->
+| v6 | `extensiones-semantica` (22 oct; en `9f86ff4`, 5 nov) | `system` (13 reglas) | Regla 13: en entrevistas, responder con el momento que pide la pregunta; lo de otro momento es antecedente | Respuestas que divagan (relato del pasado frente a postura actual) |
+| v7 | `9f86ff4` (5 nov) | `system` (14 reglas) | Regla 14: la conversación previa solo sirve para entender a qué se refiere la pregunta («eso», «¿por qué?») | Preguntas de seguimiento con el historial del chat |
+| v8 | `c1998ad` (5 nov) | `system` (15 reglas) | Regla 15: el resultado calculado da las cifras y el texto recuperado el contexto; si no coinciden, gana el cálculo | RAG primero: la recuperación entra en todas las respuestas |
+| v9 | `b8c7d7a` (7 nov) | `system` (20 reglas) | Reglas 16–20: cada porcentaje con su número de personas; revisar «mayor» o «menor» y no llamar «significativa» a una diferencia; avisar cuando son pocas personas; los datos «Contexto:» son datos registrados; ante una pregunta de opinión, interpretación prudente | Respuestas mal calificadas por la investigadora: comparación al revés, «preferencia significativa», porcentaje sin su número, opinión no respondida |
+<!-- fuente: git show <commit>:…/prompt.py; diff entre versiones (18 oct, 5 nov y 7 nov); git log -- services/visualization-service/services/prompt.py -->
 
 Texto de v1 (`42bb731`):
 
@@ -612,7 +688,19 @@ La salida se usa solo si trae ese número de nombres, todos texto, sin códigos 
 si no, se conservan «Dimensión n».
 <!-- fuente: services/metadata-service/services/llm_client.py (nombrar_grupos) -->
 
-### Y.4.2 Consultas con filtros
+### Y.4.2 Pruebas de la interfaz en el navegador (15–16 oct)
+
+Con Chrome *headless* controlado por CDP se recorrió el asistente completo para cada tipo,
+verificando en cada paso el avance, la ausencia de errores HTTP o de consola y que no hubiera
+desplazamiento horizontal a 390 px de ancho. Una corrida del documento de entrevista se detuvo por
+falta de memoria en el paso de KPIs; el documento se generó entonces por la API y se revisó ahí.
+<!-- fuente: registro 15–16 oct (scripts limpieza_e2e.mjs, estadistica_e2e.mjs, doc_e2e.mjs, kpis_e2e.mjs; resumen 16 oct 09:54) -->
+
+[PENDIENTE: los scripts de navegador y sus capturas quedaron en la carpeta temporal de las sesiones
+y no están versionados en el repositorio. Para citarlos como evidencia hay que copiarlos a
+`evidencias/` o repetir las capturas.]
+
+### Y.4.3 Consultas con filtros (17–18 oct)
 
 **Tabla P.8.** Iteraciones del reconocimiento de condiciones (enc_09, 160 respondentes).
 
@@ -626,7 +714,7 @@ si no, se conservan «Dimensión n».
 Las cifras 23 y 37 se comprobaron con consultas SQL independientes sobre `respuesta_interpretada`.
 <!-- fuente: registro 18 oct 05:38–05:40 (salidas de probar_filtro.py y de psql) -->
 
-### Y.4.3 Pruebas de humo del chat (17 oct)
+### Y.4.4 Pruebas de humo del chat (17 oct)
 
 Se hicieron 12 preguntas que cubren todos los tipos de consulta. La primera corrida mostró cuatro
 fallas; la segunda, después de corregirlas, las resolvió salvo la comparación.
@@ -645,7 +733,7 @@ Correcciones: consultas exactas sin fragmentos, `cifras_fieles`, borrado de cita
 umbral `RAG_FUERA_MAX = 0.30`. En la segunda corrida, la pregunta 3 respondió «El 13.3 % del turno
 vespertino… 4 personas de un total de 30» y la 10 recibió el mensaje de fuera del dominio.
 
-### Y.4.4 Verificación con métricas (17 oct)
+### Y.4.5 Verificación con métricas (17 oct)
 
 `tools/rag/verificar_chat.py` repitió los 12 casos más ayuda y glosario, esperando las métricas de
 cada respuesta. Resultado: **14 de 15 respuestas correctas**. El caso 9 (comparación) quedó
@@ -653,7 +741,7 @@ cada respuesta. Resultado: **14 de 15 respuestas correctas**. El caso 9 (compara
 volvió a probar con dos encuestas publicadas. El detalle está en el capítulo de Resultados.
 <!-- fuente: tools/rag/reportes/verificacion_20261017_2032.md -->
 
-### Y.4.5 Consultas con filtros, calidad, KPI y noticias (18 oct)
+### Y.4.6 Consultas con filtros, calidad, KPI y noticias (18 oct)
 
 **Tabla P.12.** Prueba en vivo de los ajustes.
 <!-- fuente: registro 18 oct 06:13–06:16 (salida de vivo.py y vivo2.py; rag_log 158–164) -->
@@ -668,14 +756,14 @@ volvió a probar con dos encuestas publicadas. El detalle está en el capítulo 
 | Noticias | 12 noticias de fuentes RSS reales | Completo |
 | `GET /limpieza/61/resumen` | HTTP 200 con sugerencias | Completo |
 
-### Y.4.6 Evaluación con preguntas de referencia
+### Y.4.7 Evaluación con preguntas de referencia (17 y 22–24 oct)
 
 Se construyeron 20 preguntas con su respuesta esperada, verificada en los datos, y se evaluaron con
 las métricas propias y con RAGAS 0.4.3 en un entorno aislado. Hubo tres corridas (19:02, 20:10 y
 20:30 del 17 oct); la tercera es la final. Las cifras se presentan en el capítulo de Resultados.
 <!-- fuente: tools/rag/preguntas_referencia.json; tools/rag/reportes/reporte_20261017_{1902,2010,2030}.md -->
 
-### Y.4.7 Preguntas sobre los instrumentos (22–24 oct)
+### Y.4.8 Preguntas sobre los instrumentos (22–24 oct)
 
 Al probar el chat, la investigadora encontró cuatro fallas. Todas se probaron en vivo por el gateway,
 con la entrevista ent_01 (53) y la encuesta enc_09 (61) en el alcance.
@@ -701,7 +789,7 @@ con la entrevista ent_01 (53) y la encuesta enc_09 (61) en el alcance.
 | 733–736, 738–740, 743–744 | Resultado calculado, sin modelo | 0.1–0.8 s (20 s la primera consulta tras reiniciar, por la carga del modelo de *embeddings*) | Exacto; «fiel por construcción» |
 <!-- fuente: evidencias/pruebas_2026-10-24/rag_log_704_744.txt -->
 
-### Y.4.8 Entrevistas: matriz de formatos y análisis de respuestas
+### Y.4.9 Entrevistas: matriz de formatos y análisis de respuestas (22 oct)
 
 Para las respuestas que divagan se escribió una entrevista sintética
 (`tools/formatos/corpus_entrevistas.py`): 4 estudiantes × 4 preguntas sobre el momento actual, con relatos
@@ -748,7 +836,7 @@ Esta anotación es la clave de la prueba: el sistema no la lee al analizar.
 
 Instrumentos: 100–104 (estudiantes) y 105–106 (docentes).
 
-### Y.4.9 Anotación independiente de la investigadora
+### Y.4.10 Anotación independiente de la investigadora (22 oct)
 
 La anotación de referencia la hizo el autor del sistema, lo que podía inflar el acuerdo. Para controlarlo,
 la investigadora anotó las 32 respuestas en una hoja (`tools/formatos/anotacion/anotacion_para_llenar.xlsx`)
@@ -771,7 +859,7 @@ entrevistas anotadas (instrumentos 107 y 108) y se repitió la comparación.
 La interpretación de estas cifras y las cuatro diferencias que quedan se presentan en el capítulo de
 Resultados.
 
-### Y.4.10 Banco de preguntas con respuesta verificada (24 oct)
+### Y.4.11 Banco de preguntas con respuesta verificada (24 oct)
 
 **Método.** `tools/rag/construir_banco.py` arma 55 preguntas, de encuestas, entrevistas, pruebas, varios
 instrumentos y dominio, cada una con 2 paráfrasis. Su respuesta esperada se calcula sin usar el sistema: con pandas
@@ -815,7 +903,7 @@ juez usa semilla fija (Desarrollo X.10.7).
 [PENDIENTE: la corrida «después de las correcciones» se detuvo por falta de memoria el 25 oct (35 de 275
 consultas); repetirla para la comparación antes y después.]
 
-### Y.4.11b Conjunto de regresión del rediseño en cuatro etapas (28 oct)
+### Y.4.12 Conjunto de regresión del rediseño en cuatro etapas (28 oct)
 
 **Qué se midió.** 28 preguntas sobre cinco instrumentos publicados: la encuesta de 2000 respondentes (127), la de
 turnos (59), la de carga académica (61), la de trayectoria (109) y una entrevista (60). Cubren:
@@ -890,192 +978,14 @@ Tuvieron fidelidad 0. El formato de los conteos ahora pide nombrar todas las opc
 redactor de 3B, la fidelidad media del modo «después» (0.807) queda por debajo de la del modo «antes» (0.846),
 pero el modo «antes» respondió mal o rechazó más preguntas, y esas no se evalúan.
 
-### Y.4.11 Pruebas de la interfaz en el navegador
+### Y.4.13 Instrumentos nuevos y rondas de corrección del chat (2–7 nov)
 
-Con Chrome *headless* controlado por CDP se recorrió el asistente completo para cada tipo,
-verificando en cada paso el avance, la ausencia de errores HTTP o de consola y que no hubiera
-desplazamiento horizontal a 390 px de ancho. Una corrida del documento de entrevista se detuvo por
-falta de memoria en el paso de KPIs; el documento se generó entonces por la API y se revisó ahí.
-<!-- fuente: registro 15–16 oct (scripts limpieza_e2e.mjs, estadistica_e2e.mjs, doc_e2e.mjs, kpis_e2e.mjs; resumen 16 oct 09:54) -->
-
-[PENDIENTE: los scripts de navegador y sus capturas quedaron en la carpeta temporal de las sesiones
-y no están versionados en el repositorio. Para citarlos como evidencia hay que copiarlos a
-`evidencias/` o repetir las capturas.]
-
-### Y.4.12 Pruebas de la investigadora
-
-[PENDIENTE: prueba de la investigadora] Con cada instrumento propio, hacer preguntas de cada tipo (porcentaje, filtro, respondente, estructura,
-patrones, abierta y fuera del dominio), comprobar las cifras contra el CSV y anotar las métricas de «Evaluación
-automática» de cada respuesta (plantilla de `markdowns/GUIA_PRUEBAS.md`).
-
----
-
-## Y.5 Distintos modelos
-
-Qué se revisa: si otro modelo, como redactor de las respuestas o como juez de las métricas, cambia la exactitud,
-las métricas o el tiempo. Se cambia **un modelo a la vez**: al comparar redactores se deja fijo el juez, y al
-comparar jueces, el redactor.
-
-### Y.5.1 Juez de las métricas: `llama3.2:3b` contra `qwen2.5:3b` (23 oct)
-
-**Comparación de jueces.** Se calificó la fidelidad de 9 de esas respuestas con los dos modelos (Tabla
-D.29a). En las copias literales del cálculo, qwen dio 0.95 de media contra 0.40 de llama; los dos detectaron
-el objetivo común inventado y ninguno detectó el cambio de opción en p16.
-<!-- fuente: evidencias/jueces_2026-10-23/comparar_jueces.json -->
-
-El detalle por respuesta está en Desarrollo, Tabla D.29a. Se adoptó `qwen2.5:3b` como juez.
-
-### Y.5.2 Comparación de modelos: redactor × juez (28 oct – 2 nov)
-
-**Diseño.**
-- **Instrumento:** el 127.
-- **Preguntas:** los 14 casos (28 turnos) de las pruebas de la investigadora, con sus erratas y sus seguimientos en la
-  misma conversación. Los seguimientos quedaron con el texto que ella escribió en la corrida con `llama3.2:3b`
-  (consultas 1344–1365) y se repiten tal cual con los demás redactores. Como se escribieron reaccionando a las
-  respuestas de llama (por ejemplo, «Me sigues dando una pregunta»), con otro modelo pueden no venir al caso; se hacen
-  igual para que la comparación sea con las mismas preguntas.
-- **Redactores:** `llama3.2:3b`, `qwen2.5:3b`, `qwen3:4b-instruct` y `gemma3:4b` (Tabla P.21a). Cada uno hace
-  **todas** las etapas del chat (`OLLAMA_MODEL`), no solo la redacción. Se planeó `qwen3:4b`, pero esa variante razona
-  antes de responder; tras una consulta (1396) se cambió por la variante *instruct*, que responde directo.
-- **Jueces:** cada redactor responde una vez y los cuatro modelos juzgan todas las respuestas, así que salen
-  16 combinaciones.
-- **Referencia:** los turnos de dato tienen sus cifras correctas, calculadas directo de la base. Por ejemplo:
-  - 486 de 2000 llevan carga máxima;
-  - la pregunta con más desacuerdo es p17, con 37.7 %;
-  - 833 respondentes dejaron alguna pregunta en blanco.
-
-  Los interpretativos tienen criterios y los califica la investigadora.
-- **Cuidados:** la caché se apaga durante el experimento (`RAG_CACHE_HORAS=0`) y la temperatura no se mueve.
-
-<!-- fuente: services/visualization-service/scripts/modelos/ (README.md, generar_casos.py, casos.json, juzgar.py, calificar.py, reporte.py); rag_log 1344–1365 (31 oct); Desarrollo X.10.8 -->
-
-**Tabla P.21a.** Versiones exactas de los modelos (Ollama 0.32.9).
-
-| Modelo (etiqueta de Ollama) | Familia | Parámetros | Cuantización | Contexto máximo del modelo | ID (digest) | Tamaño |
-|---|---|---|---|---|---|---|
-| `llama3.2:3b` | Llama 3.2 (Meta) | 3.2 B | Q4_K_M | 131 072 | `a80c4f17acd5` | 2.0 GB |
-| `qwen2.5:3b` | Qwen 2.5 (Alibaba) | 3.1 B | Q4_K_M | 32 768 | `357c53fb659c` | 1.9 GB |
-| `qwen3:4b-instruct` | Qwen 3, variante *instruct* (sin razonamiento) | 4.0 B | Q4_K_M | 262 144 | `0edcdef34593` | 2.5 GB |
-| `gemma3:4b` | Gemma 3 (Google) | 3.9 B, más 0.4 B del módulo de visión, que no se usa | Q4_K_M | 131 072 | `68ceab7e468a` | 3.4 GB |
-
-Embeddings:
-- Del sistema: `paraphrase-multilingual-mpnet-base-v2`.
-- Solo del RAGAS fuera de línea: `nomic-embed-text` (`0a109f422b47`).
-
-En el chat todos corren con contexto de 4096 tokens. La temperatura es 0.2 al redactar y 0 al interpretar y al
-juzgar. Se reporta el ID porque una etiqueta de Ollama puede apuntar a otra versión si se vuelve a publicar con el
-mismo nombre.
-<!-- fuente: ollama show y ollama list en el contenedor indagata_ollama (5 nov 2026); shared/db/core/config.py (RAG_TEMPERATURA_REDACCION); services/visualization-service/services/ollama_client.py (num_ctx 4096) -->
-
-**Ensayo de las herramientas.** Se probaron con la sesión anterior de la investigadora con `llama3.2:3b` (consultas
-1290–1326): se emparejaron los 27 turnos que tenían entonces los casos. Por ser un ensayo, sin calificación humana ni varios jueces, sus cifras no
-son resultados.
-
-**Corridas.** La investigadora hizo los 28 turnos con cada redactor y calificó todas las respuestas (0 mal, 1 parcial,
-2 bien). Después, cada uno de los cuatro modelos juzgó las cuatro corridas. Las negativas y los mensajes fijos no se
-juzgan, así que cada juez evaluó 78 respuestas.
-
-| Redactor | Consultas (`rag_log`) |
-|---|---|
-| `llama3.2:3b` | 1328–1365 |
-| `qwen2.5:3b` | 1366–1395 |
-| `qwen3:4b-instruct` | 1397–1429 |
-| `gemma3:4b` | 1430–1461 (el caso 1 se repitió en 1459–1461: en 1432 la respuesta llegó cortada) |
-
-<!-- fuente: evidencias/modelos_2026-11-02/resumen.md y resumen.json (reporte.py, 2 nov); tt_rag.rag_metrica_juez y tt_rag.rag_calificacion, consultas 1328–1461 -->
-
-**Tabla P.21.** Comparación de redactores (instrumento 127, 28 turnos).
-
-| Redactor | Intención correcta | Plantillas indebidas | Exactitud de cifras | Cifras con respaldo (cifras sin respaldo) | IDs inventados | Calificación humana «Bien» | Calificación media (0–2) | Latencia mediana | Promedio del juez (otros jueces) | Sesgo de autoevaluación |
-|---|---|---|---|---|---|---|---|---|---|---|
-| `llama3.2:3b` | 54 % | 7 | 59 % | 100 % (0) | 0 | 29 % | 0.64 | 7.2 s | 65 % | +8 puntos |
-| `qwen2.5:3b` | 71 % | 8 | 33 % | 100 % (0) | 0 | 29 % | 0.86 | 4.9 s | 73 % | −16 puntos |
-| `qwen3:4b-instruct` | 54 % | 10 | 78 % | 83 % (2) | 0 | 46 % | 1.07 | 15.6 s | 73 % | −2 puntos |
-| **`gemma3:4b`** | 64 % | **2** | 37 % | 100 % (0) | 0 | 43 % | 1.07 | 18.3 s | 72 % | +7 puntos |
-
-<!-- fuente: evidencias/modelos_2026-11-02/resumen.md, secciones 1–3; «otros jueces» = promedio de la fila de la matriz sin la diagonal, calculado de resumen.json → matriz.celdas -->
-
-Las dos cifras sin respaldo de `qwen3:4b-instruct` están en el turno 9.2 (consulta 1414). Una es un falso positivo del
-detector: el «1» de la cita «[Fuente 1]». La otra, «18 indicadores», no está en los datos que recibió el modelo. La
-investigadora calificó ese turno con 0.
-<!-- fuente: tt_rag.rag_log 1414 (contexto_usado y salida); evidencias/modelos_2026-11-02/qwen3_4b-instruct.json, turno 9.2 -->
-
-**Cómo se mide la confiabilidad del juez.** Las métricas tipo RAGAS evalúan las respuestas; para saber si se puede
-confiar en el juez que las calcula, se compara con la calificación humana y con los indicadores sin modelo, usando dos
-estadísticos clásicos que hoy se usan para validar evaluadores automáticos:
-- **Kappa de Cohen** (Cohen, 1960): acuerdo entre dos evaluadores que clasifican en categorías, descontado el acuerdo
-  esperable por azar. Va de −1 a 1; 0 equivale al azar. Se calcula sobre «el juez aprueba» (promedio de sus tres
-  métricas ≥ 0.7) contra «la investigadora calificó Bien», y sobre «fidelidad ≥ 0.8» contra «todas las cifras tienen
-  respaldo». El umbral de 0.41 corresponde al acuerdo «moderado» de la escala de Landis y Koch (1977).
-- **Correlación de Spearman** (Spearman, 1904): si los dos ordenan las respuestas igual aunque usen escalas distintas
-  (el juez de 0 a 1 y la investigadora 0, 1 o 2). El umbral fijado fue 0.5.
-
-La correlación de rangos con el juicio humano es la forma habitual de reportar un evaluador automático; G-Eval (Liu et
-al., 2023), por ejemplo, reporta Spearman contra calificaciones humanas. Thakur et al. (2025) advierten que el
-porcentaje de acuerdo solo puede engañar: jueces con mucho acuerdo pueden dar puntajes muy distintos. Por eso
-recomiendan medidas corregidas por azar junto con un análisis cualitativo. Ellos usan la π de Scott, porque la kappa de
-Cohen tiene problemas teóricos documentados; las dos coinciden cuando los evaluadores reparten sus calificaciones de
-forma parecida. En esta tesis se usa la kappa de Cohen, junto con Spearman y la revisión turno por turno.
-
-Referencias:
-- Cohen, J. (1960). A coefficient of agreement for nominal scales. *Educational and Psychological Measurement*,
-  20(1), 37–46. https://doi.org/10.1177/001316446002000104
-- Landis, J. R. y Koch, G. G. (1977). The measurement of observer agreement for categorical data. *Biometrics*, 33(1),
-  159–174. https://doi.org/10.2307/2529310
-- Spearman, C. (1904). The proof and measurement of association between two things. *The American Journal of
-  Psychology*, 15(1), 72–101. https://doi.org/10.2307/1412159
-- Liu, Y., Iter, D., Xu, Y., Wang, S., Xu, R. y Zhu, C. (2023). G-Eval: NLG evaluation using GPT-4 with better human
-  alignment. En *Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing*
-  (pp. 2511–2522). https://doi.org/10.18653/v1/2023.emnlp-main.153
-- Thakur, A. S., Choudhary, K., Ramayapally, V. S., Vaidyanathan, S. y Hupkes, D. (2025). Judging the judges:
-  Evaluating alignment and vulnerabilities in LLMs-as-judges. En *Proceedings of the Fourth Workshop on Generation,
-  Evaluation and Metrics (GEM²)* (pp. 404–430). Association for Computational Linguistics. arXiv:2406.12624.
-<!-- fuente: Crossref (api.crossref.org) para Cohen, Landis y Koch, y Spearman; https://aclanthology.org/2023.emnlp-main.153/; https://arxiv.org/abs/2406.12624 y su versión HTML v6 (nota 2 y apéndice B); consultadas el 6 nov 2026. Fórmulas: scripts/modelos/comun.py (kappa, spearman) y reporte.py (cruce, APROBADO = 0.7) -->
-
-**Tabla P.22.** Confiabilidad de cada juez (78 respuestas por juez, todas con calificación humana).
-
-| Juez | Fidelidad vs cifras con respaldo (kappa / π) | Aprobado vs «Bien» humano (kappa / π) | Spearman promedio vs humana | Spearman relevancia vs humana | Precisión del contexto alta con contexto insuficiente |
-|---|---|---|---|---|---|
-| `gemma3:4b` | 0.159 / 0.075 (n=37) | 0.143 / 0.088 | 0.203 | 0.326 | 22 de 36 |
-| `llama3.2:3b` | 0.043 / −0.279 (n=38) | 0.121 / 0.099 | 0.136 | 0.317 | 22 de 36 |
-| `qwen2.5:3b` | 0.023 / −0.449 (n=39) | 0.108 / 0.090 | 0.266 | 0.281 | 11 de 36 |
-| **`qwen3:4b-instruct`** | 0.033 / −0.357 (n=37) | **0.226 / 0.218** | **0.331** | **0.446** | 20 de 36 |
-
-La π de Scott se agregó el 6 nov regenerando el reporte con las mismas corridas; las kappas salieron idénticas. En
-«juez aprobado vs Bien» las dos medidas casi coinciden. En «fidelidad vs cifras con respaldo» la π es mucho menor, y
-negativa en tres jueces: el juez y el detector de cifras reparten sus «sí» y «no» en proporciones muy distintas, y
-la π castiga esa diferencia, que la kappa absorbe. Las dos llevan a la misma conclusión: ningún juez alcanza el acuerdo moderado.
-
-<!-- fuente: evidencias/modelos_2026-11-02/resumen.md, sección 4; π de Scott: storage/evaluacion_modelos/2026-11-02_con_pi/resumen.md (reporte.py con --corrida llama3.2:3b=1328-1365 qwen2.5:3b=1366-1395 qwen3:4b-instruct=1397-1429 gemma3:4b=1430-1461, 6 nov) -->
-
-**Decisión (2 nov).**
-- **Redactor: `gemma3:4b`.** El primer criterio era no inventar IDs ni cifras; lo cumplen `llama3.2:3b`, `qwen2.5:3b`
-  y `gemma3:4b`. Entre ellos, `gemma3:4b` tiene la mayor proporción de respuestas «Bien» (43 %) y la menor cantidad de
-  plantillas indebidas (2).
-  - En contra: es el más lento (18.3 s de mediana, porque no cabe completo en la GPU de 4 GiB) y su exactitud de cifras
-    es baja (37 %).
-  - `qwen3:4b-instruct` queda en segundo lugar: es el mejor en respuestas «Bien» (46 %) y en exactitud de cifras (78 %),
-    pero escribió una cifra sin respaldo.
-- **Juez: `qwen3:4b-instruct`, como medida aproximada.** Ningún juez alcanzó el umbral fijado (kappa ≥ 0.41 y
-  Spearman ≥ 0.5). `qwen3:4b-instruct` es el que más se parece a la calificación humana, y no es el redactor.
-  - `gemma3:4b` y `llama3.2:3b` no distinguen el contexto suficiente del insuficiente: dan precisión del contexto
-    alta en los 36 turnos de dato.
-  - Por eso, la evidencia principal sobre la calidad de las respuestas son los indicadores del sistema y la
-    calificación humana; las métricas del juez se reportan como aproximadas.
-
-**Fallas que apuntan al código.** Ocho turnos fallan con los cuatro redactores: 4.1, 5.1, 6.2, 9.1, 9.2, 10.2, 10.4 y
-12.2. La intención correcta va de 54 % a 71 % según el modelo, así que parte del problema está en la interpretación de
-la pregunta y no en la redacción. Se revisan en la fase de corrección.
-<!-- fuente: evidencias/modelos_2026-11-02/resumen.md, sección 5 -->
-
-[PENDIENTE: corrida corta del instrumento 127 con `gemma3:4b` después de cambiar el ejemplo del catálogo de la
-interpretación.]
+El instrumento 127 se usó durante todo el desarrollo, así que el chat pudo ajustarse a él sin querer. Desde el 2 nov se probó también con instrumentos que el chat no había visto, y cada ronda de correcciones se comprobó con el modelo elegido en la comparación de modelos (Y.5.2).
 
 #### Instrumentos nuevos: prueba y entrevista de la investigadora (2 nov, línea base)
 
-El instrumento 127 se usó durante el desarrollo, así que el sistema pudo haberse ajustado a él sin querer. Para
-comprobar si los resultados se generalizan, se repitió el experimento con dos instrumentos que el chat no había visto,
-ambos con ruido:
+Para comprobar si los resultados se generalizan, se repitió el experimento de modelos con dos instrumentos que el
+chat no había visto, ambos con ruido:
 - **Prueba 130** (`pru_03_sucio_no_contemplado.csv`): 97 alumnos; 12 casos y 22 turnos.
 - **Entrevista 129** (`ent_11_salud_mental_ruido.txt`): una participante, 13 intercambios; 8 casos y 13 turnos.
 
@@ -1525,6 +1435,323 @@ calificación de la investigadora, juez `qwen3:4b-instruct` y comparación sin R
 medición honesta es el conjunto nuevo de preguntas de la investigadora, hecho después de congelar la versión 2.
 [PENDIENTE: conjunto nuevo]
 
+#### Hilo de la conversación, condiciones no literales y redacción verificada (6–7 nov)
+
+**Qué se corrigió.** Tres bloques, a partir de los comentarios de la investigadora sobre la versión 2:
+- **A. Hilo de la conversación.** Un seguimiento («¿y los que tienen beca contra los que no?») conserva la pregunta de
+  la consulta anterior si no nombra otra; antes, el modelo podía cambiarla por una pregunta que nadie mencionó.
+- **B. Condiciones que no están escritas tal cual.** Dos valores de una misma variable en la pregunta («pública y
+  privada») se comparan en lugar de filtrar solo el primero. Se quitan los filtros imposibles: un nivel de acuerdo
+  sobre una pregunta que no es escala, o un número sobre una pregunta sin opciones numéricas. Un valor que nombra un
+  dato de contexto («tiene beca») ya no se busca como opción de una pregunta.
+- **D. Redacción verificada.** La verificación rechaza, además, una comparación al revés («mayor» con la cifra
+  menor), una inferencia sin prueba estadística («preferencia significativa») y un porcentaje sin su número de
+  personas; acepta cifras que se deducen del resultado (redondeos, diferencias entre porcentajes). Las preguntas
+  «¿por qué?», de opinión, de «lo más…» y sobre pocas personas reciben una instrucción de formato propia, y se agregaron
+  las reglas 16 a 20 del prompt (Y.4.1).
+
+El ejemplo del catálogo que usa la interpretación se cambió por uno que no se parece a ningún instrumento de prueba, y
+la espera máxima de Ollama subió de 120 a 300 s.
+<!-- fuente: commits b8c7d7a y 84b861d (7 nov); services/visualization-service/services/seguimiento.py, anclaje.py, plan_consulta.py, ejecutor.py, consulta_planificada.py, rag_service.py (_verificar_redaccion; _VERSION_RESPUESTAS 31), prompt.py (reglas 16–20), interpretacion.py (ejemplo del catálogo), ollama_client.py (_TIMEOUT); tests/test_redaccion.py y test_seguimiento.py (379 pruebas) -->
+
+**Comprobación con el modelo real** (`gemma3:4b`, consultas 2228–2270, sin calificación humana):
+
+| Pregunta | Antes | Después |
+|---|---|---|
+| Prueba 130: «¿responden distinto los de universidad pública y los de privada?» | filtraba solo «pública» (2239) | compara los tres tipos de universidad en r04 (2267) |
+| Prueba 130: «¿Y los que tienen beca contra los que no?» (seguimiento) | pedía elegir una opción de r04 (2242, 2244, 2246) | conserva r04 y compara: con beca 14, sin beca 83 (2268) |
+| «¿Por qué nadie la contestó?» (seguimiento) | repetía la cifra | hipótesis, diciendo que los datos no registran la causa (2257) |
+| Comparación de porcentajes entre grupos | «mayor preferencia» con el porcentaje menor | la verificación lo detectó y la redacción se rehízo (2258) |
+| «¿Qué opinas de…?» | sin opinión | interpretación prudente apoyada en las cifras (2262) |
+| Entrevista con una sola participante | generalizaba a «los estudiantes» | habla de E01 sin generalizar (2253) |
+| Porcentaje de una opción | «75.3 %» sin su número | «73 de 97 (75.3 %)» (2255) |
+<!-- fuente: tt_rag.rag_log 2228–2270 (plan, plan.verificacion, respuesta) -->
+
+**Lo que sigue fallando.**
+- «¿En qué momento se rió?» (2251): la verificación rechaza la cita y se muestra el cálculo.
+- A veces se cuela una frase recuperada que no viene al caso (2255 agrega una oración sobre r03).
+- Un dato de contexto (el turno) no se presenta como dato registrado (2254).
+- En 2266 y 2270 la respuesta fue «No tengo información», y en 2267 y 2268 se mostró el cálculo sin redactar. La causa
+  no fue la lógica: Ollama tardó más de 120 s por falta de memoria. Por eso se subió la espera a 300 s.
+
+**Validez.** Estas correcciones también se diseñaron mirando las preguntas con que se comprobaron. La medición que
+vale es el conjunto nuevo de la investigadora, hecho sobre la versión congelada del 7 nov (consultas desde la 2271): es
+la línea base de Y.4.14.
+
+### Y.4.14 Evaluación final del chat: baterías de la investigadora y set de control (7–8 nov)
+
+**Objetivo.** Medir el chat antes y después de una última ronda de cambios **generalizados** (Desarrollo X.9.6), con
+preguntas que escribió la investigadora, y comprobar con instrumentos ajenos al diseño que los cambios no se ajustaron a
+sus instrumentos.
+
+**Baterías** (`tools/rag/baterias_chat.json`). Cada caso es una conversación nueva de uno o más turnos, con lo que la
+respuesta **debe** contener.
+
+**Tabla Y.4.14a.** Baterías y set de control.
+
+| Conjunto | Instrumento | Casos | Qué cubre |
+|---|---|---|---|
+| Encuesta | 2000 respondentes, 18 preguntas | 25 | Conteos, negaciones, escalas, comparaciones por otra pregunta y por posición, hilo, «lo más preocupante», KPIs, opcionales, lo que no existe, privacidad, manipulación |
+| Prueba | 97 alumnos, 22 reactivos en 3 secciones | 25 | Distribuciones, respuestas en blanco por reactivo y por sección, cruces, «más repartidas», una persona, lo que no existe, sin calificar |
+| Entrevista | 1 participante, guía de 12 preguntas | 25 | Participación por hablante, cobertura de la guía, menciones, comparaciones entre temas, hilo, diagnósticos, ficha |
+| Cortesía | La encuesta | 4 | Saludo, «¿qué puedes hacer?», gracias, consejo personal |
+| **Control** | Encuesta sintética (160 respondentes), entrevista sintética (40 participantes) y, en la corrida final, prueba sintética (80 alumnos) | 8 + 8 + 8 | Los mismos tipos de pregunta; ninguno de estos instrumentos se usó para diseñar los cambios |
+
+**Procedimiento.**
+- **Línea base:** las consultas que la investigadora hizo a mano sobre la versión congelada del 7 nov (2271–2371),
+  emparejadas con cada caso por texto e instrumento. Las tres preguntas de cortesía que no había hecho y el set de
+  control se corrieron con el script en esa misma versión.
+- **Después:** `tools/rag/evaluar_chat.py` hace cada caso como una conversación nueva, sin caché y con `gemma3:4b`. Por
+  la memoria del equipo, reinicia Ollama cada 15 casos y repite un caso solo si salió «modelo no disponible»; cada
+  reinicio queda en `reinicios.log`. Cada caso se pregunta una vez y se guarda tal como salió.
+- **Dos corridas «después»:** la **limpia**, con los cambios de las fases 1 a 4, y la **final**, con las correcciones
+  generales que la corrida limpia reveló (Desarrollo X.9.6). Se reportan las dos para separar lo que se corrigió
+  después de ver los resultados.
+
+**Medidas.**
+- **Cumple el «Debe»:** cumple, parcial o no, con una nota por caso (`calificacion_debe.json`). La calificación la hizo
+  el asistente de programación con el «Debe» de la investigadora; queda disponible para que ella la revise.
+- **Planes válidos:** turnos cuyo plan tiene una intención distinta de «aclaración».
+- **Caídas a plantilla:** respuestas que no redactó el modelo. Incluye respuestas fijas que son las correctas (cortesía,
+  privacidad, «Indagata no califica», operaciones de entrevista sin modelo), así que más plantillas no es peor.
+- **K-Precision:** proporción de las palabras con contenido de la respuesta que están en el contexto que recibió el
+  modelo. Mide fidelidad (no inventar), no calidad: en la línea base no se relacionó con la calificación humana
+  (Spearman ρ = −0.04, n = 72).
+- **Cifras con respaldo:** cifras de la respuesta presentes en el contexto.
+- **Tiempo por turno:** mediana y percentil 90.
+- **Plan del modelo sin cambios** (solo corrida final): turnos en que la validación, las reglas y el hilo no tocaron el
+  plan que escribió el modelo.
+- ***Hit rate*@3 de la recuperación:** con 43 preguntas de las baterías y 9 de control, cada una con su fragmento
+  correcto (`tools/rag/recuperacion_oro.json`, `medir_recuperacion.py`).
+<!-- fuente: tools/rag/baterias_chat.json; tools/rag/evaluar_chat.py (--desde-log, --reiniciar-ollama-cada, --solo-resumen, k_precision, cifras_respaldo, plantilla); evidencias/chat_2026-11-07_antes/diagnostico.md §1–2 -->
+
+**Diagnóstico de la línea base.** Se encontraron 17 causas (`evidencias/chat_2026-11-07_antes/diagnostico.md` §5).
+Casi todas estaban en el sistema y no en el modelo:
+- **faltaban operaciones:** comparar por la respuesta a otra pregunta, por posición o por sección; cruzar dos
+  preguntas; operaciones de entrevista (C1, C2, C8);
+- **el hilo se perdía** en «de ellos», «muéstrame 5» y «tal cual» (C3), y «¿por qué?» repetía el cálculo (C4);
+- **la validación aceptaba planes absurdos**, y «más repartida» usaba una medida equivocada (C5, C6);
+- **faltaban datos en el documento:** polaridad, textos pegados, indicaciones y duración de la entrevista (C11, C12);
+- **los chunks se truncaban** sin aviso (C14);
+- **el nombre de la autora del instrumento entraba al prompt** y el modelo se lo atribuía a la participante (C13).
+
+**Tabla Y.4.14b.** Resultados. La línea base de la prueba sintética de control no existe porque se cargó para la
+corrida final; el control se compara sobre los mismos 16 casos.
+
+| Medida | Línea base | Corrida limpia | Corrida final |
+|---|---|---|---|
+| Baterías: cumplen el «Debe» (de 79) | 31 (16 parciales, 32 no) | 54 (16 parciales, 9 no) | [PENDIENTE] |
+| Control, encuesta y entrevista: cumplen (de 16) | 1 (4 parciales, 11 no) | 9 (5 parciales, 2 no) | [PENDIENTE] |
+| Control, prueba sintética: cumplen (de 8) | — | — | [PENDIENTE] |
+| Planes válidos | 83 de 97 (85.6 %) | 69 de 77 (89.6 %) | [PENDIENTE] |
+| Caídas a plantilla | 28 de 102 (27.5 %) | 31 de 102 (30.4 %) | [PENDIENTE] |
+| K-Precision, mediana | 0.85 (n = 74) | 0.86 (n = 63) | [PENDIENTE] |
+| Cifras con respaldo | 963 de 982 | 760 de 800 | [PENDIENTE] |
+| Tiempo por turno: mediana / p90 | 40 s / 188 s | 33 s / 64 s | [PENDIENTE] |
+| Plan del modelo sin cambios | — | — | [PENDIENTE] |
+| *Hit rate*@3 (baterías / control) | 0.61 / 0.89 | 0.79 / 1.00 | [PENDIENTE] |
+<!-- fuente: evidencias/chat_2026-11-07_antes/resumen.md; chat_2026-11-07_control_antes/resumen.md; chat_2026-11-08_despues/ y chat_2026-11-08_despues_control/ (resumen.md, calificacion_debe.json); chat_2026-11-08_final/ y chat_2026-11-08_final_control/; chunks_2026-11-07/README.md -->
+
+**Lo que reveló la corrida limpia** y se corrigió para la final (Desarrollo X.9.6), todo de forma general:
+- **una regresión:** «¿cuántos calificaron con 1 o 2…?» cayó a «sin información» porque el modelo escribió `"[1, 2]"` y
+  la validación no lo tradujo a posiciones de la escala;
+- **opciones abreviadas** («Abandonar») y **«más de 30»** que no elegían la opción que lo dice tal cual;
+- **la palabra «reactivo»** tomada como algo que la prueba «no registra»;
+- **seguimientos** que perdían el grupo o la persona, y el porcentaje de «de ellos» sobre el total;
+- **lenguaje de calificación** en las interpretaciones de la prueba («eligió respuestas incorrectas», «mayor
+  dificultad»);
+- **afirmaciones falsas con cifras verdaderas:** un porcentaje atribuido a otra opción, un ranking redactado en otro
+  orden.
+
+**Generalización.**
+- **Búsqueda de textos:** ninguno de los 288 textos de pregunta y opción de los tres instrumentos influye en el código;
+  la búsqueda encontró un ejemplo del prompt copiado de la encuesta, que se cambió antes de la corrida final
+  (Desarrollo X.9.6).
+- **Set de control:** [PENDIENTE: lectura del control en la corrida final].
+- **Pruebas automáticas:** 431 en visualization-service, 126 en knowledge-service, 38 en storage-service, 186 en
+  cleaning-service, 29 en metadata-service y 21 en analysis-service, todas en verde (`evidencias/chat_2026-11-08_final/pytest/`).
+
+**Lo que sigue sin resolverse.** [PENDIENTE: lista de la corrida final]
+
+**Amenazas a la validez.**
+- **Las baterías orientaron qué capacidades se construyeron.** Por eso el set de control es la medida de
+  generalización.
+- **La calificación contra el «Debe» la hizo el mismo asistente que programó los cambios.** Cada caso tiene su nota
+  para que la investigadora la revise.
+- **Cada caso se preguntó una sola vez:** con temperatura 0.2 en la redacción, otra corrida puede variar en la
+  redacción, no en las cifras.
+- **La memoria del equipo:** Ollama se reinició entre casos; un turno que salió «modelo no disponible» se repitió una
+  vez.
+
+### Y.4.15 Pruebas de la investigadora
+
+[PENDIENTE: prueba de la investigadora] Con cada instrumento propio, hacer preguntas de cada tipo (porcentaje, filtro, respondente, estructura,
+patrones, abierta y fuera del dominio), comprobar las cifras contra el CSV y anotar las métricas de «Evaluación
+automática» de cada respuesta (plantilla de `markdowns/GUIA_PRUEBAS.md`).
+
+---
+
+## Y.5 Distintos modelos
+
+Qué se revisa: si otro modelo, como redactor de las respuestas o como juez de las métricas, cambia la exactitud,
+las métricas o el tiempo. Se cambia **un modelo a la vez**: al comparar redactores se deja fijo el juez, y al
+comparar jueces, el redactor.
+
+### Y.5.1 Juez de las métricas: `llama3.2:3b` contra `qwen2.5:3b` (23 oct)
+
+**Comparación de jueces.** Se calificó la fidelidad de 9 de esas respuestas con los dos modelos (Tabla
+D.29a). En las copias literales del cálculo, qwen dio 0.95 de media contra 0.40 de llama; los dos detectaron
+el objetivo común inventado y ninguno detectó el cambio de opción en p16.
+<!-- fuente: evidencias/jueces_2026-10-23/comparar_jueces.json -->
+
+El detalle por respuesta está en Desarrollo, Tabla D.29a. Se adoptó `qwen2.5:3b` como juez.
+
+### Y.5.2 Comparación de modelos: redactor × juez (28 oct – 2 nov)
+
+**Diseño.**
+- **Instrumento:** el 127.
+- **Preguntas:** los 14 casos (28 turnos) de las pruebas de la investigadora, con sus erratas y sus seguimientos en la
+  misma conversación. Los seguimientos quedaron con el texto que ella escribió en la corrida con `llama3.2:3b`
+  (consultas 1344–1365) y se repiten tal cual con los demás redactores. Como se escribieron reaccionando a las
+  respuestas de llama (por ejemplo, «Me sigues dando una pregunta»), con otro modelo pueden no venir al caso; se hacen
+  igual para que la comparación sea con las mismas preguntas.
+- **Redactores:** `llama3.2:3b`, `qwen2.5:3b`, `qwen3:4b-instruct` y `gemma3:4b` (Tabla P.21a). Cada uno hace
+  **todas** las etapas del chat (`OLLAMA_MODEL`), no solo la redacción. Se planeó `qwen3:4b`, pero esa variante razona
+  antes de responder; tras una consulta (1396) se cambió por la variante *instruct*, que responde directo.
+- **Jueces:** cada redactor responde una vez y los cuatro modelos juzgan todas las respuestas, así que salen
+  16 combinaciones.
+- **Referencia:** los turnos de dato tienen sus cifras correctas, calculadas directo de la base. Por ejemplo:
+  - 486 de 2000 llevan carga máxima;
+  - la pregunta con más desacuerdo es p17, con 37.7 %;
+  - 833 respondentes dejaron alguna pregunta en blanco.
+
+  Los interpretativos tienen criterios y los califica la investigadora.
+- **Cuidados:** la caché se apaga durante el experimento (`RAG_CACHE_HORAS=0`) y la temperatura no se mueve.
+
+<!-- fuente: services/visualization-service/scripts/modelos/ (README.md, generar_casos.py, casos.json, juzgar.py, calificar.py, reporte.py); rag_log 1344–1365 (31 oct); Desarrollo X.10.8 -->
+
+**Tabla P.21a.** Versiones exactas de los modelos (Ollama 0.32.9).
+
+| Modelo (etiqueta de Ollama) | Familia | Parámetros | Cuantización | Contexto máximo del modelo | ID (digest) | Tamaño |
+|---|---|---|---|---|---|---|
+| `llama3.2:3b` | Llama 3.2 (Meta) | 3.2 B | Q4_K_M | 131 072 | `a80c4f17acd5` | 2.0 GB |
+| `qwen2.5:3b` | Qwen 2.5 (Alibaba) | 3.1 B | Q4_K_M | 32 768 | `357c53fb659c` | 1.9 GB |
+| `qwen3:4b-instruct` | Qwen 3, variante *instruct* (sin razonamiento) | 4.0 B | Q4_K_M | 262 144 | `0edcdef34593` | 2.5 GB |
+| `gemma3:4b` | Gemma 3 (Google) | 3.9 B, más 0.4 B del módulo de visión, que no se usa | Q4_K_M | 131 072 | `68ceab7e468a` | 3.4 GB |
+
+Embeddings:
+- Del sistema: `paraphrase-multilingual-mpnet-base-v2`.
+- Solo del RAGAS fuera de línea: `nomic-embed-text` (`0a109f422b47`).
+
+En el chat todos corren con contexto de 4096 tokens. La temperatura es 0.2 al redactar y 0 al interpretar y al
+juzgar. Se reporta el ID porque una etiqueta de Ollama puede apuntar a otra versión si se vuelve a publicar con el
+mismo nombre.
+<!-- fuente: ollama show y ollama list en el contenedor indagata_ollama (5 nov 2026); shared/db/core/config.py (RAG_TEMPERATURA_REDACCION); services/visualization-service/services/ollama_client.py (num_ctx 4096) -->
+
+**Ensayo de las herramientas.** Se probaron con la sesión anterior de la investigadora con `llama3.2:3b` (consultas
+1290–1326): se emparejaron los 27 turnos que tenían entonces los casos. Por ser un ensayo, sin calificación humana ni varios jueces, sus cifras no
+son resultados.
+
+**Corridas.** La investigadora hizo los 28 turnos con cada redactor y calificó todas las respuestas (0 mal, 1 parcial,
+2 bien). Después, cada uno de los cuatro modelos juzgó las cuatro corridas. Las negativas y los mensajes fijos no se
+juzgan, así que cada juez evaluó 78 respuestas.
+
+| Redactor | Consultas (`rag_log`) |
+|---|---|
+| `llama3.2:3b` | 1328–1365 |
+| `qwen2.5:3b` | 1366–1395 |
+| `qwen3:4b-instruct` | 1397–1429 |
+| `gemma3:4b` | 1430–1461 (el caso 1 se repitió en 1459–1461: en 1432 la respuesta llegó cortada) |
+
+<!-- fuente: evidencias/modelos_2026-11-02/resumen.md y resumen.json (reporte.py, 2 nov); tt_rag.rag_metrica_juez y tt_rag.rag_calificacion, consultas 1328–1461 -->
+
+**Tabla P.21.** Comparación de redactores (instrumento 127, 28 turnos).
+
+| Redactor | Intención correcta | Plantillas indebidas | Exactitud de cifras | Cifras con respaldo (cifras sin respaldo) | IDs inventados | Calificación humana «Bien» | Calificación media (0–2) | Latencia mediana | Promedio del juez (otros jueces) | Sesgo de autoevaluación |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `llama3.2:3b` | 54 % | 7 | 59 % | 100 % (0) | 0 | 29 % | 0.64 | 7.2 s | 65 % | +8 puntos |
+| `qwen2.5:3b` | 71 % | 8 | 33 % | 100 % (0) | 0 | 29 % | 0.86 | 4.9 s | 73 % | −16 puntos |
+| `qwen3:4b-instruct` | 54 % | 10 | 78 % | 83 % (2) | 0 | 46 % | 1.07 | 15.6 s | 73 % | −2 puntos |
+| **`gemma3:4b`** | 64 % | **2** | 37 % | 100 % (0) | 0 | 43 % | 1.07 | 18.3 s | 72 % | +7 puntos |
+
+<!-- fuente: evidencias/modelos_2026-11-02/resumen.md, secciones 1–3; «otros jueces» = promedio de la fila de la matriz sin la diagonal, calculado de resumen.json → matriz.celdas -->
+
+Las dos cifras sin respaldo de `qwen3:4b-instruct` están en el turno 9.2 (consulta 1414). Una es un falso positivo del
+detector: el «1» de la cita «[Fuente 1]». La otra, «18 indicadores», no está en los datos que recibió el modelo. La
+investigadora calificó ese turno con 0.
+<!-- fuente: tt_rag.rag_log 1414 (contexto_usado y salida); evidencias/modelos_2026-11-02/qwen3_4b-instruct.json, turno 9.2 -->
+
+**Cómo se mide la confiabilidad del juez.** Las métricas tipo RAGAS evalúan las respuestas; para saber si se puede
+confiar en el juez que las calcula, se compara con la calificación humana y con los indicadores sin modelo, usando dos
+estadísticos clásicos que hoy se usan para validar evaluadores automáticos:
+- **Kappa de Cohen** (Cohen, 1960): acuerdo entre dos evaluadores que clasifican en categorías, descontado el acuerdo
+  esperable por azar. Va de −1 a 1; 0 equivale al azar. Se calcula sobre «el juez aprueba» (promedio de sus tres
+  métricas ≥ 0.7) contra «la investigadora calificó Bien», y sobre «fidelidad ≥ 0.8» contra «todas las cifras tienen
+  respaldo». El umbral de 0.41 corresponde al acuerdo «moderado» de la escala de Landis y Koch (1977).
+- **Correlación de Spearman** (Spearman, 1904): si los dos ordenan las respuestas igual aunque usen escalas distintas
+  (el juez de 0 a 1 y la investigadora 0, 1 o 2). El umbral fijado fue 0.5.
+
+La correlación de rangos con el juicio humano es la forma habitual de reportar un evaluador automático; G-Eval (Liu et
+al., 2023), por ejemplo, reporta Spearman contra calificaciones humanas. Thakur et al. (2025) advierten que el
+porcentaje de acuerdo solo puede engañar: jueces con mucho acuerdo pueden dar puntajes muy distintos. Por eso
+recomiendan medidas corregidas por azar junto con un análisis cualitativo. Ellos usan la π de Scott, porque la kappa de
+Cohen tiene problemas teóricos documentados; las dos coinciden cuando los evaluadores reparten sus calificaciones de
+forma parecida. En esta tesis se usa la kappa de Cohen, junto con Spearman y la revisión turno por turno.
+
+Referencias:
+- Cohen, J. (1960). A coefficient of agreement for nominal scales. *Educational and Psychological Measurement*,
+  20(1), 37–46. https://doi.org/10.1177/001316446002000104
+- Landis, J. R. y Koch, G. G. (1977). The measurement of observer agreement for categorical data. *Biometrics*, 33(1),
+  159–174. https://doi.org/10.2307/2529310
+- Spearman, C. (1904). The proof and measurement of association between two things. *The American Journal of
+  Psychology*, 15(1), 72–101. https://doi.org/10.2307/1412159
+- Liu, Y., Iter, D., Xu, Y., Wang, S., Xu, R. y Zhu, C. (2023). G-Eval: NLG evaluation using GPT-4 with better human
+  alignment. En *Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing*
+  (pp. 2511–2522). https://doi.org/10.18653/v1/2023.emnlp-main.153
+- Thakur, A. S., Choudhary, K., Ramayapally, V. S., Vaidyanathan, S. y Hupkes, D. (2025). Judging the judges:
+  Evaluating alignment and vulnerabilities in LLMs-as-judges. En *Proceedings of the Fourth Workshop on Generation,
+  Evaluation and Metrics (GEM²)* (pp. 404–430). Association for Computational Linguistics. arXiv:2406.12624.
+<!-- fuente: Crossref (api.crossref.org) para Cohen, Landis y Koch, y Spearman; https://aclanthology.org/2023.emnlp-main.153/; https://arxiv.org/abs/2406.12624 y su versión HTML v6 (nota 2 y apéndice B); consultadas el 6 nov 2026. Fórmulas: scripts/modelos/comun.py (kappa, spearman) y reporte.py (cruce, APROBADO = 0.7) -->
+
+**Tabla P.22.** Confiabilidad de cada juez (78 respuestas por juez, todas con calificación humana).
+
+| Juez | Fidelidad vs cifras con respaldo (kappa / π) | Aprobado vs «Bien» humano (kappa / π) | Spearman promedio vs humana | Spearman relevancia vs humana | Precisión del contexto alta con contexto insuficiente |
+|---|---|---|---|---|---|
+| `gemma3:4b` | 0.159 / 0.075 (n=37) | 0.143 / 0.088 | 0.203 | 0.326 | 22 de 36 |
+| `llama3.2:3b` | 0.043 / −0.279 (n=38) | 0.121 / 0.099 | 0.136 | 0.317 | 22 de 36 |
+| `qwen2.5:3b` | 0.023 / −0.449 (n=39) | 0.108 / 0.090 | 0.266 | 0.281 | 11 de 36 |
+| **`qwen3:4b-instruct`** | 0.033 / −0.357 (n=37) | **0.226 / 0.218** | **0.331** | **0.446** | 20 de 36 |
+
+La π de Scott se agregó el 6 nov regenerando el reporte con las mismas corridas; las kappas salieron idénticas. En
+«juez aprobado vs Bien» las dos medidas casi coinciden. En «fidelidad vs cifras con respaldo» la π es mucho menor, y
+negativa en tres jueces: el juez y el detector de cifras reparten sus «sí» y «no» en proporciones muy distintas, y
+la π castiga esa diferencia, que la kappa absorbe. Las dos llevan a la misma conclusión: ningún juez alcanza el acuerdo moderado.
+
+<!-- fuente: evidencias/modelos_2026-11-02/resumen.md, sección 4; π de Scott: storage/evaluacion_modelos/2026-11-02_con_pi/resumen.md (reporte.py con --corrida llama3.2:3b=1328-1365 qwen2.5:3b=1366-1395 qwen3:4b-instruct=1397-1429 gemma3:4b=1430-1461, 6 nov) -->
+
+**Decisión (2 nov).**
+- **Redactor: `gemma3:4b`.** El primer criterio era no inventar IDs ni cifras; lo cumplen `llama3.2:3b`, `qwen2.5:3b`
+  y `gemma3:4b`. Entre ellos, `gemma3:4b` tiene la mayor proporción de respuestas «Bien» (43 %) y la menor cantidad de
+  plantillas indebidas (2).
+  - En contra: es el más lento (18.3 s de mediana, porque no cabe completo en la GPU de 4 GiB) y su exactitud de cifras
+    es baja (37 %).
+  - `qwen3:4b-instruct` queda en segundo lugar: es el mejor en respuestas «Bien» (46 %) y en exactitud de cifras (78 %),
+    pero escribió una cifra sin respaldo.
+- **Juez: `qwen3:4b-instruct`, como medida aproximada.** Ningún juez alcanzó el umbral fijado (kappa ≥ 0.41 y
+  Spearman ≥ 0.5). `qwen3:4b-instruct` es el que más se parece a la calificación humana, y no es el redactor.
+  - `gemma3:4b` y `llama3.2:3b` no distinguen el contexto suficiente del insuficiente: dan precisión del contexto
+    alta en los 36 turnos de dato.
+  - Por eso, la evidencia principal sobre la calidad de las respuestas son los indicadores del sistema y la
+    calificación humana; las métricas del juez se reportan como aproximadas.
+
+**Fallas que apuntan al código.** Ocho turnos fallan con los cuatro redactores: 4.1, 5.1, 6.2, 9.1, 9.2, 10.2, 10.4 y
+12.2. La intención correcta va de 54 % a 71 % según el modelo, así que parte del problema está en la interpretación de
+la pregunta y no en la redacción. Se revisan en la fase de corrección.
+<!-- fuente: evidencias/modelos_2026-11-02/resumen.md, sección 5 -->
+
+[PENDIENTE: corrida corta del instrumento 127 con `gemma3:4b` después de cambiar el ejemplo del catálogo de la
+interpretación.]
+
 ---
 
 ## Y.6 Duración del procesamiento
@@ -1562,6 +1789,15 @@ Cada respuesta del chat muestra además «Respondió en … s» (Desarrollo X.7.
   del gateway a 600 s.
 - Los instrumentos ya publicados se procesaron antes del registro de tiempos y no tienen tiempos por paso.
 <!-- fuente: GET /visualizacion/catalogo/59/tiempos (25 oct); evidencias/banco_2026-10-24/evaluacion_llama3.2_3b_2122.json (latencias); registro 24 oct (aprobación de 109) -->
+
+- **Latencia del chat con `gemma3:4b` (7 nov, versión congelada).** En las primeras 11 consultas de la prueba nueva
+  de la investigadora (2271–2281), cada respuesta tardó de 44 a 479 s: la interpretación, de 35 a 137 s, y la
+  redacción, de 53 a 196 s, más el reintento cuando la verificación rechaza la primera redacción. La causa es el
+  equipo: `gemma3:4b` no cabe en la GPU de 4 GiB y corre 43 % en la CPU, y cada pregunta hace dos o tres llamadas al
+  modelo. En la consulta 2281 el sistema operativo detuvo el proceso del modelo por falta de memoria (Ollama marcado
+  `OOMKilled`, memoria de intercambio de Docker al 97 %) y el chat mostró el aviso «No se pudo contactar al modelo
+  local». Esa respuesta es una falla de infraestructura, no del sistema.
+<!-- fuente: tt_rag.rag_log 2271–2281 (latencia_ms, tiempos); ollama ps (43%/57% CPU/GPU); docker inspect indagata_ollama (OOMKilled=true); docker compose logs ollama (completion error EOF, 18:10 UTC, 7 nov); free -m en el contenedor -->
 
 ### Y.6.3 Pruebas de la investigadora
 
@@ -1611,20 +1847,20 @@ más beneficiados.
 | P.5 | «KPIs sugeridos» con puntaje, evidencia y justificación editable | Y.3.6 |
 | P.6 | Chat: respuesta estructurada (13.3 %), rechazo y privacidad | Y.4 |
 | P.7 | Tarjeta de dimensiones sugeridas en la limpieza (grupos con sus ítems y α) | Y.3.5 |
-| P.8 | Panel «Análisis de las respuestas» con la respuesta de la beca deportiva | Y.4.8 |
+| P.8 | Panel «Análisis de las respuestas» con la respuesta de la beca deportiva | Y.4.9 |
 | P.9 | Tabla resumen de la matriz de encuestas (`encuestas.md`) | Y.3.4 |
 
 ## Lista de [PENDIENTE] de este capítulo
 
 1. enc_01: confirmar si son 20 o 21 preguntas (Y.1.3).
-2. Copiar a `evidencias/` los scripts de navegador y sus capturas, o repetirlas (Y.4.11).
+2. Copiar a `evidencias/` los scripts de navegador y sus capturas, o repetirlas (Y.4.2).
 3. Recorrer en el navegador la tarjeta de dimensiones sugeridas y el panel de análisis de respuestas, y
    tomar las capturas P.7 y P.8 (Y.7).
 4. Repetir la anotación independiente con una entrevista real, si se cuenta con una con consentimiento
-   (Y.4.9).
-5. Ver en el navegador el panel «Fidelidad 100 % por construcción» y tomar su captura (Y.4.7).
+   (Y.4.10).
+5. Ver en el navegador el panel «Fidelidad 100 % por construcción» y tomar su captura (Y.4.8).
 6. Correr la regresión completa (matrices de formatos y preguntas de referencia) después de los cambios del
    22–24 oct (Y.7).
 7. Corrida corta del 127 con `gemma3:4b` tras cambiar el ejemplo del catálogo (Y.5.2).
 8. Corregir las fallas de código de la Fase 6 y repetir las corridas de la prueba 130 y la entrevista 129
-   (Y.5.2, instrumentos nuevos).
+   (Y.4.13).

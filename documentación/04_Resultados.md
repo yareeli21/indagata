@@ -15,8 +15,10 @@ NOTA DE TRABAJO (no incluir en el reporte)
 
 ## Z.1 Introducción y resultados por objetivo
 
-Este capítulo presenta lo que produce la versión final del sistema (commit `29598b0`, más los cambios
-de la rama `extensiones-semantica` del 20 al 22 oct) en cinco áreas:
+Este capítulo presenta lo que produce el sistema en cinco áreas. Las cifras de cada sección dicen con qué versión
+se midieron: la limpieza, los KPIs y los formatos, con la versión del 18 al 22 oct; la limpieza con errores reales,
+con la del 7 nov. [PENDIENTE: los resultados del chat (Z.4) se actualizan con la versión congelada del 7 nov cuando
+termine la prueba de la investigadora.] Las cinco áreas son:
 - la limpieza y estandarización;
 - la asociación de KPIs;
 - el RAG con sus métricas;
@@ -157,6 +159,16 @@ de la corrección, la proporción 76 % / 24 % es la esperada en una entrevista e
 entrevistador solo formula las preguntas. Todas las personas respondieron las 12 preguntas; las
 respuestas más breves corresponden a la pregunta 7 (38.4 palabras en promedio).
 <!-- fuente: registro 16 oct (diagnóstico y corrección de entrevistas) -->
+
+**Errores reales, medidos con verdad conocida.** La limpieza detecta y corrige los errores que contempla:
+- 47 de 47 en una encuesta y una prueba con errores inyectados (24 oct);
+- 89 de 89 en una entrevista de 30 participantes (7 nov), sin perder ni alterar ninguna palabra.
+
+Con ruido que al principio no contemplaba, pasó de 3 a 59 de 80 errores resueltos después de las reglas del 5 nov.
+De los que siguen sin resolverse, una parte se deja así a propósito: en las entrevistas, corregirlos cambiaría las
+palabras del participante. La otra parte se reporta como limitación (Z.7). El catálogo por tipo de instrumento está
+en Desarrollo X.7.2 y las mediciones en Pruebas Y.2.3.
+<!-- fuente: evidencias/limpieza_2026-10-24/RESULTADO.md; evidencias/limpieza_2026-11-07/ent_02_resultado.json y no_contemplado_hoy.json -->
 
 ### Z.2.4 Sugerencias de análisis
 
@@ -400,7 +412,7 @@ correo).
 
 Esta sección presenta qué tan bien procesa el sistema los formatos en que llegarían los instrumentos
 reales (X.5) y qué tan bien separa, en una entrevista, lo que responde la pregunta de lo que es relato o
-digresión (X.7.8). El procedimiento de prueba está en Y.3.3, Y.3.4 y Y.4.8. Todos los datos son sintéticos, escritos con la
+digresión (X.7.8). El procedimiento de prueba está en Y.3.3, Y.3.4 y Y.4.9. Todos los datos son sintéticos, escritos con la
 forma de los exportes reales.
 <!-- fuente: evidencias/formatos_2026-10-21/RESULTADO.md -->
 
@@ -500,7 +512,7 @@ con la frase de cada persona.
 ### Z.5.4 Acuerdo con la anotación independiente de la investigadora
 
 Para que la medición no dependiera de quien construyó el sistema, la investigadora anotó las 32
-respuestas (dos temas) sin ver la anotación del autor ni el análisis del sistema (Y.4.9).
+respuestas (dos temas) sin ver la anotación del autor ni el análisis del sistema (Y.4.10).
 
 **Tabla R.16.** Acuerdo de la postura (sí, no, ambivalente) entre los tres anotadores.
 <!-- fuente: tools/formatos/anotacion/comparar.py --estudiantes 107 --docentes 108; evidencias/formatos_2026-10-21/RESULTADO.md -->
@@ -572,11 +584,13 @@ RAG) y en la versión final.
 1. **Datos sintéticos.** Todas las respuestas son sintéticas; enc_01 conserva las preguntas de un
    instrumento publicado, pero no sus respuestas. Las cifras de α o de línea recta describen el
    generador, no a estudiantes. El acervo tampoco contiene duplicados, vacíos ni «No sé»; esas reglas
-   se probaron con archivos pequeños.
+   se probaron con errores inyectados sobre copias de los instrumentos (Pruebas Y.2.3).
 2. **Juez pequeño.** Las métricas de la Tabla R.11 las calculó el mismo modelo de 3B que genera; desde
    el 23 oct el juez es `qwen2.5:3b`, también de 3B. Fidelidad y recall son aproximados: incluso RAGAS
    calificó como parcialmente infiel una respuesta exacta, y ningún juez probado detectó el cambio de una
-   opción por otra. Falta validar el juez contra una anotación humana.
+   opción por otra. Al compararlos con la calificación de la investigadora (Pruebas Y.5.2), ningún juez alcanzó
+   el acuerdo moderado (kappa ≥ 0.41 y Spearman ≥ 0.5). Por eso la calificación humana es la medida principal y el
+   juez, una referencia aproximada.
 3. **Conjunto de evaluación pequeño.** 20 preguntas de referencia y 15 casos de verificación, escritos
    por el mismo equipo que construyó el sistema.
 4. **Catálogo institucional de KPIs.** Los 55 KPIs son indicadores institucionales; la separación
@@ -591,12 +605,31 @@ RAG) y en la versión final.
 8. **Anonimización parcial del texto libre.** Las columnas personales se excluyen y los nombres de los
    hablantes se reemplazan, pero otros nombres mencionados dentro de una respuesta abierta pueden
    permanecer.
-9. **Un solo equipo.** Las latencias (0.1–10 s) se midieron en un equipo con GPU de 4 GiB y
-   memoria limitada; no se probó carga concurrente.
+9. **Un solo equipo.** Todo se midió en un equipo con GPU de 4 GiB y memoria limitada, y no se probó carga
+   concurrente. Con `llama3.2:3b` las respuestas tardaban de 2 a 18 s; con `gemma3:4b`, que no cabe completo en la
+   GPU, de 44 s a 8 minutos, y el modelo se detuvo una vez por falta de memoria (Pruebas Y.6.2).
 10. **Matriz de formatos sintética.** Los 20 formatos se escribieron con la forma de los exportes reales,
     pero a partir de datos sintéticos; no se probó un exporte real de Qualtrics o LimeSurvey.
 11. **Acuerdo de posturas con pocas respuestas.** 32 respuestas de dos entrevistas sintéticas y dos
     anotadores humanos. Falta repetirlo con una entrevista real.
+12. **Errores que la limpieza no resuelve.**
+    - Encuestas: los sinónimos de una opción («Jamás» por «Nunca») y los casi duplicados.
+    - Pruebas: el número en lugar de la letra («1» por «A») y la copia de un alumno con un ID totalmente distinto.
+    - Entrevistas: los errores del reconocimiento de voz y los arranques en falso. No se corrigen a propósito.
+
+    Los errores medidos son los que se eligieron para las pruebas; un instrumento real puede traer otros
+    (Desarrollo X.7.2).
+13. **Alcance del modelo pequeño y reglas de corrección.** El chat entiende y redacta con un modelo de 4B; contar,
+    seguir el hilo de la conversación y respetar las opciones exactas lo hace el sistema, con una capa de reglas
+    generales que corrige el plan del modelo (Desarrollo X.9.6). Esas reglas forman una lista que crece: una forma de
+    preguntar que nunca se ha visto puede fallar hasta que se detecte. La verificación detecta cifras falsas, porcentajes
+    atribuidos a otra opción, opciones omitidas y lenguaje de calificación, pero no toda afirmación falsa: una frase sin
+    cifras que contradice el resultado puede pasar.
+14. **Evaluación final con las baterías.** Las baterías orientaron qué capacidades se construyeron, la calificación
+    contra el «Debe» la hizo el mismo asistente que programó los cambios y cada caso se preguntó una sola vez (Pruebas
+    Y.4.14). El set de control, con instrumentos ajenos al diseño, es la medida de generalización.
+15. **Operaciones que no se implementaron:** comparar conjuntos de reactivos agrupados por tema y agrupar las
+    preguntas de una guía de entrevista en temas.
 
 ---
 
@@ -615,6 +648,12 @@ RAG) y en la versión final.
 - Anotar una entrevista real (con consentimiento) para medir el acuerdo del análisis de posturas fuera de
   los datos sintéticos.
 - Aceptar entrevistas en Excel (una fila por pregunta y respuesta) y transcribir audio dentro del flujo.
+- **Depender menos de las reglas del chat.** Dos caminos: un modelo más grande (8B o más) cuando haya una GPU con más
+  memoria, o ajustar el modelo (*fine-tuning*) con los registros de `rag_log`, que guardan por cada consulta la
+  pregunta, el catálogo que vio el modelo, el plan que escribió, el plan corregido y la calificación humana. Filtrados
+  por las consultas calificadas como buenas, son pares *pregunta + catálogo → plan correcto* para entrenar al modelo a
+  escribir bien el plan desde el principio.
+- Implementar las comparaciones de conjuntos de reactivos por tema y la agrupación de la guía de una entrevista en temas.
 
 ---
 
