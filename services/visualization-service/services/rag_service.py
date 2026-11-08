@@ -1488,7 +1488,7 @@ _PORCENTAJE = re.compile(r"(\d+(?:[.,]\d+)?)\s*%")
 _CELDA = re.compile(r"«([^»]+)»\s+\d+\s+\((\d+(?:\.\d+)?) %\)")
 _FILA_PCT = re.compile(r"^\|\s*([^|]+?)\s*\|\s*\d+\s*\|\s*(\d+(?:\.\d+)?) %\s*\|", re.MULTILINE)
 _PRIMER_LUGAR = re.compile(r"^\|\s*1\s*\|\s*([pr]\d{2,3})\s*\|", re.MULTILINE)
-_ID_PREGUNTA = re.compile(r"\b([pr]\d{2,3})\b")
+_ID_EN_RANKING = re.compile(r"\b([pr]\d{2,3})\b")
 
 
 def _raices_etiqueta(etiqueta: str) -> set[str]:
@@ -1545,7 +1545,7 @@ def ranking_desordenado(respuesta: str, anexo: str) -> bool:
     """¿La redacción presenta primero una pregunta que no es el primer lugar del ranking calculado? (8 nov, Fase 5,
     CEN-04: la tabla ponía p09 y la redacción decía «la primera es la p10»)."""
     primero = _PRIMER_LUGAR.search(anexo or "")
-    ids = _ID_PREGUNTA.findall(respuesta)
+    ids = _ID_EN_RANKING.findall(respuesta)
     return bool(primero and ids and ids[0] != primero.group(1))
 
 

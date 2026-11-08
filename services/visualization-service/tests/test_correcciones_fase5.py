@@ -139,3 +139,9 @@ def test_la_comprobacion_de_pruebas_reconoce_el_tipo_de_la_tarjeta():
                                                        investigador="", kpis=[], fragmento="")])
     assert rag_service._es_prueba(plan_con("Prueba estandarizada"))
     assert not rag_service._es_prueba(plan_con("Encuesta"))
+
+
+def test_ranking_desordenado_reconoce_reactivos():
+    anexo = "| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice 1.00 |\n| 2 | r12 | índice 0.99 |"
+    assert rag_service.ranking_desordenado("La primera es el reactivo r12.", anexo)
+    assert not rag_service.ranking_desordenado("La primera es el reactivo r17.", anexo)
