@@ -24,7 +24,8 @@ con la del 7 nov; el chat, con la versión final del 8 nov (Z.4.5). Las cinco á
 - la robustez ante los formatos de instrumentos reales, con el análisis de respuestas de entrevista;
 - la comparación con el estado inicial. Todos los instrumentos tienen **respuestas sintéticas**; enc_01
 conserva las preguntas de un cuestionario publicado. Por eso los resultados muestran que el sistema
-funciona, pero no permiten conclusiones sobre estudiantes.
+funciona, pero no permiten conclusiones sobre estudiantes. Cada instrumento se nombra por su número en el sistema;
+su archivo y las pruebas en que se usó están en el Anexo A.
 
 **Tabla R.1.** Resultados por objetivo.
 
@@ -407,9 +408,10 @@ correo).
 
 ### Z.4.5 Evaluación final con las preguntas de la investigadora
 
-Para cerrar el alcance, la investigadora escribió 79 casos sobre sus instrumentos de prueba (una encuesta de 2000
-respondentes, una prueba de 97 alumnos y una entrevista), cada uno con lo que la respuesta debe contener, y se armó un
-set de control con tres instrumentos sintéticos que no se usaron para diseñar los cambios (Pruebas Y.4.14). La Tabla
+Para cerrar el alcance, la investigadora escribió 79 casos sobre sus instrumentos de prueba (la encuesta 127, de 2000
+respondentes; la prueba 130, de 97 alumnos; y la entrevista 129), cada uno con lo que la respuesta debe contener, y se
+armó un set de control con tres instrumentos sintéticos que no se usaron para diseñar los cambios (61, 60 y 133;
+Pruebas Y.4.14). Los archivos de cada instrumento están en el Anexo A. La Tabla
 R.11a resume el resultado.
 
 **Tabla R.11a.** Casos que cumplen lo que la respuesta debe contener.

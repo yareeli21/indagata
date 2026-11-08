@@ -77,6 +77,10 @@ fecha y la Tabla D.20a dice qué datos se usaron en cada prueba. En resumen:
     y ent_02.
 - **Encuesta de la investigadora:** una encuesta simulada de 2000 respondentes con su formulario de Google Forms
   (instrumento 127).
+- **Prueba de control de la evaluación final:** pru_06 (método A), cargada el 8 nov como instrumento 133.
+
+El Anexo A dice dónde está el archivo de cada instrumento, su original y su documento final, y en qué pruebas se
+usó.
 <!-- fuente: storage/instrumentos_sinteticos/*/*_metadata.json; tools/data_synthesis/generar_enc_10_turno.py; tools/formatos/generar_corpus.py, corpus_entrevistas.py, corpus_docentes.py; tools/limpieza/*.py; evidencias/datos_sinteticos_2026-10-22/procesar_enc_11.log -->
 
 [PENDIENTE: el avance dice que enc_01 tiene 20 preguntas; sus metadatos registran 21 ítems.
@@ -124,6 +128,7 @@ sesiones.
 | 2 nov | 130 | `storage/instrumentos_sinteticos/pruebas/pru_03_sucio_no_contemplado.csv` | Prueba nueva con errores no contemplados; chat con un instrumento no visto | Y.4.13 |
 | 4 nov | 131 | `…/entrevistas/ent_11_salud_mental_ruido_no_contemplado.txt` | La misma entrevista con ruido no contemplado | Y.4.13 |
 | 4 nov | 132 | `…/entrevistas/ent_11_salud_mental_ruido.txt` | Segunda carga de la 129; se quedó en «limpio». No se reporta | — |
+| 8 nov | 133 | `storage/instrumentos_sinteticos/pruebas/pru_06_respondido.csv` | Prueba de control de la evaluación final del chat, ajena al diseño | Y.4.14 |
 <!-- fuente: evidencias/pruebas_2026-10-22/inventario_instrumentos.txt (consulta a tt_rag.raw_data, instrumento_procesado, limpieza_ejecucion, version_conocimiento, respuesta_interpretada y kpi_inferido, 22 oct); registro 15–22 oct; RESULTADO.md de evidencias/encuesta_sin_secciones_2026-10-20 y evidencias/formatos_2026-10-21 -->
 
 **Usados solo fuera del sistema** (cálculos sobre el CSV):
@@ -147,7 +152,8 @@ base 59, 60, 61, 109 y 127**, los instrumentos del conjunto de regresión del ch
 estandarizada. El 2 y el 4 nov se agregaron 129 a 132 (Tabla P.1b).
 <!-- fuente: DELETE /instrumentos/{id} de 2–20 y 22 (28 oct, 200 en los 20); consulta a tt_rag.raw_data (28 oct: 59, 60, 61, 109, 127) -->
 
-**Tabla P.1b.** Instrumentos en la base al 7 nov.
+**Tabla P.1b.** Instrumentos en la base al 8 nov. Título, original, documento final vigente y pruebas de cada uno:
+Anexo A.
 
 | id | Archivo | Tipo | Respondentes |
 |---|---|---|---|
@@ -160,6 +166,7 @@ estandarizada. El 2 y el 4 nov se agregaron 129 a 132 (Tabla P.1b).
 | 130 | `pru_03_sucio_no_contemplado.csv` | Prueba estandarizada | 97 |
 | 131 | `ent_11_salud_mental_ruido_no_contemplado.txt` | Entrevista | 1 |
 | 132 | `ent_11_salud_mental_ruido.txt` | Entrevista (sin publicar, en «limpio») | 1 |
+| 133 | `pru_06_respondido.csv` (cargada el 8 nov) | Prueba estandarizada | 80 |
 <!-- fuente: documentos finales vigentes de 59, 60, 61, 109 y 127 (storage/json/<id>/…documento_final.json); consulta a tt_rag.raw_data e instrumento_procesado (7 nov) -->
 
 
@@ -1490,13 +1497,13 @@ respuesta **debe** contener.
 
 **Tabla Y.4.14a.** Baterías y set de control.
 
-| Conjunto | Instrumento | Casos | Qué cubre |
+| Conjunto | Instrumento (Anexo A) | Casos | Qué cubre |
 |---|---|---|---|
-| Encuesta | 2000 respondentes, 18 preguntas | 25 | Conteos, negaciones, escalas, comparaciones por otra pregunta y por posición, hilo, «lo más preocupante», KPIs, opcionales, lo que no existe, privacidad, manipulación |
-| Prueba | 97 alumnos, 22 reactivos en 3 secciones | 25 | Distribuciones, respuestas en blanco por reactivo y por sección, cruces, «más repartidas», una persona, lo que no existe, sin calificar |
-| Entrevista | 1 participante, guía de 12 preguntas | 25 | Participación por hablante, cobertura de la guía, menciones, comparaciones entre temas, hilo, diagnósticos, ficha |
-| Cortesía | La encuesta | 4 | Saludo, «¿qué puedes hacer?», gracias, consejo personal |
-| **Control** | Encuesta sintética (160 respondentes), entrevista sintética (40 participantes) y, en la corrida final, prueba sintética (80 alumnos) | 8 + 8 + 8 | Los mismos tipos de pregunta; ninguno de estos instrumentos se usó para diseñar los cambios |
+| Encuesta | 127: 2000 respondentes, 18 preguntas | 25 | Conteos, negaciones, escalas, comparaciones por otra pregunta y por posición, hilo, «lo más preocupante», KPIs, opcionales, lo que no existe, privacidad, manipulación |
+| Prueba | 130: 97 alumnos, 22 reactivos en 3 secciones | 25 | Distribuciones, respuestas en blanco por reactivo y por sección, cruces, «más repartidas», una persona, lo que no existe, sin calificar |
+| Entrevista | 129: 1 participante, guía de 12 preguntas | 25 | Participación por hablante, cobertura de la guía, menciones, comparaciones entre temas, hilo, diagnósticos, ficha |
+| Cortesía | 127 | 4 | Saludo, «¿qué puedes hacer?», gracias, consejo personal |
+| **Control** | 61: encuesta sintética (160 respondentes); 60: entrevista sintética (40 participantes); 133, solo en la corrida final: prueba sintética (80 alumnos) | 8 + 8 + 8 | Los mismos tipos de pregunta; ninguno de estos instrumentos se usó para diseñar los cambios |
 
 **Procedimiento.**
 - **Línea base:** las consultas que la investigadora hizo a mano sobre la versión congelada del 7 nov (2271–2371),

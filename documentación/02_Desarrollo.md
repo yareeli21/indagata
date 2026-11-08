@@ -43,7 +43,8 @@ secciones y figuras del capítulo de Diseño; ese capítulo no se revisó en est
 
 **Naturaleza de los datos.** Todos los instrumentos con respuestas que se usaron durante el
 desarrollo son **sintéticos** (sección X.6). Por ello, las cifras de este capítulo sirven para
-mostrar que el sistema funciona; no permiten conclusiones sobre estudiantes reales.
+mostrar que el sistema funciona; no permiten conclusiones sobre estudiantes reales. Cada instrumento se nombra por
+su número en el sistema («la encuesta 127»); su archivo, su original y las pruebas en que se usó están en el Anexo A.
 
 ---
 
@@ -1231,7 +1232,8 @@ Cada familia se describe igual: qué se quería probar, cómo se construyó, qu�
 
 ### X.6.4 Qué datos se usaron en cada prueba
 
-**Tabla D.20a.** Datos usados en cada prueba, en el orden del capítulo de Pruebas.
+**Tabla D.20a.** Datos usados en cada prueba, en el orden del capítulo de Pruebas. El archivo, el original y el
+documento final de cada instrumento, y todas las pruebas en que se usó, están en el Anexo A.
 
 | Prueba | Datos | Por qué esos | Dónde se reporta |
 |---|---|---|---|
@@ -1242,6 +1244,7 @@ Cada familia se describe igual: qué se quería probar, cómo se construyó, qu�
 | Chat: preguntas de referencia y regresión | A (enc_04, pru_01, ent_01, enc_09, enc_11) + B1 (enc_10_turno) + encuesta de 2000 de la investigadora (127) | B1 aporta las preguntas por grupo con cifra esperada | Y.4.7, Y.4.11, Y.4.12 |
 | Análisis de respuestas de entrevista | B3 (estudiantes y docentes) | Trae la clave de respuestas | Y.4.9, Y.4.10 |
 | Comparación de modelos y chat con instrumentos nuevos | 127; B5: pru_03 (130) y ent_11 (129 y 131) | 127 se usó durante el desarrollo; 129–131 el chat no los había visto | Y.4.13, Y.5.2 |
+| Evaluación final del chat (baterías de la investigadora) | 127, 130 y 129; control: enc_09 (61), ent_01 (60) y pru_06 (133) | Las baterías las escribió la investigadora sobre sus instrumentos; el control no se usó para diseñar | Y.4.14 |
 | Reglas de limpieza, una por una | B4 | Un caso por regla | X.12 |
 
 ---
@@ -2699,9 +2702,9 @@ prueba, para que el ejemplo no oriente las respuestas.
 
 **Por qué.** Para cerrar el alcance, la investigadora escribió tres baterías de 25 preguntas, más 4 de cortesía, sobre
 sus instrumentos de prueba: una encuesta de 2000 respondentes, una prueba de 97 alumnos y una entrevista de una
-participante. Cada pregunta dice lo que la respuesta **debe** contener. Además se armó un **set de control** con
-instrumentos que no se usaron para diseñar ningún cambio: una encuesta y una entrevista sintéticas y, en la evaluación
-final, una prueba sintética. En la línea base el chat cumplió 31 de 79 casos y 1 de 16 de control. El diagnóstico
+participante (instrumentos 127, 130 y 129). Cada pregunta dice lo que la respuesta **debe** contener. Además se armó
+un **set de control** con instrumentos que no se usaron para diseñar ningún cambio: una encuesta y una entrevista
+sintéticas (61 y 60) y, en la evaluación final, una prueba sintética (133). Sus archivos están en el Anexo A. En la línea base el chat cumplió 31 de 79 casos y 1 de 16 de control. El diagnóstico
 encontró 17 causas, casi todas en el sistema y no en el modelo (Pruebas Y.4.14).
 
 **Regla de trabajo: cambios generalizados.** Ningún texto, ID u opción de los instrumentos de prueba en el código, ni
