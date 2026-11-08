@@ -2250,8 +2250,8 @@ si un instrumento no tiene documento, se usa el JSON técnico como respaldo.
   relacionado con su carrera?» se parece a «¿Cuál es tu situación laboral? Opciones: … Trabajo en un área
   relacionada…», no a «Respuestas válidas: 1966…». En los reactivos, la distribución lleva la letra, el texto de la
   opción y su n.
-- **La búsqueda deja fuera los chunks de personas** (respondentes, alumnos, participantes) **salvo que la consulta
-  nombre a alguien** (R017, A001, E02). En la encuesta de prueba eran unos 6,600 chunks que llenaban los primeros
+- **La búsqueda deja fuera los chunks de respondentes y alumnos salvo que la consulta nombre a alguien** (R017,
+  A001). Los intercambios de entrevista sí entran: son el contenido que se busca. En la encuesta de prueba eran unos 6,600 chunks que llenaban los primeros
   lugares de cualquier búsqueda; lo de cada persona lo calcula la ruta estructurada (`_donde()` en
   `visualization-service/services/rag_service.py`).
 - **La ficha** incluye las indicaciones del entrevistador, el encabezado de la transcripción, los participantes, las
@@ -2734,8 +2734,8 @@ final:
   incorrectas».
 
 Desde la evaluación final, `rag_log` guarda el plan tal como lo escribió el modelo, lo que permite medir esto: el plan
-del modelo se usó sin cambios en [PENDIENTE: corrida final] de las consultas; en las demás lo corrigieron la
-validación, las reglas o el hilo de la conversación.
+del modelo se usó sin cambios en 18 de 77 turnos de las baterías (23 %) y en 3 de 23 del set de control (13 %); en
+los demás lo corrigieron la validación, las reglas o el hilo de la conversación (Pruebas Y.4.14).
 
 #### Qué es el plan y por qué no es una lista de casos
 
@@ -2811,13 +2811,16 @@ fragmento correcto queda entre los 3 primeros.
 
 **Tabla D.23k.** *Hit rate*@3 de la recuperación (modelo de *embeddings* del chat, sin umbrales).
 
-| Preguntas | Antes (7 nov) | Después de los cambios de chunks y del filtro de personas |
-|---|---|---|
-| Las tres baterías | 0.61 | 0.79 |
-| Encuesta | 0.25 | 0.69 |
-| Prueba | 0.82 | 0.91 |
-| Entrevista | 0.81 | 0.81 |
-| Set de control | 0.89 | 1.00 |
+| Preguntas | Antes (7 nov) | Chunks en *tokens* y filtro de personas (7 nov) | Versión final (8 nov) |
+|---|---|---|---|
+| Las tres baterías | 0.61 | 0.79 | 0.84 |
+| Encuesta | 0.25 | 0.69 | 0.69 |
+| Prueba | 0.82 | 0.91 | 0.91 |
+| Entrevista | 0.81 | 0.81 | 0.94 |
+| Set de control | 0.89 | 1.00 | 1.00 |
+
+La entrevista subió en la versión final porque la ficha incluye el encabezado de la transcripción y los intercambios
+llevan los temas del análisis de lo que se cuenta.
 
 Las preguntas sobre el instrumento («¿de qué trata?», «¿cuánto dura la entrevista?») no se resuelven por similitud,
 porque se parecen más a las preguntas que a la ficha: van directo a la ficha por su intención.

@@ -1428,8 +1428,9 @@ ningún fragmento contiene (contar o filtrar sobre todos los respondentes).
    sale de la base, con el texto recuperado como contexto.
 <!-- fuente: services/visualization-service/services/rag_service.py (_recuperar_primero, _pistas, _fichas, _apoyo_de_recuperados, _rag_responde_aclaracion, _FORMATO_REGLA; _VERSION_RESPUESTAS 28); interpretacion.py (TEXTO RECUPERADO DEL RAG); prompt.py (rol y regla 15); consulta_planificada.py (SIN_REDACCION vacío); tests (337 pruebas) -->
 
-[PENDIENTE: corrida de la versión 2 con `gemma3:4b` y `qwen3:4b-instruct`, porcentaje de respuestas con RAG,
-calificación de la investigadora, juez `qwen3:4b-instruct` y comparación sin RAG / versión 1 / versión 2]
+La medición con `gemma3:4b` sobre preguntas nuevas de la investigadora se hizo después, sobre la versión congelada
+del 7 nov y la versión final (Y.4.14). La comparación con `qwen3:4b-instruct` como redactor y como juez no se
+repitió.
 
 **Validez.** Los tres juegos de casos se usaron durante el desarrollo, así que miden regresión, no generalización. La
 medición honesta es el conjunto nuevo de preguntas de la investigadora, hecho después de congelar la versión 2.
@@ -1540,17 +1541,36 @@ corrida final; el control se compara sobre los mismos 16 casos.
 
 | Medida | Línea base | Corrida limpia | Corrida final |
 |---|---|---|---|
-| Baterías: cumplen el «Debe» (de 79) | 31 (16 parciales, 32 no) | 54 (16 parciales, 9 no) | [PENDIENTE] |
-| Control, encuesta y entrevista: cumplen (de 16) | 1 (4 parciales, 11 no) | 9 (5 parciales, 2 no) | [PENDIENTE] |
-| Control, prueba sintética: cumplen (de 8) | — | — | [PENDIENTE] |
-| Planes válidos | 83 de 97 (85.6 %) | 69 de 77 (89.6 %) | [PENDIENTE] |
-| Caídas a plantilla | 28 de 102 (27.5 %) | 31 de 102 (30.4 %) | [PENDIENTE] |
-| K-Precision, mediana | 0.85 (n = 74) | 0.86 (n = 63) | [PENDIENTE] |
-| Cifras con respaldo | 963 de 982 | 760 de 800 | [PENDIENTE] |
-| Tiempo por turno: mediana / p90 | 40 s / 188 s | 33 s / 64 s | [PENDIENTE] |
-| Plan del modelo sin cambios | — | — | [PENDIENTE] |
-| *Hit rate*@3 (baterías / control) | 0.61 / 0.89 | 0.79 / 1.00 | [PENDIENTE] |
+| Baterías: cumplen el «Debe» (de 79) | 31 (16 parciales, 32 no) | 54 (16 parciales, 9 no) | **63** (14 parciales, 2 no) |
+| — encuesta (de 25) | 12 | 19 | 21 |
+| — prueba (de 25) | 8 | 13 | 21 |
+| — entrevista (de 25) | 11 | 18 | 17 |
+| — cortesía (de 4) | 0 | 4 | 4 |
+| Control, encuesta y entrevista: cumplen (de 16) | 1 (4 parciales, 11 no) | 9 (5 parciales, 2 no) | **13** (3 parciales, 0 no) |
+| Control, prueba sintética: cumplen (de 8) | — | — | 6 (2 parciales, 0 no) |
+| Planes válidos | 83 de 97 (85.6 %) | 69 de 77 (89.6 %) | 71 de 77 (92.2 %) |
+| Plan del modelo usado sin cambios | — | — | 18 de 77 (23.4 %) |
+| Caídas a plantilla | 28 de 102 (27.5 %) | 31 de 102 (30.4 %) | 34 de 102 (33.3 %) |
+| K-Precision, mediana | 0.85 (n = 74) | 0.86 (n = 63) | 0.87 (n = 60) |
+| Cifras con respaldo | 963 de 982 | 760 de 800 | 815 de 856 |
+| Tiempo por turno: mediana / p90 | 40 s / 188 s | 33 s / 64 s | 35 s / 115 s |
+| *Hit rate*@3 (baterías / control) | 0.61 / 0.89 | 0.79 / 1.00 | 0.84 / 1.00 |
 <!-- fuente: evidencias/chat_2026-11-07_antes/resumen.md; chat_2026-11-07_control_antes/resumen.md; chat_2026-11-08_despues/ y chat_2026-11-08_despues_control/ (resumen.md, calificacion_debe.json); chat_2026-11-08_final/ y chat_2026-11-08_final_control/; chunks_2026-11-07/README.md -->
+
+**Lectura.**
+- **El chat pasó de cumplir 31 a 63 de los 79 casos.** Las mayores ganancias están en la prueba (de 8 a 21) y en la
+  encuesta (de 12 a 21), donde faltaban operaciones (comparar por otra pregunta, cruces, rankings con la medida
+  correcta) y el hilo de la conversación.
+- **El set de control pasó de 1 a 13 de 16**, sin ningún caso que no cumpla, y la prueba sintética, que nunca se usó
+  para diseñar, cumplió 6 de 8. Los cambios generalizan a instrumentos ajenos al diseño.
+- **El modelo pequeño necesita al sistema.** Su plan se usó sin cambios en 18 de 77 turnos (23 %); en los demás lo
+  corrigieron la validación, las reglas o el hilo. En el control fue 3 de 23 (13 %).
+- **Más plantillas no es peor.** Subieron de 28 a 34 porque la verificación descarta más redacciones (porcentajes mal
+  atribuidos, lenguaje de calificación) y muestra el resultado calculado, y porque varias respuestas correctas son
+  fijas (cortesía, operaciones de entrevista).
+- **La K-Precision casi no cambió** (0.85 a 0.87): las respuestas ya usaban las palabras del contexto. Confirma que
+  mide fidelidad y no si la respuesta es la que se pidió.
+- **El p90 del tiempo** (115 s) refleja los turnos en que Ollama corrió en parte sobre la CPU por falta de memoria.
 
 **Lo que reveló la corrida limpia** y se corrigió para la final (Desarrollo X.9.6), todo de forma general:
 - **una regresión:** «¿cuántos calificaron con 1 o 2…?» cayó a «sin información» porque el modelo escribió `"[1, 2]"` y
@@ -1563,15 +1583,39 @@ corrida final; el control se compara sobre los mismos 16 casos.
 - **afirmaciones falsas con cifras verdaderas:** un porcentaje atribuido a otra opción, un ranking redactado en otro
   orden.
 
+**Casos que se repitieron en la corrida final.** Al calificarla aparecieron cinco fallas más del código:
+- la comprobación de lenguaje de calificación nunca se activaba, porque comparaba el tipo de la fuente con «prueba» y
+  es «Prueba estandarizada»;
+- la del orden del ranking no reconocía reactivos, porque otra variable con el mismo nombre la reemplazaba;
+- un reactivo fuera de rango se respondía con otro;
+- un filtro por una opción del mismo reactivo que se resumía;
+- dos palabras de calificación que faltaban.
+
+Se corrigieron y se repitieron **solo los casos afectados**: los 25 de la prueba y los 8 de la prueba sintética, y
+después 4 de ellos. Las primeras respuestas se conservan en la evidencia (`README.md` de la carpeta final). Una última
+corrección (la frase «ninguna sección tiene respuestas en blanco») no se volvió a correr.
+
 **Generalización.**
 - **Búsqueda de textos:** ninguno de los 288 textos de pregunta y opción de los tres instrumentos influye en el código;
   la búsqueda encontró un ejemplo del prompt copiado de la encuesta, que se cambió antes de la corrida final
-  (Desarrollo X.9.6).
-- **Set de control:** [PENDIENTE: lectura del control en la corrida final].
-- **Pruebas automáticas:** 431 en visualization-service, 126 en knowledge-service, 38 en storage-service, 186 en
+  (Desarrollo X.9.6). La salida está en `evidencias/chat_2026-11-08_final/textos_instrumentos_en_codigo.txt`.
+- **Set de control:** de 1 a 13 de 16 casos de encuesta y entrevista, sin ninguno que no cumpla; 6 de 8 en la prueba
+  sintética.
+- **Pruebas automáticas:** 436 en visualization-service, 126 en knowledge-service, 38 en storage-service, 186 en
   cleaning-service, 29 en metadata-service y 21 en analysis-service, todas en verde (`evidencias/chat_2026-11-08_final/pytest/`).
 
-**Lo que sigue sin resolverse.** [PENDIENTE: lista de la corrida final]
+**Lo que sigue sin resolverse.**
+- **No implementado:** comparar conjuntos de reactivos agrupados por tema (PRU-11) y agrupar la guía de una entrevista
+  en temas (ENT-19).
+- **Una frase sin cifras que contradice el resultado** pasa la verificación: «el 34.6 % sobre el total» cuando es sobre
+  el grupo anterior (ENC-13), «57 cumplieron la condición r15» cuando los 57 son del otro reactivo (PRU-14), «no
+  mencionó haber buscado ayuda» cuando lo cuenta en otra respuesta (ENT-13).
+- **En entrevistas**, la redacción parafrasea cuando se pide la cita textual (ENT-04, ENT-08, ENT-14) y no siempre
+  aclara que se trata de un solo testimonio (ENT-15, ENT-17).
+- **La polaridad sin revisar** de la encuesta de control marca como desfavorables respuestas discutibles (CEN-05).
+- **Variación del modelo:** ENC-22 dijo que «nocturna» no existe en la corrida limpia y no en la final, porque esa
+  vez el modelo puso otro filtro.
+<!-- fuente: evidencias/chat_2026-11-08_final/ (README.md, resumen.md, calificacion_debe.json, recuperacion.json, pytest/, textos_instrumentos_en_codigo.txt); evidencias/chat_2026-11-08_final_control/; commits 9519768, 2e8862d, 73525c1, 51c96e5, d138f67, af2e458 -->
 
 **Amenazas a la validez.**
 - **Las baterías orientaron qué capacidades se construyeron.** Por eso el set de control es la medida de
@@ -1749,8 +1793,8 @@ la π castiga esa diferencia, que la kappa absorbe. Las dos llevan a la misma co
 la pregunta y no en la redacción. Se revisan en la fase de corrección.
 <!-- fuente: evidencias/modelos_2026-11-02/resumen.md, sección 5 -->
 
-[PENDIENTE: corrida corta del instrumento 127 con `gemma3:4b` después de cambiar el ejemplo del catálogo de la
-interpretación.]
+Después de cambiar el ejemplo del catálogo de la interpretación, el instrumento 127 se volvió a medir con
+`gemma3:4b` en la evaluación final (Y.4.14).
 
 ---
 

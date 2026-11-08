@@ -17,8 +17,7 @@ NOTA DE TRABAJO (no incluir en el reporte)
 
 Este capítulo presenta lo que produce el sistema en cinco áreas. Las cifras de cada sección dicen con qué versión
 se midieron: la limpieza, los KPIs y los formatos, con la versión del 18 al 22 oct; la limpieza con errores reales,
-con la del 7 nov. [PENDIENTE: los resultados del chat (Z.4) se actualizan con la versión congelada del 7 nov cuando
-termine la prueba de la investigadora.] Las cinco áreas son:
+con la del 7 nov; el chat, con la versión final del 8 nov (Z.4.5). Las cinco áreas son:
 - la limpieza y estandarización;
 - la asociación de KPIs;
 - el RAG con sus métricas;
@@ -34,7 +33,7 @@ funciona, pero no permiten conclusiones sobre estudiantes.
 | [PENDIENTE: texto del objetivo sobre carga y limpieza] | Los tres tipos de instrumento se limpian con decisiones del investigador; 7 instrumentos procesados con estadística antes y después | Tablas R.2–R.6 | Z.2 |
 | [PENDIENTE: objetivo sobre metadatos y estandarización] | Dublin Core y metadatos del tipo propuestos desde la limpieza; perfil y documento final validados con JSON Schema | Pruebas de `test_criterios.py` y `test_perfil.py` | Z.2.5 |
 | [PENDIENTE: objetivo sobre asociación de KPIs] | KPIs propuestos con puntaje, preguntas de evidencia y justificación editable | Tablas R.7–R.9 | Z.3 |
-| [PENDIENTE: objetivo sobre consulta en lenguaje natural (RAG)] | Decisión de dominio correcta en 20 de 20 preguntas de referencia; 14 de 15 respuestas correctas en la verificación de punta a punta | Tablas R.10–R.12 | Z.4 |
+| [PENDIENTE: objetivo sobre consulta en lenguaje natural (RAG)] | Decisión de dominio correcta en 20 de 20 preguntas de referencia; 14 de 15 respuestas correctas en la verificación de punta a punta; 63 de 79 casos de la investigadora cumplen (antes, 31) y 13 de 16 en instrumentos de control (antes, 1) | Tablas R.10–R.12 y R.11a | Z.4 |
 | [PENDIENTE: objetivo sobre visualización / espacio vectorial] | Mapa PCA de 55 KPIs y 26 instrumentos que conserva el 43.6 % de la varianza; vecinos por coseno en el espacio original | X.8.4 | — |
 | [PENDIENTE: objetivo sobre carga de instrumentos reales] | 10 formatos de encuesta aceptados con las mismas respuestas del chat y 3 rechazados con motivo (143/143); 7 formatos de entrevista (55/55); postura de las entrevistas con 87.5 % de acuerdo con la anotación independiente de la investigadora (κ = 0.80) | Tablas R.13–R.16 | Z.5 |
 | [PENDIENTE: objetivo sobre privacidad y control de acceso] | Detección de datos personales por palabra completa; 0 datos personales del archivo de ejemplo en el documento final; chat que rechaza la reidentificación sin usar el modelo | `test_criterios.py`; Tabla R.17 | Z.4.4 |
@@ -406,6 +405,36 @@ y una respondía con un mensaje engañoso («No tengo información…» ante una
 correo).
 <!-- fuente: registro 17 oct (auditoría); verificacion_20261017_2032.md caso 12 -->
 
+### Z.4.5 Evaluación final con las preguntas de la investigadora
+
+Para cerrar el alcance, la investigadora escribió 79 casos sobre sus instrumentos de prueba (una encuesta de 2000
+respondentes, una prueba de 97 alumnos y una entrevista), cada uno con lo que la respuesta debe contener, y se armó un
+set de control con tres instrumentos sintéticos que no se usaron para diseñar los cambios (Pruebas Y.4.14). La Tabla
+R.11a resume el resultado.
+
+**Tabla R.11a.** Casos que cumplen lo que la respuesta debe contener.
+
+| Conjunto | Antes (versión del 7 nov) | Después (versión final, 8 nov) |
+|---|---|---|
+| Encuesta (25) | 12 | 21 |
+| Prueba (25) | 8 | 21 |
+| Entrevista (25) | 11 | 17 |
+| Cortesía (4) | 0 | 4 |
+| **Total (79)** | **31** | **63** |
+| Control: encuesta y entrevista sintéticas (16) | 1 | 13, ninguno sin cumplir |
+| Control: prueba sintética (8) | — | 6, ninguno sin cumplir |
+<!-- fuente: evidencias/chat_2026-11-07_antes/, chat_2026-11-07_control_antes/, chat_2026-11-08_final/ y chat_2026-11-08_final_control/ (calificacion_debe.json, resumen.md) -->
+
+**Qué muestra.**
+- Los cambios generalizan: el set de control pasó de 1 a 13 de 16 sin que sus instrumentos se usaran para diseñar
+  nada.
+- La recuperación del RAG mejoró: el fragmento correcto queda entre los 3 primeros en 84 % de las preguntas (antes,
+  61 %); en el control, en todas.
+- El modelo de 4B necesita al sistema: su plan se usó sin cambios en 23 % de los turnos; en el resto lo corrigieron la
+  validación, las reglas o el hilo de la conversación (Desarrollo X.9.6).
+- Lo que sigue fallando son frases sin cifras que contradicen el resultado, citas que se parafrasean y dos
+  operaciones que no se implementaron (Z.7).
+
 ---
 
 ## Z.5 Robustez ante formatos reales y análisis de entrevistas ★
@@ -559,7 +588,7 @@ el acuerdo con la investigadora era de 26/32 (81.2 %, κ = 0.70); la regla corri
 
 **Tabla R.17.** Las mismas preguntas antes (17 oct, sistema de la rama `PA` o primera versión del
 RAG) y en la versión final.
-<!-- fuente: registro 17 oct 21:25 (auditoría), 22:55 (primera prueba de humo); verificacion_20261017_2032.md; registro 18 oct; markdowns/PRUEBAS_RAG_INTEGRACION.md §10 -->
+<!-- fuente: registro 17 oct 21:25 (auditoría), 22:55 (primera prueba de humo); verificacion_20261017_2032.md; registro 18 oct; markdowns/PRUEBAS_RAG_INTEGRACION.md §10; evidencias/chat_2026-11-07_antes/calificacion_debe.json y chat_2026-11-08_final/casos (ENC-08, ENC-16, PRU-09, ENT-24, GEN-01) -->
 
 | Pregunta | Antes | Ahora |
 |---|---|---|
@@ -576,6 +605,11 @@ RAG) y en la versión final.
 | ¿Qué evalúa la encuesta…? sin secciones | Describía la encuesta por sus KPIs | Describe el contenido: criterios de evaluación, calificaciones, retroalimentación, ambiente |
 | Encuesta en Excel (XLSX) | No se podía aprobar (el formato no cabía en `dc_format`) | Se aprueba y responde igual que el CSV |
 | ¿Cuántos entrevistados creen que las extracurriculares influyen hoy en sus calificaciones? | Sin respuesta calculada; el relato del pasado pesaba igual que la respuesta | Conteo calculado de posturas (3 sí, 1 no) con la frase que responde de cada persona |
+| Compara la opinión sobre laboratorios entre modalidad presencial y en línea | Pedía una variable de contexto que la encuesta no tiene: solo se podía agrupar por contexto | Tabla por modalidad con el n, la media y la distribución de cada grupo |
+| ¿Qué es lo más preocupante de los resultados? | Eligió «Nunca» en el cambio de profesor, que es una respuesta favorable | Las respuestas desfavorables según la polaridad que revisó la investigadora: retraso en la titulación y laboratorios |
+| De los que marcaron Verdadero en un reactivo, ¿qué eligieron en otro? | Filtró con «>» y afirmó «81 eligieron B», una cifra falsa | La distribución del segundo reactivo dentro de los 81 del grupo |
+| ¿La participante tiene depresión? | Respondió con hallazgos | «No hago diagnósticos» y lo que ella contó, con sus palabras |
+| Hola | Mensaje de fuera del dominio con ejemplos de otro instrumento | Bienvenida con el instrumento activo y ejemplos de sus preguntas |
 
 ---
 
