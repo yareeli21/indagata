@@ -167,6 +167,9 @@ def chroma(monkeypatch):
     cliente = ClienteFalso()
     monkeypatch.setattr(vectores, "get_client", lambda: cliente)
     monkeypatch.setattr(vectores, "embed_texts", embeddings_falsos)
+    # Sin el modelo real: una palabra = un token, límite de 128 (7 nov: los chunks se miden en tokens).
+    monkeypatch.setattr(vectores, "contar_tokens", lambda texto: len(texto.split()))
+    monkeypatch.setattr(vectores, "max_tokens", lambda: 128)
     return cliente
 
 

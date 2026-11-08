@@ -485,7 +485,8 @@ def indexar_instrumento(db: Session, id_crudo: int, *, reindexar: bool = True) -
     dc = _dict(_dict(data.get("metadata")).get("dublin_core"))
     autor = db.get(Usuario, raw.id_owner)
     if documento:
-        chunks = chunks_documento.construir(documento, tipo_ui)
+        # En tokens del modelo de embeddings (7 nov): lo que pasa de `max_seq_length` no se embebe.
+        chunks = chunks_documento.construir(documento, tipo_ui, medir=vectores.contar_tokens, limite=vectores.max_tokens())
         titulo = _texto(_dict(documento.get("instrumento")).get("titulo"))
         kpis = chunks_documento.nombres_kpis(documento)
     else:
@@ -512,6 +513,8 @@ def indexar_instrumento(db: Session, id_crudo: int, *, reindexar: bool = True) -
         {
             **base_meta,
             "seccion": c.seccion,
+            "tipoChunk": c.seccion,
+            "parte": str(c.extra.get("parte", "")),  # pregunta/reactivo: «definicion» o «resultados» (7 nov)
             "preguntaId": c.pregunta_id,
             "pregunta": c.pregunta,
             "respondenteId": str(c.extra.get("respondenteId", "")),

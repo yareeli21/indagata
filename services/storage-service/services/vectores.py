@@ -39,16 +39,31 @@ def coleccion(nombre: str, client: Any | None = None):
     )
 
 
-def embed_texts(textos: list[str]) -> list[list[float]]:
-    """Vectoriza textos con el modelo de settings.EMBEDDING_MODEL."""
+def _modelo():
     global _model
-    if not textos:
-        return []
     if _model is None:
         with _lock:
             if _model is None:
                 from sentence_transformers import SentenceTransformer
 
                 _model = SentenceTransformer(settings.EMBEDDING_MODEL)
-    vectores = _model.encode(textos, normalize_embeddings=True, convert_to_numpy=True)
+    return _model
+
+
+def embed_texts(textos: list[str]) -> list[list[float]]:
+    """Vectoriza textos con el modelo de settings.EMBEDDING_MODEL."""
+    if not textos:
+        return []
+    vectores = _modelo().encode(textos, normalize_embeddings=True, convert_to_numpy=True)
     return [v.tolist() for v in vectores]
+
+
+def max_tokens() -> int:
+    """Tokens que el modelo de embeddings lee de cada texto (`max_seq_length`, 128 en el modelo actual)."""
+    return int(_modelo().max_seq_length)
+
+
+def contar_tokens(texto: str) -> int:
+    """Tokens de un texto con el tokenizador del modelo, incluidos los especiales (7 nov 2026: lo que pasa de
+    `max_tokens()` no se embebe, así que los chunks se miden en tokens y no en caracteres)."""
+    return len(_modelo().tokenizer(texto, add_special_tokens=True)["input_ids"])

@@ -161,6 +161,21 @@ def _ficha_completa(coleccion: Any, instrumento_id: str) -> str:
     return f"{titulo}\n{cuerpo.strip()}" if titulo and cuerpo else ""
 
 
+# Chunks de una persona (respondente, alumno). Una encuesta de 2,000 personas tiene ~6,600 contra ~40 de preguntas, y
+# por parecido de palabras tapaban a la pregunta que se buscaba (hit@3 de 0.25 en la encuesta 127, 7 nov). Solo entran
+# en la búsqueda por similitud cuando la consulta nombra a alguien (R017, A001, E02); lo de cada persona lo calcula la
+# ruta estructurada.
+_SECCIONES_DE_PERSONA = ["respondente", "alumno"]
+
+
+def _donde(ids: list[str], pregunta: str) -> dict[str, Any] | None:
+    """Filtro de Chroma: el alcance y, si la consulta no nombra a una persona, sin chunks de personas."""
+    condiciones: list[dict[str, Any]] = [{"instrumentoId": {"$in": ids}}] if ids else []
+    if not _ID_EXPLICITO.search(pregunta or ""):
+        condiciones.append({"seccion": {"$nin": _SECCIONES_DE_PERSONA}})
+    return None if not condiciones else condiciones[0] if len(condiciones) == 1 else {"$and": condiciones}
+
+
 def _buscar(peticion: ChatRequest, vector: list[float]) -> tuple[list[dict[str, Any]], float]:
     """Fragmentos del alcance que pasan el umbral (con diversidad) y la similitud máxima vista."""
     try:
@@ -175,7 +190,7 @@ def _buscar(peticion: ChatRequest, vector: list[float]) -> tuple[list[dict[str, 
         )
 
     ids = [i for i in (peticion.instrumentoIds or []) if i]
-    where = {"instrumentoId": {"$in": ids}} if ids else None
+    where = _donde(ids, peticion.pregunta)
     try:
         res = coleccion.query(
             query_embeddings=[vector],
@@ -391,7 +406,7 @@ def _recuperar_primero(peticion: ChatRequest) -> tuple[list[dict[str, Any]], flo
         if coleccion is None:
             return [], 0.0
         res = coleccion.query(query_embeddings=[_vector(_consulta_apoyo(peticion.pregunta, peticion.historial))],
-                              n_results=_MAX_RECUPERADOS * 3, where={"instrumentoId": {"$in": ids}} if ids else None,
+                              n_results=_MAX_RECUPERADOS * 3, where=_donde(ids, peticion.pregunta),
                               include=["metadatas", "documents", "distances"])
     except HTTPException:
         raise

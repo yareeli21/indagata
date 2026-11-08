@@ -97,9 +97,14 @@ def test_ningun_chunk_excede_la_ventana_ni_parte_lineas_de_una_lista():
 
 def test_prueba_reactivo_con_opcion_mas_elegida_y_alumno_sin_calificar():
     chunks = chunks_documento.construir(PRUEBA, "Prueba estandarizada")
-    reactivo = next(c for c in chunks if c.seccion == "reactivo")
+    definicion, reactivo = [c for c in chunks if c.seccion == "reactivo"]
+    # 7 nov: la definición (texto, opciones) va en su propio chunk, sin cifras; los resultados, en otro.
+    assert definicion.extra["parte"] == "definicion" and "Opciones: A) 56; B) 54; C) 48" in definicion.texto
+    assert definicion.texto.startswith("Reactivo r01 (prueba «Diagnóstico»): ¿Cuánto es 7 × 8?")
+    assert reactivo.extra["parte"] == "resultados"
     assert "Opción más elegida: A (56), 50.0 % de 2 alumnos" in reactivo.texto and "Nadie eligió: C" in reactivo.texto
-    assert not any(p in reactivo.texto.lower() for p in ("correcta", "acierto", "distractor", "dificultad"))
+    assert "A (56) 50.0 % (n=1)" in reactivo.texto
+    assert not any(p in (definicion.texto + reactivo.texto).lower() for p in ("correcta", "acierto", "distractor", "dificultad"))
     alumno = next(c for c in chunks if c.seccion == "alumno")
     assert alumno.texto.startswith("Alumno A001: respondió 1 reactivos") and "r01: A (56)" in alumno.texto
     assert "correcta" not in alumno.texto and "puntaje" not in alumno.texto
@@ -109,7 +114,7 @@ def test_prueba_reactivo_con_opcion_mas_elegida_y_alumno_sin_calificar():
 def test_entrevista_intercambio_largo_repite_participante_y_pregunta():
     chunks = [c for c in chunks_documento.construir(ENTREVISTA, "Entrevista") if c.seccion == "intercambio"]
     assert len(chunks) > 1
-    assert all(c.texto.startswith("Participante E02, pregunta p01: ¿Cómo te evalúan?") for c in chunks)
+    assert all(c.texto.startswith("Participante E02, pregunta guía p01: ¿Cómo te evalúan?") for c in chunks)
     assert {c.extra["respondenteId"] for c in chunks} == {"INS-0003-E02"} and {c.pregunta_id for c in chunks} == {"INS-0003-p01"}
 
 
@@ -196,3 +201,36 @@ def test_entrevista_con_analisis_pone_primero_lo_que_responde():
     assert cuerpo.startswith("Postura: sí (en presente). Responde: pero ahora creo que sí, por la beca deportiva")
     assert "Motivo: la beca deportiva" in cuerpo and "Antecedente (pasado): En la primaria no lo pensaba así" in cuerpo
     assert "Respuesta: En la primaria" in cuerpo and c.extra["postura"] == "si" and c.extra["marcoTemporal"] == "actual"
+
+
+
+def test_ningun_chunk_pasa_del_limite_de_tokens_y_cada_pieza_repite_la_pregunta_completa():
+    """7 nov: se mide con el tokenizador del modelo (aquí, una palabra = un token y un límite de 40)."""
+    medir = lambda t: len(t.split())  # noqa: E731
+    doc = _encuesta()
+    doc["preguntas"][0]["texto"] = "¿Qué tan de acuerdo estás con que los profesores explican con claridad los temas del curso?"
+    for d, tipo in ((doc, "Encuesta"), (PRUEBA, "Prueba estandarizada"), (ENTREVISTA, "Entrevista")):
+        chunks = chunks_documento.construir(d, tipo, medir=medir, limite=40)
+        assert all(medir(c.texto) <= 40 for c in chunks), max((medir(c.texto), c.seccion) for c in chunks)
+    p01 = [c for c in chunks_documento.construir(doc, "Encuesta", medir=medir, limite=40) if c.pregunta_id == "INS-0001-p01"]
+    assert {c.extra["parte"] for c in p01} == {"definicion", "resultados"}
+    assert all("los profesores explican con claridad los temas del curso?" in c.texto for c in p01)
+    definicion = next(c for c in p01 if c.extra["parte"] == "definicion")
+    assert "Respuestas válidas" not in definicion.texto and "KPIs que mide: Satisfacción estudiantil" in definicion.texto
+
+
+def test_escala_con_extremos_y_ficha_de_entrevista_con_indicaciones_y_temas():
+    doc = _encuesta()
+    doc["preguntas"][2]["escala"] = {"etiquetas": {"1": "Nada probable", "2": "2", "3": "3", "4": "4", "5": "Muy probable"}}
+    definicion = next(c for c in chunks_documento.construir(doc, "Encuesta") if c.pregunta_id == "INS-0001-p03")
+    assert "Escala de 1 (Nada probable) a 5 (Muy probable)" in definicion.texto
+    ent = {**ENTREVISTA, "instrumento": {**ENTREVISTA["instrumento"], "indicaciones": ["Tus respuestas son anónimas."]},
+           "entrevistas": [{"participante": "INS-0003-E02", "intercambios": [{
+               "pregunta_id": "INS-0003-p01", "pregunta": "¿Cómo te evalúan?", "respuesta": "Con exámenes, y me estresa.",
+               "analisis": {"nlp": {"temas": [{"tema": "exámenes", "cita": "Con exámenes", "origen": "llm"}],
+                                    "valoracion": {"valor": "negativo", "cita": "me estresa", "origen": "llm"}}}}]}]}
+    chunks = chunks_documento.construir(ent, "Entrevista")
+    ficha = " ".join(c.texto for c in chunks if c.seccion == "encabezado")
+    assert "Indicaciones del entrevistador: Tus respuestas son anónimas." in ficha and "Participantes entrevistados: 1" in ficha
+    intercambio = next(c for c in chunks if c.seccion == "intercambio")
+    assert "Temas: exámenes" in intercambio.texto and "Valoración: negativo" in intercambio.texto

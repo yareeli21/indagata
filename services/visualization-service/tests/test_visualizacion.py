@@ -253,7 +253,9 @@ def test_chat_json_filtrado_por_investigacion_y_registrado(cliente, acervo, chro
     assert [f["instrumentoId"] for f in cuerpo["fuentes"]] == ["1"]
     # Los KPIs solo se muestran si la consulta trata de KPIs o se recuperó un fragmento de KPI (rediseño, 28 oct).
     assert cuerpo["fuentes"][0]["kpis"] == []
-    assert chroma.colecciones["instrumentos"].consultas[-1]["where"] == {"instrumentoId": {"$in": ["1"]}}
+    # Sin una persona nombrada en la consulta, la búsqueda deja fuera los chunks de personas (7 nov).
+    assert chroma.colecciones["instrumentos"].consultas[-1]["where"] == {
+        "$and": [{"instrumentoId": {"$in": ["1"]}}, {"seccion": {"$nin": ["respondente", "alumno"]}}]}
     assert "Analizar el compromiso" in ollama["prompts"][-1]
     from services import prompt
 
@@ -269,7 +271,8 @@ def test_chat_sse_y_sin_coleccion(cliente, acervo, chroma):
     texto = r.text
     assert "event: token" in texto and "Hola " in texto
     assert texto.index("event: fuentes") < texto.index("event: fin")
-    assert chroma.colecciones["instrumentos"].consultas[-1]["where"] is None  # todo el sistema
+    # Todo el sistema (sin filtro de instrumento), sin chunks de personas (7 nov).
+    assert chroma.colecciones["instrumentos"].consultas[-1]["where"] == {"seccion": {"$nin": ["respondente", "alumno"]}}
 
     chroma.colecciones.clear()
     assert cliente.post("/rag/chat", json={"pregunta": "x", "stream": False}, headers=ANA).status_code == 409
