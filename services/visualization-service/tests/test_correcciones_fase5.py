@@ -145,3 +145,23 @@ def test_ranking_desordenado_reconoce_reactivos():
     anexo = "| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice 1.00 |\n| 2 | r12 | índice 0.99 |"
     assert rag_service.ranking_desordenado("La primera es el reactivo r12.", anexo)
     assert not rag_service.ranking_desordenado("La primera es el reactivo r17.", anexo)
+
+
+def test_numero_de_reactivo_fuera_de_rango_no_existe():
+    preguntas = {f"r{n:02d}": catalogo.PreguntaCatalogo(f"r{n:02d}", f"Reactivo {n}", "opcion", ["A) Sí", "B) No"])
+                 for n in range(1, 16)}
+    cat = catalogo.Catalogo("9", "Prueba de ejemplo", "prueba_estandarizada", preguntas, ["A001"], {}, [])
+    plan, notas = anclaje.anclar(PlanConsulta(intencion="resumen_pregunta", preguntas=["r02"]),
+                                 "¿Qué respondieron en el reactivo 20?", [], cat)
+    assert plan.intencion == "aclaracion" and "15 reactivos" in plan.aclaracion
+
+
+def test_no_se_resume_una_pregunta_filtrada_por_su_propia_opcion():
+    preguntas = {"r01": catalogo.PreguntaCatalogo("r01", "¿Para qué sirve un índice?", "opcion",
+                                                  ["A) Para buscar", "B) Para borrar"]),
+                 "r02": catalogo.PreguntaCatalogo("r02", "La nube es segura.", "opcion", ["Verdadero", "Falso"])}
+    cat = catalogo.Catalogo("9", "Prueba de ejemplo", "prueba_estandarizada", preguntas, ["A001"], {}, [])
+    plan = PlanConsulta(intencion="resumen_pregunta", preguntas=["r01"],
+                        filtros=[{"pregunta": "r01", "valor": "B) Para borrar"}])
+    anclado, _ = anclaje.anclar(plan, "De ellos, ¿qué eligieron en el reactivo del índice?", [], cat)
+    assert anclado.filtros == []

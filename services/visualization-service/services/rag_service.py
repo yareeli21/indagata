@@ -1679,6 +1679,7 @@ _CALIFICA = re.compile(
 _CALIFICA_PRUEBA = re.compile(
     r"\b(?:correct\w*|incorrect\w*|errone\w*|equivoc\w*|dificultad\w*|aprob\w*|reprob\w*|lagunas?|desempeno|"
     r"rendimiento|aciert\w*|acert\w*|calificacion\w*|puntajes?|comprension|desconocimiento|reforzar|refuerzo|"
+    r"conocimientos?|entendimiento|"
     r"(?:coincide|corresponde)\w* con (?:la|el) (?:definicion|respuesta|clave)|"
     r"(?:orden|respuesta|opcion) (?:estandar|esperad[ao]|adecuad[ao]))\b"
 )

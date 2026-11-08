@@ -391,6 +391,13 @@ def inexistente(plan: PlanConsulta, pregunta: str, cat: Catalogo) -> tuple[PlanC
                          f"{', '.join(sorted(letras))}. Así se repartieron las respuestas:")
                 return PlanConsulta(intencion="resumen_pregunta", preguntas=[pid], instrumentos=plan.instrumentos,
                                     aclaracion=aviso[:300]), [f"opción {m.group(1).upper()} inexistente en {pid}", AVISO_INEXISTENTE]
+    fuera_de_rango = [n for n in enrutador._preguntas(texto) if _id_pregunta(cat, n) is None]
+    if fuera_de_rango and cat.preguntas:
+        # Un reactivo que no existe («el reactivo 20» en una prueba de 15): el modelo lo cambió por otro y se respondió
+        # otra pregunta (8 nov, set de control). Un número que el instrumento no tiene se dice tal cual.
+        aviso = plan_consulta._no_encontrada(str(fuera_de_rango[0]), cat)
+        return PlanConsulta(intencion="aclaracion", instrumentos=plan.instrumentos, aclaracion=aviso[:300]), [
+            f"pregunta {fuera_de_rango[0]} fuera de rango", AVISO_INEXISTENTE]
     if cat.tipo == "entrevista" and len(cat.respondentes) == 1 and (
             _OTRA_PERSONA.search(texto) or re.search(r"\bcompar\w*\b.{0,60}\b(?:participantes|entrevistad\w*|demas)\b", texto)):
         unica = cat.respondentes[0]
@@ -895,6 +902,19 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
             cambios["filtros"] = [Filtro(pregunta=preguntas_final[0], valor=dichas[0] if len(dichas) == 1 else dichas)]
             cambios["nivel"] = None
             notas.append(f"conteo de {preguntas_final[0]} = «{', '.join(dichas)}» como condición (la consulta nombra la opción)")
+
+    # 8. Resumir una pregunta filtrando por una de sus propias opciones solo tiene sentido si la consulta la nombra:
+    # «De ellos, ¿qué eligieron en el reactivo X?» llegó filtrado por una opción de ese mismo reactivo y la distribución
+    # quedaba en una sola opción (8 nov, set de control).
+    objetivo_8 = set(cambios.get("preguntas", plan.preguntas))
+    filtros_8 = cambios.get("filtros", plan.filtros)
+    if intencion in ("resumen_pregunta", "comparar_grupos") and objetivo_8:
+        propios = [f for f in filtros_8 if f.pregunta in objetivo_8 and f.nivel is None
+                   and not any(_menciona(texto, str(v)) for v in _valores(f))]
+        if propios:
+            cambios["filtros"] = [f for f in filtros_8 if f not in propios]
+            notas += [f"filtro {f.pregunta} = «{f.valor}» quitado (es la pregunta que se resume y la consulta no nombra "
+                      "esa opción)" for f in propios]
 
     if intencion != plan.intencion:
         cambios["intencion"] = intencion
