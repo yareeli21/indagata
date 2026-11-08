@@ -184,6 +184,9 @@ def _ficha(doc: dict[str, Any], tipo_ui: str) -> list[Chunk]:
         lineas.append(f"Preguntas de la guía: {len(doc.get('preguntas') or [])}")
     if doc.get("reactivos") is not None:
         lineas.append(_estructura_prueba(doc))
+    if ins.get("encabezado"):
+        # 7 nov: el encabezado de la transcripción (tipo de entrevista, modalidad, duración), del reporte de limpieza.
+        lineas.append("Encabezado de la transcripción: " + "; ".join(ins["encabezado"]))
     if ins.get("indicaciones"):
         # 7 nov: lo que el entrevistador dice antes de su primera pregunta («Todo lo que digas es confidencial…»).
         lineas.append("Indicaciones del entrevistador: " + " ".join(ins["indicaciones"]))

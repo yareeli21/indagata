@@ -25,7 +25,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from models import FuenteChatOut
-from services import ejecutor, enrutador, interpretacion, seguimiento
+from services import anclaje, ejecutor, enrutador, interpretacion, seguimiento
 from services.catalogo import Catalogo, construir as construir_catalogo
 from services.dominio import normalizar
 from services.ejecutor import Ejecucion
@@ -77,6 +77,11 @@ FORMATO = {
                 "Si dos se relacionan, dilo. El TEXTO RECUPERADO dice de qué trata cada pregunta: "
                 "úsalo para entenderla, no para sacar cifras. No menciones respondentes. No uses la palabra «dato» ni "
                 "su número.",
+    # Entrevistas con el análisis de lo que se cuenta (7 nov): temas, valoración y citas literales ya calculados.
+    "hallazgo_analisis": "Con el RESULTADO CALCULADO (temas, valoración y citas del análisis de cada respuesta), presenta "
+                         "de TRES a CINCO hallazgos como lista con viñetas: el tema, en qué pregunta y la cita exacta entre "
+                         "comillas tal como aparece en el resultado. Si es una sola persona, dilo y no generalices. No "
+                         "diagnostiques ni agregues ideas que la persona no dijo.",
     # Entrevistas: los patrones salen del texto recuperado del RAG (con uno o pocos participantes no hay conteos).
     "hallazgo_texto": "Con el TEXTO RECUPERADO (lo que dijeron los participantes), presenta de TRES a CINCO temas o "
                       "patrones que se repiten o destacan, como una lista con viñetas. En cada viñeta: el tema, quién lo "
@@ -85,6 +90,21 @@ FORMATO = {
 }
 
 # Bloque D (7 nov): lo que la pregunta pide además del dato. Se agregan al formato de la intención.
+# 7 nov (Fase 4): redacción en dos capas para «¿qué significa eso?» / «¿por qué?». Los datos ya se mostraron en la
+# respuesta anterior y van arriba tal cual (capa 1, `Plan.hechos`); el modelo escribe SOLO la interpretación (capa 2).
+FORMATO_INTERPRETA = (
+    "Escribe SOLO una interpretación del RESULTADO CALCULADO para la investigación, en dos o tres oraciones, SIN NÚMEROS "
+    "(las cifras ya se mostraron): qué podría significar, con cautela («podría», «sugiere»). Los datos no registran por "
+    "qué respondieron así: no afirmes causas ni digas que una diferencia es significativa. Si la base es pequeña, dilo. "
+    "No repitas la pregunta ni copies el resultado."
+)
+FORMATO_SENTIDO = {
+    "desfavorable": ("La PREGUNTA pide lo más PREOCUPANTE: presenta cada dato como algo que preocupa (son respuestas "
+                     "desfavorables), del más al menos preocupante, y di brevemente por qué podría importar para la "
+                     "institución. No los llames «interesantes»."),
+    "favorable": ("La PREGUNTA pide lo MEJOR: presenta cada dato como un resultado favorable, del más al menos "
+                  "destacado."),
+}
 FORMATO_PROFUNDIZA = (
     "La PREGUNTA pide explicar el resultado anterior: di qué muestra el RESULTADO CALCULADO y qué significa con el "
     "TEXTO RECUPERADO. Los datos no registran por qué respondieron así: dilo claramente y, si sirve, menciona una o "
@@ -110,6 +130,8 @@ def formato_adicional(pregunta: str, relacion: str, n_participantes: int | None)
     partes = []
     if relacion == "profundiza":
         partes.append(FORMATO_PROFUNDIZA)
+    if (s := anclaje.sentido(pregunta)) is not None:
+        partes.append(FORMATO_SENTIDO[s])
     if _OPINION.search(normalizar(pregunta)):
         partes.append(FORMATO_OPINION)
     if m := _SUPERLATIVO.search(normalizar(pregunta)):
@@ -253,6 +275,17 @@ def anexo(ejecuciones: list[Ejecucion]) -> str:
             titulo = f"{t.titulo} — {e.instrumento.titulo} [Fuente {n}]" if len(ejecuciones) > 1 else f"{t.titulo} [Fuente {n}]"
             bloques.append(ejecutor.Tabla(titulo, t.columnas, t.filas).markdown())
     return "\n\n".join(bloques)
+
+
+def hechos(ejecuciones: list[Ejecucion]) -> str:
+    """Capa 1 de una interpretación: el dato clave de cada resultado (sus primeras líneas, sin tablas)."""
+    lineas = []
+    for e in ejecuciones:
+        propias = [l for l in e.lineas if l and not l.startswith(("Interpretación calculada", "Se muestran"))][:2]
+        if e.criterio and e.intencion in ("conteo_porcentaje", "filtrar_respondentes"):
+            propias = [f"Criterio: {e.criterio}."] + propias
+        lineas += propias
+    return " ".join(lineas)
 
 
 def directa(ejecuciones: list[Ejecucion]) -> str:

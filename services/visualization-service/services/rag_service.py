@@ -52,7 +52,7 @@ from shared.models.rag_log import RagLog
 from shared.models.version_conocimiento import VersionConocimiento
 
 from models import ChatRequest, ChatResponse, FuenteChatOut, IndexRequest, ReferenciaChatOut
-from services import (anclaje, consulta_planificada, cortesia, dominio, ejecutor, enrutador, evaluacion, interpretacion, ollama_client,
+from services import (anclaje, consulta_planificada, cortesia, dominio, entrevista_ops, instrumento_ops, ejecutor, enrutador, evaluacion, interpretacion, ollama_client,
                       prompt, seguimiento, storage_client, vectores)
 from services.plan_consulta import ESTRUCTURADAS, PlanConsulta
 
@@ -423,11 +423,16 @@ def _recuperar_primero(peticion: ChatRequest) -> tuple[list[dict[str, Any]], flo
 
 
 _SOBRE_EL_INSTRUMENTO = {"descripcion", "estructura"}
+_DATOS_POR_SECCION = re.compile(r"\b(?:en blanco|sin respuesta|sin responder|nulas?|respuestas|respondieron|compar\w*|"
+                                r"concentr\w*|eligieron)\b")
 
 
 def _sobre_el_instrumento(pregunta: str) -> bool:
     """¿Pregunta por el instrumento mismo (de qué trata, a quién se aplicó, secciones)? Lo responde su ficha."""
     regla = enrutador.detectar(pregunta)
+    if regla is not None and regla.tipo == "estructura" and _DATOS_POR_SECCION.search(dominio.normalizar(pregunta)):
+        # «¿Las respuestas en blanco se concentran en alguna sección?» pide datos por sección, no la estructura (7 nov).
+        return False
     return regla is not None and regla.tipo in _SOBRE_EL_INSTRUMENTO
 
 
@@ -670,6 +675,10 @@ def registrar_consulta(
                 # rechazos, «no existe» y «sin información» no tienen qué medir.
                 if not settings.RAG_METRICAS:
                     fila.metricas = evaluacion.omitida("Métricas desactivadas.")
+                elif plan.literal and plan.decision == dominio.DENTRO and not re.search(r"\d", respuesta or ""):
+                    # 7 nov (Fase 4): «fiel por construcción» solo cuando hay cifras que verificar; una respuesta fija sin
+                    # cifras (no hacer un diagnóstico, una sola participante, el dato que no se registra) no lleva insignia.
+                    fila.metricas = evaluacion.omitida("Respuesta fija sin cifras: la fidelidad no aplica.")
                 elif plan.literal and plan.decision == dominio.DENTRO:
                     # El juez de 3B le dio 0.25 a una copia literal del resultado (22 oct): la fidelidad no se le
                     # pregunta; la relevancia y la precisión sí se miden contra el resultado usado (28 oct, Fase 4).
@@ -704,7 +713,7 @@ _DECISIONES_REUTILIZABLES = {dominio.DENTRO, dominio.AYUDA}
 # Súbelo cuando cambie cómo se calculan o redactan las respuestas (enrutador, consultas):
 # las guardadas con la versión anterior dejan de reutilizarse. Las reglas del prompt
 # (`prompt.SISTEMA`) ya entran en la huella.
-_VERSION_RESPUESTAS = 31  # 31: redacción del bloque D (cifras derivables, comparación invertida, inferencias, porcentaje con su n, negación cierta, borradores guardados, explicar lo anterior, lo más X, pocas personas, preguntas más omitidas); 30: resumen de reactivos de pruebas (distribución por opción) y filtros imposibles quitados; 29: hilo de la conversación (relación nueva/continua/profundiza sobre el plan anterior), condiciones en las opciones, condición inexistente dicha tal cual, preguntas sobre el instrumento con su ficha, personas con omisiones; 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
+_VERSION_RESPUESTAS = 32  # 32: Fases 3 y 4 del 7–8 nov (cortesía, hilo, lo que no existe, comparaciones por pregunta/posición/sección, cruces, entropía, dos capas, polaridad, operaciones de entrevista); 31: redacción del bloque D (cifras derivables, comparación invertida, inferencias, porcentaje con su n, negación cierta, borradores guardados, explicar lo anterior, lo más X, pocas personas, preguntas más omitidas); 30: resumen de reactivos de pruebas (distribución por opción) y filtros imposibles quitados; 29: hilo de la conversación (relación nueva/continua/profundiza sobre el plan anterior), condiciones en las opciones, condición inexistente dicha tal cual, preguntas sobre el instrumento con su ficha, personas con omisiones; 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
 
 
 def clave_cache(peticion: ChatRequest, modelo: str) -> str | None:
@@ -861,6 +870,9 @@ class Plan:
     plan_consulta: dict[str, Any] | None = None
     tiempos: dict[str, int] = field(default_factory=dict)
     anexo: str = ""
+    # 7 nov (Fase 4): con `hechos`, la respuesta va en dos capas: los datos tal cual y debajo la interpretación del
+    # modelo, marcada como tal (se usa al explicar el resultado anterior: «¿qué significa eso?», «¿por qué?»).
+    hechos: str = ""
     cifras_obligatorias: set[float] | None = None
     # 4 nov: en conteos, comparaciones, resúmenes y rankings la redacción solo puede usar cifras del resultado; en
     # las demás también las del texto recuperado del RAG (lo que dijo una persona, «tres sesiones», «15 horas»).
@@ -947,6 +959,19 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
     if tipo := cortesia.detectar(pregunta, {i.tipo for i in instrumentos}):
         return Plan(decision=tipo, motivo=f"regla:{tipo}", instrumentos=ids,
                     fija=cortesia.responder(tipo, pregunta, instrumentos))
+    # Entrevistas (7 nov, Fase 4): hablantes, cobertura de la guía, respuesta más larga, preguntas fuera de la guía y
+    # diagnósticos, calculados sin modelo sobre el documento y el reporte de limpieza.
+    if op := instrumento_ops.detectar(pregunta, instrumentos):
+        return Plan(motivo=f"instrumento:{op}", ruta="estructurada", fija=instrumento_ops.responder(op, instrumentos),
+                    literal=True, instrumentos=ids, score_max=1.0)
+    if op := entrevista_ops.detectar(pregunta, instrumentos):
+        sesion = fabrica_sesiones()
+        try:
+            texto = entrevista_ops.responder(op, pregunta, instrumentos, sesion)
+        finally:
+            sesion.close()
+        return Plan(motivo=f"entrevista:{op}", ruta="estructurada", fija=texto, literal=True, instrumentos=ids,
+                    score_max=1.0)
 
     # Ayuda de la plataforma: solo la base curada (no consulta Chroma ni exige alcance).
     if dominio.es_ayuda(pregunta):
@@ -1003,6 +1028,10 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
                                                  seguimiento=bool(peticion.historial), apoyo=apoyo,
                                                  conversacion=conversacion)
                 if decidido is not None:
+                    # «Cómo lo calculé» (7 nov, Fase 4): el criterio de cada cálculo queda con el plan.
+                    registro = {**registro, "calculo": [
+                        {"instrumento": e.instrumento.titulo, "criterio": e.criterio, "total": e.total}
+                        for e in preparada.ejecuciones if e.criterio]}
                     decidido.plan_consulta, decidido.tiempos = registro, tiempos
                     return decidido
                 if p is not None and p.intencion in ("semantica_abierta", "metodologia", "fuera_de_dominio"):
@@ -1096,7 +1125,9 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
             plan.cifras_obligatorias, plan.cifras_solo_resultado = set(), True
             pregunta_regla = f"{pregunta}\n({resultado.aclaracion})" if resultado.aclaracion else pregunta
             plan.texto_prompt = prompt.construir(pregunta_regla, plan.fragmentos, contexto, resultado=listado,
-                                                 formato=_FORMATO_REGLA.get(resultado.consulta, ""),
+                                                 formato=(_FORMATO_DATO_FICHA if resultado.consulta == "descripcion"
+                                                          and _DATO_DE_FICHA.search(dominio.normalizar(pregunta))
+                                                          else _FORMATO_REGLA.get(resultado.consulta, "")),
                                                  conversacion=conversacion)
             plan.plan_consulta, plan.tiempos = registro, tiempos
             return plan
@@ -1217,7 +1248,10 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
     adicional = consulta_planificada.formato_adicional(
         pregunta, p.relacion, len(ejecutor._personas(entrevistas[0].instrumento.doc)) if len(entrevistas) == 1 else None)
     texto_entrevista =p.intencion == "hallazgo" and all(e.instrumento.tipo == "entrevista" for e in ejecuciones)
-    if texto_entrevista and apoyo and plan.admite_negativa:
+    if texto_entrevista and not plan.admite_negativa and any(
+            c.get("tipo") == "lo_que_cuentan" for e in ejecuciones for c in e.candidatos):
+        formato = consulta_planificada.FORMATO["hallazgo_analisis"]
+    elif texto_entrevista and apoyo and plan.admite_negativa:
         # Entrevistas: con uno o pocos participantes no hay conteos de posturas («No hay resúmenes calculados», 4 nov,
         # consulta 1681); los patrones salen del texto recuperado y el modelo los agrupa en temas con citas.
         formato = consulta_planificada.FORMATO["hallazgo_texto"]
@@ -1248,6 +1282,12 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
             if propios:
                 recuperado = ", ".join(dict.fromkeys(_etiqueta_fragmento(f) for f in propios))
                 fuente.fragmento = f"{fuente.fragmento} · Texto recuperado del RAG: {recuperado}"[:600]
+    if p.relacion == "profundiza" and not texto_entrevista:
+        # Explicar lo anterior: los datos arriba tal cual (ya se mostraron sus tablas) y el modelo solo interpreta
+        # (7 nov, ENC-13 (3), PRU-17 (2): repetía el cálculo o lo copiaba).
+        plan.hechos = consulta_planificada.hechos(ejecuciones)
+        plan.anexo, plan.cifras_obligatorias = "", None
+        formato, adicional = consulta_planificada.FORMATO_INTERPRETA, ""
     plan.texto_prompt = prompt.construir(
         pregunta, apoyo, contexto, resultado=consulta_planificada.resultado_para_prompt(ejecuciones, p.intencion),
         formato=f"{formato} {adicional}".strip(), conversacion=conversacion)
@@ -1360,6 +1400,13 @@ _CONSULTAS_MIXTAS = {"kpi", "kpi_preguntas"}
 _CONSULTAS_SIN_LLM = {"estructura", "descripcion", "patrones", "sin_calificar"}
 # Desde el 5 nov esas consultas se redactan cuando hay texto recuperado (RAG primero), con la verificación del plan y
 # el listado como respaldo.
+# 7 nov (Fase 4, ENT-20/21): «¿qué tipo de entrevista es y cuánto dura?» pide DATOS de la ficha, no la descripción.
+_DATO_DE_FICHA = re.compile(r"\b(?:que|cual)\s+(?:es\s+el\s+)?tipo\s+de\b|\bcuanto\s+(?:dura|duro|tiempo)\b|\bduracion\b|"
+                            r"\b(?:indicaciones|instrucciones|consignas|metodologia|modalidad|fecha)\b")
+_FORMATO_DATO_FICHA = ("Responde SOLO lo que pide la PREGUNTA, en una o dos oraciones, con lo que dicen el RESULTADO "
+                       "CALCULADO y el TEXTO RECUPERADO (por ejemplo, el tipo de entrevista, la duración o las indicaciones "
+                       "tal como aparecen en el encabezado o la ficha). Si un dato que pide no está, di que no está "
+                       "registrado; no lo deduzcas. No describas el resto del instrumento.")
 _FORMATO_REGLA = {
     "descripcion": "Empieza respondiendo exactamente lo que pregunta la PREGUNTA (si pregunta la carrera, la población, "
                    "el nivel o el objetivo, dilo en la primera oración, tal como aparece). Después describe el "
@@ -1623,6 +1670,13 @@ async def _generar_estructurada(plan: Plan, modelo: str) -> tuple[str, bool]:
         verificacion["resultado"] = "respaldo"
         verificacion["borradores"] = [respuesta[:_MAX_BORRADOR]]
     respuesta = verificada
+    if plan.hechos:
+        interpretacion = respuesta.strip()
+        if degradado or plan.literal or not interpretacion or interpretacion.startswith("Criterio:"):
+            interpretacion = ("Los datos no registran por qué respondieron así; con este cálculo no se pueden afirmar "
+                              "causas. Sirve como punto de partida para revisarlo con más información.")
+        respuesta = (f"**Lo que muestran los datos:** {plan.hechos}\n\n"
+                     f"**Interpretación (del asistente, no es un dato):** {interpretacion}")
     if plan.plan_consulta is not None:
         plan.plan_consulta = {**plan.plan_consulta, "verificacion": verificacion}
     if plan.anexo:

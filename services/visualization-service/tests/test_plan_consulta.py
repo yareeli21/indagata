@@ -637,3 +637,52 @@ def test_fase3_verdadero_en_varios_reactivos_y_conteo_de_algo_que_no_existe():
     nuevo, notas = anclaje.anclar(PlanConsulta(intencion="conteo_porcentaje"),
                                   "¿Cuántos usan la meditación para organizar su carga laboral?", [], carga)
     assert anclaje.NINGUNA_CONDICION in notas and "no registra" in nuevo.aclaracion
+
+
+
+def test_fase4_agrupar_por_pregunta_posicion_seccion_y_segun():
+    carga = _cat_carga()
+    v = validar_contra_catalogo(PlanConsulta(intencion="comparar_grupos", preguntas=["p01"], agrupar_por="p03"), [carga])
+    assert v.plan.agrupar_por == "p03" and v.plan.intencion == "comparar_grupos"
+    v = validar_contra_catalogo(PlanConsulta(intencion="comparar_grupos", preguntas=["p01"], agrupar_por="posición"), [carga])
+    assert v.plan.agrupar_por == "posicion"
+    nuevo, notas = anclaje.anclar(PlanConsulta(intencion="aclaracion", aclaracion="¿Qué?"),
+                                  "Compara los primeros 40 respondentes con los últimos 40 en la pregunta 1", [], carga)
+    assert (nuevo.intencion, nuevo.agrupar_por, nuevo.limite) == ("comparar_grupos", "posicion", 40)
+    pru = _cat_prueba()
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="conteo_porcentaje"),
+                              "¿Las respuestas en blanco se concentran en alguna sección?", [], pru)
+    assert (nuevo.intencion, nuevo.agrupar_por) == ("comparar_grupos", "seccion")
+
+
+def _cat_egreso():
+    preguntas = {
+        "p01": catalogo.PreguntaCatalogo("p01", "¿Cuál es tu situación laboral actual?", "categorica",
+                                         ["Busco empleo", "Trabajo en un area relacionada con mi carrera",
+                                          "Trabajo en un area no relacionada", "No trabajo ni busco empleo"]),
+        "p02": catalogo.PreguntaCatalogo("p02", "¿Has presentado algún examen de certificación profesional?", "categorica",
+                                         ["Si, y lo aprobe", "Si, y no lo aprobe", "No, pero planeo hacerlo", "No"]),
+        "p03": catalogo.PreguntaCatalogo("p03", "¿Has realizado prácticas profesionales?", "categorica",
+                                         ["Si, por mi cuenta", "Si, con convenio", "Aun no", "No"]),
+    }
+    return catalogo.Catalogo("11", "Encuesta de egreso", "encuesta", preguntas, ["R001"], {}, [])
+
+
+def test_fase4_cruce_contraste_si_y_posicion_sin_pedir():
+    cat = _cat_prueba()
+    nuevo, notas = anclaje.anclar(PlanConsulta(intencion="resumen_pregunta", preguntas=["r02"]),
+                                  "De los que marcaron Verdadero en «el correo electrónico siempre es seguro», "
+                                  "¿qué eligieron en el reactivo de la VPN?", [], cat)
+    assert nuevo.intencion == "resumen_pregunta" and nuevo.preguntas == ["r02"]
+    assert [(f.pregunta, f.valor) for f in nuevo.filtros] == [("r04", "Verdadero")]
+    egreso = _cat_egreso()
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="conteo_porcentaje"),
+                              "¿Los que trabajan en algo relacionado con su carrera aprobaron más certificaciones que "
+                              "los que no trabajan?", [], egreso)
+    assert (nuevo.intencion, nuevo.agrupar_por, nuevo.preguntas) == ("comparar_grupos", "p01", ["p02"])
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="resumen_pregunta", preguntas=["p03"]),
+                              "¿Cuántos han hecho prácticas profesionales?", [], egreso)
+    assert nuevo.intencion == "conteo_porcentaje" and nuevo.filtros[0].valor == ["Si, por mi cuenta", "Si, con convenio"]
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="comparar_grupos", preguntas=["p02"], agrupar_por="posicion", limite=20),
+                              "¿Cómo respondieron la certificación?", [], egreso)
+    assert nuevo.agrupar_por is None

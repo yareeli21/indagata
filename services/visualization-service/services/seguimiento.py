@@ -45,6 +45,9 @@ _NUMEROS = {"uno": 1, "dos": 2, "tres": 3, "cuatro": 4, "cinco": 5, "seis": 6, "
 _MOSTRAR = re.compile(r"\b(?:muestrame|muestra|ensename|dame|quiero ver)\s+(?:los\s+datos|la\s+tabla|la\s+distribucion|"
                       r"como\s+se\s+(?:repartieron|distribuyeron|reparten|distribuyen)|el\s+detalle|las\s+cifras)\b"
                       r"|\btal\s+cual\b")
+# «Muéstrame más», «los siguientes», «¿y los demás?»: la lista anterior desde donde se quedó.
+_MAS = re.compile(r"^(?:y\s+)?(?:muestrame|muestra|dame|ensename|lista)?\s*(?:mas|los siguientes|las siguientes|los demas|"
+                  r"las demas|el resto|otros \d+|los otros)\b")
 # Una persona en singular sin nombrarla («¿dejó alguno en blanco?», «¿su respuesta al reactivo…?»).
 _PERSONA_SINGULAR = re.compile(r"\b(?:su|sus|dejo|respondio|eligio|marco|contesto|escogio|dijo|menciono)\b")
 _PLURAL = re.compile(r"\b(?:cuantos|cuantas|quienes|todos|todas|alumnos|respondentes|estudiantes|participantes|"
@@ -67,6 +70,8 @@ def relacion(pregunta: str, plan: PlanConsulta, anterior: dict[str, Any] | None)
         return "nueva"
     texto = normalizar(pregunta)
     palabras = len(texto.split())
+    if _MAS.search(texto) and anterior.get("intencion") == "filtrar_respondentes":
+        return "mas"
     if _LISTAR.search(texto) and _condiciones(anterior):
         return "listar"
     if _MOSTRAR.search(texto) and anterior.get("intencion") in ESTRUCTURADAS:
@@ -101,6 +106,10 @@ def combinar(plan: PlanConsulta, anterior: dict[str, Any] | None, rel: str,
         return plan, []
     if rel == "listar":
         return _listar(previo, pregunta)
+    if rel == "mas":
+        n = previo.limite or 20
+        desde = (previo.desde or 0) + n
+        return previo.model_copy(update={"desde": desde, "relacion": "continua"}), [f"los siguientes {n} (desde el {desde + 1})"]
     if rel == "mostrar":
         return _mostrar(previo, respuesta_previa)
     if rel == "profundiza":

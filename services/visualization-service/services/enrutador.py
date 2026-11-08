@@ -806,6 +806,11 @@ def _lineas_descripcion(ins: Instrumento) -> list[str]:
         lineas.append(f"Contexto: {contexto.split(' Notas:')[0].rstrip('.')}.")
     if ins.tipo == "entrevista":
         lineas.append(f"Guion de {_cuantas(len(items), 'preguntas')}; se entrevistó a {len(doc.get('entrevistas') or [])} participantes.")
+        # 7 nov (Fase 4, ENT-20/21): el encabezado de la transcripción (tipo, duración) y las indicaciones del entrevistador.
+        if meta.get("encabezado"):
+            lineas.append("Encabezado de la transcripción: " + "; ".join(meta["encabezado"]) + ".")
+        if meta.get("indicaciones"):
+            lineas.append("Indicaciones del entrevistador: " + " ".join(meta["indicaciones"]))
     else:
         unidad = "reactivos" if ins.tipo == "prueba_estandarizada" else "preguntas"
         personas = doc.get("respondentes") or doc.get("alumnos") or []

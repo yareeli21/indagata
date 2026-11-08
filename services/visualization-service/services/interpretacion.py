@@ -67,6 +67,12 @@ tal como está en el catálogo aunque la pregunta no lleve acentos o mayúsculas
 - «más de / menos de / al menos N» sobre una variable del «Contexto numérico» → «contexto_num»: [{"variable": "Edad", "op": ">", "valor": 25}]; sobre una pregunta numérica → filtro de esa pregunta.
 - «están de acuerdo con la pregunta 1» como condición → filtro con «nivel», no con una opción.
 - «ambos instrumentos» o «los dos instrumentos» → comparar_grupos sin «agrupar_por».
+- Comparar según las RESPUESTAS a otra pregunta («¿cambia X según Y?», «los que eligieron A contra los que eligieron B»)
+→ comparar_grupos con «agrupar_por» = el ID de esa pregunta; si solo compara algunas de sus opciones, ponlas como filtro
+de esa misma pregunta. «Los primeros N contra los últimos N» → «agrupar_por»: "posicion" y «limite»: N. «Por sección» →
+«agrupar_por»: "seccion".
+- «De los que respondieron A en una pregunta, ¿qué respondieron en otra?» → resumen_pregunta con el filtro de la primera
+y la segunda en «preguntas».
 - «sin contar / excepto la pregunta X» → «excluir_preguntas» con su ID.
 - «¿cuántos mencionaron / hablaron de X?» → conteo_porcentaje con «menciona»: "X" (se busca en las respuestas abiertas).
 - Seguimientos («¿y…?», «¿le parecieron…?», «¿y sobre…?», «¿por qué?»): si la pregunta no nombra otra persona, \
@@ -131,6 +137,17 @@ _EJEMPLOS: list[tuple[str, dict]] = [
      {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p01", "nivel": "acuerdo"},
                                                     {"pregunta": "p04", "op": ">", "valor": 30}]}),
     ("compara la pregunta 1 en ambos instrumentos", {"intencion": "comparar_grupos", "preguntas": ["p01"]}),
+    # 7 nov (Fase 4): grupos por la respuesta a otra pregunta, por posición y el cruce dentro de un grupo. Mismo
+    # catálogo inventado (tutorías y transporte), ajeno a los instrumentos de prueba.
+    ("¿cambia la opinión sobre los profesores según cómo llegan a la escuela?",
+     {"intencion": "comparar_grupos", "preguntas": ["p01"], "agrupar_por": "p06"}),
+    ("compara la pregunta 1 entre los que llegan en bicicleta y los que llegan caminando",
+     {"intencion": "comparar_grupos", "preguntas": ["p01"], "agrupar_por": "p06",
+      "filtros": [{"pregunta": "p06", "valor": ["Bicicleta", "Caminando"]}]}),
+    ("compara los primeros 20 respondentes con los últimos 20 en la pregunta 2",
+     {"intencion": "comparar_grupos", "preguntas": ["p02"], "agrupar_por": "posicion", "limite": 20}),
+    ("de los que nunca van a tutorías, ¿cómo llegan a la escuela?",
+     {"intencion": "resumen_pregunta", "preguntas": ["p06"], "filtros": [{"pregunta": "p02", "valor": "Nunca"}]}),
     ("¿qué respondieron en la pregunta 2?", {"intencion": "resumen_pregunta", "preguntas": ["p02"]}),
     ("¿cuántos mencionaron la biblioteca en sus comentarios?",
      {"intencion": "conteo_porcentaje", "menciona": "biblioteca", "preguntas": ["p05"]}),

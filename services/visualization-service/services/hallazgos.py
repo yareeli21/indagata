@@ -183,7 +183,43 @@ def _prueba(doc: dict[str, Any]) -> list[dict[str, Any]]:
     return salida
 
 
+def _de_lo_que_cuentan(doc: dict[str, Any]) -> list[dict[str, Any]]:
+    """Hallazgos del análisis de lo que se cuenta (Fase 1, `analisis.nlp`): por pregunta guía, los temas, la valoración
+    y una cita literal; con varios participantes, cuántos hablan de cada tema. Se calculan una vez al generar el
+    documento; aquí solo se ordenan (7 nov, ENT-11, ENT-17, ENT-19)."""
+    guia = {p["id"]: p.get("texto", "") for p in _items(doc)}
+    personas = doc.get("entrevistas") or []
+    por_pregunta: dict[str, dict[str, Any]] = {}
+    for e in personas:
+        for i in e.get("intercambios") or []:
+            nlp = (i.get("analisis") or {}).get("nlp") or {}
+            if not nlp.get("temas") and not nlp.get("citas_clave"):
+                continue
+            d = por_pregunta.setdefault(i.get("pregunta_id") or "", {"temas": {}, "citas": [], "valoraciones": []})
+            for t in nlp.get("temas") or []:
+                d["temas"].setdefault(str(t["tema"]).lower(), set()).add(e["participante"])
+            d["citas"] += [(e["participante"], c) for c in nlp.get("citas_clave") or []][:1]
+            if (nlp.get("valoracion") or {}).get("valor"):
+                d["valoraciones"].append(nlp["valoracion"]["valor"])
+    salida = []
+    for pid, d in por_pregunta.items():
+        if not d["temas"] and not d["citas"]:
+            continue
+        temas = sorted(d["temas"].items(), key=lambda kv: -len(kv[1]))[:4]
+        temas_txt = "; ".join(f"{t}" + (f" ({len(ps)} de {len(personas)} participantes)" if len(personas) > 1 else "")
+                              for t, ps in temas)
+        cita = f" Cita de {_corto(d['citas'][0][0])}: «{d['citas'][0][1]}»." if d["citas"] else ""
+        valor = max(set(d["valoraciones"]), key=d["valoraciones"].count) if d["valoraciones"] else ""
+        texto = (f"En {_corto(pid) or 'una respuesta'} «{guia.get(pid, '')[:80]}» habla de: {temas_txt}"
+                 + (f"; valoración {valor}" if valor else "") + f".{cita}")
+        alcance = max((len(ps) for _, ps in temas), default=1)
+        salida.append(_cand("lo_que_cuentan", texto, 10 * alcance + (5 if valor == "negativo" else 0), [pid] if pid else []))
+    return sorted(salida, key=lambda c: -c["puntaje"])
+
+
 def _entrevista(doc: dict[str, Any]) -> list[dict[str, Any]]:
+    if de_lo_que_cuentan := _de_lo_que_cuentan(doc):
+        return de_lo_que_cuentan[:_MAX_CANDIDATOS]
     salida = []
     for p in _items(doc):
         res = consultas.posturas(doc, p["id"])
@@ -194,6 +230,29 @@ def _entrevista(doc: dict[str, Any]) -> list[dict[str, Any]]:
             salida.append(_cand("postura", f"En {_corto(p['id'])} «{p['texto']}», {c[mayor]} de {res['total']} participantes "
                                 f"tienen la postura «{mayor}» ({pct} %).", pct - 30, [p["id"]]))
     return salida
+
+
+def por_polaridad(doc: dict[str, Any], sentido: str) -> list[dict[str, Any]]:
+    """Lo más preocupante (`desfavorable`) o lo mejor (`favorable`) según la polaridad de cada pregunta (documento final,
+    7 nov): el % de quienes eligieron sus respuestas desfavorables o favorables, de mayor a menor. Solo preguntas con
+    polaridad decidida; «Nunca» en «¿con qué frecuencia te ha tocado un cambio de profesor?» cuenta como favorable si
+    así lo marcó la investigadora (ENC-16)."""
+    clave = "desfavorables" if sentido == "desfavorable" else "favorables"
+    salida = []
+    for p in _items(doc):
+        po = p.get("polaridad") or {}
+        elegidas = [str(o) for o in po.get(clave) or []]
+        dist = (p.get("resumen") or {}).get("distribucion") or []
+        validas = (p.get("resumen") or {}).get("n_validas") or sum(int(d.get("n") or 0) for d in dist)
+        if not elegidas or not dist or not validas:
+            continue
+        n = sum(int(d.get("n") or 0) for d in dist if str(d.get("significado")) in elegidas)
+        pct = round(100 * n / validas, 1)
+        quien = "la investigadora" if po.get("origen") == "investigador" else "el sistema (sin revisar)"
+        texto = (f"{pct} % ({n} de {validas}) respondió {' o '.join(f'«{o}»' for o in elegidas)} en {_corto(p['id'])} "
+                 f"«{p.get('texto', '')[:90]}» (respuestas {clave} según {quien})")
+        salida.append(_cand(f"mas_{clave}", texto, pct, [p["id"]]))
+    return sorted(salida, key=lambda c: -c["puntaje"])[:_MAX_CANDIDATOS]
 
 
 def candidatos(tipo: str, doc: dict[str, Any], fiabilidad: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:

@@ -213,7 +213,7 @@
         }
       ],
       "default": null,
-      "description": "Variable de contexto del catálogo (p. ej. «Turno»).",
+      "description": "Con qué se forman los grupos: una variable de contexto («Turno»), el ID de una pregunta (un grupo por cada respuesta, p. ej. «p02»), «posicion» (primeros y últimos N; N en «limite») o «seccion» (respuestas en blanco por sección).",
       "title": "Agrupar Por"
     },
     "contexto": {
@@ -283,6 +283,23 @@
       "title": "Relacion",
       "type": "string"
     },
+    "sentido": {
+      "anyOf": [
+        {
+          "enum": [
+            "desfavorable",
+            "favorable"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "En hallazgo: lo más preocupante (desfavorable) o lo mejor (favorable).",
+      "title": "Sentido"
+    },
     "kpi": {
       "anyOf": [
         {
@@ -338,6 +355,20 @@
       ],
       "default": null,
       "title": "Limite"
+    },
+    "desde": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Al listar: cuántos se saltan (lo pone el sistema al pedir más).",
+      "title": "Desde"
     },
     "consulta_semantica": {
       "default": "",

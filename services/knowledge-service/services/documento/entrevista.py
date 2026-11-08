@@ -61,6 +61,20 @@ def _contextos(reporte: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return salida
 
 
+def encabezado_de(reporte: dict[str, Any]) -> list[str]:
+    """Las líneas «Clave: valor» del encabezado de la transcripción que guardó la limpieza («Tipo: entrevista
+    semiestructurada», «Duración aproximada: 40 minutos»), sin datos personales (7 nov, ENT-20: el tipo y la duración
+    estaban en el reporte de limpieza pero no llegaban al chat)."""
+    especifico = reporte.get("especifico") or {}
+    lineas = (especifico.get("entrevista") or especifico).get("preambulo") or []
+    salida = []
+    for linea in lineas:
+        clave, _, valor = str(linea).partition(":")
+        if valor.strip() and not es_dato_personal(clave):
+            salida.append(f"{clave.strip()}: {valor.strip()}")
+    return salida[:8]
+
+
 def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str, Any], filas: list[dict[str, str]]) -> dict[str, Any]:
     ins = perfil["instrumento_id"]
     kpis_de = comun.kpis_por_pregunta(perfil.get("kpis_asociados") or [])
@@ -156,7 +170,8 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
     return {
         "esquema_version": ESQUEMA_VERSION,
         "instrumento": {**comun.instrumento(perfil),
-                        **({"indicaciones": estructura.indicaciones} if estructura.indicaciones else {})},
+                        **({"indicaciones": estructura.indicaciones} if estructura.indicaciones else {}),
+                        **({"encabezado": encabezado} if (encabezado := encabezado_de(reporte)) else {})},
         "kpis_asociados": perfil.get("kpis_asociados") or [],
         "preguntas": [{"id": g.id, "texto": g.texto, "kpis_relacionados": kpis_de.get(g.id, [])} for g in guia],
         "entrevistas": [{"participante": ids[k], **({"contexto": contextos[k]} if contextos.get(k) else {}), "intercambios": v}

@@ -218,6 +218,157 @@ _OTRA_PERSONA = re.compile(r"\b(?:segund[oa]|tercer[oa]|otr[oa]s?|demas|resto de
                            r"(?:participantes?|entrevistad\w*|personas?|estudiantes?)\b")
 
 
+_PRIMEROS_ULTIMOS = re.compile(r"\bprimer[oa]s\s+(\d{1,4})\b.{0,60}\bultim[oa]s\s+(\d{1,4})\b")
+_POR_SECCION = re.compile(r"\b(?:por|entre|en (?:alguna|cada|que)|de (?:la|cada)) secci\w*\b|\bsecciones?\b.{0,40}\b(?:compar\w*|"
+                          r"concentr\w*|mas|menos)\b|\bcompar\w*\b.{0,60}\bseccion\b")
+_SEGUN = re.compile(r"\b(?:segun|dependiendo de|de acuerdo con|en funcion de)\s+(?:la|el|los|las|su|sus)?\s*(.{3,60}?)(?:[?,.]|$)")
+
+
+_PREOCUPANTE = re.compile(r"\b(?:preocupa\w*|alarma\w*|negativ\w*|peor(?:es)?|problema\w*|debilidad\w*|riesgos?|"
+                          r"critic\w*|desfavorable\w*|atender primero|focos? rojos?)\b")
+_FAVORABLE = re.compile(r"\b(?:lo mejor|mejores resultados|fortaleza\w*|positiv\w*|favorable\w*|destaca para bien|"
+                        r"salio mejor|salieron mejor)\b")
+
+
+def sentido(pregunta: str) -> str | None:
+    texto = normalizar(pregunta)
+    if _PREOCUPANTE.search(texto):
+        return "desfavorable"
+    if _FAVORABLE.search(texto):
+        return "favorable"
+    return None
+
+
+_RELLENO_TEXTO = {"que", "los", "las", "del", "con", "por", "una", "uno", "sus", "eligieron", "respondieron", "marcaron",
+                  "reactivo", "pregunta", "sobre", "cual", "cuales", "como", "mas"}
+_DE_LOS_QUE = re.compile(r"^(?:y\s+)?de\s+(?:los|las|quienes)\s+que\s+(.+?)[,?¿]\s*(?:que|cuantos|cuantas|como|cual)\b(.+)$")
+_CONTRASTE = re.compile(r"\b(?:que|contra|frente a|comparados? con|vs\.?)\s+(?:los|las)?\s*(?:que|quienes)\b")
+
+
+def _pregunta_por_texto(frase: str, cat: Catalogo, excluir: set[str]) -> str | None:
+    """La pregunta cuyo texto comparte más raíces con la frase (una sola, sin empate)."""
+    def raices(t: str) -> set[str]:  # también siglas de tres letras («VPN», «PDF»)
+        return {w[:5] for w in re.findall(r"[a-z0-9]+", normalizar(t)) if len(w) >= 3 and w not in enrutador._STOP_FILTRO
+                and w not in _RELLENO_TEXTO}
+
+    propias = raices(frase)
+    # Coincidencias y, para desempatar, qué tanto de la pregunta es lo que se nombra: «el reactivo de la VPN» es
+    # «¿Cuál es la principal función de una VPN?» antes que «Usar redes Wi-Fi públicas sin VPN es seguro» (PRU-09).
+    puntos = [(len(propias & raices(q.texto)), len(propias & raices(q.texto)) / max(1, len(raices(q.texto))), pid)
+              for pid, q in cat.preguntas.items() if pid not in excluir]
+    mejor = max(puntos, default=(0, 0.0, None))
+    empates = [x for x in puntos if x[0] == mejor[0]]
+    if mejor[0] < 1:
+        return None
+    if len(empates) == 1:
+        return mejor[2]
+    densas = sorted(empates, key=lambda x: -x[1])
+    return densas[0][2] if densas[0][1] > densas[1][1] else None
+
+
+def _opcion_en(frase: str, pid: str, cat: Catalogo) -> list[str]:
+    """Opciones de `pid` que la frase nombra (tal cual, o por su raíz y polaridad)."""
+    q = cat.preguntas[pid]
+    tal_cual = [o for o in q.opciones if _menciona(normalizar(frase), o)]
+    return tal_cual or opciones_por_raiz(frase, catalogo_de_una(cat, pid), con_ausentes=True).get(pid, [])
+
+
+def catalogo_de_una(cat: Catalogo, pid: str) -> Catalogo:
+    return Catalogo(cat.id, cat.titulo, cat.tipo, {pid: cat.preguntas[pid]}, cat.respondentes, cat.contexto, cat.kpis,
+                    cat.numericas)
+
+
+def _cruce_de(plan: PlanConsulta, pregunta: str, cat: Catalogo) -> tuple[PlanConsulta, list[str]] | None:
+    """«De los que marcaron Verdadero en «el correo es seguro», ¿qué eligieron en el reactivo de la VPN?»: la condición
+    sale de la primera parte (pregunta + opción) y la pregunta que se resume, de la segunda (7 nov, PRU-09)."""
+    m = _DE_LOS_QUE.search(normalizar(pregunta))
+    if not m:
+        return None
+    condicion, resto = m.group(1), m.group(2)
+    citado = re.findall(r"«([^»]+)»", pregunta)
+    origen = _pregunta_por_texto(citado[0] if citado else condicion, cat, set())
+    if origen is None:
+        return None
+    opciones = _opcion_en(condicion, origen, cat)
+    destino = _pregunta_por_texto(resto, cat, {origen})
+    if not opciones or destino is None:
+        return None
+    return plan.model_copy(update={"intencion": "resumen_pregunta", "preguntas": [destino], "agrupar_por": None,
+                                   "filtros": [Filtro(pregunta=origen, valor=opciones if len(opciones) > 1 else opciones[0])],
+                                   "aclaracion": "", "consulta_semantica": "", "nivel": None}), [
+        f"cruce: {destino} entre quienes respondieron «{', '.join(opciones)}» en {origen}"]
+
+
+def _los_que_contra_los_que(plan: PlanConsulta, pregunta: str, cat: Catalogo) -> tuple[PlanConsulta, list[str]] | None:
+    """«¿Los que trabajan en algo relacionado aprobaron más certificaciones que los que no trabajan?»: dos grupos de una
+    misma pregunta (uno por cada lado) y la pregunta que se compara (7 nov, ENC-09, ENC-12, CEN-02)."""
+    texto = normalizar(pregunta)
+    m = _CONTRASTE.search(texto)
+    if not m or not re.search(r"\b(?:los|las|quienes)\s+que\b|\bquienes\b", texto[:m.start()]):
+        return None
+    izquierda, derecha = texto[:m.start()], texto[m.end():]
+    for pid in cat.preguntas:
+        a, b = _opcion_en(izquierda, pid, cat), _opcion_en(derecha, pid, cat)
+        if a and b and set(a) != set(b):
+            objetivo = [q for q in plan.preguntas if q != pid and q in cat.preguntas] or \
+                       [x for x in [_pregunta_por_texto(izquierda + " " + derecha, cat, {pid})] if x]
+            if objetivo:
+                return plan.model_copy(update={"intencion": "comparar_grupos", "agrupar_por": pid, "preguntas": objetivo[:1],
+                                               "filtros": [Filtro(pregunta=pid, valor=list(dict.fromkeys(a + b)))],
+                                               "aclaracion": "", "consulta_semantica": "", "limite": None, "nivel": None}), [
+                    f"comparar {objetivo[0]} entre «{', '.join(a)}» y «{', '.join(b)}» de {pid}"]
+    return None
+
+
+def _agrupamiento(plan: PlanConsulta, pregunta: str, cat: Catalogo) -> tuple[PlanConsulta, list[str]] | None:
+    """Comparaciones que la consulta dice con todas sus letras (7 nov, Fase 4), sin importar lo que propuso el modelo:
+      - «compara los primeros 100 con los últimos 100 en…» → grupos por posición (N en `limite`);
+      - «¿las respuestas en blanco se concentran en alguna sección?» / «compara la sección A con la B» → por sección;
+      - «¿cambia X según la carga académica?» → grupos por la respuesta a la pregunta de la carga;
+      - «compara X entre <opción A> y <opción B>» de una misma pregunta → grupos por esa pregunta, solo esas opciones."""
+    texto = normalizar(pregunta)
+    objetivo = [q for q in plan.preguntas if q in cat.preguntas]
+    if (cruce := _cruce_de(plan, pregunta, cat)) is not None:
+        return cruce
+    if (contraste := _los_que_contra_los_que(plan, pregunta, cat)) is not None:
+        return contraste
+    if m := _PRIMEROS_ULTIMOS.search(texto):
+        n = min(int(m.group(1)), int(m.group(2)))
+        return plan.model_copy(update={"intencion": "comparar_grupos", "agrupar_por": "posicion", "limite": n,
+                                       "filtros": [], "aclaracion": "", "consulta_semantica": "",
+                                       "orden": None, "preguntas": objetivo or plan.preguntas}), [
+            f"comparar los primeros {n} con los últimos {n}"]
+    if _POR_SECCION.search(texto) and len({q.texto for q in cat.preguntas.values()}) > 1 and cat.tipo == "prueba_estandarizada":
+        return plan.model_copy(update={"intencion": "comparar_grupos", "agrupar_por": "seccion", "filtros": [],
+                                       "aclaracion": "", "consulta_semantica": "", "preguntas": []}), [
+            "comparar por sección (respuestas en blanco o nulas)"]
+    if (m := _SEGUN.search(texto)) and plan.intencion in ("comparar_grupos", "resumen_pregunta", "conteo_porcentaje",
+                                                         "aclaracion", "semantica_abierta", "hallazgo"):
+        frase = enrutador._raices(m.group(1))
+        candidatas = [(len(frase & enrutador._raices(q.texto)), pid) for pid, q in cat.preguntas.items()
+                      if q.opciones and pid not in objetivo]
+        mejor = max(candidatas, default=(0, None))
+        if mejor[0] >= 1 and sum(1 for x, _ in candidatas if x == mejor[0]) == 1:
+            resto = texto[:m.start()]
+            objetivo = objetivo or [pid for x, pid in sorted(
+                ((len(enrutador._raices(resto) & enrutador._raices(q.texto)), pid) for pid, q in cat.preguntas.items()
+                 if pid != mejor[1]), reverse=True)[:1] if x >= 1]
+            if objetivo:
+                return plan.model_copy(update={"intencion": "comparar_grupos", "agrupar_por": mejor[1], "preguntas": objetivo,
+                                               "filtros": [], "aclaracion": "", "consulta_semantica": ""}), [
+                    f"comparar {', '.join(objetivo)} según {mejor[1]} (la consulta dice «según…»)"]
+    if re.search(r"\bcompar\w*\b|\bentre\b", texto):
+        for pid, ops in _opciones_mencionadas(texto, cat).items():
+            if len(ops) >= 2 and pid not in objetivo:
+                objetivo = objetivo or [q for q in plan.preguntas if q != pid]
+                if objetivo:
+                    return plan.model_copy(update={"intencion": "comparar_grupos", "agrupar_por": pid, "preguntas": objetivo,
+                                                   "filtros": [Filtro(pregunta=pid, valor=ops)], "aclaracion": "",
+                                                   "consulta_semantica": ""}), [
+                        f"comparar {', '.join(objetivo)} entre «{'» y «'.join(ops)}» de {pid}"]
+    return None
+
+
 def inexistente(plan: PlanConsulta, pregunta: str, cat: Catalogo) -> tuple[PlanConsulta, list[str]] | None:
     """Plan con el aviso si la consulta pide algo que el instrumento no tiene: una opción con letra que el reactivo no
     tiene («la opción E en el reactivo 3») o a otra persona en una entrevista de una sola participante. None si no."""
@@ -259,6 +410,9 @@ def opciones_por_raiz(pregunta: str, cat: Catalogo, ya_usadas: set[str] | None =
         return {}
     ya_usadas, explicadas = ya_usadas or set(), explicadas or set()
     salida: dict[str, list[str]] = {}
+    # Lo citado entre comillas es el enunciado de una pregunta («la nube elimina por completo el riesgo de perder
+    # datos»), no una opción: «completo» y «datos» filtraban opciones de otros reactivos (7 nov, PRU-14).
+    texto = re.sub(r"«[^»]*»|\"[^\"]*\"|“[^”]*”", " ", texto)
     for palabra in dict.fromkeys(re.findall(r"[a-z]+", texto)):
         raiz = palabra[:5]
         if len(palabra) < 5 or palabra in enrutador._STOP_FILTRO or raiz in explicadas or raiz in _VERBOS_CONSULTA:
@@ -297,7 +451,9 @@ def comparte_raiz(palabra: str, opcion: str) -> bool:
     de las dos es más corta («mixta», «turno»)."""
     for w in re.findall(r"[a-z]+", normalizar(opcion)):
         comun = _prefijo_comun(palabra, w)
-        if comun >= 6 or (comun >= 5 and comun == min(len(palabra), len(w))):
+        corta = min(len(palabra), len(w))
+        # Seis letras, o la palabra corta entera, o le falta solo la última letra («diario» ~ «diariamente»).
+        if comun >= 6 or (comun >= 5 and comun >= corta - (1 if corta <= 6 else 0)):
             return True
     return False
 
@@ -427,6 +583,20 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
     intencion = plan.intencion
     if (no_existe := inexistente(plan, pregunta, cat)) is not None:
         return no_existe
+    if plan.agrupar_por == "posicion" and not _PRIMEROS_ULTIMOS.search(texto):
+        # El modelo copió el ejemplo de «primeros N y últimos N» sin que la consulta lo dijera (7 nov, CEN-02).
+        plan = plan.model_copy(update={"agrupar_por": None, "limite": None})
+        notas.append("agrupar por posición quitado (la consulta no habla de primeros y últimos)")
+    if (agrupado := _agrupamiento(plan, pregunta, cat)) is not None:
+        plan, notas = agrupado[0], list(agrupado[1])
+        intencion = plan.intencion
+    nombra_pregunta = bool(enrutador._preguntas(texto)) or "«" in pregunta
+    if cat.tipo == "encuesta" and (s := sentido(pregunta)) and not nombra_pregunta and not plan.filtros \
+            and intencion in ("hallazgo", "resumen_pregunta", "semantica_abierta", "aclaracion", "ranking_preguntas"):
+        # «¿Qué es lo más preocupante de los resultados?»: hallazgo con la polaridad de cada pregunta (7 nov, ENC-16).
+        notas.append(f"intención {intencion} → hallazgo con sentido {s}" if intencion != "hallazgo" else f"sentido {s}")
+        return plan.model_copy(update={"intencion": "hallazgo", "sentido": s, "aclaracion": "", "consulta_semantica": "",
+                                       "criterio_ranking": None, "preguntas": []}), notas
 
     # 0. Ranking de preguntas («¿en qué pregunta hubo más nulas, sin contar la de la contraseña?»): el plan solo tenía
     # el hallazgo, que da UNA pregunta y no permite excluir (Fase 6, consultas 1493, 1498 y 1529). Se revisa también
@@ -672,6 +842,26 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
             and _CONTEO.search(texto) and _ausentes(pregunta, cat):
         nuevo = _aclarar_condicion(plan, pregunta, cat)
         return nuevo, notas + [NINGUNA_CONDICION, *([AVISO_INEXISTENTE] if nuevo.intencion != "aclaracion" else [])]
+
+    # 6b2. «¿Cuántos marcaron Verdadero en «la nube elimina…»?» sin pregunta en el plan: el enunciado citado nombra la
+    # pregunta (7 nov, PRU-14: el modelo lo puso como mención, se descartó y se contó a todos).
+    citados = re.findall(r"«([^»]{8,})»", pregunta)
+    if intencion in _FILTRADO and citados and not cambios.get("preguntas", plan.preguntas) and not cambios.get("filtros", plan.filtros):
+        if pid := _pregunta_por_texto(citados[0], cat, set()):
+            cambios["preguntas"] = [pid]
+            notas.append(f"el enunciado citado es {pid}")
+
+    # 6c. «¿Cuántos han hecho prácticas?» resuelto como resumen de una pregunta de sí / no: es contar a quienes dicen
+    # «sí» (todas las opciones que empiezan con «Sí»), no mostrar la distribución (7 nov, ENC-13).
+    preguntas_6c = cambios.get("preguntas", plan.preguntas)
+    if intencion == "resumen_pregunta" and _CONTEO.search(texto) and len(preguntas_6c) == 1 \
+            and not cambios.get("filtros", plan.filtros) and not re.search(r"\bno\b", texto):
+        q6 = cat.preguntas.get(preguntas_6c[0])
+        si = [o for o in (q6.opciones if q6 else []) if normalizar(o).split(" ")[0].strip(",.") == "si"]
+        if q6 and si and len(si) < len(q6.opciones) and not [o for o in q6.opciones if _menciona(texto, o)]:
+            intencion = "conteo_porcentaje"
+            cambios["filtros"] = [Filtro(pregunta=preguntas_6c[0], valor=si if len(si) > 1 else si[0])]
+            notas.append(f"«¿cuántos…?» sobre {preguntas_6c[0]}: se cuentan las respuestas que empiezan con «Sí»")
 
     # 7. «¿Cuántos marcaron Verdadero en el reactivo de la nube?»: el conteo de UNA opción escrita tal cual es una
     # condición, no el resumen de la pregunta. Sin ella, el seguimiento «de ellos, ¿qué respondieron…?» no tenía grupo

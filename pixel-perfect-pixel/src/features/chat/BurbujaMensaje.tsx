@@ -199,9 +199,42 @@ function ContenidoAsistente({
   mensajeId: string;
   fuentes?: FuenteChat[] | undefined;
 }) {
+  const todos = bloques(texto);
+  // «Ver datos» (7 nov, Fase 4): si la respuesta trae texto y debajo las tablas calculadas, las tablas van en un
+  // desplegable; si la respuesta ES la tabla (listas, presentación fija), se muestra tal cual.
+  const primeraTabla = todos.findIndex((b) => b.tipo !== "texto");
+  const conTexto = primeraTabla > 0;
+  const visibles = conTexto ? todos.slice(0, primeraTabla) : todos;
+  const datos = conTexto ? todos.slice(primeraTabla) : [];
   return (
     <div className="space-y-3">
-      {bloques(texto).map((b, n) => {
+      <BloquesAsistente lista={visibles} mensajeId={mensajeId} fuentes={fuentes} />
+      {datos.length > 0 && (
+        <details className="rounded-xl border border-border bg-muted/30 px-3 py-2">
+          <summary className="cursor-pointer text-xs font-semibold text-muted-foreground">
+            Ver datos (tablas calculadas, con IDs anónimos)
+          </summary>
+          <div className="mt-2">
+            <BloquesAsistente lista={datos} mensajeId={mensajeId} fuentes={fuentes} />
+          </div>
+        </details>
+      )}
+    </div>
+  );
+}
+
+function BloquesAsistente({
+  lista,
+  mensajeId,
+  fuentes,
+}: {
+  lista: Bloque[];
+  mensajeId: string;
+  fuentes?: FuenteChat[] | undefined;
+}) {
+  return (
+    <div className="space-y-3">
+      {lista.map((b, n) => {
         if (b.tipo === "titulo") {
           return (
             <p key={n} className="font-semibold text-foreground">

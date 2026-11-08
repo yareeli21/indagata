@@ -97,6 +97,32 @@ export function IndicadoresSistema({ ind }: { ind: IndicadoresRespuesta }) {
           </>
         )}
 
+        {(ind.comoSeCalculo ?? []).length > 0 && (
+          <>
+            <dt>Cómo lo calculé</dt>
+            <dd className="text-card-foreground">
+              {(ind.comoSeCalculo ?? []).map((c, n) => (
+                <span key={n} className="block">
+                  {c}
+                </span>
+              ))}
+            </dd>
+          </>
+        )}
+
+        {(ind.ajustes ?? []).length > 0 && (
+          <>
+            <dt>Ajustes al plan</dt>
+            <dd>
+              {(ind.ajustes ?? []).map((c, n) => (
+                <span key={n} className="block">
+                  {c}
+                </span>
+              ))}
+            </dd>
+          </>
+        )}
+
         <dt>Recuperado del RAG</dt>
         <dd className={cn(recuperados.length > 0 && "text-card-foreground")}>
           {recuperados.length

@@ -113,7 +113,10 @@ class PlanConsulta(BaseModel):
     preguntas: list[str] = Field(default_factory=list, description="IDs cortos de las preguntas de las que trata.")
     filtros: list[Filtro] = Field(default_factory=list, max_length=5)
     nivel: Nivel | None = None
-    agrupar_por: str | None = Field(default=None, description="Variable de contexto del catálogo (p. ej. «Turno»).")
+    agrupar_por: str | None = Field(
+        default=None, description="Con qué se forman los grupos: una variable de contexto («Turno»), el ID de una pregunta "
+                                  "(un grupo por cada respuesta, p. ej. «p02»), «posicion» (primeros y últimos N; N en "
+                                  "«limite») o «seccion» (respuestas en blanco por sección).")
     # Solo un grupo de contexto («del turno vespertino» → {"Turno": "Vespertino"}) (28 oct, regresión C21).
     contexto: dict[str, str] = Field(default_factory=dict, description="Grupo de contexto al que se limita la consulta.")
     contexto_num: list[CondicionContexto] = Field(
@@ -128,10 +131,15 @@ class PlanConsulta(BaseModel):
     # (consultas 2165 y 2189, 7 nov: se contestaba con el ranking de preguntas o con el total de respondentes).
     con_omisiones: bool = Field(default=False, description="Solo quienes dejaron alguna pregunta sin responder.")
     relacion: Relacion = Field(default="nueva", description="Relación con la pregunta anterior: nueva, continua o profundiza.")
+    # 7 nov (Fase 4): «¿qué es lo más preocupante?» / «¿qué salió mejor?» usan la polaridad de cada pregunta.
+    sentido: Literal["desfavorable", "favorable"] | None = Field(
+        default=None, description="En hallazgo: lo más preocupante (desfavorable) o lo mejor (favorable).")
     kpi: str | None = Field(default=None, description="ID o nombre del KPI si la pregunta trata de uno.")
     campos: Literal["todas_las_respuestas", "solo_ids"] | list[str] = "solo_ids"
     orden: Orden | None = None
     limite: int | None = Field(default=None, ge=1)
+    # 7 nov (Fase 4): «muéstrame más» / «los siguientes» sigue la lista anterior desde donde se quedó.
+    desde: int | None = Field(default=None, ge=0, description="Al listar: cuántos se saltan (lo pone el sistema al pedir más).")
     consulta_semantica: str = Field(default="", max_length=300)
     aclaracion: str = Field(default="", max_length=300)
 
@@ -201,6 +209,30 @@ _NUMERICAS = re.compile(r"numer|entero|decimal|puntos|escala|rango")
 
 def _es_escala(p: PreguntaCatalogo) -> bool:
     return bool(p.escala) or p.tipo in _ESCALAS
+
+
+_POSICION = {"posicion", "orden", "posiciones", "primeros y ultimos"}
+_SECCION = {"seccion", "secciones", "seccion del instrumento", "seccion de la prueba"}
+
+
+def _agrupar_especial(agrupar: str, cat: Catalogo) -> str | None:
+    """«posicion», «seccion» o el ID de la pregunta con la que se agrupa (por su ID o por las palabras de su texto,
+    como escribió el modelo «modalidad cursas tu programa» en la consulta 2279). None si es una variable de contexto o
+    nada de eso."""
+    n = normalizar(agrupar)
+    if n in _POSICION:
+        return "posicion"
+    if n in _SECCION:
+        return "seccion"
+    if _cercano(agrupar, list(cat.contexto)) is not None:
+        return None
+    if (pid := _id_pregunta(agrupar, cat)) is not None:
+        return pid
+    palabras = {w for w in re.findall(r"[a-z]+", n) if len(w) >= 4}
+    puntos = [(len(palabras & {w for w in re.findall(r"[a-z]+", normalizar(q.texto)) if len(w) >= 4}), pid)
+              for pid, q in cat.preguntas.items() if q.opciones]
+    mejor = max(puntos, default=(0, None))
+    return mejor[1] if mejor[0] >= 2 and sum(1 for x, _ in puntos if x == mejor[0]) == 1 else None
 
 
 def _no_encontrada(pedida: str, cat: Catalogo) -> str:
@@ -297,10 +329,16 @@ def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> Pl
         # «ambos instrumentos»: se comparan los instrumentos entre sí, no un grupo de contexto (regresión C25).
         correcciones.append(f"agrupar_por «{agrupar}» → comparación entre instrumentos")
         agrupar = None
-    if agrupar is not None and _cercano(agrupar, list(cat.contexto)) is None and plan.intencion != "comparar_grupos":
+    especial = _agrupar_especial(agrupar, cat) if agrupar is not None else None
+    if especial is not None:
+        # 7 nov (Fase 4): grupos por la respuesta a una pregunta, por posición o por sección (ENC-08, ENC-10, PRU-08).
+        if especial != agrupar:
+            correcciones.append(f"agrupar_por «{agrupar}» → «{especial}»")
+        agrupar = especial
+    elif agrupar is not None and _cercano(agrupar, list(cat.contexto)) is None and plan.intencion != "comparar_grupos":
         correcciones.append(f"agrupar_por «{agrupar}» no es una variable de contexto y la consulta no compara: se quita")
         agrupar = None
-    if agrupar is not None:
+    if agrupar is not None and especial is None:
         real = _cercano(agrupar, list(cat.contexto))
         if real is None:
             disponibles = ", ".join(cat.contexto) or "ninguna"

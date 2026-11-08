@@ -84,3 +84,12 @@ def test_de_ellos_conserva_la_condicion_anterior_que_la_pregunta_no_menciona():
     plan = PlanConsulta(intencion="conteo_porcentaje", filtros=[{"pregunta": "p15", "valor": "No"}])
     nuevo, _ = seguimiento.combinar(plan, anterior, "continua", [], "¿Y los que no tienen dificultades?", [cat])
     assert [(f.pregunta, f.valor) for f in nuevo.filtros] == [("p15", "No")]
+
+
+
+def test_muestrame_mas_sigue_la_lista_anterior():
+    anterior = {"intencion": "filtrar_respondentes", "filtros": [{"pregunta": "p02", "valor": "Mixta"}], "limite": 20}
+    plan, notas = _combinar("Muéstrame más", anterior)
+    assert plan.intencion == "filtrar_respondentes" and plan.desde == 20 and plan.limite == 20 and "siguientes" in notas[0]
+    plan, _ = _combinar("¿Y los siguientes?", {**anterior, "desde": 20})
+    assert plan.desde == 40

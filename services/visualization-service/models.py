@@ -316,6 +316,8 @@ class IndicadoresOut(BaseModel):
     fragmentosRag: list[str] = []  # partes del instrumento que recuperó Chroma y vio el modelo
     tiempos: dict[str, int] = {}
     latenciaMs: int | None = None
+    comoSeCalculo: list[str] = []  # criterio de cada cálculo («Cómo lo calculé»)
+    ajustes: list[str] = []  # lo que se corrigió del plan del modelo
 
 
 class JuezOut(BaseModel):

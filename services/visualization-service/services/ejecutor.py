@@ -16,6 +16,8 @@ por aquí.
 """
 from __future__ import annotations
 
+import math
+
 import re
 import unicodedata
 from dataclasses import dataclass, field
@@ -32,7 +34,7 @@ from services.enrutador import Instrumento
 from services.plan_consulta import ESTRUCTURADAS, LIMITE_MAX, CondicionContexto, Filtro, PlanConsulta
 
 _MAX_CON_RESPUESTAS = 10  # personas con todas sus respuestas en una tabla
-_LIMITE_IDS = 30  # IDs mostrados si el plan no da límite
+_LIMITE_IDS = 20  # IDs mostrados si el plan no da límite (7 nov: el total, los primeros 20 y la opción de pedir más)
 _MAX_TEXTO_PREGUNTA = 70
 _PERSONALES = re.compile(r"nombre|apellido|correo|e-?mail|telefono|celular|matricula|curp|rfc|direccion|domicilio")
 # Sinónimos de nivel: el documento usa «alta/media/baja» o «acuerdo/neutral/desacuerdo» según la escala.
@@ -235,9 +237,20 @@ _ABIERTAS = {"texto_largo", "texto_corto", "texto", "abierta", "pregunta_abierta
 _MAX_CITAS = 8
 
 
+_RELLENO_TERMINO = {"como", "para", "sobre", "acerca", "tipo", "algun", "alguna", "tema", "temas", "cosas"}
+
+
 def _raices_termino(termino: str) -> list[str]:
     """Raíz de 5 letras de cada palabra con contenido: «estrés» → «estre» (encuentra «estresada»)."""
-    return [w[:5] for w in re.findall(r"[a-z0-9]+", normalizar(termino)) if len(w) >= 4]
+    return [w[:5] for w in re.findall(r"[a-z0-9]+", normalizar(termino)) if len(w) >= 4 and w not in _RELLENO_TERMINO]
+
+
+def grupos_termino(termino: str) -> list[list[str]]:
+    """«estrés o ansiedad» → [["estre"], ["ansie"]] (cualquiera de los dos); «familia como apoyo» → [["famil"]]: lo que
+    va después de «como / para / sobre» califica al tema, no es otra palabra que deba aparecer (7 nov, ENT-06 y CET-01:
+    se buscaba la frase entera y daba 0)."""
+    base = re.split(r"\b(?:como|para|sobre|acerca de)\b", normalizar(termino))[0]
+    return [r for g in re.split(r"\s+o\s+|,|/|\s+u\s+", base) if (r := _raices_termino(g))]
 
 
 def _plano(texto: str) -> str:
@@ -247,8 +260,8 @@ def _plano(texto: str) -> str:
 
 def _menciones(doc: dict[str, Any], persona: dict[str, Any], plan: PlanConsulta) -> list[tuple[str, str]]:
     """(pregunta, fragmento) de cada respuesta abierta de la persona que contiene TODAS las palabras del término."""
-    raices = _raices_termino(plan.menciona)
-    if not raices:
+    grupos = grupos_termino(plan.menciona)
+    if not grupos:
         return []
     entrevista = bool(doc.get("entrevistas"))
     abiertas = {_corto(p["id"]) for p in _items(doc) if entrevista or str(p.get("tipo", "")) in _ABIERTAS}
@@ -258,7 +271,10 @@ def _menciones(doc: dict[str, Any], persona: dict[str, Any], plan: PlanConsulta)
             continue
         texto = str(x.get("significado") or "")
         normal = _plano(texto)
-        posiciones = [m.start() for r in raices if (m := re.search(rf"\b{re.escape(r)}", normal))]
+        for raices in grupos:  # basta un grupo («estrés o ansiedad»); dentro de un grupo, todas sus palabras
+            posiciones = [m.start() for r in raices if (m := re.search(rf"\b{re.escape(r)}", normal))]
+            if len(posiciones) == len(raices):
+                break
         if len(posiciones) == len(raices):
             i = posiciones[0]  # _plano conserva la longitud: la posición sirve en el texto original
             salida.append((q, ("…" if i > 50 else "") + texto[max(0, i - 50):i + 70].strip() + ("…" if i + 70 < len(texto) else "")))
@@ -316,7 +332,8 @@ def _filtrar_respondentes(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) ->
     cumplen = _ordenar(cumplen, plan)
     con_respuestas = plan.campos != "solo_ids"
     n = min(plan.limite or (5 if con_respuestas else _LIMITE_IDS), _MAX_CON_RESPUESTAS if con_respuestas else LIMITE_MAX)
-    mostrados = cumplen[:n]
+    inicio = plan.desde or 0
+    mostrados = cumplen[inicio:inicio + n]
     e.criterio = " y ".join(condiciones) or "sin condiciones"
     e.total, e.mostrados = len(cumplen), len(mostrados)
     e.preguntas = [p["id"] for p in _items(doc) if _corto(p["id"]) in {f.pregunta for f in plan.filtros} | set(plan.preguntas)]
@@ -327,7 +344,12 @@ def _filtrar_respondentes(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) ->
         return
     if plan.con_omisiones:
         e.lineas.append(_mas_omitidas(doc, cumplen, plan))
-    e.lineas.append(f"Se muestran {_frase_orden(plan, len(mostrados))} que la cumplen: {len(mostrados)} de {len(cumplen)}.")
+    if inicio:
+        e.lineas.append(f"Se muestran del {inicio + 1} al {inicio + len(mostrados)} de los {len(cumplen)} que la cumplen.")
+    else:
+        e.lineas.append(f"Se muestran {_frase_orden(plan, len(mostrados))} que la cumplen: {len(mostrados)} de {len(cumplen)}.")
+    if inicio + len(mostrados) < len(cumplen):
+        e.lineas.append(f"Faltan {len(cumplen) - inicio - len(mostrados)}: pide «muéstrame más» para ver los siguientes.")
     e.respondentes = [p["id"] for p in mostrados]
     if plan.menciona:
         e.tablas.append(_tabla_menciones(doc, mostrados, plan))
@@ -351,6 +373,11 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
         e.lineas.append(f"Cumplen la condición {len(grupo)} de {total} respondentes ({pct} %).")
         e.vacio = not grupo
         if plan.menciona and grupo:
+            raices = [r for g in grupos_termino(plan.menciona) for r in g]
+            veces = sum(len(re.findall(rf"\b(?:{'|'.join(map(re.escape, raices))})", _plano(str(x.get("significado") or ""))))
+                        for p in grupo for x in p["por_pregunta"].values() if (x or {}).get("estado") == "respondida")
+            e.lineas.append(f"Menciones: {veces} palabras que empiezan con {' o '.join(f'«{r}»' for r in raices)} (cuenta la "
+                            "misma raíz: «estrés», «estresada»…; no cuenta sinónimos ni expresiones con otras palabras).")
             e.tablas.append(_tabla_menciones(doc, grupo, plan))
         if plan.con_omisiones and (plan.filtros or plan.contexto or plan.contexto_num or plan.menciona):
             # «De esos, ¿cuántos dejaron alguna sin responder?»: la base es el grupo anterior, no todo el instrumento
@@ -361,6 +388,10 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
                             "dejaron alguna pregunta sin responder.")
         if plan.con_omisiones and grupo:
             e.lineas.append(_mas_omitidas(doc, grupo, plan))
+        objetivo = [q for q in plan.preguntas if q not in {f.pregunta for f in plan.filtros}]
+        if objetivo and not plan.nivel and grupo:
+            # «De ellos, ¿qué respondieron sobre el Wi-Fi?»: además del conteo, cómo respondió ESE grupo.
+            _cruce(ins, plan, e, grupo, condiciones, objetivo)
     preguntas = plan.preguntas
     if plan.nivel and preguntas:
         base = grupo if hay_condicion else _personas(doc)
@@ -388,27 +419,118 @@ def _legible(valor: Any) -> str:
     return _BOOLEANOS.get(str(valor).strip().lower(), str(valor))
 
 
+POSICION, SECCION = "posicion", "seccion"
+_VACIOS = {"(sin respuesta)", "(nula)", "(no interpretada)", "(sin dato)"}
+
+
+def distribucion(doc: dict[str, Any], personas: list[dict[str, Any]], q: str) -> tuple[int, int, dict[str, int], float | None]:
+    """(respuestas válidas, sin respuesta, {opción: n} de mayor a menor, media si es numérica) de una pregunta en un
+    grupo de personas (7 nov, Fase 4: cruces y comparaciones calculados sobre el grupo, no sobre toda la muestra)."""
+    conteo: dict[str, int] = {}
+    numeros: list[float] = []
+    sin = 0
+    for persona in personas:
+        x = persona["por_pregunta"].get(q)
+        if not x or x.get("estado") != "respondida":
+            sin += 1
+            continue
+        seleccion = x.get("seleccion") or [_mostrar(x)]
+        for valor in seleccion:
+            conteo[str(valor)] = conteo.get(str(valor), 0) + 1
+        try:
+            numeros.append(float(x.get("valor")))
+        except (TypeError, ValueError):
+            pass
+    validas = len(personas) - sin
+    media = round(sum(numeros) / len(numeros), 2) if numeros and len(numeros) == validas else None
+    return validas, sin, dict(sorted(conteo.items(), key=lambda kv: -kv[1])), media
+
+
+def _celda_distribucion(validas: int, conteo: dict[str, int], media: float | None) -> str:
+    if not validas:
+        return "(sin respuestas)"
+    partes = [f"«{o}» {n} ({round(100 * n / validas, 1)} %)" for o, n in conteo.items()]
+    return (f"media {media}; " if media is not None else "") + "; ".join(partes)
+
+
+def _grupos_por(ins: Instrumento, plan: PlanConsulta, base: list[dict[str, Any]]) -> tuple[str, dict[str, list[dict[str, Any]]]]:
+    """(nombre del agrupamiento, {grupo: personas}) según `agrupar_por`: variable de contexto, ID de una pregunta (un
+    grupo por respuesta, solo las opciones filtradas si las hay) o «posicion» (primeros N y últimos N)."""
+    doc, var = ins.doc, plan.agrupar_por or ""
+    if var == POSICION:
+        n = max(1, min(plan.limite or 50, len(base)))
+        ordenadas = sorted(base, key=_clave_id)
+        solape = max(0, 2 * n - len(ordenadas))
+        nombre = f"posición (primeros {n} y últimos {n}" + (f"; {solape} personas están en los dos grupos)" if solape else ")")
+        return nombre, {f"Primeros {n}": ordenadas[:n], f"Últimos {n}": ordenadas[-n:]}
+    if _pregunta(doc, var):
+        permitidas = {str(v) for f in plan.filtros if f.pregunta == var
+                      for v in (f.valor if isinstance(f.valor, list) else [f.valor])}
+        grupos: dict[str, list[dict[str, Any]]] = {}
+        for persona in base:
+            valor = _mostrar(persona["por_pregunta"].get(var))
+            if valor not in _VACIOS and (not permitidas or valor in permitidas):
+                grupos.setdefault(valor, []).append(persona)
+        return _texto_pregunta(doc, var), grupos
+    grupos = {}
+    for persona in base:
+        valor = persona["contexto"].get(var)
+        if valor not in (None, ""):
+            grupos.setdefault(_legible(valor), []).append(persona)
+    return var, grupos
+
+
+def _comparar_secciones(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> None:
+    """Respuestas en blanco (o nulas) por sección: cuántos reactivos tiene cada una y qué % de sus respuestas faltan
+    (7 nov, PRU-08 y PRU-12)."""
+    doc = ins.doc
+    nombres = {s["id"]: s.get("nombre", "") for s in doc.get("secciones") or []}
+    personas = _personas(doc)
+    filas = []
+    for sid, nombre in nombres.items():
+        items = [_corto(p["id"]) for p in _items(doc) if p.get("seccion_id") == sid and _corto(p["id"]) not in plan.excluir_preguntas]
+        if not items:
+            continue
+        posibles = len(items) * len(personas)
+        vacias = sum(1 for persona in personas for q in items
+                     if (persona["por_pregunta"].get(q) or {}).get("estado") != "respondida")
+        filas.append([nombre, str(len(items)), str(vacias), f"{round(100 * vacias / posibles, 1) if posibles else 0.0} %"])
+    e.criterio = "respuestas en blanco o nulas por sección"
+    if not filas:
+        e.vacio = True
+        e.lineas.append("El instrumento no tiene secciones.")
+        return
+    e.tablas.append(Tabla("Respuestas en blanco o nulas por sección", ["Sección", "Reactivos", "En blanco o nulas",
+                                                                       "% de sus respuestas"], filas))
+    mayor = max(filas, key=lambda f: float(f[3].rstrip(" %")))
+    e.lineas.append(f"La sección con más respuestas en blanco o nulas es «{mayor[0]}»: {mayor[2]} ({mayor[3]} de sus "
+                    f"respuestas posibles, {mayor[1]} reactivos × {len(personas)} alumnos).")
+    e.total = len(personas)
+
+
 def _comparar_grupos(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> None:
     doc = ins.doc
     if not plan.agrupar_por:
         _resumen_pregunta(ins, plan, e)  # entre instrumentos: el resumen de cada uno, lado a lado
         return
-    var = plan.agrupar_por
-    base, condiciones = _filtrados(ins, plan)
-    grupos: dict[str, list[dict[str, Any]]] = {}
-    for p in base:
-        valor = p["contexto"].get(var)
-        if valor not in (None, ""):
-            grupos.setdefault(_legible(valor), []).append(p)
+    if plan.agrupar_por == SECCION:
+        _comparar_secciones(ins, plan, e)
+        return
+    base, condiciones = _filtrados(ins, plan.model_copy(update={
+        "filtros": [f for f in plan.filtros if f.pregunta != plan.agrupar_por]}))
+    var, grupos = _grupos_por(ins, plan, base)
     e.criterio = f"por {var}" + (f", entre quienes cumplen {' y '.join(condiciones)}" if condiciones else "")
     if not grupos:
         e.vacio = True
         e.lineas.append(f"Ningún respondente tiene un valor de «{var}».")
         return
-    preguntas = plan.preguntas or [f.pregunta for f in plan.filtros][:1]
-    columnas = [var, "Respondentes"]
+    preguntas = [q for q in (plan.preguntas or [f.pregunta for f in plan.filtros if f.pregunta != plan.agrupar_por][:1])
+                 if q != plan.agrupar_por]
+    columnas = ["Grupo", "Personas"]
     filas = []
-    for g, personas in sorted(grupos.items()):
+    orden = list(grupos) if plan.agrupar_por == POSICION else sorted(grupos)
+    for g in orden:
+        personas = grupos[g]
         fila = [g, str(len(personas))]
         for q in preguntas:
             validas = [p for p in personas if (p["por_pregunta"].get(q) or {}).get("estado") == "respondida"]
@@ -416,25 +538,49 @@ def _comparar_grupos(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> None
                 en = sum(_en_nivel(p["por_pregunta"].get(q), plan.nivel) for p in validas)
                 fila.append(f"{round(100 * en / len(validas), 1) if validas else 0.0} % ({en} de {len(validas)})")
             else:
-                conteo: dict[str, int] = {}
-                for p in validas:
-                    conteo[_mostrar(p["por_pregunta"].get(q))] = conteo.get(_mostrar(p["por_pregunta"].get(q)), 0) + 1
-                if conteo:
-                    top = max(conteo, key=conteo.get)
-                    fila.append(f"«{top}» {round(100 * conteo[top] / len(validas), 1)} % ({conteo[top]} de {len(validas)})")
-                else:
-                    fila.append("(sin respuestas)")
+                # Toda la distribución del grupo (y su media si es numérica), no solo la opción más elegida: los grupos
+                # se comparan en porcentajes sobre su propio n (7 nov, ENC-08, ENC-09 y ENC-11).
+                n_validas, _, conteo, media = distribucion(doc, personas, q)
+                fila.append(_celda_distribucion(n_validas, conteo, media))
         filas.append(fila)
     for q in preguntas:
-        columnas.append(f"{q}: {_NOMBRE_NIVEL[plan.nivel]}" if plan.nivel else f"{q}: opción más elegida")
+        columnas.append(f"{q}: {_NOMBRE_NIVEL[plan.nivel]}" if plan.nivel else f"{q}: respuestas del grupo")
     e.tablas.append(Tabla(f"Comparación por {var}", columnas, filas))
     e.total = len(base)
     e.preguntas = [p["id"] for p in _items(doc) if _corto(p["id"]) in preguntas]
 
 
+def _hay_condicion(plan: PlanConsulta) -> bool:
+    return bool(plan.filtros or plan.contexto or plan.contexto_num or plan.menciona or plan.con_omisiones)
+
+
+def _cruce(ins: Instrumento, plan: PlanConsulta, e: Ejecucion, grupo: list[dict[str, Any]], condiciones: list[str],
+           preguntas: list[str]) -> None:
+    """La distribución de cada pregunta DENTRO del grupo que cumple las condiciones: «de los que marcaron Verdadero en
+    r11, ¿qué eligieron en r03?» (7 nov, PRU-09 y PRU-14: se respondía con la distribución de toda la muestra)."""
+    doc = ins.doc
+    for q in preguntas:
+        validas, sin, conteo, media = distribucion(doc, grupo, q)
+        e.lineas.append(f"Entre los {len(grupo)} que cumplen {' y '.join(condiciones)}, {_texto_pregunta(doc, q)}: "
+                        f"{validas} respuestas válidas" + (f", {sin} sin respuesta" if sin else "")
+                        + (f"; media {media}" if media is not None else "") + ".")
+        if conteo:
+            e.tablas.append(Tabla(f"{q} entre quienes cumplen la condición", ["Opción", "Personas", "% del grupo"],
+                                  [[o, str(n), f"{round(100 * n / validas, 1) if validas else 0.0} %"] for o, n in conteo.items()]))
+
+
 def _resumen_pregunta(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> None:
     doc = ins.doc
     preguntas = plan.preguntas or [f.pregunta for f in plan.filtros]
+    objetivo = [q for q in preguntas if q not in {f.pregunta for f in plan.filtros}]
+    if _hay_condicion(plan) and objetivo:
+        grupo, condiciones = _filtrados(ins, plan)
+        e.criterio = " y ".join(condiciones)
+        e.total = len(grupo)
+        e.vacio = not grupo
+        _cruce(ins, plan, e, grupo, condiciones, objetivo)
+        e.preguntas = [p["id"] for p in _items(doc) if _corto(p["id"]) in set(preguntas) | {f.pregunta for f in plan.filtros}]
+        return
     if not preguntas:
         e.vacio = True
         e.lineas.append("La consulta no indica de qué pregunta se trata.")
@@ -476,8 +622,12 @@ def _resumen_pregunta(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> Non
 
 _TOP_RANKING = 3
 _NOMBRE_RANKING = {"no_respuesta": "más respuestas nulas o sin responder",
-                   "coincidencia": "más coincidencia (opción más elegida con el porcentaje más alto)",
-                   "repartida": "respuestas más repartidas (opción más elegida con el porcentaje más bajo)"}
+                   "coincidencia": "más coincidencia (índice de dispersión más bajo: 0 = todos eligieron lo mismo)",
+                   "repartida": "respuestas más repartidas (índice de dispersión más alto: 1 = repartidas por igual entre "
+                                "sus opciones; entropía normalizada)"}
+_SIN_DISPERSION = {"opcion_multiple_varias", "texto_corto", "texto_largo", "abierta", "numerica", "sin_datos", "fecha",
+                   "ordenamiento"}
+_NO_OPCION = {"nr", "nula", "sin respuesta", "(sin respuesta)", "(nula)"}
 
 
 def _medida_ranking(p: dict[str, Any], criterio: str) -> tuple[float, str] | None:
@@ -490,14 +640,26 @@ def _medida_ranking(p: dict[str, Any], criterio: str) -> tuple[float, str] | Non
             return None
         pct = round(100 * vacias / total, 1)
         return pct, f"{vacias} nulas o sin responder de {total} ({pct} %)"
-    if r.get("opcion_mas_elegida"):  # pruebas
-        m = r["opcion_mas_elegida"]
-        return float(m.get("pct") or 0), f"«{m.get('significado')}» con {m.get('n')} de {r.get('n_alumnos')} ({m.get('pct')} %)"
-    dist = r.get("distribucion") if isinstance(r.get("distribucion"), list) else []
-    if not dist:
+    # 7 nov (Fase 4): repartida y coincidencia con la entropía normalizada de la distribución (0 = todos eligieron lo
+    # mismo; 1 = repartidas por igual entre todas las opciones). Con el % de la opción más elegida, una pregunta de
+    # opción múltiple con siete opciones salía como la «más dividida» (ENC-14) y una escala de 10 puntos ganaba siempre
+    # (CEN-04). Las de varias respuestas, abiertas o numéricas no entran: su distribución no reparte a las personas.
+    if str(p.get("tipo") or p.get("tipo_reactivo") or "") in _SIN_DISPERSION:
         return None
-    top = max(dist, key=lambda d: d.get("pct") or 0)
-    return float(top.get("pct") or 0), f"«{top.get('significado')}» con {top.get('n')} respuestas ({top.get('pct')} %)"
+    dist = r.get("distribucion") or []
+    if isinstance(dist, dict):  # reactivo: {opción: {n, pct}}
+        dist = [{"significado": o, **(v if isinstance(v, dict) else {})} for o, v in dist.items()]
+    conteos = [(str(d.get("significado")), int(d.get("n") or 0)) for d in dist
+               if str(d.get("significado")).strip().lower() not in _NO_OPCION]
+    total = sum(n for _, n in conteos)
+    if len(conteos) < 2 or not total:
+        return None
+    h = -sum((n / total) * math.log(n / total) for _, n in conteos if n)
+    indice = round(h / math.log(len(conteos)), 3)
+    top = max(conteos, key=lambda c: c[1])
+    texto = (f"índice de dispersión {indice:.2f} ({len(conteos)} opciones); la más elegida, «{top[0]}», con {top[1]} de "
+             f"{total} ({round(100 * top[1] / total, 1)} %)")
+    return (indice, texto) if criterio == "repartida" else (round(1 - indice, 3), texto)
 
 
 def _ranking_preguntas(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> None:
@@ -513,7 +675,7 @@ def _ranking_preguntas(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
         e.vacio = True
         e.lineas.append("No hay resúmenes calculados para ordenar las preguntas.")
         return
-    medidas.sort(key=lambda x: x[0][0], reverse=criterio != "repartida")
+    medidas.sort(key=lambda x: x[0][0], reverse=True)  # índice más alto primero (en coincidencia ya va invertido)
     corte = medidas[min(_TOP_RANKING, len(medidas)) - 1][0][0]
     elegidas = [x for i, x in enumerate(medidas) if i < _TOP_RANKING or x[0][0] == corte][:10]
     for n, ((valor, texto), p) in enumerate(elegidas, start=1):
@@ -550,8 +712,18 @@ def _kpi(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> None:
 
 
 def _hallazgo(ins: Instrumento, plan: PlanConsulta, e: Ejecucion, fiabilidad: list[dict[str, Any]] | None) -> None:
+    if plan.sentido and ins.tipo == "encuesta":
+        e.candidatos = hallazgos.por_polaridad(ins.doc, plan.sentido)
+        nombre = "más preocupante (respuestas desfavorables)" if plan.sentido == "desfavorable" else "mejor (respuestas favorables)"
+        if e.candidatos:
+            e.criterio = f"lo {nombre}: % de quienes eligieron las respuestas {plan.sentido}s de cada pregunta"
+            e.lineas += [f"Dato {n}: {c['texto']}" for n, c in enumerate(e.candidatos, start=1)]
+            e.preguntas = list(dict.fromkeys(p for c in e.candidatos for p in c["preguntas"]))
+            return
+        e.lineas.append("Ninguna pregunta tiene decidido qué respuestas son favorables o desfavorables (polaridad): "
+                        "estos son los datos más notables, sin juzgar si son buenos o malos.")
     e.candidatos = hallazgos.candidatos(ins.tipo, ins.doc, fiabilidad)
-    e.criterio = "datos calculados sobre los resúmenes del documento final, del más al menos notable"
+    e.criterio = e.criterio or "datos calculados sobre los resúmenes del documento final, del más al menos notable"
     if not e.candidatos:
         e.vacio = True
         e.lineas.append("No hay resúmenes calculados para buscar un hallazgo en este instrumento.")

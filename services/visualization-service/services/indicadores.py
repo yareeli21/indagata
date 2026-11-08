@@ -105,6 +105,10 @@ def calcular(fila: RagLog) -> dict[str, Any]:
                           for c in fila.contexto_usado or [] if c.get("tipo") == "fragmento"],
         "tiempos": dict(fila.tiempos or {}),
         "latenciaMs": fila.latencia_ms,
+        # «Cómo lo calculé» (7 nov, Fase 4): el criterio de cada cálculo y lo que se ajustó del plan del modelo.
+        "comoSeCalculo": [f"{c.get('instrumento')}: {c.get('criterio')}" + (f" ({c['total']} personas)" if c.get("total") is not None else "")
+                          for c in registro.get("calculo") or []],
+        "ajustes": [str(x) for x in registro.get("correcciones") or []][:8],
     }
     if verificacion.get("intentos"):
         salida["regeneraciones"] = int(verificacion["intentos"]) - 1

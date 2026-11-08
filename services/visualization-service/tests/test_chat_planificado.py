@@ -417,7 +417,9 @@ def test_que_significa_eso_retoma_el_plan_de_la_respuesta_anterior(chat):
     chat["plan"] = {"intencion": "aclaracion", "aclaracion": "¿Qué quieres saber?"}
     chat["redaccion"] = "Que 2 de 5 respondentes (40.0 %) tienen dificultades sugiere que les cuesta [Fuente 1]."
     datos, fila = chat["preguntar"]("y eso, ¿qué puede significar?", ["4"], historial)
-    assert fila.motivo == "plan:conteo_porcentaje" and datos["respuesta"].startswith("Que 2 de 5")
+    # 7 nov (Fase 4): dos capas, los datos tal cual y la interpretación marcada como tal.
+    assert fila.motivo == "plan:conteo_porcentaje" and datos["respuesta"].startswith("**Lo que muestran los datos:** Criterio:")
+    assert "**Interpretación (del asistente, no es un dato):** Que 2 de 5" in datos["respuesta"]
     assert "profundiza: se repite el plan anterior (conteo_porcentaje) para explicarlo" in fila.plan["correcciones"]
     assert fila.plan["plan"]["relacion"] == "profundiza"
     chat["plan"] = {"intencion": "aclaracion", "aclaracion": "¿De qué grupo?"}  # algo nuevo, ambiguo y sin RAG

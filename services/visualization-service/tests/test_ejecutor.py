@@ -142,7 +142,8 @@ def test_conteo_por_nivel_y_por_filtro():
 def test_comparar_grupos_por_contexto():
     e = _uno(_plan(intencion="comparar_grupos", preguntas=["p01"], nivel="acuerdo", agrupar_por="Turno"), _enc())
     (t,) = e.tablas
-    assert t.columnas == ["Turno", "Respondentes", "p01: de acuerdo (nivel alto)"]
+    assert t.titulo == "Comparación por Turno"
+    assert t.columnas == ["Grupo", "Personas", "p01: de acuerdo (nivel alto)"]
     assert t.filas == [["Matutino", "2", "50.0 % (1 de 2)"], ["Vespertino", "3", "33.3 % (1 de 3)"]]
 
 
@@ -279,6 +280,10 @@ def _prueba_ranking() -> Instrumento:
         resumen = {"n_alumnos": 20, "n_nulas": nulas, "n_sin_respuesta": sin,
                    "opcion_mas_elegida": {"opcion": "A", "significado": top[0], "n": top[1], "pct": round(100 * top[1] / 20, 1)}
                    if top else None}
+        if top:  # el resto de las respuestas válidas repartido entre otras dos opciones
+            resto = 20 - nulas - sin - top[1]
+            resumen["distribucion"] = {top[0]: {"n": top[1]}, "Otra 1": {"n": resto - resto // 2}, "Otra 2": {"n": resto // 2},
+                                       "NR": {"n": sin}}
         return {"id": f"INS-0009-r{n:02d}", "texto": texto, "resumen": resumen}
     doc = {"reactivos": [reactivo(1, "¿Qué es un firewall?", 0, 20, None),
                          reactivo(2, "¿Qué es una hoja de cálculo?", 1, 1, ("Un programa", 9)),
@@ -302,11 +307,22 @@ def test_ranking_por_no_respuesta_con_exclusion_y_empate():
 
 def test_ranking_por_coincidencia_y_repartida():
     ins = _prueba_ranking()
+    # 7 nov (Fase 4): índice de dispersión (entropía normalizada) sin contar las NR; r01 (sin respuestas) no entra.
     e = _uno(_plan(intencion="ranking_preguntas", criterio_ranking="coincidencia"), ins)
-    assert e.lineas[0].startswith("1. r04") and "«Verdadero» con 19 de 20 (95.0 %)" in e.lineas[0]
+    assert e.lineas[0].startswith("1. r04") and "«Verdadero», con 19 de 20 (95.0 %)" in e.lineas[0]
     e = _uno(_plan(intencion="ranking_preguntas", criterio_ranking="repartida"), ins)
-    assert e.lineas[0].startswith("1. r03")  # 35 %: la opción más elegida más baja; r01 (sin respuestas) no entra
+    assert e.lineas[0].startswith("1. r03") and "índice de dispersión" in e.lineas[0]  # 7 de 18: la más pareja
     assert all("r01" not in l for l in e.lineas)
+    assert "entropía normalizada" in e.criterio
+
+
+def test_ranking_repartida_no_toma_preguntas_de_varias_respuestas():
+    doc = docs_ejemplo.encuesta()
+    doc["preguntas"][0]["tipo"] = "opcion_multiple_varias"
+    for k, p in enumerate(doc["preguntas"]):
+        p["resumen"]["distribucion"] = [{"significado": f"Op{i}", "n": n} for i, n in enumerate([5, 5, 5, 5] if k == 0 else [4, 1])]
+    e = _uno(_plan(intencion="ranking_preguntas", criterio_ranking="repartida"), Instrumento("1", "E", "encuesta", doc))
+    assert not any("p01" in l for l in e.lineas)  # la de varias respuestas, aunque sea la más pareja, no entra
 
 
 def test_ranking_en_una_encuesta_usa_sus_resumenes():
@@ -371,3 +387,35 @@ def test_hallazgo_pide_varios_patrones_y_el_respaldo_trae_tres():
     directa = consulta_planificada.directa([e])
     assert all(c["texto"] in directa for c in e.candidatos[:3])
     assert all(c["texto"] not in directa for c in e.candidatos[3:])
+
+
+
+def test_comparar_por_pregunta_y_por_posicion_y_cruce_dentro_del_grupo():
+    """7 nov (Fase 4): grupos según la respuesta a una pregunta (ENC-08/09/11), primeros y últimos N (ENC-10, PRU-10)
+    y la distribución de una pregunta dentro del grupo que cumple una condición (PRU-09, PRU-14)."""
+    enc = _enc()
+    e = _uno(_plan(intencion="comparar_grupos", preguntas=["p01"], agrupar_por="p02"), enc)
+    (t,) = e.tablas
+    assert t.columnas[:2] == ["Grupo", "Personas"] and len(t.filas) >= 2
+    assert sum(int(f[1]) for f in t.filas) <= 5 and "%" in t.filas[0][2]
+    e = _uno(_plan(intencion="comparar_grupos", preguntas=["p01"], agrupar_por="posicion", limite=2), enc)
+    assert [f[0] for f in e.tablas[0].filas] == ["Primeros 2", "Últimos 2"] and all(f[1] == "2" for f in e.tablas[0].filas)
+    filtro = {"pregunta": "p02", "valor": e.tablas[0].filas and _enc().doc["respondentes"][0]["respuestas"][1]["significado"]}
+    e = _uno(_plan(intencion="resumen_pregunta", preguntas=["p01"], filtros=[filtro]), enc)
+    assert e.lineas[0].startswith("Entre los ") and e.tablas[0].columnas == ["Opción", "Personas", "% del grupo"]
+
+
+
+def test_lo_mas_preocupante_usa_la_polaridad_de_cada_pregunta():
+    """7 nov (Fase 4, ENC-16): «Nunca» en un problema es favorable; lo preocupante son las respuestas desfavorables."""
+    doc = docs_ejemplo.encuesta()
+    p = doc["preguntas"][0]
+    p["resumen"]["distribucion"] = [{"significado": "Nunca", "n": 4}, {"significado": "Siempre", "n": 1}]
+    p["resumen"]["n_validas"] = 5
+    p["polaridad"] = {"favorables": ["Nunca"], "desfavorables": ["Siempre"], "origen": "investigador", "estado": "revisado"}
+    e = _uno(_plan(intencion="hallazgo", sentido="desfavorable"), Instrumento("1", "E", "encuesta", doc))
+    assert e.lineas[0].startswith("Dato 1: 20.0 % (1 de 5) respondió «Siempre»") and "según la investigadora" in e.lineas[0]
+    assert "más preocupante" in e.criterio
+    # Sin polaridad en ninguna pregunta se avisa y se muestran los datos notables.
+    e = _uno(_plan(intencion="hallazgo", sentido="desfavorable"), _enc())
+    assert e.lineas[0].startswith("Ninguna pregunta tiene decidido")

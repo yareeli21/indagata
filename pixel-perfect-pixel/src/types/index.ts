@@ -667,6 +667,10 @@ export interface IndicadoresRespuesta {
   fragmentosRag: string[];
   tiempos: Record<string, number>;
   latenciaMs: number | null;
+  /** «Cómo lo calculé»: el criterio de cada cálculo (instrumento: condiciones, personas). */
+  comoSeCalculo?: string[];
+  /** Lo que el sistema corrigió del plan que propuso el modelo. */
+  ajustes?: string[];
 }
 
 export interface EvaluacionJuez {
