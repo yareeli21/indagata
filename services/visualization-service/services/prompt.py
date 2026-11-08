@@ -123,10 +123,9 @@ def construir(
     lineas: list[str] = []
     for i, grupo in enumerate(grupos.values(), start=1):
         f = grupo[0]
-        lineas.append(
-            f"[Fuente {f.get('numero') or i}] {f.get('titulo') or 'Instrumento'} ({f.get('tipo') or ''}, "
-            f"{f.get('investigador') or 'autor no indicado'})"
-        )
+        # Sin el nombre de quien registró el instrumento: el modelo se lo atribuía a la persona entrevistada
+        # (8 nov, causa C13 de la línea base). La tarjeta de la fuente en la interfaz sí lo muestra.
+        lineas.append(f"[Fuente {f.get('numero') or i}] {f.get('titulo') or 'Instrumento'} ({f.get('tipo') or ''})")
         lineas.append(f'<datos fuente="{f.get("numero") or i}">')
         for g in grupo:
             parte = _SECCION.get(str(g.get("seccion") or ""), "fragmento")
