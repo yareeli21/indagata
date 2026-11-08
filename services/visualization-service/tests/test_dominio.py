@@ -105,7 +105,7 @@ def test_glosario_y_ayuda_por_palabra_clave_aunque_no_haya_modelo():
 
 def test_mensajes_distintos_y_con_ejemplos_del_alcance():
     fuera = dominio.mensaje(dominio.FUERA, {"prueba_estandarizada"})
-    assert "Solo puedo responder" in fuera and "opción eligió la mayoría en el reactivo 3" in fuera
+    assert "solo puedo responder" in fuera and "opción eligió la mayoría en el reactivo 3" in fuera
     privacidad = dominio.mensaje(dominio.PRIVACIDAD)
     assert "anónimos" in privacidad and "- " not in privacidad
     assert dominio.mensaje(dominio.MANIPULACION) != fuera

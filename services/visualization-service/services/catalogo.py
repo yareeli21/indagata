@@ -109,6 +109,12 @@ def _opciones_vistas(doc: dict[str, Any]) -> dict[str, list[str]]:
             if x.get("estado") == "respondida" and x.get("significado") not in (None, ""):
                 for s in x.get("seleccion") or [x["significado"]]:
                     vistas.setdefault(_corto(x["pregunta_id"]), {})[str(s)] = None
+    # Reactivos sin opciones declaradas (verdadero o falso): lo que eligieron los alumnos. Sin esto el catálogo de la
+    # prueba no tenía «Verdadero» ni «Falso» y «¿cuántos marcaron Verdadero en…?» no se volvía condición (7 nov, PRU-14).
+    for a in doc.get("alumnos") or []:
+        for x in a.get("respuestas") or []:
+            if x.get("estado") == "valida" and x.get("significado") not in (None, ""):
+                vistas.setdefault(_corto(x["reactivo_id"]), {})[str(x["significado"])] = None
     return {k: list(v) for k, v in vistas.items()}
 
 
@@ -129,7 +135,7 @@ def construir(id_crudo: str, titulo: str, tipo: str, doc: dict[str, Any]) -> Cat
     for p in doc.get("preguntas") or doc.get("reactivos") or []:
         pid = _corto(p["id"])
         declaradas = p.get("opciones")
-        if isinstance(declaradas, dict):  # reactivos: {"A": "56"} → «A) 56»
+        if isinstance(declaradas, dict) and declaradas:  # reactivos: {"A": "56"} → «A) 56»
             opciones = [f"{k}) {v}" for k, v in declaradas.items()]
         else:
             opciones = list(declaradas or []) or vistas.get(pid, [])

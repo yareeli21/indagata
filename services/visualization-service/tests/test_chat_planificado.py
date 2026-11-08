@@ -274,7 +274,8 @@ def test_calificacion_en_una_prueba_la_responde_la_regla(chat, db, storage):
     for pregunta in ("¿Cuántos alumnos aprobaron la prueba?", "Entonces dime quién sacó la calificación más alta",
                      "¿Qué pregunta te parece más difícil para los alumnos?"):
         datos, fila = chat["preguntar"](pregunta, ["2"])
-        assert fila.motivo.startswith("estructurada:sin_calificar"), pregunta
+        # «¿Cuántos aprobaron?» sin nombrar un reactivo lo responde la regla de cortesía (7 nov) con lo que sí hay.
+        assert fila.motivo.startswith(("estructurada:sin_calificar", "regla:sin_calificar")), pregunta
         assert "Indagata no califica las pruebas" in datos["respuesta"]
     # En una encuesta, «reprobaron» es una respuesta del cuestionario: sigue el plan.
     chat["plan"] = {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p02", "valor": "Sí"}]}
@@ -466,11 +467,14 @@ def test_pregunta_sobre_el_instrumento_va_a_su_ficha_aunque_el_plan_pida_aclarac
     chat["redaccion"] = "Es una encuesta de carga académica [Fuente 1]."
     _, fila = chat["preguntar"]("¿de qué trata el instrumento?", ["4"])
     assert fila.motivo.startswith("estructurada:descripcion")
-    assert "aclaración → respuesta con lo recuperado del RAG" not in fila.plan["correcciones"]
+    # Desde el 7 nov la interpretación ni se llama: la pregunta va directo a la ficha.
+    assert fila.plan is None or "aclaración → respuesta con lo recuperado del RAG" not in fila.plan["correcciones"]
 
 
 def test_condicion_inexistente_no_se_cambia_por_lo_recuperado(chat):
     """7 nov (consulta 2147): la aclaración «no registra "nocturna"» ya es la respuesta."""
     chat["plan"] = {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p03", "valor": "Trabajo menos de 20h"}]}
     datos, fila = chat["preguntar"]("¿cuántos tienen una carga laboral nocturna?", ["4"])
-    assert fila.motivo == "plan:aclaracion" and "no registra «nocturna»" in datos["respuesta"]
+    # 7 nov (Fase 3): el aviso y las opciones que sí existen con su número de respuestas, tal cual.
+    assert fila.motivo == "plan:no_existe" and "no registra «nocturna»" in datos["respuesta"]
+    assert "Criterio: resumen de p03" in datos["respuesta"]

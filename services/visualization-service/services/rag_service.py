@@ -52,7 +52,7 @@ from shared.models.rag_log import RagLog
 from shared.models.version_conocimiento import VersionConocimiento
 
 from models import ChatRequest, ChatResponse, FuenteChatOut, IndexRequest, ReferenciaChatOut
-from services import (anclaje, consulta_planificada, dominio, ejecutor, enrutador, evaluacion, interpretacion, ollama_client,
+from services import (anclaje, consulta_planificada, cortesia, dominio, ejecutor, enrutador, evaluacion, interpretacion, ollama_client,
                       prompt, seguimiento, storage_client, vectores)
 from services.plan_consulta import ESTRUCTURADAS, PlanConsulta
 
@@ -492,7 +492,8 @@ def _rag_responde_aclaracion(preparada: "consulta_planificada.Preparada", pregun
     p = preparada.plan
     if p is None or p.intencion != "aclaracion" or score_max < settings.RAG_MIN_SCORE or _ID_EXPLICITO.search(pregunta):
         return False
-    if anclaje.NINGUNA_CONDICION in preparada.interp.correcciones or _sobre_el_instrumento(pregunta):
+    if anclaje.NINGUNA_CONDICION in preparada.interp.correcciones or _sobre_el_instrumento(pregunta) \
+            or anclaje.AVISO_INEXISTENTE in preparada.interp.correcciones or p.aclaracion.startswith("No existe"):
         # La condición no existe (la aclaración ya lo dice, con las opciones reales: consulta 2147) o la pregunta es
         # sobre el instrumento mismo (la responde su ficha: consulta 2161).
         return False
@@ -544,12 +545,37 @@ def _anterior(historial: list[Any]) -> tuple[str, dict[str, Any] | None]:
                 lineas.append(condiciones)
             lineas += [f"{f.get('titulo') or 'Instrumento'}: {str(f.get('fragmento') or '')[:300]}"
                        for f in ((fila.salida or {}).get("fuentes") or [])[:2] if f.get("fragmento")]
-            return "\n".join(lineas), plan or None
+            # La respuesta anterior, para «muéstrame los datos tal cual» después de un ranking (7 nov, Fase 3).
+            return "\n".join(lineas), ({**plan, "_respuesta": str(fila.respuesta or "")[:2000]} if plan else None)
         finally:
             sesion.close()
     except Exception as exc:  # noqa: BLE001 — sin BD se sigue con el historial de texto
         logger.warning("No se pudo leer la consulta anterior: %s", exc)
         return "", None
+
+
+_MAX_TURNOS_PERSONA = 3
+
+
+def _persona_reciente(historial: list[Any]) -> list[str]:
+    """Los respondentes del último plan que los tuvo, entre las últimas respuestas de la conversación (7 nov, Fase 3):
+    «¿qué respondió A001?» → «¿dejó alguno en blanco?» → «¿su respuesta al reactivo…?» sigue hablando de A001."""
+    ids = [m.consultaId for m in reversed(historial) if m.rol == "asistente" and m.consultaId][:_MAX_TURNOS_PERSONA]
+    if not ids:
+        return []
+    try:
+        sesion = fabrica_sesiones()
+        try:
+            for consulta in ids:
+                fila = sesion.get(RagLog, consulta)
+                personas = (((fila.plan or {}).get("plan") or {}).get("respondentes") or []) if fila else []
+                if personas:
+                    return list(personas)
+        finally:
+            sesion.close()
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("No se pudo leer la persona de la conversación: %s", exc)
+    return []
 
 
 # «¿Qué significa eso?», «¿por qué?», «¿en qué te basas?»: se pregunta por la respuesta anterior, no por algo nuevo.
@@ -568,7 +594,7 @@ def _retomar_anterior(preparada: "consulta_planificada.Preparada", pregunta: str
             or not _SOBRE_LO_ANTERIOR.search(dominio.normalizar(pregunta)):
         return
     try:
-        plan = PlanConsulta.model_validate(plan_anterior)
+        plan = PlanConsulta.model_validate({k: v for k, v in plan_anterior.items() if not k.startswith("_")})
     except ValueError:
         return
     preparada.interp.plan = plan
@@ -866,6 +892,18 @@ class Plan:
 _UMBRAL_ANCLA = 0.6  # similitud con una entrada del glosario o de la ayuda para usarla
 
 
+def _instrumentos_alcance(ids: list[str]) -> list[Any]:
+    """Documentos vigentes del alcance (para los mensajes fijos: con qué se trabaja y ejemplos de su catálogo)."""
+    try:
+        sesion = fabrica_sesiones()
+        try:
+            return enrutador.cargar_documentos(sesion, ids)
+        finally:
+            sesion.close()
+    except Exception:  # noqa: BLE001
+        return []
+
+
 def _tipos_alcance(ids: list[str]) -> set[str]:
     """Tipos de instrumento del alcance (para elegir los ejemplos del mensaje de rechazo)."""
     try:
@@ -899,9 +937,16 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
     contexto = peticion.contexto.model_dump() if peticion.contexto else None
 
     # Capa 1a: reglas de intención (sin modelo).
+    instrumentos = _instrumentos_alcance(ids)
     if regla := dominio.reglas(pregunta):
         decision, motivo = regla
-        return Plan(decision=decision, motivo=motivo, fija=dominio.mensaje(decision, _tipos_alcance(ids)), instrumentos=ids)
+        propios = [e for ins in instrumentos[:2] for e in cortesia.ejemplos(ins)]
+        return Plan(decision=decision, motivo=motivo, instrumentos=ids,
+                    fija=dominio.mensaje(decision, {i.tipo for i in instrumentos}, propios))
+    # Saludos, consejos personales, malestar y pruebas sin calificar (7 nov): mensaje fijo con ejemplos del catálogo.
+    if tipo := cortesia.detectar(pregunta, {i.tipo for i in instrumentos}):
+        return Plan(decision=tipo, motivo=f"regla:{tipo}", instrumentos=ids,
+                    fija=cortesia.responder(tipo, pregunta, instrumentos))
 
     # Ayuda de la plataforma: solo la base curada (no consulta Chroma ni exige alcance).
     if dominio.es_ayuda(pregunta):
@@ -919,7 +964,10 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
     ms_rag = round((time.perf_counter() - inicio_rag) * 1000)
     tiempos["recuperacion"] = ms_rag
     estado["tiempos"] = tiempos
-    if settings.RAG_INTERPRETACION_LLM and peticion.usarInterpretacion:
+    # Preguntas sobre el instrumento mismo (de qué trata, tipo, duración, indicaciones, secciones): las responde su
+    # ficha por la ruta de reglas. La interpretación las mandaba a la búsqueda o al glosario, y la ficha no aparecía
+    # entre lo recuperado (7 nov, ENT-20 y ENT-21; hit@3 de la ficha 0 en Fase 2).
+    if settings.RAG_INTERPRETACION_LLM and peticion.usarInterpretacion and not _sobre_el_instrumento(pregunta):
         try:
             sesion = fabrica_sesiones()
             tema, plan_anterior = _anterior(peticion.historial)
@@ -927,7 +975,7 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
                 preparada = await consulta_planificada.preparar(
                     pregunta, [(m.rol, m.texto) for m in peticion.historial], ids, sesion, tema=tema,
                     pistas=_pistas(recuperados), plan_anterior=plan_anterior,
-                    recuperadas=_preguntas_recuperadas(recuperados))
+                    recuperadas=_preguntas_recuperadas(recuperados), personas=_persona_reciente(peticion.historial))
             finally:
                 sesion.close()
         except Exception as exc:  # noqa: BLE001 — sin BD o storage: siguen las reglas
@@ -1157,6 +1205,11 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
     plan.resultado = consulta_planificada.resultado_completo(ejecuciones)
     plan.respuesta_directa = consulta_planificada.directa(ejecuciones)
     plan.anexo = consulta_planificada.anexo(ejecuciones)
+    if anclaje.AVISO_INEXISTENTE in preparada.interp.correcciones and p.aclaracion:
+        # Lo que se pidió no existe (7 nov, Fase 3): el aviso y lo que sí hay, tal cual, sin redacción.
+        plan.motivo, plan.literal = "plan:no_existe", True
+        plan.fija = f"{p.aclaracion}\n\n{plan.anexo or plan.respuesta_directa}"
+        return plan
     plan.cifras_obligatorias = consulta_planificada.cifras_clave(ejecuciones)
     plan.admite_negativa = all(e.vacio for e in ejecuciones)
     formato = consulta_planificada.FORMATO.get(p.intencion, "")

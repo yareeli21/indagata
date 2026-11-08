@@ -46,7 +46,7 @@ def test_redaccion_fiel_tiene_todas_las_cifras_con_respaldo():
 
 def test_aclaracion_convertida_en_fuera_de_dominio_es_plantilla():
     """Caso 5 de las pruebas (rag_log 1302): el anclaje armó la aclaración, pero salió el mensaje de fuera."""
-    i = indicadores.calcular(_fila(respuesta="Solo puedo responder sobre los instrumentos…", decision_dominio="fuera",
+    i = indicadores.calcular(_fila(respuesta="solo puedo responder sobre los instrumentos…", decision_dominio="fuera",
                                    ruta=None, motivo="plan:aclaracion_ajena", contexto_usado=[],
                                    metricas=evaluacion.omitida("rechazo"),
                                    plan={"plan": {"intencion": "aclaracion"}}))
@@ -135,7 +135,7 @@ def test_respuesta_calculada_sigue_fiel_por_construccion_con_cualquier_juez(fabr
 
 def test_respuestas_omitidas_no_se_evaluan_con_otro_juez(fabrica, monkeypatch):
     s = fabrica()
-    s.add(_fila(respuesta="Solo puedo responder…", metricas=evaluacion.omitida("rechazo")))
+    s.add(_fila(respuesta="solo puedo responder…", metricas=evaluacion.omitida("rechazo")))
     s.commit()
     programadas: list = []
     monkeypatch.setattr(evaluacion, "programar", lambda *a, **k: programadas.append(a))

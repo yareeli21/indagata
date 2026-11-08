@@ -231,12 +231,17 @@ async def clasificar_llm(pregunta: str) -> tuple[bool, str] | None:
 # ── Mensajes ───────────────────────────────────────────────────────────────────
 
 
-def mensaje(decision: str, tipos: set[str] | None = None) -> str:
-    """Mensaje breve y amable para una pregunta que no se responde."""
+def mensaje(decision: str, tipos: set[str] | None = None, propios: list[str] | None = None) -> str:
+    """Mensaje breve y amable para una pregunta que no se responde.
+
+    `propios`: ejemplos sacados del catálogo de los instrumentos del alcance (`cortesia.ejemplos`, 7 nov); sin ellos,
+    los ejemplos genéricos de `dominio.yaml`."""
     cfg = config()
     base = " ".join(str(cfg["mensajes"].get(decision, cfg["mensajes"]["fuera"])).split())
     if decision == PRIVACIDAD:
         return base
+    if propios:
+        return base + "\n" + "\n".join(f"- {e}" for e in propios[:3])
     ejemplos: list[str] = []
     for tipo in sorted(tipos or set()):
         ejemplos += cfg["ejemplos"].get(tipo, [])

@@ -203,6 +203,12 @@ _DESCRIPCION = re.compile(
     r"|\b(?:aplic|dirig|levant|realiz)\w*\s+(?:\w+\s+){0,4}(?:carrera|licenciatura|poblacion)s?\b"
     r"|\ba\s+quien(?:es)?\s+(?:se\s+)?(?:le\s+|les\s+)?(?:aplic|dirig)\w*"
     r"|\bde\s+que\s+(?:trata|se\s+trata)\s*(?:$|[?,.]|\s+(?:mas|todo|esto|eso|en\s+general)\b)"
+    # Datos de la ficha (7 nov, ENT-20 y ENT-21): tipo, duración, metodología e indicaciones del entrevistador. Por
+    # similitud se parecen más a las preguntas que a la ficha y la respuesta inventaba («dura cinco horas»).
+    r"|\b(?:que|cual)\s+(?:es\s+el\s+)?tipo\s+de\s+" + _INSTRUMENTO_PALABRA +
+    r"|\bcuanto\s+(?:dura|duro|duraba|tiempo\s+dur\w*)\b|\bduracion\s+(?:del?|de\s+la)\s+" + _INSTRUMENTO_PALABRA +
+    r"|\b(?:indicaciones|instrucciones|consignas)\s+(?:tenia|tiene|dio|da|daba|del?|de\s+la|para)\b"
+    r"|\bmetodologia\s+(?:del?|de\s+la)\s+" + _INSTRUMENTO_PALABRA
 )
 # Patrones o hallazgos de los datos («¿qué patrón de información consideras más interesante…?»,
 # «¿qué muestran los resultados?»): se calculan sobre los datos completos y el modelo solo redacta.

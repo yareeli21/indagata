@@ -203,6 +203,16 @@ def _es_escala(p: PreguntaCatalogo) -> bool:
     return bool(p.escala) or p.tipo in _ESCALAS
 
 
+def _no_encontrada(pedida: str, cat: Catalogo) -> str:
+    """«El reactivo 25» en una prueba de 22: se dice cuántas tiene, no se pregunta cuál (7 nov, PRU-21: la aclaración
+    se cambiaba por un fragmento recuperado que inventaba «A011 respondió A al reactivo 25»)."""
+    ids = list(cat.preguntas)
+    nombre = "reactivos" if cat.tipo == "prueba_estandarizada" else "preguntas"
+    if ids and re.fullmatch(r"[pr]?\d{1,3}", str(pedida).strip().lower()):
+        return f"No existe «{pedida}»: «{cat.titulo}» solo tiene {len(ids)} {nombre} ({ids[0]} a {ids[-1]})."
+    return f"No encontré la pregunta «{pedida}» en «{cat.titulo}». ¿A cuál te refieres?"
+
+
 def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> PlanValidado:
     """Comprueba el plan contra los catálogos del alcance; corrige lo cercano y pide aclaración si algo no existe."""
     correcciones: list[str] = []
@@ -222,7 +232,7 @@ def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> Pl
     for p in plan.preguntas:
         pid = _id_pregunta(p, cat)
         if pid is None:
-            return aclarar(f"No encontré la pregunta «{p}» en «{cat.titulo}». ¿A cuál te refieres?")
+            return aclarar(_no_encontrada(p, cat))
         if pid != p:
             correcciones.append(f"pregunta «{p}» → «{pid}»")
         preguntas.append(pid)
@@ -231,7 +241,7 @@ def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> Pl
     for f in plan.filtros:
         pid = _id_pregunta(f.pregunta, cat)
         if pid is None:
-            return aclarar(f"No encontré la pregunta «{f.pregunta}» en «{cat.titulo}». ¿A cuál te refieres?")
+            return aclarar(_no_encontrada(f.pregunta, cat))
         opciones = cat.preguntas[pid].opciones
         valor = f.valor
         # Condiciones que la pregunta no puede cumplir: un nivel en una pregunta sin escala o «> 30» en una de opción
@@ -267,7 +277,12 @@ def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> Pl
             if real != v:
                 correcciones.append(f"{pid}: «{v}» → «{real}»")
             reales.append(real)
-        filtros.append(Filtro(pregunta=pid, op=f.op, valor=reales if isinstance(valor, list) else reales[0]))
+        op = f.op
+        if op not in ("=", "!=") and all(_numero(r) is None for r in reales):
+            # «>» o «<» sobre una opción de texto no tiene sentido: «r11 > Verdadero» es «r11 = Verdadero» (7 nov, PRU-09).
+            correcciones.append(f"filtro {pid} {op} «{reales[0]}» → = (es una opción de texto)")
+            op = "="
+        filtros.append(Filtro(pregunta=pid, op=op, valor=reales if isinstance(valor, list) else reales[0]))
 
     respondentes: list[str] = []
     for r in plan.respondentes:

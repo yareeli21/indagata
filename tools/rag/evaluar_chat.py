@@ -17,9 +17,15 @@ La calificación contra el «Debe» de cada caso (cumple / parcial / no cumple) 
 {"ENC-01": {"cumple": "parcial", "nota": "…"}}), que se llena revisando las respuestas; el resumen la cruza con la
 calificación humana guardada en `rag_calificacion`.
 
+Memoria (7 nov): con gemma3:4b, en un equipo de 8 GB para Docker, la memoria de Ollama crece con cada consulta hasta que
+el sistema mata el proceso del modelo (cada una o dos horas). `--reiniciar-ollama-cada N` reinicia el contenedor de Ollama
+cada N casos (y lo calienta con una consulta corta antes de seguir); un caso cuyo turno salió «modelo no disponible» se
+repite una vez después de reiniciar. Los reinicios quedan en `reinicios.log` de la carpeta de salida.
+
 Uso (con la app levantada):
     python tools/rag/evaluar_chat.py --ids enc=127,pru=130,ent=129 --salida evidencias/chat_2026-11-07_antes --desde-log 2271-2371
     python tools/rag/evaluar_chat.py --ids enc_control=61,ent_control=60 --conjunto control --salida evidencias/chat_2026-11-07_control_antes
+    python tools/rag/evaluar_chat.py --ids enc=127,pru=130,ent=129 --salida evidencias/chat_2026-11-08_despues --reiniciar-ollama-cada 15
 """
 from __future__ import annotations
 
@@ -151,6 +157,28 @@ def _preguntar(http: httpx.Client, cab: dict, texto: str, alcance: list[str], hi
     return {"respuesta": "", "error": "sin respuesta"}, time.monotonic() - inicio
 
 
+def reiniciar_ollama(bitacora: Path, motivo: str) -> None:
+    """Reinicia el contenedor de Ollama y espera a que el modelo responda (lo carga con una consulta corta)."""
+    inicio = time.monotonic()
+    subprocess.run(["docker", "compose", "restart", "ollama"], cwd=RAIZ, capture_output=True, check=False)
+    modelo = ""
+    for linea in (RAIZ / ".env").read_text(encoding="utf-8").splitlines():
+        if linea.startswith("OLLAMA_MODEL="):
+            modelo = linea.split("=", 1)[1].strip()
+    for _ in range(60):
+        try:
+            r = httpx.post("http://127.0.0.1:11434/api/generate", timeout=300,
+                           json={"model": modelo, "prompt": "hola", "stream": False, "keep_alive": -1,
+                                 "options": {"num_predict": 1, "num_ctx": 4096}})
+            if r.status_code == 200:
+                break
+        except httpx.HTTPError:
+            pass
+        time.sleep(5)
+    with bitacora.open("a", encoding="utf-8") as f:
+        f.write(f"{time.strftime('%H:%M:%S')} reinicio de Ollama ({motivo}), {time.monotonic() - inicio:.0f} s\n")
+
+
 def _turno(fila: dict | None, texto: str, segundos: float | None) -> dict:
     if not fila:
         return {"pregunta": texto, "respuesta": None, "nota": "no se hizo esta consulta"}
@@ -231,6 +259,8 @@ def main() -> None:
     ap.add_argument("--solo", default="", help="IDs de casos separados por coma")
     ap.add_argument("--desde-log", default="", help="rango de rag_log_id ya respondidos, p. ej. 2271-2371")
     ap.add_argument("--calificacion", default="", help="JSON con la calificación contra el «Debe»")
+    ap.add_argument("--reiniciar-ollama-cada", type=int, default=0,
+                    help="reinicia Ollama cada N casos y repite una vez el caso con «modelo no disponible» (0 = nunca)")
     ap.add_argument("--email", default="admin@indagata.com")
     ap.add_argument("--password", default="admin123")
     a = ap.parse_args()
@@ -253,7 +283,9 @@ def main() -> None:
         http = httpx.Client(timeout=httpx.Timeout(connect=10, read=900, write=60, pool=10))
         token = http.post(f"{GATEWAY}/auth/login", json={"email": a.email, "password": a.password}).json()["access_token"]
         cab = {"Authorization": f"Bearer {token}"}
-        for c in casos:
+        bitacora = salida / "reinicios.log"
+
+        def correr_caso(c: dict) -> list[dict]:
             historial: list[dict] = []
             turnos = []
             for texto in c["turnos"]:
@@ -264,6 +296,15 @@ def main() -> None:
                 historial += [{"rol": "usuario", "texto": texto},
                               {"rol": "asistente", "texto": str(datos.get("respuesta") or "")[:4000],
                                "consultaId": datos.get("consultaId")}]
+            return turnos
+
+        for n, c in enumerate(casos):
+            if a.reiniciar_ollama_cada and n and n % a.reiniciar_ollama_cada == 0:
+                reiniciar_ollama(bitacora, f"cada {a.reiniciar_ollama_cada} casos, antes de {c['id']}")
+            turnos = correr_caso(c)
+            if a.reiniciar_ollama_cada and any(t.get("plantilla") == "modelo_no_disponible" for t in turnos):
+                reiniciar_ollama(bitacora, f"{c['id']} salió «modelo no disponible»; se repite")
+                turnos = correr_caso(c)
             resultados[c["id"]] = {**c, "turnos": turnos}
             (salida / "casos" / f"{c['id']}.json").write_text(json.dumps(resultados[c["id"]], ensure_ascii=False, indent=1),
                                                               encoding="utf-8")

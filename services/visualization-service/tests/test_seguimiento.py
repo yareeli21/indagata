@@ -88,9 +88,10 @@ def test_condicion_inexistente_dice_que_no_existe_con_las_opciones_reales():
     plan = PlanConsulta.model_validate({"intencion": "conteo_porcentaje", "instrumentos": ["127"],
                                         "filtros": [{"pregunta": "p02", "valor": "Mixta/hibrida"}]})
     nuevo, notas = anclaje.anclar(plan, "¿cuántos estudian en modalidad nocturna?", [], _cat_127())
-    assert nuevo.intencion == "aclaracion" and anclaje.NINGUNA_CONDICION in notas
+    # 7 nov (Fase 3): las opciones que sí existen van como resumen calculado de p02 (con su número de respuestas).
+    assert nuevo.intencion == "resumen_pregunta" and nuevo.preguntas == ["p02"] and anclaje.NINGUNA_CONDICION in notas
     assert nuevo.aclaracion.startswith("«Indicadores de Experiencia y Calidad Académica» no registra «nocturna».")
-    assert "Presencial, Mixta/hibrida, En linea" in nuevo.aclaracion and "¿Cuál quieres?" not in nuevo.aclaracion
+    assert "¿Cuál quieres?" not in nuevo.aclaracion
 
 
 def test_nombrar_la_variable_no_basta_para_un_grupo_que_la_pregunta_no_dice():

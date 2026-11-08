@@ -141,12 +141,13 @@ class Preparada:
 
 async def preparar(pregunta: str, historial: list[tuple[str, str]], ids: list[str], sesion: Any,
                    tema: str = "", pistas: str = "", plan_anterior: dict[str, Any] | None = None,
-                   recuperadas: list[str] | None = None) -> Preparada:
+                   recuperadas: list[str] | None = None, personas: list[str] | None = None) -> Preparada:
     """Interpreta la pregunta con el catálogo del alcance, la relaciona con el plan anterior (`seguimiento`) y, si la
     intención es estructurada, ejecuta el plan.
 
     `tema`: de qué trató la respuesta anterior (seguimientos). `pistas`: lo que recuperó el RAG. `plan_anterior`: el
-    plan de la respuesta anterior (rag_log). `recuperadas`: preguntas de los intercambios que recuperó el RAG."""
+    plan de la respuesta anterior (rag_log). `recuperadas`: preguntas de los intercambios que recuperó el RAG.
+    `personas`: los respondentes de los que se habló en la conversación (la persona activa, 7 nov)."""
     instrumentos = enrutador.cargar_documentos(sesion, ids)
     catalogos = [construir_catalogo(i.id_crudo, i.titulo, i.tipo, i.doc) for i in instrumentos]
     interp = await interpretacion.interpretar(pregunta, historial, catalogos, tema, pistas,
@@ -154,6 +155,8 @@ async def preparar(pregunta: str, historial: list[tuple[str, str]], ids: list[st
     if interp.plan is not None:
         rel = seguimiento.relacion(pregunta, interp.plan, plan_anterior)
         plan, notas = seguimiento.combinar(interp.plan, plan_anterior, rel, recuperadas, pregunta, catalogos)
+        plan, de_persona = seguimiento.persona_activa(pregunta, plan, personas or [])
+        notas += de_persona
         if notas:
             validado = validar_contra_catalogo(plan, catalogos)
             interp.plan, interp.correcciones = validado.plan, [*interp.correcciones, *notas, *validado.correcciones]

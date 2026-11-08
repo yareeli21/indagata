@@ -244,7 +244,9 @@ def test_condicion_que_no_existe_pide_aclaracion_con_las_opciones_reales():
     carga = _cat_carga()
     plan = PlanConsulta.model_validate({"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p04", "op": ">", "valor": 20}]})
     nuevo, notas = anclaje.anclar(plan, "¿cuántos tienen carga laboral nocturna?", [], carga)
-    assert nuevo.intencion == "aclaracion" and "No trabajo" in nuevo.aclaracion
+    # 7 nov (Fase 3): ya no pregunta; calcula el resumen de la pregunta parecida y avisa que no existe.
+    assert nuevo.intencion == "resumen_pregunta" and "no registra «nocturna»" in nuevo.aclaracion
+    assert anclaje.AVISO_INEXISTENTE in notas
 
 
 def test_comparar_ambos_instrumentos_no_es_variable_de_contexto():
@@ -268,8 +270,9 @@ def test_opcion_concreta_que_la_consulta_no_menciona_no_se_sostiene():
     carga = _cat_carga()
     plan = PlanConsulta.model_validate({"intencion": "conteo_porcentaje",
                                         "filtros": [{"pregunta": "p03", "valor": "Trabajo menos de 20h"}]})
-    nuevo, _ = anclaje.anclar(plan, "¿cuántos tienen una carga laboral nocturna?", [], carga)
-    assert nuevo.intencion == "aclaracion" and "No trabajo" in nuevo.aclaracion
+    nuevo, notas = anclaje.anclar(plan, "¿cuántos tienen una carga laboral nocturna?", [], carga)
+    assert nuevo.intencion == "resumen_pregunta" and "no registra «nocturna»" in nuevo.aclaracion
+    assert anclaje.AVISO_INEXISTENTE in notas
 
 
 def _cat_vf():
@@ -569,3 +572,68 @@ def test_variable_de_si_o_no_nombrada_se_toma_con_su_negacion():
     nuevo, _ = anclaje.anclar(PlanConsulta(intencion="comparar_grupos", preguntas=["r02"], agrupar_por="tiene_beca"),
                               "¿y los que tienen beca contra los que no?", [], vf)
     assert not nuevo.contexto
+
+
+def test_fase3_exclusiones_consenso_operadores_y_conteo_de_una_opcion():
+    """7 nov (Fase 3): PRU-03/07 (los 22 reactivos excluidos), PRU-13 («menos consenso»), PRU-09 («>» sobre texto) y
+    PRU-14 (el conteo de una opción nombrada es una condición que «de ellos» puede heredar)."""
+    cat = _cat_prueba()
+    todos = PlanConsulta(intencion="ranking_preguntas", criterio_ranking="no_respuesta",
+                         excluir_preguntas=["r01", "r02", "r03", "r04"])
+    nuevo, notas = anclaje.anclar(todos, "¿En qué reactivo hubo más respuestas en blanco?", [], cat)
+    assert nuevo.excluir_preguntas == [] and any("descartado" in n for n in notas)
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="hallazgo"), "¿En qué reactivo hubo menos consenso?", [], cat)
+    assert (nuevo.intencion, nuevo.criterio_ranking) == ("ranking_preguntas", "repartida")
+    validado = validar_contra_catalogo(PlanConsulta(intencion="conteo_porcentaje",
+                                                    filtros=[{"pregunta": "r04", "op": ">", "valor": "Verdadero"}]), [cat])
+    assert validado.plan.filtros[0].op == "=" and any("opción de texto" in c for c in validado.correcciones)
+    nuevo, notas = anclaje.anclar(PlanConsulta(intencion="conteo_porcentaje", preguntas=["r04"]),
+                                  "¿Cuántos marcaron Verdadero en «el correo electrónico siempre es seguro»?", [], cat)
+    assert [(f.pregunta, f.valor) for f in nuevo.filtros] == [("r04", "Verdadero")]
+
+
+def test_fase3_lo_que_no_existe_se_dice_con_lo_que_si_hay():
+    """7 nov: «la opción E en el reactivo 3» (PRU-22), «el reactivo 25» (PRU-21) y «la segunda participante» (ENT-22)."""
+    cat = _cat_prueba()
+    nuevo, notas = anclaje.anclar(PlanConsulta(intencion="conteo_porcentaje", preguntas=["r03"]),
+                                  "¿Cuántos eligieron la opción E en el reactivo 3?", [], cat)
+    assert nuevo.intencion == "resumen_pregunta" and nuevo.preguntas == ["r03"] and anclaje.AVISO_INEXISTENTE in notas
+    assert nuevo.aclaracion.startswith("No existe la opción E en r03") and "A, B" in nuevo.aclaracion
+    # Una opción que sí existe no se toca.
+    plan = PlanConsulta(intencion="conteo_porcentaje", preguntas=["r03"])
+    assert anclaje.inexistente(plan, "¿Cuántos eligieron la opción B en el reactivo 3?", cat) is None
+    v = validar_contra_catalogo(PlanConsulta(intencion="resumen_pregunta", preguntas=["r25"]), [cat])
+    assert v.plan.intencion == "aclaracion" and v.plan.aclaracion.startswith("No existe «r25»")
+    assert "solo tiene 4 reactivos (r01 a r04)" in v.plan.aclaracion
+    entrevista = catalogo.Catalogo("9", "Entrevista de tutorías", "entrevista",
+                                   {"p01": catalogo.PreguntaCatalogo("p01", "¿Cómo te fue?", "abierta", [])}, ["E01"], {}, [])
+    for pregunta in ("¿Qué respondió la segunda participante?", "Compara sus respuestas con las de los demás participantes"):
+        nuevo, notas = anclaje.anclar(PlanConsulta(intencion="datos_respondente", respondentes=["E01"]), pregunta, [], entrevista)
+        assert nuevo.intencion == "aclaracion" and "una sola participante (E01)" in nuevo.aclaracion, pregunta
+
+
+def test_fase3_una_errata_no_es_una_palabra_que_el_instrumento_no_registra():
+    cat = _cat_prueba()
+    assert anclaje._ausentes("¿Cuántos dicen que la contrasenia segura es de 12 caracteres?", cat) == []
+    assert anclaje._ausentes("¿Qué opinan del comedor?", cat) == ["comedor"]
+
+
+def test_fase3_cinco_letras_iguales_no_son_la_misma_palabra():
+    assert not anclaje.comparte_raiz("consiguieron", "Estoy considerando abandonar")
+    assert anclaje.comparte_raiz("trabajan", "Trabajo en un area relacionada con mi carrera")
+    assert anclaje.comparte_raiz("mixta", "Mixta/hibrida") and anclaje.comparte_raiz("reprobaron", "Sí, reprobé una vez")
+
+
+def test_fase3_verdadero_en_varios_reactivos_y_conteo_de_algo_que_no_existe():
+    preguntas = {
+        "r01": catalogo.PreguntaCatalogo("r01", "La nube elimina el riesgo de perder datos.", "opcion", ["Verdadero", "Falso"]),
+        "r02": catalogo.PreguntaCatalogo("r02", "Las redes públicas son seguras.", "opcion", ["Verdadero", "Falso"]),
+    }
+    cat = catalogo.Catalogo("8", "Prueba digital", "prueba_estandarizada", preguntas, ["A001"], {}, [])
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="conteo_porcentaje", preguntas=["r01"]),
+                              "¿Cuántos marcaron Verdadero en «la nube elimina el riesgo»?", [], cat)
+    assert [(f.pregunta, f.valor) for f in nuevo.filtros] == [("r01", "Verdadero")]
+    carga = _cat_carga()
+    nuevo, notas = anclaje.anclar(PlanConsulta(intencion="conteo_porcentaje"),
+                                  "¿Cuántos usan la meditación para organizar su carga laboral?", [], carga)
+    assert anclaje.NINGUNA_CONDICION in notas and "no registra" in nuevo.aclaracion
