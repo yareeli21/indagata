@@ -88,3 +88,42 @@ def test_lenguaje_de_calificacion_en_pruebas_sin_contar_el_texto_del_reactivo():
     assert rag_service.califica_prueba("Muestra una mayor dificultad en esa sección.", contexto)
     assert not rag_service.califica_prueba("Eligió B en la pregunta sobre el paso correcto para guardar.", contexto)
     assert not rag_service.califica_prueba("Eligió «el paso correcto» según el enunciado.", "")
+
+
+def test_registro_guarda_el_plan_del_modelo_y_el_catalogo():
+    from services import consulta_planificada, interpretacion
+
+    final = PlanConsulta(intencion="conteo_porcentaje", filtros=[{"pregunta": "p01", "valor": "Trabajo más de 20h"}])
+    interp = interpretacion.Interpretacion(plan=final, catalogo="CATÁLOGO…",
+                                           crudo='{"intencion": "conteo_porcentaje", "filtros": '
+                                                 '[{"pregunta": "p01", "valor": "más de 20"}]}')
+    registro = consulta_planificada.Preparada(interp).registro()
+    assert registro["plan_modelo"]["filtros"][0]["valor"] == "más de 20"
+    assert registro["plan_modelo_sin_cambios"] is False and registro["catalogo"] == "CATÁLOGO…"
+    interp.crudo = '{"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p01", "valor": "Trabajo más de 20h"}]}'
+    assert consulta_planificada.Preparada(interp).registro()["plan_modelo_sin_cambios"] is True
+    assert consulta_planificada.plan_del_modelo("no es json") == "no es json"
+
+
+def test_redaccion_que_nombra_solo_una_de_las_opciones_del_criterio():
+    registro = {"plan": {"filtros": [{"pregunta": "p05", "valor": ["Nada útil", "2 en escala 1–4"]}]}}
+    assert rag_service.opciones_omitidas("721 (36.0 %) respondieron «Nada útil».", registro)
+    assert not rag_service.opciones_omitidas("721 (36.0 %) respondieron «Nada útil» o 2 en la escala.", registro)
+    assert not rag_service.opciones_omitidas("Cualquier texto.", {"plan": {"filtros": [{"pregunta": "p05", "valor": "Nada útil"}]}})
+
+
+def test_cuantos_marcaron_una_opcion_con_el_reactivo_en_campos_es_una_condicion():
+    preguntas = {"r01": catalogo.PreguntaCatalogo("r01", "Guardar en la nube evita perder archivos.", "opcion",
+                                                  ["Verdadero", "Falso"]),
+                 "r02": catalogo.PreguntaCatalogo("r02", "Una contraseña larga es más segura.", "opcion",
+                                                  ["Verdadero", "Falso"])}
+    cat = catalogo.Catalogo("9", "Prueba de ejemplo", "prueba_estandarizada", preguntas, ["A001"], {}, [])
+    plan = PlanConsulta(intencion="conteo_porcentaje", campos=["r01"])
+    anclado, _ = anclaje.anclar(plan, "¿Cuántos marcaron Verdadero en el reactivo de la nube?", [], cat)
+    assert [(f.pregunta, f.valor) for f in anclado.filtros] == [("r01", "Verdadero")]
+
+
+def test_que_conviene_revisar_es_un_ranking_sin_calificar():
+    assert anclaje._criterio_ranking("que reactivos convendria revisar por como se respondieron") == "revisar"
+    assert rag_service.califica_prueba("Esto indica una falta de comprensión del tema.")
+    assert rag_service.califica_prueba("Su respuesta se corresponde con la definición de la prueba.")

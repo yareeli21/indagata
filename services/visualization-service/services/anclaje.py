@@ -52,6 +52,9 @@ _RELLENO_EXCLUSION = {"la", "el", "los", "las", "de", "del", "pregunta", "pregun
 _PIDE_PREGUNTA = re.compile(r"\b(?:en )?(?:que|cual|cuales) (?:pregunta|reactivo|item)s?\b|\b(?:hay )?(?:alguna|algun) "
                             r"(?:pregunta |reactivo )?(?:donde|en la que|en el que)\b|\b(?:pregunta|reactivo)s? (?:con|donde) (?:mas|menos)\b")
 _CRITERIOS_RANKING = (
+    # «¿Qué reactivos convendría revisar por cómo se respondieron?»: más en blanco o nulas y más repartidas, sin calificar
+    # (8 nov, Fase 5, PRU-17: elegía tres reactivos sin ningún criterio).
+    ("revisar", re.compile(r"\b(?:revisar\w*|problematic\w*|atipic\w*|anomal\w*)\b")),
     ("no_respuesta", re.compile(r"\b(?:nulas?|sin (?:contestar|responder|respuesta)|no respuesta|en blanco|"
                                 r"vacias?|omitid\w*|no contestad\w*|no respondid\w*)\b")),
     # «Menos consenso / menos acuerdo» es lo contrario de coincidir (en una encuesta, «más desacuerdo» es un nivel de la escala): respuestas repartidas (7 nov,
@@ -872,6 +875,14 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
     # condición, no el resumen de la pregunta. Sin ella, el seguimiento «de ellos, ¿qué respondieron…?» no tenía grupo
     # que heredar (7 nov, PRU-14 y CEN-03).
     preguntas_final = cambios.get("preguntas", plan.preguntas)
+    if not preguntas_final and intencion == "conteo_porcentaje":
+        # El modelo puso el reactivo en `campos` o no lo puso: «¿cuántos marcaron Verdadero en el reactivo de Wi-Fi?»
+        # contaba a todos (8 nov, Fase 5, PRU-06: «97 (100 %) marcaron Verdadero»).
+        campos = cambios.get("campos", plan.campos)
+        if isinstance(campos, list) and len(campos) == 1 and campos[0] in cat.preguntas:
+            preguntas_final = list(campos)
+        elif (pid := _pregunta_por_texto(pregunta, cat, set())) is not None:
+            preguntas_final = [pid]
     q7 = cat.preguntas.get(preguntas_final[0]) if len(preguntas_final) == 1 else None
     # El nivel solo cuenta en una pregunta de escala (en un reactivo de verdadero o falso el modelo ponía «acuerdo»).
     if intencion == "conteo_porcentaje" and not cambios.get("filtros", plan.filtros) and q7 is not None \

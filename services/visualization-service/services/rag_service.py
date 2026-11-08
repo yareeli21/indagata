@@ -1521,6 +1521,26 @@ def cifra_mal_atribuida(respuesta: str, anexo: str, resultado: str) -> bool:
     return False
 
 
+def opciones_omitidas(respuesta: str, plan_consulta: dict[str, Any] | None) -> bool:
+    """¿El criterio tiene varias opciones y la redacción nombra solo algunas? «721 eligieron «Nada útil»» cuando 721
+    son las dos primeras posiciones de la escala atribuye la cifra a una sola opción (8 nov, Fase 5, ENC-04). Cada opción debe aparecer por alguna de sus palabras (o sus números, si no tiene palabras)."""
+    filtros = ((plan_consulta or {}).get("plan") or {}).get("filtros") or []
+    palabras = re.findall(r"[a-z]+|\d+", dominio.normalizar(respuesta))
+    for f in filtros:
+        valores = f.get("valor") if isinstance(f.get("valor"), list) else []
+        if not 2 <= len(valores) <= _MAX_OPCIONES_NOMBRADAS:
+            continue
+        for v in valores:
+            raices = _raices_etiqueta(str(v))
+            letras = {x for x in raices if not x.isdigit()} or raices
+            if letras and not any(w == x if x.isdigit() else w.startswith(x) for w in palabras for x in letras):
+                return True
+    return False
+
+
+_MAX_OPCIONES_NOMBRADAS = 4  # con más opciones se acepta que la redacción las resuma
+
+
 def ranking_desordenado(respuesta: str, anexo: str) -> bool:
     """¿La redacción presenta primero una pregunta que no es el primer lugar del ranking calculado? (8 nov, Fase 5,
     CEN-04: la tabla ponía p09 y la redacción decía «la primera es la p10»)."""
@@ -1608,6 +1628,8 @@ _AVISOS_REINTENTO = {
     "cifra_atribuida": "atribuye un porcentaje a algo distinto de la opción que tiene ese porcentaje en la tabla; cada "
                        "porcentaje va junto al nombre de su opción, tal como aparece",
     "ranking_desordenado": "no empieza por la pregunta que está en el primer lugar del ranking calculado",
+    "opciones_omitidas": "nombra solo algunas de las opciones del criterio; la cifra corresponde a todas juntas, "
+                         "así que nombra cada una tal como aparece",
     "cita_inventada": "pone entre comillas frases que no aparecen así en el RESULTADO CALCULADO ni en el TEXTO RECUPERADO",
     "copia_listado": "copia el RESULTADO CALCULADO en viñetas en lugar de responder lo que se pregunta con un párrafo "
                      "de redacción propia",
@@ -1656,7 +1678,9 @@ _CALIFICA = re.compile(
 # entre comillas (8 nov, Fase 5: «eligió respuestas incorrectas», «coincide con la definición», «mayor dificultad»).
 _CALIFICA_PRUEBA = re.compile(
     r"\b(?:correct\w*|incorrect\w*|errone\w*|equivoc\w*|dificultad\w*|aprob\w*|reprob\w*|lagunas?|desempeno|"
-    r"rendimiento|aciert\w*|acert\w*|calificacion\w*|puntajes?|coincide\w* con (?:la|el) (?:definicion|respuesta|clave))\b"
+    r"rendimiento|aciert\w*|acert\w*|calificacion\w*|puntajes?|comprension|desconocimiento|reforzar|refuerzo|"
+    r"(?:coincide|corresponde)\w* con (?:la|el) (?:definicion|respuesta|clave)|"
+    r"(?:orden|respuesta|opcion) (?:estandar|esperad[ao]|adecuad[ao]))\b"
 )
 _CITADO = re.compile(r"«[^»]*»|“[^”]*”|\"[^\"]*\"")
 
@@ -1796,6 +1820,8 @@ def _verificar_redaccion(plan: Plan, respuesta: str, degradado: bool) -> tuple[s
             plan.motivo = f"{plan.motivo}:cita_inventada"
         elif not plan.cifras_obligatorias <= _cifras(respuesta) or porcentajes_sin_n(respuesta, plan.resultado or ""):
             plan.motivo = f"{plan.motivo}:cifras_completadas"
+        elif opciones_omitidas(respuesta, plan.plan_consulta):
+            plan.motivo = f"{plan.motivo}:opciones_omitidas"
         elif cifra_mal_atribuida(respuesta, plan.anexo, plan.resultado or ""):
             plan.motivo = f"{plan.motivo}:cifra_atribuida"
         elif ranking_desordenado(respuesta, plan.anexo):

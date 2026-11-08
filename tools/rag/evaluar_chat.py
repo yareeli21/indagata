@@ -202,6 +202,9 @@ def _turno(fila: dict | None, texto: str, segundos: float | None) -> dict:
         "respuesta": respuesta,
         "intencion": (plan.get("plan") or {}).get("intencion"),
         "plan": plan.get("plan"),
+        # 8 nov: el plan tal como lo escribió el modelo y si el sistema lo dejó igual (desde la Fase 5).
+        "plan_modelo": plan.get("plan_modelo"),
+        "plan_modelo_sin_cambios": plan.get("plan_modelo_sin_cambios"),
         "correcciones": plan.get("correcciones"),
         "verificacion": (plan.get("verificacion") or {}).get("resultado"),
         "ruta": fila.get("ruta"),
@@ -232,6 +235,8 @@ def resumen(casos: list[dict], resultados: dict[str, dict], calificacion: dict, 
     kp = [t["k_precision"] for t in turnos if t.get("k_precision") is not None]
     cif = [t["cifras_con_respaldo"] for t in turnos if t["cifras_con_respaldo"][1]]
     seg = [t["segundos"] for t in turnos if t.get("segundos")]
+    con_modelo = [t for t in planes if t.get("plan_modelo_sin_cambios") is not None]
+    sin_cambios = [t for t in con_modelo if t["plan_modelo_sin_cambios"]]
     cumple = {k: sum(1 for c in casos if (calificacion.get(c["id"]) or {}).get("cumple") == k) for k in ("cumple", "parcial", "no")}
     lineas = [f"# {titulo}", "",
               f"- Casos: {len(casos)} ({len(turnos)} turnos con respuesta).",
@@ -240,6 +245,9 @@ def resumen(casos: list[dict], resultados: dict[str, dict], calificacion: dict, 
               f"- Planes válidos (intención distinta de aclaración): {len(validos)} de {len(planes)}"
               f" ({100 * len(validos) / max(1, len(planes)):.1f} %).",
               f"- Caídas a plantilla: {len(plantillas)} de {len(turnos)} ({100 * len(plantillas) / max(1, len(turnos)):.1f} %).",
+              *([f"- Plan del modelo usado sin cambios: {len(sin_cambios)} de {len(con_modelo)}"
+                 f" ({100 * len(sin_cambios) / len(con_modelo):.1f} %); el resto lo corrigieron la validación, las reglas"
+                 " o el hilo de la conversación."] if con_modelo else []),
               f"- K-Precision (sin plantillas): mediana {statistics.median(kp):.2f}, mínimo {min(kp):.2f} (n = {len(kp)})." if kp else "- K-Precision: sin datos.",
               f"- Cifras con respaldo en el contexto: {sum(c[0] for c in cif)} de {sum(c[1] for c in cif)}.",
               f"- Tiempo por turno: mediana {statistics.median(seg):.0f} s, p90 {_p90(seg):.0f} s." if seg else "- Tiempo: sin datos.",

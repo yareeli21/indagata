@@ -171,6 +171,10 @@ class Interpretacion:
     ms: int = 0
     error: str = ""  # por qué no hubo plan (Ollama caído, JSON inválido dos veces)
     crudo: str = ""  # última salida del modelo (para el registro)
+    catalogo: str = ""  # el catálogo tal como lo vio el modelo (8 nov: rag_log sirve de datos de entrenamiento)
+
+
+_MAX_CRUDO = 3000  # caracteres de la salida del modelo que se guardan (un plan cabe holgado)
 
 
 def _ejemplos() -> str:
@@ -196,12 +200,16 @@ def _historial(historial: list[tuple[str, str]]) -> str:
                      for rol, texto in recientes)
 
 
-def construir_prompt(pregunta: str, historial: list[tuple[str, str]], catalogos: list[Catalogo], tema: str = "",
-                     pistas: str = "") -> str:
+def texto_catalogo(catalogos: list[Catalogo]) -> str:
     catalogo = "\n\n".join(c.texto() for c in catalogos)
     if len(catalogo) > _MAX_CARACTERES_CATALOGO:
         catalogo = "\n\n".join(c.texto(compacto=True) for c in catalogos)
-    catalogo = catalogo or "(no hay instrumentos seleccionados)"
+    return catalogo or "(no hay instrumentos seleccionados)"
+
+
+def construir_prompt(pregunta: str, historial: list[tuple[str, str]], catalogos: list[Catalogo], tema: str = "",
+                     pistas: str = "") -> str:
+    catalogo = texto_catalogo(catalogos)
     anterior = f"TEMA ANTERIOR (de qué trató la última respuesta):\n{tema}\n\n" if tema else ""
     recuperado = f"TEXTO RECUPERADO DEL RAG (lo más parecido a la pregunta):\n{pistas}\n\n" if pistas else ""
     return (f"{_ejemplos()}\n\n=== CONSULTA REAL ===\nCATÁLOGO:\n{catalogo}\n\nHISTORIAL:\n{_historial(historial)}\n\n"
@@ -223,7 +231,7 @@ async def interpretar(pregunta: str, historial: list[tuple[str, str]], catalogos
     inicio = time.perf_counter()
     modelo = settings.RAG_INTERPRETACION_MODELO or settings.OLLAMA_MODEL
     prompt = construir_prompt(pregunta, historial, catalogos, tema, pistas)
-    resultado = Interpretacion(plan=None)
+    resultado = Interpretacion(plan=None, catalogo=texto_catalogo(catalogos))
     for intento in (1, 2):
         resultado.intentos = intento
         salida, degradado = await ollama_client.generar_no_stream(
@@ -232,7 +240,7 @@ async def interpretar(pregunta: str, historial: list[tuple[str, str]], catalogos
             # en la GPU de 4 GiB (medido el 28 oct: 17–60 s por plan con 8192; 1.5–2.2 s con 4096).
             opciones={"temperature": 0, "num_predict": 300},
         )
-        resultado.crudo = salida[:1000]
+        resultado.crudo = salida[:_MAX_CRUDO]
         if degradado:
             resultado.error = "Ollama no disponible"
             break

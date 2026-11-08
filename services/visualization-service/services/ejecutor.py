@@ -216,6 +216,16 @@ def _datos_respondente(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
     e.mostrados, e.total = len(elegidos), len(personas)
     e.respondentes = [p["id"] for p in elegidos]
     e.preguntas = [p["id"] for p in _items(doc) if _corto(p["id"]) in pids]
+    pedidas = plan.campos if isinstance(plan.campos, list) else []
+    if pedidas and len(pedidas) <= _MAX_COMPARAR_CON_TODOS and len(elegidos) == 1 and not doc.get("entrevistas"):
+        # «¿Su respuesta al reactivo de phishing es la más común?»: la respuesta de la persona y, al lado, cómo
+        # respondieron todos, para compararla sin decir si acertó (8 nov, Fase 5, PRU-15: «no hay datos de los demás»).
+        for q in [q for q in pedidas if _pregunta(doc, q)]:
+            n_validas, _, conteo, _ = distribucion(doc, personas, q)
+            if n_validas:
+                e.lineas.append(f"Cómo respondieron todos en {_texto_pregunta(doc, q)}: "
+                                + "; ".join(f"«{o}» {n} ({round(100 * n / n_validas, 1)} %)" for o, n in conteo.items())
+                                + f" (de {n_validas} respuestas válidas).")
 
 
 def _numero_texto(x: float) -> str:
@@ -235,6 +245,7 @@ def _cumple_contexto(persona: dict[str, Any], c: CondicionContexto) -> bool:
 # Tipos de pregunta con respuesta abierta (en las entrevistas, todas lo son).
 _ABIERTAS = {"texto_largo", "texto_corto", "texto", "abierta", "pregunta_abierta"}
 _MAX_CITAS = 8
+_MAX_COMPARAR_CON_TODOS = 3  # preguntas pedidas de una persona que se comparan con la distribución de todos
 
 
 _RELLENO_TERMINO = {"como", "para", "sobre", "acerca", "tipo", "algun", "alguna", "tema", "temas", "cosas"}
@@ -417,6 +428,12 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
         _resumen_pregunta(ins, plan, e)
         return
     elif not hay_condicion:
+        pids = plan.preguntas or (plan.campos if isinstance(plan.campos, list) else [])
+        if pids:
+            # Un conteo sin condición sobre una pregunta es su distribución: con solo «tiene 97 respondentes» el
+            # modelo escribió «97 (100 %) marcaron Verdadero» (8 nov, Fase 5, PRU-06).
+            _resumen_pregunta(ins, plan.model_copy(update={"preguntas": [q for q in pids if _pregunta(doc, q)]}), e)
+            return
         e.lineas.append(f"El instrumento tiene {total} respondentes.")
     e.preguntas = [p["id"] for p in _items(doc) if _corto(p["id"]) in {f.pregunta for f in plan.filtros} | set(preguntas)]
 
@@ -642,7 +659,9 @@ def _con_texto(opcion: str, textos: dict[str, Any]) -> str:
 
 
 _TOP_RANKING = 3
-_NOMBRE_RANKING = {"no_respuesta": "más respuestas nulas o sin responder",
+_NOMBRE_RANKING = {"revisar": "preguntas que conviene revisar por cómo se respondieron (más respuestas en blanco o "
+                              "nulas, y respuestas más repartidas); no se juzga si acertaron",
+                   "no_respuesta": "más respuestas nulas o sin responder",
                    "coincidencia": "más coincidencia (índice de dispersión más bajo: 0 = todos eligieron lo mismo)",
                    "repartida": "respuestas más repartidas (índice de dispersión más alto: 1 = repartidas por igual entre "
                                 "sus opciones; entropía normalizada)"}
@@ -688,6 +707,16 @@ def _ranking_preguntas(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
     primeras y las que empatan con la 3.ª."""
     doc = ins.doc
     criterio = plan.criterio_ranking or "no_respuesta"
+    if criterio == "revisar":
+        # Dos rankings en la misma respuesta; ninguno juzga si acertaron (8 nov, Fase 5).
+        preguntas: list[str] = []
+        for sub in ("no_respuesta", "repartida"):
+            _ranking_preguntas(ins, plan.model_copy(update={"criterio_ranking": sub}), e)
+            preguntas += e.preguntas
+        e.criterio = _NOMBRE_RANKING["revisar"]
+        e.preguntas = list(dict.fromkeys(preguntas))
+        e.vacio = not e.tablas
+        return
     medidas = [(m, p) for p in _items(doc) if _corto(p["id"]) not in plan.excluir_preguntas
                and (m := _medida_ranking(p, criterio)) is not None]
     sin = ", ".join(plan.excluir_preguntas)

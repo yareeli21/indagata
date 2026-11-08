@@ -19,10 +19,13 @@ resultado usó: instrumento, preguntas y respondentes; los KPIs solo si la consu
 """
 from __future__ import annotations
 
+import json
 import re
 import time
 from dataclasses import dataclass, field
 from typing import Any
+
+from pydantic import ValidationError
 
 from models import FuenteChatOut
 from services import anclaje, ejecutor, enrutador, interpretacion, seguimiento
@@ -161,9 +164,27 @@ class Preparada:
         return self.interp.plan
 
     def registro(self) -> dict[str, Any]:
-        """Lo que se guarda en rag_log.plan."""
-        return {"plan": self.plan.model_dump(exclude_defaults=True) if self.plan else None,
-                "correcciones": self.interp.correcciones, "intentos": self.interp.intentos, "error": self.interp.error}
+        """Lo que se guarda en rag_log.plan.
+
+        8 nov (Fase 5): también el plan tal como lo escribió el modelo (`plan_modelo`, antes de la validación, las
+        reglas y el hilo de la conversación) y el catálogo que vio. Con eso se mide cuánto corrige el sistema al
+        modelo y `rag_log` queda como conjunto de pares pregunta + catálogo → plan para ajustar un modelo."""
+        plan = self.plan.model_dump(exclude_defaults=True) if self.plan else None
+        modelo = plan_del_modelo(self.interp.crudo)
+        return {"plan": plan, "correcciones": self.interp.correcciones, "intentos": self.interp.intentos,
+                "error": self.interp.error, "plan_modelo": modelo,
+                "plan_modelo_sin_cambios": modelo is not None and modelo == plan, "catalogo": self.interp.catalogo}
+
+
+def plan_del_modelo(crudo: str) -> dict[str, Any] | str | None:
+    """La salida del modelo como plan (sin los valores por omisión, para compararla con el plan final), o el texto tal
+    cual si no era un plan válido."""
+    if not crudo:
+        return None
+    try:
+        return PlanConsulta.model_validate(json.loads(crudo)).model_dump(exclude_defaults=True)
+    except (ValueError, ValidationError):
+        return crudo
 
 
 async def preparar(pregunta: str, historial: list[tuple[str, str]], ids: list[str], sesion: Any,

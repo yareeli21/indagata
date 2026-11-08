@@ -239,7 +239,8 @@
           "enum": [
             "no_respuesta",
             "coincidencia",
-            "repartida"
+            "repartida",
+            "revisar"
           ],
           "type": "string"
         },
@@ -248,7 +249,7 @@
         }
       ],
       "default": null,
-      "description": "En ranking_preguntas: no_respuesta, coincidencia o repartida.",
+      "description": "En ranking_preguntas: no_respuesta, coincidencia, repartida o revisar (las dos primeras juntas).",
       "title": "Criterio Ranking"
     },
     "excluir_preguntas": {
