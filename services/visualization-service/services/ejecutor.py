@@ -370,7 +370,18 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
         pct = round(100 * len(grupo) / total, 1) if total else 0.0
         e.criterio = " y ".join(condiciones)
         e.total = len(grupo)
-        e.lineas.append(f"Cumplen la condición {len(grupo)} de {total} respondentes ({pct} %).")
+        if plan.grupo_anterior:
+            # «¿Y de ellos, cuántos la consiguieron por convenio?»: la base es el grupo de la pregunta anterior
+            # (8 nov, Fase 5, ENC-13 y CEN-03: se daba «382 de 2000» y no «382 de 1104»).
+            base, _ = _filtrados(ins, plan.model_copy(update={"filtros": plan.grupo_anterior, "menciona": "",
+                                                              "con_omisiones": False}))
+            ids_base = {p["id"] for p in base}
+            dentro = sum(p["id"] in ids_base for p in grupo)
+            pct_base = round(100 * dentro / len(base), 1) if base else 0.0
+            e.lineas.append(f"Cumplen la condición {dentro} de los {len(base)} del grupo anterior ({pct_base} %); "
+                            f"sobre el total, {len(grupo)} de {total} respondentes ({pct} %).")
+        else:
+            e.lineas.append(f"Cumplen la condición {len(grupo)} de {total} respondentes ({pct} %).")
         e.vacio = not grupo
         if plan.menciona and grupo:
             raices = [r for g in grupos_termino(plan.menciona) for r in g]
@@ -611,13 +622,23 @@ def _resumen_pregunta(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> Non
         if isinstance(dist, dict):  # reactivo de una prueba: {opción: {n, pct}} (Fase 7, consultas 2228 y 2230)
             dist = [{"significado": o, **(v if isinstance(v, dict) else {})} for o, v in dist.items()]
         if dist:
+            # En un reactivo, la letra con su texto («B) Hoja de cálculo»): solo la letra no dice qué eligieron
+            # (8 nov, Fase 5, PRU-02 y PRU-16).
+            textos = (p or {}).get("opciones") if isinstance((p or {}).get("opciones"), dict) else {}
             e.tablas.append(Tabla(f"Distribución de {q}", ["Opción", "Respondentes", "%"],
-                                  [[str(d.get("significado")), str(d.get("n")), f"{d.get('pct')} %"] for d in dist]))
+                                  [[_con_texto(str(d.get("significado")), textos), str(d.get("n")), f"{d.get('pct')} %"]
+                                   for d in dist]))
         if resumen.get("opcion_mas_elegida"):
             m = resumen["opcion_mas_elegida"]
             e.lineas.append(f"Opción más elegida: «{m.get('significado')}» ({m.get('pct')} %, {m.get('n')} alumnos).")
     e.criterio = "resumen de " + ", ".join(preguntas)
     e.preguntas = [p["id"] for p in _items(doc) if _corto(p["id"]) in preguntas]
+
+
+def _con_texto(opcion: str, textos: dict[str, Any]) -> str:
+    """«B» → «B) Hoja de cálculo» si el reactivo trae el texto de esa letra."""
+    texto = textos.get(opcion) if textos else None
+    return f"{opcion}) {texto}" if texto else opcion
 
 
 _TOP_RANKING = 3

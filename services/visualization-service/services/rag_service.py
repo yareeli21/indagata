@@ -713,7 +713,7 @@ _DECISIONES_REUTILIZABLES = {dominio.DENTRO, dominio.AYUDA}
 # Súbelo cuando cambie cómo se calculan o redactan las respuestas (enrutador, consultas):
 # las guardadas con la versión anterior dejan de reutilizarse. Las reglas del prompt
 # (`prompt.SISTEMA`) ya entran en la huella.
-_VERSION_RESPUESTAS = 33  # 33: sin el nombre de quien registró el instrumento en el encabezado de las fuentes (C13, 8 nov) y ejemplos del prompt sin textos de los instrumentos de prueba; 32: Fases 3 y 4 del 7–8 nov (cortesía, hilo, lo que no existe, comparaciones por pregunta/posición/sección, cruces, entropía, dos capas, polaridad, operaciones de entrevista); 31: redacción del bloque D (cifras derivables, comparación invertida, inferencias, porcentaje con su n, negación cierta, borradores guardados, explicar lo anterior, lo más X, pocas personas, preguntas más omitidas); 30: resumen de reactivos de pruebas (distribución por opción) y filtros imposibles quitados; 29: hilo de la conversación (relación nueva/continua/profundiza sobre el plan anterior), condiciones en las opciones, condición inexistente dicha tal cual, preguntas sobre el instrumento con su ficha, personas con omisiones; 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
+_VERSION_RESPUESTAS = 34  # 34: correcciones de la Fase 5 (posiciones de escala, opciones abreviadas, «más de N», seguimientos, base del grupo anterior, pruebas sin calificar en toda redacción, cifras atribuidas a su opción, orden del ranking, letras con su texto); 33: sin el nombre de quien registró el instrumento en el encabezado de las fuentes (C13, 8 nov) y ejemplos del prompt sin textos de los instrumentos de prueba; 32: Fases 3 y 4 del 7–8 nov (cortesía, hilo, lo que no existe, comparaciones por pregunta/posición/sección, cruces, entropía, dos capas, polaridad, operaciones de entrevista); 31: redacción del bloque D (cifras derivables, comparación invertida, inferencias, porcentaje con su n, negación cierta, borradores guardados, explicar lo anterior, lo más X, pocas personas, preguntas más omitidas); 30: resumen de reactivos de pruebas (distribución por opción) y filtros imposibles quitados; 29: hilo de la conversación (relación nueva/continua/profundiza sobre el plan anterior), condiciones en las opciones, condición inexistente dicha tal cual, preguntas sobre el instrumento con su ficha, personas con omisiones; 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
 
 
 def clave_cache(peticion: ChatRequest, modelo: str) -> str | None:
@@ -1288,6 +1288,8 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
         plan.hechos = consulta_planificada.hechos(ejecuciones)
         plan.anexo, plan.cifras_obligatorias = "", None
         formato, adicional = consulta_planificada.FORMATO_INTERPRETA, ""
+        if _es_prueba(plan):
+            adicional = consulta_planificada.FORMATO_SIN_CALIFICAR
     plan.texto_prompt = prompt.construir(
         pregunta, apoyo, contexto, resultado=consulta_planificada.resultado_para_prompt(ejecuciones, p.intencion),
         formato=f"{formato} {adicional}".strip(), conversacion=conversacion)
@@ -1481,6 +1483,52 @@ _MENOR = re.compile(r"\b(?:menor(?:es)?|mas baj[oa]s?|inferior\w*)\b")
 _PORCENTAJE = re.compile(r"(\d+(?:[.,]\d+)?)\s*%")
 
 
+# Celdas de las tablas calculadas con un porcentaje y su opción: «No, pero me interesa» 168 (44.4 %) en
+# comparaciones y cruces, y filas «| B) Hoja de cálculo | 75 | 77.3 % |» en las distribuciones.
+_CELDA = re.compile(r"«([^»]+)»\s+\d+\s+\((\d+(?:\.\d+)?) %\)")
+_FILA_PCT = re.compile(r"^\|\s*([^|]+?)\s*\|\s*\d+\s*\|\s*(\d+(?:\.\d+)?) %\s*\|", re.MULTILINE)
+_PRIMER_LUGAR = re.compile(r"^\|\s*1\s*\|\s*([pr]\d{2,3})\s*\|", re.MULTILINE)
+_ID_PREGUNTA = re.compile(r"\b([pr]\d{2,3})\b")
+
+
+def _raices_etiqueta(etiqueta: str) -> set[str]:
+    palabras = re.findall(r"[a-z]+|\d+", dominio.normalizar(etiqueta))
+    return {w[:5] for w in palabras if len(w) >= 4 and not w.isdigit()} | {w for w in palabras if w.isdigit()}
+
+
+def cifra_mal_atribuida(respuesta: str, anexo: str, resultado: str) -> bool:
+    """¿Una oración usa el porcentaje de una opción sin nombrar esa opción? «el grupo que no trabaja tuvo una tasa de
+    aprobación del 44.4 %» cuando 44.4 % es otra opción («No, pero me interesa») (8 nov, Fase 5, ENC-09: las cifras
+    estaban en el resultado y la afirmación era falsa). Solo se revisan los porcentajes que aparecen en una sola parte de las tablas
+    y en ninguna otra línea del resultado."""
+    etiquetas: dict[float, list[str]] = {}
+    for etiqueta, pct in [*_CELDA.findall(anexo), *_FILA_PCT.findall(anexo)]:
+        etiquetas.setdefault(float(pct), []).append(etiqueta)
+    if not etiquetas:
+        return False
+    fuera_de_tablas = _CELDA.sub(" ", "\n".join(l for l in (resultado or "").splitlines() if not l.lstrip().startswith("|")))
+    fuera = {float(x.replace(",", ".")) for x in _PORCENTAJE.findall(fuera_de_tablas)}
+    for oracion in re.split(r"(?<=[.;])\s+|\n", respuesta):
+        palabras = re.findall(r"[a-z]+|\d+", dominio.normalizar(_PORCENTAJE.sub(" ", oracion)))
+        for pct in _PORCENTAJE.findall(oracion):
+            valor = float(pct.replace(",", "."))
+            if valor in fuera or valor not in etiquetas:
+                continue
+            raices = [r for r in (_raices_etiqueta(e) for e in etiquetas[valor]) if r]
+            if raices and not any(any(w == x if x.isdigit() else w.startswith(x) for w in palabras for x in r)
+                                  for r in raices):
+                return True
+    return False
+
+
+def ranking_desordenado(respuesta: str, anexo: str) -> bool:
+    """¿La redacción presenta primero una pregunta que no es el primer lugar del ranking calculado? (8 nov, Fase 5,
+    CEN-04: la tabla ponía p09 y la redacción decía «la primera es la p10»)."""
+    primero = _PRIMER_LUGAR.search(anexo or "")
+    ids = _ID_PREGUNTA.findall(respuesta)
+    return bool(primero and ids and ids[0] != primero.group(1))
+
+
 def comparacion_invertida(respuesta: str) -> bool:
     for oracion in re.split(r"(?<=[.;])\s+|\n", dominio.normalizar(respuesta)):
         pcts = [float(p.replace(",", ".")) for p in _PORCENTAJE.findall(oracion)]
@@ -1557,6 +1605,9 @@ _AVISOS_REINTENTO = {
                   "estadística; describe la diferencia sin llamarla significativa",
     "calificada": "habla de respuestas correctas, aciertos o calificaciones, y la prueba no se califica",
     "vacia": "está vacía",
+    "cifra_atribuida": "atribuye un porcentaje a algo distinto de la opción que tiene ese porcentaje en la tabla; cada "
+                       "porcentaje va junto al nombre de su opción, tal como aparece",
+    "ranking_desordenado": "no empieza por la pregunta que está en el primer lugar del ranking calculado",
     "cita_inventada": "pone entre comillas frases que no aparecen así en el RESULTADO CALCULADO ni en el TEXTO RECUPERADO",
     "copia_listado": "copia el RESULTADO CALCULADO en viñetas en lugar de responder lo que se pregunta con un párrafo "
                      "de redacción propia",
@@ -1600,6 +1651,35 @@ def citas_fieles(respuesta: str, contexto: str) -> bool:
 _CALIFICA = re.compile(
     r"\b(?:respuestas?|opcion(?:es)?)\s+(?:correctas?|incorrectas?)\b|\b(?:aciert\w*|acert\w*|calificacion\w*|puntajes?)\b"
 )
+# En una prueba no hay clave de respuestas: ningún juicio de acierto o desempeño, aunque el texto recuperado use esas
+# palabras (la ficha dice que no se califica; un reactivo pregunta por «el orden correcto»). Se revisa sin lo citado
+# entre comillas (8 nov, Fase 5: «eligió respuestas incorrectas», «coincide con la definición», «mayor dificultad»).
+_CALIFICA_PRUEBA = re.compile(
+    r"\b(?:correct\w*|incorrect\w*|errone\w*|equivoc\w*|dificultad\w*|aprob\w*|reprob\w*|lagunas?|desempeno|"
+    r"rendimiento|aciert\w*|acert\w*|calificacion\w*|puntajes?|coincide\w* con (?:la|el) (?:definicion|respuesta|clave))\b"
+)
+_CITADO = re.compile(r"«[^»]*»|“[^”]*”|\"[^\"]*\"")
+
+
+def _es_prueba(plan: "Plan") -> bool:
+    return any(str(f.tipo) == "prueba" for f in plan.fuentes)
+
+
+def califica_prueba(respuesta: str, contexto: str = "") -> bool:
+    """¿La redacción juzga aciertos o desempeño en una prueba? No cuentan lo citado entre comillas ni las palabras que
+    vienen del texto de un reactivo («la pregunta sobre el orden correcto para crear…»: las tres palabras están en el
+    contexto)."""
+    texto = dominio.normalizar(_CITADO.sub(" ", respuesta))
+    fuente = " ".join(re.findall(r"[a-z0-9]+", dominio.normalizar(contexto)))
+    for m in _CALIFICA_PRUEBA.finditer(texto):
+        antes = re.findall(r"[a-z0-9]+", texto[:m.start()])[-1:]
+        despues = re.findall(r"[a-z0-9]+", texto[m.end():])[:1]
+        tramo = " ".join([*antes, m.group(0), *despues])
+        if not (fuente and len(tramo.split()) == 3 and tramo in fuente):
+            return True
+    return False
+
+
 _TABLA_MD = re.compile(r"^\s*\|.*\|\s*$", re.MULTILINE)  # la redacción no escribe tablas: se anexan del cálculo
 _ID_DATO = re.compile(r"\b(?:[RAE]\d{2,5}|p\d{2,3}|r\d{2,3}|KPI-\d+)\b")
 
@@ -1672,7 +1752,10 @@ async def _generar_estructurada(plan: Plan, modelo: str) -> tuple[str, bool]:
     respuesta = verificada
     if plan.hechos:
         interpretacion = respuesta.strip()
-        if degradado or plan.literal or not interpretacion or interpretacion.startswith("Criterio:"):
+        # La interpretación no pasa por la verificación de cifras (no lleva números), pero en una prueba tampoco puede
+        # calificar (8 nov, Fase 5, PRU-17 (2)).
+        if degradado or plan.literal or not interpretacion or interpretacion.startswith("Criterio:") \
+                or (_es_prueba(plan) and califica_prueba(interpretacion, plan.resultado or "")):
             interpretacion = ("Los datos no registran por qué respondieron así; con este cálculo no se pueden afirmar "
                               "causas. Sirve como punto de partida para revisarlo con más información.")
         respuesta = (f"**Lo que muestran los datos:** {plan.hechos}\n\n"
@@ -1713,6 +1796,10 @@ def _verificar_redaccion(plan: Plan, respuesta: str, degradado: bool) -> tuple[s
             plan.motivo = f"{plan.motivo}:cita_inventada"
         elif not plan.cifras_obligatorias <= _cifras(respuesta) or porcentajes_sin_n(respuesta, plan.resultado or ""):
             plan.motivo = f"{plan.motivo}:cifras_completadas"
+        elif cifra_mal_atribuida(respuesta, plan.anexo, plan.resultado or ""):
+            plan.motivo = f"{plan.motivo}:cifra_atribuida"
+        elif ranking_desordenado(respuesta, plan.anexo):
+            plan.motivo = f"{plan.motivo}:ranking_desordenado"
         elif comparacion_invertida(respuesta):
             plan.motivo = f"{plan.motivo}:comparacion_invertida"
         elif inferencia_sin_respaldo(respuesta, contexto):
@@ -1720,6 +1807,8 @@ def _verificar_redaccion(plan: Plan, respuesta: str, degradado: bool) -> tuple[s
         elif plan.motivo.startswith(_REDACTADAS_EN_PROSA) and _copia_listado(respuesta, plan.respuesta_directa):
             plan.motivo = f"{plan.motivo}:copia_listado"
         elif (_CALIFICA.search(dominio.normalizar(respuesta)) and not _CALIFICA.search(dominio.normalizar(contexto))) \
+                or (_es_prueba(plan) and not plan.motivo.startswith("estructurada:sin_calificar")
+                    and califica_prueba(respuesta, contexto)) \
                 or (plan.motivo.startswith("estructurada:sin_calificar")
                     and not _DICE_SIN_CALIFICAR.search(dominio.normalizar(respuesta))):
             plan.motivo = f"{plan.motivo}:calificada"
@@ -1736,6 +1825,11 @@ def _verificar_redaccion(plan: Plan, respuesta: str, degradado: bool) -> tuple[s
         logger.warning("La redacción negó un resultado calculado; se responde con el resultado.")
         plan.motivo = f"{plan.motivo}:negativa_corregida"
         respuesta, plan.literal = plan.respuesta_directa or respuesta, bool(plan.respuesta_directa)
+    elif _es_prueba(plan) and plan.respuesta_directa and califica_prueba(respuesta, contexto) \
+            and not (plan.motivo or "").startswith("estructurada:sin_calificar"):
+        logger.warning("La redacción calificó una prueba; se responde con el resultado.")
+        plan.motivo = f"{plan.motivo}:calificada"
+        respuesta, plan.literal = plan.respuesta_directa, True
     elif not cifras_fieles(respuesta, contexto):
         logger.warning("La redacción cambió cifras del resultado calculado; se responde con el resultado.")
         plan.motivo = f"{plan.motivo}:cifras_corregidas"

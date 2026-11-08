@@ -98,6 +98,11 @@ FORMATO_INTERPRETA = (
     "qué respondieron así: no afirmes causas ni digas que una diferencia es significativa. Si la base es pequeña, dilo. "
     "No repitas la pregunta ni copies el resultado."
 )
+# 8 nov (Fase 5): en una prueba la interpretación tampoco califica (decía «eligieron respuestas incorrectas»).
+FORMATO_SIN_CALIFICAR = (
+    "Es una prueba SIN clave de respuestas: no digas qué opción es correcta o incorrecta, ni hables de dificultad, "
+    "comprensión, conocimiento o desempeño de los alumnos; habla solo de cómo se repartieron sus elecciones."
+)
 FORMATO_SENTIDO = {
     "desfavorable": ("La PREGUNTA pide lo más PREOCUPANTE: presenta cada dato como algo que preocupa (son respuestas "
                      "desfavorables), del más al menos preocupante, y di brevemente por qué podría importar para la "

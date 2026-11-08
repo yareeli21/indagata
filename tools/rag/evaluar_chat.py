@@ -142,7 +142,14 @@ def _emparejar(casos: list[dict], ids: dict[str, str], filas: list[dict]) -> dic
     return pares
 
 
-def _preguntar(http: httpx.Client, cab: dict, texto: str, alcance: list[str], historial: list[dict]) -> tuple[dict, float]:
+def _entrar(http: httpx.Client, cab: dict, email: str, password: str) -> None:
+    """Pone en `cab` un token nuevo (caduca a los 60 minutos; la corrida completa dura más)."""
+    token = http.post(f"{GATEWAY}/auth/login", json={"email": email, "password": password}).json()["access_token"]
+    cab["Authorization"] = f"Bearer {token}"
+
+
+def _preguntar(http: httpx.Client, cab: dict, texto: str, alcance: list[str], historial: list[dict],
+               entrar=None) -> tuple[dict, float]:
     cuerpo = {"pregunta": texto, "instrumentoIds": alcance, "stream": False, "usarCache": False,
               "calcularMetricas": False, "historial": historial[-8:]}
     inicio = time.monotonic()
@@ -153,6 +160,9 @@ def _preguntar(http: httpx.Client, cab: dict, texto: str, alcance: list[str], hi
             return r.json(), time.monotonic() - inicio
         except httpx.HTTPError as exc:
             print(f"   reintento {intento + 1}: {exc}", file=sys.stderr)
+            if isinstance(exc, httpx.HTTPStatusError) and exc.response.status_code == 401 and entrar:
+                entrar()  # el token caducó: se pide otro y se repite sin esperar
+                continue
             time.sleep(10)
     return {"respuesta": "", "error": "sin respuesta"}, time.monotonic() - inicio
 
@@ -259,6 +269,8 @@ def main() -> None:
     ap.add_argument("--solo", default="", help="IDs de casos separados por coma")
     ap.add_argument("--desde-log", default="", help="rango de rag_log_id ya respondidos, p. ej. 2271-2371")
     ap.add_argument("--calificacion", default="", help="JSON con la calificación contra el «Debe»")
+    ap.add_argument("--solo-resumen", action="store_true",
+                    help="no pregunta nada: rehace resumen.md con los casos ya guardados en --salida")
     ap.add_argument("--reiniciar-ollama-cada", type=int, default=0,
                     help="reinicia Ollama cada N casos y repite una vez el caso con «modelo no disponible» (0 = nunca)")
     ap.add_argument("--email", default="admin@indagata.com")
@@ -272,7 +284,13 @@ def main() -> None:
     (salida / "casos").mkdir(parents=True, exist_ok=True)
     resultados: dict[str, dict] = {}
 
-    if a.desde_log:
+    if a.solo_resumen:
+        for c in casos:
+            archivo = salida / "casos" / f"{c['id']}.json"
+            if archivo.exists():
+                resultados[c["id"]] = json.loads(archivo.read_text(encoding="utf-8"))
+        casos = [c for c in casos if c["id"] in resultados]
+    elif a.desde_log:
         filas = _rango_log(a.desde_log)
         pares = _emparejar(casos, ids, filas)
         por_id = {f["rag_log_id"]: f for f in filas}
@@ -281,8 +299,11 @@ def main() -> None:
                                                    for t, texto in enumerate(c["turnos"])]}
     else:
         http = httpx.Client(timeout=httpx.Timeout(connect=10, read=900, write=60, pool=10))
-        token = http.post(f"{GATEWAY}/auth/login", json={"email": a.email, "password": a.password}).json()["access_token"]
-        cab = {"Authorization": f"Bearer {token}"}
+        cab: dict[str, str] = {}
+
+        def entrar() -> None:
+            _entrar(http, cab, a.email, a.password)
+        entrar()
         bitacora = salida / "reinicios.log"
 
         def correr_caso(c: dict) -> list[dict]:
@@ -290,7 +311,7 @@ def main() -> None:
             turnos = []
             for texto in c["turnos"]:
                 print(f"{c['id']}: {texto[:70]}", flush=True)
-                datos, segundos = _preguntar(http, cab, texto, [ids[c["instrumento"]]], historial)
+                datos, segundos = _preguntar(http, cab, texto, [ids[c["instrumento"]]], historial, entrar)
                 fila = leer_log([datos["consultaId"]]).get(datos["consultaId"]) if datos.get("consultaId") else None
                 turnos.append(_turno(fila, texto, segundos))
                 historial += [{"rol": "usuario", "texto": texto},
@@ -311,6 +332,14 @@ def main() -> None:
     for c in casos:
         (salida / "casos" / f"{c['id']}.json").write_text(json.dumps(resultados[c["id"]], ensure_ascii=False, indent=1),
                                                           encoding="utf-8")
+    if a.solo:
+        # Con --solo se repiten algunos casos; el resumen usa también los que ya estaban en la carpeta.
+        casos = [c for c in bateria[a.conjunto] if c["instrumento"] in ids]
+        for c in casos:
+            archivo = salida / "casos" / f"{c['id']}.json"
+            if c["id"] not in resultados and archivo.exists():
+                resultados[c["id"]] = json.loads(archivo.read_text(encoding="utf-8"))
+        casos = [c for c in casos if c["id"] in resultados]
     calificacion = json.loads((RAIZ / a.calificacion).read_text(encoding="utf-8")) if a.calificacion else {}
     titulo = f"Evaluación del chat: {Path(a.salida).name}"
     (salida / "resumen.md").write_text(resumen(casos, resultados, calificacion, titulo), encoding="utf-8")

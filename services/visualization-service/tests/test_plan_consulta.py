@@ -686,3 +686,24 @@ def test_fase4_cruce_contraste_si_y_posicion_sin_pedir():
     nuevo, _ = anclaje.anclar(PlanConsulta(intencion="comparar_grupos", preguntas=["p02"], agrupar_por="posicion", limite=20),
                               "¿Cómo respondieron la certificación?", [], egreso)
     assert nuevo.agrupar_por is None
+
+
+def test_numeros_en_una_escala_son_sus_posiciones():
+    """«¿Cuántos calificaron con 1 o 2…?»: el modelo escribe «[1, 2]» y en una escala son posiciones, no opciones
+    de texto (8 nov, Fase 5); «<= 2» es lo mismo."""
+    posiciones = {1: "Nada útil", 2: "2 en escala 1–4", 3: "3 en escala 1–4", 4: "Muy útil"}
+    preguntas = {"p01": catalogo.PreguntaCatalogo("p01", "¿Qué tan útil es la cafetería?", "likert",
+                                                  list(posiciones.values()), "escala 1–4", posiciones)}
+    cat = catalogo.Catalogo("8", "Encuesta de servicios", "encuesta", preguntas, ["R001"], {}, [])
+    for filtro in ({"pregunta": "p01", "valor": ["1", "2"]}, {"pregunta": "p01", "valor": "[1, 2]"},
+                   {"pregunta": "p01", "op": "<=", "valor": 2}):
+        validado = validar_contra_catalogo(PlanConsulta(intencion="conteo_porcentaje", filtros=[filtro]), [cat])
+        assert validado.plan.intencion == "conteo_porcentaje"
+        assert validado.plan.filtros[0].valor == ["Nada útil", "2 en escala 1–4"]
+        assert validado.plan.filtros[0].op == "="
+    # Sin posiciones (no es escala), un número que no es opción sigue pidiendo aclaración.
+    preguntas["p01"].posiciones = {}
+    preguntas["p01"].escala = ""
+    validado = validar_contra_catalogo(PlanConsulta(intencion="conteo_porcentaje",
+                                                    filtros=[{"pregunta": "p01", "valor": ["7"]}]), [cat])
+    assert validado.plan.intencion == "aclaracion"

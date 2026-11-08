@@ -334,6 +334,10 @@ def _agrupamiento(plan: PlanConsulta, pregunta: str, cat: Catalogo) -> tuple[Pla
         return contraste
     if m := _PRIMEROS_ULTIMOS.search(texto):
         n = min(int(m.group(1)), int(m.group(2)))
+        if not objetivo:
+            # «… en el reactivo de la contraseña segura»: el modelo no puso la pregunta y la tabla salía sin columna
+            # (8 nov, Fase 5, PRU-10); se busca por el texto que sigue a «primeros N … últimos N».
+            objetivo = [x for x in [_pregunta_por_texto(texto[m.end():], cat, set())] if x]
         return plan.model_copy(update={"intencion": "comparar_grupos", "agrupar_por": "posicion", "limite": n,
                                        "filtros": [], "aclaracion": "", "consulta_semantica": "",
                                        "orden": None, "preguntas": objetivo or plan.preguntas}), [
@@ -770,6 +774,7 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
             filtros.append(Filtro(pregunta=pid, op="=", valor=ops[0] if len(ops) == 1 else ops))
             notas.append(f"filtro {pid} = «{', '.join(ops)}» (sus opciones dicen lo que pide la pregunta)")
         filtros = [_ajustar_filtro(f, texto, nivel, cat, notas) for f in filtros]
+        filtros = _por_cantidad_escrita(filtros, texto, notas)
         # El número de «más de 20 horas» ya es la condición de contexto: un filtro numérico con ese número en una
         # pregunta que no habla de eso es la misma condición mal ubicada (gemma: «r04 > 20», consulta 1486).
         for c in comparaciones:
@@ -974,6 +979,41 @@ def _palabras_del_catalogo(cat: Catalogo) -> list[str]:
 _PARECIDO_ERRATA = 0.8
 
 
+_CANTIDAD = re.compile(r"\b(?:mas|menos) de (\d+)\b")
+
+
+def _por_cantidad_escrita(filtros: list[Filtro], texto: str, notas: list[str]) -> list[Filtro]:
+    """«¿Cuántos trabajan más de 30 horas?»: si una opción dice «más de 30» tal cual, esa es la condición. Se quitan las
+    demás opciones de esa pregunta que la raíz había sumado («Trabajo 20-30h», «Trabajo menos de 20h») y los filtros
+    de otras preguntas armados con el mismo número (8 nov, Fase 5, CEN-01: salía «1 estudiante» con un filtro «30
+    horas» en las horas de estudio)."""
+    m = _CANTIDAD.search(texto)
+    if not m:
+        return filtros
+    frase, numero = m.group(0), m.group(1)
+    exactos = []
+    salida = []
+    for f in filtros:
+        valores = _valores(f)
+        con_frase = [v for v in valores if frase in normalizar(str(v))]
+        if con_frase and len(con_frase) < len(valores):
+            notas.append(f"filtro {f.pregunta}: solo «{', '.join(map(str, con_frase))}» (dice «{frase}» tal cual)")
+            f = Filtro(pregunta=f.pregunta, op="=", valor=con_frase[0] if len(con_frase) == 1 else con_frase)
+        if con_frase:
+            exactos.append(f.pregunta)
+        salida.append(f)
+    if not exactos:
+        return filtros
+    mismo_numero = re.compile(rf"(?<!\d){numero}(?!\d)")
+    quedan = []
+    for f in salida:
+        if f.pregunta not in exactos and any(mismo_numero.search(normalizar(str(v))) for v in _valores(f)):
+            notas.append(f"filtro {f.pregunta} = «{f.valor}» quitado (el número ya es la opción de {exactos[0]})")
+            continue
+        quedan.append(f)
+    return quedan
+
+
 def _ausentes(pregunta: str, cat: Catalogo) -> list[str]:
     """Palabras de la consulta que el instrumento no registra en ninguna parte («nocturna», «ingeniería»).
 
@@ -997,7 +1037,10 @@ def _ausentes(pregunta: str, cat: Catalogo) -> list[str]:
 _VERBOS_CONSULTA = {"estud", "lleva", "tiene", "hacen", "estan", "fuero", "eligi", "respo", "conte", "dijer", "cuant",
                     "quien", "cuale", "porce", "mayor", "menor", "hubie", "habia", "puede", "deber", "sabes",
                     "dimel", "decir", "mostr", "segun", "entre", "sobre", "donde", "cuand", "aquel", "ellos", "ellas",
-                    "dicen", "digan", "opina", "piens", "creen"}
+                    "dicen", "digan", "opina", "piens", "creen",
+                    # Palabras que nombran partes del instrumento, no una condición: «el REACTIVO de Wi-Fi» no es
+                    # algo que la prueba «no registra» (8 nov, Fase 5, PRU-06).
+                    "react", "pregu", "opcio", "respu", "secci", "alumn", "encue", "prueb", "instr", "marca"}
 
 
 def _aclarar_condicion(plan: PlanConsulta, pregunta: str, cat: Catalogo) -> PlanConsulta:

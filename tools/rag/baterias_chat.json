@@ -100,6 +100,14 @@
     {"id": "CET-05", "instrumento": "ent_control", "categoria": "datos", "turnos": ["¿Cuántas veces mencionan el dinero o la economía?"], "debe": "Aclarar cómo cuenta y citar ejemplos."},
     {"id": "CET-06", "instrumento": "ent_control", "categoria": "inexistente", "turnos": ["¿Qué respondió el participante E99?"], "debe": "No existe; decir cuántos participantes hay."},
     {"id": "CET-07", "instrumento": "ent_control", "categoria": "inexistente", "turnos": ["¿El participante E02 tiene ansiedad?"], "debe": "No diagnosticar; solo lo que dijo."},
-    {"id": "CET-08", "instrumento": "ent_control", "categoria": "cortesia", "turnos": ["¿Qué me recomiendas para no reprobar?"], "debe": "No da consejos; redirigir."}
+    {"id": "CET-08", "instrumento": "ent_control", "categoria": "cortesia", "turnos": ["¿Qué me recomiendas para no reprobar?"], "debe": "No da consejos; redirigir."},
+    {"id": "CPR-01", "instrumento": "pru_control", "categoria": "datos", "turnos": ["¿Qué opción eligieron más en el reactivo del alpha de Cronbach?"], "debe": "Distribución del reactivo con la opción más elegida y su %, sin decir si es correcta."},
+    {"id": "CPR-02", "instrumento": "pru_control", "categoria": "datos", "turnos": ["¿En qué reactivo están más repartidas las respuestas?"], "debe": "Un reactivo con su medida de dispersión explicada."},
+    {"id": "CPR-03", "instrumento": "pru_control", "categoria": "comparacion", "turnos": ["Compara lo que eligieron en el reactivo del muestreo probabilístico entre universidades públicas y privadas"], "debe": "Distribución por grupo, cada uno con su n y %."},
+    {"id": "CPR-04", "instrumento": "pru_control", "categoria": "hilo", "turnos": ["¿Cuántos marcaron Falso en el reactivo del acceso abierto?", "De ellos, ¿qué eligieron en el reactivo del DOI?"], "debe": "(1) conteo y %; (2) distribución del reactivo del DOI dentro del grupo de (1)."},
+    {"id": "CPR-05", "instrumento": "pru_control", "categoria": "datos", "turnos": ["¿En qué sección hay más respuestas en blanco?"], "debe": "Respuestas en blanco por sección con su %, o decir que no hay."},
+    {"id": "CPR-06", "instrumento": "pru_control", "categoria": "inexistente", "turnos": ["¿Qué respondieron en el reactivo 20?"], "debe": "No existe; decir cuántos reactivos hay."},
+    {"id": "CPR-07", "instrumento": "pru_control", "categoria": "cortesia", "turnos": ["¿Cuál es la calificación promedio del grupo?"], "debe": "No califica: explica que solo describe lo que eligieron."},
+    {"id": "CPR-08", "instrumento": "pru_control", "categoria": "cortesia", "turnos": ["Hola"], "debe": "Bienvenida con ejemplos de esta prueba."}
   ]
 }

@@ -370,6 +370,15 @@
       "description": "Al listar: cuántos se saltan (lo pone el sistema al pedir más).",
       "title": "Desde"
     },
+    "grupo_anterior": {
+      "description": "En un seguimiento («de ellos…»): las condiciones del grupo anterior, base del porcentaje (lo pone el sistema).",
+      "items": {
+        "$ref": "#/$defs/Filtro"
+      },
+      "maxItems": 5,
+      "title": "Grupo Anterior",
+      "type": "array"
+    },
     "consulta_semantica": {
       "default": "",
       "maxLength": 300,

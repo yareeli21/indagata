@@ -64,7 +64,7 @@ def test_resumen_de_un_reactivo_con_distribucion_por_opcion():
     pru = Instrumento("2", "Diagnóstico", "prueba_estandarizada", doc)
     e = _uno(_plan(intencion="resumen_pregunta", preguntas=["r02"]), pru)
     assert e.lineas[0].endswith("11 respuestas válidas, 2 sin respuesta.")
-    assert e.tablas[0].filas[0] == ["C", "6", "46.2 %"]
+    assert e.tablas[0].filas[0] == ["C) 12", "6", "46.2 %"]  # la letra con su texto (8 nov, Fase 5)
 
 
 def test_filtros_imposibles_se_quitan():

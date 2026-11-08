@@ -97,6 +97,8 @@ def combinar(plan: PlanConsulta, anterior: dict[str, Any] | None, rel: str,
 
     `recuperadas`: preguntas de los intercambios que recuperó el RAG (en una entrevista dicen en qué pregunta habló
     la persona del tema nuevo: «¿y sobre los psicólogos?» → p04, p07)."""
+    if plan.grupo_anterior:  # lo pone el sistema, nunca el modelo
+        plan = plan.model_copy(update={"grupo_anterior": []})
     if rel == "nueva" or not anterior:
         return (plan if plan.relacion == "nueva" else plan.model_copy(update={"relacion": "nueva"})), []
     respuesta_previa = str(anterior.get("_respuesta") or "")
@@ -238,8 +240,11 @@ def _continuar(plan: PlanConsulta, previo: PlanConsulta, recuperadas: list[str],
         cambios["instrumentos"] = previo.instrumentos
     # Lo que dijo una persona: «¿y sobre los psicólogos?» sigue con la misma persona y busca el tema en sus respuestas.
     # El modelo la dio como búsqueda abierta, aclaración, resumen de una pregunta o hallazgo (consultas 2176 y 2219).
+    # «¿Y qué estrategias usa para mantenerse?», «¿Y buscó ayuda por eso?» llegaron como metodología: en un seguimiento
+    # de lo que dijo una persona también son sobre ella (8 nov, Fase 5, CET-04 y ENT-13).
+    sobre_la_persona = intencion in _SOBRE_LA_PERSONA or intencion == "metodologia"
     if previo.intencion == "datos_respondente" and previo.respondentes and not plan.respondentes \
-            and intencion in _SOBRE_LA_PERSONA and not plan.orden and not plan.filtros and not plan.agrupar_por:
+            and sobre_la_persona and not plan.orden and not plan.filtros and not plan.agrupar_por:
         propias = plan.campos if isinstance(plan.campos, list) and intencion == "datos_respondente" else plan.preguntas
         campos = list(dict.fromkeys([*propias, *recuperadas]))[:3] or "todas_las_respuestas"
         cambios.update(intencion="datos_respondente", respondentes=previo.respondentes, campos=campos,
@@ -252,6 +257,13 @@ def _continuar(plan: PlanConsulta, previo: PlanConsulta, recuperadas: list[str],
             and isinstance(previo.campos, list) and not isinstance(plan.campos, list):
         cambios["campos"] = previo.campos
         notas.append(f"preguntas {', '.join(previo.campos)} heredadas del plan anterior")
+    if intencion == "semantica_abierta" and plan.preguntas and previo.filtros and previo.intencion in _CON_CONDICIONES \
+            and _GRUPO_ANTERIOR.search(normalizar(pregunta)):
+        # «De ellos, ¿qué respondieron sobre Wi-Fi público?»: lo que eligió el grupo anterior en esa pregunta (un cruce),
+        # no una búsqueda abierta sobre todos (8 nov, Fase 5, PRU-14).
+        intencion = "resumen_pregunta"
+        cambios.update(intencion=intencion, consulta_semantica="", aclaracion="")
+        notas.append(f"«de ellos» + {', '.join(plan.preguntas)}: resumen dentro del grupo anterior")
     if intencion in _SIN_PLAN or intencion not in ESTRUCTURADAS:
         return plan.model_copy(update=cambios), notas
     if previo.intencion in _CON_CONDICIONES and intencion in _CON_CONDICIONES:
@@ -277,6 +289,10 @@ def _continuar(plan: PlanConsulta, previo: PlanConsulta, recuperadas: list[str],
         if notas_acotar:
             cambios["filtros"] = acotados
             notas += notas_acotar
+        if intencion == "conteo_porcentaje" and previo.filtros and _GRUPO_ANTERIOR.search(normalizar(pregunta)) \
+                and cambios.get("filtros", plan.filtros) != previo.filtros:
+            cambios["grupo_anterior"] = previo.filtros
+            notas.append("el % se da también sobre el grupo anterior")
     # La misma pregunta del instrumento: «¿y los que tienen beca contra los que no?» después de comparar el phishing.
     if intencion in ("comparar_grupos", "resumen_pregunta") and plan.preguntas and previo.preguntas             and plan.preguntas != previo.preguntas and pregunta and catalogos             and not _preguntas_dichas(pregunta, plan.preguntas, catalogos):
         # «¿Y los que tienen beca contra los que no?» no nombra ninguna pregunta: el modelo puso r01 y se perdió la

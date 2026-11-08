@@ -27,6 +27,7 @@ class PreguntaCatalogo:
     tipo: str
     opciones: list[str] = field(default_factory=list)  # significados tal cual (para emparejar valores)
     escala: str = ""  # «1–5; niveles baja 1–2, media 3, alta 4–5»
+    posiciones: dict[int, str] = field(default_factory=dict)  # en una escala: {1: «Nada útil», 2: …}
 
 
 @dataclass
@@ -142,8 +143,10 @@ def construir(id_crudo: str, titulo: str, tipo: str, doc: dict[str, Any]) -> Cat
         escala = _escala(p)
         if escala:  # en una escala las opciones son sus etiquetas; se conservan para validar
             opciones = list(dict.fromkeys([*(p.get("escala") or {}).get("etiquetas", {}).values(), *opciones]))
+        etiquetas = (p.get("escala") or {}).get("etiquetas") or {} if escala else {}
+        posiciones = {int(k): str(v) for k, v in etiquetas.items() if str(k).isdigit()}
         preguntas[pid] = PreguntaCatalogo(pid, str(p.get("texto", "")), str(p.get("tipo") or p.get("tipo_reactivo") or ""),
-                                          opciones, escala)
+                                          opciones, escala, posiciones)
     personas = _personas(doc)
     contexto: dict[str, dict[str, None]] = {}
     for r in personas:

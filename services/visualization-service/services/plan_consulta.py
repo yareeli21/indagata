@@ -140,6 +140,9 @@ class PlanConsulta(BaseModel):
     limite: int | None = Field(default=None, ge=1)
     # 7 nov (Fase 4): «muéstrame más» / «los siguientes» sigue la lista anterior desde donde se quedó.
     desde: int | None = Field(default=None, ge=0, description="Al listar: cuántos se saltan (lo pone el sistema al pedir más).")
+    # 8 nov (Fase 5): «¿y de ellos, cuántos…?» da el % sobre el grupo anterior, no sobre todo el instrumento.
+    grupo_anterior: list[Filtro] = Field(default_factory=list, max_length=5, description=(
+        "En un seguimiento («de ellos…»): las condiciones del grupo anterior, base del porcentaje (lo pone el sistema)."))
     consulta_semantica: str = Field(default="", max_length=300)
     aclaracion: str = Field(default="", max_length=300)
 
@@ -180,6 +183,17 @@ def _cercano(buscado: str, opciones: list[str], corte: float = 0.75) -> str | No
         return norm[b]
     parecidas = difflib.get_close_matches(b, list(norm), n=1, cutoff=corte)
     return norm[parecidas[0]] if parecidas else None
+
+
+def _contenida(buscado: str, opciones: list[str]) -> str | None:
+    """La única opción que contiene todas las palabras de `buscado` (por su raíz de cinco letras): «Cambiarme» →
+    «Estoy pensando en cambiarme de escuela» (8 nov, Fase 5: el modelo abrevió la opción y se pedía aclaración)."""
+    palabras = [w[:5] for w in re.findall(r"[a-z]+", normalizar(buscado)) if len(w) >= 4]
+    if not palabras:
+        return None
+    candidatas = [o for o in opciones
+                  if all(any(x.startswith(w) for x in re.findall(r"[a-z]+", normalizar(o))) for w in palabras)]
+    return candidatas[0] if len(candidatas) == 1 else None
 
 
 def _id_pregunta(texto: str, catalogo: Catalogo) -> str | None:
@@ -235,6 +249,30 @@ def _agrupar_especial(agrupar: str, cat: Catalogo) -> str | None:
     return mejor[1] if mejor[0] >= 2 and sum(1 for x, _ in puntos if x == mejor[0]) == 1 else None
 
 
+def _posiciones_de_escala(valor: object, op: str, p: PreguntaCatalogo) -> list[str] | None:
+    """Las etiquetas de las posiciones que pide un número (o lista de números) en una pregunta de escala; None si la
+    pregunta no tiene posiciones o el valor no es un número de la escala."""
+    if not p.posiciones:
+        return None
+    pedidos = valor if isinstance(valor, list) else [valor]
+    if len(pedidos) == 1 and re.fullmatch(r"[\[\]\d\s,yo]+", normalizar(str(pedidos[0]))):
+        pedidos = re.findall(r"\d+", str(pedidos[0]))  # el modelo lo escribió como texto: «[1, 2]», «1 o 2»
+    numeros = [_numero(str(v)) for v in pedidos]
+    if not numeros or any(n is None or n != int(n) for n in numeros):
+        return None
+    comparar = {"=": lambda a, b: a == b, ">": lambda a, b: a > b, ">=": lambda a, b: a >= b,
+                "<": lambda a, b: a < b, "<=": lambda a, b: a <= b, "!=": lambda a, b: a != b}.get(op)
+    if comparar is None:
+        return None
+    if op == "=":
+        elegidas = [p.posiciones[int(n)] for n in numeros if int(n) in p.posiciones]
+        return elegidas if len(elegidas) == len(numeros) else None
+    if len(numeros) != 1:
+        return None
+    elegidas = [etiqueta for pos, etiqueta in sorted(p.posiciones.items()) if comparar(pos, int(numeros[0]))]
+    return elegidas or None
+
+
 def _no_encontrada(pedida: str, cat: Catalogo) -> str:
     """«El reactivo 25» en una prueba de 22: se dice cuántas tiene, no se pregunta cuál (7 nov, PRU-21: la aclaración
     se cambiaba por un fragmento recuperado que inventaba «A011 respondió A al reactivo 25»)."""
@@ -288,11 +326,17 @@ def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> Pl
         if f.nivel is not None:  # nivel de la escala: no hay opción que emparejar
             filtros.append(Filtro(pregunta=pid, op=f.op, nivel=f.nivel))
             continue
+        if (en_escala := _posiciones_de_escala(valor, f.op, cat.preguntas[pid])) is not None:
+            # «¿Cuántos calificaron con 1 o 2…?»: en una escala el número es la posición, no una opción de texto
+            # (8 nov, Fase 5: el modelo escribió [1, 2] y se pedía aclaración).
+            correcciones.append(f"{pid} {f.op} {valor} → posiciones de la escala «{', '.join(en_escala)}»")
+            filtros.append(Filtro(pregunta=pid, op="=", valor=en_escala if len(en_escala) > 1 else en_escala[0]))
+            continue
         if isinstance(valor, (int, float)) or not opciones:
             filtros.append(Filtro(pregunta=pid, op=f.op, valor=valor))
             continue
         pedidos = valor if isinstance(valor, list) else [valor]
-        if all(_cercano(str(v), opciones) is None for v in pedidos):
+        if all(_cercano(str(v), opciones) is None and _contenida(str(v), opciones) is None for v in pedidos):
             # El modelo puso la opción en otra pregunta (copió el ID de un ejemplo: «Carga minima» en p02, que
             # aquí es la modalidad). Si TODAS las opciones están en una sola pregunta del catálogo, se reubica ahí.
             otras = [q for q, datos in cat.preguntas.items() if q != pid
@@ -302,7 +346,7 @@ def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> Pl
                 pid, opciones = otras[0], cat.preguntas[otras[0]].opciones
         reales = []
         for v in pedidos:
-            real = _cercano(str(v), opciones)
+            real = _cercano(str(v), opciones) or _contenida(str(v), opciones)
             if real is None:
                 return aclarar(f"«{v}» no es una opción de {pid} («{cat.preguntas[pid].texto}»). "
                                f"Las opciones son: {', '.join(opciones[:10])}. ¿Cuál quieres?")
