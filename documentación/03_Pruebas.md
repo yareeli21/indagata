@@ -67,7 +67,7 @@ Todos los datos son sintéticos y salen de los dos métodos de Desarrollo X.6: e
 el **método B** da casos en los que se sabe de antemano qué debe responder el sistema. La Tabla D.18b los ordena por
 fecha y la Tabla D.20a dice qué datos se usaron en cada prueba. En resumen:
 
-- **Método A, estadístico por perfiles (X.6.2).** Del acervo de 31 instrumentos se procesaron en el sistema enc_04,
+- **Generador de datos sintéticos (X.6).** De los 31 instrumentos generados se procesaron en el sistema enc_04,
   enc_05, enc_09, enc_11 (instrumento 109), pru_01, pru_02, pru_04 y ent_01. enc_01, el cuestionario real con
   respuestas sintéticas, no se subió: su CSV se usó fuera del sistema para validar las dimensiones sugeridas (Y.3.5).
 - **Método B, dirigido por casos de prueba (X.6.3):**
@@ -81,7 +81,7 @@ fecha y la Tabla D.20a dice qué datos se usaron en cada prueba. En resumen:
     y ent_02.
 - **Encuesta de la investigadora:** una encuesta simulada de 2000 respondentes con su formulario de Google Forms
   (instrumento 127).
-- **Prueba de control de la evaluación final:** pru_06 (método A), cargada el 8 nov como instrumento 133.
+- **Prueba de control de la evaluación final:** pru_06 (del generador, X.6), cargada el 8 nov como instrumento 133.
 
 El Anexo A dice dónde está el archivo de cada instrumento, su original y su documento final, y en qué pruebas se
 usó.
@@ -137,8 +137,7 @@ sesiones.
 
 **Usados solo fuera del sistema** (cálculos sobre el CSV):
 - enc_01, enc_04 y enc_10_turno, para comparar los criterios de Horn y Kaiser (Y.3.5);
-- enc_06 a enc_11, para verificar el modelo coherente de respuestas (X.6.2);
-- enc_09, para recalcular el α por separado (X.6.2) y la estadística de la limpieza (X.7.2).
+- enc_09, para la estadística de la limpieza (X.7.2).
 
 Los instrumentos borrados del 15 y 16 oct no conservan su número en la base; sus resultados quedan en
 el registro de las sesiones. **El 25 oct se borraron, por decisión de la investigadora, los instrumentos de
@@ -239,8 +238,7 @@ Los valores de limpieza de enc_04, pru_04 y ent_01 se presentan en el capítulo 
 de cada tipo de error, con semilla fija (7) y en filas o celdas distintas, y guarda la verdad en JSON.
 `tools/limpieza/verificar_limpieza.py` procesa por la API el archivo original sin cambios (**grupo de
 control**) y el archivo con errores. Lo que se detecta de más en el segundo se compara con lo inyectado,
-para que no cuenten las anomalías que ya traían los datos (por ejemplo, los encuestados en línea recta que
-genera el método A).
+para que no cuenten las anomalías que ya traían los datos (por ejemplo, los encuestados en línea recta).
 
 **Errores inyectados:**
 - **Encuesta (enc_11, 160 respondentes):** duplicados, valores fuera de escala, «No sé / No aplica», una

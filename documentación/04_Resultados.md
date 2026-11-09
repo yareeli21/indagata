@@ -71,7 +71,7 @@ entrevista.
 
 **Lectura.**
 - **Las cuatro encuestas venían completas y sin duplicados**, porque el generador no inyecta esos
-  casos (método A, X.6.2). Las reglas de vacíos y duplicados se verificaron con los archivos de prueba (B4, X.6.3), no con
+  casos (Desarrollo X.6). Las reglas de vacíos y duplicados se verificaron con los archivos de prueba (B4, X.6.3), no con
   este acervo.
 - **enc_09 tenía 8 valores fuera de la escala.** La limpieza los anuló (por eso la completitud baja
   a 99.84 %) y la columna `semestre` quedó con 5 % de vacíos. Es el único caso del acervo en que la

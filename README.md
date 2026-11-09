@@ -63,7 +63,7 @@ markdowns/           guías de uso
 11 encuestas (`enc_01`…`enc_11`, `enc_10_turno` con turno), la encuesta de 2000 respondentes con su PDF de Google
 Forms, 10 pruebas (`pru_01`…`pru_10`, respuestas aleatorias sin clave) y 10 entrevistas (`ent_01`…`ent_10`).
 `enc_01`, `pru_01` y `ent_01` tienen además una versión sucia (`*_sucio_respondido.*`) para probar la limpieza. Cómo
-se generan: `tools/data_synthesis/README.md` y `storage/instrumentos_sinteticos/METODOLOGIA_DATOS_SINTETICOS.md`;
+se generan: Desarrollo X.6 (`documentación/02_Desarrollo.md`) y `tools/data_synthesis/README.md`;
 cómo probarlos: [`markdowns/GUIA_PRUEBAS.md`](markdowns/GUIA_PRUEBAS.md).
 
 ## Pruebas

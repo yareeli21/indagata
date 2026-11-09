@@ -11,7 +11,7 @@ en qué pruebas se usó**. En los capítulos, cada instrumento se nombra por su 
 | Qué | Carpeta (desde la raíz del repositorio) | ¿Está en el repositorio? |
 |---|---|---|
 | Archivo que se subió al sistema, su instrumento original (cuestionario, guion o prueba en texto o PDF) y sus metadatos de generación | `storage/instrumentos_sinteticos/{encuestas,entrevistas,pruebas}/` | Sí |
-| Cómo se generaron los datos sintéticos | `storage/instrumentos_sinteticos/METODOLOGIA_DATOS_SINTETICOS.md` y Desarrollo X.6 | Sí |
+| Cómo se generaron los datos sintéticos | Desarrollo X.6; código en `tools/data_synthesis/` | Sí |
 | Copia que guardó el sistema al subirlo | `storage/raw/_/<n>__<archivo>` | No (solo en el equipo del proyecto) |
 | CSV limpio de cada versión de la limpieza | `storage/clean/<id>/` | No |
 | Documento final de cada versión (lo que lee el chat) | `storage/json/<id>/<n>__v<versión>_documento_final.json` | No |
@@ -30,15 +30,15 @@ salidas del sistema y de las pruebas. Se pueden regenerar subiendo de nuevo el a
 | id | Título | Tipo | Personas | Preguntas | Archivo fuente | Original | Origen |
 |---|---|---|---|---|---|---|---|
 | 59 | Encuesta de evaluación y ambiente escolar por turno | Encuesta | 60 | 8 | `encuestas/enc_10_turno_respondido.csv` | `encuestas/enc_10_turno_original.txt` | Método B1: generada para saber de antemano la respuesta por turno (Desarrollo X.6.3) |
-| 60 | Entrevista sobre estrategias de permanencia universitaria | Entrevista | 40 | 12 | `entrevistas/ent_01_respondido.txt` | `entrevistas/ent_01_original.txt` | Método A: generación por perfiles (X.6.2) |
-| 61 | Encuesta de Carga Académica y Gestión del Tiempo | Encuesta | 160 | 20 | `encuestas/enc_09_respondido.csv` | `encuestas/enc_09_original.txt` | Método A (X.6.2) |
-| 109 | Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios | Encuesta | 160 | 26 | `encuestas/enc_11_respondido.csv` | `encuestas/enc_11_original.txt` | Método A, con los seis tipos de pregunta (X.6.2) |
+| 60 | Entrevista sobre estrategias de permanencia universitaria | Entrevista | 40 | 12 | `entrevistas/ent_01_respondido.txt` | `entrevistas/ent_01_original.txt` | Generador de datos sintéticos (Desarrollo X.6) |
+| 61 | Encuesta de Carga Académica y Gestión del Tiempo | Encuesta | 160 | 20 | `encuestas/enc_09_respondido.csv` | `encuestas/enc_09_original.txt` | Generador de datos sintéticos (X.6) |
+| 109 | Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios | Encuesta | 160 | 26 | `encuestas/enc_11_respondido.csv` | `encuestas/enc_11_original.txt` | Generador de datos sintéticos, con los seis tipos de pregunta (X.6) |
 | 127 | Indicadores de Experiencia y Calidad Académica | Encuesta | 2000 | 18 | `encuestas/Encuesta2_Simulada_2000_SUCIA.csv` | `encuestas/Indicadores de Experiencia y Calidad Académica - Formularios de Google.pdf` | Encuesta simulada por la investigadora, con su formulario de Google Forms; el archivo trae errores a propósito para probar la limpieza («SUCIA») |
 | 129 | Salud mental en la universidad | Entrevista | 1 | 12 | `entrevistas/ent_11_salud_mental_ruido.txt` | `entrevistas/ent_11_original.txt` (versión limpia: `ent_11_salud_mental_limpia.txt`; ruido inyectado: `ent_11_ruido_inyectado.json`) | Entrevista de la investigadora con ruido de transcripción contemplado (método B5) |
 | 130 | Prueba de Alfabetización Digital | Prueba estandarizada | 97 | 22 | `pruebas/pru_03_sucio_no_contemplado.csv` | `pruebas/pru_03_original.txt` (sin errores: `pru_03_respondido.csv`; errores: `pru_03_ruido_no_contemplado.json`) | Prueba de la investigadora con errores no contemplados por la limpieza (método B5), entre ellos un reactivo vacío para todos (r10) |
 | 131 | Salud mental entrevista | Entrevista | 1 | 13 | `entrevistas/ent_11_salud_mental_ruido_no_contemplado.txt` | `entrevistas/ent_11_original.txt` (errores: `ent_11_ruido_no_contemplado.json`) | La misma entrevista con ruido no contemplado (método B5) |
 | 132 | — (sin publicar) | Entrevista | 1 | — | `entrevistas/ent_11_salud_mental_ruido.txt` | — | Segunda carga de la 129; quedó en «limpio» y no se reporta |
-| 133 | Prueba de Competencia en Investigación Científica | Prueba estandarizada | 80 | 15 | `pruebas/pru_06_respondido.csv` | `pruebas/pru_06_original.txt` | Método A; cargada el 8 nov como prueba de control, ajena al diseño del chat |
+| 133 | Prueba de Competencia en Investigación Científica | Prueba estandarizada | 80 | 15 | `pruebas/pru_06_respondido.csv` | `pruebas/pru_06_original.txt` | Generador de datos sintéticos (X.6); cargada el 8 nov como prueba de control, ajena al diseño del chat |
 <!-- fuente: tt_rag.raw_data (nombre_archivo, raw_archivo, raw_archivo_original); documentos finales vigentes: storage/json/59/1__v1, 60/484__v2, 61/21__v2, 109/3__v3, 127/54__v4, 129/49__v8, 130/1__v2, 131/1__v1 y 133/1__v1 _documento_final.json -->
 
 **Documento final vigente** (el que leyó el chat en la evaluación final): `storage/json/<id>/` con el número de
@@ -77,7 +77,6 @@ copias con errores inyectados).
 
 Se usaron para cálculos sobre el CSV, sin subirlos (Pruebas Y.1.4):
 - enc_01, enc_04 y enc_10_turno, para comparar los criterios de Horn y Kaiser de las dimensiones sugeridas (Y.3.5);
-- enc_06 a enc_11, para verificar el modelo coherente de respuestas (Desarrollo X.6.2);
-- enc_09, para recalcular el α por separado y la estadística de la limpieza (Desarrollo X.6.2, X.7.2).
+- enc_09, para la estadística de la limpieza (Desarrollo X.7.2).
 
 Sus archivos están en `storage/instrumentos_sinteticos/encuestas/`.
