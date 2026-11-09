@@ -17,7 +17,8 @@ NOTA DE TRABAJO (no incluir en el reporte)
 
 Este capítulo presenta lo que produce el sistema en cinco áreas. Las cifras de cada sección dicen con qué versión
 se midieron: la limpieza, los KPIs y los formatos, con la versión del 18 al 22 oct; la limpieza con errores reales,
-con la del 7 nov; el chat, con la versión final del 8 nov (Z.4.5). Las cinco áreas son:
+con la del 7 nov; el chat, con la versión final del 8 nov (Z.4.5). La versión vigente de cada componente está en
+la Tabla D.0 de Desarrollo. Las cinco áreas son:
 - la limpieza y estandarización;
 - la asociación de KPIs;
 - el RAG con sus métricas;

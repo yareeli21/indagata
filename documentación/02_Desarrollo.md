@@ -46,6 +46,25 @@ desarrollo son **sintéticos** (sección X.6). Por ello, las cifras de este cap�
 mostrar que el sistema funciona; no permiten conclusiones sobre estudiantes reales. Cada instrumento se nombra por
 su número en el sistema («la encuesta 127»); su archivo, su original y las pruebas en que se usó están en el Anexo A.
 
+**Versiones vigentes.** Algunos componentes tuvieron varias versiones y el capítulo describe la anterior cuando ayuda
+a entender una decisión. La Tabla D.0 dice cuál se usa hoy (8 nov); en cada sección se marca igual, con
+**Vigente**.
+
+**Tabla D.0.** Versión que se usa hoy de cada componente con más de una versión.
+
+| Componente | Versión vigente | Versiones anteriores (ya no se usan, salvo lo indicado) | Sección |
+|---|---|---|---|
+| Generador de datos sintéticos | 1.1, respuestas coherentes (22 oct); pruebas sin respuesta correcta (25 oct) | 1.0, sorteo parejo: se conserva en los archivos enc_06 a enc_10 | X.6.2 |
+| Pruebas estandarizadas | No se califican (25 oct) | Con clave de respuestas y aciertos | X.5.4 |
+| Asociación de KPIs | Por unidades del perfil semántico (17 oct) | Un solo *summary* por instrumento; su *endpoint* sigue disponible, pero el asistente no lo usa | X.7.5 |
+| Documento final de entrevistas | Solo pregunta y respuesta | Con conteos y estadística de participación | X.7.7 |
+| Chunks | Medidos en *tokens* (7 nov) | Ventana fija de 450 caracteres; queda como respaldo cuando no hay tokenizador | X.9.1 |
+| Chat | La del 8 nov: RAG primero, plan del modelo, cálculo y redacción verificada | Solo búsqueda semántica (10–16 oct); enrutador por reglas (17–26 oct), que **sigue como respaldo** cuando no hay plan válido | X.9 (Tabla D.23b) |
+| Correcciones posteriores a la evaluación final | En el código (commit `6fd668d`), **pendientes de evaluar** | — | X.9.6 |
+| Modelos de lenguaje | Redactor e intérprete `gemma3:4b`; juez `qwen3:4b-instruct` (2 nov) | Redactor `llama3.2:3b`; juez `qwen2.5:3b` (23 oct) | X.10.5 |
+| Evaluación de cada respuesta | Indicadores sin juez, juez bajo demanda y calificación humana (X.10.7 y X.10.8 se complementan) | Juez después de cada respuesta | X.10.7, X.10.8 |
+<!-- fuente: secciones citadas en la tabla; .env (OLLAMA_MODEL=gemma3:4b, RAG_JUEZ_MODELO=qwen3:4b-instruct, 8 nov); tools/data_synthesis/generate.py:137; storage-service/services/chunks_documento.py (VENTANA); git log 6fd668d -->
+
 ---
 
 ## X.2 Entorno, tecnologías y estructura del repositorio
@@ -906,15 +925,26 @@ instituciones.
 
 **Cómo funciona, en una frase.** El generador (`tools/data_synthesis/generate.py`, en Python con NumPy) primero
 decide **qué tipo de estudiante** responde y después genera sus respuestas **según cómo suele responder ese tipo de
-estudiante**. La metodología completa está en `storage/instrumentos_sinteticos/METODOLOGIA_DATOS_SINTETICOS.md`.
-Los perfiles y el catálogo de instrumentos están fuera del código, en `config/perfiles_estudiantes.json` y
-`config/kpi_mapping.json`.
+estudiante**. Los perfiles y las reglas están fuera del código, en `tools/data_synthesis/config/`. Esta sección
+muestra, con el fragmento de código que lo hace (abreviado), qué parte de la metodología escrita
+(`storage/instrumentos_sinteticos/METODOLOGIA_DATOS_SINTETICOS.md`) se cumple de verdad y qué parte no.
 <!-- fuente: commit a663bb6 (10 oct); tools/data_synthesis/README.md -->
 
-El proceso sigue ocho pasos.
+**Versión vigente.** El generador tiene dos versiones para las preguntas que no son Likert. La **1.1** (22 oct) es la
+que se usa por omisión (`--modelo-adicionales coherente`); la 1.0 se conserva solo para reproducir el acervo
+original. Las pruebas se generan **sin respuesta correcta** desde el 25 oct. Cada archivo conserva la versión con la
+que se generó:
 
-**Paso 1. Elegir quién responde.** Cada respondente recibe uno de ocho perfiles. El estudiante promedio es el más
-común y los extremos son minoría.
+| Archivos | Versión | Instrumentos en el sistema (Anexo A) |
+|---|---|---|
+| enc_01 a enc_10 | 1.0 (sus ítems Likert son idénticos en las dos versiones) | 61 (enc_09) |
+| enc_11 | 1.1 | 109 |
+| pru_01 a pru_10 | Sin respuesta correcta (25 oct) | 133 (pru_06) |
+| ent_01 a ent_10 | Una sola versión | 60 (ent_01) |
+<!-- fuente: tools/data_synthesis/generate.py:137 (default="coherente"); storage/instrumentos_sinteticos/*/*_metadata.json; Anexo A -->
+
+**Paso 1. Elegir el perfil.** Cada respondente recibe uno de ocho perfiles, sorteado con la proporción de la Tabla
+D.18c.
 
 **Tabla D.18c.** Perfiles de estudiante del método A.
 
@@ -930,66 +960,74 @@ común y los extremos son minoría.
 | P8 Dificultades socioeconómicas | 10 % | Bajo, disperso | 2.8 | 1.2 |
 <!-- fuente: tools/data_synthesis/config/perfiles_estudiantes.json (peso, likert.media_estimada, likert.desviacion_estimada); METODOLOGIA_DATOS_SINTETICOS.md §2 -->
 
-**Paso 2. Decidir qué tan de acuerdo está.** Cada respuesta Likert se sortea de una **curva normal** (la «campana»)
-centrada en la media del perfil. La media dice **dónde cae** la respuesta y la desviación, **qué tan dispersa** sale.
-El número sorteado se redondea y se recorta al rango de 1 a 5.
-- Ejemplo: el perfil «en riesgo» (media 2.1) contesta casi siempre 1, 2 o 3; el de posgrado (media 4.5), casi
-  siempre 4 o 5.
+**Pasos 2 y 3. Respuestas Likert según el perfil y coherentes dentro de cada dimensión.** Cada respuesta sale de una
+curva normal centrada en la media del perfil, redondeada y recortada a 1–5: el perfil «en riesgo» (2.1) contesta casi
+siempre 1, 2 o 3, y el de posgrado (4.5), 4 o 5. Para que quien está de acuerdo con un ítem de una dimensión tienda a
+estarlo con los demás de esa dimensión, los números al azar se relacionan con la **descomposición de Cholesky**, que
+convierte números independientes en números con una correlación dada (de 0.45 a 0.65 por bloque):
 
-**Paso 3. Hacer coherentes las respuestas de una persona.** En un cuestionario real, quien está de acuerdo con un
-ítem de motivación suele estarlo también con los demás ítems de motivación. Para imitarlo, el generador relaciona
-los ítems de una misma dimensión con la **descomposición de Cholesky**, una técnica que convierte números al azar en
-números relacionados entre sí; cada bloque sortea una correlación de 0.45 a 0.65. Así, los ítems de una misma
-dimensión se parecen más entre sí que los de dimensiones distintas, y el α por bloque sale alto (0.88 a 0.91).
+```python
+# tools/data_synthesis/generators/base_generator.py, generate_correlated_block()
+r_intra = self.rng.uniform(r_intra_min, r_intra_max)          # 0.45–0.65
+corr_matrix = np.full((n_items, n_items), r_intra); np.fill_diagonal(corr_matrix, 1.0)
+L = np.linalg.cholesky(corr_matrix)
+Z = self.rng.standard_normal((n_respondents, n_items))
+raw = (Z @ L.T) * profile["likert"]["desviacion_estimada"] + profile["likert"]["media_estimada"]
+responses = np.clip(np.round(raw), 1, 5).astype(int)
+```
 
-**Paso 4. Agregar respondentes poco cuidadosos.** Un porcentaje pequeño responde sin leer:
-- todo «de acuerdo» (aquiescencia, 1.5 %);
-- todo «en desacuerdo» (rechazo, 1.5 %);
-- en zigzag 5-1-5-1 (1 %).
-<!-- fuente: METODOLOGIA_DATOS_SINTETICOS.md §3.3 -->
+Comprobación: el α por bloque sale de 0.88 a 0.91, y dos ítems de la misma dimensión se correlacionan más (0.65–0.71)
+que dos de dimensiones distintas (0.34–0.46; tabla de la nota 2).
 
-**Paso 5. Agregar datos de contexto coherentes.** Edad, género, semestre, promedio, horas de trabajo, tipo de
-universidad, nivel socioeconómico, primera generación y beca salen del rango de su perfil. Por ejemplo, el
-trabajador adulto tiene de 25 a 35 años y trabaja más horas.
-<!-- fuente: METODOLOGIA_DATOS_SINTETICOS.md §2 (variables demográficas) -->
+**Paso 4. Respondentes poco cuidadosos: declarados, pero no se generan.** La configuración pide 1.5 % de aquiescencia
+(todo «de acuerdo»), 1.5 % de rechazo y 1 % de zigzag (5-1-5-1). El código que los agrega existe, pero el generador
+de encuestas lo llama **con un respondente a la vez**, y la cantidad se redondea hacia abajo:
 
-**Paso 6. Preguntas que no son Likert.** Las encuestas enc_06 a enc_11 traen también opción múltiple, Sí/No y
-escalas numéricas. El generador tiene dos formas de responderlas.
+```python
+# encuesta_generator.py:751 — un respondente por llamada
+block = self.generate_instrument_responses(profile, dimensions, n_respondents=1)
+# base_generator.py:139, _inject_special_patterns()
+n_acquiescence = int(n_resp * sp["aquiescencia"]["probabilidad"])   # int(1 × 0.015) = 0
+```
 
-*Versión 1.0, sorteo parejo (10 oct, el acervo original).* Todas las opciones tienen la misma probabilidad y la
-respuesta **no depende del perfil**.
+Por eso ningún archivo del acervo tiene un zigzag. Las respuestas en línea recta que sí aparecen (de 10 % a 47 % en
+las encuestas de la Tabla R.2 de Resultados) salen de los perfiles homogéneos y de la correlación alta del paso 3, no
+de esta regla. La detección de respuestas descuidadas se probó con los archivos de las familias B4 y B5 (X.6.3).
+<!-- fuente: base_generator.py:134-170; encuesta_generator.py:751; recuento sobre storage/instrumentos_sinteticos/encuestas/enc_*_respondido.csv (8 nov): 0 filas en zigzag en las 12 encuestas -->
 
-| Tipo | Ejemplo (enc_06) | Cómo se sortea |
-|---|---|---|
-| Opción múltiple | «¿Cuál servicio usas con más frecuencia?» (5 opciones) | Cada opción, 1 de 5 |
-| Sí/No | «¿Conoces los programas de becas disponibles en tu institución?» | 50 % «Sí» y 50 % «No» |
-| Escala numérica | «En una escala del 0 al 10, ¿cuán satisfecho/a estás…?» | Cualquier entero del rango, con la misma probabilidad |
+**Paso 5. Datos de contexto.** Edad, género, semestre, promedio, horas de trabajo, tipo de universidad, nivel
+socioeconómico, primera generación y beca salen del rango de su perfil; por ejemplo, el trabajador adulto tiene de 25
+a 35 años y trabaja más horas (`generate_demographics()`).
+<!-- fuente: base_generator.py (generate_demographics); config/perfiles_estudiantes.json -->
 
-Así se generaron enc_06 a enc_10. Sirven para comprobar que el sistema reconoce estos tipos, cuenta sus frecuencias y
-filtra por ellos, pero **no muestran patrones realistas**: un estudiante «en riesgo» y uno de «alto rendimiento»
-tienen la misma probabilidad de responder «Sí» a «¿has reprobado?».
-<!-- fuente: tools/data_synthesis/generators/encuesta_generator.py (sorteo uniforme con rng.integers / rng.choice); storage/instrumentos_sinteticos/encuestas/enc_06…enc_10_respondido.csv -->
+**Paso 6. Preguntas que no son Likert (opción múltiple, Sí/No, escala numérica y, en la 1.1, selección múltiple,
+jerarquización y abierta).**
+- **Versión 1.0 (10 oct; enc_06 a enc_10).** Sorteo parejo: cada opción con la misma probabilidad, sin relación con
+  el perfil. Sirve para probar que el sistema reconoce, cuenta y filtra estos tipos, pero no da patrones realistas:
+  un estudiante «en riesgo» y uno de «alto rendimiento» tienen la misma probabilidad de responder «Sí» a «¿has
+  reprobado?».
+- **Versión 1.1, vigente (22 oct; enc_11).** Cada pregunta declara en `config/coherencia_encuestas.json` **de qué
+  depende y con qué peso**. Por ejemplo, «¿Has reprobado alguna materia por falta de tiempo?» depende del promedio
+  (−0.5) y de las horas de trabajo (+0.4). Con esos pesos se calcula la **tendencia** de cada persona, y la tendencia
+  elige la respuesta (las tendencias altas, «Sí»; en una lista ordenada, la opción más alta; en una escala, un número
+  por encima de la media):
 
-*Versión 1.1, respuestas coherentes (22 oct).* Cada pregunta declara **de qué depende y con qué peso**, en un archivo
-editable (`config/coherencia_encuestas.json`). Ejemplo: «¿Has reprobado alguna materia por falta de tiempo?» depende
-del promedio (peso −0.5) y de las horas de trabajo (peso +0.4).
-- **Qué puede influir:** el promedio de los Likert de la persona o de una dimensión, o un dato de contexto (promedio,
-  horas de trabajo, semestre, edad, beca o primera generación).
-- **Qué significa el peso:** el signo es la dirección (positivo: a más factor, más «Sí» o un número más alto) y el
-  tamaño, la fuerza (0 no influye; 1 decide).
-- **Cómo sale la respuesta:** se suma cada factor por su peso, más un poco de azar para que nadie quede
-  determinado. Esa suma es la **tendencia** de la persona y elige la respuesta: «Sí» para las tendencias altas, la
-  opción que le toca en una lista ordenada o un número alrededor de una media.
-- **Datos que deben cuadrar exactamente:** «¿Cuál es tu carga laboral?» sale por tramos de las horas de trabajo, y
-  «¿cuentas con beca?», del dato de beca.
-- **Tres tipos nuevos:** selección múltiple (cada opción con su regla), jerarquización («Ordena…») y preguntas
-  abiertas, donde la tendencia elige el tono de plantillas escritas.
-- **Lo que no cambia:** los ítems Likert y los datos de contexto salen idénticos con las dos versiones, y la versión
-  1.0 se sigue reproduciendo igual (opción `--modelo-adicionales uniforme`).
-<!-- fuente: tools/data_synthesis/generators/coherencia.py; config/coherencia_encuestas.json; generate.py (--modelo-adicionales); evidencias/datos_sinteticos_2026-10-22/reproducibilidad_v1_0.txt -->
+```python
+# tools/data_synthesis/generators/coherencia.py, tendencia()
+for nombre, peso in pesos.items():
+    suma += peso * factores(nombre)                  # factor estandarizado: promedio, horas de trabajo, una dimensión…
+explicado = min(sum(p ** 2 for p in pesos.values()), 0.95)
+return _estandarizar(suma + np.sqrt(1 - explicado) * rng.standard_normal(n))   # el azar completa lo no explicado
+```
 
-**Tabla D.18d.** ¿La respuesta depende de lo que debe depender? Misma semilla con las dos versiones. La correlación
-de Spearman va de −1 a 1 y 0 significa «sin relación»; en los datos que deben cuadrar se da el porcentaje que cuadra.
+Los datos que deben cuadrar exactamente salen por tramos o por tabla: «¿Cuál es tu carga laboral?» se deriva de las
+horas de trabajo, y «¿Cuentas con beca?», del dato de beca. Los ítems Likert y los datos de contexto son idénticos en
+las dos versiones.
+<!-- fuente: tools/data_synthesis/generators/coherencia.py; config/coherencia_encuestas.json; encuesta_generator.py (_coherentes); evidencias/datos_sinteticos_2026-10-22/reproducibilidad_v1_0.txt -->
+
+**Tabla D.18d.** ¿La respuesta depende de lo que debe depender? Misma semilla con las dos versiones, medida con
+`quality/verificar_coherencia.py`. La correlación de Spearman va de −1 a 1 (0 = sin relación); en los datos que deben
+cuadrar se da el porcentaje que cuadra.
 
 | Encuesta | Pregunta | Depende de | Versión 1.0 | Versión 1.1 |
 |---|---|---|---|---|
@@ -1005,38 +1043,32 @@ de Spearman va de −1 a 1 y 0 significa «sin relación»; en los datos que deb
 | enc_11 | ¿Qué cambiarías de tu experiencia? (abierta) | dimensión «Apoyo institucional» | 0.04 | 0.65 |
 <!-- fuente: evidencias/datos_sinteticos_2026-10-22/coherencia.md (salida de quality/verificar_coherencia.py, 22 oct) -->
 
-En resumen: con la versión 1.0 la relación es prácticamente nula (entre −0.17 y 0.17) y con la 1.1 aparece con el
-signo declarado (entre 0.08 y 0.97, según el peso).
-
-**enc_11, la encuesta con todos los tipos (22 oct).** Para tener los seis tipos de pregunta en un solo instrumento se
-generó enc_11 con la versión 1.1: 160 respondentes, 8 ítems Likert en dos dimensiones, opción múltiple, Sí/No, escala
-numérica, selección múltiple, jerarquización y una pregunta abierta. La limpieza reconoció los seis tipos, recorrió
-los 7 pasos del asistente y quedó publicada como instrumento 109. enc_06 a enc_10 se conservan en la versión 1.0,
-porque ya estaban procesadas y citadas en las evidencias. Lo que se corrigió en el sistema al procesarla está en
-Pruebas Y.2.1.
-<!-- fuente: storage/instrumentos_sinteticos/encuestas/enc_11_*; evidencias/datos_sinteticos_2026-10-22/procesar_enc_11.log y procesar_enc_11_v2.log (id_crudo 109); chat_109.txt -->
+Con la 1.0 la relación es prácticamente nula (entre −0.17 y 0.17); con la 1.1 aparece con el signo declarado (entre
+0.08 y 0.97, según el peso). enc_11 (160 respondentes, los seis tipos de pregunta) se generó con la 1.1 y quedó
+publicada como instrumento 109; enc_06 a enc_10 se conservan en la 1.0 porque ya estaban procesadas y citadas en las
+evidencias. Lo que se corrigió en el sistema al procesar enc_11 está en Pruebas Y.2.1.
+<!-- fuente: storage/instrumentos_sinteticos/encuestas/enc_11_*; evidencias/datos_sinteticos_2026-10-22/procesar_enc_11.log y procesar_enc_11_v2.log (id_crudo 109) -->
 
 **Paso 7. Pruebas estandarizadas: respuestas al azar, sin respuesta correcta.** Los reactivos y sus opciones están
-escritos en el generador; **solo las respuestas son sintéticas**. El generador no tiene clave de respuestas, igual
-que Indagata, que no califica las pruebas (X.5.4).
+escritos en el generador; solo las respuestas son sintéticas, y no hay clave, igual que en Indagata, que no califica
+las pruebas (X.5.4). Para que las distribuciones no salgan planas (25 % por letra), cada reactivo recibe primero sus
+propios pesos al azar y después cada alumno elige con esos pesos:
 
-Si todas las opciones tuvieran la misma probabilidad, todas las distribuciones saldrían planas (25 % por letra) y no
-habría nada que describir. Por eso cada reactivo recibe primero **sus propios pesos al azar**, y después cada alumno
-elige con esos pesos:
+```python
+# tools/data_synthesis/generators/prueba_generator.py, _pesos_reactivo()
+if tipo == "opcion_multiple":
+    return self.rng.dirichlet(np.ones(len(item["opciones"])) * 1.5)   # pesos distintos por reactivo
+if tipo in ("verdadero_falso", "si_no"):
+    p = float(self.rng.uniform(0.25, 0.75)); return np.array([p, 1 - p])
+if tipo == "calculo_numerico":
+    centro = float(self.rng.uniform(5, 400)); return (centro, centro * 0.15)
+```
 
-| Tipo de reactivo | Cómo se genera la respuesta |
-|---|---|
-| Opción múltiple | Pesos al azar para las cuatro letras (distribución de Dirichlet, uno por reactivo); cada alumno elige una letra con esos pesos |
-| Verdadero/Falso y Sí/No | Proporción al azar de «V» (o «Sí») entre 25 % y 75 % por reactivo |
-| Cálculo numérico | Un valor típico al azar por reactivo (entre 5 y 400); cada alumno da un número cercano (desviación del 15 %) |
-| Respuesta corta | El valor de 0 a 2 que registra la hoja, con pesos al azar por reactivo |
-| Likert conductual | Igual que las encuestas: curva normal con la media y la desviación del perfil (Tabla D.18c) |
-
-El perfil del alumno solo influye en sus datos de contexto y en las escalas Likert conductuales; no hay un «buen
-alumno» que conteste mejor, porque no existe una respuesta mejor. Hasta el 25 oct el generador usaba una respuesta
-correcta por reactivo; se retiró al decidir que las pruebas no se califican, y las diez pruebas se regeneraron con la
-misma semilla. Sus originales quedaron idénticos y solo desapareció la columna `score_estimado`.
-<!-- fuente: tools/data_synthesis/generators/prueba_generator.py:673-760 (_generate_one) y 771-786 (_pesos_reactivo: Dirichlet con concentración 1.5 en opción múltiple, 2 en respuesta corta; uniform(0.25, 0.75) en V/F y Sí/No; centro uniform(5, 400) y desviación 15 % en cálculo); generate.py --tipo prueba --seed 42 (25 oct); comparación con la copia anterior: originales iguales, mismas columnas sin score_estimado, mismas filas -->
+El perfil solo influye en los datos de contexto y en los reactivos Likert conductuales; no hay un «buen alumno» que
+conteste mejor, porque no existe una respuesta mejor. Hasta el 25 oct el generador tenía una respuesta correcta por
+reactivo; se retiró al decidir que las pruebas no se califican, y las diez se regeneraron con la misma semilla (los
+originales quedaron idénticos y solo desapareció la columna `score_estimado`).
+<!-- fuente: prueba_generator.py:673-760 (_generate_one) y 771-786 (_pesos_reactivo); generate.py --tipo prueba --seed 42 (25 oct) -->
 
 **Tabla D.18e.** Tipos de reactivo en cada prueba.
 
@@ -1052,12 +1084,23 @@ misma semilla. Sus originales quedaron idénticos y solo desapareció la columna
 | pru_08 | 90 | 15 opción múltiple, 5 V/F |
 | pru_09 | 100 | 12 opción múltiple, 6 V/F |
 | pru_10 | 100 | 8 Likert conductual, 8 opción múltiple, 4 Sí/No |
-<!-- fuente: tools/data_synthesis/generators/prueba_generator.py (TEST_DEFS); evidencias/datos_sinteticos_2026-10-22/generacion_likert_y_pruebas.txt (tipos por prueba) -->
+<!-- fuente: tools/data_synthesis/generators/prueba_generator.py (TEST_DEFS); evidencias/datos_sinteticos_2026-10-22/generacion_likert_y_pruebas.txt -->
 
-**Paso 8. Entrevistas.** Las respuestas se arman con **plantillas de texto por perfil**: se elige una al azar y se
-expande según la pregunta. Todas las personas de un instrumento van en un solo archivo (40 en ent_01), separadas por
-bloques `RESPONDENTE`.
-<!-- fuente: tools/data_synthesis/generators/entrevista_generator.py:242-244, 496-521; storage/instrumentos_sinteticos/entrevistas/ent_01_respondido.txt -->
+**Paso 8. Entrevistas: plantillas por perfil.** Cada respuesta es una frase base del perfil más una o dos frases de
+extensión del mismo perfil, elegidas al azar. **La frase base no depende de la pregunta:**
+
+```python
+# tools/data_synthesis/generators/entrevista_generator.py, _generate_responses()
+for i, pregunta in enumerate(preguntas):
+    base = random.choice(all_templates)              # todas las plantillas del perfil, sin mirar la pregunta
+    response = self._expand_response(base, profile, pregunta, i)
+```
+
+En ent_01 (40 personas × 12 preguntas) hay 480 respuestas, 189 distintas, armadas con 28 frases base. Una persona
+puede contestar a «¿cómo has manejado las dificultades económicas?» con una frase sobre su orientador. Sirven para
+probar la segmentación por participante, la vectorización y el chat, pero no para medir si el análisis de entrevistas
+entiende el contenido; para eso se escribieron a mano las entrevistas de B3 y la ent_11 de B5 (X.6.3).
+<!-- fuente: entrevista_generator.py:496-576; recuento sobre storage/instrumentos_sinteticos/entrevistas/ent_01_respondido.txt (8 nov): 480 líneas «R:», 189 únicas, 28 frases base -->
 
 **Qué produce.** Tres archivos por instrumento: las respuestas (`<id>_respondido.csv`, o `.txt` en entrevistas), el
 instrumento sin respuestas (`<id>_original.txt`) y sus datos (`<id>_metadata.json`). Con la misma semilla salen
@@ -1075,54 +1118,54 @@ siempre los mismos datos: 42 por defecto, 142 en entrevistas y 242 en pruebas.
 
 **Un cuestionario real dentro del acervo: enc_01.** El **Inventario de Estrategias de Aprendizaje y Estudio (IEAE)**
 de Fernández Liporace et al. conserva sus preguntas y dimensiones reales: 21 ítems Likert de 1 a 5 en seis
-dimensiones (organización y planificación, habilidades para el examen, motivación, recursos de aprendizaje,
-estrategias de control y consolidación, y habilidades para jerarquizar). Las **respuestas de sus 180 respondentes son
-sintéticas**. Sirve para comprobar que el sistema procesa un cuestionario con redacción y estructura reales.
+dimensiones. Las **respuestas de sus 180 respondentes son sintéticas**. Sirve para comprobar que el sistema procesa
+un cuestionario con redacción y estructura reales.
 <!-- fuente: storage/instrumentos_sinteticos/encuestas/enc_01_metadata.json (fuente: real, n_items 21, n_respondentes 180); enc_01_original.txt; confirmación de la autora (18 oct) -->
 
 [PENDIENTE: el avance dice «20 preguntas»; los metadatos y el CSV registran 21 ítems Likert (más
 12 columnas de contexto). Confirmar la cifra y agregar la referencia bibliográfica completa del
 IEAE.]
 
-**Tabla D.19.** Qué parte del sistema pone a prueba cada característica del método A.
+**Qué tan parecido a un instrumento real es, en resumen.**
 
-| Característica de los datos | Parte del sistema que ejercita |
-|---|---|
-| Perfiles con distribuciones distintas | Estadística descriptiva (asimetría, curtosis) y que el α no salga perfecto |
-| Correlación imperfecta dentro de cada dimensión | Cálculo del α por bloque; detección de bloques por el prefijo del encabezado |
-| Aquiescencia, rechazo y zigzag | Hallazgo de respuestas en línea recta |
-| Encabezados codificados (`Motivación_item2`) | Emparejamiento de columnas con el instrumento original |
-| Pruebas con varios tipos de reactivo | Detección del tipo de reactivo y descripción de las respuestas, sin calificar |
-| Entrevistas con 40 personas en un archivo y líneas de perfil | Segmentación por participante y separación del contexto |
-| Respuestas de entrevista por plantilla según perfil | Variedad de texto para la vectorización y el chat |
+**Tabla D.19.** Lo que el método A sí reproduce, lo que no, y qué parte del sistema pone a prueba.
 
-**Lo que el método A no trae.** No genera duplicados, celdas vacías, «No sé», ítems redactados en negativo, ruido de
-transcripción ni respuestas ilegibles; tampoco cuadrículas. Eso lo cubre el método B (B2, B4 y B5).
-<!-- fuente: grep en tools/data_synthesis de duplic|vac|No sé|ilegible|invertid|ruido: sin inyección (18 oct) -->
+| Característica | ¿La genera el código? | Parte del sistema que ejercita |
+|---|---|---|
+| Perfiles con medias y dispersiones distintas | Sí (pasos 1 y 2) | Estadística descriptiva (asimetría, curtosis) y un α que no sale perfecto |
+| Correlación dentro de cada dimensión | Sí (paso 3; α por bloque 0.88–0.91) | α por bloque; detección de bloques por el prefijo del encabezado |
+| Respuestas no Likert que dependen de la persona | Sí, en la versión 1.1 (enc_11); no en la 1.0 (enc_06 a enc_10) | Conteos, filtros y cruces del chat |
+| Aquiescencia, rechazo y zigzag | **No** (paso 4); la línea recta que aparece sale de los perfiles | Hallazgo de respuestas en línea recta (probado con B4 y B5) |
+| Pruebas con varios tipos de reactivo, sin clave | Sí (paso 7) | Detección del tipo de reactivo y descripción, sin calificar |
+| Entrevistas de 40 personas en un archivo con líneas de perfil | Sí (paso 8) | Segmentación por participante y separación del contexto |
+| Respuestas de entrevista que contestan la pregunta | **No** (paso 8): plantillas del perfil, sin relación con la pregunta | Solo vectorización y chat; el análisis se probó con B3 y B5 |
+| Duplicados, vacíos, «No sé», ítems en negativo, ruido de transcripción, ilegibles | No | Lo cubren B2, B4 y B5 (X.6.3) |
+<!-- fuente: pasos 1–8 de esta sección; grep en tools/data_synthesis de duplic|vac|No sé|ilegible|invertid|ruido: sin inyección (18 oct) -->
 
-**Notas técnicas: tres diferencias entre la metodología escrita y el generador.** Ninguna invalida los datos, pero
-conviene saberlas si se lee la metodología del acervo:
+Ninguna de estas cifras se comparó con respuestas de estudiantes reales, porque no se tuvieron. El método A da datos
+con **estructura plausible** (tendencia por tipo de estudiante, consistencia interna y, en la 1.1, relaciones entre
+preguntas), suficiente para probar el funcionamiento del sistema; no pretende reproducir una población concreta.
+
+**Notas técnicas: tres diferencias más entre la metodología escrita y el generador.** Ninguna invalida los datos:
 1. **Curva normal en vez de beta.** La metodología (§3.1) dice que los Likert salen de una distribución beta. La
-   función que la usa existe en el código (`generate_likert_item`), pero ningún generador la llama; se usa la curva
-   normal del paso 2. Las dos dan medias casi iguales (beta: 2.1, 3.0 y 4.0 en riesgo, trabajador adulto y alto
-   rendimiento; normal: 2.1, 3.0 y 4.2). La normal sale un poco más dispersa en los perfiles irregulares (P3, P4 y P8).
-   Por lo mismo no se aplican dos reglas que solo estaban en esa función: separar motivación y rendimiento en el
-   *burnout* y no bajar de 3.5 en posgrado.
-2. **La relación entre dimensiones distintas no la pone el código, la pone el perfil.** La metodología pide una
-   relación débil entre dimensiones (r de 0.10 a 0.25). El código suma un ruido común tan pequeño que, al redondear,
-   queda en 0. Las dimensiones sí se relacionan, pero porque quien es de alto rendimiento contesta alto en todas:
+   función existe (`generate_likert_item`), pero ningún generador la llama. Las medias casi coinciden (beta: 2.1, 3.0 y
+   4.0 en riesgo, trabajador adulto y alto rendimiento; normal: 2.1, 3.0 y 4.2). Por lo mismo no se aplican dos
+   reglas que solo estaban en esa función: separar motivación y rendimiento en el *burnout* y no bajar de 3.5 en
+   posgrado.
+2. **La relación entre dimensiones la pone el perfil, no el código.** La metodología pide r de 0.10 a 0.25 entre
+   dimensiones; el código suma un ruido común que, al convertirse a entero, queda en 0
+   (`(shared_noise * r_cross * 0.5).astype(int)`). Las dimensiones sí se relacionan, pero porque quien es de alto
+   rendimiento contesta alto en todas; dentro de un mismo perfil la relación desaparece:
 
    | Encuesta | Misma dimensión | Distinta dimensión | Misma dimensión, dentro de un perfil | Distinta dimensión, dentro de un perfil |
    |---|---|---|---|---|
    | enc_09 | 0.71 | 0.46 | 0.46 | 0.09 |
    | enc_10 | 0.65 | 0.34 | 0.46 | 0.01 |
 3. **El α del verificador del generador no es el del instrumento.** `quality/checker.py` registra α = 0.04 para
-   enc_09, mientras la metodología dice 0.914. No es un error de los datos: el verificador suma todas las columnas
-   numéricas, y en enc_09 mezcla los 8 ítems Likert (1–5) con escalas de 0 a 50 y de 10 a 40. Solo con los 8 ítems
-   Likert da 0.914 (enc_10: 0.16 contra 0.882). La limpieza del sistema no tiene este problema, porque calcula el α
-   por bloque y solo con escalas Likert (enc_09: 0.907, 0.908 y 0.876). En las pruebas no se calcula fiabilidad,
-   porque no se califican.
-<!-- fuente: tools/data_synthesis/generators/base_generator.py:69-85 (generate_likert_item, sin llamadas), 90-131 (generate_correlated_block), 101-104 (r_intra), 201-206 (cross_adjustment = (ruido · r_cross · 0.5).astype(int)); encuesta_generator.py:751; config/perfiles_estudiantes.json (alpha, beta, media_estimada, desviacion_estimada); METODOLOGIA_DATOS_SINTETICOS.md §3.1 y §3.2; evidencias/datos_sinteticos_2026-10-22/generacion_likert_y_pruebas.txt; tools/data_synthesis/quality/checker.py:74-83; recálculo con pandas sobre enc_09_respondido.csv y enc_10_respondido.csv (22 oct): 12 columnas → 0.0425, 8 Likert → 0.9136; enc_10: 13 columnas → 0.1649, 10 Likert → 0.8823; registro 18 oct (α por bloque de enc_09) -->
+   enc_09 porque suma todas las columnas numéricas, incluidas escalas de 0 a 50; solo con los 8 ítems Likert da 0.914
+   (enc_10: 0.16 contra 0.882). La limpieza del sistema calcula el α por bloque y solo con escalas Likert (enc_09:
+   0.907, 0.908 y 0.876).
+<!-- fuente: tools/data_synthesis/generators/base_generator.py:69-85 (generate_likert_item, sin llamadas), 90-131 (generate_correlated_block), 201-206 (cross_adjustment); config/perfiles_estudiantes.json; METODOLOGIA_DATOS_SINTETICOS.md §3.1 y §3.2; evidencias/datos_sinteticos_2026-10-22/generacion_likert_y_pruebas.txt; tools/data_synthesis/quality/checker.py:74-83; recálculo con pandas sobre enc_09_respondido.csv y enc_10_respondido.csv (22 oct) -->
 
 ### X.6.3 Método B: generación dirigida por casos de prueba
 
@@ -1435,7 +1478,8 @@ cuando superan el 10 %.
 
 #### Cómo evolucionó la limpieza
 
-Los cambios principales, en orden de fecha. Cada uno nació de una prueba con instrumentos.
+Los cambios principales, en orden de fecha. Cada uno nació de una prueba con instrumentos. **Vigente:** todos; cada
+cambio se sumó a los anteriores, ninguno los reemplazó.
 
 **15 oct. La estadística se calcula antes y después de las decisiones.** Así el investigador ve
 el efecto de cada decisión. En la prueba de punta a punta con una encuesta de ejemplo, el α pasó de
@@ -1811,7 +1855,8 @@ de evidencia (c = 0.67), así que su puntaje fue de 0.488 y quedó al final de l
 para este instrumento se presentan en la Tabla R.7 de Resultados.
 <!-- fuente: tt_rag.version_conocimiento (id_crudo 59), decisiones_kpi: score 0.605, componentes g 0.548 / p 0.574 / c 1.00, evidencia p04 0.633 y p02 0.576 -->
 
-**Método anterior.** Hasta el 16 oct, el instrumento se representaba por un solo *summary*
+**Método anterior (ya no lo usa el asistente; vigente: el de unidades del perfil, arriba).** Hasta el 16 oct, el
+instrumento se representaba por un solo *summary*
 (metadatos clave del JSON técnico más el instrumento en texto) embebido como un vector y comparado
 contra los KPIs (top 5, puntaje ≥ 0.30). El problema medido fue que el *summary* tenía de 811 a
 1,297 *tokens* y el modelo de *embeddings* solo lee 128: sus propuestas salían casi solo de los
@@ -1931,7 +1976,7 @@ Cada tipo se comprueba con consultas deterministas sobre el documento (`shared/c
 resuelven con similitud vectorial: los calcula el enrutador (X.9.2).
 <!-- fuente: borrador JSON_FINALES_RAG_Y_ESTADISTICA §1.3 y §1.6 (16 oct), actualizado a las pruebas sin calificar; shared/conocimiento/consultas.py; knowledge-service/tests/test_criterios.py -->
 
-**Decisión: entrevista solo con pregunta y respuesta.** La primera versión del documento de
+**Decisión: entrevista solo con pregunta y respuesta (vigente).** La primera versión del documento de
 entrevistas incluía conteos y estadística de participación. Se retiraron a petición de la
 investigadora porque, para un texto libre, esos números no aportan al RAG; el documento quedó con
 la pregunta del entrevistador y la respuesta de cada participante.
@@ -2213,6 +2258,11 @@ pregunta y para redactar la respuesta. La Tabla D.23a resume el recorrido.
 
 Si la interpretación no produce un plan válido, responde el enrutador por reglas de la primera arquitectura (X.9.2).
 
+**Cómo leer las secciones X.9.2 a X.9.6.** Cada una describe una versión en el orden en que se hizo, y las
+posteriores **se suman** a las anteriores; la única que se reemplazó es el enrutador por reglas como ruta principal.
+Lo vigente es la Tabla D.23a: el recorrido de X.9.3, con la recuperación de X.9.4, el hilo y la verificación de X.9.5
+y los cambios de X.9.6.
+
 **Cómo se llegó aquí.** El chat pasó por seis versiones. Cada una nació de fallas observadas en las pruebas
 (Pruebas Y.4).
 
@@ -2225,7 +2275,7 @@ Si la interpretación no produce un plan válido, responde el enrutador por regl
 | 28 oct | Rediseño en cuatro etapas | El modelo interpreta la pregunta en un plan; el cálculo lo ejecuta; la redacción se verifica | Las reglas no reconocían formas nuevas de preguntar | X.9.3 |
 | 4–5 nov | RAG y cálculo complementarios; RAG primero | La recuperación entra en todas las respuestas y se hace antes de interpretar | Las respuestas con plan no consultaban ChromaDB | X.9.4 |
 | 7 nov | Hilo, condiciones no literales y redacción verificada | Los seguimientos conservan la pregunta; dos valores de una variable se comparan; la verificación revisa comparaciones, inferencias y porcentajes | Comentarios de la investigadora sobre la versión anterior | X.9.5 |
-| 7–8 nov | Evaluación con baterías y cambios generalizados | Chunks medidos en *tokens*, polaridad y análisis de lo que se cuenta, cortesía, lo que no existe, comparaciones y cruces, interpretación en dos capas, operaciones de entrevista, verificación más estricta | 79 preguntas de la investigadora y 24 de control: en la línea base cumplían 31 de 79 y 1 de 16 | X.9.6 |
+| 7–8 nov | **Vigente.** Evaluación con baterías y cambios generalizados | Chunks medidos en *tokens*, polaridad y análisis de lo que se cuenta, cortesía, lo que no existe, comparaciones y cruces, interpretación en dos capas, operaciones de entrevista, verificación más estricta | 79 preguntas de la investigadora y 24 de control: en la línea base cumplían 31 de 79 y 1 de 16 | X.9.6 |
 
 ### X.9.1 Fuente y estrategia de chunks
 
@@ -2313,6 +2363,10 @@ Respuesta: En la primaria no lo pensaba así, pero ahora creo que sí, por la be
 <!-- fuente: services/storage-service/services/chunks_documento.py (_cuerpo_intercambio); tests/test_chunks_documento.py::test_entrevista_con_analisis_pone_primero_lo_que_responde -->
 
 ### X.9.2 Primera arquitectura: enrutador por reglas (17–26 oct)
+
+**Vigente solo como respaldo.** Desde el 28 oct responde únicamente cuando la interpretación no produce un plan
+válido (en la evaluación final, 7.8 % de las preguntas). Sus cálculos (`shared/conocimiento/consultas.py`) y sus
+reglas de dominio siguen en uso.
 
 **Recorrido de una pregunta en esta primera arquitectura.** No hay una sola plantilla que decida qué responder. Cada pregunta pasa por
 una cadena de filtros, en orden, y se detiene en el primero que sabe responderla. La mayoría de las
@@ -3128,7 +3182,7 @@ instrucciones en la pregunta del usuario.]
 
 ### X.10.5 Parámetros de generación
 
-**Modelos en uso (7 nov).** Redactor e intérprete del chat: `gemma3:4b`, elegido en la comparación de modelos
+**Modelos en uso (vigentes al 8 nov).** Redactor e intérprete del chat: `gemma3:4b`, elegido en la comparación de modelos
 (Pruebas Y.5.2). Juez de las métricas: `qwen3:4b-instruct` (`RAG_JUEZ_MODELO`). Los demás usos toman el modelo de
 `OLLAMA_MODEL`.
 <!-- fuente: .env (OLLAMA_MODEL=gemma3:4b, RAG_JUEZ_MODELO=qwen3:4b-instruct, 7 nov) -->

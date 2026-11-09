@@ -33,6 +33,10 @@ falta medir con los instrumentos de la investigadora, marcado como [PENDIENTE: p
 está en `markdowns/GUIA_PRUEBAS.md`. Todas las respuestas de los instrumentos son sintéticas: las conclusiones
 son sobre el funcionamiento del sistema, no sobre estudiantes.
 
+**Qué versión se probó.** Las pruebas están en orden de fecha y cada una midió la versión que existía ese día; varias
+llevaron a cambios que las pruebas siguientes ya incluyen. La versión que se usa hoy de cada componente está en la
+Tabla D.0 de Desarrollo, y las cifras del chat que valen para esa versión son las de la evaluación final (Y.4.14).
+
 ### Y.1.2 Entorno
 
 Todas las pruebas se ejecutaron sobre la orquestación completa en el equipo descrito en la Tabla D.1

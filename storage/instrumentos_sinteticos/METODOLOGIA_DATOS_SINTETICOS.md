@@ -75,6 +75,9 @@ X_likert = round(X_raw × 4 + 1)  →  clipped to [1, 5]
 
 La distribución beta fue seleccionada por su flexibilidad para modelar asimetría positiva (perfiles de alto rendimiento: α > β) y negativa (perfiles en riesgo: α < β), así como distribuciones planas (α = β = 3).
 
+> **Nota (8 nov).** El generador **no** usa la beta: `generate_likert_item` existe pero nadie la llama. Los Likert
+> salen de la normal de §3.2 (media y desviación del perfil). Ver Desarrollo X.6.2, nota técnica 1.
+
 ### 3.2 Estructura de correlación entre ítems
 
 La correlación realista entre ítems de la misma dimensión fue implementada mediante descomposición de Cholesky:
@@ -91,6 +94,9 @@ Z_corr = Z @ L.T
 X = Z_corr × σ + μ
 ```
 
+> **Nota (8 nov).** La correlación inter-dimensión no se aplica: el ruido común se convierte a entero y queda en 0.
+> Las dimensiones se relacionan solo a través del perfil. Ver Desarrollo X.6.2, nota técnica 2.
+
 ### 3.3 Patrones de respuesta especiales (sesgo de respuesta)
 
 Para mayor realismo, se inyectaron tres patrones de sesgo de respuesta típicos de la literatura:
@@ -100,6 +106,9 @@ Para mayor realismo, se inyectaron tres patrones de sesgo de respuesta típicos 
 | Aquiescencia | 1.5% | Respondente marca todo 4–5 |
 | Rechazo | 1.5% | Respondente marca todo 1–2 |
 | Zigzag | 1.0% | Alternancia 5-1-5-1... |
+
+> **Nota (8 nov).** Estos patrones **no** llegan a los archivos: el generador de encuestas genera un respondente por
+> llamada y `int(1 × 0.015) = 0`. Ningún CSV del acervo tiene zigzag. Ver Desarrollo X.6.2, paso 4.
 
 ### 3.4 Respuestas de las pruebas (sin respuesta correcta)
 
