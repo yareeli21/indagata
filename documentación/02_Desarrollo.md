@@ -54,7 +54,7 @@ a entender una decisión. La Tabla D.0 dice cuál se usa hoy (8 nov); en cada se
 
 | Componente | Versión vigente | Versiones anteriores (ya no se usan, salvo lo indicado) | Sección |
 |---|---|---|---|
-| Generador de datos sintéticos | Preguntas no Likert que dependen de la persona (22 oct); pruebas sin respuesta correcta (25 oct) | Sorteo con la misma probabilidad por opción: se conserva en los archivos enc_06 a enc_10 | X.6.1 (Tabla D.18b) |
+| Generador de datos sintéticos | Preguntas no Likert que dependen de la persona (22 oct); pruebas sin respuesta correcta (25 oct) | Sorteo con la misma probabilidad por opción: se conserva en los archivos enc_06 a enc_10 | X.6.1 (Tabla D.18a) |
 | Pruebas estandarizadas | No se califican (25 oct) | Con clave de respuestas y aciertos | X.5.4 |
 | Asociación de KPIs | Por unidades del perfil semántico (17 oct) | Un solo *summary* por instrumento; su *endpoint* sigue disponible, pero el asistente no lo usa | X.7.5 |
 | Documento final de entrevistas | Solo pregunta y respuesta | Con conteos y estadística de participación | X.7.7 |
@@ -879,7 +879,7 @@ datos (42 por omisión, 142 en entrevistas y 242 en pruebas). Por cada instrumen
 instrumento sin respuestas (`<id>_original.txt`) y sus datos (`<id>_metadata.json`).
 <!-- fuente: tools/data_synthesis/generate.py:60,70,83,130; tools/data_synthesis/README.md; commit a663bb6 (10 oct) -->
 
-**Tabla D.18b.** Versiones del generador.
+**Tabla D.18a.** Versiones del generador.
 
 | Fecha | Cambio | Instrumentos generados así |
 |---|---|---|
@@ -900,10 +900,10 @@ instituciones.
 Los fragmentos de código están abreviados; el archivo y la función se indican en cada uno.
 
 **1. El perfil del respondente.** Cada respondente recibe uno de ocho perfiles, sorteado con la proporción de la Tabla
-D.18c. El perfil fija cómo tiende a contestar las escalas Likert (su media y qué tan dispersas salen sus respuestas)
+D.18b. El perfil fija cómo tiende a contestar las escalas Likert (su media y qué tan dispersas salen sus respuestas)
 y el rango de sus datos de contexto (edad, semestre, promedio, horas de trabajo, beca…).
 
-**Tabla D.18c.** Perfiles de estudiante.
+**Tabla D.18b.** Perfiles de estudiante.
 
 | Perfil | Proporción | Respuesta Likert típica (1 a 5) | Dispersión |
 |---|---|---|---|
@@ -961,7 +961,7 @@ if tipo in ("verdadero_falso", "si_no"):
 
 El perfil del alumno solo fija sus datos de contexto y sus respuestas a los reactivos Likert conductuales.
 
-**Tabla D.18e.** Tipos de reactivo en cada prueba.
+**Tabla D.18c.** Tipos de reactivo en cada prueba.
 
 | Prueba | Alumnos | Reactivos por tipo |
 |---|---|---|
@@ -998,15 +998,15 @@ en sus datos.
 | Entrevista | ent_01, instrumento 60 (40 participantes, 12 preguntas) | Solo aparecen los perfiles P2, P3, P4 y P8; la frase «El tiempo es mi recurso más escaso…» aparece en los 12 participantes P4 y en ninguno de otro perfil |
 <!-- fuente: recuento sobre storage/instrumentos_sinteticos/encuestas/enc_11_respondido.csv, pruebas/pru_06_respondido.csv y entrevistas/ent_01_respondido.txt (8 nov) -->
 
-La encuesta 61 (enc_09) también salió del generador, en su primera versión (Tabla D.18b).
+La encuesta 61 (enc_09) también salió del generador, en su primera versión (Tabla D.18a).
 
-**Tabla D.18f.** Los 31 instrumentos generados.
+**Tabla D.18e.** Los 31 instrumentos generados.
 
 | Tipo | Instrumentos | Respondentes | Qué tienen |
 |---|---|---|---|
 | Encuestas | enc_01 a enc_11 | 150 a 220 | enc_01 a enc_05 usan cuestionarios publicados (IEAE, MSLQ-SF, SESQ…); enc_06 a enc_10 son inventadas y mezclan Likert, opción múltiple, Sí/No y escalas numéricas; enc_11 agrega selección múltiple, jerarquización y abierta |
 | Entrevistas | ent_01 a ent_10 | 25 a 40 | De 8 a 12 preguntas; cada una se dirige a ciertos perfiles (ent_05, solo a posgrado) |
-| Pruebas | pru_01 a pru_10 | 80 a 120 | De 15 a 25 reactivos (Tabla D.18e) |
+| Pruebas | pru_01 a pru_10 | 80 a 120 | De 15 a 25 reactivos (Tabla D.18c) |
 <!-- fuente: storage/instrumentos_sinteticos/*/*_metadata.json (n_respondentes, n_items, fuente) -->
 
 **Un cuestionario real dentro del acervo: enc_01.** El **Inventario de Estrategias de Aprendizaje y Estudio (IEAE)**
@@ -1028,132 +1028,6 @@ IEAE.]
 | Preguntas no Likert que dependen de la persona | Conteos, filtros y cruces del chat |
 | Pruebas con varios tipos de reactivo, sin respuesta correcta | Detección del tipo de reactivo y descripción, sin calificar |
 | Entrevistas de varias personas en un archivo, con líneas de perfil | Segmentación por participante y separación del contexto |
-
-<!-- PENDIENTE (8 nov): X.6.3 y X.6.4 no son generación de datos sintéticos, sino instrumentos construidos para
-probar el sistema. Se moverán a Pruebas Y.1.3 cuando la investigadora lo confirme. -->
-
-### X.6.3 Método B: generación dirigida por casos de prueba
-
-**Cómo funciona, en una frase.** **Primero se decide qué resultado debe dar el sistema y después se fabrican datos
-que lo produzcan.** Así, si el sistema responde otra cosa, el error está en el sistema y no en los datos. Cada caso
-nació de una pregunta que el método A no permitía contestar.
-
-Hay cinco familias, que se distinguen por **cómo se fija el resultado esperado**. Se presentan en el orden en que se
-hicieron:
-
-| Familia | Cómo se fija el resultado esperado | Casos |
-|---|---|---|
-| B1 (17 oct) | Se programa en el generador | enc_10_turno |
-| B2 (20–22 oct) | Se reutilizan respuestas conocidas y solo cambia la forma del archivo | 3 variantes sin secciones y 13 formatos |
-| B3 (22 oct) | Se escribe a mano cada respuesta junto con su clave | 2 entrevistas que divagan |
-| B4 (todo el desarrollo) | Se pone un problema en un lugar conocido de un archivo pequeño | Archivos de las pruebas automatizadas |
-| B5 (24 oct, 2 nov y 7 nov) | Se inyectan errores en una copia de un instrumento y se guarda la verdad de cada uno | enc_11, pru_01, pru_03, enc_06, ent_11 y ent_02 |
-
-Cada familia se describe igual: qué se quería probar, cómo se construyó, qué resultado se espera y dónde está.
-
-**B1. Un resultado fijado en el generador: enc_10_turno (17 oct).**
-- **Qué se quería probar.** Las preguntas por grupo del chat («¿qué porcentaje del turno vespertino está de acuerdo
-  con la pregunta 4?»). Ninguna encuesta del acervo tenía columna de turno.
-- **Cómo se construyó.** 60 respondentes, 30 por turno, con 8 ítems Likert en dos dimensiones («Evaluación del
-  aprendizaje» y «Ambiente escolar»). Cada persona tiene un nivel de acuerdo de fondo por dimensión, del que salen sus
-  cuatro respuestas, así que son coherentes entre sí. A propósito, el turno vespertino tiene un nivel de fondo más
-  bajo en evaluación: 2.7 frente a 3.9 del matutino. Semilla 20261017.
-- **Resultado esperado.** **4 de 30 (13.3 %) del turno vespertino están de acuerdo con p04.** Se conoce antes de
-  procesar el archivo, así que la respuesta del chat se califica como correcta o incorrecta.
-- **Dónde.** `tools/data_synthesis/generar_enc_10_turno.py` → `storage/instrumentos_sinteticos/encuestas/enc_10_turno_*`.
-<!-- fuente: tools/data_synthesis/generar_enc_10_turno.py (docstring, SEMILLA, MEDIAS); commit 1b04c3d; registro 17 oct -->
-
-**B2. Las mismas respuestas en otra forma: variantes de formato (20–22 oct).**
-- **Qué se quería probar.** Que el sistema funcione con los archivos tal como llegan en la realidad: sin secciones,
-  con encabezados en código, exportados de Google Forms, Qualtrics o LimeSurvey, en Excel…
-- **Cómo se construyó.** Se toma enc_10_turno y se reescribe el **mismo** archivo en otra forma. **No se inventa
-  ninguna respuesta**: las 60 personas responden lo mismo en todas las variantes; solo cambian los encabezados, las
-  secciones o el formato. No interviene el azar.
-- **Resultado esperado.** **Las mismas cifras en todas las variantes** que el sistema acepta (por ejemplo, el 4 de 30
-  de B1). Las que no puede leer bien (encabezados en código sin el original, formato largo, sin fila de encabezados)
-  deben rechazarse al subirlas, con el motivo.
-- **Dónde.** `evidencias/encuesta_sin_secciones_2026-10-20/generar_variantes.py` (variantes A, B y C) y
-  `tools/formatos/generar_corpus.py` (formatos E01 a E13: 10 que se aceptan y 3 que se rechazan).
-<!-- fuente: evidencias/encuesta_sin_secciones_2026-10-20/generar_variantes.py (docstring); tools/formatos/generar_corpus.py (docstring); tools/formatos/corpus/encuestas/ (E01–E13) -->
-
-**B3. Entrevistas escritas a mano con su clave de respuestas (22 oct).**
-- **Qué se quería probar.** Que el análisis de entrevistas separe lo que responde la pregunta de lo que es relato
-  del pasado o digresión. Ejemplo que lo motivó: «Cuando iba en la primaria no lo pensaba así […] pero ahora creo que
-  sí, me llenan de energía por querer seguir manteniendo la beca deportiva». Las plantillas del método A no producen
-  respuestas así.
-- **Cómo se construyó.** Dos entrevistas breves de 4 personas × 4 preguntas: una de estudiantes, sobre vida
-  universitaria, y otra de docentes, sobre evaluación. Las respuestas mezclan a propósito pasado y presente,
-  digresiones («por cierto, el estacionamiento…») y posturas ambivalentes («depende de la materia»). Cada respuesta
-  lleva su **clave**: la postura correcta (sí, no o ambivalente), la frase que responde y la frase que es contexto. La
-  misma entrevista se escribió en varios formatos de transcripción: cinco la de estudiantes y dos la de docentes.
-- **Resultado esperado.** La postura y la frase de la clave. Para que la clave no dependiera solo de quien construyó
-  el sistema, la investigadora anotó las 32 respuestas por su cuenta, sin ver la del autor (Y.4.10).
-- **Dónde.** `tools/formatos/corpus_entrevistas.py` y `corpus_docentes.py` → `tools/formatos/corpus/`; la clave está
-  en `referencia.json` de cada carpeta.
-<!-- fuente: tools/formatos/corpus_entrevistas.py y corpus_docentes.py (docstrings, PREGUNTAS, RESPUESTAS); carpetas corpus/entrevistas (I01–I05) y corpus/entrevistas_docentes (D01–D02); tools/formatos/anotacion/anotacion_para_llenar.xlsx -->
-
-**B4. Archivos pequeños y sucios para cada regla de limpieza (todo el desarrollo).**
-- **Qué se quería probar.** Que cada regla de limpieza tenga al menos un caso que la active y otro que no.
-- **Cómo se construyó.** Archivos de pocas filas, escritos a mano o con semilla fija, con un problema puesto a
-  propósito en un lugar conocido (Tabla D.20).
-- **Resultado esperado.** El hallazgo exacto que la regla debe producir; lo comprueban las pruebas automatizadas.
-- **Dónde.** `services/knowledge-service/tests/datos/crear_archivos.py` y los casos escritos dentro de las pruebas de
-  cleaning-service (`test_encuestas.py`, `test_entrevistas.py`, `test_pruebas.py`).
-
-**Tabla D.20.** Ejemplos de condiciones sucias de la familia B4.
-<!-- fuente: services/knowledge-service/tests/datos/crear_archivos.py (semilla 12); services/cleaning-service/tests/test_encuestas.py, test_entrevistas.py, test_pruebas.py -->
-
-| Condición | Qué verifica |
-|---|---|
-| Columnas «Nombre», «Correo», «Matrícula» junto a «Idioma» | Que nada personal llegue al documento, sin excluir «Idioma» |
-| «No sé» / «No aplica» en una escala | Que cuenten como faltante con motivo, no como punto de la escala |
-| Ítem redactado en negativo | Que se recodifique antes del α |
-| Duplicados y columnas ajenas | Que salga la tarjeta para conservar o eliminar |
-| Escala 1–5 con pocos cincos | Que no se reduzca la escala a 1–4 |
-| Valores a más de 4 desviaciones del promedio | Que se detecten como atípicos |
-| Palabra partida «Pá-» / «gina 3», marcas de tiempo, encabezados de página | Que el ciclo de limpieza de texto los quite |
-| Varias entrevistas en un archivo con una respuesta vacía | Que se separen por participante y se note la respuesta faltante |
-| Prueba con letras, V/F, puntos, escala, Sí/No y números | Que se reconozca el tipo de cada reactivo, sin calificar |
-| Respuestas múltiples («AB») e ilegibles | Que se anulen con su motivo |
-
-**B5. Copias con errores inyectados y la verdad de cada error (24 oct, 2 nov y 7 nov).**
-- **Qué se quería probar.** Cuántos errores reales detecta y corrige la limpieza, y cuáles no. Con B4 se sabe que
-  cada regla funciona en un archivo pequeño; con B5 se mide en un instrumento completo.
-- **Cómo se construyó.** Se toma un instrumento sin errores y se le inyecta una cantidad conocida de cada error, con
-  semilla fija y cada uno en una fila o un turno distinto. Junto al archivo se guarda un JSON con la **verdad**: qué
-  se inyectó, dónde, y qué debería quedar después de limpiar. El archivo original sin cambios sirve de **control**.
-  - **24 oct.** enc_11 (duplicados, valores fuera de escala, «No sé», columnas de plataforma…) y pru_01 (respuestas
-    múltiples, ilegibles, ID repetido…).
-  - **2 nov.** Tres archivos con errores que la limpieza **todavía no contemplaba**, elegidos de lo que suele traer
-    un instrumento real: enc_06 (números escritos de otra forma, sinónimos, filas corridas…), pru_03 (letras con
-    signo, alumnos repetidos con otro ID…) y ent_11. ent_11 es una entrevista de una participante sobre salud mental,
-    escrita para esta prueba, con una versión con ruido contemplado y otra con ruido no contemplado. pru_03 tiene
-    también una versión con errores contemplados.
-  - **7 nov.** ent_02, una entrevista del acervo con 30 participantes que no se había usado, con 89 errores típicos
-    de transcripción.
-- **Resultado esperado.** Cada error de la verdad: detectado y corregido, o dejado como estaba si la regla así lo
-  decide.
-- **Dónde.** `tools/limpieza/` (`inyectar_errores.py`, `ensuciar_*.py`, `medir_limpieza_entrevista.py`) →
-  `evidencias/limpieza_2026-10-24/`, `storage/instrumentos_sinteticos/*/*_ruido_*.json` y
-  `evidencias/limpieza_2026-11-07/`. Los resultados están en Pruebas Y.2.3.
-<!-- fuente: tools/limpieza/inyectar_errores.py, ensuciar_enc_06_no_contemplado.py, ensuciar_pru_03.py, ensuciar_ent_11.py, ensuciar_ent_11_no_contemplado.py y medir_limpieza_entrevista.py (docstrings); storage/instrumentos_sinteticos/entrevistas/ent_11_metadata.json; commit 339e9fb -->
-
-### X.6.4 Qué datos se usaron en cada prueba
-
-**Tabla D.20a.** Datos usados en cada prueba, en el orden del capítulo de Pruebas. El archivo, el original y el
-documento final de cada instrumento, y todas las pruebas en que se usó, están en el Anexo A.
-
-| Prueba | Datos | Por qué esos | Dónde se reporta |
-|---|---|---|---|
-| Flujo completo por tipo de instrumento | A: enc_04, enc_05, enc_09, enc_11, pru_01, pru_02, pru_04, ent_01 | Volumen y variedad de tipos de pregunta | Y.2.1 |
-| Limpieza con errores inyectados | B5: enc_11, pru_01, ent_02; y enc_06, pru_03 y ent_11 para lo no contemplado | Cada error tiene su verdad | Y.2.3 |
-| Robustez ante formatos | B2 (13 formatos y 3 variantes sin secciones) | Mismas respuestas, así que las cifras deben coincidir | Y.3.3, Y.3.4 |
-| Dimensiones sugeridas | B1 (estructura conocida) + A (enc_04 y enc_01, solo los CSV, fuera del sistema) | Se compara con dimensiones que ya se conocen | Y.3.5 |
-| Chat: preguntas de referencia y regresión | A (enc_04, pru_01, ent_01, enc_09, enc_11) + B1 (enc_10_turno) + encuesta de 2000 de la investigadora (127) | B1 aporta las preguntas por grupo con cifra esperada | Y.4.7, Y.4.11, Y.4.12 |
-| Análisis de respuestas de entrevista | B3 (estudiantes y docentes) | Trae la clave de respuestas | Y.4.9, Y.4.10 |
-| Comparación de modelos y chat con instrumentos nuevos | 127; B5: pru_03 (130) y ent_11 (129 y 131) | 127 se usó durante el desarrollo; 129–131 el chat no los había visto | Y.4.13, Y.5.2 |
-| Evaluación final del chat (baterías de la investigadora) | 127, 130 y 129; control: enc_09 (61), ent_01 (60) y pru_06 (133) | Las baterías las escribió la investigadora sobre sus instrumentos; el control no se usó para diseñar | Y.4.14 |
-| Reglas de limpieza, una por una | B4 | Un caso por regla | X.12 |
 
 ---
 
@@ -1288,7 +1162,7 @@ una respuesta es correcta (X.5.4).
 | Media y mediana | 27.2 y 28.5 | Casi iguales: no hay valores extremos que jalen el promedio |
 | Q1 y Q3 | 16 y 40.25 | La mitad central estudia entre 16 y 40 horas |
 | Asimetría | −0.13 | Prácticamente pareja |
-| Curtosis | −1.20 | Respuestas repartidas en todo el rango de 0 a 50. Es lo esperado: esa columna se generó con la primera versión del generador, que sorteaba cada valor con la misma probabilidad (X.6.1, Tabla D.18b) |
+| Curtosis | −1.20 | Respuestas repartidas en todo el rango de 0 a 50. Es lo esperado: esa columna se generó con la primera versión del generador, que sorteaba cada valor con la misma probabilidad (X.6.1, Tabla D.18a) |
 | Atípicos | 0 | Ningún valor muy lejos de los demás |
 | α de sus bloques | 0.907 («Carga horaria»), 0.908 («Organización»), 0.876 (todos) | Excelentes los dos bloques |
 
@@ -1428,7 +1302,7 @@ coma se toma como parte del texto de la opción.
 <!-- fuente: cleaning-service/services/configuracion.py (normalizar_texto, _BORDES); services/motores/encuestas/universales.py (bordes, casos); services/motores/encuestas/motor.py (_homologar, _contradictorias, _celdas, _filas_con_respuestas); services/motores/encuestas/tipos.py (_separados); shared/parsing/tabular_parser.py y raw_table.py (bordes); knowledge-service/services/interpretacion/config.py (normalizar) y encuestas.py (opcion_multiple); pixel-perfect-pixel/src/features/upload/limpieza/TablaUbicacion.tsx, ResumenAutomatico.tsx y TarjetaHallazgo.tsx; tests/test_limpieza_visible.py; instrumento 126 (Encuesta2_Simulada_2000_SUCIA.csv, 28 oct) -->
 
 **5 nov. Reglas para errores reales que no se contemplaban.** El 2 nov se fabricaron tres archivos con errores
-frecuentes en instrumentos reales que la limpieza todavía no tenía contemplados (X.6.3, B5). El 5 nov se agregaron
+frecuentes en instrumentos reales que la limpieza todavía no tenía contemplados (Pruebas Y.1.3, errores inyectados). El 5 nov se agregaron
 reglas para la mayoría: números escritos de otra forma («cinco», «4,5», «19 años»), opciones mal escritas, Sí/No
 codificado, acentos rotos, filas corridas, filas de promedios, segunda fila de encabezado, letras con signo o de otro
 alfabeto, reactivos que nadie respondió, alumnos repetidos con el ID escrito distinto, encabezados y pies repetidos,
@@ -3324,6 +3198,29 @@ de cada cambio, para no romper lo que ya funcionaba. Cada falla encontrada en la
 acompañada de una prueba que la reproduce. Al 25 oct eran 619, todas aprobadas. No forman parte de la evaluación del
 sistema, que está en el capítulo de Pruebas.
 <!-- fuente: evidencias/pruebas_2026-10-25/*.txt -->
+
+**Archivos pequeños y sucios para cada regla de limpieza.** Para que cada regla tenga al menos un caso que la active y
+otro que no, las pruebas automatizadas usan archivos de pocas filas, escritos a mano o con semilla fija, con un
+problema puesto a propósito en un lugar conocido (Tabla D.20). La prueba comprueba el hallazgo exacto que la regla
+debe producir. Están en `services/knowledge-service/tests/datos/crear_archivos.py` y dentro de las pruebas de
+cleaning-service (`test_encuestas.py`, `test_entrevistas.py`, `test_pruebas.py`).
+
+**Tabla D.20.** Ejemplos de condiciones sucias en los archivos de las pruebas automatizadas.
+<!-- fuente: services/knowledge-service/tests/datos/crear_archivos.py (semilla 12); services/cleaning-service/tests/test_encuestas.py, test_entrevistas.py, test_pruebas.py -->
+
+| Condición | Qué verifica |
+|---|---|
+| Columnas «Nombre», «Correo», «Matrícula» junto a «Idioma» | Que nada personal llegue al documento, sin excluir «Idioma» |
+| «No sé» / «No aplica» en una escala | Que cuenten como faltante con motivo, no como punto de la escala |
+| Ítem redactado en negativo | Que se recodifique antes del α |
+| Duplicados y columnas ajenas | Que salga la tarjeta para conservar o eliminar |
+| Escala 1–5 con pocos cincos | Que no se reduzca la escala a 1–4 |
+| Valores a más de 4 desviaciones del promedio | Que se detecten como atípicos |
+| Palabra partida «Pá-» / «gina 3», marcas de tiempo, encabezados de página | Que el ciclo de limpieza de texto los quite |
+| Varias entrevistas en un archivo con una respuesta vacía | Que se separen por participante y se note la respuesta faltante |
+| Prueba con letras, V/F, puntos, escala, Sí/No y números | Que se reconozca el tipo de cada reactivo, sin calificar |
+| Respuestas múltiples («AB») e ilegibles | Que se anulen con su motivo |
+
 
 El sistema completo se ejecuta como **14 contenedores** orquestados con Docker Compose: 8 servicios
 del backend, la interfaz, 4 de infraestructura (PostgreSQL 16, ChromaDB, Ollama y Redis 7) y un

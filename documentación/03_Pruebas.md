@@ -63,29 +63,107 @@ antes de reiniciar Docker. Con todo el sistema encendido quedaron unos 3.6 GB li
 
 ### Y.1.3 Datos de prueba
 
-Todos los datos son sintéticos y salen de los dos métodos de Desarrollo X.6: el **método A** da volumen y variedad, y
-el **método B** da casos en los que se sabe de antemano qué debe responder el sistema. La Tabla D.18b los ordena por
-fecha y la Tabla D.20a dice qué datos se usaron en cada prueba. En resumen:
-
-- **Generador de datos sintéticos (X.6).** De los 31 instrumentos generados se procesaron en el sistema enc_04,
-  enc_05, enc_09, enc_11 (instrumento 109), pru_01, pru_02, pru_04 y ent_01. enc_01, el cuestionario real con
-  respuestas sintéticas, no se subió: su CSV se usó fuera del sistema para validar las dimensiones sugeridas (Y.3.5).
-- **Método B, dirigido por casos de prueba (X.6.3):**
-  - **B1, enc_10_turno (17 oct):** preguntas por grupo, con el resultado esperado de 4 de 30 del turno vespertino de
-    acuerdo con p04;
-  - **B2, variantes de formato (20–22 oct):** las mismas 60 respuestas de enc_10_turno en 3 variantes sin secciones
-    y 13 formatos;
-  - **B3, entrevistas escritas a mano (22 oct):** estudiantes y docentes, 4 × 4 cada una, con su clave de respuestas;
-  - **B4, archivos sucios pequeños:** los de las pruebas automatizadas (Tabla D.20);
-  - **B5, copias con errores inyectados y su verdad (24 oct, 2 nov y 7 nov):** enc_11, pru_01, enc_06, pru_03, ent_11
-    y ent_02.
-- **Encuesta de la investigadora:** una encuesta simulada de 2000 respondentes con su formulario de Google Forms
+Todas las respuestas son sintéticas. Los datos de las pruebas salen de tres fuentes:
+- **El generador de datos sintéticos (Desarrollo X.6).** De sus 31 instrumentos se procesaron en el sistema enc_04,
+  enc_05, enc_09 (instrumento 61), enc_11 (109), pru_01, pru_02, pru_04, pru_06 (133) y ent_01 (60). enc_01, el
+  cuestionario real con respuestas sintéticas, no se subió: su CSV se usó fuera del sistema para validar las
+  dimensiones sugeridas (Y.3.5).
+- **Instrumentos construidos para probar una función concreta** (abajo). En ellos se sabe de antemano qué debe
+  responder el sistema.
+- **La encuesta de la investigadora:** una encuesta simulada de 2000 respondentes con su formulario de Google Forms
   (instrumento 127).
-- **Prueba de control de la evaluación final:** pru_06 (del generador, X.6), cargada el 8 nov como instrumento 133.
 
-El Anexo A dice dónde está el archivo de cada instrumento, su original y su documento final, y en qué pruebas se
-usó.
-<!-- fuente: storage/instrumentos_sinteticos/*/*_metadata.json; tools/data_synthesis/generar_enc_10_turno.py; tools/formatos/generar_corpus.py, corpus_entrevistas.py, corpus_docentes.py; tools/limpieza/*.py; evidencias/datos_sinteticos_2026-10-22/procesar_enc_11.log -->
+La Tabla P.1c dice qué datos se usaron en cada prueba, y el Anexo A, dónde está el archivo de cada instrumento, su
+original y su documento final, y en qué pruebas se usó.
+
+**Instrumentos construidos para probar.** La idea es la inversa del generador: **primero se decide qué resultado
+debe dar el sistema y después se arma el archivo que lo contiene.** Así, si el sistema responde otra cosa, el error
+está en el sistema y no en los datos. Son cuatro tipos, en el orden en que se hicieron (los archivos pequeños de las
+pruebas automatizadas se describen en Desarrollo X.12):
+
+| Tipo | Cómo se fija el resultado esperado | Casos |
+|---|---|---|
+| Resultado conocido (17 oct) | Se programa en el script que genera el archivo | enc_10_turno |
+| Variantes de formato (20–22 oct) | Se reutilizan respuestas conocidas y solo cambia la forma del archivo | 3 variantes sin secciones y 13 formatos |
+| Entrevistas con clave (22 oct) | Se escribe a mano cada respuesta junto con su clave | 2 entrevistas que divagan |
+| Errores inyectados (24 oct, 2 nov y 7 nov) | Se inyectan errores en una copia de un instrumento y se guarda la verdad de cada uno | enc_11, pru_01, pru_03, enc_06, ent_11 y ent_02 |
+
+**Resultado conocido: enc_10_turno (17 oct).**
+- **Qué se quería probar.** Las preguntas por grupo del chat («¿qué porcentaje del turno vespertino está de acuerdo
+  con la pregunta 4?»). Ninguna encuesta generada tenía columna de turno.
+- **Cómo se construyó.** 60 respondentes, 30 por turno, con 8 ítems Likert en dos dimensiones («Evaluación del
+  aprendizaje» y «Ambiente escolar»). Cada persona tiene un nivel de acuerdo de fondo por dimensión, del que salen sus
+  cuatro respuestas. A propósito, el turno vespertino tiene un nivel de fondo más bajo en evaluación: 2.7 frente a 3.9
+  del matutino. Semilla 20261017.
+- **Resultado esperado.** **4 de 30 (13.3 %) del turno vespertino están de acuerdo con p04.** Se conoce antes de
+  procesar el archivo, así que la respuesta del chat se califica como correcta o incorrecta.
+- **Dónde.** `tools/data_synthesis/generar_enc_10_turno.py` → `storage/instrumentos_sinteticos/encuestas/enc_10_turno_*`
+  (instrumento 59).
+<!-- fuente: tools/data_synthesis/generar_enc_10_turno.py (docstring, SEMILLA, MEDIAS); commit 1b04c3d; registro 17 oct -->
+
+**Variantes de formato: las mismas respuestas en otra forma (20–22 oct).**
+- **Qué se quería probar.** Que el sistema funcione con los archivos tal como llegan en la realidad: sin secciones,
+  con encabezados en código, exportados de Google Forms, Qualtrics o LimeSurvey, en Excel…
+- **Cómo se construyó.** Se toma enc_10_turno y se reescribe el **mismo** archivo en otra forma. **No se inventa
+  ninguna respuesta**: las 60 personas responden lo mismo en todas las variantes; solo cambian los encabezados, las
+  secciones o el formato.
+- **Resultado esperado.** **Las mismas cifras en todas las variantes** que el sistema acepta (por ejemplo, el 4 de
+  30). Las que no puede leer bien (encabezados en código sin el original, formato largo, sin fila de encabezados)
+  deben rechazarse al subirlas, con el motivo.
+- **Dónde.** `evidencias/encuesta_sin_secciones_2026-10-20/generar_variantes.py` (variantes A, B y C) y
+  `tools/formatos/generar_corpus.py` (formatos E01 a E13: 10 que se aceptan y 3 que se rechazan).
+<!-- fuente: evidencias/encuesta_sin_secciones_2026-10-20/generar_variantes.py (docstring); tools/formatos/generar_corpus.py (docstring); tools/formatos/corpus/encuestas/ (E01–E13) -->
+
+**Entrevistas escritas a mano con su clave (22 oct).**
+- **Qué se quería probar.** Que el análisis de entrevistas separe lo que responde la pregunta de lo que es relato
+  del pasado o digresión. Ejemplo que lo motivó: «Cuando iba en la primaria no lo pensaba así […] pero ahora creo que
+  sí, me llenan de energía por querer seguir manteniendo la beca deportiva».
+- **Cómo se construyó.** Dos entrevistas breves de 4 personas × 4 preguntas: una de estudiantes, sobre vida
+  universitaria, y otra de docentes, sobre evaluación. Las respuestas mezclan a propósito pasado y presente,
+  digresiones («por cierto, el estacionamiento…») y posturas ambivalentes («depende de la materia»). Cada respuesta
+  lleva su **clave**: la postura correcta (sí, no o ambivalente), la frase que responde y la frase que es contexto. La
+  misma entrevista se escribió en varios formatos de transcripción: cinco la de estudiantes y dos la de docentes.
+- **Resultado esperado.** La postura y la frase de la clave. Para que la clave no dependiera solo de quien construyó
+  el sistema, la investigadora anotó las 32 respuestas por su cuenta, sin ver la del autor (Y.4.10).
+- **Dónde.** `tools/formatos/corpus_entrevistas.py` y `corpus_docentes.py` → `tools/formatos/corpus/`; la clave está
+  en `referencia.json` de cada carpeta.
+<!-- fuente: tools/formatos/corpus_entrevistas.py y corpus_docentes.py (docstrings, PREGUNTAS, RESPUESTAS); carpetas corpus/entrevistas (I01–I05) y corpus/entrevistas_docentes (D01–D02); tools/formatos/anotacion/anotacion_para_llenar.xlsx -->
+
+**Copias con errores inyectados y la verdad de cada error (24 oct, 2 nov y 7 nov).**
+- **Qué se quería probar.** Cuántos errores reales detecta y corrige la limpieza, y cuáles no, en un instrumento
+  completo (las pruebas automatizadas lo comprueban regla por regla en archivos pequeños).
+- **Cómo se construyó.** Se toma un instrumento sin errores y se le inyecta una cantidad conocida de cada error, con
+  semilla fija y cada uno en una fila o un turno distinto. Junto al archivo se guarda un JSON con la **verdad**: qué
+  se inyectó, dónde, y qué debería quedar después de limpiar. El archivo original sin cambios sirve de **control**.
+  - **24 oct.** enc_11 (duplicados, valores fuera de escala, «No sé», columnas de plataforma…) y pru_01 (respuestas
+    múltiples, ilegibles, ID repetido…).
+  - **2 nov.** Tres archivos con errores que la limpieza **todavía no contemplaba**, elegidos de lo que suele traer
+    un instrumento real: enc_06 (números escritos de otra forma, sinónimos, filas corridas…), pru_03 (letras con
+    signo, alumnos repetidos con otro ID…; instrumento 130) y ent_11. ent_11 es una entrevista de una participante
+    sobre salud mental, escrita para esta prueba, con una versión con ruido contemplado (instrumento 129) y otra con
+    ruido no contemplado (131). pru_03 tiene también una versión con errores contemplados.
+  - **7 nov.** ent_02, una entrevista generada con 30 participantes que no se había usado, con 89 errores típicos de
+    transcripción.
+- **Resultado esperado.** Cada error de la verdad: detectado y corregido, o dejado como estaba si la regla así lo
+  decide.
+- **Dónde.** `tools/limpieza/` (`inyectar_errores.py`, `ensuciar_*.py`, `medir_limpieza_entrevista.py`) →
+  `evidencias/limpieza_2026-10-24/`, `storage/instrumentos_sinteticos/*/*_ruido_*.json` y
+  `evidencias/limpieza_2026-11-07/`. Los resultados están en Y.2.3.
+<!-- fuente: tools/limpieza/inyectar_errores.py, ensuciar_enc_06_no_contemplado.py, ensuciar_pru_03.py, ensuciar_ent_11.py, ensuciar_ent_11_no_contemplado.py y medir_limpieza_entrevista.py (docstrings); storage/instrumentos_sinteticos/entrevistas/ent_11_metadata.json; commit 339e9fb -->
+
+**Tabla P.1c.** Datos usados en cada prueba, en el orden de este capítulo.
+
+| Prueba | Datos | Por qué esos | Dónde se reporta |
+|---|---|---|---|
+| Flujo completo por tipo de instrumento | Generador: enc_04, enc_05, enc_09, enc_11, pru_01, pru_02, pru_04, ent_01 | Volumen y variedad de tipos de pregunta | Y.2.1 |
+| Limpieza con errores inyectados | Errores inyectados: enc_11, pru_01, ent_02; y enc_06, pru_03 y ent_11 para lo no contemplado | Cada error tiene su verdad | Y.2.3 |
+| Robustez ante formatos | Variantes de formato (13 formatos y 3 variantes sin secciones) | Mismas respuestas, así que las cifras deben coincidir | Y.3.3, Y.3.4 |
+| Dimensiones sugeridas | enc_10_turno (estructura conocida) + generador (enc_04 y enc_01, solo los CSV, fuera del sistema) | Se compara con dimensiones que ya se conocen | Y.3.5 |
+| Chat: preguntas de referencia y regresión | Generador (enc_04, pru_01, ent_01, enc_09, enc_11) + enc_10_turno + encuesta de 2000 de la investigadora (127) | enc_10_turno aporta las preguntas por grupo con cifra esperada | Y.4.7, Y.4.11, Y.4.12 |
+| Análisis de respuestas de entrevista | Entrevistas con clave (estudiantes y docentes) | Traen la clave de respuestas | Y.4.9, Y.4.10 |
+| Comparación de modelos y chat con instrumentos nuevos | 127; errores inyectados: pru_03 (130) y ent_11 (129 y 131) | 127 se usó durante el desarrollo; 129–131 el chat no los había visto | Y.4.13, Y.5.2 |
+| Evaluación final del chat (baterías de la investigadora) | 127, 130 y 129; control: enc_09 (61), ent_01 (60) y pru_06 (133) | Las baterías las escribió la investigadora sobre sus instrumentos; el control no se usó para diseñar | Y.4.14 |
+| Reglas de limpieza, una por una | Archivos de las pruebas automatizadas | Un caso por regla | Desarrollo X.12 |
 
 [PENDIENTE: el avance dice que enc_01 tiene 20 preguntas; sus metadatos registran 21 ítems.
 Confirmar la cifra.]

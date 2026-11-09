@@ -1,25 +1,29 @@
 # Motor de Datos Sintéticos — Indagata
 
-Sistema de generación reproducible de instrumentos de investigación educativa con datos sintéticos estadísticamente fundamentados.
+Genera instrumentos de investigación educativa (encuestas, entrevistas y pruebas) con respuestas sintéticas y
+reproducibles: cada respondente es un tipo de estudiante (perfil) y sus respuestas dependen de ese perfil. Cómo
+funciona, con los fragmentos de código que lo hacen y un instrumento de cada tipo: Desarrollo X.6
+(`documentación/02_Desarrollo.md`).
 
 ## Estructura
 
 ```
 tools/data_synthesis/
   generate.py               # CLI principal
+  generar_enc_10_turno.py   # Caso de prueba con resultado conocido (no usa el motor; Pruebas Y.1.3)
   config/
-    perfiles_estudiantes.json   # 8 perfiles de estudiantes con parámetros estadísticos
+    perfiles_estudiantes.json   # 8 perfiles: proporción, respuesta Likert típica y dispersión, rangos de contexto
     kpi_mapping.json            # Mapeo de KPIs por instrumento
     coherencia_encuestas.json   # Reglas de las preguntas no Likert (modelo «coherente», v1.1)
   generators/
     __init__.py
-    base_generator.py           # Utilidades compartidas: muestreo, beta, demografía
+    base_generator.py           # Perfil, ítems Likert (normal + Cholesky por dimensión) y datos de contexto
     encuesta_generator.py       # Generador de encuestas (11 instrumentos)
     coherencia.py               # Respuestas coherentes de las preguntas no Likert
     entrevista_generator.py     # Generador de entrevistas (10 instrumentos)
-    prueba_generator.py         # Generador de pruebas estandarizadas (10 instrumentos)
+    prueba_generator.py         # Generador de pruebas estandarizadas (10 instrumentos, sin respuesta correcta)
   quality/
-    checker.py                  # Validación: alpha Cronbach, outliers, correlación
+    checker.py                  # Reporte de calidad (α sobre todas las columnas numéricas, atípicos, correlación)
     verificar_coherencia.py     # ¿Las preguntas no Likert dependen del respondente? (uniforme vs coherente)
   visualization/
     chart_generator.py          # Gráficas por instrumento y resumen general
@@ -52,54 +56,55 @@ python generate.py --all --output /ruta/personalizada
 
 ## Instrumentos generados
 
-| ID | Título | Tipo | Fuente | N |
+| ID | Título | Tipo | Preguntas | N |
 |----|--------|------|--------|---|
-| enc_01 | Inventario Estrategias Aprendizaje (IEAE) | Encuesta | Real | 180 |
-| enc_02 | Student Engagement Questionnaire | Encuesta | Real | 200 |
-| enc_03 | SESQ | Encuesta | Real | 220 |
-| enc_04 | MSLQ-SF | Encuesta | Real | 200 |
-| enc_05 | Escala RAU | Encuesta | Real | 180 |
-| enc_06 | Satisfacción Servicios Institucionales | Encuesta | Sintético | 160 |
-| enc_07 | Diversidad e Inclusión | Encuesta | Sintético | 160 |
-| enc_08 | Bienestar y Salud Mental | Encuesta | Sintético | 160 |
-| enc_09 | Carga Académica y Tiempo | Encuesta | Sintético | 160 |
-| enc_10 | Inserción Laboral | Encuesta | Sintético | 150 |
-| enc_11 | Trayectoria Académica, Trabajo y Servicios (todos los tipos de pregunta, v1.1) | Encuesta | Sintético | 160 |
-| ent_01 | Estrategias de permanencia | Entrevista | Sintético | 40 |
-| ent_02 | Experiencia docente | Entrevista | Sintético | 30 |
-| ent_03 | Tecnología y aprendizaje | Entrevista | Sintético | 35 |
-| ent_04 | Inclusión y diversidad | Entrevista | Sintético | 28 |
-| ent_05 | Investigación (posgrado) | Entrevista | Sintético | 25 |
-| ent_06 | Orientación vocacional | Entrevista | Sintético | 32 |
-| ent_07 | Vida de campus | Entrevista | Sintético | 30 |
-| ent_08 | Financiamiento | Entrevista | Sintético | 28 |
-| ent_09 | Transición secundaria-uni | Entrevista | Sintético | 35 |
-| ent_10 | Internacionalización | Entrevista | Sintético | 25 |
-| pru_01 | Comprensión Lectora | Prueba | Sintético | 100 |
-| pru_02 | Competencias Matemáticas | Prueba | Sintético | 110 |
-| pru_03 | Alfabetización Digital | Prueba | Sintético | 95 |
-| pru_04 | Aprendizaje Autónomo (CAA) | Prueba | Sintético | 90 |
-| pru_05 | Competencias Docentes | Prueba | Sintético | 120 |
-| pru_06 | Investigación Científica | Prueba | Sintético | 80 |
-| pru_07 | Orientación Vocacional | Prueba | Sintético | 110 |
-| pru_08 | Competencias Interculturales | Prueba | Sintético | 90 |
-| pru_09 | Comunicación Académica | Prueba | Sintético | 100 |
-| pru_10 | Liderazgo Estudiantil | Prueba | Sintético | 100 |
+| enc_01 | Inventario Estrategias Aprendizaje (IEAE) | Encuesta | De un cuestionario publicado | 180 |
+| enc_02 | Student Engagement Questionnaire | Encuesta | De un cuestionario publicado | 200 |
+| enc_03 | SESQ | Encuesta | De un cuestionario publicado | 220 |
+| enc_04 | MSLQ-SF | Encuesta | De un cuestionario publicado | 200 |
+| enc_05 | Escala RAU | Encuesta | De un cuestionario publicado | 180 |
+| enc_06 | Satisfacción Servicios Institucionales | Encuesta | Inventadas | 160 |
+| enc_07 | Diversidad e Inclusión | Encuesta | Inventadas | 160 |
+| enc_08 | Bienestar y Salud Mental | Encuesta | Inventadas | 160 |
+| enc_09 | Carga Académica y Tiempo | Encuesta | Inventadas | 160 |
+| enc_10 | Inserción Laboral | Encuesta | Inventadas | 150 |
+| enc_11 | Trayectoria Académica, Trabajo y Servicios (todos los tipos de pregunta, v1.1) | Encuesta | Inventadas | 160 |
+| ent_01 | Estrategias de permanencia | Entrevista | Inventadas | 40 |
+| ent_02 | Experiencia docente | Entrevista | Inventadas | 30 |
+| ent_03 | Tecnología y aprendizaje | Entrevista | Inventadas | 35 |
+| ent_04 | Inclusión y diversidad | Entrevista | Inventadas | 28 |
+| ent_05 | Investigación (posgrado) | Entrevista | Inventadas | 25 |
+| ent_06 | Orientación vocacional | Entrevista | Inventadas | 32 |
+| ent_07 | Vida de campus | Entrevista | Inventadas | 30 |
+| ent_08 | Financiamiento | Entrevista | Inventadas | 28 |
+| ent_09 | Transición secundaria-uni | Entrevista | Inventadas | 35 |
+| ent_10 | Internacionalización | Entrevista | Inventadas | 25 |
+| pru_01 | Comprensión Lectora | Prueba | Inventadas | 100 |
+| pru_02 | Competencias Matemáticas | Prueba | Inventadas | 110 |
+| pru_03 | Alfabetización Digital | Prueba | Inventadas | 95 |
+| pru_04 | Aprendizaje Autónomo (CAA) | Prueba | Inventadas | 90 |
+| pru_05 | Competencias Docentes | Prueba | Inventadas | 120 |
+| pru_06 | Investigación Científica | Prueba | Inventadas | 80 |
+| pru_07 | Orientación Vocacional | Prueba | Inventadas | 110 |
+| pru_08 | Competencias Interculturales | Prueba | Inventadas | 90 |
+| pru_09 | Comunicación Académica | Prueba | Inventadas | 100 |
+| pru_10 | Liderazgo Estudiantil | Prueba | Inventadas | 100 |
 
 ## Perfiles de estudiantes
 
-Los datos se generan a partir de 8 perfiles estadísticamente calibrados:
+Cada respondente recibe uno de 8 perfiles, sorteado con su peso. El perfil fija la respuesta Likert típica (media de
+una curva normal), su dispersión y los rangos de los datos de contexto (`config/perfiles_estudiantes.json`):
 
-| Perfil | Nombre | Peso | GPA medio | Likert medio |
+| Perfil | Nombre | Peso | GPA medio | Likert típico (dispersión) |
 |--------|--------|------|-----------|--------------|
-| P1 | Alto rendimiento, autoregulado | 12% | 3.75 | ~4.2 |
-| P2 | Promedio comprometido | 20% | 3.15 | ~3.4 |
-| P3 | En riesgo académico | 15% | 2.15 | ~2.1 |
-| P4 | Trabajador adulto tiempo parcial | 13% | 2.90 | ~3.0 |
-| P5 | Avanzado desmotivado (burnout) | 10% | 3.40 | ~3.0 |
-| P6 | Internacional/contexto diverso | 8% | 3.35 | ~3.1 |
-| P7 | Posgrado alta competencia | 12% | 3.85 | ~4.5 |
-| P8 | Dificultades socioeconómicas | 10% | 2.60 | ~2.8 |
+| P1 | Alto rendimiento, autoregulado | 12% | 3.75 | 4.2 (0.6) |
+| P2 | Promedio comprometido | 20% | 3.15 | 3.4 (0.9) |
+| P3 | En riesgo académico | 15% | 2.15 | 2.1 (1.1) |
+| P4 | Trabajador adulto tiempo parcial | 13% | 2.90 | 3.0 (1.3) |
+| P5 | Avanzado desmotivado (burnout) | 10% | 3.40 | 3.0 (0.8) |
+| P6 | Internacional/contexto diverso | 8% | 3.35 | 3.1 (1.0) |
+| P7 | Posgrado alta competencia | 12% | 3.85 | 4.5 (0.5) |
+| P8 | Dificultades socioeconómicas | 10% | 2.60 | 2.8 (1.2) |
 
 ## Preguntas que no son Likert: modelo «coherente» (v1.1) y «uniforme» (v1.0)
 
@@ -129,6 +134,14 @@ python generate.py --tipo encuesta --modelo-adicionales uniforme --output /tmp/u
 python generate.py --tipo encuesta --output /tmp/c --no-charts --no-quality
 python quality/verificar_coherencia.py /tmp/u /tmp/c
 ```
+
+## Pruebas y entrevistas
+
+- **Pruebas:** cada reactivo recibe pesos al azar para sus opciones (Dirichlet en opción múltiple, proporción entre
+  25 % y 75 % en V/F y Sí/No) y cada alumno elige con esos pesos. No hay respuesta correcta. Los reactivos Likert
+  conductuales salen del perfil, igual que en las encuestas.
+- **Entrevistas:** cada una se dirige a ciertos perfiles (`perfiles_objetivo`); la respuesta es una frase de las
+  plantillas del perfil más una o dos frases de extensión del mismo perfil.
 
 ## Reproducibilidad
 
