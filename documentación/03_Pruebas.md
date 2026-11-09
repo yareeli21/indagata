@@ -283,6 +283,18 @@ error metido, si apareció su tarjeta, la decisión tomada y las medidas de «Es
 **Qué se comprueba.** Que los chunks quepan en lo que lee el modelo de *embeddings* (128 *tokens*) y que la búsqueda
 encuentre el fragmento correcto. Se comparan tres versiones de los chunks con las mismas preguntas.
 
+**Qué se mide.** El RAG tiene dos mitades: la **recuperación**, que dada una pregunta busca los fragmentos del
+instrumento más parecidos (los chunks se convierten en vectores con el modelo de *embeddings* y ChromaDB los ordena
+por parecido con el vector de la pregunta), y la **generación**, en la que el modelo de lenguaje redacta con lo
+recuperado. Las métricas de esta sección miden solo la recuperación, como un todo: chunks, vectores y búsqueda. Para
+cada pregunta comparan la **lista ordenada que devuelve la búsqueda** (los 8 fragmentos que recibiría el modelo) contra
+el **fragmento correcto, conocido de antemano**. Por ejemplo, si la consulta trata de los laboratorios de la encuesta
+127, la búsqueda devuelve 8 chunks; si el de la pregunta p17 queda en primer lugar es un acierto en *hit*@1, y con el
+lugar en que aparece se calcula el MRR. Un buen resultado demuestra que los chunks están bien armados, que los vectores
+distinguen unas preguntas de otras y que la búsqueda pone primero lo correcto; no dice si la respuesta final del chat
+es correcta, que se mide en Y.4. La Tabla P.8b usa como consulta el enunciado de cada pregunta (fácil, sin juicio
+humano); la P.8a, preguntas reales de usuario (más difícil, con el fragmento correcto fijado de antemano).
+
 **Tabla P.7.** Chunks que pasan del límite de 128 *tokens* con cada forma de medir (reindexación del 7 nov).
 
 | Instrumento | Ventana de 450 caracteres | Medido en *tokens* (vigente) |
