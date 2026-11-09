@@ -332,6 +332,29 @@ separado, sin ver los del autor (`tools/rag/relevancia/juicios_relevancia_para_l
 con la kappa de Cohen (`tools/rag/relevancia/comparar.py`). [PENDIENTE: acuerdo entre los dos juicios y, si
 difieren, *hit*@k y MRR con los juicios de la investigadora.]
 
+**Búsqueda de elemento conocido** (*known-item search*). Para medir la búsqueda sin ningún juicio humano, cada
+pregunta o reactivo de los cinco instrumentos se usó como consulta, y se midió en qué lugar aparece un fragmento de
+esa misma pregunta; la respuesta correcta la da el propio instrumento. Se probaron dos variantes de la consulta: el
+texto completo de la pregunta y solo sus palabras con contenido, sin signos ni palabras vacías, para que no sea una
+copia literal del fragmento (`tools/rag/known_item.py`; mismo modelo, colección y filtro que el chat).
+
+**Tabla P.8b.** Búsqueda de elemento conocido (84 preguntas y reactivos, versión vigente).
+
+| Instrumentos | n | Consulta | *Hit*@1 | *Hit*@3 | MRR |
+|---|---|---|---|---|---|
+| Todos | 84 | Texto completo | 0.98 | 1.00 | 0.99 |
+| Todos | 84 | Palabras con contenido | 0.98 | 1.00 | 0.99 |
+| — encuestas (127 y 61) | 38 | Texto completo | 0.95 | 1.00 | 0.97 |
+| — pruebas (130) | 22 | Texto completo | 1.00 | 1.00 | 1.00 |
+| — entrevistas (129 y 60) | 24 | Texto completo | 1.00 | 1.00 | 1.00 |
+<!-- fuente: evidencias/known_item_2026-11-09/consultas.json y resultado.json (9 nov) -->
+
+Las 4 consultas que no quedaron primeras quedaron segundas: dos detrás del fragmento de un KPI que usa las mismas
+palabras, y dos porque la encuesta 61 tiene dos preguntas casi iguales (las horas de estudio, en número y en rangos).
+Esta prueba es más fácil que las preguntas reales, porque la consulta repite el enunciado; muestra que cada pregunta
+del instrumento se puede encontrar y que la búsqueda distingue unas preguntas de otras. La dificultad real está en
+las preguntas de los usuarios, que no repiten el enunciado (Tabla P.8a).
+
 **Lectura.** Con la ventana de caracteres, hasta 83 % de los chunks de una prueba se embebían truncados, sin aviso.
 Medir en *tokens* y dejar fuera de la búsqueda los chunks de cada persona (que en la encuesta de 2000 eran unos 6,600
 y llenaban los primeros lugares) subió el *hit rate* de las baterías de 0.61 a 0.79; la ficha con el encabezado de la
