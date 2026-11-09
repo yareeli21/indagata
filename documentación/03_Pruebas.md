@@ -650,7 +650,8 @@ La Tabla P.14f resume el efecto de cada versión con el conjunto que la midió a
 | Igual | Set de control (encuesta y entrevista), 16 casos | 1 cumple | **13 cumplen** |
 <!-- fuente: registro 17 oct 22:55 (humo_chat.py) y tools/rag/reportes/verificacion_20261017_2032.md; evidencias/rag_rediseno_2026-10-28/regresion_comparacion.md; evidencias/modelos_2026-11-03 y modelos_2026-11-04 (resumen.md); tt_rag.rag_log.ruta 1290–1771; evidencias/chat_2026-11-07_antes, chat_2026-11-07_control_antes, chat_2026-11-08_final y chat_2026-11-08_final_control (resumen.md) -->
 
-**Lectura.** Cada versión mejoró la anterior en su conjunto, y en ninguna se inventaron datos: en las 140 respuestas sobre instrumentos no vistos (Y.4.4), 0 cifras sin respaldo y 0 IDs inventados; en la
+**Lectura.** Cada versión mejoró la anterior en su conjunto. Donde se midió si el modelo inventaba datos, no lo
+hizo: en las 140 respuestas sobre instrumentos no vistos (Y.4.4), 0 cifras sin respaldo y 0 IDs inventados; en la
 evaluación final, 815 de 856 cifras con respaldo en el contexto.
 
 Las secciones siguientes dan el detalle de las tres comparaciones principales.
