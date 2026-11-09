@@ -60,7 +60,7 @@ a entender una decisión. La Tabla D.0 dice cuál se usa hoy (8 nov); en cada se
 | Documento final de entrevistas | Solo pregunta y respuesta | Con conteos y estadística de participación | X.7.7 |
 | Chunks | Medidos en *tokens* (7 nov) | Ventana fija de 450 caracteres; queda como respaldo cuando no hay tokenizador | X.9.1 |
 | Chat | La del 8 nov: RAG primero, plan del modelo, cálculo y redacción verificada | Solo búsqueda semántica (10–16 oct); enrutador por reglas (17–26 oct), que **sigue como respaldo** cuando no hay plan válido | X.9 (Tabla D.23b) |
-| Correcciones posteriores a la evaluación final | En el código (commit `6fd668d`), **pendientes de evaluar** | — | X.9.6 |
+| Correcciones posteriores a la evaluación final | En el código (commit `6fd668d`), **pendientes de evaluar** | — | X.9.5 |
 | Modelos de lenguaje | Redactor e intérprete `gemma3:4b`; juez `qwen3:4b-instruct` (2 nov) | Redactor `llama3.2:3b`; juez `qwen2.5:3b` (23 oct) | X.10.5 |
 | Evaluación de cada respuesta | Indicadores sin juez, juez bajo demanda y calificación humana (X.10.7 y X.10.8 se complementan) | Juez después de cada respuesta | X.10.7, X.10.8 |
 <!-- fuente: secciones citadas en la tabla; .env (OLLAMA_MODEL=gemma3:4b, RAG_JUEZ_MODELO=qwen3:4b-instruct, 8 nov); tools/data_synthesis/generate.py:137; storage-service/services/chunks_documento.py (VENTANA); git log 6fd668d -->
@@ -1071,6 +1071,36 @@ corto (P1_4) en una encuesta.
 **Confirmación.** Aplica las decisiones, escribe el CSV limpio y guarda el reporte con las
 transformaciones, los hallazgos, las decisiones y la estadística antes y después.
 
+**Decisiones y por qué.** Cada una nació de una prueba con instrumentos; la prueba se indica entre paréntesis.
+- **La estadística se calcula antes y después de las decisiones**, para que el investigador vea el efecto de cada
+  una. En una encuesta de ejemplo, el α pasó de 0.586 a 0.892 al recodificar un ítem invertido (Pruebas Y.2.1).
+- **Nada cambia sin que se vea.** Cada transformación automática y cada tarjeta muestran su ubicación completa
+  («Ver dónde»: fila, pregunta, valor antes y después). Esto incluye lo que se corrige solo: las respuestas que solo
+  difieren en mayúsculas, acentos o signos de borde se escriben con su forma más frecuente, y los espacios de borde
+  se reportan. Sin esto, la investigadora encontraba en el documento final avisos que no había visto en la limpieza
+  (Pruebas Y.2.4).
+- **Un valor fuera de la escala, una tarjeta**, con su motivo («está escrito con palabras, pero esta pregunta se
+  respondió con números del 1 al 5», «es mayor que 5») y la opción de anularlo, conservarlo o cambiarlo por un valor
+  de la escala; si la etiqueta está en el diccionario de escalas, se sugiere su equivalente («Totalmente de acuerdo»
+  → 5). En una escala numérica, cualquier texto que no sea «No sé / No aplica» está fuera de la escala. Hasta 8
+  tarjetas por pregunta; el resto va en una tarjeta de la pregunta (Pruebas Y.2.4).
+- **Duplicados sin columnas de identificador.** Al comparar filas se ignoran las columnas de la plataforma y
+  cualquier columna con todos sus valores distintos y forma de identificador o de fecha y hora; las preguntas
+  abiertas se conservan porque sí distinguen a dos personas. Una «Dirección IP» hacía única cada fila (Pruebas Y.2.3).
+- **«No sé / No aplica» se trata igual en escalas de texto y numéricas**, y **las filas de solo separadores se
+  cuentan como vacías** en lugar de perderse al leer el archivo (Pruebas Y.2.3).
+- **Selección múltiple por combinación, no por la coma.** Una lista es selección múltiple si sus partes aparecen solas
+  en otras filas, o si las mismas opciones se combinan de formas distintas sin partes que empiecen con conjunción
+  («y…», «pero…»); con «;» basta con que el 30 % de las respuestas lo tenga. Así, «Sí, y no lo aprobé» es una sola
+  opción (Pruebas Y.2.4).
+- **Selección contradictoria.** «Ninguno» (o «Ninguna», «No aplica») marcado junto con otras opciones es un hallazgo:
+  conservar, quitar «Ninguno» o dejar vacía.
+- **Datos de contexto por palabra del nombre.** Una columna corta se propone como dato de contexto si su nombre
+  contiene una palabra de `palabras_contexto` (edad, turno, semestre, nivel, beca, trabajo…), con «_», «.», «-», «/»
+  y paréntesis como espacio; los ítems numerados (`Trabajo_equipo_item3`, `P12`) nunca son contexto. «Ingreso» no está
+  en la lista, porque «Ingreso mensual» suele ser una pregunta (Pruebas Y.2.1).
+<!-- fuente: services/cleaning-service/services/motores/encuestas/motor.py (_homologar, _contradictorias, _celdas, _filas_con_respuestas, _aceptados, _grupos_fuera, _por_que_fuera, _decision_fuera, _todos_distintos, _FECHA_HORA, _no_respuestas_por_columna); tipos.py (inferir, _separados); likert.py (equivalente); configuracion.py (normalizar_texto, _BORDES, es_contexto); config/limpieza.yaml (palabras_contexto); shared/parsing/tabular_parser.py y raw_table.py (bordes); pixel-perfect-pixel/src/features/upload/limpieza/TablaUbicacion.tsx, ResumenAutomatico.tsx y TarjetaHallazgo.tsx; tests/test_limpieza_visible.py y test_encuestas.py -->
+
 #### La estadística que devuelve la limpieza
 
 **Para qué sirve.** Al limpiar, el sistema calcula medidas estadísticas de los datos. No son el análisis final de la
@@ -1214,101 +1244,6 @@ reglas (`shared/conocimiento/sugerencias.py`): por ejemplo, promediar un bloque 
 analizar ítem por ítem con α < 0.60, o repetir los análisis sin los encuestados en línea recta
 cuando superan el 10 %.
 <!-- fuente: shared/conocimiento/sugerencias.py; commit c42f42e -->
-
-#### Cómo evolucionó la limpieza
-
-Los cambios principales, en orden de fecha. Cada uno nació de una prueba con instrumentos. **Vigente:** todos; cada
-cambio se sumó a los anteriores, ninguno los reemplazó.
-
-**15 oct. La estadística se calcula antes y después de las decisiones.** Así el investigador ve
-el efecto de cada decisión. En la prueba de punta a punta con una encuesta de ejemplo, el α pasó de
-0.586 a 0.892 al confirmar la recodificación de un ítem invertido.
-<!-- fuente: registro 15 oct («E2E survey run: alpha 0.586 → 0.892 after the inverted item was recoded»); archivo de ejemplo en la carpeta temporal de la sesión, no versionado -->
-
-**24 oct. Correcciones encontradas al medir la limpieza con errores inyectados (Pruebas Y.2.3).**
-- **Duplicados escondidos por una columna única.** Las columnas ajenas (marca temporal, IP, ID) se excluyen
-  al buscar filas duplicadas. Una «Dirección IP» no estaba entre los patrones (solo `ip address`), así que
-  cada fila resultaba única y 5 duplicados pasaron. Se agregó el patrón en español y, además, la búsqueda de
-  duplicados ignora cualquier columna cuyos valores sean todos distintos y tengan forma de identificador o
-  de fecha y hora. Las preguntas abiertas, aunque también tengan valores únicos, sí distinguen a dos
-  personas y se conservan.
-- **«No sé» en escalas numéricas.** El hallazgo de no-respuestas solo existía en escalas de texto. En una
-  escala 1–5, «No sé» quedaba en el CSV limpio mezclado con los números y sin aviso. Ahora se trata igual en
-  las dos.
-- **Filas de solo separadores.** El lector de CSV compartido descartaba una fila «;;;;;» antes de que la
-  limpieza la contara, así que desaparecía sin reportarse. Ahora se conserva y se cuenta como fila vacía.
-<!-- fuente: evidencias/limpieza_2026-10-24/RESULTADO.md; cleaning-service/config/limpieza.yaml; services/motores/encuestas/motor.py (_todos_distintos, _FECHA_HORA, _no_respuestas_por_columna); shared/parsing/tabular_parser.py -->
-
-**25 oct. Columnas de contexto con «_».** Una columna corta se propone como «dato de contexto» si su
-nombre contiene una palabra de `palabras_contexto` (edad, turno, semestre, nivel, beca, trabajo…). Antes,
-el nombre se comparaba tal cual y `nivel_ses` o `tiene_beca` no contenían ninguna palabra completa, así que
-se proponían como preguntas (enc_11, X.6.2). Ahora «_», «.», «-», «/» y los paréntesis cuentan como espacio.
-Los ítems numerados (`Trabajo_equipo_item3`, `P12`) nunca se proponen como contexto, aunque contengan una
-de esas palabras. Encuestas y pruebas usan la misma regla. «Ingreso» no se agregó a la lista, porque
-«Ingreso mensual» suele ser una pregunta del instrumento.
-<!-- fuente: cleaning-service/services/configuracion.py (es_contexto); config/limpieza.yaml (palabras_contexto); services/motores/encuestas/motor.py (_hallazgos, rol sugerido); tests/test_encuestas.py::test_columnas_de_contexto_con_guion_bajo -->
-
-**28 oct. Limpieza visible: todo lo que cambia se muestra con su ubicación.** Con una encuesta de 2000
-respondentes, la limpieza resolvía en silencio buena parte de la suciedad. La investigadora no podía ver qué se
-cambió ni dónde, y luego encontraba avisos en el documento final que no había visto durante la limpieza.
-Se hicieron cinco cambios:
-- **Signos al inicio o al final.** «Nunca.», «Algunas veces.» o «Siempre.» no coincidían con la escala y salían
-  como 19 valores «fuera de rango». Ahora la comparación ignora los signos de borde (`.`, `,`, `;`, `!`, `¿`,
-  comillas), igual que ya ignoraba mayúsculas y acentos. El cambio se hizo en `configuracion.normalizar_texto`
-  y en su copia de knowledge-service, que agrupa las respuestas del documento final.
-- **Escritura homologada.** Las respuestas que solo difieren en mayúsculas, acentos o signos de borde
-  («PRESENCIAL», «presencial», «Presencial.») se escriben con su forma más frecuente en el CSV limpio. En las
-  selecciones múltiples se homologa cada opción. Se hace antes de inferir tipos y buscar duplicados: dos filas
-  que solo difieren en la grafía son la misma respuesta. Se reporta como transformación automática, con el total
-  por pregunta y cada caso: fila, pregunta, antes y después. En la encuesta de 2000 fueron 1,303 celdas.
-- **Espacios de borde.** El lector de tablas los quita al leer, así que nunca se contaban. Ahora el lector anota
-  qué celdas recortó (`RawTable.bordes`) y la limpieza los reporta con su fila: 1,019 en esa encuesta.
-- **«Ver dónde» en cada hallazgo.** Cada tarjeta trae la lista completa de su ubicación: para un valor fuera de
-  rango o un «No sé», la fila y el valor; para duplicados, línea recta o encuestados incompletos, la fila con sus
-  respuestas. Antes solo se mostraban los números de las primeras 20 filas. En la interfaz, cada chip de «Lo que
-  hicimos automáticamente» y cada tarjeta abren esa tabla.
-- **Selección contradictoria.** Una selección múltiple que marca «Ninguno» (o «Ninguna», «No aplica») junto con
-  otras opciones se presenta como hallazgo: conservar, quitar «Ninguno» o dejar vacía. En la encuesta de 2000
-  fueron 589.
-
-**28 oct. Fuera de la escala: una tarjeta por valor, con su motivo y la opción de cambiarlo.** Al volver a subir
-la encuesta de 2000, el documento final avisó de 204 respuestas que no se pudieron interpretar en cuatro preguntas
-(62, 62, 32 y 48). Eran «Totalmente de acuerdo» y «Totalmente en desacuerdo» escritos con palabras en escalas que se
-respondieron con números del 1 al 5. La limpieza no los había marcado: en una escala numérica solo contaba como
-fuera de rango un número fuera de la escala, y el texto pasaba sin aviso. Ahora:
-- en una escala numérica, cualquier texto que no sea «No sé / No aplica» está fuera de la escala;
-- cada valor distinto fuera de la escala tiene su propia tarjeta (hasta 8 por pregunta; el resto va en una tarjeta
-  de la pregunta), con sus filas en «Ver dónde» y el motivo explícito: «está escrito con palabras, pero esta
-  pregunta se respondió con números del 1 al 5», «es mayor que 5, el valor más alto de la escala», «no es ninguna
-  de las opciones de la escala: …»;
-- además de eliminarlo (dejar vacío) o conservarlo, se puede **cambiar a cualquier valor de la escala**. Si la
-  etiqueta está en el diccionario de escalas y la escala tiene los mismos puntos, se sugiere su equivalente
-  («Totalmente de acuerdo» → 5); un número fuera de la escala se sugiere dejarlo vacío;
-- los cambios y los valores vaciados quedan en el reporte con su fila, el valor anterior y el nuevo.
-<!-- fuente: cleaning-service/services/motores/encuestas/tipos.py (inferir: texto en escala numérica); likert.py (equivalente); motor.py (_aceptados, _grupos_fuera, _por_que_fuera, _decision_fuera, transformación fuera_de_rango_cambiados); pixel-perfect-pixel/src/features/upload/limpieza/textos.ts (etiquetaOpcion); tests/test_limpieza_visible.py::test_texto_en_una_escala_numerica_tiene_tarjeta_por_valor_con_motivo_y_cambio; instrumento 127, avisos del documento final (28 oct) -->
-
-**28 oct. Selección múltiple: por combinación, no por la coma.** Una columna se tomaba como selección múltiple
-si el 30 % de sus respuestas tenía coma o punto y coma. Fallaba en los dos sentidos:
-- «¿Has presentado algún examen de certificación?», con opciones como «Sí, y no lo aprobé», se tomaba como
-  selección múltiple. Cada respuesta se partía en «Sí» e «y no lo aprobé», y ningún filtro sobre esa pregunta
-  encontraba a nadie.
-- «¿Cómo es tu carga académica?», una selección múltiple real en la que solo el 15 % eligió más de una opción, se
-  tomaba como opción única.
-
-Ahora una lista es selección múltiple si sus partes también aparecen solas en otras filas, o si las mismas
-opciones se combinan de formas distintas sin partes que empiecen con conjunción («y…», «pero…»). Con «;» se
-conserva además el criterio anterior. En el documento final, si una parte de una lista con «;» lleva coma, la
-coma se toma como parte del texto de la opción.
-<!-- fuente: cleaning-service/services/configuracion.py (normalizar_texto, _BORDES); services/motores/encuestas/universales.py (bordes, casos); services/motores/encuestas/motor.py (_homologar, _contradictorias, _celdas, _filas_con_respuestas); services/motores/encuestas/tipos.py (_separados); shared/parsing/tabular_parser.py y raw_table.py (bordes); knowledge-service/services/interpretacion/config.py (normalizar) y encuestas.py (opcion_multiple); pixel-perfect-pixel/src/features/upload/limpieza/TablaUbicacion.tsx, ResumenAutomatico.tsx y TarjetaHallazgo.tsx; tests/test_limpieza_visible.py; instrumento 126 (Encuesta2_Simulada_2000_SUCIA.csv, 28 oct) -->
-
-**5 nov. Reglas para errores reales que no se contemplaban.** El 2 nov se fabricaron tres archivos con errores
-frecuentes en instrumentos reales que la limpieza todavía no tenía contemplados (Pruebas Y.1.3, errores inyectados). El 5 nov se agregaron
-reglas para la mayoría: números escritos de otra forma («cinco», «4,5», «19 años»), opciones mal escritas, Sí/No
-codificado, acentos rotos, filas corridas, filas de promedios, segunda fila de encabezado, letras con signo o de otro
-alfabeto, reactivos que nadie respondió, alumnos repetidos con el ID escrito distinto, encabezados y pies repetidos,
-minuto pegado a la etiqueta y anotaciones del transcriptor. El detalle está en el catálogo siguiente y la medición,
-en Pruebas Y.2.3.
-<!-- fuente: commit 9f86ff4 (5 nov, limpieza robusta); services/cleaning-service/tests/test_limpieza_robusta.py; evidencias/limpieza_2026-11-07/no_contemplado_hoy.json -->
 
 #### Catálogo de errores reales que contempla la limpieza
 
@@ -1594,12 +1529,10 @@ de evidencia (c = 0.67), así que su puntaje fue de 0.488 y quedó al final de l
 para este instrumento se presentan en la Tabla R.7 de Resultados.
 <!-- fuente: tt_rag.version_conocimiento (id_crudo 59), decisiones_kpi: score 0.605, componentes g 0.548 / p 0.574 / c 1.00, evidencia p04 0.633 y p02 0.576 -->
 
-**Método anterior (ya no lo usa el asistente; vigente: el de unidades del perfil, arriba).** Hasta el 16 oct, el
-instrumento se representaba por un solo *summary*
-(metadatos clave del JSON técnico más el instrumento en texto) embebido como un vector y comparado
-contra los KPIs (top 5, puntaje ≥ 0.30). El problema medido fue que el *summary* tenía de 811 a
-1,297 *tokens* y el modelo de *embeddings* solo lee 128: sus propuestas salían casi solo de los
-metadatos. La comparación entre ambos métodos se presenta en el capítulo de Resultados.
+**Por qué unidades y no un solo texto.** El modelo de *embeddings* solo lee 128 *tokens*. Un solo texto por
+instrumento (sus metadatos más el instrumento completo) mide de 811 a 1,297 *tokens*, así que se trunca y las
+propuestas salen casi solo de los metadatos; con una unidad por pregunta, cada pregunta cuenta. La comparación entre
+los dos métodos está en Pruebas Y.3.6 y Resultados Z.3.2.
 <!-- fuente: commit e673d83 (summary_builder); registro 16 oct (salida de comparar_kpis: «811 tokens (el modelo solo lee los primeros 128)», «1297 tokens») -->
 
 **Justificación y decisión humana.** Para cada KPI propuesto, el modelo de lenguaje redacta una
@@ -1655,7 +1588,7 @@ recorre en ambos sentidos; no hay datos personales y, en entrevistas, los nombre
 se reemplazan también dentro del texto.
 <!-- fuente: services/knowledge-service/README.md §Documento final; services/documento/entrevista.py (esquema_version "2.0") -->
 
-**Lo que se agregó el 7 nov para el chat** (evaluación con baterías de preguntas, X.9.6):
+**Lo que se agregó el 7 nov para el chat** (evaluación con baterías de preguntas, X.9):
 - **Escalas con el significado de sus extremos.** Las escalas lineales de Google Forms se leen del PDF original y se
   asignan a su pregunta («1 = Nada probable … 5 = Muy probable»). Sin eso, el chat llamaba «4» a «Muy probable».
 - **Indicaciones y encabezado de la entrevista.** Las oraciones del entrevistador antes de la primera pregunta van en
@@ -1704,7 +1637,7 @@ cifra ya calculada se cita, no se aproxima.
 | KPI → preguntas | «¿Qué preguntas miden la retención?» | `evidencia[].pregunta_id` ↔ `kpis_relacionados` |
 | Encuesta, agregada | «¿Qué porcentaje está de acuerdo con X?» | `preguntas[].resumen` |
 | Encuesta, individual | «¿Qué respondió R017 sobre X?» | `respondentes[].respuestas[]` |
-| Encuesta, por grupo | «¿Y en el turno vespertino?» | `respondentes[].contexto`, con consulta estructurada (X.9.2) |
+| Encuesta, por grupo | «¿Y en el turno vespertino?» | `respondentes[].contexto`, con consulta estructurada (X.9.4) |
 | Prueba, agregada | «¿Qué opción eligió la mayoría en el reactivo 3?» | `reactivos[].resumen` |
 | Prueba, individual | «¿Qué respondió el alumno A010?» | `alumnos[].respuestas[]` |
 | Entrevista, temática | «¿Qué dijo E02 sobre las tutorías?» | `entrevistas[].intercambios[]` |
@@ -1712,7 +1645,7 @@ cifra ya calculada se cita, no se aproxima.
 
 Cada tipo se comprueba con consultas deterministas sobre el documento (`shared/conocimiento/consultas.py`,
 `knowledge-service/tests/test_criterios.py`). Los conteos y cruces sobre respuestas individuales no se
-resuelven con similitud vectorial: los calcula el enrutador (X.9.2).
+resuelven con similitud vectorial: los calcula el módulo de cálculo (X.9.4).
 <!-- fuente: borrador JSON_FINALES_RAG_Y_ESTADISTICA §1.3 y §1.6 (16 oct), actualizado a las pruebas sin calificar; shared/conocimiento/consultas.py; knowledge-service/tests/test_criterios.py -->
 
 **Decisión: entrevista solo con pregunta y respuesta (vigente).** La primera versión del documento de
@@ -1788,7 +1721,7 @@ documento final (esquema 2.1), y la versión anterior sin análisis (2.0) sigue 
 **Uso en el RAG.** El chunk de cada intercambio empieza con lo que responde: «Postura: sí (en presente).
 Responde: …. Motivo: …», seguido de «Antecedente (pasado): …» y de la respuesta completa (X.9.1). Las
 preguntas del tipo «¿cuántos entrevistados creen que…?» se responden con un conteo calculado de las
-posturas (X.9.2).
+posturas (X.9.4).
 
 **Decisión: el modelo propone y el código verifica.** Las etiquetas del modelo de 3B no son confiables
 por sí solas: en la primera medición, su postura coincidió con la anotación de referencia en 50–56 %.
@@ -1971,50 +1904,66 @@ grupos de KPIs. Ubicación: aquí.]**
 
 ## X.9 RAG ★
 
-**Cómo responde hoy el chat (versión del 8 nov).** El chat es un **RAG híbrido**: combina la **recuperación** de
-fragmentos de los instrumentos (ChromaDB) con un **módulo de cálculo** que cuenta y filtra sobre todos los
-respondentes. La recuperación da el contexto y el cálculo da las cifras exactas, porque con unos cuantos fragmentos el
-modelo nunca ve a los 2000 respondentes de una encuesta. El modelo de lenguaje interviene dos veces: para entender la
-pregunta y para redactar la respuesta. La Tabla D.23a resume el recorrido.
+**Cómo responde el chat.** El chat es un **RAG híbrido**: combina la **recuperación** de fragmentos de los
+instrumentos (ChromaDB) con un **módulo de cálculo** que cuenta y filtra sobre todos los respondentes. La
+recuperación da el contexto y el cálculo da las cifras exactas, porque con unos cuantos fragmentos el modelo nunca ve
+a los 2000 respondentes de una encuesta. El modelo de lenguaje interviene dos veces: para entender la pregunta y para
+redactar la respuesta. La Tabla D.23a resume el recorrido; las secciones X.9.1 a X.9.7 describen cada etapa y la
+decisión que la explica.
 
-**Tabla D.23a.** Recorrido de una pregunta en la versión del 8 nov. Las rutas son de `services/visualization-service/`.
+**Tabla D.23a.** Recorrido de una pregunta. Las rutas son de `services/visualization-service/`.
 
-| # | Paso | Qué hace | ¿Usa el modelo? | Dónde está |
-|---|---|---|---|---|
-| 0 | Caché | Si la misma pregunta, con el mismo alcance y la misma versión de los instrumentos, se hizo en las últimas 24 h, devuelve la respuesta guardada | No | `clave_cache()` en `services/rag_service.py` |
-| 1 | Reglas de dominio | Reidentificación de personas, intentos de manipular el chat y tareas ajenas: mensaje fijo | No | `services/dominio.py`, `config/dominio.yaml` (X.10.1) |
-| 2 | Ayuda de la plataforma | Preguntas de uso: responde con los textos curados | Redacta con esos textos | `config/ayuda.yaml` |
-| 2b | Cortesía y operaciones sin modelo | Saludos, consejos personales y malestar (mensaje fijo con ejemplos del instrumento activo); en entrevistas, lo que se cuenta exacto (palabras por hablante, cobertura de la guía, respuesta más larga); preguntas opcionales y escalas del instrumento | No | `services/cortesia.py`, `entrevista_ops.py`, `instrumento_ops.py` (X.9.6) |
-| 3 | Recuperar primero | Busca en ChromaDB los fragmentos más parecidos a la pregunta; a las preguntas sobre el instrumento les agrega su ficha | No (solo *embeddings*) | `_recuperar_primero()` en `services/rag_service.py` |
-| 4 | Interpretar | Convierte la pregunta, la conversación previa, el catálogo del instrumento y lo recuperado en un **plan** en JSON (12 intenciones) | Sí | `services/interpretacion.py`, `plan_consulta.py` |
-| 5 | Seguir el hilo y validar | Decide si la pregunta es nueva o sigue a la anterior; valida el plan contra el catálogo y lo ancla a lo que la pregunta dice | No | `services/seguimiento.py`, `anclaje.py`, `plan_consulta.py` |
-| 6 | Calcular | Cuenta, filtra, ordena o agrupa sobre el documento final vigente | No | `services/ejecutor.py`, `hallazgos.py` |
-| 7 | Apoyo del RAG | Recupera los fragmentos de las personas o preguntas que usó el cálculo | No | `_apoyo_rag()` en `services/rag_service.py` |
-| 8 | Redactar | El modelo recibe el resultado calculado, el texto recuperado y la conversación previa, con las 20 reglas del prompt | Sí | `services/prompt.py`, `consulta_planificada.py` |
-| 9 | Verificar | Rechaza una redacción vacía, que niegue el resultado, invente un ID o una cita, cambie u omita una cifra, compare al revés, infiera sin respaldo, atribuya un porcentaje a otra opción, nombre solo algunas de las opciones del criterio, desordene un ranking o, en una prueba, juzgue aciertos o desempeño. Se rehace una vez con el motivo; si vuelve a fallar, se muestra el cálculo | No | `_verificar_redaccion()` en `services/rag_service.py` |
-| 10 | Registrar y evaluar | Guarda la consulta con su plan, el plan tal como lo escribió el modelo, el catálogo que vio y los milisegundos por etapa. El juez evalúa cuando el usuario lo pide; la investigadora califica | El juez, bajo demanda | `tt_rag.rag_log`; `services/evaluacion.py` (X.10.7) |
-<!-- fuente: services/visualization-service/services/rag_service.py (planear, _recuperar_primero, _apoyo_rag, _verificar_redaccion, _AVISOS_REINTENTO; _VERSION_RESPUESTAS 34); cortesia.py; entrevista_ops.py; instrumento_ops.py; consulta_planificada.py (Preparada.registro); interpretacion.py; plan_consulta.py; seguimiento.py; anclaje.py; ejecutor.py; consulta_planificada.py; prompt.py (SISTEMA, 20 reglas); evaluacion.py; commits b8c7d7a y 84b861d (7 nov) -->
+| # | Paso | Qué hace | ¿Usa el modelo? | Dónde está | Sección |
+|---|---|---|---|---|---|
+| 0 | Caché | Si la misma pregunta, con el mismo alcance y la misma versión de los instrumentos, se hizo en las últimas 24 h, devuelve la respuesta guardada | No | `clave_cache()` en `services/rag_service.py` | X.9.7 |
+| 1 | Reglas de dominio | Reidentificación de personas, intentos de manipular el chat y tareas ajenas: mensaje fijo | No | `services/dominio.py`, `config/dominio.yaml` | X.10.1 |
+| 2 | Ayuda de la plataforma | Preguntas de uso: responde con los textos curados | Redacta con esos textos | `config/ayuda.yaml` | X.10.2 |
+| 2b | Cortesía y operaciones sin modelo | Saludos, consejos personales y malestar (mensaje fijo con ejemplos del instrumento activo); en entrevistas, lo que se cuenta exacto (palabras por hablante, cobertura de la guía, respuesta más larga); preguntas opcionales y escalas del instrumento | No | `services/cortesia.py`, `entrevista_ops.py`, `instrumento_ops.py` | X.9.4 |
+| 3 | Recuperar primero | Busca en ChromaDB los fragmentos más parecidos a la pregunta; a las preguntas sobre el instrumento les agrega su ficha | No (solo *embeddings*) | `_recuperar_primero()` en `services/rag_service.py` | X.9.3 |
+| 4 | Interpretar | Convierte la pregunta, la conversación previa, el catálogo del instrumento y lo recuperado en un **plan** en JSON (12 intenciones) | Sí | `services/interpretacion.py`, `plan_consulta.py` | X.9.2 |
+| 5 | Seguir el hilo y validar | Decide si la pregunta es nueva o sigue a la anterior; valida el plan contra el catálogo y lo ancla a lo que la pregunta dice | No | `services/seguimiento.py`, `anclaje.py`, `plan_consulta.py` | X.9.2 |
+| 6 | Calcular | Cuenta, filtra, ordena o agrupa sobre el documento final vigente | No | `services/ejecutor.py`, `hallazgos.py` | X.9.4 |
+| 7 | Apoyo del RAG | Recupera los fragmentos de las personas o preguntas que usó el cálculo | No | `_apoyo_rag()` en `services/rag_service.py` | X.9.3 |
+| 8 | Redactar | El modelo recibe el resultado calculado, el texto recuperado y la conversación previa, con las 20 reglas del prompt | Sí | `services/prompt.py`, `consulta_planificada.py` | X.9.5 |
+| 9 | Verificar | Rechaza la redacción que no se sostiene en el resultado; se rehace una vez con el motivo y, si vuelve a fallar, se muestra el cálculo | No | `_verificar_redaccion()` en `services/rag_service.py` | X.9.5 |
+| 10 | Registrar y evaluar | Guarda la consulta con su plan, el plan tal como lo escribió el modelo, el catálogo que vio y los milisegundos por etapa. El juez evalúa cuando el usuario lo pide; la investigadora califica | El juez, bajo demanda | `tt_rag.rag_log`; `services/evaluacion.py` | X.9.7, X.10.7 |
+<!-- fuente: services/visualization-service/services/rag_service.py (planear, _recuperar_primero, _apoyo_rag, _verificar_redaccion, _AVISOS_REINTENTO); cortesia.py; entrevista_ops.py; instrumento_ops.py; consulta_planificada.py (Preparada.registro); interpretacion.py; plan_consulta.py; seguimiento.py; anclaje.py; ejecutor.py; prompt.py (SISTEMA, 20 reglas); evaluacion.py -->
 
-Si la interpretación no produce un plan válido, responde el enrutador por reglas de la primera arquitectura (X.9.2).
+Si la interpretación no produce un plan válido, responde el enrutador por reglas (X.9.6).
 
-**Cómo leer las secciones X.9.2 a X.9.6.** Cada una describe una versión en el orden en que se hizo, y las
-posteriores **se suman** a las anteriores; la única que se reemplazó es el enrutador por reglas como ruta principal.
-Lo vigente es la Tabla D.23a: el recorrido de X.9.3, con la recuperación de X.9.4, el hilo y la verificación de X.9.5
-y los cambios de X.9.6.
-
-**Cómo se llegó aquí.** El chat pasó por seis versiones. Cada una nació de fallas observadas en las pruebas
-(Pruebas Y.4).
+**Versiones.** El chat llegó a esta forma en seis versiones; cada una nació de fallas observadas en las pruebas. El
+detalle de cada versión, con lo que se midió y lo que se corrigió, está en Pruebas.
 
 **Tabla D.23b.** Versiones del chat.
 
-| Fecha | Versión | Qué cambió | Por qué | Sección |
+| Fecha | Versión | Qué cambió | Por qué | Dónde se probó |
 |---|---|---|---|---|
-| 10–16 oct | Solo búsqueda semántica | El modelo redacta con los fragmentos más parecidos | Primera versión | X.9.1 |
-| 17–26 oct | Enrutador por reglas | Reglas reconocen la intención y calculan; el modelo solo redacta el cálculo | Con fragmentos no se puede contar a todos los respondentes | X.9.2 |
-| 28 oct | Rediseño en cuatro etapas | El modelo interpreta la pregunta en un plan; el cálculo lo ejecuta; la redacción se verifica | Las reglas no reconocían formas nuevas de preguntar | X.9.3 |
-| 4–5 nov | RAG y cálculo complementarios; RAG primero | La recuperación entra en todas las respuestas y se hace antes de interpretar | Las respuestas con plan no consultaban ChromaDB | X.9.4 |
-| 7 nov | Hilo, condiciones no literales y redacción verificada | Los seguimientos conservan la pregunta; dos valores de una variable se comparan; la verificación revisa comparaciones, inferencias y porcentajes | Comentarios de la investigadora sobre la versión anterior | X.9.5 |
-| 7–8 nov | **Vigente.** Evaluación con baterías y cambios generalizados | Chunks medidos en *tokens*, polaridad y análisis de lo que se cuenta, cortesía, lo que no existe, comparaciones y cruces, interpretación en dos capas, operaciones de entrevista, verificación más estricta | 79 preguntas de la investigadora y 24 de control: en la línea base cumplían 31 de 79 y 1 de 16 | X.9.6 |
+| 10–16 oct | Solo búsqueda semántica | El modelo redacta con los fragmentos más parecidos | Primera versión | Y.4.1–Y.4.2 |
+| 17–26 oct | Enrutador por reglas | Reglas reconocen la intención y calculan; el modelo solo redacta el cálculo | Con fragmentos no se puede contar a todos los respondentes | Y.4.3–Y.4.11 |
+| 28 oct | Rediseño en cuatro etapas | El modelo interpreta la pregunta en un plan; el cálculo lo ejecuta; la redacción se verifica | Las reglas no reconocían formas nuevas de preguntar | Y.4.12 |
+| 4–5 nov | RAG y cálculo complementarios; RAG primero | La recuperación entra en todas las respuestas y se hace antes de interpretar | Las respuestas con plan no consultaban ChromaDB | Y.4.13 |
+| 7 nov | Hilo, condiciones no literales y redacción verificada | Los seguimientos conservan la pregunta; dos valores de una variable se comparan; la verificación revisa comparaciones, inferencias y porcentajes | Respuestas que la investigadora calificó mal | Y.4.13 |
+| 7–8 nov | **Vigente.** Cambios generalizados | Chunks en *tokens*, polaridad, cortesía, lo que no existe, comparaciones y cruces, interpretación en dos capas, operaciones de entrevista, verificación más estricta | Baterías de la investigadora: en la línea base se cumplían 31 de 79 casos y 1 de 16 de control | Y.4.14 |
+
+**Regla de trabajo: cambios generalizados.** Desde el 7 nov, ningún texto, ID u opción de los instrumentos de prueba
+entra al código, ni ejemplos copiados de ellos: cada cambio debe servir para cualquier instrumento del mismo tipo. Cómo
+se comprobó (búsqueda de sus textos en el código y set de control) está en Pruebas Y.4.14.
+
+**El alcance real del modelo.** El chat usa `gemma3:4b`, un modelo de 4 mil millones de parámetros que corre en el
+equipo del proyecto (GTX 1650 de 4 GiB). Ocupa 2.9 GB y, con la memoria de video llena, Ollama reparte su cálculo
+entre la CPU y la GPU (43 % y 57 %): cada respuesta tarda de 20 a 60 s, y un modelo más grande no cabe. Por eso el
+trabajo se reparte como indica la Tabla D.23c.
+
+**Tabla D.23c.** Qué hace el modelo y qué hace el sistema en cada respuesta.
+
+| Tarea | El modelo de lenguaje | El sistema (código) |
+|---|---|---|
+| Entender la pregunta | Traduce la pregunta y la conversación a un **plan** en JSON | Valida el plan contra el catálogo del instrumento y lo corrige con reglas generales |
+| Encontrar el contenido | — | Recupera los fragmentos más parecidos (modelo de *embeddings*, no de lenguaje) |
+| Calcular | Nunca | Cuenta, filtra, compara, cruza y ordena sobre todos los respondentes |
+| Redactar | Escribe la respuesta con el resultado calculado y el texto recuperado | Verifica la redacción; si falla dos veces, muestra el resultado calculado |
+| Mensajes fijos | — | Cortesía, privacidad, manipulación, pruebas sin calificar |
+<!-- fuente: `ollama ps` del 8 nov (2.9 GB, 43 %/57 % CPU/GPU); .env (OLLAMA_MODEL=gemma3:4b) -->
 
 ### X.9.1 Fuente y estrategia de chunks
 
@@ -2031,10 +1980,10 @@ si un instrumento no tiene documento, se usa el JSON técnico como respaldo.
 | Entrevista | `encabezado`, un `pregunta` por pregunta guía, un `intercambio` por par pregunta-respuesta de cada participante, `kpi` | ent_01: 3 + 12 + 498 + 8 |
 
 **Reglas.**
-- **Cada chunk se mide en *tokens* con el tokenizador del modelo de *embeddings*** (desde el 7 nov). Ese modelo
-  solo lee 128 *tokens* (`max_seq_length`) y lo que pasa de ahí no se embebe, sin aviso. Antes se usaba una ventana
-  fija de 450 caracteres (de la rama `PA`), y se truncaban 1,094 de 6,667 chunks de la encuesta de 2000 respondentes
-  y 385 de 465 de la prueba de prueba. Ahora ninguno pasa de 128 *tokens* (Tabla D.24a). Si una unidad no cabe, se
+- **Cada chunk se mide en *tokens* con el tokenizador del modelo de *embeddings*.** Ese modelo solo lee 128
+  *tokens* (`max_seq_length`) y lo que pasa de ahí no se embebe, sin aviso. Con una ventana fija de 450 caracteres
+  se truncaban 1,094 de 6,667 chunks de la encuesta de 2000 respondentes; medidos en *tokens*, ninguno (Tabla D.24a).
+  La ventana de 450 caracteres queda solo como respaldo cuando no hay tokenizador. Si una unidad no cabe, se
   trocea y **cada pieza repite su prefijo** con el texto completo de la pregunta («Respondente R001 (turno:
   Matutino…)»).
 - **La definición de cada pregunta va aparte de sus resultados.** Un chunk dice qué pregunta, en qué sección y con
@@ -2043,8 +1992,8 @@ si un instrumento no tiene documento, se usa el JSON técnico como respaldo.
   relacionada…», no a «Respuestas válidas: 1966…». En los reactivos, la distribución lleva la letra, el texto de la
   opción y su n.
 - **La búsqueda deja fuera los chunks de respondentes y alumnos salvo que la consulta nombre a alguien** (R017,
-  A001). Los intercambios de entrevista sí entran: son el contenido que se busca. En la encuesta de prueba eran unos 6,600 chunks que llenaban los primeros
-  lugares de cualquier búsqueda; lo de cada persona lo calcula la ruta estructurada (`_donde()` en
+  A001). Los intercambios de entrevista sí entran: son el contenido que se busca. En la encuesta de 2000 eran unos
+  6,600 chunks que llenaban los primeros lugares de cualquier búsqueda; lo de cada persona lo calcula la ruta estructurada (`_donde()` en
   `visualization-service/services/rag_service.py`).
 - **La ficha** incluye las indicaciones del entrevistador, el encabezado de la transcripción, los participantes, las
   preguntas de la guía y los reactivos por sección. **El chunk de un intercambio** lleva el texto completo de la
@@ -2063,13 +2012,13 @@ si un instrumento no tiene documento, se usa el JSON técnico como respaldo.
   que responde la pregunta y su postura, después el antecedente de otro momento y al final la respuesta
   completa. Los metadatos agregan `postura` y `marcoTemporal`.
 - **Metadatos filtrables:** `instrumentoId`, `tipo`, `seccion`, `preguntaId`, `respondenteId`,
-  `kpiId`, `fuente`, y desde el 7 nov `tipoChunk` y `parte` (definición o resultados).
+  `kpiId`, `fuente`, `tipoChunk` y `parte` (definición o resultados).
 <!-- fuente: chunks_documento.py (_MAX_PREGUNTA_EN_RESPUESTA = 40 y su comentario; _por_lineas; docstring «Se mide en tokens»); storage-service/services/vectores.py (contar_tokens, max_tokens); chroma_indexer.py; commit eb17985 (ficha «ninguno»); commit 6a1cb38 (450); commit 310af4c (tokens, definición y resultados, filtro de personas); evidencias/chunks_2026-11-07/README.md -->
 
-**Tabla D.24a.** Chunks que pasaban del límite del modelo de *embeddings* (128 *tokens*), antes y después de medir en
-*tokens* (reindexación del 7 nov).
+**Tabla D.24a.** Chunks que pasan del límite del modelo de *embeddings* (128 *tokens*) con cada forma de medir
+(reindexación del 7 nov).
 
-| Instrumento | Antes (450 caracteres) | Después (128 *tokens*) |
+| Instrumento | Ventana de 450 caracteres | Medido en *tokens* (vigente) |
 |---|---|---|
 | Encuesta de 2000 respondentes | 1,094 de 6,667 | 0 de 7,059 |
 | Prueba de 97 alumnos | 385 de 465 | 0 de 1,337 |
@@ -2077,8 +2026,6 @@ si un instrumento no tiene documento, se usa el JSON técnico como respaldo.
 | Otras dos encuestas | 157 de 995 | 0 de 1,238 |
 | Tres entrevistas | 0 | 0 |
 <!-- fuente: evidencias/chunks_2026-11-07/README.md (tabla de truncados; tools/rag/contar_truncados.py) -->
-
-El efecto en la recuperación se mide en X.9.6 (Tabla D.23j).
 
 Ejemplo de chunk de respondente (texto real):
 
@@ -2101,125 +2048,37 @@ Respuesta: En la primaria no lo pensaba así, pero ahora creo que sí, por la be
 ```
 <!-- fuente: services/storage-service/services/chunks_documento.py (_cuerpo_intercambio); tests/test_chunks_documento.py::test_entrevista_con_analisis_pone_primero_lo_que_responde -->
 
-### X.9.2 Primera arquitectura: enrutador por reglas (17–26 oct)
+**Por qué así: efecto en la recuperación.** Se midió con 43 preguntas de las baterías de la investigadora y 9 de
+control, cada una con su fragmento correcto. El *hit rate*@3 es la proporción de preguntas cuyo fragmento correcto
+queda entre los 3 primeros (Tabla D.24b).
 
-**Vigente solo como respaldo.** Desde el 28 oct responde únicamente cuando la interpretación no produce un plan
-válido (en la evaluación final, 7.8 % de las preguntas). Sus cálculos (`shared/conocimiento/consultas.py`) y sus
-reglas de dominio siguen en uso.
+**Tabla D.24b.** *Hit rate*@3 de la recuperación (modelo de *embeddings* del chat, sin umbrales).
 
-**Recorrido de una pregunta en esta primera arquitectura.** No hay una sola plantilla que decida qué responder. Cada pregunta pasa por
-una cadena de filtros, en orden, y se detiene en el primero que sabe responderla. La mayoría de las
-respuestas no las escribe el modelo de lenguaje: salen de reglas y de cálculos. El modelo solo redacta al
-final, cuando hace falta, siguiendo una plantilla de instrucciones. La Tabla D.23c resume el recorrido y
-dónde está cada pieza en el código.
+| Preguntas | Ventana de 450 caracteres, con personas | Chunks en *tokens* y sin personas | Con ficha y temas de la entrevista (vigente) |
+|---|---|---|---|
+| Las tres baterías | 0.61 | 0.79 | 0.84 |
+| Encuesta | 0.25 | 0.69 | 0.69 |
+| Prueba | 0.82 | 0.91 | 0.91 |
+| Entrevista | 0.81 | 0.81 | 0.94 |
+| Set de control | 0.89 | 1.00 | 1.00 |
+<!-- fuente: tools/rag/recuperacion_oro.json; evidencias/chunks_2026-11-07/README.md; evidencias/chat_2026-11-08_final/recuperacion.json -->
 
-**Tabla D.23c.** Recorrido de una pregunta en la primera arquitectura (17–26 oct). Las rutas son de `services/visualization-service/`,
-salvo que se indique otra.
+La entrevista sube con la última columna porque la ficha incluye el encabezado de la transcripción y los
+intercambios llevan los temas del análisis de lo que se cuenta.
 
-| # | Paso | Qué hace | ¿Usa el modelo? | Dónde está |
-|---|---|---|---|---|
-| 0 | Caché de respuestas | Si la misma pregunta, con el mismo alcance y la misma versión de los instrumentos, se hizo en las últimas 24 h, devuelve la respuesta guardada | No | `clave_cache()` y `buscar_en_cache()` en `services/rag_service.py` |
-| 1 | Reglas de dominio | Reidentificación de personas, intentos de manipular el chat y tareas ajenas (poemas, recetas, traducciones): mensaje fijo | No | `services/dominio.py`; patrones y mensajes en `config/dominio.yaml` (X.10.1) |
-| 2 | Ayuda de la plataforma | Preguntas de uso («¿cómo subo un instrumento?»): responde con los textos curados y los cita como `[Ayuda: …]` | Redacta con esos textos | `config/ayuda.yaml` |
-| 3 | Enrutador | Reconoce con reglas la intención (respondente, porcentaje por grupo, filtro, KPI, descripción, estructura, patrones, calidad, pruebas sin calificar…) y **calcula** el resultado sobre el documento final vigente | Solo para redactar el cálculo; en descripción, estructura, patrones y pruebas sin calificar, no | Reglas (una expresión por intención) y cálculo (`_ejecutar_en`) en `services/enrutador.py`; consultas en `shared/conocimiento/consultas.py` (X.9.2) |
-| 4 | Búsqueda semántica | Si ninguna regla reconoce la pregunta, busca los fragmentos más parecidos en ChromaDB. Con similitud menor a 0.30 la pregunta queda fuera del dominio; de 0.30 a 0.35, «sin información»; en la zona gris decide un clasificador con el modelo, salvo que la pregunta nombre un instrumento | El clasificador, en la zona gris | `_buscar()` y `planear()` en `services/rag_service.py`; umbrales en `shared/db/core/config.py` (X.9.3) |
-| 5 | Redacción | El modelo recibe la plantilla de instrucciones y el resultado calculado o los fragmentos, dentro de `<datos>` | Sí | Plantilla: constante `SISTEMA` en `services/prompt.py` (13 reglas, X.10.3); llamada en `services/ollama_client.py` |
-| 6 | Revisión | Si la redacción cambia una cifra o niega un resultado calculado, se muestra el cálculo. Se quitan citas inventadas, la frase «sin información» sobrante y datos personales | No | `cifras_fieles()`, `quitar_citas_inventadas()` y `_pulir()` en `services/rag_service.py` |
-| 7 | Registro y métricas | Se guarda la consulta con su decisión, motivo, ruta y similitud. Después, en segundo plano, el juez calcula fidelidad, relevancia y precisión del contexto | El juez | Tabla `tt_rag.rag_log`; `services/evaluacion.py` (X.10.7) |
-<!-- fuente: services/visualization-service/services/rag_service.py (responder, planear, _CONSULTAS_SIN_LLM, cifras_fieles, _pulir); services/dominio.py; services/enrutador.py (detectar, resolver, refiere_al_alcance); services/prompt.py (SISTEMA); services/evaluacion.py; config/dominio.yaml y config/ayuda.yaml; shared/db/core/config.py (RAG_MIN_SCORE 0.35, RAG_FUERA_MAX 0.30) -->
+### X.9.2 Interpretación: el plan del modelo y las reglas que lo corrigen
 
-**Los fragmentos que se buscan** en el paso 4 los arma storage-service a partir del documento final
-(`services/storage-service/services/chunks_documento.py`, X.9.1).
+**Qué es el plan.** El modelo traduce cada pregunta a un **plan** en JSON: qué intención tiene, sobre qué
+instrumentos, preguntas y respondentes, con qué filtros y qué mostrar. El plan lo escribe el modelo **en el
+momento**, para cada pregunta; lo que está programado son las **operaciones** que un plan puede pedir (X.9.4).
+Esta separación es la de *semantic parsing* o *text-to-SQL*: el modelo traduce el lenguaje natural a una consulta
+estructurada y un sistema exacto la ejecuta (Rajkumar et al., 2022). Es también la idea de los modelos asistidos por
+programas: el modelo escribe qué calcular y un intérprete hace la cuenta, porque los modelos de lenguaje se equivocan
+en la aritmética aunque entiendan el problema (Gao et al., 2023). Aquí la consulta es el plan, validado con un JSON
+Schema, y **nunca se genera ni se ejecuta SQL**.
 
-**Cómo se diagnostica una respuesta equivocada.** Cada consulta queda en `tt_rag.rag_log` con la columna
-`motivo`, que dice en qué paso se detuvo:
-- `estructurada:<intención>`: la respondió el enrutador con un cálculo;
-- `clasificador: …`: la rechazó el clasificador de la zona gris;
-- `sin fragmentos sobre el umbral`: la búsqueda no encontró nada suficientemente parecido;
-- `regla:<tipo>`: la detuvo una regla de dominio.
-
-Casi siempre, una pregunta legítima que falla es una forma de preguntar que ninguna regla del enrutador
-reconoce y que termina en la búsqueda o en el clasificador. El 26 oct, «¿qué me puedes decir del
-instrumento…?» se rechazó así (X.9.2). La corrección es agregar esa forma a las reglas de
-`services/enrutador.py`, con su prueba automatizada, no cambiar la plantilla del modelo.
-<!-- fuente: tabla tt_rag.rag_log (columnas decision_dominio, motivo, score_max, ruta); rag_log 1066–1074 (26 oct) -->
-
-**Por qué un enrutador.** Los chunks sirven para buscar por parecido, pero no para contar: con a lo más 8 fragmentos, el
-modelo nunca ve a los 60 respondentes de una encuesta. Por eso, antes de buscar, un **enrutador por
-reglas** (`services/enrutador.py`) detecta si la pregunta pide un dato exacto y, en ese caso, lo
-calcula con `shared/conocimiento/consultas.py` sobre el documento vigente y
-`respuesta_interpretada`. El modelo solo redacta ese «RESULTADO CALCULADO».
-
-**Tabla D.25.** Intenciones del enrutador.
-<!-- fuente: enrutador.py; CLAUDE.md §RAG chat paso 3 -->
-
-| Intención | Ejemplo | Ruta |
-|---|---|---|
-| Respuesta de un respondente | «¿Qué respondió R017 en la pregunta sobre la retroalimentación?» | estructurada |
-| Respondente en un nivel en varias preguntas | «Dame un respondente en desacuerdo en p1, p2 y p3» | estructurada |
-| Porcentaje por nivel y por grupo | «¿Qué porcentaje del turno vespertino está de acuerdo con p4?» | estructurada |
-| Pruebas sin calificar (`sin_calificar`) | «¿Qué reactivo tuvo el menor % de acierto?» → aclara que las pruebas no se califican y da la opción más elegida de cada reactivo, sin modelo | estructurada |
-| Lo que dijo un participante sobre un tema | «¿Qué dijo E02 sobre el orientador?» | estructurada |
-| Postura de los entrevistados (requiere el análisis de respuestas) | «¿Cuántos entrevistados creen que las actividades extracurriculares influyen en sus calificaciones?» | estructurada: conteo de posturas y núcleo de cada persona |
-| Filtro (contar, listar, uno de ejemplo) | «uno de los estudiantes que sí reprobaron por falta de tiempo» | estructurada |
-| Calidad de los datos | «¿Qué análisis me sugieres para la encuesta de carga académica?» | estructurada |
-| Estructura del instrumento: secciones, número de preguntas, sección de una pregunta | «¿Los instrumentos tienen secciones?», «¿En qué sección está la pregunta 4?» | estructurada, **sin LLM**: listado por instrumento |
-| Descripción de un instrumento y relación entre varios (acepta «el primer/segundo instrumento») | «¿De qué habla el primer instrumento?», «Dime la relación entre uno y otro instrumento» | estructurada, **sin LLM**: ficha calculada y lo que comparten |
-| Patrones o hallazgos de los datos | «¿Qué patrón de información consideras más interesante de los datos de estos instrumentos?» | estructurada, **sin LLM**: patrones calculados sobre los datos completos |
-| KPI: por qué se asoció, qué mide, qué preguntas lo miden | «¿Por qué el KPI Tamaño Promedio de Clase está relacionado…?» | mixta (cálculo + fragmentos del KPI + fuentes del KPI) |
-| Todo lo demás | «¿Qué opinan los estudiantes del deporte en el campus?» | semántica |
-
-**Filtros.** Las condiciones se arman por reglas sobre el catálogo del propio documento: raíces de
-5 letras («reprobado», «reprobaron» y «reprobaste» coinciden); «sí»/«no» agrupan todas las opciones
-que empiezan así; niveles; comparaciones numéricas («más de 30»); hasta tres condiciones; y si se
-nombra el instrumento, el alcance se limita a él. Solo si las reglas no encuentran la condición, el
-modelo propone una en JSON, que se valida contra las preguntas y opciones reales. **Nunca se ejecuta
-SQL generado por el modelo.** En una pregunta de selección múltiple, una persona cumple la condición si
-la opción pedida está **entre** las que marcó. Antes se comparaba el texto completo de su respuesta, y
-solo contaban quienes marcaron únicamente esa opción: en enc_11 daba 45 en lugar de 93 para la biblioteca.
-
-**Correcciones de rutas encontradas con el banco de preguntas (24 oct):**
-- **Porcentaje sin número de pregunta.** «¿Qué porcentaje del turno matutino está de acuerdo con que se
-  siente parte de la comunidad escolar?» se va al cálculo, porque la pregunta se busca por sus palabras.
-  Antes iba a la búsqueda semántica y el modelo inventó «100 %».
-- **Número de participantes.** «¿Cuántas personas fueron entrevistadas?» es una consulta de estructura.
-  Antes se rechazaba como fuera del dominio (similitud 0.29).
-- **Temas repetidos.** «¿Qué temas se repiten más…?» se reconoce como patrones.
-- **Conteo de un filtro.** La verificación del conteo de un filtro revisa la línea del conteo («Cumplen la
-  condición 88 de 160»), no la de la condición.
-<!-- fuente: shared/conocimiento/consultas.py (cumple, seleccion); enrutador.py (_PERSONAS_CUANTAS, _PATRONES, pct_nivel por texto); rag_service.py (cifras_completas); evidencias/banco_2026-10-24/evaluacion_llama3.2_3b_2122.json (E11-07, E10-03, ENT1-02, ENT1-05, E09-02) -->
-
-### X.9.3 Rediseño en cuatro etapas (28 oct)
-
-**Diagnóstico (Fase 0).** Con la encuesta de 2000 respondentes (instrumento 127), tres preguntas fallaron.
-Ninguna de las causas era del modelo de lenguaje: estaban en las reglas que deciden antes que él (Tabla D.23d).
-
-**Tabla D.23d.** Causas de las tres preguntas que fallaron
-
-| Pregunta | Qué pasó | Causa |
-|---|---|---|
-| «dame un dato que encuentres interesante del instrumento» | Respondió con la ficha (18 preguntas, 5–7 minutos); fidelidad «—», precisión 0 % | La intención `patrones` solo se activa con «lo más interesante», «hallazgos» o «patrones». La búsqueda semántica solo encontró la ficha, porque los hallazgos no existen como texto en Chroma. La fidelidad quedó vacía porque el juez devolvió 1 veredicto para 2 afirmaciones |
-| «dame los primeros 5 estudiantes que contestaron que tienen carga mínima, junto con todas sus respuestas» | 10 IDs y «372 más», sin respuestas | El filtro solo distingue uno, contar, listar y resumir: no hay límite, orden ni campos. Las respuestas completas solo salen para una persona |
-| «qué respondió el primer respondente en todas las preguntas?» | Rechazada como fuera de dominio | Un respondente se reconoce solo por su ID (R017). La similitud (0.44) cayó en la zona gris y el clasificador de 3B la rechazó, porque la excepción para el alcance solo reconoce palabras como «instrumento» |
-
-Además, cada tarjeta de fuente mostraba todos los KPIs del instrumento, sin importar la pregunta.
-<!-- fuente: tt_rag.rag_log 1093, 1094 y 1097 (28 oct); visualization-service/services/enrutador.py (_PATRONES, _accion, _PERSONA, por_ordinal, refiere_al_alcance); rag_service.py (planear: zona gris; fuentes con kpis); evaluacion.py (veredictos) -->
-
-**Arquitectura objetivo.** Cada pregunta pasa por cuatro etapas:
-1. **Interpretación:** el modelo arma un plan JSON; nunca escribe SQL ni texto libre.
-2. **Ejecución:** determinista, sin modelo.
-3. **Redacción:** el modelo redacta solo a partir del resultado de la ejecución.
-4. **Verificación:** cada cifra de la respuesta debe estar en el resultado, y se calculan las métricas RAGAS sobre
-   el contexto que de verdad se usó.
-
-El filtro de dominio deja de ser una capa previa: lo decide la interpretación con la intención
-`fuera_de_dominio`. Se conservan las reglas de PA: no reidentificar a nadie y tratar el texto de los
-instrumentos como datos.
-
-**Fase 1: plan e interpretación.** El esquema del plan está en `services/plan_consulta.py` y se publica como
-JSON Schema en `esquemas/plan_consulta.json` (Tabla D.23e). Es estricto: un campo inventado lo invalida.
-
-**Tabla D.23e.** Campos del plan de consulta
+**Tabla D.25a.** Campos del plan (`services/plan_consulta.py`; esquema en `esquemas/plan_consulta.json`). El
+esquema es estricto: un campo inventado invalida el plan.
 
 | Campo | Contenido |
 |---|---|
@@ -2232,434 +2091,246 @@ JSON Schema en `esquemas/plan_consulta.json` (Tabla D.23e). Es estricto: un camp
 | `consulta_semantica`, `aclaracion` | Búsqueda reformulada para el RAG y la pregunta breve al usuario cuando la consulta es ambigua |
 <!-- fuente: services/visualization-service/services/plan_consulta.py; esquemas/plan_consulta.json; tests/test_plan_consulta.py -->
 
-El plan pasa por tres pasos:
-- **Interpretación** (`services/interpretacion.py`).
-  - El modelo recibe las instrucciones, 15 ejemplos (uno o más por intención, incluidos los tres casos de la Tabla
-    D.23d), el catálogo compacto de cada instrumento, los últimos 4 mensajes del chat y la pregunta.
-  - El catálogo compacto (`services/catalogo.py`) incluye las preguntas con su ID, tipo y opciones o escala, las
-    variables de contexto, los KPIs y el rango de respondentes.
-  - Ollama recibe el JSON Schema en `format`, con temperatura 0. Si el plan no es válido, se reintenta una vez con
-    el error; si vuelve a fallar, o si Ollama no responde, no hay plan.
-- **Validación contra el catálogo.** Una opción sin acentos o mayúsculas se empareja con la real. Una parecida se
-  corrige. Una opción que existe en otra pregunta se reubica ahí: el modelo había copiado el ID `p02` de un
-  ejemplo. Lo que no existe se convierte en una pregunta de aclaración con las opciones disponibles.
-- **Anclaje a lo que dice la pregunta** (`services/anclaje.py`). El modelo de 3B arma bien la forma del plan,
-  pero falló en detalles que el esquema no detecta. Por ejemplo, eligió «Carga media/normal» cuando la pregunta
-  decía «carga minima», y omitió «R017» y «pregunta 3». El anclaje corrige el plan con las menciones explícitas:
-  - IDs de respondente;
-  - números de pregunta;
-  - opciones escritas tal cual;
-  - «cuántos» como conteo.
+**Qué recibe el modelo** (`services/interpretacion.py`): las instrucciones, ejemplos breves (uno o más por
+intención, sobre un catálogo inventado que no se parece a ningún instrumento de prueba), el catálogo compacto de cada
+instrumento (`services/catalogo.py`: preguntas con su ID, tipo y opciones o escala, variables de contexto, KPIs y
+rango de respondentes), los 3 fragmentos recuperados más parecidos (X.9.3), los últimos 4 mensajes del chat y la
+pregunta. Ollama recibe el JSON Schema en `format`, con temperatura 0. Si el plan no es válido, se reintenta una vez
+con el error; si vuelve a fallar, o si Ollama no responde, responde el enrutador por reglas (X.9.6).
+- **Por qué el catálogo compacto:** si pasa de 4,500 caracteres (varios instrumentos) se usa su forma corta, para no
+  rebasar el contexto de 4096 *tokens*, que es el mismo de la redacción y evita que Ollama recargue el modelo
+  (X.10.5).
 
-  Un filtro que no comparte ninguna palabra con la pregunta ni con lo que el usuario preguntó antes se descarta.
-  Cada cambio queda anotado.
+**Las reglas que corrigen el plan.** Entre la interpretación y la ejecución, una capa de reglas revisa el plan
+(`anclaje.py`, `seguimiento.py`, `plan_consulta.py`). **No le enseñan nada al modelo**, que no cambia: actúan
+después de él y corrigen sus errores frecuentes. Cada corrección queda anotada en la consulta y la interfaz la
+muestra en «Cómo lo calculé».
 
-**Latencia de la interpretación** (llama3.2:3b, GTX 1650 de 4 GiB, prompt de unos 2,900 tokens):
-- Con `num_ctx` 8192, Ollama recargaba el modelo y lo repartía entre CPU y GPU: de 17 a 60 s por plan.
-- Con `num_ctx` 4096, el mismo valor que la redacción, el modelo queda completo en la GPU y la parte común del
-  prompt se reutiliza: de 0.7 a 3.0 s por plan, también después de una redacción.
-- Si el catálogo pasa de 4,500 caracteres (varios instrumentos), se usa su forma compacta.
+**Tabla D.25b.** Tipos de regla.
 
-**Diez preguntas medidas en vivo con el instrumento 127 (`POST /rag/interpretar`).** Las diez dieron el plan
-esperado, entre ellas:
-- los tres casos de la Tabla D.23d;
-- «¿cuántos tienen carga minima y alguna certificación?», con los dos filtros;
-- «¿qué respondió R017 en la pregunta 3?»;
-- una receta (fuera de dominio);
-- el alfa de Cronbach (metodología);
-- un seguimiento «¿y de ellos cuántos están en modalidad en línea?», que hereda la carga mínima del historial.
+| Tipo | Qué hace | Ejemplo | Por qué es general |
+|---|---|---|---|
+| Validación contra el catálogo | Una opción sin acentos o mayúsculas se empareja con la real; una parecida se corrige; una que existe en otra pregunta se reubica ahí; un filtro imposible (un nivel de acuerdo sobre una pregunta que no es escala) se quita | Una opción que no existe se responde con «no existe» y las opciones reales con su conteo | Se compara con el catálogo de cualquier instrumento |
+| Anclaje a lo que dice la pregunta | Las menciones explícitas mandan: IDs de respondente, números de pregunta, opciones escritas tal cual, «cuántos» como conteo; dos valores de una variable («pública y privada») se comparan; un filtro que no comparte ninguna palabra con la conversación se descarta | «Más de 30» elige la opción «Trabajo más de 30h» y descarta las otras que empiezan con «Trabajo» | Regla del español, no de un instrumento |
+| Hilo de la conversación | Cada pregunta es nueva, continuación o profundización de la anterior; en una continuación se conservan sus preguntas y su grupo | «De ellos» es el grupo anterior; «¿dejó alguno en blanco?» habla de la última persona mencionada | Igual en cualquier conversación |
+| Escalas | Las posiciones se leen de la escala del instrumento | «1 o 2» son las dos primeras posiciones | Cualquier escala ordenada |
+| Erratas | Una palabra parecida a una del catálogo no se toma como inexistente | «laboartorios» | Parecido de al menos 80 % con una palabra del catálogo |
+| Datos de contexto | Un valor que nombra un dato de contexto («tiene beca») no se busca como opción de una pregunta | «los que tienen beca» | Se compara con las variables de contexto de cualquier instrumento |
+<!-- fuente: services/visualization-service/services/plan_consulta.py (validar_contra_catalogo, _es_escala, _posiciones_de_escala, _contenida), anclaje.py (_filtros_sin_inventos, _raices_de_variables, _por_cantidad_escrita, inexistente), seguimiento.py (combinar, _preguntas_dichas); tests/test_plan_consulta.py, test_seguimiento.py y test_correcciones_fase5.py -->
 
-**Fase 2: ejecución determinista** (`services/ejecutor.py`). El plan validado se traduce a cálculos sobre el
-documento final vigente, el mismo del que salen `respuesta_interpretada` y los chunks. Solo se permiten estas
-operaciones:
-- filtrar con `=`, `!=` y comparaciones numéricas;
-- contar;
-- ordenar por ID;
-- limitar;
-- agrupar por una variable de contexto;
-- leer resúmenes.
+**Por qué hacen falta.** Las pruebas mostraron lo que los modelos de 3B y 4B no hacen de forma confiable por sí solos:
+respetar el formato de las opciones (escribió `"[1, 2]"` para «¿cuántos calificaron con 1 o 2…?»), seguir el hilo
+(en «De ellos, ¿qué respondieron sobre…?» olvidó el grupo anterior) y elegir la opción que la pregunta dice (eligió
+«Carga media/normal» cuando la pregunta decía «carga mínima»). En la evaluación final, el plan del modelo se usó sin
+cambios en 18 de 77 turnos (23 %); en los demás lo corrigieron la validación, las reglas o el hilo (Pruebas Y.4.14).
 
-El plan nunca se convierte en SQL. Además:
-- el límite tiene tope: 50 IDs, o 10 personas cuando se piden todas sus respuestas;
+**Limitación.** Las reglas forman una lista que crece cuando aparece un error nuevo del modelo; una forma de preguntar
+que nunca se ha visto puede fallar hasta que se detecte. Con un modelo más capaz harían falta menos reglas, y los
+registros de cada consulta permiten ajustar uno (X.9.7).
+
+### X.9.3 Recuperación: RAG primero
+
+El RAG conecta la pregunta con el contenido del instrumento. El plan y el RAG se complementan: **el RAG encuentra
+*dónde* está lo que se pregunta y el plan calcula *cuánto***. La recuperación interviene en cuatro momentos
+(`services/rag_service.py`):
+1. **Antes de interpretar** (`_recuperar_primero`, `_pistas`). Se buscan hasta 5 fragmentos y los 3 más parecidos
+   llegan al modelo como pistas, con las preguntas y sus opciones. Así el modelo encuentra que «¿cuántos trabajan?»
+   está en las opciones de la pregunta de situación laboral, aunque su enunciado no diga «trabajan», o que «la
+   pregunta de la VPN» es el reactivo r03.
+2. **Cuando el plan no alcanza.** Si el modelo solo pediría una aclaración y la pregunta es del alcance (sin el ID de
+   una persona), se responde con lo recuperado.
+3. **Después de calcular** (`_apoyo_rag`). El texto recuperado del mismo instrumento, filtrado a las personas del
+   resultado o a las preguntas que usó el cálculo, acompaña al resultado para que la redacción explique y no solo dé
+   cifras. En las intenciones numéricas llega sin cifras, para que el modelo no cite porcentajes de otras preguntas.
+   Si el texto y el cálculo no coinciden, manda el cálculo (regla 15 del prompt).
+4. **En entrevistas.** Los intercambios recuperados dicen en qué pregunta habló la persona de un tema; las preguntas
+   de esos intercambios se agregan a la tabla de la persona y los patrones salen del texto recuperado, con citas.
+
+**Por qué primero.** Desde el rediseño del 28 oct, las preguntas con plan no consultaban ChromaDB: el chat era
+«modelo + cálculo» y no un RAG (solo 13 de 170 respuestas usaron la recuperación; Pruebas Y.4.13). Ahora toda
+respuesta parte de la recuperación, y el cálculo queda como herramienta para lo que ningún fragmento contiene.
+
+**Las preguntas sobre el instrumento** («¿de qué trata?», «¿cuánto dura la entrevista?») no se resuelven por
+similitud, porque se parecen más a las preguntas que a la ficha: van directo a la ficha por su intención (`_fichas`).
+
+**Alcance y parámetros.** El usuario elige el alcance en el chat: su investigación, instrumentos elegidos o todo el
+acervo aprobado. La búsqueda semántica pide `top_k × 4` candidatos al índice, descarta los de similitud menor a 0.35
+y toma como máximo 1 ficha y 3 fragmentos por instrumento, con `top_k` entre 1 y 8 (6 por defecto). Las fuentes se
+numeran por instrumento: `[Fuente n]` es la n-ésima tarjeta que ve el usuario.
+- **La ficha llega completa.** Cuando entra una pieza de la ficha, el modelo recibe todas sus piezas en orden, sin el
+  título repetido (`_ficha_completa`). Si solo llegara la pieza más parecida, a veces sería la última («KPIs
+  asociados: …»), sin el objetivo ni lo que pregunta el instrumento.
+<!-- fuente: services/visualization-service/services/rag_service.py (_recuperar_primero, _MAX_RECUPERADOS 5, _MAX_PISTAS 3, _pistas, _rag_responde_aclaracion, _apoyo_rag, _sin_cifras, _completar_con_recuperados, _fichas, _ficha_completa, _donde); prompt.py (regla 15); models.py (top_k); evidencias/encuesta_sin_secciones_2026-10-20/RESULTADO.md -->
+
+### X.9.4 Cálculo determinista
+
+El plan validado se traduce a cálculos sobre el documento final vigente (`services/ejecutor.py`), el mismo del que
+salen `respuesta_interpretada` y los chunks. Solo se permiten estas operaciones: filtrar con `=`, `!=` y
+comparaciones numéricas; contar; ordenar por ID; limitar; agrupar por una variable de contexto o por la respuesta a
+otra pregunta; cruzar; y leer resúmenes. Además:
+- el límite tiene tope: 50 IDs, o 10 personas cuando se piden todas sus respuestas; las listas largas dan el total,
+  los primeros 20 y «muéstrame más»;
 - no se muestran variables de contexto con datos personales (nombre, correo, matrícula…);
-- cada resultado dice el criterio aplicado y cuántos cumplen en total, y si queda vacío lo dice.
+- cada resultado dice el criterio aplicado y cuántos cumplen en total, y si queda vacío lo dice;
+- en una pregunta de selección múltiple, una persona cumple la condición si la opción pedida está **entre** las que
+  marcó.
 
-Los resultados por intención están en la Tabla D.23f.
-
-**Tabla D.23f.** Resultado del ejecutor por intención
+**Tabla D.25c.** Resultado del cálculo por intención.
 
 | Intención | Resultado |
 |---|---|
-| `datos_respondente` | Tabla con una fila por pregunta y una columna por respondente, con sus respuestas interpretadas (por ID, o los primeros o últimos según `orden` y `limite`) |
+| `datos_respondente` | Tabla con una fila por pregunta y una columna por respondente, con sus respuestas interpretadas; con una sola persona, también cómo respondieron todos en esa pregunta |
 | `filtrar_respondentes` | Cuántos cumplen de cuántos (con %) y los primeros N, con sus IDs o con todas sus respuestas |
-| `conteo_porcentaje` | Conteo de un filtro, % en un nivel de una pregunta, o ambos («de quienes cumplen la condición») |
-| `comparar_grupos` | Tabla por grupo de contexto: respondentes y % en el nivel, u opción más elegida |
+| `conteo_porcentaje` | Conteo de un filtro, % en un nivel de una pregunta, o ambos; en un seguimiento «de ellos», el % sobre el grupo anterior y sobre el total |
+| `comparar_grupos` | Tabla por grupo (contexto, respuesta a otra pregunta, posición o sección): respondentes, distribución y media de cada grupo sobre su propio n |
 | `resumen_pregunta` | Respuestas válidas, sin respuesta, media, interpretación calculada y distribución |
 | `kpi` | KPIs asociados (o uno), qué miden, su justificación y las preguntas que los sustentan |
-| `hallazgo` | Candidatos ordenados por magnitud (ver abajo) |
+| `hallazgo` | Candidatos ordenados por magnitud (abajo) |
+<!-- fuente: services/visualization-service/services/ejecutor.py (_conteo_porcentaje, _cruce, _comparar_secciones, _datos_respondente, _MAX_COMPARAR_CON_TODOS); tests/test_ejecutor.py -->
 
-**Hallazgos** (`services/hallazgos.py`). Los candidatos salen de los resúmenes precalculados del documento final,
-y cada uno trae su frase con la cifra, un puntaje para ordenarlos y las preguntas en que se basa:
-- **Encuestas:** pregunta con más respuestas en el nivel alto y en el nivel bajo; mayor dispersión (desviación
-  estándar de la distribución); la mayor diferencia entre grupos de contexto (al menos 10 puntos, grupos de 10 o
-  más); opción dominante (60 % o más); mucha no respuesta (10 % o más); bloques con α menor que 0.6 en la
-  limpieza. El nivel se nombra según la escala: «de acuerdo» en una escala de acuerdo, «nivel bajo» en una de
-  frecuencia.
-- **Pruebas:** el reactivo donde más alumnos coinciden, el más repartido y el de más respuestas nulas o vacías.
-  Nunca «el más difícil»: las pruebas no se califican.
-- **Entrevistas:** posturas por pregunta.
-
-En la redacción (Fase 3), el modelo elegirá y explicará el candidato; las cifras siempre vienen de este cálculo.
-
-**Verificación con el instrumento 127.** Los diez planes de la Fase 1 se ejecutaron en vivo, entre 8 y 120 ms
-cada uno. Las cifras coinciden con las calculadas con pandas sobre el CSV limpio:
-- 382 de 2000 con carga mínima;
-- 105 con carga mínima y alguna certificación;
-- 49 con carga mínima y modalidad en línea;
-- 721 de 1911 en desacuerdo con los laboratorios (37.7 %).
-
-Los tres casos de la Tabla D.23d dan:
-- 6 candidatos a hallazgo;
-- la tabla de los 5 primeros respondentes con carga mínima (R002, R006, R008, R011 y R014) con sus 18 respuestas;
-- la tabla de R001 con sus 18 respuestas.
-
-`POST /rag/interpretar` devuelve el plan y este resultado, para revisarlos.
-
-**Fase 3: el chat con las tres etapas** (`services/consulta_planificada.py`, `rag_service.planear`). Las reglas
-fijas de PA (privacidad, manipulación, tareas ajenas) y la base de ayuda siguen primero. Después:
-- **Interpretación.** El modelo recibe la pregunta, los últimos 4 mensajes del chat (`ChatRequest.historial`, que
-  ahora envía el frontend) y el catálogo, y arma el plan.
-- **Ruta según la intención:**
-  - las estructuradas se ejecutan;
-  - `aclaracion` responde con la pregunta del plan;
-  - `fuera_de_dominio` da el mensaje fijo, salvo que la pregunta hable de algo del catálogo (respondentes,
-    preguntas, IDs o palabras de sus preguntas): entonces se busca en el RAG;
-  - `semantica_abierta` y `metodologia` buscan en el RAG con la consulta reformulada, sin el clasificador de la
-    zona gris;
-  - `uso_plataforma` usa la ayuda.
-- **Degradación.** Si Ollama no responde o el plan es inválido dos veces, siguen las reglas anteriores.
-
-**Redacción por intención.** El modelo recibe solo el resultado calculado y una instrucción de formato
-(`FORMATO`):
-- conteos: la cifra, de cuántos y el criterio;
-- comparación, resumen y KPIs: dos o tres oraciones, con la tabla debajo;
-- hallazgo: uno de los datos, en dos o tres oraciones, sin causas ni generalizaciones.
-
-Las tablas nunca las escribe el modelo: se anexan tal cual del cálculo y el frontend las dibuja como tablas.
-
-**Respondentes sin redacción.** Al principio también se pedía redactar la presentación de las tablas de
-respondentes, pero el modelo de 3B inventó una tabla con respuestas falsas («No tengo experiencia en la materia»)
-que no traía cifras y pasaba la verificación. Por eso `datos_respondente` y `filtrar_respondentes` responden con
-una presentación fija (criterio, cuántos cumplen, cuántos se muestran) y la tabla calculada.
-
-**Verificación de la redacción.** La redacción se descarta, y se responde con el resultado calculado, en
-cualquiera de estos casos:
-- niega el resultado;
-- escribe una tabla;
-- menciona un ID de respondente, pregunta o KPI que no está en el resultado (inventó «R017» en un hallazgo);
-- cambia una cifra;
-- omite el conteo («cuántos de cuántos» y su porcentaje).
-
-En el hallazgo, cada dato dice qué respuestas forman el nivel, por ejemplo «(respondieron «Nunca» o «Rara
-vez»)». Sin eso, el modelo leyó «57.8 % en el nivel bajo» de una pregunta de frecuencia como «la mayoría ha tenido
-cambios», al revés.
-
-**Fuentes.** Una tarjeta por instrumento con lo que el resultado usó: el criterio, las preguntas y los
-respondentes. Los KPIs aparecen solo en las consultas de KPIs; antes, cada tarjeta traía todos los KPIs del
-instrumento.
-
-**Registro.** `rag_log` guarda el plan (con correcciones, intentos y error) y los milisegundos por etapa
-(migración `2026_17_rag_log_plan.sql`). La huella de la caché incluye el historial, y `_VERSION_RESPUESTAS` pasó a 24.
-
-**Prueba en vivo** (instrumento 127, sin caché, llama3.2:3b): las 8 preguntas tomaron la ruta esperada, en 4 a
-14 s:
-- el hallazgo de p05: 57.8 % con frecuencia baja;
-- la tabla de los 5 primeros con carga mínima (382 de 2000);
-- R001 con sus 18 respuestas;
-- 105 con carga mínima y alguna certificación;
-- el seguimiento «¿y de ellos cuántos están en modalidad en línea?», que heredó las dos condiciones del mensaje
-  anterior: 14, 0.7 %;
-- 721 de 1911 en desacuerdo con los laboratorios;
-- los 5 KPIs, con sus nombres como fuente solo en esa consulta;
-- la receta, rechazada por la regla fija.
-
-En tres de esas respuestas la redacción del modelo no pasó la verificación (omitió el conteo o inventó) y se
-mostró el resultado calculado: la verificación hace su trabajo, pero el modelo de 3B redacta con poca
-fidelidad. La Fase 4 mide esto con RAGAS.
-
-**Fase 4: verificación y métricas sobre el contexto real.**
-
-*Verificación de la redacción.* Si la redacción no pasa la verificación, se regenera una vez: el modelo recibe su
-respuesta anterior y el motivo («usa cifras que no están en el RESULTADO CALCULADO», «omite cuántos cumplen…»). Si
-vuelve a fallar, se muestra el resultado calculado. `rag_log.plan.verificacion` guarda los intentos, el primer
-fallo y el desenlace (`aceptada`, `regenerada` o `respaldo`). En la ruta semántica la respuesta ya se transmitió,
-así que las cifras sin respaldo en los fragmentos no se retiran: se anotan en `rag_log.plan.verificacion` y
-aparecen en el panel de métricas como «Cifra sin respaldo en las fuentes».
-
-*Cambios en las métricas* (Tabla D.23g). El contexto que se evalúa es el que de verdad usó la respuesta: en la ruta
-del plan, el resultado calculado, un bloque por instrumento.
-
-**Tabla D.23g.** Correcciones de las métricas en la Fase 4
-
-| Problema (Fase 0 y pruebas en vivo) | Corrección |
-|---|---|
-| Fidelidad «—» cuando el juez devolvía un veredicto de menos | Se le pregunta otra vez y, si insiste, evalúa cada afirmación por separado (`modo: una_por_una`) |
-| El juez de 3B marcó como no sustentadas dos afirmaciones copiadas del resultado (qwen 0 de 2, llama 1 de 2) | Una afirmación con todas sus cifras en el contexto y el 75 % de sus palabras en una misma línea cuenta como sustentada (`sustento_literal`) |
-| Precisión 0 % en respuestas copiadas del contexto: el juez juzgaba el tema («no ayuda a determinar si los laboratorios son adecuados») | El prompt dice qué cuenta como «usado» y trae un ejemplo resuelto |
-| Las respuestas calculadas solo tenían fidelidad | Fidelidad 1 por construcción, y además relevancia y precisión del contexto contra el resultado usado |
-| Relevancia 0 en la tabla de R001: el juez la tomó como evasiva porque una respuesta era «No lo sé» | En las respuestas calculadas no se considera la evasión, y el juez ve las tablas recortadas a su encabezado y 4 filas |
-| Las cifras inventadas solo las detectaba el juez | `cifras_sin_sustento`: las cifras de la respuesta que no están en el contexto, sin juez |
-
-**Métricas en vivo** (instrumento 127, juez qwen2.5:3b; consultas 1119–1123):
-- **Hallazgo:** fidelidad 1.0 (2 afirmaciones por sustento literal), precisión 1.0, relevancia 0.24. Antes:
-  fidelidad «—», precisión 0, relevancia 0.31.
-- **Tablas de respondentes, conteo y estructura:** fidelidad 1.0 por construcción y precisión 1.0 donde aplica.
-  Relevancia de 0.18 a 0.78. Con un juez de 3B, la relevancia de una respuesta con tabla es una estimación débil:
-  genera preguntas a partir de las filas («p01 «Cargas máxima…»»).
-
-**Latencia con las métricas encendidas.** El juez (qwen2.5:3b) y el redactor (llama3.2:3b) no caben juntos en la
-GPU de 4 GiB. Cuando el juez evalúa una respuesta y llega otra pregunta, Ollama recarga llama y la interpretación
-pasa de 1–3 s a unos 30 s; las preguntas tardaron entre 31 y 38 s, contra 4–8 s sin métricas. Ahora se evalúan
-también las respuestas calculadas, así que el juez trabaja después de cada pregunta.
-
-**Decisión: métricas bajo demanda.** De las tres opciones (métricas bajo demanda, el mismo modelo como juez y
-redactor, o evaluar solo una muestra), la investigadora eligió la primera. Llama3.2 se había reemplazado como juez
-por qwen2.5 el 24 oct porque juzgaba peor, y una muestra deja respuestas sin medir. Ahora cada respuesta queda
-«pendiente» y el panel muestra el botón «Calcular evaluación (RAGAS)». Al pulsarlo
-(`POST /rag/consultas/{id}/metricas`), la evaluación entra a la cola en segundo plano y el panel consulta el estado
-hasta que termina. En una respuesta calculada, la fidelidad (1 por construcción) se ve desde el principio.
-`RAG_METRICAS_BAJO_DEMANDA=false` vuelve a evaluar todas en segundo plano.
-
-Medición con el instrumento 127 y las mismas 5 preguntas: de 1.8 a 5.4 s cada una, contra 31–38 s con la evaluación
-automática. La primera tardó 33 s porque Ollama tenía cargado al juez de la prueba anterior. La evaluación pedida
-de la consulta 1124 tardó 32 s: fidelidad 1.0, relevancia 0.24, precisión 1.0.
-<!-- fuente: services/visualization-service/services/interpretacion.py, catalogo.py, anclaje.py, plan_consulta.py, ejecutor.py, hallazgos.py; routers/rag.py (POST /rag/interpretar); models.py (ChatRequest.historial); tests/test_plan_consulta.py, test_ejecutor.py y test_chat_planificado.py; consulta_planificada.py y rag_service.py (planear, _plan_desde_preparada, _verificar_redaccion, ids_fieles); pixel-perfect-pixel/src/features/chat/BurbujaMensaje.tsx (tablas) y src/api/chat.ts (historial); infrastructure/postgres/migrations/2026_17_rag_log_plan.sql; services/evaluacion.py (cifras_sin_sustento, sustento_literal, _P_VEREDICTO_UNO, _P_UTILIDAD, _tablas_recortadas, evaluar(calculada), pendiente, solicitar); routers/rag.py (POST /rag/consultas/{id}/metricas); shared/db/core/config.py (RAG_METRICAS_BAJO_DEMANDA); pixel-perfect-pixel/src/features/chat/PanelMetricas.tsx; tests/test_evaluacion.py; evidencias/rag_rediseno_2026-10-28/fase3_chat_127.json y fase4_metricas_127.json; medición en vivo del 28 oct (prompt_eval_count 2874–2875; ollama ps: 100 % GPU con 4096); evidencias/rag_rediseno_2026-10-28/fase1_planes_127.json y fase2_planes_y_resultados_127.json -->
-
-### X.9.4 RAG y cálculo complementarios; RAG primero (4–5 nov)
-
-**El problema.** Desde el rediseño del 28 oct, las preguntas con plan no consultaban ChromaDB: la redacción veía solo
-el resultado calculado, así que el chat era «modelo + cálculo» y no un RAG. En las consultas de la encuesta de 2000
-(1290–1461), solo 13 de 170 respuestas usaron la recuperación (Pruebas Y.4.13).
-
-**4 nov: la recuperación complementa el cálculo.**
-- Toda respuesta calculada recibe, además del RESULTADO CALCULADO, un TEXTO RECUPERADO: los fragmentos del mismo
-  instrumento, filtrados a las personas del resultado o a las preguntas de los patrones calculados. En las intenciones
-  numéricas llegan sin sus cifras, para que el modelo no cite porcentajes de otras preguntas.
-- En las entrevistas, el modelo parafrasea e interpreta lo que dijo la persona, y los patrones salen del texto
-  recuperado, con citas.
-- Los seguimientos reciben el tema de la respuesta anterior (leído de `rag_log`) y la conversación previa.
-- La verificación también rechaza una cita entre comillas que no está en los datos.
-
-**5 nov: RAG primero.** La recuperación pasa a ser la base de toda respuesta y el cálculo queda como herramienta para
-lo que ningún fragmento contiene (contar o filtrar sobre todos los respondentes):
-1. La búsqueda va **antes** de interpretar, y lo recuperado orienta a la interpretación («la pregunta de la VPN» → el
-   reactivo r03 recuperado).
-2. Antes de pedir una aclaración, se responde con lo recuperado si la pregunta es del alcance (salvo que nombre a una
-   persona por su ID).
-3. Las preguntas sobre el instrumento reciben su ficha. Si el cálculo y lo recuperado no coinciden, manda el cálculo
-   (regla 15 del prompt).
-4. Los listados, patrones, filtros y pruebas sin calificar también los redacta el modelo con el texto recuperado; si
-   la redacción no pasa la verificación, se muestra el cálculo.
-<!-- fuente: services/visualization-service/services/rag_service.py (_apoyo_rag, _completar_con_recuperados, _anterior, _retomar_anterior, _sin_cifras, citas_fieles, _recuperar_primero, _pistas, _fichas, _rag_responde_aclaracion); interpretacion.py; prompt.py (reglas 14 y 15); commits 9f86ff4 y c1998ad (5 nov); tt_rag.rag_log.ruta 1290–1687 -->
-
-### X.9.5 Hilo de la conversación, condiciones no literales y redacción verificada (7 nov)
-
-Tres bloques de cambios, a partir de las respuestas que la investigadora calificó mal. Son reglas generales: no
-dependen de ningún instrumento.
-
-**A. Hilo de la conversación** (`services/seguimiento.py`). La interpretación clasifica cada pregunta como nueva, como
-continuación o como profundización de la anterior. En una continuación («¿y los que tienen beca contra los que no?»)
-se conservan las preguntas de la consulta anterior si la nueva no nombra otras, por número o por sus palabras.
-
-**B. Condiciones que no están escritas tal cual** (`anclaje.py`, `plan_consulta.py`).
-- Dos valores de una misma variable en la pregunta («pública y privada») se comparan, en vez de filtrar solo el primero.
-- Se quitan los filtros imposibles: un nivel de acuerdo sobre una pregunta que no es escala, o un número sobre una
-  pregunta sin opciones numéricas.
-- Un valor que nombra un dato de contexto («tiene beca», «tiene_beca») no se busca como opción de una pregunta.
-
-**C. Redacción verificada** (`rag_service.py`, `consulta_planificada.py`, `prompt.py`).
-- La verificación rechaza, además: una comparación al revés («mayor» junto a la cifra menor), una inferencia sin
-  prueba estadística («significativa», «se debe a») y un porcentaje sin su número de personas. Acepta las cifras que
-  se deducen del resultado (redondeos, porcentajes de dos conteos, diferencias entre porcentajes), pero no las sumas.
-- Cada redacción rechazada se rehace una vez con el motivo; los borradores quedan en `rag_log.plan.verificacion`.
-- Según la pregunta se agrega una instrucción de formato: «¿por qué?» (hipótesis, aclarando que los datos no registran
-  la causa), opinión (interpretación prudente), «lo más…» (decir el criterio) y pocas personas (no generalizar).
-- Se quitan de la respuesta las etiquetas internas del prompt («según el RESULTADO CALCULADO»).
-- El prompt pasó a 20 reglas (X.10.3).
-
-Además, el ejemplo del catálogo que usa la interpretación se cambió por uno que no se parece a ningún instrumento de
-prueba, para que el ejemplo no oriente las respuestas.
-<!-- fuente: commits b8c7d7a y 84b861d (7 nov); services/visualization-service/services/seguimiento.py (combinar, _preguntas_dichas), anclaje.py (_filtros_sin_inventos, _raices_de_variables), plan_consulta.py (validar_contra_catalogo, _es_escala), rag_service.py (comparacion_invertida, inferencia_sin_respaldo, porcentajes_sin_n, _derivables, _sin_etiquetas_internas, _verificar_redaccion), consulta_planificada.py (formato_adicional), prompt.py (reglas 16–20), interpretacion.py (ejemplo del catálogo); tests/test_redaccion.py y test_seguimiento.py -->
-
-### X.9.6 Cambios generalizados, alcance real del modelo y aporte del RAG (7–8 nov)
-
-**Por qué.** Para cerrar el alcance, la investigadora escribió tres baterías de 25 preguntas, más 4 de cortesía, sobre
-sus instrumentos de prueba: una encuesta de 2000 respondentes, una prueba de 97 alumnos y una entrevista de una
-participante (instrumentos 127, 130 y 129). Cada pregunta dice lo que la respuesta **debe** contener. Además se armó
-un **set de control** con instrumentos que no se usaron para diseñar ningún cambio: una encuesta y una entrevista
-sintéticas (61 y 60) y, en la evaluación final, una prueba sintética (133). Sus archivos están en el Anexo A. En la línea base el chat cumplió 31 de 79 casos y 1 de 16 de control. El diagnóstico
-encontró 17 causas, casi todas en el sistema y no en el modelo (Pruebas Y.4.14).
-
-**Regla de trabajo: cambios generalizados.** Ningún texto, ID u opción de los instrumentos de prueba en el código, ni
-ejemplos copiados de ellos. Cada cambio debía servir para cualquier instrumento del mismo tipo.
-
-#### El alcance real del modelo
-
-El chat usa gemma3:4b, un modelo de 4 mil millones de parámetros que corre en el equipo del proyecto (GTX 1650 de
-4 GiB). El modelo ocupa 2.9 GB y, con la memoria de video llena, Ollama reparte su cálculo entre la CPU y la GPU
-(43 % y 57 % en la evaluación final): cada respuesta tarda de 20 a 60 s. Un modelo más grande no cabe. Por eso el
-trabajo se reparte como indica la Tabla D.23h.
-
-**Tabla D.23h.** Qué hace el modelo y qué hace el sistema en cada respuesta.
-
-| Tarea | El modelo de lenguaje | El sistema (código) |
-|---|---|---|
-| Entender la pregunta | Traduce la pregunta y la conversación a un **plan** en JSON | Valida el plan contra el catálogo del instrumento y lo corrige con reglas generales |
-| Encontrar el contenido | — | Recupera los fragmentos más parecidos (modelo de *embeddings*, no de lenguaje) |
-| Calcular | Nunca | Cuenta, filtra, compara, cruza y ordena sobre todos los respondentes |
-| Redactar | Escribe la respuesta con el resultado calculado y el texto recuperado | Verifica la redacción; si falla dos veces, muestra el resultado calculado |
-| Mensajes fijos | — | Cortesía, privacidad, manipulación, pruebas sin calificar |
-
-Las pruebas mostraron qué no hace el modelo de forma confiable por sí solo. Todos estos ejemplos son de la evaluación
-final:
-- **Respetar el formato de las opciones:** escribió `"[1, 2]"` para «¿cuántos calificaron con 1 o 2…?», y
-  «Abandonar» cuando la opción es «Estoy considerando abandonar».
-- **Seguir el hilo:** en «De ellos, ¿qué respondieron sobre Wi-Fi público?» olvidó el grupo de la pregunta anterior.
-- **No afirmar más de lo que dicen los datos:** llamó «tasa de aprobación» al porcentaje de «No, pero planeo
-  hacerlo», con una cifra que sí estaba en el resultado; y en una prueba sin clave escribió «eligió respuestas
-  incorrectas».
-
-Desde la evaluación final, `rag_log` guarda el plan tal como lo escribió el modelo, lo que permite medir esto: el plan
-del modelo se usó sin cambios en 18 de 77 turnos de las baterías (23 %) y en 3 de 23 del set de control (13 %); en
-los demás lo corrigieron la validación, las reglas o el hilo de la conversación (Pruebas Y.4.14).
-
-#### Qué es el plan y por qué no es una lista de casos
-
-El plan lo escribe el modelo **en el momento**, para cada pregunta; nadie lo escribe de antemano. Lo que está
-programado son las **operaciones** que un plan puede pedir. Esta separación es la de *semantic parsing* o
-*text-to-SQL*: el modelo traduce el lenguaje natural a una consulta estructurada y un sistema exacto la ejecuta (Rajkumar et al., 2022). Es también la idea de los modelos asistidos por programas: el modelo escribe qué calcular y un intérprete hace la cuenta, porque los modelos de lenguaje se equivocan en la aritmética aunque entiendan el problema (Gao et al., 2023).
-Aquí la consulta es el plan, validado con un JSON Schema, y nunca se genera ni se ejecuta SQL. La Tabla D.23i resume
-las operaciones que se agregaron en esta etapa; todas trabajan sobre el catálogo de cualquier instrumento.
-
-**Tabla D.23i.** Operaciones agregadas el 7–8 nov.
+**Tabla D.25d.** Operaciones para preguntas frecuentes de investigación.
 
 | Operación | Ejemplo de pregunta | Cómo se calcula |
 |---|---|---|
-| Comparar según la respuesta a otra pregunta | «¿Cambia X según la carga académica?», «los que trabajan… que los que no» | Grupos por la opción elegida; la distribución y la media de cada grupo sobre su propio n |
+| Comparar según la respuesta a otra pregunta | «¿Cambia X según la carga académica?» | Grupos por la opción elegida; distribución y media de cada grupo |
 | Comparar por posición | «Compara los primeros 100 con los últimos 100» | Grupos por orden de ID; avisa si se solapan |
-| Comparar por sección | «¿Las respuestas en blanco se concentran en alguna sección?» | Respuestas en blanco o nulas por sección, con su % de las respuestas posibles |
+| Comparar por sección | «¿Las respuestas en blanco se concentran en alguna sección?» | Respuestas en blanco o nulas por sección, con su % de las posibles |
 | Cruce | «De los que marcaron X en…, ¿qué eligieron en…?» | Distribución de una pregunta dentro del grupo que cumple la condición |
 | Más repartidas o con más coincidencia | «¿En qué pregunta están más divididas las opiniones?» | Entropía normalizada de la distribución (0 = todos eligieron lo mismo; 1 = repartidas por igual), sin preguntas de varias respuestas; la respuesta dice la medida |
 | Qué conviene revisar | «¿Qué reactivos convendría revisar por cómo se respondieron?» | Las preguntas con más respuestas en blanco o nulas y las más repartidas; nunca si acertaron |
 | Una persona frente a todos | «¿Su respuesta al reactivo… es la más común?» | La respuesta de la persona y la distribución de todos en esa pregunta |
-| «De ellos, ¿cuántos…?» | Seguimiento de un conteo | El % sobre el grupo anterior y sobre el total |
 | Lo más preocupante o lo mejor | «¿Qué es lo más preocupante de los resultados?» | Las respuestas desfavorables (o favorables) según la polaridad de cada pregunta (X.7.7) |
-| Explicar el resultado anterior | «¿Qué puede significar eso?», «¿por qué?» | Dos capas: «Lo que muestran los datos» (tal cual) e «Interpretación (del asistente, no es un dato)» |
-| Entrevistas sin modelo | Palabras por hablante, «¿respondió todas las preguntas de la guía?», la respuesta más larga | Del reporte de limpieza y del documento final, sin modelo |
+| Entrevistas sin modelo | Palabras por hablante, «¿respondió todas las preguntas de la guía?», la respuesta más larga | Del reporte de limpieza y del documento final |
 | Diagnósticos | «¿La participante tiene depresión?» | No se hacen: se muestra lo que la persona contó, con sus citas |
-| Listas largas | «¿Quiénes…?» | El total, los primeros 20 y «muéstrame más» |
 
-#### Las reglas de corrección: qué son y qué tan generales son
+**Hallazgos** (`services/hallazgos.py`). Los candidatos salen de los resúmenes precalculados del documento final, y
+cada uno trae su frase con la cifra, un puntaje para ordenarlos y las preguntas en que se basa:
+- **Encuestas:** pregunta con más respuestas en el nivel alto y en el bajo; mayor dispersión; la mayor diferencia
+  entre grupos de contexto (al menos 10 puntos, grupos de 10 o más); opción dominante (60 % o más); mucha no
+  respuesta (10 % o más); bloques con α menor que 0.6. El nivel se nombra según la escala («de acuerdo» en una de
+  acuerdo, «nivel bajo» en una de frecuencia) y dice qué respuestas lo forman, porque sin eso el modelo leyó «57.8 %
+  en el nivel bajo» de una pregunta de frecuencia al revés.
+- **Pruebas:** el reactivo donde más alumnos coinciden, el más repartido y el de más respuestas nulas o vacías.
+  Nunca «el más difícil»: las pruebas no se califican.
+- **Entrevistas:** posturas por pregunta.
 
-Entre la interpretación y la ejecución, una capa de reglas revisa el plan del modelo (`anclaje.py`, `seguimiento.py`,
-`plan_consulta.py`). **No le enseñan nada al modelo**, que no cambia: actúan después de él y corrigen sus errores
-frecuentes. Cada corrección queda anotada en la consulta y la interfaz la muestra en «Cómo lo calculé».
+**Por qué determinista.** El modelo nunca calcula: con unos cuantos fragmentos no ve a todos los respondentes, y los
+modelos de lenguaje se equivocan en la aritmética (Gao et al., 2023). Las cifras del cálculo se compararon con las
+calculadas con pandas sobre el CSV limpio (Pruebas Y.4.12).
+<!-- fuente: services/visualization-service/services/hallazgos.py; ejecutor.py; evidencias/rag_rediseno_2026-10-28/fase2_planes_y_resultados_127.json -->
 
-**Tabla D.23j.** Tipos de regla, con un ejemplo de cada uno.
+### X.9.5 Redacción y verificación
 
-| Tipo | Ejemplo | Por qué es general |
-|---|---|---|
-| Lo que existe en el catálogo | Una opción que no existe se responde con «no existe» y las opciones reales con su conteo; no se pregunta cuál | Se compara con el catálogo de cualquier instrumento |
-| Lo que la pregunta dice literalmente | «Más de 30» escrito en la pregunta elige la opción «Trabajo más de 30h» y descarta las otras opciones que empiezan con «Trabajo» | Regla del español, no de un instrumento |
-| Hilo de la conversación | «De ellos» es el grupo anterior; «¿dejó alguno en blanco?» habla de la última persona mencionada | Igual en cualquier conversación |
-| Escalas | «1 o 2» son las dos primeras posiciones de la escala | Cualquier escala ordenada |
-| Erratas | «laboartorios» no es una palabra que el instrumento «no registra» | Parecido de al menos 80 % con una palabra del catálogo |
-| Pruebas sin calificar | Ninguna redacción ni interpretación dice «correcta», «incorrecta», «dificultad» o «desempeño» | Ninguna prueba tiene clave de respuestas en Indagata |
+**Qué recibe el modelo.** El resultado calculado, el texto recuperado (X.9.3), la conversación previa y una
+instrucción de formato según la intención y la forma de la pregunta (`consulta_planificada.py`, `prompt.py`):
+- comparación, resumen y KPIs: dos o tres oraciones, con la tabla debajo;
+- hallazgo: 3 o 4 patrones, sin causas ni generalizaciones;
+- listados, filtros, patrones y pruebas sin calificar: redactados con el texto recuperado, con el listado calculado
+  como respaldo; `datos_respondente` se parafrasea encima de su tabla;
+- «¿por qué?»: hipótesis, aclarando que los datos no registran la causa; opinión: interpretación prudente; «lo
+  más…»: decir el criterio; pocas personas: no generalizar;
+- «¿qué significa eso?»: **dos capas**, «Lo que muestran los datos» (tal cual) e «Interpretación (del asistente, no
+  es un dato)».
 
-**Cómo se comprobó que no se ajustaron a los instrumentos de prueba:**
-1. **Búsqueda de sus textos en el código.** Se buscaron los 288 textos de pregunta y opción de los tres instrumentos
-   en los 63 archivos de código cambiados. Ninguno influye en el comportamiento: solo aparecen en comentarios que
-   documentan el caso que motivó una regla, en etiquetas genéricas («Totalmente de acuerdo») o en mensajes del sistema
-   («No especificado»). La búsqueda sí encontró un ejemplo del prompt que copiaba una pregunta de la encuesta de
-   prueba con sus opciones; se reemplazó por un tema inventado (un curso de idiomas) antes de la corrida final.
-2. **Set de control**, con instrumentos que no se usaron para diseñar nada (resultados en Pruebas Y.4.14).
-3. **Pruebas automáticas** con catálogos inventados: 428 en visualization-service.
+**Las tablas nunca las escribe el modelo**: se anexan tal cual del cálculo y la interfaz las dibuja. Se quitan de la
+respuesta las etiquetas internas del prompt («según el RESULTADO CALCULADO»).
 
-**Limitación.** Las reglas forman una lista que crece cuando aparece un error nuevo del modelo. Una forma de preguntar
-que nunca se ha visto puede fallar hasta que se detecte. Con un modelo más capaz harían falta menos reglas.
+**Verificación** (`_verificar_redaccion`). La redacción se rechaza si:
+- está vacía, niega el resultado o escribe una tabla;
+- inventa un ID de respondente, pregunta o KPI, o una cita entre comillas que no está en los datos;
+- cambia u omite una cifra, o da un porcentaje sin su número de personas; se aceptan las cifras que se deducen del
+  resultado (redondeos, porcentajes de dos conteos, diferencias), pero no las sumas;
+- compara al revés («mayor» junto a la cifra menor) o infiere sin prueba estadística («significativa», «se debe a»);
+- atribuye un porcentaje a otra opción, nombra solo algunas de las opciones del criterio o desordena un ranking;
+- en una prueba, juzga aciertos o desempeño («correcta», «dificultad», «desempeño»), sin contar lo que cita entre
+  comillas.
 
-#### El aporte del RAG
-
-El RAG es el pilar del chat: conecta la pregunta con el contenido del instrumento. El plan y el RAG se complementan:
-**el RAG encuentra *dónde* está lo que se pregunta y el plan calcula *cuánto***. El RAG interviene en cuatro momentos:
-1. **Antes de interpretar** (RAG primero, X.9.4): los 5 fragmentos más parecidos llegan al modelo como pistas, con las
-   preguntas y sus opciones. Así el modelo encuentra que «¿cuántos trabajan?» está en las opciones de la pregunta de
-   situación laboral, aunque su enunciado no diga «trabajan».
-2. **Cuando el plan no alcanza**: si el modelo solo pediría una aclaración, se responde con lo recuperado.
-3. **Después de calcular**: el texto recuperado acompaña al resultado (el enunciado de la pregunta, lo que dijo una
-   persona) para que la redacción explique y no solo dé cifras. Si el texto y el cálculo no coinciden, manda el
-   cálculo.
-4. **En entrevistas**: los intercambios recuperados dicen en qué pregunta habló la persona de un tema.
-
-Los cambios de chunks (X.9.1) hicieron la recuperación más precisa. Se midió con 43 preguntas de las baterías y 9 de
-control, cada una con su fragmento correcto (Tabla D.23k). El *hit rate*@3 es la proporción de preguntas cuyo
-fragmento correcto queda entre los 3 primeros.
-
-**Tabla D.23k.** *Hit rate*@3 de la recuperación (modelo de *embeddings* del chat, sin umbrales).
-
-| Preguntas | Antes (7 nov) | Chunks en *tokens* y filtro de personas (7 nov) | Versión final (8 nov) |
-|---|---|---|---|
-| Las tres baterías | 0.61 | 0.79 | 0.84 |
-| Encuesta | 0.25 | 0.69 | 0.69 |
-| Prueba | 0.82 | 0.91 | 0.91 |
-| Entrevista | 0.81 | 0.81 | 0.94 |
-| Set de control | 0.89 | 1.00 | 1.00 |
-
-La entrevista subió en la versión final porque la ficha incluye el encabezado de la transcripción y los intercambios
-llevan los temas del análisis de lo que se cuenta.
-
-Las preguntas sobre el instrumento («¿de qué trata?», «¿cuánto dura la entrevista?») no se resuelven por similitud,
-porque se parecen más a las preguntas que a la ficha: van directo a la ficha por su intención.
-
-#### Correcciones posteriores a la evaluación final
-
-La evaluación final (Pruebas Y.4.14) dejó dos tipos de falla que la verificación no detecta. Se corrigen con dos
-cambios deterministas, generales para cualquier instrumento. [PENDIENTE: confirmar que quedaron implementados, con su
-commit.]
-
-**1. La frase del dato la escribe el sistema.** Una oración sin cifras puede contradecir el resultado y pasar la
-verificación, que revisa cifras, IDs, citas, porcentajes y opciones, pero no el sentido de una frase. Ejemplos de la
-evaluación final:
-- «el 34.6 % sobre el total», cuando el resultado decía que era sobre el grupo anterior;
-- «57 cumplieron la condición r15», cuando los 57 son del otro reactivo;
-- «no mencionó haber buscado ayuda», cuando lo cuenta en otra respuesta.
-
-En los conteos, los seguimientos «de ellos» y los cruces, la primera oración de la respuesta la arma el código a
-partir del resultado («382 de los 1104 del grupo anterior (34.6 %); sobre el total, 382 de 2000 (19.1 %)»). El
-modelo solo agrega el contexto después. Es la redacción en dos capas que ya se usa para explicar un resultado
-(«¿qué significa?»), extendida a las intenciones donde la redacción falló.
-- **Por qué no un juez:** pedirle al modelo que revise si cada frase contradice el resultado agrega una llamada por
+Una redacción rechazada se rehace **una vez** con el motivo («usa cifras que no están en el RESULTADO CALCULADO»); si
+vuelve a fallar, se muestra el resultado calculado. Los borradores y el desenlace (`aceptada`, `regenerada` o
+`respaldo`) quedan en `rag_log.plan.verificacion`. En la ruta semántica la respuesta se transmite mientras se genera,
+así que las cifras sin respaldo no se retiran: se anotan y el panel las muestra como «Cifra sin respaldo en las
+fuentes».
+- **Por qué verificar en código y no con un juez:** pedirle al modelo que revise cada frase agrega una llamada por
   respuesta, y los jueces de 3–4B no fueron confiables (Pruebas Y.5).
-- **Costo:** la primera oración es menos fluida que una redactada.
+<!-- fuente: services/visualization-service/services/rag_service.py (_verificar_redaccion, cifras_fieles, ids_fieles, citas_fieles, comparacion_invertida, inferencia_sin_respaldo, porcentajes_sin_n, _derivables, cifra_mal_atribuida, opciones_omitidas, ranking_desordenado, califica_prueba, _sin_etiquetas_internas, _AVISOS_REINTENTO); consulta_planificada.py (FORMATO, formato_adicional); prompt.py (20 reglas); tests/test_redaccion.py y test_chat_planificado.py -->
 
-**2. Citas textuales y un solo testimonio en entrevistas.**
-- Si la pregunta pide las palabras exactas («exactamente», «textual», «sus palabras»), se muestra la respuesta literal
-  del documento, sin redactar. La redacción parafraseaba aunque se pidiera la cita.
-- Si la entrevista tiene una sola participante y la respuesta interpreta u opina, el sistema agrega al final que es el
-  testimonio de una sola persona y no se puede generalizar. Antes dependía de que el modelo lo dijera.
+**Frase del dato y entrevistas (en el código desde el commit `6fd668d`; evaluación pendiente).** La evaluación final
+dejó dos fallas que la verificación no detecta, porque revisa cifras, IDs, citas y opciones, pero no el sentido de
+una frase sin cifras («el 34.6 % sobre el total», cuando era sobre el grupo anterior). Se corrigen con dos cambios
+deterministas:
+- **La frase del dato la escribe el sistema.** En los conteos, los seguimientos «de ellos», los resúmenes de una
+  pregunta y los cruces, la primera oración la arma el código a partir del resultado («382 de los 1104 del grupo
+  anterior (34.6 %); sobre el total, 382 de 2000 (19.1 %)»). El modelo solo agrega el contexto, sin cifras; si lo
+  que agrega trae cifras, niega o califica una prueba, se muestra solo la frase. Costo: la primera oración es menos
+  fluida que una redactada.
+- **Citas literales y un solo testimonio.** Si la pregunta pide las palabras exactas («exactamente», «textual»), se
+  muestra la respuesta tal como está en la transcripción, sin redactar. Si la entrevista tiene una sola participante
+  y la respuesta interpreta u opina, el sistema agrega al final que es el testimonio de una sola persona y no permite
+  generalizar.
 
-[PENDIENTE: archivos y funciones que cambiaron, y pruebas automáticas agregadas.]
+[PENDIENTE: resultado de la evaluación de estos dos cambios (Pruebas Y.4.14c y Y.4.14d).]
+<!-- fuente: commit 6fd668d; services/visualization-service/services/consulta_planificada.py (frase_dato, FORMATO_CONTEXTO, PIDE_LITERAL, literal_entrevista), ejecutor.py (Ejecucion.frase_dato), rag_service.py (_con_frase_dato, contexto_aceptable, NOTA_UN_TESTIMONIO, _INTERPRETA); tests/test_correcciones_fase5.py y test_chat_planificado.py -->
 
-#### Interfaz y registro
+**Fuentes.** Una tarjeta por instrumento con lo que el resultado usó: el criterio, las preguntas y los respondentes.
+Los KPIs aparecen solo en las consultas de KPIs.
 
-Debajo de cada respuesta, **«Ver datos»** despliega las tablas calculadas y **«Cómo lo calculé»** muestra el criterio
-de cada cálculo y las correcciones que se hicieron al plan. La insignia «fiel por construcción» solo aparece cuando la
-respuesta tiene cifras.
+### X.9.6 Respaldo: el enrutador por reglas
 
-Cada consulta guarda en `rag_log.plan`, además del plan final y sus correcciones, **el plan tal como lo escribió el
-modelo** (`plan_modelo`) y **el catálogo que vio** (`catalogo`). Con la calificación humana, esos registros forman pares
-*pregunta + catálogo → plan correcto* que servirían para ajustar un modelo (*fine-tuning*) y depender menos de las
-reglas (Resultados Z.8).
+Si la interpretación no produce un plan válido (en la evaluación final, 7.8 % de las preguntas) o Ollama no responde,
+la pregunta pasa por el **enrutador por reglas** (`services/enrutador.py`), que fue la ruta principal del 17 al 26 oct.
+Reconoce con una expresión por intención si la pregunta pide un dato exacto y lo **calcula** con
+`shared/conocimiento/consultas.py` sobre el documento vigente y `respuesta_interpretada` (Tabla D.25e). Si ninguna
+regla la reconoce, va a la búsqueda semántica: con similitud menor a 0.30 queda fuera del dominio; de 0.30 a 0.35,
+«sin información»; en la zona gris decide un clasificador con el modelo.
+
+**Tabla D.25e.** Intenciones del enrutador.
+<!-- fuente: enrutador.py; CLAUDE.md §RAG chat paso 3 -->
+
+| Intención | Ejemplo | Ruta |
+|---|---|---|
+| Respuesta de un respondente | «¿Qué respondió R017 en la pregunta sobre la retroalimentación?» | estructurada |
+| Respondente en un nivel en varias preguntas | «Dame un respondente en desacuerdo en p1, p2 y p3» | estructurada |
+| Porcentaje por nivel y por grupo | «¿Qué porcentaje del turno vespertino está de acuerdo con p4?» | estructurada |
+| Pruebas sin calificar | «¿Qué reactivo tuvo el menor % de acierto?» → aclara que las pruebas no se califican y da la opción más elegida de cada reactivo | estructurada, sin modelo |
+| Lo que dijo un participante sobre un tema; postura de los entrevistados | «¿Qué dijo E02 sobre el orientador?» | estructurada |
+| Filtro (contar, listar, uno de ejemplo) | «uno de los estudiantes que sí reprobaron por falta de tiempo» | estructurada |
+| Calidad de los datos | «¿Qué análisis me sugieres para la encuesta de carga académica?» | estructurada |
+| Estructura y descripción del instrumento; relación entre varios | «¿En qué sección está la pregunta 4?», «¿De qué habla el primer instrumento?» | estructurada, sin modelo |
+| Patrones de los datos | «¿Qué patrón consideras más interesante?» | estructurada, sin modelo |
+| KPI | «¿Por qué el KPI Tamaño Promedio de Clase está relacionado…?» | mixta (cálculo + fragmentos y fuentes del KPI) |
+| Todo lo demás | «¿Qué opinan los estudiantes del deporte en el campus?» | semántica |
+
+**Filtros.** Las condiciones se arman por reglas sobre el catálogo del propio documento: raíces de 5 letras
+(«reprobado», «reprobaron» y «reprobaste» coinciden); «sí»/«no» agrupan todas las opciones que empiezan así;
+niveles; comparaciones numéricas («más de 30»); hasta tres condiciones. Solo si las reglas no encuentran la
+condición, el modelo propone una en JSON, que se valida contra las preguntas y opciones reales.
+- **Por qué se conserva:** sus cálculos y sus reglas de dominio siguen en uso, y responde aunque el modelo falle.
+  Su límite, que motivó el rediseño, es que solo reconoce las formas de preguntar que tiene escritas (Pruebas Y.4.12).
+<!-- fuente: services/visualization-service/services/enrutador.py (detectar, resolver); shared/conocimiento/consultas.py (cumple, seleccion); rag_service.py (planear: zona gris); shared/db/core/config.py (RAG_MIN_SCORE 0.35, RAG_FUERA_MAX 0.30) -->
+
+### X.9.7 Registro, caché e interfaz
+
+**Registro.** Cada consulta queda en `rag_log` con la decisión de dominio, el motivo (por ejemplo
+`plan:conteo_porcentaje:regenerada`, `estructurada:filtro` o `cache:158`), la similitud máxima, la ruta, los
+instrumentos, el contexto usado, las métricas y los milisegundos por etapa. `rag_log.plan` guarda el plan final con
+sus correcciones, **el plan tal como lo escribió el modelo** (`plan_modelo`) y **el catálogo que vio** (`catalogo`).
+Con la calificación humana, esos registros forman pares *pregunta + catálogo → plan correcto* que servirían para
+ajustar un modelo (*fine-tuning*) y depender menos de las reglas (Resultados Z.8). El motivo dice en qué paso se
+detuvo una respuesta equivocada.
+
+**Caché de respuestas.** Una pregunta idéntica dentro de 24 horas, con el mismo alcance, la misma versión vigente de
+cada instrumento, el mismo contexto y el mismo historial, reutiliza la respuesta guardada sin llamar al modelo. La
+huella incluye además la versión de la lógica (`_VERSION_RESPUESTAS`) y un *hash* de las reglas del prompt, para que
+un cambio de código no sirva respuestas viejas. En la prueba en vivo, la repetición tardó 0.1 s contra 27.2 s de la
+primera.
+<!-- fuente: rag_service.py (clave_cache, _VERSION_RESPUESTAS); registro 18 oct (salida de vivo.py); infrastructure/postgres/migrations/2026_17_rag_log_plan.sql -->
+
+**Interfaz.** Debajo de cada respuesta, **«Ver datos»** despliega las tablas calculadas y **«Cómo lo calculé»**
+muestra el criterio de cada cálculo y las correcciones que se hicieron al plan. La insignia «fiel por construcción»
+solo aparece cuando la respuesta tiene cifras.
+<!-- fuente: pixel-perfect-pixel/src/features/chat/BurbujaMensaje.tsx e IndicadoresSistema.tsx -->
+
+**[Figura propuesta D.4: diagrama del recorrido de una pregunta (Tabla D.23a). Ubicación: aquí.]**
 
 **Referencias de esta sección**
 - Gao, L., Madaan, A., Zhou, S., Alon, U., Liu, P., Yang, Y., Callan, J. y Neubig, G. (2023). PAL: Program-aided
@@ -2668,36 +2339,6 @@ reglas (Resultados Z.8).
 - Rajkumar, N., Li, R. y Bahdanau, D. (2022). Evaluating the Text-to-SQL Capabilities of Large Language Models.
   *arXiv:2204.00498*.
 <!-- fuente: proceedings.mlr.press/v202/gao23f.html y arxiv.org/abs/2204.00498 (consultados el 8 nov 2026) -->
-<!-- fuente: tools/rag/baterias_chat.json; evidencias/chat_2026-11-07_antes/diagnostico.md (17 causas); evidencias/chat_2026-11-07_fase1, chunks_2026-11-07, chat_2026-11-07_fase3, chat_2026-11-08_fase4 y chat_2026-11-08_despues (README.md); services/visualization-service/services/{cortesia,entrevista_ops,instrumento_ops,anclaje,seguimiento,plan_consulta,ejecutor,hallazgos,consulta_planificada,interpretacion,rag_service}.py; pixel-perfect-pixel/src/features/chat/BurbujaMensaje.tsx e IndicadoresSistema.tsx; commits 265246a, 02de69f, 310af4c, a831838, 1213e38, 3021727, e09c130, 9519768; `ollama ps` del 8 nov (2.9 GB, 43 %/57 % CPU/GPU) -->
-
-### X.9.7 Alcance y recuperación
-
-El usuario elige el alcance en el chat: su investigación, instrumentos elegidos o todo el acervo
-aprobado. La recuperación semántica pide `top_k × 4` candidatos al índice, descarta los de
-similitud menor a 0.35 y toma como máximo 1 ficha y 3 fragmentos por instrumento, con `top_k` entre
-1 y 8 (6 por defecto). Las fuentes se numeran por instrumento: `[Fuente n]` es la n-ésima tarjeta
-que ve el usuario.
-
-**La ficha llega completa.** Cuando entra una pieza de la ficha de un instrumento, el modelo recibe la
-ficha completa: todas sus piezas en orden, sin el título repetido ni el solape entre piezas
-(`_ficha_completa`). Antes llegaba solo la pieza más parecida a la pregunta, que a veces era la última
-(«KPIs asociados: …»), sin el objetivo ni lo que pregunta el instrumento.
-<!-- fuente: services/visualization-service/services/rag_service.py (_ficha_completa); evidencias/encuesta_sin_secciones_2026-10-20/RESULTADO.md (contexto usado en la variante C) -->
-<!-- fuente: rag_service.py:61-63, 149-176; models.py:199-206 -->
-
-**Caché de respuestas.** Una pregunta idéntica dentro de 24 horas, con el mismo alcance, la misma
-versión vigente de cada instrumento y el mismo contexto, reutiliza la respuesta guardada sin llamar
-al modelo. La huella incluye además la versión de la lógica y un *hash* de las reglas del prompt,
-para que un cambio de código no sirva respuestas viejas. En la prueba en vivo, la repetición tardó
-0.1 s contra 27.2 s de la primera.
-<!-- fuente: rag_service.py (clave_cache, _VERSION_RESPUESTAS); registro 18 oct (salida de vivo.py) -->
-
-**Registro.** Cada consulta queda en `rag_log` con la decisión de dominio, el motivo (por ejemplo
-`estructurada:filtro:negativa_corregida` o `cache:158`), la similitud máxima, la ruta, los
-instrumentos, el contexto usado y las métricas.
-
-**[Figura propuesta D.4: diagrama del *pipeline* de una pregunta: reglas de dominio → ayuda →
-enrutador → similitud → clasificador → prompt → posproceso → registro. Ubicación: aquí.]**
 
 ---
 
@@ -2732,7 +2373,7 @@ prompt) no bastaba (X.8.3).
    se acotaron para no bloquear preguntas legítimas: «actúa como» solo cuenta al inicio de la frase
    («el docente actúa como mediador» es un dato).
 2. **Ayuda de la plataforma**: se responde solo desde la base curada y se cita `[Ayuda: …]`.
-3. **Enrutador estructurado** (X.9.2).
+3. **Enrutador estructurado** (X.9.6).
 4. **Similitud**: por debajo de 0.30, fuera del dominio; entre 0.30 y 0.35, sin información; entre
    0.35 y 0.50 (zona gris), un clasificador con el modelo decide; desde 0.50, pasa. Una pregunta que se
    refiere a los instrumentos elegidos («estos instrumentos», «los datos», «la encuesta») no pasa por el
@@ -2905,7 +2546,7 @@ donde el modelo inventó una cifra. Se hicieron cuatro cambios:
   confiando en el modelo.
 
 En esa versión el chat no guardaba memoria de la conversación: «alguno de ellos» no sabía quiénes eran «ellos»
-(el hilo se resolvió el 4 y el 7 nov, X.9.4 y X.9.5). Con la encuesta de 2000, el conteo esperado, calculado con pandas sobre el CSV, es
+(el hilo de la conversación, X.9.2). Con la encuesta de 2000, el conteo esperado, calculado con pandas sobre el CSV, es
 de 105 respondentes con carga mínima y alguna certificación.
 <!-- fuente: enrutador.py (_FILTRO, _VERBOS_CONSULTA, _condiciones: «sí» implícito, _sin_condicion, filtro_incompleto, filtro_llm: plausible); rag_service.py (planear: filtro incompleto); tests/test_filtros.py::test_palabra_que_nombra_una_pregunta_con_opciones_si_se_toma_como_si; rag_log 1081–1083 (28 oct) -->
 
@@ -2933,7 +2574,7 @@ instrucciones en la pregunta del usuario.]
 |---|---|---|---|---|
 | Metadatos interpretativos (metadata) | JSON | 0.2 | 4096 | Se devuelve vacío; el autor llena a mano |
 | Justificación de KPI (analysis) | JSON | 0.2 | 4096 | Plantilla determinística |
-| Interpretación de la pregunta del chat (visualization) | JSON, 300 *tokens* máx. | 0 | 4096 | Responde el enrutador por reglas (X.9.2) |
+| Interpretación de la pregunta del chat (visualization) | JSON, 300 *tokens* máx. | 0 | 4096 | Responde el enrutador por reglas (X.9.6) |
 | Redacción del chat (visualization) | texto; las respuestas con plan se verifican antes de mostrarse | 0.2 (`RAG_TEMPERATURA_REDACCION`) | 4096 | Se muestra el resultado calculado, o las fuentes con un aviso de servicio degradado. Espera máxima: 300 s |
 | Clasificador de zona gris | JSON, 60 *tokens* máx. | 0 | 4096 | La pregunta continúa |
 | Condición de filtro | JSON, 200 *tokens* máx. | 0 | 4096 | Sigue por la ruta semántica |
@@ -3043,8 +2684,24 @@ siguen las definiciones de RAGAS 0.4.3, reescritas como prompts cortos en españ
   juez se trababa al copiarla y marcaba como no sustentadas frases que estaban literalmente en el contexto.
   Si el número de veredictos no coincide con el de afirmaciones, la métrica queda en error, en lugar de
   asignar veredictos a ciegas.
-- **En segundo plano, después de responder.** Las cuatro consultas tardan unos 45 s; la persona no espera
-  por ellas, y el panel las muestra cuando terminan.
+- **Bajo demanda.** Cada respuesta queda «pendiente» y el panel muestra el botón «Calcular evaluación (RAGAS)»; al
+  pulsarlo (`POST /rag/consultas/{id}/metricas`), la evaluación entra a una cola en segundo plano y el panel consulta
+  el estado hasta que termina. Las cuatro consultas tardan unos 45 s, y el juez y el redactor no caben juntos en la
+  GPU de 4 GiB: evaluando después de cada respuesta, la pregunta siguiente pasaba de unos 5 s a más de 30 s
+  (Pruebas Y.4.12). La investigadora eligió esta opción frente a usar el mismo modelo como juez y redactor (juzgaba
+  peor) o evaluar solo una muestra (deja respuestas sin medir). `RAG_METRICAS_BAJO_DEMANDA=false` vuelve a evaluar
+  todas.
+- **Veredicto que no cuadra.** Si el juez devuelve menos veredictos que afirmaciones, se le pregunta otra vez y, si
+  insiste, evalúa cada afirmación por separado (`modo: una_por_una`).
+- **Sustento literal.** Una afirmación con todas sus cifras en el contexto y el 75 % de sus palabras en una misma
+  línea cuenta como sustentada sin preguntar al juez (`sustento_literal`): el juez de 3B marcaba como no sustentadas
+  afirmaciones copiadas del resultado.
+- **Qué cuenta como «usado».** El prompt de precisión del contexto lo define y trae un ejemplo resuelto: el juez
+  juzgaba el tema del fragmento y no si sirvió para la respuesta.
+- **Cifras sin sustento, sin juez.** `cifras_sin_sustento` lista las cifras de la respuesta que no están en el
+  contexto.
+- **Tablas recortadas.** El juez ve las tablas con su encabezado y 4 filas, y en las respuestas calculadas no se
+  considera la evasión: una tabla con un «No lo sé» se tomaba como respuesta evasiva.
 - **JSON, temperatura 0 y semilla fija.** La salida se procesa en código y la misma respuesta debe recibir
   la misma calificación.
 

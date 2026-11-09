@@ -282,7 +282,8 @@ consultable). La Tabla P.2 resume lo que se encontró en cada ronda.
 | 17 oct | ent_01 como instrumento nuevo | La aprobación exigía «Institución», que quedaba vacía | El script llena obligatorios vacíos con «No especificado» | `id_crudo` 60: 480 respuestas, 521 chunks |
 | 18 oct | enc_09 (instrumento 61) | La consulta con filtro respondía «No tengo información» | Intención `filtro` (Y.4.3) | 88 de 160, igual que SQL |
 | 18 oct | Instrumento 53 republicado | Seguía con el documento anterior (19 chunks) | Limpieza v3 y documento v3 | 480 respuestas, 534 chunks |
-| 22 oct | enc_11 por la API (7 pasos), instrumento 109 | Dos encabezados recortados a 40 caracteres no se emparejaban con su pregunta; el listado decía «1 preguntas»; 8 columnas de contexto quedan como preguntas | Regla de prefijo en `original.parecido` (≥ 25 caracteres) y singular en el listado | Seis tipos de pregunta reconocidos; 4160 respuestas; el chat da 44 de 160 reprobados (27.5 %) y 33 de 160 con beca (20.6 %), igual que el CSV; estructura con sus secciones. Las columnas de contexto se corrigieron el 25 oct (Desarrollo X.7.2) |
+| 22 oct | enc_11 por la API (7 pasos), instrumento 109 | Dos encabezados recortados a 40 caracteres no se emparejaban con su pregunta; el listado decía «1 preguntas»; 8 columnas de contexto quedan como preguntas | Regla de prefijo en `original.parecido` (≥ 25 caracteres) y singular en el listado | Seis tipos de pregunta reconocidos; 4160 respuestas; el chat da 44 de 160 reprobados (27.5 %) y 33 de 160 con beca (20.6 %), igual que el CSV; estructura con sus secciones. Las columnas de contexto se corrigieron el 25 oct (fila siguiente) |
+| 25 oct | enc_11 | `nivel_ses` y `tiene_beca` se proponían como preguntas: el nombre se comparaba tal cual con `palabras_contexto` y no contenía ninguna palabra completa | «_», «.», «-», «/» y paréntesis cuentan como espacio; los ítems numerados nunca son contexto; encuestas y pruebas usan la misma regla | Las columnas de contexto se proponen como contexto |
 <!-- fuente: registro 15 oct 22:58 (tres errores de la captura); registro 15 oct (resumen: α 0.586→0.892); registro 16 oct 01:00–01:10, 06:30–06:37, 07:00 y resumen 09:54; registro 17 oct 22:53–00:01; registro 18 oct 05:38–06:16 y 07:40 -->
 <!-- fuente: tt_rag.limpieza_ejecucion.reporte del id_crudo 55, versión 2 (n_alumnos 100, n_reactivos 25; instrumento borrado el 25 oct); tt_rag.respuesta_interpretada (2500 filas del 55, 4160 del 109); evidencias/datos_sinteticos_2026-10-22/procesar_enc_11_v2.log y chat_109.txt -->
 
@@ -343,9 +344,18 @@ para que no cuenten las anomalías que ya traían los datos (por ejemplo, los en
 <!-- fuente: evidencias/limpieza_2026-10-24/RESULTADO.md, enc_11_verdad.json, pru_01_verdad.json, enc_11_resultado.json, pru_01_resultado.json (instrumentos 115–118 antes y 119–122 después) -->
 
 En las dos corridas la **precisión fue 1.00**: nunca se marcó como error algo que no lo era. Las tres causas de
-lo no detectado, y su corrección, están en Desarrollo X.7.2: la IP en español escondía duplicados, «No sé»
-en escalas numéricas no se reportaba y el lector de CSV perdía las filas de solo separadores. Cada corrección
-quedó con su prueba automatizada.
+lo no detectado, corregidas:
+- **Duplicados escondidos por una columna única.** Al buscar duplicados se excluyen las columnas de la plataforma,
+  pero «Dirección IP» no estaba entre los patrones (solo `ip address`): cada fila resultaba única y pasaron 5
+  duplicados. Se agregó el patrón en español y, además, se ignora cualquier columna con todos sus valores distintos y
+  forma de identificador o de fecha y hora.
+- **«No sé» en escalas numéricas.** El hallazgo de no-respuestas solo existía en escalas de texto; en una escala 1–5,
+  «No sé» quedaba en el CSV limpio mezclado con los números y sin aviso.
+- **Filas de solo separadores.** El lector de CSV compartido descartaba una fila «;;;;;» antes de que la limpieza la
+  contara.
+
+Cada corrección quedó con su prueba automatizada y como decisión en Desarrollo X.7.2.
+<!-- fuente: evidencias/limpieza_2026-10-24/RESULTADO.md; cleaning-service/config/limpieza.yaml; services/motores/encuestas/motor.py (_todos_distintos, _FECHA_HORA, _no_respuestas_por_columna); shared/parsing/tabular_parser.py -->
 
 Un error de método propio también se corrigió. La primera versión de la verdad contaba 8 no-respuestas, pero 4
 eran «NA» o «N/A», que la configuración trata como datos faltantes (`tokens_vacio`); es correcto que queden
@@ -423,7 +433,28 @@ X.7.2 (tablas D.21e a D.21g).
 generaliza la limpieza. La medición de la entrevista ent_02 complementa esto: las reglas funcionaron en un archivo
 distinto de los que las motivaron.
 
-### Y.2.4 Pruebas de la investigadora
+### Y.2.4 La limpieza con la encuesta de 2000 respondentes (28 oct)
+
+**Qué se encontró.** Con la encuesta de la investigadora (instrumento 127, archivo con errores a propósito), la
+limpieza resolvía en silencio buena parte de la suciedad: la investigadora no podía ver qué se cambió ni dónde, y
+después encontraba avisos en el documento final que no había visto durante la limpieza. Lo que se corrigió (Tabla
+P.19d) es el origen de las decisiones «nada cambia sin que se vea», «un valor fuera de la escala, una tarjeta» y
+«selección múltiple por combinación» de Desarrollo X.7.2.
+
+**Tabla P.19d.** Hallazgos con la encuesta de 2000 respondentes y su corrección.
+
+| Hallazgo | Corrección | Efecto en la encuesta de 2000 |
+|---|---|---|
+| «Nunca.», «Algunas veces.» no coincidían con la escala y salían como valores «fuera de rango» | La comparación ignora los signos de borde (`.`, `,`, `;`, `!`, `¿`, comillas), igual que mayúsculas y acentos | 19 falsos «fuera de rango» menos |
+| Respuestas que solo difieren en grafía («PRESENCIAL», «Presencial.») se corregían sin aviso | Se escriben con su forma más frecuente y se reportan con fila, pregunta, antes y después | 1,303 celdas reportadas |
+| Los espacios de borde se quitaban al leer y nunca se contaban | El lector anota qué celdas recortó (`RawTable.bordes`) y la limpieza los reporta | 1,019 celdas reportadas |
+| Cada tarjeta mostraba solo las primeras 20 filas | «Ver dónde» con la ubicación completa en cada tarjeta y en cada transformación automática | — |
+| «Ninguno» marcado junto con otras opciones pasaba sin aviso | Hallazgo de selección contradictoria: conservar, quitar «Ninguno» o dejar vacía | 589 casos |
+| El documento final avisó de 204 respuestas sin interpretar en cuatro preguntas (62, 62, 32 y 48): «Totalmente de acuerdo» escrito con palabras en escalas que se respondieron con números | En una escala numérica, cualquier texto que no sea «No sé / No aplica» está fuera de la escala; una tarjeta por valor con su motivo y la opción de cambiarlo por su equivalente | — |
+| «¿Has presentado algún examen de certificación?», con opciones como «Sí, y no lo aprobé», se tomaba como selección múltiple por la coma; cada respuesta se partía y ningún filtro encontraba a nadie. Una selección múltiple real con solo 15 % de combinaciones se tomaba como opción única | Selección múltiple por combinación: sus partes aparecen solas en otras filas o se combinan de formas distintas, sin partes que empiecen con conjunción | — |
+<!-- fuente: cleaning-service/services/configuracion.py (normalizar_texto, _BORDES); services/motores/encuestas/universales.py (bordes, casos); motor.py (_homologar, _contradictorias, _celdas, _aceptados, _grupos_fuera, _por_que_fuera, _decision_fuera); tipos.py (inferir, _separados); likert.py (equivalente); shared/parsing/tabular_parser.py y raw_table.py (bordes); tests/test_limpieza_visible.py; instrumento 126 (Encuesta2_Simulada_2000_SUCIA.csv) y avisos del documento final del 127 (28 oct) -->
+
+### Y.2.5 Pruebas de la investigadora
 
 [PENDIENTE: prueba de la investigadora] Instrumentos propios con distintos tipos de pregunta y errores introducidos a propósito, siguiendo la
 tabla de errores de `markdowns/GUIA_PRUEBAS.md` (sección 3). Por cada archivo se registra: el error metido, si
@@ -501,7 +532,7 @@ Los hallazgos y sus correcciones fueron:
    (X.7.4).
 2. **«¿Qué evalúa la encuesta?» se respondía con los KPIs.** El chat recibía una sola pieza de la ficha,
    la de «KPIs asociados», y sin secciones la ficha no decía qué preguntaba el instrumento. → Ficha
-   completa en la recuperación y «Aspectos que pregunta» en la ficha (X.9.1, X.9.7).
+   completa en la recuperación y «Aspectos que pregunta» en la ficha (X.9.1, X.9.3).
 3. **Metadatos con basura:** el modelo devolvía las dimensiones como listas anidadas de columnas, y la
    población se tomaba de una pregunta del instrumento. → Listas solo de texto; población buscada fuera
    de las preguntas.
@@ -992,9 +1023,40 @@ consultas); repetirla para la comparación antes y después.]
 
 ### Y.4.12 Conjunto de regresión del rediseño en cuatro etapas (28 oct)
 
+**Diagnóstico previo (Fase 0).** Con la encuesta de 2000 respondentes (instrumento 127), tres preguntas fallaron con
+el enrutador por reglas. Ninguna causa era del modelo de lenguaje: estaban en las reglas que deciden antes que él
+(Tabla Y.19a). De ahí salió el rediseño en cuatro etapas (Desarrollo X.9).
+
+**Tabla Y.19a.** Causas de las tres preguntas que fallaron.
+
+| Pregunta | Qué pasó | Causa |
+|---|---|---|
+| «dame un dato que encuentres interesante del instrumento» | Respondió con la ficha; fidelidad «—», precisión 0 % | La intención de patrones solo se activaba con «lo más interesante», «hallazgos» o «patrones»; la búsqueda solo encontró la ficha, porque los hallazgos no existen como texto en Chroma; el juez devolvió 1 veredicto para 2 afirmaciones |
+| «dame los primeros 5 estudiantes que contestaron que tienen carga mínima, junto con todas sus respuestas» | 10 IDs y «372 más», sin respuestas | El filtro no tenía límite, orden ni campos |
+| «qué respondió el primer respondente en todas las preguntas?» | Rechazada como fuera de dominio | Un respondente solo se reconocía por su ID; la similitud (0.44) cayó en la zona gris y el clasificador la rechazó |
+<!-- fuente: tt_rag.rag_log 1093, 1094 y 1097 (28 oct); visualization-service/services/enrutador.py (_PATRONES, _accion, _PERSONA, refiere_al_alcance); rag_service.py (zona gris); evaluacion.py (veredictos) -->
+
+**Pruebas en vivo durante el rediseño** (instrumento 127, `llama3.2:3b`, 28 oct):
+- **Interpretación.** Diez preguntas dieron el plan esperado (`POST /rag/interpretar`), entre ellas los tres casos
+  de la Tabla Y.19a, dos filtros combinados, «¿qué respondió R017 en la pregunta 3?», una receta (fuera de dominio) y
+  un seguimiento «¿y de ellos…?» que heredó la condición anterior. El modelo armó bien la forma del plan, pero eligió
+  «Carga media/normal» cuando la pregunta decía «carga mínima» y omitió «R017» y «pregunta 3»: de ahí el anclaje.
+  Con `num_ctx` 8192 Ollama repartía el modelo entre CPU y GPU (17 a 60 s por plan); con 4096, de 0.7 a 3.0 s.
+- **Cálculo.** Los diez planes se ejecutaron en 8 a 120 ms y sus cifras coinciden con pandas sobre el CSV limpio: 382
+  de 2000 con carga mínima; 105 con carga mínima y alguna certificación; 49 con carga mínima y modalidad en línea; 721
+  de 1911 en desacuerdo con los laboratorios (37.7 %).
+- **Chat completo.** Ocho preguntas tomaron la ruta esperada, en 4 a 14 s. En tres la redacción no pasó la
+  verificación (omitió el conteo o inventó) y se mostró el cálculo. El modelo de 3B también inventó una tabla de
+  respondentes con respuestas falsas que no traía cifras y pasaba la verificación; desde entonces las tablas nunca
+  las escribe el modelo.
+- **Métricas.** Las correcciones del juez (Desarrollo X.10.7) llevaron el hallazgo de fidelidad «—» y precisión 0 a
+  1.0 y 1.0 (consultas 1119–1123, juez `qwen2.5:3b`). Con el juez evaluando después de cada respuesta, las preguntas
+  tardaban de 31 a 38 s, porque juez y redactor se turnan en la GPU; con las métricas bajo demanda, de 1.8 a 5.4 s.
+<!-- fuente: evidencias/rag_rediseno_2026-10-28/fase1_planes_127.json, fase2_planes_y_resultados_127.json, fase3_chat_127.json y fase4_metricas_127.json; medición en vivo del 28 oct (prompt_eval_count 2874–2875; ollama ps: 100 % GPU con 4096) -->
+
 **Qué se midió.** 28 preguntas sobre cinco instrumentos publicados: la encuesta de 2000 respondentes (127), la de
 turnos (59), la de carga académica (61), la de trayectoria (109) y una entrevista (60). Cubren:
-- los tres casos de la Fase 0;
+- los tres casos de la Fase 0 (Tabla Y.19a);
 - datos por respondente (por ID, por posición y en una entrevista);
 - filtros combinados, negación, límites y solo IDs;
 - un seguimiento con historial;
@@ -1568,7 +1630,7 @@ la línea base de Y.4.14.
 
 ### Y.4.14 Evaluación final del chat: baterías de la investigadora y set de control (7–8 nov)
 
-**Objetivo.** Medir el chat antes y después de una última ronda de cambios **generalizados** (Desarrollo X.9.6), con
+**Objetivo.** Medir el chat antes y después de una última ronda de cambios **generalizados** (Desarrollo X.9), con
 preguntas que escribió la investigadora, y comprobar con instrumentos ajenos al diseño que los cambios no se ajustaron a
 sus instrumentos.
 
@@ -1593,7 +1655,7 @@ respuesta **debe** contener.
   la memoria del equipo, reinicia Ollama cada 15 casos y repite un caso solo si salió «modelo no disponible»; cada
   reinicio queda en `reinicios.log`. Cada caso se pregunta una vez y se guarda tal como salió.
 - **Dos corridas «después»:** la **limpia**, con los cambios de las fases 1 a 4, y la **final**, con las correcciones
-  generales que la corrida limpia reveló (Desarrollo X.9.6). Se reportan las dos para separar lo que se corrigió
+  generales que la corrida limpia reveló (Desarrollo X.9.2 a X.9.5). Se reportan las dos para separar lo que se corrigió
   después de ver los resultados.
 
 **Medidas.**
@@ -1659,7 +1721,7 @@ corrida final; el control se compara sobre los mismos 16 casos.
   mide fidelidad y no si la respuesta es la que se pidió.
 - **El p90 del tiempo** (115 s) refleja los turnos en que Ollama corrió en parte sobre la CPU por falta de memoria.
 
-**Lo que reveló la corrida limpia** y se corrigió para la final (Desarrollo X.9.6), todo de forma general:
+**Lo que reveló la corrida limpia** y se corrigió para la final (Desarrollo X.9.2 a X.9.5), todo de forma general:
 - **una regresión:** «¿cuántos calificaron con 1 o 2…?» cayó a «sin información» porque el modelo escribió `"[1, 2]"` y
   la validación no lo tradujo a posiciones de la escala;
 - **opciones abreviadas** («Abandonar») y **«más de 30»** que no elegían la opción que lo dice tal cual;
@@ -1685,7 +1747,7 @@ corrección (la frase «ninguna sección tiene respuestas en blanco») no se vol
 **Generalización.**
 - **Búsqueda de textos:** ninguno de los 288 textos de pregunta y opción de los tres instrumentos influye en el código;
   la búsqueda encontró un ejemplo del prompt copiado de la encuesta, que se cambió antes de la corrida final
-  (Desarrollo X.9.6). La salida está en `evidencias/chat_2026-11-08_final/textos_instrumentos_en_codigo.txt`.
+  (Desarrollo X.9). La salida está en `evidencias/chat_2026-11-08_final/textos_instrumentos_en_codigo.txt`.
 - **Set de control:** de 1 a 13 de 16 casos de encuesta y entrevista, sin ninguno que no cumpla; 6 de 8 en la prueba
   sintética.
 - **Pruebas automáticas:** 436 en visualization-service, 126 en knowledge-service, 38 en storage-service, 186 en
@@ -1704,8 +1766,7 @@ corrección (la frase «ninguna sección tiene respuestas en blanco») no se vol
   vez el modelo puso otro filtro.
 <!-- fuente: evidencias/chat_2026-11-08_final/ (README.md, resumen.md, calificacion_debe.json, recuperacion.json, pytest/, textos_instrumentos_en_codigo.txt); evidencias/chat_2026-11-08_final_control/; commits 9519768, 2e8862d, 73525c1, 51c96e5, d138f67, af2e458 -->
 
-**Ronda posterior: frase del dato calculada y entrevistas** (Desarrollo X.9.6, «Correcciones posteriores a la
-evaluación final»). [PENDIENTE: fecha y commit.]
+**Ronda posterior: frase del dato calculada y entrevistas** (Desarrollo X.9.5, «Frase del dato y entrevistas»). [PENDIENTE: fecha y commit.]
 - **Qué se repite:** los casos afectados (la batería de la entrevista, ENC-13, ENC-11, PRU-14 y los de conteo, «de
   ellos» y cruce) y después la batería completa y el control, para descartar regresiones.
 - **Procedimiento:** el mismo de la corrida final (`documentación/guia_reprueba_chat.md`).
@@ -1992,7 +2053,7 @@ más beneficiados.
 | `comparar_kpis` con el catálogo de PA | No se repitió después de adoptar el catálogo (Y.3.6) |
 | Juez de métricas con un modelo mayor | Solo se contó con una GPU de 4 GiB. Contra la calificación humana, ningún juez de 3–4B alcanzó el umbral (Tabla P.22); falta probar un modelo mayor |
 | Regresión completa después de los cambios del 22–24 oct (regla de prefijo en el emparejamiento; intenciones `estructura`, `descripcion` y `patrones`; juez `qwen2.5:3b`) | Las matrices de encuestas y entrevistas y las preguntas de referencia no se volvieron a correr; quedó programado para después |
-| Pruebas estandarizadas con la versión sin calificar | Las cuatro pruebas se borraron el 25 oct; las vuelve a subir la investigadora (Y.2.4) |
+| Pruebas estandarizadas con la versión sin calificar | Las cuatro pruebas se borraron el 25 oct; las vuelve a subir la investigadora (Y.2.5) |
 
 ---
 

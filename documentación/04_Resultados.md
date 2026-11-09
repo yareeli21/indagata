@@ -434,10 +434,10 @@ R.11a resume el resultado.
 - La recuperación del RAG mejoró: el fragmento correcto queda entre los 3 primeros en 84 % de las preguntas (antes,
   61 %); en el control, en todas.
 - El modelo de 4B necesita al sistema: su plan se usó sin cambios en 23 % de los turnos; en el resto lo corrigieron la
-  validación, las reglas o el hilo de la conversación (Desarrollo X.9.6).
+  validación, las reglas o el hilo de la conversación (Desarrollo X.9.2).
 - Lo que sigue fallando son frases sin cifras que contradicen el resultado, citas que se parafrasean y dos
   operaciones que no se implementaron (Z.7). Las dos primeras se corrigieron después, con la frase del dato escrita
-  por el sistema y la cita literal en entrevistas (Desarrollo X.9.6). [PENDIENTE: resultado de la ronda posterior,
+  por el sistema y la cita literal en entrevistas (Desarrollo X.9.5). [PENDIENTE: resultado de la ronda posterior,
   Pruebas Y.4.14c y Y.4.14d.]
 
 ---
@@ -660,11 +660,11 @@ RAG) y en la versión final.
     (Desarrollo X.7.2).
 13. **Alcance del modelo pequeño y reglas de corrección.** El chat entiende y redacta con un modelo de 4B; contar,
     seguir el hilo de la conversación y respetar las opciones exactas lo hace el sistema, con una capa de reglas
-    generales que corrige el plan del modelo (Desarrollo X.9.6). Esas reglas forman una lista que crece: una forma de
+    generales que corrige el plan del modelo (Desarrollo X.9.2). Esas reglas forman una lista que crece: una forma de
     preguntar que nunca se ha visto puede fallar hasta que se detecte. La verificación detecta cifras falsas, porcentajes
     atribuidos a otra opción, opciones omitidas y lenguaje de calificación, pero no toda afirmación falsa: una frase sin
     cifras que contradice el resultado puede pasar. En conteos, seguimientos y cruces, la frase del dato la escribe el
-    sistema para evitarlo (Desarrollo X.9.6); en las demás intenciones el riesgo sigue. [PENDIENTE: confirmar con la
+    sistema para evitarlo (Desarrollo X.9.5); en las demás intenciones el riesgo sigue. [PENDIENTE: confirmar con la
     ronda posterior.]
 14. **Evaluación final con las baterías.** Las baterías orientaron qué capacidades se construyeron, la calificación
     contra el «Debe» la hizo el mismo asistente que programó los cambios y cada caso se preguntó una sola vez (Pruebas
