@@ -307,6 +307,31 @@ de *embeddings* del chat, sin umbrales.
 | Set de control | 0.89 | 1.00 | 1.00 |
 <!-- fuente: tools/rag/recuperacion_oro.json y medir_recuperacion.py; evidencias/chunks_2026-11-07/README.md; evidencias/chat_2026-11-08_final/recuperacion.json -->
 
+**Métricas de recuperación de la versión vigente.** Siguen el método clásico de evaluación de recuperación de
+información: para cada pregunta se fija de antemano qué fragmento del instrumento es el relevante (**juicio de
+relevancia**, `tools/rag/recuperacion_oro.json`) y se mide en qué lugar lo pone la búsqueda. *Hit*@k es la proporción
+de preguntas cuyo fragmento relevante queda entre los k primeros; el MRR (*mean reciprocal rank*) es el promedio de
+1/posición del primer fragmento relevante (1 = siempre en primer lugar). La búsqueda trae 8 fragmentos por
+instrumento, así que *hit*@8 es la proporción de preguntas en que el fragmento relevante llega al modelo.
+
+**Tabla P.8a.** *Hit*@k y MRR de la versión vigente, sin y con el filtro de chunks de personas que usa el chat.
+
+| Preguntas | n | Filtro | *Hit*@1 | *Hit*@3 | *Hit*@5 | *Hit*@8 | MRR |
+|---|---|---|---|---|---|---|---|
+| Baterías | 43 | Sin filtro | 0.61 | 0.70 | 0.70 | 0.74 | 0.65 |
+| Baterías | 43 | Con filtro (vigente) | **0.74** | **0.84** | **0.86** | **0.95** | **0.80** |
+| — encuesta (127) | 16 | Con filtro | 0.63 | 0.69 | 0.75 | 0.88 | 0.69 |
+| — prueba (130) | 11 | Con filtro | 0.82 | 0.91 | 0.91 | 1.00 | 0.86 |
+| — entrevista (129) | 16 | Con filtro | 0.81 | 0.94 | 0.94 | 1.00 | 0.88 |
+| Set de control (61 y 60) | 9 | Sin filtro | 0.78 | 1.00 | 1.00 | 1.00 | 0.87 |
+| Set de control (61 y 60) | 9 | Con filtro (vigente) | **0.89** | **1.00** | **1.00** | **1.00** | **0.93** |
+<!-- fuente: evidencias/chat_2026-11-08_final/recuperacion.json (tools/rag/medir_recuperacion.py, 8 nov) -->
+
+Los juicios de relevancia los fijó el autor. Para que no dependan de una sola persona, la investigadora los marca por
+separado, sin ver los del autor (`tools/rag/relevancia/juicios_relevancia_para_llenar.xlsx`), y se mide el acuerdo
+con la kappa de Cohen (`tools/rag/relevancia/comparar.py`). [PENDIENTE: acuerdo entre los dos juicios y, si
+difieren, *hit*@k y MRR con los juicios de la investigadora.]
+
 **Lectura.** Con la ventana de caracteres, hasta 83 % de los chunks de una prueba se embebían truncados, sin aviso.
 Medir en *tokens* y dejar fuera de la búsqueda los chunks de cada persona (que en la encuesta de 2000 eran unos 6,600
 y llenaban los primeros lugares) subió el *hit rate* de las baterías de 0.61 a 0.79; la ficha con el encabezado de la
@@ -1214,6 +1239,7 @@ más beneficiados.
 ## Lista de [PENDIENTE] de este capítulo
 
 1. Resultado de la ronda posterior (frase del dato y entrevistas): Tablas P.22 y P.23 (Y.4.6).
-2. Pruebas de la investigadora con instrumentos propios (Y.2.4, Y.3.5, Y.4.9 y Y.6.3).
-3. Repetir la anotación independiente con una entrevista real, si se cuenta con una con consentimiento (Y.4.7).
-4. Tomar las capturas P.1 a P.8.
+2. Acuerdo de los juicios de relevancia de la investigadora con los del autor (Y.3.1).
+3. Pruebas de la investigadora con instrumentos propios (Y.2.4, Y.3.5, Y.4.9 y Y.6.3).
+4. Repetir la anotación independiente con una entrevista real, si se cuenta con una con consentimiento (Y.4.7).
+5. Tomar las capturas P.1 a P.8.
