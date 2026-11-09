@@ -1,6 +1,6 @@
 # Guía para repetir la evaluación del chat
 
-Cómo volver a correr las baterías de preguntas del chat, calificarlas y obtener las mismas medidas de Pruebas Y.4.14.
+Cómo volver a correr las baterías de preguntas del chat, calificarlas y obtener las mismas medidas de Pruebas Y.4.6.
 Todos los comandos van en PowerShell, desde la raíz del repositorio.
 
 ## 1. Qué se mide y dónde queda

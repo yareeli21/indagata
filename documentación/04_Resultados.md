@@ -168,7 +168,7 @@ respuestas más breves corresponden a la pregunta 7 (38.4 palabras en promedio).
 Con ruido que al principio no contemplaba, pasó de 3 a 59 de 80 errores resueltos después de las reglas del 5 nov.
 De los que siguen sin resolverse, una parte se deja así a propósito: en las entrevistas, corregirlos cambiaría las
 palabras del participante. La otra parte se reporta como limitación (Z.7). El catálogo por tipo de instrumento está
-en Desarrollo X.7.2 y las mediciones en Pruebas Y.2.3.
+en Desarrollo X.7.2 y las mediciones en Pruebas Y.2.2.
 <!-- fuente: evidencias/limpieza_2026-10-24/RESULTADO.md; evidencias/limpieza_2026-11-07/ent_02_resultado.json y no_contemplado_hoy.json -->
 
 ### Z.2.4 Sugerencias de análisis
@@ -261,7 +261,7 @@ Justificación redactada por el modelo para el primer KPI (sin editar):
 La comparación se hizo el 16 oct con `comparar_kpis.py`, **con el catálogo de KPIs anterior** y
 sobre dos instrumentos (39 y 22) que ya no están en la base. El 17 oct se adoptó el catálogo de la
 rama `PA` (55 KPIs reescritos) para ajustarlo a lo que se necesitaba; las cifras no se repitieron con
-ese catálogo. El detalle está en la Tabla P.6.
+ese catálogo. El detalle está en Pruebas Y.3.4 (Tabla P.12).
 <!-- fuente: registro 16 oct 01:05–01:10; registro 17 oct (adopción del catálogo) -->
 
 **Tabla R.9.** Método inicial contra método por unidades (catálogo anterior).
@@ -412,7 +412,7 @@ correo).
 Para cerrar el alcance, la investigadora escribió 79 casos sobre sus instrumentos de prueba (la encuesta 127, de 2000
 respondentes; la prueba 130, de 97 alumnos; y la entrevista 129), cada uno con lo que la respuesta debe contener, y se
 armó un set de control con tres instrumentos sintéticos que no se usaron para diseñar los cambios (61, 60 y 133;
-Pruebas Y.4.14). Los archivos de cada instrumento están en el Anexo A. La Tabla
+Pruebas Y.4.6). Los archivos de cada instrumento están en el Anexo A. La Tabla
 R.11a resume el resultado.
 
 **Tabla R.11a.** Casos que cumplen lo que la respuesta debe contener.
@@ -438,7 +438,7 @@ R.11a resume el resultado.
 - Lo que sigue fallando son frases sin cifras que contradicen el resultado, citas que se parafrasean y dos
   operaciones que no se implementaron (Z.7). Las dos primeras se corrigieron después, con la frase del dato escrita
   por el sistema y la cita literal en entrevistas (Desarrollo X.9.5). [PENDIENTE: resultado de la ronda posterior,
-  Pruebas Y.4.14c y Y.4.14d.]
+  Pruebas Y.4.6, Tablas P.22 y P.23.]
 
 ---
 
@@ -446,7 +446,7 @@ R.11a resume el resultado.
 
 Esta sección presenta qué tan bien procesa el sistema los formatos en que llegarían los instrumentos
 reales (X.5) y qué tan bien separa, en una entrevista, lo que responde la pregunta de lo que es relato o
-digresión (X.7.8). El procedimiento de prueba está en Y.3.3, Y.3.4 y Y.4.9. Todos los datos son sintéticos, escritos con la
+digresión (X.7.8). El procedimiento de prueba está en Pruebas Y.3.2 y Y.4.7. Todos los datos son sintéticos, escritos con la
 forma de los exportes reales.
 <!-- fuente: evidencias/formatos_2026-10-21/RESULTADO.md -->
 
@@ -546,7 +546,7 @@ con la frase de cada persona.
 ### Z.5.4 Acuerdo con la anotación independiente de la investigadora
 
 Para que la medición no dependiera de quien construyó el sistema, la investigadora anotó las 32
-respuestas (dos temas) sin ver la anotación del autor ni el análisis del sistema (Y.4.10).
+respuestas (dos temas) sin ver la anotación del autor ni el análisis del sistema (Pruebas Y.4.7).
 
 **Tabla R.16.** Acuerdo de la postura (sí, no, ambivalente) entre los tres anotadores.
 <!-- fuente: tools/formatos/anotacion/comparar.py --estudiantes 107 --docentes 108; evidencias/formatos_2026-10-21/RESULTADO.md -->
@@ -623,7 +623,7 @@ RAG) y en la versión final.
 1. **Datos sintéticos.** Todas las respuestas son sintéticas; enc_01 conserva las preguntas de un
    instrumento publicado, pero no sus respuestas. Las cifras de α o de línea recta describen el
    generador, no a estudiantes. El acervo tampoco contiene duplicados, vacíos ni «No sé»; esas reglas
-   se probaron con errores inyectados sobre copias de los instrumentos (Pruebas Y.2.3).
+   se probaron con errores inyectados sobre copias de los instrumentos (Pruebas Y.2.2).
 2. **Juez pequeño.** Las métricas de la Tabla R.11 las calculó el mismo modelo de 3B que genera; desde
    el 23 oct el juez es `qwen2.5:3b`, también de 3B. Fidelidad y recall son aproximados: incluso RAGAS
    calificó como parcialmente infiel una respuesta exacta, y ningún juez probado detectó el cambio de una
@@ -668,7 +668,7 @@ RAG) y en la versión final.
     ronda posterior.]
 14. **Evaluación final con las baterías.** Las baterías orientaron qué capacidades se construyeron, la calificación
     contra el «Debe» la hizo el mismo asistente que programó los cambios y cada caso se preguntó una sola vez (Pruebas
-    Y.4.14). El set de control, con instrumentos ajenos al diseño, es la medida de generalización.
+    Y.4.6). El set de control, con instrumentos ajenos al diseño, es la medida de generalización.
 15. **Operaciones que no se implementaron:** comparar conjuntos de reactivos agrupados por tema y agrupar las
     preguntas de una guía de entrevista en temas.
 

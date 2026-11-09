@@ -208,7 +208,7 @@ Así pasas tus pruebas al capítulo de Pruebas sin perder detalle.
 |---|---|---|---|---|---|---|---|---|---|---|
 | | | | | | | | | | | |
 
-Para la duración, usa esta otra (capítulo de Pruebas, Tabla P.23):
+Para la duración, usa esta otra (capítulo de Pruebas, Tabla P.30):
 
 | Instrumento | Tamaño | Carga | Limpieza (automática + aplicar) | Metadatos | Aprobación + indexación | Perfil | KPIs | Documento | Indexación al RAG | Cómputo total | Punta a punta | Chat p50 / p95 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|

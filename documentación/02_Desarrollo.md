@@ -643,7 +643,7 @@ tres niveles:
 - **Rechazado:** se detiene con el motivo y lo que hay que hacer.
 
 Ningún formato se procesa en silencio con un resultado incorrecto. Esta sección es el contrato
-completo, y se comprueba con la matriz de aceptación descrita en el capítulo de Pruebas (Y.3.4 y Y.4.9).
+completo, y se comprueba con la matriz de aceptación descrita en el capítulo de Pruebas (Y.3.2 y Y.4.7).
 <!-- fuente: tools/formatos/ (matriz de aceptación); shared/parsing/formato.py -->
 
 ### X.5.1 Reglas comunes
@@ -1073,26 +1073,26 @@ transformaciones, los hallazgos, las decisiones y la estadística antes y despu�
 
 **Decisiones y por qué.** Cada una nació de una prueba con instrumentos; la prueba se indica entre paréntesis.
 - **La estadística se calcula antes y después de las decisiones**, para que el investigador vea el efecto de cada
-  una. En una encuesta de ejemplo, el α pasó de 0.586 a 0.892 al recodificar un ítem invertido (Pruebas Y.2.1).
+  una. En una encuesta de ejemplo, el α pasó de 0.586 a 0.892 al recodificar un ítem invertido.
 - **Nada cambia sin que se vea.** Cada transformación automática y cada tarjeta muestran su ubicación completa
   («Ver dónde»: fila, pregunta, valor antes y después). Esto incluye lo que se corrige solo: las respuestas que solo
   difieren en mayúsculas, acentos o signos de borde se escriben con su forma más frecuente, y los espacios de borde
   se reportan. Sin esto, la investigadora encontraba en el documento final avisos que no había visto en la limpieza
-  (Pruebas Y.2.4).
+  (Pruebas Y.2.3).
 - **Un valor fuera de la escala, una tarjeta**, con su motivo («está escrito con palabras, pero esta pregunta se
   respondió con números del 1 al 5», «es mayor que 5») y la opción de anularlo, conservarlo o cambiarlo por un valor
   de la escala; si la etiqueta está en el diccionario de escalas, se sugiere su equivalente («Totalmente de acuerdo»
   → 5). En una escala numérica, cualquier texto que no sea «No sé / No aplica» está fuera de la escala. Hasta 8
-  tarjetas por pregunta; el resto va en una tarjeta de la pregunta (Pruebas Y.2.4).
+  tarjetas por pregunta; el resto va en una tarjeta de la pregunta (Pruebas Y.2.3).
 - **Duplicados sin columnas de identificador.** Al comparar filas se ignoran las columnas de la plataforma y
   cualquier columna con todos sus valores distintos y forma de identificador o de fecha y hora; las preguntas
-  abiertas se conservan porque sí distinguen a dos personas. Una «Dirección IP» hacía única cada fila (Pruebas Y.2.3).
+  abiertas se conservan porque sí distinguen a dos personas. Una «Dirección IP» hacía única cada fila (Pruebas Y.2.2).
 - **«No sé / No aplica» se trata igual en escalas de texto y numéricas**, y **las filas de solo separadores se
-  cuentan como vacías** en lugar de perderse al leer el archivo (Pruebas Y.2.3).
+  cuentan como vacías** en lugar de perderse al leer el archivo (Pruebas Y.2.2).
 - **Selección múltiple por combinación, no por la coma.** Una lista es selección múltiple si sus partes aparecen solas
   en otras filas, o si las mismas opciones se combinan de formas distintas sin partes que empiecen con conjunción
   («y…», «pero…»); con «;» basta con que el 30 % de las respuestas lo tenga. Así, «Sí, y no lo aprobé» es una sola
-  opción (Pruebas Y.2.4).
+  opción (Pruebas Y.2.3).
 - **Selección contradictoria.** «Ninguno» (o «Ninguna», «No aplica») marcado junto con otras opciones es un hallazgo:
   conservar, quitar «Ninguno» o dejar vacía.
 - **Datos de contexto por palabra del nombre.** Una columna corta se propone como dato de contexto si su nombre
@@ -1253,7 +1253,7 @@ reales. Las tablas D.21e a D.21g reúnen, por tipo de instrumento, cada error qu
 - qué hace el módulo: lo que corrige solo y lo que deja a decisión del investigador, con la opción sugerida;
 - cómo se comprobó.
 
-La columna «Comprobación» remite a tres mediciones de Pruebas Y.2.3, todas con verdad conocida:
+La columna «Comprobación» remite a tres mediciones de Pruebas Y.2.2, todas con verdad conocida:
 - **Iny. 24 oct**: errores inyectados en una encuesta (enc_11) y una prueba (pru_01).
 - **Iny. 7 nov**: errores inyectados en una entrevista con 30 participantes (ent_02).
 - **No contemplado**: tres archivos con errores que en su momento la limpieza no tenía contemplados (enc_06, pru_03
@@ -1345,9 +1345,9 @@ Lo que la prueba **no** resuelve:
 | Etiquetas inconsistentes («Entrevistador:» entre «P3:», «E:», «ENTREVISTADA:») | Varias personas transcribiendo | Rol sugerido por la etiqueta; el investigador lo confirma | Iny. 7 nov: 5/5; no contemplado: 2/2 (0/2) |
 | Anotaciones del transcriptor («[inaudible]», «(risas)», «[pausa larga]») | Convenciones de transcripción (McLellan et al., 2003) | Se reportan; sugiere quitarlas, se pueden conservar | Iny. 7 nov: 8/8; no contemplado: 5/5 (0/5) |
 | Muletillas («eh», «mmm», «em») | Transcripción literal (Oliver et al., 2005) | Se reportan; sugiere conservarlas, se pueden quitar | Iny. 7 nov: 6/6 detectadas; 6/6 quitadas con «quitar» |
-| Transcripción automática (WebVTT de Teams, TXT de Zoom con la hora) | Grabación en videollamada | Se convierte a etiquetas de hablante | Matriz de formatos de entrevistas (Y.4.9) |
+| Transcripción automática (WebVTT de Teams, TXT de Zoom con la hora) | Grabación en videollamada | Se convierte a etiquetas de hablante | Matriz de formatos de entrevistas (Pruebas Y.4.7) |
 | Saltos de línea de Windows (CRLF) | Archivo creado en Windows | Se normalizan | Iny. 7 nov: todo el archivo |
-| Transcripción sin hablantes marcados | Texto corrido | Reconstruye preguntas por «?» o divide por párrafos, con aviso | Matriz de formatos (Y.4.9) |
+| Transcripción sin hablantes marcados | Texto corrido | Reconstruye preguntas por «?» o divide por párrafos, con aviso | Matriz de formatos (Pruebas Y.4.7) |
 
 Lo que la entrevista **no** corrige, a propósito: corregirlo cambiaría las palabras del participante, y en una
 entrevista eso altera el testimonio.
@@ -1532,7 +1532,7 @@ para este instrumento se presentan en la Tabla R.7 de Resultados.
 **Por qué unidades y no un solo texto.** El modelo de *embeddings* solo lee 128 *tokens*. Un solo texto por
 instrumento (sus metadatos más el instrumento completo) mide de 811 a 1,297 *tokens*, así que se trunca y las
 propuestas salen casi solo de los metadatos; con una unidad por pregunta, cada pregunta cuenta. La comparación entre
-los dos métodos está en Pruebas Y.3.6 y Resultados Z.3.2.
+los dos métodos está en Pruebas Y.3.4 y Resultados Z.3.2.
 <!-- fuente: commit e673d83 (summary_builder); registro 16 oct (salida de comparar_kpis: «811 tokens (el modelo solo lee los primeros 128)», «1297 tokens») -->
 
 **Justificación y decisión humana.** Para cada KPI propuesto, el modelo de lenguaje redacta una
@@ -1938,16 +1938,16 @@ detalle de cada versión, con lo que se midió y lo que se corrigió, está en P
 
 | Fecha | Versión | Qué cambió | Por qué | Dónde se probó |
 |---|---|---|---|---|
-| 10–16 oct | Solo búsqueda semántica | El modelo redacta con los fragmentos más parecidos | Primera versión | Y.4.1–Y.4.2 |
-| 17–26 oct | Enrutador por reglas | Reglas reconocen la intención y calculan; el modelo solo redacta el cálculo | Con fragmentos no se puede contar a todos los respondentes | Y.4.3–Y.4.11 |
-| 28 oct | Rediseño en cuatro etapas | El modelo interpreta la pregunta en un plan; el cálculo lo ejecuta; la redacción se verifica | Las reglas no reconocían formas nuevas de preguntar | Y.4.12 |
-| 4–5 nov | RAG y cálculo complementarios; RAG primero | La recuperación entra en todas las respuestas y se hace antes de interpretar | Las respuestas con plan no consultaban ChromaDB | Y.4.13 |
-| 7 nov | Hilo, condiciones no literales y redacción verificada | Los seguimientos conservan la pregunta; dos valores de una variable se comparan; la verificación revisa comparaciones, inferencias y porcentajes | Respuestas que la investigadora calificó mal | Y.4.13 |
-| 7–8 nov | **Vigente.** Cambios generalizados | Chunks en *tokens*, polaridad, cortesía, lo que no existe, comparaciones y cruces, interpretación en dos capas, operaciones de entrevista, verificación más estricta | Baterías de la investigadora: en la línea base se cumplían 31 de 79 casos y 1 de 16 de control | Y.4.14 |
+| 10–16 oct | Solo búsqueda semántica | El modelo redacta con los fragmentos más parecidos | Primera versión | — |
+| 17–26 oct | Enrutador por reglas | Reglas reconocen la intención y calculan; el modelo solo redacta el cálculo | Con fragmentos no se puede contar a todos los respondentes | Y.4.2, Y.4.8 |
+| 28 oct | Rediseño en cuatro etapas | El modelo interpreta la pregunta en un plan; el cálculo lo ejecuta; la redacción se verifica | Las reglas no reconocían formas nuevas de preguntar | Y.4.3 |
+| 4–5 nov | RAG y cálculo complementarios; RAG primero | La recuperación entra en todas las respuestas y se hace antes de interpretar | Las respuestas con plan no consultaban ChromaDB | Y.4.5 |
+| 7 nov | Hilo, condiciones no literales y redacción verificada | Los seguimientos conservan la pregunta; dos valores de una variable se comparan; la verificación revisa comparaciones, inferencias y porcentajes | Respuestas que la investigadora calificó mal | Y.4.2 |
+| 7–8 nov | **Vigente.** Cambios generalizados | Chunks en *tokens*, polaridad, cortesía, lo que no existe, comparaciones y cruces, interpretación en dos capas, operaciones de entrevista, verificación más estricta | Baterías de la investigadora: en la línea base se cumplían 31 de 79 casos y 1 de 16 de control | Y.4.6 |
 
 **Regla de trabajo: cambios generalizados.** Desde el 7 nov, ningún texto, ID u opción de los instrumentos de prueba
 entra al código, ni ejemplos copiados de ellos: cada cambio debe servir para cualquier instrumento del mismo tipo. Cómo
-se comprobó (búsqueda de sus textos en el código y set de control) está en Pruebas Y.4.14.
+se comprobó (búsqueda de sus textos en el código y set de control) está en Pruebas Y.4.6.
 
 **El alcance real del modelo.** El chat usa `gemma3:4b`, un modelo de 4 mil millones de parámetros que corre en el
 equipo del proyecto (GTX 1650 de 4 GiB). Ocupa 2.9 GB y, con la memoria de video llena, Ollama reparte su cálculo
@@ -1982,7 +1982,7 @@ si un instrumento no tiene documento, se usa el JSON técnico como respaldo.
 **Reglas.**
 - **Cada chunk se mide en *tokens* con el tokenizador del modelo de *embeddings*.** Ese modelo solo lee 128
   *tokens* (`max_seq_length`) y lo que pasa de ahí no se embebe, sin aviso. Con una ventana fija de 450 caracteres
-  se truncaban 1,094 de 6,667 chunks de la encuesta de 2000 respondentes; medidos en *tokens*, ninguno (Tabla D.24a).
+  se truncaban 1,094 de 6,667 chunks de la encuesta de 2000 respondentes; medidos en *tokens*, ninguno (Pruebas Y.3.1, Tabla P.7).
   La ventana de 450 caracteres queda solo como respaldo cuando no hay tokenizador. Si una unidad no cabe, se
   trocea y **cada pieza repite su prefijo** con el texto completo de la pregunta («Respondente R001 (turno:
   Matutino…)»).
@@ -2015,18 +2015,6 @@ si un instrumento no tiene documento, se usa el JSON técnico como respaldo.
   `kpiId`, `fuente`, `tipoChunk` y `parte` (definición o resultados).
 <!-- fuente: chunks_documento.py (_MAX_PREGUNTA_EN_RESPUESTA = 40 y su comentario; _por_lineas; docstring «Se mide en tokens»); storage-service/services/vectores.py (contar_tokens, max_tokens); chroma_indexer.py; commit eb17985 (ficha «ninguno»); commit 6a1cb38 (450); commit 310af4c (tokens, definición y resultados, filtro de personas); evidencias/chunks_2026-11-07/README.md -->
 
-**Tabla D.24a.** Chunks que pasan del límite del modelo de *embeddings* (128 *tokens*) con cada forma de medir
-(reindexación del 7 nov).
-
-| Instrumento | Ventana de 450 caracteres | Medido en *tokens* (vigente) |
-|---|---|---|
-| Encuesta de 2000 respondentes | 1,094 de 6,667 | 0 de 7,059 |
-| Prueba de 97 alumnos | 385 de 465 | 0 de 1,337 |
-| Encuesta de control | 149 de 690 | 0 de 818 |
-| Otras dos encuestas | 157 de 995 | 0 de 1,238 |
-| Tres entrevistas | 0 | 0 |
-<!-- fuente: evidencias/chunks_2026-11-07/README.md (tabla de truncados; tools/rag/contar_truncados.py) -->
-
 Ejemplo de chunk de respondente (texto real):
 
 ```text
@@ -2048,23 +2036,9 @@ Respuesta: En la primaria no lo pensaba así, pero ahora creo que sí, por la be
 ```
 <!-- fuente: services/storage-service/services/chunks_documento.py (_cuerpo_intercambio); tests/test_chunks_documento.py::test_entrevista_con_analisis_pone_primero_lo_que_responde -->
 
-**Por qué así: efecto en la recuperación.** Se midió con 43 preguntas de las baterías de la investigadora y 9 de
-control, cada una con su fragmento correcto. El *hit rate*@3 es la proporción de preguntas cuyo fragmento correcto
-queda entre los 3 primeros (Tabla D.24b).
-
-**Tabla D.24b.** *Hit rate*@3 de la recuperación (modelo de *embeddings* del chat, sin umbrales).
-
-| Preguntas | Ventana de 450 caracteres, con personas | Chunks en *tokens* y sin personas | Con ficha y temas de la entrevista (vigente) |
-|---|---|---|---|
-| Las tres baterías | 0.61 | 0.79 | 0.84 |
-| Encuesta | 0.25 | 0.69 | 0.69 |
-| Prueba | 0.82 | 0.91 | 0.91 |
-| Entrevista | 0.81 | 0.81 | 0.94 |
-| Set de control | 0.89 | 1.00 | 1.00 |
-<!-- fuente: tools/rag/recuperacion_oro.json; evidencias/chunks_2026-11-07/README.md; evidencias/chat_2026-11-08_final/recuperacion.json -->
-
-La entrevista sube con la última columna porque la ficha incluye el encabezado de la transcripción y los
-intercambios llevan los temas del análisis de lo que se cuenta.
+**Por qué así: efecto en la recuperación.** Con estas reglas, el *hit rate*@3 (fragmento correcto entre los 3
+primeros) de las preguntas de las baterías de la investigadora subió de 0.61 a 0.84, y el del set de control, de 0.89
+a 1.00 (Pruebas Y.3.1, Tabla P.8).
 
 ### X.9.2 Interpretación: el plan del modelo y las reglas que lo corrigen
 
@@ -2122,7 +2096,7 @@ muestra en «Cómo lo calculé».
 respetar el formato de las opciones (escribió `"[1, 2]"` para «¿cuántos calificaron con 1 o 2…?»), seguir el hilo
 (en «De ellos, ¿qué respondieron sobre…?» olvidó el grupo anterior) y elegir la opción que la pregunta dice (eligió
 «Carga media/normal» cuando la pregunta decía «carga mínima»). En la evaluación final, el plan del modelo se usó sin
-cambios en 18 de 77 turnos (23 %); en los demás lo corrigieron la validación, las reglas o el hilo (Pruebas Y.4.14).
+cambios en 18 de 77 turnos (23 %); en los demás lo corrigieron la validación, las reglas o el hilo (Pruebas Y.4.6).
 
 **Limitación.** Las reglas forman una lista que crece cuando aparece un error nuevo del modelo; una forma de preguntar
 que nunca se ha visto puede fallar hasta que se detecte. Con un modelo más capaz harían falta menos reglas, y los
@@ -2147,7 +2121,7 @@ El RAG conecta la pregunta con el contenido del instrumento. El plan y el RAG se
    de esos intercambios se agregan a la tabla de la persona y los patrones salen del texto recuperado, con citas.
 
 **Por qué primero.** Desde el rediseño del 28 oct, las preguntas con plan no consultaban ChromaDB: el chat era
-«modelo + cálculo» y no un RAG (solo 13 de 170 respuestas usaron la recuperación; Pruebas Y.4.13). Ahora toda
+«modelo + cálculo» y no un RAG (solo 13 de 170 respuestas usaron la recuperación; Pruebas Y.4.5). Ahora toda
 respuesta parte de la recuperación, y el cálculo queda como herramienta para lo que ningún fragmento contiene.
 
 **Las preguntas sobre el instrumento** («¿de qué trata?», «¿cuánto dura la entrevista?») no se resuelven por
@@ -2216,7 +2190,7 @@ cada uno trae su frase con la cifra, un puntaje para ordenarlos y las preguntas 
 
 **Por qué determinista.** El modelo nunca calcula: con unos cuantos fragmentos no ve a todos los respondentes, y los
 modelos de lenguaje se equivocan en la aritmética (Gao et al., 2023). Las cifras del cálculo se compararon con las
-calculadas con pandas sobre el CSV limpio (Pruebas Y.4.12).
+calculadas con pandas sobre el CSV limpio (Pruebas Y.4.3).
 <!-- fuente: services/visualization-service/services/hallazgos.py; ejecutor.py; evidencias/rag_rediseno_2026-10-28/fase2_planes_y_resultados_127.json -->
 
 ### X.9.5 Redacción y verificación
@@ -2268,7 +2242,7 @@ deterministas:
   y la respuesta interpreta u opina, el sistema agrega al final que es el testimonio de una sola persona y no permite
   generalizar.
 
-[PENDIENTE: resultado de la evaluación de estos dos cambios (Pruebas Y.4.14c y Y.4.14d).]
+[PENDIENTE: resultado de la evaluación de estos dos cambios (Pruebas Y.4.6, Tablas P.22 y P.23).]
 <!-- fuente: commit 6fd668d; services/visualization-service/services/consulta_planificada.py (frase_dato, FORMATO_CONTEXTO, PIDE_LITERAL, literal_entrevista), ejecutor.py (Ejecucion.frase_dato), rag_service.py (_con_frase_dato, contexto_aceptable, NOTA_UN_TESTIMONIO, _INTERPRETA); tests/test_correcciones_fase5.py y test_chat_planificado.py -->
 
 **Fuentes.** Una tarjeta por instrumento con lo que el resultado usó: el criterio, las preguntas y los respondentes.
@@ -2305,7 +2279,7 @@ regla la reconoce, va a la búsqueda semántica: con similitud menor a 0.30 qued
 niveles; comparaciones numéricas («más de 30»); hasta tres condiciones. Solo si las reglas no encuentran la
 condición, el modelo propone una en JSON, que se valida contra las preguntas y opciones reales.
 - **Por qué se conserva:** sus cálculos y sus reglas de dominio siguen en uso, y responde aunque el modelo falle.
-  Su límite, que motivó el rediseño, es que solo reconoce las formas de preguntar que tiene escritas (Pruebas Y.4.12).
+  Su límite, que motivó el rediseño, es que solo reconoce las formas de preguntar que tiene escritas (Pruebas Y.4.3).
 <!-- fuente: services/visualization-service/services/enrutador.py (detectar, resolver); shared/conocimiento/consultas.py (cumple, seleccion); rag_service.py (planear: zona gris); shared/db/core/config.py (RAG_MIN_SCORE 0.35, RAG_FUERA_MAX 0.30) -->
 
 ### X.9.7 Registro, caché e interfaz
@@ -2406,7 +2380,8 @@ prompt) no bastaba (X.8.3).
 
 El prompt del sistema va en el campo `system` de Ollama, porque los modelos respetan mejor las reglas ahí que
 mezcladas con el contexto. Hoy tiene **20 reglas**: las 8 de la rama `PA`, 5 agregadas en octubre y 7 agregadas en
-noviembre. La historia de cada versión está en Pruebas Y.4.1 (Tabla P.7).
+noviembre: cada regla nueva respondió a una falla observada, y las que el modelo de 3–4B no cumplía se volvieron
+verificaciones en código (X.9.5).
 <!-- fuente: services/visualization-service/services/prompt.py (SISTEMA, docstring); git log -- prompt.py -->
 
 *Las 8 reglas de la rama `PA` (16 oct):*
@@ -2563,7 +2538,7 @@ instrucciones en la pregunta del usuario.]
 ### X.10.5 Parámetros de generación
 
 **Modelos en uso (vigentes al 8 nov).** Redactor e intérprete del chat: `gemma3:4b`, elegido en la comparación de modelos
-(Pruebas Y.5.2). Juez de las métricas: `qwen3:4b-instruct` (`RAG_JUEZ_MODELO`). Los demás usos toman el modelo de
+(Pruebas Y.5.1). Juez de las métricas: `qwen3:4b-instruct` (`RAG_JUEZ_MODELO`). Los demás usos toman el modelo de
 `OLLAMA_MODEL`.
 <!-- fuente: .env (OLLAMA_MODEL=gemma3:4b, RAG_JUEZ_MODELO=qwen3:4b-instruct, 7 nov) -->
 
@@ -2688,7 +2663,7 @@ siguen las definiciones de RAGAS 0.4.3, reescritas como prompts cortos en españ
   pulsarlo (`POST /rag/consultas/{id}/metricas`), la evaluación entra a una cola en segundo plano y el panel consulta
   el estado hasta que termina. Las cuatro consultas tardan unos 45 s, y el juez y el redactor no caben juntos en la
   GPU de 4 GiB: evaluando después de cada respuesta, la pregunta siguiente pasaba de unos 5 s a más de 30 s
-  (Pruebas Y.4.12). La investigadora eligió esta opción frente a usar el mismo modelo como juez y redactor (juzgaba
+  (Pruebas Y.4.3). La investigadora eligió esta opción frente a usar el mismo modelo como juez y redactor (juzgaba
   peor) o evaluar solo una muestra (deja respuestas sin medir). `RAG_METRICAS_BAJO_DEMANDA=false` vuelve a evaluar
   todas.
 - **Veredicto que no cuadra.** Si el juez devuelve menos veredictos que afirmaciones, se le pregunta otra vez y, si
