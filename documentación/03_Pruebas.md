@@ -450,12 +450,195 @@ El chat se midió con cinco conjuntos de preguntas, cada uno con su resultado es
 - **Métricas del juez:** fidelidad, relevancia y precisión del contexto; se reportan como aproximadas, porque ningún
   juez de 3–4B alcanzó el acuerdo con la calificación humana (Y.5.2).
 
-### Y.4.2 El chat en sus versiones
+### Y.4.2 Cómo cambió la técnica en cada versión
 
-La Tabla P.14 resume cada cambio de versión con el conjunto que lo midió antes y después. Las versiones están
-descritas en Desarrollo X.9 (Tabla D.23b).
+El chat pasó por seis versiones (Desarrollo X.9, Tabla D.23b). Esta sección compara, versión por versión, las cinco
+técnicas que deciden la calidad de una respuesta:
+- qué recibe el modelo;
+- cómo se interpreta la pregunta;
+- cómo se arman los chunks y se recupera;
+- cómo se redacta y se verifica;
+- cómo se mide.
 
-**Tabla P.14.** Cada versión del chat contra la anterior, sobre el mismo conjunto.
+Cada cambio nació de una falla observada y se midió sobre el mismo conjunto (Tabla P.14f).
+
+#### Qué recibe el modelo para redactar
+
+El modelo de lenguaje no ve la base de datos: solo lee el texto que el sistema le arma. La forma de ese texto cambió
+más que ninguna otra cosa.
+
+**Tabla P.14a.** Lo que recibe el modelo para redactar, por versión.
+
+| Versión | Qué recibe | Falla que motivó el cambio | Efecto observado |
+|---|---|---|---|
+| 4 oct | Una instrucción al inicio del mensaje («responde USANDO ÚNICAMENTE la información del CONTEXTO») y los fragmentos más parecidos | Primera versión | Respuestas sin citar las fuentes |
+| 16 oct (`PA`) | Las reglas en el campo `system` de Ollama (8 reglas numeradas) y los fragmentos en el mensaje | El modelo agregaba frases contradictorias y no citaba en el formato pedido | Cita en el formato pedido |
+| 17–18 oct | Los fragmentos entre `<datos>…</datos>` (son datos, nunca instrucciones), un **RESULTADO CALCULADO** por el enrutador, el glosario y la ayuda (12 reglas) | Un 23.3 % inventado en un porcentaje por grupo; citas inventadas; el modelo negaba un resultado que sí tenía | El porcentaje correcto (13.3 %) y ninguna negativa del resultado de un filtro |
+| 28 oct | Solo el RESULTADO CALCULADO y una instrucción de formato por intención; las tablas se anexan del cálculo, el modelo no las escribe | El modelo tomó el porcentaje de toda la muestra de un fragmento, e inventó una tabla con respuestas falsas | Cifras correctas en 100 % de la regresión (Tabla P.16) |
+| 4–5 nov | Además, un **TEXTO RECUPERADO** del mismo instrumento (sin cifras en las intenciones numéricas) y la **CONVERSACIÓN PREVIA** (15 reglas, rol de analista de investigación) | Sin recuperación no podía explicar ni seguir el hilo | Interpreta lo que dijo la persona y relaciona el seguimiento (Tabla P.19) |
+| 7–8 nov (vigente) | Una instrucción adicional según la forma de la pregunta («¿por qué?», opinión, «lo más…», pocas personas), dos capas al explicar un resultado y 20 reglas; sin el nombre de quien registró el instrumento | Comparaciones al revés, «diferencia significativa», porcentajes sin su número, el nombre de la autora atribuido a la participante | Baterías de 31 a 63 de 79 (Tabla P.21) |
+<!-- fuente: git show 42bb731, 7e367f2, 6a1cb38, 1b04c3d, b62f7db, c42f42e, 9f86ff4, c1998ad, b8c7d7a:…/prompt.py; services/visualization-service/services/prompt.py (SISTEMA, construir) y consulta_planificada.py (FORMATO, formato_adicional); registro 17 oct 22:55 (humo_chat.py) -->
+
+Así empezó el prompt (4 oct), y así es el mensaje que recibió el modelo para una pregunta de conteo en la versión
+evaluada el 8 nov. El ejemplo es inventado y está abreviado:
+
+```text
+Eres un asistente de investigación educativa. Responde en español, de forma clara y concisa, USANDO ÚNICAMENTE la
+información del CONTEXTO. Si el contexto no contiene la respuesta, dilo explícitamente y no inventes datos.
+```
+
+```text
+[system] Eres un analista de investigación educativa universitaria… Reglas obligatorias: 1. Usa SOLO la información
+del CONTEXTO… 10. Si hay un RESULTADO CALCULADO, es exacto: úsalo tal cual… 15. El RESULTADO CALCULADO da las cifras y
+el TEXTO RECUPERADO explica de qué tratan; si dicen cosas distintas, manda el RESULTADO CALCULADO… 16. Cada porcentaje
+va con su número de personas…
+
+RESULTADO CALCULADO (exacto, no lo recalcules):
+Cumplen la condición 84 de 300 respondentes (28.0 %).
+Criterio: p02 «¿Con qué frecuencia asistes a tutorías?» = «Nunca»
+
+TEXTO RECUPERADO (fragmentos del RAG más parecidos a la pregunta; úsalos para contextualizar e interpretar, las cifras
+salen solo del RESULTADO CALCULADO):
+[Fuente 1] Encuesta de ejemplo (encuesta)
+<datos fuente="1">
+- pregunta: Pregunta p02 (encuesta «Encuesta de ejemplo»): ¿Con qué frecuencia asistes a tutorías?
+  Sección: Apoyo académico
+  Opciones: Nunca; A veces; Siempre
+</datos>
+
+CONVERSACIÓN PREVIA (no es fuente):
+Usuario: ¿qué preguntas tiene sobre tutorías?
+
+FORMATO DE LA RESPUESTA: Responde en UNA o DOS oraciones con la cifra exacta, de cuántos y el porcentaje, y el
+criterio aplicado. Nombra las opciones del criterio tal como aparecen, todas…
+
+PREGUNTA: ¿cuántos nunca van a tutorías?
+```
+<!-- fuente: services/visualization-service/services/prompt.py (SISTEMA, construir); consulta_planificada.py (FORMATO); ejemplo armado con el catálogo inventado de interpretacion.py (_CATALOGO_EJEMPLO) -->
+
+**Lectura.** La mejora no vino de pedirle más al modelo, sino de **separar lo que da cada fuente**: las cifras
+llegan calculadas, el texto recuperado da el sentido y la conversación solo sirve para entender a qué se refiere la
+pregunta. Las reglas del prompt pasaron de 3 líneas a 20 reglas, pero las que el modelo de 3–4B no cumplía (no cambiar
+cifras, no negar el resultado) solo se garantizaron con verificaciones en código (Tabla P.14d).
+
+#### Cómo se interpreta la pregunta
+
+**Tabla P.14b.** Interpretación de la pregunta, por versión.
+
+| Versión | Técnica | Falla que motivó el cambio | Medida |
+|---|---|---|---|
+| 10–16 oct | Ninguna: búsqueda por similitud y un umbral (0.35) | Con a lo más 8 fragmentos no se puede contar a todos los respondentes | — |
+| 17–26 oct | **Reglas**: una expresión por intención (respondente, porcentaje por grupo, filtro, KPI…) y, si las reglas no hallan la condición, el modelo propone **solo la condición** en JSON, validada contra el catálogo; un clasificador con el modelo decide la zona gris de similitud | — | Banco: decisión de dominio 0.982; exactitud 31 de 45 (Tabla P.26) |
+| 28 oct | **Plan JSON** escrito por el modelo con temperatura 0 y el JSON Schema en `format`: recibe instrucciones, ejemplos sobre un catálogo inventado, el **catálogo** de cada instrumento y los últimos 4 mensajes. El plan se **valida** contra el catálogo y se **ancla** a lo que la pregunta dice literalmente (IDs, números de pregunta, opciones) | Las reglas no reconocían formas nuevas de preguntar (Tabla P.15) | Plan completo correcto en 92 % de la regresión (Tabla P.16) |
+| 4–5 nov | Además, el **tema de la respuesta anterior** (de `rag_log`) y los **3 fragmentos recuperados más parecidos** como pistas | Los seguimientos perdían el hilo; «la pregunta de la VPN» no se asociaba a su reactivo | La pregunta correcta en los seguimientos (Tabla P.19) |
+| 7–8 nov (vigente) | El plan declara si la pregunta es nueva, continúa o profundiza la anterior; **reglas generales** después del modelo (posiciones de escala, opción escrita tal cual, «de ellos» como grupo anterior, erratas) | El modelo escribía `"[1, 2]"` por «1 o 2», elegía la opción equivocada u olvidaba el grupo | Planes válidos de 85.6 % a 92.2 %; el plan del modelo se usó sin cambios en 23 % de los turnos (Tabla P.21) |
+<!-- fuente: services/visualization-service/services/enrutador.py, filtro_llm.py, interpretacion.py (SISTEMA, _EJEMPLOS, construir_prompt), catalogo.py (texto), plan_consulta.py, anclaje.py, seguimiento.py; evidencias citadas en las tablas -->
+
+**El catálogo.** Es lo que le permite al modelo nombrar preguntas y opciones que existen. Cada instrumento se resume en
+un bloque con sus preguntas (ID, tipo y opciones o escala), las variables de contexto y los KPIs. Si hay varios
+instrumentos y el texto pasa de 4,500 caracteres, se recortan textos y opciones. El ejemplo que el modelo ve junto con
+sus planes es inventado, para que no copie la respuesta de un instrumento de prueba:
+
+```text
+INSTRUMENTO 900 | encuesta | «Encuesta de ejemplo»
+Respondentes: 300 (R001 a R300)
+Contexto: Turno = Matutino, Vespertino
+Contexto numérico: Edad (17–45)
+Preguntas:
+- p01 [likert] Los profesores explican con claridad → escala 1–5 (…); niveles baja 1/2; media 3; alta 4/5
+- p02 [categorica] ¿Con qué frecuencia asistes a tutorías? → Nunca; A veces; Siempre
+- p04 [numerica] ¿Cuántas horas trabajas a la semana?
+KPIs: KPI-07 Satisfacción estudiantil
+
+P: ¿cuántos nunca van a tutorías y han tomado algún curso de idiomas?
+PLAN: {"intencion": "conteo_porcentaje", "filtros": [{"pregunta": "p02", "op": "=", "valor": "Nunca"},
+       {"pregunta": "p03", "op": "=", "valor": ["Sí, y lo terminé", "Sí, pero lo dejé"]}]}
+```
+<!-- fuente: services/visualization-service/services/interpretacion.py (_CATALOGO_EJEMPLO, _EJEMPLOS); catalogo.py (Catalogo.texto) -->
+
+**Lectura.** El paso de reglas a plan fue el cambio de mayor efecto (53.6 % a 96.4 % en la regresión): el modelo
+entiende formas de preguntar que ninguna regla preveía, y el sistema conserva el control porque el plan solo puede
+pedir operaciones programadas y se valida antes de ejecutarse. El costo es que un modelo de 3–4B se equivoca en
+detalles del plan, y por eso creció la capa de reglas que lo corrige (Desarrollo X.9.2).
+
+#### Chunks y recuperación
+
+**Tabla P.14c.** Chunks y recuperación, por versión.
+
+| Versión | De dónde salen y cómo se cortan | Falla que motivó el cambio | Medida |
+|---|---|---|---|
+| 4–10 oct | Del JSON técnico; 800 caracteres con solape de 150, por párrafo y oración | — | La mitad de cada chunk no influía en el vector: el modelo de *embeddings* lee unos 128 *tokens* |
+| 16 oct (`PA`) | Del JSON técnico; 450 caracteres con solape de 80; la ficha esencial en el chunk 0 | La mitad de cada chunk no se embebía | En la auditoría del 17 oct, «¿qué opinan los estudiantes sobre la evaluación?» se respondió sin ninguna respuesta real: el JSON no trae lo que contestó cada persona |
+| 17–22 oct | Del **documento final**: ficha, una pieza por pregunta, una o más por respondente (respuestas por su significado), una por intercambio de entrevista y una por KPI; listas por líneas completas, sin solape; la ficha dice «KPIs asociados: ninguno» cuando no hay, y trae «Aspectos que pregunta» en las encuestas sin secciones; la ficha llega completa a la redacción | El solape partía respuestas; el modelo atribuía a una encuesta los KPIs de otra y describía una encuesta sin secciones por sus KPIs | «¿Qué evalúa la encuesta?» se responde con su contenido (Tabla P.10) |
+| 28 oct – 4 nov | Igual; las respuestas con plan **no consultaban** ChromaDB | — | 13 de 170 respuestas del 127 usaban la recuperación (Tabla P.18) |
+| 5 nov | **RAG primero**: se busca antes de interpretar, en toda pregunta; si con el filtro nada pasa el umbral, entran los fragmentos más cercanos | El chat era «modelo + cálculo» | 60 % de respuestas con recuperación y luego todas |
+| 7–8 nov (vigente) | Medidos en ***tokens*** (≤ 128); la definición de cada pregunta separada de sus resultados; sin los chunks de cada persona en la búsqueda; la ficha de la entrevista con el encabezado de la transcripción y los intercambios con sus temas | Hasta 83 % de los chunks de una prueba se truncaban sin aviso; los 6,600 chunks de personas llenaban los primeros lugares | *Hit rate*@3 de 0.61 a 0.84 en las baterías y de 0.89 a 1.00 en el control (Tablas P.7 y P.8) |
+<!-- fuente: commits 42bb731, 7e367f2, 6a1cb38, 1b04c3d, eb17985, 310af4c; .agents/tasks/fullstack-rag/design.md:617; registro 17 oct 21:25 (auditoría); evidencias/encuesta_sin_secciones_2026-10-20/RESULTADO.md; evidencias/chunks_2026-11-07/README.md; tt_rag.rag_log.ruta 1290–1771 -->
+
+Un ejemplo de la separación entre definición y resultados (7 nov), con la encuesta inventada del catálogo anterior.
+A «¿cuántos caminan a la escuela?» se parece la definición, que trae la opción «Caminando», y no la distribución; por
+eso van en piezas distintas:
+
+```text
+Pregunta p06 (encuesta «Encuesta de ejemplo»): ¿Cómo llegas a la escuela?
+Sección: Traslado
+Opciones: Transporte público; Auto o moto; Bicicleta; Caminando
+
+Pregunta p06: ¿Cómo llegas a la escuela?
+Respuestas válidas: 296; sin respuesta: 4
+Distribución: Transporte público 47.6 % (n=141); Auto o moto 25.0 % (n=74); Bicicleta 8.1 % (n=24); Caminando 19.3 % (n=57)
+```
+<!-- fuente: services/storage-service/services/chunks_documento.py (_encuesta: parte «definicion» y «resultados»; _resumen_pregunta); ejemplo inventado -->
+
+**Lectura.** Cambiar **la fuente** de los chunks (del JSON técnico al documento final con las respuestas
+interpretadas) y **la unidad de medida** (de caracteres a *tokens*) mejoró más la recuperación que cualquier ajuste de
+tamaño. Sacar de la búsqueda los chunks de cada persona fue lo que más subió el *hit rate* en la encuesta (de 0.25 a
+0.69): lo de cada persona lo resuelve el cálculo.
+
+#### Cómo se redacta y se verifica la respuesta
+
+**Tabla P.14d.** Verificación de la redacción, por versión.
+
+| Versión | Qué se revisa antes de mostrar la respuesta | Si falla | Falla que motivó el cambio |
+|---|---|---|---|
+| 17 oct | Que no cambie una cifra del resultado; se borran citas inventadas | Se muestra el resultado calculado | El modelo cambiaba cifras y negaba resultados pese a las reglas |
+| 22 oct | Que no omita cifras del conteo; se borran corchetes que no son cita | Igual | «13.3 %» sin «4 de 30»; copiaba «[R017 en p04]» del ejemplo de una regla |
+| 22–24 oct (retirada) | Un juez revisaba cada afirmación antes de mostrar | Igual | Tardaba 15–42 s y descartó 3 de 4 respuestas; se retiró |
+| 28 oct | Además: que no niegue, no escriba tablas, no invente IDs y no omita «cuántos de cuántos» | Se **rehace una vez** con el motivo; si vuelve a fallar, el cálculo | Inventó «R017» en un hallazgo |
+| 4 nov | Que no cite entre comillas una frase que no está en los datos | Igual | Citas atribuidas a otra pregunta |
+| 7 nov | Que no compare al revés, no infiera causas ni significancia y no dé un porcentaje sin su número; acepta cifras deducibles (redondeos, diferencias) | Igual | Comentarios de la investigadora a respuestas mal calificadas |
+| 8 nov (vigente) | Que no atribuya un porcentaje a otra opción, no omita opciones del criterio, no desordene un ranking y, en una prueba, no juzgue aciertos o desempeño | Igual | Afirmaciones falsas con cifras verdaderas en la corrida limpia |
+| En el código, sin evaluar | En conteos, cruces y resúmenes, la primera oración la escribe el sistema; el modelo solo agrega contexto sin cifras | Se muestra solo la oración del sistema | Frases sin cifras que contradicen el resultado (Tabla P.22) |
+<!-- fuente: services/visualization-service/services/rag_service.py (cifras_fieles, quitar_citas_inventadas, cifras_completas, ids_fieles, citas_fieles, comparacion_invertida, inferencia_sin_respaldo, porcentajes_sin_n, cifra_mal_atribuida, opciones_omitidas, ranking_desordenado, califica_prueba, _con_frase_dato); evidencias/pruebas_2026-10-24/rag_log_704_744.txt (juez antes de mostrar); commit 6fd668d -->
+
+**Lectura.** Cada revisión nueva respondió a un tipo de error que pasaba la anterior. La regeneración con el motivo
+recupera parte de las redacciones antes de caer al cálculo. Lo que ninguna revisión detecta es el **sentido** de una
+frase sin cifras; por eso la última técnica quita al modelo la oración del dato.
+
+#### Cómo se mide cada respuesta
+
+**Tabla P.14e.** Métricas y juez, por versión.
+
+| Versión | Técnica | Falla que motivó el cambio | Efecto medido |
+|---|---|---|---|
+| 17 oct | Métricas tipo RAGAS reimplementadas (fidelidad, relevancia, precisión del contexto), con `llama3.2:3b` como juez después de cada respuesta; RAGAS 0.4.3 aparte, fuera de línea | Medir sin respuesta de referencia | — |
+| 18 oct | Veredictos por número de afirmación, con la razón antes del veredicto | El juez se trababa al copiar cada afirmación (fidelidad 0.48 contra 0.76 de RAGAS) | De 0 de 1 a 6 de 7 veredictos correctos |
+| 22 oct | «Fiel por construcción»: no se juzga lo que se muestra tal cual del cálculo | El juez calificó con 0.25 una copia literal | Las respuestas calculadas muestran fidelidad 100 % |
+| 23–24 oct | Juez `qwen2.5:3b`, con semilla fija | llama juzgaba peor y no era estable | Copias literales: de 0.40 a 0.95 |
+| 28 oct | Reintento por afirmación, sustento literal, cifras sin sustento sin juez; **bajo demanda**; indicadores sin modelo, varios jueces y calificación humana | El juez fallaba en tablas y copias; juez y redactor no caben juntos en la GPU | Cada pregunta, de 31–38 s a 1.8–5.4 s (Desarrollo X.10.7) |
+| 2 nov | Juez `qwen3:4b-instruct`, elegido por su acuerdo con la investigadora | Ningún juez alcanzó kappa 0.41 ni Spearman 0.5 | El juez queda como medida aproximada (Tabla P.29) |
+| 7–8 nov (vigente) | Para la evaluación final: lo que la respuesta **debe** contener, K-Precision, cifras con respaldo y plan del modelo sin cambios | El juez sobrestimaba (77–87 % contra 23–62 % de «Bien») | Medidas sin modelo, revisables caso por caso (Tabla P.21) |
+<!-- fuente: services/visualization-service/services/evaluacion.py; evidencias/jueces_2026-10-23/comparar_jueces.json; registro 18 oct 02:11–02:12; evidencias/modelos_2026-11-02/resumen.md y modelos_2026-11-03/*/resumen.md; tools/rag/evaluar_chat.py -->
+
+**Lectura.** Un juez de 3–4B mide mal precisamente lo que más importa en este chat, si una cifra o una opción cambió.
+Por eso la evaluación pasó del juez a medidas que no dependen de un modelo: el «Debe» de la investigadora, las cifras
+con respaldo y la calificación humana. El juez se conserva como aproximación en el panel de cada respuesta.
+
+#### Resultado de cada versión
+
+La Tabla P.14f resume el efecto de cada versión con el conjunto que la midió antes y después.
+
+**Tabla P.14f.** Cada versión del chat contra la anterior, sobre el mismo conjunto.
 
 | Cambio de versión | Conjunto | Antes | Después |
 |---|---|---|---|
@@ -467,11 +650,8 @@ descritas en Desarrollo X.9 (Tabla D.23b).
 | Igual | Set de control (encuesta y entrevista), 16 casos | 1 cumple | **13 cumplen** |
 <!-- fuente: registro 17 oct 22:55 (humo_chat.py) y tools/rag/reportes/verificacion_20261017_2032.md; evidencias/rag_rediseno_2026-10-28/regresion_comparacion.md; evidencias/modelos_2026-11-03 y modelos_2026-11-04 (resumen.md); tt_rag.rag_log.ruta 1290–1771; evidencias/chat_2026-11-07_antes, chat_2026-11-07_control_antes, chat_2026-11-08_final y chat_2026-11-08_final_control (resumen.md) -->
 
-**Lectura.** Cada versión mejoró la anterior en su conjunto. Dos aprendizajes atraviesan todas:
-- **El modelo pequeño no garantiza las reglas; el código sí.** Agregar reglas al prompt (de 3 a 20) no evitó que el
-  modelo cambiara cifras o negara resultados; las verificaciones en código sí.
-- **No se inventan datos.** En las 140 respuestas sobre instrumentos no vistos (Y.4.4), 0 cifras sin respaldo y 0 IDs
-  inventados; en la evaluación final, 815 de 856 cifras con respaldo en el contexto.
+**Lectura.** Cada versión mejoró la anterior en su conjunto, y en ninguna se inventaron datos: en las 140 respuestas sobre instrumentos no vistos (Y.4.4), 0 cifras sin respaldo y 0 IDs inventados; en la
+evaluación final, 815 de 856 cifras con respaldo en el contexto.
 
 Las secciones siguientes dan el detalle de las tres comparaciones principales.
 
