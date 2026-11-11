@@ -138,7 +138,7 @@ Embeddings: `paraphrase-multilingual-mpnet-base-v2` (768-dim). The model is cach
 
 ## Documentation map
 - `README.md` (root): what Indagata is, how to start it, where everything lives.
-- `markdowns/LEVANTAR_LA_APP.md` (setup step by step), `markdowns/GUIA_PRUEBAS.md` (testing with your own instruments), `markdowns/ALTA_DE_USUARIOS.md` (user registration), `markdowns/PRUEBAS_RAG_INTEGRACION.md` (history of the RAG tests, cited by chapter 4).
+- `markdowns/LEVANTAR_LA_APP.md` (setup step by step), `markdowns/GUIA_PRUEBAS.md` (testing with your own instruments), `markdowns/ALTA_DE_USUARIOS.md` (user registration), `markdowns/PRUEBAS_RAG_INTEGRACION.md` (history of the RAG tests, cited by chapter 4). `markdowns/CAMBIOS_RAG_2026-11.md` (chat changes of 9–11 Nov 2026: hybrid search, threshold, follow-ups, «Ver métricas», evaluation bank and results; what to apply by hand).
 - `documentación/02_Desarrollo.md`, `03_Pruebas.md`, `04_Resultados.md`: the thesis chapters (source of truth for design decisions; every claim carries a `<!-- fuente: … -->` comment).
 - One `README.md` per service under `services/<svc>/`; `infrastructure/postgres/SCHEMA_CHANGES.md` for schema history; `tools/*/README.md` for the evaluation and synthesis tools.
 - `evidencias/` keeps only the evidence the chapters cite. `.agents/tasks/` keeps only the two design notes the chapters cite.
