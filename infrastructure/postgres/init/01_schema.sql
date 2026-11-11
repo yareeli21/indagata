@@ -266,6 +266,9 @@ CREATE TABLE IF NOT EXISTS documento_vectorizado (
     n_tokens                 INTEGER,
     almacenado_en            TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
+-- Búsqueda híbrida del chat (por palabras, en español): migrations/2026_20_busqueda_hibrida.sql.
+CREATE INDEX IF NOT EXISTS idx_documento_vectorizado_texto
+    ON documento_vectorizado USING gin (to_tsvector('spanish', chunk_texto));
 
 -- ── 14. kpi_inferido_chunk (puente: evidencia de la inferencia) ───────────────
 -- Registra qué chunks vectorizados sustentaron cada KPI inferido por búsqueda

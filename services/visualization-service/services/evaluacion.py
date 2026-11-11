@@ -151,8 +151,13 @@ def veredictos_por_numero(items: list[Any], total: int) -> list[int]:
     return [_uno(i) for i in items]
 
 
-# Cifras que no cuentan: citas [Fuente 2], IDs (R017, p04, KPI-12, INS-0127) y números dentro de ellos.
-_NO_CIFRA = re.compile(r"\[fuente\s*\d+[^\]]*\]|\b(?:ins|kpi)-?\d+\b|\b[rpqaei]-?\d{1,4}\b", re.IGNORECASE)
+# Cifras que no cuentan: citas [Fuente 2] y (Fuentes 1 y 3), IDs (R017, p04, KPI-12, INS-0127) y números dentro de
+# ellos, y los números de una lista («1. Entrevista…», «2) …» al inicio de una línea): contaban como cifras sin respaldo
+# y bajaban la evaluación de respuestas que solo enumeraban (9 nov, consultas 77–79).
+_NO_CIFRA = re.compile(
+    r"[\[(]\s*fuentes?\s*\d+[^\])]*[\])]|\b(?:ins|kpi)-?\d+\b|\b[rpqaei]-?\d{1,4}\b|^\s*\d{1,2}[.)](?=\s)",
+    re.IGNORECASE | re.MULTILINE,
+)
 _CIFRA = re.compile(r"\d+(?:[.,]\d+)?")
 
 

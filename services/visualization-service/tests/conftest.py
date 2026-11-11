@@ -165,6 +165,9 @@ def _sin_cache_de_respuestas(monkeypatch):
     # Las pruebas del chat verifican la evaluación en segundo plano; el modo bajo demanda (el de producción) se
     # prueba en test_evaluacion.py::test_bajo_demanda_*.
     monkeypatch.setattr(settings, "RAG_METRICAS_BAJO_DEMANDA", False)
+    # Búsqueda híbrida apagada: los embeddings falsos no son semánticos y estas pruebas cubren otra cosa; la híbrida
+    # se prueba en test_hibrida.py.
+    monkeypatch.setattr(settings, "RAG_HIBRIDA", False)
 
 
 @pytest.fixture()

@@ -21,7 +21,7 @@ from typing import Any
 
 from shared.models.rag_log import RagLog
 
-from services import dominio, evaluacion
+from services import dominio, evaluacion, metricas_respuesta
 
 # Plantillas: mensajes fijos o de respaldo, con una explicación corta para la interfaz.
 PLANTILLAS = {
@@ -115,4 +115,5 @@ def calcular(fila: RagLog) -> dict[str, Any]:
         salida.update(cifrasTotal=total, cifrasConRespaldo=total - len(sin), cifrasSinRespaldo=sin)
         en_contexto = set(_ID_DATO.findall("\n".join(contextos)))
         salida["idsInventados"] = sorted(set(_ID_DATO.findall(fila.respuesta)) - en_contexto)
+    salida.update(metricas_respuesta.calcular(fila, respuesta == "redactada"))
     return salida

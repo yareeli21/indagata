@@ -3,6 +3,7 @@
   GET  /visualizacion/catalogo              instrumentos con filtros + facetas
   GET  /visualizacion/catalogo/{id}         ficha completa (metadatos, preguntas, estadísticas)
   GET  /visualizacion/catalogo/{id}/tiempos tiempo de cómputo de cada paso y latencia del chat
+  GET  /visualizacion/instrumentos/{id}/documento  tramo del documento indexado (trazabilidad de las fuentes del chat)
   GET  /visualizacion/investigadores        autores (para mostrar nombres)
   POST /visualizacion/relacionados          instrumentos de otros autores relacionados
 """
@@ -14,6 +15,7 @@ from dependencies import DBSession, Investigador
 from shared.models.metadatos_dc import MetadatosDC
 from models import (
     CatalogoResponse,
+    DocumentoFuenteOut,
     InstrumentoCatalogo,
     InstrumentoDetalle,
     InvestigadorOut,
@@ -22,7 +24,7 @@ from models import (
     RelacionadosRequest,
     TiemposOut,
 )
-from services import query_engine, tiempos_proceso
+from services import query_engine, tiempos_proceso, trazabilidad
 from services.query_engine import Filtros
 
 router = APIRouter(prefix="/visualizacion", tags=["catalogo"])
@@ -88,6 +90,29 @@ def detalle(id_crudo: int, _: Investigador, db: DBSession) -> InstrumentoDetalle
 def tiempos(id_crudo: int, _: Investigador, db: DBSession) -> TiemposOut:
     """Tiempo de cómputo de cada paso (carga, limpieza, metadatos, KPIs, documento, indexación) y latencia del chat."""
     return TiemposOut(**tiempos_proceso.tiempos(db, id_crudo))
+
+
+@router.get(
+    "/instrumentos/{id_crudo}/documento",
+    response_model=DocumentoFuenteOut,
+    summary="Tramo del documento indexado de un instrumento",
+    description=(
+        "Los fragmentos que el chat puede recuperar de un instrumento, en orden, del `desde` al `hasta` "
+        f"(exclusivo; máximo {trazabilidad.MAX_TRAMO} por petición). Sirve para abrir una fuente del chat "
+        "en la posición del pasaje usado (`pasajes[].chunkIndex`)."
+    ),
+)
+def documento_fuente(
+    id_crudo: int,
+    _: Investigador,
+    db: DBSession,
+    desde: int = Query(0, ge=0),
+    hasta: int | None = Query(None, ge=0),
+) -> DocumentoFuenteOut:
+    tramo = trazabilidad.documento(db, id_crudo, desde, hasta)
+    if tramo is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "El instrumento no está indexado en el RAG.")
+    return tramo
 
 
 @router.get("/investigadores", response_model=list[InvestigadorOut], summary="Autores del acervo")

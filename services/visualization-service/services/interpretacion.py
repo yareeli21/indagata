@@ -33,6 +33,11 @@ _MAX_HISTORIAL = 4  # mensajes recientes que ve el modelo
 # El prompt (instrucciones + ejemplos + catálogo) debe caber en num_ctx 4096 con la salida: unos 2,900 tokens con
 # un catálogo de 18 preguntas. Con más instrumentos o preguntas, el catálogo pasa a su forma compacta.
 _MAX_CARACTERES_CATALOGO = 4500
+# Tope del prompt entero (sistema + ejemplos + catálogo + historial + pistas), en caracteres: ~3.3 por token medidos
+# el 9 nov, para dejar sitio a los 300 de salida en 4096. Con toda la colección (31 instrumentos) ni el catálogo
+# compacto cabía (12–28 mil tokens): Ollama recortaba el prompt por el INICIO a 2,050 tokens (se perdían las
+# instrucciones y los ejemplos) y, como el inicio cambiaba, no reusaba su caché: 12–40 s por plan, y planes a ciegas.
+_MAX_CARACTERES_PROMPT = 11500
 _MAX_TEXTO_HISTORIAL = 300
 
 SISTEMA = """Eres el intérprete de consultas de Indagata, una plataforma de instrumentos de investigación educativa \
@@ -167,16 +172,50 @@ def _historial(historial: list[tuple[str, str]]) -> str:
                      for rol, texto in recientes)
 
 
-def construir_prompt(pregunta: str, historial: list[tuple[str, str]], catalogos: list[Catalogo], tema: str = "",
-                     pistas: str = "") -> str:
+def _raices(texto: str) -> set[str]:
+    return {p[:5] for p in re.findall(r"\w+", texto.lower()) if len(p) > 3}
+
+
+def _por_relevancia(catalogos: list[Catalogo], prioridad: list[str], texto: str) -> list[Catalogo]:
+    """Primero los instrumentos que recuperó el RAG (en su orden), luego los que más palabras del título comparten
+    con la pregunta; el resto en su orden original."""
+    raices = _raices(texto)
+    rango = {i: n for n, i in enumerate(prioridad)}
+    return sorted(catalogos, key=lambda c: (rango.get(c.id, len(rango)), -len(raices & _raices(c.titulo))))
+
+
+def _catalogo(catalogos: list[Catalogo], presupuesto: int, prioridad: list[str], texto: str) -> str:
     catalogo = "\n\n".join(c.texto() for c in catalogos)
-    if len(catalogo) > _MAX_CARACTERES_CATALOGO:
+    if len(catalogo) > min(_MAX_CARACTERES_CATALOGO, presupuesto):
         catalogo = "\n\n".join(c.texto(compacto=True) for c in catalogos)
-    catalogo = catalogo or "(no hay instrumentos seleccionados)"
+    if len(catalogo) <= presupuesto:
+        return catalogo
+    # No cabe ni compacto: van los más relacionados con la pregunta hasta llenar el presupuesto (la validación del
+    # plan sigue usando el catálogo completo).
+    bloques: list[str] = []
+    for c in _por_relevancia(catalogos, prioridad, texto):
+        bloque = c.texto(compacto=True)
+        if sum(len(b) + 2 for b in bloques) + len(bloque) > presupuesto:
+            if bloques:
+                continue
+            bloque = bloque[:presupuesto].rsplit("\n", 1)[0]  # ni uno cabe entero: sus primeras preguntas
+        bloques.append(bloque)
+    resto = len(catalogos) - len(bloques)
+    return "\n\n".join(bloques) + (f"\n\n(… y {resto} instrumentos más en el alcance, menos relacionados con la "
+                                   "pregunta)" if resto else "")
+
+
+def construir_prompt(pregunta: str, historial: list[tuple[str, str]], catalogos: list[Catalogo], tema: str = "",
+                     pistas: str = "", prioridad: list[str] | None = None) -> str:
+    """`prioridad`: IDs de los instrumentos que recuperó el RAG, del más parecido al menos; deciden cuáles entran al
+    catálogo cuando el alcance no cabe en el contexto."""
     anterior = f"TEMA ANTERIOR (de qué trató la última respuesta):\n{tema}\n\n" if tema else ""
     recuperado = f"TEXTO RECUPERADO DEL RAG (lo más parecido a la pregunta):\n{pistas}\n\n" if pistas else ""
-    return (f"{_ejemplos()}\n\n=== CONSULTA REAL ===\nCATÁLOGO:\n{catalogo}\n\nHISTORIAL:\n{_historial(historial)}\n\n"
-            f"{anterior}{recuperado}P: {pregunta}\nPLAN:")
+    resto = (f"{_ejemplos()}\n\n=== CONSULTA REAL ===\nCATÁLOGO:\n{{catalogo}}\n\nHISTORIAL:\n{_historial(historial)}\n\n"
+             f"{anterior}{recuperado}P: {pregunta}\nPLAN:")
+    presupuesto = max(1500, _MAX_CARACTERES_PROMPT - len(SISTEMA) - len(resto))
+    catalogo = _catalogo(catalogos, presupuesto, prioridad or [], f"{pregunta} {tema}")
+    return resto.replace("{catalogo}", catalogo or "(no hay instrumentos seleccionados)", 1)
 
 
 def _leer(salida: str) -> PlanConsulta:
@@ -184,14 +223,14 @@ def _leer(salida: str) -> PlanConsulta:
 
 
 async def interpretar(pregunta: str, historial: list[tuple[str, str]], catalogos: list[Catalogo],
-                      tema: str = "", pistas: str = "") -> Interpretacion:
+                      tema: str = "", pistas: str = "", prioridad: list[str] | None = None) -> Interpretacion:
     """Plan validado de la pregunta, o `plan=None` con el motivo en `error`.
 
     `tema`: de qué trató la respuesta anterior (sus respondentes, preguntas y criterio), leído de rag_log.
     `pistas`: lo que recuperó el RAG antes de interpretar (RAG primero, 5 nov)."""
     inicio = time.perf_counter()
     modelo = settings.RAG_INTERPRETACION_MODELO or settings.OLLAMA_MODEL
-    prompt = construir_prompt(pregunta, historial, catalogos, tema, pistas)
+    prompt = construir_prompt(pregunta, historial, catalogos, tema, pistas, prioridad)
     resultado = Interpretacion(plan=None)
     for intento in (1, 2):
         resultado.intentos = intento

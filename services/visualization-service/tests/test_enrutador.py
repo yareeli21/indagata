@@ -212,12 +212,17 @@ def test_chat_estructura_redactada_con_rag_y_respaldo_del_listado(cliente, acerv
     assert r["ruta"] == "mixta" and r["decision"] == "dentro" and "<datos" in ollama["prompts"][-1]
     texto = ollama["prompts"][-1]
     assert "Experiencia estudiantil (Encuesta) [Fuente " in texto and "Sección 1 «Experiencia»" in texto
-    assert "no está dividido en secciones" in texto and len(r["fuentes"]) == 2
+    # Solo se muestran las fuentes que la respuesta cita (trazabilidad, 9 nov): la respuesta de prueba cita la 1.
+    assert "no está dividido en secciones" in texto and len(r["fuentes"]) == 1
     assert r["respuesta"] == "Respuesta fundamentada [Fuente 1]."
     assert _ultimo_log(acervo_doc).motivo == "estructurada:estructura"
 
 
-def test_chat_descripcion_con_el_listado_de_respaldo_y_el_ordinal_resuelto(cliente, acervo_doc, ollama):
+def test_chat_descripcion_con_el_listado_de_respaldo_y_el_ordinal_resuelto(cliente, acervo_doc, ollama, monkeypatch):
+    # Vectores falsos: similitudes de 0.35–0.70; esta prueba no es del umbral.
+    from shared.db.core.config import settings as _s
+
+    monkeypatch.setattr(_s, "RAG_MIN_SCORE", 0.35)
     r = _chat(cliente, "de que habla el primer instrumento?", instrumentoIds=["3", "1"])
     assert r["ruta"] == "mixta" and r["decision"] == "dentro" and "RESULTADO CALCULADO" in ollama["prompts"][-1]
     # El modelo ve cuál es «el primer instrumento» y la descripción de ese.
@@ -346,7 +351,11 @@ def test_patrones_de_encuesta_desde_los_resumenes():
                          "en escala de 1 a 5.")
 
 
-def test_chat_patrones_no_lo_rechaza_el_clasificador(cliente, acervo_doc, ollama):
+def test_chat_patrones_no_lo_rechaza_el_clasificador(cliente, acervo_doc, ollama, monkeypatch):
+    # Vectores falsos: similitudes de 0.35–0.70; esta prueba no es del umbral.
+    from shared.db.core.config import settings as _s
+
+    monkeypatch.setattr(_s, "RAG_MIN_SCORE", 0.35)
     ollama["clasificador"] = {"dentro": False, "motivo": "Análisis de tendencias en el comportamiento estudiantil"}
     r = _chat(cliente, "qué patrón de información consideras más interesante de los datos de estos instrumentos?",
               instrumentoIds=["2", "3"])
@@ -618,3 +627,16 @@ def test_instrumento_por_numero_en_la_seleccion(acervo_doc):
     r = _resolver(acervo_doc, "¿qué me puedes decir del instrumento 2?", ids=["1", "2"])
     assert [ins.id_crudo for ins in r.instrumentos] == ["2"]
     assert r.aclaracion.startswith("«instrumento 2» es «")
+
+
+def test_hallazgo_de_un_tema_que_nada_trata_no_se_responde():
+    from services import rag_service as r
+
+    pregunta = "¿Qué estrategias usan los estudiantes para mejorar su rendimiento académico?"
+    assert r._hallazgo_sin_relacion("hallazgo", pregunta, False, 0.6459)  # consulta 122
+    assert not r._hallazgo_sin_relacion("hallazgo", pregunta, False, 0.66)  # algo del alcance sí trata el tema
+    assert not r._hallazgo_sin_relacion("hallazgo", "Dame un dato interesante", False, 0.40)  # pide hallazgos
+    assert not r._hallazgo_sin_relacion("hallazgo", "¿Qué patrones hay en estos instrumentos?", False, 0.40)
+    assert r._hallazgo_sin_relacion("hallazgo", pregunta, True, 0.40)  # pregunta nueva dentro de una conversación
+    assert not r._hallazgo_sin_relacion("hallazgo", "¿Y por qué pasa eso?", True, 0.40)  # seguimiento de verdad
+    assert not r._hallazgo_sin_relacion("conteo_porcentaje", "¿Cuántos trabajan más de 30 horas?", False, 0.30)

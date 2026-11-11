@@ -263,7 +263,11 @@ def test_chat_json_filtrado_por_investigacion_y_registrado(cliente, acervo, chro
     assert log.pregunta == "¿qué tanto se esfuerzan en clase?" and log.chunks_usados == 3
 
 
-def test_chat_sse_y_sin_coleccion(cliente, acervo, chroma):
+def test_chat_sse_y_sin_coleccion(cliente, acervo, chroma, monkeypatch):
+    # Vectores falsos: similitudes de 0.35–0.70; esta prueba no es del umbral.
+    from shared.db.core.config import settings as _s
+
+    monkeypatch.setattr(_s, "RAG_MIN_SCORE", 0.35)
     r = cliente.post("/rag/chat", json={"pregunta": "compromiso", "stream": True}, headers=ANA)
     assert r.status_code == 200
     texto = r.text
@@ -404,7 +408,9 @@ def test_chat_limita_top_k_y_baja_temperatura():
     from services import ollama_client
 
     assert ChatRequest(pregunta="x", top_k=20).top_k == 8
-    assert ollama_client._payload("m", "p", stream=False)["options"] == {"num_ctx": 4096, "temperature": 0.2}
+    # La redacción lleva además un tope de tokens contra las respuestas que se repiten (test_repeticion.py).
+    assert ollama_client._payload("m", "p", stream=False)["options"] == {
+        "num_ctx": 4096, "temperature": 0.2, "num_predict": ollama_client._MAX_TOKENS_REDACCION}
     # La interpretación, los clasificadores y el juez la fijan en 0 aunque la redacción use otra.
     assert ollama_client._payload("m", "p", stream=False, opciones={"temperature": 0})["options"]["temperature"] == 0
 

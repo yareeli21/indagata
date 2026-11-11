@@ -575,7 +575,7 @@ export interface InstrumentoRelacionado {
 }
 
 /** «servidor»: no se envía modelo y el chat usa el de `OLLAMA_MODEL` (.env) en todas sus etapas. */
-export type ModeloLLM = "servidor" | "llama3.2:3b";
+export type ModeloLLM = "llama3.2:3b";
 
 export interface ContextoInvestigacion {
   objetivo: string;
@@ -593,6 +593,48 @@ export interface FuenteChat {
   investigador: string;
   kpis: string[];
   fragmento: string;
+  /** De qué partes del instrumento salió la información (más parecido primero). Ausente en
+   *  respuestas guardadas antes de la trazabilidad. */
+  pasajes?: PasajeFuente[];
+  /** Mayor similitud (0–1) del instrumento con la pregunta, aunque la respuesta sea un cálculo sin pasajes. */
+  similitud?: number | null;
+}
+
+/** Un fragmento del instrumento que se le dio al modelo para responder. */
+export interface PasajeFuente {
+  seccion: string;
+  /** «Ficha», «Pregunta p04», «Respondente R017 · p04»… */
+  etiqueta: string;
+  texto: string;
+  /** Similitud con la pregunta (null: se agregó sin búsqueda, p. ej. la ficha). */
+  score: number | null;
+  /** Posición en el documento indexado: abre el visor justo ahí. */
+  chunkIndex: number | null;
+  preguntaId: string;
+  respondenteId: string;
+}
+
+/** Un fragmento del documento indexado de un instrumento (lo que el chat puede recuperar). */
+export interface FragmentoDocumento {
+  chunkIndex: number;
+  seccion: string;
+  etiqueta: string;
+  texto: string;
+  preguntaId: string;
+  respondenteId: string;
+}
+
+/** Un tramo [desde, hasta) del documento indexado, en orden. */
+export interface DocumentoFuente {
+  instrumentoId: string;
+  titulo: string;
+  tipo: string;
+  /** documento: documento final vigente; json_tecnico: registro técnico. */
+  origen: string;
+  total: number;
+  desde: number;
+  hasta: number;
+  fragmentos: FragmentoDocumento[];
 }
 
 /** Entrada curada que respalda una respuesta: glosario metodológico o ayuda de la plataforma. */
@@ -622,6 +664,8 @@ export interface ResultadoChat {
   enCache?: boolean;
   /** Milisegundos que tardó la respuesta (Pruebas: duración). */
   latenciaMs?: number | null;
+  /** Texto final de la respuesta cuando el servicio le añadió citas [Fuente n] (trazabilidad). */
+  contenido?: string;
 }
 
 /** Métricas automáticas de una respuesta (juez local: evaluación aproximada). */
@@ -667,6 +711,49 @@ export interface IndicadoresRespuesta {
   fragmentosRag: string[];
   tiempos: Record<string, number>;
   latenciaMs: number | null;
+  /** «Ver métricas» (sin juez): cómo se recuperó, cuánto respalda lo recuperado y si cita. */
+  recuperacion?: MetricaRecuperacion | null;
+  fundamentacion?: MetricaFundamentacion | null;
+  citas?: MetricaCitas | null;
+}
+
+/** Un fragmento que llegó a la respuesta y cómo lo encontró la búsqueda híbrida. */
+export interface FragmentoRecuperado {
+  etiqueta: string;
+  instrumentoId: string;
+  /** Coseno del embedding con la pregunta (0–1). */
+  similitud: number | null;
+  /** Proporción de las palabras de la pregunta que contiene (0–1). */
+  coincidencia: number | null;
+  /** Lugar en cada búsqueda; null = no apareció en ella. */
+  rangoSemantico: number | null;
+  rangoPalabras: number | null;
+  paso: "significado" | "palabras" | "ambos" | "contexto";
+}
+
+export interface MetricaRecuperacion {
+  modo: "hibrida" | "semantica";
+  umbral: number;
+  coberturaMinima: number;
+  similitudMaxima: number | null;
+  similitudPromedio: number | null;
+  fragmentos: FragmentoRecuperado[];
+}
+
+/** Oraciones de la respuesta respaldadas por lo recuperado (fidelidad sin juez). */
+export interface MetricaFundamentacion {
+  oraciones: number;
+  respaldadas: number | null;
+  proporcion: number | null;
+  sinRespaldo: string[];
+}
+
+export interface MetricaCitas {
+  oraciones: number;
+  conCita: number;
+  proporcion: number | null;
+  fuentesCitadas: number[];
+  citasInvalidas: number[];
 }
 
 export interface EvaluacionJuez {

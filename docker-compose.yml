@@ -421,6 +421,8 @@ services:
     environment:
       VITE_API_URL: http://localhost:8006
       NODE_ENV: ${NODE_ENV:-production}
+      # Vite revisa los archivos por polling: en Windows los cambios de ./pixel-perfect-pixel no le avisan solos.
+      VITE_USAR_POLLING: "true"
     ports:
       - "3000:3000"
     volumes:

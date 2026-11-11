@@ -106,13 +106,14 @@ class Preparada:
 
 
 async def preparar(pregunta: str, historial: list[tuple[str, str]], ids: list[str], sesion: Any,
-                   tema: str = "", pistas: str = "") -> Preparada:
+                   tema: str = "", pistas: str = "", prioridad: list[str] | None = None) -> Preparada:
     """Interpreta la pregunta con el catálogo del alcance y, si la intención es estructurada, ejecuta el plan.
 
-    `tema`: de qué trató la respuesta anterior (seguimientos). `pistas`: lo que recuperó el RAG."""
+    `tema`: de qué trató la respuesta anterior (seguimientos). `pistas`: lo que recuperó el RAG; `prioridad`: sus instrumentos, del más
+    parecido al menos (deciden qué catálogos entran al prompt si el alcance no cabe)."""
     instrumentos = enrutador.cargar_documentos(sesion, ids)
     catalogos = [construir_catalogo(i.id_crudo, i.titulo, i.tipo, i.doc) for i in instrumentos]
-    interp = await interpretacion.interpretar(pregunta, historial, catalogos, tema, pistas)
+    interp = await interpretacion.interpretar(pregunta, historial, catalogos, tema, pistas, prioridad)
     preparada = Preparada(interp, instrumentos, catalogos)
     if interp.plan is not None:
         inicio = time.perf_counter()

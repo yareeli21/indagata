@@ -102,8 +102,11 @@ class AppSettings(BaseSettings):
     # Similitud coseno mínima para que un fragmento entre al contexto del LLM.
     # Si ninguno la alcanza, el chat responde que no tiene información
     # relacionada en lugar de dejar que el modelo improvise. Calibrado con 30
-    # instrumentos: preguntas sin relación ≤ 0.30, relacionadas 0.60–0.77.
-    RAG_MIN_SCORE: float = 0.35
+    # instrumentos: preguntas sin relación ≤ 0.30, relacionadas 0.60–0.77. Subido a 0.70 el 10 nov a pedido del
+    # equipo: con 0.65 se respondió «¿qué estrategias usan para mejorar su rendimiento?» con un instrumento que no
+    # trata de eso. Ningún fragmento por debajo entra a la respuesta (ni de relleno).
+    # Bajado a 0.65 el mismo día: 0.70 dejaba fuera preguntas relacionadas (0.60–0.77).
+    RAG_MIN_SCORE: float = 0.65
     # Dominio acotado (visualization-service/services/dominio.py). Zona gris: similitud
     # en [RAG_MIN_SCORE, RAG_ZONA_GRIS_MAX) sin que una regla decida; ahí un clasificador
     # con Ollama (JSON, temperatura 0) decide si la pregunta es del dominio. Medido en la
@@ -115,6 +118,13 @@ class AppSettings(BaseSettings):
     # ejemplos; entre este valor y RAG_MIN_SCORE, el de «sin información». Auditoría:
     # «¿quién ganó el mundial?» 0.25; preguntas sin relación ≤ 0.30.
     RAG_FUERA_MAX: float = 0.30
+    # Búsqueda híbrida (visualization-service/services/hibrida.py, 11 nov): a la búsqueda por significado (Chroma) se
+    # suma la de palabras (texto completo de Postgres) y se combinan con RRF. Un fragmento también llega a la respuesta
+    # si contiene al menos RAG_MIN_COBERTURA de las palabras con contenido de la pregunta (y 2 o más), aunque su
+    # similitud no alcance RAG_MIN_SCORE: el embedding ubica mal preguntas casi literales.
+    RAG_HIBRIDA: bool = True
+    RAG_MIN_COBERTURA: float = 0.75
+    RAG_LEXICOS_MAX: int = 40
     # Métricas automáticas por respuesta (visualization-service/services/evaluacion.py):
     # fidelidad, relevancia y precisión del contexto, en segundo plano, con un juez local.
     RAG_METRICAS: bool = True

@@ -57,12 +57,22 @@ SISTEMA = (
     "sobre…?»). No es fuente: no tomes de ahí cifras ni afirmaciones.\n"
     "15. Si hay RESULTADO CALCULADO y TEXTO RECUPERADO, usa los dos: el RESULTADO CALCULADO da las cifras y el "
     "TEXTO RECUPERADO explica de qué tratan (la pregunta, lo que dijeron, el KPI). Si dicen cosas distintas, manda el "
-    "RESULTADO CALCULADO: adapta lo recuperado a él, sin descartarlo."
+    "RESULTADO CALCULADO: adapta lo recuperado a él, sin descartarlo.\n"
+    # 16 (10 nov): llama3.2:3b copiaba los datos tal cual y abría casi toda respuesta con «Según el contexto
+    # proporcionado…»; el fragmento exacto ya se ve en el panel de cada [Fuente n].
+    "16. Explica e interpreta con tus palabras lo que dicen los datos: qué significa y qué patrón se ve. Puedes "
+    "copiar una frase textual entre comillas cuando sirva para mostrar lo que alguien dijo, pero que la respuesta no "
+    "sea solo una lista de citas. No empieces siempre con «Según el contexto» o «Basado en el contexto "
+    "proporcionado»: casi siempre ve directo a la respuesta; esa frase solo úsala de vez en cuando, si aporta. "
+    "Varía también cómo presentas tu interpretación: no la introduzcas siempre con la misma fórmula («lo que "
+    "sugiere», «esto sugiere», «esto indica»); a veces dila directamente o con otras palabras, como lo haría un "
+    "investigador al redactar."
 )
 
 _SECCION = {
     "encabezado": "ficha", "pregunta": "pregunta", "contenido": "texto", "respondente": "respondente",
     "reactivo": "reactivo", "alumno": "alumno", "intercambio": "intercambio", "kpi": "KPI",
+    "resultado": "resultado calculado",
 }
 
 

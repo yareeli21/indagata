@@ -15,6 +15,11 @@ import tsConfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
   server: {
     port: 8080,
+    // En Docker sobre Windows el contenedor no recibe los avisos de cambio de la carpeta montada y
+    // Vite seguía sirviendo la versión anterior de los archivos editados (9 nov). Con
+    // VITE_USAR_POLLING=true (docker-compose.yml) revisa los archivos cada 300 ms.
+    watch:
+      process.env.VITE_USAR_POLLING === "true" ? { usePolling: true, interval: 300 } : undefined,
   },
   optimizeDeps: {
     include: ["sonner"],

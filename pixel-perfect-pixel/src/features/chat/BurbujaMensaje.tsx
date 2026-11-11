@@ -1,8 +1,9 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import {
   BookOpen,
   CircleHelp,
   ExternalLink,
+  FileSearch,
   GraduationCap,
   History,
   Landmark,
@@ -10,10 +11,32 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { FuenteChat, Mensaje, ReferenciaChat } from "@/types";
-import { PanelMetricas } from "./PanelMetricas";
+import type { FuenteSeleccionada } from "./PanelFuente";
+import { VerMetricas } from "./VerMetricas";
+
+/** Pasajes que se ven en la tarjeta antes de «+N pasajes más». */
+const MAX_PASAJES_VISIBLES = 3;
+/** Fuentes citadas que se ven antes de «Ver las demás fuentes citadas». */
+const MAX_FUENTES_VISIBLES = 4;
 
 interface BurbujaMensajeProps {
   mensaje: Mensaje;
+  /** Abre el panel lateral con la parte exacta del documento de una fuente citada. */
+  onAbrirFuente?: (seleccion: FuenteSeleccionada) => void;
+}
+
+/**
+ * Las fuentes que se muestran: solo las que la respuesta cita. El servicio ya las filtra; aquí se
+ * repite para las respuestas guardadas en el historial antes de ese filtro (traían una tarjeta por
+ * cada instrumento recuperado, aunque no tuviera que ver con la pregunta).
+ */
+function fuentesCitadas(texto: string, fuentes: FuenteChat[] | undefined): FuenteChat[] {
+  if (!fuentes?.length) return [];
+  const citados = new Set(
+    [...texto.matchAll(RE_CITA)].flatMap((m) => (m[1] ?? "").match(/\d+/g)?.map(Number) ?? []),
+  );
+  const elegidas = fuentes.filter((f) => citados.has(f.numero));
+  return elegidas.length > 0 ? elegidas : fuentes;
 }
 
 // Citas tal como las escribe el modelo: [Fuente 2], (Fuentes 3 y 5), [Fuente 1, 3 y 6],
@@ -24,8 +47,11 @@ function idTarjeta(mensajeId: string, numero: number): string {
   return `fuente-${mensajeId}-${numero}`;
 }
 
-export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
+export function BurbujaMensaje({ mensaje, onAbrirFuente }: BurbujaMensajeProps) {
   const esUsuario = mensaje.rol === "usuario";
+  const [verTodas, setVerTodas] = useState(false);
+  const citadas = fuentesCitadas(mensaje.contenido, mensaje.fuentes);
+  const visibles = verTodas ? citadas : citadas.slice(0, MAX_FUENTES_VISIBLES);
 
   return (
     <div className={cn("flex w-full flex-col gap-3", esUsuario ? "items-end" : "items-start")}>
@@ -45,7 +71,8 @@ export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
           <ContenidoAsistente
             texto={mensaje.contenido}
             mensajeId={mensaje.id}
-            fuentes={mensaje.fuentes}
+            fuentes={citadas}
+            onAbrirFuente={onAbrirFuente}
           />
         )}
         {/* Cursor parpadeante mientras se genera */}
@@ -72,28 +99,42 @@ export function BurbujaMensaje({ mensaje }: BurbujaMensajeProps) {
       )}
 
       {/* Tarjetas de fuentes (solo asistente, cuando terminó de generar) */}
-      {!esUsuario && !mensaje.generando && mensaje.fuentes && mensaje.fuentes.length > 0 && (
+      {!esUsuario && !mensaje.generando && citadas.length > 0 && (
         <div className="flex w-full max-w-[80%] flex-col gap-2">
           <p className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
             <BookOpen className="size-3.5" />
-            Fuentes
+            {citadas.length === 1 ? "Fuente citada" : `Fuentes citadas (${citadas.length})`}
+            <span className="font-normal">· haz clic para ver la parte exacta del documento</span>
           </p>
           <div className="grid gap-2 sm:grid-cols-2">
-            {mensaje.fuentes.map((f, i) => (
+            {visibles.map((f, i) => (
               <TarjetaFuente
-                key={f.instrumentoId}
+                key={`${f.instrumentoId}-${f.numero}`}
                 fuente={f}
                 numero={f.numero ?? i + 1}
                 id={idTarjeta(mensaje.id, f.numero ?? i + 1)}
+                onAbrir={(chunk) => onAbrirFuente?.({ fuente: f, chunk })}
               />
             ))}
           </div>
+          {citadas.length > MAX_FUENTES_VISIBLES && (
+            <button
+              type="button"
+              onClick={() => setVerTodas((v) => !v)}
+              className="self-start rounded-lg border border-border px-3 py-1 text-xs font-medium text-primary hover:bg-muted"
+            >
+              {verTodas
+                ? "Ver menos fuentes"
+                : `Ver las demás fuentes citadas (${citadas.length - MAX_FUENTES_VISIBLES})`}
+            </button>
+          )}
         </div>
       )}
 
-      {/* Métricas automáticas (fidelidad, relevancia, precisión del contexto) */}
+      {/* «Ver métricas» (11 nov): recuperación, fundamentación y citas, sin modelo juez (VerMetricas.tsx). La
+          sección anterior con el juez RAGAS (PanelMetricas.tsx) se quitó el 9 nov: el juez qwen no evaluaba bien. */}
       {!esUsuario && !mensaje.generando && mensaje.consultaId != null && (
-        <PanelMetricas consultaId={mensaje.consultaId} />
+        <VerMetricas consultaId={mensaje.consultaId} />
       )}
 
       {/* Glosario metodológico o ayuda de la plataforma que respaldan la respuesta */}
@@ -190,14 +231,18 @@ function bloques(texto: string): Bloque[] {
   return salida.filter((b) => b.tipo !== "texto" || b.texto.trim());
 }
 
+type AbrirFuente = ((seleccion: FuenteSeleccionada) => void) | undefined;
+
 function ContenidoAsistente({
   texto,
   mensajeId,
   fuentes,
+  onAbrirFuente,
 }: {
   texto: string;
   mensajeId: string;
   fuentes?: FuenteChat[] | undefined;
+  onAbrirFuente: AbrirFuente;
 }) {
   return (
     <div className="space-y-3">
@@ -205,7 +250,7 @@ function ContenidoAsistente({
         if (b.tipo === "titulo") {
           return (
             <p key={n} className="font-semibold text-foreground">
-              {conCitas(b.texto, mensajeId, fuentes)}
+              {conCitas(b.texto, mensajeId, fuentes, onAbrirFuente)}
             </p>
           );
         }
@@ -239,7 +284,7 @@ function ContenidoAsistente({
         }
         return (
           <p key={n} className="whitespace-pre-wrap break-words">
-            {conCitas(b.texto, mensajeId, fuentes)}
+            {conCitas(b.texto, mensajeId, fuentes, onAbrirFuente)}
           </p>
         );
       })}
@@ -247,7 +292,12 @@ function ContenidoAsistente({
   );
 }
 
-function conCitas(texto: string, mensajeId: string, fuentes?: FuenteChat[]): ReactNode[] {
+function conCitas(
+  texto: string,
+  mensajeId: string,
+  fuentes: FuenteChat[] | undefined,
+  onAbrirFuente: AbrirFuente,
+): ReactNode[] {
   const partes: ReactNode[] = [];
   let desde = 0;
   for (const m of texto.matchAll(RE_CITA)) {
@@ -262,6 +312,7 @@ function conCitas(texto: string, mensajeId: string, fuentes?: FuenteChat[]): Rea
             numero={n}
             fuente={fuentes?.find((f) => f.numero === n)}
             idDestino={idTarjeta(mensajeId, n)}
+            onAbrirFuente={onAbrirFuente}
           />
         ))}
       </span>,
@@ -272,23 +323,32 @@ function conCitas(texto: string, mensajeId: string, fuentes?: FuenteChat[]): Rea
   return partes;
 }
 
+/** Marca [n] dentro de la respuesta: abre el panel con la parte exacta del documento citado. */
 function MarcaCita({
   numero,
   fuente,
   idDestino,
+  onAbrirFuente,
 }: {
   numero: number;
   fuente: FuenteChat | undefined;
   idDestino: string;
+  onAbrirFuente: AbrirFuente;
 }) {
   return (
     <button
       type="button"
-      title={fuente ? fuente.titulo : `Fuente ${numero}`}
-      aria-label={fuente ? `Fuente ${numero}: ${fuente.titulo}` : `Fuente ${numero}`}
-      onClick={() =>
-        document.getElementById(idDestino)?.scrollIntoView({ behavior: "smooth", block: "nearest" })
+      title={fuente ? `${fuente.titulo}: ver la parte citada` : `Fuente ${numero}`}
+      aria-label={
+        fuente ? `Fuente ${numero}: ${fuente.titulo}. Ver la parte citada` : `Fuente ${numero}`
       }
+      onClick={() => {
+        if (fuente && onAbrirFuente) onAbrirFuente({ fuente, chunk: null });
+        else
+          document
+            .getElementById(idDestino)
+            ?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }}
       className="mx-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded bg-primary/10 px-1 align-super text-[10px] font-semibold text-primary hover:bg-primary/20"
     >
       {numero}
@@ -300,27 +360,40 @@ function TarjetaFuente({
   fuente: f,
   numero,
   id,
+  onAbrir,
 }: {
   fuente: FuenteChat;
   numero: number;
   id: string;
+  /** Abre el panel en un pasaje (null = el más parecido a la pregunta). */
+  onAbrir: (chunk: number | null) => void;
 }) {
+  const pasajes = f.pasajes ?? [];
+  const [verTodos, setVerTodos] = useState(false);
+
   return (
     <div id={id} className="space-y-2 rounded-2xl border border-border bg-card p-3 shadow-card">
-      {/* Número + título + tipo */}
-      <div className="flex items-start gap-2">
+      {/* Número + título + tipo: qué documento es */}
+      <button
+        type="button"
+        onClick={() => onAbrir(null)}
+        title="Ver la parte citada de este documento"
+        className="flex w-full items-start gap-2 rounded-lg text-left hover:bg-muted/60"
+      >
         <span className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded bg-primary/10 text-xs font-semibold text-primary">
           {numero}
         </span>
-        <div className="min-w-0 space-y-0.5">
-          <p className="text-xs font-semibold leading-snug text-foreground line-clamp-2">
+        <span className="min-w-0 space-y-0.5">
+          <span className="block text-xs font-semibold leading-snug text-foreground line-clamp-2">
             {f.titulo}
-          </p>
-          <p className="text-xs text-muted-foreground">
-            {f.tipo} · {f.investigador}
-          </p>
-        </div>
-      </div>
+          </span>
+          <span className="block text-xs text-muted-foreground">
+            {f.tipo}
+            {f.investigador && ` · ${f.investigador}`}
+            {f.similitud != null && ` · similitud ${Math.round(f.similitud * 100)}%`}
+          </span>
+        </span>
+      </button>
 
       {/* KPIs */}
       {f.kpis.length > 0 && (
@@ -333,10 +406,63 @@ function TarjetaFuente({
         </div>
       )}
 
-      {/* Fragmento */}
-      <p className="text-xs italic text-muted-foreground line-clamp-3 border-l-2 border-primary/30 pl-2">
-        "{f.fragmento}"
-      </p>
+      {pasajes.length > 0 ? (
+        /* Partes del documento de donde salió la información */
+        <ul className="space-y-1.5">
+          {pasajes.slice(0, verTodos ? undefined : MAX_PASAJES_VISIBLES).map((p, i) => (
+            <li key={p.chunkIndex ?? `p-${i}`}>
+              <button
+                type="button"
+                onClick={() => onAbrir(p.chunkIndex)}
+                title="Ver esta parte en el documento"
+                className="w-full rounded-lg border-l-2 border-primary/30 py-0.5 pl-2 text-left hover:bg-muted"
+              >
+                <span className="flex items-center gap-1.5 text-[11px] font-medium text-primary">
+                  {p.etiqueta}
+                  {p.chunkIndex != null && (
+                    <span className="font-normal text-muted-foreground">
+                      · fragmento {p.chunkIndex + 1}
+                    </span>
+                  )}
+                  {p.score != null && (
+                    <span className="font-normal text-muted-foreground">
+                      · similitud {Math.round(p.score * 100)}%
+                    </span>
+                  )}
+                </span>
+                <span className="line-clamp-2 text-xs italic text-muted-foreground">
+                  "{p.texto}"
+                </span>
+              </button>
+            </li>
+          ))}
+          {pasajes.length > MAX_PASAJES_VISIBLES && (
+            <li>
+              <button
+                type="button"
+                onClick={() => setVerTodos((v) => !v)}
+                className="text-[11px] font-medium text-muted-foreground hover:text-foreground"
+              >
+                {verTodos ? "Ver menos" : `+${pasajes.length - MAX_PASAJES_VISIBLES} partes más`}
+              </button>
+            </li>
+          )}
+        </ul>
+      ) : (
+        /* Respuestas guardadas antes de la trazabilidad (sin pasajes) */
+        <p className="text-xs italic text-muted-foreground line-clamp-3 border-l-2 border-primary/30 pl-2">
+          "{f.fragmento}"
+        </p>
+      )}
+
+      <button
+        type="button"
+        onClick={() => onAbrir(null)}
+        className="inline-flex items-center gap-1 text-xs font-medium text-primary underline-offset-2 hover:underline"
+      >
+        <FileSearch className="size-3.5" aria-hidden />
+        Ver la parte exacta en el documento
+      </button>
     </div>
   );
 }

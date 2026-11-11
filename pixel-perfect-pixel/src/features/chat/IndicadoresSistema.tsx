@@ -64,8 +64,7 @@ export function IndicadoresSistema({ ind }: { ind: IndicadoresRespuesta }) {
     <div className="space-y-1.5">
       <p className="flex items-center gap-1.5 font-medium text-card-foreground">
         <Cpu className="size-3.5 shrink-0 text-primary" aria-hidden />
-        Indicadores del sistema{" "}
-        <span className="font-normal text-muted-foreground">(sin modelo juez)</span>
+        Indicadores del sistema
       </p>
       <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-muted-foreground">
         {ind.modelo && (

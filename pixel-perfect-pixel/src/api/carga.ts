@@ -237,8 +237,9 @@ export function dublinCoreDesdePropuesta(
   }
   const cobertura = texto(valores["dc_coverage"]);
   if (cobertura) {
-    const { nivel, detalle } = partirCobertura(cobertura);
-    dc.cobertura = nivel;
+    const { detalle } = partirCobertura(cobertura);
+    // La carga solo admite licenciatura: el nivel propuesto no se usa, el alcance sí.
+    dc.cobertura = "Licenciatura";
     dc.coberturaDetalle = detalle;
   }
   return dc;

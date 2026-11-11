@@ -1,6 +1,7 @@
 import type {
   CalificacionRespuesta,
   ContextoInvestigacion,
+  DocumentoFuente,
   Mensaje,
   MetricasRespuesta,
   ModeloLLM,
@@ -9,8 +10,6 @@ import type {
 import { API_URL, avisarSesionExpirada, leerToken, pedir } from "./client";
 
 export const MODELOS_DISPONIBLES: { id: ModeloLLM; etiqueta: string }[] = [
-  // Sin modelo en la petición: el servicio usa OLLAMA_MODEL (.env) para entender, redactar y clasificar.
-  { id: "servidor", etiqueta: "Modelo del servidor" },
   { id: "llama3.2:3b", etiqueta: "Llama 3.2 (3B) — local" },
 ];
 
@@ -55,7 +54,10 @@ export function getInstrumentosDeInvestigacion(investigacionId: string): string[
 // ── Chat RAG con streaming SSE ──────────────────────────────────────────────────
 
 /** Datos del evento SSE `fuentes` emitido por el visualization-service (al final). */
-type EventoFuentes = Partial<ResultadoChat>;
+type EventoFuentes = Partial<ResultadoChat> & {
+  /** Respuesta final con las citas [Fuente n] que el servicio añadió donde el modelo no citó. */
+  respuesta?: string;
+};
 
 /** Datos del evento SSE `token`. */
 interface EventoToken {
@@ -104,7 +106,7 @@ export function enviarMensaje(
         investigacionId,
         pregunta,
         instrumentoIds: ids,
-        modelo: modelo === "servidor" ? undefined : modelo,
+        modelo,
         stream: true,
         top_k: 6,
         // Orienta la respuesta hacia la investigación (objetivo, población, nivel).
@@ -165,6 +167,8 @@ export function enviarMensaje(
               consultaId: evento.consultaId ?? null,
               enCache: evento.enCache ?? false,
               latenciaMs: evento.latenciaMs ?? null,
+              // Reemplaza el texto que llegó por tokens: es el mismo, con las citas que faltaban.
+              ...(evento.respuesta ? { contenido: evento.respuesta } : {}),
             };
           } catch {
             /* se ignora */
@@ -267,4 +271,23 @@ function historialReciente(
       // El servicio lee de esa consulta de qué trató la respuesta (respondentes, preguntas, criterio).
       ...(m.rol !== "usuario" && m.consultaId ? { consultaId: m.consultaId } : {}),
     }));
+}
+
+// ── Trazabilidad de las fuentes ─────────────────────────────────────────────────
+
+/**
+ * Tramo [desde, hasta) del documento indexado de un instrumento: las piezas que el chat puede
+ * recuperar, en orden. Abre una fuente en la posición de su pasaje (`pasajes[].chunkIndex`).
+ * GET ${API_URL}/visualizacion/instrumentos/{id}/documento (máximo 200 por petición).
+ */
+export async function getDocumentoFuente(
+  instrumentoId: string,
+  desde: number,
+  hasta: number,
+): Promise<DocumentoFuente> {
+  const params = new URLSearchParams({ desde: String(desde), hasta: String(hasta) });
+  return pedir<DocumentoFuente>(
+    `${API_URL}/visualizacion/instrumentos/${encodeURIComponent(instrumentoId)}/documento?${params}`,
+    { auth: true },
+  );
 }

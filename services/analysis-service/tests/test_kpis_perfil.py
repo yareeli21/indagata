@@ -298,6 +298,23 @@ def test_confirmar_valida_version_kpis_y_evidencia(cliente):
     assert cliente.post("/vectorizacion/perfil/confirmar", json=ajena, headers=ANA).status_code == 422
 
 
+def test_confirmar_un_kpi_agregado_a_mano_sin_puntaje_ni_evidencia(cliente, db):
+    """El paso de KPIs del asistente deja agregar uno del catálogo que no se sugirió (11 nov): llega sin puntaje ni
+    evidencia y con la justificación del investigador."""
+    cuerpo = {"id_crudo": 7, "version": 1, "decisiones": [
+        {"kpi_id": 2, "aceptado": True, "score": 0, "componentes": {"g": 0, "p": 0, "c": 0}, "evidencia": [],
+         "justificacion": "Agregado manualmente por el investigador: la p03 lo mide.", "justificacion_origen": "plantilla",
+         "editada": True},
+    ]}
+    r = cliente.post("/vectorizacion/perfil/confirmar", json=cuerpo, headers=ANA)
+    assert r.status_code == 200, r.text
+    asociado = r.json()["kpis_asociados"][0]
+    assert asociado["kpi_id"] == "KPI-02" and asociado["evidencia"] == [] and asociado["similitud"] == 0
+    assert asociado["justificacion"].startswith("Agregado manualmente por el investigador")
+    db.expire_all()
+    assert [i.kpi_id for i in db.query(KPIInferido).filter_by(id_procesado=70)] == [2]
+
+
 def test_autenticacion_y_autoria(cliente):
     assert cliente.post("/vectorizacion/perfil/propuestas", json={"id_crudo": 7}).status_code == 401
     assert cliente.post("/vectorizacion/perfil/propuestas", json={"id_crudo": 7}, headers=_h(3)).status_code == 403

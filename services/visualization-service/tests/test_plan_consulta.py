@@ -176,6 +176,20 @@ def test_catalogo_grande_pasa_a_forma_compacta():
     assert "- p01 [likert] Los profesores explican con claridad" in prompt
 
 
+def test_alcance_que_no_cabe_lleva_los_instrumentos_recuperados_y_no_pasa_del_contexto():
+    # Toda la colección: antes Ollama recortaba el prompt por el inicio (perdía instrucciones y ejemplos).
+    from dataclasses import replace
+
+    cats = [replace(_cat_encuesta(), id=str(n), titulo=f"Encuesta de hábitos {n}") for n in range(40)]
+    cats.append(replace(_cat_carga(), id="99", titulo="Carga laboral de estudiantes"))
+    prompt = interpretacion.construir_prompt("¿cuántos trabajan más de 30 horas?", [], cats, prioridad=["7", "99"])
+    assert len(prompt) + len(interpretacion.SISTEMA) <= interpretacion._MAX_CARACTERES_PROMPT
+    catalogo = prompt.split("=== CONSULTA REAL ===", 1)[1]
+    assert catalogo.index("INSTRUMENTO 7 ") < catalogo.index("INSTRUMENTO 99 ")
+    assert "instrumentos más en el alcance" in catalogo
+    assert prompt.startswith(interpretacion._ejemplos())  # las instrucciones y ejemplos quedan completos
+
+
 # ── Anclaje a lo que dice la pregunta ──────────────────────────────────────────
 
 from services import anclaje  # noqa: E402
