@@ -1,0 +1,1232 @@
+{
+  "instrument_id": "33",
+  "schema_version": "2.0",
+  "tipo_instrumento": "encuesta",
+  "instrument": {
+    "title": "Encuesta de evaluación y ambiente escolar por turno",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "EVALUACIÓN DEL APRENDIZAJE",
+      "AMBIENTE ESCOLAR"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "EVALUACIÓN DEL APRENDIZAJE",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q2",
+            "text": "Las calificaciones reflejan lo que realmente aprendí.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q3",
+            "text": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q4",
+            "text": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s2",
+        "name": "AMBIENTE ESCOLAR",
+        "questions": [
+          {
+            "question_id": "q5",
+            "text": "Me siento seguro dentro de las instalaciones de la escuela.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q6",
+            "text": "Las relaciones entre compañeros son respetuosas.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q7",
+            "text": "Los profesores están disponibles para resolver dudas.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q8",
+            "text": "Me siento parte de la comunidad escolar.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "encuesta",
+    "dublin_core": {
+      "dc:title": "Encuesta de evaluación y ambiente escolar por turno",
+      "dc:creator": "Administrador",
+      "dc:subject": "evaluación, escolar, siento, ambiente, turno, criterios",
+      "dc:description": "Encuesta de 8 reactivos aplicada a 60 respondentes. Explora: evaluación del aprendizaje; ambiente escolar.",
+      "dc:type": "Encuesta",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "No especificado",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "enc_10_turno_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "n_respondentes": 60,
+      "objetivo": "No especificado",
+      "poblacion_objetivo": "No especificado",
+      "constructo_principal": "No especificado",
+      "palabras_clave": [
+        "evaluación",
+        "escolar",
+        "siento",
+        "ambiente",
+        "turno",
+        "criterios",
+        "explican",
+        "claridad"
+      ],
+      "dimensiones": [
+        "EVALUACIÓN DEL APRENDIZAJE",
+        "AMBIENTE ESCOLAR"
+      ],
+      "notas_contextuales": "Calidad de los datos: 60 registros con respuesta; 0% de respuestas vacías."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "Puntajes en Pruebas Estandarizadas de Referencia"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert",
+        "n": 60,
+        "n_vacios": 0,
+        "mean": 3.167,
+        "std": 0.952,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 22,
+          "4": 19,
+          "2": 13,
+          "5": 4,
+          "1": 2
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "numerico": {
+          "n": 60,
+          "q1": 2.75,
+          "q3": 4.0,
+          "iqr": 1.25,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1667,
+          "mediana": 3.0,
+          "curtosis": -0.4478,
+          "asimetria": -0.108,
+          "desviacion": 0.9596
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 2,
+              "pct": 0.0333,
+              "valor": "1"
+            },
+            {
+              "n": 13,
+              "pct": 0.2167,
+              "valor": "2"
+            },
+            {
+              "n": 22,
+              "pct": 0.3667,
+              "valor": "3"
+            },
+            {
+              "n": 19,
+              "pct": 0.3167,
+              "valor": "4"
+            },
+            {
+              "n": 4,
+              "pct": 0.0667,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "evaluacion_item1"
+      },
+      "q2": {
+        "type": "likert",
+        "n": 60,
+        "n_vacios": 0,
+        "mean": 3.117,
+        "std": 0.933,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 25,
+          "4": 16,
+          "2": 13,
+          "5": 4,
+          "1": 2
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "numerico": {
+          "n": 60,
+          "q1": 2.75,
+          "q3": 4.0,
+          "iqr": 1.25,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1167,
+          "mediana": 3.0,
+          "curtosis": -0.2702,
+          "asimetria": 0.0135,
+          "desviacion": 0.9405
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 2,
+              "pct": 0.0333,
+              "valor": "1"
+            },
+            {
+              "n": 13,
+              "pct": 0.2167,
+              "valor": "2"
+            },
+            {
+              "n": 25,
+              "pct": 0.4167,
+              "valor": "3"
+            },
+            {
+              "n": 16,
+              "pct": 0.2667,
+              "valor": "4"
+            },
+            {
+              "n": 4,
+              "pct": 0.0667,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "evaluacion_item2"
+      },
+      "q3": {
+        "type": "likert",
+        "n": 60,
+        "n_vacios": 0,
+        "mean": 3.2,
+        "std": 1.061,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 22,
+          "3": 17,
+          "2": 12,
+          "5": 5,
+          "1": 4
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "numerico": {
+          "n": 60,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2,
+          "mediana": 3.0,
+          "curtosis": -0.5844,
+          "asimetria": -0.3294,
+          "desviacion": 1.0704
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 4,
+              "pct": 0.0667,
+              "valor": "1"
+            },
+            {
+              "n": 12,
+              "pct": 0.2,
+              "valor": "2"
+            },
+            {
+              "n": 17,
+              "pct": 0.2833,
+              "valor": "3"
+            },
+            {
+              "n": 22,
+              "pct": 0.3667,
+              "valor": "4"
+            },
+            {
+              "n": 5,
+              "pct": 0.0833,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "evaluacion_item3"
+      },
+      "q4": {
+        "type": "likert",
+        "n": 60,
+        "n_vacios": 0,
+        "mean": 3.1,
+        "std": 1.075,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 20,
+          "2": 16,
+          "4": 14,
+          "5": 7,
+          "1": 3
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "numerico": {
+          "n": 60,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1,
+          "mediana": 3.0,
+          "curtosis": -0.6881,
+          "asimetria": 0.1253,
+          "desviacion": 1.0846
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 3,
+              "pct": 0.05,
+              "valor": "1"
+            },
+            {
+              "n": 16,
+              "pct": 0.2667,
+              "valor": "2"
+            },
+            {
+              "n": 20,
+              "pct": 0.3333,
+              "valor": "3"
+            },
+            {
+              "n": 14,
+              "pct": 0.2333,
+              "valor": "4"
+            },
+            {
+              "n": 7,
+              "pct": 0.1167,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "evaluacion_item4"
+      },
+      "q5": {
+        "type": "likert",
+        "n": 60,
+        "n_vacios": 0,
+        "mean": 3.35,
+        "std": 0.872,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 28,
+          "4": 20,
+          "2": 5,
+          "5": 5,
+          "1": 2
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "numerico": {
+          "n": 60,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.35,
+          "mediana": 3.0,
+          "curtosis": 0.5602,
+          "asimetria": -0.2964,
+          "desviacion": 0.8796
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 2,
+              "pct": 0.0333,
+              "valor": "1"
+            },
+            {
+              "n": 5,
+              "pct": 0.0833,
+              "valor": "2"
+            },
+            {
+              "n": 28,
+              "pct": 0.4667,
+              "valor": "3"
+            },
+            {
+              "n": 20,
+              "pct": 0.3333,
+              "valor": "4"
+            },
+            {
+              "n": 5,
+              "pct": 0.0833,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "ambiente_item1"
+      },
+      "q6": {
+        "type": "likert",
+        "n": 60,
+        "n_vacios": 0,
+        "mean": 3.483,
+        "std": 1.147,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 18,
+          "5": 15,
+          "4": 14,
+          "2": 11,
+          "1": 2
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "numerico": {
+          "n": 60,
+          "q1": 3.0,
+          "q3": 4.25,
+          "iqr": 1.25,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.4833,
+          "mediana": 3.0,
+          "curtosis": -0.9531,
+          "asimetria": -0.1619,
+          "desviacion": 1.157
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 2,
+              "pct": 0.0333,
+              "valor": "1"
+            },
+            {
+              "n": 11,
+              "pct": 0.1833,
+              "valor": "2"
+            },
+            {
+              "n": 18,
+              "pct": 0.3,
+              "valor": "3"
+            },
+            {
+              "n": 14,
+              "pct": 0.2333,
+              "valor": "4"
+            },
+            {
+              "n": 15,
+              "pct": 0.25,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "ambiente_item2"
+      },
+      "q7": {
+        "type": "likert",
+        "n": 60,
+        "n_vacios": 0,
+        "mean": 3.35,
+        "std": 1.03,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 25,
+          "4": 14,
+          "5": 10,
+          "2": 9,
+          "1": 2
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "numerico": {
+          "n": 60,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.35,
+          "mediana": 3.0,
+          "curtosis": -0.4521,
+          "asimetria": -0.0063,
+          "desviacion": 1.0387
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 2,
+              "pct": 0.0333,
+              "valor": "1"
+            },
+            {
+              "n": 9,
+              "pct": 0.15,
+              "valor": "2"
+            },
+            {
+              "n": 25,
+              "pct": 0.4167,
+              "valor": "3"
+            },
+            {
+              "n": 14,
+              "pct": 0.2333,
+              "valor": "4"
+            },
+            {
+              "n": 10,
+              "pct": 0.1667,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "ambiente_item3"
+      },
+      "q8": {
+        "type": "likert",
+        "n": 60,
+        "n_vacios": 0,
+        "mean": 3.35,
+        "std": 0.891,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 27,
+          "3": 20,
+          "2": 8,
+          "5": 3,
+          "1": 2
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "numerico": {
+          "n": 60,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.35,
+          "mediana": 3.5,
+          "curtosis": 0.1473,
+          "asimetria": -0.6186,
+          "desviacion": 0.8987
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 2,
+              "pct": 0.0333,
+              "valor": "1"
+            },
+            {
+              "n": 8,
+              "pct": 0.1333,
+              "valor": "2"
+            },
+            {
+              "n": 20,
+              "pct": 0.3333,
+              "valor": "3"
+            },
+            {
+              "n": 27,
+              "pct": 0.45,
+              "valor": "4"
+            },
+            {
+              "n": 3,
+              "pct": 0.05,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "ambiente_item4"
+      }
+    },
+    "global": {
+      "n_registros": 60,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 8
+    },
+    "reliability": [
+      {
+        "alfa": 0.8738,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Evaluación",
+        "n_casos": 60,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.1667,
+            "alfa_si_se_elimina": 0.8316,
+            "correlacion_item_total": 0.7495
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.1167,
+            "alfa_si_se_elimina": 0.852,
+            "correlacion_item_total": 0.6955
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.8439,
+            "correlacion_item_total": 0.7181
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.1,
+            "alfa_si_se_elimina": 0.8251,
+            "correlacion_item_total": 0.7634
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.8316,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Ambiente",
+        "n_casos": 60,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.35,
+            "alfa_si_se_elimina": 0.8055,
+            "correlacion_item_total": 0.6217
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.4833,
+            "alfa_si_se_elimina": 0.7708,
+            "correlacion_item_total": 0.7048
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.35,
+            "alfa_si_se_elimina": 0.7679,
+            "correlacion_item_total": 0.7015
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.35,
+            "alfa_si_se_elimina": 0.7992,
+            "correlacion_item_total": 0.6361
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.7834,
+        "items": [
+          "Evaluación_item1",
+          "Evaluación_item2",
+          "Evaluación_item3",
+          "Evaluación_item4",
+          "Ambiente_item1",
+          "Ambiente_item2",
+          "Ambiente_item3",
+          "Ambiente_item4"
+        ],
+        "bloque": "Todas las escalas Likert",
+        "n_casos": 60,
+        "n_items": 8,
+        "por_item": [
+          {
+            "item": "Evaluación_item1",
+            "media": 3.1667,
+            "alfa_si_se_elimina": 0.7445,
+            "correlacion_item_total": 0.5838
+          },
+          {
+            "item": "Evaluación_item2",
+            "media": 3.1167,
+            "alfa_si_se_elimina": 0.7561,
+            "correlacion_item_total": 0.5125
+          },
+          {
+            "item": "Evaluación_item3",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.7483,
+            "correlacion_item_total": 0.5527
+          },
+          {
+            "item": "Evaluación_item4",
+            "media": 3.1,
+            "alfa_si_se_elimina": 0.7677,
+            "correlacion_item_total": 0.4434
+          },
+          {
+            "item": "Ambiente_item1",
+            "media": 3.35,
+            "alfa_si_se_elimina": 0.7746,
+            "correlacion_item_total": 0.3868
+          },
+          {
+            "item": "Ambiente_item2",
+            "media": 3.4833,
+            "alfa_si_se_elimina": 0.7611,
+            "correlacion_item_total": 0.4861
+          },
+          {
+            "item": "Ambiente_item3",
+            "media": 3.35,
+            "alfa_si_se_elimina": 0.7633,
+            "correlacion_item_total": 0.4659
+          },
+          {
+            "item": "Ambiente_item4",
+            "media": 3.35,
+            "alfa_si_se_elimina": 0.7613,
+            "correlacion_item_total": 0.4804
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "aceptable"
+      }
+    ]
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T03:26:24.902101+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/21__enc_10_turno_respondido.csv",
+    "original": "raw/_/22__enc_10_turno_original.txt",
+    "limpio": "clean/33/1__v1_encuesta_limpio.csv",
+    "nombre_archivo": "enc_10_turno_respondido.csv"
+  },
+  "generated_at": "2026-11-12T03:26:24.902343+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T03:26:24.030584+00:00",
+    "archivo_limpio": "clean/33/1__v1_encuesta_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 12,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 11,
+        "cols_mas_nulos": [],
+        "n_respondentes": 60,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      },
+      "despues": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 11,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 11,
+        "cols_mas_nulos": [],
+        "n_respondentes": 60,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "fiabilidad": [
+        {
+          "alfa": 0.8738,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Evaluación",
+          "n_casos": 60,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.1667,
+              "alfa_si_se_elimina": 0.8316,
+              "correlacion_item_total": 0.7495
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.1167,
+              "alfa_si_se_elimina": 0.852,
+              "correlacion_item_total": 0.6955
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.8439,
+              "correlacion_item_total": 0.7181
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.1,
+              "alfa_si_se_elimina": 0.8251,
+              "correlacion_item_total": 0.7634
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.8316,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Ambiente",
+          "n_casos": 60,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.35,
+              "alfa_si_se_elimina": 0.8055,
+              "correlacion_item_total": 0.6217
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.4833,
+              "alfa_si_se_elimina": 0.7708,
+              "correlacion_item_total": 0.7048
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.35,
+              "alfa_si_se_elimina": 0.7679,
+              "correlacion_item_total": 0.7015
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.35,
+              "alfa_si_se_elimina": 0.7992,
+              "correlacion_item_total": 0.6361
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.7834,
+          "items": [
+            "Evaluación_item1",
+            "Evaluación_item2",
+            "Evaluación_item3",
+            "Evaluación_item4",
+            "Ambiente_item1",
+            "Ambiente_item2",
+            "Ambiente_item3",
+            "Ambiente_item4"
+          ],
+          "bloque": "Todas las escalas Likert",
+          "n_casos": 60,
+          "n_items": 8,
+          "por_item": [
+            {
+              "item": "Evaluación_item1",
+              "media": 3.1667,
+              "alfa_si_se_elimina": 0.7445,
+              "correlacion_item_total": 0.5838
+            },
+            {
+              "item": "Evaluación_item2",
+              "media": 3.1167,
+              "alfa_si_se_elimina": 0.7561,
+              "correlacion_item_total": 0.5125
+            },
+            {
+              "item": "Evaluación_item3",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.7483,
+              "correlacion_item_total": 0.5527
+            },
+            {
+              "item": "Evaluación_item4",
+              "media": 3.1,
+              "alfa_si_se_elimina": 0.7677,
+              "correlacion_item_total": 0.4434
+            },
+            {
+              "item": "Ambiente_item1",
+              "media": 3.35,
+              "alfa_si_se_elimina": 0.7746,
+              "correlacion_item_total": 0.3868
+            },
+            {
+              "item": "Ambiente_item2",
+              "media": 3.4833,
+              "alfa_si_se_elimina": 0.7611,
+              "correlacion_item_total": 0.4861
+            },
+            {
+              "item": "Ambiente_item3",
+              "media": 3.35,
+              "alfa_si_se_elimina": 0.7633,
+              "correlacion_item_total": 0.4659
+            },
+            {
+              "item": "Ambiente_item4",
+              "media": 3.35,
+              "alfa_si_se_elimina": 0.7613,
+              "correlacion_item_total": 0.4804
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "aceptable"
+        }
+      ],
+      "encuestados": {
+        "incompletos": 0,
+        "linea_recta": 11
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 5,
+      "nombre_kpi": "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "score": 0.5856
+    },
+    {
+      "kpi_id": 8,
+      "nombre_kpi": "Puntajes en Pruebas Estandarizadas de Referencia",
+      "score": 0.5468
+    }
+  ],
+  "finalized_at": "2026-11-12T03:26:49.494914+00:00"
+}

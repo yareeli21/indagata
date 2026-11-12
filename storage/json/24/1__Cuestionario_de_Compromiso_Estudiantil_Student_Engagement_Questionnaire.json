@@ -1,0 +1,2678 @@
+{
+  "instrument_id": "24",
+  "schema_version": "2.0",
+  "tipo_instrumento": "encuesta",
+  "instrument": {
+    "title": "Cuestionario de Compromiso Estudiantil (Student Engagement Questionnaire)",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "COMPROMISO COGNITIVO",
+      "COMPROMISO CONDUCTUAL",
+      "COMPROMISO AFECTIVO",
+      "COMPROMISO SOCIAL"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "COMPROMISO COGNITIVO",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "Reflexiono profundamente sobre los conceptos presentados en clase.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q2",
+            "text": "Conecto los nuevos conocimientos con experiencias previas.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q3",
+            "text": "Me hago preguntas cuando encuentro ideas complejas.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q4",
+            "text": "Reviso el material hasta que lo comprendo completamente.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q5",
+            "text": "Analizo la información de manera crítica antes de aceptarla.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s2",
+        "name": "COMPROMISO CONDUCTUAL",
+        "questions": [
+          {
+            "question_id": "q6",
+            "text": "Asisto regularmente a todas mis clases.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q7",
+            "text": "Entrego mis tareas y trabajos en los plazos establecidos.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q8",
+            "text": "Participo activamente en las actividades del aula.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q9",
+            "text": "Sigo las instrucciones del docente durante las clases.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q10",
+            "text": "Dedico tiempo fuera del aula para estudiar.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s3",
+        "name": "COMPROMISO AFECTIVO",
+        "questions": [
+          {
+            "question_id": "q11",
+            "text": "Me siento parte importante de mi institución educativa.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q12",
+            "text": "Disfruto de estar en clases y de aprender con mis compañeros.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q13",
+            "text": "Siento que mis profesores se preocupan por mi aprendizaje.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q14",
+            "text": "Me entusiasma aprender cosas nuevas en la universidad.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q15",
+            "text": "Me siento cómodo/a expresando mis opiniones en clase.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s4",
+        "name": "COMPROMISO SOCIAL",
+        "questions": [
+          {
+            "question_id": "q16",
+            "text": "Colaboro activamente con mis compañeros en proyectos grupales.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q17",
+            "text": "Busco apoyo de mis pares cuando tengo dificultades académicas.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q18",
+            "text": "Participo en actividades sociales organizadas por la institución.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q19",
+            "text": "Tengo buenas relaciones con mis profesores y compañeros.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "encuesta",
+    "dublin_core": {
+      "dc:title": "Cuestionario de Compromiso Estudiantil (Student Engagement Questionnaire)",
+      "dc:creator": "Administrador",
+      "dc:subject": "compromiso, clases, siento, compañeros, clase, participo",
+      "dc:description": "Encuesta de 19 reactivos aplicada a 200 respondentes. Explora: compromiso cognitivo; compromiso conductual; compromiso afectivo; compromiso social.",
+      "dc:type": "Encuesta",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "No especificado",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "enc_02_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "n_respondentes": 200,
+      "objetivo": "No especificado",
+      "poblacion_objetivo": "No especificado",
+      "constructo_principal": "No especificado",
+      "palabras_clave": [
+        "compromiso",
+        "clases",
+        "siento",
+        "compañeros",
+        "clase",
+        "participo",
+        "activamente",
+        "actividades"
+      ],
+      "dimensiones": [
+        "COMPROMISO COGNITIVO",
+        "COMPROMISO CONDUCTUAL",
+        "COMPROMISO AFECTIVO",
+        "COMPROMISO SOCIAL"
+      ],
+      "notas_contextuales": "Calidad de los datos: 200 registros con respuesta; 0% de respuestas vacías."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.225,
+        "std": 1.151,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 62,
+          "3": 57,
+          "2": 37,
+          "5": 27,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.225,
+          "mediana": 3.0,
+          "curtosis": -0.735,
+          "asimetria": -0.2514,
+          "desviacion": 1.1537
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.085,
+              "valor": "1"
+            },
+            {
+              "n": 37,
+              "pct": 0.185,
+              "valor": "2"
+            },
+            {
+              "n": 57,
+              "pct": 0.285,
+              "valor": "3"
+            },
+            {
+              "n": 62,
+              "pct": 0.31,
+              "valor": "4"
+            },
+            {
+              "n": 27,
+              "pct": 0.135,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_cogn_item1"
+      },
+      "q2": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.315,
+        "std": 1.186,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 63,
+          "3": 52,
+          "2": 34,
+          "5": 34,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.315,
+          "mediana": 3.0,
+          "curtosis": -0.7668,
+          "asimetria": -0.3232,
+          "desviacion": 1.1886
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.085,
+              "valor": "1"
+            },
+            {
+              "n": 34,
+              "pct": 0.17,
+              "valor": "2"
+            },
+            {
+              "n": 52,
+              "pct": 0.26,
+              "valor": "3"
+            },
+            {
+              "n": 63,
+              "pct": 0.315,
+              "valor": "4"
+            },
+            {
+              "n": 34,
+              "pct": 0.17,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_cogn_item2"
+      },
+      "q3": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.14,
+        "std": 1.149,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 64,
+          "4": 56,
+          "2": 36,
+          "5": 24,
+          "1": 20
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.14,
+          "mediana": 3.0,
+          "curtosis": -0.6985,
+          "asimetria": -0.1974,
+          "desviacion": 1.152
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 20,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 36,
+              "pct": 0.18,
+              "valor": "2"
+            },
+            {
+              "n": 64,
+              "pct": 0.32,
+              "valor": "3"
+            },
+            {
+              "n": 56,
+              "pct": 0.28,
+              "valor": "4"
+            },
+            {
+              "n": 24,
+              "pct": 0.12,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_cogn_item3"
+      },
+      "q4": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.27,
+        "std": 1.178,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 67,
+          "4": 50,
+          "5": 35,
+          "2": 30,
+          "1": 18
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.27,
+          "mediana": 3.0,
+          "curtosis": -0.6899,
+          "asimetria": -0.224,
+          "desviacion": 1.1807
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 18,
+              "pct": 0.09,
+              "valor": "1"
+            },
+            {
+              "n": 30,
+              "pct": 0.15,
+              "valor": "2"
+            },
+            {
+              "n": 67,
+              "pct": 0.335,
+              "valor": "3"
+            },
+            {
+              "n": 50,
+              "pct": 0.25,
+              "valor": "4"
+            },
+            {
+              "n": 35,
+              "pct": 0.175,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_cogn_item4"
+      },
+      "q5": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.21,
+        "std": 1.16,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 56,
+          "3": 54,
+          "2": 46,
+          "5": 30,
+          "1": 14
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.21,
+          "mediana": 3.0,
+          "curtosis": -0.8876,
+          "asimetria": -0.1079,
+          "desviacion": 1.163
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 14,
+              "pct": 0.07,
+              "valor": "1"
+            },
+            {
+              "n": 46,
+              "pct": 0.23,
+              "valor": "2"
+            },
+            {
+              "n": 54,
+              "pct": 0.27,
+              "valor": "3"
+            },
+            {
+              "n": 56,
+              "pct": 0.28,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_cogn_item5"
+      },
+      "q6": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.135,
+        "std": 1.248,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 55,
+          "3": 53,
+          "2": 36,
+          "5": 30,
+          "1": 26
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.135,
+          "mediana": 3.0,
+          "curtosis": -0.9435,
+          "asimetria": -0.1961,
+          "desviacion": 1.2508
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 26,
+              "pct": 0.13,
+              "valor": "1"
+            },
+            {
+              "n": 36,
+              "pct": 0.18,
+              "valor": "2"
+            },
+            {
+              "n": 53,
+              "pct": 0.265,
+              "valor": "3"
+            },
+            {
+              "n": 55,
+              "pct": 0.275,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_cond_item1"
+      },
+      "q7": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.16,
+        "std": 1.263,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 61,
+          "3": 47,
+          "2": 35,
+          "5": 30,
+          "1": 27
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.16,
+          "mediana": 3.0,
+          "curtosis": -0.9776,
+          "asimetria": -0.2599,
+          "desviacion": 1.2659
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 27,
+              "pct": 0.135,
+              "valor": "1"
+            },
+            {
+              "n": 35,
+              "pct": 0.175,
+              "valor": "2"
+            },
+            {
+              "n": 47,
+              "pct": 0.235,
+              "valor": "3"
+            },
+            {
+              "n": 61,
+              "pct": 0.305,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_cond_item2"
+      },
+      "q8": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.15,
+        "std": 1.256,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 51,
+          "4": 50,
+          "2": 42,
+          "5": 34,
+          "1": 23
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.15,
+          "mediana": 3.0,
+          "curtosis": -1.0074,
+          "asimetria": -0.1186,
+          "desviacion": 1.2591
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 23,
+              "pct": 0.115,
+              "valor": "1"
+            },
+            {
+              "n": 42,
+              "pct": 0.21,
+              "valor": "2"
+            },
+            {
+              "n": 51,
+              "pct": 0.255,
+              "valor": "3"
+            },
+            {
+              "n": 50,
+              "pct": 0.25,
+              "valor": "4"
+            },
+            {
+              "n": 34,
+              "pct": 0.17,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_cond_item3"
+      },
+      "q9": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.12,
+        "std": 1.243,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 53,
+          "4": 53,
+          "2": 39,
+          "5": 30,
+          "1": 25
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.12,
+          "mediana": 3.0,
+          "curtosis": -0.9576,
+          "asimetria": -0.1511,
+          "desviacion": 1.2463
+        },
+        "frecuencias": {
+          "moda": [
+            "3",
+            "4"
+          ],
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 25,
+              "pct": 0.125,
+              "valor": "1"
+            },
+            {
+              "n": 39,
+              "pct": 0.195,
+              "valor": "2"
+            },
+            {
+              "n": 53,
+              "pct": 0.265,
+              "valor": "3"
+            },
+            {
+              "n": 53,
+              "pct": 0.265,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_cond_item4"
+      },
+      "q10": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.185,
+        "std": 1.257,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 60,
+          "2": 47,
+          "3": 39,
+          "5": 33,
+          "1": 21
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.185,
+          "mediana": 3.0,
+          "curtosis": -1.0843,
+          "asimetria": -0.1717,
+          "desviacion": 1.2604
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 21,
+              "pct": 0.105,
+              "valor": "1"
+            },
+            {
+              "n": 47,
+              "pct": 0.235,
+              "valor": "2"
+            },
+            {
+              "n": 39,
+              "pct": 0.195,
+              "valor": "3"
+            },
+            {
+              "n": 60,
+              "pct": 0.3,
+              "valor": "4"
+            },
+            {
+              "n": 33,
+              "pct": 0.165,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_cond_item5"
+      },
+      "q11": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.215,
+        "std": 1.236,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 62,
+          "4": 46,
+          "5": 37,
+          "2": 33,
+          "1": 22
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.215,
+          "mediana": 3.0,
+          "curtosis": -0.8636,
+          "asimetria": -0.1764,
+          "desviacion": 1.2395
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 22,
+              "pct": 0.11,
+              "valor": "1"
+            },
+            {
+              "n": 33,
+              "pct": 0.165,
+              "valor": "2"
+            },
+            {
+              "n": 62,
+              "pct": 0.31,
+              "valor": "3"
+            },
+            {
+              "n": 46,
+              "pct": 0.23,
+              "valor": "4"
+            },
+            {
+              "n": 37,
+              "pct": 0.185,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_afec_item1"
+      },
+      "q12": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.235,
+        "std": 1.2,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 69,
+          "4": 47,
+          "5": 35,
+          "2": 28,
+          "1": 21
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.235,
+          "mediana": 3.0,
+          "curtosis": -0.7081,
+          "asimetria": -0.2176,
+          "desviacion": 1.2029
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 21,
+              "pct": 0.105,
+              "valor": "1"
+            },
+            {
+              "n": 28,
+              "pct": 0.14,
+              "valor": "2"
+            },
+            {
+              "n": 69,
+              "pct": 0.345,
+              "valor": "3"
+            },
+            {
+              "n": 47,
+              "pct": 0.235,
+              "valor": "4"
+            },
+            {
+              "n": 35,
+              "pct": 0.175,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_afec_item2"
+      },
+      "q13": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.25,
+        "std": 1.236,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 57,
+          "3": 53,
+          "5": 35,
+          "2": 33,
+          "1": 22
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.25,
+          "mediana": 3.0,
+          "curtosis": -0.8683,
+          "asimetria": -0.2782,
+          "desviacion": 1.239
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 22,
+              "pct": 0.11,
+              "valor": "1"
+            },
+            {
+              "n": 33,
+              "pct": 0.165,
+              "valor": "2"
+            },
+            {
+              "n": 53,
+              "pct": 0.265,
+              "valor": "3"
+            },
+            {
+              "n": 57,
+              "pct": 0.285,
+              "valor": "4"
+            },
+            {
+              "n": 35,
+              "pct": 0.175,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_afec_item3"
+      },
+      "q14": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.165,
+        "std": 1.165,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 61,
+          "4": 59,
+          "2": 34,
+          "5": 25,
+          "1": 21
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.165,
+          "mediana": 3.0,
+          "curtosis": -0.7202,
+          "asimetria": -0.2494,
+          "desviacion": 1.1682
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 21,
+              "pct": 0.105,
+              "valor": "1"
+            },
+            {
+              "n": 34,
+              "pct": 0.17,
+              "valor": "2"
+            },
+            {
+              "n": 61,
+              "pct": 0.305,
+              "valor": "3"
+            },
+            {
+              "n": 59,
+              "pct": 0.295,
+              "valor": "4"
+            },
+            {
+              "n": 25,
+              "pct": 0.125,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_afec_item4"
+      },
+      "q15": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.235,
+        "std": 1.204,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 64,
+          "4": 49,
+          "5": 35,
+          "2": 32,
+          "1": 20
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.235,
+          "mediana": 3.0,
+          "curtosis": -0.7768,
+          "asimetria": -0.2021,
+          "desviacion": 1.2071
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 20,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 32,
+              "pct": 0.16,
+              "valor": "2"
+            },
+            {
+              "n": 64,
+              "pct": 0.32,
+              "valor": "3"
+            },
+            {
+              "n": 49,
+              "pct": 0.245,
+              "valor": "4"
+            },
+            {
+              "n": 35,
+              "pct": 0.175,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_afec_item5"
+      },
+      "q16": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.145,
+        "std": 1.176,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 60,
+          "2": 47,
+          "4": 46,
+          "5": 31,
+          "1": 16
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.145,
+          "mediana": 3.0,
+          "curtosis": -0.8744,
+          "asimetria": -0.0062,
+          "desviacion": 1.1794
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 16,
+              "pct": 0.08,
+              "valor": "1"
+            },
+            {
+              "n": 47,
+              "pct": 0.235,
+              "valor": "2"
+            },
+            {
+              "n": 60,
+              "pct": 0.3,
+              "valor": "3"
+            },
+            {
+              "n": 46,
+              "pct": 0.23,
+              "valor": "4"
+            },
+            {
+              "n": 31,
+              "pct": 0.155,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_soci_item1"
+      },
+      "q17": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.26,
+        "std": 1.159,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 62,
+          "4": 53,
+          "2": 37,
+          "5": 33,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.26,
+          "mediana": 3.0,
+          "curtosis": -0.7603,
+          "asimetria": -0.1714,
+          "desviacion": 1.1615
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.075,
+              "valor": "1"
+            },
+            {
+              "n": 37,
+              "pct": 0.185,
+              "valor": "2"
+            },
+            {
+              "n": 62,
+              "pct": 0.31,
+              "valor": "3"
+            },
+            {
+              "n": 53,
+              "pct": 0.265,
+              "valor": "4"
+            },
+            {
+              "n": 33,
+              "pct": 0.165,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_soci_item2"
+      },
+      "q18": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.13,
+        "std": 1.18,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 59,
+          "2": 47,
+          "4": 47,
+          "5": 30,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.13,
+          "mediana": 3.0,
+          "curtosis": -0.8785,
+          "asimetria": -0.0156,
+          "desviacion": 1.1833
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.085,
+              "valor": "1"
+            },
+            {
+              "n": 47,
+              "pct": 0.235,
+              "valor": "2"
+            },
+            {
+              "n": 59,
+              "pct": 0.295,
+              "valor": "3"
+            },
+            {
+              "n": 47,
+              "pct": 0.235,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_soci_item3"
+      },
+      "q19": {
+        "type": "likert",
+        "n": 200,
+        "n_vacios": 0,
+        "mean": 3.245,
+        "std": 1.198,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 60,
+          "4": 45,
+          "2": 42,
+          "5": 38,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 200,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.245,
+          "mediana": 3.0,
+          "curtosis": -0.9112,
+          "asimetria": -0.0788,
+          "desviacion": 1.2009
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.075,
+              "valor": "1"
+            },
+            {
+              "n": 42,
+              "pct": 0.21,
+              "valor": "2"
+            },
+            {
+              "n": 60,
+              "pct": 0.3,
+              "valor": "3"
+            },
+            {
+              "n": 45,
+              "pct": 0.225,
+              "valor": "4"
+            },
+            {
+              "n": 38,
+              "pct": 0.19,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "compromiso_soci_item4"
+      }
+    },
+    "global": {
+      "n_registros": 200,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 19
+    },
+    "reliability": [
+      {
+        "alfa": 0.9028,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4",
+          "ítem 5"
+        ],
+        "bloque": "Compromiso cogn",
+        "n_casos": 200,
+        "n_items": 5,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.225,
+            "alfa_si_se_elimina": 0.886,
+            "correlacion_item_total": 0.7356
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.315,
+            "alfa_si_se_elimina": 0.8838,
+            "correlacion_item_total": 0.7463
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.14,
+            "alfa_si_se_elimina": 0.88,
+            "correlacion_item_total": 0.7636
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.27,
+            "alfa_si_se_elimina": 0.8802,
+            "correlacion_item_total": 0.7628
+          },
+          {
+            "item": "ítem 5",
+            "media": 3.21,
+            "alfa_si_se_elimina": 0.877,
+            "correlacion_item_total": 0.7775
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.9333,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4",
+          "ítem 5"
+        ],
+        "bloque": "Compromiso cond",
+        "n_casos": 200,
+        "n_items": 5,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.135,
+            "alfa_si_se_elimina": 0.9218,
+            "correlacion_item_total": 0.8023
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.16,
+            "alfa_si_se_elimina": 0.9214,
+            "correlacion_item_total": 0.805
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.15,
+            "alfa_si_se_elimina": 0.9169,
+            "correlacion_item_total": 0.8285
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.12,
+            "alfa_si_se_elimina": 0.9184,
+            "correlacion_item_total": 0.8208
+          },
+          {
+            "item": "ítem 5",
+            "media": 3.185,
+            "alfa_si_se_elimina": 0.9116,
+            "correlacion_item_total": 0.8564
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.9199,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4",
+          "ítem 5"
+        ],
+        "bloque": "Compromiso afec",
+        "n_casos": 200,
+        "n_items": 5,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.215,
+            "alfa_si_se_elimina": 0.8981,
+            "correlacion_item_total": 0.8114
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.235,
+            "alfa_si_se_elimina": 0.9072,
+            "correlacion_item_total": 0.766
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.25,
+            "alfa_si_se_elimina": 0.904,
+            "correlacion_item_total": 0.7828
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.165,
+            "alfa_si_se_elimina": 0.9013,
+            "correlacion_item_total": 0.7965
+          },
+          {
+            "item": "ítem 5",
+            "media": 3.235,
+            "alfa_si_se_elimina": 0.8987,
+            "correlacion_item_total": 0.8088
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.8959,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Compromiso soci",
+        "n_casos": 200,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.145,
+            "alfa_si_se_elimina": 0.8758,
+            "correlacion_item_total": 0.7419
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.26,
+            "alfa_si_se_elimina": 0.8624,
+            "correlacion_item_total": 0.7786
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.13,
+            "alfa_si_se_elimina": 0.8674,
+            "correlacion_item_total": 0.7648
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.245,
+            "alfa_si_se_elimina": 0.8576,
+            "correlacion_item_total": 0.7911
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.9393,
+        "items": [
+          "Compromiso_cogn_item1",
+          "Compromiso_cogn_item2",
+          "Compromiso_cogn_item3",
+          "Compromiso_cogn_item4",
+          "Compromiso_cogn_item5",
+          "Compromiso_cond_item1",
+          "Compromiso_cond_item2",
+          "Compromiso_cond_item3",
+          "Compromiso_cond_item4",
+          "Compromiso_cond_item5",
+          "Compromiso_afec_item1",
+          "Compromiso_afec_item2",
+          "Compromiso_afec_item3",
+          "Compromiso_afec_item4",
+          "Compromiso_afec_item5",
+          "Compromiso_soci_item1",
+          "Compromiso_soci_item2",
+          "Compromiso_soci_item3",
+          "Compromiso_soci_item4"
+        ],
+        "bloque": "Todas las escalas Likert",
+        "n_casos": 200,
+        "n_items": 19,
+        "por_item": [
+          {
+            "item": "Compromiso_cogn_item1",
+            "media": 3.225,
+            "alfa_si_se_elimina": 0.9367,
+            "correlacion_item_total": 0.6142
+          },
+          {
+            "item": "Compromiso_cogn_item2",
+            "media": 3.315,
+            "alfa_si_se_elimina": 0.9374,
+            "correlacion_item_total": 0.5788
+          },
+          {
+            "item": "Compromiso_cogn_item3",
+            "media": 3.14,
+            "alfa_si_se_elimina": 0.937,
+            "correlacion_item_total": 0.5982
+          },
+          {
+            "item": "Compromiso_cogn_item4",
+            "media": 3.27,
+            "alfa_si_se_elimina": 0.9366,
+            "correlacion_item_total": 0.6189
+          },
+          {
+            "item": "Compromiso_cogn_item5",
+            "media": 3.21,
+            "alfa_si_se_elimina": 0.9363,
+            "correlacion_item_total": 0.636
+          },
+          {
+            "item": "Compromiso_cond_item1",
+            "media": 3.135,
+            "alfa_si_se_elimina": 0.9351,
+            "correlacion_item_total": 0.7013
+          },
+          {
+            "item": "Compromiso_cond_item2",
+            "media": 3.16,
+            "alfa_si_se_elimina": 0.9346,
+            "correlacion_item_total": 0.7268
+          },
+          {
+            "item": "Compromiso_cond_item3",
+            "media": 3.15,
+            "alfa_si_se_elimina": 0.9354,
+            "correlacion_item_total": 0.6861
+          },
+          {
+            "item": "Compromiso_cond_item4",
+            "media": 3.12,
+            "alfa_si_se_elimina": 0.9358,
+            "correlacion_item_total": 0.6641
+          },
+          {
+            "item": "Compromiso_cond_item5",
+            "media": 3.185,
+            "alfa_si_se_elimina": 0.9342,
+            "correlacion_item_total": 0.7452
+          },
+          {
+            "item": "Compromiso_afec_item1",
+            "media": 3.215,
+            "alfa_si_se_elimina": 0.9363,
+            "correlacion_item_total": 0.6391
+          },
+          {
+            "item": "Compromiso_afec_item2",
+            "media": 3.235,
+            "alfa_si_se_elimina": 0.9364,
+            "correlacion_item_total": 0.6337
+          },
+          {
+            "item": "Compromiso_afec_item3",
+            "media": 3.25,
+            "alfa_si_se_elimina": 0.9362,
+            "correlacion_item_total": 0.641
+          },
+          {
+            "item": "Compromiso_afec_item4",
+            "media": 3.165,
+            "alfa_si_se_elimina": 0.9364,
+            "correlacion_item_total": 0.6328
+          },
+          {
+            "item": "Compromiso_afec_item5",
+            "media": 3.235,
+            "alfa_si_se_elimina": 0.9355,
+            "correlacion_item_total": 0.6791
+          },
+          {
+            "item": "Compromiso_soci_item1",
+            "media": 3.145,
+            "alfa_si_se_elimina": 0.9363,
+            "correlacion_item_total": 0.6372
+          },
+          {
+            "item": "Compromiso_soci_item2",
+            "media": 3.26,
+            "alfa_si_se_elimina": 0.9371,
+            "correlacion_item_total": 0.5953
+          },
+          {
+            "item": "Compromiso_soci_item3",
+            "media": 3.13,
+            "alfa_si_se_elimina": 0.9357,
+            "correlacion_item_total": 0.6721
+          },
+          {
+            "item": "Compromiso_soci_item4",
+            "media": 3.245,
+            "alfa_si_se_elimina": 0.9369,
+            "correlacion_item_total": 0.6061
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      }
+    ]
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T03:16:43.355844+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/3__enc_02_respondido.csv",
+    "original": "raw/_/4__enc_02_original.txt",
+    "limpio": "clean/24/1__v1_encuesta_limpio.csv",
+    "nombre_archivo": "enc_02_respondido.csv"
+  },
+  "generated_at": "2026-11-12T03:16:43.355986+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T03:16:42.843208+00:00",
+    "archivo_limpio": "clean/24/1__v1_encuesta_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 31,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 77,
+        "cols_mas_nulos": [],
+        "n_respondentes": 200,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      },
+      "despues": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 30,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 77,
+        "cols_mas_nulos": [],
+        "n_respondentes": 200,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "fiabilidad": [
+        {
+          "alfa": 0.9028,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4",
+            "ítem 5"
+          ],
+          "bloque": "Compromiso cogn",
+          "n_casos": 200,
+          "n_items": 5,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.225,
+              "alfa_si_se_elimina": 0.886,
+              "correlacion_item_total": 0.7356
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.315,
+              "alfa_si_se_elimina": 0.8838,
+              "correlacion_item_total": 0.7463
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.14,
+              "alfa_si_se_elimina": 0.88,
+              "correlacion_item_total": 0.7636
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.27,
+              "alfa_si_se_elimina": 0.8802,
+              "correlacion_item_total": 0.7628
+            },
+            {
+              "item": "ítem 5",
+              "media": 3.21,
+              "alfa_si_se_elimina": 0.877,
+              "correlacion_item_total": 0.7775
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.9333,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4",
+            "ítem 5"
+          ],
+          "bloque": "Compromiso cond",
+          "n_casos": 200,
+          "n_items": 5,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.135,
+              "alfa_si_se_elimina": 0.9218,
+              "correlacion_item_total": 0.8023
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.16,
+              "alfa_si_se_elimina": 0.9214,
+              "correlacion_item_total": 0.805
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.15,
+              "alfa_si_se_elimina": 0.9169,
+              "correlacion_item_total": 0.8285
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.12,
+              "alfa_si_se_elimina": 0.9184,
+              "correlacion_item_total": 0.8208
+            },
+            {
+              "item": "ítem 5",
+              "media": 3.185,
+              "alfa_si_se_elimina": 0.9116,
+              "correlacion_item_total": 0.8564
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.9199,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4",
+            "ítem 5"
+          ],
+          "bloque": "Compromiso afec",
+          "n_casos": 200,
+          "n_items": 5,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.215,
+              "alfa_si_se_elimina": 0.8981,
+              "correlacion_item_total": 0.8114
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.235,
+              "alfa_si_se_elimina": 0.9072,
+              "correlacion_item_total": 0.766
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.25,
+              "alfa_si_se_elimina": 0.904,
+              "correlacion_item_total": 0.7828
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.165,
+              "alfa_si_se_elimina": 0.9013,
+              "correlacion_item_total": 0.7965
+            },
+            {
+              "item": "ítem 5",
+              "media": 3.235,
+              "alfa_si_se_elimina": 0.8987,
+              "correlacion_item_total": 0.8088
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.8959,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Compromiso soci",
+          "n_casos": 200,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.145,
+              "alfa_si_se_elimina": 0.8758,
+              "correlacion_item_total": 0.7419
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.26,
+              "alfa_si_se_elimina": 0.8624,
+              "correlacion_item_total": 0.7786
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.13,
+              "alfa_si_se_elimina": 0.8674,
+              "correlacion_item_total": 0.7648
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.245,
+              "alfa_si_se_elimina": 0.8576,
+              "correlacion_item_total": 0.7911
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.9393,
+          "items": [
+            "Compromiso_cogn_item1",
+            "Compromiso_cogn_item2",
+            "Compromiso_cogn_item3",
+            "Compromiso_cogn_item4",
+            "Compromiso_cogn_item5",
+            "Compromiso_cond_item1",
+            "Compromiso_cond_item2",
+            "Compromiso_cond_item3",
+            "Compromiso_cond_item4",
+            "Compromiso_cond_item5",
+            "Compromiso_afec_item1",
+            "Compromiso_afec_item2",
+            "Compromiso_afec_item3",
+            "Compromiso_afec_item4",
+            "Compromiso_afec_item5",
+            "Compromiso_soci_item1",
+            "Compromiso_soci_item2",
+            "Compromiso_soci_item3",
+            "Compromiso_soci_item4"
+          ],
+          "bloque": "Todas las escalas Likert",
+          "n_casos": 200,
+          "n_items": 19,
+          "por_item": [
+            {
+              "item": "Compromiso_cogn_item1",
+              "media": 3.225,
+              "alfa_si_se_elimina": 0.9367,
+              "correlacion_item_total": 0.6142
+            },
+            {
+              "item": "Compromiso_cogn_item2",
+              "media": 3.315,
+              "alfa_si_se_elimina": 0.9374,
+              "correlacion_item_total": 0.5788
+            },
+            {
+              "item": "Compromiso_cogn_item3",
+              "media": 3.14,
+              "alfa_si_se_elimina": 0.937,
+              "correlacion_item_total": 0.5982
+            },
+            {
+              "item": "Compromiso_cogn_item4",
+              "media": 3.27,
+              "alfa_si_se_elimina": 0.9366,
+              "correlacion_item_total": 0.6189
+            },
+            {
+              "item": "Compromiso_cogn_item5",
+              "media": 3.21,
+              "alfa_si_se_elimina": 0.9363,
+              "correlacion_item_total": 0.636
+            },
+            {
+              "item": "Compromiso_cond_item1",
+              "media": 3.135,
+              "alfa_si_se_elimina": 0.9351,
+              "correlacion_item_total": 0.7013
+            },
+            {
+              "item": "Compromiso_cond_item2",
+              "media": 3.16,
+              "alfa_si_se_elimina": 0.9346,
+              "correlacion_item_total": 0.7268
+            },
+            {
+              "item": "Compromiso_cond_item3",
+              "media": 3.15,
+              "alfa_si_se_elimina": 0.9354,
+              "correlacion_item_total": 0.6861
+            },
+            {
+              "item": "Compromiso_cond_item4",
+              "media": 3.12,
+              "alfa_si_se_elimina": 0.9358,
+              "correlacion_item_total": 0.6641
+            },
+            {
+              "item": "Compromiso_cond_item5",
+              "media": 3.185,
+              "alfa_si_se_elimina": 0.9342,
+              "correlacion_item_total": 0.7452
+            },
+            {
+              "item": "Compromiso_afec_item1",
+              "media": 3.215,
+              "alfa_si_se_elimina": 0.9363,
+              "correlacion_item_total": 0.6391
+            },
+            {
+              "item": "Compromiso_afec_item2",
+              "media": 3.235,
+              "alfa_si_se_elimina": 0.9364,
+              "correlacion_item_total": 0.6337
+            },
+            {
+              "item": "Compromiso_afec_item3",
+              "media": 3.25,
+              "alfa_si_se_elimina": 0.9362,
+              "correlacion_item_total": 0.641
+            },
+            {
+              "item": "Compromiso_afec_item4",
+              "media": 3.165,
+              "alfa_si_se_elimina": 0.9364,
+              "correlacion_item_total": 0.6328
+            },
+            {
+              "item": "Compromiso_afec_item5",
+              "media": 3.235,
+              "alfa_si_se_elimina": 0.9355,
+              "correlacion_item_total": 0.6791
+            },
+            {
+              "item": "Compromiso_soci_item1",
+              "media": 3.145,
+              "alfa_si_se_elimina": 0.9363,
+              "correlacion_item_total": 0.6372
+            },
+            {
+              "item": "Compromiso_soci_item2",
+              "media": 3.26,
+              "alfa_si_se_elimina": 0.9371,
+              "correlacion_item_total": 0.5953
+            },
+            {
+              "item": "Compromiso_soci_item3",
+              "media": 3.13,
+              "alfa_si_se_elimina": 0.9357,
+              "correlacion_item_total": 0.6721
+            },
+            {
+              "item": "Compromiso_soci_item4",
+              "media": 3.245,
+              "alfa_si_se_elimina": 0.9369,
+              "correlacion_item_total": 0.6061
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        }
+      ],
+      "encuestados": {
+        "incompletos": 0,
+        "linea_recta": 77
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 5,
+      "nombre_kpi": "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "score": 0.5474
+    },
+    {
+      "kpi_id": 25,
+      "nombre_kpi": "Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales",
+      "score": 0.5693
+    }
+  ],
+  "finalized_at": "2026-11-12T03:16:56.830578+00:00"
+}

@@ -1,0 +1,240 @@
+{
+  "esquema_version": "2.0",
+  "instrumento": {
+    "id": "INS-0045",
+    "tipo": "entrevista",
+    "titulo": "Entrevista sobre el uso de los servicios de salud mental y apoyo psicológico",
+    "objetivo": "No especificado",
+    "temas": [
+      "entrevistadora",
+      "entrevistada",
+      "servicios",
+      "apoyo",
+      "semestre",
+      "universidad"
+    ],
+    "palabras_clave": [
+      "entrevistadora",
+      "entrevistada",
+      "servicios",
+      "apoyo",
+      "semestre",
+      "universidad"
+    ],
+    "nivel_educativo": "No especificado",
+    "poblacion": "No especificado",
+    "contexto": "Institución: No especificado. Cobertura: No especificado. Metodología: Entrevista semiestructurada"
+  },
+  "kpis_asociados": [
+    {
+      "fecha": "2026-11-12T04:14:08.866842+00:00",
+      "kpi_id": "KPI-47",
+      "nombre": "Uso de Servicios de Salud Mental y Apoyo Psicológico",
+      "que_mide": "Porcentaje del alumnado que acude a los servicios psicopedagógicos o de salud mental institucionales para recibir asistencia emocional.",
+      "dimension": "Garantizar atención oportuna y monitorear causas de estrés",
+      "evidencia": [
+        {
+          "similitud": 0.6066,
+          "pregunta_id": "INS-0045-p03"
+        },
+        {
+          "similitud": 0.574,
+          "pregunta_id": "INS-0045-p11"
+        },
+        {
+          "similitud": 0.5386,
+          "pregunta_id": "INS-0045-p08"
+        },
+        {
+          "similitud": 0.4765,
+          "pregunta_id": "INS-0045-p02"
+        }
+      ],
+      "similitud": 0.6154,
+      "definicion": "El KPI Uso de Salud Mental mide la proporción de alumnos en apoyo psicológico. Su interpretación requiere equilibrio: un mayor uso prueba que la ayuda es accesible y sin estigma, pero picos desmedidos alertan sobre sobrecarga académica y crisis de salud mental en el campus.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Uso de Servicios de Salud Mental y Apoyo Psicológico» porque las preguntas «¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cómo te enteraste?» y «Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarías?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    },
+    {
+      "fecha": "2026-11-12T04:14:08.866842+00:00",
+      "kpi_id": "KPI-10",
+      "nombre": "Proporción de Consejeros/Orientadores por Estudiante",
+      "que_mide": "Indica cuántos estudiantes debe atender en promedio un solo orientador educativo o psicólogo escolar. Recomendación estándar internacional (ASCA): máximo 250 estudiantes por consejero.",
+      "dimension": "Reducir el ratio / Mantener por debajo del estándar recomendado",
+      "evidencia": [
+        {
+          "similitud": 0.4789,
+          "pregunta_id": "INS-0045-p08"
+        },
+        {
+          "similitud": 0.4701,
+          "pregunta_id": "INS-0045-p09"
+        }
+      ],
+      "similitud": 0.4202,
+      "definicion": "El KPI Proporción de Consejeros por Estudiante se calcula dividiendo estudiantes entre orientadores. Es un indicador INVERSO: un ratio MÁS BAJO (ej. 1 consejero por 250 alumnos) significa MAYOR calidad de apoyo socioemocional y orientación académica. Un ratio elevado saturará los servicios y elevará los riesgos socioeducativos.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Proporción de Consejeros/Orientadores por Estudiante» porque las preguntas «¿Notaste algún cambio en tu desempeño académico después de recibir apoyo?» y «¿Qué papel han tenido tus profesores o tu tutor en este tema?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "INS-0045-p01",
+      "texto": "¿Cómo describirías tu estado de ánimo durante este semestre?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0045-p02",
+      "texto": "¿Qué situaciones de la universidad te generan más estrés o ansiedad?",
+      "kpis_relacionados": [
+        "KPI-47"
+      ]
+    },
+    {
+      "id": "INS-0045-p03",
+      "texto": "¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cómo te enteraste?",
+      "kpis_relacionados": [
+        "KPI-47"
+      ]
+    },
+    {
+      "id": "INS-0045-p04",
+      "texto": "¿Has utilizado alguno de esos servicios? Cuéntame cómo fue.",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0045-p05",
+      "texto": "¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0045-p06",
+      "texto": "¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0045-p07",
+      "texto": "¿Cómo valoras la atención que recibiste?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0045-p08",
+      "texto": "¿Notaste algún cambio en tu desempeño académico después de recibir apoyo?",
+      "kpis_relacionados": [
+        "KPI-47",
+        "KPI-10"
+      ]
+    },
+    {
+      "id": "INS-0045-p09",
+      "texto": "¿Qué papel han tenido tus profesores o tu tutor en este tema?",
+      "kpis_relacionados": [
+        "KPI-10"
+      ]
+    },
+    {
+      "id": "INS-0045-p10",
+      "texto": "¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo busquen?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0045-p11",
+      "texto": "Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarías?",
+      "kpis_relacionados": [
+        "KPI-47"
+      ]
+    },
+    {
+      "id": "INS-0045-p12",
+      "texto": "¿Qué le dirías a un compañero que está pasando por un momento difícil y no se anima a pedir ayuda?",
+      "kpis_relacionados": []
+    }
+  ],
+  "entrevistas": [
+    {
+      "participante": "INS-0045-E01",
+      "contexto": {
+        "Edad": "21",
+        "Turno": "matutino",
+        "Carrera": "Ingeniería Industrial",
+        "Género": "femenino",
+        "Trabaja": "sí, 15 horas por semana",
+        "Semestre": "6"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0045-p01",
+          "pregunta": "Gracias por aceptar la entrevista. Todo lo que digas es confidencial y puedes no responder alguna pregunta. Para empezar, ¿cómo describirías tu estado de ánimo durante este semestre?",
+          "respuesta": "Ha sido un semestre pesado. Al principio estaba bien, pero desde la semana de parciales empecé a dormir muy poco, unas cinco horas, y me sentía cansada todo el tiempo. Hubo días en que no quería ni venir a clases, no por flojera, sino porque sentía mucha presión en el pecho antes de entrar al salón."
+        },
+        {
+          "pregunta_id": "INS-0045-p02",
+          "pregunta": "¿Qué situaciones de la universidad te generan más estrés o ansiedad?",
+          "respuesta": "Sobre todo la carga de proyectos. Este semestre llevo siete materias y en cuatro hay proyecto final en equipo. Además trabajo quince horas por semana en una papelería, entonces casi no me queda tiempo. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando."
+        },
+        {
+          "pregunta_id": "INS-0045-p03",
+          "pregunta": "¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cómo te enteraste?",
+          "respuesta": "Sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía. Me enteré bien hasta tercer semestre, cuando una compañera me dijo que ella iba al departamento de orientación. En la inducción de primer semestre lo mencionaron muy rápido, entre muchas otras cosas, y no se me quedó."
+        },
+        {
+          "pregunta_id": "INS-0045-p04",
+          "pregunta": "¿Has utilizado alguno de esos servicios? Cuéntame cómo fue.",
+          "respuesta": "Sí, fui a orientación psicológica este semestre. Tuve tres sesiones de cincuenta minutos con una psicóloga. Me ayudó a ordenar mis tiempos y me enseñó ejercicios de respiración para antes de exponer. La primera sesión me costó mucho trabajo, casi no hablé, pero en la segunda ya me sentí más en confianza."
+        },
+        {
+          "pregunta_id": "INS-0045-p05",
+          "pregunta": "¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?",
+          "respuesta": "Pasaron casi dos semanas. Pedí la cita por correo y me contestaron a los cuatro días, y luego la primera fecha disponible era la siguiente semana. Para mí fue mucho tiempo, porque cuando pedí la cita ya estaba muy mal. Creo que si hubiera tenido que esperar más, ya no habría ido."
+        },
+        {
+          "pregunta_id": "INS-0045-p06",
+          "pregunta": "¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?",
+          "respuesta": "Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca."
+        },
+        {
+          "pregunta_id": "INS-0045-p07",
+          "pregunta": "¿Cómo valoras la atención que recibiste?",
+          "respuesta": "La psicóloga fue muy amable y nunca me hizo sentir juzgada. Lo que no me gustó es que solo me dieron tres sesiones, porque es el máximo por semestre, y justo cuando empezaba a sentir avances se terminó. Le pondría un ocho de diez: la atención es buena, pero es muy poquito tiempo."
+        },
+        {
+          "pregunta_id": "INS-0045-p08",
+          "pregunta": "¿Notaste algún cambio en tu desempeño académico después de recibir apoyo?",
+          "respuesta": "Sí, un poco. Empecé a usar una agenda y a dividir los proyectos en partes pequeñas, como me sugirió la psicóloga. En el segundo parcial subí mi promedio de siete punto ocho a ocho punto cinco. Y en la última exposición me puse nerviosa, pero usé la respiración y pude terminarla sin quedarme en blanco."
+        },
+        {
+          "pregunta_id": "INS-0045-p09",
+          "pregunta": "¿Qué papel han tenido tus profesores o tu tutor en este tema?",
+          "respuesta": "Depende mucho del profesor. Mi tutor académico casi no tiene tiempo, lo vi una vez en todo el semestre y fue para firmar la carga de materias. Pero una profesora de estadística notó que estaba muy distraída, me preguntó si estaba bien y fue la que me recomendó ir a orientación. Si no fuera por ella, no sé si habría ido."
+        },
+        {
+          "pregunta_id": "INS-0045-p10",
+          "pregunta": "¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo busquen?",
+          "respuesta": "Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación. Algunos no saben que existe y otros piensan lo mismo que yo pensaba, que es solo para casos muy graves. Un compañero dejó de venir a mitad del semestre y nadie supo bien qué le pasó."
+        },
+        {
+          "pregunta_id": "INS-0045-p11",
+          "pregunta": "Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarías?",
+          "respuesta": "Primero, que hubiera más psicólogos, porque me dijeron que solo hay dos para todo el plantel. Segundo, que se pudiera pedir la cita en línea y no solo por correo. También que el consultorio estuviera en un lugar más discreto y que dieran más de tres sesiones cuando la persona lo necesita. Y que los talleres de manejo de estrés fueran en la tarde, porque los que trabajamos no podemos ir en la mañana."
+        },
+        {
+          "pregunta_id": "INS-0045-p12",
+          "pregunta": "Para terminar, ¿qué le dirías a un compañero que está pasando por un momento difícil y no se anima a pedir ayuda?",
+          "respuesta": "Que no espere a estar muy mal, como yo. Que pedir ayuda no significa que sea débil, al contrario. Y que la orientación es gratuita y confidencial, nadie se va a enterar. A mí me sirvió para darme cuenta de que no estaba sola y de que lo que sentía tenía nombre y se podía trabajar."
+        },
+        {
+          "pregunta": "Muchas gracias por compartir tu experiencia.",
+          "respuesta": "Gracias a usted. FIN DE LA ENTREVISTA"
+        }
+      ]
+    }
+  ],
+  "avisos": [
+    {
+      "codigo": "texto_libre",
+      "mensaje": "Las personas entrevistadas se identifican con un ID anónimo; otros nombres mencionados en el texto libre podrían seguir presentes."
+    }
+  ]
+}

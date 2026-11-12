@@ -1,0 +1,161 @@
+id_respondente,perfil,edad,genero,semestre,promedio_gpa,horas_trabajo_semana,tipo_universidad,nivel_ses,nivel_estudio,primera_generacion,tiene_beca,Inclusión_acadé_item1,Inclusión_acadé_item2,Inclusión_acadé_item3,Inclusión_acadé_item4,Diversidad_cult_item1,Diversidad_cult_item2,Diversidad_cult_item3,Diversidad_cult_item4,Equidad_de_géne_item1,Equidad_de_géne_item2,Equidad_de_géne_item3,Equidad_de_géne_item4,Con_qué_frecuencia_participas_en_activi,Tu_institución_ofrece_programas_de_incl,Cuál_es_tu_identidad_de_género,Eres_estudiante_de_intercambio_internac,Has_experimentado_algún_tipo_de_discrim,Tienes_acceso_a_becas_o_apoyos_financie,Tu_institución_cuenta_con_protocolos_co,Participas_en_organizaciones_estudianti
+R0001,P2,22,masculino,8,2.93,0,publica,medio,pregrado,False,False,3,4,2,3,5,3,3,4,3,3,4,4,Nunca,"Sí, y son efectivos",Otro,No,Sí,Sí,Sí,Sí
+R0002,P2,23,otro,6,3.44,13,publica,medio,pregrado,False,False,4,4,4,3,2,3,3,3,3,4,3,2,Frecuentemente,"Sí, pero son limitados",Hombre cisgénero,No,No,No,No,Sí
+R0003,P8,25,masculino,6,2.18,25,publica,muy_bajo,pregrado,False,True,3,5,3,2,3,2,4,3,3,3,3,4,Frecuentemente,No los conozco,No binario/a,No,Sí,Sí,Sí,Sí
+R0004,P6,28,masculino,3,3.39,0,privada,medio_alto,pregrado,False,False,3,3,4,4,3,4,4,4,3,3,5,4,Nunca,"Sí, y son efectivos",Hombre cisgénero,Sí,Sí,Sí,No,No
+R0005,P7,27,femenino,4,3.86,16,privada,alto,posgrado,False,False,5,4,5,5,3,3,4,4,4,5,5,5,A veces,No existen,Otro,No,Sí,No,Sí,Sí
+R0006,P7,24,masculino,2,3.81,25,privada,alto,posgrado,False,False,4,4,4,4,5,4,5,5,5,5,5,4,A veces,No existen,No binario/a,Sí,No,Sí,Sí,Sí
+R0007,P1,20,femenino,2,3.63,2,privada,alto,pregrado,False,False,4,5,4,4,5,4,4,4,4,4,5,4,A veces,No existen,Mujer cisgénero,No,Sí,Sí,No,No
+R0008,P6,23,masculino,5,2.99,10,privada,medio_alto,pregrado,False,False,2,3,4,2,4,4,2,3,3,5,3,4,Raramente,No los conozco,No binario/a,Sí,No,No,No,Sí
+R0009,P4,30,femenino,3,2.54,46,publica,medio,pregrado,False,False,4,4,3,4,1,1,3,1,4,4,5,5,Nunca,No existen,Mujer cisgénero,No,Sí,No,Sí,Sí
+R0010,P6,26,femenino,9,3.27,4,privada,medio_alto,pregrado,False,False,4,3,2,3,3,4,4,3,3,3,3,3,Frecuentemente,No los conozco,Prefiero no decir,Sí,Sí,Sí,Sí,Sí
+R0011,P8,20,femenino,3,2.11,35,publica,muy_bajo,pregrado,False,True,2,1,1,1,2,1,1,2,2,2,3,3,A veces,No existen,Mujer cisgénero,No,Sí,Sí,No,No
+R0012,P3,21,femenino,2,1.71,38,publica,bajo,pregrado,True,False,3,3,2,3,2,1,3,3,2,3,1,1,A veces,"Sí, y son efectivos",Mujer cisgénero,Sí,Sí,No,No,No
+R0013,P5,23,masculino,10,3.43,18,mixta,medio,pregrado,False,False,4,4,3,4,3,3,3,2,3,3,2,3,Nunca,"Sí, y son efectivos",Prefiero no decir,Sí,Sí,No,No,No
+R0014,P2,19,masculino,7,3.2,12,publica,medio,pregrado,False,False,5,2,3,5,3,3,4,4,2,3,3,3,A veces,"Sí, y son efectivos",Otro,Sí,Sí,Sí,No,Sí
+R0015,P7,31,masculino,5,3.76,15,privada,alto,posgrado,False,False,5,5,4,5,4,4,5,5,5,4,4,5,Frecuentemente,"Sí, y son efectivos",Mujer cisgénero,No,Sí,Sí,No,Sí
+R0016,P2,23,masculino,6,3.42,3,publica,medio,pregrado,False,False,3,3,2,2,3,4,3,5,3,3,4,3,A veces,No los conozco,No binario/a,Sí,Sí,Sí,No,Sí
+R0017,P3,20,masculino,2,2.0,21,publica,bajo,pregrado,True,False,3,3,3,2,3,4,4,4,1,1,1,2,Frecuentemente,No existen,Mujer cisgénero,Sí,Sí,Sí,Sí,Sí
+R0018,P7,28,masculino,6,3.79,19,privada,alto,posgrado,False,False,5,5,5,5,4,5,5,5,5,4,5,5,Frecuentemente,No existen,Hombre cisgénero,No,No,No,Sí,Sí
+R0019,P1,22,masculino,7,3.84,7,privada,alto,pregrado,False,False,4,4,4,4,5,4,4,4,5,4,4,4,Raramente,"Sí, y son efectivos",Mujer cisgénero,No,Sí,No,No,Sí
+R0020,P4,32,femenino,11,2.57,50,publica,medio,pregrado,False,False,2,4,4,3,3,2,2,2,2,2,3,3,Raramente,No los conozco,Hombre cisgénero,Sí,No,No,Sí,No
+R0021,P4,30,femenino,10,2.56,47,publica,medio,pregrado,False,False,4,3,2,3,4,5,4,5,5,5,5,5,Raramente,No los conozco,Prefiero no decir,Sí,No,No,No,No
+R0022,P4,27,femenino,11,3.27,41,publica,medio,pregrado,False,False,2,2,4,3,1,2,2,2,4,5,4,5,Raramente,"Sí, y son efectivos",No binario/a,No,Sí,No,Sí,Sí
+R0023,P2,22,femenino,9,3.15,4,publica,medio,pregrado,False,False,2,3,5,4,5,5,3,5,3,3,3,3,Nunca,"Sí, pero son limitados",No binario/a,No,Sí,No,Sí,No
+R0024,P1,21,femenino,2,3.52,9,privada,alto,pregrado,False,False,4,3,4,3,5,5,4,4,3,4,4,4,Nunca,No los conozco,No binario/a,No,Sí,No,Sí,Sí
+R0025,P3,17,masculino,1,2.38,26,publica,bajo,pregrado,True,False,4,1,2,1,3,3,2,3,1,1,1,1,A veces,"Sí, y son efectivos",Mujer cisgénero,Sí,Sí,Sí,Sí,No
+R0026,P3,21,masculino,1,1.94,40,publica,bajo,pregrado,True,False,2,2,2,1,2,1,2,2,2,2,3,2,Raramente,"Sí, pero son limitados",No binario/a,No,Sí,Sí,No,No
+R0027,P8,26,femenino,4,2.18,35,publica,muy_bajo,pregrado,False,True,1,1,1,2,2,1,3,2,5,3,3,3,Frecuentemente,"Sí, pero son limitados",Hombre cisgénero,No,Sí,No,Sí,Sí
+R0028,P6,19,masculino,5,3.82,0,privada,medio_alto,pregrado,False,False,4,2,2,3,3,3,3,3,3,5,4,3,Raramente,"Sí, y son efectivos",Hombre cisgénero,Sí,No,No,Sí,No
+R0029,P4,32,femenino,6,2.78,50,publica,medio,pregrado,False,False,3,2,2,2,2,4,4,5,2,3,3,3,A veces,"Sí, y son efectivos",Hombre cisgénero,No,No,No,No,No
+R0030,P2,19,masculino,9,2.93,15,publica,medio,pregrado,False,False,4,4,4,4,3,3,2,3,5,4,5,4,A veces,No existen,Hombre cisgénero,Sí,Sí,Sí,No,No
+R0031,P8,24,masculino,2,2.14,29,publica,muy_bajo,pregrado,False,True,3,2,2,5,1,3,4,2,4,3,3,3,Raramente,"Sí, y son efectivos",No binario/a,No,Sí,Sí,Sí,No
+R0032,P2,22,masculino,2,3.36,11,publica,medio,pregrado,False,False,3,2,4,3,3,2,3,4,2,1,2,1,A veces,No los conozco,Hombre cisgénero,Sí,No,Sí,Sí,Sí
+R0033,P8,19,femenino,5,2.06,26,publica,muy_bajo,pregrado,False,True,1,2,3,2,3,1,2,3,2,1,2,3,Raramente,"Sí, pero son limitados",Mujer cisgénero,Sí,No,Sí,No,No
+R0034,P8,24,masculino,1,2.49,21,publica,muy_bajo,pregrado,False,True,2,3,3,2,1,2,2,2,1,5,3,5,Frecuentemente,No los conozco,Prefiero no decir,Sí,No,Sí,No,Sí
+R0035,P8,23,masculino,6,2.91,17,publica,muy_bajo,pregrado,False,True,1,2,1,1,2,2,2,2,3,3,3,2,Raramente,No existen,No binario/a,Sí,No,No,Sí,Sí
+R0036,P2,21,masculino,6,3.43,8,publica,medio,pregrado,False,False,4,4,4,4,3,4,4,3,4,3,3,4,Raramente,"Sí, y son efectivos",Prefiero no decir,No,Sí,Sí,No,No
+R0037,P2,19,femenino,6,3.44,5,publica,medio,pregrado,False,False,3,3,3,2,2,1,3,1,2,2,4,3,Nunca,No existen,Mujer cisgénero,No,No,No,Sí,Sí
+R0038,P5,26,otro,9,3.67,14,mixta,medio,pregrado,False,False,4,4,4,3,3,4,3,4,3,3,3,3,A veces,"Sí, y son efectivos",Hombre cisgénero,No,Sí,Sí,No,No
+R0039,P3,20,masculino,5,2.38,34,publica,bajo,pregrado,True,False,2,2,1,3,2,2,1,4,2,4,2,3,A veces,No existen,Hombre cisgénero,Sí,No,Sí,Sí,Sí
+R0040,P3,17,masculino,3,2.34,28,publica,bajo,pregrado,True,False,2,2,1,2,2,2,1,2,2,3,1,2,Frecuentemente,No los conozco,No binario/a,Sí,No,Sí,No,Sí
+R0041,P4,27,masculino,9,3.16,44,publica,medio,pregrado,False,False,5,2,4,4,1,1,1,1,2,2,1,2,Nunca,"Sí, y son efectivos",Otro,No,No,No,Sí,No
+R0042,P5,23,femenino,12,3.48,5,mixta,medio,pregrado,False,False,3,5,3,4,4,4,3,4,4,2,3,3,Raramente,No los conozco,Otro,Sí,No,Sí,Sí,Sí
+R0043,P3,18,masculino,4,2.55,25,publica,bajo,pregrado,True,False,3,3,3,3,2,2,1,1,4,3,2,4,Nunca,No existen,Hombre cisgénero,Sí,Sí,Sí,No,No
+R0044,P3,20,masculino,4,1.79,20,publica,bajo,pregrado,True,False,1,1,2,1,4,3,2,3,2,2,2,1,A veces,No los conozco,Hombre cisgénero,No,Sí,No,Sí,Sí
+R0045,P5,24,masculino,10,3.29,7,mixta,medio,pregrado,False,False,4,3,3,3,2,2,3,3,5,4,4,3,Raramente,"Sí, y son efectivos",No binario/a,No,Sí,No,No,No
+R0046,P1,19,femenino,2,4.0,6,privada,alto,pregrado,False,False,3,4,3,4,4,4,4,4,4,5,5,5,Raramente,No los conozco,Hombre cisgénero,Sí,Sí,Sí,No,No
+R0047,P5,22,masculino,8,3.03,11,mixta,medio,pregrado,False,False,4,3,4,3,3,3,3,2,3,3,3,3,Frecuentemente,No existen,Hombre cisgénero,Sí,Sí,No,Sí,No
+R0048,P7,28,masculino,2,3.98,22,privada,alto,posgrado,False,False,5,5,5,5,5,5,4,5,5,5,5,5,Raramente,No los conozco,Mujer cisgénero,No,No,No,Sí,No
+R0049,P7,26,otro,2,3.87,16,privada,alto,posgrado,False,False,4,5,4,4,5,5,4,4,5,5,4,5,Frecuentemente,"Sí, pero son limitados",Otro,Sí,Sí,No,Sí,Sí
+R0050,P6,18,masculino,9,3.35,4,privada,medio_alto,pregrado,False,False,5,3,3,3,3,2,3,3,3,2,2,2,Nunca,No los conozco,Mujer cisgénero,No,Sí,No,No,Sí
+R0051,P4,29,femenino,8,2.51,35,publica,medio,pregrado,False,False,3,3,4,4,3,3,3,3,4,3,2,3,Raramente,"Sí, pero son limitados",Hombre cisgénero,No,No,Sí,No,No
+R0052,P7,26,masculino,6,3.73,13,privada,alto,posgrado,False,False,4,4,4,4,5,5,5,4,4,5,5,4,Nunca,"Sí, y son efectivos",Hombre cisgénero,No,Sí,No,Sí,No
+R0053,P4,34,femenino,4,2.71,47,publica,medio,pregrado,False,False,4,4,4,4,1,1,4,1,4,4,4,4,A veces,No existen,Prefiero no decir,No,Sí,No,No,Sí
+R0054,P7,31,masculino,5,3.81,21,privada,alto,posgrado,False,False,5,5,5,5,4,5,4,4,5,5,4,5,Raramente,"Sí, pero son limitados",Otro,Sí,Sí,Sí,Sí,No
+R0055,P1,21,femenino,6,3.86,10,privada,alto,pregrado,False,False,4,3,3,4,3,4,3,3,5,5,5,5,Nunca,No existen,Otro,Sí,No,No,No,Sí
+R0056,P6,23,femenino,8,3.4,8,privada,medio_alto,pregrado,False,False,2,2,2,2,4,3,3,2,4,3,3,3,Frecuentemente,No los conozco,Prefiero no decir,Sí,Sí,Sí,No,No
+R0057,P1,20,masculino,5,3.93,2,privada,alto,pregrado,False,False,4,4,4,4,4,4,4,4,4,4,4,3,A veces,No existen,No binario/a,Sí,Sí,Sí,Sí,No
+R0058,P1,22,femenino,2,3.57,8,privada,alto,pregrado,False,False,4,3,3,4,4,5,5,4,5,4,5,4,Nunca,No los conozco,Prefiero no decir,No,No,Sí,No,Sí
+R0059,P4,34,femenino,6,2.52,43,publica,medio,pregrado,False,False,4,3,4,3,3,4,3,3,2,2,1,2,A veces,"Sí, pero son limitados",Hombre cisgénero,Sí,Sí,Sí,Sí,Sí
+R0060,P1,20,masculino,8,3.74,10,privada,alto,pregrado,False,False,4,3,3,3,5,5,5,5,3,5,5,4,Nunca,"Sí, pero son limitados",Otro,Sí,No,Sí,No,No
+R0061,P3,20,masculino,4,2.75,40,publica,bajo,pregrado,True,False,2,3,3,2,1,1,1,1,1,1,2,2,A veces,No los conozco,Prefiero no decir,No,Sí,No,No,No
+R0062,P6,21,otro,10,2.85,6,privada,medio_alto,pregrado,False,False,4,4,3,4,3,2,2,3,3,2,3,3,A veces,No existen,Hombre cisgénero,No,No,Sí,Sí,Sí
+R0063,P4,35,masculino,8,2.74,30,publica,medio,pregrado,False,False,3,4,3,3,3,4,4,4,5,4,5,5,Nunca,"Sí, y son efectivos",Mujer cisgénero,Sí,Sí,No,No,Sí
+R0064,P6,28,masculino,3,3.65,0,privada,medio_alto,pregrado,False,False,4,2,2,2,5,5,3,5,1,1,1,1,Frecuentemente,"Sí, y son efectivos",Otro,Sí,Sí,Sí,Sí,No
+R0065,P7,34,femenino,3,3.72,24,privada,alto,posgrado,False,False,5,5,5,4,5,5,4,4,5,5,5,5,Nunca,"Sí, pero son limitados",No binario/a,No,Sí,No,Sí,No
+R0066,P4,32,femenino,12,2.93,46,publica,medio,pregrado,False,False,5,3,3,4,5,5,5,5,3,3,3,5,Nunca,No existen,Otro,Sí,Sí,No,Sí,Sí
+R0067,P8,26,masculino,1,3.01,25,publica,muy_bajo,pregrado,False,True,4,2,3,2,4,2,1,3,2,2,4,2,Raramente,No los conozco,Mujer cisgénero,Sí,Sí,No,No,No
+R0068,P2,21,masculino,7,3.14,15,publica,medio,pregrado,False,False,4,5,3,4,4,4,4,4,4,4,3,3,A veces,No existen,No binario/a,Sí,Sí,No,No,No
+R0069,P1,20,femenino,3,3.98,9,privada,alto,pregrado,False,False,4,4,5,4,5,4,4,4,5,5,4,5,A veces,No los conozco,Hombre cisgénero,Sí,Sí,Sí,No,No
+R0070,P2,22,masculino,6,3.48,9,publica,medio,pregrado,False,False,3,4,5,4,5,4,4,5,5,5,5,5,Nunca,No los conozco,Otro,No,Sí,Sí,No,No
+R0071,P6,21,masculino,4,3.45,3,privada,medio_alto,pregrado,False,False,4,3,3,3,3,3,2,4,4,3,4,3,Nunca,No los conozco,Otro,Sí,Sí,No,Sí,Sí
+R0072,P1,21,femenino,6,3.63,8,privada,alto,pregrado,False,False,4,3,4,4,4,4,4,5,4,5,4,5,Nunca,"Sí, y son efectivos",Otro,Sí,No,Sí,No,Sí
+R0073,P3,17,femenino,5,2.49,35,publica,bajo,pregrado,True,False,3,1,2,4,2,3,2,2,2,1,3,2,Frecuentemente,No los conozco,Prefiero no decir,No,Sí,No,No,No
+R0074,P4,28,femenino,5,2.66,36,publica,medio,pregrado,False,False,4,2,3,3,2,5,3,3,2,4,3,1,Frecuentemente,No los conozco,Mujer cisgénero,Sí,Sí,No,No,No
+R0075,P7,28,masculino,3,3.7,29,privada,alto,posgrado,False,False,4,4,4,4,5,5,5,4,5,5,5,5,Nunca,No existen,Hombre cisgénero,Sí,No,No,Sí,No
+R0076,P7,27,masculino,2,3.95,20,privada,alto,posgrado,False,False,4,4,4,5,5,5,5,5,4,4,4,4,A veces,"Sí, y son efectivos",Mujer cisgénero,Sí,Sí,No,Sí,No
+R0077,P2,19,masculino,4,3.06,4,publica,medio,pregrado,False,False,5,4,4,5,3,3,3,3,5,4,4,3,Frecuentemente,No los conozco,Prefiero no decir,Sí,Sí,Sí,Sí,No
+R0078,P2,24,femenino,6,3.08,15,publica,medio,pregrado,False,False,3,3,2,3,4,4,4,4,5,3,3,3,A veces,No existen,Prefiero no decir,No,Sí,No,Sí,Sí
+R0079,P5,23,femenino,11,3.42,19,mixta,medio,pregrado,False,False,2,3,3,2,1,1,2,2,4,2,2,2,Nunca,No existen,Otro,No,No,No,No,Sí
+R0080,P7,27,masculino,1,3.97,15,privada,alto,posgrado,False,False,5,5,5,5,5,4,3,4,5,5,5,5,Nunca,"Sí, pero son limitados",No binario/a,No,Sí,No,Sí,Sí
+R0081,P2,19,femenino,8,3.18,8,publica,medio,pregrado,False,False,4,4,4,3,4,4,4,4,3,3,3,4,A veces,No los conozco,Mujer cisgénero,Sí,No,Sí,No,Sí
+R0082,P6,22,femenino,2,2.99,2,privada,medio_alto,pregrado,False,False,3,2,2,2,4,4,2,3,4,5,3,3,A veces,"Sí, pero son limitados",Mujer cisgénero,Sí,No,No,Sí,Sí
+R0083,P2,21,masculino,8,3.33,15,publica,medio,pregrado,False,False,3,4,4,3,2,3,4,2,3,3,3,2,Nunca,No existen,Otro,No,Sí,No,No,Sí
+R0084,P2,19,femenino,6,3.17,9,publica,medio,pregrado,False,False,4,3,3,2,3,3,2,2,3,4,5,4,Nunca,No los conozco,Hombre cisgénero,Sí,No,Sí,No,No
+R0085,P3,17,masculino,3,1.86,31,publica,bajo,pregrado,True,False,1,1,1,1,4,4,4,4,3,4,3,3,Raramente,"Sí, pero son limitados",Prefiero no decir,Sí,No,No,No,No
+R0086,P7,25,masculino,2,3.75,22,privada,alto,posgrado,False,False,4,5,5,4,5,5,5,5,5,5,5,5,Raramente,"Sí, y son efectivos",Hombre cisgénero,No,No,Sí,Sí,Sí
+R0087,P6,22,femenino,1,3.36,2,privada,medio_alto,pregrado,False,False,2,2,1,2,3,4,4,4,5,4,5,4,Frecuentemente,No existen,No binario/a,No,Sí,Sí,No,No
+R0088,P4,28,masculino,3,2.52,33,publica,medio,pregrado,False,False,1,1,4,1,4,2,1,1,2,3,2,2,A veces,No los conozco,Hombre cisgénero,No,Sí,Sí,No,Sí
+R0089,P6,18,masculino,7,3.18,0,privada,medio_alto,pregrado,False,False,2,2,3,2,3,3,3,3,3,4,4,2,Raramente,No los conozco,Mujer cisgénero,Sí,No,Sí,Sí,No
+R0090,P3,20,femenino,5,2.15,39,publica,bajo,pregrado,True,False,1,2,4,1,2,2,3,4,4,3,2,3,A veces,No los conozco,No binario/a,Sí,Sí,Sí,Sí,Sí
+R0091,P2,20,masculino,5,3.35,5,publica,medio,pregrado,False,False,4,4,4,5,3,3,3,2,4,4,5,3,A veces,No existen,Mujer cisgénero,Sí,No,Sí,No,No
+R0092,P7,33,femenino,6,3.74,11,privada,alto,posgrado,False,False,5,5,4,5,4,4,3,4,5,5,5,5,A veces,"Sí, y son efectivos",Hombre cisgénero,Sí,No,No,No,No
+R0093,P1,20,femenino,3,3.79,1,privada,alto,pregrado,False,False,4,4,4,4,4,4,5,4,4,4,3,4,A veces,No existen,Prefiero no decir,No,Sí,No,Sí,No
+R0094,P8,21,masculino,5,2.54,23,publica,muy_bajo,pregrado,False,True,4,4,5,4,4,4,5,5,3,1,3,3,Nunca,"Sí, y son efectivos",Hombre cisgénero,No,No,No,Sí,No
+R0095,P7,27,otro,1,3.97,20,privada,alto,posgrado,False,False,4,4,4,4,5,5,5,5,5,4,5,5,A veces,No los conozco,Prefiero no decir,Sí,No,No,No,Sí
+R0096,P6,19,masculino,2,3.14,9,privada,medio_alto,pregrado,False,False,5,4,3,4,2,4,2,3,3,3,4,4,Frecuentemente,"Sí, pero son limitados",Otro,No,No,No,No,No
+R0097,P4,35,femenino,8,3.23,36,publica,medio,pregrado,False,False,4,4,3,2,4,4,3,3,5,4,5,5,Frecuentemente,No existen,Mujer cisgénero,Sí,No,No,No,No
+R0098,P7,25,masculino,3,3.96,30,privada,alto,posgrado,False,False,4,5,5,5,4,5,5,5,5,5,5,5,Frecuentemente,No los conozco,No binario/a,Sí,Sí,Sí,No,No
+R0099,P1,18,femenino,3,3.79,2,privada,alto,pregrado,False,False,4,5,5,3,4,4,5,5,3,3,4,4,A veces,No los conozco,Prefiero no decir,Sí,No,Sí,No,No
+R0100,P4,34,masculino,9,2.94,36,publica,medio,pregrado,False,False,3,3,3,3,3,5,4,5,2,2,3,3,Frecuentemente,"Sí, pero son limitados",Otro,Sí,No,No,Sí,No
+R0101,P2,24,masculino,3,2.86,0,publica,medio,pregrado,False,False,4,4,4,3,3,3,4,4,4,3,4,3,Nunca,No los conozco,Mujer cisgénero,No,Sí,Sí,No,Sí
+R0102,P5,25,femenino,8,3.12,13,mixta,medio,pregrado,False,False,4,3,4,4,2,2,2,2,2,4,4,3,Nunca,"Sí, pero son limitados",Hombre cisgénero,No,Sí,Sí,No,No
+R0103,P5,26,femenino,8,3.02,5,mixta,medio,pregrado,False,False,2,3,3,3,3,3,3,4,4,3,3,4,Nunca,"Sí, pero son limitados",Hombre cisgénero,No,No,No,No,Sí
+R0104,P2,23,femenino,5,3.35,6,publica,medio,pregrado,False,False,5,4,4,5,5,5,5,5,2,3,2,3,Nunca,"Sí, pero son limitados",Mujer cisgénero,Sí,Sí,Sí,No,No
+R0105,P2,22,masculino,5,3.07,8,publica,medio,pregrado,False,False,3,3,5,3,4,4,4,5,3,4,4,4,A veces,"Sí, y son efectivos",Otro,Sí,No,Sí,Sí,No
+R0106,P4,32,femenino,10,3.07,38,publica,medio,pregrado,False,False,3,4,3,4,2,2,3,2,2,3,3,2,A veces,"Sí, pero son limitados",Prefiero no decir,No,No,No,Sí,No
+R0107,P8,19,femenino,8,2.19,29,publica,muy_bajo,pregrado,False,True,5,5,2,4,1,1,2,1,2,3,2,2,A veces,"Sí, y son efectivos",Mujer cisgénero,No,No,No,No,Sí
+R0108,P5,22,masculino,11,3.07,15,mixta,medio,pregrado,False,False,4,3,4,4,2,2,1,2,4,3,3,3,A veces,"Sí, y son efectivos",Otro,No,No,Sí,Sí,No
+R0109,P4,25,masculino,12,2.8,32,publica,medio,pregrado,False,False,5,5,5,5,1,1,2,1,3,2,1,1,Raramente,"Sí, pero son limitados",Prefiero no decir,No,Sí,Sí,Sí,No
+R0110,P8,20,masculino,6,2.34,15,publica,muy_bajo,pregrado,False,True,2,1,3,3,4,4,4,3,1,4,2,2,Frecuentemente,"Sí, pero son limitados",Prefiero no decir,Sí,Sí,Sí,Sí,Sí
+R0111,P7,31,masculino,3,3.82,20,privada,alto,posgrado,False,False,4,5,4,4,4,3,4,4,5,5,4,5,Nunca,No los conozco,Hombre cisgénero,No,No,Sí,No,No
+R0112,P6,20,masculino,4,3.12,10,privada,medio_alto,pregrado,False,False,4,3,3,4,3,3,3,3,4,3,4,4,Raramente,"Sí, pero son limitados",Otro,Sí,No,Sí,Sí,No
+R0113,P3,21,masculino,4,2.23,39,publica,bajo,pregrado,True,False,3,2,2,2,2,2,2,2,3,3,2,3,Nunca,No los conozco,Hombre cisgénero,Sí,Sí,Sí,Sí,No
+R0114,P4,33,masculino,3,3.04,47,publica,medio,pregrado,False,False,5,4,4,4,4,4,4,4,1,5,4,5,A veces,"Sí, pero son limitados",Hombre cisgénero,Sí,Sí,Sí,Sí,No
+R0115,P2,19,masculino,5,2.84,15,publica,medio,pregrado,False,False,4,4,4,5,3,3,3,3,3,3,3,3,Raramente,"Sí, pero son limitados",Prefiero no decir,Sí,No,No,Sí,No
+R0116,P7,24,femenino,2,3.98,15,privada,alto,posgrado,False,False,4,5,5,5,4,4,4,4,5,5,5,5,Nunca,"Sí, y son efectivos",Mujer cisgénero,No,Sí,Sí,Sí,No
+R0117,P2,22,masculino,2,3.21,2,publica,medio,pregrado,False,False,4,5,4,4,3,3,3,3,4,3,4,3,A veces,No existen,Otro,No,Sí,Sí,Sí,No
+R0118,P6,18,femenino,1,3.87,8,privada,medio_alto,pregrado,False,False,1,2,2,1,2,2,1,3,3,2,3,3,Frecuentemente,No los conozco,Otro,No,No,No,No,No
+R0119,P7,29,masculino,2,3.83,25,privada,alto,posgrado,False,False,5,5,5,4,5,5,5,5,5,5,5,5,Frecuentemente,"Sí, y son efectivos",No binario/a,Sí,No,No,Sí,No
+R0120,P4,34,masculino,4,2.8,44,publica,medio,pregrado,False,False,3,4,4,5,1,2,2,2,4,4,5,4,Nunca,"Sí, y son efectivos",No binario/a,No,No,Sí,No,Sí
+R0121,P2,21,femenino,7,2.83,6,publica,medio,pregrado,False,False,2,4,4,3,4,2,5,4,4,2,3,4,Raramente,No los conozco,Hombre cisgénero,No,Sí,Sí,No,Sí
+R0122,P1,18,otro,6,3.9,0,privada,alto,pregrado,False,False,5,4,5,4,5,5,5,5,5,4,5,5,Frecuentemente,"Sí, y son efectivos",Hombre cisgénero,No,Sí,Sí,Sí,No
+R0123,P5,26,masculino,12,3.75,10,mixta,medio,pregrado,False,False,2,2,3,2,2,3,4,4,2,3,3,3,Nunca,No existen,Hombre cisgénero,Sí,Sí,Sí,No,No
+R0124,P2,19,femenino,7,2.86,5,publica,medio,pregrado,False,False,4,3,3,3,3,3,5,3,4,4,3,3,Frecuentemente,No existen,Hombre cisgénero,No,No,Sí,No,Sí
+R0125,P1,20,masculino,2,3.88,1,privada,alto,pregrado,False,False,3,4,5,4,4,5,4,5,3,3,4,4,Frecuentemente,"Sí, pero son limitados",No binario/a,Sí,Sí,Sí,No,Sí
+R0126,P3,20,masculino,1,1.92,36,publica,bajo,pregrado,True,False,3,1,3,3,1,1,2,1,2,4,1,2,Nunca,No existen,Prefiero no decir,No,Sí,Sí,Sí,No
+R0127,P4,33,femenino,7,2.53,41,publica,medio,pregrado,False,False,4,5,4,4,4,3,4,5,5,4,5,3,Frecuentemente,No los conozco,Hombre cisgénero,Sí,Sí,No,No,Sí
+R0128,P4,32,masculino,11,3.04,35,publica,medio,pregrado,False,False,3,4,3,3,2,1,1,1,3,5,5,4,Frecuentemente,No existen,Hombre cisgénero,Sí,No,No,No,No
+R0129,P2,19,masculino,5,3.13,9,publica,medio,pregrado,False,False,4,4,4,3,1,2,1,2,5,4,4,4,Raramente,"Sí, y son efectivos",Mujer cisgénero,Sí,Sí,Sí,Sí,No
+R0130,P5,24,masculino,7,3.22,13,mixta,medio,pregrado,False,False,3,2,2,2,3,2,3,3,3,3,3,3,Raramente,No los conozco,No binario/a,No,No,No,Sí,No
+R0131,P3,17,masculino,1,1.67,39,publica,bajo,pregrado,True,False,1,2,1,2,1,1,1,1,1,1,1,1,Raramente,No existen,No binario/a,No,No,Sí,Sí,Sí
+R0132,P4,34,masculino,7,2.99,35,publica,medio,pregrado,False,False,4,2,3,3,4,4,3,3,4,4,3,4,Nunca,"Sí, pero son limitados",Hombre cisgénero,Sí,No,No,Sí,No
+R0133,P7,24,masculino,2,4.0,13,privada,alto,posgrado,False,False,4,4,4,4,4,4,3,4,4,4,4,4,Frecuentemente,No existen,Prefiero no decir,No,Sí,No,No,No
+R0134,P1,22,otro,4,3.94,7,privada,alto,pregrado,False,False,4,4,4,4,5,4,4,5,4,3,4,5,Raramente,No existen,Mujer cisgénero,No,No,No,Sí,No
+R0135,P4,28,femenino,5,2.76,43,publica,medio,pregrado,False,False,2,1,3,3,1,1,2,1,2,3,2,3,Raramente,No existen,Hombre cisgénero,No,Sí,Sí,Sí,Sí
+R0136,P2,23,femenino,2,3.3,8,publica,medio,pregrado,False,False,3,3,4,3,4,4,4,3,3,3,3,3,Frecuentemente,No los conozco,Mujer cisgénero,Sí,Sí,No,No,Sí
+R0137,P2,21,masculino,2,3.21,3,publica,medio,pregrado,False,False,4,3,4,2,5,4,4,3,4,4,3,3,Nunca,"Sí, y son efectivos",Otro,Sí,Sí,Sí,Sí,No
+R0138,P5,23,femenino,8,3.63,13,mixta,medio,pregrado,False,False,4,3,4,3,4,2,3,3,3,3,2,3,Raramente,No existen,Hombre cisgénero,Sí,No,Sí,Sí,No
+R0139,P5,26,femenino,11,3.02,13,mixta,medio,pregrado,False,False,4,4,4,4,3,2,3,2,4,4,3,5,A veces,No existen,Hombre cisgénero,Sí,Sí,No,Sí,Sí
+R0140,P5,22,masculino,7,3.51,12,mixta,medio,pregrado,False,False,4,4,4,3,3,4,3,4,3,1,2,2,Nunca,No los conozco,Prefiero no decir,Sí,No,No,No,Sí
+R0141,P8,25,masculino,6,2.94,27,publica,muy_bajo,pregrado,False,True,4,3,2,3,3,2,1,3,2,1,2,1,Nunca,"Sí, pero son limitados",Prefiero no decir,No,No,Sí,Sí,Sí
+R0142,P7,25,masculino,4,3.8,11,privada,alto,posgrado,False,False,5,5,5,5,4,5,4,4,4,5,5,5,A veces,No los conozco,Hombre cisgénero,Sí,Sí,Sí,Sí,No
+R0143,P2,24,masculino,9,3.13,8,publica,medio,pregrado,False,False,3,3,4,3,4,4,3,3,4,3,3,2,Nunca,No existen,Prefiero no decir,No,No,Sí,Sí,Sí
+R0144,P5,24,femenino,7,3.05,12,mixta,medio,pregrado,False,False,3,3,4,3,3,2,3,3,4,3,2,3,Raramente,"Sí, y son efectivos",Prefiero no decir,No,Sí,Sí,No,Sí
+R0145,P5,22,femenino,12,3.65,9,mixta,medio,pregrado,False,False,3,2,4,3,3,4,3,3,4,4,4,4,Nunca,"Sí, pero son limitados",Prefiero no decir,Sí,No,Sí,No,No
+R0146,P5,23,femenino,7,3.6,20,mixta,medio,pregrado,False,False,4,3,3,5,4,3,3,4,2,2,2,2,Nunca,"Sí, y son efectivos",No binario/a,No,Sí,No,Sí,Sí
+R0147,P3,19,masculino,2,2.36,33,publica,bajo,pregrado,True,False,1,1,2,1,2,2,2,2,1,2,1,1,A veces,No existen,No binario/a,Sí,Sí,Sí,Sí,No
+R0148,P8,23,masculino,6,2.43,21,publica,muy_bajo,pregrado,False,True,3,5,4,4,3,3,4,2,2,3,5,4,Nunca,No los conozco,Mujer cisgénero,No,No,No,Sí,No
+R0149,P3,17,femenino,3,2.34,34,publica,bajo,pregrado,True,False,2,2,1,1,1,1,2,1,3,3,4,3,Nunca,No existen,Hombre cisgénero,No,Sí,No,Sí,No
+R0150,P7,33,masculino,1,3.71,22,privada,alto,posgrado,False,False,4,4,4,4,5,4,4,4,5,5,5,5,Nunca,No existen,Prefiero no decir,Sí,Sí,Sí,Sí,No
+R0151,P4,26,femenino,4,3.19,34,publica,medio,pregrado,False,False,2,1,3,3,2,2,1,3,2,5,4,4,A veces,"Sí, y son efectivos",Prefiero no decir,Sí,Sí,No,No,Sí
+R0152,P7,34,masculino,2,3.99,18,privada,alto,posgrado,False,False,3,4,3,3,4,4,4,5,5,5,5,5,A veces,"Sí, pero son limitados",No binario/a,No,No,No,Sí,Sí
+R0153,P3,21,otro,1,2.21,29,publica,bajo,pregrado,True,False,1,1,1,1,3,2,2,1,3,4,2,3,A veces,No existen,Prefiero no decir,Sí,Sí,Sí,No,No
+R0154,P1,21,femenino,2,3.97,8,privada,alto,pregrado,False,False,5,4,4,4,4,5,4,4,5,5,4,5,A veces,"Sí, y son efectivos",Hombre cisgénero,No,Sí,No,No,No
+R0155,P4,27,femenino,12,2.92,41,publica,medio,pregrado,False,False,4,4,4,4,5,5,5,3,3,4,2,3,A veces,No existen,Hombre cisgénero,Sí,No,Sí,No,No
+R0156,P4,32,femenino,4,2.58,48,publica,medio,pregrado,False,False,2,2,3,2,3,5,4,5,3,4,3,3,A veces,"Sí, pero son limitados",Mujer cisgénero,Sí,No,Sí,No,Sí
+R0157,P1,20,masculino,4,3.8,0,privada,alto,pregrado,False,False,5,4,4,4,4,4,4,4,4,4,4,4,Frecuentemente,No los conozco,Mujer cisgénero,Sí,No,Sí,Sí,No
+R0158,P5,25,masculino,10,3.43,16,mixta,medio,pregrado,False,False,3,3,2,3,3,2,3,3,2,3,4,2,Nunca,"Sí, y son efectivos",No binario/a,No,Sí,No,No,Sí
+R0159,P7,32,femenino,4,3.95,18,privada,alto,posgrado,False,False,4,4,4,4,4,3,4,4,5,5,4,5,Nunca,"Sí, pero son limitados",Hombre cisgénero,No,Sí,Sí,No,Sí
+R0160,P7,24,masculino,1,3.78,11,privada,alto,posgrado,False,False,5,4,4,4,5,5,5,5,5,5,5,5,Frecuentemente,No existen,Hombre cisgénero,Sí,No,No,Sí,Sí

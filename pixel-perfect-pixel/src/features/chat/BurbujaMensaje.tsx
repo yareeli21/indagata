@@ -131,8 +131,10 @@ export function BurbujaMensaje({ mensaje, onAbrirFuente }: BurbujaMensajeProps) 
         </div>
       )}
 
-      {/* «Ver métricas» (11 nov): recuperación, fundamentación y citas, sin modelo juez (VerMetricas.tsx). La
-          sección anterior con el juez RAGAS (PanelMetricas.tsx) se quitó el 9 nov: el juez qwen no evaluaba bien. */}
+      {/* «Ver métricas» (11 nov): recuperación, fundamentación y citas, sin modelo juez, más las seis métricas RAGAS
+          del juez Claude Fable 5.2, que el servicio calcula solo tras cada respuesta (VerMetricas.tsx →
+          EvaluacionFable.tsx). La sección con el juez local (PanelMetricas.tsx) se quitó el 9 nov: qwen no evaluaba
+          bien. */}
       {!esUsuario && !mensaje.generando && mensaje.consultaId != null && (
         <VerMetricas consultaId={mensaje.consultaId} />
       )}

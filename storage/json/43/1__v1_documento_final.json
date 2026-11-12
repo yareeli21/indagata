@@ -1,0 +1,2032 @@
+{
+  "esquema_version": "2.0",
+  "instrumento": {
+    "id": "INS-0043",
+    "tipo": "entrevista",
+    "titulo": "Entrevista sobre transición secundaria-universidad (primer año)",
+    "objetivo": "No especificado",
+    "temas": [
+      "institución",
+      "estudiantes",
+      "quisiera",
+      "tengo",
+      "universidad",
+      "apoyo"
+    ],
+    "palabras_clave": [
+      "institución",
+      "estudiantes",
+      "quisiera",
+      "tengo",
+      "universidad",
+      "apoyo"
+    ],
+    "nivel_educativo": "Licenciatura",
+    "poblacion": "No especificado",
+    "contexto": "Institución: No especificado. Cobertura: Licenciatura — de los estudiantes en relación con: Tasa de Retención / Permanencia Estudiantil, Tasa de Deserción / Abandono Estudiantil.. Metodología: Entrevista semiestructurada"
+  },
+  "kpis_asociados": [
+    {
+      "fecha": "2026-11-12T04:12:08.664366+00:00",
+      "kpi_id": "KPI-53",
+      "nombre": "Tasa de Transferencia / Traslado a Otras Instituciones",
+      "que_mide": "Porcentaje de alumnos que abandonan la institución actual para continuar sus estudios en otra universidad o colegio universitario.",
+      "dimension": "Reducir en programas finales (indica pérdida) / Aumentar en escuelas técnicas articuladas",
+      "evidencia": [
+        {
+          "similitud": 0.6058,
+          "pregunta_id": "INS-0043-p04"
+        },
+        {
+          "similitud": 0.5006,
+          "pregunta_id": "INS-0043-p01"
+        },
+        {
+          "similitud": 0.4501,
+          "pregunta_id": "INS-0043-p02"
+        }
+      ],
+      "similitud": 0.5471,
+      "definicion": "El KPI Tasa de Transferencia mide el porcentaje de traslados a otras universidades. Su interpretación depende del tipo de institución: en universidades tradicionales un aumento refleja insatisfacción y pérdida de alumnos (fuga), mientras que en institutos técnicos/community colleges un incremento es señal de éxito en la articulación académica.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Tasa de Transferencia / Traslado a Otras Instituciones» porque las preguntas «¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?» y «¿Cómo describirías tu transición del bachillerato a la universidad?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    },
+    {
+      "fecha": "2026-11-12T04:12:08.664366+00:00",
+      "kpi_id": "KPI-35",
+      "nombre": "Porcentaje de Estudiantes a Tiempo Parcial",
+      "que_mide": "Proporción de alumnos que cursan menos créditos de los requeridos para una carga completa, generalmente por motivos laborales o familiares.",
+      "dimension": "Mantener controlado según el perfil institucional (Flexibilidad vs. Graduación oportuna)",
+      "evidencia": [
+        {
+          "similitud": 0.4986,
+          "pregunta_id": "INS-0043-p04"
+        },
+        {
+          "similitud": 0.4837,
+          "pregunta_id": "INS-0043-p06"
+        },
+        {
+          "similitud": 0.4552,
+          "pregunta_id": "INS-0043-p02"
+        }
+      ],
+      "similitud": 0.4985,
+      "definicion": "El KPI Porcentaje de Estudiantes a Tiempo Parcial mide la proporción de alumnos con carga reducida de créditos. Un aumento demuestra inclusión para adultos que trabajan, pero prolonga el tiempo de titulación y puede elevar el riesgo de deserción en comparación con alumnos a tiempo completo.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Porcentaje de Estudiantes a Tiempo Parcial» porque las preguntas «¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?» y «¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "INS-0043-p01",
+      "texto": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+      "kpis_relacionados": [
+        "KPI-53"
+      ]
+    },
+    {
+      "id": "INS-0043-p02",
+      "texto": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+      "kpis_relacionados": [
+        "KPI-53",
+        "KPI-35"
+      ]
+    },
+    {
+      "id": "INS-0043-p03",
+      "texto": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0043-p04",
+      "texto": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+      "kpis_relacionados": [
+        "KPI-53",
+        "KPI-35"
+      ]
+    },
+    {
+      "id": "INS-0043-p05",
+      "texto": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0043-p06",
+      "texto": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+      "kpis_relacionados": [
+        "KPI-35"
+      ]
+    },
+    {
+      "id": "INS-0043-p07",
+      "texto": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0043-p08",
+      "texto": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+      "kpis_relacionados": []
+    }
+  ],
+  "entrevistas": [
+    {
+      "participante": "INS-0043-E01",
+      "contexto": {
+        "GPA": "3.23",
+        "Edad": "20",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "masculino",
+        "Semestre": "7",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "7"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E02",
+      "contexto": {
+        "GPA": "2.79",
+        "Edad": "20",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "35"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E03",
+      "contexto": {
+        "GPA": "3.04",
+        "Edad": "19",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "masculino",
+        "Semestre": "9",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "3"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E04",
+      "contexto": {
+        "GPA": "2.9",
+        "Edad": "19",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "otro",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "26"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E05",
+      "contexto": {
+        "GPA": "2.59",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "1",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "34"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E06",
+      "contexto": {
+        "GPA": "3.11",
+        "Edad": "24",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "femenino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "10"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E07",
+      "contexto": {
+        "GPA": "2.13",
+        "Edad": "20",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "26"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E08",
+      "contexto": {
+        "GPA": "2.69",
+        "Edad": "26",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "femenino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "19"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E09",
+      "contexto": {
+        "GPA": "3.79",
+        "Edad": "22",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "5"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. I've grown more as a person during this exchange than I would have staying home. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. I've grown more as a person during this exchange than I would have staying home. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E10",
+      "contexto": {
+        "GPA": "2.43",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "5",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "29"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E11",
+      "contexto": {
+        "GPA": "3.12",
+        "Edad": "25",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "10"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E12",
+      "contexto": {
+        "GPA": "3.2",
+        "Edad": "24",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "13"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E13",
+      "contexto": {
+        "GPA": "2.24",
+        "Edad": "18",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "otro",
+        "Semestre": "4",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "29"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E14",
+      "contexto": {
+        "GPA": "3.04",
+        "Edad": "22",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "14"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E15",
+      "contexto": {
+        "GPA": "1.78",
+        "Edad": "18",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "26"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E16",
+      "contexto": {
+        "GPA": "3.04",
+        "Edad": "23",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "masculino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "9"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E17",
+      "contexto": {
+        "GPA": "2.56",
+        "Edad": "18",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "masculino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "34"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E18",
+      "contexto": {
+        "GPA": "2.6",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "37"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E19",
+      "contexto": {
+        "GPA": "2.61",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "1",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "38"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E20",
+      "contexto": {
+        "GPA": "3.42",
+        "Edad": "24",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "otro",
+        "Semestre": "6",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "14"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E21",
+      "contexto": {
+        "GPA": "3.28",
+        "Edad": "23",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "masculino",
+        "Semestre": "5",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "10"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E22",
+      "contexto": {
+        "GPA": "1.62",
+        "Edad": "17",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "37"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E23",
+      "contexto": {
+        "GPA": "1.66",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "25"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E24",
+      "contexto": {
+        "GPA": "1.74",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "otro",
+        "Semestre": "4",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "34"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E25",
+      "contexto": {
+        "GPA": "2.3",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "36"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E26",
+      "contexto": {
+        "GPA": "3.4",
+        "Edad": "22",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "2",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "7"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. Adapting to a new academic system requires flexibility and open-mindedness."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E27",
+      "contexto": {
+        "GPA": "2.38",
+        "Edad": "17",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "36"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E28",
+      "contexto": {
+        "GPA": "2.59",
+        "Edad": "21",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "24"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E29",
+      "contexto": {
+        "GPA": "2.79",
+        "Edad": "21",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "22"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E30",
+      "contexto": {
+        "GPA": "3.44",
+        "Edad": "23",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "masculino",
+        "Semestre": "1",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "1"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. I've grown more as a person during this exchange than I would have staying home. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E31",
+      "contexto": {
+        "GPA": "1.57",
+        "Edad": "20",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "27"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E32",
+      "contexto": {
+        "GPA": "2.27",
+        "Edad": "20",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "38"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E33",
+      "contexto": {
+        "GPA": "2.04",
+        "Edad": "21",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "33"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E34",
+      "contexto": {
+        "GPA": "3.76",
+        "Edad": "26",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "4"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home. The cultural differences make this both challenging and enriching at the same time."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0043-E35",
+      "contexto": {
+        "GPA": "1.82",
+        "Edad": "20",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "otro",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "34"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0043-p01",
+          "pregunta": "¿Cómo describirías tu transición del bachillerato a la universidad?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p02",
+          "pregunta": "¿Qué diferencias encontraste entre la secundaria y la vida universitaria?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p03",
+          "pregunta": "¿Cuáles fueron los principales desafíos que enfrentaste en tu primer año?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p04",
+          "pregunta": "¿Qué apoyo recibiste de la institución para adaptarte al ambiente universitario?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p05",
+          "pregunta": "¿Cómo fue tu proceso de socialización con compañeros y profesores al inicio?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0043-p06",
+          "pregunta": "¿Hubo algún momento en que pensaste que no podrías superar las exigencias universitarias?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0043-p07",
+          "pregunta": "¿Qué consejos darías a un estudiante que está por iniciar su primer año universitario?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0043-p08",
+          "pregunta": "¿De qué manera los programas de inducción o bienvenida te ayudaron?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    }
+  ],
+  "avisos": [
+    {
+      "codigo": "texto_libre",
+      "mensaje": "Las personas entrevistadas se identifican con un ID anónimo; otros nombres mencionados en el texto libre podrían seguir presentes."
+    }
+  ]
+}

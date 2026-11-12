@@ -133,6 +133,16 @@ class AppSettings(BaseSettings):
     # y la pregunta siguiente pasaba de 4–8 s a 31–38 s. False = evaluar todas en segundo plano, como antes.
     RAG_METRICAS_BAJO_DEMANDA: bool = True
     RAG_JUEZ_MODELO: str = ""  # vacío = OLLAMA_MODEL; cámbialo por un juez más grande cuando haya
+    # Juez externo Claude Fable 5.2 (visualization-service/services/juez_fable.py, 11 nov): evalúa CADA respuesta en
+    # segundo plano con seis métricas tipo RAGAS (precisión y recuerdo del contexto, fidelidad, relevancia,
+    # sensibilidad al ruido y corrección factual). Corre en la API de Anthropic, no en la GPU local, así que no frena
+    # el chat. Sin ANTHROPIC_API_KEY la evaluación queda «omitida» con el motivo.
+    ANTHROPIC_API_KEY: str = ""
+    RAG_JUEZ_FABLE: bool = True
+    RAG_JUEZ_FABLE_MODELO: str = "claude-fable-5-2"
+    RAG_JUEZ_FABLE_ESFUERZO: str = "high"  # low | medium | high | xhigh | max (referencia y veredictos)
+    RAG_JUEZ_FABLE_AMPLIADO: int = 12  # fragmentos extra de Chroma (sin umbral) para la respuesta de referencia
+    RAG_JUEZ_FABLE_CONCURRENCIA: int = 2  # evaluaciones simultáneas
     RAG_CLASIFICADOR_LLM: bool = True
     RAG_CLASIFICADOR_MODELO: str = ""  # vacío = OLLAMA_MODEL
     # Consultas con filtro («los que sí reprobaron…»): si las reglas no hallan la

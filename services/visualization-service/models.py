@@ -412,6 +412,36 @@ class JuezOut(BaseModel):
     fecha: datetime | None = None
 
 
+class JuezFableOut(BaseModel):
+    """Evaluación de una respuesta por el juez Claude Fable 5.2: seis métricas tipo RAGAS (services/juez_fable.py).
+
+    `sensibilidadRuido` es la única donde MENOR es mejor. Recuerdo, ruido y corrección factual se comparan contra una
+    respuesta de referencia que escribe el mismo juez sin ver la del sistema (`respuestaReferencia`).
+    """
+
+    modelo: str
+    modeloReal: str | None = None  # el que juzgó de verdad (distinto si Fable declinó y respondió el respaldo)
+    fallback: bool = False
+    estado: Literal["calculando", "listo", "omitida", "error"]
+    motivo: str | None = None
+    fecha: datetime | None = None
+    precisionContexto: float | None = None
+    recuerdoContexto: float | None = None
+    fidelidad: float | None = None
+    relevancia: float | None = None
+    sensibilidadRuido: float | None = None
+    correccionFactual: float | None = None
+    correccionPrecision: float | None = None
+    correccionRecuerdo: float | None = None
+    noSustentadas: list[str] = []  # afirmaciones de la respuesta sin respaldo en lo recuperado
+    incorrectas: list[str] = []  # afirmaciones de la respuesta que la referencia no respalda
+    respuestaReferencia: str | None = None
+    afirmacionesReferencia: list[str] = []
+    referenciaNoCubierta: list[int] = []  # números (1..n) de afirmaciones de referencia que la respuesta omitió
+    origenReferencia: str | None = None  # contexto_ampliado | solo_contexto_usado
+    preguntasGeneradas: list[str] = []
+
+
 class CalificacionIn(BaseModel):
     """Calificación humana de una respuesta."""
 
@@ -440,6 +470,7 @@ class MetricasConsultaOut(BaseModel):
     fecha: datetime | None = None
     indicadores: IndicadoresOut | None = None
     jueces: list[JuezOut] = []
+    juezFable: JuezFableOut | None = None
     calificacion: CalificacionOut | None = None
 
 

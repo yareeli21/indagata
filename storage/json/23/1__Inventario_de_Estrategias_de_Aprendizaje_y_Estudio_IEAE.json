@@ -1,0 +1,2970 @@
+{
+  "instrument_id": "23",
+  "schema_version": "2.0",
+  "tipo_instrumento": "encuesta",
+  "instrument": {
+    "title": "Inventario de Estrategias de Aprendizaje y Estudio (IEAE)",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "ORGANIZACIÓN Y PLANIFICACIÓN",
+      "HABILIDADES PARA EL EXAMEN",
+      "MOTIVACIÓN",
+      "RECURSOS DE APRENDIZAJE",
+      "ESTRATEGIAS DE CONTROL Y CONSOLIDACIÓN",
+      "HABILIDADES PARA JERARQUIZAR"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "ORGANIZACIÓN Y PLANIFICACIÓN",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "Organizo el material de estudio antes de comenzar a estudiar.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q2",
+            "text": "Elaboro un plan de trabajo con tiempos definidos para cada asignatura.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q3",
+            "text": "Identifico los conceptos principales antes de profundizar en el tema.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q4",
+            "text": "Reviso mis apuntes inmediatamente después de cada clase.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q5",
+            "text": "Establezco metas específicas para cada sesión de estudio.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q6",
+            "text": "Distribuyo el tiempo de estudio de manera equitativa entre las materias.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q7",
+            "text": "Preparo con anticipación los materiales que necesitaré en clase.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s2",
+        "name": "HABILIDADES PARA EL EXAMEN",
+        "questions": [
+          {
+            "question_id": "q8",
+            "text": "Practico con exámenes anteriores para prepararme para las evaluaciones.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q9",
+            "text": "Reviso mis errores de exámenes anteriores para no repetirlos.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q10",
+            "text": "Gestiono bien el tiempo durante la realización de un examen.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s3",
+        "name": "MOTIVACIÓN",
+        "questions": [
+          {
+            "question_id": "q11",
+            "text": "Me siento motivado/a para estudiar y aprender en mis clases.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q12",
+            "text": "Encuentro significativo el contenido de lo que estudio.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q13",
+            "text": "Me esfuerzo más cuando el tema me parece interesante.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s4",
+        "name": "RECURSOS DE APRENDIZAJE",
+        "questions": [
+          {
+            "question_id": "q14",
+            "text": "Utilizo distintas fuentes de información para complementar mis apuntes.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q15",
+            "text": "Aprovecho los recursos digitales (videos, podcasts) para reforzar el aprendizaje.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s5",
+        "name": "ESTRATEGIAS DE CONTROL Y CONSOLIDACIÓN",
+        "questions": [
+          {
+            "question_id": "q16",
+            "text": "Me autoevalúo para verificar si he comprendido el material.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q17",
+            "text": "Cuando no entiendo algo, busco aclararlo inmediatamente.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q18",
+            "text": "Relaciono los nuevos conocimientos con lo que ya sé.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s6",
+        "name": "HABILIDADES PARA JERARQUIZAR",
+        "questions": [
+          {
+            "question_id": "q19",
+            "text": "Distingo entre la información principal y la secundaria en un texto.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q20",
+            "text": "Elaboro resúmenes o esquemas que priorizan los puntos clave.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q21",
+            "text": "Ordeno los temas según su importancia para estudiarlos.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "encuesta",
+    "dublin_core": {
+      "dc:title": "Inventario de Estrategias de Aprendizaje y Estudio (IEAE)",
+      "dc:creator": "Administrador",
+      "dc:subject": "estudio, aprendizaje, material, estudiar, elaboro, tema",
+      "dc:description": "Encuesta de 21 reactivos aplicada a 180 respondentes. Explora: organización y planificación; habilidades para el examen; motivación; recursos de aprendizaje; estrategias de control y consolidación; habilidades para jerarquizar.",
+      "dc:type": "Encuesta",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "Secundaria",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "enc_01_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "n_respondentes": 180,
+      "objetivo": "No especificado",
+      "poblacion_objetivo": "No especificado",
+      "constructo_principal": "No especificado",
+      "palabras_clave": [
+        "estudio",
+        "aprendizaje",
+        "material",
+        "estudiar",
+        "elaboro",
+        "tema",
+        "reviso",
+        "apuntes"
+      ],
+      "dimensiones": [
+        "ORGANIZACIÓN Y PLANIFICACIÓN",
+        "HABILIDADES PARA EL EXAMEN",
+        "MOTIVACIÓN",
+        "RECURSOS DE APRENDIZAJE",
+        "ESTRATEGIAS DE CONTROL Y CONSOLIDACIÓN",
+        "HABILIDADES PARA JERARQUIZAR"
+      ],
+      "notas_contextuales": "Calidad de los datos: 180 registros con respuesta; 0% de respuestas vacías."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "Puntajes en Pruebas Estandarizadas de Referencia"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.167,
+        "std": 1.171,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 57,
+          "4": 46,
+          "2": 34,
+          "5": 26,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1667,
+          "mediana": 3.0,
+          "curtosis": -0.7646,
+          "asimetria": -0.1406,
+          "desviacion": 1.1747
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.0944,
+              "valor": "1"
+            },
+            {
+              "n": 34,
+              "pct": 0.1889,
+              "valor": "2"
+            },
+            {
+              "n": 57,
+              "pct": 0.3167,
+              "valor": "3"
+            },
+            {
+              "n": 46,
+              "pct": 0.2556,
+              "valor": "4"
+            },
+            {
+              "n": 26,
+              "pct": 0.1444,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "organizacion_y_item1"
+      },
+      "q2": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.172,
+        "std": 1.201,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 54,
+          "3": 47,
+          "2": 35,
+          "5": 25,
+          "1": 19
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1722,
+          "mediana": 3.0,
+          "curtosis": -0.8724,
+          "asimetria": -0.2201,
+          "desviacion": 1.2044
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 19,
+              "pct": 0.1056,
+              "valor": "1"
+            },
+            {
+              "n": 35,
+              "pct": 0.1944,
+              "valor": "2"
+            },
+            {
+              "n": 47,
+              "pct": 0.2611,
+              "valor": "3"
+            },
+            {
+              "n": 54,
+              "pct": 0.3,
+              "valor": "4"
+            },
+            {
+              "n": 25,
+              "pct": 0.1389,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "organizacion_y_item2"
+      },
+      "q3": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.089,
+        "std": 1.156,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 58,
+          "4": 47,
+          "2": 35,
+          "5": 21,
+          "1": 19
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.0889,
+          "mediana": 3.0,
+          "curtosis": -0.7371,
+          "asimetria": -0.1315,
+          "desviacion": 1.1593
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 19,
+              "pct": 0.1056,
+              "valor": "1"
+            },
+            {
+              "n": 35,
+              "pct": 0.1944,
+              "valor": "2"
+            },
+            {
+              "n": 58,
+              "pct": 0.3222,
+              "valor": "3"
+            },
+            {
+              "n": 47,
+              "pct": 0.2611,
+              "valor": "4"
+            },
+            {
+              "n": 21,
+              "pct": 0.1167,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "organizacion_y_item3"
+      },
+      "q4": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.178,
+        "std": 1.207,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 55,
+          "3": 47,
+          "2": 33,
+          "5": 25,
+          "1": 20
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1778,
+          "mediana": 3.0,
+          "curtosis": -0.8606,
+          "asimetria": -0.2513,
+          "desviacion": 1.2105
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 20,
+              "pct": 0.1111,
+              "valor": "1"
+            },
+            {
+              "n": 33,
+              "pct": 0.1833,
+              "valor": "2"
+            },
+            {
+              "n": 47,
+              "pct": 0.2611,
+              "valor": "3"
+            },
+            {
+              "n": 55,
+              "pct": 0.3056,
+              "valor": "4"
+            },
+            {
+              "n": 25,
+              "pct": 0.1389,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "organizacion_y_item4"
+      },
+      "q5": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.311,
+        "std": 1.194,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 59,
+          "4": 44,
+          "5": 35,
+          "2": 26,
+          "1": 16
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3111,
+          "mediana": 3.0,
+          "curtosis": -0.7214,
+          "asimetria": -0.2465,
+          "desviacion": 1.1972
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 16,
+              "pct": 0.0889,
+              "valor": "1"
+            },
+            {
+              "n": 26,
+              "pct": 0.1444,
+              "valor": "2"
+            },
+            {
+              "n": 59,
+              "pct": 0.3278,
+              "valor": "3"
+            },
+            {
+              "n": 44,
+              "pct": 0.2444,
+              "valor": "4"
+            },
+            {
+              "n": 35,
+              "pct": 0.1944,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "organizacion_y_item5"
+      },
+      "q6": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.244,
+        "std": 1.133,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 61,
+          "3": 52,
+          "2": 29,
+          "5": 22,
+          "1": 16
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.75,
+          "q3": 4.0,
+          "iqr": 1.25,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2444,
+          "mediana": 3.0,
+          "curtosis": -0.6119,
+          "asimetria": -0.3548,
+          "desviacion": 1.1366
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 16,
+              "pct": 0.0889,
+              "valor": "1"
+            },
+            {
+              "n": 29,
+              "pct": 0.1611,
+              "valor": "2"
+            },
+            {
+              "n": 52,
+              "pct": 0.2889,
+              "valor": "3"
+            },
+            {
+              "n": 61,
+              "pct": 0.3389,
+              "valor": "4"
+            },
+            {
+              "n": 22,
+              "pct": 0.1222,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "organizacion_y_item6"
+      },
+      "q7": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.217,
+        "std": 1.175,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 55,
+          "3": 52,
+          "2": 30,
+          "5": 25,
+          "1": 18
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2167,
+          "mediana": 3.0,
+          "curtosis": -0.7318,
+          "asimetria": -0.2845,
+          "desviacion": 1.1784
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 18,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 30,
+              "pct": 0.1667,
+              "valor": "2"
+            },
+            {
+              "n": 52,
+              "pct": 0.2889,
+              "valor": "3"
+            },
+            {
+              "n": 55,
+              "pct": 0.3056,
+              "valor": "4"
+            },
+            {
+              "n": 25,
+              "pct": 0.1389,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "organizacion_y_item7"
+      },
+      "q8": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.183,
+        "std": 1.181,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 49,
+          "4": 47,
+          "2": 42,
+          "5": 28,
+          "1": 14
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1833,
+          "mediana": 3.0,
+          "curtosis": -0.9158,
+          "asimetria": -0.0753,
+          "desviacion": 1.184
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 14,
+              "pct": 0.0778,
+              "valor": "1"
+            },
+            {
+              "n": 42,
+              "pct": 0.2333,
+              "valor": "2"
+            },
+            {
+              "n": 49,
+              "pct": 0.2722,
+              "valor": "3"
+            },
+            {
+              "n": 47,
+              "pct": 0.2611,
+              "valor": "4"
+            },
+            {
+              "n": 28,
+              "pct": 0.1556,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "habilidades_par_item1"
+      },
+      "q9": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.25,
+        "std": 1.242,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 44,
+          "4": 44,
+          "2": 41,
+          "5": 36,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.25,
+          "mediana": 3.0,
+          "curtosis": -1.0444,
+          "asimetria": -0.1173,
+          "desviacion": 1.2457
+        },
+        "frecuencias": {
+          "moda": [
+            "3",
+            "4"
+          ],
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0833,
+              "valor": "1"
+            },
+            {
+              "n": 41,
+              "pct": 0.2278,
+              "valor": "2"
+            },
+            {
+              "n": 44,
+              "pct": 0.2444,
+              "valor": "3"
+            },
+            {
+              "n": 44,
+              "pct": 0.2444,
+              "valor": "4"
+            },
+            {
+              "n": 36,
+              "pct": 0.2,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "habilidades_par_item2"
+      },
+      "q10": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.217,
+        "std": 1.092,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 61,
+          "3": 47,
+          "2": 42,
+          "5": 20,
+          "1": 10
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2167,
+          "mediana": 3.0,
+          "curtosis": -0.8038,
+          "asimetria": -0.1821,
+          "desviacion": 1.0948
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 10,
+              "pct": 0.0556,
+              "valor": "1"
+            },
+            {
+              "n": 42,
+              "pct": 0.2333,
+              "valor": "2"
+            },
+            {
+              "n": 47,
+              "pct": 0.2611,
+              "valor": "3"
+            },
+            {
+              "n": 61,
+              "pct": 0.3389,
+              "valor": "4"
+            },
+            {
+              "n": 20,
+              "pct": 0.1111,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "habilidades_par_item3"
+      },
+      "q11": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.322,
+        "std": 1.158,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 61,
+          "3": 46,
+          "2": 31,
+          "5": 28,
+          "1": 14
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.75,
+          "q3": 4.0,
+          "iqr": 1.25,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3222,
+          "mediana": 3.0,
+          "curtosis": -0.7078,
+          "asimetria": -0.3511,
+          "desviacion": 1.1611
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 14,
+              "pct": 0.0778,
+              "valor": "1"
+            },
+            {
+              "n": 31,
+              "pct": 0.1722,
+              "valor": "2"
+            },
+            {
+              "n": 46,
+              "pct": 0.2556,
+              "valor": "3"
+            },
+            {
+              "n": 61,
+              "pct": 0.3389,
+              "valor": "4"
+            },
+            {
+              "n": 28,
+              "pct": 0.1556,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "motivacion_item1"
+      },
+      "q12": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.244,
+        "std": 1.191,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 55,
+          "3": 52,
+          "5": 27,
+          "2": 27,
+          "1": 19
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2444,
+          "mediana": 3.0,
+          "curtosis": -0.717,
+          "asimetria": -0.3245,
+          "desviacion": 1.1941
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 19,
+              "pct": 0.1056,
+              "valor": "1"
+            },
+            {
+              "n": 27,
+              "pct": 0.15,
+              "valor": "2"
+            },
+            {
+              "n": 52,
+              "pct": 0.2889,
+              "valor": "3"
+            },
+            {
+              "n": 55,
+              "pct": 0.3056,
+              "valor": "4"
+            },
+            {
+              "n": 27,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "motivacion_item2"
+      },
+      "q13": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.2,
+        "std": 1.258,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 52,
+          "3": 44,
+          "2": 32,
+          "5": 30,
+          "1": 22
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2,
+          "mediana": 3.0,
+          "curtosis": -0.956,
+          "asimetria": -0.2486,
+          "desviacion": 1.2614
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 22,
+              "pct": 0.1222,
+              "valor": "1"
+            },
+            {
+              "n": 32,
+              "pct": 0.1778,
+              "valor": "2"
+            },
+            {
+              "n": 44,
+              "pct": 0.2444,
+              "valor": "3"
+            },
+            {
+              "n": 52,
+              "pct": 0.2889,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.1667,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "motivacion_item3"
+      },
+      "q14": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.3,
+        "std": 1.149,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 53,
+          "3": 49,
+          "2": 37,
+          "5": 30,
+          "1": 11
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3,
+          "mediana": 3.0,
+          "curtosis": -0.8343,
+          "asimetria": -0.1877,
+          "desviacion": 1.1526
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 11,
+              "pct": 0.0611,
+              "valor": "1"
+            },
+            {
+              "n": 37,
+              "pct": 0.2056,
+              "valor": "2"
+            },
+            {
+              "n": 49,
+              "pct": 0.2722,
+              "valor": "3"
+            },
+            {
+              "n": 53,
+              "pct": 0.2944,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.1667,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "recursos_de_apr_item1"
+      },
+      "q15": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.239,
+        "std": 1.194,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 53,
+          "3": 51,
+          "2": 30,
+          "5": 28,
+          "1": 18
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2389,
+          "mediana": 3.0,
+          "curtosis": -0.7754,
+          "asimetria": -0.2744,
+          "desviacion": 1.1976
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 18,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 30,
+              "pct": 0.1667,
+              "valor": "2"
+            },
+            {
+              "n": 51,
+              "pct": 0.2833,
+              "valor": "3"
+            },
+            {
+              "n": 53,
+              "pct": 0.2944,
+              "valor": "4"
+            },
+            {
+              "n": 28,
+              "pct": 0.1556,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "recursos_de_apr_item2"
+      },
+      "q16": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.372,
+        "std": 1.126,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 56,
+          "4": 53,
+          "5": 32,
+          "2": 28,
+          "1": 11
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3722,
+          "mediana": 3.0,
+          "curtosis": -0.6252,
+          "asimetria": -0.2787,
+          "desviacion": 1.1288
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 11,
+              "pct": 0.0611,
+              "valor": "1"
+            },
+            {
+              "n": 28,
+              "pct": 0.1556,
+              "valor": "2"
+            },
+            {
+              "n": 56,
+              "pct": 0.3111,
+              "valor": "3"
+            },
+            {
+              "n": 53,
+              "pct": 0.2944,
+              "valor": "4"
+            },
+            {
+              "n": 32,
+              "pct": 0.1778,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_de_item1"
+      },
+      "q17": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.306,
+        "std": 1.15,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 54,
+          "4": 52,
+          "2": 31,
+          "5": 30,
+          "1": 13
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3056,
+          "mediana": 3.0,
+          "curtosis": -0.7109,
+          "asimetria": -0.2447,
+          "desviacion": 1.1536
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 13,
+              "pct": 0.0722,
+              "valor": "1"
+            },
+            {
+              "n": 31,
+              "pct": 0.1722,
+              "valor": "2"
+            },
+            {
+              "n": 54,
+              "pct": 0.3,
+              "valor": "3"
+            },
+            {
+              "n": 52,
+              "pct": 0.2889,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.1667,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_de_item2"
+      },
+      "q18": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.233,
+        "std": 1.111,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 62,
+          "4": 49,
+          "2": 31,
+          "5": 25,
+          "1": 13
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2333,
+          "mediana": 3.0,
+          "curtosis": -0.5924,
+          "asimetria": -0.179,
+          "desviacion": 1.1142
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 13,
+              "pct": 0.0722,
+              "valor": "1"
+            },
+            {
+              "n": 31,
+              "pct": 0.1722,
+              "valor": "2"
+            },
+            {
+              "n": 62,
+              "pct": 0.3444,
+              "valor": "3"
+            },
+            {
+              "n": 49,
+              "pct": 0.2722,
+              "valor": "4"
+            },
+            {
+              "n": 25,
+              "pct": 0.1389,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_de_item3"
+      },
+      "q19": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.294,
+        "std": 1.124,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 55,
+          "3": 54,
+          "2": 32,
+          "5": 27,
+          "1": 12
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2944,
+          "mediana": 3.0,
+          "curtosis": -0.6707,
+          "asimetria": -0.2464,
+          "desviacion": 1.1271
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 12,
+              "pct": 0.0667,
+              "valor": "1"
+            },
+            {
+              "n": 32,
+              "pct": 0.1778,
+              "valor": "2"
+            },
+            {
+              "n": 54,
+              "pct": 0.3,
+              "valor": "3"
+            },
+            {
+              "n": 55,
+              "pct": 0.3056,
+              "valor": "4"
+            },
+            {
+              "n": 27,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "habilidades_par_item1_2"
+      },
+      "q20": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.178,
+        "std": 1.203,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 53,
+          "3": 46,
+          "2": 37,
+          "5": 26,
+          "1": 18
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1778,
+          "mediana": 3.0,
+          "curtosis": -0.9011,
+          "asimetria": -0.1928,
+          "desviacion": 1.2059
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 18,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 37,
+              "pct": 0.2056,
+              "valor": "2"
+            },
+            {
+              "n": 46,
+              "pct": 0.2556,
+              "valor": "3"
+            },
+            {
+              "n": 53,
+              "pct": 0.2944,
+              "valor": "4"
+            },
+            {
+              "n": 26,
+              "pct": 0.1444,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "habilidades_par_item2_2"
+      },
+      "q21": {
+        "type": "likert",
+        "n": 180,
+        "n_vacios": 0,
+        "mean": 3.283,
+        "std": 1.203,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 50,
+          "3": 46,
+          "2": 37,
+          "5": 33,
+          "1": 14
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 180,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2833,
+          "mediana": 3.0,
+          "curtosis": -0.9215,
+          "asimetria": -0.1948,
+          "desviacion": 1.2065
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 14,
+              "pct": 0.0778,
+              "valor": "1"
+            },
+            {
+              "n": 37,
+              "pct": 0.2056,
+              "valor": "2"
+            },
+            {
+              "n": 46,
+              "pct": 0.2556,
+              "valor": "3"
+            },
+            {
+              "n": 50,
+              "pct": 0.2778,
+              "valor": "4"
+            },
+            {
+              "n": 33,
+              "pct": 0.1833,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "habilidades_par_item3_2"
+      }
+    },
+    "global": {
+      "n_registros": 180,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 21
+    },
+    "reliability": [
+      {
+        "alfa": 0.935,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4",
+          "ítem 5",
+          "ítem 6",
+          "ítem 7"
+        ],
+        "bloque": "Organización y",
+        "n_casos": 180,
+        "n_items": 7,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.1667,
+            "alfa_si_se_elimina": 0.9234,
+            "correlacion_item_total": 0.807
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.1722,
+            "alfa_si_se_elimina": 0.9219,
+            "correlacion_item_total": 0.8219
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.0889,
+            "alfa_si_se_elimina": 0.9273,
+            "correlacion_item_total": 0.7648
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.1778,
+            "alfa_si_se_elimina": 0.9231,
+            "correlacion_item_total": 0.8098
+          },
+          {
+            "item": "ítem 5",
+            "media": 3.3111,
+            "alfa_si_se_elimina": 0.9293,
+            "correlacion_item_total": 0.744
+          },
+          {
+            "item": "ítem 6",
+            "media": 3.2444,
+            "alfa_si_se_elimina": 0.9243,
+            "correlacion_item_total": 0.7979
+          },
+          {
+            "item": "ítem 7",
+            "media": 3.2167,
+            "alfa_si_se_elimina": 0.9259,
+            "correlacion_item_total": 0.7792
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.8468,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 1",
+          "ítem 2",
+          "ítem 3"
+        ],
+        "bloque": "Habilidades par",
+        "n_casos": 180,
+        "n_items": 6,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.1833,
+            "alfa_si_se_elimina": 0.8196,
+            "correlacion_item_total": 0.638
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.25,
+            "alfa_si_se_elimina": 0.829,
+            "correlacion_item_total": 0.5927
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2167,
+            "alfa_si_se_elimina": 0.8259,
+            "correlacion_item_total": 0.6061
+          },
+          {
+            "item": "ítem 1",
+            "media": 3.2944,
+            "alfa_si_se_elimina": 0.8213,
+            "correlacion_item_total": 0.6304
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.1778,
+            "alfa_si_se_elimina": 0.814,
+            "correlacion_item_total": 0.6663
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2833,
+            "alfa_si_se_elimina": 0.8196,
+            "correlacion_item_total": 0.638
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.874,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3"
+        ],
+        "bloque": "Motivación",
+        "n_casos": 180,
+        "n_items": 3,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.3222,
+            "alfa_si_se_elimina": 0.8684,
+            "correlacion_item_total": 0.7048
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2444,
+            "alfa_si_se_elimina": 0.7806,
+            "correlacion_item_total": 0.8034
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.8124,
+            "correlacion_item_total": 0.7697
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.8094,
+        "items": [
+          "ítem 1",
+          "ítem 2"
+        ],
+        "bloque": "Recursos de apr",
+        "n_casos": 180,
+        "n_items": 2,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.3,
+            "alfa_si_se_elimina": null,
+            "correlacion_item_total": 0.6803
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2389,
+            "alfa_si_se_elimina": null,
+            "correlacion_item_total": 0.6803
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.8516,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3"
+        ],
+        "bloque": "Estrategias de",
+        "n_casos": 180,
+        "n_items": 3,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.3722,
+            "alfa_si_se_elimina": 0.8022,
+            "correlacion_item_total": 0.7115
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.3056,
+            "alfa_si_se_elimina": 0.8009,
+            "correlacion_item_total": 0.7133
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2333,
+            "alfa_si_se_elimina": 0.7751,
+            "correlacion_item_total": 0.7404
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.9367,
+        "items": [
+          "Organización_y__item1",
+          "Organización_y__item2",
+          "Organización_y__item3",
+          "Organización_y__item4",
+          "Organización_y__item5",
+          "Organización_y__item6",
+          "Organización_y__item7",
+          "Habilidades_par_item1",
+          "Habilidades_par_item2",
+          "Habilidades_par_item3",
+          "Motivación_item1",
+          "Motivación_item2",
+          "Motivación_item3",
+          "Recursos_de_apr_item1",
+          "Recursos_de_apr_item2",
+          "Estrategias_de__item1",
+          "Estrategias_de__item2",
+          "Estrategias_de__item3",
+          "Habilidades_par_item1",
+          "Habilidades_par_item2",
+          "Habilidades_par_item3"
+        ],
+        "bloque": "Todas las escalas Likert",
+        "n_casos": 180,
+        "n_items": 21,
+        "por_item": [
+          {
+            "item": "Organización_y__item1",
+            "media": 3.1667,
+            "alfa_si_se_elimina": 0.9323,
+            "correlacion_item_total": 0.7039
+          },
+          {
+            "item": "Organización_y__item2",
+            "media": 3.1722,
+            "alfa_si_se_elimina": 0.932,
+            "correlacion_item_total": 0.7194
+          },
+          {
+            "item": "Organización_y__item3",
+            "media": 3.0889,
+            "alfa_si_se_elimina": 0.9323,
+            "correlacion_item_total": 0.7029
+          },
+          {
+            "item": "Organización_y__item4",
+            "media": 3.1778,
+            "alfa_si_se_elimina": 0.9323,
+            "correlacion_item_total": 0.7009
+          },
+          {
+            "item": "Organización_y__item5",
+            "media": 3.3111,
+            "alfa_si_se_elimina": 0.9329,
+            "correlacion_item_total": 0.6687
+          },
+          {
+            "item": "Organización_y__item6",
+            "media": 3.2444,
+            "alfa_si_se_elimina": 0.9319,
+            "correlacion_item_total": 0.7292
+          },
+          {
+            "item": "Organización_y__item7",
+            "media": 3.2167,
+            "alfa_si_se_elimina": 0.9327,
+            "correlacion_item_total": 0.6813
+          },
+          {
+            "item": "Habilidades_par_item1",
+            "media": 3.1833,
+            "alfa_si_se_elimina": 0.9339,
+            "correlacion_item_total": 0.6089
+          },
+          {
+            "item": "Habilidades_par_item2",
+            "media": 3.25,
+            "alfa_si_se_elimina": 0.9351,
+            "correlacion_item_total": 0.5473
+          },
+          {
+            "item": "Habilidades_par_item3",
+            "media": 3.2167,
+            "alfa_si_se_elimina": 0.9345,
+            "correlacion_item_total": 0.571
+          },
+          {
+            "item": "Motivación_item1",
+            "media": 3.3222,
+            "alfa_si_se_elimina": 0.9338,
+            "correlacion_item_total": 0.6179
+          },
+          {
+            "item": "Motivación_item2",
+            "media": 3.2444,
+            "alfa_si_se_elimina": 0.9341,
+            "correlacion_item_total": 0.599
+          },
+          {
+            "item": "Motivación_item3",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.9345,
+            "correlacion_item_total": 0.5813
+          },
+          {
+            "item": "Recursos_de_apr_item1",
+            "media": 3.3,
+            "alfa_si_se_elimina": 0.9336,
+            "correlacion_item_total": 0.6306
+          },
+          {
+            "item": "Recursos_de_apr_item2",
+            "media": 3.2389,
+            "alfa_si_se_elimina": 0.9338,
+            "correlacion_item_total": 0.6155
+          },
+          {
+            "item": "Estrategias_de__item1",
+            "media": 3.3722,
+            "alfa_si_se_elimina": 0.9355,
+            "correlacion_item_total": 0.5147
+          },
+          {
+            "item": "Estrategias_de__item2",
+            "media": 3.3056,
+            "alfa_si_se_elimina": 0.935,
+            "correlacion_item_total": 0.547
+          },
+          {
+            "item": "Estrategias_de__item3",
+            "media": 3.2333,
+            "alfa_si_se_elimina": 0.9347,
+            "correlacion_item_total": 0.558
+          },
+          {
+            "item": "Habilidades_par_item1",
+            "media": 3.2944,
+            "alfa_si_se_elimina": 0.934,
+            "correlacion_item_total": 0.6063
+          },
+          {
+            "item": "Habilidades_par_item2",
+            "media": 3.1778,
+            "alfa_si_se_elimina": 0.934,
+            "correlacion_item_total": 0.6028
+          },
+          {
+            "item": "Habilidades_par_item3",
+            "media": 3.2833,
+            "alfa_si_se_elimina": 0.935,
+            "correlacion_item_total": 0.5494
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      }
+    ]
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T03:16:24.171807+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/1__enc_01_respondido.csv",
+    "original": "raw/_/2__enc_01_original.txt",
+    "limpio": "clean/23/1__v1_encuesta_limpio.csv",
+    "nombre_archivo": "enc_01_respondido.csv"
+  },
+  "generated_at": "2026-11-12T03:16:24.172155+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T03:16:23.192448+00:00",
+    "archivo_limpio": "clean/23/1__v1_encuesta_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 33,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 18,
+        "cols_mas_nulos": [],
+        "n_respondentes": 180,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      },
+      "despues": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 32,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 18,
+        "cols_mas_nulos": [],
+        "n_respondentes": 180,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "fiabilidad": [
+        {
+          "alfa": 0.935,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4",
+            "ítem 5",
+            "ítem 6",
+            "ítem 7"
+          ],
+          "bloque": "Organización y",
+          "n_casos": 180,
+          "n_items": 7,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.1667,
+              "alfa_si_se_elimina": 0.9234,
+              "correlacion_item_total": 0.807
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.1722,
+              "alfa_si_se_elimina": 0.9219,
+              "correlacion_item_total": 0.8219
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.0889,
+              "alfa_si_se_elimina": 0.9273,
+              "correlacion_item_total": 0.7648
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.1778,
+              "alfa_si_se_elimina": 0.9231,
+              "correlacion_item_total": 0.8098
+            },
+            {
+              "item": "ítem 5",
+              "media": 3.3111,
+              "alfa_si_se_elimina": 0.9293,
+              "correlacion_item_total": 0.744
+            },
+            {
+              "item": "ítem 6",
+              "media": 3.2444,
+              "alfa_si_se_elimina": 0.9243,
+              "correlacion_item_total": 0.7979
+            },
+            {
+              "item": "ítem 7",
+              "media": 3.2167,
+              "alfa_si_se_elimina": 0.9259,
+              "correlacion_item_total": 0.7792
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.8468,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 1",
+            "ítem 2",
+            "ítem 3"
+          ],
+          "bloque": "Habilidades par",
+          "n_casos": 180,
+          "n_items": 6,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.1833,
+              "alfa_si_se_elimina": 0.8196,
+              "correlacion_item_total": 0.638
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.25,
+              "alfa_si_se_elimina": 0.829,
+              "correlacion_item_total": 0.5927
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2167,
+              "alfa_si_se_elimina": 0.8259,
+              "correlacion_item_total": 0.6061
+            },
+            {
+              "item": "ítem 1",
+              "media": 3.2944,
+              "alfa_si_se_elimina": 0.8213,
+              "correlacion_item_total": 0.6304
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.1778,
+              "alfa_si_se_elimina": 0.814,
+              "correlacion_item_total": 0.6663
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2833,
+              "alfa_si_se_elimina": 0.8196,
+              "correlacion_item_total": 0.638
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.874,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3"
+          ],
+          "bloque": "Motivación",
+          "n_casos": 180,
+          "n_items": 3,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.3222,
+              "alfa_si_se_elimina": 0.8684,
+              "correlacion_item_total": 0.7048
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2444,
+              "alfa_si_se_elimina": 0.7806,
+              "correlacion_item_total": 0.8034
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.8124,
+              "correlacion_item_total": 0.7697
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.8094,
+          "items": [
+            "ítem 1",
+            "ítem 2"
+          ],
+          "bloque": "Recursos de apr",
+          "n_casos": 180,
+          "n_items": 2,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.3,
+              "alfa_si_se_elimina": null,
+              "correlacion_item_total": 0.6803
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2389,
+              "alfa_si_se_elimina": null,
+              "correlacion_item_total": 0.6803
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.8516,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3"
+          ],
+          "bloque": "Estrategias de",
+          "n_casos": 180,
+          "n_items": 3,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.3722,
+              "alfa_si_se_elimina": 0.8022,
+              "correlacion_item_total": 0.7115
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.3056,
+              "alfa_si_se_elimina": 0.8009,
+              "correlacion_item_total": 0.7133
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2333,
+              "alfa_si_se_elimina": 0.7751,
+              "correlacion_item_total": 0.7404
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.9367,
+          "items": [
+            "Organización_y__item1",
+            "Organización_y__item2",
+            "Organización_y__item3",
+            "Organización_y__item4",
+            "Organización_y__item5",
+            "Organización_y__item6",
+            "Organización_y__item7",
+            "Habilidades_par_item1",
+            "Habilidades_par_item2",
+            "Habilidades_par_item3",
+            "Motivación_item1",
+            "Motivación_item2",
+            "Motivación_item3",
+            "Recursos_de_apr_item1",
+            "Recursos_de_apr_item2",
+            "Estrategias_de__item1",
+            "Estrategias_de__item2",
+            "Estrategias_de__item3",
+            "Habilidades_par_item1",
+            "Habilidades_par_item2",
+            "Habilidades_par_item3"
+          ],
+          "bloque": "Todas las escalas Likert",
+          "n_casos": 180,
+          "n_items": 21,
+          "por_item": [
+            {
+              "item": "Organización_y__item1",
+              "media": 3.1667,
+              "alfa_si_se_elimina": 0.9323,
+              "correlacion_item_total": 0.7039
+            },
+            {
+              "item": "Organización_y__item2",
+              "media": 3.1722,
+              "alfa_si_se_elimina": 0.932,
+              "correlacion_item_total": 0.7194
+            },
+            {
+              "item": "Organización_y__item3",
+              "media": 3.0889,
+              "alfa_si_se_elimina": 0.9323,
+              "correlacion_item_total": 0.7029
+            },
+            {
+              "item": "Organización_y__item4",
+              "media": 3.1778,
+              "alfa_si_se_elimina": 0.9323,
+              "correlacion_item_total": 0.7009
+            },
+            {
+              "item": "Organización_y__item5",
+              "media": 3.3111,
+              "alfa_si_se_elimina": 0.9329,
+              "correlacion_item_total": 0.6687
+            },
+            {
+              "item": "Organización_y__item6",
+              "media": 3.2444,
+              "alfa_si_se_elimina": 0.9319,
+              "correlacion_item_total": 0.7292
+            },
+            {
+              "item": "Organización_y__item7",
+              "media": 3.2167,
+              "alfa_si_se_elimina": 0.9327,
+              "correlacion_item_total": 0.6813
+            },
+            {
+              "item": "Habilidades_par_item1",
+              "media": 3.1833,
+              "alfa_si_se_elimina": 0.9339,
+              "correlacion_item_total": 0.6089
+            },
+            {
+              "item": "Habilidades_par_item2",
+              "media": 3.25,
+              "alfa_si_se_elimina": 0.9351,
+              "correlacion_item_total": 0.5473
+            },
+            {
+              "item": "Habilidades_par_item3",
+              "media": 3.2167,
+              "alfa_si_se_elimina": 0.9345,
+              "correlacion_item_total": 0.571
+            },
+            {
+              "item": "Motivación_item1",
+              "media": 3.3222,
+              "alfa_si_se_elimina": 0.9338,
+              "correlacion_item_total": 0.6179
+            },
+            {
+              "item": "Motivación_item2",
+              "media": 3.2444,
+              "alfa_si_se_elimina": 0.9341,
+              "correlacion_item_total": 0.599
+            },
+            {
+              "item": "Motivación_item3",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.9345,
+              "correlacion_item_total": 0.5813
+            },
+            {
+              "item": "Recursos_de_apr_item1",
+              "media": 3.3,
+              "alfa_si_se_elimina": 0.9336,
+              "correlacion_item_total": 0.6306
+            },
+            {
+              "item": "Recursos_de_apr_item2",
+              "media": 3.2389,
+              "alfa_si_se_elimina": 0.9338,
+              "correlacion_item_total": 0.6155
+            },
+            {
+              "item": "Estrategias_de__item1",
+              "media": 3.3722,
+              "alfa_si_se_elimina": 0.9355,
+              "correlacion_item_total": 0.5147
+            },
+            {
+              "item": "Estrategias_de__item2",
+              "media": 3.3056,
+              "alfa_si_se_elimina": 0.935,
+              "correlacion_item_total": 0.547
+            },
+            {
+              "item": "Estrategias_de__item3",
+              "media": 3.2333,
+              "alfa_si_se_elimina": 0.9347,
+              "correlacion_item_total": 0.558
+            },
+            {
+              "item": "Habilidades_par_item1",
+              "media": 3.2944,
+              "alfa_si_se_elimina": 0.934,
+              "correlacion_item_total": 0.6063
+            },
+            {
+              "item": "Habilidades_par_item2",
+              "media": 3.1778,
+              "alfa_si_se_elimina": 0.934,
+              "correlacion_item_total": 0.6028
+            },
+            {
+              "item": "Habilidades_par_item3",
+              "media": 3.2833,
+              "alfa_si_se_elimina": 0.935,
+              "correlacion_item_total": 0.5494
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        }
+      ],
+      "encuestados": {
+        "incompletos": 0,
+        "linea_recta": 18
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 5,
+      "nombre_kpi": "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "score": 0.4741
+    },
+    {
+      "kpi_id": 8,
+      "nombre_kpi": "Puntajes en Pruebas Estandarizadas de Referencia",
+      "score": 0.5058
+    }
+  ],
+  "finalized_at": "2026-11-12T03:16:34.321235+00:00"
+}

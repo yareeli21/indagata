@@ -1,0 +1,151 @@
+id_respondente,perfil,edad,genero,semestre,promedio_gpa,horas_trabajo_semana,tipo_universidad,nivel_ses,nivel_estudio,primera_generacion,tiene_beca,Expectativas_la_item1,Expectativas_la_item2,Expectativas_la_item3,Expectativas_la_item4,Competencias_pr_item1,Competencias_pr_item2,Competencias_pr_item3,Competencias_pr_item4,Redes_de_contac_item1,Redes_de_contac_item2,Tienes_experiencia_laboral_en_tu_área_d,Cuál_es_tu_principal_motivación_para_es,Tienes_planes_de_continuar_con_estudios,En_qué_sector_laboral_esperas_trabajar_,Has_realizado_prácticas_profesionales_o,Tu_institución_te_ha_conectado_con_empl,Conoces_los_servicios_de_bolsa_de_traba,"Del_1_al_10,_cuán_preparado/a_te_siente","Del_1_al_10,_cuánto_crees_que_tu_carrer",Cuál_es_el_salario_mensual_mínimo_que_e
+R0001,P4,35,femenino,12,3.17,49,publica,medio,pregrado,False,False,4,5,4,5,3,3,2,2,2,4,No tengo experiencia,Ingreso económico esperado,Lo estoy considerando,Empresa privada,No,No,Sí,2,1,29
+R0002,P4,33,masculino,4,2.99,47,publica,medio,pregrado,False,False,3,3,2,4,3,3,4,5,3,3,"Sí, como freelance",Expectativa familiar,Lo estoy considerando,Gobierno/Público,Sí,Sí,No,5,3,49
+R0003,P7,24,masculino,3,3.79,27,privada,alto,posgrado,False,False,5,5,4,5,5,4,4,5,4,4,"Sí, como freelance",Ingreso económico esperado,No tengo planes,Gobierno/Público,No,No,Sí,8,7,54
+R0004,P2,20,femenino,4,3.35,10,publica,medio,pregrado,False,False,3,3,3,2,5,5,5,5,5,4,"Sí, como freelance",Expectativa familiar,No tengo planes,Emprendimiento propio,No,No,No,5,5,23
+R0005,P5,26,femenino,12,3.6,16,mixta,medio,pregrado,False,False,3,2,2,4,5,4,4,3,5,3,"Sí, tiempo completo",Oportunidades laborales,"Sí, en algunos años",Empresa privada,Sí,Sí,Sí,7,9,30
+R0006,P2,19,femenino,4,2.88,12,publica,medio,pregrado,False,False,5,4,4,4,2,2,1,2,3,4,"Sí, como freelance",Ingreso económico esperado,No tengo planes,ONG/Social,Sí,No,No,6,7,46
+R0007,P1,20,femenino,5,3.64,6,privada,alto,pregrado,False,False,4,5,4,5,4,4,3,4,5,5,"Sí, tiempo completo",Expectativa familiar,"Sí, inmediatamente",Empresa privada,No,Sí,No,4,10,42
+R0008,P2,22,masculino,4,3.37,14,publica,medio,pregrado,False,False,4,4,3,3,3,3,3,3,1,2,No tengo experiencia,Ingreso económico esperado,Lo estoy considerando,Gobierno/Público,No,Sí,Sí,7,6,24
+R0009,P1,18,femenino,2,3.94,2,privada,alto,pregrado,False,False,4,4,4,5,5,5,5,5,5,5,"Sí, como freelance",Oportunidades laborales,No tengo planes,Academia/Investigación,Sí,No,Sí,5,7,45
+R0010,P2,24,femenino,8,2.87,12,publica,medio,pregrado,False,False,4,3,4,3,5,3,4,4,4,3,"Sí, tiempo completo",Expectativa familiar,"Sí, inmediatamente",Emprendimiento propio,No,No,Sí,9,8,19
+R0011,P1,19,femenino,1,3.58,5,privada,alto,pregrado,False,False,3,3,3,4,4,5,5,5,4,4,"Sí, en prácticas/pasantías",Expectativa familiar,No tengo planes,Academia/Investigación,Sí,No,No,1,2,12
+R0012,P5,24,masculino,10,3.67,15,mixta,medio,pregrado,False,False,4,3,4,3,3,3,2,2,4,3,"Sí, tiempo completo",Expectativa familiar,No tengo planes,Gobierno/Público,Sí,Sí,Sí,9,2,18
+R0013,P4,28,masculino,11,3.25,49,publica,medio,pregrado,False,False,4,3,3,4,3,2,1,1,3,1,"Sí, en prácticas/pasantías",Ingreso económico esperado,"Sí, inmediatamente",Empresa privada,Sí,Sí,No,8,5,59
+R0014,P1,18,masculino,7,3.9,0,privada,alto,pregrado,False,False,5,4,4,5,4,4,4,4,4,4,"Sí, como freelance",Expectativa familiar,No tengo planes,ONG/Social,No,Sí,No,8,2,54
+R0015,P4,26,femenino,9,2.87,37,publica,medio,pregrado,False,False,4,3,4,2,4,4,2,3,1,2,No tengo experiencia,Ingreso económico esperado,Lo estoy considerando,Academia/Investigación,Sí,Sí,No,3,10,12
+R0016,P7,33,femenino,4,3.72,22,privada,alto,posgrado,False,False,5,5,5,5,4,4,4,4,5,5,"Sí, en prácticas/pasantías",Oportunidades laborales,"Sí, en algunos años",Academia/Investigación,Sí,No,Sí,10,10,50
+R0017,P1,19,masculino,8,3.56,0,privada,alto,pregrado,False,False,4,4,4,5,4,4,4,4,4,4,"Sí, en prácticas/pasantías",Interés personal,"Sí, en algunos años",ONG/Social,Sí,Sí,No,7,2,25
+R0018,P2,21,femenino,9,3.49,10,publica,medio,pregrado,False,False,3,3,3,3,4,5,4,4,2,3,"Sí, tiempo completo",Ingreso económico esperado,"Sí, en algunos años",Gobierno/Público,No,Sí,Sí,6,4,16
+R0019,P7,34,masculino,5,3.88,22,privada,alto,posgrado,False,False,4,4,4,4,5,4,5,5,5,5,"Sí, como freelance",Expectativa familiar,"Sí, en algunos años",Academia/Investigación,No,No,No,3,3,20
+R0020,P1,19,femenino,8,3.75,0,privada,alto,pregrado,False,False,5,4,5,4,5,5,3,3,4,3,"Sí, en prácticas/pasantías",Oportunidades laborales,"Sí, en algunos años",ONG/Social,Sí,Sí,No,5,10,8
+R0021,P7,29,masculino,6,3.84,25,privada,alto,posgrado,False,False,5,4,4,4,4,4,4,4,4,5,"Sí, como freelance",Interés personal,"Sí, en algunos años",Emprendimiento propio,No,Sí,Sí,5,9,16
+R0022,P7,33,masculino,3,3.79,26,privada,alto,posgrado,False,False,5,5,5,5,5,5,5,5,4,5,"Sí, como freelance",Interés personal,No tengo planes,Empresa privada,Sí,Sí,No,4,3,13
+R0023,P2,23,femenino,9,3.46,9,publica,medio,pregrado,False,False,5,4,3,4,4,3,3,4,2,3,"Sí, tiempo completo",Oportunidades laborales,"Sí, inmediatamente",Emprendimiento propio,Sí,Sí,Sí,4,8,14
+R0024,P2,23,femenino,8,2.98,12,publica,medio,pregrado,False,False,4,3,3,4,3,2,2,4,5,3,No tengo experiencia,Oportunidades laborales,No tengo planes,Academia/Investigación,Sí,Sí,Sí,2,1,22
+R0025,P7,28,masculino,3,3.93,21,privada,alto,posgrado,False,False,5,5,5,4,5,5,4,5,4,4,"Sí, en prácticas/pasantías",Expectativa familiar,"Sí, en algunos años",ONG/Social,Sí,No,Sí,8,2,55
+R0026,P1,19,femenino,8,3.67,1,privada,alto,pregrado,False,False,5,5,5,4,4,4,4,4,5,5,"Sí, tiempo completo",Oportunidades laborales,"Sí, en algunos años",Emprendimiento propio,No,No,No,3,6,39
+R0027,P2,22,masculino,6,3.24,4,publica,medio,pregrado,False,False,5,4,4,5,3,3,5,3,4,4,"Sí, como freelance",Interés personal,"Sí, en algunos años",Emprendimiento propio,Sí,No,No,5,4,15
+R0028,P1,18,femenino,3,3.65,1,privada,alto,pregrado,False,False,4,4,4,4,5,5,4,4,5,4,"Sí, en prácticas/pasantías",Ingreso económico esperado,"Sí, inmediatamente",Empresa privada,No,No,No,4,2,42
+R0029,P5,27,femenino,7,3.16,18,mixta,medio,pregrado,False,False,3,3,3,3,4,3,3,3,3,4,"Sí, como freelance",Oportunidades laborales,Lo estoy considerando,Emprendimiento propio,No,No,No,10,6,57
+R0030,P4,27,masculino,7,2.96,35,publica,medio,pregrado,False,False,1,1,2,3,3,4,3,2,3,3,"Sí, tiempo completo",Oportunidades laborales,"Sí, inmediatamente",ONG/Social,Sí,Sí,Sí,6,9,11
+R0031,P7,24,masculino,5,3.84,12,privada,alto,posgrado,False,False,5,4,4,4,4,4,5,5,5,5,No tengo experiencia,Ingreso económico esperado,No tengo planes,ONG/Social,Sí,No,No,3,6,18
+R0032,P2,20,masculino,8,2.98,10,publica,medio,pregrado,False,False,4,4,2,4,2,3,3,2,2,2,No tengo experiencia,Oportunidades laborales,No tengo planes,ONG/Social,No,No,No,10,5,30
+R0033,P4,26,otro,8,3.16,48,publica,medio,pregrado,False,False,4,3,4,5,4,4,4,5,3,3,"Sí, en prácticas/pasantías",Oportunidades laborales,"Sí, en algunos años",Empresa privada,Sí,No,Sí,9,2,13
+R0034,P5,27,femenino,7,3.45,12,mixta,medio,pregrado,False,False,2,2,3,2,3,3,3,4,2,2,"Sí, tiempo completo",Oportunidades laborales,"Sí, en algunos años",Academia/Investigación,Sí,No,Sí,8,5,34
+R0035,P2,22,otro,4,2.92,15,publica,medio,pregrado,False,False,4,3,5,3,3,2,3,3,2,2,"Sí, como freelance",Ingreso económico esperado,"Sí, en algunos años",Empresa privada,No,No,Sí,2,9,39
+R0036,P7,25,femenino,1,3.79,26,privada,alto,posgrado,False,False,4,4,4,4,5,5,5,5,4,5,"Sí, tiempo completo",Expectativa familiar,No tengo planes,Emprendimiento propio,No,No,No,9,4,19
+R0037,P2,23,femenino,7,2.82,12,publica,medio,pregrado,False,False,4,4,4,3,2,3,3,2,3,3,"Sí, en prácticas/pasantías",Oportunidades laborales,No tengo planes,Emprendimiento propio,No,Sí,No,2,9,19
+R0038,P1,20,femenino,2,3.64,3,privada,alto,pregrado,False,False,5,5,5,5,5,5,5,5,3,3,"Sí, en prácticas/pasantías",Oportunidades laborales,"Sí, inmediatamente",Emprendimiento propio,No,No,Sí,2,2,45
+R0039,P2,21,femenino,4,3.0,14,publica,medio,pregrado,False,False,5,4,4,4,3,3,4,3,3,4,"Sí, tiempo completo",Oportunidades laborales,"Sí, inmediatamente",Empresa privada,No,No,Sí,4,7,35
+R0040,P5,26,masculino,7,3.41,11,mixta,medio,pregrado,False,False,3,3,2,3,2,2,2,4,4,3,"Sí, tiempo completo",Expectativa familiar,"Sí, inmediatamente",Academia/Investigación,No,Sí,Sí,1,7,38
+R0041,P5,23,masculino,7,3.28,9,mixta,medio,pregrado,False,False,3,4,3,4,2,3,2,3,4,3,No tengo experiencia,Interés personal,"Sí, en algunos años",Emprendimiento propio,No,No,No,1,3,8
+R0042,P7,26,femenino,5,3.88,20,privada,alto,posgrado,False,False,4,4,5,4,4,4,5,4,5,5,"Sí, como freelance",Ingreso económico esperado,"Sí, en algunos años",Gobierno/Público,No,No,No,1,2,45
+R0043,P4,25,masculino,8,3.24,37,publica,medio,pregrado,False,False,2,3,2,3,2,3,4,3,1,1,"Sí, en prácticas/pasantías",Oportunidades laborales,"Sí, en algunos años",Emprendimiento propio,No,No,No,4,7,36
+R0044,P7,28,masculino,6,3.72,15,privada,alto,posgrado,False,False,4,4,5,4,5,4,5,4,5,5,"Sí, tiempo completo",Expectativa familiar,"Sí, en algunos años",ONG/Social,Sí,Sí,Sí,6,7,44
+R0045,P4,31,masculino,9,2.79,30,publica,medio,pregrado,False,False,2,3,2,1,4,2,3,2,2,4,"Sí, tiempo completo",Ingreso económico esperado,Lo estoy considerando,Emprendimiento propio,Sí,Sí,No,2,4,23
+R0046,P7,26,masculino,3,3.89,17,privada,alto,posgrado,False,False,5,5,5,5,5,5,4,5,5,5,"Sí, como freelance",Oportunidades laborales,No tengo planes,Academia/Investigación,No,No,No,2,5,55
+R0047,P7,30,otro,1,3.92,12,privada,alto,posgrado,False,False,4,4,5,5,5,4,5,4,4,4,"Sí, como freelance",Expectativa familiar,No tengo planes,Empresa privada,No,Sí,Sí,6,10,5
+R0048,P2,24,masculino,6,3.27,2,publica,medio,pregrado,False,False,3,3,3,3,2,4,4,5,3,3,"Sí, tiempo completo",Expectativa familiar,"Sí, inmediatamente",Academia/Investigación,No,Sí,Sí,2,9,42
+R0049,P1,20,femenino,5,3.58,2,privada,alto,pregrado,False,False,4,5,4,3,4,4,4,4,4,5,"Sí, como freelance",Expectativa familiar,No tengo planes,Academia/Investigación,No,No,No,5,4,8
+R0050,P7,32,femenino,1,3.75,15,privada,alto,posgrado,False,False,5,5,5,5,5,5,5,5,4,4,"Sí, como freelance",Oportunidades laborales,Lo estoy considerando,Empresa privada,No,No,No,2,6,49
+R0051,P4,31,masculino,5,3.05,45,publica,medio,pregrado,False,False,4,3,4,4,3,2,3,2,2,3,"Sí, tiempo completo",Expectativa familiar,No tengo planes,Empresa privada,Sí,Sí,Sí,8,5,51
+R0052,P5,25,masculino,11,3.01,7,mixta,medio,pregrado,False,False,3,4,3,4,4,4,4,4,3,3,"Sí, tiempo completo",Expectativa familiar,No tengo planes,ONG/Social,No,Sí,Sí,8,9,33
+R0053,P2,24,masculino,9,3.11,10,publica,medio,pregrado,False,False,5,5,4,5,5,5,5,5,3,5,"Sí, tiempo completo",Oportunidades laborales,"Sí, inmediatamente",Empresa privada,No,No,No,10,5,36
+R0054,P2,24,femenino,2,3.38,10,publica,medio,pregrado,False,False,4,5,4,5,3,3,4,4,2,3,"Sí, tiempo completo",Ingreso económico esperado,No tengo planes,Gobierno/Público,No,No,No,10,1,18
+R0055,P2,24,femenino,7,3.41,0,publica,medio,pregrado,False,False,3,3,4,4,5,5,4,4,4,3,"Sí, tiempo completo",Interés personal,No tengo planes,Emprendimiento propio,No,No,Sí,8,2,5
+R0056,P2,19,masculino,9,2.95,7,publica,medio,pregrado,False,False,4,3,3,3,5,5,4,5,5,5,No tengo experiencia,Ingreso económico esperado,No tengo planes,Emprendimiento propio,No,Sí,Sí,2,8,10
+R0057,P4,30,masculino,6,2.95,44,publica,medio,pregrado,False,False,5,5,5,4,3,2,3,4,4,3,No tengo experiencia,Oportunidades laborales,No tengo planes,Emprendimiento propio,Sí,No,No,6,1,18
+R0058,P5,27,femenino,10,3.05,7,mixta,medio,pregrado,False,False,4,4,4,4,4,3,4,3,3,3,No tengo experiencia,Ingreso económico esperado,"Sí, inmediatamente",Emprendimiento propio,No,No,No,2,6,32
+R0059,P4,30,masculino,12,2.69,31,publica,medio,pregrado,False,False,2,2,1,1,3,3,4,2,2,2,No tengo experiencia,Interés personal,"Sí, en algunos años",Gobierno/Público,Sí,Sí,Sí,7,6,15
+R0060,P4,29,masculino,5,3.1,40,publica,medio,pregrado,False,False,2,3,2,1,3,4,4,5,3,3,"Sí, en prácticas/pasantías",Oportunidades laborales,Lo estoy considerando,ONG/Social,No,No,Sí,4,2,49
+R0061,P2,20,masculino,9,2.88,2,publica,medio,pregrado,False,False,4,4,5,5,5,3,5,3,2,3,"Sí, en prácticas/pasantías",Interés personal,"Sí, en algunos años",ONG/Social,Sí,No,No,5,7,44
+R0062,P2,22,femenino,9,3.36,8,publica,medio,pregrado,False,False,3,3,3,3,3,3,3,3,3,4,"Sí, como freelance",Ingreso económico esperado,Lo estoy considerando,Academia/Investigación,No,Sí,Sí,7,2,37
+R0063,P2,22,masculino,8,3.03,6,publica,medio,pregrado,False,False,1,2,3,2,3,2,4,3,3,3,No tengo experiencia,Expectativa familiar,Lo estoy considerando,Academia/Investigación,Sí,No,No,5,10,42
+R0064,P5,22,femenino,9,3.46,10,mixta,medio,pregrado,False,False,3,2,3,3,4,3,3,3,2,2,"Sí, como freelance",Oportunidades laborales,No tengo planes,Gobierno/Público,Sí,Sí,Sí,4,8,6
+R0065,P5,26,femenino,9,3.54,9,mixta,medio,pregrado,False,False,3,3,3,4,4,4,3,4,3,4,"Sí, como freelance",Expectativa familiar,"Sí, inmediatamente",ONG/Social,No,No,No,5,2,19
+R0066,P2,21,femenino,9,3.29,2,publica,medio,pregrado,False,False,5,4,5,4,3,2,4,3,4,3,No tengo experiencia,Interés personal,Lo estoy considerando,Academia/Investigación,No,No,No,3,4,18
+R0067,P4,29,femenino,8,3.12,33,publica,medio,pregrado,False,False,3,5,3,4,3,2,3,4,4,4,No tengo experiencia,Expectativa familiar,No tengo planes,Emprendimiento propio,No,No,Sí,3,9,6
+R0068,P2,24,masculino,7,3.25,13,publica,medio,pregrado,False,False,2,2,3,2,3,3,4,5,4,4,"Sí, como freelance",Expectativa familiar,No tengo planes,ONG/Social,No,No,Sí,2,1,29
+R0069,P7,33,femenino,3,3.75,18,privada,alto,posgrado,False,False,4,4,4,4,5,5,5,5,5,5,No tengo experiencia,Ingreso económico esperado,"Sí, inmediatamente",Emprendimiento propio,No,No,Sí,1,3,26
+R0070,P2,23,masculino,9,3.19,0,publica,medio,pregrado,False,False,4,3,4,4,4,2,3,4,4,3,"Sí, como freelance",Expectativa familiar,"Sí, en algunos años",Gobierno/Público,No,No,No,5,7,27
+R0071,P7,24,masculino,5,3.82,26,privada,alto,posgrado,False,False,5,5,4,5,5,5,5,4,5,5,"Sí, como freelance",Oportunidades laborales,Lo estoy considerando,ONG/Social,Sí,Sí,Sí,7,6,42
+R0072,P5,25,masculino,8,3.28,12,mixta,medio,pregrado,False,False,3,3,3,3,3,4,4,3,4,3,No tengo experiencia,Ingreso económico esperado,Lo estoy considerando,Academia/Investigación,Sí,No,Sí,1,3,44
+R0073,P7,35,masculino,2,3.8,22,privada,alto,posgrado,False,False,4,4,4,4,4,5,4,4,5,4,"Sí, como freelance",Ingreso económico esperado,No tengo planes,ONG/Social,Sí,Sí,Sí,5,2,23
+R0074,P5,27,masculino,10,3.53,7,mixta,medio,pregrado,False,False,1,2,1,3,5,4,3,3,3,2,"Sí, como freelance",Ingreso económico esperado,No tengo planes,Academia/Investigación,Sí,No,No,7,4,14
+R0075,P4,26,femenino,3,2.55,50,publica,medio,pregrado,False,False,5,5,5,5,3,1,1,2,4,3,No tengo experiencia,Expectativa familiar,No tengo planes,Emprendimiento propio,Sí,Sí,No,9,5,26
+R0076,P2,19,femenino,4,3.39,13,publica,medio,pregrado,False,False,4,3,3,3,4,3,4,4,5,5,"Sí, como freelance",Ingreso económico esperado,"Sí, inmediatamente",Academia/Investigación,No,Sí,Sí,9,1,25
+R0077,P2,20,femenino,5,3.32,14,publica,medio,pregrado,False,False,3,4,4,4,4,4,4,4,2,2,"Sí, en prácticas/pasantías",Expectativa familiar,Lo estoy considerando,Gobierno/Público,No,No,Sí,6,7,9
+R0078,P1,19,femenino,3,3.99,10,privada,alto,pregrado,False,False,4,5,5,4,3,4,3,3,4,4,"Sí, en prácticas/pasantías",Expectativa familiar,"Sí, inmediatamente",Academia/Investigación,No,No,Sí,10,5,35
+R0079,P7,32,masculino,2,3.74,10,privada,alto,posgrado,False,False,5,5,5,5,5,5,5,5,4,4,"Sí, en prácticas/pasantías",Ingreso económico esperado,"Sí, inmediatamente",Empresa privada,Sí,No,Sí,9,3,26
+R0080,P4,35,masculino,6,2.91,47,publica,medio,pregrado,False,False,3,4,2,1,4,3,2,3,1,2,No tengo experiencia,Expectativa familiar,"Sí, en algunos años",Empresa privada,No,No,No,4,10,60
+R0081,P4,33,masculino,8,2.72,38,publica,medio,pregrado,False,False,5,3,4,5,3,1,3,1,4,3,No tengo experiencia,Expectativa familiar,Lo estoy considerando,Gobierno/Público,No,Sí,No,5,9,12
+R0082,P2,23,masculino,2,3.08,4,publica,medio,pregrado,False,False,3,3,3,4,3,2,2,3,3,2,"Sí, en prácticas/pasantías",Interés personal,No tengo planes,Empresa privada,Sí,No,Sí,9,9,56
+R0083,P2,24,femenino,7,3.15,3,publica,medio,pregrado,False,False,3,3,2,3,3,2,4,3,4,4,"Sí, en prácticas/pasantías",Interés personal,Lo estoy considerando,Emprendimiento propio,No,No,Sí,8,10,24
+R0084,P2,20,masculino,3,3.26,2,publica,medio,pregrado,False,False,5,3,4,5,4,3,3,3,5,4,"Sí, como freelance",Interés personal,"Sí, en algunos años",Empresa privada,Sí,No,No,6,4,26
+R0085,P2,23,femenino,5,3.45,4,publica,medio,pregrado,False,False,4,3,3,4,4,3,3,4,2,4,"Sí, en prácticas/pasantías",Oportunidades laborales,"Sí, inmediatamente",Gobierno/Público,No,Sí,No,5,4,19
+R0086,P4,32,masculino,11,2.54,48,publica,medio,pregrado,False,False,3,3,3,3,1,2,2,2,4,5,"Sí, como freelance",Interés personal,"Sí, en algunos años",Empresa privada,No,Sí,No,3,4,23
+R0087,P2,23,masculino,8,3.09,13,publica,medio,pregrado,False,False,4,2,4,4,5,4,4,4,5,4,"Sí, tiempo completo",Expectativa familiar,Lo estoy considerando,Gobierno/Público,No,Sí,Sí,6,3,7
+R0088,P4,33,femenino,9,3.1,41,publica,medio,pregrado,False,False,3,2,3,2,2,2,1,1,1,4,"Sí, como freelance",Oportunidades laborales,No tengo planes,Academia/Investigación,No,No,No,1,9,58
+R0089,P2,20,masculino,4,3.42,0,publica,medio,pregrado,False,False,2,3,3,3,3,3,3,4,2,3,"Sí, tiempo completo",Interés personal,"Sí, inmediatamente",Emprendimiento propio,Sí,No,Sí,9,4,23
+R0090,P2,19,femenino,5,3.41,13,publica,medio,pregrado,False,False,4,4,4,4,5,4,4,3,2,2,"Sí, en prácticas/pasantías",Ingreso económico esperado,"Sí, inmediatamente",ONG/Social,Sí,No,Sí,5,8,53
+R0091,P5,22,masculino,9,3.48,9,mixta,medio,pregrado,False,False,3,4,4,3,3,3,4,3,3,3,"Sí, como freelance",Oportunidades laborales,Lo estoy considerando,Academia/Investigación,Sí,No,No,4,10,48
+R0092,P4,32,masculino,11,2.84,39,publica,medio,pregrado,False,False,3,4,4,1,4,2,4,3,3,2,"Sí, en prácticas/pasantías",Expectativa familiar,No tengo planes,Empresa privada,Sí,Sí,Sí,9,3,44
+R0093,P2,19,femenino,4,3.36,1,publica,medio,pregrado,False,False,3,5,5,3,1,2,1,2,4,4,No tengo experiencia,Interés personal,"Sí, inmediatamente",Academia/Investigación,Sí,No,No,10,4,26
+R0094,P7,29,masculino,1,3.94,25,privada,alto,posgrado,False,False,5,4,4,4,5,4,5,5,5,4,"Sí, tiempo completo",Expectativa familiar,No tengo planes,Emprendimiento propio,No,No,Sí,10,9,39
+R0095,P2,22,femenino,6,3.09,4,publica,medio,pregrado,False,False,4,4,5,4,5,4,5,5,3,3,"Sí, en prácticas/pasantías",Ingreso económico esperado,No tengo planes,Empresa privada,Sí,Sí,Sí,9,5,24
+R0096,P5,23,femenino,11,3.29,20,mixta,medio,pregrado,False,False,2,2,2,2,2,3,4,4,3,2,No tengo experiencia,Interés personal,Lo estoy considerando,Emprendimiento propio,Sí,No,Sí,5,10,45
+R0097,P5,24,masculino,7,3.19,11,mixta,medio,pregrado,False,False,2,2,3,3,2,2,2,2,3,2,"Sí, en prácticas/pasantías",Interés personal,Lo estoy considerando,Academia/Investigación,No,No,Sí,8,6,51
+R0098,P2,23,femenino,8,2.84,5,publica,medio,pregrado,False,False,5,4,5,3,3,4,4,5,3,3,"Sí, tiempo completo",Expectativa familiar,"Sí, en algunos años",Empresa privada,Sí,No,No,8,4,44
+R0099,P2,19,masculino,6,3.46,14,publica,medio,pregrado,False,False,3,3,2,3,4,4,4,4,4,3,"Sí, como freelance",Expectativa familiar,Lo estoy considerando,Empresa privada,Sí,No,No,7,5,27
+R0100,P1,22,masculino,6,3.65,8,privada,alto,pregrado,False,False,3,4,3,4,4,5,4,3,4,3,No tengo experiencia,Expectativa familiar,"Sí, en algunos años",Academia/Investigación,No,No,No,3,9,51
+R0101,P2,23,femenino,8,3.06,15,publica,medio,pregrado,False,False,4,4,4,4,4,3,3,4,5,2,No tengo experiencia,Oportunidades laborales,No tengo planes,Empresa privada,No,No,No,3,1,5
+R0102,P2,24,femenino,2,2.93,12,publica,medio,pregrado,False,False,2,2,2,2,4,5,3,5,3,5,No tengo experiencia,Oportunidades laborales,"Sí, en algunos años",ONG/Social,No,Sí,No,8,7,45
+R0103,P5,25,otro,9,3.44,9,mixta,medio,pregrado,False,False,4,4,4,3,2,2,2,2,4,2,"Sí, en prácticas/pasantías",Interés personal,Lo estoy considerando,Gobierno/Público,Sí,Sí,No,1,9,51
+R0104,P2,19,masculino,3,2.94,12,publica,medio,pregrado,False,False,3,4,4,3,5,5,5,4,3,2,No tengo experiencia,Interés personal,"Sí, inmediatamente",Emprendimiento propio,Sí,No,No,1,9,41
+R0105,P1,22,femenino,3,3.54,3,privada,alto,pregrado,False,False,4,3,4,4,3,4,4,4,4,4,"Sí, tiempo completo",Expectativa familiar,Lo estoy considerando,Academia/Investigación,Sí,Sí,Sí,7,6,31
+R0106,P1,18,femenino,6,3.85,6,privada,alto,pregrado,False,False,3,3,3,4,4,4,5,5,3,4,"Sí, tiempo completo",Expectativa familiar,Lo estoy considerando,Gobierno/Público,No,Sí,No,5,4,57
+R0107,P5,26,masculino,7,3.78,14,mixta,medio,pregrado,False,False,3,2,2,3,3,3,2,3,2,3,No tengo experiencia,Expectativa familiar,"Sí, en algunos años",Empresa privada,No,No,Sí,10,10,7
+R0108,P1,22,femenino,8,3.91,0,privada,alto,pregrado,False,False,5,4,4,5,4,5,5,4,5,5,"Sí, tiempo completo",Interés personal,"Sí, inmediatamente",Emprendimiento propio,No,No,No,8,4,57
+R0109,P4,28,masculino,12,3.14,31,publica,medio,pregrado,False,False,2,4,2,2,3,3,2,3,3,1,"Sí, como freelance",Ingreso económico esperado,No tengo planes,ONG/Social,No,Sí,No,3,4,20
+R0110,P2,20,femenino,2,2.95,8,publica,medio,pregrado,False,False,3,4,3,3,4,2,5,4,3,2,"Sí, como freelance",Expectativa familiar,No tengo planes,ONG/Social,No,No,Sí,4,6,28
+R0111,P2,19,masculino,5,3.39,2,publica,medio,pregrado,False,False,2,3,3,3,2,1,2,1,3,2,"Sí, tiempo completo",Interés personal,"Sí, en algunos años",Empresa privada,No,No,Sí,3,5,20
+R0112,P5,23,femenino,7,3.07,9,mixta,medio,pregrado,False,False,2,3,3,3,2,3,3,2,3,3,"Sí, tiempo completo",Ingreso económico esperado,Lo estoy considerando,Emprendimiento propio,Sí,Sí,Sí,2,3,60
+R0113,P5,26,femenino,8,3.59,11,mixta,medio,pregrado,False,False,3,4,4,4,3,2,3,2,3,3,"Sí, tiempo completo",Expectativa familiar,Lo estoy considerando,ONG/Social,No,No,Sí,3,4,26
+R0114,P4,35,femenino,12,3.01,34,publica,medio,pregrado,False,False,2,2,1,2,1,3,4,1,5,3,No tengo experiencia,Interés personal,"Sí, inmediatamente",Gobierno/Público,No,Sí,Sí,10,6,27
+R0115,P7,28,masculino,6,3.98,19,privada,alto,posgrado,False,False,5,4,5,5,5,4,4,4,4,5,"Sí, tiempo completo",Oportunidades laborales,"Sí, inmediatamente",Gobierno/Público,No,No,Sí,10,2,39
+R0116,P7,31,masculino,6,3.84,10,privada,alto,posgrado,False,False,5,4,4,4,5,4,5,5,4,3,"Sí, como freelance",Interés personal,Lo estoy considerando,Empresa privada,Sí,No,Sí,3,6,18
+R0117,P7,26,masculino,6,3.8,13,privada,alto,posgrado,False,False,5,5,5,5,5,4,4,4,5,4,No tengo experiencia,Interés personal,Lo estoy considerando,Emprendimiento propio,Sí,Sí,Sí,6,8,23
+R0118,P1,18,femenino,3,3.5,7,privada,alto,pregrado,False,False,4,4,5,5,4,4,5,4,4,5,No tengo experiencia,Expectativa familiar,"Sí, en algunos años",Gobierno/Público,Sí,No,No,1,2,16
+R0119,P1,22,masculino,8,3.55,3,privada,alto,pregrado,False,False,5,4,5,4,5,4,4,4,5,5,"Sí, en prácticas/pasantías",Interés personal,Lo estoy considerando,Academia/Investigación,Sí,Sí,No,2,3,45
+R0120,P7,29,masculino,1,3.74,15,privada,alto,posgrado,False,False,4,4,4,4,5,4,4,4,4,4,No tengo experiencia,Interés personal,"Sí, inmediatamente",Academia/Investigación,No,No,No,5,9,11
+R0121,P4,31,femenino,7,3.17,37,publica,medio,pregrado,False,False,3,3,3,3,3,2,1,3,3,3,"Sí, en prácticas/pasantías",Oportunidades laborales,Lo estoy considerando,Gobierno/Público,No,Sí,No,5,10,42
+R0122,P4,27,femenino,12,3.05,43,publica,medio,pregrado,False,False,2,2,2,2,2,2,2,4,3,3,No tengo experiencia,Expectativa familiar,"Sí, en algunos años",ONG/Social,Sí,No,Sí,7,2,25
+R0123,P4,26,masculino,9,2.81,48,publica,medio,pregrado,False,False,4,4,2,4,2,5,3,3,3,2,"Sí, en prácticas/pasantías",Oportunidades laborales,No tengo planes,Empresa privada,No,Sí,Sí,4,1,10
+R0124,P5,22,masculino,9,3.75,7,mixta,medio,pregrado,False,False,3,3,3,4,3,3,3,4,5,4,"Sí, tiempo completo",Interés personal,"Sí, en algunos años",Gobierno/Público,Sí,Sí,Sí,4,9,59
+R0125,P4,32,masculino,10,2.72,50,publica,medio,pregrado,False,False,3,4,4,4,1,1,1,1,4,2,"Sí, como freelance",Expectativa familiar,"Sí, inmediatamente",ONG/Social,No,Sí,No,8,10,24
+R0126,P1,22,femenino,6,3.91,2,privada,alto,pregrado,False,False,4,3,3,4,4,4,4,4,4,4,No tengo experiencia,Interés personal,Lo estoy considerando,Emprendimiento propio,No,Sí,No,10,6,23
+R0127,P1,19,femenino,8,3.87,10,privada,alto,pregrado,False,False,4,4,5,5,4,5,5,4,5,4,"Sí, como freelance",Interés personal,"Sí, inmediatamente",ONG/Social,Sí,No,No,7,9,9
+R0128,P2,19,femenino,6,3.42,6,publica,medio,pregrado,False,False,3,3,3,3,4,3,4,3,4,4,"Sí, tiempo completo",Expectativa familiar,"Sí, en algunos años",Academia/Investigación,Sí,Sí,No,3,5,56
+R0129,P7,24,masculino,5,3.78,17,privada,alto,posgrado,False,False,4,5,5,5,5,5,5,4,4,5,No tengo experiencia,Interés personal,Lo estoy considerando,Emprendimiento propio,Sí,No,Sí,5,4,55
+R0130,P2,20,masculino,5,3.34,4,publica,medio,pregrado,False,False,3,4,3,3,3,2,4,2,3,3,No tengo experiencia,Ingreso económico esperado,"Sí, inmediatamente",Emprendimiento propio,No,No,Sí,6,9,11
+R0131,P7,28,masculino,2,3.72,21,privada,alto,posgrado,False,False,4,4,5,5,4,4,3,4,5,5,No tengo experiencia,Ingreso económico esperado,"Sí, inmediatamente",Academia/Investigación,No,Sí,Sí,3,5,20
+R0132,P4,27,masculino,11,2.95,31,publica,medio,pregrado,False,False,4,2,3,2,3,5,3,4,3,3,"Sí, como freelance",Oportunidades laborales,No tengo planes,Academia/Investigación,No,Sí,No,2,5,13
+R0133,P7,27,masculino,2,3.81,10,privada,alto,posgrado,False,False,4,4,4,3,5,4,5,4,5,4,"Sí, en prácticas/pasantías",Expectativa familiar,"Sí, en algunos años",ONG/Social,No,Sí,No,9,6,44
+R0134,P7,29,femenino,4,3.72,30,privada,alto,posgrado,False,False,5,5,5,5,4,5,4,4,4,5,"Sí, tiempo completo",Interés personal,"Sí, en algunos años",Academia/Investigación,Sí,No,No,2,4,14
+R0135,P2,22,femenino,9,3.4,6,publica,medio,pregrado,False,False,2,4,3,5,3,3,4,4,5,2,No tengo experiencia,Ingreso económico esperado,"Sí, en algunos años",Empresa privada,No,No,No,2,3,27
+R0136,P4,35,femenino,10,2.64,34,publica,medio,pregrado,False,False,4,4,2,4,3,4,2,4,5,5,"Sí, en prácticas/pasantías",Oportunidades laborales,"Sí, en algunos años",Academia/Investigación,No,No,Sí,2,2,35
+R0137,P5,22,masculino,10,3.09,8,mixta,medio,pregrado,False,False,2,2,2,2,2,2,2,2,3,3,"Sí, como freelance",Ingreso económico esperado,No tengo planes,Emprendimiento propio,Sí,Sí,No,1,1,58
+R0138,P1,21,masculino,5,3.81,7,privada,alto,pregrado,False,False,5,4,5,5,4,4,4,5,5,4,"Sí, como freelance",Interés personal,"Sí, en algunos años",Empresa privada,No,No,No,3,7,60
+R0139,P1,19,masculino,2,3.92,10,privada,alto,pregrado,False,False,5,5,4,5,3,4,3,3,3,4,No tengo experiencia,Interés personal,"Sí, inmediatamente",Gobierno/Público,Sí,Sí,No,2,5,28
+R0140,P5,27,masculino,8,3.11,16,mixta,medio,pregrado,False,False,4,3,2,3,3,4,4,3,3,4,"Sí, en prácticas/pasantías",Interés personal,No tengo planes,Empresa privada,No,Sí,No,7,9,16
+R0141,P7,34,masculino,3,3.8,16,privada,alto,posgrado,False,False,5,5,5,5,5,5,5,5,4,4,No tengo experiencia,Expectativa familiar,"Sí, inmediatamente",ONG/Social,Sí,Sí,No,9,6,37
+R0142,P2,21,femenino,4,3.03,11,publica,medio,pregrado,False,False,3,3,3,3,5,4,4,4,4,3,"Sí, como freelance",Oportunidades laborales,Lo estoy considerando,Gobierno/Público,No,Sí,No,9,6,23
+R0143,P2,23,femenino,4,3.28,12,publica,medio,pregrado,False,False,4,5,4,4,3,4,4,4,4,4,"Sí, tiempo completo",Interés personal,"Sí, en algunos años",ONG/Social,Sí,Sí,No,6,10,30
+R0144,P7,35,masculino,3,3.78,19,privada,alto,posgrado,False,False,5,5,5,5,4,3,4,3,4,4,"Sí, tiempo completo",Ingreso económico esperado,"Sí, inmediatamente",Academia/Investigación,Sí,No,No,9,3,52
+R0145,P2,21,femenino,8,3.37,11,publica,medio,pregrado,False,False,3,4,3,3,2,4,2,4,2,4,"Sí, como freelance",Oportunidades laborales,"Sí, inmediatamente",Empresa privada,No,Sí,Sí,5,9,28
+R0146,P7,32,masculino,1,3.83,10,privada,alto,posgrado,False,False,4,4,4,4,5,4,4,4,5,5,"Sí, en prácticas/pasantías",Ingreso económico esperado,"Sí, en algunos años",Academia/Investigación,No,Sí,Sí,7,10,34
+R0147,P1,18,femenino,4,3.78,1,privada,alto,pregrado,False,False,5,4,4,5,4,4,4,4,5,5,"Sí, tiempo completo",Oportunidades laborales,"Sí, inmediatamente",ONG/Social,Sí,No,No,4,6,36
+R0148,P2,23,masculino,8,3.15,3,publica,medio,pregrado,False,False,4,3,4,3,3,4,3,3,3,3,"Sí, como freelance",Expectativa familiar,No tengo planes,Empresa privada,Sí,No,No,5,7,24
+R0149,P1,19,femenino,5,3.61,10,privada,alto,pregrado,False,False,4,4,4,4,4,4,5,5,5,5,No tengo experiencia,Ingreso económico esperado,No tengo planes,Academia/Investigación,Sí,Sí,No,2,9,55
+R0150,P1,19,femenino,8,3.81,2,privada,alto,pregrado,False,False,4,4,4,5,4,5,5,5,4,4,"Sí, tiempo completo",Ingreso económico esperado,"Sí, inmediatamente",Emprendimiento propio,No,Sí,No,3,6,28

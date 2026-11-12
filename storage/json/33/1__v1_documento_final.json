@@ -1,0 +1,5193 @@
+{
+  "esquema_version": "1.0",
+  "instrumento": {
+    "id": "INS-0033",
+    "tipo": "encuesta",
+    "titulo": "Encuesta de evaluación y ambiente escolar por turno",
+    "objetivo": "No especificado",
+    "temas": [
+      "evaluación",
+      "escolar",
+      "siento",
+      "ambiente",
+      "turno",
+      "criterios",
+      "EVALUACIÓN DEL APRENDIZAJE",
+      "AMBIENTE ESCOLAR",
+      "No especificado"
+    ],
+    "palabras_clave": [
+      "evaluación",
+      "escolar",
+      "siento",
+      "ambiente",
+      "turno",
+      "criterios",
+      "explican",
+      "claridad"
+    ],
+    "nivel_educativo": "No especificado",
+    "poblacion": "No especificado",
+    "contexto": "Institución: Indagata. Cobertura: No especificado",
+    "n_respondentes": 60
+  },
+  "kpis_asociados": [
+    {
+      "fecha": "2026-11-12T03:26:48.460286+00:00",
+      "kpi_id": "KPI-05",
+      "nombre": "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "que_mide": "Promedio de alumnos inscritos por aula o sección académica. Evalúa la capacidad de la institución para ofrecer personalización docente y un entorno propicio para la participación activa.",
+      "dimension": "Reducir / Mantener en límite máximo (KPI de Calidad de Atención)",
+      "evidencia": [
+        {
+          "similitud": 0.6334,
+          "pregunta_id": "INS-0033-p04"
+        },
+        {
+          "similitud": 0.5762,
+          "pregunta_id": "INS-0033-p02"
+        },
+        {
+          "similitud": 0.5123,
+          "pregunta_id": "INS-0033-p03"
+        },
+        {
+          "similitud": 0.511,
+          "pregunta_id": "INS-0033-p07"
+        },
+        {
+          "similitud": 0.5005,
+          "pregunta_id": "INS-0033-p01"
+        }
+      ],
+      "similitud": 0.5856,
+      "definicion": "El KPI Tamaño Promedio de Clase mide el número medio de alumnos por sección. Es un indicador de control donde valores MÁS BAJOS suelen asociarse a mayor personalización y calidad didáctica. Un aumento desmedido indica hacinamiento y deterioro en la interacción estudiante-profesor, mientras que clases muy pequeñas pueden comprometer la rentabilidad operativa.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Tamaño Promedio de Clase (Alumnos por Aula)» porque las preguntas «Las evaluaciones están relacionadas con lo que se ve en clase.» y «Las calificaciones reflejan lo que realmente aprendí.» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    },
+    {
+      "fecha": "2026-11-12T03:26:48.460286+00:00",
+      "kpi_id": "KPI-08",
+      "nombre": "Puntajes en Pruebas Estandarizadas de Referencia",
+      "que_mide": "Puntaje promedio obtenido por los estudiantes en pruebas diagnósticas, exámenes de admisión o evaluaciones estatales estandarizadas que miden competencias básicas o profesionales.",
+      "dimension": "Aumentar / Incrementar (KPI de Nivel Académico de Ingreso/Salida)",
+      "evidencia": [
+        {
+          "similitud": 0.5507,
+          "pregunta_id": "INS-0033-p02"
+        },
+        {
+          "similitud": 0.5195,
+          "pregunta_id": "INS-0033-p04"
+        },
+        {
+          "similitud": 0.5164,
+          "pregunta_id": "INS-0033-p01"
+        },
+        {
+          "similitud": 0.4812,
+          "pregunta_id": "INS-0033-p03"
+        }
+      ],
+      "similitud": 0.5468,
+      "definicion": "El KPI Puntajes en Pruebas Estandarizadas es de impacto POSITIVO (Maximizar). Evalúa las competencias académicas mediante exámenes estandarizados (SAT, GMAT, etc.). Un incremento valida el rigor del aprendizaje y la capacidad intelectual de la cohorte. Un descenso alerta sobre falencias educativas o caída en el perfil de ingreso.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Puntajes en Pruebas Estandarizadas de Referencia» porque las preguntas «Las calificaciones reflejan lo que realmente aprendí.» y «Las evaluaciones están relacionadas con lo que se ve en clase.» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    }
+  ],
+  "secciones": [
+    {
+      "id": "INS-0033-s1",
+      "nombre": "EVALUACIÓN DEL APRENDIZAJE"
+    },
+    {
+      "id": "INS-0033-s2",
+      "nombre": "AMBIENTE ESCOLAR"
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "INS-0033-p01",
+      "seccion_id": "INS-0033-s1",
+      "texto": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+      "tipo": "likert",
+      "tipo_origen": "limpieza",
+      "kpis_relacionados": [
+        "KPI-05",
+        "KPI-08"
+      ],
+      "escala": {
+        "puntos": 5,
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "niveles": {
+          "desacuerdo": [
+            1,
+            2
+          ],
+          "neutral": [
+            3
+          ],
+          "acuerdo": [
+            4,
+            5
+          ]
+        },
+        "invertida": false,
+        "anclas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        }
+      },
+      "resumen": {
+        "n_validas": 60,
+        "n_sin_respuesta": 0,
+        "distribucion": [
+          {
+            "significado": "Totalmente en desacuerdo",
+            "n": 2,
+            "pct": 3.3
+          },
+          {
+            "significado": "En desacuerdo",
+            "n": 13,
+            "pct": 21.7
+          },
+          {
+            "significado": "Ni de acuerdo ni en desacuerdo",
+            "n": 22,
+            "pct": 36.7
+          },
+          {
+            "significado": "De acuerdo",
+            "n": 19,
+            "pct": 31.7
+          },
+          {
+            "significado": "Totalmente de acuerdo",
+            "n": 4,
+            "pct": 6.7
+          }
+        ],
+        "por_nivel": {
+          "neutral": 36.7,
+          "desacuerdo": 25.0,
+          "acuerdo": 38.3
+        },
+        "media": 3.17,
+        "mediana": 3.0,
+        "interpretacion": "Respuestas divididas: 38.3 % acuerdo, 36.7 % neutral, 25 % desacuerdo."
+      }
+    },
+    {
+      "id": "INS-0033-p02",
+      "seccion_id": "INS-0033-s1",
+      "texto": "Las calificaciones reflejan lo que realmente aprendí.",
+      "tipo": "likert",
+      "tipo_origen": "limpieza",
+      "kpis_relacionados": [
+        "KPI-05",
+        "KPI-08"
+      ],
+      "escala": {
+        "puntos": 5,
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "niveles": {
+          "desacuerdo": [
+            1,
+            2
+          ],
+          "neutral": [
+            3
+          ],
+          "acuerdo": [
+            4,
+            5
+          ]
+        },
+        "invertida": false,
+        "anclas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        }
+      },
+      "resumen": {
+        "n_validas": 60,
+        "n_sin_respuesta": 0,
+        "distribucion": [
+          {
+            "significado": "Totalmente en desacuerdo",
+            "n": 2,
+            "pct": 3.3
+          },
+          {
+            "significado": "En desacuerdo",
+            "n": 13,
+            "pct": 21.7
+          },
+          {
+            "significado": "Ni de acuerdo ni en desacuerdo",
+            "n": 25,
+            "pct": 41.7
+          },
+          {
+            "significado": "De acuerdo",
+            "n": 16,
+            "pct": 26.7
+          },
+          {
+            "significado": "Totalmente de acuerdo",
+            "n": 4,
+            "pct": 6.7
+          }
+        ],
+        "por_nivel": {
+          "desacuerdo": 25.0,
+          "neutral": 41.7,
+          "acuerdo": 33.3
+        },
+        "media": 3.12,
+        "mediana": 3.0,
+        "interpretacion": "Respuestas divididas: 41.7 % neutral, 33.3 % acuerdo, 25 % desacuerdo."
+      }
+    },
+    {
+      "id": "INS-0033-p03",
+      "seccion_id": "INS-0033-s1",
+      "texto": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+      "tipo": "likert",
+      "tipo_origen": "limpieza",
+      "kpis_relacionados": [
+        "KPI-05",
+        "KPI-08"
+      ],
+      "escala": {
+        "puntos": 5,
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "niveles": {
+          "desacuerdo": [
+            1,
+            2
+          ],
+          "neutral": [
+            3
+          ],
+          "acuerdo": [
+            4,
+            5
+          ]
+        },
+        "invertida": false,
+        "anclas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        }
+      },
+      "resumen": {
+        "n_validas": 60,
+        "n_sin_respuesta": 0,
+        "distribucion": [
+          {
+            "significado": "Totalmente en desacuerdo",
+            "n": 4,
+            "pct": 6.7
+          },
+          {
+            "significado": "En desacuerdo",
+            "n": 12,
+            "pct": 20.0
+          },
+          {
+            "significado": "Ni de acuerdo ni en desacuerdo",
+            "n": 17,
+            "pct": 28.3
+          },
+          {
+            "significado": "De acuerdo",
+            "n": 22,
+            "pct": 36.7
+          },
+          {
+            "significado": "Totalmente de acuerdo",
+            "n": 5,
+            "pct": 8.3
+          }
+        ],
+        "por_nivel": {
+          "neutral": 28.3,
+          "desacuerdo": 26.7,
+          "acuerdo": 45.0
+        },
+        "media": 3.2,
+        "mediana": 3.0,
+        "interpretacion": "Respuestas divididas: 45 % acuerdo, 28.3 % neutral, 26.7 % desacuerdo."
+      }
+    },
+    {
+      "id": "INS-0033-p04",
+      "seccion_id": "INS-0033-s1",
+      "texto": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+      "tipo": "likert",
+      "tipo_origen": "limpieza",
+      "kpis_relacionados": [
+        "KPI-05",
+        "KPI-08"
+      ],
+      "escala": {
+        "puntos": 5,
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "niveles": {
+          "desacuerdo": [
+            1,
+            2
+          ],
+          "neutral": [
+            3
+          ],
+          "acuerdo": [
+            4,
+            5
+          ]
+        },
+        "invertida": false,
+        "anclas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        }
+      },
+      "resumen": {
+        "n_validas": 60,
+        "n_sin_respuesta": 0,
+        "distribucion": [
+          {
+            "significado": "Totalmente en desacuerdo",
+            "n": 3,
+            "pct": 5.0
+          },
+          {
+            "significado": "En desacuerdo",
+            "n": 16,
+            "pct": 26.7
+          },
+          {
+            "significado": "Ni de acuerdo ni en desacuerdo",
+            "n": 20,
+            "pct": 33.3
+          },
+          {
+            "significado": "De acuerdo",
+            "n": 14,
+            "pct": 23.3
+          },
+          {
+            "significado": "Totalmente de acuerdo",
+            "n": 7,
+            "pct": 11.7
+          }
+        ],
+        "por_nivel": {
+          "neutral": 33.3,
+          "desacuerdo": 31.7,
+          "acuerdo": 35.0
+        },
+        "media": 3.1,
+        "mediana": 3.0,
+        "interpretacion": "Respuestas divididas: 35 % acuerdo, 33.3 % neutral, 31.7 % desacuerdo."
+      }
+    },
+    {
+      "id": "INS-0033-p05",
+      "seccion_id": "INS-0033-s2",
+      "texto": "Me siento seguro dentro de las instalaciones de la escuela.",
+      "tipo": "likert",
+      "tipo_origen": "limpieza",
+      "kpis_relacionados": [],
+      "escala": {
+        "puntos": 5,
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "niveles": {
+          "desacuerdo": [
+            1,
+            2
+          ],
+          "neutral": [
+            3
+          ],
+          "acuerdo": [
+            4,
+            5
+          ]
+        },
+        "invertida": false,
+        "anclas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        }
+      },
+      "resumen": {
+        "n_validas": 60,
+        "n_sin_respuesta": 0,
+        "distribucion": [
+          {
+            "significado": "Totalmente en desacuerdo",
+            "n": 2,
+            "pct": 3.3
+          },
+          {
+            "significado": "En desacuerdo",
+            "n": 5,
+            "pct": 8.3
+          },
+          {
+            "significado": "Ni de acuerdo ni en desacuerdo",
+            "n": 28,
+            "pct": 46.7
+          },
+          {
+            "significado": "De acuerdo",
+            "n": 20,
+            "pct": 33.3
+          },
+          {
+            "significado": "Totalmente de acuerdo",
+            "n": 5,
+            "pct": 8.3
+          }
+        ],
+        "por_nivel": {
+          "neutral": 46.7,
+          "desacuerdo": 11.7,
+          "acuerdo": 41.7
+        },
+        "media": 3.35,
+        "mediana": 3.0,
+        "interpretacion": "Respuestas divididas: 46.7 % neutral, 41.7 % acuerdo, 11.7 % desacuerdo."
+      }
+    },
+    {
+      "id": "INS-0033-p06",
+      "seccion_id": "INS-0033-s2",
+      "texto": "Las relaciones entre compañeros son respetuosas.",
+      "tipo": "likert",
+      "tipo_origen": "limpieza",
+      "kpis_relacionados": [],
+      "escala": {
+        "puntos": 5,
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "niveles": {
+          "desacuerdo": [
+            1,
+            2
+          ],
+          "neutral": [
+            3
+          ],
+          "acuerdo": [
+            4,
+            5
+          ]
+        },
+        "invertida": false,
+        "anclas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        }
+      },
+      "resumen": {
+        "n_validas": 60,
+        "n_sin_respuesta": 0,
+        "distribucion": [
+          {
+            "significado": "Totalmente en desacuerdo",
+            "n": 2,
+            "pct": 3.3
+          },
+          {
+            "significado": "En desacuerdo",
+            "n": 11,
+            "pct": 18.3
+          },
+          {
+            "significado": "Ni de acuerdo ni en desacuerdo",
+            "n": 18,
+            "pct": 30.0
+          },
+          {
+            "significado": "De acuerdo",
+            "n": 14,
+            "pct": 23.3
+          },
+          {
+            "significado": "Totalmente de acuerdo",
+            "n": 15,
+            "pct": 25.0
+          }
+        ],
+        "por_nivel": {
+          "neutral": 30.0,
+          "acuerdo": 48.3,
+          "desacuerdo": 21.7
+        },
+        "media": 3.48,
+        "mediana": 3.0,
+        "interpretacion": "Respuestas divididas: 48.3 % acuerdo, 30 % neutral, 21.7 % desacuerdo."
+      }
+    },
+    {
+      "id": "INS-0033-p07",
+      "seccion_id": "INS-0033-s2",
+      "texto": "Los profesores están disponibles para resolver dudas.",
+      "tipo": "likert",
+      "tipo_origen": "limpieza",
+      "kpis_relacionados": [
+        "KPI-05"
+      ],
+      "escala": {
+        "puntos": 5,
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "niveles": {
+          "desacuerdo": [
+            1,
+            2
+          ],
+          "neutral": [
+            3
+          ],
+          "acuerdo": [
+            4,
+            5
+          ]
+        },
+        "invertida": false,
+        "anclas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        }
+      },
+      "resumen": {
+        "n_validas": 60,
+        "n_sin_respuesta": 0,
+        "distribucion": [
+          {
+            "significado": "Totalmente en desacuerdo",
+            "n": 2,
+            "pct": 3.3
+          },
+          {
+            "significado": "En desacuerdo",
+            "n": 9,
+            "pct": 15.0
+          },
+          {
+            "significado": "Ni de acuerdo ni en desacuerdo",
+            "n": 25,
+            "pct": 41.7
+          },
+          {
+            "significado": "De acuerdo",
+            "n": 14,
+            "pct": 23.3
+          },
+          {
+            "significado": "Totalmente de acuerdo",
+            "n": 10,
+            "pct": 16.7
+          }
+        ],
+        "por_nivel": {
+          "neutral": 41.7,
+          "acuerdo": 40.0,
+          "desacuerdo": 18.3
+        },
+        "media": 3.35,
+        "mediana": 3.0,
+        "interpretacion": "Respuestas divididas: 41.7 % neutral, 40 % acuerdo, 18.3 % desacuerdo."
+      }
+    },
+    {
+      "id": "INS-0033-p08",
+      "seccion_id": "INS-0033-s2",
+      "texto": "Me siento parte de la comunidad escolar.",
+      "tipo": "likert",
+      "tipo_origen": "limpieza",
+      "kpis_relacionados": [],
+      "escala": {
+        "puntos": 5,
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        },
+        "niveles": {
+          "desacuerdo": [
+            1,
+            2
+          ],
+          "neutral": [
+            3
+          ],
+          "acuerdo": [
+            4,
+            5
+          ]
+        },
+        "invertida": false,
+        "anclas": {
+          "1": "Totalmente en desacuerdo",
+          "2": "En desacuerdo",
+          "3": "Ni de acuerdo ni en desacuerdo",
+          "4": "De acuerdo",
+          "5": "Totalmente de acuerdo"
+        }
+      },
+      "resumen": {
+        "n_validas": 60,
+        "n_sin_respuesta": 0,
+        "distribucion": [
+          {
+            "significado": "Totalmente en desacuerdo",
+            "n": 2,
+            "pct": 3.3
+          },
+          {
+            "significado": "En desacuerdo",
+            "n": 8,
+            "pct": 13.3
+          },
+          {
+            "significado": "Ni de acuerdo ni en desacuerdo",
+            "n": 20,
+            "pct": 33.3
+          },
+          {
+            "significado": "De acuerdo",
+            "n": 27,
+            "pct": 45.0
+          },
+          {
+            "significado": "Totalmente de acuerdo",
+            "n": 3,
+            "pct": 5.0
+          }
+        ],
+        "por_nivel": {
+          "acuerdo": 50.0,
+          "desacuerdo": 16.7,
+          "neutral": 33.3
+        },
+        "media": 3.35,
+        "mediana": 3.5,
+        "interpretacion": "Respuestas divididas: 50 % acuerdo, 33.3 % neutral, 16.7 % desacuerdo."
+      }
+    }
+  ],
+  "respondentes": [
+    {
+      "id": "INS-0033-R001",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "5",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R002",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "9",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R003",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "1",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R004",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "5",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R005",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "3",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R006",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "3",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R007",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "2",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R008",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "1",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R009",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "8",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R010",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "5",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R011",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "1",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R012",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "7",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R013",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "2",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R014",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "2",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R015",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "9",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R016",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "4",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R017",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "7",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R018",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "8",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R019",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "1",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R020",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "2",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R021",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "9",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R022",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "6",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R023",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "2",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R024",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "2",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R025",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "9",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R026",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "1",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R027",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "6",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R028",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "5",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R029",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "6",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R030",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "4",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R031",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "8",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R032",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "9",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R033",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "5",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R034",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "9",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R035",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "2",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R036",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "3",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R037",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "6",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R038",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "2",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R039",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "5",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R040",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "1",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R041",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "7",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R042",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "5",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R043",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "4",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R044",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "5",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R045",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "5",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R046",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "4",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R047",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "6",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R048",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "9",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R049",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "6",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R050",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "1",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R051",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "7",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R052",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "8",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 1,
+          "significado": "Totalmente en desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R053",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "7",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R054",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "2",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R055",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "9",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R056",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "8",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R057",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "9",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R058",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "3",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 5,
+          "significado": "Totalmente de acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R059",
+      "contexto": {
+        "turno": "Matutino",
+        "semestre": "1",
+        "genero": "femenino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 4,
+          "significado": "De acuerdo",
+          "nivel": "acuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        }
+      ]
+    },
+    {
+      "id": "INS-0033-R060",
+      "contexto": {
+        "turno": "Vespertino",
+        "semestre": "1",
+        "genero": "masculino"
+      },
+      "respuestas": [
+        {
+          "pregunta_id": "INS-0033-p01",
+          "pregunta": "Los criterios de evaluación se explican con claridad al inicio del curso.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p02",
+          "pregunta": "Las calificaciones reflejan lo que realmente aprendí.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p03",
+          "pregunta": "Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p04",
+          "pregunta": "Las evaluaciones están relacionadas con lo que se ve en clase.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p05",
+          "pregunta": "Me siento seguro dentro de las instalaciones de la escuela.",
+          "estado": "respondida",
+          "valor": 3,
+          "significado": "Ni de acuerdo ni en desacuerdo",
+          "nivel": "neutral"
+        },
+        {
+          "pregunta_id": "INS-0033-p06",
+          "pregunta": "Las relaciones entre compañeros son respetuosas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p07",
+          "pregunta": "Los profesores están disponibles para resolver dudas.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        },
+        {
+          "pregunta_id": "INS-0033-p08",
+          "pregunta": "Me siento parte de la comunidad escolar.",
+          "estado": "respondida",
+          "valor": 2,
+          "significado": "En desacuerdo",
+          "nivel": "desacuerdo"
+        }
+      ]
+    }
+  ],
+  "avisos": []
+}

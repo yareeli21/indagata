@@ -1,0 +1,1328 @@
+{
+  "instrument_id": "53",
+  "schema_version": "2.0",
+  "tipo_instrumento": "prueba_estandarizada",
+  "instrument": {
+    "title": "Evaluación de Competencias Interculturales",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "SECCIÓN: CONOCIMIENTO INTERCULTURAL",
+      "SECCIÓN: VERDADERO / FALSO INTERCULTURAL",
+      "SECCIÓN: ESCENARIOS INTERCULTURALES"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "pru_08_Conocimien_q1",
+            "text": "¿Qué es la competencia intercultural?",
+            "type": "opcion_multiple",
+            "options": [
+              "Saber hablar varios idiomas",
+              "La capacidad de comunicarse y actuar efectivamente en contextos culturalmente diversos",
+              "Conocer la historia de otros países",
+              "Haber vivido en el extranjero"
+            ]
+          },
+          {
+            "question_id": "pru_08_Conocimien_q2",
+            "text": "El etnocentrismo en contextos académicos implica:",
+            "type": "opcion_multiple",
+            "options": [
+              "Apreciar otras culturas como iguales",
+              "Juzgar otras culturas usando los propios valores como referencia",
+              "Estudiar múltiples idiomas",
+              "Fomentar el diálogo intercultural"
+            ]
+          },
+          {
+            "question_id": "pru_08_Conocimien_q3",
+            "text": "¿Cuál práctica favorece el aprendizaje intercultural en el aula?",
+            "type": "opcion_multiple",
+            "options": [
+              "Usar solo materiales de la cultura local",
+              "Incorporar perspectivas y autores de diversas culturas",
+              "Evitar temas políticamente sensibles",
+              "Separar a los estudiantes por nacionalidad"
+            ]
+          },
+          {
+            "question_id": "pru_08_Conocimien_q4",
+            "text": "La comunicación no verbal es especialmente relevante en contextos interculturales porque:",
+            "type": "opcion_multiple",
+            "options": [
+              "Es idéntica en todas las culturas",
+              "Puede tener significados muy diferentes según la cultura",
+              "No influye en la comunicación real",
+              "Solo es importante en idiomas no europeos"
+            ]
+          },
+          {
+            "question_id": "pru_08_Conocimien_q5",
+            "text": "¿Qué es la sensibilidad cultural?",
+            "type": "opcion_multiple",
+            "options": [
+              "Saber comer comida de otros países",
+              "La conciencia y respeto genuino hacia las diferencias culturales",
+              "Hablar en voz baja con extranjeros",
+              "Evitar contacto con personas de otras culturas"
+            ]
+          },
+          {
+            "question_id": "pru_08_Conocimien_q6",
+            "text": "En las dimensiones culturales de Hofstede, la 'distancia al poder' se refiere a:",
+            "type": "opcion_multiple",
+            "options": [
+              "La distancia física entre países",
+              "El grado en que los miembros menos poderosos aceptan la distribución desigual del poder",
+              "La diferencia de idiomas entre culturas",
+              "El nivel económico de un país"
+            ]
+          },
+          {
+            "question_id": "pru_08_Conocimien_q7",
+            "text": "¿Cuál es una barrera común en la comunicación intercultural?",
+            "type": "opcion_multiple",
+            "options": [
+              "Conocer demasiados idiomas",
+              "Los estereotipos y prejuicios culturales",
+              "La tecnología de comunicación",
+              "Viajar con frecuencia"
+            ]
+          },
+          {
+            "question_id": "pru_08_Conocimien_q8",
+            "text": "El concepto de 'choque cultural' describe:",
+            "type": "opcion_multiple",
+            "options": [
+              "Un accidente en el extranjero",
+              "La incomodidad o desorientación al adaptarse a una nueva cultura",
+              "El aprendizaje acelerado de un nuevo idioma",
+              "Una celebración multicultural"
+            ]
+          },
+          {
+            "question_id": "pru_08_Conocimien_q9",
+            "text": "¿Qué fomenta el desarrollo de la empatía intercultural?",
+            "type": "opcion_multiple",
+            "options": [
+              "Evitar interactuar con personas diferentes",
+              "Escuchar activamente y ponerse en el lugar del otro culturalmente",
+              "Juzgar las prácticas ajenas con los propios valores",
+              "Assumir que todos piensan igual"
+            ]
+          },
+          {
+            "question_id": "pru_08_Conocimien_q10",
+            "text": "¿Por qué es relevante la diversidad cultural en la educación superior?",
+            "type": "opcion_multiple",
+            "options": [
+              "No tiene ninguna relevancia académica",
+              "Enriquece el aprendizaje, amplía perspectivas y prepara para entornos globales",
+              "Solo es útil para carreras de idiomas",
+              "Complica la gestión académica"
+            ]
+          },
+          {
+            "question_id": "pru_08_Verdadero _q1",
+            "text": "La globalización ha reducido completamente las diferencias culturales.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_08_Verdadero _q2",
+            "text": "Los estereotipos culturales siempre tienen una base de verdad estadística significativa.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_08_Verdadero _q3",
+            "text": "El bilingüismo o multilingüismo facilita la competencia intercultural.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_08_Verdadero _q4",
+            "text": "En algunas culturas, el contacto visual directo se considera irrespetuoso.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_08_Verdadero _q5",
+            "text": "La diversidad cultural en las aulas solo genera conflictos y no aporta valor académico.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_08_Escenarios_q1",
+            "text": "Un estudiante internacional no participa en clase. ¿Cuál es la respuesta más apropiada del docente?",
+            "type": "opcion_multiple",
+            "options": [
+              "Ignorarlo",
+              "Investigar si hay barreras culturales o idiomáticas y brindar apoyo",
+              "Llamarle la atención públicamente",
+              "Reducir su calificación de participación"
+            ]
+          },
+          {
+            "question_id": "pru_08_Escenarios_q2",
+            "text": "Un grupo de trabajo tiene conflicto por diferentes estilos de comunicación cultural. El mejor enfoque es:",
+            "type": "opcion_multiple",
+            "options": [
+              "Asignar roles según la cultura de origen",
+              "Dialogar sobre las diferencias y establecer normas de comunicación compartidas",
+              "Disolver el grupo",
+              "Ignorar el conflicto"
+            ]
+          },
+          {
+            "question_id": "pru_08_Escenarios_q3",
+            "text": "Un estudiante de intercambio celebra una festividad que el resto desconoce. ¿Cuál es la actitud intercultural correcta?",
+            "type": "opcion_multiple",
+            "options": [
+              "Ignorarla para no perder tiempo de clase",
+              "Mostrar curiosidad y permitir que comparta su tradición como aprendizaje cultural",
+              "Pedirle que no hable de eso en clase",
+              "Asumir que es inferior a las festividades locales"
+            ]
+          },
+          {
+            "question_id": "pru_08_Escenarios_q4",
+            "text": "¿Cuál es el primer paso ante una incomprensión cultural en contexto académico?",
+            "type": "opcion_multiple",
+            "options": [
+              "Ignorarla",
+              "Pedir aclaración con respeto y sin asumir intenciones negativas",
+              "Reportar al docente sin hablar primero",
+              "Publicarlo en redes sociales"
+            ]
+          },
+          {
+            "question_id": "pru_08_Escenarios_q5",
+            "text": "Un docente nota que sus materiales de clase son culturalmente sesgados. ¿Qué debe hacer?",
+            "type": "opcion_multiple",
+            "options": [
+              "Ignorarlo porque es su cultura",
+              "Revisar y diversificar las fuentes y ejemplos utilizados",
+              "Continuar igual para mantener la coherencia",
+              "Eliminar todo el contenido cultural"
+            ]
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "prueba_estandarizada",
+    "dublin_core": {
+      "dc:title": "Evaluación de Competencias Interculturales",
+      "dc:creator": "Administrador",
+      "dc:subject": "intercultural, cultural, culturas, idiomas, comunicación, culturales",
+      "dc:description": "Prueba estandarizada de 20 reactivos aplicada a 90 alumnos.",
+      "dc:type": "Prueba estandarizada",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "D) Separar a los estudiantes por nacionalidad",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "pru_08_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "unidad_de_aprendizaje": "No especificado",
+      "mapeo_de_reactivos_por_seccion": {
+        "SECCIÓN: CONOCIMIENTO INTERCULTURAL": 10,
+        "SECCIÓN: VERDADERO / FALSO INTERCULTURAL": 5,
+        "SECCIÓN: ESCENARIOS INTERCULTURALES": 5
+      },
+      "grupo": "D",
+      "tipo_de_prueba": "No especificado",
+      "taxonomia_bloom": "Recordar (4)",
+      "nivel_educativo": "No especificado",
+      "objetivo_de_evaluacion": "No especificado"
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Ratio de Estudiantes Nacionales frente a Internacionales",
+      "Tasa de Participación en Programas de Intercambio / Estudio en el Extranjero"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "pru_08_Conocimien_q1": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 13,
+            "pct": 0.1444,
+            "opcion": "A"
+          },
+          {
+            "n": 35,
+            "pct": 0.3889,
+            "opcion": "B"
+          },
+          {
+            "n": 36,
+            "pct": 0.4,
+            "opcion": "C"
+          },
+          {
+            "n": 6,
+            "pct": 0.0667,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 36,
+          "pct": 0.4,
+          "opcion": "C",
+          "pct_validas": 0.4
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Conocimien_q2": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 2,
+            "pct": 0.0222,
+            "opcion": "A"
+          },
+          {
+            "n": 35,
+            "pct": 0.3889,
+            "opcion": "B"
+          },
+          {
+            "n": 47,
+            "pct": 0.5222,
+            "opcion": "C"
+          },
+          {
+            "n": 6,
+            "pct": 0.0667,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 47,
+          "pct": 0.5222,
+          "opcion": "C",
+          "pct_validas": 0.5222
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Conocimien_q3": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 29,
+            "pct": 0.3222,
+            "opcion": "A"
+          },
+          {
+            "n": 6,
+            "pct": 0.0667,
+            "opcion": "B"
+          },
+          {
+            "n": 41,
+            "pct": 0.4556,
+            "opcion": "C"
+          },
+          {
+            "n": 14,
+            "pct": 0.1556,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 41,
+          "pct": 0.4556,
+          "opcion": "C",
+          "pct_validas": 0.4556
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Conocimien_q4": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 70,
+            "pct": 0.7778,
+            "opcion": "A"
+          },
+          {
+            "n": 3,
+            "pct": 0.0333,
+            "opcion": "B"
+          },
+          {
+            "n": 11,
+            "pct": 0.1222,
+            "opcion": "C"
+          },
+          {
+            "n": 6,
+            "pct": 0.0667,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 70,
+          "pct": 0.7778,
+          "opcion": "A",
+          "pct_validas": 0.7778
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Conocimien_q5": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 30,
+            "pct": 0.3333,
+            "opcion": "A"
+          },
+          {
+            "n": 15,
+            "pct": 0.1667,
+            "opcion": "B"
+          },
+          {
+            "n": 12,
+            "pct": 0.1333,
+            "opcion": "C"
+          },
+          {
+            "n": 33,
+            "pct": 0.3667,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 33,
+          "pct": 0.3667,
+          "opcion": "D",
+          "pct_validas": 0.3667
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Conocimien_q6": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 7,
+            "pct": 0.0778,
+            "opcion": "A"
+          },
+          {
+            "n": 25,
+            "pct": 0.2778,
+            "opcion": "B"
+          },
+          {
+            "n": 10,
+            "pct": 0.1111,
+            "opcion": "C"
+          },
+          {
+            "n": 48,
+            "pct": 0.5333,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 48,
+          "pct": 0.5333,
+          "opcion": "D",
+          "pct_validas": 0.5333
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Conocimien_q7": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 25,
+            "pct": 0.2778,
+            "opcion": "A"
+          },
+          {
+            "n": 27,
+            "pct": 0.3,
+            "opcion": "B"
+          },
+          {
+            "n": 23,
+            "pct": 0.2556,
+            "opcion": "C"
+          },
+          {
+            "n": 15,
+            "pct": 0.1667,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 27,
+          "pct": 0.3,
+          "opcion": "B",
+          "pct_validas": 0.3
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Conocimien_q8": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 12,
+            "pct": 0.1333,
+            "opcion": "A"
+          },
+          {
+            "n": 3,
+            "pct": 0.0333,
+            "opcion": "B"
+          },
+          {
+            "n": 64,
+            "pct": 0.7111,
+            "opcion": "C"
+          },
+          {
+            "n": 11,
+            "pct": 0.1222,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 64,
+          "pct": 0.7111,
+          "opcion": "C",
+          "pct_validas": 0.7111
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Conocimien_q9": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 19,
+            "pct": 0.2111,
+            "opcion": "A"
+          },
+          {
+            "n": 34,
+            "pct": 0.3778,
+            "opcion": "B"
+          },
+          {
+            "n": 22,
+            "pct": 0.2444,
+            "opcion": "C"
+          },
+          {
+            "n": 15,
+            "pct": 0.1667,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 34,
+          "pct": 0.3778,
+          "opcion": "B",
+          "pct_validas": 0.3778
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Conocimien_q10": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 7,
+            "pct": 0.0778,
+            "opcion": "A"
+          },
+          {
+            "n": 14,
+            "pct": 0.1556,
+            "opcion": "B"
+          },
+          {
+            "n": 45,
+            "pct": 0.5,
+            "opcion": "C"
+          },
+          {
+            "n": 24,
+            "pct": 0.2667,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 45,
+          "pct": 0.5,
+          "opcion": "C",
+          "pct_validas": 0.5
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Verdadero _q1": {
+        "type": "verdadero_falso",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 67,
+            "pct": 0.7444,
+            "opcion": "V"
+          },
+          {
+            "n": 23,
+            "pct": 0.2556,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 67,
+          "pct": 0.7444,
+          "opcion": "V",
+          "pct_validas": 0.7444
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Verdadero _q2": {
+        "type": "verdadero_falso",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 33,
+            "pct": 0.3667,
+            "opcion": "V"
+          },
+          {
+            "n": 57,
+            "pct": 0.6333,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 57,
+          "pct": 0.6333,
+          "opcion": "F",
+          "pct_validas": 0.6333
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Verdadero _q3": {
+        "type": "verdadero_falso",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 65,
+            "pct": 0.7222,
+            "opcion": "V"
+          },
+          {
+            "n": 25,
+            "pct": 0.2778,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 65,
+          "pct": 0.7222,
+          "opcion": "V",
+          "pct_validas": 0.7222
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Verdadero _q4": {
+        "type": "verdadero_falso",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 27,
+            "pct": 0.3,
+            "opcion": "V"
+          },
+          {
+            "n": 63,
+            "pct": 0.7,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 63,
+          "pct": 0.7,
+          "opcion": "F",
+          "pct_validas": 0.7
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Verdadero _q5": {
+        "type": "verdadero_falso",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 47,
+            "pct": 0.5222,
+            "opcion": "V"
+          },
+          {
+            "n": 43,
+            "pct": 0.4778,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 47,
+          "pct": 0.5222,
+          "opcion": "V",
+          "pct_validas": 0.5222
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Escenarios_q1": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 1,
+            "pct": 0.0111,
+            "opcion": "A"
+          },
+          {
+            "n": 11,
+            "pct": 0.1222,
+            "opcion": "B"
+          },
+          {
+            "n": 3,
+            "pct": 0.0333,
+            "opcion": "C"
+          },
+          {
+            "n": 75,
+            "pct": 0.8333,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 75,
+          "pct": 0.8333,
+          "opcion": "D",
+          "pct_validas": 0.8333
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Escenarios_q2": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 20,
+            "pct": 0.2222,
+            "opcion": "A"
+          },
+          {
+            "n": 10,
+            "pct": 0.1111,
+            "opcion": "B"
+          },
+          {
+            "n": 19,
+            "pct": 0.2111,
+            "opcion": "C"
+          },
+          {
+            "n": 41,
+            "pct": 0.4556,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 41,
+          "pct": 0.4556,
+          "opcion": "D",
+          "pct_validas": 0.4556
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Escenarios_q3": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 6,
+            "pct": 0.0667,
+            "opcion": "A"
+          },
+          {
+            "n": 32,
+            "pct": 0.3556,
+            "opcion": "B"
+          },
+          {
+            "n": 27,
+            "pct": 0.3,
+            "opcion": "C"
+          },
+          {
+            "n": 25,
+            "pct": 0.2778,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 32,
+          "pct": 0.3556,
+          "opcion": "B",
+          "pct_validas": 0.3556
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Escenarios_q4": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 3,
+            "pct": 0.0333,
+            "opcion": "A"
+          },
+          {
+            "n": 45,
+            "pct": 0.5,
+            "opcion": "B"
+          },
+          {
+            "n": 9,
+            "pct": 0.1,
+            "opcion": "C"
+          },
+          {
+            "n": 33,
+            "pct": 0.3667,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 45,
+          "pct": 0.5,
+          "opcion": "B",
+          "pct_validas": 0.5
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_08_Escenarios_q5": {
+        "type": "opcion_multiple",
+        "n": 90,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 9,
+            "pct": 0.1,
+            "opcion": "A"
+          },
+          {
+            "n": 19,
+            "pct": 0.2111,
+            "opcion": "B"
+          },
+          {
+            "n": 43,
+            "pct": 0.4778,
+            "opcion": "C"
+          },
+          {
+            "n": 19,
+            "pct": 0.2111,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 43,
+          "pct": 0.4778,
+          "opcion": "C",
+          "pct_validas": 0.4778
+        },
+        "opciones_sin_elegir": []
+      }
+    },
+    "global": {
+      "n_registros": 90,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 20
+    }
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T04:17:59.769791+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/61__pru_08_respondido.csv",
+    "original": "raw/_/62__pru_08_original.txt",
+    "limpio": "clean/53/1__v1_prueba_estandarizada_limpio.csv",
+    "nombre_archivo": "pru_08_respondido.csv"
+  },
+  "generated_at": "2026-11-12T04:17:59.769946+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T04:17:58.840912+00:00",
+    "archivo_limpio": "clean/53/1__v1_prueba_estandarizada_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "conteos": {
+          "NR": 0,
+          "nula": 0,
+          "valida": 1800
+        },
+        "motivos": {
+          "ilegible": 0,
+          "duplicado": 0,
+          "no_respondida": 0,
+          "caracter_invalido": 0,
+          "respuesta_multiple": 0
+        },
+        "n_filas": 90,
+        "n_alumnos": 90,
+        "n_preguntas": 20,
+        "pct_validas": 1.0,
+        "columnas_extra": [],
+        "n_filas_vacias": 0,
+        "n_ids_duplicados": 0
+      },
+      "despues": {
+        "conteos": {
+          "NR": 0,
+          "nula": 0,
+          "valida": 1800
+        },
+        "motivos": {
+          "ilegible": 0,
+          "duplicado": 0,
+          "no_respondida": 0,
+          "caracter_invalido": 0,
+          "respuesta_multiple": 0
+        },
+        "n_alumnos": 90,
+        "n_preguntas": 20,
+        "pct_validas": 1.0,
+        "n_respuestas": 1800,
+        "n_ids_duplicados": 0
+      }
+    },
+    "avisos": [
+      "Se conservan como datos de contexto del alumno: perfil, edad, genero, semestre, promedio_gpa, horas_trabajo_semana, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca."
+    ],
+    "estadistica": {
+      "umbrales": {
+        "casi_unanime": 0.9,
+        "sin_respuesta": 0.2
+      },
+      "respuestas": {
+        "n_alumnos": 90,
+        "n_reactivos": 20,
+        "pct_sin_respuesta": 0.0
+      },
+      "resumen_reactivos": {
+        "casi_unanimes": 0,
+        "mucha_no_respuesta": 0,
+        "con_opciones_sin_elegir": 0
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 40,
+      "nombre_kpi": "Ratio de Estudiantes Nacionales frente a Internacionales",
+      "score": 0.6133
+    },
+    {
+      "kpi_id": 52,
+      "nombre_kpi": "Tasa de Participación en Programas de Intercambio / Estudio en el Extranjero",
+      "score": 0.5767
+    }
+  ],
+  "finalized_at": "2026-11-12T04:18:28.080518+00:00"
+}

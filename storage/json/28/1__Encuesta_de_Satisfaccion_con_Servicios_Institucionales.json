@@ -1,0 +1,2783 @@
+{
+  "instrument_id": "28",
+  "schema_version": "2.0",
+  "tipo_instrumento": "encuesta",
+  "instrument": {
+    "title": "Encuesta de Satisfacción con Servicios Institucionales",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "SERVICIOS ACADÉMICOS",
+      "INFRAESTRUCTURA",
+      "SEGURIDAD"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "SERVICIOS ACADÉMICOS",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "Los servicios de biblioteca (física y digital) son suficientes para mis necesidades.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q2",
+            "text": "El personal de la institución me orienta adecuadamente.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q3",
+            "text": "Los servicios de tutoría académica son accesibles y útiles.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q4",
+            "text": "Los trámites administrativos son eficientes y rápidos.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q5",
+            "text": "Los laboratorios y talleres están bien equipados.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s2",
+        "name": "INFRAESTRUCTURA",
+        "questions": [
+          {
+            "question_id": "q6",
+            "text": "Las aulas de clase son cómodas y adecuadas para el aprendizaje.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q7",
+            "text": "Las instalaciones deportivas y recreativas son satisfactorias.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q8",
+            "text": "La conectividad a internet del campus es buena.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q9",
+            "text": "Los espacios de estudio individual son suficientes.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q10",
+            "text": "La cafetería ofrece opciones variadas y de buena calidad.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s3",
+        "name": "SEGURIDAD",
+        "questions": [
+          {
+            "question_id": "q11",
+            "text": "Me siento seguro/a dentro del campus universitario.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q12",
+            "text": "Los protocolos de seguridad son visibles y efectivos.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q13",
+            "text": "El acceso controlado al campus me brinda confianza.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q14",
+            "text": "Los servicios de emergencia son accesibles.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q15",
+            "text": "El ambiente del campus es libre de acoso o violencia.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s4",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "q16",
+            "text": "Con_qué_frecuencia_utilizas_los_servici",
+            "type": "categorica",
+            "options": [
+              "Semanalmente",
+              "Nunca",
+              "Una vez al semestre",
+              "Una vez al mes"
+            ]
+          },
+          {
+            "question_id": "q17",
+            "text": "Cómo_calificarías_la_comunicación_insti",
+            "type": "likert",
+            "options": [
+              "Muy deficiente",
+              "Deficiente",
+              "Aceptable",
+              "Buena",
+              "Excelente"
+            ]
+          },
+          {
+            "question_id": "q18",
+            "text": "Cuál_servicio_usas_con_más_frecuencia",
+            "type": "categorica",
+            "options": [
+              "Cafetería",
+              "Laboratorios",
+              "Deportes",
+              "Tutoría",
+              "Biblioteca"
+            ]
+          },
+          {
+            "question_id": "q19",
+            "text": "Recomendarías_esta_institución_a_otras_",
+            "type": "categorica",
+            "options": [
+              "Probablemente sí",
+              "Definitivamente no",
+              "Probablemente no",
+              "Definitivamente sí"
+            ]
+          },
+          {
+            "question_id": "q20",
+            "text": "El_costo_de_los_servicios_complementari",
+            "type": "likert",
+            "options": [
+              "Totalmente en desacuerdo",
+              "En desacuerdo",
+              "Neutral",
+              "De acuerdo",
+              "Totalmente de acuerdo"
+            ]
+          },
+          {
+            "question_id": "q21",
+            "text": "Has_utilizado_el_servicio_de_bolsa_de_t",
+            "type": "binaria",
+            "options": [
+              "No",
+              "Sí"
+            ]
+          },
+          {
+            "question_id": "q22",
+            "text": "Has_recibido_atención_de_los_servicios_",
+            "type": "binaria",
+            "options": [
+              "Sí",
+              "No"
+            ]
+          },
+          {
+            "question_id": "q23",
+            "text": "Conoces_los_programas_de_becas_disponib",
+            "type": "binaria",
+            "options": [
+              "No",
+              "Sí"
+            ]
+          },
+          {
+            "question_id": "q24",
+            "text": "En_una_escala_del_0_al_10,_cuán_satisfe",
+            "type": "escala_lineal",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          },
+          {
+            "question_id": "q25",
+            "text": "En_una_escala_del_0_al_10,_qué_tan_prob",
+            "type": "escala_lineal",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "encuesta",
+    "dublin_core": {
+      "dc:title": "Encuesta de Satisfacción con Servicios Institucionales",
+      "dc:creator": "Administrador",
+      "dc:subject": "servicios, campus, institución, buena, suficientes, accesibles",
+      "dc:description": "Encuesta de 25 reactivos aplicada a 160 respondentes. Explora: servicios académicos; infraestructura; seguridad.",
+      "dc:type": "Encuesta",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "Licenciatura",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "enc_06_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "n_respondentes": 160,
+      "objetivo": "No especificado",
+      "poblacion_objetivo": "No especificado",
+      "constructo_principal": "No especificado",
+      "palabras_clave": [
+        "servicios",
+        "campus",
+        "institución",
+        "buena",
+        "suficientes",
+        "accesibles",
+        "seguridad",
+        "servicio"
+      ],
+      "dimensiones": [
+        "SERVICIOS ACADÉMICOS",
+        "INFRAESTRUCTURA",
+        "SEGURIDAD"
+      ],
+      "notas_contextuales": "Calidad de los datos: 160 registros con respuesta; 0% de respuestas vacías."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Estadísticas de Seguridad en el Campus (Índice de Criminalidad)",
+      "Uso de Servicios de Salud Mental y Apoyo Psicológico"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.35,
+        "std": 1.205,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 48,
+          "3": 46,
+          "5": 30,
+          "2": 20,
+          "1": 16
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.35,
+          "mediana": 3.0,
+          "curtosis": -0.6545,
+          "asimetria": -0.3996,
+          "desviacion": 1.209
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 16,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 20,
+              "pct": 0.125,
+              "valor": "2"
+            },
+            {
+              "n": 46,
+              "pct": 0.2875,
+              "valor": "3"
+            },
+            {
+              "n": 48,
+              "pct": 0.3,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.1875,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "servicios_acade_item1"
+      },
+      "q2": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.219,
+        "std": 1.138,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 47,
+          "3": 41,
+          "2": 40,
+          "5": 23,
+          "1": 9
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2188,
+          "mediana": 3.0,
+          "curtosis": -0.9239,
+          "asimetria": -0.0802,
+          "desviacion": 1.1419
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 9,
+              "pct": 0.0563,
+              "valor": "1"
+            },
+            {
+              "n": 40,
+              "pct": 0.25,
+              "valor": "2"
+            },
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "3"
+            },
+            {
+              "n": 47,
+              "pct": 0.2938,
+              "valor": "4"
+            },
+            {
+              "n": 23,
+              "pct": 0.1437,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "servicios_acade_item2"
+      },
+      "q3": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.231,
+        "std": 1.21,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 47,
+          "3": 40,
+          "2": 32,
+          "5": 26,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2313,
+          "mediana": 3.0,
+          "curtosis": -0.9056,
+          "asimetria": -0.2192,
+          "desviacion": 1.2143
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0938,
+              "valor": "1"
+            },
+            {
+              "n": 32,
+              "pct": 0.2,
+              "valor": "2"
+            },
+            {
+              "n": 40,
+              "pct": 0.25,
+              "valor": "3"
+            },
+            {
+              "n": 47,
+              "pct": 0.2938,
+              "valor": "4"
+            },
+            {
+              "n": 26,
+              "pct": 0.1625,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "servicios_acade_item3"
+      },
+      "q4": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.306,
+        "std": 1.235,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 45,
+          "4": 44,
+          "5": 31,
+          "2": 23,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.75,
+          "q3": 4.0,
+          "iqr": 1.25,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3062,
+          "mediana": 3.0,
+          "curtosis": -0.8009,
+          "asimetria": -0.3208,
+          "desviacion": 1.2388
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.1062,
+              "valor": "1"
+            },
+            {
+              "n": 23,
+              "pct": 0.1437,
+              "valor": "2"
+            },
+            {
+              "n": 45,
+              "pct": 0.2812,
+              "valor": "3"
+            },
+            {
+              "n": 44,
+              "pct": 0.275,
+              "valor": "4"
+            },
+            {
+              "n": 31,
+              "pct": 0.1938,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "servicios_acade_item4"
+      },
+      "q5": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.331,
+        "std": 1.166,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 53,
+          "3": 42,
+          "5": 26,
+          "2": 26,
+          "1": 13
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3312,
+          "mediana": 3.0,
+          "curtosis": -0.6885,
+          "asimetria": -0.362,
+          "desviacion": 1.1694
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 13,
+              "pct": 0.0813,
+              "valor": "1"
+            },
+            {
+              "n": 26,
+              "pct": 0.1625,
+              "valor": "2"
+            },
+            {
+              "n": 42,
+              "pct": 0.2625,
+              "valor": "3"
+            },
+            {
+              "n": 53,
+              "pct": 0.3312,
+              "valor": "4"
+            },
+            {
+              "n": 26,
+              "pct": 0.1625,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "servicios_acade_item5"
+      },
+      "q6": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.281,
+        "std": 1.157,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 47,
+          "4": 46,
+          "2": 29,
+          "5": 26,
+          "1": 12
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2812,
+          "mediana": 3.0,
+          "curtosis": -0.748,
+          "asimetria": -0.2255,
+          "desviacion": 1.1611
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 12,
+              "pct": 0.075,
+              "valor": "1"
+            },
+            {
+              "n": 29,
+              "pct": 0.1812,
+              "valor": "2"
+            },
+            {
+              "n": 47,
+              "pct": 0.2938,
+              "valor": "3"
+            },
+            {
+              "n": 46,
+              "pct": 0.2875,
+              "valor": "4"
+            },
+            {
+              "n": 26,
+              "pct": 0.1625,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "infraestructura_item1"
+      },
+      "q7": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.206,
+        "std": 1.162,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 46,
+          "3": 45,
+          "2": 33,
+          "5": 23,
+          "1": 13
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2062,
+          "mediana": 3.0,
+          "curtosis": -0.8166,
+          "asimetria": -0.1694,
+          "desviacion": 1.1661
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 13,
+              "pct": 0.0813,
+              "valor": "1"
+            },
+            {
+              "n": 33,
+              "pct": 0.2062,
+              "valor": "2"
+            },
+            {
+              "n": 45,
+              "pct": 0.2812,
+              "valor": "3"
+            },
+            {
+              "n": 46,
+              "pct": 0.2875,
+              "valor": "4"
+            },
+            {
+              "n": 23,
+              "pct": 0.1437,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "infraestructura_item2"
+      },
+      "q8": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.288,
+        "std": 1.211,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 57,
+          "3": 32,
+          "2": 31,
+          "5": 25,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2875,
+          "mediana": 4.0,
+          "curtosis": -0.8832,
+          "asimetria": -0.356,
+          "desviacion": 1.2151
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0938,
+              "valor": "1"
+            },
+            {
+              "n": 31,
+              "pct": 0.1938,
+              "valor": "2"
+            },
+            {
+              "n": 32,
+              "pct": 0.2,
+              "valor": "3"
+            },
+            {
+              "n": 57,
+              "pct": 0.3563,
+              "valor": "4"
+            },
+            {
+              "n": 25,
+              "pct": 0.1562,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "infraestructura_item3"
+      },
+      "q9": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.306,
+        "std": 1.24,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 50,
+          "2": 39,
+          "5": 31,
+          "3": 28,
+          "1": 12
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3062,
+          "mediana": 4.0,
+          "curtosis": -1.0929,
+          "asimetria": -0.2237,
+          "desviacion": 1.2438
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 12,
+              "pct": 0.075,
+              "valor": "1"
+            },
+            {
+              "n": 39,
+              "pct": 0.2437,
+              "valor": "2"
+            },
+            {
+              "n": 28,
+              "pct": 0.175,
+              "valor": "3"
+            },
+            {
+              "n": 50,
+              "pct": 0.3125,
+              "valor": "4"
+            },
+            {
+              "n": 31,
+              "pct": 0.1938,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "infraestructura_item4"
+      },
+      "q10": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.25,
+        "std": 1.225,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 48,
+          "3": 39,
+          "2": 30,
+          "5": 27,
+          "1": 16
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.25,
+          "mediana": 3.0,
+          "curtosis": -0.9021,
+          "asimetria": -0.2627,
+          "desviacion": 1.2286
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 16,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 30,
+              "pct": 0.1875,
+              "valor": "2"
+            },
+            {
+              "n": 39,
+              "pct": 0.2437,
+              "valor": "3"
+            },
+            {
+              "n": 48,
+              "pct": 0.3,
+              "valor": "4"
+            },
+            {
+              "n": 27,
+              "pct": 0.1688,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "infraestructura_item5"
+      },
+      "q11": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.119,
+        "std": 1.142,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 49,
+          "3": 45,
+          "2": 34,
+          "5": 17,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1187,
+          "mediana": 3.0,
+          "curtosis": -0.7913,
+          "asimetria": -0.1847,
+          "desviacion": 1.1458
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0938,
+              "valor": "1"
+            },
+            {
+              "n": 34,
+              "pct": 0.2125,
+              "valor": "2"
+            },
+            {
+              "n": 45,
+              "pct": 0.2812,
+              "valor": "3"
+            },
+            {
+              "n": 49,
+              "pct": 0.3063,
+              "valor": "4"
+            },
+            {
+              "n": 17,
+              "pct": 0.1062,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "seguridad_item1"
+      },
+      "q12": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.188,
+        "std": 1.141,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 51,
+          "4": 41,
+          "2": 33,
+          "5": 23,
+          "1": 12
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1875,
+          "mediana": 3.0,
+          "curtosis": -0.7509,
+          "asimetria": -0.0945,
+          "desviacion": 1.1448
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 12,
+              "pct": 0.075,
+              "valor": "1"
+            },
+            {
+              "n": 33,
+              "pct": 0.2062,
+              "valor": "2"
+            },
+            {
+              "n": 51,
+              "pct": 0.3187,
+              "valor": "3"
+            },
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "4"
+            },
+            {
+              "n": 23,
+              "pct": 0.1437,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "seguridad_item2"
+      },
+      "q13": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.163,
+        "std": 1.198,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 45,
+          "2": 41,
+          "3": 37,
+          "5": 24,
+          "1": 13
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1625,
+          "mediana": 3.0,
+          "curtosis": -1.0092,
+          "asimetria": -0.0759,
+          "desviacion": 1.2021
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 13,
+              "pct": 0.0813,
+              "valor": "1"
+            },
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "2"
+            },
+            {
+              "n": 37,
+              "pct": 0.2313,
+              "valor": "3"
+            },
+            {
+              "n": 45,
+              "pct": 0.2812,
+              "valor": "4"
+            },
+            {
+              "n": 24,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "seguridad_item3"
+      },
+      "q14": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.163,
+        "std": 1.204,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 47,
+          "2": 38,
+          "4": 34,
+          "5": 28,
+          "1": 13
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1625,
+          "mediana": 3.0,
+          "curtosis": -0.9377,
+          "asimetria": 0.0084,
+          "desviacion": 1.2074
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 13,
+              "pct": 0.0813,
+              "valor": "1"
+            },
+            {
+              "n": 38,
+              "pct": 0.2375,
+              "valor": "2"
+            },
+            {
+              "n": 47,
+              "pct": 0.2938,
+              "valor": "3"
+            },
+            {
+              "n": 34,
+              "pct": 0.2125,
+              "valor": "4"
+            },
+            {
+              "n": 28,
+              "pct": 0.175,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "seguridad_item4"
+      },
+      "q15": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.163,
+        "std": 1.188,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 44,
+          "4": 42,
+          "2": 36,
+          "5": 24,
+          "1": 14
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1625,
+          "mediana": 3.0,
+          "curtosis": -0.8995,
+          "asimetria": -0.0932,
+          "desviacion": 1.1916
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 14,
+              "pct": 0.0875,
+              "valor": "1"
+            },
+            {
+              "n": 36,
+              "pct": 0.225,
+              "valor": "2"
+            },
+            {
+              "n": 44,
+              "pct": 0.275,
+              "valor": "3"
+            },
+            {
+              "n": 42,
+              "pct": 0.2625,
+              "valor": "4"
+            },
+            {
+              "n": 24,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "seguridad_item5"
+      },
+      "q16": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Semanalmente": 47,
+          "Nunca": 40,
+          "Una vez al semestre": 38,
+          "Una vez al mes": 35
+        },
+        "frecuencias": {
+          "moda": "Semanalmente",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 47,
+              "pct": 0.2938,
+              "valor": "Semanalmente"
+            },
+            {
+              "n": 40,
+              "pct": 0.25,
+              "valor": "Nunca"
+            },
+            {
+              "n": 38,
+              "pct": 0.2375,
+              "valor": "Una vez al semestre"
+            },
+            {
+              "n": 35,
+              "pct": 0.2188,
+              "valor": "Una vez al mes"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "con_que_frecuencia_utilizas_los_servici"
+      },
+      "q17": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 2.888,
+        "std": 1.453,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "1": 38,
+          "4": 36,
+          "2": 36,
+          "5": 29,
+          "3": 21
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 2.8875,
+          "mediana": 3.0,
+          "curtosis": -1.4134,
+          "asimetria": 0.0869,
+          "desviacion": 1.458
+        },
+        "frecuencias": {
+          "moda": "Muy deficiente",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 38,
+              "pct": 0.2375,
+              "valor": "Muy deficiente"
+            },
+            {
+              "n": 36,
+              "pct": 0.225,
+              "valor": "Deficiente"
+            },
+            {
+              "n": 21,
+              "pct": 0.1313,
+              "valor": "Aceptable"
+            },
+            {
+              "n": 36,
+              "pct": 0.225,
+              "valor": "Buena"
+            },
+            {
+              "n": 29,
+              "pct": 0.1812,
+              "valor": "Excelente"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "calidad",
+          "puntos": 5,
+          "codigos": {
+            "Buena": 4,
+            "Aceptable": 3,
+            "Excelente": 5,
+            "Deficiente": 2,
+            "Muy deficiente": 1
+          },
+          "neutral": 3,
+          "etiquetas": [
+            "Muy deficiente",
+            "Deficiente",
+            "Aceptable",
+            "Buena",
+            "Excelente"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "como_calificarias_la_comunicacion_insti"
+      },
+      "q18": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Cafetería": 37,
+          "Laboratorios": 34,
+          "Deportes": 33,
+          "Tutoría": 29,
+          "Biblioteca": 27
+        },
+        "frecuencias": {
+          "moda": "Cafetería",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 37,
+              "pct": 0.2313,
+              "valor": "Cafetería"
+            },
+            {
+              "n": 34,
+              "pct": 0.2125,
+              "valor": "Laboratorios"
+            },
+            {
+              "n": 33,
+              "pct": 0.2062,
+              "valor": "Deportes"
+            },
+            {
+              "n": 29,
+              "pct": 0.1812,
+              "valor": "Tutoría"
+            },
+            {
+              "n": 27,
+              "pct": 0.1688,
+              "valor": "Biblioteca"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cual_servicio_usas_con_mas_frecuencia"
+      },
+      "q19": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Probablemente sí": 44,
+          "Definitivamente no": 43,
+          "Probablemente no": 40,
+          "Definitivamente sí": 33
+        },
+        "frecuencias": {
+          "moda": "Probablemente sí",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 44,
+              "pct": 0.275,
+              "valor": "Probablemente sí"
+            },
+            {
+              "n": 43,
+              "pct": 0.2687,
+              "valor": "Definitivamente no"
+            },
+            {
+              "n": 40,
+              "pct": 0.25,
+              "valor": "Probablemente no"
+            },
+            {
+              "n": 33,
+              "pct": 0.2062,
+              "valor": "Definitivamente sí"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "recomendarias_esta_institucion_a_otras"
+      },
+      "q20": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.069,
+        "std": 1.441,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "5": 41,
+          "2": 39,
+          "3": 31,
+          "1": 27,
+          "4": 22
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 5.0,
+          "iqr": 3.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.0688,
+          "mediana": 3.0,
+          "curtosis": -1.3637,
+          "asimetria": 0.0557,
+          "desviacion": 1.4455
+        },
+        "frecuencias": {
+          "moda": "Totalmente de acuerdo",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 27,
+              "pct": 0.1688,
+              "valor": "Totalmente en desacuerdo"
+            },
+            {
+              "n": 39,
+              "pct": 0.2437,
+              "valor": "En desacuerdo"
+            },
+            {
+              "n": 31,
+              "pct": 0.1938,
+              "valor": "Neutral"
+            },
+            {
+              "n": 22,
+              "pct": 0.1375,
+              "valor": "De acuerdo"
+            },
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "Totalmente de acuerdo"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "acuerdo",
+          "puntos": 5,
+          "codigos": {
+            "Neutral": 3,
+            "De acuerdo": 4,
+            "En desacuerdo": 2,
+            "Totalmente de acuerdo": 5,
+            "Totalmente en desacuerdo": 1
+          },
+          "neutral": 3,
+          "etiquetas": [
+            "Totalmente en desacuerdo",
+            "En desacuerdo",
+            "Neutral",
+            "De acuerdo",
+            "Totalmente de acuerdo"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "el_costo_de_los_servicios_complementari"
+      },
+      "q21": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "No": 83,
+          "Sí": 77
+        },
+        "frecuencias": {
+          "moda": "No",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 83,
+              "pct": 0.5188,
+              "valor": "No"
+            },
+            {
+              "n": 77,
+              "pct": 0.4813,
+              "valor": "Sí"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "has_utilizado_el_servicio_de_bolsa_de_t"
+      },
+      "q22": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Sí": 83,
+          "No": 77
+        },
+        "frecuencias": {
+          "moda": "Sí",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 83,
+              "pct": 0.5188,
+              "valor": "Sí"
+            },
+            {
+              "n": 77,
+              "pct": 0.4813,
+              "valor": "No"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "has_recibido_atencion_de_los_servicios"
+      },
+      "q23": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "No": 83,
+          "Sí": 77
+        },
+        "frecuencias": {
+          "moda": "No",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 83,
+              "pct": 0.5188,
+              "valor": "No"
+            },
+            {
+              "n": 77,
+              "pct": 0.4813,
+              "valor": "Sí"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "conoces_los_programas_de_becas_disponib"
+      },
+      "q24": {
+        "type": "escala_lineal",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 5.25,
+        "std": 3.146,
+        "min": 0.0,
+        "max": 10.0,
+        "distribution": {
+          "6": 19,
+          "4": 18,
+          "9": 17,
+          "10": 17,
+          "2": 16,
+          "1": 14,
+          "7": 14,
+          "5": 14,
+          "0": 12,
+          "8": 12,
+          "3": 7
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 8.0,
+          "iqr": 6.0,
+          "max": 10.0,
+          "min": 0.0,
+          "media": 5.25,
+          "mediana": 5.0,
+          "curtosis": -1.1798,
+          "asimetria": -0.086,
+          "desviacion": 3.1563
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "en_una_escala_del_0_al_10_cuan_satisfe"
+      },
+      "q25": {
+        "type": "escala_lineal",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 4.706,
+        "std": 3.249,
+        "min": 0.0,
+        "max": 10.0,
+        "distribution": {
+          "1": 23,
+          "0": 19,
+          "7": 18,
+          "6": 15,
+          "5": 14,
+          "9": 14,
+          "8": 14,
+          "3": 12,
+          "10": 11,
+          "2": 10,
+          "4": 10
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 1.0,
+          "q3": 7.0,
+          "iqr": 6.0,
+          "max": 10.0,
+          "min": 0.0,
+          "media": 4.7062,
+          "mediana": 5.0,
+          "curtosis": -1.328,
+          "asimetria": 0.0143,
+          "desviacion": 3.2594
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "en_una_escala_del_0_al_10_que_tan_prob"
+      }
+    },
+    "global": {
+      "n_registros": 160,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0012,
+      "n_reactivos": 25
+    },
+    "reliability": [
+      {
+        "alfa": 0.9321,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4",
+          "ítem 5"
+        ],
+        "bloque": "Servicios acadé",
+        "n_casos": 160,
+        "n_items": 5,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.35,
+            "alfa_si_se_elimina": 0.9135,
+            "correlacion_item_total": 0.8354
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2188,
+            "alfa_si_se_elimina": 0.9182,
+            "correlacion_item_total": 0.8119
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2313,
+            "alfa_si_se_elimina": 0.9176,
+            "correlacion_item_total": 0.8144
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.3062,
+            "alfa_si_se_elimina": 0.9118,
+            "correlacion_item_total": 0.8445
+          },
+          {
+            "item": "ítem 5",
+            "media": 3.3312,
+            "alfa_si_se_elimina": 0.9213,
+            "correlacion_item_total": 0.7942
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.9242,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4",
+          "ítem 5"
+        ],
+        "bloque": "Infraestructura",
+        "n_casos": 160,
+        "n_items": 5,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.2812,
+            "alfa_si_se_elimina": 0.9106,
+            "correlacion_item_total": 0.7837
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2062,
+            "alfa_si_se_elimina": 0.9045,
+            "correlacion_item_total": 0.8159
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2875,
+            "alfa_si_se_elimina": 0.9073,
+            "correlacion_item_total": 0.8006
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.3062,
+            "alfa_si_se_elimina": 0.9119,
+            "correlacion_item_total": 0.7789
+          },
+          {
+            "item": "ítem 5",
+            "media": 3.25,
+            "alfa_si_se_elimina": 0.9006,
+            "correlacion_item_total": 0.8341
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.9045,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4",
+          "ítem 5"
+        ],
+        "bloque": "Seguridad",
+        "n_casos": 160,
+        "n_items": 5,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.1187,
+            "alfa_si_se_elimina": 0.8798,
+            "correlacion_item_total": 0.7785
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.1875,
+            "alfa_si_se_elimina": 0.8724,
+            "correlacion_item_total": 0.8134
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.1625,
+            "alfa_si_se_elimina": 0.8864,
+            "correlacion_item_total": 0.7472
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.1625,
+            "alfa_si_se_elimina": 0.884,
+            "correlacion_item_total": 0.7585
+          },
+          {
+            "item": "ítem 5",
+            "media": 3.1625,
+            "alfa_si_se_elimina": 0.8944,
+            "correlacion_item_total": 0.7092
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.9124,
+        "items": [
+          "Servicios_acadé_item1",
+          "Servicios_acadé_item2",
+          "Servicios_acadé_item3",
+          "Servicios_acadé_item4",
+          "Servicios_acadé_item5",
+          "Infraestructura_item1",
+          "Infraestructura_item2",
+          "Infraestructura_item3",
+          "Infraestructura_item4",
+          "Infraestructura_item5",
+          "Seguridad_item1",
+          "Seguridad_item2",
+          "Seguridad_item3",
+          "Seguridad_item4",
+          "Seguridad_item5",
+          "Cómo_calificarías_la_comunicación_insti",
+          "El_costo_de_los_servicios_complementari"
+        ],
+        "bloque": "Todas las escalas Likert",
+        "n_casos": 160,
+        "n_items": 17,
+        "por_item": [
+          {
+            "item": "Servicios_acadé_item1",
+            "media": 3.35,
+            "alfa_si_se_elimina": 0.9043,
+            "correlacion_item_total": 0.6951
+          },
+          {
+            "item": "Servicios_acadé_item2",
+            "media": 3.2188,
+            "alfa_si_se_elimina": 0.9031,
+            "correlacion_item_total": 0.7458
+          },
+          {
+            "item": "Servicios_acadé_item3",
+            "media": 3.2313,
+            "alfa_si_se_elimina": 0.9038,
+            "correlacion_item_total": 0.7122
+          },
+          {
+            "item": "Servicios_acadé_item4",
+            "media": 3.3062,
+            "alfa_si_se_elimina": 0.9044,
+            "correlacion_item_total": 0.6876
+          },
+          {
+            "item": "Servicios_acadé_item5",
+            "media": 3.3312,
+            "alfa_si_se_elimina": 0.9056,
+            "correlacion_item_total": 0.652
+          },
+          {
+            "item": "Infraestructura_item1",
+            "media": 3.2812,
+            "alfa_si_se_elimina": 0.9053,
+            "correlacion_item_total": 0.6654
+          },
+          {
+            "item": "Infraestructura_item2",
+            "media": 3.2062,
+            "alfa_si_se_elimina": 0.904,
+            "correlacion_item_total": 0.7109
+          },
+          {
+            "item": "Infraestructura_item3",
+            "media": 3.2875,
+            "alfa_si_se_elimina": 0.9049,
+            "correlacion_item_total": 0.6722
+          },
+          {
+            "item": "Infraestructura_item4",
+            "media": 3.3062,
+            "alfa_si_se_elimina": 0.9037,
+            "correlacion_item_total": 0.7115
+          },
+          {
+            "item": "Infraestructura_item5",
+            "media": 3.25,
+            "alfa_si_se_elimina": 0.9034,
+            "correlacion_item_total": 0.7236
+          },
+          {
+            "item": "Seguridad_item1",
+            "media": 3.1187,
+            "alfa_si_se_elimina": 0.905,
+            "correlacion_item_total": 0.676
+          },
+          {
+            "item": "Seguridad_item2",
+            "media": 3.1875,
+            "alfa_si_se_elimina": 0.9055,
+            "correlacion_item_total": 0.6576
+          },
+          {
+            "item": "Seguridad_item3",
+            "media": 3.1625,
+            "alfa_si_se_elimina": 0.9054,
+            "correlacion_item_total": 0.658
+          },
+          {
+            "item": "Seguridad_item4",
+            "media": 3.1625,
+            "alfa_si_se_elimina": 0.9054,
+            "correlacion_item_total": 0.6578
+          },
+          {
+            "item": "Seguridad_item5",
+            "media": 3.1625,
+            "alfa_si_se_elimina": 0.906,
+            "correlacion_item_total": 0.6376
+          },
+          {
+            "item": "Cómo_calificarías_la_comunicación_insti",
+            "media": 2.8875,
+            "alfa_si_se_elimina": 0.928,
+            "correlacion_item_total": -0.0372
+          },
+          {
+            "item": "El_costo_de_los_servicios_complementari",
+            "media": 3.0688,
+            "alfa_si_se_elimina": 0.9238,
+            "correlacion_item_total": 0.095
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      }
+    ]
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T03:20:14.619699+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/11__enc_06_respondido.csv",
+    "original": "raw/_/12__enc_06_original.txt",
+    "limpio": "clean/28/1__v1_encuesta_limpio.csv",
+    "nombre_archivo": "enc_06_respondido.csv"
+  },
+  "generated_at": "2026-11-12T03:20:14.620260+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T03:20:13.701907+00:00",
+    "archivo_limpio": "clean/28/1__v1_encuesta_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "alertas": [
+          "valores_imposibles"
+        ],
+        "pct_nulos": 0.0,
+        "n_columnas": 37,
+        "n_duplicados": 0,
+        "n_imposibles": 7,
+        "n_incompletos": 0,
+        "n_linea_recta": 38,
+        "cols_mas_nulos": [],
+        "n_respondentes": 160,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      },
+      "despues": {
+        "alertas": [],
+        "pct_nulos": 0.0012,
+        "n_columnas": 36,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 38,
+        "cols_mas_nulos": [
+          {
+            "columna": "semestre",
+            "pct_nulos": 0.0437
+          }
+        ],
+        "n_respondentes": 160,
+        "pct_completitud": 0.9988,
+        "grupos_detectados": []
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "fiabilidad": [
+        {
+          "alfa": 0.9321,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4",
+            "ítem 5"
+          ],
+          "bloque": "Servicios acadé",
+          "n_casos": 160,
+          "n_items": 5,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.35,
+              "alfa_si_se_elimina": 0.9135,
+              "correlacion_item_total": 0.8354
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2188,
+              "alfa_si_se_elimina": 0.9182,
+              "correlacion_item_total": 0.8119
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2313,
+              "alfa_si_se_elimina": 0.9176,
+              "correlacion_item_total": 0.8144
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.3062,
+              "alfa_si_se_elimina": 0.9118,
+              "correlacion_item_total": 0.8445
+            },
+            {
+              "item": "ítem 5",
+              "media": 3.3312,
+              "alfa_si_se_elimina": 0.9213,
+              "correlacion_item_total": 0.7942
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.9242,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4",
+            "ítem 5"
+          ],
+          "bloque": "Infraestructura",
+          "n_casos": 160,
+          "n_items": 5,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.2812,
+              "alfa_si_se_elimina": 0.9106,
+              "correlacion_item_total": 0.7837
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2062,
+              "alfa_si_se_elimina": 0.9045,
+              "correlacion_item_total": 0.8159
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2875,
+              "alfa_si_se_elimina": 0.9073,
+              "correlacion_item_total": 0.8006
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.3062,
+              "alfa_si_se_elimina": 0.9119,
+              "correlacion_item_total": 0.7789
+            },
+            {
+              "item": "ítem 5",
+              "media": 3.25,
+              "alfa_si_se_elimina": 0.9006,
+              "correlacion_item_total": 0.8341
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.9045,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4",
+            "ítem 5"
+          ],
+          "bloque": "Seguridad",
+          "n_casos": 160,
+          "n_items": 5,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.1187,
+              "alfa_si_se_elimina": 0.8798,
+              "correlacion_item_total": 0.7785
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.1875,
+              "alfa_si_se_elimina": 0.8724,
+              "correlacion_item_total": 0.8134
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.1625,
+              "alfa_si_se_elimina": 0.8864,
+              "correlacion_item_total": 0.7472
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.1625,
+              "alfa_si_se_elimina": 0.884,
+              "correlacion_item_total": 0.7585
+            },
+            {
+              "item": "ítem 5",
+              "media": 3.1625,
+              "alfa_si_se_elimina": 0.8944,
+              "correlacion_item_total": 0.7092
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.9124,
+          "items": [
+            "Servicios_acadé_item1",
+            "Servicios_acadé_item2",
+            "Servicios_acadé_item3",
+            "Servicios_acadé_item4",
+            "Servicios_acadé_item5",
+            "Infraestructura_item1",
+            "Infraestructura_item2",
+            "Infraestructura_item3",
+            "Infraestructura_item4",
+            "Infraestructura_item5",
+            "Seguridad_item1",
+            "Seguridad_item2",
+            "Seguridad_item3",
+            "Seguridad_item4",
+            "Seguridad_item5",
+            "Cómo_calificarías_la_comunicación_insti",
+            "El_costo_de_los_servicios_complementari"
+          ],
+          "bloque": "Todas las escalas Likert",
+          "n_casos": 160,
+          "n_items": 17,
+          "por_item": [
+            {
+              "item": "Servicios_acadé_item1",
+              "media": 3.35,
+              "alfa_si_se_elimina": 0.9043,
+              "correlacion_item_total": 0.6951
+            },
+            {
+              "item": "Servicios_acadé_item2",
+              "media": 3.2188,
+              "alfa_si_se_elimina": 0.9031,
+              "correlacion_item_total": 0.7458
+            },
+            {
+              "item": "Servicios_acadé_item3",
+              "media": 3.2313,
+              "alfa_si_se_elimina": 0.9038,
+              "correlacion_item_total": 0.7122
+            },
+            {
+              "item": "Servicios_acadé_item4",
+              "media": 3.3062,
+              "alfa_si_se_elimina": 0.9044,
+              "correlacion_item_total": 0.6876
+            },
+            {
+              "item": "Servicios_acadé_item5",
+              "media": 3.3312,
+              "alfa_si_se_elimina": 0.9056,
+              "correlacion_item_total": 0.652
+            },
+            {
+              "item": "Infraestructura_item1",
+              "media": 3.2812,
+              "alfa_si_se_elimina": 0.9053,
+              "correlacion_item_total": 0.6654
+            },
+            {
+              "item": "Infraestructura_item2",
+              "media": 3.2062,
+              "alfa_si_se_elimina": 0.904,
+              "correlacion_item_total": 0.7109
+            },
+            {
+              "item": "Infraestructura_item3",
+              "media": 3.2875,
+              "alfa_si_se_elimina": 0.9049,
+              "correlacion_item_total": 0.6722
+            },
+            {
+              "item": "Infraestructura_item4",
+              "media": 3.3062,
+              "alfa_si_se_elimina": 0.9037,
+              "correlacion_item_total": 0.7115
+            },
+            {
+              "item": "Infraestructura_item5",
+              "media": 3.25,
+              "alfa_si_se_elimina": 0.9034,
+              "correlacion_item_total": 0.7236
+            },
+            {
+              "item": "Seguridad_item1",
+              "media": 3.1187,
+              "alfa_si_se_elimina": 0.905,
+              "correlacion_item_total": 0.676
+            },
+            {
+              "item": "Seguridad_item2",
+              "media": 3.1875,
+              "alfa_si_se_elimina": 0.9055,
+              "correlacion_item_total": 0.6576
+            },
+            {
+              "item": "Seguridad_item3",
+              "media": 3.1625,
+              "alfa_si_se_elimina": 0.9054,
+              "correlacion_item_total": 0.658
+            },
+            {
+              "item": "Seguridad_item4",
+              "media": 3.1625,
+              "alfa_si_se_elimina": 0.9054,
+              "correlacion_item_total": 0.6578
+            },
+            {
+              "item": "Seguridad_item5",
+              "media": 3.1625,
+              "alfa_si_se_elimina": 0.906,
+              "correlacion_item_total": 0.6376
+            },
+            {
+              "item": "Cómo_calificarías_la_comunicación_insti",
+              "media": 2.8875,
+              "alfa_si_se_elimina": 0.928,
+              "correlacion_item_total": -0.0372
+            },
+            {
+              "item": "El_costo_de_los_servicios_complementari",
+              "media": 3.0688,
+              "alfa_si_se_elimina": 0.9238,
+              "correlacion_item_total": 0.095
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        }
+      ],
+      "encuestados": {
+        "incompletos": 0,
+        "linea_recta": 38
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 9,
+      "nombre_kpi": "Estadísticas de Seguridad en el Campus (Índice de Criminalidad)",
+      "score": 0.5465
+    },
+    {
+      "kpi_id": 47,
+      "nombre_kpi": "Uso de Servicios de Salud Mental y Apoyo Psicológico",
+      "score": 0.5517
+    }
+  ],
+  "finalized_at": "2026-11-12T03:20:52.014460+00:00"
+}

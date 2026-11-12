@@ -1,0 +1,1676 @@
+{
+  "esquema_version": "2.0",
+  "instrumento": {
+    "id": "INS-0042",
+    "tipo": "entrevista",
+    "titulo": "Entrevista sobre financiamiento y accesibilidad de la educación",
+    "objetivo": "No especificado",
+    "temas": [
+      "educación",
+      "tengo",
+      "trabajo",
+      "estudios",
+      "tiempo",
+      "clases"
+    ],
+    "palabras_clave": [
+      "educación",
+      "tengo",
+      "trabajo",
+      "estudios",
+      "tiempo",
+      "clases"
+    ],
+    "nivel_educativo": "Licenciatura",
+    "poblacion": "No especificado",
+    "contexto": "Institución: No especificado. Cobertura: Licenciatura — de los estudiantes en relación con: Tarifa Promedio de Matrícula / Colegiatura, Tamaño del Fondo Patrimonial / Financiero (Endowment).. Metodología: Entrevista semiestructurada"
+  },
+  "kpis_asociados": [
+    {
+      "fecha": "2026-11-12T04:10:44.299596+00:00",
+      "kpi_id": "KPI-23",
+      "nombre": "Gasto de Enseñanza por Estudiante equivalente a Tiempo Completo (FTE)",
+      "que_mide": "Monto económico invertido directamente en salarios docentes, recursos de aula y tecnología educativa por cada alumno a tiempo completo.",
+      "dimension": "Aumentar inversión directa por alumno (KPI de Inversión Pedagógica)",
+      "evidencia": [
+        {
+          "similitud": 0.6072,
+          "pregunta_id": "INS-0042-p03"
+        },
+        {
+          "similitud": 0.5875,
+          "pregunta_id": "INS-0042-p06"
+        },
+        {
+          "similitud": 0.559,
+          "pregunta_id": "INS-0042-p04"
+        },
+        {
+          "similitud": 0.474,
+          "pregunta_id": "INS-0042-p01"
+        },
+        {
+          "similitud": 0.4693,
+          "pregunta_id": "INS-0042-p07"
+        }
+      ],
+      "similitud": 0.5925,
+      "definicion": "El KPI Gasto de Enseñanza por Estudiante FTE mide la inversión monetaria directa en docencia por alumno. Es de polaridad POSITIVA. Un mayor gasto asignado por estudiante fortalece los recursos didácticos y la calidad docente; su caída sugiere recortes que afectan la experiencia de aula.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Gasto de Enseñanza por Estudiante equivalente a Tiempo Completo (FTE)» porque las preguntas «¿El costo de la educación ha representado una barrera significativa para ti?» y «¿Qué mejoras propones para hacer la educación más accesible económicamente?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    },
+    {
+      "fecha": "2026-11-12T04:10:44.299596+00:00",
+      "kpi_id": "KPI-42",
+      "nombre": "Ingresos por Educación Continua y Formación Ejecutiva",
+      "que_mide": "Mide la facturación generada por la venta de programas de capacitación a profesionales en ejercicio y empresas.",
+      "dimension": "Aumentar / Incrementar (KPI de Diversificación Financiera)",
+      "evidencia": [
+        {
+          "similitud": 0.616,
+          "pregunta_id": "INS-0042-p06"
+        },
+        {
+          "similitud": 0.6078,
+          "pregunta_id": "INS-0042-p04"
+        },
+        {
+          "similitud": 0.566,
+          "pregunta_id": "INS-0042-p03"
+        },
+        {
+          "similitud": 0.4691,
+          "pregunta_id": "INS-0042-p08"
+        },
+        {
+          "similitud": 0.4595,
+          "pregunta_id": "INS-0042-p07"
+        }
+      ],
+      "similitud": 0.5775,
+      "definicion": "El KPI Ingresos por Educación Continua es de impacto POSITIVO (Maximizar). Mide las ventas de diplomados y cursos ejecutivos. Un aumento fortalece la salud financiera sin depender solo de carreras tradicionales; una caída muestra falta de adaptación a las demandas profesionales del mercado.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Ingresos por Educación Continua y Formación Ejecutiva» porque las preguntas «¿Qué mejoras propones para hacer la educación más accesible económicamente?» y «¿Cómo afecta la situación económica tu desempeño y permanencia académica?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "INS-0042-p01",
+      "texto": "¿Cómo has financiado tus estudios universitarios?",
+      "kpis_relacionados": [
+        "KPI-23"
+      ]
+    },
+    {
+      "id": "INS-0042-p02",
+      "texto": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0042-p03",
+      "texto": "¿El costo de la educación ha representado una barrera significativa para ti?",
+      "kpis_relacionados": [
+        "KPI-23",
+        "KPI-42"
+      ]
+    },
+    {
+      "id": "INS-0042-p04",
+      "texto": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+      "kpis_relacionados": [
+        "KPI-23",
+        "KPI-42"
+      ]
+    },
+    {
+      "id": "INS-0042-p05",
+      "texto": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0042-p06",
+      "texto": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+      "kpis_relacionados": [
+        "KPI-23",
+        "KPI-42"
+      ]
+    },
+    {
+      "id": "INS-0042-p07",
+      "texto": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+      "kpis_relacionados": [
+        "KPI-23",
+        "KPI-42"
+      ]
+    },
+    {
+      "id": "INS-0042-p08",
+      "texto": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+      "kpis_relacionados": [
+        "KPI-42"
+      ]
+    }
+  ],
+  "entrevistas": [
+    {
+      "participante": "INS-0042-E01",
+      "contexto": {
+        "GPA": "2.23",
+        "Edad": "21",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "1",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "31"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E02",
+      "contexto": {
+        "GPA": "3.13",
+        "Edad": "34",
+        "Perfil": "P4 — Trabajador adulto tiempo parcial",
+        "Género": "masculino",
+        "Semestre": "9",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "41"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "Es difícil, pero tengo claro por qué lo hago. Quiero un mejor futuro para mi familia y eso me da fuerzas para continuar. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E03",
+      "contexto": {
+        "GPA": "3.26",
+        "Edad": "33",
+        "Perfil": "P4 — Trabajador adulto tiempo parcial",
+        "Género": "femenino",
+        "Semestre": "9",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "32"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "Aunque a veces la conexión en el trabajo es mala, prefiero las herramientas digitales porque me dan flexibilidad. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "Es difícil, pero tengo claro por qué lo hago. Quiero un mejor futuro para mi familia y eso me da fuerzas para continuar. Los fines de semana son mi único espacio para estudiar tranquilamente. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Los fines de semana son mi único espacio para estudiar tranquilamente. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E04",
+      "contexto": {
+        "GPA": "2.68",
+        "Edad": "31",
+        "Perfil": "P4 — Trabajador adulto tiempo parcial",
+        "Género": "femenino",
+        "Semestre": "10",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "33"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "Es difícil, pero tengo claro por qué lo hago. Quiero un mejor futuro para mi familia y eso me da fuerzas para continuar. Los fines de semana son mi único espacio para estudiar tranquilamente. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Es difícil, pero tengo claro por qué lo hago. Quiero un mejor futuro para mi familia y eso me da fuerzas para continuar. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E05",
+      "contexto": {
+        "GPA": "3.09",
+        "Edad": "18",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "masculino",
+        "Semestre": "7",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "24"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E06",
+      "contexto": {
+        "GPA": "2.56",
+        "Edad": "23",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "femenino",
+        "Semestre": "8",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "20"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E07",
+      "contexto": {
+        "GPA": "2.52",
+        "Edad": "34",
+        "Perfil": "P4 — Trabajador adulto tiempo parcial",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "37"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Es difícil, pero tengo claro por qué lo hago. Quiero un mejor futuro para mi familia y eso me da fuerzas para continuar. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "Aunque a veces la conexión en el trabajo es mala, prefiero las herramientas digitales porque me dan flexibilidad. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Aunque a veces la conexión en el trabajo es mala, prefiero las herramientas digitales porque me dan flexibilidad. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E08",
+      "contexto": {
+        "GPA": "3.08",
+        "Edad": "25",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "femenino",
+        "Semestre": "6",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "21"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E09",
+      "contexto": {
+        "GPA": "2.67",
+        "Edad": "20",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "1",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "23"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E10",
+      "contexto": {
+        "GPA": "2.81",
+        "Edad": "35",
+        "Perfil": "P4 — Trabajador adulto tiempo parcial",
+        "Género": "masculino",
+        "Semestre": "8",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "34"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Es difícil, pero tengo claro por qué lo hago. Quiero un mejor futuro para mi familia y eso me da fuerzas para continuar. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. Los fines de semana son mi único espacio para estudiar tranquilamente. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E11",
+      "contexto": {
+        "GPA": "2.24",
+        "Edad": "21",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "femenino",
+        "Semestre": "7",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "30"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E12",
+      "contexto": {
+        "GPA": "3.01",
+        "Edad": "31",
+        "Perfil": "P4 — Trabajador adulto tiempo parcial",
+        "Género": "masculino",
+        "Semestre": "4",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "43"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. Los fines de semana son mi único espacio para estudiar tranquilamente. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E13",
+      "contexto": {
+        "GPA": "2.46",
+        "Edad": "18",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "32"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E14",
+      "contexto": {
+        "GPA": "2.69",
+        "Edad": "25",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "masculino",
+        "Semestre": "8",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "35"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E15",
+      "contexto": {
+        "GPA": "2.55",
+        "Edad": "21",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "femenino",
+        "Semestre": "1",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "27"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E16",
+      "contexto": {
+        "GPA": "3.28",
+        "Edad": "34",
+        "Perfil": "P4 — Trabajador adulto tiempo parcial",
+        "Género": "masculino",
+        "Semestre": "8",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "34"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Aunque a veces la conexión en el trabajo es mala, prefiero las herramientas digitales porque me dan flexibilidad. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Es difícil, pero tengo claro por qué lo hago. Quiero un mejor futuro para mi familia y eso me da fuerzas para continuar. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Aunque a veces la conexión en el trabajo es mala, prefiero las herramientas digitales porque me dan flexibilidad. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E17",
+      "contexto": {
+        "GPA": "2.98",
+        "Edad": "20",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "femenino",
+        "Semestre": "7",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "20"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E18",
+      "contexto": {
+        "GPA": "3.11",
+        "Edad": "23",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "femenino",
+        "Semestre": "7",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "21"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E19",
+      "contexto": {
+        "GPA": "3.16",
+        "Edad": "29",
+        "Perfil": "P4 — Trabajador adulto tiempo parcial",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "33"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Aunque a veces la conexión en el trabajo es mala, prefiero las herramientas digitales porque me dan flexibilidad. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "Es difícil, pero tengo claro por qué lo hago. Quiero un mejor futuro para mi familia y eso me da fuerzas para continuar. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Es difícil, pero tengo claro por qué lo hago. Quiero un mejor futuro para mi familia y eso me da fuerzas para continuar. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E20",
+      "contexto": {
+        "GPA": "2.46",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "26"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E21",
+      "contexto": {
+        "GPA": "2.28",
+        "Edad": "20",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "22"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E22",
+      "contexto": {
+        "GPA": "2.8",
+        "Edad": "20",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "1",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "28"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E23",
+      "contexto": {
+        "GPA": "3.2",
+        "Edad": "25",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "21"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E24",
+      "contexto": {
+        "GPA": "2.82",
+        "Edad": "27",
+        "Perfil": "P4 — Trabajador adulto tiempo parcial",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "30"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "Las clases en línea han sido una bendición para mí. Me permiten estudiar sin moverme de casa cuando llego tarde del trabajo. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Es difícil, pero tengo claro por qué lo hago. Quiero un mejor futuro para mi familia y eso me da fuerzas para continuar. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E25",
+      "contexto": {
+        "GPA": "3.1",
+        "Edad": "25",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "masculino",
+        "Semestre": "5",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "24"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E26",
+      "contexto": {
+        "GPA": "3.07",
+        "Edad": "26",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "21"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E27",
+      "contexto": {
+        "GPA": "3.09",
+        "Edad": "22",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "masculino",
+        "Semestre": "7",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "32"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0042-E28",
+      "contexto": {
+        "GPA": "3.02",
+        "Edad": "25",
+        "Perfil": "P4 — Trabajador adulto tiempo parcial",
+        "Género": "femenino",
+        "Semestre": "8",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "35"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0042-p01",
+          "pregunta": "¿Cómo has financiado tus estudios universitarios?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p02",
+          "pregunta": "¿Has accedido a becas, préstamos o apoyos financieros? ¿Cómo fue el proceso?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p03",
+          "pregunta": "¿El costo de la educación ha representado una barrera significativa para ti?",
+          "respuesta": "Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p04",
+          "pregunta": "¿Cómo afecta la situación económica tu desempeño y permanencia académica?",
+          "respuesta": "Los años que llevo en la universidad me han formado como persona, aunque el camino ha sido largo y difícil. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        },
+        {
+          "pregunta_id": "INS-0042-p05",
+          "pregunta": "¿Qué piensas sobre el sistema de créditos o préstamos educativos disponibles?",
+          "respuesta": "He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p06",
+          "pregunta": "¿Qué mejoras propones para hacer la educación más accesible económicamente?",
+          "respuesta": "Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental."
+        },
+        {
+          "pregunta_id": "INS-0042-p07",
+          "pregunta": "¿Has tenido que trabajar para financiar tus estudios? ¿Cómo ha afectado eso tu vida académica?",
+          "respuesta": "Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina."
+        },
+        {
+          "pregunta_id": "INS-0042-p08",
+          "pregunta": "¿Consideras que el costo de tu carrera está justificado por los beneficios que recibes?",
+          "respuesta": "Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente."
+        }
+      ]
+    }
+  ],
+  "avisos": [
+    {
+      "codigo": "texto_libre",
+      "mensaje": "Las personas entrevistadas se identifican con un ID anónimo; otros nombres mencionados en el texto libre podrían seguir presentes."
+    }
+  ]
+}

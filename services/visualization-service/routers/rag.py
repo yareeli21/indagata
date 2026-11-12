@@ -11,7 +11,8 @@
                     «calculando» → «listo» o «calculada»).
   POST /rag/consultas/{id}/metricas   pide calcularlas (bajo demanda: solo cuando la persona abre la
                     evaluación, para no recargar el modelo después de cada pregunta); `?juez=<modelo>` las calcula
-                    con otro juez (experimento redactor × juez).
+                    con otro juez (experimento redactor × juez); `?juez=claude-fable-5-2` vuelve a evaluarla con el juez
+                    Fable (que ya evalúa cada respuesta en segundo plano, services/juez_fable.py).
   PUT  /rag/consultas/{id}/calificacion  calificación humana de una respuesta (0 mal, 1 parcial, 2 bien).
   GET  /rag/consultas/{id}            pregunta, respuesta, contexto usado y métricas
                     (para la evaluación fuera de línea, tools/rag/evaluar_ragas.py).
@@ -25,7 +26,7 @@ from fastapi import APIRouter, HTTPException, Query, status
 from dependencies import DBSession, Investigador
 from models import (CalificacionIn, CalificacionOut, ChatRequest, IndexRequest, IndexResponse, InterpretarOut,
                     MetricasConsultaOut)
-from services import ejecutor, evaluacion, indicadores, interpretacion, rag_service
+from services import ejecutor, evaluacion, indicadores, interpretacion, juez_fable, rag_service
 from services.catalogo import construir as construir_catalogo
 from services.enrutador import cargar_documentos
 from shared.models.rag_evaluacion import RagCalificacion
@@ -73,6 +74,7 @@ def _metricas(db, fila: RagLog) -> dict:  # noqa: ANN001
     datos["consultaId"] = fila.rag_log_id
     datos["indicadores"] = indicadores.calcular(original)
     datos["jueces"] = evaluacion.jueces_de(db, original.rag_log_id)
+    datos["juezFable"] = juez_fable.estado_publico(db, original.rag_log_id)
     calificacion = db.get(RagCalificacion, fila.rag_log_id)
     datos["calificacion"] = None if calificacion is None else {
         "calificacion": calificacion.calificacion, "entendio": calificacion.entendio,
@@ -98,7 +100,13 @@ async def calcular_metricas(
     fila = _consulta(db, consulta_id)
     origen = (fila.metricas or {}).get("origen")
     objetivo = (db.get(RagLog, origen) if origen else None) or fila
-    evaluacion.solicitar(objetivo, db, rag_service.fabrica_sesiones, (juez or "").strip() or None)
+    juez = (juez or "").strip() or None
+    if juez == juez_fable.modelo():
+        # El juez Fable ya evalúa cada respuesta solo; pedirlo vuelve a evaluarla (p. ej., tras configurar la clave).
+        if (objetivo.metricas or {}).get("estado") != evaluacion.OMITIDA:
+            juez_fable.solicitar(objetivo, db, rag_service.fabrica_sesiones, forzar=True)
+    else:
+        evaluacion.solicitar(objetivo, db, rag_service.fabrica_sesiones, juez)
     return MetricasConsultaOut(**_metricas(db, fila))
 
 

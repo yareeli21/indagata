@@ -1,0 +1,1661 @@
+{
+  "instrument_id": "46",
+  "schema_version": "2.0",
+  "tipo_instrumento": "prueba_estandarizada",
+  "instrument": {
+    "title": "Prueba de Comprensión Lectora Universitaria",
+    "objective": "Según el texto, ¿cuál es el objetivo principal del aprendizaje basado en problemas?",
+    "dimensions_explored": [
+      "SECCIÓN: COMPRENSIÓN DE TEXTOS ACADÉMICOS",
+      "SECCIÓN: IDENTIFICACIÓN DE IDEAS PRINCIPALES",
+      "SECCIÓN: VERDADERO O FALSO",
+      "SECCIÓN: RESPUESTA CORTA"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "pru_01_Comprensió_q1",
+            "text": "Según el texto, ¿cuál es el objetivo principal del aprendizaje basado en problemas?",
+            "type": "opcion_multiple",
+            "options": [
+              "Memorizar conceptos teóricos",
+              "Desarrollar competencias para resolver situaciones reales",
+              "Evaluar el rendimiento mediante exámenes",
+              "Reducir la carga académica del estudiante"
+            ]
+          },
+          {
+            "question_id": "pru_01_Comprensió_q2",
+            "text": "¿Qué papel cumple el docente en el modelo ABP descrito?",
+            "type": "opcion_multiple",
+            "options": [
+              "Transmisor de información",
+              "Evaluador exclusivo",
+              "Facilitador del proceso de aprendizaje",
+              "Supervisor disciplinario"
+            ]
+          },
+          {
+            "question_id": "pru_01_Comprensió_q3",
+            "text": "¿Cuál de las siguientes NO es una competencia que desarrolla el ABP según el texto?",
+            "type": "opcion_multiple",
+            "options": [
+              "Pensamiento crítico",
+              "Memorización mecánica",
+              "Trabajo colaborativo",
+              "Resolución de problemas"
+            ]
+          },
+          {
+            "question_id": "pru_01_Comprensió_q4",
+            "text": "¿En qué nivel educativo ha demostrado ser más efectivo el ABP?",
+            "type": "opcion_multiple",
+            "options": [
+              "Educación primaria",
+              "Bachillerato",
+              "Educación universitaria y posgrado",
+              "Educación inicial"
+            ]
+          },
+          {
+            "question_id": "pru_01_Comprensió_q5",
+            "text": "Según el texto, ¿cómo se mide el éxito en un ambiente ABP?",
+            "type": "opcion_multiple",
+            "options": [
+              "Por calificaciones numéricas únicamente",
+              "Por la solución creativa y fundamentada del problema",
+              "Por el tiempo que tarda el estudiante",
+              "Por la participación en clase"
+            ]
+          },
+          {
+            "question_id": "pru_01_Comprensió_q6",
+            "text": "¿Qué implica la metacognición en el contexto del ABP?",
+            "type": "opcion_multiple",
+            "options": [
+              "Memorizar el proceso de aprendizaje",
+              "Reflexionar sobre el propio proceso de aprendizaje",
+              "Ignorar los errores cometidos",
+              "Depender del docente para evaluar el aprendizaje"
+            ]
+          },
+          {
+            "question_id": "pru_01_Comprensió_q7",
+            "text": "¿Cuál es una limitación del ABP mencionada en el texto?",
+            "type": "opcion_multiple",
+            "options": [
+              "Requiere mucho tiempo y recursos",
+              "Solo funciona en ciencias exactas",
+              "No desarrolla habilidades sociales",
+              "Es aplicable solo en posgrado"
+            ]
+          },
+          {
+            "question_id": "pru_01_Comprensió_q8",
+            "text": "¿Qué tipo de evaluación predomina en el ABP?",
+            "type": "opcion_multiple",
+            "options": [
+              "Evaluación sumativa final",
+              "Evaluación formativa y continua",
+              "Autoevaluación exclusiva",
+              "Evaluación por coevaluación únicamente"
+            ]
+          },
+          {
+            "question_id": "pru_01_Comprensió_q9",
+            "text": "Según el texto, ¿con qué habilidad del siglo XXI está más relacionado el ABP?",
+            "type": "opcion_multiple",
+            "options": [
+              "Memorización de datos",
+              "Transcripción de información",
+              "Pensamiento crítico y resolución de problemas",
+              "Obediencia a normas académicas"
+            ]
+          },
+          {
+            "question_id": "pru_01_Comprensió_q10",
+            "text": "¿Cuál es la diferencia principal entre el aprendizaje tradicional y el ABP?",
+            "type": "opcion_multiple",
+            "options": [
+              "El ABP usa más tecnología",
+              "El ABP parte de problemas reales para construir conocimiento",
+              "El aprendizaje tradicional es más efectivo",
+              "No hay diferencias significativas"
+            ]
+          },
+          {
+            "question_id": "pru_01_Identifica_q1",
+            "text": "¿Cuál de los siguientes párrafos expresa mejor la idea principal de un texto académico bien estructurado?",
+            "type": "opcion_multiple",
+            "options": [
+              "Una lista de fechas históricas",
+              "Una afirmación que sintetiza el argumento central",
+              "Una descripción detallada de personajes",
+              "Una serie de ejemplos concretos sin conclusión"
+            ]
+          },
+          {
+            "question_id": "pru_01_Identifica_q2",
+            "text": "En un artículo científico, ¿dónde se ubica habitualmente la tesis o idea principal?",
+            "type": "opcion_multiple",
+            "options": [
+              "En las referencias bibliográficas",
+              "En la metodología",
+              "En la introducción y las conclusiones",
+              "Únicamente en el título"
+            ]
+          },
+          {
+            "question_id": "pru_01_Identifica_q3",
+            "text": "¿Qué estrategia es más efectiva para identificar la idea principal de un texto?",
+            "type": "opcion_multiple",
+            "options": [
+              "Leer solo el primer párrafo",
+              "Buscar palabras clave recurrentes y el argumento central",
+              "Leer únicamente las conclusiones",
+              "Contar el número de párrafos"
+            ]
+          },
+          {
+            "question_id": "pru_01_Identifica_q4",
+            "text": "Una idea secundaria en un texto académico cumple la función de:",
+            "type": "opcion_multiple",
+            "options": [
+              "Sustituir a la idea principal",
+              "Apoyar, ejemplificar o ampliar la idea principal",
+              "Contradecir el argumento central",
+              "Resumir el texto completo"
+            ]
+          },
+          {
+            "question_id": "pru_01_Identifica_q5",
+            "text": "¿Cuál es la función de un párrafo de conclusión en un texto académico?",
+            "type": "opcion_multiple",
+            "options": [
+              "Introducir nuevas ideas no desarrolladas",
+              "Sintetizar las ideas principales y proyectar implicaciones",
+              "Repetir literalmente la introducción",
+              "Agregar bibliografía adicional"
+            ]
+          },
+          {
+            "question_id": "pru_01_Verdadero _q1",
+            "text": "La idea principal siempre se encuentra en el primer párrafo de un texto.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_01_Verdadero _q2",
+            "text": "El resumen de un artículo científico (abstract) refleja las ideas más importantes del trabajo.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_01_Verdadero _q3",
+            "text": "En la lectura crítica, el lector acepta todas las afirmaciones del autor sin cuestionarlas.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_01_Verdadero _q4",
+            "text": "La coherencia textual se refiere a la relación lógica entre las ideas de un texto.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_01_Verdadero _q5",
+            "text": "Los conectores lógicos no tienen ningún impacto en la comprensión lectora.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_01_Respuesta _q1",
+            "text": "Define con tus propias palabras qué es la comprensión lectora inferencial.",
+            "type": "puntos",
+            "options": []
+          },
+          {
+            "question_id": "pru_01_Respuesta _q2",
+            "text": "Menciona dos estrategias de lectura activa que uses en tus estudios.",
+            "type": "puntos",
+            "options": []
+          },
+          {
+            "question_id": "pru_01_Respuesta _q3",
+            "text": "¿Cuál es la diferencia entre parafrasear y plagiar un texto?",
+            "type": "puntos",
+            "options": []
+          },
+          {
+            "question_id": "pru_01_Respuesta _q4",
+            "text": "¿Por qué es importante identificar el propósito del autor al leer un texto académico?",
+            "type": "puntos",
+            "options": []
+          },
+          {
+            "question_id": "pru_01_Respuesta _q5",
+            "text": "Explica brevemente qué es la lectura crítica y para qué sirve.",
+            "type": "puntos",
+            "options": []
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "prueba_estandarizada",
+    "dublin_core": {
+      "dc:title": "Prueba de Comprensión Lectora Universitaria",
+      "dc:creator": "Administrador",
+      "dc:subject": "texto, principal, aprendizaje, idea, instrucciones, según",
+      "dc:description": "Prueba estandarizada de 25 reactivos aplicada a 100 alumnos.",
+      "dc:type": "Prueba estandarizada",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "Posgrado",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "pru_01_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "unidad_de_aprendizaje": "No especificado",
+      "mapeo_de_reactivos_por_seccion": {
+        "SECCIÓN: COMPRENSIÓN DE TEXTOS ACADÉMICOS": 10,
+        "SECCIÓN: IDENTIFICACIÓN DE IDEAS PRINCIPALES": 5,
+        "SECCIÓN: VERDADERO O FALSO": 5,
+        "SECCIÓN: RESPUESTA CORTA": 5
+      },
+      "tipo_de_prueba": "Sumativa",
+      "taxonomia_bloom": "Recordar (7), Comprender (1)",
+      "nivel_educativo": "Posgrado",
+      "objetivo_de_evaluacion": "Según el texto, ¿cuál es el objetivo principal del aprendizaje basado en problemas?"
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "Puntajes en Pruebas Estandarizadas de Referencia"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "pru_01_Comprensió_q1": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 39,
+            "pct": 0.39,
+            "opcion": "A"
+          },
+          {
+            "n": 4,
+            "pct": 0.04,
+            "opcion": "B"
+          },
+          {
+            "n": 48,
+            "pct": 0.48,
+            "opcion": "C"
+          },
+          {
+            "n": 9,
+            "pct": 0.09,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 48,
+          "pct": 0.48,
+          "opcion": "C",
+          "pct_validas": 0.48
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Comprensió_q2": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 16,
+            "pct": 0.16,
+            "opcion": "A"
+          },
+          {
+            "n": 19,
+            "pct": 0.19,
+            "opcion": "B"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "C"
+          },
+          {
+            "n": 65,
+            "pct": 0.65,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 65,
+          "pct": 0.65,
+          "opcion": "D",
+          "pct_validas": 0.65
+        },
+        "opciones_sin_elegir": [
+          "C"
+        ]
+      },
+      "pru_01_Comprensió_q3": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 5,
+            "pct": 0.05,
+            "opcion": "A"
+          },
+          {
+            "n": 20,
+            "pct": 0.2,
+            "opcion": "B"
+          },
+          {
+            "n": 65,
+            "pct": 0.65,
+            "opcion": "C"
+          },
+          {
+            "n": 10,
+            "pct": 0.1,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 65,
+          "pct": 0.65,
+          "opcion": "C",
+          "pct_validas": 0.65
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Comprensió_q4": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 45,
+            "pct": 0.45,
+            "opcion": "A"
+          },
+          {
+            "n": 6,
+            "pct": 0.06,
+            "opcion": "B"
+          },
+          {
+            "n": 16,
+            "pct": 0.16,
+            "opcion": "C"
+          },
+          {
+            "n": 33,
+            "pct": 0.33,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 45,
+          "pct": 0.45,
+          "opcion": "A",
+          "pct_validas": 0.45
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Comprensió_q5": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 28,
+            "pct": 0.28,
+            "opcion": "A"
+          },
+          {
+            "n": 47,
+            "pct": 0.47,
+            "opcion": "B"
+          },
+          {
+            "n": 23,
+            "pct": 0.23,
+            "opcion": "C"
+          },
+          {
+            "n": 2,
+            "pct": 0.02,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 47,
+          "pct": 0.47,
+          "opcion": "B",
+          "pct_validas": 0.47
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Comprensió_q6": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 26,
+            "pct": 0.26,
+            "opcion": "A"
+          },
+          {
+            "n": 48,
+            "pct": 0.48,
+            "opcion": "B"
+          },
+          {
+            "n": 5,
+            "pct": 0.05,
+            "opcion": "C"
+          },
+          {
+            "n": 21,
+            "pct": 0.21,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 48,
+          "pct": 0.48,
+          "opcion": "B",
+          "pct_validas": 0.48
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Comprensió_q7": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 34,
+            "pct": 0.34,
+            "opcion": "A"
+          },
+          {
+            "n": 39,
+            "pct": 0.39,
+            "opcion": "B"
+          },
+          {
+            "n": 8,
+            "pct": 0.08,
+            "opcion": "C"
+          },
+          {
+            "n": 19,
+            "pct": 0.19,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 39,
+          "pct": 0.39,
+          "opcion": "B",
+          "pct_validas": 0.39
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Comprensió_q8": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 42,
+            "pct": 0.42,
+            "opcion": "A"
+          },
+          {
+            "n": 33,
+            "pct": 0.33,
+            "opcion": "B"
+          },
+          {
+            "n": 13,
+            "pct": 0.13,
+            "opcion": "C"
+          },
+          {
+            "n": 12,
+            "pct": 0.12,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 42,
+          "pct": 0.42,
+          "opcion": "A",
+          "pct_validas": 0.42
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Comprensió_q9": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 12,
+            "pct": 0.12,
+            "opcion": "A"
+          },
+          {
+            "n": 23,
+            "pct": 0.23,
+            "opcion": "B"
+          },
+          {
+            "n": 49,
+            "pct": 0.49,
+            "opcion": "C"
+          },
+          {
+            "n": 16,
+            "pct": 0.16,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 49,
+          "pct": 0.49,
+          "opcion": "C",
+          "pct_validas": 0.49
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Comprensió_q10": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 2,
+            "pct": 0.02,
+            "opcion": "A"
+          },
+          {
+            "n": 34,
+            "pct": 0.34,
+            "opcion": "B"
+          },
+          {
+            "n": 26,
+            "pct": 0.26,
+            "opcion": "C"
+          },
+          {
+            "n": 38,
+            "pct": 0.38,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 38,
+          "pct": 0.38,
+          "opcion": "D",
+          "pct_validas": 0.38
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Identifica_q1": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 10,
+            "pct": 0.1,
+            "opcion": "A"
+          },
+          {
+            "n": 21,
+            "pct": 0.21,
+            "opcion": "B"
+          },
+          {
+            "n": 55,
+            "pct": 0.55,
+            "opcion": "C"
+          },
+          {
+            "n": 14,
+            "pct": 0.14,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 55,
+          "pct": 0.55,
+          "opcion": "C",
+          "pct_validas": 0.55
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Identifica_q2": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 31,
+            "pct": 0.31,
+            "opcion": "A"
+          },
+          {
+            "n": 19,
+            "pct": 0.19,
+            "opcion": "B"
+          },
+          {
+            "n": 38,
+            "pct": 0.38,
+            "opcion": "C"
+          },
+          {
+            "n": 12,
+            "pct": 0.12,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 38,
+          "pct": 0.38,
+          "opcion": "C",
+          "pct_validas": 0.38
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Identifica_q3": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 6,
+            "pct": 0.06,
+            "opcion": "A"
+          },
+          {
+            "n": 14,
+            "pct": 0.14,
+            "opcion": "B"
+          },
+          {
+            "n": 24,
+            "pct": 0.24,
+            "opcion": "C"
+          },
+          {
+            "n": 56,
+            "pct": 0.56,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 56,
+          "pct": 0.56,
+          "opcion": "D",
+          "pct_validas": 0.56
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Identifica_q4": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 16,
+            "pct": 0.16,
+            "opcion": "A"
+          },
+          {
+            "n": 13,
+            "pct": 0.13,
+            "opcion": "B"
+          },
+          {
+            "n": 42,
+            "pct": 0.42,
+            "opcion": "C"
+          },
+          {
+            "n": 29,
+            "pct": 0.29,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 42,
+          "pct": 0.42,
+          "opcion": "C",
+          "pct_validas": 0.42
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Identifica_q5": {
+        "type": "opcion_multiple",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 35,
+            "pct": 0.35,
+            "opcion": "A"
+          },
+          {
+            "n": 28,
+            "pct": 0.28,
+            "opcion": "B"
+          },
+          {
+            "n": 25,
+            "pct": 0.25,
+            "opcion": "C"
+          },
+          {
+            "n": 12,
+            "pct": 0.12,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 35,
+          "pct": 0.35,
+          "opcion": "A",
+          "pct_validas": 0.35
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Verdadero _q1": {
+        "type": "verdadero_falso",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 33,
+            "pct": 0.33,
+            "opcion": "V"
+          },
+          {
+            "n": 67,
+            "pct": 0.67,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 67,
+          "pct": 0.67,
+          "opcion": "F",
+          "pct_validas": 0.67
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Verdadero _q2": {
+        "type": "verdadero_falso",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 47,
+            "pct": 0.47,
+            "opcion": "V"
+          },
+          {
+            "n": 53,
+            "pct": 0.53,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 53,
+          "pct": 0.53,
+          "opcion": "F",
+          "pct_validas": 0.53
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Verdadero _q3": {
+        "type": "verdadero_falso",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 54,
+            "pct": 0.54,
+            "opcion": "V"
+          },
+          {
+            "n": 46,
+            "pct": 0.46,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 54,
+          "pct": 0.54,
+          "opcion": "V",
+          "pct_validas": 0.54
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Verdadero _q4": {
+        "type": "verdadero_falso",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 57,
+            "pct": 0.57,
+            "opcion": "V"
+          },
+          {
+            "n": 43,
+            "pct": 0.43,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 57,
+          "pct": 0.57,
+          "opcion": "V",
+          "pct_validas": 0.57
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Verdadero _q5": {
+        "type": "verdadero_falso",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 22,
+            "pct": 0.22,
+            "opcion": "V"
+          },
+          {
+            "n": 78,
+            "pct": 0.78,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 78,
+          "pct": 0.78,
+          "opcion": "F",
+          "pct_validas": 0.78
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Respuesta _q1": {
+        "type": "puntos",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "puntos_max": 2,
+        "casi_unanime": false,
+        "descriptivos": {
+          "n": 100,
+          "q1": 0.0,
+          "q3": 0.0,
+          "iqr": 0.0,
+          "max": 2.0,
+          "min": 0.0,
+          "media": 0.24,
+          "mediana": 0.0,
+          "curtosis": 4.0694,
+          "asimetria": 2.2964,
+          "desviacion": 0.5707
+        },
+        "distribucion": [
+          {
+            "n": 83,
+            "pct": 0.83,
+            "opcion": "0"
+          },
+          {
+            "n": 10,
+            "pct": 0.1,
+            "opcion": "1"
+          },
+          {
+            "n": 7,
+            "pct": 0.07,
+            "opcion": "2"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "puntos",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 83,
+          "pct": 0.83,
+          "opcion": "0",
+          "pct_validas": 0.83
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Respuesta _q2": {
+        "type": "puntos",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "puntos_max": 2,
+        "casi_unanime": false,
+        "descriptivos": {
+          "n": 100,
+          "q1": 1.0,
+          "q3": 2.0,
+          "iqr": 1.0,
+          "max": 2.0,
+          "min": 0.0,
+          "media": 1.34,
+          "mediana": 1.0,
+          "curtosis": -0.8692,
+          "asimetria": -0.6261,
+          "desviacion": 0.7278
+        },
+        "distribucion": [
+          {
+            "n": 15,
+            "pct": 0.15,
+            "opcion": "0"
+          },
+          {
+            "n": 36,
+            "pct": 0.36,
+            "opcion": "1"
+          },
+          {
+            "n": 49,
+            "pct": 0.49,
+            "opcion": "2"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "puntos",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 49,
+          "pct": 0.49,
+          "opcion": "2",
+          "pct_validas": 0.49
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Respuesta _q3": {
+        "type": "puntos",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "puntos_max": 2,
+        "casi_unanime": false,
+        "descriptivos": {
+          "n": 100,
+          "q1": 0.0,
+          "q3": 1.0,
+          "iqr": 1.0,
+          "max": 2.0,
+          "min": 0.0,
+          "media": 0.55,
+          "mediana": 0.0,
+          "curtosis": -0.7103,
+          "asimetria": 1.004,
+          "desviacion": 0.8087
+        },
+        "distribucion": [
+          {
+            "n": 65,
+            "pct": 0.65,
+            "opcion": "0"
+          },
+          {
+            "n": 15,
+            "pct": 0.15,
+            "opcion": "1"
+          },
+          {
+            "n": 20,
+            "pct": 0.2,
+            "opcion": "2"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "puntos",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 65,
+          "pct": 0.65,
+          "opcion": "0",
+          "pct_validas": 0.65
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Respuesta _q4": {
+        "type": "puntos",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "puntos_max": 2,
+        "casi_unanime": false,
+        "descriptivos": {
+          "n": 100,
+          "q1": 0.0,
+          "q3": 1.0,
+          "iqr": 1.0,
+          "max": 2.0,
+          "min": 0.0,
+          "media": 0.52,
+          "mediana": 0.0,
+          "curtosis": -0.2917,
+          "asimetria": 0.8986,
+          "desviacion": 0.6587
+        },
+        "distribucion": [
+          {
+            "n": 57,
+            "pct": 0.57,
+            "opcion": "0"
+          },
+          {
+            "n": 34,
+            "pct": 0.34,
+            "opcion": "1"
+          },
+          {
+            "n": 9,
+            "pct": 0.09,
+            "opcion": "2"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "puntos",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 57,
+          "pct": 0.57,
+          "opcion": "0",
+          "pct_validas": 0.57
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_01_Respuesta _q5": {
+        "type": "puntos",
+        "n": 100,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "puntos_max": 2,
+        "casi_unanime": false,
+        "descriptivos": {
+          "n": 100,
+          "q1": 1.0,
+          "q3": 2.0,
+          "iqr": 1.0,
+          "max": 2.0,
+          "min": 0.0,
+          "media": 1.17,
+          "mediana": 1.0,
+          "curtosis": -0.4642,
+          "asimetria": -0.1263,
+          "desviacion": 0.6204
+        },
+        "distribucion": [
+          {
+            "n": 12,
+            "pct": 0.12,
+            "opcion": "0"
+          },
+          {
+            "n": 59,
+            "pct": 0.59,
+            "opcion": "1"
+          },
+          {
+            "n": 29,
+            "pct": 0.29,
+            "opcion": "2"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "puntos",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 59,
+          "pct": 0.59,
+          "opcion": "1",
+          "pct_validas": 0.59
+        },
+        "opciones_sin_elegir": []
+      }
+    },
+    "global": {
+      "n_registros": 100,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 25
+    }
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T04:14:18.862360+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/47__pru_01_respondido.csv",
+    "original": "raw/_/48__pru_01_original.txt",
+    "limpio": "clean/46/1__v1_prueba_estandarizada_limpio.csv",
+    "nombre_archivo": "pru_01_respondido.csv"
+  },
+  "generated_at": "2026-11-12T04:14:18.862461+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T04:14:18.240708+00:00",
+    "archivo_limpio": "clean/46/1__v1_prueba_estandarizada_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "conteos": {
+          "NR": 0,
+          "nula": 0,
+          "valida": 2500
+        },
+        "motivos": {
+          "ilegible": 0,
+          "duplicado": 0,
+          "no_respondida": 0,
+          "caracter_invalido": 0,
+          "respuesta_multiple": 0
+        },
+        "n_filas": 100,
+        "n_alumnos": 100,
+        "n_preguntas": 25,
+        "pct_validas": 1.0,
+        "columnas_extra": [],
+        "n_filas_vacias": 0,
+        "n_ids_duplicados": 0
+      },
+      "despues": {
+        "conteos": {
+          "NR": 0,
+          "nula": 0,
+          "valida": 2500
+        },
+        "motivos": {
+          "ilegible": 0,
+          "duplicado": 0,
+          "no_respondida": 0,
+          "caracter_invalido": 0,
+          "respuesta_multiple": 0
+        },
+        "n_alumnos": 100,
+        "n_preguntas": 25,
+        "pct_validas": 1.0,
+        "n_respuestas": 2500,
+        "n_ids_duplicados": 0
+      }
+    },
+    "avisos": [
+      "Se conservan como datos de contexto del alumno: perfil, edad, genero, semestre, promedio_gpa, horas_trabajo_semana, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca."
+    ],
+    "estadistica": {
+      "umbrales": {
+        "casi_unanime": 0.9,
+        "sin_respuesta": 0.2
+      },
+      "respuestas": {
+        "n_alumnos": 100,
+        "n_reactivos": 25,
+        "pct_sin_respuesta": 0.0
+      },
+      "resumen_reactivos": {
+        "casi_unanimes": 0,
+        "mucha_no_respuesta": 0,
+        "con_opciones_sin_elegir": 1
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 5,
+      "nombre_kpi": "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "score": 0.5726
+    },
+    {
+      "kpi_id": 8,
+      "nombre_kpi": "Puntajes en Pruebas Estandarizadas de Referencia",
+      "score": 0.5601
+    }
+  ],
+  "finalized_at": "2026-11-12T04:14:33.269459+00:00"
+}

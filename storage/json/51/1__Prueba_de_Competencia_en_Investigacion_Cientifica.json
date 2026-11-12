@@ -1,0 +1,1034 @@
+{
+  "instrument_id": "51",
+  "schema_version": "2.0",
+  "tipo_instrumento": "prueba_estandarizada",
+  "instrument": {
+    "title": "Prueba de Competencia en Investigación Científica",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "SECCIÓN: METODOLOGÍA DE INVESTIGACIÓN",
+      "SECCIÓN: ÉTICA Y DIFUSIÓN CIENTÍFICA",
+      "SECCIÓN: EMPAREJAMIENTO INVESTIGATIVO"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "pru_06_Metodologí_q1",
+            "text": "¿Qué caracteriza a la investigación cuantitativa?",
+            "type": "opcion_multiple",
+            "options": [
+              "El uso de narrativas y significados subjetivos",
+              "La medición numérica y el análisis estadístico",
+              "La observación participante",
+              "Las entrevistas en profundidad"
+            ]
+          },
+          {
+            "question_id": "pru_06_Metodologí_q2",
+            "text": "La hipótesis en investigación científica es:",
+            "type": "opcion_multiple",
+            "options": [
+              "La conclusión final del estudio",
+              "Una suposición que se somete a verificación empírica",
+              "La descripción del método",
+              "El resumen del trabajo"
+            ]
+          },
+          {
+            "question_id": "pru_06_Metodologí_q3",
+            "text": "¿Qué es la validez en un instrumento de medición?",
+            "type": "opcion_multiple",
+            "options": [
+              "Que dé siempre los mismos resultados",
+              "Que mida lo que realmente se pretende medir",
+              "Que sea fácil de aplicar",
+              "Que tenga muchos ítems"
+            ]
+          },
+          {
+            "question_id": "pru_06_Metodologí_q4",
+            "text": "¿Qué es la triangulación en investigación?",
+            "type": "opcion_multiple",
+            "options": [
+              "Usar solo un método de recolección de datos",
+              "Combinar múltiples métodos o fuentes para validar resultados",
+              "Dividir la muestra en tres grupos",
+              "Usar estadística triangular"
+            ]
+          },
+          {
+            "question_id": "pru_06_Metodologí_q5",
+            "text": "¿Cuál es la función del marco teórico en una investigación?",
+            "type": "opcion_multiple",
+            "options": [
+              "Presentar los resultados obtenidos",
+              "Sustentar conceptualmente el estudio y situar el problema en la literatura existente",
+              "Describir la metodología",
+              "Reemplazar los datos empíricos"
+            ]
+          },
+          {
+            "question_id": "pru_06_Metodologí_q6",
+            "text": "Un muestreo probabilístico garantiza:",
+            "type": "opcion_multiple",
+            "options": [
+              "Que todos los individuos de la población tienen igual probabilidad de ser seleccionados",
+              "Que la muestra sea muy grande",
+              "Que no haya errores en la investigación",
+              "Que la investigación sea cualitativa"
+            ]
+          },
+          {
+            "question_id": "pru_06_Metodologí_q7",
+            "text": "El coeficiente alpha de Cronbach mide:",
+            "type": "opcion_multiple",
+            "options": [
+              "La validez del instrumento",
+              "La confiabilidad de una escala de medición",
+              "La correlación entre dos variables",
+              "El tamaño de la muestra"
+            ]
+          },
+          {
+            "question_id": "pru_06_Metodologí_q8",
+            "text": "¿Qué es una revisión sistemática de literatura?",
+            "type": "opcion_multiple",
+            "options": [
+              "Leer todos los libros sobre un tema",
+              "Una búsqueda estructurada, reproducible y crítica de evidencia sobre un tema",
+              "Un resumen personal de lo que se sabe",
+              "La bibliografía de un trabajo"
+            ]
+          },
+          {
+            "question_id": "pru_06_Ética y di_q1",
+            "text": "El acceso abierto (open access) permite la lectura gratuita de artículos científicos.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_06_Ética y di_q2",
+            "text": "La fabricación de datos en investigación es éticamente aceptable si el investigador cree que los resultados serán positivos.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_06_Ética y di_q3",
+            "text": "El factor de impacto de una revista científica indica cuántas veces son citados en promedio sus artículos.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_06_Ética y di_q4",
+            "text": "Publicar el mismo artículo en dos revistas distintas sin declararlo es una práctica de integridad científica.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_06_Emparejami_q1",
+            "text": "¿Cuál base de datos es específicamente para artículos científicos indizados?",
+            "type": "opcion_multiple",
+            "options": [
+              "Wikipedia",
+              "Scopus o Web of Science",
+              "Google Drive",
+              "YouTube"
+            ]
+          },
+          {
+            "question_id": "pru_06_Emparejami_q2",
+            "text": "El DOI (Digital Object Identifier) sirve para:",
+            "type": "opcion_multiple",
+            "options": [
+              "Descargar artículos ilegalmente",
+              "Identificar de manera permanente y única un documento digital",
+              "Crear correos electrónicos académicos",
+              "Almacenar datos de investigación"
+            ]
+          },
+          {
+            "question_id": "pru_06_Emparejami_q3",
+            "text": "¿Qué es un artículo de revisión (review article)?",
+            "type": "opcion_multiple",
+            "options": [
+              "Un artículo que critica a otros investigadores",
+              "Una síntesis crítica del estado del conocimiento sobre un tema específico",
+              "El primer artículo de un investigador",
+              "Un artículo pendiente de revisión por pares"
+            ]
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "prueba_estandarizada",
+    "dublin_core": {
+      "dc:title": "Prueba de Competencia en Investigación Científica",
+      "dc:creator": "Administrador",
+      "dc:subject": "investigación, científica, datos, artículo, instrucciones, resultados",
+      "dc:description": "Prueba estandarizada de 15 reactivos aplicada a 80 alumnos.",
+      "dc:type": "Prueba estandarizada",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "No especificado",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "pru_06_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "unidad_de_aprendizaje": "No especificado",
+      "mapeo_de_reactivos_por_seccion": {
+        "SECCIÓN: METODOLOGÍA DE INVESTIGACIÓN": 8,
+        "SECCIÓN: ÉTICA Y DIFUSIÓN CIENTÍFICA": 4,
+        "SECCIÓN: EMPAREJAMIENTO INVESTIGATIVO": 3
+      },
+      "tipo_de_prueba": "Final",
+      "taxonomia_bloom": "Recordar (5)",
+      "nivel_educativo": "No especificado",
+      "objetivo_de_evaluacion": "No especificado"
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Tasa de Publicación del Cuerpo Docente",
+      "Fondos y Subvenciones Captadas para Investigación"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "pru_06_Metodologí_q1": {
+        "type": "opcion_multiple",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "A"
+          },
+          {
+            "n": 18,
+            "pct": 0.225,
+            "opcion": "B"
+          },
+          {
+            "n": 34,
+            "pct": 0.425,
+            "opcion": "C"
+          },
+          {
+            "n": 28,
+            "pct": 0.35,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 34,
+          "pct": 0.425,
+          "opcion": "C",
+          "pct_validas": 0.425
+        },
+        "opciones_sin_elegir": [
+          "A"
+        ]
+      },
+      "pru_06_Metodologí_q2": {
+        "type": "opcion_multiple",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 5,
+            "pct": 0.0625,
+            "opcion": "A"
+          },
+          {
+            "n": 26,
+            "pct": 0.325,
+            "opcion": "B"
+          },
+          {
+            "n": 10,
+            "pct": 0.125,
+            "opcion": "C"
+          },
+          {
+            "n": 39,
+            "pct": 0.4875,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 39,
+          "pct": 0.4875,
+          "opcion": "D",
+          "pct_validas": 0.4875
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Metodologí_q3": {
+        "type": "opcion_multiple",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 6,
+            "pct": 0.075,
+            "opcion": "A"
+          },
+          {
+            "n": 35,
+            "pct": 0.4375,
+            "opcion": "B"
+          },
+          {
+            "n": 5,
+            "pct": 0.0625,
+            "opcion": "C"
+          },
+          {
+            "n": 34,
+            "pct": 0.425,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 35,
+          "pct": 0.4375,
+          "opcion": "B",
+          "pct_validas": 0.4375
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Metodologí_q4": {
+        "type": "opcion_multiple",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 50,
+            "pct": 0.625,
+            "opcion": "A"
+          },
+          {
+            "n": 11,
+            "pct": 0.1375,
+            "opcion": "B"
+          },
+          {
+            "n": 7,
+            "pct": 0.0875,
+            "opcion": "C"
+          },
+          {
+            "n": 12,
+            "pct": 0.15,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 50,
+          "pct": 0.625,
+          "opcion": "A",
+          "pct_validas": 0.625
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Metodologí_q5": {
+        "type": "opcion_multiple",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 26,
+            "pct": 0.325,
+            "opcion": "A"
+          },
+          {
+            "n": 17,
+            "pct": 0.2125,
+            "opcion": "B"
+          },
+          {
+            "n": 1,
+            "pct": 0.0125,
+            "opcion": "C"
+          },
+          {
+            "n": 36,
+            "pct": 0.45,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 36,
+          "pct": 0.45,
+          "opcion": "D",
+          "pct_validas": 0.45
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Metodologí_q6": {
+        "type": "opcion_multiple",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 24,
+            "pct": 0.3,
+            "opcion": "A"
+          },
+          {
+            "n": 33,
+            "pct": 0.4125,
+            "opcion": "B"
+          },
+          {
+            "n": 4,
+            "pct": 0.05,
+            "opcion": "C"
+          },
+          {
+            "n": 19,
+            "pct": 0.2375,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 33,
+          "pct": 0.4125,
+          "opcion": "B",
+          "pct_validas": 0.4125
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Metodologí_q7": {
+        "type": "opcion_multiple",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 35,
+            "pct": 0.4375,
+            "opcion": "A"
+          },
+          {
+            "n": 5,
+            "pct": 0.0625,
+            "opcion": "B"
+          },
+          {
+            "n": 25,
+            "pct": 0.3125,
+            "opcion": "C"
+          },
+          {
+            "n": 15,
+            "pct": 0.1875,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 35,
+          "pct": 0.4375,
+          "opcion": "A",
+          "pct_validas": 0.4375
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Metodologí_q8": {
+        "type": "opcion_multiple",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 25,
+            "pct": 0.3125,
+            "opcion": "A"
+          },
+          {
+            "n": 17,
+            "pct": 0.2125,
+            "opcion": "B"
+          },
+          {
+            "n": 29,
+            "pct": 0.3625,
+            "opcion": "C"
+          },
+          {
+            "n": 9,
+            "pct": 0.1125,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 29,
+          "pct": 0.3625,
+          "opcion": "C",
+          "pct_validas": 0.3625
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Ética y di_q1": {
+        "type": "verdadero_falso",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 46,
+            "pct": 0.575,
+            "opcion": "V"
+          },
+          {
+            "n": 34,
+            "pct": 0.425,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 46,
+          "pct": 0.575,
+          "opcion": "V",
+          "pct_validas": 0.575
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Ética y di_q2": {
+        "type": "verdadero_falso",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 28,
+            "pct": 0.35,
+            "opcion": "V"
+          },
+          {
+            "n": 52,
+            "pct": 0.65,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 52,
+          "pct": 0.65,
+          "opcion": "F",
+          "pct_validas": 0.65
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Ética y di_q3": {
+        "type": "verdadero_falso",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 27,
+            "pct": 0.3375,
+            "opcion": "V"
+          },
+          {
+            "n": 53,
+            "pct": 0.6625,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 53,
+          "pct": 0.6625,
+          "opcion": "F",
+          "pct_validas": 0.6625
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Ética y di_q4": {
+        "type": "verdadero_falso",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 43,
+            "pct": 0.5375,
+            "opcion": "V"
+          },
+          {
+            "n": 37,
+            "pct": 0.4625,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 43,
+          "pct": 0.5375,
+          "opcion": "V",
+          "pct_validas": 0.5375
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Emparejami_q1": {
+        "type": "opcion_multiple",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 30,
+            "pct": 0.375,
+            "opcion": "A"
+          },
+          {
+            "n": 30,
+            "pct": 0.375,
+            "opcion": "B"
+          },
+          {
+            "n": 5,
+            "pct": 0.0625,
+            "opcion": "C"
+          },
+          {
+            "n": 15,
+            "pct": 0.1875,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 30,
+          "pct": 0.375,
+          "opcion": "A",
+          "pct_validas": 0.375
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Emparejami_q2": {
+        "type": "opcion_multiple",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 44,
+            "pct": 0.55,
+            "opcion": "A"
+          },
+          {
+            "n": 9,
+            "pct": 0.1125,
+            "opcion": "B"
+          },
+          {
+            "n": 26,
+            "pct": 0.325,
+            "opcion": "C"
+          },
+          {
+            "n": 1,
+            "pct": 0.0125,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 44,
+          "pct": 0.55,
+          "opcion": "A",
+          "pct_validas": 0.55
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_06_Emparejami_q3": {
+        "type": "opcion_multiple",
+        "n": 80,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 46,
+            "pct": 0.575,
+            "opcion": "A"
+          },
+          {
+            "n": 7,
+            "pct": 0.0875,
+            "opcion": "B"
+          },
+          {
+            "n": 17,
+            "pct": 0.2125,
+            "opcion": "C"
+          },
+          {
+            "n": 10,
+            "pct": 0.125,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 46,
+          "pct": 0.575,
+          "opcion": "A",
+          "pct_validas": 0.575
+        },
+        "opciones_sin_elegir": []
+      }
+    },
+    "global": {
+      "n_registros": 80,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 15
+    }
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T04:16:40.842299+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/57__pru_06_respondido.csv",
+    "original": "raw/_/58__pru_06_original.txt",
+    "limpio": "clean/51/1__v1_prueba_estandarizada_limpio.csv",
+    "nombre_archivo": "pru_06_respondido.csv"
+  },
+  "generated_at": "2026-11-12T04:16:40.842399+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T04:16:40.253101+00:00",
+    "archivo_limpio": "clean/51/1__v1_prueba_estandarizada_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "conteos": {
+          "NR": 0,
+          "nula": 0,
+          "valida": 1200
+        },
+        "motivos": {
+          "ilegible": 0,
+          "duplicado": 0,
+          "no_respondida": 0,
+          "caracter_invalido": 0,
+          "respuesta_multiple": 0
+        },
+        "n_filas": 80,
+        "n_alumnos": 80,
+        "n_preguntas": 15,
+        "pct_validas": 1.0,
+        "columnas_extra": [],
+        "n_filas_vacias": 0,
+        "n_ids_duplicados": 0
+      },
+      "despues": {
+        "conteos": {
+          "NR": 0,
+          "nula": 0,
+          "valida": 1200
+        },
+        "motivos": {
+          "ilegible": 0,
+          "duplicado": 0,
+          "no_respondida": 0,
+          "caracter_invalido": 0,
+          "respuesta_multiple": 0
+        },
+        "n_alumnos": 80,
+        "n_preguntas": 15,
+        "pct_validas": 1.0,
+        "n_respuestas": 1200,
+        "n_ids_duplicados": 0
+      }
+    },
+    "avisos": [
+      "Se conservan como datos de contexto del alumno: perfil, edad, genero, semestre, promedio_gpa, horas_trabajo_semana, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca."
+    ],
+    "estadistica": {
+      "umbrales": {
+        "casi_unanime": 0.9,
+        "sin_respuesta": 0.2
+      },
+      "respuestas": {
+        "n_alumnos": 80,
+        "n_reactivos": 15,
+        "pct_sin_respuesta": 0.0
+      },
+      "resumen_reactivos": {
+        "casi_unanimes": 0,
+        "mucha_no_respuesta": 0,
+        "con_opciones_sin_elegir": 1
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 18,
+      "nombre_kpi": "Tasa de Publicación del Cuerpo Docente",
+      "score": 0.5275
+    },
+    {
+      "kpi_id": 41,
+      "nombre_kpi": "Fondos y Subvenciones Captadas para Investigación",
+      "score": 0.5192
+    }
+  ],
+  "finalized_at": "2026-11-12T04:16:57.835364+00:00"
+}

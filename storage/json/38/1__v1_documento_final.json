@@ -1,0 +1,1649 @@
+{
+  "esquema_version": "2.0",
+  "instrumento": {
+    "id": "INS-0038",
+    "tipo": "entrevista",
+    "titulo": "Entrevista sobre inclusión y diversidad universitaria",
+    "objetivo": "La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro.",
+    "temas": [
+      "institución",
+      "tengo",
+      "cultural",
+      "quisiera",
+      "constante",
+      "campus"
+    ],
+    "palabras_clave": [
+      "institución",
+      "tengo",
+      "cultural",
+      "quisiera",
+      "constante",
+      "campus"
+    ],
+    "nivel_educativo": "Posgrado",
+    "poblacion": "No especificado",
+    "contexto": "Institución: No especificado. Cobertura: Posgrado — de los estudiantes en relación con: Métricas de Diversidad e Inclusión (Alumnado y Docentes), Porcentaje de Estudiantes que Reciben Ayuda Financiera.. Metodología: Entrevista semiestructurada"
+  },
+  "kpis_asociados": [
+    {
+      "fecha": "2026-11-12T03:59:37.871695+00:00",
+      "kpi_id": "KPI-52",
+      "nombre": "Tasa de Participación en Programas de Intercambio / Estudio en el Extranjero",
+      "que_mide": "Porcentaje de alumnos que completan créditos académicos en universidades extranjeras mediante programas de intercambio o movilidad internacional.",
+      "dimension": "Aumentar / Incrementar (KPI de Experiencia Global)",
+      "evidencia": [
+        {
+          "similitud": 0.4761,
+          "pregunta_id": "INS-0038-p05"
+        },
+        {
+          "similitud": 0.4652,
+          "pregunta_id": "INS-0038-p04"
+        },
+        {
+          "similitud": 0.4544,
+          "pregunta_id": "INS-0038-p03"
+        }
+      ],
+      "similitud": 0.5561,
+      "definicion": "El KPI Participación en Estudio en el Extranjero es de impacto POSITIVO (Maximizar). Su fórmula es (Alumnos en Intercambio / Cohorte Graduada) * 100. Aumentar este valor fomenta la internacionalización y mentalidad global de los graduados; una cifra baja denota aislamiento académico.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Tasa de Participación en Programas de Intercambio / Estudio en el Extranjero» porque las preguntas «¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?» y «¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    },
+    {
+      "fecha": "2026-11-12T03:59:37.871695+00:00",
+      "kpi_id": "KPI-14",
+      "nombre": "Métricas de Diversidad e Inclusión (Alumnado y Docentes)",
+      "que_mide": "Evalúa la representación plural y equitativa en la comunidad académica, midiendo el acceso democratizado para diversos grupos demográficos.",
+      "dimension": "Aumentar / Diversificar (KPI de Inclusión y Equidad)",
+      "evidencia": [
+        {
+          "similitud": 0.5843,
+          "pregunta_id": "INS-0038-p03"
+        },
+        {
+          "similitud": 0.4751,
+          "pregunta_id": "INS-0038-p06"
+        }
+      ],
+      "similitud": 0.5364,
+      "definicion": "El KPI Métricas de Diversidad es de polaridad POSITIVA (Maximizar). Evalúa la distribución demográfica inclusiva de alumnos y profesores. Incrementarla favorece un ecosistema multicultural y atiende principios de responsabilidad social; su reducción indica homogenización y barreras de ingreso para minorías.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Métricas de Diversidad e Inclusión (Alumnado y Docentes)» porque las preguntas «¿Cómo valoras la diversidad cultural y social presente en tu institución?» y «¿Qué cambios propondrías para hacer la institución más inclusiva?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "INS-0038-p01",
+      "texto": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0038-p02",
+      "texto": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0038-p03",
+      "texto": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+      "kpis_relacionados": [
+        "KPI-52",
+        "KPI-14"
+      ]
+    },
+    {
+      "id": "INS-0038-p04",
+      "texto": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+      "kpis_relacionados": [
+        "KPI-52"
+      ]
+    },
+    {
+      "id": "INS-0038-p05",
+      "texto": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+      "kpis_relacionados": [
+        "KPI-52"
+      ]
+    },
+    {
+      "id": "INS-0038-p06",
+      "texto": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+      "kpis_relacionados": [
+        "KPI-14"
+      ]
+    },
+    {
+      "id": "INS-0038-p07",
+      "texto": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0038-p08",
+      "texto": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+      "kpis_relacionados": []
+    }
+  ],
+  "entrevistas": [
+    {
+      "participante": "INS-0038-E01",
+      "contexto": {
+        "GPA": "1.63",
+        "Edad": "21",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "20"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E02",
+      "contexto": {
+        "GPA": "1.54",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "27"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E03",
+      "contexto": {
+        "GPA": "2.77",
+        "Edad": "20",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "1",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "33"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E04",
+      "contexto": {
+        "GPA": "3.87",
+        "Edad": "27",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "13"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E05",
+      "contexto": {
+        "GPA": "3.13",
+        "Edad": "19",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "7",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "7"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E06",
+      "contexto": {
+        "GPA": "1.79",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "37"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E07",
+      "contexto": {
+        "GPA": "2.53",
+        "Edad": "20",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "1",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "32"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E08",
+      "contexto": {
+        "GPA": "2.6",
+        "Edad": "18",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "5",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "32"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E09",
+      "contexto": {
+        "GPA": "2.8",
+        "Edad": "20",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "masculino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "35"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E10",
+      "contexto": {
+        "GPA": "3.36",
+        "Edad": "19",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "2"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. Adapting to a new academic system requires flexibility and open-mindedness."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E11",
+      "contexto": {
+        "GPA": "3.79",
+        "Edad": "18",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "7",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "8"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. I've grown more as a person during this exchange than I would have staying home. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. Adapting to a new academic system requires flexibility and open-mindedness. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E12",
+      "contexto": {
+        "GPA": "2.98",
+        "Edad": "19",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "femenino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "29"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E13",
+      "contexto": {
+        "GPA": "2.55",
+        "Edad": "18",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "36"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Es una lucha constante, pero no me queda de otra más que seguir adelante. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E14",
+      "contexto": {
+        "GPA": "2.23",
+        "Edad": "19",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "femenino",
+        "Semestre": "8",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "26"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "Las clases virtuales son una bendición y una maldición: me ahorro el transporte pero gasto más datos del teléfono. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E15",
+      "contexto": {
+        "GPA": "2.68",
+        "Edad": "21",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "23"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E16",
+      "contexto": {
+        "GPA": "3.02",
+        "Edad": "23",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "10",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "7"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. Adapting to a new academic system requires flexibility and open-mindedness. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. I've grown more as a person during this exchange than I would have staying home. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E17",
+      "contexto": {
+        "GPA": "3.68",
+        "Edad": "27",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "1"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. I've grown more as a person during this exchange than I would have staying home. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E18",
+      "contexto": {
+        "GPA": "3.73",
+        "Edad": "21",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "1"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E19",
+      "contexto": {
+        "GPA": "1.64",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "4",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "28"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. A veces el sistema no está diseñado pensando en estudiantes como yo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E20",
+      "contexto": {
+        "GPA": "2.52",
+        "Edad": "21",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "femenino",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "31"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "A pesar de todo, estoy orgulloso/a de lo que he logrado. Soy ejemplo de que con determinación y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay semanas en que no tengo para comer bien. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E21",
+      "contexto": {
+        "GPA": "2.51",
+        "Edad": "18",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "masculino",
+        "Semestre": "5",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "34"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "En la institución hay computadoras pero siempre están ocupadas. Quisiera que hubiera más disponibles. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Es una lucha constante, pero no me queda de otra más que seguir adelante. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "La verdad ha sido muy difícil. Trabajo por las noches y a veces llego cansado a clases. Ha habido momentos en que he pensado seriamente en dejar la universidad. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E22",
+      "contexto": {
+        "GPA": "1.51",
+        "Edad": "19",
+        "Perfil": "P3 — En riesgo académico",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "32"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Es una lucha constante, pero no me queda de otra más que seguir adelante."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "No siempre tengo acceso a internet en casa. Cuando hay clases virtuales me complico porque uso los datos del celular y se acaban rápido. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "A veces los profesores no entienden las situaciones de estudiantes como yo. Quisiera que hubiera más comprensión. A veces el sistema no está diseñado pensando en estudiantes como yo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "Soy el primero de mi familia en ir a la universidad y hay mucha presión. No tengo a quién pedirle consejos sobre la vida universitaria. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "No tengo mucho dinero para materiales o transporte y eso complica todo. A veces falto porque no tengo para el camión. A veces el sistema no está diseñado pensando en estudiantes como yo."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "He tenido que reprimir materias. Es frustrante porque veo a otros avanzar más rápido. Pero no me voy a rendir, mi familia cuenta conmigo. Quisiera que la institución entendiera mejor las condiciones en que estudiamos algunos."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E23",
+      "contexto": {
+        "GPA": "3.93",
+        "Edad": "27",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "23"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E24",
+      "contexto": {
+        "GPA": "3.35",
+        "Edad": "19",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "masculino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "4"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. I've grown more as a person during this exchange than I would have staying home."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E25",
+      "contexto": {
+        "GPA": "3.4",
+        "Edad": "20",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "8",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "2"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E26",
+      "contexto": {
+        "GPA": "3.89",
+        "Edad": "27",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "25"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E27",
+      "contexto": {
+        "GPA": "3.19",
+        "Edad": "28",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "1",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "1"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. I've grown more as a person during this exchange than I would have staying home. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0038-E28",
+      "contexto": {
+        "GPA": "2.13",
+        "Edad": "24",
+        "Perfil": "P8 — Dificultades socioeconómicas",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "31"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0038-p01",
+          "pregunta": "¿Te has sentido incluido/a y valorado/a en tu institución educativa?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        },
+        {
+          "pregunta_id": "INS-0038-p02",
+          "pregunta": "¿Has experimentado o presenciado situaciones de discriminación o exclusión en el campus?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p03",
+          "pregunta": "¿Cómo valoras la diversidad cultural y social presente en tu institución?",
+          "respuesta": "Ha sido muy difícil. Tengo una beca que cubre parte de los gastos, pero no es suficiente. Necesito trabajar medio tiempo y eso afecta mis estudios. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p04",
+          "pregunta": "¿Qué programas de inclusión ofrece tu institución y cuán efectivos son?",
+          "respuesta": "La vida universitaria para mí no es la experiencia idealizada que muestran en las películas. Es una lucha constante entre la academia y la sobrevivencia económica. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p05",
+          "pregunta": "¿Cómo ha influido tu origen socioeconómico en tu experiencia universitaria?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. No es justo que el acceso a una buena educación dependa tanto del dinero que tienes."
+        },
+        {
+          "pregunta_id": "INS-0038-p06",
+          "pregunta": "¿Qué cambios propondrías para hacer la institución más inclusiva?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p07",
+          "pregunta": "¿Has accedido a programas de ayuda financiera? ¿Cómo ha sido ese proceso?",
+          "respuesta": "He pensado en abandonar varias veces, pero sé que la universidad es mi única oportunidad de cambiar mi situación. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas."
+        },
+        {
+          "pregunta_id": "INS-0038-p08",
+          "pregunta": "¿Te sientes seguro/a dentro del campus? ¿Por qué?",
+          "respuesta": "No tengo computadora propia. Uso las de la institución cuando puedo, pero los horarios son limitados. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da fuerzas."
+        }
+      ]
+    }
+  ],
+  "avisos": [
+    {
+      "codigo": "texto_libre",
+      "mensaje": "Las personas entrevistadas se identifican con un ID anónimo; otros nombres mencionados en el texto libre podrían seguir presentes."
+    }
+  ]
+}

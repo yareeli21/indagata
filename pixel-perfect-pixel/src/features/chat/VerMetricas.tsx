@@ -3,22 +3,27 @@ import { BarChart3, ChevronDown, Loader2 } from "lucide-react";
 import { getMetricas } from "@/api/chat";
 import { cn } from "@/lib/utils";
 import type {
+  EvaluacionFable as Evaluacion,
   FragmentoRecuperado,
   IndicadoresRespuesta,
   MetricaCitas,
   MetricaFundamentacion,
   MetricaRecuperacion,
 } from "@/types";
+import { EvaluacionFable } from "./EvaluacionFable";
 import { IndicadoresSistema } from "./IndicadoresSistema";
 
 /**
  * «Ver métricas» de una respuesta: se calculan sin modelo juez con lo que el chat registró (lo que recuperó la
  * búsqueda híbrida, la respuesta y sus fuentes), así que valen para cualquier instrumento.
  * GET /rag/consultas/{id}/metricas → indicadores.{recuperacion, fundamentacion, citas} (metricas_respuesta.py).
+ * Debajo va la evaluación del juez Claude Fable 5.2 (juezFable: seis métricas RAGAS), que el servicio calcula sola
+ * después de cada respuesta.
  */
 export function VerMetricas({ consultaId }: { consultaId: number }) {
   const [abierto, setAbierto] = useState(false);
   const [ind, setInd] = useState<IndicadoresRespuesta | null>(null);
+  const [fable, setFable] = useState<Evaluacion | null>(null);
   const [estado, setEstado] = useState<"inicial" | "cargando" | "listo" | "error">("inicial");
 
   function alternar() {
@@ -29,6 +34,7 @@ export function VerMetricas({ consultaId }: { consultaId: number }) {
       getMetricas(consultaId)
         .then((m) => {
           setInd(m.indicadores);
+          setFable(m.juezFable ?? null);
           setEstado("listo");
         })
         .catch(() => setEstado("error"));
@@ -73,6 +79,9 @@ export function VerMetricas({ consultaId }: { consultaId: number }) {
                     : "Esta respuesta es un mensaje fijo del sistema; no se evalúa su fundamentación."}
                 </p>
               )}
+              <div className="border-t border-border pt-3">
+                <EvaluacionFable consultaId={consultaId} inicial={fable} />
+              </div>
               <div className="border-t border-border pt-3">
                 <IndicadoresSistema ind={ind} />
               </div>

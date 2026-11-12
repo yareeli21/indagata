@@ -1,0 +1,1598 @@
+{
+  "instrument_id": "47",
+  "schema_version": "2.0",
+  "tipo_instrumento": "prueba_estandarizada",
+  "instrument": {
+    "title": "Prueba de Competencias Matemáticas Básicas",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "SECCIÓN: ÁLGEBRA Y ARITMÉTICA",
+      "SECCIÓN: ESTADÍSTICA BÁSICA",
+      "SECCIÓN: CÁLCULO NUMÉRICO",
+      "SECCIÓN: VERDADERO O FALSO MATEMÁTICO"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "pru_02_Álgebra y _q1",
+            "text": "Si x + 5 = 12, ¿cuánto vale x?",
+            "type": "opcion_multiple",
+            "options": [
+              "5",
+              "7",
+              "17",
+              "3"
+            ]
+          },
+          {
+            "question_id": "pru_02_Álgebra y _q2",
+            "text": "¿Cuál es el resultado de 3² + 4²?",
+            "type": "opcion_multiple",
+            "options": [
+              "25",
+              "49",
+              "14",
+              "7"
+            ]
+          },
+          {
+            "question_id": "pru_02_Álgebra y _q3",
+            "text": "Una tienda ofrece 20% de descuento en un artículo de $500. ¿Cuánto se paga?",
+            "type": "opcion_multiple",
+            "options": [
+              "$400",
+              "$480",
+              "$450",
+              "$420"
+            ]
+          },
+          {
+            "question_id": "pru_02_Álgebra y _q4",
+            "text": "¿Cuál de los siguientes es un número primo?",
+            "type": "opcion_multiple",
+            "options": [
+              "9",
+              "15",
+              "17",
+              "21"
+            ]
+          },
+          {
+            "question_id": "pru_02_Álgebra y _q5",
+            "text": "Si f(x) = 2x + 3, ¿cuál es f(4)?",
+            "type": "opcion_multiple",
+            "options": [
+              "8",
+              "11",
+              "14",
+              "7"
+            ]
+          },
+          {
+            "question_id": "pru_02_Álgebra y _q6",
+            "text": "¿Cuánto es la raíz cuadrada de 144?",
+            "type": "opcion_multiple",
+            "options": [
+              "11",
+              "12",
+              "13",
+              "14"
+            ]
+          },
+          {
+            "question_id": "pru_02_Álgebra y _q7",
+            "text": "Si se invierten $1000 al 5% anual por 2 años (interés simple), ¿cuánto se obtiene?",
+            "type": "opcion_multiple",
+            "options": [
+              "$1100",
+              "$1050",
+              "$1102.50",
+              "$1000"
+            ]
+          },
+          {
+            "question_id": "pru_02_Estadístic_q1",
+            "text": "En el conjunto {2, 4, 4, 6, 8}, ¿cuál es la moda?",
+            "type": "opcion_multiple",
+            "options": [
+              "4",
+              "6",
+              "2",
+              "8"
+            ]
+          },
+          {
+            "question_id": "pru_02_Estadístic_q2",
+            "text": "¿Cuál es la mediana de {1, 3, 5, 7, 9}?",
+            "type": "opcion_multiple",
+            "options": [
+              "3",
+              "5",
+              "7",
+              "4"
+            ]
+          },
+          {
+            "question_id": "pru_02_Estadístic_q3",
+            "text": "Si hay 40 estudiantes y 10 reprueban, ¿cuál es la tasa de reprobación?",
+            "type": "opcion_multiple",
+            "options": [
+              "40%",
+              "25%",
+              "10%",
+              "15%"
+            ]
+          },
+          {
+            "question_id": "pru_02_Estadístic_q4",
+            "text": "¿Qué mide la desviación estándar?",
+            "type": "opcion_multiple",
+            "options": [
+              "El valor más frecuente",
+              "La dispersión de los datos respecto a la media",
+              "El valor central de los datos",
+              "El rango de los datos"
+            ]
+          },
+          {
+            "question_id": "pru_02_Estadístic_q5",
+            "text": "Si la probabilidad de lluvia es 0.3, ¿cuál es la probabilidad de que NO llueva?",
+            "type": "opcion_multiple",
+            "options": [
+              "0.3",
+              "0.5",
+              "0.7",
+              "1.3"
+            ]
+          },
+          {
+            "question_id": "pru_02_Cálculo nu_q1",
+            "text": "Calcula: 15 × 23 =",
+            "type": "numerica",
+            "options": []
+          },
+          {
+            "question_id": "pru_02_Cálculo nu_q2",
+            "text": "Calcula: 144 / 12 =",
+            "type": "numerica",
+            "options": []
+          },
+          {
+            "question_id": "pru_02_Cálculo nu_q3",
+            "text": "Calcula: 7³ =",
+            "type": "numerica",
+            "options": []
+          },
+          {
+            "question_id": "pru_02_Cálculo nu_q4",
+            "text": "Un estudiante tiene notas: 7, 8, 6, 9, 10. ¿Cuál es su promedio?",
+            "type": "numerica",
+            "options": []
+          },
+          {
+            "question_id": "pru_02_Verdadero _q1",
+            "text": "El número 0 es considerado par.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_02_Verdadero _q2",
+            "text": "La media aritmética es sensible a los valores atípicos.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_02_Verdadero _q3",
+            "text": "Un número negativo elevado a un exponente par siempre da negativo.",
+            "type": "verdadero_falso",
+            "options": []
+          },
+          {
+            "question_id": "pru_02_Verdadero _q4",
+            "text": "La probabilidad de un evento imposible es 0.",
+            "type": "verdadero_falso",
+            "options": []
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "prueba_estandarizada",
+    "dublin_core": {
+      "dc:title": "Prueba de Competencias Matemáticas Básicas",
+      "dc:creator": "Administrador",
+      "dc:subject": "instrucciones, número, datos, probabilidad, calcula, aritmética",
+      "dc:description": "Prueba estandarizada de 20 reactivos aplicada a 110 alumnos.",
+      "dc:type": "Prueba estandarizada",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "No especificado",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "pru_02_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "unidad_de_aprendizaje": "No especificado",
+      "mapeo_de_reactivos_por_seccion": {
+        "SECCIÓN: ÁLGEBRA Y ARITMÉTICA": 7,
+        "SECCIÓN: ESTADÍSTICA BÁSICA": 5,
+        "SECCIÓN: CÁLCULO NUMÉRICO": 4,
+        "SECCIÓN: VERDADERO O FALSO MATEMÁTICO": 4
+      },
+      "tipo_de_prueba": "No especificado",
+      "taxonomia_bloom": "Recordar (2), Aplicar (3)",
+      "nivel_educativo": "No especificado",
+      "objetivo_de_evaluacion": "No especificado"
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Tasa de Asistencia Escolar y Universitaria",
+      "Tamaño Promedio de Clase (Alumnos por Aula)"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "pru_02_Álgebra y _q1": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 4,
+            "pct": 0.0364,
+            "opcion": "A"
+          },
+          {
+            "n": 54,
+            "pct": 0.4909,
+            "opcion": "B"
+          },
+          {
+            "n": 26,
+            "pct": 0.2364,
+            "opcion": "C"
+          },
+          {
+            "n": 26,
+            "pct": 0.2364,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 54,
+          "pct": 0.4909,
+          "opcion": "B",
+          "pct_validas": 0.4909
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Álgebra y _q2": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "A"
+          },
+          {
+            "n": 18,
+            "pct": 0.1636,
+            "opcion": "B"
+          },
+          {
+            "n": 46,
+            "pct": 0.4182,
+            "opcion": "C"
+          },
+          {
+            "n": 45,
+            "pct": 0.4091,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 46,
+          "pct": 0.4182,
+          "opcion": "C",
+          "pct_validas": 0.4182
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Álgebra y _q3": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 15,
+            "pct": 0.1364,
+            "opcion": "A"
+          },
+          {
+            "n": 26,
+            "pct": 0.2364,
+            "opcion": "B"
+          },
+          {
+            "n": 12,
+            "pct": 0.1091,
+            "opcion": "C"
+          },
+          {
+            "n": 57,
+            "pct": 0.5182,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 57,
+          "pct": 0.5182,
+          "opcion": "D",
+          "pct_validas": 0.5182
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Álgebra y _q4": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 36,
+            "pct": 0.3273,
+            "opcion": "A"
+          },
+          {
+            "n": 10,
+            "pct": 0.0909,
+            "opcion": "B"
+          },
+          {
+            "n": 31,
+            "pct": 0.2818,
+            "opcion": "C"
+          },
+          {
+            "n": 33,
+            "pct": 0.3,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 36,
+          "pct": 0.3273,
+          "opcion": "A",
+          "pct_validas": 0.3273
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Álgebra y _q5": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 36,
+            "pct": 0.3273,
+            "opcion": "A"
+          },
+          {
+            "n": 30,
+            "pct": 0.2727,
+            "opcion": "B"
+          },
+          {
+            "n": 41,
+            "pct": 0.3727,
+            "opcion": "C"
+          },
+          {
+            "n": 3,
+            "pct": 0.0273,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 41,
+          "pct": 0.3727,
+          "opcion": "C",
+          "pct_validas": 0.3727
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Álgebra y _q6": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 11,
+            "pct": 0.1,
+            "opcion": "A"
+          },
+          {
+            "n": 47,
+            "pct": 0.4273,
+            "opcion": "B"
+          },
+          {
+            "n": 32,
+            "pct": 0.2909,
+            "opcion": "C"
+          },
+          {
+            "n": 20,
+            "pct": 0.1818,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 47,
+          "pct": 0.4273,
+          "opcion": "B",
+          "pct_validas": 0.4273
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Álgebra y _q7": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 49,
+            "pct": 0.4455,
+            "opcion": "A"
+          },
+          {
+            "n": 30,
+            "pct": 0.2727,
+            "opcion": "B"
+          },
+          {
+            "n": 23,
+            "pct": 0.2091,
+            "opcion": "C"
+          },
+          {
+            "n": 8,
+            "pct": 0.0727,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 49,
+          "pct": 0.4455,
+          "opcion": "A",
+          "pct_validas": 0.4455
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Estadístic_q1": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 60,
+            "pct": 0.5455,
+            "opcion": "A"
+          },
+          {
+            "n": 14,
+            "pct": 0.1273,
+            "opcion": "B"
+          },
+          {
+            "n": 34,
+            "pct": 0.3091,
+            "opcion": "C"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 60,
+          "pct": 0.5455,
+          "opcion": "A",
+          "pct_validas": 0.5455
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Estadístic_q2": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 48,
+            "pct": 0.4364,
+            "opcion": "A"
+          },
+          {
+            "n": 8,
+            "pct": 0.0727,
+            "opcion": "B"
+          },
+          {
+            "n": 32,
+            "pct": 0.2909,
+            "opcion": "C"
+          },
+          {
+            "n": 22,
+            "pct": 0.2,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 48,
+          "pct": 0.4364,
+          "opcion": "A",
+          "pct_validas": 0.4364
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Estadístic_q3": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 24,
+            "pct": 0.2182,
+            "opcion": "A"
+          },
+          {
+            "n": 6,
+            "pct": 0.0545,
+            "opcion": "B"
+          },
+          {
+            "n": 32,
+            "pct": 0.2909,
+            "opcion": "C"
+          },
+          {
+            "n": 48,
+            "pct": 0.4364,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 48,
+          "pct": 0.4364,
+          "opcion": "D",
+          "pct_validas": 0.4364
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Estadístic_q4": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 67,
+            "pct": 0.6091,
+            "opcion": "A"
+          },
+          {
+            "n": 18,
+            "pct": 0.1636,
+            "opcion": "B"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "C"
+          },
+          {
+            "n": 25,
+            "pct": 0.2273,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 67,
+          "pct": 0.6091,
+          "opcion": "A",
+          "pct_validas": 0.6091
+        },
+        "opciones_sin_elegir": [
+          "C"
+        ]
+      },
+      "pru_02_Estadístic_q5": {
+        "type": "opcion_multiple",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 38,
+            "pct": 0.3455,
+            "opcion": "A"
+          },
+          {
+            "n": 7,
+            "pct": 0.0636,
+            "opcion": "B"
+          },
+          {
+            "n": 32,
+            "pct": 0.2909,
+            "opcion": "C"
+          },
+          {
+            "n": 33,
+            "pct": 0.3,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 38,
+          "pct": 0.3455,
+          "opcion": "A",
+          "pct_validas": 0.3455
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Cálculo nu_q1": {
+        "type": "numerica",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "descriptivos": {
+          "n": 110,
+          "q1": 204.725,
+          "q3": 250.55,
+          "iqr": 45.825,
+          "max": 307.1,
+          "min": 150.9,
+          "media": 227.0636,
+          "mediana": 224.35,
+          "curtosis": -0.174,
+          "asimetria": 0.1879,
+          "desviacion": 32.879
+        },
+        "distribucion": [
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "206.1"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "210.0"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "213.8"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "215.5"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "215.8"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "236.2"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "236.4"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "242.5"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "150.9"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "153.4"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "159.1"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "170.5"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "171.7"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "172.8"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "180.0"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "numerica",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 2,
+          "pct": 0.0182,
+          "opcion": "206.1",
+          "pct_validas": 0.0182
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Cálculo nu_q2": {
+        "type": "numerica",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "descriptivos": {
+          "n": 110,
+          "q1": 190.1,
+          "q3": 237.55,
+          "iqr": 47.45,
+          "max": 297.3,
+          "min": 132.1,
+          "media": 215.49,
+          "mediana": 214.4,
+          "curtosis": -0.2279,
+          "asimetria": -0.0179,
+          "desviacion": 32.8536
+        },
+        "distribucion": [
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "189.5"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "190.1"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "223.4"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "235.9"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "132.1"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "140.5"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "146.2"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "149.2"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "162.0"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "165.7"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "166.7"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "167.2"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "167.8"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "174.3"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "174.6"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "numerica",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 2,
+          "pct": 0.0182,
+          "opcion": "189.5",
+          "pct_validas": 0.0182
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Cálculo nu_q3": {
+        "type": "numerica",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "descriptivos": {
+          "n": 110,
+          "q1": 316.6,
+          "q3": 376.75,
+          "iqr": 60.15,
+          "max": 485.1,
+          "min": 226.4,
+          "media": 345.31,
+          "mediana": 342.8,
+          "curtosis": 0.0535,
+          "asimetria": 0.1483,
+          "desviacion": 52.3428
+        },
+        "distribucion": [
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "345.9"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "356.1"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "372.4"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "226.4"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "236.2"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "244.5"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "254.1"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "256.0"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "256.1"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "257.8"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "269.3"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "269.4"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "272.3"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "272.7"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "273.6"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "numerica",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 2,
+          "pct": 0.0182,
+          "opcion": "345.9",
+          "pct_validas": 0.0182
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Cálculo nu_q4": {
+        "type": "numerica",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "descriptivos": {
+          "n": 110,
+          "q1": 233.4,
+          "q3": 287.675,
+          "iqr": 54.275,
+          "max": 372.5,
+          "min": 166.4,
+          "media": 262.6718,
+          "mediana": 261.85,
+          "curtosis": 0.031,
+          "asimetria": 0.2019,
+          "desviacion": 42.0882
+        },
+        "distribucion": [
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "200.2"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "217.0"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "260.8"
+          },
+          {
+            "n": 2,
+            "pct": 0.0182,
+            "opcion": "290.0"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "166.4"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "166.6"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "184.6"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "185.5"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "193.7"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "201.4"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "202.4"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "203.1"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "204.0"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "208.2"
+          },
+          {
+            "n": 1,
+            "pct": 0.0091,
+            "opcion": "214.7"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "numerica",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 2,
+          "pct": 0.0182,
+          "opcion": "200.2",
+          "pct_validas": 0.0182
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Verdadero _q1": {
+        "type": "verdadero_falso",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 65,
+            "pct": 0.5909,
+            "opcion": "V"
+          },
+          {
+            "n": 45,
+            "pct": 0.4091,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 65,
+          "pct": 0.5909,
+          "opcion": "V",
+          "pct_validas": 0.5909
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Verdadero _q2": {
+        "type": "verdadero_falso",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 35,
+            "pct": 0.3182,
+            "opcion": "V"
+          },
+          {
+            "n": 75,
+            "pct": 0.6818,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 75,
+          "pct": 0.6818,
+          "opcion": "F",
+          "pct_validas": 0.6818
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Verdadero _q3": {
+        "type": "verdadero_falso",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 64,
+            "pct": 0.5818,
+            "opcion": "V"
+          },
+          {
+            "n": 46,
+            "pct": 0.4182,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 64,
+          "pct": 0.5818,
+          "opcion": "V",
+          "pct_validas": 0.5818
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_02_Verdadero _q4": {
+        "type": "verdadero_falso",
+        "n": 110,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 43,
+            "pct": 0.3909,
+            "opcion": "V"
+          },
+          {
+            "n": 67,
+            "pct": 0.6091,
+            "opcion": "F"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "verdadero_falso",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 67,
+          "pct": 0.6091,
+          "opcion": "F",
+          "pct_validas": 0.6091
+        },
+        "opciones_sin_elegir": []
+      }
+    },
+    "global": {
+      "n_registros": 110,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 20
+    }
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T04:14:41.142816+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/49__pru_02_respondido.csv",
+    "original": "raw/_/50__pru_02_original.txt",
+    "limpio": "clean/47/1__v1_prueba_estandarizada_limpio.csv",
+    "nombre_archivo": "pru_02_respondido.csv"
+  },
+  "generated_at": "2026-11-12T04:14:41.142931+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T04:14:40.708142+00:00",
+    "archivo_limpio": "clean/47/1__v1_prueba_estandarizada_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "conteos": {
+          "NR": 0,
+          "nula": 0,
+          "valida": 2200
+        },
+        "motivos": {
+          "ilegible": 0,
+          "duplicado": 0,
+          "no_respondida": 0,
+          "caracter_invalido": 0,
+          "respuesta_multiple": 0
+        },
+        "n_filas": 110,
+        "n_alumnos": 110,
+        "n_preguntas": 20,
+        "pct_validas": 1.0,
+        "columnas_extra": [],
+        "n_filas_vacias": 0,
+        "n_ids_duplicados": 0
+      },
+      "despues": {
+        "conteos": {
+          "NR": 0,
+          "nula": 0,
+          "valida": 2200
+        },
+        "motivos": {
+          "ilegible": 0,
+          "duplicado": 0,
+          "no_respondida": 0,
+          "caracter_invalido": 0,
+          "respuesta_multiple": 0
+        },
+        "n_alumnos": 110,
+        "n_preguntas": 20,
+        "pct_validas": 1.0,
+        "n_respuestas": 2200,
+        "n_ids_duplicados": 0
+      }
+    },
+    "avisos": [
+      "Se conservan como datos de contexto del alumno: perfil, edad, genero, semestre, promedio_gpa, horas_trabajo_semana, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca."
+    ],
+    "estadistica": {
+      "umbrales": {
+        "casi_unanime": 0.9,
+        "sin_respuesta": 0.2
+      },
+      "respuestas": {
+        "n_alumnos": 110,
+        "n_reactivos": 20,
+        "pct_sin_respuesta": 0.0
+      },
+      "resumen_reactivos": {
+        "casi_unanimes": 0,
+        "mucha_no_respuesta": 0,
+        "con_opciones_sin_elegir": 1
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 4,
+      "nombre_kpi": "Tasa de Asistencia Escolar y Universitaria",
+      "score": 0.4222
+    },
+    {
+      "kpi_id": 5,
+      "nombre_kpi": "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "score": 0.5123
+    }
+  ],
+  "finalized_at": "2026-11-12T04:14:51.497450+00:00"
+}

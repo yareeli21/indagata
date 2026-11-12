@@ -1,0 +1,1001 @@
+{
+  "instrument_id": "57",
+  "schema_version": "2.0",
+  "tipo_instrumento": "encuesta",
+  "instrument": {
+    "title": "Indicadores de calidad escolar en la ESCOM (respuestas)",
+    "objective": "Saber informacion de diversos temas sobre los alummos",
+    "dimensions_explored": [
+      "Ninguna"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "Materias reprobadas del semestre anterior:",
+            "type": "likert",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4"
+            ]
+          },
+          {
+            "question_id": "q2",
+            "text": "¿Cuantos intentos del examen de admision realizaste para entrar a la universidad?",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ]
+          },
+          {
+            "question_id": "q3",
+            "text": "En el periodo de inscripciones, ¿Cuantas veces haz realizado un donativo a la escuela?",
+            "type": "categorica",
+            "options": [
+              "1.0",
+              "0.0",
+              "2.0",
+              "3.0",
+              "4 o mas"
+            ]
+          },
+          {
+            "question_id": "q4",
+            "text": "En una escala del 1 al 5 siendo 1 muy bajo y 5 muy alto ¿Cuantas veces asistes a tus clases?",
+            "type": "escala_lineal",
+            "options": [
+              "3.0",
+              "4.0",
+              "5.0"
+            ]
+          },
+          {
+            "question_id": "q5",
+            "text": "¿Cuantos años estimas en terminar la carrera?",
+            "type": "categorica",
+            "options": [
+              "5.0",
+              "4.0",
+              "6 o mas"
+            ]
+          },
+          {
+            "question_id": "q6",
+            "text": "¿Cual es tu promedio actualmente?",
+            "type": "calificacion",
+            "options": []
+          },
+          {
+            "question_id": "q7",
+            "text": "¿Cuantas carreras se ofrecen en tu facultad?",
+            "type": "escala_lineal",
+            "options": [
+              "3.0",
+              "4.0",
+              "5.0"
+            ]
+          },
+          {
+            "question_id": "q8",
+            "text": "¿Alguna vez has sufrido inseguridad dentro del campus? De ser el caso describe tu experiencia",
+            "type": "texto_corto",
+            "options": []
+          },
+          {
+            "question_id": "q9",
+            "text": "¿En tu hogar se habla alguna lengua, idioma o variante dialectal distinta al español?",
+            "type": "binaria",
+            "options": [
+              "No",
+              "Sí"
+            ]
+          },
+          {
+            "question_id": "q10",
+            "text": "¿Cuantos compañeros conoces que desertaron de los estudios universitarios?",
+            "type": "likert",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q11",
+            "text": "¿Practicas alguna actividad extracurricular?",
+            "type": "binaria",
+            "options": [
+              "Sí",
+              "No"
+            ]
+          },
+          {
+            "question_id": "q12",
+            "text": "A lo largo de la carrera como evaluarias a tus profesores de manera global",
+            "type": "escala_lineal",
+            "options": [
+              "3.0",
+              "4.0",
+              "6.0",
+              "7.0",
+              "8.0",
+              "9.0"
+            ]
+          },
+          {
+            "question_id": "q13",
+            "text": "¿Los recursos de la biblioteca te parecen suficientes y de calidad?",
+            "type": "categorica",
+            "options": [
+              "No uso los libros de la biblioteca",
+              "Me parecen buenos",
+              "Nunca voy a la bibioteca",
+              "Me parecen excelentes"
+            ]
+          },
+          {
+            "question_id": "q14",
+            "text": "Cuanto tiempo de clase efectiva dan tus profesores",
+            "type": "categorica",
+            "options": [
+              "1:00",
+              "1:30",
+              "40 min",
+              "30 min"
+            ]
+          },
+          {
+            "question_id": "q15",
+            "text": "Que otra carrera te gustaria que se ofreciera en la ESCOM relacionada al area",
+            "type": "texto_corto",
+            "options": []
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "encuesta",
+    "dublin_core": {
+      "dc:title": "Indicadores de calidad escolar en la ESCOM (respuestas)",
+      "dc:creator": "Administrador",
+      "dc:subject": "carrera, profesores, materias, reprobadas, semestre, anterior",
+      "dc:description": "Encuesta de 15 reactivos aplicada a 51 respondentes.",
+      "dc:type": "Encuesta",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "Licenciatura — estudiantes activos del semestre 2026-2 de ESCOM",
+      "dc:publisher": "ESCOM",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "dc:source": "Indicadores de calidad escolar en la ESCOM (respuestas).xlsx",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "n_respondentes": 51,
+      "n_poblacion": 2000,
+      "objetivo": "Saber informacion de diversos temas sobre los alummos",
+      "carrera": "Ingeniera en sistemas computacionales, ingenieria en inteligencia artificial y licenciatura en ciencia de datos",
+      "poblacion_objetivo": "Estudiantes de la ESCOM",
+      "constructo_principal": "Satisfacción y experiencia estudiantil",
+      "palabras_clave": [
+        "carrera",
+        "profesores",
+        "materias",
+        "reprobadas",
+        "semestre",
+        "anterior",
+        "intentos",
+        "examen"
+      ],
+      "dimensiones": [
+        "Ninguna"
+      ],
+      "notas_contextuales": "Calidad de los datos: 51 registros con respuesta; 1% de respuestas vacías."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": []
+  },
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert",
+        "n": 51,
+        "n_vacios": 0,
+        "mean": 0.471,
+        "std": 0.825,
+        "min": 0.0,
+        "max": 3.0,
+        "distribution": {
+          "0.0": 36,
+          "1.0": 8,
+          "2.0": 5,
+          "3.0": 2
+        },
+        "numerico": {
+          "n": 51,
+          "q1": 0.0,
+          "q3": 1.0,
+          "iqr": 1.0,
+          "max": 3.0,
+          "min": 0.0,
+          "media": 0.4706,
+          "mediana": 0.0,
+          "curtosis": 2.0356,
+          "asimetria": 1.7166,
+          "desviacion": 0.8331
+        },
+        "frecuencias": {
+          "moda": "0",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 36,
+              "pct": 0.7059,
+              "valor": "0"
+            },
+            {
+              "n": 8,
+              "pct": 0.1569,
+              "valor": "1"
+            },
+            {
+              "n": 5,
+              "pct": 0.098,
+              "valor": "2"
+            },
+            {
+              "n": 2,
+              "pct": 0.0392,
+              "valor": "3"
+            },
+            {
+              "n": 0,
+              "pct": 0.0,
+              "valor": "4"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 2,
+          "etiquetas": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "materias_reprobadas_del_semestre_anterio"
+      },
+      "q2": {
+        "type": "likert",
+        "n": 51,
+        "n_vacios": 0,
+        "mean": 1.333,
+        "std": 0.616,
+        "min": 1.0,
+        "max": 3.0,
+        "distribution": {
+          "1.0": 38,
+          "2.0": 9,
+          "3.0": 4
+        },
+        "numerico": {
+          "n": 51,
+          "q1": 1.0,
+          "q3": 1.5,
+          "iqr": 0.5,
+          "max": 3.0,
+          "min": 1.0,
+          "media": 1.3333,
+          "mediana": 1.0,
+          "curtosis": 1.8054,
+          "asimetria": 1.7123,
+          "desviacion": 0.6218
+        },
+        "frecuencias": {
+          "moda": "1",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 38,
+              "pct": 0.7451,
+              "valor": "1"
+            },
+            {
+              "n": 9,
+              "pct": 0.1765,
+              "valor": "2"
+            },
+            {
+              "n": 4,
+              "pct": 0.0784,
+              "valor": "3"
+            },
+            {
+              "n": 0,
+              "pct": 0.0,
+              "valor": "4"
+            }
+          ],
+          "n_categorias": 3
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 4,
+          "codigos": {},
+          "neutral": null,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "cuantos_intentos_del_examen_de_admision"
+      },
+      "q3": {
+        "type": "categorica",
+        "n": 51,
+        "n_vacios": 0,
+        "distribution": {
+          "1.0": 25,
+          "0.0": 12,
+          "2.0": 7,
+          "3.0": 4,
+          "4 o mas": 3
+        },
+        "frecuencias": {
+          "moda": "1.0",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 25,
+              "pct": 0.4902,
+              "valor": "1.0"
+            },
+            {
+              "n": 12,
+              "pct": 0.2353,
+              "valor": "0.0"
+            },
+            {
+              "n": 7,
+              "pct": 0.1373,
+              "valor": "2.0"
+            },
+            {
+              "n": 4,
+              "pct": 0.0784,
+              "valor": "3.0"
+            },
+            {
+              "n": 3,
+              "pct": 0.0588,
+              "valor": "4 o mas"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "en_el_periodo_de_inscripciones_cuantas_v"
+      },
+      "q4": {
+        "type": "escala_lineal",
+        "n": 51,
+        "n_vacios": 0,
+        "mean": 4.471,
+        "std": 0.696,
+        "min": 3.0,
+        "max": 5.0,
+        "distribution": {
+          "5.0": 30,
+          "4.0": 15,
+          "3.0": 6
+        },
+        "numerico": {
+          "n": 51,
+          "q1": 4.0,
+          "q3": 5.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 3.0,
+          "media": 4.4706,
+          "mediana": 5.0,
+          "curtosis": -0.3112,
+          "asimetria": -0.9705,
+          "desviacion": 0.7029
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "en_una_escala_del_1_al_5_siendo_1_muy_ba"
+      },
+      "q5": {
+        "type": "categorica",
+        "n": 51,
+        "n_vacios": 0,
+        "distribution": {
+          "5.0": 27,
+          "4.0": 17,
+          "6 o mas": 7
+        },
+        "frecuencias": {
+          "moda": "5.0",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 27,
+              "pct": 0.5294,
+              "valor": "5.0"
+            },
+            {
+              "n": 17,
+              "pct": 0.3333,
+              "valor": "4.0"
+            },
+            {
+              "n": 7,
+              "pct": 0.1373,
+              "valor": "6 o mas"
+            }
+          ],
+          "n_categorias": 3
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cuantos_anos_estimas_en_terminar_la_carr"
+      },
+      "q6": {
+        "type": "calificacion",
+        "n": 51,
+        "n_vacios": 0,
+        "mean": 8.114,
+        "std": 0.745,
+        "min": 6.2,
+        "max": 9.62,
+        "numerico": {
+          "n": 51,
+          "q1": 7.7,
+          "q3": 8.525,
+          "iqr": 0.825,
+          "max": 9.62,
+          "min": 6.2,
+          "media": 8.1135,
+          "mediana": 8.18,
+          "curtosis": -0.1929,
+          "asimetria": -0.2162,
+          "desviacion": 0.752
+        },
+        "atipicos": {
+          "iqr": 1,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cual_es_tu_promedio_actualmente"
+      },
+      "q7": {
+        "type": "escala_lineal",
+        "n": 51,
+        "n_vacios": 0,
+        "mean": 3.196,
+        "std": 0.444,
+        "min": 3.0,
+        "max": 5.0,
+        "distribution": {
+          "3.0": 42,
+          "4.0": 8,
+          "5.0": 1
+        },
+        "numerico": {
+          "n": 51,
+          "q1": 3.0,
+          "q3": 3.0,
+          "iqr": 0.0,
+          "max": 5.0,
+          "min": 3.0,
+          "media": 3.1961,
+          "mediana": 3.0,
+          "curtosis": 4.6386,
+          "asimetria": 2.2466,
+          "desviacion": 0.4481
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 1,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cuantas_carreras_se_ofrecen_en_tu_facult"
+      },
+      "q8": {
+        "type": "texto_corto",
+        "n": 50,
+        "n_vacios": 1,
+        "distribution": {
+          "No": 34,
+          "ninguna": 2,
+          "No nunca": 1,
+          "Sí, compañeros me han perseguido hasta mi carro.": 1,
+          "Si, el hecho de la competitividad extrema y las comparaciones entre compañeros es muy fuerte y es por esa razón que me siento insegura de poder seguirle el ritmo a los demás": 1,
+          "De momento no": 1,
+          "Dejé mi cargador en uno de los labs de redes y me lo robaron": 1,
+          "Sí": 1,
+          "No en realidad": 1,
+          "Ni he sufrido": 1,
+          "Nunca": 1,
+          "No, ninguna vez": 1,
+          "Ninguna vez": 1,
+          "No ninguna": 1,
+          "Por ahora no, solo cerca del metro politécnico, porque mataron a una chava afuera de la estación hace 2 años": 1,
+          "Machismo por parte de 'profesores' y alumnos": 1
+        },
+        "texto": {
+          "palabras_promedio": 2.7,
+          "respuestas_distintas": 16
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "alguna_vez_has_sufrido_inseguridad_dentr"
+      },
+      "q9": {
+        "type": "binaria",
+        "n": 51,
+        "n_vacios": 0,
+        "distribution": {
+          "No": 47,
+          "Sí": 4
+        },
+        "frecuencias": {
+          "moda": "No",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 47,
+              "pct": 0.9216,
+              "valor": "No"
+            },
+            {
+              "n": 4,
+              "pct": 0.0784,
+              "valor": "Sí"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "en_tu_hogar_se_habla_alguna_lengua_idiom"
+      },
+      "q10": {
+        "type": "likert",
+        "n": 51,
+        "n_vacios": 0,
+        "mean": 2.686,
+        "std": 1.754,
+        "min": 0.0,
+        "max": 5.0,
+        "distribution": {
+          "5.0": 13,
+          "2.0": 10,
+          "3.0": 8,
+          "1.0": 8,
+          "0.0": 7,
+          "4.0": 5
+        },
+        "numerico": {
+          "n": 51,
+          "q1": 1.0,
+          "q3": 4.5,
+          "iqr": 3.5,
+          "max": 5.0,
+          "min": 0.0,
+          "media": 2.6863,
+          "mediana": 3.0,
+          "curtosis": -1.3152,
+          "asimetria": -0.0175,
+          "desviacion": 1.7719
+        },
+        "frecuencias": {
+          "moda": "5",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 7,
+              "pct": 0.1373,
+              "valor": "0"
+            },
+            {
+              "n": 8,
+              "pct": 0.1569,
+              "valor": "1"
+            },
+            {
+              "n": 10,
+              "pct": 0.1961,
+              "valor": "2"
+            },
+            {
+              "n": 8,
+              "pct": 0.1569,
+              "valor": "3"
+            },
+            {
+              "n": 5,
+              "pct": 0.098,
+              "valor": "4"
+            },
+            {
+              "n": 13,
+              "pct": 0.2549,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 6
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 6,
+          "codigos": {},
+          "neutral": null,
+          "etiquetas": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "cuantos_companeros_conoces_que_desertaro"
+      },
+      "q11": {
+        "type": "binaria",
+        "n": 51,
+        "n_vacios": 0,
+        "distribution": {
+          "Sí": 26,
+          "No": 25
+        },
+        "frecuencias": {
+          "moda": "Sí",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 26,
+              "pct": 0.5098,
+              "valor": "Sí"
+            },
+            {
+              "n": 25,
+              "pct": 0.4902,
+              "valor": "No"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "practicas_alguna_actividad_extracurricul"
+      },
+      "q12": {
+        "type": "escala_lineal",
+        "n": 51,
+        "n_vacios": 0,
+        "mean": 6.725,
+        "std": 1.535,
+        "min": 3.0,
+        "max": 9.0,
+        "distribution": {
+          "7.0": 19,
+          "8.0": 16,
+          "4.0": 7,
+          "6.0": 5,
+          "3.0": 2,
+          "9.0": 2
+        },
+        "numerico": {
+          "n": 51,
+          "q1": 6.0,
+          "q3": 8.0,
+          "iqr": 2.0,
+          "max": 9.0,
+          "min": 3.0,
+          "media": 6.7255,
+          "mediana": 7.0,
+          "curtosis": 0.2037,
+          "asimetria": -1.0616,
+          "desviacion": 1.5502
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "a_lo_largo_de_la_carrera_como_evaluarias"
+      },
+      "q13": {
+        "type": "categorica",
+        "n": 51,
+        "n_vacios": 0,
+        "distribution": {
+          "No uso los libros de la biblioteca": 18,
+          "Me parecen buenos": 17,
+          "Nunca voy a la bibioteca": 12,
+          "Me parecen excelentes": 4
+        },
+        "frecuencias": {
+          "moda": "No uso los libros de la biblioteca",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 18,
+              "pct": 0.3529,
+              "valor": "No uso los libros de la biblioteca"
+            },
+            {
+              "n": 17,
+              "pct": 0.3333,
+              "valor": "Me parecen buenos"
+            },
+            {
+              "n": 12,
+              "pct": 0.2353,
+              "valor": "Nunca voy a la bibioteca"
+            },
+            {
+              "n": 4,
+              "pct": 0.0784,
+              "valor": "Me parecen excelentes"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "los_recursos_de_la_biblioteca_te_parecen"
+      },
+      "q14": {
+        "type": "categorica",
+        "n": 51,
+        "n_vacios": 0,
+        "distribution": {
+          "1:00": 31,
+          "1:30": 14,
+          "40 min": 3,
+          "30 min": 3
+        },
+        "frecuencias": {
+          "moda": "1:00",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 31,
+              "pct": 0.6078,
+              "valor": "1:00"
+            },
+            {
+              "n": 14,
+              "pct": 0.2745,
+              "valor": "1:30"
+            },
+            {
+              "n": 3,
+              "pct": 0.0588,
+              "valor": "40 min"
+            },
+            {
+              "n": 3,
+              "pct": 0.0588,
+              "valor": "30 min"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cuanto_tiempo_de_clase_efectiva_dan_tus"
+      },
+      "q15": {
+        "type": "texto_corto",
+        "n": 47,
+        "n_vacios": 4,
+        "texto": {
+          "palabras_promedio": 3.8,
+          "respuestas_distintas": 31
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "que_otra_carrera_te_gustaria_que_se_ofre"
+      }
+    },
+    "global": {
+      "n_registros": 51,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0058,
+      "n_reactivos": 15
+    },
+    "reliability": [
+      {
+        "alfa": -0.002,
+        "items": [
+          "Materias reprobadas del semestre anterior:",
+          "¿Cuantos intentos del examen de admision realizaste para entrar a la universidad?",
+          "¿Cuantos compañeros conoces que desertaron de los estudios universitarios?"
+        ],
+        "bloque": "Todas las escalas Likert",
+        "n_casos": 51,
+        "n_items": 3,
+        "por_item": [
+          {
+            "item": "Materias reprobadas del semestre anterior:",
+            "media": 0.4706,
+            "alfa_si_se_elimina": 0.0937,
+            "correlacion_item_total": -0.0558
+          },
+          {
+            "item": "¿Cuantos intentos del examen de admision realizaste para entrar a la universidad?",
+            "media": 1.3333,
+            "alfa_si_se_elimina": -0.1448,
+            "correlacion_item_total": 0.1077
+          },
+          {
+            "item": "¿Cuantos compañeros conoces que desertaron de los estudios universitarios?",
+            "media": 2.6863,
+            "alfa_si_se_elimina": 0.1378,
+            "correlacion_item_total": -0.0224
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "inaceptable"
+      }
+    ]
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T04:48:16.572770+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/68__Indicadores_de_calidad_escolar_en_la_ESCOM_respuestas.xlsx",
+    "original": null,
+    "limpio": "clean/57/1__v1_encuesta_limpio.csv",
+    "nombre_archivo": "Indicadores de calidad escolar en la ESCOM (respuestas).xlsx"
+  },
+  "generated_at": "2026-11-12T04:48:16.572824+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T04:44:50.040756+00:00",
+    "archivo_limpio": "clean/57/1__v1_encuesta_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "alertas": [],
+        "pct_nulos": 0.0451,
+        "n_columnas": 20,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 0,
+        "cols_mas_nulos": [
+          {
+            "columna": "Comentaios adicionales",
+            "pct_nulos": 0.8039
+          },
+          {
+            "columna": "Que otra carrera te gustaria que se ofreciera en la ESCOM relacionada al area",
+            "pct_nulos": 0.0784
+          },
+          {
+            "columna": "¿Alguna vez has sufrido inseguridad dentro del campus? De ser el caso describe tu experiencia",
+            "pct_nulos": 0.0196
+          }
+        ],
+        "n_respondentes": 51,
+        "pct_completitud": 0.9549,
+        "grupos_detectados": []
+      },
+      "despues": {
+        "alertas": [],
+        "pct_nulos": 0.0058,
+        "n_columnas": 17,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 0,
+        "cols_mas_nulos": [
+          {
+            "columna": "Que otra carrera te gustaria que se ofreciera en la ESCOM relacionada al area",
+            "pct_nulos": 0.0784
+          },
+          {
+            "columna": "¿Alguna vez has sufrido inseguridad dentro del campus? De ser el caso describe tu experiencia",
+            "pct_nulos": 0.0196
+          }
+        ],
+        "n_respondentes": 51,
+        "pct_completitud": 0.9942,
+        "grupos_detectados": []
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "fiabilidad": [
+        {
+          "alfa": -0.002,
+          "items": [
+            "Materias reprobadas del semestre anterior:",
+            "¿Cuantos intentos del examen de admision realizaste para entrar a la universidad?",
+            "¿Cuantos compañeros conoces que desertaron de los estudios universitarios?"
+          ],
+          "bloque": "Todas las escalas Likert",
+          "n_casos": 51,
+          "n_items": 3,
+          "por_item": [
+            {
+              "item": "Materias reprobadas del semestre anterior:",
+              "media": 0.4706,
+              "alfa_si_se_elimina": 0.0937,
+              "correlacion_item_total": -0.0558
+            },
+            {
+              "item": "¿Cuantos intentos del examen de admision realizaste para entrar a la universidad?",
+              "media": 1.3333,
+              "alfa_si_se_elimina": -0.1448,
+              "correlacion_item_total": 0.1077
+            },
+            {
+              "item": "¿Cuantos compañeros conoces que desertaron de los estudios universitarios?",
+              "media": 2.6863,
+              "alfa_si_se_elimina": 0.1378,
+              "correlacion_item_total": -0.0224
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "inaceptable"
+        }
+      ],
+      "encuestados": {
+        "incompletos": 0,
+        "linea_recta": 0
+      }
+    }
+  }
+}

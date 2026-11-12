@@ -1,0 +1,161 @@
+id_respondente,perfil,edad,genero,semestre,promedio_gpa,horas_trabajo_semana,tipo_universidad,nivel_ses,nivel_estudio,primera_generacion,tiene_beca,Servicios_acadé_item1,Servicios_acadé_item2,Servicios_acadé_item3,Servicios_acadé_item4,Servicios_acadé_item5,Infraestructura_item1,Infraestructura_item2,Infraestructura_item3,Infraestructura_item4,Infraestructura_item5,Seguridad_item1,Seguridad_item2,Seguridad_item3,Seguridad_item4,Seguridad_item5,Con_qué_frecuencia_utilizas_los_servici,Cómo_calificarías_la_comunicación_insti,Cuál_servicio_usas_con_más_frecuencia,Recomendarías_esta_institución_a_otras_,El_costo_de_los_servicios_complementari,Has_utilizado_el_servicio_de_bolsa_de_t,Has_recibido_atención_de_los_servicios_,Conoces_los_programas_de_becas_disponib,"En_una_escala_del_0_al_10,_cuán_satisfe","En_una_escala_del_0_al_10,_qué_tan_prob"
+R0001,P8,22,otro,8,2.89,25,publica,muy_bajo,pregrado,False,True,2,2,3,3,4,3,3,4,3,4,2,2,3,1,1,Semanalmente,Aceptable,Deportes,Probablemente no,En desacuerdo,Sí,No,No,9,7
+R0002,P2,23,masculino,4,3.42,8,publica,medio,pregrado,False,False,4,3,4,4,5,2,3,3,2,3,3,3,2,4,4,Semanalmente,Buena,Laboratorios,Probablemente no,Neutral,Sí,Sí,No,9,10
+R0003,P8,18,masculino,2,3.14,20,publica,muy_bajo,pregrado,False,True,1,2,1,1,1,2,3,3,4,3,3,4,2,3,2,Una vez al semestre,Muy deficiente,Deportes,Definitivamente no,Totalmente de acuerdo,No,Sí,No,1,7
+R0004,P2,20,masculino,5,2.82,6,publica,medio,pregrado,False,False,2,2,1,3,2,3,2,2,3,3,3,3,2,2,3,Una vez al semestre,Deficiente,Deportes,Probablemente sí,Neutral,Sí,No,Sí,9,6
+R0005,P2,22,femenino,6,3.43,3,publica,medio,pregrado,False,False,3,3,3,3,3,4,3,4,5,4,2,3,2,4,5,Una vez al mes,Deficiente,Cafetería,Definitivamente sí,En desacuerdo,No,Sí,Sí,3,6
+R0006,P7,25,femenino,3,3.82,23,privada,alto,posgrado,False,False,5,4,5,4,4,5,5,5,5,5,4,5,5,5,4,Semanalmente,Excelente,Cafetería,Probablemente sí,Neutral,No,Sí,Sí,4,0
+R0007,P3,19,masculino,3,1.95,23,publica,bajo,pregrado,True,False,2,2,3,2,3,3,3,2,1,4,2,2,1,3,3,Una vez al mes,Deficiente,Deportes,Definitivamente sí,Totalmente en desacuerdo,No,No,No,9,0
+R0008,P7,26,femenino,2,3.82,22,privada,alto,posgrado,False,False,4,4,4,4,4,5,4,5,4,5,4,4,5,5,5,Semanalmente,Deficiente,Biblioteca,Probablemente no,Totalmente de acuerdo,No,No,Sí,1,6
+R0009,P6,27,femenino,7,3.24,10,privada,medio_alto,pregrado,False,False,3,3,4,3,4,4,2,3,4,3,2,1,2,2,2,Semanalmente,Buena,Cafetería,Probablemente sí,Totalmente de acuerdo,Sí,No,No,4,5
+R0010,P2,20,femenino,4,2.86,3,publica,medio,pregrado,False,False,5,4,4,4,5,3,3,3,3,4,5,4,4,5,4,Una vez al semestre,Buena,Deportes,Definitivamente sí,Totalmente en desacuerdo,No,Sí,No,1,10
+R0011,P2,19,femenino,5,3.14,4,publica,medio,pregrado,False,False,4,3,3,3,4,3,3,2,2,2,3,3,3,3,1,Una vez al mes,Buena,Laboratorios,Probablemente sí,En desacuerdo,No,Sí,No,6,5
+R0012,P3,17,masculino,1,2.53,20,publica,bajo,pregrado,True,False,2,2,1,4,3,2,3,1,2,2,3,3,3,2,3,Nunca,Excelente,Laboratorios,Definitivamente no,Totalmente en desacuerdo,Sí,No,Sí,7,9
+R0013,P4,25,femenino,3,2.97,38,publica,medio,pregrado,False,False,4,2,3,3,1,2,3,2,4,3,3,3,4,2,3,Nunca,Excelente,Deportes,Definitivamente sí,Totalmente de acuerdo,No,No,No,6,7
+R0014,P3,21,femenino,2,2.04,25,publica,bajo,pregrado,True,False,2,3,2,3,3,3,2,4,3,2,1,2,1,2,2,Semanalmente,Deficiente,Tutoría,Definitivamente no,Totalmente de acuerdo,Sí,Sí,Sí,10,3
+R0015,P2,24,femenino,9,3.25,1,publica,medio,pregrado,False,False,3,2,2,3,3,4,5,4,5,4,3,3,3,3,4,Una vez al semestre,Excelente,Cafetería,Definitivamente no,En desacuerdo,No,No,No,7,9
+R0016,P2,23,femenino,6,3.31,1,publica,medio,pregrado,False,False,3,3,2,3,2,3,4,4,5,5,2,3,4,3,3,Semanalmente,Aceptable,Biblioteca,Definitivamente no,Neutral,No,No,No,0,1
+R0017,P4,33,masculino,5,2.73,48,publica,medio,pregrado,False,False,4,4,5,5,4,3,1,2,1,2,3,2,3,5,1,Una vez al semestre,Excelente,Biblioteca,Probablemente sí,De acuerdo,Sí,No,No,2,7
+R0018,P1,19,femenino,3,3.54,3,privada,alto,pregrado,False,False,4,4,4,4,3,5,4,4,5,5,4,5,5,4,5,Semanalmente,Buena,Deportes,Definitivamente sí,Totalmente de acuerdo,Sí,Sí,No,5,5
+R0019,P3,20,masculino,3,2.41,33,publica,bajo,pregrado,True,False,3,2,2,2,2,3,2,3,2,1,4,3,4,2,3,Una vez al semestre,Muy deficiente,Cafetería,Probablemente sí,Totalmente de acuerdo,Sí,Sí,No,5,7
+R0020,P1,18,femenino,3,3.96,5,privada,alto,pregrado,False,False,5,5,5,5,4,5,4,4,4,3,3,3,4,4,3,Nunca,Excelente,Deportes,Probablemente no,De acuerdo,Sí,No,Sí,2,1
+R0021,P7,34,masculino,4,3.72,26,privada,alto,posgrado,False,False,5,5,4,5,5,5,4,4,4,4,5,5,5,5,5,Una vez al semestre,Aceptable,Biblioteca,Probablemente no,Neutral,Sí,No,Sí,5,2
+R0022,P5,25,femenino,9,3.38,9,mixta,medio,pregrado,False,False,4,3,4,4,3,4,3,3,3,2,2,2,2,1,2,Una vez al mes,Aceptable,Laboratorios,Probablemente sí,De acuerdo,No,Sí,No,5,3
+R0023,P2,22,femenino,8,3.29,15,publica,medio,pregrado,False,False,4,2,3,3,4,3,3,3,4,4,2,2,2,3,2,Una vez al semestre,Deficiente,Biblioteca,Definitivamente no,De acuerdo,No,No,No,4,6
+R0024,P6,24,femenino,1,3.75,5,privada,medio_alto,pregrado,False,False,4,3,4,3,3,2,3,2,4,2,3,3,1,3,2,Una vez al semestre,Buena,Biblioteca,Definitivamente no,Neutral,No,No,Sí,9,10
+R0025,P4,32,masculino,10,2.93,33,publica,medio,pregrado,False,False,1,1,2,1,1,3,1,3,4,3,1,1,2,3,1,Semanalmente,Excelente,Biblioteca,Probablemente no,En desacuerdo,Sí,No,Sí,4,9
+R0026,P4,25,femenino,11,3.02,31,publica,medio,pregrado,False,False,5,4,5,5,5,3,3,4,4,2,2,2,3,4,3,Una vez al semestre,Muy deficiente,Cafetería,Probablemente no,Totalmente en desacuerdo,Sí,Sí,No,8,7
+R0027,P2,19,masculino,7,2.84,14,publica,medio,pregrado,False,False,4,4,5,4,5,3,2,4,4,3,4,3,4,3,2,Una vez al mes,Deficiente,Laboratorios,Probablemente sí,Neutral,No,No,No,7,1
+R0028,P3,17,masculino,5,1.54,25,publica,bajo,pregrado,True,False,1,1,1,1,2,2,2,2,2,2,3,2,3,3,3,Nunca,Muy deficiente,Biblioteca,Probablemente sí,Totalmente de acuerdo,No,Sí,Sí,10,8
+R0029,P7,32,femenino,3,3.76,29,privada,alto,posgrado,False,False,5,4,4,5,5,4,4,5,5,5,4,4,4,4,4,Semanalmente,Muy deficiente,Deportes,Definitivamente no,Totalmente de acuerdo,Sí,No,Sí,6,9
+R0030,P2,19,masculino,9,3.36,15,publica,medio,pregrado,False,False,3,5,2,4,3,4,4,5,4,4,3,3,3,2,4,Una vez al mes,Muy deficiente,Cafetería,Definitivamente no,Neutral,No,No,Sí,5,5
+R0031,P5,24,femenino,8,3.63,14,mixta,medio,pregrado,False,False,3,3,3,3,2,3,2,2,2,2,2,3,3,2,3,Nunca,Deficiente,Cafetería,Definitivamente no,Totalmente de acuerdo,Sí,Sí,Sí,0,0
+R0032,P2,22,otro,3,3.14,12,publica,medio,pregrado,False,False,3,4,3,3,4,2,3,4,3,3,3,4,3,2,3,Una vez al mes,Aceptable,Tutoría,Probablemente no,Totalmente en desacuerdo,Sí,Sí,No,7,1
+R0033,P3,19,femenino,4,1.97,32,publica,bajo,pregrado,True,False,3,2,2,2,3,1,1,1,2,1,2,2,2,1,2,Una vez al mes,Excelente,Cafetería,Probablemente sí,Totalmente de acuerdo,No,No,Sí,5,8
+R0034,P4,25,femenino,10,2.82,34,publica,medio,pregrado,False,False,1,3,2,2,3,3,3,1,1,2,1,3,4,2,3,Semanalmente,Aceptable,Biblioteca,Probablemente no,En desacuerdo,No,Sí,No,9,1
+R0035,P2,22,femenino,6,2.98,9,publica,medio,pregrado,False,False,5,3,4,5,4,2,3,4,3,3,3,5,4,4,4,Una vez al semestre,Deficiente,Cafetería,Definitivamente no,En desacuerdo,No,No,Sí,6,3
+R0036,P1,22,masculino,4,3.96,3,privada,alto,pregrado,False,False,5,4,4,4,4,4,5,4,4,5,4,5,4,5,5,Nunca,Muy deficiente,Deportes,Definitivamente no,En desacuerdo,Sí,Sí,Sí,7,8
+R0037,P4,27,femenino,8,2.72,33,publica,medio,pregrado,False,False,3,3,2,3,4,3,2,2,2,3,3,2,1,4,1,Nunca,Excelente,Tutoría,Probablemente sí,En desacuerdo,Sí,No,No,10,1
+R0038,P3,21,femenino,5,2.05,30,publica,bajo,pregrado,True,False,2,1,2,1,2,2,1,2,2,2,3,3,3,5,2,Semanalmente,Muy deficiente,Tutoría,Probablemente no,En desacuerdo,Sí,No,No,10,4
+R0039,P8,18,femenino,2,2.21,21,publica,muy_bajo,pregrado,False,True,5,5,4,4,5,5,5,5,4,5,4,1,4,2,1,Nunca,Buena,Cafetería,Definitivamente sí,Neutral,No,Sí,Sí,2,7
+R0040,P5,25,masculino,10,3.11,14,mixta,medio,pregrado,False,False,4,4,4,4,4,3,3,4,3,4,4,3,3,3,2,Una vez al semestre,Deficiente,Laboratorios,Probablemente sí,Totalmente en desacuerdo,Sí,Sí,Sí,2,5
+R0041,P7,29,otro,4,3.89,13,privada,alto,posgrado,False,False,4,5,5,5,5,4,5,4,4,5,3,4,5,4,4,Semanalmente,Buena,Cafetería,Probablemente no,En desacuerdo,No,Sí,Sí,8,9
+R0042,P8,19,femenino,8,2.57,17,publica,muy_bajo,pregrado,False,True,4,4,2,3,3,5,5,5,4,5,3,3,2,4,1,Semanalmente,Excelente,Cafetería,Definitivamente no,En desacuerdo,Sí,Sí,Sí,1,1
+R0043,P1,22,masculino,8,3.9,0,privada,alto,pregrado,False,False,4,4,4,4,5,5,5,4,4,4,4,4,4,4,5,Una vez al semestre,Excelente,Cafetería,Probablemente sí,Totalmente en desacuerdo,Sí,No,No,9,6
+R0044,P7,24,masculino,2,3.81,25,privada,alto,posgrado,False,False,5,5,5,5,4,5,5,5,5,5,4,4,4,4,4,Una vez al mes,Muy deficiente,Deportes,Probablemente no,Totalmente de acuerdo,Sí,Sí,Sí,1,3
+R0045,P8,20,masculino,4,2.51,23,publica,muy_bajo,pregrado,False,True,3,3,2,3,4,3,3,3,2,1,1,2,1,2,2,Una vez al mes,Aceptable,Biblioteca,Probablemente sí,Neutral,Sí,No,Sí,4,6
+R0046,P3,17,femenino,4,2.2,40,publica,bajo,pregrado,True,False,1,2,3,3,2,1,1,1,2,1,3,2,2,3,2,Nunca,Aceptable,Cafetería,Probablemente no,Neutral,Sí,No,No,9,1
+R0047,P5,26,masculino,8,3.4,13,mixta,medio,pregrado,False,False,3,3,2,3,2,3,2,1,3,3,4,3,3,3,3,Una vez al semestre,Excelente,Laboratorios,Definitivamente no,Neutral,No,No,No,1,7
+R0048,P3,21,masculino,3,1.91,32,publica,bajo,pregrado,True,False,3,3,2,3,3,1,1,2,1,1,2,2,2,1,3,Semanalmente,Buena,Deportes,Definitivamente sí,En desacuerdo,No,No,No,0,2
+R0049,P1,20,femenino,3,3.64,9,privada,alto,pregrado,False,False,4,4,5,4,5,5,4,5,5,5,4,4,4,4,4,Una vez al mes,Muy deficiente,Biblioteca,Definitivamente no,En desacuerdo,Sí,Sí,No,8,8
+R0050,P2,21,masculino,6,2.9,2,publica,medio,pregrado,False,False,3,2,3,3,2,1,3,3,2,3,2,2,1,3,2,Una vez al mes,Excelente,Biblioteca,Probablemente sí,Totalmente en desacuerdo,No,Sí,Sí,8,9
+R0051,P1,18,masculino,4,3.51,2,privada,alto,pregrado,False,False,4,4,4,4,4,5,5,4,5,4,4,5,5,5,5,Semanalmente,Deficiente,Tutoría,Definitivamente no,Totalmente de acuerdo,No,No,Sí,8,3
+R0052,P4,26,masculino,5,2.51,50,publica,medio,pregrado,False,False,4,4,5,5,4,3,2,2,3,2,1,1,2,2,3,Nunca,Buena,Laboratorios,Definitivamente sí,De acuerdo,Sí,Sí,No,5,7
+R0053,P5,25,femenino,10,3.08,14,mixta,medio,pregrado,False,False,3,3,3,2,4,2,3,2,2,2,3,3,2,3,2,Una vez al mes,Muy deficiente,Laboratorios,Probablemente no,De acuerdo,No,No,Sí,8,6
+R0054,P1,20,femenino,5,3.75,7,privada,alto,pregrado,False,False,4,3,4,4,4,5,5,5,5,5,3,3,3,3,3,Nunca,Deficiente,Cafetería,Probablemente sí,De acuerdo,Sí,No,No,7,9
+R0055,P2,21,masculino,8,3.45,12,publica,medio,pregrado,False,False,3,4,3,5,3,3,3,5,2,3,2,1,2,1,2,Nunca,Muy deficiente,Deportes,Definitivamente no,Totalmente de acuerdo,Sí,No,Sí,4,10
+R0056,P1,18,femenino,8,3.62,5,privada,alto,pregrado,False,False,5,5,4,5,5,3,3,3,4,3,4,4,4,4,4,Semanalmente,Muy deficiente,Biblioteca,Definitivamente sí,Totalmente en desacuerdo,Sí,Sí,Sí,8,9
+R0057,P8,20,femenino,7,2.27,34,publica,muy_bajo,pregrado,False,True,1,3,1,2,1,3,3,4,2,3,2,3,3,2,4,Semanalmente,Excelente,Cafetería,Definitivamente no,De acuerdo,Sí,Sí,No,2,2
+R0058,P7,31,masculino,6,3.75,29,privada,alto,posgrado,False,False,4,5,4,4,4,4,4,4,4,4,4,5,5,4,4,Semanalmente,Muy deficiente,Laboratorios,Definitivamente no,Totalmente de acuerdo,No,Sí,Sí,4,6
+R0059,P1,18,masculino,5,3.56,7,privada,alto,pregrado,False,False,5,4,5,5,5,5,5,4,4,5,5,4,4,5,4,Una vez al semestre,Buena,Biblioteca,Probablemente no,Totalmente de acuerdo,Sí,Sí,No,9,1
+R0060,P7,32,masculino,5,3.94,21,privada,alto,posgrado,False,False,5,5,5,5,4,4,4,4,5,4,4,4,4,3,3,Una vez al mes,Buena,Cafetería,Probablemente sí,En desacuerdo,No,Sí,Sí,1,3
+R0061,P7,33,masculino,4,3.71,24,privada,alto,posgrado,False,False,4,4,5,4,4,5,5,5,5,5,5,5,5,5,5,Nunca,Muy deficiente,Deportes,Probablemente no,Neutral,No,Sí,Sí,4,3
+R0062,P7,33,femenino,6,3.92,16,privada,alto,posgrado,False,False,4,4,4,4,4,5,5,5,5,5,4,5,4,5,5,Nunca,Deficiente,Laboratorios,Probablemente no,En desacuerdo,Sí,No,No,6,5
+R0063,P7,24,masculino,5,3.77,15,privada,alto,posgrado,False,False,4,4,4,4,4,4,4,5,5,5,5,4,4,4,5,Nunca,Aceptable,Laboratorios,Definitivamente no,Totalmente en desacuerdo,Sí,Sí,No,6,9
+R0064,P3,19,otro,5,2.37,28,publica,bajo,pregrado,True,False,1,1,3,2,2,1,1,2,1,1,3,2,3,2,3,Una vez al semestre,Deficiente,Biblioteca,Probablemente sí,En desacuerdo,No,No,No,10,0
+R0065,P2,24,femenino,5,2.92,6,publica,medio,pregrado,False,False,4,3,3,3,3,3,3,3,4,3,3,4,3,3,3,Una vez al semestre,Excelente,Tutoría,Probablemente no,En desacuerdo,No,No,No,7,5
+R0066,P7,31,otro,6,3.93,25,privada,alto,posgrado,False,False,4,4,4,4,3,5,5,4,5,4,5,5,5,5,5,Nunca,Muy deficiente,Laboratorios,Definitivamente sí,Totalmente de acuerdo,Sí,Sí,Sí,0,8
+R0067,P7,31,femenino,6,3.96,26,privada,alto,posgrado,False,False,5,5,5,5,5,4,4,4,5,4,5,5,4,5,5,Semanalmente,Buena,Cafetería,Probablemente no,Neutral,No,No,Sí,10,2
+R0068,P2,22,otro,9,2.82,8,publica,medio,pregrado,False,False,2,2,1,2,2,5,5,4,4,3,3,3,2,2,3,Una vez al mes,Aceptable,Biblioteca,Probablemente sí,Totalmente de acuerdo,No,Sí,Sí,2,8
+R0069,P4,31,masculino,12,2.78,32,publica,medio,pregrado,False,False,3,3,3,4,2,4,3,3,2,2,1,1,2,2,3,Una vez al semestre,Deficiente,Tutoría,Probablemente no,Totalmente de acuerdo,Sí,No,No,6,0
+R0070,P4,30,masculino,11,3.14,31,publica,medio,pregrado,False,False,2,2,1,1,2,3,3,2,2,3,2,1,3,2,1,Una vez al semestre,Deficiente,Biblioteca,Definitivamente no,De acuerdo,No,Sí,No,9,5
+R0071,P4,27,femenino,8,2.99,35,publica,medio,pregrado,False,False,4,3,2,4,3,2,1,4,2,3,1,1,3,1,3,Una vez al mes,Buena,Biblioteca,Probablemente sí,Neutral,No,Sí,Sí,6,10
+R0072,P5,23,masculino,8,3.4,19,mixta,medio,pregrado,False,False,5,4,3,4,3,3,3,4,5,3,2,2,2,2,1,Una vez al semestre,Deficiente,Biblioteca,Probablemente sí,Neutral,Sí,Sí,Sí,0,4
+R0073,P1,18,masculino,1,3.93,6,privada,alto,pregrado,False,False,4,4,4,4,4,4,4,4,4,5,4,4,5,5,4,Semanalmente,Buena,Tutoría,Definitivamente sí,De acuerdo,Sí,No,Sí,3,7
+R0074,P3,21,femenino,5,2.38,24,publica,bajo,pregrado,True,False,1,2,3,2,2,2,3,2,1,3,3,3,3,2,2,Semanalmente,Muy deficiente,Deportes,Probablemente sí,En desacuerdo,Sí,No,No,0,1
+R0075,P2,20,femenino,7,3.49,11,publica,medio,pregrado,False,False,4,4,5,4,3,3,4,4,4,3,2,3,2,1,4,Nunca,Deficiente,Cafetería,Probablemente sí,Neutral,Sí,Sí,No,4,4
+R0076,P1,18,masculino,4,3.52,6,privada,alto,pregrado,False,False,5,5,4,5,5,3,3,4,4,4,4,4,5,5,5,Semanalmente,Aceptable,Biblioteca,Definitivamente no,En desacuerdo,Sí,Sí,Sí,9,0
+R0077,P4,30,femenino,4,3.26,48,publica,medio,pregrado,False,False,1,3,2,3,3,3,4,3,5,3,1,2,1,2,3,Una vez al semestre,Deficiente,Deportes,Definitivamente sí,En desacuerdo,No,Sí,Sí,2,1
+R0078,P3,18,masculino,1,2.38,40,publica,bajo,pregrado,True,False,2,2,2,3,1,1,2,3,2,1,3,1,2,3,3,Nunca,Muy deficiente,Biblioteca,Definitivamente no,En desacuerdo,No,No,Sí,8,3
+R0079,P3,18,femenino,4,2.65,24,publica,bajo,pregrado,True,False,1,2,3,3,2,4,4,4,2,4,3,3,4,2,3,Semanalmente,Deficiente,Laboratorios,Probablemente sí,Totalmente en desacuerdo,Sí,No,No,0,10
+R0080,P1,21,femenino,2,3.87,2,privada,alto,pregrado,False,False,4,5,5,4,4,4,4,4,5,4,5,4,5,5,5,Una vez al semestre,Aceptable,Deportes,Probablemente sí,Totalmente de acuerdo,No,No,Sí,2,10
+R0081,P4,26,femenino,8,2.83,34,publica,medio,pregrado,False,False,3,2,4,3,4,2,3,2,4,3,2,3,4,2,2,Nunca,Excelente,Laboratorios,Definitivamente sí,Totalmente de acuerdo,No,Sí,No,6,0
+R0082,P2,19,masculino,7,3.31,4,publica,medio,pregrado,False,False,5,4,5,5,5,3,4,3,4,4,3,4,3,3,4,Una vez al mes,Buena,Tutoría,Probablemente no,De acuerdo,No,Sí,No,10,0
+R0083,P1,18,masculino,3,3.57,3,privada,alto,pregrado,False,False,5,5,5,5,5,4,3,4,4,4,4,5,4,4,5,Una vez al semestre,Excelente,Laboratorios,Probablemente no,De acuerdo,Sí,Sí,No,6,7
+R0084,P7,28,masculino,1,3.82,25,privada,alto,posgrado,False,False,4,5,5,4,4,4,5,5,5,5,4,5,4,4,4,Nunca,Aceptable,Laboratorios,Definitivamente no,Neutral,No,Sí,Sí,7,10
+R0085,P5,23,femenino,11,3.35,6,mixta,medio,pregrado,False,False,3,3,2,2,2,3,2,2,2,1,2,3,2,2,2,Una vez al mes,Muy deficiente,Laboratorios,Probablemente no,Neutral,No,Sí,No,8,5
+R0086,P4,30,masculino,10,2.94,38,publica,medio,pregrado,False,False,5,3,5,5,3,3,3,3,3,3,3,3,3,3,2,Una vez al semestre,Muy deficiente,Deportes,Definitivamente sí,Totalmente de acuerdo,No,Sí,Sí,1,5
+R0087,P5,24,masculino,9,3.71,10,mixta,medio,pregrado,False,False,3,3,4,4,5,4,4,5,4,4,3,3,2,3,3,Una vez al mes,Buena,Cafetería,Definitivamente no,Totalmente en desacuerdo,Sí,Sí,Sí,10,6
+R0088,P3,18,masculino,2,2.48,34,publica,bajo,pregrado,True,False,4,2,3,3,4,2,3,1,2,2,1,1,2,2,2,Nunca,Buena,Deportes,Definitivamente sí,Totalmente en desacuerdo,Sí,No,Sí,5,4
+R0089,P2,20,femenino,4,2.99,11,publica,medio,pregrado,False,False,3,4,3,3,3,5,4,3,4,4,3,4,2,3,3,Una vez al semestre,Excelente,Deportes,Definitivamente no,Totalmente de acuerdo,Sí,Sí,No,3,8
+R0090,P3,17,masculino,1,2.09,20,publica,bajo,pregrado,True,False,3,2,2,3,4,2,2,2,1,2,2,2,1,2,1,Nunca,Aceptable,Tutoría,Probablemente no,Totalmente en desacuerdo,No,Sí,No,9,1
+R0091,P7,30,masculino,5,3.8,24,privada,alto,posgrado,False,False,4,4,4,4,5,5,4,4,5,4,5,5,4,5,4,Una vez al semestre,Excelente,Laboratorios,Probablemente no,De acuerdo,No,No,No,5,0
+R0092,P5,24,masculino,12,3.42,19,mixta,medio,pregrado,False,False,4,4,4,4,4,3,4,4,4,3,4,4,5,5,3,Semanalmente,Deficiente,Cafetería,Definitivamente sí,En desacuerdo,Sí,Sí,No,7,0
+R0093,P7,32,otro,5,3.84,23,privada,alto,posgrado,False,False,4,5,4,4,4,4,3,3,4,4,5,5,4,5,4,Semanalmente,Excelente,Laboratorios,Probablemente sí,De acuerdo,Sí,No,No,4,2
+R0094,P8,25,femenino,1,3.01,19,publica,muy_bajo,pregrado,False,True,3,4,4,4,4,2,2,1,3,2,4,4,5,4,3,Una vez al semestre,Muy deficiente,Cafetería,Definitivamente sí,Totalmente de acuerdo,No,Sí,No,6,5
+R0095,P2,22,masculino,6,2.88,6,publica,medio,pregrado,False,False,5,5,5,4,3,1,2,2,2,2,3,4,4,3,3,Una vez al mes,Aceptable,Tutoría,Definitivamente sí,Neutral,No,Sí,No,1,2
+R0096,P8,22,masculino,3,3.1,23,publica,muy_bajo,pregrado,False,True,5,2,3,3,4,4,3,3,3,5,2,2,3,1,3,Una vez al mes,Excelente,Deportes,Probablemente sí,Totalmente en desacuerdo,No,Sí,No,4,6
+R0097,P5,25,masculino,9,3.24,15,mixta,medio,pregrado,False,False,3,3,3,3,3,4,3,2,3,4,3,2,2,2,2,Semanalmente,Buena,Tutoría,Probablemente sí,Neutral,Sí,Sí,Sí,4,0
+R0098,P4,25,masculino,6,2.65,50,publica,medio,pregrado,False,False,5,3,3,3,4,4,5,5,3,4,5,5,3,5,5,Nunca,Deficiente,Cafetería,Probablemente sí,Totalmente en desacuerdo,No,Sí,Sí,2,4
+R0099,P4,35,masculino,3,2.92,34,publica,medio,pregrado,False,False,3,2,3,3,4,4,2,4,3,4,3,4,1,2,3,Una vez al semestre,Excelente,Deportes,Probablemente sí,Totalmente de acuerdo,No,Sí,No,10,1
+R0100,P3,19,masculino,5,1.91,25,publica,bajo,pregrado,True,False,2,2,3,2,1,3,2,3,2,2,2,3,1,3,2,Una vez al mes,Aceptable,Deportes,Definitivamente sí,En desacuerdo,No,Sí,Sí,6,3
+R0101,P1,21,femenino,7,3.66,3,privada,alto,pregrado,False,False,3,3,3,3,2,3,4,4,4,4,4,5,5,5,5,Una vez al semestre,Excelente,Laboratorios,Probablemente no,Totalmente de acuerdo,Sí,No,Sí,9,7
+R0102,P1,21,femenino,3,3.51,3,privada,alto,pregrado,False,False,4,4,4,4,4,5,5,5,5,5,3,4,4,4,4,Una vez al mes,Muy deficiente,Biblioteca,Probablemente sí,Totalmente de acuerdo,No,No,Sí,1,0
+R0103,P3,19,masculino,4,1.81,30,publica,bajo,pregrado,True,False,3,3,2,2,4,2,2,1,3,3,3,3,3,2,2,Semanalmente,Excelente,Cafetería,Probablemente no,En desacuerdo,No,Sí,No,4,8
+R0104,P2,21,femenino,7,3.13,5,publica,medio,pregrado,False,False,3,3,4,3,3,4,5,4,5,5,4,3,3,3,4,Semanalmente,Buena,Tutoría,Probablemente no,En desacuerdo,Sí,No,Sí,8,2
+R0105,P1,18,masculino,2,3.98,8,privada,alto,pregrado,False,False,5,5,4,5,5,4,5,4,4,4,4,4,4,4,3,Una vez al semestre,Muy deficiente,Laboratorios,Probablemente no,Totalmente de acuerdo,Sí,Sí,Sí,1,9
+R0106,P1,21,femenino,2,3.68,5,privada,alto,pregrado,False,False,3,4,4,3,3,4,4,4,4,4,4,5,5,5,4,Nunca,Deficiente,Deportes,Definitivamente no,De acuerdo,Sí,No,No,2,7
+R0107,P8,21,femenino,8,2.53,16,publica,muy_bajo,pregrado,False,True,1,2,2,1,2,4,4,4,5,4,4,2,2,3,3,Una vez al semestre,Excelente,Deportes,Definitivamente sí,Neutral,No,No,Sí,10,9
+R0108,P2,24,femenino,9,3.34,8,publica,medio,pregrado,False,False,3,4,4,4,4,5,4,5,5,5,4,4,4,4,4,Una vez al mes,Buena,Biblioteca,Probablemente no,Totalmente de acuerdo,No,Sí,No,1,6
+R0109,P8,25,femenino,6,2.29,22,publica,muy_bajo,pregrado,False,True,3,2,3,1,2,4,3,4,4,4,2,3,4,2,2,Una vez al mes,Muy deficiente,Laboratorios,Probablemente sí,En desacuerdo,No,No,No,5,4
+R0110,P4,25,femenino,4,2.91,30,publica,medio,pregrado,False,False,3,3,2,1,3,2,4,1,1,1,2,2,3,4,4,Semanalmente,Muy deficiente,Laboratorios,Definitivamente no,De acuerdo,No,Sí,No,0,1
+R0111,P2,20,femenino,8,2.85,3,publica,medio,pregrado,False,False,5,5,4,5,5,4,4,5,4,3,3,2,2,4,3,Semanalmente,Deficiente,Deportes,Probablemente sí,En desacuerdo,No,No,No,3,0
+R0112,P2,23,femenino,8,2.87,12,publica,medio,pregrado,False,False,3,3,4,3,4,4,4,4,3,4,3,2,3,3,4,Nunca,Deficiente,Tutoría,Definitivamente no,Totalmente en desacuerdo,No,Sí,No,8,8
+R0113,P2,24,masculino,7,3.06,9,publica,medio,pregrado,False,False,4,5,5,3,5,5,4,4,5,4,4,3,2,3,3,Nunca,Buena,Tutoría,Probablemente sí,En desacuerdo,Sí,Sí,Sí,4,7
+R0114,P3,18,masculino,1,1.81,36,publica,bajo,pregrado,True,False,4,2,2,3,3,1,1,1,1,1,1,2,3,1,2,Nunca,Buena,Tutoría,Probablemente no,Totalmente en desacuerdo,Sí,Sí,No,5,1
+R0115,P2,19,masculino,6,3.1,1,publica,medio,pregrado,False,False,5,5,4,4,4,4,4,4,4,5,4,5,4,5,5,Nunca,Deficiente,Tutoría,Definitivamente no,Totalmente de acuerdo,No,No,Sí,10,1
+R0116,P7,25,masculino,3,3.81,14,privada,alto,posgrado,False,False,5,5,5,5,5,5,5,5,5,4,5,4,5,5,5,Una vez al semestre,Deficiente,Tutoría,Probablemente no,En desacuerdo,Sí,No,No,4,8
+R0117,P3,19,masculino,3,1.96,36,publica,bajo,pregrado,True,False,2,2,2,1,2,3,1,3,2,1,2,2,2,1,1,Nunca,Muy deficiente,Tutoría,Definitivamente no,Totalmente de acuerdo,No,No,No,6,0
+R0118,P4,25,masculino,5,2.57,35,publica,medio,pregrado,False,False,4,2,2,5,4,2,3,4,2,2,3,4,5,3,4,Semanalmente,Muy deficiente,Deportes,Definitivamente no,De acuerdo,No,No,Sí,5,5
+R0119,P4,35,femenino,8,2.66,36,publica,medio,pregrado,False,False,2,2,4,2,2,2,2,1,2,2,2,3,3,4,3,Una vez al semestre,Excelente,Cafetería,Definitivamente sí,En desacuerdo,Sí,No,No,7,3
+R0120,P5,27,masculino,10,3.27,5,mixta,medio,pregrado,False,False,3,3,3,5,3,3,2,3,3,3,3,3,4,3,3,Nunca,Buena,Biblioteca,Definitivamente sí,Totalmente de acuerdo,No,Sí,Sí,6,7
+R0121,P8,22,femenino,1,2.17,19,publica,muy_bajo,pregrado,False,True,3,2,2,2,4,4,2,2,2,4,2,3,4,3,4,Una vez al mes,Buena,Cafetería,Definitivamente sí,Totalmente en desacuerdo,No,Sí,No,9,0
+R0122,P3,20,masculino,1,2.46,32,publica,bajo,pregrado,True,False,1,2,1,2,1,3,2,4,3,2,1,3,2,1,1,Nunca,Excelente,Tutoría,Definitivamente no,Totalmente en desacuerdo,No,No,No,9,0
+R0123,P3,21,femenino,2,2.09,27,publica,bajo,pregrado,True,False,3,2,2,1,3,3,2,2,1,1,2,3,3,3,2,Semanalmente,Muy deficiente,Deportes,Probablemente sí,Totalmente de acuerdo,Sí,No,No,10,1
+R0124,P8,24,femenino,2,2.81,23,publica,muy_bajo,pregrado,False,True,2,2,2,3,1,2,2,3,3,3,5,5,4,4,4,Semanalmente,Deficiente,Tutoría,Probablemente sí,En desacuerdo,Sí,Sí,No,3,8
+R0125,P8,23,masculino,3,2.88,22,publica,muy_bajo,pregrado,False,True,1,1,1,1,1,4,4,2,2,3,1,3,1,1,1,Semanalmente,Buena,Laboratorios,Probablemente no,Totalmente en desacuerdo,No,Sí,No,1,7
+R0126,P7,34,femenino,1,3.91,10,privada,alto,posgrado,False,False,4,4,4,5,4,4,4,5,5,5,4,4,4,3,3,Una vez al semestre,Buena,Laboratorios,Probablemente sí,Totalmente en desacuerdo,Sí,No,No,2,7
+R0127,P7,32,masculino,6,3.76,13,privada,alto,posgrado,False,False,4,4,5,5,5,4,4,5,4,4,4,3,4,4,4,Una vez al mes,Buena,Deportes,Probablemente no,Totalmente de acuerdo,No,No,Sí,8,6
+R0128,P3,20,femenino,3,2.15,31,publica,bajo,pregrado,True,False,4,2,3,4,3,3,3,3,4,1,1,1,2,1,2,Nunca,Deficiente,Laboratorios,Definitivamente sí,Neutral,Sí,Sí,No,9,1
+R0129,P4,29,femenino,10,3.11,39,publica,medio,pregrado,False,False,3,3,3,2,4,2,3,3,4,4,4,4,3,4,2,Nunca,Muy deficiente,Biblioteca,Definitivamente no,Neutral,No,No,No,2,2
+R0130,P3,21,femenino,2,2.25,31,publica,bajo,pregrado,True,False,3,4,3,3,3,2,2,2,2,2,1,3,2,2,1,Una vez al mes,Aceptable,Tutoría,Probablemente no,En desacuerdo,Sí,No,No,5,1
+R0131,P5,24,femenino,12,3.73,6,mixta,medio,pregrado,False,False,3,2,3,2,3,3,2,2,2,2,4,4,4,4,3,Una vez al mes,Buena,Cafetería,Definitivamente sí,Totalmente en desacuerdo,Sí,No,No,0,1
+R0132,P7,26,masculino,2,3.76,19,privada,alto,posgrado,False,False,5,5,5,5,4,4,4,5,5,4,5,5,5,4,5,Nunca,Buena,Tutoría,Definitivamente no,Totalmente de acuerdo,Sí,No,Sí,6,8
+R0133,P3,19,masculino,3,1.5,26,publica,bajo,pregrado,True,False,3,4,3,3,3,3,3,3,2,3,2,2,2,2,4,Semanalmente,Muy deficiente,Cafetería,Definitivamente sí,En desacuerdo,Sí,No,No,7,5
+R0134,P4,26,femenino,7,3.25,36,publica,medio,pregrado,False,False,2,2,2,1,2,1,1,2,1,1,2,2,1,2,3,Una vez al semestre,Buena,Tutoría,Probablemente sí,En desacuerdo,Sí,Sí,No,1,4
+R0135,P6,21,femenino,5,3.2,2,privada,medio_alto,pregrado,False,False,4,3,5,4,4,3,2,3,2,2,4,4,5,4,3,Una vez al mes,Buena,Laboratorios,Definitivamente sí,Totalmente de acuerdo,Sí,No,No,10,1
+R0136,P2,24,femenino,6,3.28,15,publica,medio,pregrado,False,False,3,3,3,4,4,4,4,4,4,4,4,4,4,3,4,Nunca,Deficiente,Cafetería,Probablemente sí,Totalmente en desacuerdo,Sí,No,Sí,9,7
+R0137,P5,25,masculino,11,3.29,16,mixta,medio,pregrado,False,False,2,3,3,2,3,5,4,4,3,4,4,3,4,3,2,Semanalmente,Deficiente,Biblioteca,Definitivamente sí,Neutral,No,Sí,Sí,10,9
+R0138,P6,21,femenino,6,2.95,2,privada,medio_alto,pregrado,False,False,3,3,3,3,3,5,4,4,3,5,2,1,2,3,2,Una vez al mes,Muy deficiente,Tutoría,Definitivamente sí,Neutral,Sí,Sí,Sí,10,0
+R0139,P1,22,masculino,1,3.68,2,privada,alto,pregrado,False,False,5,4,5,4,4,4,5,5,4,4,3,3,4,3,4,Una vez al semestre,Muy deficiente,Cafetería,Definitivamente sí,De acuerdo,Sí,No,Sí,0,10
+R0140,P2,21,femenino,6,3.37,13,publica,medio,pregrado,False,False,2,3,1,2,2,2,2,1,2,2,4,4,4,4,4,Una vez al mes,Aceptable,Laboratorios,Definitivamente no,Totalmente de acuerdo,No,No,Sí,4,2
+R0141,P1,22,femenino,6,3.69,3,privada,alto,pregrado,False,False,4,4,4,5,4,3,4,3,4,4,4,4,4,5,4,Semanalmente,Deficiente,Cafetería,Definitivamente sí,Totalmente en desacuerdo,Sí,Sí,No,4,10
+R0142,P1,22,femenino,7,3.62,2,privada,alto,pregrado,False,False,4,4,3,4,4,4,4,4,3,4,4,4,5,5,4,Nunca,Buena,Laboratorios,Probablemente no,En desacuerdo,No,Sí,No,0,8
+R0143,P4,35,femenino,10,2.53,43,publica,medio,pregrado,False,False,2,1,1,1,1,2,4,4,3,3,4,4,4,3,5,Nunca,Aceptable,Tutoría,Definitivamente sí,En desacuerdo,No,No,Sí,10,9
+R0144,P6,22,femenino,9,3.82,10,privada,medio_alto,pregrado,False,False,2,2,3,2,3,2,2,2,2,2,3,3,2,3,4,Una vez al mes,Aceptable,Cafetería,Definitivamente no,Totalmente de acuerdo,No,No,Sí,0,2
+R0145,P3,20,masculino,4,1.61,28,publica,bajo,pregrado,True,False,3,4,3,3,2,4,2,1,2,2,2,2,1,2,2,Semanalmente,Excelente,Tutoría,Definitivamente no,Neutral,No,Sí,Sí,7,6
+R0146,P5,22,femenino,8,3.73,14,mixta,medio,pregrado,False,False,2,2,2,2,3,2,1,2,2,2,2,2,2,3,2,Semanalmente,Muy deficiente,Tutoría,Probablemente sí,Neutral,No,No,Sí,3,0
+R0147,P2,23,femenino,4,3.02,9,publica,medio,pregrado,False,False,3,4,4,4,4,4,3,3,3,3,4,2,2,2,3,Nunca,Muy deficiente,Deportes,Definitivamente no,En desacuerdo,No,No,Sí,6,4
+R0148,P7,28,femenino,4,3.93,26,privada,alto,posgrado,False,False,5,4,4,5,5,5,4,5,5,5,4,4,5,4,4,Una vez al semestre,Deficiente,Deportes,Probablemente no,Neutral,Sí,Sí,No,5,1
+R0149,P3,19,femenino,3,2.74,36,publica,bajo,pregrado,True,False,1,1,1,1,1,1,1,1,1,1,3,3,3,2,3,Semanalmente,Muy deficiente,Laboratorios,Probablemente no,De acuerdo,Sí,Sí,Sí,2,0
+R0150,P6,25,masculino,10,3.16,1,privada,medio_alto,pregrado,False,False,4,3,3,2,3,2,4,4,3,5,4,4,3,3,4,Semanalmente,Buena,Cafetería,Definitivamente no,Neutral,No,Sí,Sí,4,9
+R0151,P2,22,masculino,2,3.32,15,publica,medio,pregrado,False,False,4,3,4,3,3,4,3,4,4,4,4,3,3,3,5,Una vez al semestre,Deficiente,Cafetería,Probablemente sí,De acuerdo,No,Sí,No,7,8
+R0152,P7,29,femenino,3,3.8,16,privada,alto,posgrado,False,False,4,4,4,4,4,4,4,4,4,4,5,5,5,5,4,Semanalmente,Muy deficiente,Tutoría,Probablemente sí,Totalmente de acuerdo,Sí,No,Sí,6,3
+R0153,P4,35,masculino,4,3.0,34,publica,medio,pregrado,False,False,2,1,1,1,2,4,3,3,3,4,5,3,3,3,2,Semanalmente,Muy deficiente,Biblioteca,Probablemente sí,Totalmente de acuerdo,No,Sí,Sí,2,4
+R0154,P8,18,masculino,3,2.92,15,publica,muy_bajo,pregrado,False,True,1,2,2,1,2,1,2,1,2,1,3,2,2,3,2,Nunca,Excelente,Deportes,Probablemente no,Neutral,Sí,Sí,No,2,5
+R0155,P3,19,masculino,3,1.57,26,publica,bajo,pregrado,True,False,1,1,1,1,1,3,3,4,5,3,1,4,2,4,4,Semanalmente,Deficiente,Laboratorios,Definitivamente no,Totalmente de acuerdo,No,Sí,Sí,7,6
+R0156,P7,32,masculino,3,3.75,19,privada,alto,posgrado,False,False,4,4,4,5,5,4,5,4,4,4,5,5,5,5,5,Una vez al mes,Aceptable,Cafetería,Definitivamente no,En desacuerdo,Sí,Sí,No,2,6
+R0157,P3,18,femenino,2,2.6,29,publica,bajo,pregrado,True,False,3,2,1,2,1,1,2,2,4,2,3,2,2,2,2,Semanalmente,Muy deficiente,Laboratorios,Probablemente no,Totalmente en desacuerdo,Sí,Sí,Sí,6,3
+R0158,P1,20,femenino,5,3.73,10,privada,alto,pregrado,False,False,5,5,4,5,5,3,4,4,4,3,4,4,4,3,5,Semanalmente,Buena,Cafetería,Definitivamente no,De acuerdo,No,No,No,10,4
+R0159,P5,25,masculino,8,3.14,17,mixta,medio,pregrado,False,False,3,4,2,3,3,2,2,2,2,3,2,3,2,2,2,Nunca,Buena,Laboratorios,Probablemente sí,De acuerdo,No,No,Sí,6,10
+R0160,P2,19,masculino,2,3.04,11,publica,medio,pregrado,False,False,4,4,4,5,3,3,4,3,4,3,4,3,3,3,4,Una vez al mes,Deficiente,Deportes,Definitivamente sí,Totalmente en desacuerdo,No,No,Sí,3,1

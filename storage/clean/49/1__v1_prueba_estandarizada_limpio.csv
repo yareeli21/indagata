@@ -1,0 +1,1621 @@
+﻿id_alumno;pregunta;respuesta;estado;motivo;perfil;edad;genero;semestre;promedio_gpa;horas_trabajo_semana;tipo_universidad;nivel_ses;nivel_estudio;primera_generacion;tiene_beca
+R0001;pru_04_Conductas _q1;3;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conductas _q2;3;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conductas _q3;3;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conductas _q4;3;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conductas _q5;4;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conductas _q6;2;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conductas _q7;2;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conductas _q8;2;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conocimien_q1;B;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conocimien_q2;C;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conocimien_q3;A;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conocimien_q4;D;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conocimien_q5;B;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Conocimien_q6;B;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Autonomía:_q1;Sí;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Autonomía:_q2;Sí;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Autonomía:_q3;Sí;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0001;pru_04_Autonomía:_q4;No;valida;;P2;24;masculino;2;2.91;15;publica;medio;pregrado;False;False
+R0002;pru_04_Conductas _q1;3;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conductas _q2;3;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conductas _q3;3;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conductas _q4;3;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conductas _q5;2;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conductas _q6;2;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conductas _q7;4;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conductas _q8;3;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conocimien_q1;D;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conocimien_q2;D;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conocimien_q3;A;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conocimien_q4;D;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conocimien_q5;D;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Conocimien_q6;A;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Autonomía:_q1;Sí;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Autonomía:_q2;No;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Autonomía:_q3;Sí;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0002;pru_04_Autonomía:_q4;No;valida;;P6;19;femenino;9;3.72;5;privada;medio_alto;pregrado;False;False
+R0003;pru_04_Conductas _q1;3;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conductas _q2;3;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conductas _q3;3;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conductas _q4;3;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conductas _q5;4;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conductas _q6;3;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conductas _q7;3;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conductas _q8;3;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conocimien_q1;C;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conocimien_q2;D;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conocimien_q3;A;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conocimien_q4;A;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conocimien_q5;D;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Conocimien_q6;A;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Autonomía:_q1;No;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Autonomía:_q2;Sí;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Autonomía:_q3;Sí;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0003;pru_04_Autonomía:_q4;No;valida;;P5;24;masculino;8;3.25;9;mixta;medio;pregrado;False;False
+R0004;pru_04_Conductas _q1;4;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conductas _q2;4;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conductas _q3;4;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conductas _q4;5;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conductas _q5;5;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conductas _q6;5;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conductas _q7;4;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conductas _q8;4;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conocimien_q1;A;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conocimien_q2;D;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conocimien_q3;B;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conocimien_q4;D;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conocimien_q5;A;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Conocimien_q6;A;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Autonomía:_q1;No;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Autonomía:_q2;No;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Autonomía:_q3;No;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0004;pru_04_Autonomía:_q4;Sí;valida;;P5;27;otro;9;3.23;14;mixta;medio;pregrado;False;False
+R0005;pru_04_Conductas _q1;4;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conductas _q2;4;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conductas _q3;4;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conductas _q4;3;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conductas _q5;3;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conductas _q6;4;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conductas _q7;3;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conductas _q8;3;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conocimien_q1;A;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conocimien_q2;C;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conocimien_q3;B;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conocimien_q4;B;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conocimien_q5;A;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Conocimien_q6;C;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Autonomía:_q1;No;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Autonomía:_q2;No;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Autonomía:_q3;Sí;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0005;pru_04_Autonomía:_q4;No;valida;;P8;19;femenino;8;2.67;35;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conductas _q1;4;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conductas _q2;2;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conductas _q3;2;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conductas _q4;5;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conductas _q5;2;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conductas _q6;2;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conductas _q7;3;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conductas _q8;3;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conocimien_q1;A;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conocimien_q2;A;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conocimien_q3;A;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conocimien_q4;D;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conocimien_q5;D;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Conocimien_q6;A;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Autonomía:_q1;No;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Autonomía:_q2;No;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Autonomía:_q3;Sí;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0006;pru_04_Autonomía:_q4;No;valida;;P8;20;femenino;4;2.86;24;publica;muy_bajo;pregrado;False;True
+R0007;pru_04_Conductas _q1;3;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conductas _q2;4;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conductas _q3;5;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conductas _q4;4;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conductas _q5;5;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conductas _q6;4;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conductas _q7;4;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conductas _q8;4;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conocimien_q1;C;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conocimien_q2;A;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conocimien_q3;B;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conocimien_q4;A;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conocimien_q5;D;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Conocimien_q6;A;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Autonomía:_q1;Sí;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Autonomía:_q2;Sí;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Autonomía:_q3;Sí;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0007;pru_04_Autonomía:_q4;No;valida;;P5;22;femenino;11;3.43;17;mixta;medio;pregrado;False;False
+R0008;pru_04_Conductas _q1;3;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conductas _q2;3;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conductas _q3;4;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conductas _q4;3;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conductas _q5;3;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conductas _q6;4;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conductas _q7;3;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conductas _q8;3;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conocimien_q1;C;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conocimien_q2;A;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conocimien_q3;A;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conocimien_q4;A;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conocimien_q5;A;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Conocimien_q6;C;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Autonomía:_q1;No;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Autonomía:_q2;No;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Autonomía:_q3;No;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0008;pru_04_Autonomía:_q4;No;valida;;P5;22;femenino;9;3.58;15;mixta;medio;pregrado;False;False
+R0009;pru_04_Conductas _q1;5;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conductas _q2;3;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conductas _q3;4;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conductas _q4;3;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conductas _q5;4;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conductas _q6;4;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conductas _q7;3;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conductas _q8;4;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conocimien_q1;C;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conocimien_q2;D;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conocimien_q3;A;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conocimien_q4;C;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conocimien_q5;B;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Conocimien_q6;C;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Autonomía:_q1;No;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Autonomía:_q2;No;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Autonomía:_q3;Sí;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0009;pru_04_Autonomía:_q4;Sí;valida;;P2;23;otro;3;3.39;4;publica;medio;pregrado;False;False
+R0010;pru_04_Conductas _q1;5;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conductas _q2;4;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conductas _q3;5;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conductas _q4;5;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conductas _q5;5;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conductas _q6;5;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conductas _q7;5;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conductas _q8;4;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conocimien_q1;A;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conocimien_q2;A;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conocimien_q3;A;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conocimien_q4;A;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conocimien_q5;D;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Conocimien_q6;A;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Autonomía:_q1;Sí;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Autonomía:_q2;No;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Autonomía:_q3;No;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0010;pru_04_Autonomía:_q4;No;valida;;P4;27;masculino;11;2.55;31;publica;medio;pregrado;False;False
+R0011;pru_04_Conductas _q1;4;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conductas _q2;5;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conductas _q3;4;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conductas _q4;4;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conductas _q5;4;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conductas _q6;5;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conductas _q7;4;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conductas _q8;4;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conocimien_q1;C;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conocimien_q2;D;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conocimien_q3;A;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conocimien_q4;A;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conocimien_q5;C;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Conocimien_q6;A;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Autonomía:_q1;No;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Autonomía:_q2;No;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Autonomía:_q3;No;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0011;pru_04_Autonomía:_q4;No;valida;;P6;21;femenino;5;3.12;4;privada;medio_alto;pregrado;False;False
+R0012;pru_04_Conductas _q1;2;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conductas _q2;3;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conductas _q3;4;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conductas _q4;3;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conductas _q5;3;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conductas _q6;2;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conductas _q7;2;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conductas _q8;3;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conocimien_q1;B;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conocimien_q2;B;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conocimien_q3;A;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conocimien_q4;D;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conocimien_q5;D;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Conocimien_q6;C;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Autonomía:_q1;Sí;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Autonomía:_q2;No;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Autonomía:_q3;No;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0012;pru_04_Autonomía:_q4;No;valida;;P5;26;masculino;7;3.48;14;mixta;medio;pregrado;False;False
+R0013;pru_04_Conductas _q1;4;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conductas _q2;3;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conductas _q3;3;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conductas _q4;3;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conductas _q5;3;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conductas _q6;4;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conductas _q7;4;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conductas _q8;4;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conocimien_q1;B;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conocimien_q2;B;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conocimien_q3;A;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conocimien_q4;D;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conocimien_q5;D;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Conocimien_q6;A;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Autonomía:_q1;No;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Autonomía:_q2;No;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Autonomía:_q3;No;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0013;pru_04_Autonomía:_q4;Sí;valida;;P8;25;masculino;6;2.64;21;publica;muy_bajo;pregrado;False;True
+R0014;pru_04_Conductas _q1;2;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conductas _q2;3;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conductas _q3;2;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conductas _q4;2;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conductas _q5;3;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conductas _q6;3;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conductas _q7;3;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conductas _q8;2;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conocimien_q1;A;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conocimien_q2;A;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conocimien_q3;B;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conocimien_q4;A;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conocimien_q5;B;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Conocimien_q6;A;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Autonomía:_q1;No;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Autonomía:_q2;Sí;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Autonomía:_q3;No;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0014;pru_04_Autonomía:_q4;No;valida;;P6;20;masculino;1;2.88;3;privada;medio_alto;pregrado;False;False
+R0015;pru_04_Conductas _q1;4;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conductas _q2;4;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conductas _q3;4;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conductas _q4;4;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conductas _q5;5;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conductas _q6;4;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conductas _q7;4;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conductas _q8;5;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conocimien_q1;C;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conocimien_q2;D;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conocimien_q3;D;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conocimien_q4;A;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conocimien_q5;A;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Conocimien_q6;A;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Autonomía:_q1;No;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Autonomía:_q2;Sí;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Autonomía:_q3;No;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0015;pru_04_Autonomía:_q4;No;valida;;P7;34;masculino;1;3.72;26;privada;alto;posgrado;False;False
+R0016;pru_04_Conductas _q1;4;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conductas _q2;4;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conductas _q3;3;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conductas _q4;4;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conductas _q5;4;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conductas _q6;5;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conductas _q7;3;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conductas _q8;4;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conocimien_q1;A;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conocimien_q2;B;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conocimien_q3;D;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conocimien_q4;C;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conocimien_q5;C;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Conocimien_q6;B;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Autonomía:_q1;No;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Autonomía:_q2;No;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Autonomía:_q3;Sí;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0016;pru_04_Autonomía:_q4;Sí;valida;;P6;18;masculino;7;3.15;7;privada;medio_alto;pregrado;False;False
+R0017;pru_04_Conductas _q1;5;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conductas _q2;4;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conductas _q3;3;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conductas _q4;5;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conductas _q5;5;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conductas _q6;5;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conductas _q7;4;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conductas _q8;5;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conocimien_q1;D;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conocimien_q2;B;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conocimien_q3;D;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conocimien_q4;A;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conocimien_q5;D;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Conocimien_q6;A;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Autonomía:_q1;No;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Autonomía:_q2;No;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Autonomía:_q3;No;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0017;pru_04_Autonomía:_q4;No;valida;;P1;20;masculino;5;3.95;6;privada;alto;pregrado;False;False
+R0018;pru_04_Conductas _q1;3;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conductas _q2;2;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conductas _q3;2;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conductas _q4;4;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conductas _q5;2;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conductas _q6;3;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conductas _q7;3;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conductas _q8;3;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conocimien_q1;B;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conocimien_q2;B;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conocimien_q3;A;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conocimien_q4;A;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conocimien_q5;A;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Conocimien_q6;A;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Autonomía:_q1;Sí;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Autonomía:_q2;Sí;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Autonomía:_q3;Sí;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0018;pru_04_Autonomía:_q4;No;valida;;P3;19;otro;4;2.03;24;publica;bajo;pregrado;True;False
+R0019;pru_04_Conductas _q1;1;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conductas _q2;1;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conductas _q3;1;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conductas _q4;1;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conductas _q5;2;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conductas _q6;2;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conductas _q7;2;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conductas _q8;1;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conocimien_q1;A;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conocimien_q2;D;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conocimien_q3;B;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conocimien_q4;D;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conocimien_q5;D;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Conocimien_q6;A;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Autonomía:_q1;Sí;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Autonomía:_q2;No;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Autonomía:_q3;No;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0019;pru_04_Autonomía:_q4;Sí;valida;;P3;19;masculino;3;2.66;35;publica;bajo;pregrado;True;False
+R0020;pru_04_Conductas _q1;2;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conductas _q2;2;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conductas _q3;1;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conductas _q4;2;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conductas _q5;3;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conductas _q6;2;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conductas _q7;3;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conductas _q8;2;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conocimien_q1;C;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conocimien_q2;C;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conocimien_q3;A;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conocimien_q4;A;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conocimien_q5;D;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Conocimien_q6;C;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Autonomía:_q1;No;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Autonomía:_q2;No;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Autonomía:_q3;Sí;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0020;pru_04_Autonomía:_q4;No;valida;;P3;18;femenino;1;2.22;31;publica;bajo;pregrado;True;False
+R0021;pru_04_Conductas _q1;3;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conductas _q2;2;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conductas _q3;1;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conductas _q4;1;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conductas _q5;3;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conductas _q6;2;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conductas _q7;1;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conductas _q8;2;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conocimien_q1;B;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conocimien_q2;C;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conocimien_q3;A;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conocimien_q4;D;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conocimien_q5;A;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Conocimien_q6;A;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Autonomía:_q1;No;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Autonomía:_q2;Sí;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Autonomía:_q3;No;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0021;pru_04_Autonomía:_q4;Sí;valida;;P3;19;femenino;3;2.11;34;publica;bajo;pregrado;True;False
+R0022;pru_04_Conductas _q1;1;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conductas _q2;2;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conductas _q3;2;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conductas _q4;2;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conductas _q5;1;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conductas _q6;4;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conductas _q7;3;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conductas _q8;2;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conocimien_q1;C;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conocimien_q2;A;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conocimien_q3;D;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conocimien_q4;C;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conocimien_q5;C;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Conocimien_q6;A;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Autonomía:_q1;No;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Autonomía:_q2;No;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Autonomía:_q3;No;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0022;pru_04_Autonomía:_q4;No;valida;;P3;18;masculino;5;2.32;37;publica;bajo;pregrado;True;False
+R0023;pru_04_Conductas _q1;4;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conductas _q2;5;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conductas _q3;4;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conductas _q4;4;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conductas _q5;5;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conductas _q6;4;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conductas _q7;4;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conductas _q8;5;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conocimien_q1;B;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conocimien_q2;C;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conocimien_q3;B;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conocimien_q4;C;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conocimien_q5;A;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Conocimien_q6;A;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Autonomía:_q1;No;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Autonomía:_q2;Sí;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Autonomía:_q3;No;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0023;pru_04_Autonomía:_q4;No;valida;;P7;33;masculino;1;3.86;27;privada;alto;posgrado;False;False
+R0024;pru_04_Conductas _q1;2;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conductas _q2;3;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conductas _q3;2;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conductas _q4;3;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conductas _q5;2;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conductas _q6;1;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conductas _q7;2;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conductas _q8;3;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conocimien_q1;B;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conocimien_q2;C;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conocimien_q3;A;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conocimien_q4;A;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conocimien_q5;C;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Conocimien_q6;A;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Autonomía:_q1;Sí;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Autonomía:_q2;No;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Autonomía:_q3;No;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0024;pru_04_Autonomía:_q4;No;valida;;P3;19;masculino;2;2.07;36;publica;bajo;pregrado;True;False
+R0025;pru_04_Conductas _q1;5;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conductas _q2;3;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conductas _q3;4;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conductas _q4;5;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conductas _q5;4;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conductas _q6;3;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conductas _q7;3;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conductas _q8;4;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conocimien_q1;C;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conocimien_q2;B;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conocimien_q3;B;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conocimien_q4;C;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conocimien_q5;B;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Conocimien_q6;A;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Autonomía:_q1;Sí;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Autonomía:_q2;No;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Autonomía:_q3;Sí;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0025;pru_04_Autonomía:_q4;Sí;valida;;P4;32;masculino;7;2.52;44;publica;medio;pregrado;False;False
+R0026;pru_04_Conductas _q1;3;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conductas _q2;2;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conductas _q3;3;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conductas _q4;2;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conductas _q5;1;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conductas _q6;3;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conductas _q7;5;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conductas _q8;3;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conocimien_q1;A;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conocimien_q2;A;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conocimien_q3;B;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conocimien_q4;C;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conocimien_q5;D;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Conocimien_q6;A;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Autonomía:_q1;No;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Autonomía:_q2;No;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Autonomía:_q3;No;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0026;pru_04_Autonomía:_q4;No;valida;;P8;21;femenino;7;2.91;26;publica;muy_bajo;pregrado;False;True
+R0027;pru_04_Conductas _q1;5;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conductas _q2;3;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conductas _q3;4;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conductas _q4;3;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conductas _q5;5;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conductas _q6;5;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conductas _q7;4;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conductas _q8;3;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conocimien_q1;A;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conocimien_q2;B;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conocimien_q3;B;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conocimien_q4;B;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conocimien_q5;D;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Conocimien_q6;D;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Autonomía:_q1;No;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Autonomía:_q2;No;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Autonomía:_q3;No;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0027;pru_04_Autonomía:_q4;No;valida;;P2;22;femenino;6;3.2;14;publica;medio;pregrado;False;False
+R0028;pru_04_Conductas _q1;5;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conductas _q2;5;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conductas _q3;3;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conductas _q4;3;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conductas _q5;3;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conductas _q6;3;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conductas _q7;2;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conductas _q8;4;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conocimien_q1;C;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conocimien_q2;D;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conocimien_q3;B;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conocimien_q4;A;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conocimien_q5;C;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Conocimien_q6;A;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Autonomía:_q1;Sí;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Autonomía:_q2;No;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Autonomía:_q3;Sí;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0028;pru_04_Autonomía:_q4;No;valida;;P2;20;masculino;5;3.09;12;publica;medio;pregrado;False;False
+R0029;pru_04_Conductas _q1;4;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conductas _q2;3;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conductas _q3;3;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conductas _q4;3;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conductas _q5;3;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conductas _q6;3;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conductas _q7;2;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conductas _q8;3;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conocimien_q1;A;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conocimien_q2;C;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conocimien_q3;B;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conocimien_q4;D;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conocimien_q5;D;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Conocimien_q6;A;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Autonomía:_q1;No;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Autonomía:_q2;No;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Autonomía:_q3;Sí;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0029;pru_04_Autonomía:_q4;Sí;valida;;P5;24;masculino;12;3.49;12;mixta;medio;pregrado;False;False
+R0030;pru_04_Conductas _q1;3;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conductas _q2;4;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conductas _q3;4;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conductas _q4;2;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conductas _q5;3;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conductas _q6;5;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conductas _q7;2;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conductas _q8;3;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conocimien_q1;C;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conocimien_q2;D;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conocimien_q3;A;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conocimien_q4;C;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conocimien_q5;B;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Conocimien_q6;A;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Autonomía:_q1;No;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Autonomía:_q2;No;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Autonomía:_q3;Sí;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0030;pru_04_Autonomía:_q4;Sí;valida;;P8;22;masculino;6;2.01;22;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conductas _q1;2;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conductas _q2;2;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conductas _q3;2;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conductas _q4;1;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conductas _q5;2;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conductas _q6;1;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conductas _q7;1;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conductas _q8;1;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conocimien_q1;C;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conocimien_q2;A;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conocimien_q3;B;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conocimien_q4;D;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conocimien_q5;B;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Conocimien_q6;B;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Autonomía:_q1;No;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Autonomía:_q2;Sí;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Autonomía:_q3;No;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0031;pru_04_Autonomía:_q4;Sí;valida;;P8;22;femenino;5;2.05;15;publica;muy_bajo;pregrado;False;True
+R0032;pru_04_Conductas _q1;5;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conductas _q2;5;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conductas _q3;5;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conductas _q4;5;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conductas _q5;4;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conductas _q6;5;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conductas _q7;5;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conductas _q8;5;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conocimien_q1;B;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conocimien_q2;C;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conocimien_q3;B;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conocimien_q4;C;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conocimien_q5;D;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Conocimien_q6;B;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Autonomía:_q1;No;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Autonomía:_q2;No;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Autonomía:_q3;No;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0032;pru_04_Autonomía:_q4;No;valida;;P7;24;masculino;5;3.87;15;privada;alto;posgrado;False;False
+R0033;pru_04_Conductas _q1;2;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conductas _q2;2;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conductas _q3;2;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conductas _q4;2;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conductas _q5;3;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conductas _q6;1;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conductas _q7;2;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conductas _q8;1;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conocimien_q1;C;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conocimien_q2;C;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conocimien_q3;B;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conocimien_q4;A;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conocimien_q5;C;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Conocimien_q6;A;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Autonomía:_q1;Sí;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Autonomía:_q2;Sí;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Autonomía:_q3;Sí;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0033;pru_04_Autonomía:_q4;Sí;valida;;P5;23;femenino;10;3.59;15;mixta;medio;pregrado;False;False
+R0034;pru_04_Conductas _q1;4;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conductas _q2;3;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conductas _q3;3;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conductas _q4;3;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conductas _q5;4;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conductas _q6;3;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conductas _q7;4;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conductas _q8;3;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conocimien_q1;D;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conocimien_q2;C;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conocimien_q3;A;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conocimien_q4;D;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conocimien_q5;A;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Conocimien_q6;A;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Autonomía:_q1;No;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Autonomía:_q2;No;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Autonomía:_q3;No;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0034;pru_04_Autonomía:_q4;No;valida;;P4;25;femenino;9;2.7;48;publica;medio;pregrado;False;False
+R0035;pru_04_Conductas _q1;3;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conductas _q2;2;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conductas _q3;3;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conductas _q4;3;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conductas _q5;3;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conductas _q6;2;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conductas _q7;3;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conductas _q8;2;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conocimien_q1;A;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conocimien_q2;A;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conocimien_q3;D;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conocimien_q4;B;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conocimien_q5;A;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Conocimien_q6;A;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Autonomía:_q1;Sí;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Autonomía:_q2;No;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Autonomía:_q3;Sí;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0035;pru_04_Autonomía:_q4;No;valida;;P2;23;masculino;7;3.28;6;publica;medio;pregrado;False;False
+R0036;pru_04_Conductas _q1;4;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conductas _q2;3;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conductas _q3;4;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conductas _q4;5;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conductas _q5;4;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conductas _q6;5;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conductas _q7;5;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conductas _q8;4;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conocimien_q1;C;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conocimien_q2;D;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conocimien_q3;B;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conocimien_q4;A;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conocimien_q5;C;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Conocimien_q6;A;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Autonomía:_q1;No;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Autonomía:_q2;No;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Autonomía:_q3;No;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0036;pru_04_Autonomía:_q4;Sí;valida;;P2;22;masculino;3;3.35;10;publica;medio;pregrado;False;False
+R0037;pru_04_Conductas _q1;4;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conductas _q2;4;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conductas _q3;4;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conductas _q4;4;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conductas _q5;4;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conductas _q6;3;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conductas _q7;4;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conductas _q8;4;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conocimien_q1;B;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conocimien_q2;B;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conocimien_q3;A;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conocimien_q4;C;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conocimien_q5;C;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Conocimien_q6;D;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Autonomía:_q1;No;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Autonomía:_q2;No;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Autonomía:_q3;No;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0037;pru_04_Autonomía:_q4;Sí;valida;;P1;18;masculino;7;3.64;7;privada;alto;pregrado;False;False
+R0038;pru_04_Conductas _q1;4;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conductas _q2;4;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conductas _q3;5;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conductas _q4;5;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conductas _q5;5;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conductas _q6;5;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conductas _q7;5;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conductas _q8;5;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conocimien_q1;D;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conocimien_q2;A;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conocimien_q3;A;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conocimien_q4;A;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conocimien_q5;A;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Conocimien_q6;A;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Autonomía:_q1;No;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Autonomía:_q2;Sí;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Autonomía:_q3;Sí;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0038;pru_04_Autonomía:_q4;Sí;valida;;P7;33;masculino;2;3.83;10;privada;alto;posgrado;False;False
+R0039;pru_04_Conductas _q1;5;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conductas _q2;5;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conductas _q3;5;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conductas _q4;5;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conductas _q5;5;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conductas _q6;5;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conductas _q7;5;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conductas _q8;5;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conocimien_q1;A;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conocimien_q2;A;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conocimien_q3;B;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conocimien_q4;A;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conocimien_q5;C;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Conocimien_q6;A;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Autonomía:_q1;No;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Autonomía:_q2;No;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Autonomía:_q3;No;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0039;pru_04_Autonomía:_q4;No;valida;;P7;28;femenino;3;3.95;20;privada;alto;posgrado;False;False
+R0040;pru_04_Conductas _q1;3;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conductas _q2;3;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conductas _q3;2;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conductas _q4;3;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conductas _q5;3;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conductas _q6;1;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conductas _q7;3;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conductas _q8;2;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conocimien_q1;D;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conocimien_q2;C;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conocimien_q3;A;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conocimien_q4;B;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conocimien_q5;A;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Conocimien_q6;C;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Autonomía:_q1;No;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Autonomía:_q2;No;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Autonomía:_q3;No;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0040;pru_04_Autonomía:_q4;No;valida;;P5;24;masculino;8;3.53;11;mixta;medio;pregrado;False;False
+R0041;pru_04_Conductas _q1;2;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conductas _q2;3;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conductas _q3;2;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conductas _q4;2;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conductas _q5;3;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conductas _q6;3;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conductas _q7;3;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conductas _q8;3;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conocimien_q1;C;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conocimien_q2;D;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conocimien_q3;B;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conocimien_q4;B;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conocimien_q5;C;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Conocimien_q6;A;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Autonomía:_q1;Sí;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Autonomía:_q2;No;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Autonomía:_q3;Sí;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0041;pru_04_Autonomía:_q4;Sí;valida;;P5;23;femenino;11;3.11;14;mixta;medio;pregrado;False;False
+R0042;pru_04_Conductas _q1;3;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conductas _q2;2;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conductas _q3;3;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conductas _q4;2;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conductas _q5;2;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conductas _q6;1;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conductas _q7;2;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conductas _q8;1;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conocimien_q1;D;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conocimien_q2;D;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conocimien_q3;B;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conocimien_q4;B;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conocimien_q5;A;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Conocimien_q6;A;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Autonomía:_q1;Sí;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Autonomía:_q2;No;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Autonomía:_q3;No;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0042;pru_04_Autonomía:_q4;Sí;valida;;P3;18;femenino;4;1.69;28;publica;bajo;pregrado;True;False
+R0043;pru_04_Conductas _q1;3;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conductas _q2;3;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conductas _q3;1;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conductas _q4;1;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conductas _q5;2;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conductas _q6;2;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conductas _q7;1;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conductas _q8;2;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conocimien_q1;A;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conocimien_q2;A;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conocimien_q3;A;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conocimien_q4;A;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conocimien_q5;B;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Conocimien_q6;A;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Autonomía:_q1;Sí;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Autonomía:_q2;No;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Autonomía:_q3;Sí;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0043;pru_04_Autonomía:_q4;No;valida;;P3;20;masculino;1;2.05;20;publica;bajo;pregrado;True;False
+R0044;pru_04_Conductas _q1;3;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conductas _q2;2;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conductas _q3;3;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conductas _q4;3;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conductas _q5;2;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conductas _q6;3;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conductas _q7;2;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conductas _q8;2;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conocimien_q1;B;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conocimien_q2;C;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conocimien_q3;D;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conocimien_q4;A;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conocimien_q5;C;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Conocimien_q6;A;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Autonomía:_q1;No;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Autonomía:_q2;Sí;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Autonomía:_q3;No;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0044;pru_04_Autonomía:_q4;Sí;valida;;P2;22;femenino;9;3.04;8;publica;medio;pregrado;False;False
+R0045;pru_04_Conductas _q1;4;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conductas _q2;4;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conductas _q3;3;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conductas _q4;4;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conductas _q5;3;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conductas _q6;4;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conductas _q7;4;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conductas _q8;4;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conocimien_q1;D;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conocimien_q2;C;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conocimien_q3;B;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conocimien_q4;B;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conocimien_q5;C;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Conocimien_q6;A;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Autonomía:_q1;No;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Autonomía:_q2;No;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Autonomía:_q3;Sí;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0045;pru_04_Autonomía:_q4;Sí;valida;;P1;20;masculino;3;3.52;2;privada;alto;pregrado;False;False
+R0046;pru_04_Conductas _q1;4;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conductas _q2;3;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conductas _q3;4;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conductas _q4;5;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conductas _q5;4;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conductas _q6;5;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conductas _q7;4;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conductas _q8;5;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conocimien_q1;C;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conocimien_q2;C;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conocimien_q3;D;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conocimien_q4;C;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conocimien_q5;D;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Conocimien_q6;C;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Autonomía:_q1;Sí;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Autonomía:_q2;No;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Autonomía:_q3;Sí;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0046;pru_04_Autonomía:_q4;Sí;valida;;P6;28;femenino;3;3.46;5;privada;medio_alto;pregrado;False;False
+R0047;pru_04_Conductas _q1;3;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conductas _q2;4;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conductas _q3;3;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conductas _q4;2;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conductas _q5;3;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conductas _q6;3;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conductas _q7;2;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conductas _q8;3;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conocimien_q1;B;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conocimien_q2;D;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conocimien_q3;B;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conocimien_q4;C;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conocimien_q5;C;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Conocimien_q6;D;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Autonomía:_q1;Sí;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Autonomía:_q2;Sí;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Autonomía:_q3;No;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0047;pru_04_Autonomía:_q4;No;valida;;P8;22;masculino;4;2.57;15;publica;muy_bajo;pregrado;False;True
+R0048;pru_04_Conductas _q1;4;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conductas _q2;3;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conductas _q3;4;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conductas _q4;3;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conductas _q5;3;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conductas _q6;3;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conductas _q7;3;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conductas _q8;3;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conocimien_q1;B;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conocimien_q2;B;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conocimien_q3;B;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conocimien_q4;B;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conocimien_q5;A;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Conocimien_q6;A;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Autonomía:_q1;No;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Autonomía:_q2;Sí;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Autonomía:_q3;Sí;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0048;pru_04_Autonomía:_q4;No;valida;;P5;27;masculino;10;3.09;13;mixta;medio;pregrado;False;False
+R0049;pru_04_Conductas _q1;3;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conductas _q2;4;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conductas _q3;3;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conductas _q4;4;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conductas _q5;2;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conductas _q6;4;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conductas _q7;3;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conductas _q8;3;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conocimien_q1;D;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conocimien_q2;C;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conocimien_q3;D;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conocimien_q4;B;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conocimien_q5;A;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Conocimien_q6;A;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Autonomía:_q1;No;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Autonomía:_q2;No;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Autonomía:_q3;No;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0049;pru_04_Autonomía:_q4;No;valida;;P5;24;femenino;7;3.77;9;mixta;medio;pregrado;False;False
+R0050;pru_04_Conductas _q1;5;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conductas _q2;4;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conductas _q3;4;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conductas _q4;5;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conductas _q5;5;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conductas _q6;4;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conductas _q7;4;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conductas _q8;4;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conocimien_q1;A;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conocimien_q2;C;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conocimien_q3;B;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conocimien_q4;A;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conocimien_q5;A;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Conocimien_q6;D;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Autonomía:_q1;No;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Autonomía:_q2;No;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Autonomía:_q3;Sí;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0050;pru_04_Autonomía:_q4;No;valida;;P1;22;femenino;3;3.59;0;privada;alto;pregrado;False;False
+R0051;pru_04_Conductas _q1;4;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conductas _q2;4;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conductas _q3;3;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conductas _q4;4;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conductas _q5;3;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conductas _q6;4;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conductas _q7;4;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conductas _q8;3;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conocimien_q1;C;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conocimien_q2;D;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conocimien_q3;A;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conocimien_q4;D;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conocimien_q5;D;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Conocimien_q6;A;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Autonomía:_q1;No;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Autonomía:_q2;No;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Autonomía:_q3;No;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0051;pru_04_Autonomía:_q4;Sí;valida;;P2;20;femenino;5;3.17;14;publica;medio;pregrado;False;False
+R0052;pru_04_Conductas _q1;4;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conductas _q2;2;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conductas _q3;2;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conductas _q4;3;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conductas _q5;4;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conductas _q6;3;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conductas _q7;4;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conductas _q8;4;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conocimien_q1;B;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conocimien_q2;A;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conocimien_q3;B;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conocimien_q4;C;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conocimien_q5;A;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Conocimien_q6;A;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Autonomía:_q1;Sí;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Autonomía:_q2;No;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Autonomía:_q3;No;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0052;pru_04_Autonomía:_q4;No;valida;;P6;26;femenino;9;3.58;10;privada;medio_alto;pregrado;False;False
+R0053;pru_04_Conductas _q1;4;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conductas _q2;4;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conductas _q3;4;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conductas _q4;4;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conductas _q5;4;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conductas _q6;4;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conductas _q7;4;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conductas _q8;4;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conocimien_q1;C;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conocimien_q2;A;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conocimien_q3;B;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conocimien_q4;D;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conocimien_q5;A;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Conocimien_q6;B;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Autonomía:_q1;No;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Autonomía:_q2;Sí;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Autonomía:_q3;No;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0053;pru_04_Autonomía:_q4;No;valida;;P7;26;femenino;3;3.71;14;privada;alto;posgrado;False;False
+R0054;pru_04_Conductas _q1;3;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conductas _q2;3;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conductas _q3;2;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conductas _q4;2;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conductas _q5;2;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conductas _q6;2;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conductas _q7;3;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conductas _q8;3;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conocimien_q1;A;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conocimien_q2;C;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conocimien_q3;A;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conocimien_q4;C;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conocimien_q5;A;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Conocimien_q6;B;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Autonomía:_q1;No;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Autonomía:_q2;No;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Autonomía:_q3;No;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0054;pru_04_Autonomía:_q4;No;valida;;P2;19;femenino;9;3.13;13;publica;medio;pregrado;False;False
+R0055;pru_04_Conductas _q1;5;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conductas _q2;3;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conductas _q3;4;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conductas _q4;3;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conductas _q5;4;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conductas _q6;2;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conductas _q7;4;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conductas _q8;5;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conocimien_q1;C;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conocimien_q2;A;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conocimien_q3;D;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conocimien_q4;A;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conocimien_q5;A;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Conocimien_q6;B;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Autonomía:_q1;No;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Autonomía:_q2;No;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Autonomía:_q3;No;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0055;pru_04_Autonomía:_q4;Sí;valida;;P8;23;femenino;2;2.44;20;publica;muy_bajo;pregrado;False;True
+R0056;pru_04_Conductas _q1;4;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conductas _q2;4;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conductas _q3;4;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conductas _q4;5;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conductas _q5;4;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conductas _q6;4;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conductas _q7;5;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conductas _q8;5;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conocimien_q1;A;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conocimien_q2;C;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conocimien_q3;B;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conocimien_q4;D;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conocimien_q5;A;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Conocimien_q6;A;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Autonomía:_q1;Sí;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Autonomía:_q2;No;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Autonomía:_q3;Sí;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0056;pru_04_Autonomía:_q4;No;valida;;P1;22;femenino;2;3.62;3;privada;alto;pregrado;False;False
+R0057;pru_04_Conductas _q1;3;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conductas _q2;2;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conductas _q3;2;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conductas _q4;4;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conductas _q5;2;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conductas _q6;2;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conductas _q7;1;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conductas _q8;2;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conocimien_q1;B;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conocimien_q2;A;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conocimien_q3;A;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conocimien_q4;C;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conocimien_q5;B;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Conocimien_q6;A;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Autonomía:_q1;No;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Autonomía:_q2;Sí;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Autonomía:_q3;No;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0057;pru_04_Autonomía:_q4;No;valida;;P3;21;femenino;4;2.23;30;publica;bajo;pregrado;True;False
+R0058;pru_04_Conductas _q1;4;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conductas _q2;4;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conductas _q3;4;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conductas _q4;2;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conductas _q5;3;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conductas _q6;4;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conductas _q7;4;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conductas _q8;2;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conocimien_q1;D;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conocimien_q2;A;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conocimien_q3;A;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conocimien_q4;D;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conocimien_q5;A;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Conocimien_q6;A;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Autonomía:_q1;No;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Autonomía:_q2;No;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Autonomía:_q3;Sí;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0058;pru_04_Autonomía:_q4;Sí;valida;;P6;20;masculino;4;3.63;8;privada;medio_alto;pregrado;False;False
+R0059;pru_04_Conductas _q1;3;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conductas _q2;3;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conductas _q3;3;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conductas _q4;2;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conductas _q5;2;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conductas _q6;3;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conductas _q7;3;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conductas _q8;3;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conocimien_q1;B;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conocimien_q2;A;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conocimien_q3;B;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conocimien_q4;C;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conocimien_q5;C;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Conocimien_q6;A;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Autonomía:_q1;No;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Autonomía:_q2;No;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Autonomía:_q3;No;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0059;pru_04_Autonomía:_q4;Sí;valida;;P2;20;femenino;8;3.32;15;publica;medio;pregrado;False;False
+R0060;pru_04_Conductas _q1;3;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conductas _q2;3;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conductas _q3;3;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conductas _q4;1;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conductas _q5;3;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conductas _q6;2;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conductas _q7;2;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conductas _q8;4;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conocimien_q1;B;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conocimien_q2;C;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conocimien_q3;A;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conocimien_q4;A;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conocimien_q5;A;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Conocimien_q6;A;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Autonomía:_q1;No;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Autonomía:_q2;Sí;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Autonomía:_q3;No;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0060;pru_04_Autonomía:_q4;No;valida;;P3;21;masculino;5;1.92;33;publica;bajo;pregrado;True;False
+R0061;pru_04_Conductas _q1;2;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conductas _q2;1;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conductas _q3;2;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conductas _q4;1;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conductas _q5;3;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conductas _q6;2;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conductas _q7;1;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conductas _q8;1;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conocimien_q1;B;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conocimien_q2;D;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conocimien_q3;B;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conocimien_q4;D;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conocimien_q5;D;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Conocimien_q6;A;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Autonomía:_q1;No;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Autonomía:_q2;No;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Autonomía:_q3;No;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0061;pru_04_Autonomía:_q4;No;valida;;P3;20;masculino;4;1.97;37;publica;bajo;pregrado;True;False
+R0062;pru_04_Conductas _q1;4;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conductas _q2;5;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conductas _q3;4;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conductas _q4;4;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conductas _q5;4;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conductas _q6;4;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conductas _q7;4;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conductas _q8;4;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conocimien_q1;B;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conocimien_q2;C;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conocimien_q3;B;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conocimien_q4;A;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conocimien_q5;A;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Conocimien_q6;A;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Autonomía:_q1;No;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Autonomía:_q2;Sí;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Autonomía:_q3;No;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0062;pru_04_Autonomía:_q4;Sí;valida;;P1;19;femenino;5;3.75;0;privada;alto;pregrado;False;False
+R0063;pru_04_Conductas _q1;1;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conductas _q2;3;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conductas _q3;1;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conductas _q4;1;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conductas _q5;2;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conductas _q6;2;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conductas _q7;2;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conductas _q8;2;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conocimien_q1;B;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conocimien_q2;A;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conocimien_q3;A;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conocimien_q4;A;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conocimien_q5;C;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Conocimien_q6;A;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Autonomía:_q1;No;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Autonomía:_q2;No;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Autonomía:_q3;No;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0063;pru_04_Autonomía:_q4;Sí;valida;;P3;17;masculino;4;2.69;37;publica;bajo;pregrado;True;False
+R0064;pru_04_Conductas _q1;5;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conductas _q2;4;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conductas _q3;5;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conductas _q4;4;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conductas _q5;4;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conductas _q6;5;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conductas _q7;5;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conductas _q8;5;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conocimien_q1;A;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conocimien_q2;C;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conocimien_q3;B;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conocimien_q4;C;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conocimien_q5;A;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Conocimien_q6;A;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Autonomía:_q1;Sí;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Autonomía:_q2;No;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Autonomía:_q3;No;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0064;pru_04_Autonomía:_q4;Sí;valida;;P1;18;masculino;7;3.71;1;privada;alto;pregrado;False;False
+R0065;pru_04_Conductas _q1;3;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conductas _q2;2;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conductas _q3;2;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conductas _q4;3;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conductas _q5;3;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conductas _q6;2;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conductas _q7;3;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conductas _q8;2;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conocimien_q1;C;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conocimien_q2;A;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conocimien_q3;B;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conocimien_q4;B;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conocimien_q5;B;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Conocimien_q6;A;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Autonomía:_q1;No;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Autonomía:_q2;No;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Autonomía:_q3;No;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0065;pru_04_Autonomía:_q4;Sí;valida;;P4;25;masculino;9;2.59;38;publica;medio;pregrado;False;False
+R0066;pru_04_Conductas _q1;4;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conductas _q2;4;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conductas _q3;4;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conductas _q4;3;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conductas _q5;3;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conductas _q6;4;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conductas _q7;4;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conductas _q8;4;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conocimien_q1;A;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conocimien_q2;C;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conocimien_q3;A;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conocimien_q4;B;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conocimien_q5;B;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Conocimien_q6;A;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Autonomía:_q1;No;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Autonomía:_q2;No;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Autonomía:_q3;Sí;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0066;pru_04_Autonomía:_q4;No;valida;;P6;23;masculino;6;2.95;4;privada;medio_alto;pregrado;False;False
+R0067;pru_04_Conductas _q1;5;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conductas _q2;5;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conductas _q3;4;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conductas _q4;4;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conductas _q5;4;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conductas _q6;5;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conductas _q7;5;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conductas _q8;4;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conocimien_q1;C;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conocimien_q2;D;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conocimien_q3;B;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conocimien_q4;B;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conocimien_q5;D;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Conocimien_q6;A;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Autonomía:_q1;Sí;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Autonomía:_q2;No;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Autonomía:_q3;Sí;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0067;pru_04_Autonomía:_q4;No;valida;;P1;18;masculino;2;3.56;7;privada;alto;pregrado;False;False
+R0068;pru_04_Conductas _q1;3;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conductas _q2;4;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conductas _q3;3;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conductas _q4;3;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conductas _q5;3;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conductas _q6;2;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conductas _q7;3;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conductas _q8;2;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conocimien_q1;A;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conocimien_q2;C;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conocimien_q3;C;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conocimien_q4;C;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conocimien_q5;C;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Conocimien_q6;A;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Autonomía:_q1;Sí;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Autonomía:_q2;No;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Autonomía:_q3;Sí;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0068;pru_04_Autonomía:_q4;Sí;valida;;P5;24;masculino;7;3.59;19;mixta;medio;pregrado;False;False
+R0069;pru_04_Conductas _q1;3;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conductas _q2;4;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conductas _q3;3;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conductas _q4;3;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conductas _q5;3;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conductas _q6;3;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conductas _q7;3;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conductas _q8;3;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conocimien_q1;C;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conocimien_q2;A;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conocimien_q3;D;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conocimien_q4;A;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conocimien_q5;A;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Conocimien_q6;A;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Autonomía:_q1;Sí;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Autonomía:_q2;No;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Autonomía:_q3;Sí;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0069;pru_04_Autonomía:_q4;Sí;valida;;P2;19;masculino;5;3.1;4;publica;medio;pregrado;False;False
+R0070;pru_04_Conductas _q1;5;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conductas _q2;5;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conductas _q3;5;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conductas _q4;5;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conductas _q5;4;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conductas _q6;5;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conductas _q7;5;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conductas _q8;5;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conocimien_q1;C;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conocimien_q2;A;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conocimien_q3;A;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conocimien_q4;B;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conocimien_q5;B;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Conocimien_q6;A;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Autonomía:_q1;No;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Autonomía:_q2;No;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Autonomía:_q3;Sí;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0070;pru_04_Autonomía:_q4;No;valida;;P4;28;femenino;12;2.61;50;publica;medio;pregrado;False;False
+R0071;pru_04_Conductas _q1;2;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conductas _q2;3;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conductas _q3;3;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conductas _q4;4;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conductas _q5;2;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conductas _q6;2;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conductas _q7;3;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conductas _q8;2;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conocimien_q1;C;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conocimien_q2;A;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conocimien_q3;D;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conocimien_q4;B;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conocimien_q5;D;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Conocimien_q6;B;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Autonomía:_q1;No;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Autonomía:_q2;Sí;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Autonomía:_q3;No;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0071;pru_04_Autonomía:_q4;Sí;valida;;P6;26;femenino;5;3.8;4;privada;medio_alto;pregrado;False;False
+R0072;pru_04_Conductas _q1;4;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conductas _q2;5;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conductas _q3;4;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conductas _q4;4;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conductas _q5;4;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conductas _q6;5;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conductas _q7;3;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conductas _q8;3;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conocimien_q1;D;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conocimien_q2;A;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conocimien_q3;A;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conocimien_q4;A;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conocimien_q5;C;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Conocimien_q6;D;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Autonomía:_q1;Sí;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Autonomía:_q2;No;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Autonomía:_q3;No;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0072;pru_04_Autonomía:_q4;No;valida;;P8;26;masculino;3;2.17;34;publica;muy_bajo;pregrado;False;True
+R0073;pru_04_Conductas _q1;2;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conductas _q2;2;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conductas _q3;2;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conductas _q4;2;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conductas _q5;2;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conductas _q6;2;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conductas _q7;3;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conductas _q8;2;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conocimien_q1;A;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conocimien_q2;B;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conocimien_q3;B;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conocimien_q4;A;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conocimien_q5;A;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Conocimien_q6;A;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Autonomía:_q1;Sí;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Autonomía:_q2;No;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Autonomía:_q3;No;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0073;pru_04_Autonomía:_q4;Sí;valida;;P2;20;masculino;9;3.07;3;publica;medio;pregrado;False;False
+R0074;pru_04_Conductas _q1;4;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conductas _q2;4;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conductas _q3;4;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conductas _q4;4;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conductas _q5;3;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conductas _q6;4;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conductas _q7;4;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conductas _q8;4;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conocimien_q1;B;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conocimien_q2;C;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conocimien_q3;D;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conocimien_q4;D;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conocimien_q5;D;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Conocimien_q6;A;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Autonomía:_q1;No;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Autonomía:_q2;No;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Autonomía:_q3;Sí;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0074;pru_04_Autonomía:_q4;No;valida;;P5;24;femenino;7;3.72;9;mixta;medio;pregrado;False;False
+R0075;pru_04_Conductas _q1;3;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conductas _q2;1;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conductas _q3;1;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conductas _q4;3;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conductas _q5;2;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conductas _q6;2;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conductas _q7;3;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conductas _q8;3;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conocimien_q1;B;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conocimien_q2;A;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conocimien_q3;B;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conocimien_q4;A;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conocimien_q5;A;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Conocimien_q6;A;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Autonomía:_q1;No;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Autonomía:_q2;No;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Autonomía:_q3;Sí;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0075;pru_04_Autonomía:_q4;Sí;valida;;P8;20;femenino;8;2.06;22;publica;muy_bajo;pregrado;False;True
+R0076;pru_04_Conductas _q1;2;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conductas _q2;2;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conductas _q3;3;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conductas _q4;3;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conductas _q5;4;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conductas _q6;3;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conductas _q7;3;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conductas _q8;3;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conocimien_q1;C;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conocimien_q2;C;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conocimien_q3;B;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conocimien_q4;A;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conocimien_q5;A;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Conocimien_q6;A;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Autonomía:_q1;No;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Autonomía:_q2;Sí;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Autonomía:_q3;No;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0076;pru_04_Autonomía:_q4;No;valida;;P2;24;masculino;9;2.91;4;publica;medio;pregrado;False;False
+R0077;pru_04_Conductas _q1;5;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conductas _q2;5;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conductas _q3;4;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conductas _q4;5;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conductas _q5;5;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conductas _q6;5;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conductas _q7;5;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conductas _q8;5;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conocimien_q1;B;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conocimien_q2;A;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conocimien_q3;B;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conocimien_q4;D;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conocimien_q5;A;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Conocimien_q6;D;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Autonomía:_q1;No;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Autonomía:_q2;No;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Autonomía:_q3;Sí;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0077;pru_04_Autonomía:_q4;Sí;valida;;P7;30;masculino;5;3.82;10;privada;alto;posgrado;False;False
+R0078;pru_04_Conductas _q1;4;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conductas _q2;4;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conductas _q3;4;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conductas _q4;4;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conductas _q5;4;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conductas _q6;4;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conductas _q7;4;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conductas _q8;4;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conocimien_q1;A;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conocimien_q2;C;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conocimien_q3;A;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conocimien_q4;B;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conocimien_q5;C;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Conocimien_q6;A;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Autonomía:_q1;No;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Autonomía:_q2;No;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Autonomía:_q3;Sí;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0078;pru_04_Autonomía:_q4;Sí;valida;;P5;24;femenino;11;3.09;19;mixta;medio;pregrado;False;False
+R0079;pru_04_Conductas _q1;3;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conductas _q2;3;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conductas _q3;3;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conductas _q4;2;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conductas _q5;3;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conductas _q6;3;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conductas _q7;3;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conductas _q8;2;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conocimien_q1;A;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conocimien_q2;C;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conocimien_q3;A;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conocimien_q4;C;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conocimien_q5;C;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Conocimien_q6;B;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Autonomía:_q1;No;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Autonomía:_q2;No;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Autonomía:_q3;Sí;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0079;pru_04_Autonomía:_q4;No;valida;;P5;27;femenino;10;3.72;7;mixta;medio;pregrado;False;False
+R0080;pru_04_Conductas _q1;3;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conductas _q2;2;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conductas _q3;1;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conductas _q4;1;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conductas _q5;2;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conductas _q6;3;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conductas _q7;3;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conductas _q8;2;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conocimien_q1;A;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conocimien_q2;C;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conocimien_q3;B;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conocimien_q4;A;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conocimien_q5;A;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Conocimien_q6;A;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Autonomía:_q1;No;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Autonomía:_q2;Sí;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Autonomía:_q3;Sí;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0080;pru_04_Autonomía:_q4;No;valida;;P8;22;femenino;4;2.41;28;publica;muy_bajo;pregrado;False;True
+R0081;pru_04_Conductas _q1;4;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conductas _q2;4;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conductas _q3;4;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conductas _q4;4;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conductas _q5;4;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conductas _q6;4;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conductas _q7;5;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conductas _q8;5;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conocimien_q1;A;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conocimien_q2;D;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conocimien_q3;A;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conocimien_q4;A;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conocimien_q5;A;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Conocimien_q6;C;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Autonomía:_q1;Sí;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Autonomía:_q2;No;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Autonomía:_q3;No;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0081;pru_04_Autonomía:_q4;Sí;valida;;P1;22;femenino;2;3.85;2;privada;alto;pregrado;False;False
+R0082;pru_04_Conductas _q1;4;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conductas _q2;4;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conductas _q3;4;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conductas _q4;4;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conductas _q5;4;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conductas _q6;4;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conductas _q7;4;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conductas _q8;4;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conocimien_q1;B;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conocimien_q2;B;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conocimien_q3;D;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conocimien_q4;A;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conocimien_q5;D;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Conocimien_q6;A;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Autonomía:_q1;Sí;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Autonomía:_q2;Sí;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Autonomía:_q3;Sí;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0082;pru_04_Autonomía:_q4;Sí;valida;;P7;28;masculino;3;3.96;18;privada;alto;posgrado;False;False
+R0083;pru_04_Conductas _q1;5;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conductas _q2;5;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conductas _q3;5;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conductas _q4;5;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conductas _q5;5;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conductas _q6;5;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conductas _q7;5;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conductas _q8;5;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conocimien_q1;A;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conocimien_q2;A;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conocimien_q3;B;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conocimien_q4;D;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conocimien_q5;D;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Conocimien_q6;B;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Autonomía:_q1;No;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Autonomía:_q2;Sí;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Autonomía:_q3;No;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0083;pru_04_Autonomía:_q4;No;valida;;P7;28;femenino;2;3.7;10;privada;alto;posgrado;False;False
+R0084;pru_04_Conductas _q1;5;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conductas _q2;5;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conductas _q3;4;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conductas _q4;4;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conductas _q5;5;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conductas _q6;4;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conductas _q7;4;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conductas _q8;4;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conocimien_q1;A;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conocimien_q2;D;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conocimien_q3;B;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conocimien_q4;A;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conocimien_q5;A;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Conocimien_q6;A;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Autonomía:_q1;No;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Autonomía:_q2;Sí;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Autonomía:_q3;No;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0084;pru_04_Autonomía:_q4;Sí;valida;;P7;35;masculino;3;3.88;24;privada;alto;posgrado;False;False
+R0085;pru_04_Conductas _q1;2;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conductas _q2;3;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conductas _q3;3;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conductas _q4;3;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conductas _q5;3;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conductas _q6;3;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conductas _q7;2;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conductas _q8;3;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conocimien_q1;A;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conocimien_q2;A;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conocimien_q3;A;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conocimien_q4;A;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conocimien_q5;D;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Conocimien_q6;A;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Autonomía:_q1;No;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Autonomía:_q2;No;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Autonomía:_q3;Sí;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0085;pru_04_Autonomía:_q4;Sí;valida;;P2;21;femenino;9;3.18;13;publica;medio;pregrado;False;False
+R0086;pru_04_Conductas _q1;5;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conductas _q2;4;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conductas _q3;4;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conductas _q4;4;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conductas _q5;4;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conductas _q6;4;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conductas _q7;4;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conductas _q8;5;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conocimien_q1;C;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conocimien_q2;B;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conocimien_q3;B;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conocimien_q4;A;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conocimien_q5;D;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Conocimien_q6;A;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Autonomía:_q1;No;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Autonomía:_q2;No;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Autonomía:_q3;No;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0086;pru_04_Autonomía:_q4;No;valida;;P1;20;femenino;8;3.87;4;privada;alto;pregrado;False;False
+R0087;pru_04_Conductas _q1;3;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conductas _q2;4;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conductas _q3;3;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conductas _q4;3;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conductas _q5;4;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conductas _q6;3;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conductas _q7;2;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conductas _q8;3;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conocimien_q1;A;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conocimien_q2;A;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conocimien_q3;B;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conocimien_q4;B;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conocimien_q5;A;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Conocimien_q6;A;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Autonomía:_q1;No;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Autonomía:_q2;No;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Autonomía:_q3;Sí;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0087;pru_04_Autonomía:_q4;No;valida;;P5;25;masculino;11;3.24;10;mixta;medio;pregrado;False;False
+R0088;pru_04_Conductas _q1;4;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conductas _q2;5;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conductas _q3;4;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conductas _q4;4;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conductas _q5;4;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conductas _q6;5;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conductas _q7;4;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conductas _q8;5;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conocimien_q1;A;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conocimien_q2;A;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conocimien_q3;D;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conocimien_q4;B;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conocimien_q5;A;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Conocimien_q6;D;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Autonomía:_q1;No;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Autonomía:_q2;No;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Autonomía:_q3;No;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0088;pru_04_Autonomía:_q4;No;valida;;P7;33;otro;1;3.8;15;privada;alto;posgrado;False;False
+R0089;pru_04_Conductas _q1;4;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conductas _q2;5;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conductas _q3;4;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conductas _q4;4;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conductas _q5;5;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conductas _q6;5;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conductas _q7;5;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conductas _q8;4;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conocimien_q1;B;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conocimien_q2;D;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conocimien_q3;B;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conocimien_q4;A;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conocimien_q5;D;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Conocimien_q6;A;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Autonomía:_q1;No;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Autonomía:_q2;No;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Autonomía:_q3;Sí;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0089;pru_04_Autonomía:_q4;No;valida;;P1;19;femenino;6;3.9;4;privada;alto;pregrado;False;False
+R0090;pru_04_Conductas _q1;4;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conductas _q2;5;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conductas _q3;5;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conductas _q4;4;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conductas _q5;4;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conductas _q6;4;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conductas _q7;4;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conductas _q8;4;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conocimien_q1;B;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conocimien_q2;C;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conocimien_q3;B;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conocimien_q4;A;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conocimien_q5;A;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Conocimien_q6;A;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Autonomía:_q1;No;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Autonomía:_q2;No;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Autonomía:_q3;No;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False
+R0090;pru_04_Autonomía:_q4;No;valida;;P7;32;masculino;6;3.81;20;privada;alto;posgrado;False;False

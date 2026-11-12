@@ -388,6 +388,11 @@ services:
       # Juez de las métricas: qwen2.5:3b calificó 0.95 las copias
       # literales del cálculo contra 0.40 de llama3.2:3b (evidencias/jueces_2026-10-23).
       RAG_JUEZ_MODELO: ${RAG_JUEZ_MODELO:-qwen2.5:3b}
+      # Juez Claude Fable 5.2 (API de Anthropic): evalúa cada respuesta con seis métricas tipo RAGAS.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      RAG_JUEZ_FABLE: ${RAG_JUEZ_FABLE:-true}
+      RAG_JUEZ_FABLE_MODELO: ${RAG_JUEZ_FABLE_MODELO:-claude-fable-5-2}
+      RAG_JUEZ_FABLE_ESFUERZO: ${RAG_JUEZ_FABLE_ESFUERZO:-high}
       # Temperatura de la redacción del chat (la interpretación y el juez van en 0).
       RAG_TEMPERATURA_REDACCION: ${RAG_TEMPERATURA_REDACCION:-0.2}
       # Caché de respuestas (horas; 0 = sin caché). En el experimento de modelos se pone 0 para que una pregunta

@@ -1,0 +1,4342 @@
+{
+  "instrument_id": "25",
+  "schema_version": "2.0",
+  "tipo_instrumento": "encuesta",
+  "instrument": {
+    "title": "Cuestionario de Compromiso Escolar (Student Engagement in Schools Questionnaire – SESQ)",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "GUSTO POR LA ESCUELA",
+      "GUSTO POR APRENDER",
+      "COMPORTAMIENTO",
+      "ESFUERZO Y PERSISTENCIA",
+      "ACTIVIDADES EXTRACURRICULARES",
+      "ESTRATEGIAS COGNITIVAS"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "GUSTO POR LA ESCUELA",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "Me gusta ir a la universidad.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q2",
+            "text": "Me siento bien cuando estoy en la institución.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q3",
+            "text": "La universidad es un lugar donde me siento aceptado/a.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q4",
+            "text": "Mis experiencias en la institución son positivas.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s2",
+        "name": "GUSTO POR APRENDER",
+        "questions": [
+          {
+            "question_id": "q5",
+            "text": "Disfruto aprender cosas nuevas en clase.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q6",
+            "text": "El contenido de mis materias me resulta interesante.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q7",
+            "text": "Me gusta enfrentarme a problemas difíciles.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q8",
+            "text": "Aprendo cosas que me serán útiles fuera de la escuela.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s3",
+        "name": "COMPORTAMIENTO, ESFUERZO Y PERSISTENCIA",
+        "questions": [
+          {
+            "question_id": "q9",
+            "text": "Me esfuerzo al máximo en mis tareas y trabajos.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q10",
+            "text": "Cuando algo es difícil, sigo intentándolo hasta lograrlo.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q11",
+            "text": "Presto atención durante las clases.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q12",
+            "text": "Completo mis asignaciones aunque sean difíciles.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q13",
+            "text": "Hago más de lo que se me pide cuando el tema me interesa.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q14",
+            "text": "Me preparo con anticipación para las evaluaciones.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q15",
+            "text": "No me rindo cuando enfrento dificultades académicas.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q16",
+            "text": "Busco ayuda cuando no entiendo algo.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q17",
+            "text": "Me mantengo en clase aunque la materia sea desafiante.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s4",
+        "name": "ACTIVIDADES EXTRACURRICULARES",
+        "questions": [
+          {
+            "question_id": "q18",
+            "text": "Participo en clubes, deportes u otras actividades de la institución.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q19",
+            "text": "Asisto a eventos culturales o académicos organizados por la universidad.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q20",
+            "text": "Soy miembro activo de alguna organización estudiantil.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s5",
+        "name": "ESTRATEGIAS COGNITIVAS",
+        "questions": [
+          {
+            "question_id": "q21",
+            "text": "Repaso el material varias veces para memorizarlo mejor.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q22",
+            "text": "Elaboro preguntas propias sobre lo que he leído.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q23",
+            "text": "Busco el significado de palabras o conceptos que no conozco.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q24",
+            "text": "Uso mapas mentales o diagramas para entender mejor.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q25",
+            "text": "Relaciono lo aprendido con ejemplos de la vida real.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q26",
+            "text": "Hago pausas para reflexionar sobre lo que estoy aprendiendo.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q27",
+            "text": "Identifico los puntos clave de cada tema.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q28",
+            "text": "Evalúo mi comprensión después de cada sección.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q29",
+            "text": "Uso técnicas de estudio activo como el subrayado o los esquemas.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q30",
+            "text": "Repaso el material antes de cada clase.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q31",
+            "text": "Busco conectar temas entre distintas asignaturas.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q32",
+            "text": "Reflexiono sobre cómo podría aplicar lo aprendido.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "encuesta",
+    "dublin_core": {
+      "dc:title": "Cuestionario de Compromiso Escolar (Student Engagement in Schools Questionnaire – SESQ)",
+      "dc:creator": "Administrador",
+      "dc:subject": "universidad, institución, clase, busco, mejor, gusta",
+      "dc:description": "Encuesta de 32 reactivos aplicada a 220 respondentes. Explora: gusto por la escuela; gusto por aprender; comportamiento, esfuerzo y persistencia; actividades extracurriculares; estrategias cognitivas.",
+      "dc:type": "Encuesta",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "No especificado",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "enc_03_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "n_respondentes": 220,
+      "objetivo": "No especificado",
+      "poblacion_objetivo": "No especificado",
+      "constructo_principal": "No especificado",
+      "palabras_clave": [
+        "universidad",
+        "institución",
+        "clase",
+        "busco",
+        "mejor",
+        "gusta",
+        "siento",
+        "aprender"
+      ],
+      "dimensiones": [
+        "GUSTO POR LA ESCUELA",
+        "GUSTO POR APRENDER",
+        "COMPORTAMIENTO",
+        "ESFUERZO Y PERSISTENCIA",
+        "ACTIVIDADES EXTRACURRICULARES",
+        "ESTRATEGIAS COGNITIVAS"
+      ],
+      "notas_contextuales": "Calidad de los datos: 220 registros con respuesta; 0% de respuestas vacías."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "Puntaje de Satisfacción Estudiantil (NPS / Encuestas)"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.405,
+        "std": 1.098,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 75,
+          "3": 63,
+          "5": 36,
+          "2": 34,
+          "1": 12
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.4045,
+          "mediana": 4.0,
+          "curtosis": -0.5483,
+          "asimetria": -0.3572,
+          "desviacion": 1.1
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 12,
+              "pct": 0.0545,
+              "valor": "1"
+            },
+            {
+              "n": 34,
+              "pct": 0.1545,
+              "valor": "2"
+            },
+            {
+              "n": 63,
+              "pct": 0.2864,
+              "valor": "3"
+            },
+            {
+              "n": 75,
+              "pct": 0.3409,
+              "valor": "4"
+            },
+            {
+              "n": 36,
+              "pct": 0.1636,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "gusto_por_la_es_item1"
+      },
+      "q2": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.377,
+        "std": 1.205,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 65,
+          "3": 55,
+          "5": 45,
+          "2": 38,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.75,
+          "q3": 4.0,
+          "iqr": 1.25,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3773,
+          "mediana": 3.5,
+          "curtosis": -0.8334,
+          "asimetria": -0.3204,
+          "desviacion": 1.2082
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.0773,
+              "valor": "1"
+            },
+            {
+              "n": 38,
+              "pct": 0.1727,
+              "valor": "2"
+            },
+            {
+              "n": 55,
+              "pct": 0.25,
+              "valor": "3"
+            },
+            {
+              "n": 65,
+              "pct": 0.2955,
+              "valor": "4"
+            },
+            {
+              "n": 45,
+              "pct": 0.2045,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "gusto_por_la_es_item2"
+      },
+      "q3": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.405,
+        "std": 1.227,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 60,
+          "3": 57,
+          "5": 50,
+          "2": 35,
+          "1": 18
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.4045,
+          "mediana": 3.5,
+          "curtosis": -0.8412,
+          "asimetria": -0.3355,
+          "desviacion": 1.2294
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 18,
+              "pct": 0.0818,
+              "valor": "1"
+            },
+            {
+              "n": 35,
+              "pct": 0.1591,
+              "valor": "2"
+            },
+            {
+              "n": 57,
+              "pct": 0.2591,
+              "valor": "3"
+            },
+            {
+              "n": 60,
+              "pct": 0.2727,
+              "valor": "4"
+            },
+            {
+              "n": 50,
+              "pct": 0.2273,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "gusto_por_la_es_item3"
+      },
+      "q4": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.382,
+        "std": 1.202,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 65,
+          "3": 56,
+          "5": 45,
+          "2": 37,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3818,
+          "mediana": 3.5,
+          "curtosis": -0.8119,
+          "asimetria": -0.3278,
+          "desviacion": 1.2049
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.0773,
+              "valor": "1"
+            },
+            {
+              "n": 37,
+              "pct": 0.1682,
+              "valor": "2"
+            },
+            {
+              "n": 56,
+              "pct": 0.2545,
+              "valor": "3"
+            },
+            {
+              "n": 65,
+              "pct": 0.2955,
+              "valor": "4"
+            },
+            {
+              "n": 45,
+              "pct": 0.2045,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "gusto_por_la_es_item4"
+      },
+      "q5": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.159,
+        "std": 1.201,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 62,
+          "4": 56,
+          "2": 47,
+          "5": 34,
+          "1": 21
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1591,
+          "mediana": 3.0,
+          "curtosis": -0.8977,
+          "asimetria": -0.104,
+          "desviacion": 1.2039
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 21,
+              "pct": 0.0955,
+              "valor": "1"
+            },
+            {
+              "n": 47,
+              "pct": 0.2136,
+              "valor": "2"
+            },
+            {
+              "n": 62,
+              "pct": 0.2818,
+              "valor": "3"
+            },
+            {
+              "n": 56,
+              "pct": 0.2545,
+              "valor": "4"
+            },
+            {
+              "n": 34,
+              "pct": 0.1545,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "gusto_por_apren_item1"
+      },
+      "q6": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.232,
+        "std": 1.193,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 61,
+          "3": 60,
+          "2": 44,
+          "5": 36,
+          "1": 19
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2318,
+          "mediana": 3.0,
+          "curtosis": -0.8705,
+          "asimetria": -0.182,
+          "desviacion": 1.1958
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 19,
+              "pct": 0.0864,
+              "valor": "1"
+            },
+            {
+              "n": 44,
+              "pct": 0.2,
+              "valor": "2"
+            },
+            {
+              "n": 60,
+              "pct": 0.2727,
+              "valor": "3"
+            },
+            {
+              "n": 61,
+              "pct": 0.2773,
+              "valor": "4"
+            },
+            {
+              "n": 36,
+              "pct": 0.1636,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "gusto_por_apren_item2"
+      },
+      "q7": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.255,
+        "std": 1.254,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 61,
+          "4": 51,
+          "5": 45,
+          "2": 41,
+          "1": 22
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2545,
+          "mediana": 3.0,
+          "curtosis": -0.9635,
+          "asimetria": -0.1711,
+          "desviacion": 1.2565
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 22,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 41,
+              "pct": 0.1864,
+              "valor": "2"
+            },
+            {
+              "n": 61,
+              "pct": 0.2773,
+              "valor": "3"
+            },
+            {
+              "n": 51,
+              "pct": 0.2318,
+              "valor": "4"
+            },
+            {
+              "n": 45,
+              "pct": 0.2045,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "gusto_por_apren_item3"
+      },
+      "q8": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.168,
+        "std": 1.192,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 62,
+          "3": 57,
+          "2": 49,
+          "5": 32,
+          "1": 20
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1682,
+          "mediana": 3.0,
+          "curtosis": -0.9173,
+          "asimetria": -0.1346,
+          "desviacion": 1.1951
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 20,
+              "pct": 0.0909,
+              "valor": "1"
+            },
+            {
+              "n": 49,
+              "pct": 0.2227,
+              "valor": "2"
+            },
+            {
+              "n": 57,
+              "pct": 0.2591,
+              "valor": "3"
+            },
+            {
+              "n": 62,
+              "pct": 0.2818,
+              "valor": "4"
+            },
+            {
+              "n": 32,
+              "pct": 0.1455,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "gusto_por_apren_item4"
+      },
+      "q9": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.141,
+        "std": 1.233,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 61,
+          "4": 55,
+          "2": 44,
+          "5": 35,
+          "1": 25
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1409,
+          "mediana": 3.0,
+          "curtosis": -0.9353,
+          "asimetria": -0.1246,
+          "desviacion": 1.2361
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 25,
+              "pct": 0.1136,
+              "valor": "1"
+            },
+            {
+              "n": 44,
+              "pct": 0.2,
+              "valor": "2"
+            },
+            {
+              "n": 61,
+              "pct": 0.2773,
+              "valor": "3"
+            },
+            {
+              "n": 55,
+              "pct": 0.25,
+              "valor": "4"
+            },
+            {
+              "n": 35,
+              "pct": 0.1591,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "comportamiento_item1"
+      },
+      "q10": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.218,
+        "std": 1.216,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 67,
+          "4": 57,
+          "5": 37,
+          "2": 35,
+          "1": 24
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2182,
+          "mediana": 3.0,
+          "curtosis": -0.8059,
+          "asimetria": -0.2272,
+          "desviacion": 1.2192
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 24,
+              "pct": 0.1091,
+              "valor": "1"
+            },
+            {
+              "n": 35,
+              "pct": 0.1591,
+              "valor": "2"
+            },
+            {
+              "n": 67,
+              "pct": 0.3045,
+              "valor": "3"
+            },
+            {
+              "n": 57,
+              "pct": 0.2591,
+              "valor": "4"
+            },
+            {
+              "n": 37,
+              "pct": 0.1682,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "comportamiento_item2"
+      },
+      "q11": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.164,
+        "std": 1.172,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 65,
+          "4": 65,
+          "2": 39,
+          "5": 28,
+          "1": 23
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1636,
+          "mediana": 3.0,
+          "curtosis": -0.7584,
+          "asimetria": -0.2368,
+          "desviacion": 1.1745
+        },
+        "frecuencias": {
+          "moda": [
+            "3",
+            "4"
+          ],
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 23,
+              "pct": 0.1045,
+              "valor": "1"
+            },
+            {
+              "n": 39,
+              "pct": 0.1773,
+              "valor": "2"
+            },
+            {
+              "n": 65,
+              "pct": 0.2955,
+              "valor": "3"
+            },
+            {
+              "n": 65,
+              "pct": 0.2955,
+              "valor": "4"
+            },
+            {
+              "n": 28,
+              "pct": 0.1273,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "comportamiento_item3"
+      },
+      "q12": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.086,
+        "std": 1.193,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 64,
+          "4": 52,
+          "2": 51,
+          "5": 31,
+          "1": 22
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.0864,
+          "mediana": 3.0,
+          "curtosis": -0.8872,
+          "asimetria": -0.0224,
+          "desviacion": 1.1962
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 22,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 51,
+              "pct": 0.2318,
+              "valor": "2"
+            },
+            {
+              "n": 64,
+              "pct": 0.2909,
+              "valor": "3"
+            },
+            {
+              "n": 52,
+              "pct": 0.2364,
+              "valor": "4"
+            },
+            {
+              "n": 31,
+              "pct": 0.1409,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "comportamiento_item4"
+      },
+      "q13": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.2,
+        "std": 1.15,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 66,
+          "3": 64,
+          "2": 42,
+          "5": 29,
+          "1": 19
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2,
+          "mediana": 3.0,
+          "curtosis": -0.7488,
+          "asimetria": -0.2178,
+          "desviacion": 1.1531
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 19,
+              "pct": 0.0864,
+              "valor": "1"
+            },
+            {
+              "n": 42,
+              "pct": 0.1909,
+              "valor": "2"
+            },
+            {
+              "n": 64,
+              "pct": 0.2909,
+              "valor": "3"
+            },
+            {
+              "n": 66,
+              "pct": 0.3,
+              "valor": "4"
+            },
+            {
+              "n": 29,
+              "pct": 0.1318,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "comportamiento_item5"
+      },
+      "q14": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.273,
+        "std": 1.179,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 63,
+          "4": 62,
+          "2": 40,
+          "5": 37,
+          "1": 18
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2727,
+          "mediana": 3.0,
+          "curtosis": -0.7953,
+          "asimetria": -0.2251,
+          "desviacion": 1.1814
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 18,
+              "pct": 0.0818,
+              "valor": "1"
+            },
+            {
+              "n": 40,
+              "pct": 0.1818,
+              "valor": "2"
+            },
+            {
+              "n": 63,
+              "pct": 0.2864,
+              "valor": "3"
+            },
+            {
+              "n": 62,
+              "pct": 0.2818,
+              "valor": "4"
+            },
+            {
+              "n": 37,
+              "pct": 0.1682,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "comportamiento_item6"
+      },
+      "q15": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.173,
+        "std": 1.159,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 62,
+          "4": 60,
+          "2": 50,
+          "5": 31,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1727,
+          "mediana": 3.0,
+          "curtosis": -0.8568,
+          "asimetria": -0.0948,
+          "desviacion": 1.1615
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.0773,
+              "valor": "1"
+            },
+            {
+              "n": 50,
+              "pct": 0.2273,
+              "valor": "2"
+            },
+            {
+              "n": 62,
+              "pct": 0.2818,
+              "valor": "3"
+            },
+            {
+              "n": 60,
+              "pct": 0.2727,
+              "valor": "4"
+            },
+            {
+              "n": 31,
+              "pct": 0.1409,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "comportamiento_item7"
+      },
+      "q16": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.218,
+        "std": 1.182,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 73,
+          "3": 52,
+          "2": 45,
+          "5": 30,
+          "1": 20
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2182,
+          "mediana": 3.0,
+          "curtosis": -0.8684,
+          "asimetria": -0.2647,
+          "desviacion": 1.185
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 20,
+              "pct": 0.0909,
+              "valor": "1"
+            },
+            {
+              "n": 45,
+              "pct": 0.2045,
+              "valor": "2"
+            },
+            {
+              "n": 52,
+              "pct": 0.2364,
+              "valor": "3"
+            },
+            {
+              "n": 73,
+              "pct": 0.3318,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.1364,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "comportamiento_item8"
+      },
+      "q17": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.2,
+        "std": 1.135,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 63,
+          "4": 63,
+          "2": 49,
+          "5": 30,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2,
+          "mediana": 3.0,
+          "curtosis": -0.8137,
+          "asimetria": -0.1181,
+          "desviacion": 1.1372
+        },
+        "frecuencias": {
+          "moda": [
+            "3",
+            "4"
+          ],
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0682,
+              "valor": "1"
+            },
+            {
+              "n": 49,
+              "pct": 0.2227,
+              "valor": "2"
+            },
+            {
+              "n": 63,
+              "pct": 0.2864,
+              "valor": "3"
+            },
+            {
+              "n": 63,
+              "pct": 0.2864,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.1364,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "comportamiento_item9"
+      },
+      "q18": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.277,
+        "std": 1.214,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 69,
+          "3": 53,
+          "2": 40,
+          "5": 37,
+          "1": 21
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2773,
+          "mediana": 3.0,
+          "curtosis": -0.8637,
+          "asimetria": -0.3002,
+          "desviacion": 1.2165
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 21,
+              "pct": 0.0955,
+              "valor": "1"
+            },
+            {
+              "n": 40,
+              "pct": 0.1818,
+              "valor": "2"
+            },
+            {
+              "n": 53,
+              "pct": 0.2409,
+              "valor": "3"
+            },
+            {
+              "n": 69,
+              "pct": 0.3136,
+              "valor": "4"
+            },
+            {
+              "n": 37,
+              "pct": 0.1682,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "actividades_ext_item1"
+      },
+      "q19": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.209,
+        "std": 1.195,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 63,
+          "3": 58,
+          "2": 45,
+          "5": 34,
+          "1": 20
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2091,
+          "mediana": 3.0,
+          "curtosis": -0.8849,
+          "asimetria": -0.1854,
+          "desviacion": 1.1981
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 20,
+              "pct": 0.0909,
+              "valor": "1"
+            },
+            {
+              "n": 45,
+              "pct": 0.2045,
+              "valor": "2"
+            },
+            {
+              "n": 58,
+              "pct": 0.2636,
+              "valor": "3"
+            },
+            {
+              "n": 63,
+              "pct": 0.2864,
+              "valor": "4"
+            },
+            {
+              "n": 34,
+              "pct": 0.1545,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "actividades_ext_item2"
+      },
+      "q20": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.359,
+        "std": 1.184,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 66,
+          "3": 57,
+          "5": 42,
+          "2": 39,
+          "1": 16
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.75,
+          "q3": 4.0,
+          "iqr": 1.25,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3591,
+          "mediana": 3.0,
+          "curtosis": -0.808,
+          "asimetria": -0.2966,
+          "desviacion": 1.1871
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 16,
+              "pct": 0.0727,
+              "valor": "1"
+            },
+            {
+              "n": 39,
+              "pct": 0.1773,
+              "valor": "2"
+            },
+            {
+              "n": 57,
+              "pct": 0.2591,
+              "valor": "3"
+            },
+            {
+              "n": 66,
+              "pct": 0.3,
+              "valor": "4"
+            },
+            {
+              "n": 42,
+              "pct": 0.1909,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "actividades_ext_item3"
+      },
+      "q21": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.214,
+        "std": 1.15,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 74,
+          "3": 63,
+          "2": 35,
+          "5": 26,
+          "1": 22
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2136,
+          "mediana": 3.0,
+          "curtosis": -0.6556,
+          "asimetria": -0.3539,
+          "desviacion": 1.1526
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 22,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 35,
+              "pct": 0.1591,
+              "valor": "2"
+            },
+            {
+              "n": 63,
+              "pct": 0.2864,
+              "valor": "3"
+            },
+            {
+              "n": 74,
+              "pct": 0.3364,
+              "valor": "4"
+            },
+            {
+              "n": 26,
+              "pct": 0.1182,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item1"
+      },
+      "q22": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.295,
+        "std": 1.091,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 71,
+          "4": 69,
+          "2": 36,
+          "5": 30,
+          "1": 14
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2955,
+          "mediana": 3.0,
+          "curtosis": -0.5427,
+          "asimetria": -0.2705,
+          "desviacion": 1.0933
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 14,
+              "pct": 0.0636,
+              "valor": "1"
+            },
+            {
+              "n": 36,
+              "pct": 0.1636,
+              "valor": "2"
+            },
+            {
+              "n": 71,
+              "pct": 0.3227,
+              "valor": "3"
+            },
+            {
+              "n": 69,
+              "pct": 0.3136,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.1364,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item2"
+      },
+      "q23": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.223,
+        "std": 1.12,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 71,
+          "4": 60,
+          "2": 43,
+          "5": 31,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2227,
+          "mediana": 3.0,
+          "curtosis": -0.698,
+          "asimetria": -0.1364,
+          "desviacion": 1.1228
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0682,
+              "valor": "1"
+            },
+            {
+              "n": 43,
+              "pct": 0.1955,
+              "valor": "2"
+            },
+            {
+              "n": 71,
+              "pct": 0.3227,
+              "valor": "3"
+            },
+            {
+              "n": 60,
+              "pct": 0.2727,
+              "valor": "4"
+            },
+            {
+              "n": 31,
+              "pct": 0.1409,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item3"
+      },
+      "q24": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.259,
+        "std": 1.108,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 73,
+          "4": 63,
+          "2": 38,
+          "5": 31,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2591,
+          "mediana": 3.0,
+          "curtosis": -0.6058,
+          "asimetria": -0.2046,
+          "desviacion": 1.1108
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0682,
+              "valor": "1"
+            },
+            {
+              "n": 38,
+              "pct": 0.1727,
+              "valor": "2"
+            },
+            {
+              "n": 73,
+              "pct": 0.3318,
+              "valor": "3"
+            },
+            {
+              "n": 63,
+              "pct": 0.2864,
+              "valor": "4"
+            },
+            {
+              "n": 31,
+              "pct": 0.1409,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item4"
+      },
+      "q25": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.236,
+        "std": 1.19,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 65,
+          "3": 55,
+          "2": 47,
+          "5": 35,
+          "1": 18
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2364,
+          "mediana": 3.0,
+          "curtosis": -0.9081,
+          "asimetria": -0.1898,
+          "desviacion": 1.193
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 18,
+              "pct": 0.0818,
+              "valor": "1"
+            },
+            {
+              "n": 47,
+              "pct": 0.2136,
+              "valor": "2"
+            },
+            {
+              "n": 55,
+              "pct": 0.25,
+              "valor": "3"
+            },
+            {
+              "n": 65,
+              "pct": 0.2955,
+              "valor": "4"
+            },
+            {
+              "n": 35,
+              "pct": 0.1591,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item5"
+      },
+      "q26": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.3,
+        "std": 1.005,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 80,
+          "3": 74,
+          "2": 34,
+          "5": 21,
+          "1": 11
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3,
+          "mediana": 3.0,
+          "curtosis": -0.3056,
+          "asimetria": -0.3604,
+          "desviacion": 1.0073
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 11,
+              "pct": 0.05,
+              "valor": "1"
+            },
+            {
+              "n": 34,
+              "pct": 0.1545,
+              "valor": "2"
+            },
+            {
+              "n": 74,
+              "pct": 0.3364,
+              "valor": "3"
+            },
+            {
+              "n": 80,
+              "pct": 0.3636,
+              "valor": "4"
+            },
+            {
+              "n": 21,
+              "pct": 0.0955,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item6"
+      },
+      "q27": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.236,
+        "std": 1.107,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 70,
+          "4": 69,
+          "2": 37,
+          "5": 27,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2364,
+          "mediana": 3.0,
+          "curtosis": -0.5767,
+          "asimetria": -0.277,
+          "desviacion": 1.1098
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.0773,
+              "valor": "1"
+            },
+            {
+              "n": 37,
+              "pct": 0.1682,
+              "valor": "2"
+            },
+            {
+              "n": 70,
+              "pct": 0.3182,
+              "valor": "3"
+            },
+            {
+              "n": 69,
+              "pct": 0.3136,
+              "valor": "4"
+            },
+            {
+              "n": 27,
+              "pct": 0.1227,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item7"
+      },
+      "q28": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.232,
+        "std": 1.025,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 82,
+          "4": 66,
+          "2": 37,
+          "5": 23,
+          "1": 12
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2318,
+          "mediana": 3.0,
+          "curtosis": -0.3842,
+          "asimetria": -0.1976,
+          "desviacion": 1.0274
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 12,
+              "pct": 0.0545,
+              "valor": "1"
+            },
+            {
+              "n": 37,
+              "pct": 0.1682,
+              "valor": "2"
+            },
+            {
+              "n": 82,
+              "pct": 0.3727,
+              "valor": "3"
+            },
+            {
+              "n": 66,
+              "pct": 0.3,
+              "valor": "4"
+            },
+            {
+              "n": 23,
+              "pct": 0.1045,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item8"
+      },
+      "q29": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.236,
+        "std": 1.132,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 67,
+          "4": 66,
+          "2": 40,
+          "5": 30,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2364,
+          "mediana": 3.0,
+          "curtosis": -0.683,
+          "asimetria": -0.2295,
+          "desviacion": 1.1342
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.0773,
+              "valor": "1"
+            },
+            {
+              "n": 40,
+              "pct": 0.1818,
+              "valor": "2"
+            },
+            {
+              "n": 67,
+              "pct": 0.3045,
+              "valor": "3"
+            },
+            {
+              "n": 66,
+              "pct": 0.3,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.1364,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item9"
+      },
+      "q30": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.291,
+        "std": 1.143,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 67,
+          "4": 64,
+          "2": 38,
+          "5": 35,
+          "1": 16
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2909,
+          "mediana": 3.0,
+          "curtosis": -0.6936,
+          "asimetria": -0.2398,
+          "desviacion": 1.1455
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 16,
+              "pct": 0.0727,
+              "valor": "1"
+            },
+            {
+              "n": 38,
+              "pct": 0.1727,
+              "valor": "2"
+            },
+            {
+              "n": 67,
+              "pct": 0.3045,
+              "valor": "3"
+            },
+            {
+              "n": 64,
+              "pct": 0.2909,
+              "valor": "4"
+            },
+            {
+              "n": 35,
+              "pct": 0.1591,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item10"
+      },
+      "q31": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.277,
+        "std": 1.062,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 79,
+          "3": 69,
+          "2": 34,
+          "5": 23,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2773,
+          "mediana": 3.0,
+          "curtosis": -0.4141,
+          "asimetria": -0.39,
+          "desviacion": 1.0643
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0682,
+              "valor": "1"
+            },
+            {
+              "n": 34,
+              "pct": 0.1545,
+              "valor": "2"
+            },
+            {
+              "n": 69,
+              "pct": 0.3136,
+              "valor": "3"
+            },
+            {
+              "n": 79,
+              "pct": 0.3591,
+              "valor": "4"
+            },
+            {
+              "n": 23,
+              "pct": 0.1045,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item11"
+      },
+      "q32": {
+        "type": "likert",
+        "n": 220,
+        "n_vacios": 0,
+        "mean": 3.232,
+        "std": 1.043,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 73,
+          "3": 71,
+          "2": 42,
+          "5": 22,
+          "1": 12
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 220,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2318,
+          "mediana": 3.0,
+          "curtosis": -0.5427,
+          "asimetria": -0.2345,
+          "desviacion": 1.0451
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 12,
+              "pct": 0.0545,
+              "valor": "1"
+            },
+            {
+              "n": 42,
+              "pct": 0.1909,
+              "valor": "2"
+            },
+            {
+              "n": 71,
+              "pct": 0.3227,
+              "valor": "3"
+            },
+            {
+              "n": 73,
+              "pct": 0.3318,
+              "valor": "4"
+            },
+            {
+              "n": 22,
+              "pct": 0.1,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estrategias_cog_item12"
+      }
+    },
+    "global": {
+      "n_registros": 220,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 32
+    },
+    "reliability": [
+      {
+        "alfa": 0.8982,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Gusto por la es",
+        "n_casos": 220,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.4045,
+            "alfa_si_se_elimina": 0.8689,
+            "correlacion_item_total": 0.7764
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.3773,
+            "alfa_si_se_elimina": 0.8858,
+            "correlacion_item_total": 0.7271
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.4045,
+            "alfa_si_se_elimina": 0.8602,
+            "correlacion_item_total": 0.7963
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.3818,
+            "alfa_si_se_elimina": 0.8592,
+            "correlacion_item_total": 0.7987
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.9036,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Gusto por apren",
+        "n_casos": 220,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.1591,
+            "alfa_si_se_elimina": 0.8792,
+            "correlacion_item_total": 0.7727
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2318,
+            "alfa_si_se_elimina": 0.8753,
+            "correlacion_item_total": 0.7836
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2545,
+            "alfa_si_se_elimina": 0.8783,
+            "correlacion_item_total": 0.7763
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.1682,
+            "alfa_si_se_elimina": 0.8688,
+            "correlacion_item_total": 0.8019
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.9519,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4",
+          "ítem 5",
+          "ítem 6",
+          "ítem 7",
+          "ítem 8",
+          "ítem 9"
+        ],
+        "bloque": "Comportamiento,",
+        "n_casos": 220,
+        "n_items": 9,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.1409,
+            "alfa_si_se_elimina": 0.9458,
+            "correlacion_item_total": 0.8145
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2182,
+            "alfa_si_se_elimina": 0.9469,
+            "correlacion_item_total": 0.7924
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.1636,
+            "alfa_si_se_elimina": 0.9457,
+            "correlacion_item_total": 0.8162
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.0864,
+            "alfa_si_se_elimina": 0.9467,
+            "correlacion_item_total": 0.797
+          },
+          {
+            "item": "ítem 5",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.9466,
+            "correlacion_item_total": 0.7979
+          },
+          {
+            "item": "ítem 6",
+            "media": 3.2727,
+            "alfa_si_se_elimina": 0.9466,
+            "correlacion_item_total": 0.7983
+          },
+          {
+            "item": "ítem 7",
+            "media": 3.1727,
+            "alfa_si_se_elimina": 0.9452,
+            "correlacion_item_total": 0.8259
+          },
+          {
+            "item": "ítem 8",
+            "media": 3.2182,
+            "alfa_si_se_elimina": 0.9458,
+            "correlacion_item_total": 0.8126
+          },
+          {
+            "item": "ítem 9",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.9462,
+            "correlacion_item_total": 0.8056
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.876,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3"
+        ],
+        "bloque": "Actividades ext",
+        "n_casos": 220,
+        "n_items": 3,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.2773,
+            "alfa_si_se_elimina": 0.8042,
+            "correlacion_item_total": 0.7836
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2091,
+            "alfa_si_se_elimina": 0.8357,
+            "correlacion_item_total": 0.7488
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.3591,
+            "alfa_si_se_elimina": 0.8338,
+            "correlacion_item_total": 0.751
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.9542,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4",
+          "ítem 5",
+          "ítem 6",
+          "ítem 7",
+          "ítem 8",
+          "ítem 9",
+          "ítem 10",
+          "ítem 11",
+          "ítem 12"
+        ],
+        "bloque": "Estrategias cog",
+        "n_casos": 220,
+        "n_items": 12,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.2136,
+            "alfa_si_se_elimina": 0.9507,
+            "correlacion_item_total": 0.764
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2955,
+            "alfa_si_se_elimina": 0.9511,
+            "correlacion_item_total": 0.7471
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2227,
+            "alfa_si_se_elimina": 0.9492,
+            "correlacion_item_total": 0.8114
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.2591,
+            "alfa_si_se_elimina": 0.9503,
+            "correlacion_item_total": 0.774
+          },
+          {
+            "item": "ítem 5",
+            "media": 3.2364,
+            "alfa_si_se_elimina": 0.9498,
+            "correlacion_item_total": 0.7917
+          },
+          {
+            "item": "ítem 6",
+            "media": 3.3,
+            "alfa_si_se_elimina": 0.9509,
+            "correlacion_item_total": 0.7575
+          },
+          {
+            "item": "ítem 7",
+            "media": 3.2364,
+            "alfa_si_se_elimina": 0.9493,
+            "correlacion_item_total": 0.8068
+          },
+          {
+            "item": "ítem 8",
+            "media": 3.2318,
+            "alfa_si_se_elimina": 0.9503,
+            "correlacion_item_total": 0.7766
+          },
+          {
+            "item": "ítem 9",
+            "media": 3.2364,
+            "alfa_si_se_elimina": 0.9495,
+            "correlacion_item_total": 0.7995
+          },
+          {
+            "item": "ítem 10",
+            "media": 3.2909,
+            "alfa_si_se_elimina": 0.951,
+            "correlacion_item_total": 0.7542
+          },
+          {
+            "item": "ítem 11",
+            "media": 3.2773,
+            "alfa_si_se_elimina": 0.95,
+            "correlacion_item_total": 0.7835
+          },
+          {
+            "item": "ítem 12",
+            "media": 3.2318,
+            "alfa_si_se_elimina": 0.9507,
+            "correlacion_item_total": 0.7618
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.957,
+        "items": [
+          "Gusto_por_la_es_item1",
+          "Gusto_por_la_es_item2",
+          "Gusto_por_la_es_item3",
+          "Gusto_por_la_es_item4",
+          "Gusto_por_apren_item1",
+          "Gusto_por_apren_item2",
+          "Gusto_por_apren_item3",
+          "Gusto_por_apren_item4",
+          "Comportamiento,_item1",
+          "Comportamiento,_item2",
+          "Comportamiento,_item3",
+          "Comportamiento,_item4",
+          "Comportamiento,_item5",
+          "Comportamiento,_item6",
+          "Comportamiento,_item7",
+          "Comportamiento,_item8",
+          "Comportamiento,_item9",
+          "Actividades_ext_item1",
+          "Actividades_ext_item2",
+          "Actividades_ext_item3",
+          "Estrategias_cog_item1",
+          "Estrategias_cog_item2",
+          "Estrategias_cog_item3",
+          "Estrategias_cog_item4",
+          "Estrategias_cog_item5",
+          "Estrategias_cog_item6",
+          "Estrategias_cog_item7",
+          "Estrategias_cog_item8",
+          "Estrategias_cog_item9",
+          "Estrategias_cog_item10",
+          "Estrategias_cog_item11",
+          "Estrategias_cog_item12"
+        ],
+        "bloque": "Todas las escalas Likert",
+        "n_casos": 220,
+        "n_items": 32,
+        "por_item": [
+          {
+            "item": "Gusto_por_la_es_item1",
+            "media": 3.4045,
+            "alfa_si_se_elimina": 0.956,
+            "correlacion_item_total": 0.578
+          },
+          {
+            "item": "Gusto_por_la_es_item2",
+            "media": 3.3773,
+            "alfa_si_se_elimina": 0.9563,
+            "correlacion_item_total": 0.539
+          },
+          {
+            "item": "Gusto_por_la_es_item3",
+            "media": 3.4045,
+            "alfa_si_se_elimina": 0.9562,
+            "correlacion_item_total": 0.5636
+          },
+          {
+            "item": "Gusto_por_la_es_item4",
+            "media": 3.3818,
+            "alfa_si_se_elimina": 0.9559,
+            "correlacion_item_total": 0.5937
+          },
+          {
+            "item": "Gusto_por_apren_item1",
+            "media": 3.1591,
+            "alfa_si_se_elimina": 0.9562,
+            "correlacion_item_total": 0.557
+          },
+          {
+            "item": "Gusto_por_apren_item2",
+            "media": 3.2318,
+            "alfa_si_se_elimina": 0.9565,
+            "correlacion_item_total": 0.5128
+          },
+          {
+            "item": "Gusto_por_apren_item3",
+            "media": 3.2545,
+            "alfa_si_se_elimina": 0.9561,
+            "correlacion_item_total": 0.5746
+          },
+          {
+            "item": "Gusto_por_apren_item4",
+            "media": 3.1682,
+            "alfa_si_se_elimina": 0.9558,
+            "correlacion_item_total": 0.6038
+          },
+          {
+            "item": "Comportamiento,_item1",
+            "media": 3.1409,
+            "alfa_si_se_elimina": 0.9553,
+            "correlacion_item_total": 0.6793
+          },
+          {
+            "item": "Comportamiento,_item2",
+            "media": 3.2182,
+            "alfa_si_se_elimina": 0.9554,
+            "correlacion_item_total": 0.6656
+          },
+          {
+            "item": "Comportamiento,_item3",
+            "media": 3.1636,
+            "alfa_si_se_elimina": 0.9556,
+            "correlacion_item_total": 0.6376
+          },
+          {
+            "item": "Comportamiento,_item4",
+            "media": 3.0864,
+            "alfa_si_se_elimina": 0.9553,
+            "correlacion_item_total": 0.678
+          },
+          {
+            "item": "Comportamiento,_item5",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.9552,
+            "correlacion_item_total": 0.6839
+          },
+          {
+            "item": "Comportamiento,_item6",
+            "media": 3.2727,
+            "alfa_si_se_elimina": 0.9556,
+            "correlacion_item_total": 0.628
+          },
+          {
+            "item": "Comportamiento,_item7",
+            "media": 3.1727,
+            "alfa_si_se_elimina": 0.9555,
+            "correlacion_item_total": 0.6456
+          },
+          {
+            "item": "Comportamiento,_item8",
+            "media": 3.2182,
+            "alfa_si_se_elimina": 0.9556,
+            "correlacion_item_total": 0.6395
+          },
+          {
+            "item": "Comportamiento,_item9",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.9551,
+            "correlacion_item_total": 0.7078
+          },
+          {
+            "item": "Actividades_ext_item1",
+            "media": 3.2773,
+            "alfa_si_se_elimina": 0.9564,
+            "correlacion_item_total": 0.5253
+          },
+          {
+            "item": "Actividades_ext_item2",
+            "media": 3.2091,
+            "alfa_si_se_elimina": 0.9564,
+            "correlacion_item_total": 0.5337
+          },
+          {
+            "item": "Actividades_ext_item3",
+            "media": 3.3591,
+            "alfa_si_se_elimina": 0.9566,
+            "correlacion_item_total": 0.5028
+          },
+          {
+            "item": "Estrategias_cog_item1",
+            "media": 3.2136,
+            "alfa_si_se_elimina": 0.9554,
+            "correlacion_item_total": 0.6653
+          },
+          {
+            "item": "Estrategias_cog_item2",
+            "media": 3.2955,
+            "alfa_si_se_elimina": 0.9557,
+            "correlacion_item_total": 0.6259
+          },
+          {
+            "item": "Estrategias_cog_item3",
+            "media": 3.2227,
+            "alfa_si_se_elimina": 0.9551,
+            "correlacion_item_total": 0.7049
+          },
+          {
+            "item": "Estrategias_cog_item4",
+            "media": 3.2591,
+            "alfa_si_se_elimina": 0.9554,
+            "correlacion_item_total": 0.6682
+          },
+          {
+            "item": "Estrategias_cog_item5",
+            "media": 3.2364,
+            "alfa_si_se_elimina": 0.9552,
+            "correlacion_item_total": 0.6803
+          },
+          {
+            "item": "Estrategias_cog_item6",
+            "media": 3.3,
+            "alfa_si_se_elimina": 0.9555,
+            "correlacion_item_total": 0.657
+          },
+          {
+            "item": "Estrategias_cog_item7",
+            "media": 3.2364,
+            "alfa_si_se_elimina": 0.9553,
+            "correlacion_item_total": 0.6799
+          },
+          {
+            "item": "Estrategias_cog_item8",
+            "media": 3.2318,
+            "alfa_si_se_elimina": 0.9551,
+            "correlacion_item_total": 0.7113
+          },
+          {
+            "item": "Estrategias_cog_item9",
+            "media": 3.2364,
+            "alfa_si_se_elimina": 0.9553,
+            "correlacion_item_total": 0.6799
+          },
+          {
+            "item": "Estrategias_cog_item10",
+            "media": 3.2909,
+            "alfa_si_se_elimina": 0.9553,
+            "correlacion_item_total": 0.6772
+          },
+          {
+            "item": "Estrategias_cog_item11",
+            "media": 3.2773,
+            "alfa_si_se_elimina": 0.9552,
+            "correlacion_item_total": 0.7009
+          },
+          {
+            "item": "Estrategias_cog_item12",
+            "media": 3.2318,
+            "alfa_si_se_elimina": 0.9558,
+            "correlacion_item_total": 0.6147
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      }
+    ]
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T03:17:10.166231+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/5__enc_03_respondido.csv",
+    "original": "raw/_/6__enc_03_original.txt",
+    "limpio": "clean/25/1__v1_encuesta_limpio.csv",
+    "nombre_archivo": "enc_03_respondido.csv"
+  },
+  "generated_at": "2026-11-12T03:17:10.166355+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T03:17:09.646266+00:00",
+    "archivo_limpio": "clean/25/1__v1_encuesta_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 44,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 66,
+        "cols_mas_nulos": [],
+        "n_respondentes": 220,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      },
+      "despues": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 43,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 66,
+        "cols_mas_nulos": [],
+        "n_respondentes": 220,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "fiabilidad": [
+        {
+          "alfa": 0.8982,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Gusto por la es",
+          "n_casos": 220,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.4045,
+              "alfa_si_se_elimina": 0.8689,
+              "correlacion_item_total": 0.7764
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.3773,
+              "alfa_si_se_elimina": 0.8858,
+              "correlacion_item_total": 0.7271
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.4045,
+              "alfa_si_se_elimina": 0.8602,
+              "correlacion_item_total": 0.7963
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.3818,
+              "alfa_si_se_elimina": 0.8592,
+              "correlacion_item_total": 0.7987
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.9036,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Gusto por apren",
+          "n_casos": 220,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.1591,
+              "alfa_si_se_elimina": 0.8792,
+              "correlacion_item_total": 0.7727
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2318,
+              "alfa_si_se_elimina": 0.8753,
+              "correlacion_item_total": 0.7836
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2545,
+              "alfa_si_se_elimina": 0.8783,
+              "correlacion_item_total": 0.7763
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.1682,
+              "alfa_si_se_elimina": 0.8688,
+              "correlacion_item_total": 0.8019
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.9519,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4",
+            "ítem 5",
+            "ítem 6",
+            "ítem 7",
+            "ítem 8",
+            "ítem 9"
+          ],
+          "bloque": "Comportamiento,",
+          "n_casos": 220,
+          "n_items": 9,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.1409,
+              "alfa_si_se_elimina": 0.9458,
+              "correlacion_item_total": 0.8145
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2182,
+              "alfa_si_se_elimina": 0.9469,
+              "correlacion_item_total": 0.7924
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.1636,
+              "alfa_si_se_elimina": 0.9457,
+              "correlacion_item_total": 0.8162
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.0864,
+              "alfa_si_se_elimina": 0.9467,
+              "correlacion_item_total": 0.797
+            },
+            {
+              "item": "ítem 5",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.9466,
+              "correlacion_item_total": 0.7979
+            },
+            {
+              "item": "ítem 6",
+              "media": 3.2727,
+              "alfa_si_se_elimina": 0.9466,
+              "correlacion_item_total": 0.7983
+            },
+            {
+              "item": "ítem 7",
+              "media": 3.1727,
+              "alfa_si_se_elimina": 0.9452,
+              "correlacion_item_total": 0.8259
+            },
+            {
+              "item": "ítem 8",
+              "media": 3.2182,
+              "alfa_si_se_elimina": 0.9458,
+              "correlacion_item_total": 0.8126
+            },
+            {
+              "item": "ítem 9",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.9462,
+              "correlacion_item_total": 0.8056
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.876,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3"
+          ],
+          "bloque": "Actividades ext",
+          "n_casos": 220,
+          "n_items": 3,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.2773,
+              "alfa_si_se_elimina": 0.8042,
+              "correlacion_item_total": 0.7836
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2091,
+              "alfa_si_se_elimina": 0.8357,
+              "correlacion_item_total": 0.7488
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.3591,
+              "alfa_si_se_elimina": 0.8338,
+              "correlacion_item_total": 0.751
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.9542,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4",
+            "ítem 5",
+            "ítem 6",
+            "ítem 7",
+            "ítem 8",
+            "ítem 9",
+            "ítem 10",
+            "ítem 11",
+            "ítem 12"
+          ],
+          "bloque": "Estrategias cog",
+          "n_casos": 220,
+          "n_items": 12,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.2136,
+              "alfa_si_se_elimina": 0.9507,
+              "correlacion_item_total": 0.764
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2955,
+              "alfa_si_se_elimina": 0.9511,
+              "correlacion_item_total": 0.7471
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2227,
+              "alfa_si_se_elimina": 0.9492,
+              "correlacion_item_total": 0.8114
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.2591,
+              "alfa_si_se_elimina": 0.9503,
+              "correlacion_item_total": 0.774
+            },
+            {
+              "item": "ítem 5",
+              "media": 3.2364,
+              "alfa_si_se_elimina": 0.9498,
+              "correlacion_item_total": 0.7917
+            },
+            {
+              "item": "ítem 6",
+              "media": 3.3,
+              "alfa_si_se_elimina": 0.9509,
+              "correlacion_item_total": 0.7575
+            },
+            {
+              "item": "ítem 7",
+              "media": 3.2364,
+              "alfa_si_se_elimina": 0.9493,
+              "correlacion_item_total": 0.8068
+            },
+            {
+              "item": "ítem 8",
+              "media": 3.2318,
+              "alfa_si_se_elimina": 0.9503,
+              "correlacion_item_total": 0.7766
+            },
+            {
+              "item": "ítem 9",
+              "media": 3.2364,
+              "alfa_si_se_elimina": 0.9495,
+              "correlacion_item_total": 0.7995
+            },
+            {
+              "item": "ítem 10",
+              "media": 3.2909,
+              "alfa_si_se_elimina": 0.951,
+              "correlacion_item_total": 0.7542
+            },
+            {
+              "item": "ítem 11",
+              "media": 3.2773,
+              "alfa_si_se_elimina": 0.95,
+              "correlacion_item_total": 0.7835
+            },
+            {
+              "item": "ítem 12",
+              "media": 3.2318,
+              "alfa_si_se_elimina": 0.9507,
+              "correlacion_item_total": 0.7618
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.957,
+          "items": [
+            "Gusto_por_la_es_item1",
+            "Gusto_por_la_es_item2",
+            "Gusto_por_la_es_item3",
+            "Gusto_por_la_es_item4",
+            "Gusto_por_apren_item1",
+            "Gusto_por_apren_item2",
+            "Gusto_por_apren_item3",
+            "Gusto_por_apren_item4",
+            "Comportamiento,_item1",
+            "Comportamiento,_item2",
+            "Comportamiento,_item3",
+            "Comportamiento,_item4",
+            "Comportamiento,_item5",
+            "Comportamiento,_item6",
+            "Comportamiento,_item7",
+            "Comportamiento,_item8",
+            "Comportamiento,_item9",
+            "Actividades_ext_item1",
+            "Actividades_ext_item2",
+            "Actividades_ext_item3",
+            "Estrategias_cog_item1",
+            "Estrategias_cog_item2",
+            "Estrategias_cog_item3",
+            "Estrategias_cog_item4",
+            "Estrategias_cog_item5",
+            "Estrategias_cog_item6",
+            "Estrategias_cog_item7",
+            "Estrategias_cog_item8",
+            "Estrategias_cog_item9",
+            "Estrategias_cog_item10",
+            "Estrategias_cog_item11",
+            "Estrategias_cog_item12"
+          ],
+          "bloque": "Todas las escalas Likert",
+          "n_casos": 220,
+          "n_items": 32,
+          "por_item": [
+            {
+              "item": "Gusto_por_la_es_item1",
+              "media": 3.4045,
+              "alfa_si_se_elimina": 0.956,
+              "correlacion_item_total": 0.578
+            },
+            {
+              "item": "Gusto_por_la_es_item2",
+              "media": 3.3773,
+              "alfa_si_se_elimina": 0.9563,
+              "correlacion_item_total": 0.539
+            },
+            {
+              "item": "Gusto_por_la_es_item3",
+              "media": 3.4045,
+              "alfa_si_se_elimina": 0.9562,
+              "correlacion_item_total": 0.5636
+            },
+            {
+              "item": "Gusto_por_la_es_item4",
+              "media": 3.3818,
+              "alfa_si_se_elimina": 0.9559,
+              "correlacion_item_total": 0.5937
+            },
+            {
+              "item": "Gusto_por_apren_item1",
+              "media": 3.1591,
+              "alfa_si_se_elimina": 0.9562,
+              "correlacion_item_total": 0.557
+            },
+            {
+              "item": "Gusto_por_apren_item2",
+              "media": 3.2318,
+              "alfa_si_se_elimina": 0.9565,
+              "correlacion_item_total": 0.5128
+            },
+            {
+              "item": "Gusto_por_apren_item3",
+              "media": 3.2545,
+              "alfa_si_se_elimina": 0.9561,
+              "correlacion_item_total": 0.5746
+            },
+            {
+              "item": "Gusto_por_apren_item4",
+              "media": 3.1682,
+              "alfa_si_se_elimina": 0.9558,
+              "correlacion_item_total": 0.6038
+            },
+            {
+              "item": "Comportamiento,_item1",
+              "media": 3.1409,
+              "alfa_si_se_elimina": 0.9553,
+              "correlacion_item_total": 0.6793
+            },
+            {
+              "item": "Comportamiento,_item2",
+              "media": 3.2182,
+              "alfa_si_se_elimina": 0.9554,
+              "correlacion_item_total": 0.6656
+            },
+            {
+              "item": "Comportamiento,_item3",
+              "media": 3.1636,
+              "alfa_si_se_elimina": 0.9556,
+              "correlacion_item_total": 0.6376
+            },
+            {
+              "item": "Comportamiento,_item4",
+              "media": 3.0864,
+              "alfa_si_se_elimina": 0.9553,
+              "correlacion_item_total": 0.678
+            },
+            {
+              "item": "Comportamiento,_item5",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.9552,
+              "correlacion_item_total": 0.6839
+            },
+            {
+              "item": "Comportamiento,_item6",
+              "media": 3.2727,
+              "alfa_si_se_elimina": 0.9556,
+              "correlacion_item_total": 0.628
+            },
+            {
+              "item": "Comportamiento,_item7",
+              "media": 3.1727,
+              "alfa_si_se_elimina": 0.9555,
+              "correlacion_item_total": 0.6456
+            },
+            {
+              "item": "Comportamiento,_item8",
+              "media": 3.2182,
+              "alfa_si_se_elimina": 0.9556,
+              "correlacion_item_total": 0.6395
+            },
+            {
+              "item": "Comportamiento,_item9",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.9551,
+              "correlacion_item_total": 0.7078
+            },
+            {
+              "item": "Actividades_ext_item1",
+              "media": 3.2773,
+              "alfa_si_se_elimina": 0.9564,
+              "correlacion_item_total": 0.5253
+            },
+            {
+              "item": "Actividades_ext_item2",
+              "media": 3.2091,
+              "alfa_si_se_elimina": 0.9564,
+              "correlacion_item_total": 0.5337
+            },
+            {
+              "item": "Actividades_ext_item3",
+              "media": 3.3591,
+              "alfa_si_se_elimina": 0.9566,
+              "correlacion_item_total": 0.5028
+            },
+            {
+              "item": "Estrategias_cog_item1",
+              "media": 3.2136,
+              "alfa_si_se_elimina": 0.9554,
+              "correlacion_item_total": 0.6653
+            },
+            {
+              "item": "Estrategias_cog_item2",
+              "media": 3.2955,
+              "alfa_si_se_elimina": 0.9557,
+              "correlacion_item_total": 0.6259
+            },
+            {
+              "item": "Estrategias_cog_item3",
+              "media": 3.2227,
+              "alfa_si_se_elimina": 0.9551,
+              "correlacion_item_total": 0.7049
+            },
+            {
+              "item": "Estrategias_cog_item4",
+              "media": 3.2591,
+              "alfa_si_se_elimina": 0.9554,
+              "correlacion_item_total": 0.6682
+            },
+            {
+              "item": "Estrategias_cog_item5",
+              "media": 3.2364,
+              "alfa_si_se_elimina": 0.9552,
+              "correlacion_item_total": 0.6803
+            },
+            {
+              "item": "Estrategias_cog_item6",
+              "media": 3.3,
+              "alfa_si_se_elimina": 0.9555,
+              "correlacion_item_total": 0.657
+            },
+            {
+              "item": "Estrategias_cog_item7",
+              "media": 3.2364,
+              "alfa_si_se_elimina": 0.9553,
+              "correlacion_item_total": 0.6799
+            },
+            {
+              "item": "Estrategias_cog_item8",
+              "media": 3.2318,
+              "alfa_si_se_elimina": 0.9551,
+              "correlacion_item_total": 0.7113
+            },
+            {
+              "item": "Estrategias_cog_item9",
+              "media": 3.2364,
+              "alfa_si_se_elimina": 0.9553,
+              "correlacion_item_total": 0.6799
+            },
+            {
+              "item": "Estrategias_cog_item10",
+              "media": 3.2909,
+              "alfa_si_se_elimina": 0.9553,
+              "correlacion_item_total": 0.6772
+            },
+            {
+              "item": "Estrategias_cog_item11",
+              "media": 3.2773,
+              "alfa_si_se_elimina": 0.9552,
+              "correlacion_item_total": 0.7009
+            },
+            {
+              "item": "Estrategias_cog_item12",
+              "media": 3.2318,
+              "alfa_si_se_elimina": 0.9558,
+              "correlacion_item_total": 0.6147
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        }
+      ],
+      "encuestados": {
+        "incompletos": 0,
+        "linea_recta": 66
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 5,
+      "nombre_kpi": "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "score": 0.5579
+    },
+    {
+      "kpi_id": 49,
+      "nombre_kpi": "Puntaje de Satisfacción Estudiantil (NPS / Encuestas)",
+      "score": 0.5289
+    }
+  ],
+  "finalized_at": "2026-11-12T03:17:37.552717+00:00"
+}

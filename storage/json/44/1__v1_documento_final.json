@@ -1,0 +1,1516 @@
+{
+  "esquema_version": "2.0",
+  "instrumento": {
+    "id": "INS-0044",
+    "tipo": "entrevista",
+    "titulo": "Entrevista sobre internacionalización y movilidad académica",
+    "objetivo": "La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro.",
+    "temas": [
+      "investigación",
+      "académica",
+      "posgrado",
+      "requiere",
+      "largo",
+      "movilidad"
+    ],
+    "palabras_clave": [
+      "investigación",
+      "académica",
+      "posgrado",
+      "requiere",
+      "largo",
+      "movilidad"
+    ],
+    "nivel_educativo": "Posgrado",
+    "poblacion": "No especificado",
+    "contexto": "Institución: No especificado. Cobertura: Posgrado — de los estudiantes en relación con: Ratio de Estudiantes Nacionales vs.. Metodología: Entrevista semiestructurada"
+  },
+  "kpis_asociados": [
+    {
+      "fecha": "2026-11-12T04:13:30.683809+00:00",
+      "kpi_id": "KPI-52",
+      "nombre": "Tasa de Participación en Programas de Intercambio / Estudio en el Extranjero",
+      "que_mide": "Porcentaje de alumnos que completan créditos académicos en universidades extranjeras mediante programas de intercambio o movilidad internacional.",
+      "dimension": "Aumentar / Incrementar (KPI de Experiencia Global)",
+      "evidencia": [
+        {
+          "similitud": 0.6182,
+          "pregunta_id": "INS-0044-p06"
+        },
+        {
+          "similitud": 0.5795,
+          "pregunta_id": "INS-0044-p04"
+        },
+        {
+          "similitud": 0.5538,
+          "pregunta_id": "INS-0044-p03"
+        },
+        {
+          "similitud": 0.5491,
+          "pregunta_id": "INS-0044-p08"
+        },
+        {
+          "similitud": 0.5472,
+          "pregunta_id": "INS-0044-p01"
+        }
+      ],
+      "similitud": 0.6543,
+      "definicion": "El KPI Participación en Estudio en el Extranjero es de impacto POSITIVO (Maximizar). Su fórmula es (Alumnos en Intercambio / Cohorte Graduada) * 100. Aumentar este valor fomenta la internacionalización y mentalidad global de los graduados; una cifra baja denota aislamiento académico.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Tasa de Participación en Programas de Intercambio / Estudio en el Extranjero» porque las preguntas «¿Cómo apoya tu institución los programas de internacionalización?» y «¿Qué dificultades encontraste al estudiar en un contexto internacional?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    },
+    {
+      "fecha": "2026-11-12T04:13:30.683809+00:00",
+      "kpi_id": "KPI-40",
+      "nombre": "Ratio de Estudiantes Nacionales frente a Internacionales",
+      "que_mide": "Mide el nivel de internacionalización del campus mediante la proporción de alumnos extranjeros matriculados frente a los locales.",
+      "dimension": "Aumentar porcentaje internacional hasta un rango óptimo de diversidad",
+      "evidencia": [
+        {
+          "similitud": 0.6251,
+          "pregunta_id": "INS-0044-p05"
+        },
+        {
+          "similitud": 0.589,
+          "pregunta_id": "INS-0044-p04"
+        },
+        {
+          "similitud": 0.5609,
+          "pregunta_id": "INS-0044-p06"
+        },
+        {
+          "similitud": 0.5473,
+          "pregunta_id": "INS-0044-p02"
+        },
+        {
+          "similitud": 0.5366,
+          "pregunta_id": "INS-0044-p07"
+        }
+      ],
+      "similitud": 0.6272,
+      "definicion": "El KPI Ratio de Estudiantes Nacionales e Internacionales se calcula dividiendo alumnos extranjeros entre locales. Buscar un crecimiento sostenido en alumnos internacionales fortalece la diversidad cultural y los rankings mundiales de la institución.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Ratio de Estudiantes Nacionales frente a Internacionales» porque las preguntas «¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?» y «¿Qué dificultades encontraste al estudiar en un contexto internacional?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "INS-0044-p01",
+      "texto": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+      "kpis_relacionados": [
+        "KPI-52"
+      ]
+    },
+    {
+      "id": "INS-0044-p02",
+      "texto": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+      "kpis_relacionados": [
+        "KPI-40"
+      ]
+    },
+    {
+      "id": "INS-0044-p03",
+      "texto": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+      "kpis_relacionados": [
+        "KPI-52"
+      ]
+    },
+    {
+      "id": "INS-0044-p04",
+      "texto": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+      "kpis_relacionados": [
+        "KPI-52",
+        "KPI-40"
+      ]
+    },
+    {
+      "id": "INS-0044-p05",
+      "texto": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+      "kpis_relacionados": [
+        "KPI-40"
+      ]
+    },
+    {
+      "id": "INS-0044-p06",
+      "texto": "¿Cómo apoya tu institución los programas de internacionalización?",
+      "kpis_relacionados": [
+        "KPI-52",
+        "KPI-40"
+      ]
+    },
+    {
+      "id": "INS-0044-p07",
+      "texto": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+      "kpis_relacionados": [
+        "KPI-40"
+      ]
+    },
+    {
+      "id": "INS-0044-p08",
+      "texto": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+      "kpis_relacionados": [
+        "KPI-52"
+      ]
+    }
+  ],
+  "entrevistas": [
+    {
+      "participante": "INS-0044-E01",
+      "contexto": {
+        "GPA": "3.81",
+        "Edad": "31",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "21"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E02",
+      "contexto": {
+        "GPA": "3.74",
+        "Edad": "34",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "24"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E03",
+      "contexto": {
+        "GPA": "3.75",
+        "Edad": "28",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "2",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "25"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E04",
+      "contexto": {
+        "GPA": "3.95",
+        "Edad": "24",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "1",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "19"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E05",
+      "contexto": {
+        "GPA": "3.81",
+        "Edad": "28",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "1",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "15"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E06",
+      "contexto": {
+        "GPA": "3.52",
+        "Edad": "24",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "9"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E07",
+      "contexto": {
+        "GPA": "3.84",
+        "Edad": "33",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "17"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E08",
+      "contexto": {
+        "GPA": "3.99",
+        "Edad": "32",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "1",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "14"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E09",
+      "contexto": {
+        "GPA": "3.88",
+        "Edad": "35",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "30"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E10",
+      "contexto": {
+        "GPA": "3.51",
+        "Edad": "20",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "masculino",
+        "Semestre": "1",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "8"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E11",
+      "contexto": {
+        "GPA": "3.95",
+        "Edad": "24",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "15"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E12",
+      "contexto": {
+        "GPA": "3.92",
+        "Edad": "26",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "16"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E13",
+      "contexto": {
+        "GPA": "3.7",
+        "Edad": "30",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "otro",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "28"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E14",
+      "contexto": {
+        "GPA": "2.81",
+        "Edad": "19",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "otro",
+        "Semestre": "2",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "6"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. I've grown more as a person during this exchange than I would have staying home. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. Adapting to a new academic system requires flexibility and open-mindedness. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E15",
+      "contexto": {
+        "GPA": "2.83",
+        "Edad": "25",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "masculino",
+        "Semestre": "10",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "2"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. Adapting to a new academic system requires flexibility and open-mindedness. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. The cultural differences make this both challenging and enriching at the same time."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E16",
+      "contexto": {
+        "GPA": "3.37",
+        "Edad": "25",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "9",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "4"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. Adapting to a new academic system requires flexibility and open-mindedness. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. Adapting to a new academic system requires flexibility and open-mindedness. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. Adapting to a new academic system requires flexibility and open-mindedness."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E17",
+      "contexto": {
+        "GPA": "3.93",
+        "Edad": "31",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "20"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E18",
+      "contexto": {
+        "GPA": "3.74",
+        "Edad": "24",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "13"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E19",
+      "contexto": {
+        "GPA": "3.69",
+        "Edad": "19",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "femenino",
+        "Semestre": "10",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "5"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. The cultural differences make this both challenging and enriching at the same time."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E20",
+      "contexto": {
+        "GPA": "3.82",
+        "Edad": "32",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "1",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "20"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E21",
+      "contexto": {
+        "GPA": "3.97",
+        "Edad": "25",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "25"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E22",
+      "contexto": {
+        "GPA": "3.93",
+        "Edad": "30",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "2",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "30"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E23",
+      "contexto": {
+        "GPA": "2.81",
+        "Edad": "26",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "masculino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "9"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. Adapting to a new academic system requires flexibility and open-mindedness. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. I've grown more as a person during this exchange than I would have staying home. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. The cultural differences make this both challenging and enriching at the same time."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness. I've grown more as a person during this exchange than I would have staying home."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E24",
+      "contexto": {
+        "GPA": "3.84",
+        "Edad": "29",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "23"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0044-E25",
+      "contexto": {
+        "GPA": "3.7",
+        "Edad": "18",
+        "Perfil": "P6 — Internacional/contexto diverso",
+        "Género": "otro",
+        "Semestre": "8",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "7"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0044-p01",
+          "pregunta": "¿Has participado en programas de intercambio estudiantil o movilidad académica?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p02",
+          "pregunta": "¿Cómo fue tu experiencia como estudiante en un contexto cultural diferente al tuyo?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p03",
+          "pregunta": "¿Qué impacto tuvo la movilidad académica en tu formación personal y profesional?",
+          "respuesta": "I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p04",
+          "pregunta": "¿Qué dificultades encontraste al estudiar en un contexto internacional?",
+          "respuesta": "Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p05",
+          "pregunta": "¿Qué aspectos del sistema educativo de otros países te parecen superiores o inferiores al local?",
+          "respuesta": "The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p06",
+          "pregunta": "¿Cómo apoya tu institución los programas de internacionalización?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home."
+        },
+        {
+          "pregunta_id": "INS-0044-p07",
+          "pregunta": "¿Qué recomendarías para fomentar la movilidad estudiantil en tu institución?",
+          "respuesta": "Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. Adapting to a new academic system requires flexibility and open-mindedness."
+        },
+        {
+          "pregunta_id": "INS-0044-p08",
+          "pregunta": "¿Cómo ha impactado el conocimiento de otro idioma en tus oportunidades académicas?",
+          "respuesta": "The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. The cultural differences make this both challenging and enriching at the same time. Adapting to a new academic system requires flexibility and open-mindedness."
+        }
+      ]
+    }
+  ],
+  "avisos": [
+    {
+      "codigo": "texto_libre",
+      "mensaje": "Las personas entrevistadas se identifican con un ID anónimo; otros nombres mencionados en el texto libre podrían seguir presentes."
+    }
+  ]
+}

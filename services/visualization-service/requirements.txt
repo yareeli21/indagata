@@ -20,6 +20,9 @@ numpy==1.26.4
 chromadb-client==1.0.0
 sentence-transformers==3.0.0
 
+# ── Juez Claude Fable 5.2 de las métricas del chat (services/juez_fable.py; usa httpx2, no choca con httpx) ──
+anthropic==2.8.0
+
 # ── Exportación a SPSS (.sav) ──
 pandas==2.2.2
 pyreadstat==1.2.7

@@ -231,9 +231,13 @@ export async function guardarContexto(
   if (respuesta.status === 401) avisarSesionExpirada();
 }
 
-/** Pide calcular las métricas de una respuesta pendiente (bajo demanda); devuelve su estado. */
-export function calcularMetricas(consultaId: number): Promise<MetricasRespuesta> {
-  return pedir<MetricasRespuesta>(`${API_URL}/rag/consultas/${consultaId}/metricas`, {
+/**
+ * Pide calcular las métricas de una respuesta pendiente (bajo demanda); devuelve su estado. Con `juez`, las calcula
+ * ese modelo; con el del juez Fable (`juezFable.modelo`), vuelve a evaluar la respuesta con Fable.
+ */
+export function calcularMetricas(consultaId: number, juez?: string): Promise<MetricasRespuesta> {
+  const consulta = juez ? `?juez=${encodeURIComponent(juez)}` : "";
+  return pedir<MetricasRespuesta>(`${API_URL}/rag/consultas/${consultaId}/metricas${consulta}`, {
     method: "POST",
     auth: true,
   });

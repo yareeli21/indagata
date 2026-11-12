@@ -687,7 +687,40 @@ export interface MetricasRespuesta {
   indicadores: IndicadoresRespuesta | null;
   /** Evaluaciones de la misma respuesta por cada juez (experimento redactor × juez). */
   jueces: EvaluacionJuez[];
+  /** Juez Claude Fable 5.2: evalúa cada respuesta sola, en segundo plano (null = no aplica). */
+  juezFable: EvaluacionFable | null;
   calificacion: CalificacionRespuesta | null;
+}
+
+/**
+ * Seis métricas tipo RAGAS calculadas con el juez Claude Fable 5.2 (services/juez_fable.py). Todas van de 0 a 1;
+ * en `sensibilidadRuido` menor es mejor. Recuerdo, ruido y corrección factual se comparan con una respuesta de
+ * referencia que el juez escribe sin ver la del sistema.
+ */
+export interface EvaluacionFable {
+  modelo: string;
+  /** El modelo que juzgó de verdad (distinto si Fable declinó y respondió el modelo de respaldo). */
+  modeloReal: string | null;
+  fallback: boolean;
+  estado: "calculando" | "listo" | "omitida" | "error";
+  motivo: string | null;
+  fecha: string | null;
+  precisionContexto: number | null;
+  recuerdoContexto: number | null;
+  fidelidad: number | null;
+  relevancia: number | null;
+  sensibilidadRuido: number | null;
+  correccionFactual: number | null;
+  correccionPrecision: number | null;
+  correccionRecuerdo: number | null;
+  noSustentadas: string[];
+  incorrectas: string[];
+  respuestaReferencia: string | null;
+  afirmacionesReferencia: string[];
+  /** Números (desde 1) de las afirmaciones de referencia que la respuesta omitió. */
+  referenciaNoCubierta: number[];
+  origenReferencia: "contexto_ampliado" | "solo_contexto_usado" | null;
+  preguntasGeneradas: string[];
 }
 
 /** Indicadores del sistema de una respuesta (sin juez): quién la escribió, si inventó cifras o IDs, tiempos. */

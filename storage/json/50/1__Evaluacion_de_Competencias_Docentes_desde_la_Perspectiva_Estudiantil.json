@@ -1,0 +1,1401 @@
+{
+  "instrument_id": "50",
+  "schema_version": "2.0",
+  "tipo_instrumento": "prueba_estandarizada",
+  "instrument": {
+    "title": "Evaluación de Competencias Docentes desde la Perspectiva Estudiantil",
+    "objective": "¿Cuál es el objetivo de la evaluación diagnóstica?",
+    "dimensions_explored": [
+      "SECCIÓN: COMPETENCIAS PEDAGÓGICAS",
+      "SECCIÓN: EVALUACIÓN Y ÉTICA DOCENTE"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "pru_05_Competenci_q1",
+            "text": "¿Cuál es la característica más importante de un docente universitario efectivo?",
+            "type": "opcion_multiple",
+            "options": [
+              "Dominar exclusivamente la teoría",
+              "Combinar conocimiento disciplinar con habilidades pedagógicas",
+              "Usar muchas tecnologías",
+              "Impartir clases de forma magistral"
+            ]
+          },
+          {
+            "question_id": "pru_05_Competenci_q2",
+            "text": "Un docente que fomenta el pensamiento crítico principalmente:",
+            "type": "opcion_multiple",
+            "options": [
+              "Da todas las respuestas antes de que el estudiante reflexione",
+              "Plantea preguntas que generan análisis y debate",
+              "Solo evalúa mediante exámenes escritos",
+              "Impide que los estudiantes pregunten"
+            ]
+          },
+          {
+            "question_id": "pru_05_Competenci_q3",
+            "text": "¿Qué indica la retroalimentación formativa de un docente?",
+            "type": "opcion_multiple",
+            "options": [
+              "Una calificación final sin comentarios",
+              "Comentarios sobre el proceso para mejorar el aprendizaje",
+              "La nota de asistencia",
+              "La evaluación del comportamiento"
+            ]
+          },
+          {
+            "question_id": "pru_05_Competenci_q4",
+            "text": "Un docente inclusivo en el aula:",
+            "type": "opcion_multiple",
+            "options": [
+              "Solo atiende a los estudiantes más brillantes",
+              "Adapta su enseñanza a las diversas necesidades del grupo",
+              "Ignora las diferencias entre los estudiantes",
+              "Aplica el mismo método sin variaciones"
+            ]
+          },
+          {
+            "question_id": "pru_05_Competenci_q5",
+            "text": "¿Cuál es la mejor forma de evaluar la comprensión profunda de un concepto?",
+            "type": "opcion_multiple",
+            "options": [
+              "Examen de opciones múltiples con fechas",
+              "Pedir al estudiante que explique y aplique el concepto en situaciones nuevas",
+              "Repetir la definición del libro",
+              "Copiar el concepto del pizarrón"
+            ]
+          },
+          {
+            "question_id": "pru_05_Competenci_q6",
+            "text": "¿Qué es el aprendizaje activo en el aula universitaria?",
+            "type": "opcion_multiple",
+            "options": [
+              "Escuchar al profesor sin interrumpir",
+              "El estudiante participa, debate, experimenta y construye conocimiento",
+              "Leer el libro de texto",
+              "Tomar apuntes de manera pasiva"
+            ]
+          },
+          {
+            "question_id": "pru_05_Competenci_q7",
+            "text": "¿Cuál es el riesgo del uso excesivo de la clase magistral?",
+            "type": "opcion_multiple",
+            "options": [
+              "Que el docente aprenda demasiado",
+              "Que favorezca el aprendizaje pasivo y la falta de participación",
+              "Que los estudiantes participen en exceso",
+              "Que se use demasiada tecnología"
+            ]
+          },
+          {
+            "question_id": "pru_05_Competenci_q8",
+            "text": "La diversificación de estrategias didácticas permite:",
+            "type": "opcion_multiple",
+            "options": [
+              "Reducir el esfuerzo del docente",
+              "Atender distintos estilos de aprendizaje y mantener el interés",
+              "Evaluar menos a los estudiantes",
+              "Simplificar el contenido del curso"
+            ]
+          },
+          {
+            "question_id": "pru_05_Competenci_q9",
+            "text": "¿Qué hace un docente que modela habilidades investigativas?",
+            "type": "opcion_multiple",
+            "options": [
+              "Solo lee artículos en clase",
+              "Muestra cómo busca, analiza y aplica conocimiento nuevo",
+              "Evita hablar de sus propias investigaciones",
+              "Solo da clases teóricas"
+            ]
+          },
+          {
+            "question_id": "pru_05_Competenci_q10",
+            "text": "Un docente con alta inteligencia emocional en el aula:",
+            "type": "opcion_multiple",
+            "options": [
+              "Ignora el estado emocional de los estudiantes",
+              "Reconoce y gestiona las emociones propias y del grupo para favorecer el aprendizaje",
+              "Solo se enfoca en los contenidos académicos",
+              "Es más permisivo con las entregas"
+            ]
+          },
+          {
+            "question_id": "pru_05_Evaluación_q1",
+            "text": "¿Cuál es una práctica ética esencial en la evaluación docente?",
+            "type": "opcion_multiple",
+            "options": [
+              "Subir las notas a estudiantes favoritos",
+              "Aplicar criterios de evaluación claros, justos y comunicados con anticipación",
+              "Cambiar los criterios después del examen",
+              "No devolver los exámenes calificados"
+            ]
+          },
+          {
+            "question_id": "pru_05_Evaluación_q2",
+            "text": "¿Qué indica la rúbrica de evaluación?",
+            "type": "opcion_multiple",
+            "options": [
+              "La lista de asistencia",
+              "Los criterios y niveles de desempeño esperados",
+              "El programa de la materia",
+              "Las calificaciones finales"
+            ]
+          },
+          {
+            "question_id": "pru_05_Evaluación_q3",
+            "text": "El plagio académico de los estudiantes es responsabilidad exclusivamente de:",
+            "type": "opcion_multiple",
+            "options": [
+              "El docente",
+              "El estudiante y la institución comparten la responsabilidad",
+              "Solo la institución",
+              "Solo el estudiante"
+            ]
+          },
+          {
+            "question_id": "pru_05_Evaluación_q4",
+            "text": "¿Qué debe hacer un docente al detectar deshonestidad académica?",
+            "type": "opcion_multiple",
+            "options": [
+              "Ignorarla para evitar conflictos",
+              "Actuar conforme al protocolo institucional de integridad académica",
+              "Reprobar al estudiante sin informarle",
+              "Compartirlo públicamente"
+            ]
+          },
+          {
+            "question_id": "pru_05_Evaluación_q5",
+            "text": "La evaluación sumativa sirve principalmente para:",
+            "type": "opcion_multiple",
+            "options": [
+              "Guiar el proceso de aprendizaje durante el curso",
+              "Certificar el nivel de logro al final del proceso de aprendizaje",
+              "Motivar al estudiante",
+              "Diagnosticar conocimientos previos"
+            ]
+          },
+          {
+            "question_id": "pru_05_Evaluación_q6",
+            "text": "¿Qué implica la autoevaluación estudiantil como práctica pedagógica?",
+            "type": "opcion_multiple",
+            "options": [
+              "El estudiante pone su propia nota sin criterios",
+              "El estudiante reflexiona sobre su propio aprendizaje con criterios establecidos",
+              "El docente no interviene en la evaluación",
+              "La calificación siempre es la máxima"
+            ]
+          },
+          {
+            "question_id": "pru_05_Evaluación_q7",
+            "text": "¿Cuál es el objetivo de la evaluación diagnóstica?",
+            "type": "opcion_multiple",
+            "options": [
+              "Obtener la nota final",
+              "Conocer los conocimientos previos para adaptar la enseñanza",
+              "Evaluar el comportamiento del estudiante",
+              "Determinar quién merece pasar el curso"
+            ]
+          },
+          {
+            "question_id": "pru_05_Evaluación_q8",
+            "text": "¿Qué es la coevaluación?",
+            "type": "opcion_multiple",
+            "options": [
+              "Cuando el docente evalúa sin criterios",
+              "Cuando los estudiantes se evalúan mutuamente con criterios establecidos",
+              "Cuando la institución evalúa al docente",
+              "Cuando solo se evalúa la asistencia"
+            ]
+          },
+          {
+            "question_id": "pru_05_Evaluación_q9",
+            "text": "Un docente que actualiza constantemente su práctica es más probable que:",
+            "type": "opcion_multiple",
+            "options": [
+              "Abandone la docencia pronto",
+              "Mejore la calidad del aprendizaje de sus estudiantes",
+              "Genere más carga para los estudiantes",
+              "Reciba peores evaluaciones"
+            ]
+          },
+          {
+            "question_id": "pru_05_Evaluación_q10",
+            "text": "¿Por qué es importante que el docente conozca las teorías del aprendizaje?",
+            "type": "opcion_multiple",
+            "options": [
+              "Para memorizar definiciones",
+              "Para fundamentar sus decisiones pedagógicas y mejorar su práctica",
+              "Para aprobar exámenes de certificación",
+              "Para competir con otros docentes"
+            ]
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "prueba_estandarizada",
+    "dublin_core": {
+      "dc:title": "Evaluación de Competencias Docentes desde la Perspectiva Estudiantil",
+      "dc:creator": "Administrador",
+      "dc:subject": "docente, estudiantes, estudiante, aprendizaje, evaluación, solo",
+      "dc:description": "Prueba estandarizada de 20 reactivos aplicada a 120 alumnos.",
+      "dc:type": "Prueba estandarizada",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "Licenciatura — INSTRUMENTO: Evaluación de Competencias Docentes desde la Perspectiva Estudiantil",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "pru_05_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "unidad_de_aprendizaje": "No especificado",
+      "mapeo_de_reactivos_por_seccion": {
+        "SECCIÓN: COMPETENCIAS PEDAGÓGICAS": 10,
+        "SECCIÓN: EVALUACIÓN Y ÉTICA DOCENTE": 10
+      },
+      "grupo": "C",
+      "tipo_de_prueba": "Formativa",
+      "taxonomia_bloom": "Recordar (7)",
+      "nivel_educativo": "Licenciatura",
+      "objetivo_de_evaluacion": "¿Cuál es el objetivo de la evaluación diagnóstica?"
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "Puntajes en Pruebas Estandarizadas de Referencia"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "pru_05_Competenci_q1": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 61,
+            "pct": 0.5083,
+            "opcion": "A"
+          },
+          {
+            "n": 12,
+            "pct": 0.1,
+            "opcion": "B"
+          },
+          {
+            "n": 28,
+            "pct": 0.2333,
+            "opcion": "C"
+          },
+          {
+            "n": 19,
+            "pct": 0.1583,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 61,
+          "pct": 0.5083,
+          "opcion": "A",
+          "pct_validas": 0.5083
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Competenci_q2": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 35,
+            "pct": 0.2917,
+            "opcion": "A"
+          },
+          {
+            "n": 14,
+            "pct": 0.1167,
+            "opcion": "B"
+          },
+          {
+            "n": 24,
+            "pct": 0.2,
+            "opcion": "C"
+          },
+          {
+            "n": 47,
+            "pct": 0.3917,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 47,
+          "pct": 0.3917,
+          "opcion": "D",
+          "pct_validas": 0.3917
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Competenci_q3": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 45,
+            "pct": 0.375,
+            "opcion": "A"
+          },
+          {
+            "n": 15,
+            "pct": 0.125,
+            "opcion": "B"
+          },
+          {
+            "n": 35,
+            "pct": 0.2917,
+            "opcion": "C"
+          },
+          {
+            "n": 25,
+            "pct": 0.2083,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 45,
+          "pct": 0.375,
+          "opcion": "A",
+          "pct_validas": 0.375
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Competenci_q4": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 56,
+            "pct": 0.4667,
+            "opcion": "A"
+          },
+          {
+            "n": 13,
+            "pct": 0.1083,
+            "opcion": "B"
+          },
+          {
+            "n": 13,
+            "pct": 0.1083,
+            "opcion": "C"
+          },
+          {
+            "n": 38,
+            "pct": 0.3167,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 56,
+          "pct": 0.4667,
+          "opcion": "A",
+          "pct_validas": 0.4667
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Competenci_q5": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 28,
+            "pct": 0.2333,
+            "opcion": "A"
+          },
+          {
+            "n": 32,
+            "pct": 0.2667,
+            "opcion": "B"
+          },
+          {
+            "n": 51,
+            "pct": 0.425,
+            "opcion": "C"
+          },
+          {
+            "n": 9,
+            "pct": 0.075,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 51,
+          "pct": 0.425,
+          "opcion": "C",
+          "pct_validas": 0.425
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Competenci_q6": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 18,
+            "pct": 0.15,
+            "opcion": "A"
+          },
+          {
+            "n": 91,
+            "pct": 0.7583,
+            "opcion": "B"
+          },
+          {
+            "n": 6,
+            "pct": 0.05,
+            "opcion": "C"
+          },
+          {
+            "n": 5,
+            "pct": 0.0417,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 91,
+          "pct": 0.7583,
+          "opcion": "B",
+          "pct_validas": 0.7583
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Competenci_q7": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 14,
+            "pct": 0.1167,
+            "opcion": "A"
+          },
+          {
+            "n": 12,
+            "pct": 0.1,
+            "opcion": "B"
+          },
+          {
+            "n": 67,
+            "pct": 0.5583,
+            "opcion": "C"
+          },
+          {
+            "n": 27,
+            "pct": 0.225,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 67,
+          "pct": 0.5583,
+          "opcion": "C",
+          "pct_validas": 0.5583
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Competenci_q8": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 9,
+            "pct": 0.075,
+            "opcion": "A"
+          },
+          {
+            "n": 32,
+            "pct": 0.2667,
+            "opcion": "B"
+          },
+          {
+            "n": 30,
+            "pct": 0.25,
+            "opcion": "C"
+          },
+          {
+            "n": 49,
+            "pct": 0.4083,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 49,
+          "pct": 0.4083,
+          "opcion": "D",
+          "pct_validas": 0.4083
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Competenci_q9": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 25,
+            "pct": 0.2083,
+            "opcion": "A"
+          },
+          {
+            "n": 14,
+            "pct": 0.1167,
+            "opcion": "B"
+          },
+          {
+            "n": 37,
+            "pct": 0.3083,
+            "opcion": "C"
+          },
+          {
+            "n": 44,
+            "pct": 0.3667,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 44,
+          "pct": 0.3667,
+          "opcion": "D",
+          "pct_validas": 0.3667
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Competenci_q10": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 11,
+            "pct": 0.0917,
+            "opcion": "A"
+          },
+          {
+            "n": 23,
+            "pct": 0.1917,
+            "opcion": "B"
+          },
+          {
+            "n": 68,
+            "pct": 0.5667,
+            "opcion": "C"
+          },
+          {
+            "n": 18,
+            "pct": 0.15,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 68,
+          "pct": 0.5667,
+          "opcion": "C",
+          "pct_validas": 0.5667
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Evaluación_q1": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 10,
+            "pct": 0.0833,
+            "opcion": "A"
+          },
+          {
+            "n": 43,
+            "pct": 0.3583,
+            "opcion": "B"
+          },
+          {
+            "n": 18,
+            "pct": 0.15,
+            "opcion": "C"
+          },
+          {
+            "n": 49,
+            "pct": 0.4083,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 49,
+          "pct": 0.4083,
+          "opcion": "D",
+          "pct_validas": 0.4083
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Evaluación_q2": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 23,
+            "pct": 0.1917,
+            "opcion": "A"
+          },
+          {
+            "n": 58,
+            "pct": 0.4833,
+            "opcion": "B"
+          },
+          {
+            "n": 25,
+            "pct": 0.2083,
+            "opcion": "C"
+          },
+          {
+            "n": 14,
+            "pct": 0.1167,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 58,
+          "pct": 0.4833,
+          "opcion": "B",
+          "pct_validas": 0.4833
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Evaluación_q3": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 35,
+            "pct": 0.2917,
+            "opcion": "A"
+          },
+          {
+            "n": 24,
+            "pct": 0.2,
+            "opcion": "B"
+          },
+          {
+            "n": 53,
+            "pct": 0.4417,
+            "opcion": "C"
+          },
+          {
+            "n": 8,
+            "pct": 0.0667,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 53,
+          "pct": 0.4417,
+          "opcion": "C",
+          "pct_validas": 0.4417
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Evaluación_q4": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 26,
+            "pct": 0.2167,
+            "opcion": "A"
+          },
+          {
+            "n": 56,
+            "pct": 0.4667,
+            "opcion": "B"
+          },
+          {
+            "n": 27,
+            "pct": 0.225,
+            "opcion": "C"
+          },
+          {
+            "n": 11,
+            "pct": 0.0917,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 56,
+          "pct": 0.4667,
+          "opcion": "B",
+          "pct_validas": 0.4667
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Evaluación_q5": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 28,
+            "pct": 0.2333,
+            "opcion": "A"
+          },
+          {
+            "n": 36,
+            "pct": 0.3,
+            "opcion": "B"
+          },
+          {
+            "n": 24,
+            "pct": 0.2,
+            "opcion": "C"
+          },
+          {
+            "n": 32,
+            "pct": 0.2667,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 36,
+          "pct": 0.3,
+          "opcion": "B",
+          "pct_validas": 0.3
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Evaluación_q6": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 32,
+            "pct": 0.2667,
+            "opcion": "A"
+          },
+          {
+            "n": 60,
+            "pct": 0.5,
+            "opcion": "B"
+          },
+          {
+            "n": 4,
+            "pct": 0.0333,
+            "opcion": "C"
+          },
+          {
+            "n": 24,
+            "pct": 0.2,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 60,
+          "pct": 0.5,
+          "opcion": "B",
+          "pct_validas": 0.5
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Evaluación_q7": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 9,
+            "pct": 0.075,
+            "opcion": "A"
+          },
+          {
+            "n": 66,
+            "pct": 0.55,
+            "opcion": "B"
+          },
+          {
+            "n": 16,
+            "pct": 0.1333,
+            "opcion": "C"
+          },
+          {
+            "n": 29,
+            "pct": 0.2417,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 66,
+          "pct": 0.55,
+          "opcion": "B",
+          "pct_validas": 0.55
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Evaluación_q8": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 54,
+            "pct": 0.45,
+            "opcion": "A"
+          },
+          {
+            "n": 1,
+            "pct": 0.0083,
+            "opcion": "B"
+          },
+          {
+            "n": 17,
+            "pct": 0.1417,
+            "opcion": "C"
+          },
+          {
+            "n": 48,
+            "pct": 0.4,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 54,
+          "pct": 0.45,
+          "opcion": "A",
+          "pct_validas": 0.45
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Evaluación_q9": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 52,
+            "pct": 0.4333,
+            "opcion": "A"
+          },
+          {
+            "n": 23,
+            "pct": 0.1917,
+            "opcion": "B"
+          },
+          {
+            "n": 22,
+            "pct": 0.1833,
+            "opcion": "C"
+          },
+          {
+            "n": 23,
+            "pct": 0.1917,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 52,
+          "pct": 0.4333,
+          "opcion": "A",
+          "pct_validas": 0.4333
+        },
+        "opciones_sin_elegir": []
+      },
+      "pru_05_Evaluación_q10": {
+        "type": "opcion_multiple",
+        "n": 120,
+        "pct_nulas": 0.0,
+        "pct_no_respondidas": 0.0,
+        "n_nulas": 0,
+        "casi_unanime": false,
+        "distribucion": [
+          {
+            "n": 54,
+            "pct": 0.45,
+            "opcion": "A"
+          },
+          {
+            "n": 27,
+            "pct": 0.225,
+            "opcion": "B"
+          },
+          {
+            "n": 24,
+            "pct": 0.2,
+            "opcion": "C"
+          },
+          {
+            "n": 15,
+            "pct": 0.125,
+            "opcion": "D"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "nula"
+          },
+          {
+            "n": 0,
+            "pct": 0.0,
+            "opcion": "NR"
+          }
+        ],
+        "tipo_reactivo": "opcion_multiple",
+        "n_no_respondidas": 0,
+        "pct_sin_respuesta": 0.0,
+        "mucha_no_respuesta": false,
+        "opcion_mas_elegida": {
+          "n": 54,
+          "pct": 0.45,
+          "opcion": "A",
+          "pct_validas": 0.45
+        },
+        "opciones_sin_elegir": []
+      }
+    },
+    "global": {
+      "n_registros": 120,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 20
+    }
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T04:16:00.965175+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/55__pru_05_respondido.csv",
+    "original": "raw/_/56__pru_05_original.txt",
+    "limpio": "clean/50/1__v1_prueba_estandarizada_limpio.csv",
+    "nombre_archivo": "pru_05_respondido.csv"
+  },
+  "generated_at": "2026-11-12T04:16:00.965301+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T04:16:00.342858+00:00",
+    "archivo_limpio": "clean/50/1__v1_prueba_estandarizada_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "conteos": {
+          "NR": 0,
+          "nula": 0,
+          "valida": 2400
+        },
+        "motivos": {
+          "ilegible": 0,
+          "duplicado": 0,
+          "no_respondida": 0,
+          "caracter_invalido": 0,
+          "respuesta_multiple": 0
+        },
+        "n_filas": 120,
+        "n_alumnos": 120,
+        "n_preguntas": 20,
+        "pct_validas": 1.0,
+        "columnas_extra": [],
+        "n_filas_vacias": 0,
+        "n_ids_duplicados": 0
+      },
+      "despues": {
+        "conteos": {
+          "NR": 0,
+          "nula": 0,
+          "valida": 2400
+        },
+        "motivos": {
+          "ilegible": 0,
+          "duplicado": 0,
+          "no_respondida": 0,
+          "caracter_invalido": 0,
+          "respuesta_multiple": 0
+        },
+        "n_alumnos": 120,
+        "n_preguntas": 20,
+        "pct_validas": 1.0,
+        "n_respuestas": 2400,
+        "n_ids_duplicados": 0
+      }
+    },
+    "avisos": [
+      "Se conservan como datos de contexto del alumno: perfil, edad, genero, semestre, promedio_gpa, horas_trabajo_semana, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca."
+    ],
+    "estadistica": {
+      "umbrales": {
+        "casi_unanime": 0.9,
+        "sin_respuesta": 0.2
+      },
+      "respuestas": {
+        "n_alumnos": 120,
+        "n_reactivos": 20,
+        "pct_sin_respuesta": 0.0
+      },
+      "resumen_reactivos": {
+        "casi_unanimes": 0,
+        "mucha_no_respuesta": 0,
+        "con_opciones_sin_elegir": 0
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 5,
+      "nombre_kpi": "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "score": 0.609
+    },
+    {
+      "kpi_id": 8,
+      "nombre_kpi": "Puntajes en Pruebas Estandarizadas de Referencia",
+      "score": 0.598
+    }
+  ],
+  "finalized_at": "2026-11-12T04:16:23.824629+00:00"
+}

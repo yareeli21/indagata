@@ -1,0 +1,2187 @@
+{
+  "instrument_id": "29",
+  "schema_version": "2.0",
+  "tipo_instrumento": "encuesta",
+  "instrument": {
+    "title": "Encuesta de Diversidad e Inclusión en el Aula",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "INCLUSIÓN ACADÉMICA",
+      "DIVERSIDAD CULTURAL",
+      "EQUIDAD DE GÉNERO"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "INCLUSIÓN ACADÉMICA",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "En mis clases, todos los estudiantes reciben el mismo trato del profesor.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q2",
+            "text": "Se adaptan los contenidos a estudiantes con diferentes capacidades.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q3",
+            "text": "El profesorado fomenta la participación de todos por igual.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q4",
+            "text": "Los materiales de clase representan distintas perspectivas culturales.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s2",
+        "name": "DIVERSIDAD CULTURAL",
+        "questions": [
+          {
+            "question_id": "q5",
+            "text": "En mi grupo hay estudiantes de diferentes orígenes culturales.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q6",
+            "text": "Se respetan las distintas tradiciones y visiones del mundo.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q7",
+            "text": "Los docentes promueven el diálogo intercultural.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q8",
+            "text": "Las actividades académicas incorporan ejemplos de contextos diversos.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s3",
+        "name": "EQUIDAD DE GÉNERO",
+        "questions": [
+          {
+            "question_id": "q9",
+            "text": "El trato de los docentes es equitativo independientemente del género.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q10",
+            "text": "No he presenciado situaciones de sexismo o discriminación de género.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q11",
+            "text": "Las mujeres y hombres tienen las mismas oportunidades en el aula.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q12",
+            "text": "Existe respeto hacia las personas con diversas identidades de género.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s4",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "q13",
+            "text": "Con_qué_frecuencia_participas_en_activi",
+            "type": "likert",
+            "options": [
+              "Nunca",
+              "Raramente",
+              "A veces",
+              "Frecuentemente",
+              "Siempre"
+            ]
+          },
+          {
+            "question_id": "q14",
+            "text": "Tu_institución_ofrece_programas_de_incl",
+            "type": "categorica",
+            "options": [
+              "No los conozco",
+              "No existen",
+              "Sí, y son efectivos",
+              "Sí, pero son limitados"
+            ]
+          },
+          {
+            "question_id": "q15",
+            "text": "Cuál_es_tu_identidad_de_género",
+            "type": "categorica",
+            "options": [
+              "Hombre cisgénero",
+              "Mujer cisgénero",
+              "Prefiero no decir",
+              "No binario/a",
+              "Otro"
+            ]
+          },
+          {
+            "question_id": "q16",
+            "text": "Eres_estudiante_de_intercambio_internac",
+            "type": "binaria",
+            "options": [
+              "Sí",
+              "No"
+            ]
+          },
+          {
+            "question_id": "q17",
+            "text": "Has_experimentado_algún_tipo_de_discrim",
+            "type": "binaria",
+            "options": [
+              "Sí",
+              "No"
+            ]
+          },
+          {
+            "question_id": "q18",
+            "text": "Tienes_acceso_a_becas_o_apoyos_financie",
+            "type": "binaria",
+            "options": [
+              "Sí",
+              "No"
+            ]
+          },
+          {
+            "question_id": "q19",
+            "text": "Tu_institución_cuenta_con_protocolos_co",
+            "type": "binaria",
+            "options": [
+              "Sí",
+              "No"
+            ]
+          },
+          {
+            "question_id": "q20",
+            "text": "Participas_en_organizaciones_estudianti",
+            "type": "binaria",
+            "options": [
+              "No",
+              "Sí"
+            ]
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "encuesta",
+    "dublin_core": {
+      "dc:title": "Encuesta de Diversidad e Inclusión en el Aula",
+      "dc:creator": "Administrador",
+      "dc:subject": "género, estudiantes, institución, inclusión, diversidad, trato",
+      "dc:description": "Encuesta de 20 reactivos aplicada a 160 respondentes. Explora: inclusión académica; diversidad cultural; equidad de género.",
+      "dc:type": "Encuesta",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "No especificado",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "enc_07_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "n_respondentes": 160,
+      "objetivo": "No especificado",
+      "poblacion_objetivo": "No especificado",
+      "constructo_principal": "No especificado",
+      "palabras_clave": [
+        "género",
+        "estudiantes",
+        "institución",
+        "inclusión",
+        "diversidad",
+        "trato",
+        "diferentes",
+        "distintas"
+      ],
+      "dimensiones": [
+        "INCLUSIÓN ACADÉMICA",
+        "DIVERSIDAD CULTURAL",
+        "EQUIDAD DE GÉNERO"
+      ],
+      "notas_contextuales": "Calidad de los datos: 160 registros con respuesta; 0% de respuestas vacías."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Métricas de Diversidad e Inclusión (Alumnado y Docentes)",
+      "Ratio de Estudiantes Nacionales frente a Internacionales"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.444,
+        "std": 1.111,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 67,
+          "3": 36,
+          "5": 24,
+          "2": 22,
+          "1": 11
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.4438,
+          "mediana": 4.0,
+          "curtosis": -0.3631,
+          "asimetria": -0.5884,
+          "desviacion": 1.1145
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 11,
+              "pct": 0.0688,
+              "valor": "1"
+            },
+            {
+              "n": 22,
+              "pct": 0.1375,
+              "valor": "2"
+            },
+            {
+              "n": 36,
+              "pct": 0.225,
+              "valor": "3"
+            },
+            {
+              "n": 67,
+              "pct": 0.4188,
+              "valor": "4"
+            },
+            {
+              "n": 24,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "inclusion_acade_item1"
+      },
+      "q2": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.281,
+        "std": 1.163,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 52,
+          "3": 42,
+          "2": 29,
+          "5": 24,
+          "1": 13
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2812,
+          "mediana": 3.0,
+          "curtosis": -0.751,
+          "asimetria": -0.3014,
+          "desviacion": 1.1665
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 13,
+              "pct": 0.0813,
+              "valor": "1"
+            },
+            {
+              "n": 29,
+              "pct": 0.1812,
+              "valor": "2"
+            },
+            {
+              "n": 42,
+              "pct": 0.2625,
+              "valor": "3"
+            },
+            {
+              "n": 52,
+              "pct": 0.325,
+              "valor": "4"
+            },
+            {
+              "n": 24,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "inclusion_acade_item2"
+      },
+      "q3": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.375,
+        "std": 1.071,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 63,
+          "3": 44,
+          "2": 23,
+          "5": 20,
+          "1": 10
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.375,
+          "mediana": 4.0,
+          "curtosis": -0.3589,
+          "asimetria": -0.4874,
+          "desviacion": 1.0743
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 10,
+              "pct": 0.0625,
+              "valor": "1"
+            },
+            {
+              "n": 23,
+              "pct": 0.1437,
+              "valor": "2"
+            },
+            {
+              "n": 44,
+              "pct": 0.275,
+              "valor": "3"
+            },
+            {
+              "n": 63,
+              "pct": 0.3937,
+              "valor": "4"
+            },
+            {
+              "n": 20,
+              "pct": 0.125,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "inclusion_acade_item3"
+      },
+      "q4": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.281,
+        "std": 1.108,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 55,
+          "3": 47,
+          "2": 26,
+          "5": 20,
+          "1": 12
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2812,
+          "mediana": 3.0,
+          "curtosis": -0.5537,
+          "asimetria": -0.3538,
+          "desviacion": 1.1112
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 12,
+              "pct": 0.075,
+              "valor": "1"
+            },
+            {
+              "n": 26,
+              "pct": 0.1625,
+              "valor": "2"
+            },
+            {
+              "n": 47,
+              "pct": 0.2938,
+              "valor": "3"
+            },
+            {
+              "n": 55,
+              "pct": 0.3438,
+              "valor": "4"
+            },
+            {
+              "n": 20,
+              "pct": 0.125,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "inclusion_acade_item4"
+      },
+      "q5": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.263,
+        "std": 1.212,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 46,
+          "4": 44,
+          "5": 28,
+          "2": 26,
+          "1": 16
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2625,
+          "mediana": 3.0,
+          "curtosis": -0.8034,
+          "asimetria": -0.2621,
+          "desviacion": 1.2157
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 16,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 26,
+              "pct": 0.1625,
+              "valor": "2"
+            },
+            {
+              "n": 46,
+              "pct": 0.2875,
+              "valor": "3"
+            },
+            {
+              "n": 44,
+              "pct": 0.275,
+              "valor": "4"
+            },
+            {
+              "n": 28,
+              "pct": 0.175,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "diversidad_cult_item1"
+      },
+      "q6": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.244,
+        "std": 1.274,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 49,
+          "3": 32,
+          "2": 32,
+          "5": 29,
+          "1": 18
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2437,
+          "mediana": 3.0,
+          "curtosis": -1.0349,
+          "asimetria": -0.266,
+          "desviacion": 1.2775
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 18,
+              "pct": 0.1125,
+              "valor": "1"
+            },
+            {
+              "n": 32,
+              "pct": 0.2,
+              "valor": "2"
+            },
+            {
+              "n": 32,
+              "pct": 0.2,
+              "valor": "3"
+            },
+            {
+              "n": 49,
+              "pct": 0.3063,
+              "valor": "4"
+            },
+            {
+              "n": 29,
+              "pct": 0.1812,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "diversidad_cult_item2"
+      },
+      "q7": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.237,
+        "std": 1.165,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 51,
+          "3": 45,
+          "2": 27,
+          "5": 22,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2375,
+          "mediana": 3.0,
+          "curtosis": -0.7112,
+          "asimetria": -0.3066,
+          "desviacion": 1.1682
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0938,
+              "valor": "1"
+            },
+            {
+              "n": 27,
+              "pct": 0.1688,
+              "valor": "2"
+            },
+            {
+              "n": 45,
+              "pct": 0.2812,
+              "valor": "3"
+            },
+            {
+              "n": 51,
+              "pct": 0.3187,
+              "valor": "4"
+            },
+            {
+              "n": 22,
+              "pct": 0.1375,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "diversidad_cult_item3"
+      },
+      "q8": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.319,
+        "std": 1.216,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 47,
+          "3": 42,
+          "5": 30,
+          "2": 26,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3188,
+          "mediana": 3.0,
+          "curtosis": -0.8111,
+          "asimetria": -0.3175,
+          "desviacion": 1.2202
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0938,
+              "valor": "1"
+            },
+            {
+              "n": 26,
+              "pct": 0.1625,
+              "valor": "2"
+            },
+            {
+              "n": 42,
+              "pct": 0.2625,
+              "valor": "3"
+            },
+            {
+              "n": 47,
+              "pct": 0.2938,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.1875,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "diversidad_cult_item4"
+      },
+      "q9": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.425,
+        "std": 1.202,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 41,
+          "4": 41,
+          "5": 38,
+          "2": 31,
+          "1": 9
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.75,
+          "q3": 4.0,
+          "iqr": 1.25,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.425,
+          "mediana": 3.0,
+          "curtosis": -0.9591,
+          "asimetria": -0.236,
+          "desviacion": 1.2056
+        },
+        "frecuencias": {
+          "moda": [
+            "3",
+            "4"
+          ],
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 9,
+              "pct": 0.0563,
+              "valor": "1"
+            },
+            {
+              "n": 31,
+              "pct": 0.1938,
+              "valor": "2"
+            },
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "3"
+            },
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "4"
+            },
+            {
+              "n": 38,
+              "pct": 0.2375,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "equidad_de_gene_item1"
+      },
+      "q10": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.475,
+        "std": 1.156,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 51,
+          "4": 44,
+          "5": 36,
+          "2": 18,
+          "1": 11
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.475,
+          "mediana": 3.5,
+          "curtosis": -0.5363,
+          "asimetria": -0.3917,
+          "desviacion": 1.1599
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 11,
+              "pct": 0.0688,
+              "valor": "1"
+            },
+            {
+              "n": 18,
+              "pct": 0.1125,
+              "valor": "2"
+            },
+            {
+              "n": 51,
+              "pct": 0.3187,
+              "valor": "3"
+            },
+            {
+              "n": 44,
+              "pct": 0.275,
+              "valor": "4"
+            },
+            {
+              "n": 36,
+              "pct": 0.225,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "equidad_de_gene_item2"
+      },
+      "q11": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.438,
+        "std": 1.197,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 47,
+          "4": 40,
+          "5": 38,
+          "2": 24,
+          "1": 11
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.4375,
+          "mediana": 3.0,
+          "curtosis": -0.7884,
+          "asimetria": -0.3031,
+          "desviacion": 1.2011
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 11,
+              "pct": 0.0688,
+              "valor": "1"
+            },
+            {
+              "n": 24,
+              "pct": 0.15,
+              "valor": "2"
+            },
+            {
+              "n": 47,
+              "pct": 0.2938,
+              "valor": "3"
+            },
+            {
+              "n": 40,
+              "pct": 0.25,
+              "valor": "4"
+            },
+            {
+              "n": 38,
+              "pct": 0.2375,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "equidad_de_gene_item3"
+      },
+      "q12": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.431,
+        "std": 1.176,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 53,
+          "5": 38,
+          "4": 36,
+          "2": 23,
+          "1": 10
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.4312,
+          "mediana": 3.0,
+          "curtosis": -0.7581,
+          "asimetria": -0.2408,
+          "desviacion": 1.1796
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 10,
+              "pct": 0.0625,
+              "valor": "1"
+            },
+            {
+              "n": 23,
+              "pct": 0.1437,
+              "valor": "2"
+            },
+            {
+              "n": 53,
+              "pct": 0.3312,
+              "valor": "3"
+            },
+            {
+              "n": 36,
+              "pct": 0.225,
+              "valor": "4"
+            },
+            {
+              "n": 38,
+              "pct": 0.2375,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "equidad_de_gene_item4"
+      },
+      "q13": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 2.406,
+        "std": 1.12,
+        "min": 1.0,
+        "max": 4.0,
+        "distribution": {
+          "1": 48,
+          "3": 47,
+          "4": 33,
+          "2": 32
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 1.0,
+          "q3": 3.0,
+          "iqr": 2.0,
+          "max": 4.0,
+          "min": 1.0,
+          "media": 2.4062,
+          "mediana": 2.5,
+          "curtosis": -1.386,
+          "asimetria": 0.0351,
+          "desviacion": 1.1232
+        },
+        "frecuencias": {
+          "moda": "Nunca",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 48,
+              "pct": 0.3,
+              "valor": "Nunca"
+            },
+            {
+              "n": 32,
+              "pct": 0.2,
+              "valor": "Raramente"
+            },
+            {
+              "n": 47,
+              "pct": 0.2938,
+              "valor": "A veces"
+            },
+            {
+              "n": 33,
+              "pct": 0.2062,
+              "valor": "Frecuentemente"
+            },
+            {
+              "n": 0,
+              "pct": 0.0,
+              "valor": "Siempre"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "frecuencia",
+          "puntos": 5,
+          "codigos": {
+            "Nunca": 1,
+            "A veces": 3,
+            "Raramente": 2,
+            "Frecuentemente": 4
+          },
+          "neutral": 3,
+          "etiquetas": [
+            "Nunca",
+            "Raramente",
+            "A veces",
+            "Frecuentemente",
+            "Siempre"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "con_que_frecuencia_participas_en_activi"
+      },
+      "q14": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "No los conozco": 45,
+          "No existen": 45,
+          "Sí, y son efectivos": 38,
+          "Sí, pero son limitados": 32
+        },
+        "frecuencias": {
+          "moda": [
+            "No los conozco",
+            "No existen"
+          ],
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 45,
+              "pct": 0.2812,
+              "valor": "No los conozco"
+            },
+            {
+              "n": 45,
+              "pct": 0.2812,
+              "valor": "No existen"
+            },
+            {
+              "n": 38,
+              "pct": 0.2375,
+              "valor": "Sí, y son efectivos"
+            },
+            {
+              "n": 32,
+              "pct": 0.2,
+              "valor": "Sí, pero son limitados"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "tu_institucion_ofrece_programas_de_incl"
+      },
+      "q15": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Hombre cisgénero": 47,
+          "Mujer cisgénero": 31,
+          "Prefiero no decir": 30,
+          "No binario/a": 28,
+          "Otro": 24
+        },
+        "frecuencias": {
+          "moda": "Hombre cisgénero",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 47,
+              "pct": 0.2938,
+              "valor": "Hombre cisgénero"
+            },
+            {
+              "n": 31,
+              "pct": 0.1938,
+              "valor": "Mujer cisgénero"
+            },
+            {
+              "n": 30,
+              "pct": 0.1875,
+              "valor": "Prefiero no decir"
+            },
+            {
+              "n": 28,
+              "pct": 0.175,
+              "valor": "No binario/a"
+            },
+            {
+              "n": 24,
+              "pct": 0.15,
+              "valor": "Otro"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cual_es_tu_identidad_de_genero"
+      },
+      "q16": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Sí": 85,
+          "No": 75
+        },
+        "frecuencias": {
+          "moda": "Sí",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 85,
+              "pct": 0.5312,
+              "valor": "Sí"
+            },
+            {
+              "n": 75,
+              "pct": 0.4688,
+              "valor": "No"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "eres_estudiante_de_intercambio_internac"
+      },
+      "q17": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Sí": 92,
+          "No": 68
+        },
+        "frecuencias": {
+          "moda": "Sí",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 92,
+              "pct": 0.575,
+              "valor": "Sí"
+            },
+            {
+              "n": 68,
+              "pct": 0.425,
+              "valor": "No"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "has_experimentado_algun_tipo_de_discrim"
+      },
+      "q18": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Sí": 85,
+          "No": 75
+        },
+        "frecuencias": {
+          "moda": "Sí",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 85,
+              "pct": 0.5312,
+              "valor": "Sí"
+            },
+            {
+              "n": 75,
+              "pct": 0.4688,
+              "valor": "No"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "tienes_acceso_a_becas_o_apoyos_financie"
+      },
+      "q19": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Sí": 81,
+          "No": 79
+        },
+        "frecuencias": {
+          "moda": "Sí",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 81,
+              "pct": 0.5062,
+              "valor": "Sí"
+            },
+            {
+              "n": 79,
+              "pct": 0.4938,
+              "valor": "No"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "tu_institucion_cuenta_con_protocolos_co"
+      },
+      "q20": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "No": 90,
+          "Sí": 70
+        },
+        "frecuencias": {
+          "moda": "No",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 90,
+              "pct": 0.5625,
+              "valor": "No"
+            },
+            {
+              "n": 70,
+              "pct": 0.4375,
+              "valor": "Sí"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "participas_en_organizaciones_estudianti"
+      }
+    },
+    "global": {
+      "n_registros": 160,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 20
+    },
+    "reliability": [
+      {
+        "alfa": 0.8783,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Inclusión acadé",
+        "n_casos": 160,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.4438,
+            "alfa_si_se_elimina": 0.8507,
+            "correlacion_item_total": 0.7198
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2812,
+            "alfa_si_se_elimina": 0.8361,
+            "correlacion_item_total": 0.7577
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.375,
+            "alfa_si_se_elimina": 0.864,
+            "correlacion_item_total": 0.6843
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.2812,
+            "alfa_si_se_elimina": 0.8235,
+            "correlacion_item_total": 0.7893
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.9135,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Diversidad cult",
+        "n_casos": 160,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.2625,
+            "alfa_si_se_elimina": 0.8913,
+            "correlacion_item_total": 0.7927
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2437,
+            "alfa_si_se_elimina": 0.8715,
+            "correlacion_item_total": 0.8484
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2375,
+            "alfa_si_se_elimina": 0.9068,
+            "correlacion_item_total": 0.7462
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.3188,
+            "alfa_si_se_elimina": 0.8797,
+            "correlacion_item_total": 0.8259
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.8963,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Equidad de géne",
+        "n_casos": 160,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.425,
+            "alfa_si_se_elimina": 0.8855,
+            "correlacion_item_total": 0.718
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.475,
+            "alfa_si_se_elimina": 0.8739,
+            "correlacion_item_total": 0.749
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.4375,
+            "alfa_si_se_elimina": 0.8592,
+            "correlacion_item_total": 0.7889
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.4312,
+            "alfa_si_se_elimina": 0.8456,
+            "correlacion_item_total": 0.8254
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.899,
+        "items": [
+          "Inclusión_acadé_item1",
+          "Inclusión_acadé_item2",
+          "Inclusión_acadé_item3",
+          "Inclusión_acadé_item4",
+          "Diversidad_cult_item1",
+          "Diversidad_cult_item2",
+          "Diversidad_cult_item3",
+          "Diversidad_cult_item4",
+          "Equidad_de_géne_item1",
+          "Equidad_de_géne_item2",
+          "Equidad_de_géne_item3",
+          "Equidad_de_géne_item4",
+          "Con_qué_frecuencia_participas_en_activi"
+        ],
+        "bloque": "Todas las escalas Likert",
+        "n_casos": 160,
+        "n_items": 13,
+        "por_item": [
+          {
+            "item": "Inclusión_acadé_item1",
+            "media": 3.4438,
+            "alfa_si_se_elimina": 0.8919,
+            "correlacion_item_total": 0.5923
+          },
+          {
+            "item": "Inclusión_acadé_item2",
+            "media": 3.2812,
+            "alfa_si_se_elimina": 0.888,
+            "correlacion_item_total": 0.6773
+          },
+          {
+            "item": "Inclusión_acadé_item3",
+            "media": 3.375,
+            "alfa_si_se_elimina": 0.8913,
+            "correlacion_item_total": 0.6095
+          },
+          {
+            "item": "Inclusión_acadé_item4",
+            "media": 3.2812,
+            "alfa_si_se_elimina": 0.8906,
+            "correlacion_item_total": 0.6235
+          },
+          {
+            "item": "Diversidad_cult_item1",
+            "media": 3.2625,
+            "alfa_si_se_elimina": 0.8891,
+            "correlacion_item_total": 0.6529
+          },
+          {
+            "item": "Diversidad_cult_item2",
+            "media": 3.2437,
+            "alfa_si_se_elimina": 0.8859,
+            "correlacion_item_total": 0.714
+          },
+          {
+            "item": "Diversidad_cult_item3",
+            "media": 3.2375,
+            "alfa_si_se_elimina": 0.8867,
+            "correlacion_item_total": 0.7054
+          },
+          {
+            "item": "Diversidad_cult_item4",
+            "media": 3.3188,
+            "alfa_si_se_elimina": 0.8894,
+            "correlacion_item_total": 0.6461
+          },
+          {
+            "item": "Equidad_de_géne_item1",
+            "media": 3.425,
+            "alfa_si_se_elimina": 0.8891,
+            "correlacion_item_total": 0.6515
+          },
+          {
+            "item": "Equidad_de_géne_item2",
+            "media": 3.475,
+            "alfa_si_se_elimina": 0.8917,
+            "correlacion_item_total": 0.5972
+          },
+          {
+            "item": "Equidad_de_géne_item3",
+            "media": 3.4375,
+            "alfa_si_se_elimina": 0.8885,
+            "correlacion_item_total": 0.6657
+          },
+          {
+            "item": "Equidad_de_géne_item4",
+            "media": 3.4312,
+            "alfa_si_se_elimina": 0.8861,
+            "correlacion_item_total": 0.717
+          },
+          {
+            "item": "Con_qué_frecuencia_participas_en_activi",
+            "media": 2.4062,
+            "alfa_si_se_elimina": 0.9165,
+            "correlacion_item_total": -0.0043
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      }
+    ]
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T03:21:16.162414+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/13__enc_07_respondido.csv",
+    "original": "raw/_/14__enc_07_original.txt",
+    "limpio": "clean/29/1__v1_encuesta_limpio.csv",
+    "nombre_archivo": "enc_07_respondido.csv"
+  },
+  "generated_at": "2026-11-12T03:21:16.162571+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T03:21:15.571100+00:00",
+    "archivo_limpio": "clean/29/1__v1_encuesta_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 32,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 73,
+        "cols_mas_nulos": [],
+        "n_respondentes": 160,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      },
+      "despues": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 31,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 73,
+        "cols_mas_nulos": [],
+        "n_respondentes": 160,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "fiabilidad": [
+        {
+          "alfa": 0.8783,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Inclusión acadé",
+          "n_casos": 160,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.4438,
+              "alfa_si_se_elimina": 0.8507,
+              "correlacion_item_total": 0.7198
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2812,
+              "alfa_si_se_elimina": 0.8361,
+              "correlacion_item_total": 0.7577
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.375,
+              "alfa_si_se_elimina": 0.864,
+              "correlacion_item_total": 0.6843
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.2812,
+              "alfa_si_se_elimina": 0.8235,
+              "correlacion_item_total": 0.7893
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.9135,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Diversidad cult",
+          "n_casos": 160,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.2625,
+              "alfa_si_se_elimina": 0.8913,
+              "correlacion_item_total": 0.7927
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2437,
+              "alfa_si_se_elimina": 0.8715,
+              "correlacion_item_total": 0.8484
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2375,
+              "alfa_si_se_elimina": 0.9068,
+              "correlacion_item_total": 0.7462
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.3188,
+              "alfa_si_se_elimina": 0.8797,
+              "correlacion_item_total": 0.8259
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.8963,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Equidad de géne",
+          "n_casos": 160,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.425,
+              "alfa_si_se_elimina": 0.8855,
+              "correlacion_item_total": 0.718
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.475,
+              "alfa_si_se_elimina": 0.8739,
+              "correlacion_item_total": 0.749
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.4375,
+              "alfa_si_se_elimina": 0.8592,
+              "correlacion_item_total": 0.7889
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.4312,
+              "alfa_si_se_elimina": 0.8456,
+              "correlacion_item_total": 0.8254
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.899,
+          "items": [
+            "Inclusión_acadé_item1",
+            "Inclusión_acadé_item2",
+            "Inclusión_acadé_item3",
+            "Inclusión_acadé_item4",
+            "Diversidad_cult_item1",
+            "Diversidad_cult_item2",
+            "Diversidad_cult_item3",
+            "Diversidad_cult_item4",
+            "Equidad_de_géne_item1",
+            "Equidad_de_géne_item2",
+            "Equidad_de_géne_item3",
+            "Equidad_de_géne_item4",
+            "Con_qué_frecuencia_participas_en_activi"
+          ],
+          "bloque": "Todas las escalas Likert",
+          "n_casos": 160,
+          "n_items": 13,
+          "por_item": [
+            {
+              "item": "Inclusión_acadé_item1",
+              "media": 3.4438,
+              "alfa_si_se_elimina": 0.8919,
+              "correlacion_item_total": 0.5923
+            },
+            {
+              "item": "Inclusión_acadé_item2",
+              "media": 3.2812,
+              "alfa_si_se_elimina": 0.888,
+              "correlacion_item_total": 0.6773
+            },
+            {
+              "item": "Inclusión_acadé_item3",
+              "media": 3.375,
+              "alfa_si_se_elimina": 0.8913,
+              "correlacion_item_total": 0.6095
+            },
+            {
+              "item": "Inclusión_acadé_item4",
+              "media": 3.2812,
+              "alfa_si_se_elimina": 0.8906,
+              "correlacion_item_total": 0.6235
+            },
+            {
+              "item": "Diversidad_cult_item1",
+              "media": 3.2625,
+              "alfa_si_se_elimina": 0.8891,
+              "correlacion_item_total": 0.6529
+            },
+            {
+              "item": "Diversidad_cult_item2",
+              "media": 3.2437,
+              "alfa_si_se_elimina": 0.8859,
+              "correlacion_item_total": 0.714
+            },
+            {
+              "item": "Diversidad_cult_item3",
+              "media": 3.2375,
+              "alfa_si_se_elimina": 0.8867,
+              "correlacion_item_total": 0.7054
+            },
+            {
+              "item": "Diversidad_cult_item4",
+              "media": 3.3188,
+              "alfa_si_se_elimina": 0.8894,
+              "correlacion_item_total": 0.6461
+            },
+            {
+              "item": "Equidad_de_géne_item1",
+              "media": 3.425,
+              "alfa_si_se_elimina": 0.8891,
+              "correlacion_item_total": 0.6515
+            },
+            {
+              "item": "Equidad_de_géne_item2",
+              "media": 3.475,
+              "alfa_si_se_elimina": 0.8917,
+              "correlacion_item_total": 0.5972
+            },
+            {
+              "item": "Equidad_de_géne_item3",
+              "media": 3.4375,
+              "alfa_si_se_elimina": 0.8885,
+              "correlacion_item_total": 0.6657
+            },
+            {
+              "item": "Equidad_de_géne_item4",
+              "media": 3.4312,
+              "alfa_si_se_elimina": 0.8861,
+              "correlacion_item_total": 0.717
+            },
+            {
+              "item": "Con_qué_frecuencia_participas_en_activi",
+              "media": 2.4062,
+              "alfa_si_se_elimina": 0.9165,
+              "correlacion_item_total": -0.0043
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        }
+      ],
+      "encuestados": {
+        "incompletos": 0,
+        "linea_recta": 73
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 14,
+      "nombre_kpi": "Métricas de Diversidad e Inclusión (Alumnado y Docentes)",
+      "score": 0.6036
+    },
+    {
+      "kpi_id": 40,
+      "nombre_kpi": "Ratio de Estudiantes Nacionales frente a Internacionales",
+      "score": 0.5957
+    }
+  ],
+  "finalized_at": "2026-11-12T03:21:48.447937+00:00"
+}

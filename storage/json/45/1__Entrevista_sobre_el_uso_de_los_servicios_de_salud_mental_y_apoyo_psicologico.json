@@ -1,0 +1,432 @@
+{
+  "instrument_id": "45",
+  "schema_version": "2.0",
+  "tipo_instrumento": "entrevista",
+  "instrument": {
+    "title": "Entrevista sobre el uso de los servicios de salud mental y apoyo psicológico",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "PREGUNTAS:"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "Gracias por aceptar la entrevista. Todo lo que digas es confidencial y puedes no responder alguna pregunta. Para empezar, ¿cómo describirías tu estado de ánimo durante este semestre?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q2",
+            "text": "¿Qué situaciones de la universidad te generan más estrés o ansiedad?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q3",
+            "text": "¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cómo te enteraste?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q4",
+            "text": "¿Has utilizado alguno de esos servicios? Cuéntame cómo fue.",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q5",
+            "text": "¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q6",
+            "text": "¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q7",
+            "text": "¿Cómo valoras la atención que recibiste?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q8",
+            "text": "¿Notaste algún cambio en tu desempeño académico después de recibir apoyo?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q9",
+            "text": "¿Qué papel han tenido tus profesores o tu tutor en este tema?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q10",
+            "text": "¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo busquen?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q11",
+            "text": "Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarías?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q12",
+            "text": "Para terminar, ¿qué le dirías a un compañero que está pasando por un momento difícil y no se anima a pedir ayuda?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q13",
+            "text": "Muchas gracias por compartir tu experiencia.",
+            "type": "abierta",
+            "options": []
+          }
+        ]
+      }
+    ],
+    "contenido": "======================================================================\r\nINSTRUMENTO: Entrevista sobre el uso de los servicios de salud mental y apoyo psicológico\r\nID: ent_11\r\nTipo: Entrevista semiestructurada, un solo participante\r\n======================================================================\r\n\r\nOBJETIVO:\r\nEsta entrevista busca explorar la experiencia de una estudiante con los servicios de salud mental\r\ny apoyo psicológico de la universidad, en relación con: Uso de Servicios de Salud Mental y Apoyo\r\nPsicológico, Cobertura y Calidad de Servicios de Apoyo Estudiantil.\r\n\r\nINSTRUCCIONES PARA EL ENTREVISTADOR:\r\n- Leer cada pregunta de forma natural, permitiendo que la persona se exprese libremente.\r\n- Hacer preguntas de seguimiento cuando sea pertinente.\r\n- Garantizar la confidencialidad de las respuestas y recordar que puede no responder alguna pregunta.\r\n- Duración estimada: 40 minutos.\r\n\r\nPREGUNTAS:\r\n\r\n1. ¿Cómo describirías tu estado de ánimo durante este semestre?\r\n\r\n2. ¿Qué situaciones de la universidad te generan más estrés o ansiedad?\r\n\r\n3. ¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cómo te enteraste?\r\n\r\n4. ¿Has utilizado alguno de esos servicios? Cuéntame cómo fue.\r\n\r\n5. ¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?\r\n\r\n6. ¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?\r\n\r\n7. ¿Cómo valoras la atención que recibiste?\r\n\r\n8. ¿Notaste algún cambio en tu desempeño académico después de recibir apoyo?\r\n\r\n9. ¿Qué papel han tenido tus profesores o tu tutor en este tema?\r\n\r\n10. ¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo busquen?\r\n\r\n11. Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarías?\r\n\r\n12. ¿Qué le dirías a un compañero que está pasando por un momento difícil y no se anima a pedir ayuda?\n\nEntrevistadora: Gracias por aceptar la entrevista. Todo lo que digas es confidencial y puedes no responder alguna pregunta. Para empezar, ¿cómo describirías tu estado de ánimo durante este semestre?\nEntrevistada: Ha sido un semestre pesado. Al principio estaba bien, pero desde la semana de parciales empecé a dormir muy poco, unas cinco horas, y me sentía cansada todo el tiempo. Hubo días en que no quería ni venir a clases, no por flojera, sino porque sentía mucha presión en el pecho antes de entrar al salón.\nEntrevistadora: ¿Qué situaciones de la universidad te generan más estrés o ansiedad?\nEntrevistada: Sobre todo la carga de proyectos. Este semestre llevo siete materias y en cuatro hay proyecto final en equipo. Además trabajo quince horas por semana en una papelería, entonces casi no me queda tiempo. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando.\nEntrevistadora: ¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cómo te enteraste?\nEntrevistada: Sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía. Me enteré bien hasta tercer semestre, cuando una compañera me dijo que ella iba al departamento de orientación. En la inducción de primer semestre lo mencionaron muy rápido, entre muchas otras cosas, y no se me quedó.\nEntrevistadora: ¿Has utilizado alguno de esos servicios? Cuéntame cómo fue.\nEntrevistada: Sí, fui a orientación psicológica este semestre. Tuve tres sesiones de cincuenta minutos con una psicóloga. Me ayudó a ordenar mis tiempos y me enseñó ejercicios de respiración para antes de exponer. La primera sesión me costó mucho trabajo, casi no hablé, pero en la segunda ya me sentí más en confianza.\nEntrevistadora: ¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?\nEntrevistada: Pasaron casi dos semanas. Pedí la cita por correo y me contestaron a los cuatro días, y luego la primera fecha disponible era la siguiente semana. Para mí fue mucho tiempo, porque cuando pedí la cita ya estaba muy mal. Creo que si hubiera tenido que esperar más, ya no habría ido.\nEntrevistadora: ¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?\nEntrevistada: Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca.\nEntrevistadora: ¿Cómo valoras la atención que recibiste?\nEntrevistada: La psicóloga fue muy amable y nunca me hizo sentir juzgada. Lo que no me gustó es que solo me dieron tres sesiones, porque es el máximo por semestre, y justo cuando empezaba a sentir avances se terminó. Le pondría un ocho de diez: la atención es buena, pero es muy poquito tiempo.\nEntrevistadora: ¿Notaste algún cambio en tu desempeño académico después de recibir apoyo?\nEntrevistada: Sí, un poco. Empecé a usar una agenda y a dividir los proyectos en partes pequeñas, como me sugirió la psicóloga. En el segundo parcial subí mi promedio de siete punto ocho a ocho punto cinco. Y en la última exposición me puse nerviosa, pero usé la respiración y pude terminarla sin quedarme en blanco.\nEntrevistadora: ¿Qué papel han tenido tus profesores o tu tutor en este tema?\nEntrevistada: Depende mucho del profesor. Mi tutor académico casi no tiene tiempo, lo vi una vez en todo el semestre y fue para firmar la carga de materias. Pero una profesora de estadística notó que estaba muy distraída, me preguntó si estaba bien y fue la que me recomendó ir a orientación. Si no fuera por ella, no sé si habría ido.\nEntrevistadora: ¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo busquen?\nEntrevistada: Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación. Algunos no saben que existe y otros piensan lo mismo que yo pensaba, que es solo para casos muy graves. Un compañero dejó de venir a mitad del semestre y nadie supo bien qué le pasó.\nEntrevistadora: Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarías?\nEntrevistada: Primero, que hubiera más psicólogos, porque me dijeron que solo hay dos para todo el plantel. Segundo, que se pudiera pedir la cita en línea y no solo por correo. También que el consultorio estuviera en un lugar más discreto y que dieran más de tres sesiones cuando la persona lo necesita. Y que los talleres de manejo de estrés fueran en la tarde, porque los que trabajamos no podemos ir en la mañana.\nEntrevistadora: Para terminar, ¿qué le dirías a un compañero que está pasando por un momento difícil y no se anima a pedir ayuda?\nEntrevistada: Que no espere a estar muy mal, como yo. Que pedir ayuda no significa que sea débil, al contrario. Y que la orientación es gratuita y confidencial, nadie se va a enterar. A mí me sirvió para darme cuenta de que no estaba sola y de que lo que sentía tenía nombre y se podía trabajar.\nEntrevistadora: Muchas gracias por compartir tu experiencia.\nEntrevistada: Gracias a usted. FIN DE LA ENTREVISTA"
+  },
+  "metadata": {
+    "tipo_instrumento": "entrevista",
+    "dublin_core": {
+      "dc:title": "Entrevista sobre el uso de los servicios de salud mental y apoyo psicológico",
+      "dc:creator": "Administrador",
+      "dc:subject": "entrevistadora, entrevistada, servicios, apoyo, semestre, universidad",
+      "dc:description": "======================================================================",
+      "dc:type": "Entrevista",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "No especificado",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/plain",
+      "dc:source": "ent_11_salud_mental_limpia.txt",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "identificador_propio": "ent_11_salud_mental_limpia",
+      "objetivo": "No especificado",
+      "metodologia": "Entrevista semiestructurada",
+      "institucion": "No especificado",
+      "derechos": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Proporción de Consejeros/Orientadores por Estudiante",
+      "Uso de Servicios de Salud Mental y Apoyo Psicológico"
+    ]
+  },
+  "statistics": {
+    "per_question": {},
+    "global": {
+      "n_registros": 26,
+      "n_duplicados": 0,
+      "pct_vacios": null,
+      "n_reactivos": 13
+    }
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T04:13:59.302595+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/45__ent_11_salud_mental_limpia.txt",
+    "original": "raw/_/46__ent_11_original.txt",
+    "limpio": "clean/45/1__v1_entrevista_limpio.csv",
+    "nombre_archivo": "ent_11_salud_mental_limpia.txt"
+  },
+  "generated_at": "2026-11-12T04:13:59.302692+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T04:13:58.909230+00:00",
+    "archivo_limpio": "clean/45/1__v1_entrevista_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "n_lineas": 34,
+        "n_palabras": 950,
+        "n_caracteres": 5581,
+        "ruido_detectado": 0
+      },
+      "despues": {
+        "n_lineas": 26,
+        "n_turnos": 26,
+        "n_palabras": 864,
+        "n_hablantes": 2,
+        "n_caracteres": 4777,
+        "ruido_detectado": 0,
+        "estructura_reconocida": true
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "hablantes": [
+        {
+          "rol": "entrevistador",
+          "nombre": "Entrevistadora",
+          "turnos": 13,
+          "palabras": 170,
+          "pct_palabras": 0.1968,
+          "pct_preguntas": 0.9231,
+          "palabras_por_turno": {
+            "max": 28.0,
+            "min": 6.0,
+            "media": 13.0769,
+            "mediana": 12.0,
+            "desviacion": 6.0341
+          }
+        },
+        {
+          "rol": "entrevistado",
+          "nombre": "Entrevistada",
+          "turnos": 13,
+          "palabras": 694,
+          "pct_palabras": 0.8032,
+          "pct_preguntas": 0.0,
+          "palabras_por_turno": {
+            "max": 74.0,
+            "min": 7.0,
+            "media": 53.3846,
+            "mediana": 55.0,
+            "desviacion": 15.5753
+          }
+        }
+      ],
+      "preguntas": [
+        {
+          "texto": "Gracias por aceptar la entrevista. Todo lo que digas es confidencial y puedes no responder alguna pregunta. Para empezar, ¿cómo describirías tu estado de ánimo durante este semestre?",
+          "palabras": {
+            "max": 56.0,
+            "min": 56.0,
+            "media": 56.0,
+            "mediana": 56.0
+          },
+          "pregunta": "Pregunta 1",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Qué situaciones de la universidad te generan más estrés o ansiedad?",
+          "palabras": {
+            "max": 50.0,
+            "min": 50.0,
+            "media": 50.0,
+            "mediana": 50.0
+          },
+          "pregunta": "Pregunta 2",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cómo te enteraste?",
+          "palabras": {
+            "max": 50.0,
+            "min": 50.0,
+            "media": 50.0,
+            "mediana": 50.0
+          },
+          "pregunta": "Pregunta 3",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Has utilizado alguno de esos servicios? Cuéntame cómo fue.",
+          "palabras": {
+            "max": 52.0,
+            "min": 52.0,
+            "media": 52.0,
+            "mediana": 52.0
+          },
+          "pregunta": "Pregunta 4",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?",
+          "palabras": {
+            "max": 52.0,
+            "min": 52.0,
+            "media": 52.0,
+            "mediana": 52.0
+          },
+          "pregunta": "Pregunta 5",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?",
+          "palabras": {
+            "max": 66.0,
+            "min": 66.0,
+            "media": 66.0,
+            "mediana": 66.0
+          },
+          "pregunta": "Pregunta 6",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Cómo valoras la atención que recibiste?",
+          "palabras": {
+            "max": 53.0,
+            "min": 53.0,
+            "media": 53.0,
+            "mediana": 53.0
+          },
+          "pregunta": "Pregunta 7",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Notaste algún cambio en tu desempeño académico después de recibir apoyo?",
+          "palabras": {
+            "max": 55.0,
+            "min": 55.0,
+            "media": 55.0,
+            "mediana": 55.0
+          },
+          "pregunta": "Pregunta 8",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Qué papel han tenido tus profesores o tu tutor en este tema?",
+          "palabras": {
+            "max": 61.0,
+            "min": 61.0,
+            "media": 61.0,
+            "mediana": 61.0
+          },
+          "pregunta": "Pregunta 9",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo busquen?",
+          "palabras": {
+            "max": 62.0,
+            "min": 62.0,
+            "media": 62.0,
+            "mediana": 62.0
+          },
+          "pregunta": "Pregunta 10",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarías?",
+          "palabras": {
+            "max": 74.0,
+            "min": 74.0,
+            "media": 74.0,
+            "mediana": 74.0
+          },
+          "pregunta": "Pregunta 11",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "Para terminar, ¿qué le dirías a un compañero que está pasando por un momento difícil y no se anima a pedir ayuda?",
+          "palabras": {
+            "max": 56.0,
+            "min": 56.0,
+            "media": 56.0,
+            "mediana": 56.0
+          },
+          "pregunta": "Pregunta 12",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "Muchas gracias por compartir tu experiencia.",
+          "palabras": {
+            "max": 7.0,
+            "min": 7.0,
+            "media": 7.0,
+            "mediana": 7.0
+          },
+          "pregunta": "Pregunta 13",
+          "n_respuestas": 1,
+          "sin_respuesta": 0
+        }
+      ],
+      "n_preguntas": 13,
+      "n_respuestas": 13,
+      "participantes": [
+        {
+          "id": "E01",
+          "palabras": 694,
+          "respuestas": 13,
+          "palabras_por_respuesta": 53.4
+        }
+      ],
+      "n_participantes": 1,
+      "palabras_por_rol": [
+        {
+          "rol": "entrevistado",
+          "turnos": 13,
+          "palabras": 694,
+          "pct_palabras": 0.8032
+        },
+        {
+          "rol": "entrevistador",
+          "turnos": 13,
+          "palabras": 170,
+          "pct_palabras": 0.1968
+        }
+      ],
+      "palabras_por_turno": {
+        "n": 26,
+        "q1": 12.0,
+        "q3": 54.5,
+        "iqr": 42.5,
+        "max": 74.0,
+        "min": 6.0,
+        "media": 33.2308,
+        "mediana": 25.0,
+        "curtosis": -1.7533,
+        "asimetria": 0.2141,
+        "desviacion": 23.587
+      },
+      "palabras_por_respuesta": {
+        "n": 13,
+        "q1": 52.0,
+        "q3": 61.0,
+        "iqr": 9.0,
+        "max": 74.0,
+        "min": 7.0,
+        "media": 53.3846,
+        "mediana": 55.0,
+        "curtosis": 7.4224,
+        "asimetria": -2.2935,
+        "desviacion": 15.5753
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 10,
+      "nombre_kpi": "Proporción de Consejeros/Orientadores por Estudiante",
+      "score": 0.4202
+    },
+    {
+      "kpi_id": 47,
+      "nombre_kpi": "Uso de Servicios de Salud Mental y Apoyo Psicológico",
+      "score": 0.6154
+    }
+  ],
+  "finalized_at": "2026-11-12T04:14:09.317760+00:00"
+}

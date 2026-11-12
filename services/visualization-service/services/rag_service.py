@@ -53,7 +53,7 @@ from shared.models.version_conocimiento import VersionConocimiento
 
 from models import ChatRequest, ChatResponse, FuenteChatOut, IndexRequest, ReferenciaChatOut
 from services import (consulta_planificada, dominio, ejecutor, enrutador, evaluacion, interpretacion, ollama_client, prompt,
-                      hibrida, seguimiento, storage_client, trazabilidad, vectores)
+                      hibrida, juez_fable, seguimiento, storage_client, trazabilidad, vectores)
 from services.plan_consulta import ESTRUCTURADAS, PlanConsulta
 
 logger = logging.getLogger("visualization-service")
@@ -644,6 +644,13 @@ def registrar_consulta(
             sesion.commit()
             if evaluar:  # después de entregar la respuesta, en segundo plano
                 evaluacion.programar(fila.rag_log_id, fabrica_sesiones)
+            # Juez Claude Fable 5.2 (11 nov): cada respuesta evaluable, en segundo plano y en la API de Anthropic
+            # (no compite con Ollama por la GPU, así que no espera a que la persona lo pida).
+            try:
+                if plan is not None and juez_fable.aplica(fila):
+                    juez_fable.solicitar(fila, sesion, fabrica_sesiones)
+            except Exception as exc:  # noqa: BLE001 — el juez nunca rompe el chat
+                logger.warning("No se pudo agendar el juez Fable de la consulta %s: %s", fila.rag_log_id, exc)
             return fila.rag_log_id
         finally:
             sesion.close()

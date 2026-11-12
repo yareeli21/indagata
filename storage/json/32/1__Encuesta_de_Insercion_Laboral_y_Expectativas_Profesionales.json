@@ -1,0 +1,2001 @@
+{
+  "instrument_id": "32",
+  "schema_version": "2.0",
+  "tipo_instrumento": "encuesta",
+  "instrument": {
+    "title": "Encuesta de Inserción Laboral y Expectativas Profesionales",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "EXPECTATIVAS LABORALES",
+      "COMPETENCIAS PROFESIONALES",
+      "REDES DE CONTACTO"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "EXPECTATIVAS LABORALES",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "Creo que mi carrera me proporcionará buenas oportunidades laborales.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q2",
+            "text": "Espero trabajar en mi campo de formación al terminar mis estudios.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q3",
+            "text": "Tengo claro qué tipo de empleo buscaré al graduarme.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q4",
+            "text": "Considero que la formación recibida es relevante para el mercado laboral actual.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s2",
+        "name": "COMPETENCIAS PROFESIONALES",
+        "questions": [
+          {
+            "question_id": "q5",
+            "text": "Me siento preparado/a para enfrentar los retos del mundo laboral.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q6",
+            "text": "He desarrollado habilidades prácticas a lo largo de mi carrera.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q7",
+            "text": "Tengo un portafolio o experiencias que puedo presentar a empleadores.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q8",
+            "text": "Las prácticas profesionales o pasantías han enriquecido mi formación.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s3",
+        "name": "REDES DE CONTACTO",
+        "questions": [
+          {
+            "question_id": "q9",
+            "text": "He establecido contactos profesionales útiles durante mi carrera.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q10",
+            "text": "Participo en eventos de networking organizados por la institución.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s4",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "q11",
+            "text": "Tienes_experiencia_laboral_en_tu_área_d",
+            "type": "categorica",
+            "options": [
+              "Sí, como freelance",
+              "No tengo experiencia",
+              "Sí, tiempo completo",
+              "Sí, en prácticas/pasantías"
+            ]
+          },
+          {
+            "question_id": "q12",
+            "text": "Cuál_es_tu_principal_motivación_para_es",
+            "type": "categorica",
+            "options": [
+              "Expectativa familiar",
+              "Oportunidades laborales",
+              "Interés personal",
+              "Ingreso económico esperado"
+            ]
+          },
+          {
+            "question_id": "q13",
+            "text": "Tienes_planes_de_continuar_con_estudios",
+            "type": "categorica",
+            "options": [
+              "No tengo planes",
+              "Sí, en algunos años",
+              "Sí, inmediatamente",
+              "Lo estoy considerando"
+            ]
+          },
+          {
+            "question_id": "q14",
+            "text": "En_qué_sector_laboral_esperas_trabajar_",
+            "type": "categorica",
+            "options": [
+              "Academia/Investigación",
+              "Emprendimiento propio",
+              "Empresa privada",
+              "ONG/Social",
+              "Gobierno/Público"
+            ]
+          },
+          {
+            "question_id": "q15",
+            "text": "Has_realizado_prácticas_profesionales_o",
+            "type": "binaria",
+            "options": [
+              "No",
+              "Sí"
+            ]
+          },
+          {
+            "question_id": "q16",
+            "text": "Tu_institución_te_ha_conectado_con_empl",
+            "type": "binaria",
+            "options": [
+              "No",
+              "Sí"
+            ]
+          },
+          {
+            "question_id": "q17",
+            "text": "Conoces_los_servicios_de_bolsa_de_traba",
+            "type": "binaria",
+            "options": [
+              "No",
+              "Sí"
+            ]
+          },
+          {
+            "question_id": "q18",
+            "text": "Del_1_al_10,_cuán_preparado/a_te_siente",
+            "type": "escala_lineal",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          },
+          {
+            "question_id": "q19",
+            "text": "Del_1_al_10,_cuánto_crees_que_tu_carrer",
+            "type": "escala_lineal",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          },
+          {
+            "question_id": "q20",
+            "text": "Cuál_es_el_salario_mensual_mínimo_que_e",
+            "type": "numerica",
+            "options": []
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "encuesta",
+    "dublin_core": {
+      "dc:title": "Encuesta de Inserción Laboral y Expectativas Profesionales",
+      "dc:creator": "Administrador",
+      "dc:subject": "laboral, carrera, profesionales, formación, prácticas, tengo",
+      "dc:description": "Encuesta de 20 reactivos aplicada a 150 respondentes. Explora: expectativas laborales; competencias profesionales; redes de contacto.",
+      "dc:type": "Encuesta",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "Posgrado",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "enc_10_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "n_respondentes": 150,
+      "objetivo": "No especificado",
+      "poblacion_objetivo": "No especificado",
+      "constructo_principal": "No especificado",
+      "palabras_clave": [
+        "laboral",
+        "carrera",
+        "profesionales",
+        "formación",
+        "prácticas",
+        "tengo",
+        "laborales",
+        "institución"
+      ],
+      "dimensiones": [
+        "EXPECTATIVAS LABORALES",
+        "COMPETENCIAS PROFESIONALES",
+        "REDES DE CONTACTO"
+      ],
+      "notas_contextuales": "Calidad de los datos: 150 registros con respuesta; 0% de respuestas vacías."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Tasa de Inserción Laboral de Egresados",
+      "Ingresos por Educación Continua y Formación Ejecutiva"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 3.7,
+        "std": 1.025,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 54,
+          "3": 39,
+          "5": 37,
+          "2": 17,
+          "1": 3
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.7,
+          "mediana": 4.0,
+          "curtosis": -0.4544,
+          "asimetria": -0.4582,
+          "desviacion": 1.0281
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 3,
+              "pct": 0.02,
+              "valor": "1"
+            },
+            {
+              "n": 17,
+              "pct": 0.1133,
+              "valor": "2"
+            },
+            {
+              "n": 39,
+              "pct": 0.26,
+              "valor": "3"
+            },
+            {
+              "n": 54,
+              "pct": 0.36,
+              "valor": "4"
+            },
+            {
+              "n": 37,
+              "pct": 0.2467,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "expectativas_la_item1"
+      },
+      "q2": {
+        "type": "likert",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 3.64,
+        "std": 0.926,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 61,
+          "3": 44,
+          "5": 27,
+          "2": 17,
+          "1": 1
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.64,
+          "mediana": 4.0,
+          "curtosis": -0.5054,
+          "asimetria": -0.2899,
+          "desviacion": 0.9289
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 1,
+              "pct": 0.0067,
+              "valor": "1"
+            },
+            {
+              "n": 17,
+              "pct": 0.1133,
+              "valor": "2"
+            },
+            {
+              "n": 44,
+              "pct": 0.2933,
+              "valor": "3"
+            },
+            {
+              "n": 61,
+              "pct": 0.4067,
+              "valor": "4"
+            },
+            {
+              "n": 27,
+              "pct": 0.18,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "expectativas_la_item2"
+      },
+      "q3": {
+        "type": "likert",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 3.613,
+        "std": 1.025,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 54,
+          "3": 41,
+          "5": 32,
+          "2": 20,
+          "1": 3
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.6133,
+          "mediana": 4.0,
+          "curtosis": -0.5577,
+          "asimetria": -0.3662,
+          "desviacion": 1.0284
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 3,
+              "pct": 0.02,
+              "valor": "1"
+            },
+            {
+              "n": 20,
+              "pct": 0.1333,
+              "valor": "2"
+            },
+            {
+              "n": 41,
+              "pct": 0.2733,
+              "valor": "3"
+            },
+            {
+              "n": 54,
+              "pct": 0.36,
+              "valor": "4"
+            },
+            {
+              "n": 32,
+              "pct": 0.2133,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "expectativas_la_item3"
+      },
+      "q4": {
+        "type": "likert",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 3.707,
+        "std": 1.036,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 55,
+          "3": 40,
+          "5": 37,
+          "2": 13,
+          "1": 5
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.7067,
+          "mediana": 4.0,
+          "curtosis": -0.1171,
+          "asimetria": -0.5836,
+          "desviacion": 1.0398
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 5,
+              "pct": 0.0333,
+              "valor": "1"
+            },
+            {
+              "n": 13,
+              "pct": 0.0867,
+              "valor": "2"
+            },
+            {
+              "n": 40,
+              "pct": 0.2667,
+              "valor": "3"
+            },
+            {
+              "n": 55,
+              "pct": 0.3667,
+              "valor": "4"
+            },
+            {
+              "n": 37,
+              "pct": 0.2467,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "expectativas_la_item4"
+      },
+      "q5": {
+        "type": "likert",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 3.66,
+        "std": 1.064,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 46,
+          "3": 44,
+          "5": 39,
+          "2": 17,
+          "1": 4
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 5.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.66,
+          "mediana": 4.0,
+          "curtosis": -0.5606,
+          "asimetria": -0.3922,
+          "desviacion": 1.0671
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 4,
+              "pct": 0.0267,
+              "valor": "1"
+            },
+            {
+              "n": 17,
+              "pct": 0.1133,
+              "valor": "2"
+            },
+            {
+              "n": 44,
+              "pct": 0.2933,
+              "valor": "3"
+            },
+            {
+              "n": 46,
+              "pct": 0.3067,
+              "valor": "4"
+            },
+            {
+              "n": 39,
+              "pct": 0.26,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "competencias_pr_item1"
+      },
+      "q6": {
+        "type": "likert",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 3.527,
+        "std": 1.075,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 53,
+          "3": 37,
+          "5": 30,
+          "2": 26,
+          "1": 4
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.5267,
+          "mediana": 4.0,
+          "curtosis": -0.7337,
+          "asimetria": -0.3298,
+          "desviacion": 1.0788
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 4,
+              "pct": 0.0267,
+              "valor": "1"
+            },
+            {
+              "n": 26,
+              "pct": 0.1733,
+              "valor": "2"
+            },
+            {
+              "n": 37,
+              "pct": 0.2467,
+              "valor": "3"
+            },
+            {
+              "n": 53,
+              "pct": 0.3533,
+              "valor": "4"
+            },
+            {
+              "n": 30,
+              "pct": 0.2,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "competencias_pr_item2"
+      },
+      "q7": {
+        "type": "likert",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 3.607,
+        "std": 1.089,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 59,
+          "3": 34,
+          "5": 32,
+          "2": 18,
+          "1": 7
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.6067,
+          "mediana": 4.0,
+          "curtosis": -0.2654,
+          "asimetria": -0.6057,
+          "desviacion": 1.0924
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 7,
+              "pct": 0.0467,
+              "valor": "1"
+            },
+            {
+              "n": 18,
+              "pct": 0.12,
+              "valor": "2"
+            },
+            {
+              "n": 34,
+              "pct": 0.2267,
+              "valor": "3"
+            },
+            {
+              "n": 59,
+              "pct": 0.3933,
+              "valor": "4"
+            },
+            {
+              "n": 32,
+              "pct": 0.2133,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "competencias_pr_item3"
+      },
+      "q8": {
+        "type": "likert",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 3.607,
+        "std": 1.064,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 59,
+          "3": 36,
+          "5": 31,
+          "2": 18,
+          "1": 6
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.6067,
+          "mediana": 4.0,
+          "curtosis": -0.263,
+          "asimetria": -0.5676,
+          "desviacion": 1.0675
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 6,
+              "pct": 0.04,
+              "valor": "1"
+            },
+            {
+              "n": 18,
+              "pct": 0.12,
+              "valor": "2"
+            },
+            {
+              "n": 36,
+              "pct": 0.24,
+              "valor": "3"
+            },
+            {
+              "n": 59,
+              "pct": 0.3933,
+              "valor": "4"
+            },
+            {
+              "n": 31,
+              "pct": 0.2067,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "competencias_pr_item4"
+      },
+      "q9": {
+        "type": "likert",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 3.62,
+        "std": 1.075,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 49,
+          "3": 42,
+          "5": 36,
+          "2": 18,
+          "1": 5
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.62,
+          "mediana": 4.0,
+          "curtosis": -0.4936,
+          "asimetria": -0.4291,
+          "desviacion": 1.0786
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 5,
+              "pct": 0.0333,
+              "valor": "1"
+            },
+            {
+              "n": 18,
+              "pct": 0.12,
+              "valor": "2"
+            },
+            {
+              "n": 42,
+              "pct": 0.28,
+              "valor": "3"
+            },
+            {
+              "n": 49,
+              "pct": 0.3267,
+              "valor": "4"
+            },
+            {
+              "n": 36,
+              "pct": 0.24,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "redes_de_contac_item1"
+      },
+      "q10": {
+        "type": "likert",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 3.527,
+        "std": 1.044,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 47,
+          "4": 46,
+          "5": 31,
+          "2": 23,
+          "1": 3
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.5267,
+          "mediana": 4.0,
+          "curtosis": -0.7418,
+          "asimetria": -0.1959,
+          "desviacion": 1.0472
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 3,
+              "pct": 0.02,
+              "valor": "1"
+            },
+            {
+              "n": 23,
+              "pct": 0.1533,
+              "valor": "2"
+            },
+            {
+              "n": 47,
+              "pct": 0.3133,
+              "valor": "3"
+            },
+            {
+              "n": 46,
+              "pct": 0.3067,
+              "valor": "4"
+            },
+            {
+              "n": 31,
+              "pct": 0.2067,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "redes_de_contac_item2"
+      },
+      "q11": {
+        "type": "categorica",
+        "n": 150,
+        "n_vacios": 0,
+        "distribution": {
+          "Sí, como freelance": 42,
+          "No tengo experiencia": 39,
+          "Sí, tiempo completo": 38,
+          "Sí, en prácticas/pasantías": 31
+        },
+        "frecuencias": {
+          "moda": "Sí, como freelance",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 42,
+              "pct": 0.28,
+              "valor": "Sí, como freelance"
+            },
+            {
+              "n": 39,
+              "pct": 0.26,
+              "valor": "No tengo experiencia"
+            },
+            {
+              "n": 38,
+              "pct": 0.2533,
+              "valor": "Sí, tiempo completo"
+            },
+            {
+              "n": 31,
+              "pct": 0.2067,
+              "valor": "Sí, en prácticas/pasantías"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "tienes_experiencia_laboral_en_tu_area_d"
+      },
+      "q12": {
+        "type": "categorica",
+        "n": 150,
+        "n_vacios": 0,
+        "distribution": {
+          "Expectativa familiar": 45,
+          "Oportunidades laborales": 36,
+          "Interés personal": 35,
+          "Ingreso económico esperado": 34
+        },
+        "frecuencias": {
+          "moda": "Expectativa familiar",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 45,
+              "pct": 0.3,
+              "valor": "Expectativa familiar"
+            },
+            {
+              "n": 36,
+              "pct": 0.24,
+              "valor": "Oportunidades laborales"
+            },
+            {
+              "n": 35,
+              "pct": 0.2333,
+              "valor": "Interés personal"
+            },
+            {
+              "n": 34,
+              "pct": 0.2267,
+              "valor": "Ingreso económico esperado"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cual_es_tu_principal_motivacion_para_es"
+      },
+      "q13": {
+        "type": "categorica",
+        "n": 150,
+        "n_vacios": 0,
+        "distribution": {
+          "No tengo planes": 42,
+          "Sí, en algunos años": 39,
+          "Sí, inmediatamente": 36,
+          "Lo estoy considerando": 33
+        },
+        "frecuencias": {
+          "moda": "No tengo planes",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 42,
+              "pct": 0.28,
+              "valor": "No tengo planes"
+            },
+            {
+              "n": 39,
+              "pct": 0.26,
+              "valor": "Sí, en algunos años"
+            },
+            {
+              "n": 36,
+              "pct": 0.24,
+              "valor": "Sí, inmediatamente"
+            },
+            {
+              "n": 33,
+              "pct": 0.22,
+              "valor": "Lo estoy considerando"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "tienes_planes_de_continuar_con_estudios"
+      },
+      "q14": {
+        "type": "categorica",
+        "n": 150,
+        "n_vacios": 0,
+        "distribution": {
+          "Academia/Investigación": 34,
+          "Emprendimiento propio": 33,
+          "Empresa privada": 32,
+          "ONG/Social": 28,
+          "Gobierno/Público": 23
+        },
+        "frecuencias": {
+          "moda": "Academia/Investigación",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 34,
+              "pct": 0.2267,
+              "valor": "Academia/Investigación"
+            },
+            {
+              "n": 33,
+              "pct": 0.22,
+              "valor": "Emprendimiento propio"
+            },
+            {
+              "n": 32,
+              "pct": 0.2133,
+              "valor": "Empresa privada"
+            },
+            {
+              "n": 28,
+              "pct": 0.1867,
+              "valor": "ONG/Social"
+            },
+            {
+              "n": 23,
+              "pct": 0.1533,
+              "valor": "Gobierno/Público"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "en_que_sector_laboral_esperas_trabajar"
+      },
+      "q15": {
+        "type": "binaria",
+        "n": 150,
+        "n_vacios": 0,
+        "distribution": {
+          "No": 83,
+          "Sí": 67
+        },
+        "frecuencias": {
+          "moda": "No",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 83,
+              "pct": 0.5533,
+              "valor": "No"
+            },
+            {
+              "n": 67,
+              "pct": 0.4467,
+              "valor": "Sí"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "has_realizado_practicas_profesionales_o"
+      },
+      "q16": {
+        "type": "binaria",
+        "n": 150,
+        "n_vacios": 0,
+        "distribution": {
+          "No": 84,
+          "Sí": 66
+        },
+        "frecuencias": {
+          "moda": "No",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 84,
+              "pct": 0.56,
+              "valor": "No"
+            },
+            {
+              "n": 66,
+              "pct": 0.44,
+              "valor": "Sí"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "tu_institucion_te_ha_conectado_con_empl"
+      },
+      "q17": {
+        "type": "binaria",
+        "n": 150,
+        "n_vacios": 0,
+        "distribution": {
+          "No": 80,
+          "Sí": 70
+        },
+        "frecuencias": {
+          "moda": "No",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 80,
+              "pct": 0.5333,
+              "valor": "No"
+            },
+            {
+              "n": 70,
+              "pct": 0.4667,
+              "valor": "Sí"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "conoces_los_servicios_de_bolsa_de_traba"
+      },
+      "q18": {
+        "type": "escala_lineal",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 5.32,
+        "std": 2.772,
+        "min": 1.0,
+        "max": 10.0,
+        "distribution": {
+          "5": 22,
+          "2": 20,
+          "3": 17,
+          "9": 15,
+          "8": 14,
+          "4": 14,
+          "7": 13,
+          "6": 12,
+          "10": 12,
+          "1": 11
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 8.0,
+          "iqr": 5.0,
+          "max": 10.0,
+          "min": 1.0,
+          "media": 5.32,
+          "mediana": 5.0,
+          "curtosis": -1.1778,
+          "asimetria": 0.1418,
+          "desviacion": 2.7813
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "del_1_al_10_cuan_preparado_a_te_siente"
+      },
+      "q19": {
+        "type": "escala_lineal",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 5.607,
+        "std": 2.797,
+        "min": 1.0,
+        "max": 10.0,
+        "distribution": {
+          "9": 22,
+          "6": 19,
+          "4": 19,
+          "2": 18,
+          "5": 16,
+          "10": 15,
+          "3": 13,
+          "7": 13,
+          "1": 9,
+          "8": 6
+        },
+        "numerico": {
+          "n": 150,
+          "q1": 3.0,
+          "q3": 8.0,
+          "iqr": 5.0,
+          "max": 10.0,
+          "min": 1.0,
+          "media": 5.6067,
+          "mediana": 5.5,
+          "curtosis": -1.1947,
+          "asimetria": 0.0656,
+          "desviacion": 2.8067
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "del_1_al_10_cuanto_crees_que_tu_carrer"
+      },
+      "q20": {
+        "type": "numerica",
+        "n": 150,
+        "n_vacios": 0,
+        "mean": 31.013,
+        "std": 15.69,
+        "min": 5.0,
+        "max": 60.0,
+        "numerico": {
+          "n": 150,
+          "q1": 18.25,
+          "q3": 44.0,
+          "iqr": 25.75,
+          "max": 60.0,
+          "min": 5.0,
+          "media": 31.0133,
+          "mediana": 28.0,
+          "curtosis": -1.0938,
+          "asimetria": 0.215,
+          "desviacion": 15.7425
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cual_es_el_salario_mensual_minimo_que_e"
+      }
+    },
+    "global": {
+      "n_registros": 150,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 20
+    },
+    "reliability": [
+      {
+        "alfa": 0.8878,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Expectativas la",
+        "n_casos": 150,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.7,
+            "alfa_si_se_elimina": 0.8396,
+            "correlacion_item_total": 0.7955
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.64,
+            "alfa_si_se_elimina": 0.8639,
+            "correlacion_item_total": 0.7345
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.6133,
+            "alfa_si_se_elimina": 0.8492,
+            "correlacion_item_total": 0.771
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.7067,
+            "alfa_si_se_elimina": 0.869,
+            "correlacion_item_total": 0.7204
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.8757,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Competencias pr",
+        "n_casos": 150,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.66,
+            "alfa_si_se_elimina": 0.8449,
+            "correlacion_item_total": 0.7219
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.5267,
+            "alfa_si_se_elimina": 0.8383,
+            "correlacion_item_total": 0.7385
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.6067,
+            "alfa_si_se_elimina": 0.8395,
+            "correlacion_item_total": 0.7358
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.6067,
+            "alfa_si_se_elimina": 0.8405,
+            "correlacion_item_total": 0.7332
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.7359,
+        "items": [
+          "ítem 1",
+          "ítem 2"
+        ],
+        "bloque": "Redes de contac",
+        "n_casos": 150,
+        "n_items": 2,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.62,
+            "alfa_si_se_elimina": null,
+            "correlacion_item_total": 0.5824
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.5267,
+            "alfa_si_se_elimina": null,
+            "correlacion_item_total": 0.5824
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "aceptable"
+      },
+      {
+        "alfa": 0.8823,
+        "items": [
+          "Expectativas_la_item1",
+          "Expectativas_la_item2",
+          "Expectativas_la_item3",
+          "Expectativas_la_item4",
+          "Competencias_pr_item1",
+          "Competencias_pr_item2",
+          "Competencias_pr_item3",
+          "Competencias_pr_item4",
+          "Redes_de_contac_item1",
+          "Redes_de_contac_item2"
+        ],
+        "bloque": "Todas las escalas Likert",
+        "n_casos": 150,
+        "n_items": 10,
+        "por_item": [
+          {
+            "item": "Expectativas_la_item1",
+            "media": 3.7,
+            "alfa_si_se_elimina": 0.8674,
+            "correlacion_item_total": 0.6591
+          },
+          {
+            "item": "Expectativas_la_item2",
+            "media": 3.64,
+            "alfa_si_se_elimina": 0.8738,
+            "correlacion_item_total": 0.5714
+          },
+          {
+            "item": "Expectativas_la_item3",
+            "media": 3.6133,
+            "alfa_si_se_elimina": 0.8697,
+            "correlacion_item_total": 0.627
+          },
+          {
+            "item": "Expectativas_la_item4",
+            "media": 3.7067,
+            "alfa_si_se_elimina": 0.869,
+            "correlacion_item_total": 0.637
+          },
+          {
+            "item": "Competencias_pr_item1",
+            "media": 3.66,
+            "alfa_si_se_elimina": 0.8671,
+            "correlacion_item_total": 0.6612
+          },
+          {
+            "item": "Competencias_pr_item2",
+            "media": 3.5267,
+            "alfa_si_se_elimina": 0.8711,
+            "correlacion_item_total": 0.6086
+          },
+          {
+            "item": "Competencias_pr_item3",
+            "media": 3.6067,
+            "alfa_si_se_elimina": 0.8709,
+            "correlacion_item_total": 0.6106
+          },
+          {
+            "item": "Competencias_pr_item4",
+            "media": 3.6067,
+            "alfa_si_se_elimina": 0.871,
+            "correlacion_item_total": 0.6098
+          },
+          {
+            "item": "Redes_de_contac_item1",
+            "media": 3.62,
+            "alfa_si_se_elimina": 0.8776,
+            "correlacion_item_total": 0.5218
+          },
+          {
+            "item": "Redes_de_contac_item2",
+            "media": 3.5267,
+            "alfa_si_se_elimina": 0.871,
+            "correlacion_item_total": 0.6094
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      }
+    ]
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T03:24:52.626707+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/19__enc_10_respondido.csv",
+    "original": "raw/_/20__enc_10_original.txt",
+    "limpio": "clean/32/1__v1_encuesta_limpio.csv",
+    "nombre_archivo": "enc_10_respondido.csv"
+  },
+  "generated_at": "2026-11-12T03:24:52.626833+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T03:24:44.717970+00:00",
+    "archivo_limpio": "clean/32/1__v1_encuesta_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 32,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 52,
+        "cols_mas_nulos": [],
+        "n_respondentes": 150,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      },
+      "despues": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 31,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 52,
+        "cols_mas_nulos": [],
+        "n_respondentes": 150,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "fiabilidad": [
+        {
+          "alfa": 0.8878,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Expectativas la",
+          "n_casos": 150,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.7,
+              "alfa_si_se_elimina": 0.8396,
+              "correlacion_item_total": 0.7955
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.64,
+              "alfa_si_se_elimina": 0.8639,
+              "correlacion_item_total": 0.7345
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.6133,
+              "alfa_si_se_elimina": 0.8492,
+              "correlacion_item_total": 0.771
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.7067,
+              "alfa_si_se_elimina": 0.869,
+              "correlacion_item_total": 0.7204
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.8757,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Competencias pr",
+          "n_casos": 150,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.66,
+              "alfa_si_se_elimina": 0.8449,
+              "correlacion_item_total": 0.7219
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.5267,
+              "alfa_si_se_elimina": 0.8383,
+              "correlacion_item_total": 0.7385
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.6067,
+              "alfa_si_se_elimina": 0.8395,
+              "correlacion_item_total": 0.7358
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.6067,
+              "alfa_si_se_elimina": 0.8405,
+              "correlacion_item_total": 0.7332
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.7359,
+          "items": [
+            "ítem 1",
+            "ítem 2"
+          ],
+          "bloque": "Redes de contac",
+          "n_casos": 150,
+          "n_items": 2,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.62,
+              "alfa_si_se_elimina": null,
+              "correlacion_item_total": 0.5824
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.5267,
+              "alfa_si_se_elimina": null,
+              "correlacion_item_total": 0.5824
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "aceptable"
+        },
+        {
+          "alfa": 0.8823,
+          "items": [
+            "Expectativas_la_item1",
+            "Expectativas_la_item2",
+            "Expectativas_la_item3",
+            "Expectativas_la_item4",
+            "Competencias_pr_item1",
+            "Competencias_pr_item2",
+            "Competencias_pr_item3",
+            "Competencias_pr_item4",
+            "Redes_de_contac_item1",
+            "Redes_de_contac_item2"
+          ],
+          "bloque": "Todas las escalas Likert",
+          "n_casos": 150,
+          "n_items": 10,
+          "por_item": [
+            {
+              "item": "Expectativas_la_item1",
+              "media": 3.7,
+              "alfa_si_se_elimina": 0.8674,
+              "correlacion_item_total": 0.6591
+            },
+            {
+              "item": "Expectativas_la_item2",
+              "media": 3.64,
+              "alfa_si_se_elimina": 0.8738,
+              "correlacion_item_total": 0.5714
+            },
+            {
+              "item": "Expectativas_la_item3",
+              "media": 3.6133,
+              "alfa_si_se_elimina": 0.8697,
+              "correlacion_item_total": 0.627
+            },
+            {
+              "item": "Expectativas_la_item4",
+              "media": 3.7067,
+              "alfa_si_se_elimina": 0.869,
+              "correlacion_item_total": 0.637
+            },
+            {
+              "item": "Competencias_pr_item1",
+              "media": 3.66,
+              "alfa_si_se_elimina": 0.8671,
+              "correlacion_item_total": 0.6612
+            },
+            {
+              "item": "Competencias_pr_item2",
+              "media": 3.5267,
+              "alfa_si_se_elimina": 0.8711,
+              "correlacion_item_total": 0.6086
+            },
+            {
+              "item": "Competencias_pr_item3",
+              "media": 3.6067,
+              "alfa_si_se_elimina": 0.8709,
+              "correlacion_item_total": 0.6106
+            },
+            {
+              "item": "Competencias_pr_item4",
+              "media": 3.6067,
+              "alfa_si_se_elimina": 0.871,
+              "correlacion_item_total": 0.6098
+            },
+            {
+              "item": "Redes_de_contac_item1",
+              "media": 3.62,
+              "alfa_si_se_elimina": 0.8776,
+              "correlacion_item_total": 0.5218
+            },
+            {
+              "item": "Redes_de_contac_item2",
+              "media": 3.5267,
+              "alfa_si_se_elimina": 0.871,
+              "correlacion_item_total": 0.6094
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        }
+      ],
+      "encuestados": {
+        "incompletos": 0,
+        "linea_recta": 52
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 24,
+      "nombre_kpi": "Tasa de Inserción Laboral de Egresados",
+      "score": 0.5759
+    },
+    {
+      "kpi_id": 42,
+      "nombre_kpi": "Ingresos por Educación Continua y Formación Ejecutiva",
+      "score": 0.5282
+    }
+  ],
+  "finalized_at": "2026-11-12T03:25:43.084360+00:00"
+}

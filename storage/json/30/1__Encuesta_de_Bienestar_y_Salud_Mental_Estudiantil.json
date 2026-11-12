@@ -1,0 +1,2107 @@
+{
+  "instrument_id": "30",
+  "schema_version": "2.0",
+  "tipo_instrumento": "encuesta",
+  "instrument": {
+    "title": "Encuesta de Bienestar y Salud Mental Estudiantil",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "BIENESTAR EMOCIONAL",
+      "ESTRÉS ACADÉMICO",
+      "APOYO INSTITUCIONAL"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "BIENESTAR EMOCIONAL",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "Me siento emocionalmente equilibrado/a durante el semestre.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q2",
+            "text": "Manejo bien el estrés académico que experimento.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q3",
+            "text": "Tengo personas de confianza con quienes hablar de mis problemas.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q4",
+            "text": "Siento que tengo control sobre mi vida universitaria.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s2",
+        "name": "ESTRÉS ACADÉMICO",
+        "questions": [
+          {
+            "question_id": "q5",
+            "text": "La carga académica me genera niveles elevados de ansiedad.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q6",
+            "text": "Siento presión excesiva por las evaluaciones y entregas.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q7",
+            "text": "El rendimiento académico afecta negativamente mi salud mental.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s3",
+        "name": "APOYO INSTITUCIONAL",
+        "questions": [
+          {
+            "question_id": "q8",
+            "text": "La institución cuenta con servicios adecuados de salud mental.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q9",
+            "text": "Es fácil acceder a los servicios psicológicos de la institución.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q10",
+            "text": "Me siento respaldado/a por la institución cuando tengo problemas personales.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s4",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "q11",
+            "text": "Con_qué_frecuencia_has_sentido_síntomas",
+            "type": "likert",
+            "options": [
+              "Nunca",
+              "Raramente",
+              "Ocasionalmente",
+              "Frecuentemente",
+              "Siempre"
+            ]
+          },
+          {
+            "question_id": "q12",
+            "text": "Has_buscado_ayuda_psicológica_profesion",
+            "type": "categorica",
+            "options": [
+              "No, nunca",
+              "Estoy considerándolo",
+              "Sí, de forma externa",
+              "Sí, en la institución"
+            ]
+          },
+          {
+            "question_id": "q13",
+            "text": "Cuál_es_el_principal_factor_de_estrés_e",
+            "type": "categorica",
+            "options": [
+              "Trabajo y conciliación",
+              "Economía familiar",
+              "Relaciones interpersonales",
+              "Exámenes y evaluaciones",
+              "Carga de materias"
+            ]
+          },
+          {
+            "question_id": "q14",
+            "text": "Con_qué_frecuencia_realizas_actividades",
+            "type": "categorica",
+            "options": [
+              "Nunca",
+              "Semanalmente",
+              "Diariamente",
+              "Raramente"
+            ]
+          },
+          {
+            "question_id": "q15",
+            "text": "Has_pensado_en_abandonar_los_estudios_p",
+            "type": "categorica",
+            "options": [
+              "Sí, actualmente",
+              "Frecuentemente",
+              "En algún momento",
+              "Nunca"
+            ]
+          },
+          {
+            "question_id": "q16",
+            "text": "Duermes_al_menos_7_horas_diarias_en_pro",
+            "type": "binaria",
+            "options": [
+              "Sí",
+              "No"
+            ]
+          },
+          {
+            "question_id": "q17",
+            "text": "Tu_institución_tiene_un_programa_formal",
+            "type": "binaria",
+            "options": [
+              "No",
+              "Sí"
+            ]
+          },
+          {
+            "question_id": "q18",
+            "text": "En_una_escala_del_1_al_10,_cómo_calific",
+            "type": "escala_lineal",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          },
+          {
+            "question_id": "q19",
+            "text": "En_una_escala_del_1_al_10,_cuánto_estré",
+            "type": "escala_lineal",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          },
+          {
+            "question_id": "q20",
+            "text": "En_una_escala_del_1_al_10,_cuán_satisfe",
+            "type": "escala_lineal",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "encuesta",
+    "dublin_core": {
+      "dc:title": "Encuesta de Bienestar y Salud Mental Estudiantil",
+      "dc:creator": "Administrador",
+      "dc:subject": "institución, siento, estrés, académico, tengo, salud",
+      "dc:description": "Encuesta de 20 reactivos aplicada a 160 respondentes. Explora: bienestar emocional; estrés académico; apoyo institucional.",
+      "dc:type": "Encuesta",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "Licenciatura",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "enc_08_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "n_respondentes": 160,
+      "objetivo": "No especificado",
+      "poblacion_objetivo": "No especificado",
+      "constructo_principal": "No especificado",
+      "palabras_clave": [
+        "institución",
+        "siento",
+        "estrés",
+        "académico",
+        "tengo",
+        "salud",
+        "mental",
+        "problemas"
+      ],
+      "dimensiones": [
+        "BIENESTAR EMOCIONAL",
+        "ESTRÉS ACADÉMICO",
+        "APOYO INSTITUCIONAL"
+      ],
+      "notas_contextuales": "Calidad de los datos: 160 registros con respuesta; 0% de respuestas vacías."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Uso de Servicios de Salud Mental y Apoyo Psicológico",
+      "Puntaje de Satisfacción Estudiantil (NPS / Encuestas)"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.112,
+        "std": 1.178,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 50,
+          "3": 41,
+          "2": 34,
+          "5": 18,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1125,
+          "mediana": 3.0,
+          "curtosis": -0.8788,
+          "asimetria": -0.1975,
+          "desviacion": 1.1816
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.1062,
+              "valor": "1"
+            },
+            {
+              "n": 34,
+              "pct": 0.2125,
+              "valor": "2"
+            },
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "3"
+            },
+            {
+              "n": 50,
+              "pct": 0.3125,
+              "valor": "4"
+            },
+            {
+              "n": 18,
+              "pct": 0.1125,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "bienestar_emoci_item1"
+      },
+      "q2": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.081,
+        "std": 1.23,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 44,
+          "2": 39,
+          "3": 37,
+          "5": 22,
+          "1": 18
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.0812,
+          "mediana": 3.0,
+          "curtosis": -1.0249,
+          "asimetria": -0.0748,
+          "desviacion": 1.2336
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 18,
+              "pct": 0.1125,
+              "valor": "1"
+            },
+            {
+              "n": 39,
+              "pct": 0.2437,
+              "valor": "2"
+            },
+            {
+              "n": 37,
+              "pct": 0.2313,
+              "valor": "3"
+            },
+            {
+              "n": 44,
+              "pct": 0.275,
+              "valor": "4"
+            },
+            {
+              "n": 22,
+              "pct": 0.1375,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "bienestar_emoci_item2"
+      },
+      "q3": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.094,
+        "std": 1.244,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 48,
+          "3": 37,
+          "2": 33,
+          "1": 21,
+          "5": 21
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.0938,
+          "mediana": 3.0,
+          "curtosis": -1.0092,
+          "asimetria": -0.1795,
+          "desviacion": 1.2479
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 21,
+              "pct": 0.1313,
+              "valor": "1"
+            },
+            {
+              "n": 33,
+              "pct": 0.2062,
+              "valor": "2"
+            },
+            {
+              "n": 37,
+              "pct": 0.2313,
+              "valor": "3"
+            },
+            {
+              "n": 48,
+              "pct": 0.3,
+              "valor": "4"
+            },
+            {
+              "n": 21,
+              "pct": 0.1313,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "bienestar_emoci_item3"
+      },
+      "q4": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.0,
+        "std": 1.24,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 44,
+          "3": 43,
+          "2": 30,
+          "1": 25,
+          "5": 18
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.0,
+          "mediana": 3.0,
+          "curtosis": -0.9784,
+          "asimetria": -0.139,
+          "desviacion": 1.2439
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 25,
+              "pct": 0.1562,
+              "valor": "1"
+            },
+            {
+              "n": 30,
+              "pct": 0.1875,
+              "valor": "2"
+            },
+            {
+              "n": 43,
+              "pct": 0.2687,
+              "valor": "3"
+            },
+            {
+              "n": 44,
+              "pct": 0.275,
+              "valor": "4"
+            },
+            {
+              "n": 18,
+              "pct": 0.1125,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "bienestar_emoci_item4"
+      },
+      "q5": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.2,
+        "std": 1.203,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 49,
+          "3": 42,
+          "2": 29,
+          "5": 23,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2,
+          "mediana": 3.0,
+          "curtosis": -0.8412,
+          "asimetria": -0.2617,
+          "desviacion": 1.2069
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.1062,
+              "valor": "1"
+            },
+            {
+              "n": 29,
+              "pct": 0.1812,
+              "valor": "2"
+            },
+            {
+              "n": 42,
+              "pct": 0.2625,
+              "valor": "3"
+            },
+            {
+              "n": 49,
+              "pct": 0.3063,
+              "valor": "4"
+            },
+            {
+              "n": 23,
+              "pct": 0.1437,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estres_academic_item1"
+      },
+      "q6": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.188,
+        "std": 1.246,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 43,
+          "3": 41,
+          "2": 31,
+          "5": 27,
+          "1": 18
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1875,
+          "mediana": 3.0,
+          "curtosis": -0.9591,
+          "asimetria": -0.1852,
+          "desviacion": 1.2498
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 18,
+              "pct": 0.1125,
+              "valor": "1"
+            },
+            {
+              "n": 31,
+              "pct": 0.1938,
+              "valor": "2"
+            },
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "3"
+            },
+            {
+              "n": 43,
+              "pct": 0.2687,
+              "valor": "4"
+            },
+            {
+              "n": 27,
+              "pct": 0.1688,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estres_academic_item2"
+      },
+      "q7": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.138,
+        "std": 1.186,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 49,
+          "4": 42,
+          "2": 30,
+          "5": 22,
+          "1": 17
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1375,
+          "mediana": 3.0,
+          "curtosis": -0.7964,
+          "asimetria": -0.156,
+          "desviacion": 1.1895
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 17,
+              "pct": 0.1062,
+              "valor": "1"
+            },
+            {
+              "n": 30,
+              "pct": 0.1875,
+              "valor": "2"
+            },
+            {
+              "n": 49,
+              "pct": 0.3063,
+              "valor": "3"
+            },
+            {
+              "n": 42,
+              "pct": 0.2625,
+              "valor": "4"
+            },
+            {
+              "n": 22,
+              "pct": 0.1375,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "estres_academic_item3"
+      },
+      "q8": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.237,
+        "std": 1.232,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 51,
+          "3": 34,
+          "2": 33,
+          "5": 26,
+          "1": 16
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2375,
+          "mediana": 3.0,
+          "curtosis": -0.9692,
+          "asimetria": -0.2605,
+          "desviacion": 1.2362
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 16,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 33,
+              "pct": 0.2062,
+              "valor": "2"
+            },
+            {
+              "n": 34,
+              "pct": 0.2125,
+              "valor": "3"
+            },
+            {
+              "n": 51,
+              "pct": 0.3187,
+              "valor": "4"
+            },
+            {
+              "n": 26,
+              "pct": 0.1625,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "apoyo_instituci_item1"
+      },
+      "q9": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.188,
+        "std": 1.158,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 49,
+          "3": 48,
+          "2": 27,
+          "5": 20,
+          "1": 16
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1875,
+          "mediana": 3.0,
+          "curtosis": -0.6958,
+          "asimetria": -0.2752,
+          "desviacion": 1.1612
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 16,
+              "pct": 0.1,
+              "valor": "1"
+            },
+            {
+              "n": 27,
+              "pct": 0.1688,
+              "valor": "2"
+            },
+            {
+              "n": 48,
+              "pct": 0.3,
+              "valor": "3"
+            },
+            {
+              "n": 49,
+              "pct": 0.3063,
+              "valor": "4"
+            },
+            {
+              "n": 20,
+              "pct": 0.125,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "apoyo_instituci_item2"
+      },
+      "q10": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.2,
+        "std": 1.249,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 48,
+          "2": 40,
+          "3": 30,
+          "5": 27,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2,
+          "mediana": 3.0,
+          "curtosis": -1.1029,
+          "asimetria": -0.1523,
+          "desviacion": 1.2529
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0938,
+              "valor": "1"
+            },
+            {
+              "n": 40,
+              "pct": 0.25,
+              "valor": "2"
+            },
+            {
+              "n": 30,
+              "pct": 0.1875,
+              "valor": "3"
+            },
+            {
+              "n": 48,
+              "pct": 0.3,
+              "valor": "4"
+            },
+            {
+              "n": 27,
+              "pct": 0.1688,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "apoyo_instituci_item3"
+      },
+      "q11": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.2,
+        "std": 1.377,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "5": 38,
+          "4": 34,
+          "3": 33,
+          "2": 32,
+          "1": 23
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2,
+          "mediana": 3.0,
+          "curtosis": -1.2338,
+          "asimetria": -0.1483,
+          "desviacion": 1.3818
+        },
+        "frecuencias": {
+          "moda": "Siempre",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 23,
+              "pct": 0.1437,
+              "valor": "Nunca"
+            },
+            {
+              "n": 32,
+              "pct": 0.2,
+              "valor": "Raramente"
+            },
+            {
+              "n": 33,
+              "pct": 0.2062,
+              "valor": "Ocasionalmente"
+            },
+            {
+              "n": 34,
+              "pct": 0.2125,
+              "valor": "Frecuentemente"
+            },
+            {
+              "n": 38,
+              "pct": 0.2375,
+              "valor": "Siempre"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "frecuencia",
+          "puntos": 5,
+          "codigos": {
+            "Nunca": 1,
+            "Siempre": 5,
+            "Raramente": 2,
+            "Frecuentemente": 4,
+            "Ocasionalmente": 3
+          },
+          "neutral": 3,
+          "etiquetas": [
+            "Nunca",
+            "Raramente",
+            "Ocasionalmente",
+            "Frecuentemente",
+            "Siempre"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "con_que_frecuencia_has_sentido_sintomas"
+      },
+      "q12": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "No, nunca": 48,
+          "Estoy considerándolo": 41,
+          "Sí, de forma externa": 37,
+          "Sí, en la institución": 34
+        },
+        "frecuencias": {
+          "moda": "No, nunca",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 48,
+              "pct": 0.3,
+              "valor": "No, nunca"
+            },
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "Estoy considerándolo"
+            },
+            {
+              "n": 37,
+              "pct": 0.2313,
+              "valor": "Sí, de forma externa"
+            },
+            {
+              "n": 34,
+              "pct": 0.2125,
+              "valor": "Sí, en la institución"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "has_buscado_ayuda_psicologica_profesion"
+      },
+      "q13": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Trabajo y conciliación": 35,
+          "Economía familiar": 33,
+          "Relaciones interpersonales": 31,
+          "Exámenes y evaluaciones": 31,
+          "Carga de materias": 30
+        },
+        "frecuencias": {
+          "moda": "Trabajo y conciliación",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 35,
+              "pct": 0.2188,
+              "valor": "Trabajo y conciliación"
+            },
+            {
+              "n": 33,
+              "pct": 0.2062,
+              "valor": "Economía familiar"
+            },
+            {
+              "n": 31,
+              "pct": 0.1938,
+              "valor": "Relaciones interpersonales"
+            },
+            {
+              "n": 31,
+              "pct": 0.1938,
+              "valor": "Exámenes y evaluaciones"
+            },
+            {
+              "n": 30,
+              "pct": 0.1875,
+              "valor": "Carga de materias"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cual_es_el_principal_factor_de_estres_e"
+      },
+      "q14": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Nunca": 46,
+          "Semanalmente": 45,
+          "Diariamente": 37,
+          "Raramente": 32
+        },
+        "frecuencias": {
+          "moda": "Nunca",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 46,
+              "pct": 0.2875,
+              "valor": "Nunca"
+            },
+            {
+              "n": 45,
+              "pct": 0.2812,
+              "valor": "Semanalmente"
+            },
+            {
+              "n": 37,
+              "pct": 0.2313,
+              "valor": "Diariamente"
+            },
+            {
+              "n": 32,
+              "pct": 0.2,
+              "valor": "Raramente"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "con_que_frecuencia_realizas_actividades"
+      },
+      "q15": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Sí, actualmente": 46,
+          "Frecuentemente": 40,
+          "En algún momento": 38,
+          "Nunca": 36
+        },
+        "frecuencias": {
+          "moda": "Sí, actualmente",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 46,
+              "pct": 0.2875,
+              "valor": "Sí, actualmente"
+            },
+            {
+              "n": 40,
+              "pct": 0.25,
+              "valor": "Frecuentemente"
+            },
+            {
+              "n": 38,
+              "pct": 0.2375,
+              "valor": "En algún momento"
+            },
+            {
+              "n": 36,
+              "pct": 0.225,
+              "valor": "Nunca"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "has_pensado_en_abandonar_los_estudios_p"
+      },
+      "q16": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Sí": 80,
+          "No": 80
+        },
+        "frecuencias": {
+          "moda": [
+            "Sí",
+            "No"
+          ],
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 80,
+              "pct": 0.5,
+              "valor": "Sí"
+            },
+            {
+              "n": 80,
+              "pct": 0.5,
+              "valor": "No"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "duermes_al_menos_7_horas_diarias_en_pro"
+      },
+      "q17": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "No": 87,
+          "Sí": 73
+        },
+        "frecuencias": {
+          "moda": "No",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 87,
+              "pct": 0.5437,
+              "valor": "No"
+            },
+            {
+              "n": 73,
+              "pct": 0.4562,
+              "valor": "Sí"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "tu_institucion_tiene_un_programa_formal"
+      },
+      "q18": {
+        "type": "escala_lineal",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 5.713,
+        "std": 2.851,
+        "min": 1.0,
+        "max": 10.0,
+        "distribution": {
+          "7": 20,
+          "4": 18,
+          "10": 18,
+          "8": 18,
+          "2": 17,
+          "5": 15,
+          "6": 15,
+          "9": 15,
+          "1": 14,
+          "3": 10
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 8.0,
+          "iqr": 5.0,
+          "max": 10.0,
+          "min": 1.0,
+          "media": 5.7125,
+          "mediana": 6.0,
+          "curtosis": -1.1822,
+          "asimetria": -0.1144,
+          "desviacion": 2.8602
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "en_una_escala_del_1_al_10_como_calific"
+      },
+      "q19": {
+        "type": "escala_lineal",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 5.319,
+        "std": 2.794,
+        "min": 1.0,
+        "max": 10.0,
+        "distribution": {
+          "3": 21,
+          "2": 19,
+          "6": 19,
+          "9": 18,
+          "5": 18,
+          "8": 16,
+          "4": 15,
+          "1": 13,
+          "10": 12,
+          "7": 9
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 8.0,
+          "iqr": 5.0,
+          "max": 10.0,
+          "min": 1.0,
+          "media": 5.3187,
+          "mediana": 5.0,
+          "curtosis": -1.2096,
+          "asimetria": 0.1296,
+          "desviacion": 2.8025
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "en_una_escala_del_1_al_10_cuanto_estre"
+      },
+      "q20": {
+        "type": "escala_lineal",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 5.3,
+        "std": 2.859,
+        "min": 1.0,
+        "max": 10.0,
+        "distribution": {
+          "4": 23,
+          "3": 18,
+          "1": 17,
+          "9": 17,
+          "10": 15,
+          "7": 15,
+          "5": 15,
+          "2": 15,
+          "6": 14,
+          "8": 11
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 8.0,
+          "iqr": 5.0,
+          "max": 10.0,
+          "min": 1.0,
+          "media": 5.3,
+          "mediana": 5.0,
+          "curtosis": -1.186,
+          "asimetria": 0.1493,
+          "desviacion": 2.8677
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "en_una_escala_del_1_al_10_cuan_satisfe"
+      }
+    },
+    "global": {
+      "n_registros": 160,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0,
+      "n_reactivos": 20
+    },
+    "reliability": [
+      {
+        "alfa": 0.9021,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Bienestar emoci",
+        "n_casos": 160,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.1125,
+            "alfa_si_se_elimina": 0.8819,
+            "correlacion_item_total": 0.7575
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.0812,
+            "alfa_si_se_elimina": 0.8768,
+            "correlacion_item_total": 0.772
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.0938,
+            "alfa_si_se_elimina": 0.862,
+            "correlacion_item_total": 0.8122
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.0,
+            "alfa_si_se_elimina": 0.8732,
+            "correlacion_item_total": 0.7818
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.8866,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3"
+        ],
+        "bloque": "Estrés académic",
+        "n_casos": 160,
+        "n_items": 3,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.8554,
+            "correlacion_item_total": 0.7599
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.1875,
+            "alfa_si_se_elimina": 0.8259,
+            "correlacion_item_total": 0.7938
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.1375,
+            "alfa_si_se_elimina": 0.835,
+            "correlacion_item_total": 0.7838
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.8656,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3"
+        ],
+        "bloque": "Apoyo instituci",
+        "n_casos": 160,
+        "n_items": 3,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.2375,
+            "alfa_si_se_elimina": 0.7917,
+            "correlacion_item_total": 0.7646
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.1875,
+            "alfa_si_se_elimina": 0.8319,
+            "correlacion_item_total": 0.7217
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.8076,
+            "correlacion_item_total": 0.7482
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      },
+      {
+        "alfa": 0.8558,
+        "items": [
+          "Bienestar_emoci_item1",
+          "Bienestar_emoci_item2",
+          "Bienestar_emoci_item3",
+          "Bienestar_emoci_item4",
+          "Estrés_académic_item1",
+          "Estrés_académic_item2",
+          "Estrés_académic_item3",
+          "Apoyo_instituci_item1",
+          "Apoyo_instituci_item2",
+          "Apoyo_instituci_item3",
+          "Con_qué_frecuencia_has_sentido_síntomas"
+        ],
+        "bloque": "Todas las escalas Likert",
+        "n_casos": 160,
+        "n_items": 11,
+        "por_item": [
+          {
+            "item": "Bienestar_emoci_item1",
+            "media": 3.1125,
+            "alfa_si_se_elimina": 0.835,
+            "correlacion_item_total": 0.6613
+          },
+          {
+            "item": "Bienestar_emoci_item2",
+            "media": 3.0812,
+            "alfa_si_se_elimina": 0.834,
+            "correlacion_item_total": 0.6686
+          },
+          {
+            "item": "Bienestar_emoci_item3",
+            "media": 3.0938,
+            "alfa_si_se_elimina": 0.8337,
+            "correlacion_item_total": 0.6704
+          },
+          {
+            "item": "Bienestar_emoci_item4",
+            "media": 3.0,
+            "alfa_si_se_elimina": 0.8387,
+            "correlacion_item_total": 0.6081
+          },
+          {
+            "item": "Estrés_académic_item1",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.8422,
+            "correlacion_item_total": 0.564
+          },
+          {
+            "item": "Estrés_académic_item2",
+            "media": 3.1875,
+            "alfa_si_se_elimina": 0.8405,
+            "correlacion_item_total": 0.5854
+          },
+          {
+            "item": "Estrés_académic_item3",
+            "media": 3.1375,
+            "alfa_si_se_elimina": 0.8379,
+            "correlacion_item_total": 0.6221
+          },
+          {
+            "item": "Apoyo_instituci_item1",
+            "media": 3.2375,
+            "alfa_si_se_elimina": 0.8401,
+            "correlacion_item_total": 0.5906
+          },
+          {
+            "item": "Apoyo_instituci_item2",
+            "media": 3.1875,
+            "alfa_si_se_elimina": 0.8398,
+            "correlacion_item_total": 0.5993
+          },
+          {
+            "item": "Apoyo_instituci_item3",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.8436,
+            "correlacion_item_total": 0.5451
+          },
+          {
+            "item": "Con_qué_frecuencia_has_sentido_síntomas",
+            "media": 3.2,
+            "alfa_si_se_elimina": 0.8869,
+            "correlacion_item_total": -0.0005
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      }
+    ]
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T03:22:14.796887+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/15__enc_08_respondido.csv",
+    "original": "raw/_/16__enc_08_original.txt",
+    "limpio": "clean/30/1__v1_encuesta_limpio.csv",
+    "nombre_archivo": "enc_08_respondido.csv"
+  },
+  "generated_at": "2026-11-12T03:22:14.797008+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T03:22:13.998767+00:00",
+    "archivo_limpio": "clean/30/1__v1_encuesta_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 32,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 25,
+        "cols_mas_nulos": [],
+        "n_respondentes": 160,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      },
+      "despues": {
+        "alertas": [],
+        "pct_nulos": 0.0,
+        "n_columnas": 31,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 25,
+        "cols_mas_nulos": [],
+        "n_respondentes": 160,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "fiabilidad": [
+        {
+          "alfa": 0.9021,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Bienestar emoci",
+          "n_casos": 160,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.1125,
+              "alfa_si_se_elimina": 0.8819,
+              "correlacion_item_total": 0.7575
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.0812,
+              "alfa_si_se_elimina": 0.8768,
+              "correlacion_item_total": 0.772
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.0938,
+              "alfa_si_se_elimina": 0.862,
+              "correlacion_item_total": 0.8122
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.0,
+              "alfa_si_se_elimina": 0.8732,
+              "correlacion_item_total": 0.7818
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.8866,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3"
+          ],
+          "bloque": "Estrés académic",
+          "n_casos": 160,
+          "n_items": 3,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.8554,
+              "correlacion_item_total": 0.7599
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.1875,
+              "alfa_si_se_elimina": 0.8259,
+              "correlacion_item_total": 0.7938
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.1375,
+              "alfa_si_se_elimina": 0.835,
+              "correlacion_item_total": 0.7838
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.8656,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3"
+          ],
+          "bloque": "Apoyo instituci",
+          "n_casos": 160,
+          "n_items": 3,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.2375,
+              "alfa_si_se_elimina": 0.7917,
+              "correlacion_item_total": 0.7646
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.1875,
+              "alfa_si_se_elimina": 0.8319,
+              "correlacion_item_total": 0.7217
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.8076,
+              "correlacion_item_total": 0.7482
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        },
+        {
+          "alfa": 0.8558,
+          "items": [
+            "Bienestar_emoci_item1",
+            "Bienestar_emoci_item2",
+            "Bienestar_emoci_item3",
+            "Bienestar_emoci_item4",
+            "Estrés_académic_item1",
+            "Estrés_académic_item2",
+            "Estrés_académic_item3",
+            "Apoyo_instituci_item1",
+            "Apoyo_instituci_item2",
+            "Apoyo_instituci_item3",
+            "Con_qué_frecuencia_has_sentido_síntomas"
+          ],
+          "bloque": "Todas las escalas Likert",
+          "n_casos": 160,
+          "n_items": 11,
+          "por_item": [
+            {
+              "item": "Bienestar_emoci_item1",
+              "media": 3.1125,
+              "alfa_si_se_elimina": 0.835,
+              "correlacion_item_total": 0.6613
+            },
+            {
+              "item": "Bienestar_emoci_item2",
+              "media": 3.0812,
+              "alfa_si_se_elimina": 0.834,
+              "correlacion_item_total": 0.6686
+            },
+            {
+              "item": "Bienestar_emoci_item3",
+              "media": 3.0938,
+              "alfa_si_se_elimina": 0.8337,
+              "correlacion_item_total": 0.6704
+            },
+            {
+              "item": "Bienestar_emoci_item4",
+              "media": 3.0,
+              "alfa_si_se_elimina": 0.8387,
+              "correlacion_item_total": 0.6081
+            },
+            {
+              "item": "Estrés_académic_item1",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.8422,
+              "correlacion_item_total": 0.564
+            },
+            {
+              "item": "Estrés_académic_item2",
+              "media": 3.1875,
+              "alfa_si_se_elimina": 0.8405,
+              "correlacion_item_total": 0.5854
+            },
+            {
+              "item": "Estrés_académic_item3",
+              "media": 3.1375,
+              "alfa_si_se_elimina": 0.8379,
+              "correlacion_item_total": 0.6221
+            },
+            {
+              "item": "Apoyo_instituci_item1",
+              "media": 3.2375,
+              "alfa_si_se_elimina": 0.8401,
+              "correlacion_item_total": 0.5906
+            },
+            {
+              "item": "Apoyo_instituci_item2",
+              "media": 3.1875,
+              "alfa_si_se_elimina": 0.8398,
+              "correlacion_item_total": 0.5993
+            },
+            {
+              "item": "Apoyo_instituci_item3",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.8436,
+              "correlacion_item_total": 0.5451
+            },
+            {
+              "item": "Con_qué_frecuencia_has_sentido_síntomas",
+              "media": 3.2,
+              "alfa_si_se_elimina": 0.8869,
+              "correlacion_item_total": -0.0005
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        }
+      ],
+      "encuestados": {
+        "incompletos": 0,
+        "linea_recta": 25
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 47,
+      "nombre_kpi": "Uso de Servicios de Salud Mental y Apoyo Psicológico",
+      "score": 0.7018
+    },
+    {
+      "kpi_id": 49,
+      "nombre_kpi": "Puntaje de Satisfacción Estudiantil (NPS / Encuestas)",
+      "score": 0.5514
+    }
+  ],
+  "finalized_at": "2026-11-12T03:22:50.335081+00:00"
+}

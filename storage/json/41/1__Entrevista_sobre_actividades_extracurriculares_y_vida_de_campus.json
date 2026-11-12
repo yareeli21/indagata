@@ -1,0 +1,517 @@
+{
+  "instrument_id": "41",
+  "schema_version": "2.0",
+  "tipo_instrumento": "entrevista",
+  "instrument": {
+    "title": "Entrevista sobre actividades extracurriculares y vida de campus",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "PREGUNTAS:",
+      "FIN DEL INSTRUMENTO"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "¿Participas o has participado en actividades extracurriculares en tu institución?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q2",
+            "text": "¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q3",
+            "text": "¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q4",
+            "text": "¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q5",
+            "text": "¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q6",
+            "text": "¿Qué actividades nuevas te gustaría que ofreciera tu institución?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q7",
+            "text": "¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?",
+            "type": "abierta",
+            "options": []
+          },
+          {
+            "question_id": "q8",
+            "text": "¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?",
+            "type": "abierta",
+            "options": []
+          }
+        ]
+      }
+    ],
+    "contenido": "======================================================================\r\nINSTRUMENTO: Entrevista sobre actividades extracurriculares y vida de campus\r\nID: ent_07\r\nTipo: Entrevista semiestructurada\r\n======================================================================\r\n\r\nOBJETIVO:\r\nEsta entrevista busca explorar en profundidad las experiencias y percepciones\r\nde los estudiantes en relación con: Oferta de Actividades Extracurriculares, Satisfacción Estudiantil.\r\n\r\nINSTRUCCIONES PARA EL ENTREVISTADOR:\r\n- Leer cada pregunta de forma natural, permitiendo que el respondente se exprese libremente.\r\n- Hacer preguntas de seguimiento cuando sea pertinente.\r\n- Garantizar la confidencialidad de las respuestas.\r\n- Duración estimada: 30-45 minutos.\r\n\r\nPREGUNTAS:\r\n\r\n1. ¿Participas o has participado en actividades extracurriculares en tu institución?\r\n\r\n2. ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\r\n\r\n3. ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\r\n\r\n4. ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\r\n\r\n5. ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\r\n\r\n6. ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\r\n\r\n7. ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\r\n\r\n8. ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\r\n\r\n======================================================================\r\nFIN DEL INSTRUMENTO\n\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. En mi experiencia, la comunicación con los profesores hace una gran diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: La tecnología me ayuda a ser más eficiente, aunque a veces el exceso de notificaciones y plataformas también agobia. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. En mi experiencia, la comunicación con los profesores hace una gran diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. En mi experiencia, la comunicación con los profesores hace una gran diferencia. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. The cultural differences make this both challenging and enriching at the same time. I've grown more as a person during this exchange than I would have staying home.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. I've grown more as a person during this exchange than I would have staying home.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: La tecnología me ayuda a ser más eficiente, aunque a veces el exceso de notificaciones y plataformas también agobia. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. I've grown more as a person during this exchange than I would have staying home. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: I'm comfortable with digital tools since most education in my home country was already highly digitalized. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. I've grown more as a person during this exchange than I would have staying home.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: I'm comfortable with digital tools since most education in my home country was already highly digitalized. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: I'm comfortable with digital tools since most education in my home country was already highly digitalized. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. He comprobado que con una buena planificación casi cualquier reto académico es superable. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. Adapting to a new academic system requires flexibility and open-mindedness. I've grown more as a person during this exchange than I would have staying home.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: I had to adapt quickly to the local academic culture, the teaching styles, and even the way students interact with professors. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. He comprobado que con una buena planificación casi cualquier reto académico es superable. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Language barriers were sometimes an issue, especially in written exams, but I've improved significantly over time. I've grown more as a person during this exchange than I would have staying home. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: The LMS here is okay, but I've seen better ones abroad. Still, it gets the job done. Adapting to a new academic system requires flexibility and open-mindedness. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Coming from another country, the academic system here is quite different from what I was used to. The transition was challenging but fascinating. I've grown more as a person during this exchange than I would have staying home. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Sometimes I feel a cultural disconnect in some subjects, but overall the quality of education is good. I've grown more as a person during this exchange than I would have staying home. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: The experience has been enriching culturally and academically. I've learned as much from my peers as from the classes. The cultural differences make this both challenging and enriching at the same time.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: I'm comfortable with digital tools since most education in my home country was already highly digitalized. I've grown more as a person during this exchange than I would have staying home. Adapting to a new academic system requires flexibility and open-mindedness.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. He comprobado que con una buena planificación casi cualquier reto académico es superable. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. En mi experiencia, la comunicación con los profesores hace una gran diferencia.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. He comprobado que con una buena planificación casi cualquier reto académico es superable.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\nP: ¿Participas o has participado en actividades extracurriculares en tu institución?\nR: Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?\nR: Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?\nR: Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo.\nP: ¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?\nR: La tecnología me ayuda a ser más eficiente, aunque a veces el exceso de notificaciones y plataformas también agobia. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?\nR: He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Qué actividades nuevas te gustaría que ofreciera tu institución?\nR: Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?\nR: Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen.\nP: ¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?\nR: La tecnología me ayuda a ser más eficiente, aunque a veces el exceso de notificaciones y plataformas también agobia. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+  },
+  "metadata": {
+    "tipo_instrumento": "entrevista",
+    "dublin_core": {
+      "dc:title": "Entrevista sobre actividades extracurriculares y vida de campus",
+      "dc:creator": "Administrador",
+      "dc:subject": "actividades, institución, extracurriculares, apoyo, académico, fundamental",
+      "dc:description": "======================================================================",
+      "dc:type": "Entrevista",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "Primaria — de los estudiantes en relación con: Oferta de Actividades Extracurriculares, Satisfacción Estudiantil.",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/plain",
+      "dc:source": "ent_07_respondido.txt",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "identificador_propio": "ent_07_respondido",
+      "objetivo": "No especificado",
+      "metodologia": "Entrevista semiestructurada",
+      "institucion": "No especificado",
+      "derechos": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Oferta de Actividades Extracurriculares",
+      "Porcentaje de Estudiantes a Tiempo Parcial"
+    ]
+  },
+  "statistics": {
+    "per_question": {},
+    "global": {
+      "n_registros": 480,
+      "n_duplicados": 0,
+      "pct_vacios": null,
+      "n_reactivos": 8
+    }
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T04:08:01.563814+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/37__ent_07_respondido.txt",
+    "original": "raw/_/38__ent_07_original.txt",
+    "limpio": "clean/41/1__v1_entrevista_limpio.csv",
+    "nombre_archivo": "ent_07_respondido.txt"
+  },
+  "generated_at": "2026-11-12T04:08:01.563933+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T04:08:00.978307+00:00",
+    "archivo_limpio": "clean/41/1__v1_entrevista_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "n_lineas": 669,
+        "n_palabras": 13217,
+        "n_caracteres": 86799,
+        "ruido_detectado": 4
+      },
+      "despues": {
+        "n_lineas": 480,
+        "n_turnos": 480,
+        "n_palabras": 11963,
+        "n_hablantes": 2,
+        "n_caracteres": 77191,
+        "ruido_detectado": 0,
+        "estructura_reconocida": true
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "hablantes": [
+        {
+          "rol": "entrevistador",
+          "nombre": "P",
+          "turnos": 240,
+          "palabras": 2550,
+          "pct_palabras": 0.2132,
+          "pct_preguntas": 1.0,
+          "palabras_por_turno": {
+            "max": 13.0,
+            "min": 9.0,
+            "media": 10.625,
+            "mediana": 10.5,
+            "desviacion": 1.3197
+          }
+        },
+        {
+          "rol": "entrevistado",
+          "nombre": "R",
+          "turnos": 240,
+          "palabras": 9413,
+          "pct_palabras": 0.7868,
+          "pct_preguntas": 0.0,
+          "palabras_por_turno": {
+            "max": 60.0,
+            "min": 26.0,
+            "media": 39.2208,
+            "mediana": 38.0,
+            "desviacion": 7.4444
+          }
+        }
+      ],
+      "preguntas": [
+        {
+          "texto": "¿Participas o has participado en actividades extracurriculares en tu institución?",
+          "palabras": {
+            "max": 60.0,
+            "min": 29.0,
+            "media": 39.7,
+            "mediana": 39.0
+          },
+          "pregunta": "P1",
+          "n_respuestas": 30,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Cómo han contribuido las actividades extracurriculares a tu desarrollo personal?",
+          "palabras": {
+            "max": 53.0,
+            "min": 29.0,
+            "media": 40.0667,
+            "mediana": 40.0
+          },
+          "pregunta": "P2",
+          "n_respuestas": 30,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Qué te motivó a involucrarte en actividades fuera del ámbito académico?",
+          "palabras": {
+            "max": 56.0,
+            "min": 29.0,
+            "media": 37.2333,
+            "mediana": 35.0
+          },
+          "pregunta": "P3",
+          "n_respuestas": 30,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Cómo equilibras las actividades extracurriculares con tus responsabilidades académicas?",
+          "palabras": {
+            "max": 53.0,
+            "min": 26.0,
+            "media": 37.7,
+            "mediana": 37.5
+          },
+          "pregunta": "P4",
+          "n_respuestas": 30,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Consideras que la oferta de actividades de tu institución es suficiente y diversa?",
+          "palabras": {
+            "max": 56.0,
+            "min": 26.0,
+            "media": 40.7667,
+            "mediana": 42.0
+          },
+          "pregunta": "P5",
+          "n_respuestas": 30,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Qué actividades nuevas te gustaría que ofreciera tu institución?",
+          "palabras": {
+            "max": 54.0,
+            "min": 27.0,
+            "media": 40.7,
+            "mediana": 40.0
+          },
+          "pregunta": "P6",
+          "n_respuestas": 30,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Cómo ha impactado la vida de campus en tu sentido de pertenencia?",
+          "palabras": {
+            "max": 56.0,
+            "min": 26.0,
+            "media": 39.5333,
+            "mediana": 37.0
+          },
+          "pregunta": "P7",
+          "n_respuestas": 30,
+          "sin_respuesta": 0
+        },
+        {
+          "texto": "¿Has desarrollado amistades o redes profesionales a través de actividades extracurriculares?",
+          "palabras": {
+            "max": 54.0,
+            "min": 26.0,
+            "media": 38.0667,
+            "mediana": 37.0
+          },
+          "pregunta": "P8",
+          "n_respuestas": 30,
+          "sin_respuesta": 0
+        }
+      ],
+      "n_preguntas": 8,
+      "n_respuestas": 240,
+      "participantes": [
+        {
+          "id": "R0001",
+          "palabras": 307,
+          "respuestas": 8,
+          "palabras_por_respuesta": 38.4
+        },
+        {
+          "id": "R0002",
+          "palabras": 300,
+          "respuestas": 8,
+          "palabras_por_respuesta": 37.5
+        },
+        {
+          "id": "R0003",
+          "palabras": 304,
+          "respuestas": 8,
+          "palabras_por_respuesta": 38.0
+        },
+        {
+          "id": "R0004",
+          "palabras": 340,
+          "respuestas": 8,
+          "palabras_por_respuesta": 42.5
+        },
+        {
+          "id": "R0005",
+          "palabras": 278,
+          "respuestas": 8,
+          "palabras_por_respuesta": 34.8
+        },
+        {
+          "id": "R0006",
+          "palabras": 331,
+          "respuestas": 8,
+          "palabras_por_respuesta": 41.4
+        },
+        {
+          "id": "R0007",
+          "palabras": 258,
+          "respuestas": 8,
+          "palabras_por_respuesta": 32.2
+        },
+        {
+          "id": "R0008",
+          "palabras": 338,
+          "respuestas": 8,
+          "palabras_por_respuesta": 42.2
+        },
+        {
+          "id": "R0009",
+          "palabras": 294,
+          "respuestas": 8,
+          "palabras_por_respuesta": 36.8
+        },
+        {
+          "id": "R0010",
+          "palabras": 299,
+          "respuestas": 8,
+          "palabras_por_respuesta": 37.4
+        },
+        {
+          "id": "R0011",
+          "palabras": 366,
+          "respuestas": 8,
+          "palabras_por_respuesta": 45.8
+        },
+        {
+          "id": "R0012",
+          "palabras": 267,
+          "respuestas": 8,
+          "palabras_por_respuesta": 33.4
+        },
+        {
+          "id": "R0013",
+          "palabras": 300,
+          "respuestas": 8,
+          "palabras_por_respuesta": 37.5
+        },
+        {
+          "id": "R0014",
+          "palabras": 292,
+          "respuestas": 8,
+          "palabras_por_respuesta": 36.5
+        },
+        {
+          "id": "R0015",
+          "palabras": 324,
+          "respuestas": 8,
+          "palabras_por_respuesta": 40.5
+        },
+        {
+          "id": "R0016",
+          "palabras": 304,
+          "respuestas": 8,
+          "palabras_por_respuesta": 38.0
+        },
+        {
+          "id": "R0017",
+          "palabras": 314,
+          "respuestas": 8,
+          "palabras_por_respuesta": 39.2
+        },
+        {
+          "id": "R0018",
+          "palabras": 303,
+          "respuestas": 8,
+          "palabras_por_respuesta": 37.9
+        },
+        {
+          "id": "R0019",
+          "palabras": 325,
+          "respuestas": 8,
+          "palabras_por_respuesta": 40.6
+        },
+        {
+          "id": "R0020",
+          "palabras": 321,
+          "respuestas": 8,
+          "palabras_por_respuesta": 40.1
+        },
+        {
+          "id": "R0021",
+          "palabras": 347,
+          "respuestas": 8,
+          "palabras_por_respuesta": 43.4
+        },
+        {
+          "id": "R0022",
+          "palabras": 305,
+          "respuestas": 8,
+          "palabras_por_respuesta": 38.1
+        },
+        {
+          "id": "R0023",
+          "palabras": 327,
+          "respuestas": 8,
+          "palabras_por_respuesta": 40.9
+        },
+        {
+          "id": "R0024",
+          "palabras": 321,
+          "respuestas": 8,
+          "palabras_por_respuesta": 40.1
+        },
+        {
+          "id": "R0025",
+          "palabras": 325,
+          "respuestas": 8,
+          "palabras_por_respuesta": 40.6
+        },
+        {
+          "id": "R0026",
+          "palabras": 307,
+          "respuestas": 8,
+          "palabras_por_respuesta": 38.4
+        },
+        {
+          "id": "R0027",
+          "palabras": 305,
+          "respuestas": 8,
+          "palabras_por_respuesta": 38.1
+        },
+        {
+          "id": "R0028",
+          "palabras": 328,
+          "respuestas": 8,
+          "palabras_por_respuesta": 41.0
+        },
+        {
+          "id": "R0029",
+          "palabras": 357,
+          "respuestas": 8,
+          "palabras_por_respuesta": 44.6
+        },
+        {
+          "id": "R0030",
+          "palabras": 326,
+          "respuestas": 8,
+          "palabras_por_respuesta": 40.8
+        }
+      ],
+      "n_participantes": 30,
+      "palabras_por_rol": [
+        {
+          "rol": "entrevistado",
+          "turnos": 240,
+          "palabras": 9413,
+          "pct_palabras": 0.7868
+        },
+        {
+          "rol": "entrevistador",
+          "turnos": 240,
+          "palabras": 2550,
+          "pct_palabras": 0.2132
+        }
+      ],
+      "palabras_por_turno": {
+        "n": 480,
+        "q1": 10.75,
+        "q3": 38.0,
+        "iqr": 27.25,
+        "max": 60.0,
+        "min": 9.0,
+        "media": 24.9229,
+        "mediana": 19.5,
+        "curtosis": -1.4388,
+        "asimetria": 0.3465,
+        "desviacion": 15.2767
+      },
+      "palabras_por_respuesta": {
+        "n": 240,
+        "q1": 33.0,
+        "q3": 46.0,
+        "iqr": 13.0,
+        "max": 60.0,
+        "min": 26.0,
+        "media": 39.2208,
+        "mediana": 38.0,
+        "curtosis": -0.6823,
+        "asimetria": 0.3964,
+        "desviacion": 7.4444
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 17,
+      "nombre_kpi": "Oferta de Actividades Extracurriculares",
+      "score": 0.5902
+    },
+    {
+      "kpi_id": 35,
+      "nombre_kpi": "Porcentaje de Estudiantes a Tiempo Parcial",
+      "score": 0.4596
+    }
+  ],
+  "finalized_at": "2026-11-12T04:09:12.062378+00:00"
+}

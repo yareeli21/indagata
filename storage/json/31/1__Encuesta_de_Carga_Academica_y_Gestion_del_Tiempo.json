@@ -1,0 +1,1898 @@
+{
+  "instrument_id": "31",
+  "schema_version": "2.0",
+  "tipo_instrumento": "encuesta",
+  "instrument": {
+    "title": "Encuesta de Carga Académica y Gestión del Tiempo",
+    "objective": "No especificado",
+    "dimensions_explored": [
+      "CARGA HORARIA PERCIBIDA",
+      "ORGANIZACIÓN DEL TIEMPO"
+    ],
+    "sections": [
+      {
+        "section_id": "s1",
+        "name": "CARGA HORARIA PERCIBIDA",
+        "questions": [
+          {
+            "question_id": "q1",
+            "text": "Considero que la cantidad de materias que curso es manejable.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q2",
+            "text": "El volumen de lecturas y tareas es proporcional al crédito de cada materia.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q3",
+            "text": "Tengo tiempo suficiente para estudiar cada materia adecuadamente.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q4",
+            "text": "La carga de trabajo me permite mantener un equilibrio saludable.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s2",
+        "name": "ORGANIZACIÓN DEL TIEMPO",
+        "questions": [
+          {
+            "question_id": "q5",
+            "text": "Planifico mis actividades con anticipación usando agendas o calendarios.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q6",
+            "text": "Cumplo con mis horarios de estudio establecidos.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q7",
+            "text": "Identifico y elimino distracciones durante mis sesiones de estudio.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "question_id": "q8",
+            "text": "Distribuyo el tiempo de manera equilibrada entre todas mis materias.",
+            "type": "likert",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        ]
+      },
+      {
+        "section_id": "s3",
+        "name": "Reactivos",
+        "questions": [
+          {
+            "question_id": "q9",
+            "text": "Cuántas_materias_cursas_actualmente",
+            "type": "categorica",
+            "options": [
+              "5-6",
+              "7 o más",
+              "1-2",
+              "3-4"
+            ]
+          },
+          {
+            "question_id": "q10",
+            "text": "Con_qué_frecuencia_dejas_tareas_para_el",
+            "type": "likert",
+            "options": [
+              "Nunca",
+              "Raramente",
+              "A veces",
+              "Frecuentemente",
+              "Siempre"
+            ]
+          },
+          {
+            "question_id": "q11",
+            "text": "Qué_estrategia_usas_más_para_gestionar_",
+            "type": "categorica",
+            "options": [
+              "Agenda física",
+              "Sin estrategia definida",
+              "App digital",
+              "Lista de tareas informal"
+            ]
+          },
+          {
+            "question_id": "q12",
+            "text": "Cuántas_horas_dedicas_al_estudio_fuera_",
+            "type": "categorica",
+            "options": [
+              "Menos de 5h",
+              "Más de 20h",
+              "10-15h",
+              "5-10h",
+              "15-20h"
+            ]
+          },
+          {
+            "question_id": "q13",
+            "text": "Has_reprobado_alguna_materia_por_falta_",
+            "type": "categorica",
+            "options": [
+              "Sí, varias veces",
+              "Sí, una vez",
+              "No, nunca",
+              "Casi lo hago"
+            ]
+          },
+          {
+            "question_id": "q14",
+            "text": "Cuál_es_tu_carga_laboral_actual",
+            "type": "categorica",
+            "options": [
+              "Trabajo 20-30h",
+              "No trabajo",
+              "Trabajo más de 30h",
+              "Trabajo menos de 20h semanales"
+            ]
+          },
+          {
+            "question_id": "q15",
+            "text": "Tienes_dificultades_para_equilibrar_tra",
+            "type": "binaria",
+            "options": [
+              "Sí",
+              "No"
+            ]
+          },
+          {
+            "question_id": "q16",
+            "text": "Tu_institución_ofrece_talleres_de_gesti",
+            "type": "binaria",
+            "options": [
+              "No",
+              "Sí"
+            ]
+          },
+          {
+            "question_id": "q17",
+            "text": "Cuántas_horas_por_semana_dedicas_al_est",
+            "type": "numerica",
+            "options": []
+          },
+          {
+            "question_id": "q18",
+            "text": "Del_1_al_10,_cuánta_presión_sientes_por",
+            "type": "escala_lineal",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          },
+          {
+            "question_id": "q19",
+            "text": "Del_1_al_10,_qué_tan_efectivo/a_eres_ge",
+            "type": "escala_lineal",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          },
+          {
+            "question_id": "q20",
+            "text": "Cuántos_créditos_cursas_este_semestre_",
+            "type": "calificacion",
+            "options": []
+          }
+        ]
+      }
+    ],
+    "contenido": ""
+  },
+  "metadata": {
+    "tipo_instrumento": "encuesta",
+    "dublin_core": {
+      "dc:title": "Encuesta de Carga Académica y Gestión del Tiempo",
+      "dc:creator": "Administrador",
+      "dc:subject": "tiempo, carga, trabajo, estudio, materias, materia",
+      "dc:description": "Encuesta de 20 reactivos aplicada a 160 respondentes. Explora: carga horaria percibida; organización del tiempo.",
+      "dc:type": "Encuesta",
+      "dc:date": "2026-11-12",
+      "dc:language": "es",
+      "dc:coverage": "No especificado",
+      "dc:publisher": "Indagata",
+      "dc:rights": "Uso académico. Datos de investigación educativa: citar a la autoría y solicitar autorización para su reutilización.",
+      "dc:format": "text/csv",
+      "dc:source": "enc_09_respondido.csv",
+      "dc:relation": ""
+    },
+    "survey_specific": {
+      "n_respondentes": 160,
+      "objetivo": "No especificado",
+      "poblacion_objetivo": "No especificado",
+      "constructo_principal": "No especificado",
+      "palabras_clave": [
+        "tiempo",
+        "carga",
+        "trabajo",
+        "estudio",
+        "materias",
+        "materia",
+        "tareas",
+        "cursas"
+      ],
+      "dimensiones": [
+        "CARGA HORARIA PERCIBIDA",
+        "ORGANIZACIÓN DEL TIEMPO"
+      ],
+      "notas_contextuales": "Calidad de los datos: 160 registros con respuesta; 0% de respuestas vacías."
+    }
+  },
+  "design_reference": {
+    "kpi_hints": [
+      "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "Porcentaje de Estudiantes a Tiempo Parcial"
+    ]
+  },
+  "statistics": {
+    "per_question": {
+      "q1": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.275,
+        "std": 1.107,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 52,
+          "3": 48,
+          "2": 28,
+          "5": 21,
+          "1": 11
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.275,
+          "mediana": 3.0,
+          "curtosis": -0.6083,
+          "asimetria": -0.2838,
+          "desviacion": 1.11
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 11,
+              "pct": 0.0688,
+              "valor": "1"
+            },
+            {
+              "n": 28,
+              "pct": 0.175,
+              "valor": "2"
+            },
+            {
+              "n": 48,
+              "pct": 0.3,
+              "valor": "3"
+            },
+            {
+              "n": 52,
+              "pct": 0.325,
+              "valor": "4"
+            },
+            {
+              "n": 21,
+              "pct": 0.1313,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "carga_horaria_p_item1"
+      },
+      "q2": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.244,
+        "std": 1.15,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 52,
+          "3": 47,
+          "2": 25,
+          "5": 21,
+          "1": 15
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.75,
+          "q3": 4.0,
+          "iqr": 1.25,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2437,
+          "mediana": 3.0,
+          "curtosis": -0.6323,
+          "asimetria": -0.3403,
+          "desviacion": 1.1533
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 15,
+              "pct": 0.0938,
+              "valor": "1"
+            },
+            {
+              "n": 25,
+              "pct": 0.1562,
+              "valor": "2"
+            },
+            {
+              "n": 47,
+              "pct": 0.2938,
+              "valor": "3"
+            },
+            {
+              "n": 52,
+              "pct": 0.325,
+              "valor": "4"
+            },
+            {
+              "n": 21,
+              "pct": 0.1313,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "carga_horaria_p_item2"
+      },
+      "q3": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.269,
+        "std": 1.16,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 50,
+          "4": 44,
+          "2": 27,
+          "5": 26,
+          "1": 13
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.75,
+          "q3": 4.0,
+          "iqr": 1.25,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2687,
+          "mediana": 3.0,
+          "curtosis": -0.7068,
+          "asimetria": -0.2253,
+          "desviacion": 1.164
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 13,
+              "pct": 0.0813,
+              "valor": "1"
+            },
+            {
+              "n": 27,
+              "pct": 0.1688,
+              "valor": "2"
+            },
+            {
+              "n": 50,
+              "pct": 0.3125,
+              "valor": "3"
+            },
+            {
+              "n": 44,
+              "pct": 0.275,
+              "valor": "4"
+            },
+            {
+              "n": 26,
+              "pct": 0.1625,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "carga_horaria_p_item3"
+      },
+      "q4": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.312,
+        "std": 1.152,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 46,
+          "3": 43,
+          "2": 34,
+          "5": 28,
+          "1": 9
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3125,
+          "mediana": 3.0,
+          "curtosis": -0.8755,
+          "asimetria": -0.165,
+          "desviacion": 1.1557
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 9,
+              "pct": 0.0563,
+              "valor": "1"
+            },
+            {
+              "n": 34,
+              "pct": 0.2125,
+              "valor": "2"
+            },
+            {
+              "n": 43,
+              "pct": 0.2687,
+              "valor": "3"
+            },
+            {
+              "n": 46,
+              "pct": 0.2875,
+              "valor": "4"
+            },
+            {
+              "n": 28,
+              "pct": 0.175,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "carga_horaria_p_item4"
+      },
+      "q5": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.138,
+        "std": 1.237,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 44,
+          "4": 43,
+          "2": 29,
+          "5": 24,
+          "1": 20
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.1375,
+          "mediana": 3.0,
+          "curtosis": -0.9151,
+          "asimetria": -0.1847,
+          "desviacion": 1.2413
+        },
+        "frecuencias": {
+          "moda": "3",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 20,
+              "pct": 0.125,
+              "valor": "1"
+            },
+            {
+              "n": 29,
+              "pct": 0.1812,
+              "valor": "2"
+            },
+            {
+              "n": 44,
+              "pct": 0.275,
+              "valor": "3"
+            },
+            {
+              "n": 43,
+              "pct": 0.2687,
+              "valor": "4"
+            },
+            {
+              "n": 24,
+              "pct": 0.15,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "organizacion_de_item1"
+      },
+      "q6": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.256,
+        "std": 1.2,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 46,
+          "3": 42,
+          "2": 31,
+          "5": 27,
+          "1": 14
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.2563,
+          "mediana": 3.0,
+          "curtosis": -0.8698,
+          "asimetria": -0.2222,
+          "desviacion": 1.204
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 14,
+              "pct": 0.0875,
+              "valor": "1"
+            },
+            {
+              "n": 31,
+              "pct": 0.1938,
+              "valor": "2"
+            },
+            {
+              "n": 42,
+              "pct": 0.2625,
+              "valor": "3"
+            },
+            {
+              "n": 46,
+              "pct": 0.2875,
+              "valor": "4"
+            },
+            {
+              "n": 27,
+              "pct": 0.1688,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "organizacion_de_item2"
+      },
+      "q7": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.325,
+        "std": 1.159,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "3": 48,
+          "4": 48,
+          "5": 27,
+          "2": 24,
+          "1": 13
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 4.0,
+          "iqr": 1.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.325,
+          "mediana": 3.0,
+          "curtosis": -0.6419,
+          "asimetria": -0.3206,
+          "desviacion": 1.1631
+        },
+        "frecuencias": {
+          "moda": [
+            "3",
+            "4"
+          ],
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 13,
+              "pct": 0.0813,
+              "valor": "1"
+            },
+            {
+              "n": 24,
+              "pct": 0.15,
+              "valor": "2"
+            },
+            {
+              "n": 48,
+              "pct": 0.3,
+              "valor": "3"
+            },
+            {
+              "n": 48,
+              "pct": 0.3,
+              "valor": "4"
+            },
+            {
+              "n": 27,
+              "pct": 0.1688,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "organizacion_de_item3"
+      },
+      "q8": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.306,
+        "std": 1.183,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 50,
+          "3": 41,
+          "2": 29,
+          "5": 27,
+          "1": 13
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.3062,
+          "mediana": 3.0,
+          "curtosis": -0.7988,
+          "asimetria": -0.2948,
+          "desviacion": 1.1869
+        },
+        "frecuencias": {
+          "moda": "4",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 13,
+              "pct": 0.0813,
+              "valor": "1"
+            },
+            {
+              "n": 29,
+              "pct": 0.1812,
+              "valor": "2"
+            },
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "3"
+            },
+            {
+              "n": 50,
+              "pct": 0.3125,
+              "valor": "4"
+            },
+            {
+              "n": 27,
+              "pct": 0.1688,
+              "valor": "5"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "numerica",
+          "puntos": 5,
+          "codigos": {},
+          "neutral": 3,
+          "etiquetas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "organizacion_de_item4"
+      },
+      "q9": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "5-6": 41,
+          "7 o más": 41,
+          "1-2": 40,
+          "3-4": 38
+        },
+        "frecuencias": {
+          "moda": [
+            "5-6",
+            "7 o más"
+          ],
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "5-6"
+            },
+            {
+              "n": 41,
+              "pct": 0.2562,
+              "valor": "7 o más"
+            },
+            {
+              "n": 40,
+              "pct": 0.25,
+              "valor": "1-2"
+            },
+            {
+              "n": 38,
+              "pct": 0.2375,
+              "valor": "3-4"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cuantas_materias_cursas_actualmente"
+      },
+      "q10": {
+        "type": "likert",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 3.094,
+        "std": 1.404,
+        "min": 1.0,
+        "max": 5.0,
+        "distribution": {
+          "4": 37,
+          "5": 33,
+          "3": 32,
+          "1": 30,
+          "2": 28
+        },
+        "etiquetas": {
+          "1": "Totalmente en desacuerdo / Nunca",
+          "2": "En desacuerdo / Pocas veces",
+          "3": "Ni de acuerdo ni en desacuerdo / A veces",
+          "4": "De acuerdo / Frecuentemente",
+          "5": "Totalmente de acuerdo / Siempre"
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 2.0,
+          "q3": 4.0,
+          "iqr": 2.0,
+          "max": 5.0,
+          "min": 1.0,
+          "media": 3.0938,
+          "mediana": 3.0,
+          "curtosis": -1.2715,
+          "asimetria": -0.1273,
+          "desviacion": 1.4089
+        },
+        "frecuencias": {
+          "moda": "Frecuentemente",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 30,
+              "pct": 0.1875,
+              "valor": "Nunca"
+            },
+            {
+              "n": 28,
+              "pct": 0.175,
+              "valor": "Raramente"
+            },
+            {
+              "n": 32,
+              "pct": 0.2,
+              "valor": "A veces"
+            },
+            {
+              "n": 37,
+              "pct": 0.2313,
+              "valor": "Frecuentemente"
+            },
+            {
+              "n": 33,
+              "pct": 0.2062,
+              "valor": "Siempre"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "likert": {
+          "escala": "frecuencia",
+          "puntos": 5,
+          "codigos": {
+            "Nunca": 1,
+            "A veces": 3,
+            "Siempre": 5,
+            "Raramente": 2,
+            "Frecuentemente": 4
+          },
+          "neutral": 3,
+          "etiquetas": [
+            "Nunca",
+            "Raramente",
+            "A veces",
+            "Frecuentemente",
+            "Siempre"
+          ],
+          "excluidos": [],
+          "invertido": false
+        },
+        "columna": "con_que_frecuencia_dejas_tareas_para_el"
+      },
+      "q11": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Agenda física": 45,
+          "Sin estrategia definida": 42,
+          "App digital": 39,
+          "Lista de tareas informal": 34
+        },
+        "frecuencias": {
+          "moda": "Agenda física",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 45,
+              "pct": 0.2812,
+              "valor": "Agenda física"
+            },
+            {
+              "n": 42,
+              "pct": 0.2625,
+              "valor": "Sin estrategia definida"
+            },
+            {
+              "n": 39,
+              "pct": 0.2437,
+              "valor": "App digital"
+            },
+            {
+              "n": 34,
+              "pct": 0.2125,
+              "valor": "Lista de tareas informal"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "que_estrategia_usas_mas_para_gestionar"
+      },
+      "q12": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Menos de 5h": 39,
+          "Más de 20h": 34,
+          "10-15h": 33,
+          "5-10h": 28,
+          "15-20h": 26
+        },
+        "frecuencias": {
+          "moda": "Menos de 5h",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 39,
+              "pct": 0.2437,
+              "valor": "Menos de 5h"
+            },
+            {
+              "n": 34,
+              "pct": 0.2125,
+              "valor": "Más de 20h"
+            },
+            {
+              "n": 33,
+              "pct": 0.2062,
+              "valor": "10-15h"
+            },
+            {
+              "n": 28,
+              "pct": 0.175,
+              "valor": "5-10h"
+            },
+            {
+              "n": 26,
+              "pct": 0.1625,
+              "valor": "15-20h"
+            }
+          ],
+          "n_categorias": 5
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cuantas_horas_dedicas_al_estudio_fuera"
+      },
+      "q13": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Sí, varias veces": 45,
+          "Sí, una vez": 43,
+          "No, nunca": 37,
+          "Casi lo hago": 35
+        },
+        "frecuencias": {
+          "moda": "Sí, varias veces",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 45,
+              "pct": 0.2812,
+              "valor": "Sí, varias veces"
+            },
+            {
+              "n": 43,
+              "pct": 0.2687,
+              "valor": "Sí, una vez"
+            },
+            {
+              "n": 37,
+              "pct": 0.2313,
+              "valor": "No, nunca"
+            },
+            {
+              "n": 35,
+              "pct": 0.2188,
+              "valor": "Casi lo hago"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "has_reprobado_alguna_materia_por_falta"
+      },
+      "q14": {
+        "type": "categorica",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Trabajo 20-30h": 48,
+          "No trabajo": 40,
+          "Trabajo más de 30h": 37,
+          "Trabajo menos de 20h semanales": 35
+        },
+        "frecuencias": {
+          "moda": "Trabajo 20-30h",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 48,
+              "pct": 0.3,
+              "valor": "Trabajo 20-30h"
+            },
+            {
+              "n": 40,
+              "pct": 0.25,
+              "valor": "No trabajo"
+            },
+            {
+              "n": 37,
+              "pct": 0.2313,
+              "valor": "Trabajo más de 30h"
+            },
+            {
+              "n": 35,
+              "pct": 0.2188,
+              "valor": "Trabajo menos de 20h semanales"
+            }
+          ],
+          "n_categorias": 4
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cual_es_tu_carga_laboral_actual"
+      },
+      "q15": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "Sí": 83,
+          "No": 77
+        },
+        "frecuencias": {
+          "moda": "Sí",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 83,
+              "pct": 0.5188,
+              "valor": "Sí"
+            },
+            {
+              "n": 77,
+              "pct": 0.4813,
+              "valor": "No"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "tienes_dificultades_para_equilibrar_tra"
+      },
+      "q16": {
+        "type": "binaria",
+        "n": 160,
+        "n_vacios": 0,
+        "distribution": {
+          "No": 97,
+          "Sí": 63
+        },
+        "frecuencias": {
+          "moda": "No",
+          "otras": 0,
+          "tabla": [
+            {
+              "n": 97,
+              "pct": 0.6062,
+              "valor": "No"
+            },
+            {
+              "n": 63,
+              "pct": 0.3937,
+              "valor": "Sí"
+            }
+          ],
+          "n_categorias": 2
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "tu_institucion_ofrece_talleres_de_gesti"
+      },
+      "q17": {
+        "type": "numerica",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 27.231,
+        "std": 14.493,
+        "min": 0.0,
+        "max": 50.0,
+        "numerico": {
+          "n": 160,
+          "q1": 16.0,
+          "q3": 40.25,
+          "iqr": 24.25,
+          "max": 50.0,
+          "min": 0.0,
+          "media": 27.2312,
+          "mediana": 28.5,
+          "curtosis": -1.2011,
+          "asimetria": -0.1267,
+          "desviacion": 14.5387
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cuantas_horas_por_semana_dedicas_al_est"
+      },
+      "q18": {
+        "type": "escala_lineal",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 5.513,
+        "std": 2.89,
+        "min": 1.0,
+        "max": 10.0,
+        "distribution": {
+          "2": 23,
+          "4": 19,
+          "8": 18,
+          "10": 18,
+          "6": 16,
+          "9": 14,
+          "7": 14,
+          "5": 13,
+          "3": 13,
+          "1": 12
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 8.0,
+          "iqr": 5.0,
+          "max": 10.0,
+          "min": 1.0,
+          "media": 5.5125,
+          "mediana": 5.5,
+          "curtosis": -1.279,
+          "asimetria": 0.0451,
+          "desviacion": 2.8987
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "del_1_al_10_cuanta_presion_sientes_por"
+      },
+      "q19": {
+        "type": "escala_lineal",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 5.206,
+        "std": 2.714,
+        "min": 1.0,
+        "max": 10.0,
+        "distribution": {
+          "4": 30,
+          "7": 19,
+          "2": 18,
+          "6": 16,
+          "5": 15,
+          "10": 15,
+          "1": 14,
+          "3": 13,
+          "9": 10,
+          "8": 10
+        },
+        "numerico": {
+          "n": 160,
+          "q1": 3.0,
+          "q3": 7.0,
+          "iqr": 4.0,
+          "max": 10.0,
+          "min": 1.0,
+          "media": 5.2062,
+          "mediana": 5.0,
+          "curtosis": -0.9805,
+          "asimetria": 0.2231,
+          "desviacion": 2.7221
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "del_1_al_10_que_tan_efectivo_a_eres_ge"
+      },
+      "q20": {
+        "type": "calificacion",
+        "n": 160,
+        "n_vacios": 0,
+        "mean": 25.262,
+        "std": 9.043,
+        "min": 10.0,
+        "max": 40.0,
+        "numerico": {
+          "n": 160,
+          "q1": 18.0,
+          "q3": 33.0,
+          "iqr": 15.0,
+          "max": 40.0,
+          "min": 10.0,
+          "media": 25.2625,
+          "mediana": 26.0,
+          "curtosis": -1.2527,
+          "asimetria": -0.1509,
+          "desviacion": 9.071
+        },
+        "atipicos": {
+          "iqr": 0,
+          "sigma": 0,
+          "metodo": "sigma",
+          "factor_iqr": 1.5,
+          "factor_sigma": 4.0
+        },
+        "tipo_canonico_provisional": true,
+        "columna": "cuantos_creditos_cursas_este_semestre"
+      }
+    },
+    "global": {
+      "n_registros": 160,
+      "n_duplicados": 0,
+      "pct_vacios": 0.0016,
+      "n_reactivos": 20
+    },
+    "reliability": [
+      {
+        "alfa": 0.9071,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Carga horaria p",
+        "n_casos": 160,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.275,
+            "alfa_si_se_elimina": 0.8745,
+            "correlacion_item_total": 0.806
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2437,
+            "alfa_si_se_elimina": 0.8803,
+            "correlacion_item_total": 0.7886
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.2687,
+            "alfa_si_se_elimina": 0.8941,
+            "correlacion_item_total": 0.7501
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.3125,
+            "alfa_si_se_elimina": 0.8699,
+            "correlacion_item_total": 0.8173
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.9075,
+        "items": [
+          "ítem 1",
+          "ítem 2",
+          "ítem 3",
+          "ítem 4"
+        ],
+        "bloque": "Organización de",
+        "n_casos": 160,
+        "n_items": 4,
+        "por_item": [
+          {
+            "item": "ítem 1",
+            "media": 3.1375,
+            "alfa_si_se_elimina": 0.8853,
+            "correlacion_item_total": 0.7784
+          },
+          {
+            "item": "ítem 2",
+            "media": 3.2563,
+            "alfa_si_se_elimina": 0.873,
+            "correlacion_item_total": 0.8116
+          },
+          {
+            "item": "ítem 3",
+            "media": 3.325,
+            "alfa_si_se_elimina": 0.8731,
+            "correlacion_item_total": 0.8127
+          },
+          {
+            "item": "ítem 4",
+            "media": 3.3062,
+            "alfa_si_se_elimina": 0.8901,
+            "correlacion_item_total": 0.7633
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "excelente"
+      },
+      {
+        "alfa": 0.8757,
+        "items": [
+          "Carga_horaria_p_item1",
+          "Carga_horaria_p_item2",
+          "Carga_horaria_p_item3",
+          "Carga_horaria_p_item4",
+          "Organización_de_item1",
+          "Organización_de_item2",
+          "Organización_de_item3",
+          "Organización_de_item4",
+          "Con_qué_frecuencia_dejas_tareas_para_el"
+        ],
+        "bloque": "Todas las escalas Likert",
+        "n_casos": 160,
+        "n_items": 9,
+        "por_item": [
+          {
+            "item": "Carga_horaria_p_item1",
+            "media": 3.275,
+            "alfa_si_se_elimina": 0.8538,
+            "correlacion_item_total": 0.7209
+          },
+          {
+            "item": "Carga_horaria_p_item2",
+            "media": 3.2437,
+            "alfa_si_se_elimina": 0.8554,
+            "correlacion_item_total": 0.6968
+          },
+          {
+            "item": "Carga_horaria_p_item3",
+            "media": 3.2687,
+            "alfa_si_se_elimina": 0.8591,
+            "correlacion_item_total": 0.6537
+          },
+          {
+            "item": "Carga_horaria_p_item4",
+            "media": 3.3125,
+            "alfa_si_se_elimina": 0.8508,
+            "correlacion_item_total": 0.7483
+          },
+          {
+            "item": "Organización_de_item1",
+            "media": 3.1375,
+            "alfa_si_se_elimina": 0.8538,
+            "correlacion_item_total": 0.7073
+          },
+          {
+            "item": "Organización_de_item2",
+            "media": 3.2563,
+            "alfa_si_se_elimina": 0.8501,
+            "correlacion_item_total": 0.7498
+          },
+          {
+            "item": "Organización_de_item3",
+            "media": 3.325,
+            "alfa_si_se_elimina": 0.8563,
+            "correlacion_item_total": 0.6854
+          },
+          {
+            "item": "Organización_de_item4",
+            "media": 3.3062,
+            "alfa_si_se_elimina": 0.8581,
+            "correlacion_item_total": 0.6632
+          },
+          {
+            "item": "Con_qué_frecuencia_dejas_tareas_para_el",
+            "media": 3.0938,
+            "alfa_si_se_elimina": 0.9136,
+            "correlacion_item_total": 0.0857
+          }
+        ],
+        "invertidos": [],
+        "n_excluidos": 0,
+        "interpretacion": "buena"
+      }
+    ]
+  },
+  "approval": {
+    "aprobado": true,
+    "aprobado_por": "Administrador",
+    "fecha_aprobado": "2026-11-12T03:23:24.121615+00:00"
+  },
+  "source_files": {
+    "respondido": "raw/_/17__enc_09_respondido.csv",
+    "original": "raw/_/18__enc_09_original.txt",
+    "limpio": "clean/31/1__v1_encuesta_limpio.csv",
+    "nombre_archivo": "enc_09_respondido.csv"
+  },
+  "generated_at": "2026-11-12T03:23:24.121770+00:00",
+  "cleaning": {
+    "esquema": "reporte_limpieza/1",
+    "version": 1,
+    "fecha_confirmacion": "2026-11-12T03:23:23.026988+00:00",
+    "archivo_limpio": "clean/31/1__v1_encuesta_limpio.csv",
+    "version_servicio": "1.0.0",
+    "metricas": {
+      "antes": {
+        "alertas": [
+          "valores_imposibles"
+        ],
+        "pct_nulos": 0.0,
+        "n_columnas": 32,
+        "n_duplicados": 0,
+        "n_imposibles": 8,
+        "n_incompletos": 0,
+        "n_linea_recta": 51,
+        "cols_mas_nulos": [],
+        "n_respondentes": 160,
+        "pct_completitud": 1.0,
+        "grupos_detectados": []
+      },
+      "despues": {
+        "alertas": [],
+        "pct_nulos": 0.0016,
+        "n_columnas": 31,
+        "n_duplicados": 0,
+        "n_imposibles": 0,
+        "n_incompletos": 0,
+        "n_linea_recta": 51,
+        "cols_mas_nulos": [
+          {
+            "columna": "semestre",
+            "pct_nulos": 0.05
+          }
+        ],
+        "n_respondentes": 160,
+        "pct_completitud": 0.9984,
+        "grupos_detectados": []
+      }
+    },
+    "avisos": [],
+    "estadistica": {
+      "fiabilidad": [
+        {
+          "alfa": 0.9071,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Carga horaria p",
+          "n_casos": 160,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.275,
+              "alfa_si_se_elimina": 0.8745,
+              "correlacion_item_total": 0.806
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2437,
+              "alfa_si_se_elimina": 0.8803,
+              "correlacion_item_total": 0.7886
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.2687,
+              "alfa_si_se_elimina": 0.8941,
+              "correlacion_item_total": 0.7501
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.3125,
+              "alfa_si_se_elimina": 0.8699,
+              "correlacion_item_total": 0.8173
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.9075,
+          "items": [
+            "ítem 1",
+            "ítem 2",
+            "ítem 3",
+            "ítem 4"
+          ],
+          "bloque": "Organización de",
+          "n_casos": 160,
+          "n_items": 4,
+          "por_item": [
+            {
+              "item": "ítem 1",
+              "media": 3.1375,
+              "alfa_si_se_elimina": 0.8853,
+              "correlacion_item_total": 0.7784
+            },
+            {
+              "item": "ítem 2",
+              "media": 3.2563,
+              "alfa_si_se_elimina": 0.873,
+              "correlacion_item_total": 0.8116
+            },
+            {
+              "item": "ítem 3",
+              "media": 3.325,
+              "alfa_si_se_elimina": 0.8731,
+              "correlacion_item_total": 0.8127
+            },
+            {
+              "item": "ítem 4",
+              "media": 3.3062,
+              "alfa_si_se_elimina": 0.8901,
+              "correlacion_item_total": 0.7633
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "excelente"
+        },
+        {
+          "alfa": 0.8757,
+          "items": [
+            "Carga_horaria_p_item1",
+            "Carga_horaria_p_item2",
+            "Carga_horaria_p_item3",
+            "Carga_horaria_p_item4",
+            "Organización_de_item1",
+            "Organización_de_item2",
+            "Organización_de_item3",
+            "Organización_de_item4",
+            "Con_qué_frecuencia_dejas_tareas_para_el"
+          ],
+          "bloque": "Todas las escalas Likert",
+          "n_casos": 160,
+          "n_items": 9,
+          "por_item": [
+            {
+              "item": "Carga_horaria_p_item1",
+              "media": 3.275,
+              "alfa_si_se_elimina": 0.8538,
+              "correlacion_item_total": 0.7209
+            },
+            {
+              "item": "Carga_horaria_p_item2",
+              "media": 3.2437,
+              "alfa_si_se_elimina": 0.8554,
+              "correlacion_item_total": 0.6968
+            },
+            {
+              "item": "Carga_horaria_p_item3",
+              "media": 3.2687,
+              "alfa_si_se_elimina": 0.8591,
+              "correlacion_item_total": 0.6537
+            },
+            {
+              "item": "Carga_horaria_p_item4",
+              "media": 3.3125,
+              "alfa_si_se_elimina": 0.8508,
+              "correlacion_item_total": 0.7483
+            },
+            {
+              "item": "Organización_de_item1",
+              "media": 3.1375,
+              "alfa_si_se_elimina": 0.8538,
+              "correlacion_item_total": 0.7073
+            },
+            {
+              "item": "Organización_de_item2",
+              "media": 3.2563,
+              "alfa_si_se_elimina": 0.8501,
+              "correlacion_item_total": 0.7498
+            },
+            {
+              "item": "Organización_de_item3",
+              "media": 3.325,
+              "alfa_si_se_elimina": 0.8563,
+              "correlacion_item_total": 0.6854
+            },
+            {
+              "item": "Organización_de_item4",
+              "media": 3.3062,
+              "alfa_si_se_elimina": 0.8581,
+              "correlacion_item_total": 0.6632
+            },
+            {
+              "item": "Con_qué_frecuencia_dejas_tareas_para_el",
+              "media": 3.0938,
+              "alfa_si_se_elimina": 0.9136,
+              "correlacion_item_total": 0.0857
+            }
+          ],
+          "invertidos": [],
+          "n_excluidos": 0,
+          "interpretacion": "buena"
+        }
+      ],
+      "encuestados": {
+        "incompletos": 0,
+        "linea_recta": 51
+      }
+    }
+  },
+  "inferred_kpis": [
+    {
+      "kpi_id": 5,
+      "nombre_kpi": "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "score": 0.5036
+    },
+    {
+      "kpi_id": 35,
+      "nombre_kpi": "Porcentaje de Estudiantes a Tiempo Parcial",
+      "score": 0.5111
+    }
+  ],
+  "finalized_at": "2026-11-12T03:24:10.151762+00:00"
+}

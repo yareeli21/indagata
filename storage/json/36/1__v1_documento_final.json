@@ -1,0 +1,2095 @@
+{
+  "esquema_version": "2.0",
+  "instrumento": {
+    "id": "INS-0036",
+    "tipo": "entrevista",
+    "titulo": "Entrevista sobre experiencia docente y calidad educativa",
+    "objetivo": "La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro.",
+    "temas": [
+      "institución",
+      "profesores",
+      "investigación",
+      "experiencia",
+      "posgrado",
+      "aprendido"
+    ],
+    "palabras_clave": [
+      "institución",
+      "profesores",
+      "investigación",
+      "experiencia",
+      "posgrado",
+      "aprendido"
+    ],
+    "nivel_educativo": "Posgrado",
+    "poblacion": "No especificado",
+    "contexto": "Institución: No especificado. Cobertura: Posgrado — de los estudiantes en relación con: Cualificación Docente y Tasa de Rotación del Profesorado, Satisfacción Estudiantil.. Metodología: Entrevista semiestructurada"
+  },
+  "kpis_asociados": [
+    {
+      "fecha": "2026-11-12T03:43:56.315265+00:00",
+      "kpi_id": "KPI-05",
+      "nombre": "Tamaño Promedio de Clase (Alumnos por Aula)",
+      "que_mide": "Promedio de alumnos inscritos por aula o sección académica. Evalúa la capacidad de la institución para ofrecer personalización docente y un entorno propicio para la participación activa.",
+      "dimension": "Reducir / Mantener en límite máximo (KPI de Calidad de Atención)",
+      "evidencia": [
+        {
+          "similitud": 0.6048,
+          "pregunta_id": "INS-0036-p08"
+        },
+        {
+          "similitud": 0.5719,
+          "pregunta_id": "INS-0036-p10"
+        },
+        {
+          "similitud": 0.5698,
+          "pregunta_id": "INS-0036-p01"
+        },
+        {
+          "similitud": 0.5653,
+          "pregunta_id": "INS-0036-p06"
+        },
+        {
+          "similitud": 0.5592,
+          "pregunta_id": "INS-0036-p05"
+        }
+      ],
+      "similitud": 0.5917,
+      "definicion": "El KPI Tamaño Promedio de Clase mide el número medio de alumnos por sección. Es un indicador de control donde valores MÁS BAJOS suelen asociarse a mayor personalización y calidad didáctica. Un aumento desmedido indica hacinamiento y deterioro en la interacción estudiante-profesor, mientras que clases muy pequeñas pueden comprometer la rentabilidad operativa.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Tamaño Promedio de Clase (Alumnos por Aula)» porque las preguntas «¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?» y «¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    },
+    {
+      "fecha": "2026-11-12T03:43:56.315265+00:00",
+      "kpi_id": "KPI-51",
+      "nombre": "Ratio de Estudiantes por Profesor (Relación Alumno/Docente)",
+      "que_mide": "Indica cuántos alumnos corresponden teóricamente a un solo profesor a tiempo completo en la institución. Métrica clave en acreditaciones y rankings.",
+      "dimension": "Reducir el ratio / Mantener por debajo del límite regulatorio o de acreditación",
+      "evidencia": [
+        {
+          "similitud": 0.5043,
+          "pregunta_id": "INS-0036-p08"
+        },
+        {
+          "similitud": 0.5039,
+          "pregunta_id": "INS-0036-p10"
+        },
+        {
+          "similitud": 0.5029,
+          "pregunta_id": "INS-0036-p01"
+        },
+        {
+          "similitud": 0.5002,
+          "pregunta_id": "INS-0036-p09"
+        },
+        {
+          "similitud": 0.4763,
+          "pregunta_id": "INS-0036-p03"
+        }
+      ],
+      "similitud": 0.5684,
+      "definicion": "El KPI Ratio de Estudiantes por Profesor se calcula como (Estudiantes FTE / Profesores FTE). Es un indicador INVERSO: un ratio MÁS BAJO implica MÁS atención individualizada, mayor rigor y mejor posicionamiento internacional. Ratios muy altos señalan masificación y sobrecarga docente.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Ratio de Estudiantes por Profesor (Relación Alumno/Docente)» porque las preguntas «¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?» y «¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "INS-0036-p01",
+      "texto": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+      "kpis_relacionados": [
+        "KPI-05",
+        "KPI-51"
+      ]
+    },
+    {
+      "id": "INS-0036-p02",
+      "texto": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0036-p03",
+      "texto": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+      "kpis_relacionados": [
+        "KPI-51"
+      ]
+    },
+    {
+      "id": "INS-0036-p04",
+      "texto": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0036-p05",
+      "texto": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+      "kpis_relacionados": [
+        "KPI-05"
+      ]
+    },
+    {
+      "id": "INS-0036-p06",
+      "texto": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+      "kpis_relacionados": [
+        "KPI-05"
+      ]
+    },
+    {
+      "id": "INS-0036-p07",
+      "texto": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0036-p08",
+      "texto": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+      "kpis_relacionados": [
+        "KPI-05",
+        "KPI-51"
+      ]
+    },
+    {
+      "id": "INS-0036-p09",
+      "texto": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+      "kpis_relacionados": [
+        "KPI-51"
+      ]
+    },
+    {
+      "id": "INS-0036-p10",
+      "texto": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+      "kpis_relacionados": [
+        "KPI-05",
+        "KPI-51"
+      ]
+    }
+  ],
+  "entrevistas": [
+    {
+      "participante": "INS-0036-E01",
+      "contexto": {
+        "GPA": "3.97",
+        "Edad": "26",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "17"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E02",
+      "contexto": {
+        "GPA": "3.69",
+        "Edad": "27",
+        "Perfil": "P5 — Avanzado desmotivado (burnout)",
+        "Género": "femenino",
+        "Semestre": "7",
+        "Universidad": "mixta",
+        "Horas trabajo/semana": "9"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E03",
+      "contexto": {
+        "GPA": "3.02",
+        "Edad": "22",
+        "Perfil": "P5 — Avanzado desmotivado (burnout)",
+        "Género": "masculino",
+        "Semestre": "8",
+        "Universidad": "mixta",
+        "Horas trabajo/semana": "10"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "La tecnología me ayuda a ser más eficiente, aunque a veces el exceso de notificaciones y plataformas también agobia. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "La tecnología me ayuda a ser más eficiente, aunque a veces el exceso de notificaciones y plataformas también agobia. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E04",
+      "contexto": {
+        "GPA": "3.75",
+        "Edad": "18",
+        "Perfil": "P1 — Alto rendimiento, autoregulado",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "2"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. He comprobado que con una buena planificación casi cualquier reto académico es superable. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E05",
+      "contexto": {
+        "GPA": "3.6",
+        "Edad": "27",
+        "Perfil": "P5 — Avanzado desmotivado (burnout)",
+        "Género": "otro",
+        "Semestre": "12",
+        "Universidad": "mixta",
+        "Horas trabajo/semana": "19"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "La tecnología me ayuda a ser más eficiente, aunque a veces el exceso de notificaciones y plataformas también agobia. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E06",
+      "contexto": {
+        "GPA": "3.53",
+        "Edad": "21",
+        "Perfil": "P1 — Alto rendimiento, autoregulado",
+        "Género": "masculino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "7"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. En mi experiencia, la comunicación con los profesores hace una gran diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. En mi experiencia, la comunicación con los profesores hace una gran diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E07",
+      "contexto": {
+        "GPA": "3.9",
+        "Edad": "20",
+        "Perfil": "P1 — Alto rendimiento, autoregulado",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "7"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E08",
+      "contexto": {
+        "GPA": "3.84",
+        "Edad": "22",
+        "Perfil": "P1 — Alto rendimiento, autoregulado",
+        "Género": "femenino",
+        "Semestre": "1",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "7"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. He comprobado que con una buena planificación casi cualquier reto académico es superable. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E09",
+      "contexto": {
+        "GPA": "3.29",
+        "Edad": "24",
+        "Perfil": "P5 — Avanzado desmotivado (burnout)",
+        "Género": "femenino",
+        "Semestre": "12",
+        "Universidad": "mixta",
+        "Horas trabajo/semana": "13"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "La tecnología me ayuda a ser más eficiente, aunque a veces el exceso de notificaciones y plataformas también agobia. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Cuando termine me tomaré un descanso largo. Necesito reconectarme con por qué elegí esta carrera. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "He considerado pausar un semestre, pero sé que si paro puede ser difícil retomar. Entonces sigo aunque me cueste. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E10",
+      "contexto": {
+        "GPA": "2.89",
+        "Edad": "23",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "femenino",
+        "Semestre": "9",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "6"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E11",
+      "contexto": {
+        "GPA": "3.2",
+        "Edad": "21",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "14"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E12",
+      "contexto": {
+        "GPA": "3.07",
+        "Edad": "21",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "femenino",
+        "Semestre": "9",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "8"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E13",
+      "contexto": {
+        "GPA": "3.44",
+        "Edad": "22",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "3"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E14",
+      "contexto": {
+        "GPA": "3.23",
+        "Edad": "23",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "otro",
+        "Semestre": "2",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "3"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E15",
+      "contexto": {
+        "GPA": "3.71",
+        "Edad": "31",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "12"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E16",
+      "contexto": {
+        "GPA": "3.42",
+        "Edad": "19",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "otro",
+        "Semestre": "8",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "5"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E17",
+      "contexto": {
+        "GPA": "3.36",
+        "Edad": "23",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "femenino",
+        "Semestre": "6",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "9"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E18",
+      "contexto": {
+        "GPA": "3.53",
+        "Edad": "20",
+        "Perfil": "P1 — Alto rendimiento, autoregulado",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "6"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "La IA como ChatGPT me ayuda a clarificar conceptos, pero siempre verifico la información con fuentes primarias. Es un complemento, no un sustituto. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E19",
+      "contexto": {
+        "GPA": "3.12",
+        "Edad": "25",
+        "Perfil": "P5 — Avanzado desmotivado (burnout)",
+        "Género": "femenino",
+        "Semestre": "9",
+        "Universidad": "mixta",
+        "Horas trabajo/semana": "15"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "El burnout es real. He tenido periodos en que no dormía bien, no comía bien y solo pensaba en terminar. Es desgastante. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "La tecnología me ayuda a ser más eficiente, aunque a veces el exceso de notificaciones y plataformas también agobia. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Soy buen estudiante en papel, mis calificaciones lo demuestran, pero por dentro estoy muy cansado/a. Ojalá la institución tuviera más apoyo para este tipo de situación. La motivación ya no es la misma que al inicio, pero el compromiso con la meta me sostiene."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Las herramientas digitales son buenas cuando las usas bien, pero también pueden convertirse en una distracción enorme. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Llevo ocho semestres y estoy bastante agotado/a. Ya no siento la misma emoción que al inicio. Los temas me interesan en abstracto pero ya no tengo energía para estudiarlos bien. Llevo años en esto y el desgaste acumulado es real, aunque mis notas no lo reflejen. Necesito un descanso, pero el miedo a rezagarme me impide tomarlo."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E20",
+      "contexto": {
+        "GPA": "3.32",
+        "Edad": "20",
+        "Perfil": "P2 — Promedio comprometido",
+        "Género": "masculino",
+        "Semestre": "4",
+        "Universidad": "publica",
+        "Horas trabajo/semana": "2"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Creo que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E21",
+      "contexto": {
+        "GPA": "3.82",
+        "Edad": "34",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "25"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E22",
+      "contexto": {
+        "GPA": "3.84",
+        "Edad": "21",
+        "Perfil": "P1 — Alto rendimiento, autoregulado",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "0"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. En mi experiencia, la comunicación con los profesores hace una gran diferencia. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. En mi experiencia, la comunicación con los profesores hace una gran diferencia. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E23",
+      "contexto": {
+        "GPA": "3.74",
+        "Edad": "24",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "2",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "30"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E24",
+      "contexto": {
+        "GPA": "3.9",
+        "Edad": "18",
+        "Perfil": "P1 — Alto rendimiento, autoregulado",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "1"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. En mi experiencia, la comunicación con los profesores hace una gran diferencia. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "Creo firmemente que el éxito académico depende en gran medida de la actitud y la organización del estudiante, aunque la institución tiene un papel importante en facilitarlo. He comprobado que con una buena planificación casi cualquier reto académico es superable. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Considero que mi organización personal y la disciplina han sido mis principales aliados. Desde el inicio, establecí rutinas de estudio claras y siempre busqué apoyo cuando lo necesité. He comprobado que con una buena planificación casi cualquier reto académico es superable. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "La motivación intrínseca es fundamental. Me apasiona lo que estudio y eso me ha mantenido enfocado/a incluso en los momentos difíciles. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. He comprobado que con una buena planificación casi cualquier reto académico es superable."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Uso múltiples herramientas digitales de forma estratégica. Las plataformas LMS son esenciales para mí, aunque a veces les falta intuitividad. He comprobado que con una buena planificación casi cualquier reto académico es superable. En mi experiencia, la comunicación con los profesores hace una gran diferencia."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "Mi experiencia ha sido muy positiva en general. He logrado mantener un promedio alto gracias a la combinación de esfuerzo personal y estrategias de estudio efectivas. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "He aprovechado todos los recursos que la institución ofrece: tutorías, asesorías, laboratorios. Creo que eso marca la diferencia. He comprobado que con una buena planificación casi cualquier reto académico es superable. Además, creo que la clave está en mantener una disciplina constante y no esperar a última hora."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E25",
+      "contexto": {
+        "GPA": "3.87",
+        "Edad": "29",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "13"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E26",
+      "contexto": {
+        "GPA": "3.92",
+        "Edad": "33",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "30"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E27",
+      "contexto": {
+        "GPA": "3.91",
+        "Edad": "33",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "20"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E28",
+      "contexto": {
+        "GPA": "3.85",
+        "Edad": "27",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "1",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "15"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E29",
+      "contexto": {
+        "GPA": "3.8",
+        "Edad": "24",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "20"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0036-E30",
+      "contexto": {
+        "GPA": "3.95",
+        "Edad": "30",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "21"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0036-p01",
+          "pregunta": "¿Cómo describirías la calidad de la enseñanza que has recibido en tu institución?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p02",
+          "pregunta": "¿Qué características del profesor ideal consideras más importantes para tu aprendizaje?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p03",
+          "pregunta": "¿Has tenido profesores que hayan marcado positivamente tu trayectoria universitaria? ¿Qué los distingue?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p04",
+          "pregunta": "¿Qué metodologías de enseñanza encuentras más efectivas y por qué?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p05",
+          "pregunta": "¿Cómo afecta el tamaño de los grupos en tu experiencia de aprendizaje?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p06",
+          "pregunta": "¿Sientes que los profesores están suficientemente actualizados en sus áreas de conocimiento?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p07",
+          "pregunta": "¿Cómo evalúas la accesibilidad y disposición de los docentes fuera del aula?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0036-p08",
+          "pregunta": "¿Qué mejoras propondrías al sistema de evaluación docente de tu institución?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p09",
+          "pregunta": "¿Has experimentado situaciones de favoritismo o trato desigual por parte de los profesores?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0036-p10",
+          "pregunta": "¿Cómo ha impactado la experiencia docente en tu satisfacción con la institución?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    }
+  ],
+  "avisos": [
+    {
+      "codigo": "texto_libre",
+      "mensaje": "Las personas entrevistadas se identifican con un ID anónimo; otros nombres mencionados en el texto libre podrían seguir presentes."
+    }
+  ]
+}

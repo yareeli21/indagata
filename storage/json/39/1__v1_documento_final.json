@@ -1,0 +1,1768 @@
+{
+  "esquema_version": "2.0",
+  "instrumento": {
+    "id": "INS-0039",
+    "tipo": "entrevista",
+    "titulo": "Entrevista sobre investigación y producción académica (posgrado)",
+    "objetivo": "La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro.",
+    "temas": [
+      "investigación",
+      "posgrado",
+      "requiere",
+      "largo",
+      "académica",
+      "aprendido"
+    ],
+    "palabras_clave": [
+      "investigación",
+      "posgrado",
+      "requiere",
+      "largo",
+      "académica",
+      "aprendido"
+    ],
+    "nivel_educativo": "Posgrado",
+    "poblacion": "No especificado",
+    "contexto": "Institución: No especificado. Cobertura: Posgrado — de los estudiantes en relación con: Producción Total de Investigación Docente, Tasa de Publicación del Cuerpo Docente.. Metodología: Entrevista semiestructurada"
+  },
+  "kpis_asociados": [
+    {
+      "fecha": "2026-11-12T04:03:14.057078+00:00",
+      "kpi_id": "KPI-20",
+      "nombre": "Producción Total de Investigación Docente",
+      "que_mide": "Mapea el volumen bruto de producción intelectual y académica generada por el cuerpo docente e investigativo de la institución.",
+      "dimension": "Aumentar / Incrementar (KPI de Volumen Científico)",
+      "evidencia": [
+        {
+          "similitud": 0.6264,
+          "pregunta_id": "INS-0039-p08"
+        },
+        {
+          "similitud": 0.5574,
+          "pregunta_id": "INS-0039-p10"
+        },
+        {
+          "similitud": 0.5215,
+          "pregunta_id": "INS-0039-p06"
+        },
+        {
+          "similitud": 0.4974,
+          "pregunta_id": "INS-0039-p04"
+        },
+        {
+          "similitud": 0.4776,
+          "pregunta_id": "INS-0039-p09"
+        }
+      ],
+      "similitud": 0.6054,
+      "definicion": "El KPI Producción de Investigación Docente es de impacto POSITIVO (Maximizar). Mide la cantidad total de contribuciones científicas. Aumentar la producción consolida el liderazgo intelectual institucional; una caída demuestra ineficiencia en las áreas de I+D.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Producción Total de Investigación Docente» porque las preguntas «¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?» y «¿Qué impacto social espera tener tu investigación en el largo plazo?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    },
+    {
+      "fecha": "2026-11-12T04:03:14.057078+00:00",
+      "kpi_id": "KPI-41",
+      "nombre": "Fondos y Subvenciones Captadas para Investigación",
+      "que_mide": "Mide el volumen de recursos financieros externos que atraen los profesores investigando mediante proyectos competitivos.",
+      "dimension": "Aumentar / Incrementar (KPI de Solvencia Científica)",
+      "evidencia": [
+        {
+          "similitud": 0.6138,
+          "pregunta_id": "INS-0039-p04"
+        },
+        {
+          "similitud": 0.5849,
+          "pregunta_id": "INS-0039-p08"
+        },
+        {
+          "similitud": 0.5143,
+          "pregunta_id": "INS-0039-p06"
+        },
+        {
+          "similitud": 0.4972,
+          "pregunta_id": "INS-0039-p10"
+        }
+      ],
+      "similitud": 0.5683,
+      "definicion": "El KPI Fondos y Subvenciones de Investigación es de impacto POSITIVO (Maximizar). Suma el dinero externo adjudicado para proyectos científicos. Elevar estos fondos confirma el liderazgo investigador y la sostenibilidad científica; su caída limita la capacidad tecnológica de los laboratorios.",
+      "aceptado_por": "Administrador",
+      "justificacion": "Se relaciona con «Fondos y Subvenciones Captadas para Investigación» porque las preguntas «¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?» y «¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?» abordan aspectos que este indicador mide.",
+      "justificacion_origen": "plantilla"
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "INS-0039-p01",
+      "texto": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0039-p02",
+      "texto": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0039-p03",
+      "texto": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0039-p04",
+      "texto": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+      "kpis_relacionados": [
+        "KPI-20",
+        "KPI-41"
+      ]
+    },
+    {
+      "id": "INS-0039-p05",
+      "texto": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0039-p06",
+      "texto": "¿Cómo colaboras con otros investigadores o instituciones?",
+      "kpis_relacionados": [
+        "KPI-20",
+        "KPI-41"
+      ]
+    },
+    {
+      "id": "INS-0039-p07",
+      "texto": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+      "kpis_relacionados": []
+    },
+    {
+      "id": "INS-0039-p08",
+      "texto": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+      "kpis_relacionados": [
+        "KPI-20",
+        "KPI-41"
+      ]
+    },
+    {
+      "id": "INS-0039-p09",
+      "texto": "¿Cómo balanceas la actividad docente con la investigación?",
+      "kpis_relacionados": [
+        "KPI-20"
+      ]
+    },
+    {
+      "id": "INS-0039-p10",
+      "texto": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+      "kpis_relacionados": [
+        "KPI-20",
+        "KPI-41"
+      ]
+    }
+  ],
+  "entrevistas": [
+    {
+      "participante": "INS-0039-E01",
+      "contexto": {
+        "GPA": "3.78",
+        "Edad": "35",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "27"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E02",
+      "contexto": {
+        "GPA": "3.96",
+        "Edad": "32",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "15"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E03",
+      "contexto": {
+        "GPA": "3.91",
+        "Edad": "34",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "17"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E04",
+      "contexto": {
+        "GPA": "3.92",
+        "Edad": "31",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "11"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E05",
+      "contexto": {
+        "GPA": "3.75",
+        "Edad": "25",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "29"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E06",
+      "contexto": {
+        "GPA": "3.96",
+        "Edad": "35",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "14"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E07",
+      "contexto": {
+        "GPA": "3.95",
+        "Edad": "33",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "12"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E08",
+      "contexto": {
+        "GPA": "3.99",
+        "Edad": "34",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "23"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E09",
+      "contexto": {
+        "GPA": "3.76",
+        "Edad": "29",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "2",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "20"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E10",
+      "contexto": {
+        "GPA": "3.96",
+        "Edad": "26",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "1",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "21"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E11",
+      "contexto": {
+        "GPA": "3.77",
+        "Edad": "30",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "22"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E12",
+      "contexto": {
+        "GPA": "3.76",
+        "Edad": "26",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "30"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E13",
+      "contexto": {
+        "GPA": "3.75",
+        "Edad": "35",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "26"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E14",
+      "contexto": {
+        "GPA": "3.85",
+        "Edad": "29",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "2",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "10"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E15",
+      "contexto": {
+        "GPA": "3.76",
+        "Edad": "34",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "11"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E16",
+      "contexto": {
+        "GPA": "3.85",
+        "Edad": "27",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "23"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E17",
+      "contexto": {
+        "GPA": "3.7",
+        "Edad": "30",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "19"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E18",
+      "contexto": {
+        "GPA": "3.71",
+        "Edad": "30",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "30"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E19",
+      "contexto": {
+        "GPA": "3.98",
+        "Edad": "35",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "14"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E20",
+      "contexto": {
+        "GPA": "3.88",
+        "Edad": "28",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "3",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "24"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E21",
+      "contexto": {
+        "GPA": "3.72",
+        "Edad": "34",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "2",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "28"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E22",
+      "contexto": {
+        "GPA": "3.91",
+        "Edad": "26",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "6",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "11"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E23",
+      "contexto": {
+        "GPA": "3.93",
+        "Edad": "32",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "femenino",
+        "Semestre": "5",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "12"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E24",
+      "contexto": {
+        "GPA": "3.78",
+        "Edad": "28",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "4",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "22"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "Mi investigación busca generar conocimiento aplicable. No basta con publicar; hay que asegurarse de que el trabajo llegue a quienes pueden aprovecharlo. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "La financiación de la investigación es escasa y competida. Aprender a redactar propuestas es tan importante como hacer la investigación misma. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    },
+    {
+      "participante": "INS-0039-E25",
+      "contexto": {
+        "GPA": "3.79",
+        "Edad": "28",
+        "Perfil": "P7 — Posgrado alta competencia",
+        "Género": "masculino",
+        "Semestre": "1",
+        "Universidad": "privada",
+        "Horas trabajo/semana": "18"
+      },
+      "intercambios": [
+        {
+          "pregunta_id": "INS-0039-p01",
+          "pregunta": "¿Cuál es tu línea de investigación principal y qué te motivó a elegirla?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p02",
+          "pregunta": "¿Cómo describirías el ambiente de investigación en tu institución de posgrado?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre."
+        },
+        {
+          "pregunta_id": "INS-0039-p03",
+          "pregunta": "¿Qué dificultades has enfrentado para publicar en revistas de alto impacto?",
+          "respuesta": "La comunidad académica en el posgrado es más pequeña y las relaciones con los asesores son fundamentales para el avance. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p04",
+          "pregunta": "¿Has obtenido financiamiento externo para tus proyectos de investigación? ¿Cómo fue el proceso?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa."
+        },
+        {
+          "pregunta_id": "INS-0039-p05",
+          "pregunta": "¿Qué estrategias usas para mantenerte actualizado/a en tu campo científico?",
+          "respuesta": "He tenido que desarrollar resiliencia frente a los rechazos de publicaciones y las revisiones de mi comité. Es parte del proceso. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p06",
+          "pregunta": "¿Cómo colaboras con otros investigadores o instituciones?",
+          "respuesta": "La investigación requiere una mentalidad de largo plazo que no todos los estudiantes tienen al inicio. Hay que aprender a tolerar la ambigüedad y el fracaso. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p07",
+          "pregunta": "¿Has considerado la transferencia tecnológica o patentes como parte de tu actividad investigativa?",
+          "respuesta": "En el posgrado, la dinámica es completamente diferente a la licenciatura. La motivación es más intrínseca y el enfoque en la investigación da un sentido de propósito muy claro. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p08",
+          "pregunta": "¿Qué recursos o infraestructura consideras indispensables para hacer investigación de calidad?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p09",
+          "pregunta": "¿Cómo balanceas la actividad docente con la investigación?",
+          "respuesta": "El posgrado ha sido la experiencia más retadora e intelectualmente estimulante de mi vida. Recomiendo que cualquier estudiante con vocación investigadora lo considere. En el posgrado, cada decisión académica tiene implicaciones de largo alcance en la carrera investigativa. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        },
+        {
+          "pregunta_id": "INS-0039-p10",
+          "pregunta": "¿Qué impacto social espera tener tu investigación en el largo plazo?",
+          "respuesta": "Publicar en revistas indexadas requiere dominar no solo el contenido sino también las convenciones retóricas del campo científico. Es un aprendizaje que lleva años. La excelencia en investigación requiere rigor, creatividad y una tolerancia alta a la incertidumbre. He aprendido que las mejores investigaciones surgen de preguntas genuinamente relevantes."
+        }
+      ]
+    }
+  ],
+  "avisos": [
+    {
+      "codigo": "texto_libre",
+      "mensaje": "Las personas entrevistadas se identifican con un ID anónimo; otros nombres mencionados en el texto libre podrían seguir presentes."
+    }
+  ]
+}
