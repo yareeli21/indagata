@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Loader2, RefreshCw, Scale } from "lucide-react";
 import { calcularMetricas, getMetricas } from "@/api/chat";
 import { Progress } from "@/components/ui/progress";
-import { cn } from "@/lib/utils";
 import type { EvaluacionFable as Evaluacion } from "@/types";
 
 interface EvaluacionFableProps {
@@ -21,17 +20,22 @@ type Clave =
   | "sensibilidadRuido"
   | "correccionFactual";
 
-/** Las seis métricas en el orden de RAGAS: primero la recuperación, luego la respuesta. */
+/**
+ * Las seis métricas de RAGAS. Fidelidad y relevancia no necesitan respuesta de referencia: son las principales.
+ * Las otras cuatro se comparan con una referencia que escribe el mismo juez (no una anotación humana), así que se
+ * muestran aparte y marcadas (16 nov).
+ */
 const METRICAS: {
   clave: Clave;
   nombre: string;
   ragas: string;
   explicacion: string;
-  /** true: un valor bajo es bueno (solo la sensibilidad al ruido). */
-  invertida?: boolean;
+  /** true: se calcula contra la respuesta de referencia escrita por el juez. */
+  conReferencia: boolean;
 }[] = [
   {
     clave: "precisionContexto",
+    conReferencia: true,
     nombre: "Precisión del contexto",
     ragas: "Context Precision",
     explicacion:
@@ -39,6 +43,7 @@ const METRICAS: {
   },
   {
     clave: "recuerdoContexto",
+    conReferencia: true,
     nombre: "Recuerdo del contexto",
     ragas: "Context Recall",
     explicacion:
@@ -46,6 +51,7 @@ const METRICAS: {
   },
   {
     clave: "fidelidad",
+    conReferencia: false,
     nombre: "Fidelidad",
     ragas: "Faithfulness",
     explicacion:
@@ -53,20 +59,22 @@ const METRICAS: {
   },
   {
     clave: "relevancia",
+    conReferencia: false,
     nombre: "Relevancia de la respuesta",
     ragas: "Response Relevancy",
     explicacion: "Qué tan directo contesta lo que preguntaste (0 si evade).",
   },
   {
     clave: "sensibilidadRuido",
+    conReferencia: true,
     nombre: "Sensibilidad al ruido",
     ragas: "Noise Sensitivity",
     explicacion:
       "Afirmaciones incorrectas que la respuesta tomó de las fuentes. Aquí menos es mejor.",
-    invertida: true,
   },
   {
     clave: "correccionFactual",
+    conReferencia: true,
     nombre: "Corrección factual",
     ragas: "Factual Correctness (F1)",
     explicacion:
@@ -74,17 +82,9 @@ const METRICAS: {
   },
 ];
 
-/** Verde ≥ 70 %, ámbar 40–69 %, rojo < 40 % (al revés en las métricas donde menos es mejor). */
-function tono(valor: number | null, invertida = false): string {
-  if (valor == null) return "text-muted-foreground";
-  const v = invertida ? 1 - valor : valor;
-  if (v >= 0.7) return "text-success";
-  if (v >= 0.4) return "text-accent-strong";
-  return "text-destructive";
-}
-
-function pct(valor: number | null): string {
-  return valor == null ? "—" : `${Math.round(valor * 100)} %`;
+/** Puntaje RAGAS de 0 a 1, sin colores: no hay un corte validado entre «bueno» y «malo». */
+function puntaje(valor: number | null): string {
+  return valor == null ? "—" : valor.toFixed(2);
 }
 
 /**
@@ -191,43 +191,14 @@ export function EvaluacionFable({ consultaId, inicial }: EvaluacionFableProps) {
         <BotonReevaluar pidiendo={pidiendo} onClick={() => void reevaluar()} />
       </div>
 
-      <div className="grid gap-x-4 gap-y-2.5 sm:grid-cols-2">
-        {METRICAS.map((m) => {
-          const valor = evaluacion[m.clave];
-          return (
-            <div key={m.clave}>
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-medium text-card-foreground">
-                  {m.nombre}{" "}
-                  <span className="font-normal italic text-muted-foreground">({m.ragas})</span>
-                </span>
-                <span className={cn("font-semibold tabular-nums", tono(valor, m.invertida))}>
-                  {pct(valor)}
-                </span>
-              </div>
-              <Progress
-                value={valor == null ? 0 : Math.round(valor * 100)}
-                className="mt-1 h-1.5"
-                aria-label={m.nombre}
-              />
-              <p className="mt-1 leading-snug text-muted-foreground">
-                {m.explicacion}
-                {m.clave === "correccionFactual" &&
-                  evaluacion.correccionPrecision != null &&
-                  ` Precisión ${pct(evaluacion.correccionPrecision)} · cobertura ${pct(evaluacion.correccionRecuerdo)}.`}
-              </p>
-            </div>
-          );
-        })}
+      <GrupoMetricas metricas={METRICAS.filter((m) => !m.conReferencia)} evaluacion={evaluacion} />
+
+      <div className="space-y-2 rounded-lg border border-border px-3 py-2">
+        <p className="font-medium text-card-foreground">Métricas con respuesta de referencia</p>
+        <GrupoMetricas metricas={METRICAS.filter((m) => m.conReferencia)} evaluacion={evaluacion} />
       </div>
 
       {evaluacion.motivo && <p className="text-muted-foreground">{evaluacion.motivo}</p>}
-
-      <Lista titulo="Afirmaciones sin respaldo en lo recuperado" items={evaluacion.noSustentadas} />
-      <Lista
-        titulo="Afirmaciones que no coinciden con la respuesta ideal"
-        items={evaluacion.incorrectas}
-      />
 
       {evaluacion.respuestaReferencia && (
         <details className="rounded-lg border border-border px-3 py-2">
@@ -266,10 +237,50 @@ export function EvaluacionFable({ consultaId, inicial }: EvaluacionFableProps) {
         {evaluacion.origenReferencia === "contexto_ampliado"
           ? "lo recuperado más otros fragmentos cercanos del acervo"
           : "solo lo recuperado"}
-        , sin ver la respuesta del sistema; no es una anotación humana. Verde ≥ 70 %, ámbar 40–69 %,
-        rojo &lt; 40 % (al revés en la sensibilidad al ruido).
+        , sin ver la respuesta del sistema. Puntajes de 0 a 1 calculados con las fórmulas de RAGAS
+        0.4.3 a partir de los veredictos del juez.
       </p>
     </section>
+  );
+}
+
+function GrupoMetricas({
+  metricas,
+  evaluacion,
+}: {
+  metricas: typeof METRICAS;
+  evaluacion: Evaluacion;
+}) {
+  return (
+    <div className="grid gap-x-4 gap-y-2.5 sm:grid-cols-2">
+      {metricas.map((m) => {
+        const valor = evaluacion[m.clave];
+        return (
+          <div key={m.clave}>
+            <div className="flex items-center justify-between gap-2">
+              <span className="font-medium text-card-foreground">
+                {m.nombre}{" "}
+                <span className="font-normal italic text-muted-foreground">({m.ragas})</span>
+              </span>
+              <span className="font-semibold tabular-nums text-card-foreground">
+                {puntaje(valor)}
+              </span>
+            </div>
+            <Progress
+              value={valor == null ? 0 : Math.round(valor * 100)}
+              className="mt-1 h-1.5"
+              aria-label={m.nombre}
+            />
+            <p className="mt-1 leading-snug text-muted-foreground">
+              {m.explicacion}
+              {m.clave === "correccionFactual" &&
+                evaluacion.correccionPrecision != null &&
+                ` Precisión ${puntaje(evaluacion.correccionPrecision)} · cobertura ${puntaje(evaluacion.correccionRecuerdo)}.`}
+            </p>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -288,19 +299,5 @@ function BotonReevaluar({ pidiendo, onClick }: { pidiendo: boolean; onClick: () 
       )}
       Volver a evaluar
     </button>
-  );
-}
-
-function Lista({ titulo, items }: { titulo: string; items: string[] }) {
-  if (items.length === 0) return null;
-  return (
-    <div className="space-y-1">
-      <p className="text-muted-foreground">{titulo}:</p>
-      <ul className="list-disc space-y-0.5 pl-5 text-card-foreground">
-        {items.map((a) => (
-          <li key={a}>{a}</li>
-        ))}
-      </ul>
-    </div>
   );
 }

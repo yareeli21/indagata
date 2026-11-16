@@ -6,19 +6,17 @@ import type {
   EvaluacionFable as Evaluacion,
   FragmentoRecuperado,
   IndicadoresRespuesta,
-  MetricaCitas,
-  MetricaFundamentacion,
   MetricaRecuperacion,
 } from "@/types";
 import { EvaluacionFable } from "./EvaluacionFable";
-import { IndicadoresSistema } from "./IndicadoresSistema";
 
 /**
- * «Ver métricas» de una respuesta: se calculan sin modelo juez con lo que el chat registró (lo que recuperó la
- * búsqueda híbrida, la respuesta y sus fuentes), así que valen para cualquier instrumento.
- * GET /rag/consultas/{id}/metricas → indicadores.{recuperacion, fundamentacion, citas} (metricas_respuesta.py).
- * Debajo va la evaluación del juez Claude Fable 5.2 (juezFable: seis métricas RAGAS), que el servicio calcula sola
- * después de cada respuesta.
+ * «Ver métricas» de una respuesta (16 nov: solo lo que se puede fundamentar):
+ *  - Recuperación: similitud coseno de cada fragmento y búsqueda híbrida (BM25 + RRF), frente a los umbrales
+ *    configurados (indicadores.recuperacion, metricas_respuesta.py).
+ *  - Juez Claude Fable 5.2 con métricas RAGAS (juezFable).
+ * Se quitaron «Fundamentación» y «Citas» en % (reglas léxicas propias sin validar), las verificaciones de cifras,
+ * IDs y citas, y los indicadores del sistema (trazas, no métricas). El backend los sigue calculando.
  */
 export function VerMetricas({ consultaId }: { consultaId: number }) {
   const [abierto, setAbierto] = useState(false);
@@ -70,20 +68,8 @@ export function VerMetricas({ consultaId }: { consultaId: number }) {
           {estado === "listo" && ind && (
             <>
               {ind.recuperacion && <SeccionRecuperacion r={ind.recuperacion} />}
-              {ind.respuesta === "redactada" ? (
-                <SeccionRespuesta f={ind.fundamentacion ?? null} c={ind.citas ?? null} ind={ind} />
-              ) : (
-                <p className="rounded-lg bg-muted px-3 py-2 text-muted-foreground">
-                  {ind.respuesta === "presentacion_fija"
-                    ? "Esta respuesta es el resultado calculado sobre los datos, presentado tal cual: es fiel por construcción (no la redactó el modelo)."
-                    : "Esta respuesta es un mensaje fijo del sistema; no se evalúa su fundamentación."}
-                </p>
-              )}
               <div className="border-t border-border pt-3">
                 <EvaluacionFable consultaId={consultaId} inicial={fable} />
-              </div>
-              <div className="border-t border-border pt-3">
-                <IndicadoresSistema ind={ind} />
               </div>
             </>
           )}
@@ -95,6 +81,11 @@ export function VerMetricas({ consultaId }: { consultaId: number }) {
 
 function pct(v: number | null | undefined): string {
   return v == null ? "—" : `${Math.round(v * 100)} %`;
+}
+
+/** Similitud coseno: se muestra como número de 0 a 1, no como porcentaje (no es una proporción). */
+function coseno(v: number | null | undefined): string {
+  return v == null ? "—" : v.toFixed(2);
 }
 
 const PASO: Record<FragmentoRecuperado["paso"], string> = {
@@ -116,8 +107,9 @@ function SeccionRecuperacion({ r }: { r: MetricaRecuperacion }) {
         }
       />
       <p className="text-muted-foreground">
-        Un fragmento llega a la respuesta si su similitud alcanza el umbral de{" "}
-        <b className="text-card-foreground">{pct(r.umbral)}</b>
+        Similitud coseno entre el embedding de la pregunta y el de cada fragmento (de 0 a 1). Un
+        fragmento llega a la respuesta si su similitud alcanza{" "}
+        <b className="text-card-foreground">{coseno(r.umbral)}</b>
         {r.modo === "hibrida" && (
           <>
             {" "}
@@ -126,7 +118,7 @@ function SeccionRecuperacion({ r }: { r: MetricaRecuperacion }) {
             contenido de la pregunta
           </>
         )}
-        .
+        ; ambos umbrales son valores de configuración del sistema.
       </p>
       {r.fragmentos.length === 0 ? (
         <p className="text-muted-foreground">
@@ -154,7 +146,7 @@ function SeccionRecuperacion({ r }: { r: MetricaRecuperacion }) {
                       f.similitud != null && f.similitud >= r.umbral && "text-success",
                     )}
                   >
-                    {pct(f.similitud)}
+                    {coseno(f.similitud)}
                   </td>
                   <td
                     className={cn(
@@ -178,88 +170,9 @@ function SeccionRecuperacion({ r }: { r: MetricaRecuperacion }) {
       )}
       {(r.similitudMaxima != null || r.similitudPromedio != null) && (
         <p className="text-muted-foreground">
-          Similitud máxima <b className="text-card-foreground">{pct(r.similitudMaxima)}</b> ·
-          promedio <b className="text-card-foreground">{pct(r.similitudPromedio)}</b>
+          Similitud máxima <b className="text-card-foreground">{coseno(r.similitudMaxima)}</b> ·
+          promedio <b className="text-card-foreground">{coseno(r.similitudPromedio)}</b>
         </p>
-      )}
-    </section>
-  );
-}
-
-function SeccionRespuesta({
-  f,
-  c,
-  ind,
-}: {
-  f: MetricaFundamentacion | null;
-  c: MetricaCitas | null;
-  ind: IndicadoresRespuesta;
-}) {
-  const cifrasOk =
-    ind.cifrasTotal == null || ind.cifrasTotal === 0 || ind.cifrasConRespaldo === ind.cifrasTotal;
-  return (
-    <section className="space-y-2">
-      <Titulo texto="Respuesta" detalle="comparada con lo recuperado" />
-      <div className="grid gap-2 sm:grid-cols-2">
-        <Medida
-          nombre="Fundamentación"
-          valor={pct(f?.proporcion)}
-          detalle={
-            f && f.respaldadas != null
-              ? `${f.respaldadas} de ${f.oraciones} oraciones respaldadas por un fragmento o por el cálculo`
-              : "sin oraciones que evaluar"
-          }
-          bien={f?.proporcion != null ? f.proporcion >= 0.8 : null}
-        />
-        <Medida
-          nombre="Citas"
-          valor={pct(c?.proporcion)}
-          detalle={
-            c
-              ? `${c.conCita} de ${c.oraciones} oraciones citan su fuente` +
-                (c.citasInvalidas.length
-                  ? ` · citas a fuentes inexistentes: ${c.citasInvalidas.join(", ")}`
-                  : "")
-              : "—"
-          }
-          bien={c ? c.citasInvalidas.length === 0 && (c.proporcion ?? 0) >= 0.5 : null}
-        />
-        <Medida
-          nombre="Cifras con respaldo"
-          valor={
-            ind.cifrasTotal == null
-              ? "—"
-              : ind.cifrasTotal === 0
-                ? "sin cifras"
-                : `${ind.cifrasConRespaldo} de ${ind.cifrasTotal}`
-          }
-          detalle={
-            ind.cifrasSinRespaldo.length
-              ? `sin respaldo: ${ind.cifrasSinRespaldo.join(", ")}`
-              : "todo número está en lo recuperado o en el cálculo"
-          }
-          bien={cifrasOk}
-        />
-        <Medida
-          nombre="IDs inventados"
-          valor={ind.idsInventados.length ? String(ind.idsInventados.length) : "0"}
-          detalle={
-            ind.idsInventados.length
-              ? ind.idsInventados.join(", ")
-              : "toda persona o pregunta nombrada está en los datos"
-          }
-          bien={ind.idsInventados.length === 0}
-        />
-      </div>
-      {f && f.sinRespaldo.length > 0 && (
-        <div className="space-y-1">
-          <p className="text-muted-foreground">Oraciones sin respaldo directo en lo recuperado:</p>
-          <ul className="list-disc space-y-0.5 pl-5 text-card-foreground">
-            {f.sinRespaldo.map((o) => (
-              <li key={o}>{o}</li>
-            ))}
-          </ul>
-        </div>
       )}
     </section>
   );
@@ -270,34 +183,5 @@ function Titulo({ texto, detalle }: { texto: string; detalle: string }) {
     <p className="font-medium text-card-foreground">
       {texto} <span className="font-normal text-muted-foreground">({detalle})</span>
     </p>
-  );
-}
-
-function Medida({
-  nombre,
-  valor,
-  detalle,
-  bien,
-}: {
-  nombre: string;
-  valor: string;
-  detalle: string;
-  bien: boolean | null;
-}) {
-  return (
-    <div className="rounded-lg border border-border px-3 py-2">
-      <p className="text-muted-foreground">{nombre}</p>
-      <p
-        className={cn(
-          "text-base font-semibold tabular-nums",
-          bien === true && "text-success",
-          bien === false && "text-destructive",
-          bien === null && "text-card-foreground",
-        )}
-      >
-        {valor}
-      </p>
-      <p className="text-muted-foreground">{detalle}</p>
-    </div>
   );
 }
