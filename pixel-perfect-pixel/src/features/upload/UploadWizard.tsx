@@ -173,7 +173,8 @@ export function UploadWizard() {
   const [avanzando, setAvanzando] = useState(false);
   // Carga que quedó a medias (página cerrada en el paso «Limpieza»).
   const [pendiente, setPendiente] = useState<CargaEnCurso | null>(null);
-  useEffect(() => setPendiente(leerCargaEnCurso()), []);
+  const usuarioId = usuario?.id ?? "";
+  useEffect(() => setPendiente(usuarioId ? leerCargaEnCurso(usuarioId) : null), [usuarioId]);
 
   function retomar(carga: CargaEnCurso) {
     reiniciarMetadatos();
@@ -371,7 +372,12 @@ export function UploadWizard() {
         setIdCrudo(resultado.idCrudo);
         setLimpieza(null);
         setPendiente(null);
-        guardarCargaEnCurso({ idCrudo: resultado.idCrudo, tipo, nombreArchivo: archivo.name });
+        if (usuarioId)
+          guardarCargaEnCurso(usuarioId, {
+            idCrudo: resultado.idCrudo,
+            tipo,
+            nombreArchivo: archivo.name,
+          });
         setPaso(1);
         return;
       }
@@ -474,7 +480,7 @@ export function UploadWizard() {
       toast.success("Instrumento guardado", {
         action: { label: "Ver espacio vectorial", onClick: () => navigate({ to: "/espacio" }) },
       });
-      borrarCargaEnCurso();
+      borrarCargaEnCurso(usuarioId);
       navigate({ to: "/instrumentos" });
     } catch (e) {
       toast.error(mensajeDe(e, "No se pudo guardar el instrumento."));
@@ -506,7 +512,7 @@ export function UploadWizard() {
             <Button
               variant="ghost"
               onClick={() => {
-                borrarCargaEnCurso();
+                borrarCargaEnCurso(usuarioId);
                 setPendiente(null);
               }}
             >

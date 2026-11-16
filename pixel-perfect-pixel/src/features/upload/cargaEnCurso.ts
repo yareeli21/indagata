@@ -11,11 +11,12 @@ export interface CargaEnCurso {
   nombreArchivo: string;
 }
 
-const CLAVE = "indagata.carga.enCurso";
+/** Por usuario (16 nov): la carga a medias de una cuenta no debe aparecerle a otra en el mismo navegador. */
+const clave = (usuarioId: string) => `indagata.carga.enCurso.${usuarioId}`;
 
-export function leerCargaEnCurso(): CargaEnCurso | null {
+export function leerCargaEnCurso(usuarioId: string): CargaEnCurso | null {
   try {
-    const crudo = window.localStorage.getItem(CLAVE);
+    const crudo = window.localStorage.getItem(clave(usuarioId));
     if (!crudo) return null;
     const datos = JSON.parse(crudo) as Partial<CargaEnCurso>;
     return typeof datos.idCrudo === "number" && datos.tipo && datos.nombreArchivo
@@ -26,17 +27,17 @@ export function leerCargaEnCurso(): CargaEnCurso | null {
   }
 }
 
-export function guardarCargaEnCurso(carga: CargaEnCurso): void {
+export function guardarCargaEnCurso(usuarioId: string, carga: CargaEnCurso): void {
   try {
-    window.localStorage.setItem(CLAVE, JSON.stringify(carga));
+    window.localStorage.setItem(clave(usuarioId), JSON.stringify(carga));
   } catch {
     // Sin almacenamiento: no se podrá retomar tras recargar, pero el flujo sigue.
   }
 }
 
-export function borrarCargaEnCurso(): void {
+export function borrarCargaEnCurso(usuarioId: string): void {
   try {
-    window.localStorage.removeItem(CLAVE);
+    window.localStorage.removeItem(clave(usuarioId));
   } catch {
     // Sin almacenamiento disponible.
   }

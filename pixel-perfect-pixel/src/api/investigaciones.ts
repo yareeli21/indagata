@@ -33,8 +33,26 @@ function escribirInvestigaciones(lista: Investigacion[]): void {
   }
 }
 
-export function getInvestigaciones(): Promise<Investigacion[]> {
-  return Promise.resolve(leerInvestigaciones());
+/**
+ * Investigaciones del usuario (16 nov): cada quien ve solo las suyas, aunque los instrumentos sean compartidos.
+ * Antes todas se creaban con el dueño fijo «inv-ana» y cualquiera que entrara en el navegador las veía.
+ */
+export function getInvestigaciones(propietarioId: string): Promise<Investigacion[]> {
+  return Promise.resolve(leerInvestigaciones().filter((i) => i.propietarioId === propietarioId));
+}
+
+/** Dueño fijo con que se crearon las investigaciones antes del 16 nov. */
+const PROPIETARIO_ANTERIOR = "inv-ana";
+/** Cuenta con la que se crearon esas investigaciones (la de demostración del investigador). */
+export const CUENTA_INVESTIGACIONES_ANTERIORES = "investigador@indagata.com";
+
+/** Pasa a `propietarioId` las investigaciones creadas con el dueño fijo anterior. */
+export function reclamarInvestigacionesAnteriores(propietarioId: string): void {
+  const lista = leerInvestigaciones();
+  if (!lista.some((i) => i.propietarioId === PROPIETARIO_ANTERIOR)) return;
+  escribirInvestigaciones(
+    lista.map((i) => (i.propietarioId === PROPIETARIO_ANTERIOR ? { ...i, propietarioId } : i)),
+  );
 }
 
 export function crearInvestigacion(nombre: string, propietarioId: string): Promise<Investigacion> {
