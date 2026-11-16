@@ -183,12 +183,21 @@ def test_kpis_de_un_instrumento(cliente, acervo):
 
 def test_relacionados(cliente, acervo):
     r = cliente.post("/visualizacion/relacionados", json={"ids": ["1"]}, headers=ANA).json()
-    assert [x["instrumento"]["id"] for x in r] == ["2", "3"]
+    # El 3 solo compartía el nivel; desde el 16 nov (todo es licenciatura) el nivel ya no es criterio.
+    assert [x["instrumento"]["id"] for x in r] == ["2"]
     primero = r[0]
     assert primero["nivel"] == "alta"
-    assert {razon["tipo"] for razon in primero["razones"]} == {"kpi", "nivel", "descripcion"}
+    assert {razon["tipo"] for razon in primero["razones"]} == {"kpi", "descripcion"}
     assert primero["coincideCon"] == ["1"]
-    assert r[1]["nivel"] == "baja"  # solo comparte el nivel
+    assert primero["instrumento"]["nivel"] == "Licenciatura"
+
+
+def test_contexto_de_investigacion_siempre_es_licenciatura():
+    from models import ContextoInvestigacion
+
+    # Sesiones de chat guardadas antes del 16 nov pueden traer «Posgrado»; se toma como licenciatura.
+    assert ContextoInvestigacion(nivel="Posgrado").nivel == "Licenciatura"
+    assert ContextoInvestigacion().nivel == "Licenciatura"
 
 
 def test_descargas_con_regla_de_propiedad(cliente, acervo, storage):

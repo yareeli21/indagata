@@ -126,8 +126,10 @@ def _ficha(doc: dict[str, Any], tipo_ui: str) -> list[Chunk]:
     lineas = [f"Tipo: {tipo_ui}"]
     for etiqueta, clave in (("Objetivo", "objetivo"), ("Población", "poblacion"), ("Nivel educativo", "nivel_educativo"),
                             ("Contexto", "contexto")):
-        if ins.get(clave) and ins.get(clave) != "No especificado":
-            lineas.append(f"{etiqueta}: {ins[clave]}")
+        # Todo el acervo es de licenciatura (16 nov): los documentos guardados antes pueden decir otro nivel.
+        valor = "Licenciatura" if clave == "nivel_educativo" else ins.get(clave)
+        if valor and valor != "No especificado":
+            lineas.append(f"{etiqueta}: {valor}")
         if clave == "objetivo" and (aspectos := _aspectos_sin_secciones(doc, _MAX_ASPECTOS)):
             lineas.append(_ETIQUETA_ASPECTOS + aspectos)
     temas = [str(t) for t in ins.get("temas") or [] if str(t).strip() and str(t) != "No especificado"]

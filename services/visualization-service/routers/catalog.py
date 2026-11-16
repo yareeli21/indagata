@@ -126,9 +126,10 @@ def investigadores(_: Investigador, db: DBSession) -> list[InvestigadorOut]:
     response_model=list[RelacionadoOut],
     summary="Instrumentos de otros autores relacionados con una selección",
     description=(
-        "Compara la selección con los instrumentos de otros autores por KPIs en común, "
-        "nivel educativo y similitud semántica de su ficha (vectores en ChromaDB; si no "
-        "están ingeridos, similitud léxica de título y descripción)."
+        "Compara la selección con los instrumentos de otros autores por KPIs en común "
+        "y similitud semántica de su ficha (vectores en ChromaDB; si no están ingeridos, "
+        "similitud léxica de título y descripción). Alta = ambos criterios; media = solo KPI; "
+        "baja = solo similitud."
     ),
 )
 def relacionados(peticion: RelacionadosRequest, usuario: Investigador, db: DBSession) -> list[RelacionadoOut]:

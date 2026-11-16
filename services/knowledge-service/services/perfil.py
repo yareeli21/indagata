@@ -13,7 +13,6 @@ from __future__ import annotations
 
 import json
 import re
-import unicodedata
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -26,15 +25,7 @@ ESQUEMA_VERSION = "1.0"
 _ESQUEMAS = Path(__file__).resolve().parents[1] / "esquemas"
 NO_ESPECIFICADO = "No especificado"
 
-# Nivel educativo por palabras clave (el orden importa: «media superior» antes que «superior»).
-_NIVELES = (
-    ("Posgrado", ("posgrado", "maestria", "doctorado", "especialidad")),
-    ("Media superior", ("media superior", "bachillerato", "preparatoria", "bachiller")),
-    ("Licenciatura", ("licenciatura", "universidad", "universitari", "pregrado", "educacion superior", "ingenieria")),
-    ("Secundaria", ("secundaria",)),
-    ("Primaria", ("primaria",)),
-    ("Preescolar", ("preescolar", "kinder")),
-)
+NIVEL = "Licenciatura"  # todo el acervo es de licenciatura (16 nov)
 
 
 @lru_cache
@@ -78,19 +69,9 @@ def _sin_repetidos(valores: list[str]) -> list[str]:
     return salida
 
 
-def _sin_acentos(texto: str) -> str:
-    return "".join(c for c in unicodedata.normalize("NFD", texto) if unicodedata.category(c) != "Mn").lower()
-
-
-def nivel_educativo(dc: dict[str, Any], esp: dict[str, Any]) -> str:
-    """El campo del tipo si existe (pruebas); si no, por palabras clave en cobertura, población y carrera."""
-    if _texto(esp.get("nivel_educativo")):
-        return _texto(esp.get("nivel_educativo"))
-    texto = _sin_acentos(" ".join(_texto(x) for x in (dc.get("dc_coverage"), esp.get("poblacion_objetivo"), esp.get("carrera"), esp.get("grado"))))
-    for nivel, palabras in _NIVELES:
-        if any(p in texto for p in palabras):
-            return nivel
-    return NO_ESPECIFICADO
+def nivel_educativo(dc: dict[str, Any], esp: dict[str, Any]) -> str:  # noqa: ARG001
+    """Siempre «Licenciatura»: todo el acervo es de licenciatura (16 nov; ya no se infiere posgrado ni otro nivel)."""
+    return NIVEL
 
 
 # Frases con métricas o conteos (p. ej. las notas automáticas «20 registros con respuesta;

@@ -21,7 +21,7 @@ class InstrumentoCatalogo(BaseModel):
     id: str
     titulo: str
     tipo: TipoInstrumento
-    nivel: Literal["Licenciatura", "Posgrado"]
+    nivel: Literal["Licenciatura"] = "Licenciatura"  # todo el acervo es de licenciatura (16 nov)
     autorId: str
     anio: int
     fecha: str
@@ -96,7 +96,7 @@ class RelacionadosRequest(BaseModel):
 
 
 class RazonOut(BaseModel):
-    tipo: Literal["kpi", "nivel", "descripcion"]
+    tipo: Literal["kpi", "descripcion"]
     etiqueta: str
 
 
@@ -213,8 +213,14 @@ class IndexResponse(BaseModel):
 class ContextoInvestigacion(BaseModel):
     objetivo: str = ""
     poblacion: str = ""
-    nivel: str = ""
+    nivel: str = "Licenciatura"
     pregunta: str = ""
+
+    @field_validator("nivel", mode="before")
+    @classmethod
+    def _solo_licenciatura(cls, _valor: Any) -> str:
+        # Todo el acervo es de licenciatura (16 nov): las sesiones guardadas con otro nivel también lo usan.
+        return "Licenciatura"
 
 
 class MensajeHistorial(BaseModel):

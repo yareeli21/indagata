@@ -94,11 +94,12 @@ def test_campos_descriptivos_desde_los_metadatos():
     assert p["contexto"].startswith("Institución: Universidad Ejemplo. Carrera(s): Pedagogía.")
 
 
-def test_nivel_educativo_por_palabras_clave():
-    assert perfil.nivel_educativo({"dc_coverage": "Maestría en Educación"}, {}) == "Posgrado"
-    assert perfil.nivel_educativo({"dc_coverage": "Educación media superior"}, {}) == "Media superior"
-    assert perfil.nivel_educativo({}, {"nivel_educativo": "Secundaria"}) == "Secundaria"
-    assert perfil.nivel_educativo({}, {}) == perfil.NO_ESPECIFICADO
+def test_nivel_educativo_siempre_es_licenciatura():
+    # Todo el acervo es de licenciatura (16 nov): ni la cobertura ni el campo del tipo cambian el nivel.
+    assert perfil.nivel_educativo({"dc_coverage": "Maestría en Educación"}, {}) == "Licenciatura"
+    assert perfil.nivel_educativo({"dc_coverage": "Posgrado (maestría) — Educación"}, {}) == "Licenciatura"
+    assert perfil.nivel_educativo({}, {"nivel_educativo": "Posgrado"}) == "Licenciatura"
+    assert perfil.nivel_educativo({}, {}) == "Licenciatura"
 
 
 # ── Entrevistas y pruebas ──────────────────────────────────────────────────────

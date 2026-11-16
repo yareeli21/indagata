@@ -1,4 +1,5 @@
-export const NIVELES_EDUCATIVOS = ["Licenciatura", "Posgrado"] as const;
+/** Todo el acervo es de licenciatura (16 nov): ya no existe «Posgrado». */
+export const NIVELES_EDUCATIVOS = ["Licenciatura"] as const;
 
 export type NivelEducativo = (typeof NIVELES_EDUCATIVOS)[number];
 
@@ -563,7 +564,7 @@ export type FormatoDescarga = "crudo" | "json" | "sav";
 export type NivelCoincidencia = "alta" | "media" | "baja";
 
 export interface RazonCoincidencia {
-  tipo: "kpi" | "nivel" | "descripcion";
+  tipo: "kpi" | "descripcion";
   etiqueta: string;
 }
 

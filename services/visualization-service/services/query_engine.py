@@ -10,7 +10,7 @@ Sobre las fichas resuelve:
   - catálogo de KPIs (tabla `kpi`), resumen del acervo y datos de dashboard;
   - qué preguntas de cada instrumento miden un KPI (similitud en Chroma entre el
     vector del KPI y los vectores de las preguntas del instrumento);
-  - instrumentos relacionados de otros autores (KPIs, nivel y similitud semántica).
+  - instrumentos relacionados de otros autores (KPIs y similitud semántica).
 """
 from __future__ import annotations
 
@@ -57,7 +57,6 @@ ESTADO_UI = {
     "vectorizado": "Estandarizado",
     "error": "Borrador",
 }
-_NIVEL_POSGRADO = ("posgrado", "maestr", "doctor", "especialidad")
 TABLAS_TIPO = {
     "encuesta": MetadatosEnriquecidosEncuestas,
     "entrevista": MetadatosEnriquecidosEntrevistas,
@@ -196,9 +195,7 @@ class Ficha:
         }
 
 
-def _nivel(*textos: str) -> str:
-    t = normalizar(" ".join(textos))
-    return "Posgrado" if any(c in t for c in _NIVEL_POSGRADO) else "Licenciatura"
+NIVEL = "Licenciatura"  # todo el acervo es de licenciatura (16 nov): ya no se infiere posgrado
 
 
 def _anio(dc_date: str, fecha_carga: datetime | None) -> int:
@@ -292,11 +289,7 @@ def cargar_fichas(db: Session) -> list[Ficha]:
                 titulo=dc_campo("title") or _texto(instrumento.get("title")) or raw.nombre_archivo,
                 tipo=TIPO_UI.get((raw.tipo_instrumento or "").lower(), "Encuesta"),
                 tipo_backend=(raw.tipo_instrumento or "").lower(),
-                nivel=_nivel(
-                    dc_campo("coverage"),
-                    _texto(esp_campo("poblacion_objetivo")),
-                    _texto(esp_campo("nivel_educativo")),
-                ),
+                nivel=NIVEL,
                 autorId=str(raw.id_owner),
                 autorNombre=usuarios.get(raw.id_owner, ""),
                 anio=_anio(dc_campo("date"), fecha_carga),
@@ -739,10 +732,6 @@ def relacionados(fichas: list[Ficha], ids: list[str], autor_id: str) -> list[dic
                 if not any(r["etiqueta"] == etiqueta for r in razones):
                     razones.append({"tipo": "kpi", "etiqueta": etiqueta})
                 hubo = True
-            if propia.nivel == cand.nivel:
-                if not any(r["tipo"] == "nivel" for r in razones):
-                    razones.append({"tipo": "nivel", "etiqueta": f"Mismo nivel: {cand.nivel}"})
-                hubo = True
             if propia.id in vecs and cand.id in vecs:
                 sim, umbral = _coseno(vecs[propia.id], vecs[cand.id]), UMBRAL_SEMANTICO
             else:
@@ -759,8 +748,10 @@ def relacionados(fichas: list[Ficha], ids: list[str], autor_id: str) -> list[dic
             razones.append({"tipo": "descripcion", "etiqueta": f"Descripción similar: {round(mejor_sim * 100)}%"})
         if not razones:
             continue
-        criterios = len({r["tipo"] for r in razones})
-        nivel = "alta" if criterios >= 3 else "media" if criterios == 2 else "baja"
+        # 16 nov: sin el criterio «mismo nivel» (todo el acervo es de licenciatura, lo cumpliría cualquiera).
+        # Alta = comparte KPI y la descripción se parece; media = solo comparte KPI; baja = solo se parece.
+        tipos = {r["tipo"] for r in razones}
+        nivel = "alta" if tipos == {"kpi", "descripcion"} else "media" if "kpi" in tipos else "baja"
         resultados.append(
             {
                 "instrumento": cand.dto(),

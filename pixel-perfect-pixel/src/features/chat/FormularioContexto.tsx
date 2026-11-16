@@ -3,15 +3,11 @@ import { BookOpen, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { NIVELES_EDUCATIVOS, type ContextoInvestigacion, type NivelEducativo } from "@/types";
+import type { ContextoInvestigacion } from "@/types";
+
+/** Todo el acervo es de licenciatura: el nivel ya no se pregunta y se envía fijo (el backend lo sigue esperando). */
+const NIVEL_INVESTIGACION = "Licenciatura" as const;
 
 interface FormularioContextoProps {
   nombreInvestigacion: string;
@@ -21,26 +17,20 @@ interface FormularioContextoProps {
 export function FormularioContexto({ nombreInvestigacion, onComenzar }: FormularioContextoProps) {
   const [objetivo, setObjetivo] = useState("");
   const [poblacion, setPoblacion] = useState("");
-  const [nivel, setNivel] = useState<NivelEducativo | "">("");
   const [pregunta, setPregunta] = useState("");
   const [enviando, setEnviando] = useState(false);
 
-  const nivelElegido = (n: NivelEducativo | ""): n is NivelEducativo => n.length > 0;
-
   const completo =
-    objetivo.trim().length > 0 &&
-    poblacion.trim().length > 0 &&
-    nivelElegido(nivel) &&
-    pregunta.trim().length > 0;
+    objetivo.trim().length > 0 && poblacion.trim().length > 0 && pregunta.trim().length > 0;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!completo || !nivelElegido(nivel)) return;
+    if (!completo) return;
     setEnviando(true);
     await onComenzar({
       objetivo: objetivo.trim(),
       poblacion: poblacion.trim(),
-      nivel,
+      nivel: NIVEL_INVESTIGACION,
       pregunta: pregunta.trim(),
     });
   }
@@ -100,30 +90,8 @@ export function FormularioContexto({ nombreInvestigacion, onComenzar }: Formular
             />
           </div>
 
-          {/* Nivel educativo */}
-          <div className="space-y-2">
-            <Label htmlFor="ctx-nivel">
-              Nivel educativo
-              <span className="ml-1 text-destructive" aria-hidden>
-                *
-              </span>
-            </Label>
-            <Select value={nivel} onValueChange={(v) => setNivel(v as NivelEducativo)}>
-              <SelectTrigger id="ctx-nivel">
-                <SelectValue placeholder="Selecciona un nivel…" />
-              </SelectTrigger>
-              <SelectContent>
-                {NIVELES_EDUCATIVOS.map((n) => (
-                  <SelectItem key={n} value={n}>
-                    {n}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
           {/* Pregunta de investigación */}
-          <div className="space-y-2">
+          <div className="space-y-2 lg:col-span-2">
             <Label htmlFor="ctx-pregunta">
               Pregunta de investigación
               <span className="ml-1 text-destructive" aria-hidden>

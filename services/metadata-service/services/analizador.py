@@ -313,25 +313,9 @@ def _buscar(patron: str, texto: str, grupo: int = 1, flags: int = re.IGNORECASE)
     return m.group(grupo).strip(" .,;:") if m else ""
 
 
-def _nivel_educativo(texto: str) -> str:
-    t = sin_acentos(texto)
-    for clave, nivel in (
-        ("doctorado", "Doctorado"),
-        ("maestria", "Maestría"),
-        ("posgrado", "Posgrado"),
-        ("especialidad", "Posgrado"),
-        ("licenciatura", "Licenciatura"),
-        ("universitari", "Licenciatura"),
-        ("pregrado", "Licenciatura"),
-        ("bachillerato", "Bachillerato"),
-        ("preparatoria", "Bachillerato"),
-        ("media superior", "Bachillerato"),
-        ("secundaria", "Secundaria"),
-        ("primaria", "Primaria"),
-    ):
-        if clave in t:
-            return nivel
-    return ""
+def _nivel_educativo(texto: str) -> str:  # noqa: ARG001
+    """Siempre «Licenciatura»: todo el acervo es de licenciatura (16 nov; antes se detectaba posgrado, etc.)."""
+    return "Licenciatura"
 
 
 def _bloom(preguntas: list[Pregunta]) -> str:

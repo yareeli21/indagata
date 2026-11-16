@@ -2,7 +2,6 @@ import type {
   DublinCore,
   KpiSugerido,
   MetadatosTipo,
-  NivelEducativo,
   OrigenMetadato,
   TipoInstrumento,
 } from "@/types";
@@ -209,20 +208,14 @@ function texto(valor: unknown): string {
   return String(valor);
 }
 
-/** «Licenciatura — Estudiantes de la UNAM» → nivel + detalle. */
-function partirCobertura(cobertura: string): { nivel: NivelEducativo | ""; detalle: string } {
+/**
+ * «Licenciatura — Estudiantes de la UNAM» → «Estudiantes de la UNAM». Quita el nivel con que empiece la
+ * cobertura propuesta (todo el acervo es de licenciatura, 16 nov) y deja solo el alcance.
+ */
+function detalleCobertura(cobertura: string): string {
   const limpio = cobertura.trim();
-  const m = /^(Licenciatura|Posgrado)(?:\s*\([^)]*\))?\s*(?:[—–-]\s*)?(.*)$/i.exec(limpio);
-  if (m) {
-    const nivel: NivelEducativo = m[1]?.toLowerCase() === "posgrado" ? "Posgrado" : "Licenciatura";
-    return { nivel, detalle: (m[2] ?? "").trim() };
-  }
-  const minusculas = limpio.toLowerCase();
-  if (/posgrado|maestr|doctor|especialidad/.test(minusculas))
-    return { nivel: "Posgrado", detalle: limpio };
-  if (/licenciatura|universitari|pregrado/.test(minusculas))
-    return { nivel: "Licenciatura", detalle: limpio };
-  return { nivel: "", detalle: limpio };
+  const m = /^(Licenciatura|Posgrado|No especificado)(?:\s*\([^)]*\))?\s*(?:[—–-]\s*)?(.*)$/i.exec(limpio);
+  return m ? (m[2] ?? "").trim() : limpio;
 }
 
 /** Aplica una propuesta (valores `dc_*`) sobre el formulario Dublin Core. */
@@ -237,10 +230,9 @@ export function dublinCoreDesdePropuesta(
   }
   const cobertura = texto(valores["dc_coverage"]);
   if (cobertura) {
-    const { detalle } = partirCobertura(cobertura);
-    // La carga solo admite licenciatura: el nivel propuesto no se usa, el alcance sí.
+    // Todo el acervo es de licenciatura: el nivel propuesto no se usa, el alcance sí.
     dc.cobertura = "Licenciatura";
-    dc.coberturaDetalle = detalle;
+    dc.coberturaDetalle = detalleCobertura(cobertura);
   }
   return dc;
 }

@@ -21,7 +21,6 @@ export function ChipsFiltros({ filtros: f, onChange }: ChipsFiltrosProps) {
       quitar: () => onChange({ ...f, kpis: f.kpis.filter((x) => x !== k) }),
     }),
   );
-  if (f.nivel) chips.push({ etiqueta: f.nivel, quitar: () => onChange({ ...f, nivel: null }) });
   if (f.tipo) chips.push({ etiqueta: f.tipo, quitar: () => onChange({ ...f, tipo: null }) });
   if (f.estado) chips.push({ etiqueta: f.estado, quitar: () => onChange({ ...f, estado: null }) });
   if (f.anio !== null)

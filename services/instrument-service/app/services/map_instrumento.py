@@ -44,9 +44,8 @@ _ESTADO_MAP: dict[str, EstadoInstrumentoDTO] = {
 }
 _ESTADO_DEFAULT: EstadoInstrumentoDTO = "Borrador"
 
-# Substrings que, presentes en los textos de cobertura/población, elevan el
-# nivel a "Posgrado" (§2.3a). Default: "Licenciatura".
-_NIVEL_POSGRADO = ("posgrado", "maestr", "doctor", "especialidad")
+# Todo el acervo es de licenciatura (16 nov): ya no se infiere «Posgrado» de la cobertura.
+NIVEL: NivelEducativoDTO = "Licenciatura"
 
 
 def _como_dict(valor: Any) -> dict[str, Any]:
@@ -83,24 +82,9 @@ def mapear_estado(estado_raw: str | None) -> EstadoInstrumentoDTO:
     return _ESTADO_MAP.get((estado_raw or "").strip().lower(), _ESTADO_DEFAULT)
 
 
-def _derivar_nivel(instrumento_json: dict[str, Any] | None) -> NivelEducativoDTO:
-    """Heurística de nivel por substring sobre cobertura/población (§2.3a)."""
-    json = _como_dict(instrumento_json)
-    metadata = _como_dict(json.get("metadata"))
-    dublin_core = _como_dict(metadata.get("dublin_core"))
-    survey = _como_dict(metadata.get("survey_specific"))
-
-    textos = " ".join(
-        (
-            _texto(dublin_core.get("dc:coverage")),
-            _texto(survey.get("poblacion_objetivo")),
-        )
-    ).lower()
-
-    if any(clave in textos for clave in _NIVEL_POSGRADO):
-        logger.debug("nivel=Posgrado por heurística sobre %r", textos)
-        return "Posgrado"
-    return "Licenciatura"
+def _derivar_nivel(instrumento_json: dict[str, Any] | None) -> NivelEducativoDTO:  # noqa: ARG001
+    """Siempre «Licenciatura»: todo el acervo es de licenciatura (16 nov; antes se infería posgrado)."""
+    return NIVEL
 
 
 def extraer_kpis(instrumento_json: dict[str, Any] | None) -> list[str]:
