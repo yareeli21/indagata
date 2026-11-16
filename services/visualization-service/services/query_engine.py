@@ -484,32 +484,22 @@ def catalogo_kpis(db: Session, fichas: list[Ficha]) -> list[dict[str, Any]]:
     return salida
 
 
-def _variacion(actual: int, previo: int) -> float:
-    return round((actual - previo) * 100 / previo, 1) if previo else 0.0
-
-
 def resumen(db: Session, fichas: list[Ficha]) -> list[dict[str, Any]]:
-    ahora = datetime.now()
-    hace_30, hace_60 = ahora - timedelta(days=30), ahora - timedelta(days=60)
+    # 16 nov: sin tendencia (comparar 30 días contra los 30 anteriores reflejaba la cantidad de pruebas, no el uso);
+    # «variacion» queda en 0 en todas las tarjetas y la interfaz no muestra el porcentaje.
+    hace_30 = datetime.now() - timedelta(days=30)
     recientes = sum(1 for f in fichas if f.fecha_carga and f.fecha_carga >= hace_30)
-    previos = sum(1 for f in fichas if f.fecha_carga and hace_60 <= f.fecha_carga < hace_30)
     aprobados = sum(1 for f in fichas if f.aprobado)
     total_kpis = db.query(func.count(KPI.kpi_id)).scalar() or 0
     con_evidencia = len({normalizar(n) for f in fichas for n in f.kpis})
     consultas = db.query(func.count(RagLog.rag_log_id)).filter(RagLog.timestamp >= hace_30).scalar() or 0
-    consultas_previas = (
-        db.query(func.count(RagLog.rag_log_id))
-        .filter(RagLog.timestamp >= hace_60, RagLog.timestamp < hace_30)
-        .scalar()
-        or 0
-    )
     pct = round(aprobados * 100 / len(fichas)) if fichas else 0
     return [
         {
             "id": "acervo",
             "etiqueta": "Instrumentos en el acervo",
             "valor": str(len(fichas)),
-            "variacion": _variacion(recientes, previos),
+            "variacion": 0.0,
             "detalle": f"{recientes} subido{'s' if recientes != 1 else ''} en los últimos 30 días",
         },
         {
@@ -530,7 +520,7 @@ def resumen(db: Session, fichas: list[Ficha]) -> list[dict[str, Any]]:
             "id": "consultas",
             "etiqueta": "Consultas al RAG (30 días)",
             "valor": str(consultas),
-            "variacion": _variacion(consultas, consultas_previas),
+            "variacion": 0.0,
             "detalle": "preguntas respondidas con tus instrumentos",
         },
         {
