@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import {
   AlertTriangle,
@@ -167,6 +167,19 @@ export function UploadWizard() {
   const [tipo, setTipo] = useState<TipoInstrumento | null>(null);
   // Versión vigente de la limpieza (cleaning-service); se conserva al navegar entre pasos.
   const [limpieza, setLimpieza] = useState<EjecucionLimpieza | null>(null);
+  // Al cambiar de paso, o de vista dentro de «Limpieza» (fase asistida → limpieza confirmada, o
+  // reajuste con una versión nueva), la vista sube a la línea de pasos. scroll-mt deja libre el
+  // encabezado fijo; elegir decisiones no cambia estado ni versión, así que no mueve la pantalla.
+  const refPasos = useRef<HTMLDivElement>(null);
+  const primerRender = useRef(true);
+  const vistaLimpieza = limpieza ? `${limpieza.estado}-${limpieza.version}` : "";
+  useEffect(() => {
+    if (primerRender.current) {
+      primerRender.current = false;
+      return;
+    }
+    refPasos.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [paso, vistaLimpieza]);
   // id_crudo: id canónico (metadatos, storage, visualización). El id_instrumento
   // que usa el analysis-service llega en el resultado de la aprobación.
   const [idCrudo, setIdCrudo] = useState<number | null>(null);
@@ -522,7 +535,9 @@ export function UploadWizard() {
           </div>
         </div>
       )}
-      <Stepper pasos={PASOS} actual={paso} />
+      <div ref={refPasos} className="scroll-mt-24">
+        <Stepper pasos={PASOS} actual={paso} />
+      </div>
 
       <section className="superficie overflow-hidden rounded-3xl">
         <header className="border-b border-border/70 px-6 py-5 lg:px-8">

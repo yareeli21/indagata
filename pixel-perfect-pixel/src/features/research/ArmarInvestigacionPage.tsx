@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { setInstrumentosDeInvestigacion } from "@/api/chat";
@@ -53,15 +53,11 @@ export function ArmarInvestigacionPage() {
   const [relacionados, setRelacionados] = useState<InstrumentoRelacionado[]>([]);
   const [seleccionadosAjenos, setSeleccionadosAjenos] = useState<string[]>([]);
 
-  // Instrumentos derivados
-  const instrumentosPropios = useMemo(
-    () => todosLosInstrumentos.filter((i) => i.autorId === miId),
-    [todosLosInstrumentos, miId],
-  );
-
+  // Instrumentos derivados. En el paso 1 se elige de todo el acervo (los instrumentos son
+  // compartidos); «propios» aquí significa «elegidos en el paso 1», no «de mi autoría».
   const propiosSeleccionadosObj = useMemo(
-    () => instrumentosPropios.filter((i) => seleccionadosPropios.includes(i.id)),
-    [instrumentosPropios, seleccionadosPropios],
+    () => todosLosInstrumentos.filter((i) => seleccionadosPropios.includes(i.id)),
+    [todosLosInstrumentos, seleccionadosPropios],
   );
 
   const ajenosSeleccionadosObj = useMemo(() => {
@@ -71,7 +67,10 @@ export function ArmarInvestigacionPage() {
       .filter((i): i is Instrumento => !!i);
   }, [relacionados, seleccionadosAjenos]);
 
-  const nombreAutor = (id: string) => investigadores.find((x) => x.id === id)?.nombre ?? "—";
+  const nombreAutor = useCallback(
+    (id: string) => investigadores.find((x) => x.id === id)?.nombre ?? "—",
+    [investigadores],
+  );
 
   // Navegación del wizard
   async function irAPaso2() {
@@ -150,7 +149,9 @@ export function ArmarInvestigacionPage() {
               <Cargando variante="tarjetas" cantidad={6} etiqueta="Cargando instrumentos…" />
             ) : (
               <Paso1Seleccion
-                instrumentos={instrumentosPropios}
+                instrumentos={todosLosInstrumentos}
+                miId={miId}
+                nombreAutor={nombreAutor}
                 seleccionados={seleccionadosPropios}
                 onCambiarSeleccion={setSeleccionadosPropios}
                 onBuscar={irAPaso2}

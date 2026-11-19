@@ -41,13 +41,13 @@ export function Paso3Revision({
       {/* Lista de instrumentos propios */}
       <section className="space-y-3">
         <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-          Mis instrumentos
+          Elegidos en el paso 1
           <span className="ml-2 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
             {propios.length}
           </span>
         </h3>
         {propios.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No has seleccionado instrumentos propios.</p>
+          <p className="text-sm text-muted-foreground">No elegiste instrumentos en el paso 1.</p>
         ) : (
           <ul className="divide-y divide-border rounded-2xl border border-border bg-card shadow-card">
             {propios.map((ins) => (
@@ -65,7 +65,7 @@ export function Paso3Revision({
       {ajenos.length > 0 && (
         <section className="space-y-3">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-            De otros investigadores
+            Relacionados agregados
             <span className="ml-2 rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
               {ajenos.length}
             </span>

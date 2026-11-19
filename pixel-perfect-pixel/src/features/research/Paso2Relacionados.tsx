@@ -77,7 +77,7 @@ export function Paso2Relacionados({
           compacto
           icono={SearchX}
           titulo="No encontramos instrumentos de otros investigadores relacionados con tu selección"
-          descripcion="Puedes continuar solo con tus instrumentos o volver a cambiar la selección."
+          descripcion="Puedes continuar solo con los instrumentos que elegiste o volver a cambiar la selección."
         />
         <div className="flex flex-wrap gap-3 border-t pt-4">
           <Button onClick={onSiguiente}>Continuar sin agregar</Button>
