@@ -20,7 +20,11 @@ interface Paso1Props {
 }
 
 /** Minúsculas y sin acentos, para que «satisfaccion» encuentre «Satisfacción». */
-const normalizar = (texto: string) => texto.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const normalizar = (texto: string) =>
+  texto
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase();
 
 export function Paso1Seleccion({
   instrumentos,
