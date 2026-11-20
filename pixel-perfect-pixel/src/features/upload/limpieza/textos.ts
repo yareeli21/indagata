@@ -117,3 +117,31 @@ export function etiquetaOpcion(opcion: string): string {
   if (opcion.startsWith("cambiar:")) return `Cambiar a «${opcion.slice("cambiar:".length)}»`;
   return ETIQUETA_OPCION[opcion] ?? opcion.replaceAll("_", " ");
 }
+
+/** Tarjetas que deciden sobre la misma columna: eliminarla en una vuelve innecesaria la otra. */
+const TARJETAS_DE_COLUMNA = ["rol_columna", "columna_incompleta"];
+
+/** Columnas que ya se eliminan por la decisión (o la sugerencia vigente) de «Rol» o de «Calidad». */
+export function columnasEliminadas(
+  hallazgos: { tipo: string; objetivo: string; decision: string | null; sugerida: string | null }[],
+): Set<string> {
+  return new Set(
+    hallazgos
+      .filter(
+        (h) => TARJETAS_DE_COLUMNA.includes(h.tipo) && (h.decision ?? h.sugerida) === "eliminar",
+      )
+      .map((h) => h.objetivo),
+  );
+}
+
+/** La tarjeta queda resuelta porque su columna ya se elimina desde la otra tarjeta. */
+export function eliminadaPorOtra(
+  h: { tipo: string; objetivo: string; decision: string | null; sugerida: string | null },
+  eliminadas: Set<string>,
+): boolean {
+  return (
+    TARJETAS_DE_COLUMNA.includes(h.tipo) &&
+    eliminadas.has(h.objetivo) &&
+    (h.decision ?? h.sugerida) !== "eliminar"
+  );
+}

@@ -209,10 +209,32 @@ def _hallazgos(reporte: dict[str, Any]) -> list[Hallazgo]:
     return [Hallazgo(**h) for h in reporte.get("hallazgos", [])]
 
 
-def pendientes_obligatorias(reporte: dict[str, Any]) -> list[str]:
-    """Hallazgos obligatorios que el investigador aún no decide."""
+# Tarjetas que deciden sobre la misma columna: eliminarla en una vuelve innecesaria la otra (19 nov).
+_TARJETAS_DE_COLUMNA = ("rol_columna", "columna_incompleta")
+
+
+def columnas_eliminadas(reporte: dict[str, Any]) -> set[str]:
+    """Columnas que ya se eliminan por la decisión (o la sugerencia vigente) de «Rol» o de «Calidad»."""
     decisiones = reporte.get("decisiones", {})
-    return [h["id"] for h in reporte.get("hallazgos", []) if h.get("obligatoria") and h["id"] not in decisiones]
+    return {
+        h["objetivo"]
+        for h in reporte.get("hallazgos", [])
+        if h.get("tipo") in _TARJETAS_DE_COLUMNA and (decisiones.get(h["id"]) or h.get("sugerida")) == "eliminar"
+    }
+
+
+def pendientes_obligatorias(reporte: dict[str, Any]) -> list[str]:
+    """Hallazgos obligatorios que el investigador aún no decide. El «Rol» de una columna que ya se elimina
+    desde otra tarjeta no queda pendiente: la columna se va de todos modos."""
+    decisiones = reporte.get("decisiones", {})
+    eliminadas = columnas_eliminadas(reporte)
+    return [
+        h["id"]
+        for h in reporte.get("hallazgos", [])
+        if h.get("obligatoria")
+        and h["id"] not in decisiones
+        and not (h.get("tipo") in _TARJETAS_DE_COLUMNA and h.get("objetivo") in eliminadas)
+    ]
 
 
 # ── Operaciones ────────────────────────────────────────────────────────────────

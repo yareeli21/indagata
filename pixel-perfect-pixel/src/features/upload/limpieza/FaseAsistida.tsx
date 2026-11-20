@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import type { EjecucionLimpieza, HallazgoLimpieza } from "@/types";
 import { ResumenAutomatico } from "./ResumenAutomatico";
 import { TarjetaHallazgo } from "./TarjetaHallazgo";
+import { columnasEliminadas, eliminadaPorOtra } from "./textos";
 
 interface FaseAsistidaProps {
   ejecucion: EjecucionLimpieza;
@@ -29,6 +30,7 @@ export function FaseAsistida({
     return [...mapa.entries()];
   }, [hallazgos]);
   const pendientes = ejecucion.pendientesObligatorias;
+  const eliminadas = useMemo(() => columnasEliminadas(hallazgos), [hallazgos]);
 
   return (
     <div className="space-y-6">
@@ -69,7 +71,12 @@ export function FaseAsistida({
               </h3>
               <div className="grid gap-3 xl:grid-cols-2">
                 {delTema.map((h) => (
-                  <TarjetaHallazgo key={h.id} hallazgo={h} onElegir={(o) => onElegir(h.id, o)} />
+                  <TarjetaHallazgo
+                    key={h.id}
+                    hallazgo={h}
+                    onElegir={(o) => onElegir(h.id, o)}
+                    eliminadaEnOtra={eliminadaPorOtra(h, eliminadas)}
+                  />
                 ))}
               </div>
             </section>
