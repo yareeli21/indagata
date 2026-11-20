@@ -46,7 +46,7 @@ def filas(doc: dict[str, Any], id_crudo: int, version: int) -> list[dict[str, An
         for i in e.get("intercambios") or []:
             salida.append({**base, "respondente_id": e["participante"], "pregunta_id": i.get("pregunta_id") or "",
                            "valor": _texto(i.get("respuesta")), "significado": None, "nivel": None, "estado": "respondida",
-                           "contexto": {}})
+                           "contexto": e.get("contexto") or {}})
     return salida
 
 

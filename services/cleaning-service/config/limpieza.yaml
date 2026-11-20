@@ -78,7 +78,10 @@ encuestas:
     palabras_numerica: ["hora", "horas", "minuto", "minutos", "edad", "año", "años", "mes", "meses",
                         "semana", "semanas", "dia", "dias", "cantidad", "numero de", "num de",
                         "peso", "estatura", "talla", "ingreso", "ingresos", "salario", "sueldo", "hijos",
-                        "integrantes", "personas", "kilometros", "km", "distancia", "costo", "precio"]
+                        "integrantes", "personas", "kilometros", "km", "distancia", "costo", "precio",
+                        # 20 nov: conteos («¿Cuántos intentos…?», «Materias reprobadas»). Sin «materias» ni «veces»:
+                        # hay escalas Likert reales que las usan («La oferta de materias optativas…», encuesta 117).
+                        "cuantos", "cuantas", "intentos", "reprobadas", "reprobados", "reprobaste"]
 
 # ── Entrevistas ──────────────────────────────────────────────────────────────
 entrevistas:
