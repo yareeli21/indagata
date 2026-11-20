@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AlertCircle, MapPin } from "lucide-react";
+import { AlertCircle, MapPin, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { HallazgoLimpieza } from "@/types";
 import { OpcionesDecision } from "./OpcionesDecision";
@@ -9,6 +9,8 @@ import { ETIQUETA_TIPO } from "./textos";
 interface TarjetaHallazgoProps {
   hallazgo: HallazgoLimpieza;
   onElegir: (opcion: string) => void;
+  /** Su columna ya se elimina desde la otra tarjeta de esa columna («Rol» o «Calidad»). */
+  eliminadaEnOtra?: boolean;
 }
 
 /** Hallazgos sobre filas completas: texto antes de la lista de filas. */
@@ -40,7 +42,11 @@ function grupos(valor: unknown): GrupoDimension[] {
 }
 
 /** Una decisión de la fase asistida: qué encontramos, por qué y qué hacer. */
-export function TarjetaHallazgo({ hallazgo: h, onElegir }: TarjetaHallazgoProps) {
+export function TarjetaHallazgo({
+  hallazgo: h,
+  onElegir,
+  eliminadaEnOtra = false,
+}: TarjetaHallazgoProps) {
   const [verDonde, setVerDonde] = useState(false);
   const ubicacion = Array.isArray(h.detalle["ubicacion"])
     ? (h.detalle["ubicacion"] as CeldaUbicacion[])
@@ -48,7 +54,7 @@ export function TarjetaHallazgo({ hallazgo: h, onElegir }: TarjetaHallazgoProps)
   const totalUbicacion =
     typeof h.detalle["total"] === "number" ? h.detalle["total"] : ubicacion.length;
   const valor = h.decision ?? h.sugerida;
-  const pendiente = h.obligatoria && h.decision === null;
+  const pendiente = h.obligatoria && h.decision === null && !eliminadaEnOtra;
   const ejemplos = lista(h.detalle["ejemplos"]);
   const fuera = lista(h.detalle["valores"]);
   const filas = lista(h.detalle["filas"]);
@@ -72,6 +78,7 @@ export function TarjetaHallazgo({ hallazgo: h, onElegir }: TarjetaHallazgoProps)
       className={cn(
         "space-y-3 rounded-2xl border bg-card p-4 shadow-card sm:p-5",
         pendiente ? "border-accent ring-2 ring-accent/30" : "border-border",
+        eliminadaEnOtra && "opacity-60",
       )}
     >
       <header className="space-y-1">
@@ -198,13 +205,21 @@ export function TarjetaHallazgo({ hallazgo: h, onElegir }: TarjetaHallazgoProps)
         </div>
       )}
 
-      <OpcionesDecision
-        etiqueta={h.titulo}
-        opciones={h.opciones}
-        sugerida={h.sugerida}
-        valor={valor}
-        onElegir={onElegir}
-      />
+      {eliminadaEnOtra ? (
+        <p className="flex items-center gap-2 rounded-xl bg-muted px-3 py-2 text-sm font-semibold text-foreground">
+          <Trash2 className="size-4 shrink-0 text-destructive" aria-hidden />
+          Has decidido eliminar esta columna. Si quieres conservarla, cambia tu decisión en la otra
+          tarjeta de «{String(h.detalle["columna"] ?? h.objetivo)}».
+        </p>
+      ) : (
+        <OpcionesDecision
+          etiqueta={h.titulo}
+          opciones={h.opciones}
+          sugerida={h.sugerida}
+          valor={valor}
+          onElegir={onElegir}
+        />
+      )}
     </article>
   );
 }

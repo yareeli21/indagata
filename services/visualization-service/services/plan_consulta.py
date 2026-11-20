@@ -17,7 +17,7 @@ from __future__ import annotations
 import difflib
 import re
 from dataclasses import dataclass, field
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
@@ -218,7 +218,24 @@ def _id_respondente(texto: str, catalogo: Catalogo) -> str | None:
     return next((r for r in catalogo.respondentes if r[0] == letra and int(r[1:]) == n), None)
 
 
-_ESCALAS = ("likert", "escala_lineal", "cuadricula")
+def _valor_de_contexto(valor: Any, catalogo: Catalogo) -> tuple[str, str] | None:
+    """(variable, valor) del único grupo de contexto que corresponde a `valor`: igual o muy parecido, o contenido en él
+    («Dificultades socioeconómicas» en «P8 — Dificultades socioeconómicas»). None si no hay uno solo."""
+    if not isinstance(valor, str) or len(normalizar(valor)) < 4:
+        return None
+    b = normalizar(valor)
+    hallados: set[tuple[str, str]] = set()
+    for var, valores in catalogo.contexto.items():
+        real = _cercano(valor, valores, corte=0.85)
+        if real is None:
+            patron = re.compile(r"(?<!\w)" + re.escape(b) + r"(?!\w)")
+            real = next((v for v in valores if patron.search(normalizar(v))), None)
+        if real is not None:
+            hallados.add((var, real))
+    return hallados.pop() if len(hallados) == 1 else None
+
+
+_ESCALAS =("likert", "escala_lineal", "cuadricula")
 _NUMERICAS = re.compile(r"numer|entero|decimal|puntos|escala|rango")
 
 
@@ -309,6 +326,9 @@ def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> Pl
         preguntas.append(pid)
 
     filtros: list[Filtro] = []
+    # Filtros que en realidad son un grupo de contexto: el modelo puso «Dificultades socioeconómicas» como respuesta
+    # de p08 de una entrevista (texto libre, sin opciones), cuando es el perfil de los entrevistados.
+    contexto_de_filtros: dict[str, str] = {}
     for f in plan.filtros:
         pid = _id_pregunta(f.pregunta, cat)
         if pid is None:
@@ -332,6 +352,13 @@ def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> Pl
             # (8 nov, Fase 5: el modelo escribió [1, 2] y se pedía aclaración).
             correcciones.append(f"{pid} {f.op} {valor} → posiciones de la escala «{', '.join(en_escala)}»")
             filtros.append(Filtro(pregunta=pid, op="=", valor=en_escala if len(en_escala) > 1 else en_escala[0]))
+            continue
+        if (f.op in ("=", "==", None) and not isinstance(valor, list)
+                and (not opciones or (_cercano(str(valor), opciones) is None
+                                      and _contenida(str(valor), opciones) is None))
+                and (grupo := _valor_de_contexto(valor, cat))):
+            correcciones.append(f"filtro {pid} = «{valor}» → contexto «{grupo[0]} = {grupo[1]}»")
+            contexto_de_filtros[grupo[0]] = grupo[1]
             continue
         if isinstance(valor, (int, float)) or not opciones:
             filtros.append(Filtro(pregunta=pid, op=f.op, valor=valor))
@@ -392,7 +419,7 @@ def validar_contra_catalogo(plan: PlanConsulta, catalogos: list[Catalogo]) -> Pl
             correcciones.append(f"agrupar_por «{agrupar}» → «{real}»")
         agrupar = real
 
-    contexto: dict[str, str] = {}
+    contexto: dict[str, str] = dict(contexto_de_filtros)
     for clave, valor in plan.contexto.items():
         var = _cercano(clave, list(cat.contexto))
         real = _cercano(str(valor), cat.contexto.get(var, [])) if var else None

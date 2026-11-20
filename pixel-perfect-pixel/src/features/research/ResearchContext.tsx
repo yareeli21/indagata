@@ -1,13 +1,43 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import {
+  CUENTA_INVESTIGACIONES_ANTERIORES,
   crearInvestigacion,
   eliminarInvestigacion,
   getInvestigaciones,
+  reclamarInvestigacionesAnteriores,
 } from "@/api/investigaciones";
+import { useAuth } from "@/features/auth/AuthContext";
 import type { Investigacion } from "@/types";
 
-const CLAVE = "indagata.investigacionActiva";
+/** La investigación activa se recuerda por usuario: cada quien tiene las suyas. */
+const claveActiva = (usuarioId: string) => `indagata.investigacionActiva.${usuarioId}`;
+
+function leerActiva(usuarioId: string): string | null {
+  try {
+    return window.localStorage.getItem(claveActiva(usuarioId));
+  } catch {
+    return null;
+  }
+}
+
+/** Clave única que se usaba antes del 16 nov (sin usuario). */
+function leerActivaAnterior(): string | null {
+  try {
+    return window.localStorage.getItem("indagata.investigacionActiva");
+  } catch {
+    return null;
+  }
+}
+
+function guardarActiva(usuarioId: string, id: string | null): void {
+  try {
+    if (id) window.localStorage.setItem(claveActiva(usuarioId), id);
+    else window.localStorage.removeItem(claveActiva(usuarioId));
+  } catch {
+    /* almacenamiento no disponible */
+  }
+}
 
 interface ResearchContextValue {
   investigaciones: Investigacion[];
@@ -22,50 +52,67 @@ interface ResearchContextValue {
 const ResearchContext = createContext<ResearchContextValue | null>(null);
 
 export function ResearchProvider({ children }: { children: ReactNode }) {
+  const { usuario, cargando: cargandoSesion } = useAuth();
+  const usuarioId = usuario?.id ?? null;
   const [investigaciones, setInvestigaciones] = useState<Investigacion[]>([]);
   const [activaId, setActivaId] = useState<string | null>(null);
   const [cargando, setCargando] = useState(true);
 
+  // Se recargan al cambiar de usuario (cerrar sesión y entrar con otra cuenta en el mismo navegador).
   useEffect(() => {
+    if (cargandoSesion) return;
+    if (!usuario) {
+      setInvestigaciones([]);
+      setActivaId(null);
+      setCargando(false);
+      return;
+    }
     let vivo = true;
-    getInvestigaciones().then((datos) => {
+    setCargando(true);
+    const cuentaAnterior = usuario.usuario === CUENTA_INVESTIGACIONES_ANTERIORES;
+    if (cuentaAnterior) reclamarInvestigacionesAnteriores(usuario.id);
+    getInvestigaciones(usuario.id).then((datos) => {
       if (!vivo) return;
       setInvestigaciones(datos);
-      setActivaId(window.localStorage.getItem(CLAVE));
+      const guardada = leerActiva(usuario.id) ?? (cuentaAnterior ? leerActivaAnterior() : null);
+      setActivaId(datos.some((i) => i.id === guardada) ? guardada : null);
       setCargando(false);
     });
     return () => {
       vivo = false;
     };
-  }, []);
+  }, [usuario, cargandoSesion]);
 
-  const seleccionar = useCallback((id: string) => {
-    window.localStorage.setItem(CLAVE, id);
-    setActivaId(id);
-  }, []);
+  const seleccionar = useCallback(
+    (id: string) => {
+      if (usuarioId) guardarActiva(usuarioId, id);
+      setActivaId(id);
+    },
+    [usuarioId],
+  );
 
-  const crear = useCallback(async (nombre: string) => {
-    const nueva = await crearInvestigacion(nombre, "inv-ana");
-    setInvestigaciones((prev) => [...prev, nueva]);
-    window.localStorage.setItem(CLAVE, nueva.id);
-    setActivaId(nueva.id);
-    return nueva;
-  }, []);
+  const crear = useCallback(
+    async (nombre: string) => {
+      if (!usuarioId) throw new Error("Inicia sesión para crear una investigación.");
+      const nueva = await crearInvestigacion(nombre, usuarioId);
+      setInvestigaciones((prev) => [...prev, nueva]);
+      guardarActiva(usuarioId, nueva.id);
+      setActivaId(nueva.id);
+      return nueva;
+    },
+    [usuarioId],
+  );
 
   const eliminar = useCallback(
     async (id: string) => {
       await eliminarInvestigacion(id);
       setInvestigaciones((prev) => prev.filter((i) => i.id !== id));
       if (activaId === id) {
-        try {
-          window.localStorage.removeItem(CLAVE);
-        } catch {
-          /* almacenamiento no disponible */
-        }
+        if (usuarioId) guardarActiva(usuarioId, null);
         setActivaId(null);
       }
     },
-    [activaId],
+    [activaId, usuarioId],
   );
 
   const activa = useMemo(

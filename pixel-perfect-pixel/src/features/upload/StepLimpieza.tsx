@@ -14,7 +14,7 @@ import type { ErrorHttp } from "@/api/client";
 import type { EjecucionLimpieza, SignificadoCodigos } from "@/types";
 import { FaseAsistida } from "./limpieza/FaseAsistida";
 import { VistaFinalLimpieza } from "./limpieza/VistaFinalLimpieza";
-import { DETALLE_PROCESANDO } from "./limpieza/textos";
+import { DETALLE_PROCESANDO, columnasEliminadas, eliminadaPorOtra } from "./limpieza/textos";
 
 interface StepLimpiezaProps {
   idCrudo: number;
@@ -44,10 +44,13 @@ function conDecisiones(
   const hallazgos = e.hallazgos.map((h) =>
     h.id in decisiones ? { ...h, decision: decisiones[h.id] ?? null } : h,
   );
+  const eliminadas = columnasEliminadas(hallazgos);
   return {
     ...e,
     hallazgos,
-    pendientesObligatorias: hallazgos.filter((h) => h.obligatoria && h.decision === null).length,
+    pendientesObligatorias: hallazgos.filter(
+      (h) => h.obligatoria && h.decision === null && !eliminadaPorOtra(h, eliminadas),
+    ).length,
   };
 }
 

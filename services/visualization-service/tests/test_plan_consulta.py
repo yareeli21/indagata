@@ -814,3 +814,31 @@ def test_un_solo_instrumento_grande_no_se_recorta():
                                              ajustes=ajustes, prioridad=["130"])
     assert "más relacionados" not in ajustes[0]
     assert "r40" in prompt.split("=== CONSULTA REAL ===", 1)[1]
+
+
+def _cat_entrevista_con_perfil():
+    """Entrevista inventada: preguntas de texto libre (sin opciones) y el perfil de cada participante como contexto."""
+    preguntas = {
+        "p08": catalogo.PreguntaCatalogo("p08", "¿Qué cambiarías de los servicios de apoyo universitario?", "abierta"),
+    }
+    return catalogo.Catalogo("126", "Entrevista de permanencia", "entrevista", preguntas, ["E01", "E02"],
+                             {"Perfil": ["P2 — Promedio comprometido", "P8 — Dificultades socioeconómicas"],
+                              "Género": ["femenino", "masculino"]}, [])
+
+
+def test_filtro_con_valor_de_contexto_se_convierte_en_grupo():
+    # El modelo puso el perfil como respuesta de una pregunta abierta y contaba «0 de 40».
+    plan = PlanConsulta(intencion="conteo_porcentaje",
+                        filtros=[{"pregunta": "p08", "valor": "Dificultades socioeconómicas"}])
+    validado = validar_contra_catalogo(plan, [_cat_entrevista_con_perfil()])
+    assert validado.plan.filtros == []
+    assert validado.plan.contexto == {"Perfil": "P8 — Dificultades socioeconómicas"}
+
+
+def test_filtro_que_es_opcion_de_la_pregunta_no_se_toca():
+    cat = _cat_numerica()
+    cat.contexto["respuesta"] = ["Sí"]  # aunque un grupo de contexto se llame igual, manda la opción de la pregunta
+    plan = PlanConsulta(intencion="conteo_porcentaje", filtros=[{"pregunta": "p01", "valor": "Sí"}])
+    validado = validar_contra_catalogo(plan, [cat])
+    assert [f.valor for f in validado.plan.filtros] == ["Sí"]
+    assert validado.plan.contexto == {}
