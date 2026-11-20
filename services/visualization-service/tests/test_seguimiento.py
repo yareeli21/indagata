@@ -312,3 +312,12 @@ def test_la_descripcion_copiada_del_listado_se_rechaza():
     assert rag_service._copia_listado(listado, listado)
     assert not rag_service._copia_listado("La encuesta se aplicó a estudiantes de Inteligencia artificial de posgrado "
                                           "para conocer su percepción de la calidad académica [Fuente 1].", listado)
+
+
+
+def test_una_definicion_con_termino_del_glosario_no_es_un_seguimiento():
+    """«¿Qué significa un alfa de Cronbach bajo?» dentro de una conversación no es «¿qué significa eso?» (16 nov)."""
+    from services import rag_service
+
+    assert rag_service._define_termino("¿Qué significa un alfa de Cronbach bajo?")
+    assert not rag_service._define_termino("¿Qué significa eso?")

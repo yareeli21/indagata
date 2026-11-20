@@ -317,3 +317,13 @@ Migración: `migrations/2026_19_quitar_tablas_sin_uso.sql` (rollback: `2026_19_q
 
 Las secciones anteriores de este archivo son historia: mencionan estas tablas tal como existían entonces.
 
+
+---
+
+## 2026-21 · Diccionario de datos de los microdatos
+
+Migración: `migrations/2026_21_diccionario_datos.sql` (rollback: `2026_21_diccionario_datos_ROLLBACK.sql`).
+
+| Cambio | Detalle |
+|---|---|
+| Columna nueva `raw_data.raw_archivo_diccionario` (TEXT) | Ruta del diccionario de datos que se sube junto con los microdatos (variable, pregunta, valor y etiqueta), 14 nov 2026. La limpieza lo lee para proponer el texto de las preguntas en código y el significado de sus códigos; lo que se confirma queda en `reporte_limpieza.especifico.<tipo>.significados`. |

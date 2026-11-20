@@ -26,7 +26,9 @@ def _significado(respuesta: str, tipo: str, letras: dict[str, str], puntos_max: 
     if tipo == "puntos":
         return f"{r} de {puntos_max} puntos" if puntos_max else f"{r} puntos"
     if tipo == "escala":
-        return f"{r} en escala 1–{puntos_max}" if puntos_max else r
+        # Con el significado del número (diccionario de datos): «3 (A veces) en escala 1–5».
+        base = f"{r} ({letras[r]})" if letras.get(r) else r
+        return f"{base} en escala 1–{puntos_max}" if puntos_max else base
     if tipo == "si_no":
         return _SI_NO.get(r.upper(), r)
     if tipo == "numerica":

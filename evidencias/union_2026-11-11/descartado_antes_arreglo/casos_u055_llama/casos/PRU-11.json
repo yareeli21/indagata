@@ -1,0 +1,75 @@
+{
+ "id": "PRU-11",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara cómo respondieron los reactivos de seguridad (VPN, phishing, contraseña, Wi-Fi) con los de licencias (Creative Commons, código abierto)",
+   "rag_log_id": 3663,
+   "respuesta": "Criterio: por r21 «¿Qué tipo de licencia permite modificar y redistribuir libremente un s». [Fuente 1]\n\n**Comparación por r21 «¿Qué tipo de licencia permite modificar y redistribuir libremente un s» [Fuente 1]**\n| Grupo | Personas | r11: respuestas del grupo | r13: respuestas del grupo |\n|---|---|---|---|\n| Freeware | 22 | «Verdadero» 18 (81.8 %); «Falso» 4 (18.2 %) | «Verdadero» 13 (59.1 %); «Falso» 9 (40.9 %) |\n| Open Source / Código abierto | 12 | «Verdadero» 9 (75.0 %); «Falso» 3 (25.0 %) | «Verdadero» 10 (83.3 %); «Falso» 2 (16.7 %) |\n| Propietaria | 27 | «Verdadero» 24 (88.9 %); «Falso» 3 (11.1 %) | «Verdadero» 14 (51.9 %); «Falso» 13 (48.1 %) |\n| Shareware | 36 | «Verdadero» 30 (85.7 %); «Falso» 5 (14.3 %) | «Falso» 18 (50.0 %); «Verdadero» 18 (50.0 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "orden": {},
+    "limite": 1,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r11",
+     "r13"
+    ],
+    "agrupar_por": "r21"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r11",
+     "r13"
+    ],
+    "agrupar_por": "r21"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:cifra_atribuida",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6091
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5822
+    }
+   ],
+   "segundos": 28.0,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 15378,
+    "recuperacion": 536,
+    "verificacion": 6461,
+    "interpretacion": 12023
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    32,
+    32
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Qué reactivos agrupó y qué opciones predominan en cada grupo."
+}

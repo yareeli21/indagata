@@ -29,6 +29,7 @@ from app.parsing import ParsedContent, ParseError, parse_file
 from app.schemas.upload import ArchivoRegistrado, ParseoArchivo, UploadResponse
 from app.storage import StorageError, StoredRef, get_storage
 from shared.models.instrumento_procesado import InstrumentoProcesado
+from shared.conocimiento.significados import DiccionarioInvalido, clave_variable, leer_diccionario
 from shared.parsing.formato import motivo_rechazo_encuesta
 from shared.models.raw_data import RawData
 from shared import tiempos
@@ -139,6 +140,7 @@ class UploadService:
         archivo: UploadFile,
         archivo_original: UploadFile | None = None,
         archivo_clave: UploadFile | None = None,
+        archivo_diccionario: UploadFile | None = None,
     ) -> UploadResponse:
         """Ejecuta el flujo completo de carga.
 
@@ -150,6 +152,8 @@ class UploadService:
             archivo_original:     Instrumento ORIGINAL sin respuestas, opcional.
             archivo_clave:        Ya no se acepta (Indagata no califica las pruebas): si
                                   llega un archivo, se responde 400.
+            archivo_diccionario:  Diccionario de datos de los microdatos (variable, pregunta,
+                                  valor, etiqueta), opcional; lo usa la limpieza.
 
         Returns:
             UploadResponse con id_crudo, id_instrumento y el resumen de archivos.
@@ -203,12 +207,38 @@ class UploadService:
             except ParseError as exc:
                 logger.warning("No se pudo parsear el archivo original: %s", exc)
 
+        # ── 3b. Diccionario de datos (opcional): texto de las preguntas en código y significado de sus valores.
+        # Se valida aquí para avisar al subir; la limpieza lo vuelve a leer desde el almacenamiento.
+        dic_content: bytes | None = None
+        dic_type: FileType | None = None
+        if archivo_diccionario is not None and (archivo_diccionario.filename or "").strip():
+            if tipo is TipoInstrumento.ENTREVISTA or file_type.parser_family is not ParserFamily.TABULAR:
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail="El diccionario de datos solo se usa con encuestas y pruebas en tabla (CSV o Excel).",
+                )
+            dic_content, dic_type = await _read_and_identify(archivo_diccionario, rol="del diccionario de datos")
+            if dic_type.parser_family is not ParserFamily.TABULAR:
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail="El diccionario de datos debe ser una tabla (CSV, XLSX o XLS).",
+                )
+            try:
+                diccionario = leer_diccionario(dic_content, dic_type.extension)
+            except DiccionarioInvalido as exc:
+                raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc)) from exc
+            if not {clave_variable(h) for h in parsed_resp.headers or []} & set(diccionario.entradas):
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail="Ninguna variable del diccionario de datos coincide con las columnas del archivo de respuestas.",
+                )
+
         # ── 3a. Contrato de formato de las encuestas (documentación/02_Desarrollo.md, X.5.2) ──
         # Formato largo, sin encabezados o códigos sin original: se rechaza con el motivo
         # y lo que hay que hacer, en vez de procesarlo y responder mal después.
         if tipo is TipoInstrumento.ENCUESTA and file_type.parser_family is ParserFamily.TABULAR:
             motivo = motivo_rechazo_encuesta(parsed_resp.headers or [], parsed_resp.preview_rows or [],
-                                             hay_original=original_content is not None)
+                                             hay_original=original_content is not None or dic_content is not None)
             if motivo:
                 raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=motivo)
 
@@ -218,12 +248,15 @@ class UploadService:
         almacenamiento = get_storage()
         stored_resp: StoredRef | None = None
         stored_orig: StoredRef | None = None
+        stored_dic: StoredRef | None = None
         try:
             stored_resp = almacenamiento.guardar(content, file_type.filename)
             if original_content is not None and original_type is not None:
                 stored_orig = almacenamiento.guardar(
                     original_content, original_type.filename
                 )
+            if dic_content is not None and dic_type is not None:
+                stored_dic = almacenamiento.guardar(dic_content, dic_type.filename)
 
             # ── 5. Persistir en BD: raw_data (padre) ─────────────────────────
             raw = RawData(
@@ -234,6 +267,7 @@ class UploadService:
                 raw_archivo_original=(
                     stored_orig.ruta if stored_orig is not None else None
                 ),
+                raw_archivo_diccionario=stored_dic.ruta if stored_dic is not None else None,
             )
             db.add(raw)
             db.flush()  # obtiene raw.id_crudo sin cerrar la transacción
@@ -254,6 +288,8 @@ class UploadService:
                 almacenamiento.eliminar(stored_resp.ruta)
             if stored_orig is not None:
                 almacenamiento.eliminar(stored_orig.ruta)
+            if stored_dic is not None:
+                almacenamiento.eliminar(stored_dic.ruta)
             logger.exception("Error al registrar el instrumento en la base de datos.")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -265,6 +301,8 @@ class UploadService:
                 almacenamiento.eliminar(stored_resp.ruta)
             if stored_orig is not None:
                 almacenamiento.eliminar(stored_orig.ruta)
+            if stored_dic is not None:
+                almacenamiento.eliminar(stored_dic.ruta)
             logger.exception("Error del almacenamiento al guardar los archivos crudos.")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -274,7 +312,8 @@ class UploadService:
         tiempos.registrar(
             db, raw.id_crudo, "instrument", "carga", inicio_carga, tiempos._ahora(),
             round((time.perf_counter() - t0_carga) * 1000),
-            {"archivo": file_type.filename, "bytes": len(content), "con_original": original_content is not None},
+            {"archivo": file_type.filename, "bytes": len(content), "con_original": original_content is not None,
+             "con_diccionario": dic_content is not None},
         )
 
         # ── 7. Construir la respuesta ────────────────────────────────────────
@@ -290,5 +329,8 @@ class UploadService:
                 _to_archivo_registrado(stored_orig, original_type, parsed_orig)
                 if stored_orig is not None and original_type is not None
                 else None
+            ),
+            archivo_diccionario=(
+                _to_archivo_registrado(stored_dic, dic_type) if stored_dic is not None and dic_type is not None else None
             ),
         )

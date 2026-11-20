@@ -1,0 +1,81 @@
+{
+ "id": "ENC-10",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara los primeros 100 respondentes con los últimos 100 en qué tan probable es que vuelvan a estudiar aquí",
+   "rag_log_id": 3062,
+   "respuesta": "Criterio: por posición (primeros 100 y últimos 100). [Fuente 1]\n\n**Comparación por posición (primeros 100 y últimos 100) [Fuente 1]**\n| Grupo | Personas | p13: respuestas del grupo |\n|---|---|---|\n| Primeros 100 | 100 | media 3.71; «4 en escala 1–5» 30 (32.3 %); «Muy probable» 26 (28.0 %); «3 en escala 1–5» 25 (26.9 %); «2 en escala 1–5» 8 (8.6 %); «Nada probable» 4 (4.3 %) |\n| Últimos 100 | 100 | media 3.55; «4 en escala 1–5» 29 (31.2 %); «3 en escala 1–5» 25 (26.9 %); «Muy probable» 22 (23.7 %); «2 en escala 1–5» 12 (12.9 %); «Nada probable» 5 (5.4 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "limite": 100,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p13"
+    ],
+    "agrupar_por": "posicion"
+   },
+   "plan_modelo": {
+    "limite": 50,
+    "intencion": "comparar_grupos",
+    "agrupar_por": "posicion",
+    "consulta_semantica": "¿en qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar los primeros 100 con los últimos 100"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.6527
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.6505
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.6305
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.6203
+    }
+   ],
+   "segundos": 31.9,
+   "tiempos_ms": {
+    "ejecucion": 41,
+    "redaccion": 20149,
+    "recuperacion": 354,
+    "verificacion": 9149,
+    "interpretacion": 11330
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    25,
+    25
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Grupos por posición, cada uno con su resultado."
+}

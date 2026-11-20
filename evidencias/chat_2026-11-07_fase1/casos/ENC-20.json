@@ -1,0 +1,75 @@
+{
+ "id": "ENC-20",
+ "instrumento": "enc",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Cuáles preguntas usan escala del 1 al 5 y qué significan sus extremos?",
+   "rag_log_id": 2398,
+   "respuesta": "Las preguntas p13, p17 y p18 utilizan una escala del 1 al 5 para medir la probabilidad o el grado de acuerdo/desacuerdo. De las respuestas obtenidas, 25.3% (473) de los encuestados indicaron “muy probable” (4 en la escala) en p13, 31.9% (610) mostraron un nivel alto de acuerdo (“totalmente de acuerdo”) en p17 y 27.5% (521) lo hicieron en p18. [Fuente 1]\n\n**Distribución de p01 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| No lo se | 909 | 46.6 % |\n| Si | 758 | 38.9 % |\n| No | 284 | 14.6 % |\n\n**Distribución de p05 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Nunca | 376 | 19.4 % |\n| Rara vez | 744 | 38.4 % |\n| Algunas veces | 497 | 25.7 % |\n| Frecuentemente | 164 | 8.5 % |\n| Siempre | 156 | 8.1 % |\n\n**Distribución de p13 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Nada probable | 145 | 7.7 % |\n| 2 en escala 1–5 | 343 | 18.3 % |\n| 3 en escala 1–5 | 441 | 23.6 % |\n| 4 en escala 1–5 | 470 | 25.1 % |\n| Muy probable | 473 | 25.3 % |\n\n**Distribución de p17 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Totalmente en desacuerdo | 139 | 7.3 % |\n| 2 en escala 1–5 | 582 | 30.5 % |\n| 3 en escala 1–5 | 610 | 31.9 % |\n| 4 en escala 1–5 | 401 | 21.0 % |\n| Totalmente de acuerdo | 179 | 9.4 % |\n\n**Distribución de p18 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Totalmente en desacuerdo | 139 | 7.3 % |\n| 2 en escala 1–5 | 560 | 29.6 % |\n| 3 en escala 1–5 | 459 | 24.3 % |\n| 4 en escala 1–5 | 521 | 27.5 % |\n| Totalmente de acuerdo | 213 | 11.3 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "nivel": "desacuerdo",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p01",
+     "p05",
+     "p13",
+     "p17",
+     "p18"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.4634
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4482
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.4477
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.4407
+    }
+   ],
+   "segundos": 46.8,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 37562,
+    "recuperacion": 426,
+    "verificacion": 15989,
+    "interpretacion": 8746
+   },
+   "k_precision": 0.94,
+   "cifras_con_respaldo": [
+    52,
+    52
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Nombrar las 4 y el significado de sus extremos."
+}

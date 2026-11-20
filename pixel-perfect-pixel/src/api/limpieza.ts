@@ -1,4 +1,4 @@
-import type { EjecucionLimpieza, ResumenLimpieza } from "@/types";
+import type { EjecucionLimpieza, ResumenLimpieza, SignificadoCodigos } from "@/types";
 import { API_URL, pedir } from "./client";
 
 /**
@@ -47,6 +47,22 @@ export function guardarDecisiones(
   return pedir<EjecucionLimpieza>(
     `${API_URL}/limpieza/${idCrudo}/ejecuciones/${version}/decisiones`,
     { method: "PATCH", auth: true, body: { decisiones }, keepalive: alCerrar },
+  );
+}
+
+/**
+ * Microdatos: guarda el texto de las preguntas en código y el significado de sus códigos
+ * `{columna: {pregunta, valores: {código: etiqueta}}}` (null borra el de esa columna).
+ */
+export function guardarSignificados(
+  idCrudo: number,
+  version: number,
+  significados: Record<string, SignificadoCodigos | null>,
+  alCerrar = false,
+): Promise<EjecucionLimpieza> {
+  return pedir<EjecucionLimpieza>(
+    `${API_URL}/limpieza/${idCrudo}/ejecuciones/${version}/significados`,
+    { method: "PATCH", auth: true, body: { significados }, keepalive: alCerrar },
   );
 }
 

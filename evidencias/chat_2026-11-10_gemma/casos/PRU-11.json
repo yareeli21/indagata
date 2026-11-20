@@ -1,0 +1,73 @@
+{
+ "id": "PRU-11",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara cómo respondieron los reactivos de seguridad (VPN, phishing, contraseña, Wi-Fi) con los de licencias (Creative Commons, código abierto)",
+   "rag_log_id": 3198,
+   "respuesta": "Según los datos registrados, el reactivo r15 de la “Prueba de Alfabetización Digital” sobre el uso seguro de redes Wi-Fi públicas sin VPN obtuvo un resultado de 75.3% de respuestas como Verdadero, con una muestra de 97 alumnos (73 respuestas Verdadero y 24 respuestas Falso) [Fuente 1].\n",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«sin_definir» no es una variable de contexto de «Prueba de Alfabetización Digital» (disponibles: perfil, edad, genero, semestre, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca)."
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r03",
+     "r04",
+     "r07",
+     "r13",
+     "r14",
+     "r15",
+     "r16",
+     "r17"
+    ],
+    "agrupar_por": "sin_definir"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6091
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5822
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.5046
+    }
+   ],
+   "segundos": 51.5,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "recuperacion": 259,
+    "interpretacion": 32526
+   },
+   "k_precision": 0.941,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Qué reactivos agrupó y qué opciones predominan en cada grupo."
+}

@@ -6,9 +6,11 @@ Regla de propiedad (la misma que muestra la UI):
   - crudo: cualquier investigador (el archivo tal cual lo subió su autor).
   - json / sav: solo el autor o un administrador.
 
-Los bytes vienen del storage-service. El .sav se genera a partir de la tabla de
-respuestas (archivo limpio si existe, si no el crudo) y se guarda en el
-storage-service para no recalcularlo.
+Los bytes vienen del storage-service. El .sav sale de la última limpieza confirmada: su CSV limpio y su
+reporte (texto de cada pregunta, tipo, escala con sus etiquetas y significado de los códigos), así que se puede
+descargar en cuanto se confirma la limpieza. Se guarda en el storage-service con la versión de la limpieza en el
+nombre: al confirmar una limpieza nueva se genera otro. Los instrumentos anteriores al paso de limpieza usan el
+archivo limpio o el crudo con las reglas generales.
 """
 from __future__ import annotations
 
@@ -22,12 +24,16 @@ from urllib.parse import quote
 from fastapi import APIRouter, HTTPException, Query, Response, status
 
 from dependencies import DBSession, Investigador, es_admin
+from shared.conocimiento import significados
 from shared.models.instrumento_procesado import InstrumentoProcesado
+from shared.models.limpieza_ejecucion import LimpiezaEjecucion
 from shared.models.raw_data import RawData
 
 from services import query_engine, sav_export, storage_client
 
 logger = logging.getLogger("visualization-service")
+
+_VERSION_SAV = 3  # súbela cuando cambie cómo se arma el .sav, para no servir los guardados con la versión anterior
 
 router = APIRouter(prefix="/visualizacion", tags=["descargas"])
 
@@ -102,20 +108,35 @@ def descargar(
         if (raw.tipo_instrumento or "").lower() != "encuesta":
             raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, "El formato .sav solo está disponible para encuestas.")
         nombre = f"{_nombre_seguro(raw.nombre_archivo.rsplit('.', 1)[0])}.sav"
+        limpieza = (
+            db.query(LimpiezaEjecucion)
+            .filter(LimpiezaEjecucion.id_crudo == id_crudo, LimpiezaEjecucion.estado == "confirmada")
+            .order_by(LimpiezaEjecucion.version.desc())
+            .first()
+        )
+        guardado = f"limpieza{limpieza.version if limpieza else 0}_sav{_VERSION_SAV}__{nombre}"
         existente = storage_client.ultimo_artefacto(id_crudo, "sav")
-        if existente is not None:
+        if existente is not None and existente.get("nombre_original") == guardado:
             return _respuesta(storage_client.descargar(existente["key"]).contenido, nombre, "application/x-spss-sav")
-        ruta_datos = (procesado.ruta_de_archivo_limpio if procesado else None) or raw.raw_archivo
+        ruta_datos = (
+            (limpieza.ruta_csv_limpio if limpieza else None)
+            or (procesado.ruta_de_archivo_limpio if procesado else None)
+            or raw.raw_archivo
+        )
         tabla = storage_client.tabla(ruta_datos)
     except storage_client.StorageError as exc:
         raise _error_storage(exc) from exc
 
+    reporte = limpieza.reporte if limpieza else None
     try:
-        contenido = sav_export.generar_sav(tabla["headers"], tabla["rows"], raw.nombre_archivo)
+        contenido = sav_export.generar_sav(
+            tabla["headers"], tabla["rows"], raw.nombre_archivo,
+            significados.de_reporte(reporte, "encuesta"), sav_export.columnas_de_reporte(reporte),
+        )
     except ImportError as exc:
         raise HTTPException(status.HTTP_501_NOT_IMPLEMENTED, "La exportación a .sav no está instalada.") from exc
     try:
-        storage_client.guardar_archivo(id_crudo, "sav", nombre, contenido)
+        storage_client.guardar_archivo(id_crudo, "sav", guardado, contenido)
     except storage_client.StorageError as exc:
         logger.warning("No se pudo guardar el .sav generado de %s: %s", id_crudo, exc)
     return _respuesta(contenido, nombre, "application/x-spss-sav")

@@ -19,7 +19,10 @@ abierta o una transcripción que diga «ignora lo anterior…» no se obedece.
 """
 from __future__ import annotations
 
+import re
 from typing import Any
+
+from shared.db.core.config import settings
 
 SIN_INFORMACION = "No tengo información relacionada con lo que solicitas en los instrumentos consultados."
 
@@ -46,8 +49,12 @@ SISTEMA = (
     "10. Si hay un RESULTADO CALCULADO, es exacto: úsalo tal cual. No recalcules, no cambies cifras ni IDs "
     "y no agregues datos que no estén ahí. Con un RESULTADO CALCULADO SÍ tienes la información: nunca respondas "
     "que no la tienes. Si te piden un resumen, resume con tus palabras las líneas del resultado.\n"
-    "11. Nunca intentes identificar a una persona: usa solo sus IDs anónimos (R017, A005, E02).\n"
-    "12. Al citar una respuesta individual menciona el ID de la persona y la pregunta (por ejemplo, R017 en p04). "
+    # 11 y 12 (12 nov): sin IDs de ejemplo. llama3.2:3b copiaba «R017» de la regla cuando la pregunta no nombraba a
+    # nadie («¿cuál fue su experiencia con el psicólogo?», consulta 4046: la persona era E01) y la verificación
+    # rechazaba la redacción; los IDs válidos van en el mensaje (PERSONAS EN LOS DATOS).
+    "11. Nunca intentes identificar a una persona: usa solo sus IDs anónimos, escritos tal como aparecen en los datos. "
+    "Nunca escribas un ID que no aparezca en el RESULTADO CALCULADO ni en el CONTEXTO.\n"
+    "12. Al citar una respuesta individual menciona el ID de la persona y la pregunta, como aparecen en los datos. "
     "Para definiciones usa solo el GLOSARIO y cítalo como [Glosario: término]; para el uso de la plataforma usa "
     "solo la AYUDA y cítala como [Ayuda: título].\n"
     "13. En las entrevistas, responde con lo que la persona dice del momento que la pregunta pide (de ahora, si "
@@ -68,13 +75,87 @@ SISTEMA = (
     "sus datos registrados»). Si la pregunta pide algo que la persona no menciona en sus respuestas, di que no lo "
     "menciona.\n"
     "20. Si la PREGUNTA pide tu opinión o qué te parece un resultado, da una interpretación prudente apoyada en los "
-    "datos (qué podría significar y qué convendría revisar), dicha como interpretación («podría indicar»)."
+    "datos (qué podría significar y qué convendría revisar), dicha como interpretación («podría indicar»).\n"
+    # 21 (10 nov, rama PArturo, donde era la 16): llama3.2:3b copiaba los datos tal cual y abría casi toda respuesta con «Según el contexto
+    # proporcionado…»; el fragmento exacto ya se ve en el panel de cada [Fuente n].
+    "21. Explica e interpreta con tus palabras lo que dicen los datos: qué significa y qué patrón se ve. Puedes "
+    "copiar una frase textual entre comillas cuando sirva para mostrar lo que alguien dijo, pero que la respuesta no "
+    "sea solo una lista de citas. No empieces siempre con «Según el contexto» o «Basado en el contexto "
+    "proporcionado»: casi siempre ve directo a la respuesta; esa frase solo úsala de vez en cuando, si aporta. "
+    "Varía también cómo presentas tu interpretación: no la introduzcas siempre con la misma fórmula («lo que "
+    "sugiere», «esto sugiere», «esto indica»); a veces dila directamente o con otras palabras, como lo haría un "
+    "investigador al redactar."
 )
+
+# ── Reglas según lo que trae el mensaje (RAG_PROMPT_MODULAR, experimento del 12 nov) ─────────────────────────────────
+# Con las 21 reglas siempre, un modelo de 3B recibe instrucciones de entrevistas en un conteo, de comparación en una
+# definición… El cumplimiento de instrucciones baja al acumularlas (IFEval, Zhou et al., 2023). Aquí se mandan las que
+# aplican a lo que el mensaje contiene, con el mismo texto de `SISTEMA` y renumeradas; las que siempre aplican van
+# siempre. Se decide por el mensaje ya armado (RESULTADO CALCULADO, TEXTO RECUPERADO, GLOSARIO, entrevista…), así que
+# no depende de quién lo armó.
+_INTRO, _CUERPO = SISTEMA.split("Reglas obligatorias:\n", 1)
+_REGLAS = {int(m.group(1)): m.group(2).strip()
+           for m in re.finditer(r"(?ms)^(\d+)\. (.*?)(?=^\d+\. |\Z)", _CUERPO)}
+_CITAR_ID, _GLOSARIO_AYUDA = _REGLAS[12].split(" Para definiciones", 1)
+_GLOSARIO_AYUDA = "Para definiciones" + _GLOSARIO_AYUDA
+_CON_CIFRAS = re.compile(r"\d+(?:\.\d+)? ?%|\b\d+ de \d+\b")
+_ENTREVISTA = re.compile(r"\(entrevista\)|- intercambio:|Participante E\d", re.IGNORECASE)
+_COMPARA = re.compile(r"compar|diferenc|\bmayor|\bmenor|\bentre\b|frente a|\bcontra\b|\bsegun\b|\bcambia")
+_OPINION = re.compile(r"opin|te parece|\bcrees\b|significa|por que|interpret|preocupa|recomiend|deberia|conclu")
+
+
+def _sin_acentos(texto: str) -> str:
+    return texto.lower().translate(str.maketrans("áéíóúü", "aeiouu"))
+
+
+def reglas_para(mensaje: str) -> list[str]:
+    """Las reglas de `SISTEMA` que aplican al mensaje, en su orden original."""
+    pregunta = _sin_acentos(mensaje.rsplit("PREGUNTA:", 1)[-1])
+    resultado = "RESULTADO CALCULADO (exacto" in mensaje
+    cifras = bool(_CON_CIFRAS.search(mensaje))
+    entrevista = bool(_ENTREVISTA.search(mensaje))
+    compara = bool(_COMPARA.search(pregunta)) or "Comparación por" in mensaje
+    aplica = {
+        1: True, 2: True, 3: cifras, 4: len(set(re.findall(r"(?m)^\[Fuente (\d+)\]", mensaje))) > 1, 5: entrevista,
+        6: True, 7: not resultado, 8: True, 9: True, 10: resultado, 11: True, 12: True, 13: entrevista,
+        14: "CONVERSACIÓN PREVIA" in mensaje, 15: resultado and "TEXTO RECUPERADO" in mensaje, 16: cifras,
+        17: compara, 18: entrevista or compara, 19: "Contexto:" in mensaje, 20: bool(_OPINION.search(pregunta)), 21: True,
+    }
+    reglas = []
+    for n, texto in _REGLAS.items():
+        if not aplica.get(n, True):
+            continue
+        if n == 12:
+            reglas.append(_CITAR_ID)
+            if any(k in mensaje for k in ("GLOSARIO:", "AYUDA DE LA PLATAFORMA:", "FUENTES DE REFERENCIA DEL KPI")):
+                reglas.append(_GLOSARIO_AYUDA)
+            continue
+        reglas.append(texto)
+    return reglas
+
+
+def sistema_para(mensaje: str) -> str:
+    """Las reglas que van en el campo `system` de Ollama: todas (`SISTEMA`) o, con RAG_PROMPT_MODULAR, las que aplican."""
+    if not settings.RAG_PROMPT_MODULAR:
+        return SISTEMA
+    reglas = reglas_para(mensaje)
+    return _INTRO + "Reglas obligatorias:\n" + "\n".join(f"{n}. {r}" for n, r in enumerate(reglas, start=1))
+
 
 _SECCION = {
     "encabezado": "ficha", "pregunta": "pregunta", "contenido": "texto", "respondente": "respondente",
     "reactivo": "reactivo", "alumno": "alumno", "intercambio": "intercambio", "kpi": "KPI",
+    "resultado": "resultado calculado",
 }
+
+
+_ID_PERSONA = re.compile(r"\b[RAE]\d{2,5}\b")  # R017, A001, E01: el ID corto que se muestra
+_MAX_PERSONAS = 12
+
+
+def personas(*textos: str) -> list[str]:
+    """IDs de las personas que aparecen en el resultado o en los fragmentos, en orden de aparición."""
+    return list(dict.fromkeys(m for t in textos for m in _ID_PERSONA.findall(t or "")))
 
 
 _CONTEXTO = {
@@ -153,6 +234,9 @@ def construir(
     elif lineas or not (resultado or referencias):
         contexto = "\n".join(lineas).strip() if lineas else "(sin fragmentos)"
         partes.append(f"CONTEXTO:\n{contexto}\n\n")
+    ids = personas(resultado or "", *(str(f.get("fragmento") or "") for f in fragmentos))
+    if 0 < len(ids) <= _MAX_PERSONAS:
+        partes.append(f"PERSONAS EN LOS DATOS (cítalas solo con estos IDs): {', '.join(ids)}\n\n")
     if conversacion:
         partes.append(f"CONVERSACIÓN PREVIA (no es fuente):\n{conversacion}\n\n")
     if formato:

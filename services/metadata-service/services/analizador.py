@@ -313,25 +313,9 @@ def _buscar(patron: str, texto: str, grupo: int = 1, flags: int = re.IGNORECASE)
     return m.group(grupo).strip(" .,;:") if m else ""
 
 
-def _nivel_educativo(texto: str) -> str:
-    t = sin_acentos(texto)
-    for clave, nivel in (
-        ("doctorado", "Doctorado"),
-        ("maestria", "Maestría"),
-        ("posgrado", "Posgrado"),
-        ("especialidad", "Posgrado"),
-        ("licenciatura", "Licenciatura"),
-        ("universitari", "Licenciatura"),
-        ("pregrado", "Licenciatura"),
-        ("bachillerato", "Bachillerato"),
-        ("preparatoria", "Bachillerato"),
-        ("media superior", "Bachillerato"),
-        ("secundaria", "Secundaria"),
-        ("primaria", "Primaria"),
-    ):
-        if clave in t:
-            return nivel
-    return ""
+def _nivel_educativo(texto: str) -> str:  # noqa: ARG001
+    """Siempre «Licenciatura»: todo el acervo es de licenciatura (16 nov; antes se detectaba posgrado, etc.)."""
+    return "Licenciatura"
 
 
 def _bloom(preguntas: list[Pregunta]) -> str:
@@ -497,16 +481,34 @@ def _textos_desde_original(columnas: list[tuple[str, Pregunta]], texto_original:
     «Habilidades para jerarquizar»), el reinicio de la numeración marca el paso a
     la siguiente. Si alguna columna no empareja no se cambia nada: es preferible
     conservar el código que asignar una pregunta equivocada.
+
+    Códigos sin nombre de sección («P1…P8»): si TODAS las columnas son de ese tipo y hay exactamente tantas
+    como preguntas en el original, se emparejan por orden (la misma regla que el perfil semántico en
+    knowledge-service). Si no cuadran, se conservan los códigos.
     """
     codificadas = [(m, p) for h, p in columnas if (m := _RE_COLUMNA_CODIGO.match(h.strip()))]
     if not codificadas or not texto_original:
         return
+    originales = extraer_preguntas(texto_original)
     secciones: list[tuple[str, list[Pregunta]]] = []
-    for reactivo in extraer_preguntas(texto_original):
+    for reactivo in originales:
         if not secciones or secciones[-1][0] != reactivo.seccion:
             secciones.append((reactivo.seccion, []))
         secciones[-1][1].append(reactivo)
 
+    asignaciones = _por_seccion(codificadas, secciones)
+    sin_seccion = all(len(_nombre_normalizado(m.group(1))) < 3 for m, _ in codificadas)
+    if asignaciones is None and sin_seccion and len(codificadas) == len(columnas) == len(originales):
+        asignaciones = [(p, o.seccion, o) for (_, p), o in zip(codificadas, originales)]
+    for pregunta, nombre_seccion, original in asignaciones or []:
+        pregunta.texto = original.texto
+        pregunta.seccion = nombre_seccion
+
+
+def _por_seccion(
+    codificadas: list[tuple[re.Match, Pregunta]], secciones: list[tuple[str, list[Pregunta]]]
+) -> list[tuple[Pregunta, str, Pregunta]] | None:
+    """Prefijo del código ↔ nombre de sección y número ↔ posición; None si alguna columna no empareja."""
     estado: dict[str, tuple[int, int]] = {}
     asignaciones: list[tuple[Pregunta, str, Pregunta]] = []
     for m, pregunta in codificadas:
@@ -517,12 +519,10 @@ def _textos_desde_original(columnas: list[tuple[str, Pregunta]], texto_original:
             posicion += 1
         estado[prefijo] = (posicion, numero)
         if posicion >= len(candidatas) or not 1 <= numero <= len(candidatas[posicion][1]):
-            return
+            return None
         nombre_seccion, reactivos = candidatas[posicion]
         asignaciones.append((pregunta, nombre_seccion, reactivos[numero - 1]))
-    for pregunta, nombre_seccion, original in asignaciones:
-        pregunta.texto = original.texto
-        pregunta.seccion = nombre_seccion
+    return asignaciones
 
 
 # Leyenda de escala en el instrumento original: «1 = Totalmente en desacuerdo / Nunca».

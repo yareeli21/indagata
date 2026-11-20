@@ -1,0 +1,32 @@
+288 textos de los instrumentos 127,129,130; 46 archivos cambiados desde 265246a~1
+  services/knowledge-service/services/documento/entrevista.py: [129] Duración aproximada: 40 minutos
+  services/knowledge-service/services/documento/entrevista.py: [129] Las personas entrevistadas se identifican con un ID anónimo; otros nombres menci
+  services/knowledge-service/services/estructura.py: [127] Totalmente en desacuerdo
+  services/knowledge-service/services/estructura.py: [127] Totalmente de acuerdo
+  services/knowledge-service/services/estructura.py: [129] No se subió el guion original: las preguntas se tomaron de los turnos del entrev
+  services/knowledge-service/services/original.py: [127] De tus profesores de este periodo, ¿cuántos tienen doctorado?
+  services/knowledge-service/services/original.py: [127] Totalmente en desacuerdo
+  services/knowledge-service/services/original.py: [127] Totalmente de acuerdo
+  services/storage-service/services/chunks_documento.py: [129] No especificado
+  services/visualization-service/config/dominio.yaml: [127] Satisfacción estudiantil
+  services/visualization-service/config/dominio.yaml: [127] Totalmente en desacuerdo
+  services/visualization-service/config/dominio.yaml: [127] Totalmente de acuerdo
+  services/visualization-service/services/anclaje.py: [127] Carga académica
+  services/visualization-service/services/anclaje.py: [127] Carga media/normal
+  services/visualization-service/services/anclaje.py: [127] Estoy considerando abandonar
+  services/visualization-service/services/anclaje.py: [127] No, y no lo planeo
+  services/visualization-service/services/anclaje.py: [127] ¿Cuál es tu situación laboral actual?
+  services/visualization-service/services/anclaje.py: [127] Trabajo en un area no relacionada
+  services/visualization-service/services/anclaje.py: [127] Totalmente de acuerdo
+  services/visualization-service/services/anclaje.py: [130] ¿Cuál es la principal función de una VPN?
+  services/visualization-service/services/enrutador.py: [127] Carga académica
+  services/visualization-service/services/enrutador.py: [127] Totalmente en desacuerdo
+  services/visualization-service/services/enrutador.py: [129] No especificado
+  services/visualization-service/services/interpretacion.py: [127] Satisfacción estudiantil
+  services/visualization-service/services/interpretacion.py: [127] Totalmente en desacuerdo
+  services/visualization-service/services/interpretacion.py: [127] Totalmente de acuerdo
+  services/visualization-service/services/plan_consulta.py: [127] Totalmente de acuerdo
+  services/visualization-service/services/rag_service.py: [130] ¿Cuál es la principal función de una VPN?
+  tools/rag/buscar_textos_instrumentos.py: [127] Totalmente de acuerdo
+  tools/rag/buscar_textos_instrumentos.py: [129] No especificado
+coincidencias: 30

@@ -1,0 +1,28 @@
+C01 MAL  79.48 s  plan:resumen_pregunta:regenerada  plan={'intencion': False}  resp={'decision': True, 'cifras_alguna': False}
+C02 MAL  415.2 s  plan:resumen_pregunta:negativa_corregida  plan={'intencion': False, 'filtros': True, 'limite': False, 'campos': False}  resp={'decision': True, 'cifras': False, 'contiene': False}
+C03 MAL  372.0 s  plan:resumen_pregunta  plan={'intencion': False, 'limite': False, 'campos': False}  resp={'decision': True, 'contiene': False}
+C04 MAL  73.58 s  plan:aclaracion  plan={'intencion': False, 'respondentes': False, 'campos': False}  resp={'decision': True, 'contiene': False}
+C05 MAL  174.9 s  plan:conteo_porcentaje:frase_dato  plan={'intencion': True, 'filtros': False}  resp={'decision': True, 'cifras': False}
+C06 MAL  65.71 s  plan:resumen_pregunta  plan={'intencion': False, 'filtros': False}  resp={'decision': True, 'cifras': False}
+C07 OK   29.59 s  plan:conteo_porcentaje  plan={'intencion': True, 'preguntas': True, 'nivel': True}  resp={'decision': True, 'cifras': True}
+C08 OK   38.19 s  plan:conteo_porcentaje:frase_dato  plan={'intencion': True, 'filtros': True}  resp={'decision': True, 'cifras': True}
+C09 MAL  46.77 s  plan:resumen_pregunta:cifras_completadas  plan={'intencion': False, 'filtros': True, 'limite': False, 'campos': True}  resp={'decision': True, 'cifras': True, 'contiene': False}
+C10 MAL  48.57 s  plan:resumen_pregunta:regenerada  plan={'intencion': False, 'campos': False}  resp={'decision': True, 'contiene': False}
+C11 OK   44.82 s  plan:resumen_pregunta:cifra_atribuida  plan={'intencion': True, 'preguntas': True}  resp={'decision': True, 'cifras': True, 'contiene': True}
+C12 OK   42.11 s  plan:kpi  plan={'intencion': True}  resp={'decision': True, 'contiene': True}
+C13 MAL  35.35 s  plan:resumen_pregunta:regenerada  plan={'intencion': False}  resp={'decision': True, 'contiene_alguno': False, 'sin_cifras': False}
+C14 OK   17.64 s  plan:aclaracion  plan={'intencion': True}  resp={'decision': True}
+C15 OK    0.08 s  regla:fuera  plan={}  resp={'decision': True}
+C16 MAL   46.1 s  plan:resumen_pregunta:cifras_corregidas  plan={'intencion': False}  resp={'decision': False}
+C17 OK    0.06 s  regla:privacidad  plan={}  resp={'decision': True}
+C18 OK   29.61 s  None  plan={'intencion': True}  resp={'decision': True, 'contiene_alguno': True}
+C19 OK    6.43 s  None  plan={}  resp={'decision': True}
+C20 OK   64.66 s  plan:comparar_grupos:regenerada  plan={'intencion': True, 'preguntas': True, 'nivel': True, 'agrupar_por': True}  resp={'decision': True, 'cifras': True, 'contiene': True}
+C21 OK   27.88 s  plan:conteo_porcentaje:frase_dato  plan={'intencion': True, 'preguntas': True, 'contexto': True}  resp={'decision': True, 'cifras': True}
+C22 MAL  24.74 s  plan:no_existe  plan={'intencion': False, 'preguntas': True, 'nivel': False, 'agrupar_por': False}  resp={'decision': True, 'cifras': False}
+C23 MAL  236.9 s  plan:conteo_porcentaje:cifras_completadas  plan={'intencion': True, 'filtros': False}  resp={'decision': True, 'cifras': True}
+C24 MAL 203.03 s  None  plan={'intencion': False, 'filtros': False}  resp={'decision': True, 'cifras': False}
+
+[killed]
+
+Corrida detenida en C24 (10 nov). El prompt de la interpretación no cabía en num_ctx 4096 y Ollama recortaba el inicio (instrucciones y ejemplos). Planes y respuestas en rag_log 2943 en adelante.

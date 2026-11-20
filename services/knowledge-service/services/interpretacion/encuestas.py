@@ -6,6 +6,8 @@ de la columna completa, p. ej. la forma canónica de una categoría):
             tipo_canonico, likert {escala, etiquetas, invertido…}, rango, etiqueta.
   - valores: las celdas del CSV limpio, en orden de respondente ("" = vacía).
   - anclas: anclas de la escala tomadas del instrumento original ({1: "Nada", 5: "Mucho"}).
+  - spec["etiquetas_valor"]: significado de cada código según el diccionario de datos o lo que escribió la
+            investigadora en la limpieza ({"1": "Hombre", "2": "Mujer"}); ver `codificada`.
 
 En el CSV limpio las escalas Likert de texto ya vienen como CÓDIGOS (1..n, en el orden
 de la escala) y las Likert numéricas con su número original; la etiqueta se recupera
@@ -13,9 +15,12 @@ del libro de códigos del reporte.
 """
 from __future__ import annotations
 
+import re
 from collections import Counter
 from dataclasses import dataclass, field
 from typing import Any
+
+from shared.conocimiento import significados
 
 from services.interpretacion import escalas
 from services.interpretacion.config import escalas as dic_escalas
@@ -32,6 +37,7 @@ class ColumnaInterpretada:
     escala: dict[str, Any] | None = None  # descripción de la escala/medida de la pregunta
     opciones: list[str] = field(default_factory=list)  # opciones canónicas observadas
     no_interpretadas: int = 0
+    tipo: str | None = None  # tipo con el que se interpretó, si no es el de la limpieza (códigos → «categorica»)
 
 
 def numero(valor: str) -> float | None:
@@ -303,8 +309,71 @@ def texto(valores: list[str]) -> ColumnaInterpretada:
 # ── Despacho por tipo ──────────────────────────────────────────────────────────
 
 
+_ESCALAS = ("likert", "cuadricula", "escala_lineal")
+
+
+def _es_escala(tipo: str, etiquetas: dict[str, str], valores: list[str]) -> bool:
+    """¿Las etiquetas describen una escala (anclas) o categorías sin orden?
+
+    Escala: la columna ya es de escala y las etiquetas son de una escala conocida («Nada … Mucho», «Nunca …
+    Siempre») o son solo los extremos («1 = Nada», «5 = Mucho»). Si no, cada código es una categoría
+    («1 = Matutino, 2 = Vespertino, 3 = Mixto»), aunque la limpieza la haya tomado por una escala.
+    """
+    if tipo not in _ESCALAS or not all(k.lstrip("-").isdigit() for k in etiquetas):
+        return False
+    if escalas.escala_por_anclas({int(k): v for k, v in etiquetas.items()}):
+        return True
+    observados = {significados.codigo(v) for v in valores if not _vacia(v)}
+    return len(etiquetas) <= 2 < len(observados)
+
+
+def codificada(valores: list[str], etiquetas: dict[str, str]) -> ColumnaInterpretada:
+    """Códigos de categoría con su significado: «2» → «Mujer». Un código sin etiqueta se conserva tal cual."""
+    salida, vistas = [], []
+    for v in valores:
+        if _vacia(v):
+            salida.append(dict(SIN_RESPUESTA))
+            continue
+        c = v.strip()
+        significado = significados.etiqueta(etiquetas, c) or c
+        salida.append({"estado": "respondida", "valor": c, "significado": significado})
+        vistas.append(significado)
+    # Opciones en el orden del diccionario; después, los códigos que aparecen y no tienen etiqueta.
+    opciones = [e for e in etiquetas.values() if e in vistas] + [o for o in dict.fromkeys(vistas) if o not in etiquetas.values()]
+    return ColumnaInterpretada(salida, None, opciones, 0, tipo="categorica")
+
+
+def _con_etiquetas(spec: dict[str, Any], valores: list[str], anclas: dict[int, str] | None) -> ColumnaInterpretada | None:
+    """Interpretación con el significado de los códigos, o None si la columna no trae códigos con etiqueta."""
+    etiquetas = {significados.codigo(k): v for k, v in (spec.get("etiquetas_valor") or {}).items() if v}
+    tipo = spec.get("tipo_canonico") or "texto_corto"
+    partes = [p for v in valores if not _vacia(v) for p in (re.split(r"[,;]", v) if tipo in ("opcion_multiple_varias", "ranking") else [v])]
+    if not etiquetas or not any(significados.codigo(p) in etiquetas for p in partes):
+        return None  # p. ej. una escala de texto («De acuerdo»): sus valores no son los códigos del diccionario
+    if _es_escala(tipo, etiquetas, valores):
+        anclas = {**(anclas or {}), **{int(k): v for k, v in etiquetas.items()}}
+        if tipo in ("likert", "cuadricula") and spec.get("likert"):
+            return likert(spec, valores, anclas)
+        return escala_lineal(spec, valores, anclas)
+    if tipo in ("opcion_multiple_varias", "ranking"):
+        # «1,3» → «Libros,Videos»: cada parte es un código.
+        mapeados = [v if _vacia(v) else re.sub(r"[^,;]+", lambda m: significados.etiqueta(etiquetas, m.group().strip()) or m.group(), v)
+                    for v in valores]
+        return opcion_multiple(mapeados, ranking=tipo == "ranking")
+    if tipo == "binaria":
+        # «1 = Sí, 2 = No»: con la etiqueta, la binaria reconoce Sí/No (y su nivel); el valor sigue siendo el código.
+        col = binaria([v if _vacia(v) else (significados.etiqueta(etiquetas, v) or v) for v in valores])
+        for r, v in zip(col.respuestas, valores):
+            if r.get("estado") == "respondida":
+                r["valor"] = v.strip()
+        return col
+    return codificada(valores, etiquetas)
+
+
 def interpretar_columna(spec: dict[str, Any], valores: list[str], anclas: dict[int, str] | None = None) -> ColumnaInterpretada:
     """Interpreta todas las respuestas de una columna según su tipo canónico."""
+    if (con_etiquetas := _con_etiquetas(spec, valores, anclas)) is not None:
+        return con_etiquetas
     tipo = spec.get("tipo_canonico") or "texto_corto"
     if tipo in ("likert", "cuadricula") and spec.get("likert"):
         return likert(spec, valores, anclas)

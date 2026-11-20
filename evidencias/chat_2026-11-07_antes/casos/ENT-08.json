@@ -1,0 +1,53 @@
+{
+ "id": "ENT-08",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara cómo describe su estado de ánimo con cómo valora la atención que recibió",
+   "rag_log_id": 2312,
+   "respuesta": "E01 describe un estado de ánimo de cansancio y presión en el pecho durante las clases, que dura aproximadamente cinco horas. [Fuente 1] E01 valora la atención recibida de la psicóloga como buena, pero limitada a tres sesiones por semestre, lo cual se considera insuficiente para avanzar en su bienestar. Pone la atención recibida en un ocho sobre diez.",
+   "intencion": null,
+   "plan": null,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.6428
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.5964
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.468
+    }
+   ],
+   "segundos": 26.1,
+   "tiempos_ms": {
+    "ejecucion": 0,
+    "recuperacion": 195,
+    "interpretacion": 13145
+   },
+   "k_precision": 0.562,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Dos fragmentos citados lado a lado y una relación breve, sin exagerar."
+}

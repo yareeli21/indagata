@@ -100,6 +100,36 @@ class ResumenLimpiezaOut(BaseModel):
     sugerencias: list[SugerenciaOut] = Field(default_factory=list)
 
 
+class CodigoOut(BaseModel):
+    codigo: str
+    n: int | None = None
+
+
+class ColumnaCodigosOut(BaseModel):
+    """Una columna (o reactivo) a la que se le puede dar texto y significado de sus códigos."""
+
+    clave: str
+    etiqueta: str
+    tipo: str | None = None
+    encabezado_codigo: bool = False
+    codigos: list[CodigoOut] = Field(default_factory=list)
+    pregunta: str | None = None
+    etiquetas: dict[str, str] = Field(default_factory=dict)
+    origen: str | None = None  # diccionario | investigador | anterior
+
+
+class DiccionarioOut(BaseModel):
+    nombre: str = ""
+    emparejadas: int = 0
+    sin_columna: list[str] = Field(default_factory=list)
+    n_sin_columna: int = 0
+
+
+class CodigosOut(BaseModel):
+    columnas: list[ColumnaCodigosOut] = Field(default_factory=list)
+    diccionario: DiccionarioOut | None = None
+
+
 class EjecucionOut(BaseModel):
     """Estado de una ejecución de limpieza para la interfaz."""
 
@@ -116,7 +146,19 @@ class EjecucionOut(BaseModel):
     transformaciones: list[TransformacionOut] = Field(default_factory=list)
     hallazgos: list[HallazgoOut] = Field(default_factory=list)
     pendientesObligatorias: int = 0
+    codigos: CodigosOut | None = None
     vistaFinal: VistaFinalOut | None = None
+
+
+class SignificadoIn(BaseModel):
+    pregunta: str | None = Field(default=None, max_length=2000)
+    valores: dict[str, str] = Field(default_factory=dict)
+
+
+class SignificadosIn(BaseModel):
+    """Guardado parcial: {columna: {pregunta, valores: {código: etiqueta}}}. null borra su significado."""
+
+    significados: dict[str, SignificadoIn | None] = Field(min_length=1)
 
 
 class DecisionesIn(BaseModel):

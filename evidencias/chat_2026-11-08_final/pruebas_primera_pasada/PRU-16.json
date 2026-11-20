@@ -1,0 +1,154 @@
+{
+ "id": "PRU-16",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué herramienta para gestionar referencias eligieron más?",
+   "rag_log_id": 2753,
+   "respuesta": "La opción “Zotero o Mendeley” fue la más elegida por los alumnos en la prueba de Alfabetización Digital, seleccionada por 75 alumnos (77.3% de las 97 respuestas válidas del criterio r20) [Fuente 1]. Canva obtuvo el apoyo de 5 estudiantes (5.2%), Trello fue elegido por 4 estudiantes (4.1%) y Photoshop por 13 estudiantes (13.4%) [Fuente 1]. La distribución de respuestas refleja que la herramienta más utilizada para gestionar referencias bibliográficas entre los participantes en la prueba es “Zotero o Mendeley” [Fuente 1].\n\n**Distribución de r20 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Canva | 5 | 5.2 % |\n| B) Zotero o Mendeley | 75 | 77.3 % |\n| C) Trello | 4 | 4.1 % |\n| D) Photoshop | 13 | 13.4 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r20"
+    ]
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "herramienta para gestionar referencias bibliográficas",
+      "pregunta": "r20"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r20"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r20 = «herramienta para gestionar referencias bibliográficas» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.7044
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6822
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.4645
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.4555
+    }
+   ],
+   "segundos": 58.6,
+   "tiempos_ms": {
+    "ejecucion": 23,
+    "redaccion": 36270,
+    "recuperacion": 1505,
+    "verificacion": 17103,
+    "interpretacion": 20751
+   },
+   "k_precision": 0.831,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué puede indicar eso?",
+   "rag_log_id": 2754,
+   "respuesta": "La herramienta “Zotero o Mendeley” fue la opción más elegida por los alumnos en la prueba de Alfabetización Digital, seleccionada por 75 estudiantes (77.3% de las 97 respuestas válidas).  Canva recibió el apoyo de 5 estudiantes (5.2%), Trello fue elegido por 4 estudiantes (4.1%) y Photoshop por 13 (13.4%). [Fuente 1] Esto podría indicar una preferencia por herramientas específicas para la gestión de referencias bibliográficas entre los alumnos que participaron en la prueba.\n\n**Distribución de r20 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Canva | 5 | 5.2 % |\n| B) Zotero o Mendeley | 75 | 77.3 % |\n| C) Trello | 4 | 4.1 % |\n| D) Photoshop | 13 | 13.4 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r20"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿De qué pregunta o tema quieres saber la opinión?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "aclaración → plan de la respuesta anterior (la pregunta se refiere a ella)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6633
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6362
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4372
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.4327
+    }
+   ],
+   "segundos": 231.0,
+   "tiempos_ms": {
+    "ejecucion": 47,
+    "redaccion": 174389,
+    "recuperacion": 2090,
+    "verificacion": 3,
+    "interpretacion": 54373
+   },
+   "k_precision": 0.754,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) interpretar con cifras, sin juzgar correcto o incorrecto."
+}

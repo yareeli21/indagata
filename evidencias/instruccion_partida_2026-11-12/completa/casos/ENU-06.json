@@ -1,0 +1,64 @@
+{
+ "id": "ENU-06",
+ "instrumento": "enc_nueva",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la puntualidad en clases entre hombres y mujeres",
+   "rag_log_id": 4103,
+   "respuesta": "Las diferencias principales entre los grupos de género en cuanto a la puntualidad en clases son:\n\nLas mujeres asisten con una frecuencia más alta que los hombres, ya que 30.4% de las mujeres responden que asisten \"De acuerdo / Frecuentemente\", mientras que solo 28.0% de los hombres lo hacen.\n\nPor otro lado, las mujeres también tienen un porcentaje más alto de personas que dicen estar en desacuerdo o sin compromiso, ya que 27.8% de las mujeres responden que están \"Ni de acuerdo ni en desacuerdo / A veces\", mientras que solo 26.7% de los hombres lo hacen.\n\nEn general, las mujeres parecen tener una mayor puntualidad y compromiso con sus clases que los hombres, aunque hay algunas variaciones dentro de cada grupo.\n\n**Comparación por genero [Fuente 1]**\n| Grupo | Personas | p01: respuestas del grupo |\n|---|---|---|\n| femenino | 79 | media 3.23; «De acuerdo / Frecuentemente» 24 (30.4 %); «Ni de acuerdo ni en desacuerdo / A veces» 22 (27.8 %); «En desacuerdo / Pocas veces» 16 (20.3 %); «Totalmente de acuerdo / Siempre» 11 (13.9 %); «Totalmente en desacuerdo / Nunca» 6 (7.6 %) |\n| masculino | 75 | media 3.24; «De acuerdo / Frecuentemente» 21 (28.0 %); «Ni de acuerdo ni en desacuerdo / A veces» 20 (26.7 %); «En desacuerdo / Pocas veces» 17 (22.7 %); «Totalmente de acuerdo / Siempre» 12 (16.0 %); «Totalmente en desacuerdo / Nunca» 5 (6.7 %) |\n| otro | 6 | media 4.17; «Totalmente de acuerdo / Siempre» 3 (50.0 %); «Ni de acuerdo ni en desacuerdo / A veces» 2 (33.3 %); «De acuerdo / Frecuentemente» 1 (16.7 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p01"
+    ],
+    "agrupar_por": "genero"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p01"
+    ],
+    "agrupar_por": "genero"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5808
+    }
+   ],
+   "segundos": 18.9,
+   "tiempos_ms": {
+    "ejecucion": 11,
+    "redaccion": 7711,
+    "recuperacion": 463,
+    "verificacion": 1,
+    "interpretacion": 10636
+   },
+   "k_precision": 0.738,
+   "cifras_con_respaldo": [
+    30,
+    30
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Pregunta de puntualidad por género: cada grupo con su n y su media o distribución, sin causas."
+}

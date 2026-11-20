@@ -1,0 +1,71 @@
+{
+ "id": "PNU-05",
+ "instrumento": "pru_nueva",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Cambia lo que eligieron sobre la hipótesis según si estudian pregrado o posgrado?",
+   "rag_log_id": 4149,
+   "respuesta": "En el grupo de estudiantes de posgrado, 6 (75.0%) eligieron \"El resumen del trabajo\" como respuesta a la pregunta r02, mientras que solo 1 (12.5%) eligió \"Una suposición que se somete a verificación empírica\". En contraste, en el grupo de estudiantes de pregrado, 33 (45.8%) eligieron \"El resumen del trabajo\", pero también 25 (34.7%) eligieron \"Una suposición que se somete a verificación empírica\".\n\nEn general, los estudiantes de posgrado tienden a priorizar la descripción del método y la conclusión final del estudio en su respuesta a la pregunta r02, mientras que los estudiantes de pregrado también consideran la hipótesis como parte importante de la investigación.\n\n**Comparación por nivel_estudio [Fuente 1]**\n| Grupo | Personas | r02: respuestas del grupo | r05: respuestas del grupo |\n|---|---|---|---|\n| posgrado | 8 | «El resumen del trabajo» 6 (75.0 %); «Una suposición que se somete a verificación empírica» 1 (12.5 %); «La conclusión final del estudio» 1 (12.5 %) | «Presentar los resultados obtenidos» 4 (50.0 %); «Sustentar conceptualmente el estudio y situar el problema en la literatura existente» 2 (25.0 %); «Reemplazar los datos empíricos» 2 (25.0 %) |\n| pregrado | 72 | «El resumen del trabajo» 33 (45.8 %); «Una suposición que se somete a verificación empírica» 25 (34.7 %); «La descripción del método» 10 (13.9 %); «La conclusión final del estudio» 4 (5.6 %) | «Reemplazar los datos empíricos» 34 (47.2 %); «Presentar los resultados obtenidos» 22 (30.6 %); «Sustentar conceptualmente el estudio y situar el problema en la literatura existente» 15 (20.8 %); «Describir la metodología» 1 (1.4 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r02",
+     "r05"
+    ],
+    "agrupar_por": "nivel_estudio"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r02",
+     "r05"
+    ],
+    "agrupar_por": "nivel_estudio"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.5832
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.5798
+    }
+   ],
+   "segundos": 21.7,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 9461,
+    "recuperacion": 458,
+    "verificacion": 2,
+    "interpretacion": 11720
+   },
+   "k_precision": 0.891,
+   "cifras_con_respaldo": [
+    24,
+    24
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "r02 por nivel_estudio: cada grupo con su n y distribución."
+}

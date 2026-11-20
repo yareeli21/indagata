@@ -1,0 +1,118 @@
+{
+ "pru_01": {
+  "alumnos": 100,
+  "reactivos": 25,
+  "conteos": {
+   "valida": 2500,
+   "nula": 0,
+   "NR": 0
+  },
+  "tipos": {
+   "opcion_multiple": 15,
+   "verdadero_falso": 5,
+   "puntos": 5
+  },
+  "tarjetas": 0,
+  "coinciden_mas": [
+   [
+    "r21",
+    {
+     "opcion": "0",
+     "n": 83,
+     "pct": 0.83,
+     "pct_validas": 0.83
+    }
+   ]
+  ],
+  "mas_repartidas": [
+   [
+    "r15",
+    {
+     "opcion": "A",
+     "n": 35,
+     "pct": 0.35,
+     "pct_validas": 0.35
+    }
+   ]
+  ],
+  "resumen_reactivos": {
+   "con_opciones_sin_elegir": 1,
+   "mucha_no_respuesta": 0,
+   "casi_unanimes": 0
+  },
+  "opciones_sin_elegir": {
+   "r02": [
+    "C"
+   ]
+  },
+  "contexto": [
+   "perfil",
+   "edad",
+   "genero",
+   "semestre",
+   "promedio_gpa",
+   "horas_trabajo_semana",
+   "tipo_universidad",
+   "nivel_ses",
+   "nivel_estudio",
+   "primera_generacion",
+   "tiene_beca"
+  ]
+ },
+ "pru_04": {
+  "alumnos": 90,
+  "reactivos": 18,
+  "conteos": {
+   "valida": 1620,
+   "nula": 0,
+   "NR": 0
+  },
+  "tipos": {
+   "escala": 8,
+   "opcion_multiple": 6,
+   "si_no": 4
+  },
+  "tarjetas": 0,
+  "coinciden_mas": [
+   [
+    "r16",
+    {
+     "opcion": "No",
+     "n": 66,
+     "pct": 0.7333,
+     "pct_validas": 0.7333
+    }
+   ]
+  ],
+  "mas_repartidas": [
+   [
+    "r06",
+    {
+     "opcion": "4",
+     "n": 24,
+     "pct": 0.2667,
+     "pct_validas": 0.2667
+    }
+   ]
+  ],
+  "resumen_reactivos": {
+   "con_opciones_sin_elegir": 0,
+   "mucha_no_respuesta": 0,
+   "casi_unanimes": 0
+  },
+  "opciones_sin_elegir": {},
+  "contexto": [
+   "perfil",
+   "edad",
+   "genero",
+   "semestre",
+   "promedio_gpa",
+   "horas_trabajo_semana",
+   "tipo_universidad",
+   "nivel_ses",
+   "nivel_estudio",
+   "primera_generacion",
+   "tiene_beca"
+  ]
+ }
+}

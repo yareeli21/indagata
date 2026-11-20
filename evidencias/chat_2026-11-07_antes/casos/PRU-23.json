@@ -1,0 +1,73 @@
+{
+ "id": "PRU-23",
+ "instrumento": "pru",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos aprobaron y cuál fue el promedio?",
+   "rag_log_id": 2369,
+   "respuesta": "El instrumento tiene 97 respondentes. [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "filtro r01 en nivel acuerdo quitado (r01 no es de escala)",
+    "filtro r02 en nivel acuerdo quitado (r02 no es de escala)",
+    "filtro r03 en nivel acuerdo quitado (r03 no es de escala)",
+    "filtro r04 en nivel acuerdo quitado (r04 no es de escala)",
+    "filtro r05 en nivel acuerdo quitado (r05 no es de escala)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4616
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.4564
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4465
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.3954
+    }
+   ],
+   "segundos": 59.2,
+   "tiempos_ms": {
+    "ejecucion": 17,
+    "redaccion": 22398,
+    "recuperacion": 895,
+    "verificacion": 9589,
+    "interpretacion": 35853
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "debió decir que no se califican las pruebas estandarizadas"
+  }
+ ],
+ "debe": "La prueba no se califica; ofrecer la distribución; no inventar puntajes."
+}

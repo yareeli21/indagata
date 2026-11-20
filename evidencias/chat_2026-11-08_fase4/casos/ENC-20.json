@@ -1,0 +1,31 @@
+{
+ "id": "ENC-20",
+ "instrumento": "enc",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Cuáles preguntas usan escala del 1 al 5 y qué significan sus extremos?",
+   "rag_log_id": 2493,
+   "respuesta": "En «Indicadores de Experiencia y Calidad Académica», 5 preguntas usan una escala: p05, p13, p16, p17, p18. Sus extremos:\n\n**Preguntas con escala**\n| Pregunta | Texto | Extremo bajo | Extremo alto |\n|---|---|---|---|\n| p05 | ¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una mater | 1 = Nunca | 5 = Siempre |\n| p13 | ¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría | 1 = Nada probable | 5 = Muy probable |\n| p16 | La oferta de programas, materias optativas y cursos de mi institución responde a mis inter | 1 = Totalmente en desacuerdo | 5 = Totalmente de acuerdo |\n| p17 | Los laboratorios, equipos, materiales y espacios de la institución son adecuados para mi f | 1 = Totalmente en desacuerdo | 5 = Totalmente de acuerdo |\n| p18 | En la biblioteca y las bases de datos académicas (Scopus, IEEE Xplore, EBSCO, etc.) encuen | 1 = Totalmente en desacuerdo | 5 = Totalmente de acuerdo |",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "instrumento:escalas",
+   "plantilla": null,
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.0,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Nombrar las 4 y el significado de sus extremos."
+}

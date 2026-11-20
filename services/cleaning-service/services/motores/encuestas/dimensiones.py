@@ -1,6 +1,6 @@
 """Dimensiones sugeridas para ítems Likert cuando el instrumento no trae secciones ni prefijos.
 
-Sin secciones («EVALUACIÓN DEL APRENDIZAJE») ni prefijos de bloque («Evaluación_item3»),
+Sin secciones («HÁBITOS DE ESTUDIO») ni prefijos de bloque («Evaluación_item3»),
 el alfa de Cronbach solo podía calcularse sobre todos los ítems juntos, mezclando escalas.
 Aquí se proponen grupos a partir de cómo se responden los ítems; el investigador los
 acepta o los ignora en la fase asistida (nunca se aplican solos):

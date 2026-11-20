@@ -1,0 +1,66 @@
+{
+ "id": "ENT-10",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara el papel de sus profesores con el de los servicios de la universidad",
+   "rag_log_id": 2775,
+   "respuesta": "Según la entrevista con E01 [Fuente 1], el papel de sus profesores depende mucho del profesor en particular. Algunos profesores tienen poco tiempo, como lo indica que su tutor académico \"casi no tiene tiempo\" y solo lo vio una vez para firmar la carga de materias [Fuente 1]. El papel de los servicios de la universidad no se menciona directamente en esta entrevista.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«contexto» no es una variable de contexto de «Salud mental en la universidad» (disponibles: Edad, Turno, Carrera, Género, Trabaja, Semestre)."
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p09"
+    ],
+    "agrupar_por": "contexto"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.7284
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.6172
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p08",
+     "score": 0.6128
+    }
+   ],
+   "segundos": 20.7,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 151,
+    "interpretacion": 7704
+   },
+   "k_precision": 0.87,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruzar las preguntas guía correspondientes, con citas."
+}

@@ -1,0 +1,53 @@
+{
+ "id": "PRU-03",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo hubo más respuestas en blanco?",
+   "rag_log_id": 3602,
+   "respuesta": "La primera pregunta del ranking es la r10 \"¿Qué es una contraseña segura?\" con 97 nulas o sin responder de 100 (100.0 %). No hay empate en este caso, ya que todos los respondentes dieron respuesta en blanco a esta pregunta. [Fuente 1]\n\n<table>\n  <tr>\n    <th>Pregunta</th>\n    <th>Número de respuestas en blanco</th>\n  </tr>\n  <tr>\n    <td>r10 \"¿Qué es una contraseña segura?\"</td>\n    <td>97</td>\n  </tr>\n  <tr>\n    <td>r22 \"¿Cuál es el emparejamiento correcto? Big Data ↔\"</td>\n    <td>3</td>\n  </tr>\n  <tr>\n    <td>r16 \"El almacenamiento en la nube elimina por completo el riesgo de perder \"</td>\n    <td>2</td>\n  </tr>\n</table>\n\n**Preguntas por no respuesta [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r10 | 97 nulas o sin responder de 97 (100.0 %) |\n| 2 | r22 | 3 nulas o sin responder de 97 (3.1 %) |\n| 3 | r16 | 2 nulas o sin responder de 97 (2.1 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "estructurada",
+   "motivo": "plan:ranking_preguntas",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 17.9,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 6620,
+    "recuperacion": 465,
+    "verificacion": 2,
+    "interpretacion": 10722
+   },
+   "k_precision": 0.797,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Reactivo con más NR y su conteo."
+}

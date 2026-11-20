@@ -1,0 +1,31 @@
+{
+ "id": "CET-02",
+ "instrumento": "ent_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál es la respuesta más larga de E05 y a qué pregunta corresponde?",
+   "rag_log_id": 2640,
+   "respuesta": "La respuesta más larga de E05 es la de p02 «¿Has pensado alguna vez en abandonar la universidad? ¿Qué te llevó a tomar esa decisión en»: 47 palabras. (Se cuentan las palabras de cada respuesta en el documento final.)\n\n**Respuestas más largas**\n| Participante | Pregunta | Palabras |\n|---|---|---|\n| E05 | p02 | 47 |\n| E05 | p05 | 47 |\n| E05 | p09 | 47 |",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "entrevista:extension",
+   "plantilla": null,
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.0,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Pregunta de la guía y extensión."
+}

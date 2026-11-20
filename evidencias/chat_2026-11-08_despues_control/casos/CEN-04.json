@@ -1,0 +1,71 @@
+{
+ "id": "CEN-04",
+ "instrumento": "enc_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué pregunta están más divididas las opiniones?",
+   "rag_log_id": 2633,
+   "respuesta": "La primera pregunta del ranking en cuanto a índice de dispersión es la p10, “¿Con qué frecuencia dejas tareas para el último momento?”, con 37 respuestas (23.1 %). [Fuente 1]\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | p09 | índice de dispersión 1.00 (4 opciones); la más elegida, «5-6», con 41 de 160 (25.6 %) |\n| 2 | p15 | índice de dispersión 1.00 (2 opciones); la más elegida, «Sí», con 83 de 160 (51.9 %) |\n| 3 | p10 | índice de dispersión 1.00 (5 opciones); la más elegida, «Frecuentemente», con 37 de 160 (23.1 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida"
+   },
+   "correcciones": [
+    "criterio del ranking: repartida (lo que dice la pregunta)",
+    "excluir p05 descartado (la pregunta no pide excluir nada)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.5155
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.5041
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.4892
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.4725
+    }
+   ],
+   "segundos": 27.8,
+   "tiempos_ms": {
+    "ejecucion": 19,
+    "redaccion": 9275,
+    "recuperacion": 301,
+    "verificacion": 1,
+    "interpretacion": 18123
+   },
+   "k_precision": 0.942,
+   "cifras_con_respaldo": [
+    16,
+    16
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Una pregunta con su medida de dispersión explicada."
+}

@@ -1,0 +1,53 @@
+{
+ "id": "ENT-20",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué tipo de entrevista es y cuánto dura?",
+   "rag_log_id": 2669,
+   "respuesta": "La entrevista es de tipo semiestructurada y dura aproximadamente 40 minutos [Fuente 1]. Según sus datos registrados, la duración aproximada de la entrevista es de 40 minutos y se realizó presencialmente en el cubículo de tutorías de la institución ESCOM [Fuente 1].",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.577
+    }
+   ],
+   "segundos": 13.1,
+   "tiempos_ms": {
+    "redaccion": 12752,
+    "recuperacion": 165,
+    "verificacion": 1
+   },
+   "k_precision": 0.778,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Semiestructurada, una participante; si la duración no está, decirlo."
+}

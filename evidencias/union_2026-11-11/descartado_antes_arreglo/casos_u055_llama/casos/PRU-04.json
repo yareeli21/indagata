@@ -1,0 +1,117 @@
+{
+ "id": "PRU-04",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos dejaron al menos un reactivo sin responder?",
+   "rag_log_id": 3656,
+   "respuesta": "5 de los 94 que respondieron r11 y r13 y r14 y r15 y r16 (5.3 %) cumplen el criterio: r11 «El correo electrónico es siempre un canal seguro para enviar informaci» = «Verdadero» y r13 «Plagiar contenido digital tiene las mismas consecuencias éticas que pl» = «Falso» y r14 «La inteligencia artificial puede generar texto, imágenes y código de p» = «Verdadero» y r15 «Usar redes Wi-Fi públicas sin VPN es completamente seguro.» = «Verdadero» y r16 «El almacenamiento en la nube elimina por completo el riesgo de perder » = «Falso» y dejaron alguna pregunta sin responder. Sobre el total del instrumento son 5 de 97 respondentes (5.2 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "orden": {},
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r11"
+     },
+     {
+      "valor": "Falso",
+      "pregunta": "r13"
+     },
+     {
+      "valor": "Verdadero",
+      "pregunta": "r14"
+     },
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     },
+     {
+      "valor": "Falso",
+      "pregunta": "r16"
+     }
+    ],
+    "intencion": "conteo_porcentaje",
+    "con_omisiones": true
+   },
+   "plan_modelo": {
+    "orden": {},
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r11"
+     },
+     {
+      "valor": "Falso",
+      "pregunta": "r13"
+     },
+     {
+      "valor": "Verdadero",
+      "pregunta": "r14"
+     },
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     },
+     {
+      "valor": "Falso",
+      "pregunta": "r16"
+     }
+    ],
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r11",
+     "r13",
+     "r14",
+     "r15",
+     "r16"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "personas que dejaron alguna pregunta sin responder"
+   ],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "alumno",
+     "etiqueta": "A047",
+     "score": 0.6002
+    },
+    {
+     "seccion": "alumno",
+     "etiqueta": "A007",
+     "score": 0.5849
+    }
+   ],
+   "segundos": 24.4,
+   "tiempos_ms": {
+    "ejecucion": 15,
+    "redaccion": 8369,
+    "recuperacion": 480,
+    "verificacion": 0,
+    "interpretacion": 15494
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Contar alumnos con NR, no mostrar a un solo alumno."
+}

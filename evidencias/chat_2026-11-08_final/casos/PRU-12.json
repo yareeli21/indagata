@@ -1,0 +1,101 @@
+{
+ "id": "PRU-12",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Las respuestas en blanco se concentran en alguna sección?",
+   "rag_log_id": 2845,
+   "respuesta": "La sección “SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS” presentó el mayor número de respuestas en blanco o nulas, representando el 10.2% de las respuestas posibles (99 respuestas) entre los 97 alumnos evaluados [Fuente 1]. Las secciones “VERDADERO O FALSO DIGITAL” y “ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE)” obtuvieron un porcentaje mucho menor, con el 0.6% de respuestas en blanco o nulas cada una [Fuente 1], según reactivos como r20 y r08 [Fuente 1].\n\n**Respuestas en blanco o nulas por sección [Fuente 1]**\n| Sección | Reactivos | En blanco o nulas | % de sus respuestas |\n|---|---|---|---|\n| SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS | 10 | 99 | 10.2 % |\n| SECCIÓN: VERDADERO O FALSO DIGITAL | 7 | 4 | 0.6 % |\n| SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE) | 5 | 3 | 0.6 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "seccion",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta",
+    "excluir_preguntas": [
+     "r01",
+     "r02",
+     "r03",
+     "r04",
+     "r05",
+     "r06",
+     "r07",
+     "r08",
+     "r09",
+     "r10",
+     "r11",
+     "r12",
+     "r13",
+     "r14",
+     "r15",
+     "r16",
+     "r17",
+     "r18",
+     "r19",
+     "r20",
+     "r21",
+     "r22"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar por sección (respuestas en blanco o nulas)",
+    "excluir r01, r02, r03, r04, r05… descartado (la pregunta no pide excluir nada)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4103
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r08",
+     "score": 0.3674
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r08",
+     "score": 0.3658
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.3634
+    }
+   ],
+   "segundos": 67.4,
+   "tiempos_ms": {
+    "ejecucion": 22,
+    "redaccion": 37279,
+    "recuperacion": 595,
+    "verificacion": 16425,
+    "interpretacion": 29462
+   },
+   "k_precision": 0.848,
+   "cifras_con_respaldo": [
+    11,
+    11
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución de NR por sección."
+}

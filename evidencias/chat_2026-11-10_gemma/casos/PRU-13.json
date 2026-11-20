@@ -1,0 +1,216 @@
+{
+ "id": "PRU-13",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo hubo menos consenso?",
+   "rag_log_id": 3200,
+   "respuesta": "La primera pregunta del ranking, reactivo r17 “La huella digital incluye todo rastro que dejamos en línea”, tuvo 49 de 96 (51.0 %) respuestas, siendo la opción «Falso» la más elegida. [Fuente 1]\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %) |\n| 2 | r14 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %) |\n| 3 | r12 | índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida"
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "criterio del ranking: repartida (lo que dice la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4226
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4102
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.3912
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.3907
+    }
+   ],
+   "segundos": 40.0,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 12402,
+    "recuperacion": 317,
+    "verificacion": 1,
+    "interpretacion": 27270
+   },
+   "k_precision": 0.912,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame cómo se repartieron las respuestas",
+   "rag_log_id": 3201,
+   "respuesta": "La opción «Falso» fue la más elegida en el reactivo r17, representando el 50.5 % (49 alumnos) de las respuestas válidas a la pregunta sobre qué incluye la huella digital [Fuente 1]. La opción «Verdadero» obtuvo el 48.5% (47 alumnos), mientras que una sola respuesta fue considerada “NR” (No Respuesta o No Contiene Información) representando el 1 % del total de respuestas válidas [Fuente 1].\n\n**Distribución de r17 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Falso | 49 | 50.5 % |\n| Verdadero | 47 | 48.5 % |\n| NR | 1 | 1.0 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r17"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r01"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "mostrar: distribución de r17, la primera del ranking anterior"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4604
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.438
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4271
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4226
+    }
+   ],
+   "segundos": 46.2,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 17411,
+    "recuperacion": 340,
+    "verificacion": 3,
+    "interpretacion": 28353
+   },
+   "k_precision": 0.795,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué podría explicar esa división?",
+   "rag_log_id": 3202,
+   "respuesta": "**Lo que muestran los datos:** r17 «La huella digital incluye todo rastro que dejamos en línea.»: 96 respuestas válidas, 1 sin respuesta. Opción más elegida: «Falso» (50.5 %, 49 alumnos).\n\n**Interpretación (del asistente, no es un dato):** Los datos no registran por qué respondieron así; con este cálculo no se pueden afirmar causas. Sirve como punto de partida para revisarlo con más información.",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "profundiza",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r17"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "profundiza: se repite el plan anterior (resumen_pregunta) para explicarlo"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:calificada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.3808
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.3718
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.3642
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.3572
+    }
+   ],
+   "segundos": 43.6,
+   "tiempos_ms": {
+    "ejecucion": 18,
+    "redaccion": 15860,
+    "recuperacion": 409,
+    "verificacion": 1,
+    "interpretacion": 27308
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) tabla con n y %; (3) interpretación marcada como tal, sin calificar."
+}

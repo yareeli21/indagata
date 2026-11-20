@@ -1,0 +1,70 @@
+{
+ "id": "CET-05",
+ "instrumento": "ent_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántas veces mencionan el dinero o la economía?",
+   "rag_log_id": 2527,
+   "respuesta": "Cumplen la condición de 13 de 40 respondientes (32.5%) mencionando “dinero o economía” en sus respuestas abiertas [Fuente 1]. Se identificaron 149 palabras que empiezan con «diner» o «econo» [Fuente 1].\n\n**Dónde se menciona «dinero o economia» [Fuente 1]**\n| Respondente | Pregunta | Fragmento |\n|---|---|---|\n| E04 | p01 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E04 | p02 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E04 | p04 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E04 | p05 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E04 | p06 | «…ión y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas…» |\n| E04 | p07 | «…í; eso me da fuerzas. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas…» |\n| E04 | p08 | «…ha constante entre la academia y la sobrevivencia económica. A pesar de las dificultades económicas, me aferro a la conv…» |\n| E04 | p09 | «El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay sema…» |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "menciona": "dinero o economia",
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "menciones de «dinero o economia» en las respuestas abiertas"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E06 en p05",
+     "score": 0.4345
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E14 en p05",
+     "score": 0.4319
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E08 en p05",
+     "score": 0.4196
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E24 en p05",
+     "score": 0.4195
+    }
+   ],
+   "segundos": 31.3,
+   "tiempos_ms": {
+    "ejecucion": 45,
+    "redaccion": 20185,
+    "recuperacion": 178,
+    "verificacion": 8146,
+    "interpretacion": 10822
+   },
+   "k_precision": 0.969,
+   "cifras_con_respaldo": [
+    12,
+    12
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Aclarar cómo cuenta y citar ejemplos."
+}

@@ -1,0 +1,133 @@
+{
+ "id": "ENC-16",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 2534,
+   "respuesta": "*   71.5 % (1388 de 1942) respondió «Con hasta un año de retraso», «Con mas de un año de retraso» o «Estoy considerando abandonar» en p10, lo que sugiere una preocupación por los plazos de graduación y posibles abandono académico [Fuente 1].\n*   37.7 % (721 de 1911) respondió «Totalmente en desacuerdo» o «2 en escala 1–5» en p17, indicando una insatisfacción con la adecuación de los laboratorios y equipos ofrecidos por la institución [Fuente 1].\n*   36.9 % (699 de 1892) respondió «Totalmente en desacuerdo» o «2 en escala 1–5» en p18, lo que revela una falta de confianza en el acceso a bases de datos académicas como Scopus y IEEE Xplore [Fuente 1].\n*   34.2 % (666 de 1946) respondió «Busco empleo» en p12, sugiriendo una desconexión entre los estudios y las oportunidades laborales percibidas por los estudiantes [Fuente 1].\n\nConsiderando estos resultados, el porcentaje más preocupante es el 71.5 % (1388 de 1942) que expresa preocupación por retrasos en la graduación, lo cual podría indicar problemas en la planificación académica o dificultades para completar sus estudios [Fuente 1].",
+   "intencion": "hallazgo",
+   "plan": {
+    "sentido": "desfavorable",
+    "intencion": "hallazgo"
+   },
+   "correcciones": [
+    "intención resumen_pregunta → hallazgo con sentido desfavorable"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.4951
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.4832
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4315
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.4123
+    }
+   ],
+   "segundos": 112.2,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 95048,
+    "recuperacion": 315,
+    "verificacion": 37862,
+    "interpretacion": 16777
+   },
+   "k_precision": 0.59,
+   "cifras_con_respaldo": [
+    19,
+    19
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué lo consideras preocupante?",
+   "rag_log_id": 2535,
+   "respuesta": "**Lo que muestran los datos:** Dato 1: 71.5 % (1388 de 1942) respondió «Con hasta un año de retraso» o «Con mas de un año de retraso» o «Estoy considerando abandonar» en p10 «¿Cuándo esperas titularte?» (respuestas desfavorables según la investigadora) Dato 2: 37.7 % (721 de 1911) respondió «Totalmente en desacuerdo» o «2 en escala 1–5» en p17 «Los laboratorios, equipos, materiales y espacios de la institución son adecuados para mi f» (respuestas desfavorables según la investigadora)\n\n**Interpretación (del asistente, no es un dato):** Podría sugerir que existe una preocupación generalizada entre los estudiantes sobre los plazos de graduación y posibles abandono académico, dado el alto porcentaje de respuestas desfavorables en relación con la expectativa de titularse y la probabilidad de regresar a estudiar en la institución. Asimismo, se identifica una insatisfacción significativa con las condiciones académicas ofrecidas por la institución, reflejada en las respuestas desfavorables sobre los laboratorios, equipos y recursos académicos disponibles [Fuente 1]. La magnitud de estas respuestas desfavorables requiere un análisis más profundo para comprender las causas subyacentes a estas preocupaciones.",
+   "intencion": "hallazgo",
+   "plan": {
+    "sentido": "desfavorable",
+    "relacion": "profundiza",
+    "intencion": "hallazgo"
+   },
+   "correcciones": [
+    "profundiza: se repite el plan anterior (hallazgo) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5019
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5012
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4628
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4395
+    }
+   ],
+   "segundos": 42.7,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 21578,
+    "recuperacion": 364,
+    "verificacion": 1,
+    "interpretacion": 20649
+   },
+   "k_precision": 0.542,
+   "cifras_con_respaldo": [
+    11,
+    11
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la polaridad (no elegir respuestas favorables) y justificar con cifras."
+}

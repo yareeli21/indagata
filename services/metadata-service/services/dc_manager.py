@@ -58,12 +58,8 @@ def formato_de(nombre: str) -> str:
 
 
 def cobertura_sugerida(analisis: Analisis) -> str:
-    """«Nivel — población» a partir de lo inferido del instrumento."""
-    nivel = analisis.hallazgos.get("nivel_educativo", "")
-    if not nivel and analisis.carreras:
-        nivel = "Licenciatura"
-    if nivel in ("Maestría", "Doctorado"):
-        nivel = f"Posgrado ({nivel.lower()})"
+    """«Licenciatura — población»: todo el acervo es de licenciatura (16 nov)."""
+    nivel = "Licenciatura"
     poblacion = analisis.hallazgos.get("poblacion", "")
     return " — ".join(p for p in (nivel, poblacion) if p)
 

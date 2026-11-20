@@ -1,0 +1,90 @@
+{
+ "id": "ENU-10",
+ "instrumento": "enc_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué respondió el estudiante R045 sobre su carga laboral?",
+   "rag_log_id": 4141,
+   "respuesta": "R045 respondió que su carga laboral actual es menos de 20 horas a la semana. Esto indica que el estudiante tiene un horario relativamente ligero y no se siente sobrecargado con sus responsabilidades laborales.\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | R045 |\n|---|---|\n| Contexto: edad | 22 |\n| Contexto: genero | masculino |\n| Contexto: semestre | 4 |\n| p01 «Asisto puntualmente a todas mis clases.» | Ni de acuerdo ni en desacuerdo / A veces |\n| p02 «Entrego mis tareas completas y a tiempo.» | Ni de acuerdo ni en desacuerdo / A veces |\n| p03 «Repaso los temas vistos en clase aunque no haya examen.» | Ni de acuerdo ni en desacuerdo / A veces |\n| p04 «Busco material adicional cuando un tema no me queda claro.» | Ni de acuerdo ni en desacuerdo / A veces |\n| p05 «La institución me informa a tiempo sobre trámites y servicios.» | De acuerdo / Frecuentemente |\n| p06 «Los servicios de apoyo responden cuando los necesito.» | De acuerdo / Frecuentemente |\n| p07 «Siento que la institución se preocupa por mi permanencia.» | De acuerdo / Frecuentemente |\n| p08 «Los horarios de los servicios se adaptan a mis necesidades.» | De acuerdo / Frecuentemente |\n| p09 «¿Cuál es tu carga laboral actual?» | Menos de 20 h a la semana |\n| p10 «¿Con qué frecuencia asistes a asesorías con tus profesores?» | Algunas veces |\n| p11 «¿Cuál es tu principal medio de transporte a la universidad?» | Caminando |\n| p12 «¿Has reprobado alguna materia en el último año?» | No |\n| p13 «¿Cuentas con una beca?» | No |\n| p14 «Del 1 al 10, ¿qué tan satisfecho/a estás con tu carrera?» | 5 de 10 |\n| p15 «¿Cuántas horas a la semana estudias fuera de clase? (número)» | 13 horas |\n| p16 «¿Qué servicios de la institución usaste este semestre? (marca todos lo» | Tutorías |\n| p17 «Ordena de mayor a menor importancia los motivos por los que estudias» | 1.º Interés por la disciplina, 2.º Ingreso económico, 3.º Conseguir un buen empleo, 4.º Expectativa familiar |\n| p18 «¿Qué cambiarías de tu experiencia en la institución? Explica brevement» | Algunos servicios funcionan bien, pero otros son lentos; ampliaría la atención en línea para no perder clases. |\n| p19 «perfil» | P2 |\n| p20 «promedio_gpa» | 2.91 (escala 0–10) |\n| p21 «horas_trabajo_semana» | 13 horas |\n| p22 «tipo_universidad» | publica |\n| p23 «nivel_ses» | medio |\n| p24 «nivel_estudio» | pregrado |\n| p25 «primera_generacion» | No |\n| p26 «tiene_beca» | No |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "De 20 a 30 h a la semana",
+      "pregunta": "p09"
+     }
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "R045"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "filtros": [
+     {
+      "valor": "De 20 a 30 h a la semana",
+      "pregunta": "p09"
+     }
+    ],
+    "intencion": "resumen_pregunta"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "intención resumen_pregunta → datos_respondente («R045» en la pregunta)",
+    "respondente R045 tomado de la pregunta"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R045",
+     "score": 0.6462
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R045",
+     "score": 0.6438
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R045",
+     "score": 0.6087
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R045",
+     "score": 0.5728
+    }
+   ],
+   "segundos": 22.8,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 11769,
+    "recuperacion": 318,
+    "verificacion": 2,
+    "interpretacion": 10691
+   },
+   "k_precision": 0.956,
+   "cifras_con_respaldo": [
+    29,
+    29
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "La respuesta de R045 a la pregunta de carga laboral."
+}

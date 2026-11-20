@@ -1,0 +1,113 @@
+{
+ "id": "ENU-04",
+ "instrumento": "enc_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué servicio de la institución fue el más usado este semestre?",
+   "rag_log_id": 4101,
+   "respuesta": "- La pregunta con más respuestas en «no» es p26 «tiene_beca»: 89.4 % de quienes respondieron.\n- La pregunta con más respuestas en el nivel alto es p14 «Del 1 al 10, ¿qué tan satisfecho/a estás con tu carrera?»: 61.9 % de quienes respondieron (respondieron «7» o «8» o «9» o «10»).\n- En p24 «nivel_estudio» predomina «pregrado»: 90.6 % de quienes respondieron. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Biblioteca",
+      "pregunta": "p16"
+     },
+     {
+      "valor": "Tutorías",
+      "pregunta": "p16"
+     },
+     {
+      "valor": "Bolsa de trabajo",
+      "pregunta": "p16"
+     },
+     {
+      "valor": "Asesoría psicológica",
+      "pregunta": "p16"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Biblioteca",
+      "pregunta": "p16"
+     },
+     {
+      "valor": "Tutorías",
+      "pregunta": "p16"
+     },
+     {
+      "valor": "Bolsa de trabajo",
+      "pregunta": "p16"
+     },
+     {
+      "valor": "Asesoría psicológica",
+      "pregunta": "p16"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.687
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.6143
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p16",
+     "score": 0.7293
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p16",
+     "score": 0.7497
+    }
+   ],
+   "segundos": 48.3,
+   "tiempos_ms": {
+    "ejecucion": 130,
+    "redaccion": 33342,
+    "recuperacion": 644,
+    "verificacion": 21749,
+    "interpretacion": 14192
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    11,
+    11
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "El servicio más marcado en la pregunta de servicios usados, con su número y %."
+}

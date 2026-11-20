@@ -1,0 +1,113 @@
+{
+ "tipo": "encuesta",
+ "base": "storage\\instrumentos_sinteticos\\encuestas\\enc_11_respondido.csv",
+ "semilla": 7,
+ "filas_base": 160,
+ "filas_con_errores": 165,
+ "errores": {
+  "fuera_de_rango": [
+   {
+    "fila": 13,
+    "columna": "Compromiso_acad_item1",
+    "valor": 0
+   },
+   {
+    "fila": 19,
+    "columna": "Compromiso_acad_item2",
+    "valor": 7
+   },
+   {
+    "fila": 39,
+    "columna": "Compromiso_acad_item3",
+    "valor": 9
+   },
+   {
+    "fila": 83,
+    "columna": "Compromiso_acad_item4",
+    "valor": 0
+   },
+   {
+    "fila": 102,
+    "columna": "Apoyo_instituci_item1",
+    "valor": 7
+   },
+   {
+    "fila": 138,
+    "columna": "Apoyo_instituci_item2",
+    "valor": 9
+   }
+  ],
+  "no_respuestas": [
+   {
+    "fila": 10,
+    "columna": "Compromiso_acad_item4",
+    "valor": "No sé"
+   },
+   {
+    "fila": 16,
+    "columna": "Apoyo_instituci_item1",
+    "valor": "NA"
+   },
+   {
+    "fila": 25,
+    "columna": "Apoyo_instituci_item2",
+    "valor": "N/A"
+   },
+   {
+    "fila": 27,
+    "columna": "Apoyo_instituci_item3",
+    "valor": "No aplica"
+   },
+   {
+    "fila": 58,
+    "columna": "Apoyo_instituci_item4",
+    "valor": "No sé"
+   },
+   {
+    "fila": 98,
+    "columna": "Compromiso_acad_item1",
+    "valor": "NA"
+   },
+   {
+    "fila": 135,
+    "columna": "Compromiso_acad_item2",
+    "valor": "N/A"
+   },
+   {
+    "fila": 156,
+    "columna": "Compromiso_acad_item3",
+    "valor": "No aplica"
+   }
+  ],
+  "columna_incompleta": [
+   {
+    "columna": "Cuál_es_tu_principal_medio_de_transport",
+    "vacias": 112
+   }
+  ],
+  "encuestados_incompletos": [
+   43,
+   80,
+   122,
+   154
+  ],
+  "linea_recta": [
+   82,
+   105,
+   111,
+   120,
+   159
+  ],
+  "duplicados": [
+   161,
+   162,
+   163,
+   164,
+   165
+  ],
+  "columnas_ajenas": [
+   "Marca temporal",
+   "Dirección IP"
+  ]
+ }
+}

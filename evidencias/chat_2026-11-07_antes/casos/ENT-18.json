@@ -1,0 +1,72 @@
+{
+ "id": "ENT-18",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿De qué trata esta entrevista y cuál es su objetivo?",
+   "rag_log_id": 2331,
+   "respuesta": "Esta entrevista trata sobre las experiencias y percepciones de estudiantes universitarios de licenciatura que asisten a la ESCOM ISC con respecto a su salud mental y el acceso a servicios de apoyo en un entorno académico. El objetivo principal de la entrevista, según se indica, es identificar cómo los estudiantes perciben su estado de ánimo durante el semestre y qué situaciones dentro de la universidad les generan estrés o ansiedad, además de determinar si están al tanto de los servicios de apoyo psicológico que ofrece la institución [Fuente 1]. La entrevista se realizó a un solo participante, un estudiante de licenciatura en la ESCOM ISC, utilizando una metodología de entrevista a profundidad con un guion de 13 preguntas [Fuente 1]. Los KPIs asociados a esta investigación incluyen el uso de los servicios de salud mental y apoyo psicológico, la proporción de consejeros/orientadores por estudiante, la tasa de transferencia o traslado a otras instituciones, y la cobertura y calidad de los servicios de apoyo estudiantil [Fuente 1].",
+   "intencion": "semantica_abierta",
+   "plan": {
+    "intencion": "semantica_abierta",
+    "preguntas": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12"
+    ],
+    "consulta_semantica": "¿De qué trata esta entrevista y cuál es su objetivo?"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5875
+    }
+   ],
+   "segundos": 43.6,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 29052,
+    "recuperacion": 191,
+    "verificacion": 1,
+    "interpretacion": 14196
+   },
+   "k_precision": 0.838,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Síntesis en prosa: tema y una participante."
+}

@@ -1,0 +1,74 @@
+{
+ "id": "PNU-02",
+ "instrumento": "pru_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos dijeron que la fabricación de datos es aceptable?",
+   "rag_log_id": 4146,
+   "respuesta": "28 de 80 respondentes (35.0 %) cumplen el criterio: r10 «La fabricación de datos en investigación es éticamente aceptable si el» = «Verdadero». [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 3,
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r10"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 3,
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r10"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r10",
+     "score": 0.6212
+    }
+   ],
+   "segundos": 21.2,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 8501,
+    "recuperacion": 354,
+    "verificacion": 0,
+    "interpretacion": 12255
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "r10 = «Verdadero»: número y %, sin calificar."
+}

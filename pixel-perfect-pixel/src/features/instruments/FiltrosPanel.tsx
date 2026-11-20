@@ -11,10 +11,8 @@ import {
 } from "@/components/ui/select";
 import {
   ESTADOS_INSTRUMENTO,
-  NIVELES_EDUCATIVOS,
   TIPOS_INSTRUMENTO,
   type EstadoInstrumento,
-  type NivelEducativo,
   type TipoInstrumento,
 } from "@/types";
 import type { Filtros } from "./filtros";
@@ -62,27 +60,6 @@ export function FiltrosPanel({ filtros, catalogoKpis, anios, onChange }: Filtros
             </label>
           ))}
         </div>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="f-nivel">Nivel educativo</Label>
-        <Select
-          value={filtros.nivel ?? TODOS}
-          onValueChange={(v) =>
-            onChange({ ...filtros, nivel: v === TODOS ? null : (v as NivelEducativo) })
-          }
-        >
-          <SelectTrigger id="f-nivel">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value={TODOS}>Todos los niveles</SelectItem>
-            {NIVELES_EDUCATIVOS.map((n) => (
-              <SelectItem key={n} value={n}>
-                {n}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
       </div>
       <div className="space-y-2">
         <Label htmlFor="f-tipo">Tipo de instrumento</Label>

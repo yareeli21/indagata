@@ -1,0 +1,60 @@
+{
+ "id": "PRU-19",
+ "instrumento": "pru",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántas secciones tiene y cuántos reactivos hay en cada una?",
+   "rag_log_id": 3679,
+   "respuesta": "La Prueba de Alfabetización Digital tiene 3 secciones y, 22 reactivos distribuidos entre ellas. \n\n- Sección 1 «SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS» cuenta con 10 reactivos.\n- Sección 2 «SECCIÓN: VERDADERO O FALSO DIGITAL» tiene 7 reactivos.\n- Sección 3 «SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE)» contiene 5 reactivos.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.2361
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.2921
+    }
+   ],
+   "segundos": 9.7,
+   "tiempos_ms": {
+    "redaccion": 9121,
+    "recuperacion": 286,
+    "verificacion": 2
+   },
+   "k_precision": 0.892,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "10, 7 y 5; total 22."
+}

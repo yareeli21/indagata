@@ -1,0 +1,244 @@
+{
+ "id": "PRU-13",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo hubo menos consenso?",
+   "rag_log_id": 2744,
+   "respuesta": "La primera pregunta del ranking fue “La huella digital incluye todo rastro que dejamos en línea.”, con 49 de 96 (51.0 %) respuestas seleccionando la opción «Falso». [Fuente 1]\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %) |\n| 2 | r14 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %) |\n| 3 | r12 | índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida"
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "coincidencia",
+    "excluir_preguntas": [
+     "r01",
+     "r02",
+     "r03",
+     "r04",
+     "r05",
+     "r06",
+     "r07",
+     "r08",
+     "r09",
+     "r10",
+     "r11",
+     "r12",
+     "r13",
+     "r14",
+     "r15",
+     "r16",
+     "r17",
+     "r18",
+     "r19",
+     "r20",
+     "r21",
+     "r22"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "criterio del ranking: repartida (lo que dice la pregunta)",
+    "excluir r01, r02, r03, r04, r05… descartado (la pregunta no pide excluir nada)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4226
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4102
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.3912
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.3907
+    }
+   ],
+   "segundos": 40.2,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 10057,
+    "recuperacion": 296,
+    "verificacion": 1,
+    "interpretacion": 29799
+   },
+   "k_precision": 0.925,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame cómo se repartieron las respuestas",
+   "rag_log_id": 2745,
+   "respuesta": "La opción «Falso» fue la más elegida en el reactivo r17, seleccionada por 49 alumnos (50.5 % de los que respondieron), superando ligeramente a la opción «Verdadero», escogida por 47 estudiantes (48.5 %). Un único alumno no respondió al reactivo r17 (1.0 %). [Fuente 1]\n\n**Distribución de r17 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Falso | 49 | 50.5 % |\n| Verdadero | 47 | 48.5 % |\n| NR | 1 | 1.0 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r17"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta",
+    "excluir_preguntas": [
+     "p05"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "excluir r05 descartado (la pregunta no pide excluir nada)",
+    "mostrar: distribución de r17, la primera del ranking anterior"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4604
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.438
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4271
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4226
+    }
+   ],
+   "segundos": 31.3,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 12691,
+    "recuperacion": 315,
+    "verificacion": 1,
+    "interpretacion": 18275
+   },
+   "k_precision": 0.824,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué podría explicar esa división?",
+   "rag_log_id": 2746,
+   "respuesta": "**Lo que muestran los datos:** r17 «La huella digital incluye todo rastro que dejamos en línea.»: 96 respuestas válidas, 1 sin respuesta. Opción más elegida: «Falso» (50.5 %, 49 alumnos).\n\n**Interpretación (del asistente, no es un dato):** Podría sugerir que existe un nivel de desconocimiento sobre los conceptos relacionados con la huella digital entre los estudiantes evaluados. La ligera preferencia por la opción «Falso» frente a la «Verdadero» en el reactivo r17, con una pequeña proporción de respuestas no contestadas, podría indicar la necesidad de reforzar la comprensión de este tema. Dada la muestra reducida (96 alumnos), es importante considerar que esta división no permite establecer conclusiones definitivas sobre las actitudes o conocimientos de los estudiantes respecto a la huella digital [Fuente 1].",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "profundiza",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r17"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Podrías especificar qué te hace pensar que hay una división en las respuestas a la pregunta r17?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "profundiza: se repite el plan anterior (resumen_pregunta) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.3808
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.3718
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.3642
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.3572
+    }
+   ],
+   "segundos": 36.5,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 17542,
+    "recuperacion": 346,
+    "verificacion": 0,
+    "interpretacion": 18567
+   },
+   "k_precision": 0.452,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) tabla con n y %; (3) interpretación marcada como tal, sin calificar."
+}

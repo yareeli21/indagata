@@ -1,0 +1,83 @@
+{
+ "id": "PRU-24",
+ "instrumento": "pru",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál es la respuesta correcta del reactivo de la VPN?",
+   "rag_log_id": 3116,
+   "respuesta": "Indagata no califica las pruebas porque no tiene clave de respuestas, así que no se sabe si acertaron. Sin embargo, en el reactivo r03 (prueba «Prueba de Alfabetización Digital») se pregunta sobre la principal función de una VPN y se le ofrece como opción D) Almacenar archivos en la nube. La opción más elegida fue D) Almacenar archivos en la nube con un 48.5% de los alumnos.",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r01"
+    ],
+    "aclaracion": "No encontré esa condición en «Prueba de Alfabetización Digital». En r01 («¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?») las opciones que sí existen son estas:"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "B",
+      "pregunta": "r03"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r03 = «B» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "lo que pide no existe en el instrumento: se responde con lo que sí hay"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "estructurada:sin_calificar",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.7143
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.7119
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6396
+    }
+   ],
+   "segundos": 30.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 16668,
+    "recuperacion": 325,
+    "verificacion": 2,
+    "interpretacion": 12941
+   },
+   "k_precision": 0.889,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No maneja respuestas correctas; puede mostrar opciones y lo elegido, sin opinar."
+}

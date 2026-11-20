@@ -1,0 +1,55 @@
+{
+ "id": "PRU-08",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la sección de verdadero/falso con la de competencias básicas en cantidad de respuestas en blanco",
+   "rag_log_id": 4033,
+   "respuesta": "La sección de \"VERDADERO O FALSO DIGITAL\" tiene 4 respuestas en blanco o nulas, mientras que la sección de \"COMPETENCIAS DIGITALES BÁSICAS\" tiene 99 respuestas en blanco o nulas. Esto significa que la sección de competencias básicas tiene un 10.2% de respuestas en blanco o nulas, lo que es mucho más alto que la sección de verdadero/falso digital con un 0.6%. \n\n[Fuente 1]\n\n**Respuestas en blanco o nulas por sección [Fuente 1]**\n| Sección | Reactivos | En blanco o nulas | % de sus respuestas |\n|---|---|---|---|\n| SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS | 10 | 99 | 10.2 % |\n| SECCIÓN: VERDADERO O FALSO DIGITAL | 7 | 4 | 0.6 % |\n| SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE) | 5 | 3 | 0.6 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "seccion"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r11"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar por sección (respuestas en blanco o nulas)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "estructurada",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 6.5,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 4610,
+    "recuperacion": 484,
+    "verificacion": 1,
+    "interpretacion": 1416
+   },
+   "k_precision": 0.932,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "% de NR por sección con su número de reactivos."
+}

@@ -1,0 +1,251 @@
+{
+ "id": "PRU-14",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en «la nube elimina por completo el riesgo de perder datos»?",
+   "rag_log_id": 3203,
+   "respuesta": "57 de los 95 que respondieron r16 (60.0 %) cumplen el criterio: r16 «El almacenamiento en la nube elimina por completo el riesgo de perder » = «Verdadero». Sobre el total del instrumento son 57 de 97 respondentes (58.8 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r16"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r16"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5851
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5748
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.4825
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.4561
+    }
+   ],
+   "segundos": 50.0,
+   "tiempos_ms": {
+    "ejecucion": 47,
+    "redaccion": 20815,
+    "recuperacion": 357,
+    "verificacion": 0,
+    "interpretacion": 28697
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "De ellos, ¿qué respondieron sobre Wi-Fi público?",
+   "rag_log_id": 3204,
+   "respuesta": "En la prueba “Prueba de Alfabetización Digital”, 73 de 97 alumnos (75.3 %) marcaron “Verdadero” en el reactivo r15 (“Usar redes Wi-Fi públicas sin VPN es completamente seguro”). [Fuente 1]",
+   "intencion": "aclaracion",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "aclaracion",
+    "aclaracion": "«contexto» no es una variable de contexto de «Prueba de Alfabetización Digital» (disponibles: perfil, edad, genero, semestre, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca)."
+   },
+   "plan_modelo": {
+    "campos": "todas_las_respuestas",
+    "contexto": {
+     "Turno": "Matutino",
+     "Vespertino": "Vespertino"
+    },
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r01",
+     "r02",
+     "r03",
+     "r04",
+     "r05",
+     "r06",
+     "r07",
+     "r08",
+     "r09",
+     "r10",
+     "r11",
+     "r12",
+     "r13",
+     "r14",
+     "r15",
+     "r16",
+     "r17",
+     "r18",
+     "r19",
+     "r20",
+     "r21",
+     "r22"
+    ],
+    "agrupar_por": "contexto"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "contexto Turno = «Matutino» descartado (la pregunta no lo menciona)",
+    "contexto Vespertino = «Vespertino» descartado (la pregunta no lo menciona)",
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6068
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5847
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5092
+    }
+   ],
+   "segundos": 58.6,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "recuperacion": 205,
+    "interpretacion": 46866
+   },
+   "k_precision": 0.941,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame 5",
+   "rag_log_id": 3205,
+   "respuesta": "El criterio aplicado fue “Usar redes Wi-Fi públicas sin VPN es completamente seguro”, y 73 de 97 respondientes (75.3 %) marcaron “Verdadero”. Se muestran los 5 primeros por número de respondiente que cumplieron la condición [Fuente 1].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | A001 | A002 | A003 | A005 | A006 |\n|---|---|---|---|---|---|\n| Contexto: edad | 20 | 21 | 30 | 21 | 21 |\n| Contexto: genero | masculino | femenino | masculino | femenino | femenino |\n| Contexto: horas_trabajo_semana | 20 | 15 | 11 | 6 | 27 |\n| Contexto: nivel_estudio | pregrado | pregrado | posgrado | pregrado | pregrado |\n| Contexto: nivel_ses | bajo | medio | alto | medio | muy_bajo |\n| Contexto: perfil | P3 | P2 | P7 | P2 | P8 |\n| Contexto: primera_generacion | True | False | False | False | False |\n| Contexto: promedio_gpa | 1.82 | 2.9 | 3.91 | 3.5 | 2.62 |\n| Contexto: semestre | 2 | 2 | 2 | 4 | 2 |\n| Contexto: tiene_beca | False | False | False | False | True |\n| Contexto: tipo_universidad | publica | publica | privada | publica | publica |\n| r01 «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Exc» | .docx | .docx | .pdf | .pptx | .pptx |\n| r02 «¿Qué significa LMS en contextos educativos?» | Local Messaging System | Local Messaging System | Learning Management System | Local Messaging System | Lecture Multimedia Server |\n| r03 «¿Cuál es la principal función de una VPN?» | Aumentar la velocidad de internet | Bloquear anuncios publicitarios | Almacenar archivos en la nube | Crear una conexión segura y privada | Aumentar la velocidad de internet |\n| r04 «¿Qué es el phishing?» | Un intento fraudulento de obtener información personal | Un tipo de búsqueda en Google | Un intento fraudulento de obtener información personal | Una herramienta de edición de imágenes | Una herramienta de edición de imágenes |\n| r05 «¿Cuál herramienta es más adecuada para la colaboración en documentos e» | USB compartida | Imprimir y entregar físicamente | USB compartida | USB compartida | USB compartida |\n| r06 «¿Qué es la nube (cloud computing) en tecnología?» | Un servidor físico en tu oficina | Almacenamiento y servicios de internet a través de servidores remotos | Un servidor físico en tu oficina | Almacenamiento y servicios de internet a través de servidores remotos | Una aplicación de mensajería |\n| r07 «¿Qué significa una licencia Creative Commons?» | El contenido es completamente privado | El contenido puede ser vendido libremente | El contenido es completamente privado | El contenido es completamente privado | El contenido no tiene derechos de autor |\n| r08 «¿Cuál es la principal función de un buscador web como Google?» | Crear presentaciones | Indexar y recuperar páginas web relevantes | Crear presentaciones | Almacenar información en la nube | Indexar y recuperar páginas web relevantes |\n| r09 «¿Cuál de los siguientes es un criterio para evaluar la confiabilidad d» | La autoridad del autor y la fecha de publicación | El diseño visual del sitio web | El diseño visual del sitio web | La autoridad del autor y la fecha de publicación | El número de visitas del sitio |\n| r10 «¿Qué es una contraseña segura?» | (sin respuesta) | (sin respuesta) | (sin respuesta) | (sin respuesta) | (sin respuesta) |\n| r11 «El correo electrónico es siempre un canal seguro para enviar informaci» | Verdadero | Verdadero | Verdadero | Falso | Verdadero |\n| r12 «El análisis de datos de aprendizaje (learning analytics) puede ayudar » | Verdadero | Verdadero | Verdadero | Verdadero | Verdadero |\n| r13 «Plagiar contenido digital tiene las mismas consecuencias éticas que pl» | Falso | Verdadero | Verdadero | Verdadero | Falso |\n| r14 «La inteligencia artificial puede generar texto, imágenes y código de p» | Verdadero | Verdadero | Falso | Verdadero | Falso |\n| r15 «Usar redes Wi-Fi públicas sin VPN es completamente seguro.» | Verdadero | Verdadero | Verdadero | Verdadero | Verdadero |\n| r16 «El almacenamiento en la nube elimina por completo el riesgo de perder » | Falso | Verdadero | Verdadero | Verdadero | (sin respuesta) |\n| r17 «La huella digital incluye todo rastro que dejamos en línea.» | Falso | Falso | Verdadero | Verdadero | Verdadero |\n| r18 «¿Cuál es el orden correcto para crear un documento académico digital? » | 4-3-2-1 | 2-3-1-4 | 2-3-1-4 | 2-3-1-4 | 1-2-3-4 |\n| r19 «Empareja: HTTPS →» | Protocolo de mensajería | Protocolo seguro de transferencia web | Servidor de correo | Servidor de correo | Protocolo seguro de transferencia web |\n| r20 «¿Qué herramienta corresponde mejor al propósito de gestionar referenci» | Photoshop | Canva | Zotero o Mendeley | Zotero o Mendeley | Photoshop |\n| r21 «¿Qué tipo de licencia permite modificar y redistribuir libremente un s» | Shareware | Freeware | Freeware | Shareware | Propietaria |\n| r22 «¿Cuál es el emparejamiento correcto? Big Data ↔» | Hardware de almacenamiento físico | Hardware de almacenamiento físico | Hardware de almacenamiento físico | Hardware de almacenamiento físico | Hardware de almacenamiento físico |",
+   "intencion": "filtrar_respondentes",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 5,
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     }
+    ],
+    "intencion": "filtrar_respondentes"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 5,
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     }
+    ],
+    "intencion": "filtrar_respondentes"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:filtrar_respondentes",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.544
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5347
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.3652
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r06",
+     "score": 0.3592
+    }
+   ],
+   "segundos": 48.0,
+   "tiempos_ms": {
+    "ejecucion": 25,
+    "redaccion": 13040,
+    "recuperacion": 310,
+    "verificacion": 3,
+    "interpretacion": 34592
+   },
+   "k_precision": 0.989,
+   "cifras_con_respaldo": [
+    32,
+    32
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) filtrar sobre el grupo de (1); (3) 5 IDs anónimos con el total."
+}

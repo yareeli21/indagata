@@ -41,7 +41,7 @@ from shared.models.respuesta_interpretada import RespuestaInterpretada
 from shared.models.version_conocimiento import VersionConocimiento
 
 from services import storage_client
-from services.dominio import es_definicion, normalizar
+from services.dominio import es_definicion, normalizar, valor_nombrado
 
 logger = logging.getLogger("visualization-service")
 
@@ -428,7 +428,8 @@ def _grupo(doc: dict[str, Any], texto: str) -> dict[str, str]:
     """Filtro de contexto mencionado en la pregunta: «del turno vespertino» → {turno: Vespertino}."""
     personas = doc.get("respondentes") or doc.get("alumnos") or []
     for clave, valor in {(k, str(v)) for p in personas for k, v in (p.get("contexto") or {}).items() if v not in (None, "")}:
-        if len(valor) >= 3 and not valor.isdigit() and re.search(rf"\b{re.escape(normalizar(valor))}\b", texto):
+        if len(valor) >= 3 and not valor.isdigit() and (re.search(rf"\b{re.escape(normalizar(valor))}\b", texto)
+                                                         or valor_nombrado(valor, texto)):
             return {clave: valor}
     return {}
 
@@ -472,7 +473,7 @@ def _raices(texto: str) -> set[str]:
 
 
 def _fichas_valor(texto: str) -> set[str]:
-    """Palabras de una opción de respuesta («Trabajo más de 30h» → trabajo, mas, 30), con raíz de 5 letras."""
+    """Palabras de una opción de respuesta («Más de 20 horas» → mas, 20, horas), con raíz de 5 letras."""
     return {t if t[0].isdigit() else t[:5] for t in re.findall(r"\d+(?:[.,]\d+)?|[a-z]+", normalizar(texto))
             if t not in _VACIAS_VALOR}
 
@@ -564,7 +565,7 @@ def _condicion_en(doc: dict[str, Any], indice: dict[str, _DatosPregunta], texto:
             condicion, nota = {"valores": [v for v in datos.valores if _primera(v) == "si"]}, "se interpretó como «sí»"
         if condicion is None:
             continue
-        fuerte = fuerza >= 5  # una opción nombrada con al menos dos palabras («Trabajo más de 30h»)
+        fuerte = fuerza >= 5  # una opción nombrada con al menos dos palabras («Más de 20 horas»)
         if not (explicita or solape >= (2 if estricta else 1) or fuerte):
             continue
         puntos = solape * 2 + (6 if explicita else 0) + fuerza
@@ -1008,7 +1009,15 @@ def _lineas_filtro(intencion: Intencion, ins: Instrumento, condiciones: list[tup
     if not personas:
         return lineas + [f"Ninguno de los {total} respondentes cumple la condición."], False
     pct = round(100 * len(personas) / total, 1) if total else 0.0
-    lineas.append(f"Cumplen la condición {len(personas)} de {total} respondentes ({pct} %).")
+    preguntas = list(dict.fromkeys(_corto(c["pregunta_id"]) for c, _ in condiciones))
+    base = len(consultas.respondieron(doc, preguntas, grupo))
+    if preguntas and base != total:
+        # Mismo criterio que el ejecutor del plan: el porcentaje es sobre quienes respondieron (10 nov, aritmética A15).
+        pct_base = round(100 * len(personas) / base, 1) if base else 0.0
+        lineas.append(f"Cumplen la condición {len(personas)} de los {base} que respondieron {' y '.join(preguntas)} "
+                      f"({pct_base} %); sobre el total, {len(personas)} de {total} respondentes ({pct} %).")
+    else:
+        lineas.append(f"Cumplen la condición {len(personas)} de {total} respondentes ({pct} %).")
     ids = [_corto(r["id"]) for r in personas]
     if intencion.accion == "uno":
         elegido = personas[0]
@@ -1239,7 +1248,7 @@ def _kpi_mencionado(doc: dict[str, Any], texto: str) -> dict[str, Any] | None:
 
 
 def nombrados(instrumentos: list[Instrumento], texto: str) -> list[Instrumento]:
-    """Los instrumentos que la pregunta nombra por su título («la encuesta de carga académica»)."""
+    """Los instrumentos que la pregunta nombra por su título («la encuesta de hábitos de estudio»)."""
     raices = _raices(texto)
     puntos = {ins.id_crudo: len(raices & (_raices(ins.titulo) - _GENERICAS_TITULO)) for ins in instrumentos}
     maximo = max(puntos.values(), default=0)

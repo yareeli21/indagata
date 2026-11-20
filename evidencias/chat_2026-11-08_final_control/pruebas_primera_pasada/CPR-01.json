@@ -1,0 +1,85 @@
+{
+ "id": "CPR-01",
+ "instrumento": "pru_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opción eligieron más en el reactivo del alpha de Cronbach?",
+   "rag_log_id": 2823,
+   "respuesta": "Criterio: resumen de r07.\nr07 «El coeficiente alpha de Cronbach mide:»: 80 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «A) La validez del instrumento» (43.8 % de los alumnos).\nOpción más elegida: «La validez del instrumento» (43.8 %, 35 alumnos). [Fuente 1]\n\n**Distribución de r07 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) La validez del instrumento | 35 | 43.8 % |\n| B) La confiabilidad de una escala de medición | 5 | 6.2 % |\n| C) La correlación entre dos variables | 25 | 31.2 % |\n| D) El tamaño de la muestra | 15 | 18.8 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r07"
+    ]
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "El coeficiente alpha de Cronbach mide:",
+      "pregunta": "r07"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r07"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r07 = «El coeficiente alpha de Cronbach mide:» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:calificada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r07",
+     "score": 0.677
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r07",
+     "score": 0.666
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.5176
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.4827
+    }
+   ],
+   "segundos": 60.4,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 40411,
+    "recuperacion": 382,
+    "verificacion": 16600,
+    "interpretacion": 19420
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución del reactivo con la opción más elegida y su %, sin decir si es correcta."
+}

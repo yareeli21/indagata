@@ -1,0 +1,56 @@
+{
+ "id": "ENT-20",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué tipo de entrevista es y cuánto dura?",
+   "rag_log_id": 2333,
+   "respuesta": "Es una entrevista [Fuente 1]. Dura aproximadamente cinco horas [Fuente 1, p01].",
+   "intencion": "semantica_abierta",
+   "plan": {
+    "intencion": "semantica_abierta",
+    "consulta_semantica": "¿Qué tipo de entrevista es y cuánto dura?"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5405
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.5014
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p13",
+     "score": 0.486
+    }
+   ],
+   "segundos": 11.2,
+   "tiempos_ms": {
+    "ejecucion": 2,
+    "recuperacion": 161,
+    "interpretacion": 5683
+   },
+   "k_precision": 0.6,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": 1,
+   "comentario_humano": "considero que es mucho tiempo considerado para una entrevista y además, ese dato no se muestra en el instrumento, entonces debió decir que no sabe porque no hay información de eso y es semiestructurada, eso está en los metadatos"
+  }
+ ],
+ "debe": "Semiestructurada, una participante; si la duración no está, decirlo."
+}

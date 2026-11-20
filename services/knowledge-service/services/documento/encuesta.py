@@ -15,6 +15,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from shared.conocimiento import significados
+
 from services.documento import comun
 from services.estructura import Estructura
 from services.interpretacion.encuestas import interpretar_columna
@@ -24,6 +26,8 @@ from services.interpretacion.privacidad import es_dato_personal
 def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str, Any], filas: list[dict[str, str]]) -> dict[str, Any]:
     ins = perfil["instrumento_id"]
     columnas = {c["id"]: c for c in ((reporte.get("especifico") or {}).get("encuesta") or {}).get("columnas") or []}
+    # Significado de los códigos (diccionario de datos o escrito en la limpieza): «2» → «Mujer».
+    sig = significados.de_reporte(reporte, "encuesta")
     avisos: list[dict[str, Any]] = []
     kpis_de = comun.kpis_por_pregunta(perfil.get("kpis_asociados") or [])
     n = len(filas)
@@ -34,7 +38,7 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
 
     # Contexto del respondente: columnas con rol «contexto» que no son datos personales.
     contexto_cols = [
-        (cid, c.get("etiqueta") or cid) for cid, c in columnas.items()
+        (cid, (sig.get(cid) or {}).get("pregunta") or c.get("etiqueta") or cid) for cid, c in columnas.items()
         if c.get("estado") != "eliminada" and c.get("rol") == "contexto" and not es_dato_personal(c.get("etiqueta") or cid)
     ]
 
@@ -59,8 +63,10 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
             preguntas.append(item)
             continue
         valores = [f.get(p.columna or "", "") for f in filas]
-        col = interpretar_columna(dict(spec, etiqueta=spec.get("etiqueta") or p.texto), valores, p.anclas)
-        tipo = spec.get("tipo_canonico") or "texto_corto"
+        etiquetas = (sig.get(p.columna or "") or {}).get("valores")
+        col = interpretar_columna(dict(spec, etiqueta=spec.get("etiqueta") or p.texto, etiquetas_valor=etiquetas),
+                                  valores, p.anclas)
+        tipo = col.tipo or spec.get("tipo_canonico") or "texto_corto"
         item.update(tipo=tipo, tipo_origen="limpieza", kpis_relacionados=kpis_de.get(p.id, []))
         if col.opciones:
             item["opciones"] = col.opciones
@@ -75,7 +81,8 @@ def construir(perfil: dict[str, Any], estructura: Estructura, reporte: dict[str,
 
     respondentes = []
     for i, fila in enumerate(filas):
-        contexto = {etq: (fila.get(cid) or None) for cid, etq in contexto_cols}
+        contexto = {etq: (significados.etiqueta((sig.get(cid) or {}).get("valores"), fila.get(cid)) or fila.get(cid) or None)
+                    for cid, etq in contexto_cols}
         respuestas = [{"pregunta_id": pid, "pregunta": texto, **resps[i]} for pid, texto, resps in respuestas_por_pregunta]
         respondentes.append({"id": f"{ins}-R{i + 1:03d}", "contexto": contexto, "respuestas": respuestas})
 

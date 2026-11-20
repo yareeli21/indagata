@@ -1,0 +1,184 @@
+{
+ "id": "ENT-17",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuáles son los hallazgos principales de la entrevista?",
+   "rag_log_id": 3141,
+   "respuesta": "resultado (temas, valoración y citas del análisis de cada respuesta):\n\n- Tema: Estigma profesional\n  - Pregunta guía p06: ¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?\n  - Cita del análisis: Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente.\n- Tema: Percepción de gravedad\n  - Pregunta guía p08: ¿Notaste algún cambio en tu desempeño académico después de recibir apoyo?\n  - Cita del análisis: Sí, un poco. Empecé a usar una agenda y a dividir los proyectos en partes pequeñas, como me sugirió la psicóloga.\n- Tema: Dinámicas familiares\n  - Pregunta guía p06: ¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?\n    (No se menciona explícitamente en el resultado; sin embargo, en el texto del instrumento se menciona que la persona mencionó dinámicas familiares como una posible causa)\n- Tema: Miedo al juicio social\n  - Pregunta guía p06: ¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?\n    (Cita del análisis: Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente.)\n- Tema: Carga de proyectos\n  - Pregunta guía p02: ¿Qué situaciones de la universidad te generan más estrés o ansiedad?\n    (Cita del análisis: Eh, Sobre todo la carga de proyectos. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando.)\n- Tema: Exposiciones\n  - Pregunta guía p02: ¿Qué situaciones de la universidad te generan más estrés o ansiedad?\n    (Cita del análisis: Eh, Sobre todo la carga de proyectos. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando.)\n- Tema: Trabajo papelería\n  - Pregunta guía p02: ¿Qué situaciones de la universidad te generan más estrés o ansiedad?\n    (Cita del análisis: Eh, Sobre todo la carga de proyectos. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando.)\n- Tema: Presión emocional\n  - Pregunta guía p01: Para empezar, ¿cómo describirías tu estado de ánimo durante este semestre?\n    (Cita del análisis: Ha sido un semestre pesado.)\n\nHallazgos principales:\n\n• La estigmatización profesional es un tema importante para la participante E01, ya que menciona que le hace dudar buscar ayuda debido a su ubicación en el consultorio junto a la coordinación.\n• La percepción de gravedad es otro tema relevante, ya que la participante menciona que ha notado algún cambio en su desempeño académico después de recibir apoyo.\n• La carga de proyectos y las exposiciones son situaciones que generan mucho estrés y ansiedad para la participante E01.\n• El miedo al juicio social es un factor importante que hace dudar a la participante E01 en buscar ayuda.\n• La presión emocional es un tema presente en el estado de ánimo de la participante durante este semestre.\n\nEs el testimonio de una sola persona (E01); no permite generalizar a otros estudiantes.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.4875
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4812
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.4599
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.4569
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4448
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4286
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.428
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.424
+    }
+   ],
+   "segundos": 47.6,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 43872,
+    "recuperacion": 367,
+    "verificacion": 20436,
+    "interpretacion": 3322
+   },
+   "k_precision": 0.804,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Cuál debería atender primero la universidad y por qué?",
+   "rag_log_id": 3142,
+   "respuesta": "**Hallazgos principales**\n\n* **Estigma profesional**: En p06 \"¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?\" [Fuente 1], según E01, \"Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente\". Esto preocupa porque podría disuadir a otros estudiantes de buscar ayuda cuando realmente la necesitan.\n* **Escasez de psicólogos**: En p11 \"Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarías?\" [Fuente 1], según E01, \"Primero, que hubiera más psicólogos, porque me dijeron que solo hay dos para todo el plantel\". Esto preocupa porque podría afectar negativamente la calidad y accesibilidad del apoyo psicológico disponible.\n* **Carga de proyectos**: En p02 \"¿Qué situaciones de la universidad te generan más estrés o ansiedad?\" [Fuente 1], según E01, \"Eh, Sobre todo la carga de proyectos\". Esto preocupa porque podría afectar negativamente el bienestar y el rendimiento académico de los estudiantes.\n* **Sistema de citas**: En p11 \"Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarías?\" [Fuente 1], según E01, \"Segundo, que se pudiera pedir la cita en línea y no solo por correo\". Esto preocupa porque podría mejorar la eficiencia y accesibilidad del sistema de citas.\n\nEs el testimonio de una sola persona (E01); no permite generalizar a otros estudiantes.",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Mejor en qué pregunta o entre qué grupos?",
+    "consulta_semantica": "¿cuál debería atender primero la universidad y por qué?"
+   },
+   "plan_modelo": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Mejor en qué pregunta o entre qué grupos?",
+    "consulta_semantica": "¿cuál debería atender primero la universidad y por qué?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.5107
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.503
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.4923
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.4239
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.4222
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.4208
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.4141
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.4114
+    }
+   ],
+   "segundos": 21.8,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 16549,
+    "recuperacion": 285,
+    "verificacion": 3,
+    "interpretacion": 4936
+   },
+   "k_precision": 0.692,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) opinión fundamentada en lo citado, aclarando que es un solo testimonio."
+}

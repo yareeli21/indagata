@@ -1,0 +1,63 @@
+{
+ "id": "PRU-20",
+ "instrumento": "pru",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opciones tiene el reactivo sobre HTTPS?",
+   "rag_log_id": 3112,
+   "respuesta": "Según los datos recuperados, el reactivo r19 de la Prueba de Alfabetización Digital ofrece dos opciones relacionadas con HTTPS:\n\n1. B) Protocolo seguro de transferencia web (40.2% de respuesta)\n2. A) Protocolo de mensajería (17.5% de respuesta)\n\nNo se mencionan otras opciones directamente relacionadas con HTTPS en el contexto del reactivo r19.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Cuál es la opción correcta para el reactivo sobre HTTPS?"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Cuál es la opción correcta para el reactivo sobre HTTPS?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "cifras_sin_respaldo",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.6674
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.5894
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.5368
+    }
+   ],
+   "segundos": 6.5,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "recuperacion": 158,
+    "interpretacion": 1608
+   },
+   "k_precision": 0.692,
+   "cifras_con_respaldo": [
+    3,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Las cuatro opciones con su texto, sin marcar ninguna como correcta."
+}

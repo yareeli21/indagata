@@ -1,0 +1,135 @@
+{
+ "id": "CEN-05",
+ "instrumento": "enc_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 2809,
+   "respuesta": "*   45.6 % (73 de 160) respondió “Menos de 5h” o “Más de 20h” en la pregunta p12, lo que sugiere una posible desconexión entre las horas dedicadas al estudio y las expectativas académicas. [Fuente 1]\n*   23.1 % (37 de 160) respondió “Totalmente en desacuerdo / Nunca” o “En desacuerdo / Pocas veces” en la pregunta p07, lo que podría indicar una falta de estrategias efectivas para gestionar las distracciones durante el estudio. [Fuente 1]\n*   La combinación de estos dos resultados (45.6% y 23.1%) sugiere un problema subyacente en la gestión del tiempo y la concentración de los estudiantes, afectando tanto la cantidad de horas dedicadas al estudio como su capacidad para mantener el enfoque. [Fuente 1]\n*   Considero que lo más preocupante es el 45.6% (73 de 160) que reporta dedicar menos de 5h o más de 20h a estudiar fuera del horario lectivo, ya que esto podría indicar una sobrecarga académica y un impacto negativo en su bienestar general. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "sentido": "desfavorable",
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "alta",
+      "pregunta": "p08"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p08"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p08 = «alta» descartado (no es una opción y la pregunta no lo menciona)",
+    "intención resumen_pregunta → hallazgo con sentido desfavorable"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4556
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4504
+    }
+   ],
+   "segundos": 54.2,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 35247,
+    "recuperacion": 301,
+    "verificacion": 1,
+    "interpretacion": 18625
+   },
+   "k_precision": 0.479,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué?",
+   "rag_log_id": 2810,
+   "respuesta": "**Lo que muestran los datos:** Dato 1: 45.6 % (73 de 160) respondió «Menos de 5h» o «Más de 20h» en p12 «¿Cuántas horas dedicas al estudio fuera de clases por semana?» (respuestas desfavorables según el sistema (sin revisar)) Dato 2: 23.1 % (37 de 160) respondió «Totalmente en desacuerdo / Nunca» o «En desacuerdo / Pocas veces» en p07 «Identifico y elimino distracciones durante mis sesiones de estudio.» (respuestas desfavorables según el sistema (sin revisar))\n\n**Interpretación (del asistente, no es un dato):** Los datos no registran por qué respondieron así; con este cálculo no se pueden afirmar causas. Sirve como punto de partida para revisarlo con más información.",
+   "intencion": "hallazgo",
+   "plan": {
+    "sentido": "desfavorable",
+    "relacion": "profundiza",
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p12"
+    ],
+    "consulta_semantica": "¿Por qué el porcentaje de estudiantes que responden 'Menos de 5h' o 'Más de 20h' en la pregunta p12 es preocupante?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "profundiza: se repite el plan anterior (hallazgo) para explicarlo"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:cifras_completadas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4716
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4617
+    }
+   ],
+   "segundos": 38.5,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 16370,
+    "recuperacion": 281,
+    "verificacion": 1,
+    "interpretacion": 21795
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    11,
+    11
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Respuestas desfavorables con cifras."
+}

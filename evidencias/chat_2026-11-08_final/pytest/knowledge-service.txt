@@ -1,0 +1,739 @@
+﻿........................................................................ [ 57%]
+......................................................                   [100%]
+============================== warnings summary ===============================
+..\..\.venv\Lib\site-packages\starlette\testclient.py:40
+  C:\Users\yarel\Documents\indagata\indagata\.venv\Lib\site-packages\starlette\testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+tests/test_analisis_entrevista.py: 24 warnings
+  C:\Users\yarel\Documents\indagata\indagata\.venv\Lib\site-packages\fastapi\routing.py:233: DeprecationWarning: 'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16; use inspect.iscoroutinefunction() instead
+    is_coroutine = asyncio.iscoroutinefunction(dependant.call)
+
+tests/test_analisis_entrevista.py: 41 warnings
+tests/test_documento_api.py: 49 warnings
+tests/test_perfil.py: 18 warnings
+  C:\Users\yarel\Documents\indagata\indagata\.venv\Lib\site-packages\starlette\_utils.py:39: DeprecationWarning: 'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16; use inspect.iscoroutinefunction() instead
+    return asyncio.iscoroutinefunction(obj) or (callable(obj) and asyncio.iscoroutinefunction(obj.__call__))
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (37,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (11,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (64,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (90,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (117,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (143,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (170,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (38,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (12,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (65,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (91,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (118,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (144,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (171,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (39,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (13,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (66,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (92,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (119,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (145,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (172,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (40,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (14,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (67,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (93,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (120,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (146,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (173,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (1,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (15,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (41,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (68,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (94,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (121,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (147,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (174,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (42,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (16,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (69,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (95,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (122,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (148,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (175,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (43,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (17,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (70,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (96,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (123,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (149,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (176,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (44,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (18,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (71,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (97,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (124,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (150,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (177,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (45,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (19,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (72,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (98,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (125,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (151,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (178,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (46,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (20,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (73,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (99,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (126,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (152,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (179,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (47,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (21,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (74,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (100,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (127,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (153,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (180,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (48,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (22,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (75,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (101,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (128,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (154,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (49,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (23,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (76,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (102,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (129,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (155,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (50,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (24,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (77,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (103,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (130,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (156,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (51,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (25,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (78,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (104,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (131,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (157,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (52,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (26,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (79,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (105,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (132,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (158,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (53,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (27,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (80,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (106,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (133,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (159,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (54,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (28,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (81,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (107,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (134,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (160,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (2,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (29,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (55,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (82,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (108,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (135,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (161,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (3,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (30,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (56,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (83,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (109,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (136,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (162,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (4,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (31,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (57,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (84,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (110,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (137,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (163,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (5,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (32,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (58,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (85,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (111,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (138,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (164,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (6,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (33,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (59,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (86,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (112,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (139,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (165,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (7,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (34,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (60,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (87,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (113,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (140,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (166,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (8,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (35,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (61,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (88,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (114,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (141,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (167,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (9,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (36,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (62,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (89,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (115,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (142,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (168,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (10,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (63,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (116,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+tests/test_documento_api.py::test_publicar_escribe_respuestas_en_formato_largo_y_reingiere
+  C:\Users\yarel\Documents\indagata\indagata\services\knowledge-service\services\documentos.py:126: SAWarning: Identity map already had an identity for (<class 'shared.models.respuesta_interpretada.RespuestaInterpretada'>, (169,), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    db.commit()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+126 passed, 313 warnings in 4.88s

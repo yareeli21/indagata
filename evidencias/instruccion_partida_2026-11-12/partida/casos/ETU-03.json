@@ -1,0 +1,54 @@
+{
+ "id": "ETU-03",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cómo se sintió en la primera sesión?",
+   "rag_log_id": 4156,
+   "respuesta": "Soy una herramienta de investigación: solo puedo responder sobre los instrumentos de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma; no doy consejos, recetas ni contenido ajeno a ellos. Por ejemplo, puedes preguntarme:\n- ¿Qué dijo el participante E02 sobre la evaluación?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Salud mental entrevista» no registra «sintió, primera, sesión». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: Edad, Turno, Carrera, Género, Trabaja, Semestre."
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Siempre",
+      "pregunta": "p04"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p04 = «Siempre» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración"
+   ],
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "plan:aclaracion_ajena",
+   "plantilla": "aclaracion_ajena",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 10.3,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 188,
+    "interpretacion": 10031
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta de si usó los servicios, con lo que dijo de la primera sesión."
+}

@@ -1,0 +1,86 @@
+{
+ "id": "ENU-10",
+ "instrumento": "enc_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué respondió el estudiante R045 sobre su carga laboral?",
+   "rag_log_id": 4107,
+   "respuesta": "El estudiante R045 respondió que su carga laboral actual es \"Menos de 20 h a la semana\", lo que significa que trabaja menos de 20 horas a la semana. Esto se refleja en la tabla del resultado como 63.8% de las respuestas válidas fueron \"Menos de 20 h a la semana\".\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | R045 |\n|---|---|\n| Contexto: edad | 22 |\n| Contexto: genero | masculino |\n| Contexto: semestre | 4 |\n| p09 «¿Cuál es tu carga laboral actual?» | Menos de 20 h a la semana |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p09"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "R045"
+    ],
+    "consulta_semantica": "¿Qué respondió el estudiante R045 sobre su carga laboral?"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": [
+     "p09"
+    ],
+    "limite": 1,
+    "intencion": "datos_respondente",
+    "consulta_semantica": "¿Qué respondió el estudiante R045 sobre su carga laboral?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "respondente R045 tomado de la pregunta"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R045",
+     "score": 0.6462
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R045",
+     "score": 0.6438
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R045",
+     "score": 0.6087
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R045",
+     "score": 0.5728
+    }
+   ],
+   "segundos": 19.3,
+   "tiempos_ms": {
+    "ejecucion": 10,
+    "redaccion": 7834,
+    "recuperacion": 418,
+    "verificacion": 1,
+    "interpretacion": 10965
+   },
+   "k_precision": 0.833,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "La respuesta de R045 a la pregunta de carga laboral."
+}

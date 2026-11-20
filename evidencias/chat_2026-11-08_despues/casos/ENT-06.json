@@ -1,0 +1,70 @@
+{
+ "id": "ENT-06",
+ "instrumento": "ent",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántas veces menciona el estrés o la ansiedad?",
+   "rag_log_id": 2627,
+   "respuesta": "Criterio: mencionan «estres o ansiedad» en sus respuestas abiertas.\nCumplen la condición 1 de 1 respondentes (100.0 %).\nMenciones: 3 palabras que empiezan con «estre» o «ansie» (cuenta la misma raíz: «estrés», «estresada»…; no cuenta sinónimos ni expresiones con otras palabras). [Fuente 1]\n\n**Dónde se menciona «estres o ansiedad» [Fuente 1]**\n| Respondente | Pregunta | Fragmento |\n|---|---|---|\n| E01 | p02 | «…ría, entonces casi no me queda tiempo. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están…» |\n| E01 | p10 | «…y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación. Algunos no saben que exis…» |\n| E01 | p11 | «…sona lo necesita. Y que los talleres de manejo de estrés fueran en la tarde, porque los que trabajamos no podemos ir en…» |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "menciona": "estres o ansiedad",
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "menciones de «estres o ansiedad» en las respuestas abiertas"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:cifras_completadas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.6423
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.6032
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.602
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.5889
+    }
+   ],
+   "segundos": 34.7,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 25183,
+    "recuperacion": 340,
+    "verificacion": 7399,
+    "interpretacion": 9068
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Aclarar si cuenta palabras exactas o menciones parecidas; citar ejemplos."
+}

@@ -4,6 +4,7 @@
   GET   /limpieza/{id}/ejecuciones/actual                última versión (retomar / vista final)
   GET   /limpieza/{id}/ejecuciones/{version}             fase asistida de una versión
   PATCH /limpieza/{id}/ejecuciones/{version}/decisiones  guardado parcial de decisiones
+  PATCH /limpieza/{id}/ejecuciones/{version}/significados texto y significado de los códigos (microdatos)
   POST  /limpieza/{id}/ejecuciones/{version}/confirmar   aplica, guarda el CSV limpio y cierra
   GET   /limpieza/{id}/ejecuciones/{version}/vista-final cifras clave + muestra del resultado
   GET   /limpieza/{id}/resumen                           medidas de la última limpieza confirmada
@@ -18,7 +19,7 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException, Query, status
 
 from dependencies import DBSession, Investigador
-from models import DecisionesIn, EjecucionOut, ResumenLimpiezaOut, VistaFinalOut
+from models import DecisionesIn, EjecucionOut, ResumenLimpiezaOut, SignificadosIn, VistaFinalOut
 from services import ejecuciones
 from shared.conocimiento import sugerencias
 
@@ -95,6 +96,25 @@ def decidir(id_crudo: int, version: int, cuerpo: DecisionesIn, usuario: Investig
     ejecuciones.cargar_contexto(db, usuario, id_crudo)
     ejecucion = ejecuciones.obtener(db, id_crudo, version)
     return _dto(db, usuario, ejecuciones.guardar_decisiones(db, usuario, ejecucion, cuerpo.decisiones))
+
+
+@router.patch(
+    "/{id_crudo}/ejecuciones/{version}/significados",
+    response_model=EjecucionOut,
+    summary="Guardar el texto y el significado de los códigos",
+    description=(
+        "Para microdatos: el texto de cada pregunta en código y la etiqueta de cada código de respuesta "
+        "(`{columna: {pregunta, valores: {código: etiqueta}}}`; null borra). Lo que trae el diccionario de "
+        "datos ya viene precargado. Al confirmar pasa al reporte y lo usan los metadatos y el documento final."
+    ),
+)
+def significados(
+    id_crudo: int, version: int, cuerpo: SignificadosIn, usuario: Investigador, db: DBSession
+) -> EjecucionOut:
+    ejecuciones.cargar_contexto(db, usuario, id_crudo)
+    ejecucion = ejecuciones.obtener(db, id_crudo, version)
+    cambios = {k: (v.model_dump() if v is not None else None) for k, v in cuerpo.significados.items()}
+    return _dto(db, usuario, ejecuciones.guardar_significados(db, ejecucion, cambios))
 
 
 @router.post(

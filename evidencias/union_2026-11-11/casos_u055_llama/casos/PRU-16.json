@@ -1,0 +1,107 @@
+{
+ "id": "PRU-16",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué herramienta para gestionar referencias eligieron más?",
+   "rag_log_id": 3799,
+   "respuesta": "Para responder a esta pregunta, debemos revisar el contexto proporcionado y buscar información sobre la herramienta que los estudiantes o docentes elegieron como preferida para gestionar sus referencias.\n\nEn este caso, no tengo información específica sobre qué herramienta elegieron más. Sin embargo, puedo sugerir algunos pasos para encontrar esa información:\n\n1.  Revisar el archivo de respuestas (CSV, Excel, SPSS, TXT, DOCX o PDF) para ver si se mencionan las preferencias de los estudiantes o docentes en cuanto a herramientas de gestión de referencias.\n2.  Buscar en la sección de metadatos del tipo para ver si hay información sobre la herramienta que se utilizó más.",
+   "intencion": "uso_plataforma",
+   "plan": {
+    "intencion": "uso_plataforma",
+    "aclaracion": "¿Cómo subir, limpiar y aprobar instrumentos en Indagata?"
+   },
+   "plan_modelo": {
+    "intencion": "uso_plataforma",
+    "aclaracion": "¿Cómo subir, limpiar y aprobar instrumentos en Indagata?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "ayuda",
+   "motivo": "plan:uso_plataforma",
+   "plantilla": "ayuda",
+   "fuentes": [],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 8.8,
+   "tiempos_ms": {
+    "ejecucion": 13,
+    "recuperacion": 330,
+    "interpretacion": 2045
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué puede indicar eso?",
+   "rag_log_id": 3800,
+   "respuesta": "Según el contexto proporcionado, la pregunta se refiere a la distribución de las respuestas de los estudiantes en la prueba de Alfabetización Digital, específicamente en la pregunta \"¿Qué herramienta corresponde mejor al propósito de gestionar referencias bibliográficas?\" [Fuente 1].\n\nEl resultado muestra que 77.3% de los alumnos elegieron como preferida la herramienta Zotero o Mendeley, lo que indica que la mayoría de los estudiantes consideran que esta herramienta es adecuada para gestionar referencias bibliográficas [Fuente 1].\n\nEn otras palabras, el hecho de que la mayoría de los alumnos hayan elegido Zotero o Mendeley como herramienta preferida puede sugerir que estos estudiantes están familiarizados con esta herramienta y la consideran útil para su trabajo académico [Fuente 1].",
+   "intencion": "semantica_abierta",
+   "plan": {
+    "intencion": "semantica_abierta",
+    "consulta_semantica": "¿Qué herramienta para gestionar referencias eligieron más?"
+   },
+   "plan_modelo": {
+    "intencion": "semantica_abierta",
+    "consulta_semantica": "¿Qué herramienta para gestionar referencias eligieron más?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.7044
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6822
+    }
+   ],
+   "segundos": 10.1,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "recuperacion": 307,
+    "interpretacion": 2612
+   },
+   "k_precision": 0.51,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) interpretar con cifras, sin juzgar correcto o incorrecto."
+}

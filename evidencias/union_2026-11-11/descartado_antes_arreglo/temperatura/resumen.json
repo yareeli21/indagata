@@ -1,0 +1,68 @@
+{
+ "0": {
+  "respuestas": 24,
+  "verificacion": {
+   "frase_dato_con_contexto": 2,
+   "frase_dato": 6,
+   "respaldo": 7,
+   "aceptada": 8,
+   "regenerada": 1
+  },
+  "regeneradas": 1,
+  "al_calculo_literal": 7,
+  "cifras_con_respaldo": [
+   263,
+   263
+  ],
+  "k_precision_mediana": 0.816,
+  "identicas_entre_repeticiones": 10,
+  "casos": 12,
+  "parecido_entre_repeticiones_mediana": 1.0,
+  "parecido_min": 0.608,
+  "ms_redaccion_mediana": 7461.0
+ },
+ "0.2": {
+  "respuestas": 24,
+  "verificacion": {
+   "frase_dato_con_contexto": 2,
+   "regenerada": 2,
+   "respaldo": 8,
+   "frase_dato": 6,
+   "aceptada": 6
+  },
+  "regeneradas": 2,
+  "al_calculo_literal": 8,
+  "cifras_con_respaldo": [
+   260,
+   260
+  ],
+  "k_precision_mediana": 0.812,
+  "identicas_entre_repeticiones": 5,
+  "casos": 12,
+  "parecido_entre_repeticiones_mediana": 0.675,
+  "parecido_min": 0.132,
+  "ms_redaccion_mediana": 7979.5
+ },
+ "0.5": {
+  "respuestas": 24,
+  "verificacion": {
+   "frase_dato_con_contexto": 1,
+   "frase_dato": 7,
+   "respaldo": 9,
+   "regenerada": 3,
+   "aceptada": 4
+  },
+  "regeneradas": 3,
+  "al_calculo_literal": 9,
+  "cifras_con_respaldo": [
+   261,
+   261
+  ],
+  "k_precision_mediana": 0.811,
+  "identicas_entre_repeticiones": 6,
+  "casos": 12,
+  "parecido_entre_repeticiones_mediana": 0.82,
+  "parecido_min": 0.217,
+  "ms_redaccion_mediana": 8453.5
+ }
+}

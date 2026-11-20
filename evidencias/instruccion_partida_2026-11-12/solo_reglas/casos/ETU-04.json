@@ -1,0 +1,53 @@
+{
+ "id": "ETU-04",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opina de que solo den tres sesiones?",
+   "rag_log_id": 4189,
+   "respuesta": "La persona E01 opina que dar menos de tres sesiones cuando la persona lo necesita es una limitación. No proporciona más detalles sobre su opinión en este momento [Fuente 1].\n\nEs el testimonio de una sola persona (E01); no permite generalizar a otros estudiantes.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Mejor en qué pregunta o entre qué grupos?"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Mejor en qué pregunta o entre qué grupos?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental entrevista"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.5517
+    }
+   ],
+   "segundos": 10.1,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 197,
+    "interpretacion": 2897
+   },
+   "k_precision": 0.421,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta de cómo valora la atención, con cita."
+}

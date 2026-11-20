@@ -1,0 +1,876 @@
+{
+ "enc_01_respondido": {
+  "archivo": "enc_01_respondido.csv",
+  "filas_csv": 180,
+  "columnas_csv": 32,
+  "metricas_antes": {
+   "n_respondentes": 180,
+   "n_columnas": 33,
+   "pct_completitud": 1.0,
+   "pct_nulos": 0.0,
+   "n_duplicados": 0,
+   "n_imposibles": 0,
+   "cols_mas_nulos": [],
+   "grupos_detectados": [],
+   "alertas": [],
+   "n_linea_recta": 18,
+   "n_incompletos": 0
+  },
+  "metricas_despues": {
+   "n_respondentes": 180,
+   "n_columnas": 32,
+   "pct_completitud": 1.0,
+   "pct_nulos": 0.0,
+   "n_duplicados": 0,
+   "n_imposibles": 0,
+   "cols_mas_nulos": [],
+   "grupos_detectados": [],
+   "alertas": [],
+   "n_linea_recta": 18,
+   "n_incompletos": 0
+  },
+  "transformaciones": [
+   [
+    "codificacion_utf8",
+    null
+   ],
+   [
+    "encabezados_normalizados",
+    33
+   ],
+   [
+    "identificadores_seguros",
+    33
+   ],
+   [
+    "columnas_eliminadas",
+    1
+   ]
+  ],
+  "hallazgos": {
+   "columna_ajena": 1,
+   "rol_columna": 32,
+   "linea_recta": 1
+  },
+  "obligatorios": 0,
+  "cifras": [
+   {
+    "etiqueta": "Respondentes",
+    "valor": 180
+   },
+   {
+    "etiqueta": "Preguntas",
+    "valor": 29
+   },
+   {
+    "etiqueta": "Columnas eliminadas",
+    "valor": 1
+   },
+   {
+    "etiqueta": "Encuestados removidos",
+    "valor": 0
+   }
+  ],
+  "resumen": [
+   "Los 5 bloques de escalas son consistentes (α de 0.809 o más).",
+   "Todas las preguntas tienen respuesta de todos los encuestados.",
+   "En general, las respuestas a las escalas se inclinan ligeramente hacia los valores altos de la escala (promedio 3.2 en una escala de 1 a 5; el punto neutral es 3).",
+   "Las opiniones están repartidas por toda la escala: no hay un consenso claro entre los encuestados.",
+   "«edad»: la mitad de las respuestas está entre 20 y 26 (mediana 22); unos pocos valores altos (hasta 35) suben el promedio a 23.5.",
+   "«semestre»: la mitad de las respuestas está entre 3 y 7 (mediana 5)."
+  ],
+  "fiabilidad": [
+   [
+    "Organización y",
+    0.935,
+    "excelente",
+    7
+   ],
+   [
+    "Habilidades par",
+    0.8468,
+    "buena",
+    6
+   ],
+   [
+    "Motivación",
+    0.874,
+    "buena",
+    3
+   ],
+   [
+    "Recursos de apr",
+    0.8094,
+    "buena",
+    2
+   ],
+   [
+    "Estrategias de",
+    0.8516,
+    "buena",
+    3
+   ],
+   [
+    "Todas las escalas Likert",
+    0.9367,
+    "excelente",
+    21
+   ]
+  ],
+  "encuestados": {
+   "linea_recta": 18,
+   "incompletos": 0
+  },
+  "n_columnas_est": 32
+ },
+ "enc_09_respondido": {
+  "archivo": "enc_09_respondido.csv",
+  "filas_csv": 160,
+  "columnas_csv": 31,
+  "metricas_antes": {
+   "n_respondentes": 160,
+   "n_columnas": 32,
+   "pct_completitud": 1.0,
+   "pct_nulos": 0.0,
+   "n_duplicados": 0,
+   "n_imposibles": 8,
+   "cols_mas_nulos": [],
+   "grupos_detectados": [],
+   "alertas": [
+    "valores_imposibles"
+   ],
+   "n_linea_recta": 51,
+   "n_incompletos": 0
+  },
+  "metricas_despues": {
+   "n_respondentes": 160,
+   "n_columnas": 31,
+   "pct_completitud": 0.9984,
+   "pct_nulos": 0.0016,
+   "n_duplicados": 0,
+   "n_imposibles": 0,
+   "cols_mas_nulos": [
+    {
+     "columna": "semestre",
+     "pct_nulos": 0.05
+    }
+   ],
+   "grupos_detectados": [],
+   "alertas": [],
+   "n_linea_recta": 51,
+   "n_incompletos": 0
+  },
+  "transformaciones": [
+   [
+    "codificacion_utf8",
+    null
+   ],
+   [
+    "encabezados_normalizados",
+    32
+   ],
+   [
+    "identificadores_seguros",
+    32
+   ],
+   [
+    "roles_automaticos",
+    12
+   ],
+   [
+    "columnas_eliminadas",
+    1
+   ],
+   [
+    "fuera_de_rango_anulados",
+    8
+   ],
+   [
+    "likert_a_numeros",
+    160
+   ]
+  ],
+  "hallazgos": {
+   "columna_ajena": 1,
+   "rol_columna": 19,
+   "fuera_de_rango": 1,
+   "linea_recta": 1
+  },
+  "obligatorios": 0,
+  "cifras": [
+   {
+    "etiqueta": "Respondentes",
+    "valor": 160
+   },
+   {
+    "etiqueta": "Preguntas",
+    "valor": 28
+   },
+   {
+    "etiqueta": "Columnas eliminadas",
+    "valor": 1
+   },
+   {
+    "etiqueta": "Encuestados removidos",
+    "valor": 0
+   }
+  ],
+  "resumen": [
+   "Los 2 bloques de escalas son consistentes (α de 0.907 o más).",
+   "En general, las respuestas a las escalas se inclinan ligeramente hacia los valores altos de la escala (promedio 3.2 en una escala de 1 a 5; el punto neutral es 3).",
+   "Las opiniones están repartidas por toda la escala: no hay un consenso claro entre los encuestados.",
+   "«edad»: la mitad de las respuestas está entre 20 y 26 (mediana 22); unos pocos valores altos (hasta 35) suben el promedio a 23.6.",
+   "«semestre»: la mitad de las respuestas está entre 3 y 7 (mediana 4)."
+  ],
+  "fiabilidad": [
+   [
+    "Carga horaria p",
+    0.9071,
+    "excelente",
+    4
+   ],
+   [
+    "Organización de",
+    0.9075,
+    "excelente",
+    4
+   ],
+   [
+    "Todas las escalas Likert",
+    0.8757,
+    "buena",
+    9
+   ]
+  ],
+  "encuestados": {
+   "linea_recta": 51,
+   "incompletos": 0
+  },
+  "n_columnas_est": 31
+ },
+ "enc_10_turno_respondido": {
+  "archivo": "enc_10_turno_respondido.csv",
+  "filas_csv": 60,
+  "columnas_csv": 11,
+  "metricas_antes": {
+   "n_respondentes": 60,
+   "n_columnas": 12,
+   "pct_completitud": 1.0,
+   "pct_nulos": 0.0,
+   "n_duplicados": 0,
+   "n_imposibles": 0,
+   "cols_mas_nulos": [],
+   "grupos_detectados": [],
+   "alertas": [],
+   "n_linea_recta": 11,
+   "n_incompletos": 0
+  },
+  "metricas_despues": {
+   "n_respondentes": 60,
+   "n_columnas": 11,
+   "pct_completitud": 1.0,
+   "pct_nulos": 0.0,
+   "n_duplicados": 0,
+   "n_imposibles": 0,
+   "cols_mas_nulos": [],
+   "grupos_detectados": [],
+   "alertas": [],
+   "n_linea_recta": 11,
+   "n_incompletos": 0
+  },
+  "transformaciones": [
+   [
+    "codificacion_utf8",
+    null
+   ],
+   [
+    "encabezados_normalizados",
+    12
+   ],
+   [
+    "identificadores_seguros",
+    12
+   ],
+   [
+    "columnas_eliminadas",
+    1
+   ]
+  ],
+  "hallazgos": {
+   "columna_ajena": 1,
+   "rol_columna": 11,
+   "linea_recta": 1
+  },
+  "obligatorios": 0,
+  "cifras": [
+   {
+    "etiqueta": "Respondentes",
+    "valor": 60
+   },
+   {
+    "etiqueta": "Preguntas",
+    "valor": 8
+   },
+   {
+    "etiqueta": "Columnas eliminadas",
+    "valor": 1
+   },
+   {
+    "etiqueta": "Encuestados removidos",
+    "valor": 0
+   }
+  ],
+  "resumen": [
+   "Los 2 bloques de escalas son consistentes (α de 0.832 o más).",
+   "Todas las preguntas tienen respuesta de todos los encuestados.",
+   "En general, las respuestas a las escalas se inclinan ligeramente hacia los valores altos de la escala (promedio 3.3 en una escala de 1 a 5; el punto neutral es 3).",
+   "Las opiniones están repartidas por toda la escala: no hay un consenso claro entre los encuestados.",
+   "«semestre»: la mitad de las respuestas está entre 2 y 7 (mediana 5)."
+  ],
+  "fiabilidad": [
+   [
+    "Evaluación",
+    0.8738,
+    "buena",
+    4
+   ],
+   [
+    "Ambiente",
+    0.8316,
+    "buena",
+    4
+   ],
+   [
+    "Todas las escalas Likert",
+    0.7834,
+    "aceptable",
+    8
+   ]
+  ],
+  "encuestados": {
+   "linea_recta": 11,
+   "incompletos": 0
+  },
+  "n_columnas_est": 11
+ },
+ "pru_01_respondido": {
+  "archivo": "pru_01_respondido.csv",
+  "filas_csv": 2500,
+  "columnas_csv": 15,
+  "metricas_antes": {
+   "n_alumnos": 100,
+   "n_filas": 100,
+   "n_preguntas": 25,
+   "n_filas_vacias": 0,
+   "n_ids_duplicados": 0,
+   "columnas_extra": [
+    "perfil",
+    "horas_trabajo_semana",
+    "tipo_universidad",
+    "tiene_beca"
+   ],
+   "conteos": {
+    "valida": 2500,
+    "nula": 0,
+    "NR": 0
+   },
+   "motivos": {
+    "duplicado": 0,
+    "no_respondida": 0,
+    "respuesta_multiple": 0,
+    "caracter_invalido": 0,
+    "ilegible": 0
+   },
+   "pct_correctas_validas": 0.6228,
+   "kr20": 0.6756
+  },
+  "metricas_despues": {
+   "n_alumnos": 100,
+   "n_preguntas": 25,
+   "n_respuestas": 2500,
+   "n_ids_duplicados": 0,
+   "conteos": {
+    "valida": 2500,
+    "nula": 0,
+    "NR": 0
+   },
+   "motivos": {
+    "duplicado": 0,
+    "no_respondida": 0,
+    "respuesta_multiple": 0,
+    "caracter_invalido": 0,
+    "ilegible": 0
+   },
+   "pct_correctas_validas": 0.6228,
+   "kr20": 0.6756
+  },
+  "transformaciones": [
+   [
+    "validacion_archivo",
+    null
+   ],
+   [
+    "codificacion_utf8",
+    null
+   ],
+   [
+    "respuestas_validadas",
+    2500
+   ],
+   [
+    "clave_propuesta",
+    25
+   ]
+  ],
+  "hallazgos": {
+   "clave_propuesta": 1,
+   "clave_reactivo": 20
+  },
+  "obligatorios": 1,
+  "cifras": [
+   {
+    "etiqueta": "Alumnos",
+    "valor": 100
+   },
+   {
+    "etiqueta": "Preguntas",
+    "valor": 25
+   },
+   {
+    "etiqueta": "Respuestas nulas",
+    "valor": 0
+   },
+   {
+    "etiqueta": "No respondidas",
+    "valor": 0
+   }
+  ],
+  "resumen": [
+   "La prueba tiene poca consistencia interna: KR-20 = 0.676 (cuestionable).",
+   "En promedio, los alumnos acertaron 15.6 de 25 reactivos (62 %; mediana 15).",
+   "De 25 reactivos: 5 fáciles, 20 de dificultad media y 0 difíciles.",
+   "«pru_01_Comprensió_q9» casi no distingue a quienes dominan el tema de quienes no (discriminación pobre); conviene revisar su redacción."
+  ],
+  "fiabilidad": {
+   "kr20": 0.6756,
+   "interpretacion": "cuestionable",
+   "n_alumnos": 100,
+   "n_reactivos": 25
+  },
+  "resumen_reactivos": {
+   "faciles": 5,
+   "medios": 20,
+   "dificiles": 0,
+   "discriminacion_pobre": 1
+  },
+  "puntajes": {
+   "n": 100,
+   "media": 15.57,
+   "mediana": 15.0,
+   "desviacion": 3.9804,
+   "min": 6.0,
+   "max": 23.0,
+   "q1": 13.0,
+   "q3": 18.0,
+   "iqr": 5.0,
+   "asimetria": -0.0781,
+   "curtosis": -0.7641,
+   "maximo_posible": 25
+  },
+  "clave_origen": "inferida",
+  "tipos_reactivo": {
+   "opcion_multiple": 15,
+   "verdadero_falso": 5,
+   "puntos": 5
+  }
+ },
+ "enc_04_respondido": {
+  "archivo": "enc_04_respondido.csv",
+  "filas_csv": 200,
+  "columnas_csv": 49,
+  "metricas_antes": {
+   "n_respondentes": 200,
+   "n_columnas": 50,
+   "pct_completitud": 1.0,
+   "pct_nulos": 0.0,
+   "n_duplicados": 0,
+   "n_imposibles": 0,
+   "cols_mas_nulos": [],
+   "grupos_detectados": [],
+   "alertas": [],
+   "n_linea_recta": 94,
+   "n_incompletos": 0
+  },
+  "metricas_despues": {
+   "n_respondentes": 200,
+   "n_columnas": 49,
+   "pct_completitud": 1.0,
+   "pct_nulos": 0.0,
+   "n_duplicados": 0,
+   "n_imposibles": 0,
+   "cols_mas_nulos": [],
+   "grupos_detectados": [],
+   "alertas": [],
+   "n_linea_recta": 94,
+   "n_incompletos": 0
+  },
+  "transformaciones": [
+   [
+    "codificacion_utf8",
+    null
+   ],
+   [
+    "encabezados_normalizados",
+    50
+   ],
+   [
+    "identificadores_seguros",
+    50
+   ],
+   [
+    "columnas_eliminadas",
+    1
+   ]
+  ],
+  "hallazgos": {
+   "columna_ajena": 1,
+   "rol_columna": 49,
+   "linea_recta": 1
+  },
+  "obligatorios": 0,
+  "cifras": [
+   {
+    "etiqueta": "Respondentes",
+    "valor": 200
+   },
+   {
+    "etiqueta": "Preguntas",
+    "valor": 46
+   },
+   {
+    "etiqueta": "Columnas eliminadas",
+    "valor": 1
+   },
+   {
+    "etiqueta": "Encuestados removidos",
+    "valor": 0
+   }
+  ],
+  "resumen": [
+   "Los 8 bloques de escalas son consistentes (α de 0.859 o más).",
+   "Todas las preguntas tienen respuesta de todos los encuestados.",
+   "En general, las respuestas a las escalas se inclinan ligeramente hacia los valores altos de la escala (promedio 3.3 en una escala de 1 a 5; el punto neutral es 3).",
+   "Las opiniones están repartidas por toda la escala: no hay un consenso claro entre los encuestados.",
+   "«edad»: la mitad de las respuestas está entre 20 y 26 (mediana 22); unos pocos valores altos (hasta 35) suben el promedio a 23.1.",
+   "«semestre»: la mitad de las respuestas está entre 3 y 7 (mediana 5); unos pocos valores altos (hasta 12) suben el promedio a 5.2."
+  ],
+  "fiabilidad": [
+   [
+    "Elaboración",
+    0.919,
+    "excelente",
+    5
+   ],
+   [
+    "Organización",
+    0.8589,
+    "buena",
+    4
+   ],
+   [
+    "Pensamiento crí",
+    0.9186,
+    "excelente",
+    5
+   ],
+   [
+    "Autorregulación",
+    0.9212,
+    "excelente",
+    6
+   ],
+   [
+    "Gestión del tie",
+    0.9241,
+    "excelente",
+    7
+   ],
+   [
+    "Elaboración con",
+    0.894,
+    "buena",
+    3
+   ],
+   [
+    "Motivación intr",
+    0.8705,
+    "buena",
+    4
+   ],
+   [
+    "Autoeficacia",
+    0.8965,
+    "buena",
+    4
+   ],
+   [
+    "Todas las escalas Likert",
+    0.9596,
+    "excelente",
+    38
+   ]
+  ],
+  "encuestados": {
+   "linea_recta": 94,
+   "incompletos": 0
+  },
+  "n_columnas_est": 49
+ },
+ "pru_04_respondido": {
+  "archivo": "pru_04_respondido.csv",
+  "filas_csv": 1620,
+  "columnas_csv": 15,
+  "metricas_antes": {
+   "n_alumnos": 90,
+   "n_filas": 90,
+   "n_preguntas": 18,
+   "n_filas_vacias": 0,
+   "n_ids_duplicados": 0,
+   "columnas_extra": [
+    "perfil",
+    "horas_trabajo_semana",
+    "tipo_universidad",
+    "tiene_beca"
+   ],
+   "conteos": {
+    "valida": 1620,
+    "nula": 0,
+    "NR": 0
+   },
+   "motivos": {
+    "duplicado": 0,
+    "no_respondida": 0,
+    "respuesta_multiple": 0,
+    "caracter_invalido": 0,
+    "ilegible": 0
+   },
+   "pct_correctas_validas": 0.6759,
+   "kr20": 0.4474
+  },
+  "metricas_despues": {
+   "n_alumnos": 90,
+   "n_preguntas": 18,
+   "n_respuestas": 1620,
+   "n_ids_duplicados": 0,
+   "conteos": {
+    "valida": 1620,
+    "nula": 0,
+    "NR": 0
+   },
+   "motivos": {
+    "duplicado": 0,
+    "no_respondida": 0,
+    "respuesta_multiple": 0,
+    "caracter_invalido": 0,
+    "ilegible": 0
+   },
+   "pct_correctas_validas": 0.6759,
+   "kr20": 0.4474
+  },
+  "transformaciones": [
+   [
+    "validacion_archivo",
+    null
+   ],
+   [
+    "codificacion_utf8",
+    null
+   ],
+   [
+    "respuestas_validadas",
+    1620
+   ],
+   [
+    "clave_propuesta",
+    18
+   ]
+  ],
+  "hallazgos": {
+   "clave_propuesta": 1,
+   "clave_reactivo": 6
+  },
+  "obligatorios": 1,
+  "cifras": [
+   {
+    "etiqueta": "Alumnos",
+    "valor": 90
+   },
+   {
+    "etiqueta": "Preguntas",
+    "valor": 18
+   },
+   {
+    "etiqueta": "Respuestas nulas",
+    "valor": 0
+   },
+   {
+    "etiqueta": "No respondidas",
+    "valor": 0
+   }
+  ],
+  "resumen": [
+   "La prueba tiene poca consistencia interna: KR-20 = 0.447 (inaceptable). Con pocos reactivos o pocos alumnos suele salir bajo.",
+   "En promedio, los alumnos acertaron 4.1 de 6 reactivos (68 %; mediana 4).",
+   "De 18 reactivos: 2 fáciles, 4 de dificultad media y 0 difíciles.",
+   "Todos los reactivos distinguen al menos regularmente a quienes dominan el tema de quienes no."
+  ],
+  "fiabilidad": {
+   "kr20": 0.4474,
+   "interpretacion": "inaceptable",
+   "n_alumnos": 90,
+   "n_reactivos": 6
+  },
+  "resumen_reactivos": {
+   "faciles": 2,
+   "medios": 4,
+   "dificiles": 0,
+   "discriminacion_pobre": 0
+  },
+  "puntajes": {
+   "n": 90,
+   "media": 4.0556,
+   "mediana": 4.0,
+   "desviacion": 1.4484,
+   "min": 0.0,
+   "max": 6.0,
+   "q1": 3.0,
+   "q3": 5.0,
+   "iqr": 2.0,
+   "asimetria": -0.598,
+   "curtosis": -0.0162,
+   "maximo_posible": 6
+  },
+  "clave_origen": "inferida",
+  "tipos_reactivo": {
+   "escala": 8,
+   "opcion_multiple": 6,
+   "si_no": 4
+  }
+ },
+ "ent_01_respondido": {
+  "archivo": "ent_01_respondido.txt",
+  "filas_csv": 960,
+  "columnas_csv": 5,
+  "metricas_antes": {
+   "n_caracteres": 169313,
+   "n_palabras": 27330,
+   "n_lineas": 1209,
+   "ruido_detectado": 4
+  },
+  "metricas_despues": {
+   "n_caracteres": 155135,
+   "n_palabras": 25335,
+   "n_lineas": 960,
+   "n_turnos": 960,
+   "n_hablantes": 2,
+   "estructura_reconocida": true,
+   "ruido_detectado": 0
+  },
+  "transformaciones": [
+   [
+    "texto_normalizado",
+    null
+   ],
+   [
+    "identificadores",
+    1
+   ],
+   [
+    "separadores",
+    3
+   ],
+   [
+    "espacios_normalizados",
+    null
+   ],
+   [
+    "ciclo_de_ruido",
+    1
+   ],
+   [
+    "roles_asignados",
+    2
+   ]
+  ],
+  "hallazgos": {
+   "rol_hablante": 2
+  },
+  "obligatorios": 0,
+  "cifras": [
+   {
+    "etiqueta": "Entrevistados",
+    "valor": 40
+   },
+   {
+    "etiqueta": "Preguntas",
+    "valor": 12
+   },
+   {
+    "etiqueta": "Respuestas",
+    "valor": 480
+   },
+   {
+    "etiqueta": "Turnos",
+    "valor": 960
+   },
+   {
+    "etiqueta": "Hablantes",
+    "valor": 2
+   },
+   {
+    "etiqueta": "Palabras",
+    "valor": 25335
+   },
+   {
+    "etiqueta": "Ruido eliminado",
+    "valor": 4
+   }
+  ],
+  "resumen": [
+   "40 entrevistados y 12 preguntas del entrevistador: 480 respuestas en total.",
+   "Las respuestas tienen 40.1 palabras en promedio.",
+   "Todos los entrevistados respondieron todas las preguntas.",
+   "Las respuestas más breves son las de «P7: ¿Cómo ha impactado el trabajo en tu desempeño y p…» (38.4 palabras en promedio)."
+  ],
+  "n_participantes": 40,
+  "n_preguntas": 12,
+  "n_respuestas": 480,
+  "palabras_por_respuesta": {
+   "n": 480,
+   "media": 40.1146,
+   "mediana": 37.0,
+   "desviacion": 7.6016,
+   "min": 26.0,
+   "max": 59.0,
+   "q1": 34.0,
+   "q3": 46.0,
+   "iqr": 12.0,
+   "asimetria": 0.5768,
+   "curtosis": -0.598
+  },
+  "palabras_por_rol": [
+   {
+    "rol": "entrevistado",
+    "turnos": 480,
+    "palabras": 19255,
+    "pct_palabras": 0.76
+   },
+   {
+    "rol": "entrevistador",
+    "turnos": 480,
+    "palabras": 6080,
+    "pct_palabras": 0.24
+   }
+  ]
+ }
+}

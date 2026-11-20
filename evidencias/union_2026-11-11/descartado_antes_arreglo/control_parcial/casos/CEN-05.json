@@ -1,0 +1,96 @@
+{
+ "id": "CEN-05",
+ "instrumento": "enc_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 3854,
+   "respuesta": "Lo más preocupante de los resultados es:\n\n* 45.6% (73 de 160) respondió que dedica menos de 5 horas al estudio fuera de clases por semana o más de 20 horas, lo que sugiere un desequilibrio en la carga académica y el tiempo dedicado a estudiar.\n* 23.1% (37 de 160) respondió que no identifica ni elimina distracciones durante sus sesiones de estudio, lo que podría indicar problemas con la gestión del tiempo y la productividad.\n\nConsidero que **el mayor porcentaje de respuestas desfavorables en la pregunta 12** es lo más preocupante. Esto sugiere que una gran parte de los estudiantes enfrenta dificultades para equilibrar su carga académica con el tiempo dedicado a estudiar, lo que podría tener implicaciones importantes para la institución en términos de apoyo y recursos para ayudar a sus estudiantes a lograr un mejor desempeño académico.",
+   "intencion": "hallazgo",
+   "plan": {
+    "sentido": "desfavorable",
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "op": ">",
+      "valor": "8",
+      "pregunta": "p18"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p18 = «8» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "intención aclaracion → hallazgo con sentido desfavorable"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "estructurada",
+   "motivo": "plan:hallazgo:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 18.3,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 14603,
+    "recuperacion": 345,
+    "verificacion": 6610,
+    "interpretacion": 3270
+   },
+   "k_precision": 0.448,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué?",
+   "rag_log_id": 3855,
+   "respuesta": "Considero que el mayor porcentaje de respuestas desfavorables en la pregunta 12 podría deberse a una falta de conciencia sobre la importancia del equilibrio entre la carga académica y el tiempo dedicado a estudiar. Esto podría sugerir que muchos estudiantes no están al tanto de las recomendaciones de tiempo de estudio recomendadas por la institución o no tienen un plan claro para gestionar su tiempo.\n\nUna explicación posible es que algunos estudiantes pueden estar sobrecargados con cursos o responsabilidades académicas, lo que les hace difícil encontrar tiempo para estudiar. Esto podría deberse a una combinación de factores, como la carga de trabajo excesiva, la falta de apoyo académico o la inadecuada planificación del tiempo.\n\nAdemás, es posible que algunos estudiantes no tengan las habilidades o los recursos necesarios para gestionar su tiempo de manera efectiva. Esto podría deberse a una falta de experiencia en gestión del tiempo, una falta de confianza en sus habilidades de estudio o la falta de acceso a recursos como calendarios o herramientas de organización.\n\nEn general, creo que es importante identificar las causas subyacentes detrás de estas respuestas desfavorables y desarrollar estrategias para apoyar a los estudiantes en la gestión del tiempo y el equilibrio entre la carga académica y el estudio. [Fuente 1]",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": "cifras_sin_respaldo",
+   "ruta": "semantica",
+   "motivo": "seguimiento de la consulta 3854",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "resultado",
+     "etiqueta": "resultado",
+     "score": null
+    }
+   ],
+   "segundos": 11.4,
+   "tiempos_ms": null,
+   "k_precision": 0.212,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Respuestas desfavorables con cifras."
+}

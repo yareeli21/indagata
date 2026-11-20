@@ -1,0 +1,157 @@
+{
+  "D01": {
+    "descripcion": "Docentes: etiquetas «Entrevistadora:/Docente:» y bloques",
+    "nivel": "ideal",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "4 participantes",
+        "ok": true,
+        "obtenido": 4
+      },
+      {
+        "prueba": "16 intercambios",
+        "ok": true,
+        "obtenido": 16
+      },
+      {
+        "prueba": "cada respuesta unida a su pregunta del guion",
+        "ok": true,
+        "obtenido": "sin pregunta: 0"
+      },
+      {
+        "prueba": "todas las respuestas analizadas",
+        "ok": true,
+        "obtenido": "2.1"
+      },
+      {
+        "prueba": "cada unidad es literal de su respuesta",
+        "ok": true,
+        "obtenido": "no literales: 0"
+      },
+      {
+        "prueba": "chat: posturas de p01 calculadas como en el documento",
+        "ok": true,
+        "obtenido": "estructurada · esperado {'si': 2, 'ambivalente': 1, 'no': 1}",
+        "respuesta": "Pregunta p01 «¿Actualmente usas rúbricas para evaluar a tus estudiantes?»: de 4 entrevistados con respuesta analizada, 2 sí (dicen que sí), 1 no (dicen que no), 1 ambivalentes (análisis revisado por el investigador en 0 de 4). [Fuente 1]\nE01 (sí): «la verdad, pero desde hace dos años sí uso rúbricas en todos los proyectos.» [Fuente 1]\nE02 (ambivalente): «Más o menos pero en los exámenes no las necesito» [Fuente 1]\nE03 (no): «No, nunca me han convencido; prefiero listas de cotejo.» [Fuente 1]\nE04 (sí): «Sí, me ayudaron mucho a que los estudiantes supieran qué se espera de ellos.»; motivo: «que los estudiantes supieran qué se espera de ellos.» [Fuente 1]"
+      },
+      {
+        "prueba": "chat: qué dijo E02 (pregunta abierta)",
+        "ok": true,
+        "obtenido": "estructurada",
+        "respuesta": "El participante E02 dijo que \"sí\" y que está tomando un diplomado de evaluación por competencias en este semestre."
+      }
+    ],
+    "metricas": {
+      "n": 16,
+      "metodos": {
+        "llm": 13,
+        "reglas": 3
+      },
+      "postura_exactitud": 0.938,
+      "postura_kappa": 0.904,
+      "nucleo_correcto": 0.938,
+      "contexto_excluido": 0.833,
+      "descartadas_no_literales": 0,
+      "discrepancias": [
+        {
+          "persona": "E01",
+          "pregunta": 2,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        }
+      ]
+    },
+    "id_crudo": 108,
+    "decisiones_limpieza": [
+      "rol_hablante=entrevistador",
+      "rol_hablante=entrevistado"
+    ]
+  },
+  "D02": {
+    "descripcion": "Docentes: transcripción de Zoom, grupal",
+    "nivel": "aceptado",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "4 participantes",
+        "ok": true,
+        "obtenido": 4
+      },
+      {
+        "prueba": "16 intercambios",
+        "ok": true,
+        "obtenido": 16
+      },
+      {
+        "prueba": "cada respuesta unida a su pregunta del guion",
+        "ok": true,
+        "obtenido": "sin pregunta: 0"
+      },
+      {
+        "prueba": "todas las respuestas analizadas",
+        "ok": true,
+        "obtenido": "2.1"
+      },
+      {
+        "prueba": "cada unidad es literal de su respuesta",
+        "ok": true,
+        "obtenido": "no literales: 0"
+      },
+      {
+        "prueba": "chat: posturas de p01 calculadas como en el documento",
+        "ok": true,
+        "obtenido": "estructurada · esperado {'si': 2, 'ambivalente': 1, 'no': 1}",
+        "respuesta": "Pregunta p01 «¿Actualmente usas rúbricas para evaluar a tus estudiantes?»: de 4 entrevistados con respuesta analizada, 2 sí (dicen que sí), 1 no (dicen que no), 1 ambivalentes (análisis revisado por el investigador en 0 de 4). [Fuente 1]\nE01 (sí): «la verdad, pero desde hace dos años sí uso rúbricas en todos los proyectos.» [Fuente 1]\nE02 (ambivalente): «Más o menos pero en los exámenes no las necesito» [Fuente 1]\nE03 (no): «No, nunca me han convencido; prefiero listas de cotejo.» [Fuente 1]\nE04 (sí): «Sí, me ayudaron mucho a que los estudiantes supieran qué se espera de ellos.»; motivo: «que los estudiantes supieran qué se espera de ellos.» [Fuente 1]"
+      },
+      {
+        "prueba": "chat: qué dijo E02 (pregunta abierta)",
+        "ok": true,
+        "obtenido": "estructurada",
+        "respuesta": "El participante E02 dijo que \"sí\" y que está tomando un diplomado de evaluación por competencias en este semestre."
+      }
+    ],
+    "metricas": {
+      "n": 16,
+      "metodos": {
+        "llm": 13,
+        "reglas": 3
+      },
+      "postura_exactitud": 0.875,
+      "postura_kappa": 0.804,
+      "nucleo_correcto": 0.938,
+      "contexto_excluido": 0.833,
+      "descartadas_no_literales": 0,
+      "discrepancias": [
+        {
+          "persona": "E01",
+          "pregunta": 2,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 2,
+          "referencia": "ambivalente",
+          "sistema": "si"
+        }
+      ]
+    },
+    "id_crudo": 106,
+    "decisiones_limpieza": [
+      "rol_hablante=entrevistador",
+      "rol_hablante=entrevistado",
+      "rol_hablante=entrevistado",
+      "rol_hablante=entrevistado",
+      "rol_hablante=entrevistado"
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+ "id": "PRU-20",
+ "instrumento": "pru",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opciones tiene el reactivo sobre HTTPS?",
+   "rag_log_id": 2616,
+   "respuesta": "El reactivo r19 de la prueba «Prueba de Alfabetización Digital» presentó cuatro opciones para emparejar HTTPS, obteniendo un total de 97 respuestas válidas [Fuente 1]. La opción más elegida fue «Protocolo seguro de transferencia web», seleccionada por 39 alumnos (40.2 %) [Fuente 1]. Las otras opciones respondidas fueron: A) Protocolo de mensajería (17 respuestas, 17.5 %), C) Servidor de correo (13 respuestas, 13.4 %) y D) Sistema de archivos (28 respuestas, 28.9 %) [Fuente 1].\n\n**Distribución de r19 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 17 | 17.5 % |\n| B | 39 | 40.2 % |\n| C | 13 | 13.4 % |\n| D | 28 | 28.9 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r19"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.6674
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.5894
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.5368
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.4928
+    }
+   ],
+   "segundos": 39.4,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 21262,
+    "recuperacion": 956,
+    "verificacion": 2,
+    "interpretacion": 17174
+   },
+   "k_precision": 0.86,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Las cuatro opciones con su texto, sin marcar ninguna como correcta."
+}

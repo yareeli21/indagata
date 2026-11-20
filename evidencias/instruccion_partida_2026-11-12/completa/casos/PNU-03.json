@@ -1,0 +1,73 @@
+{
+ "id": "PNU-03",
+ "instrumento": "pru_nueva",
+ "categoria": "filtro",
+ "turnos": [
+  {
+   "pregunta": "De los alumnos de primera generación, ¿qué base de datos eligieron más en el reactivo de bases de datos?",
+   "rag_log_id": 4113,
+   "respuesta": "La pregunta pide cuál base de datos eligieron más los alumnos de primera generación, pero la respuesta anterior incluyó cifras que no estaban presentes en el resultado.\n\nLos alumnos de primera generación que cumplieron la condición de tener \"True\" en la variable \"primera_generacion\" eligieron Scopus o Web of Science como base de datos específicamente para artículos científicos indizados, con 1 persona. Wikipedia fue el objetivo preferido de 4 personas, mientras que Google Drive y YouTube fueron elegidos por solo 2 personas en total.\n\nLa tabla completa muestra la distribución de las bases de datos elegidas:\n\nEsta respuesta sugiere que los alumnos de primera generación tienden a preferir bases de datos más especializadas para artículos científicos.\n\n**Comparación por r13 «¿Cuál base de datos es específicamente para artículos científicos indi» [Fuente 1]**\n| Grupo | Personas |\n|---|---|\n| Google Drive | 1 |\n| Scopus o Web of Science | 1 |\n| Wikipedia | 4 |\n| YouTube | 2 |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "orden": {},
+    "limite": 1,
+    "contexto": {
+     "primera_generacion": "True"
+    },
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r13"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r13",
+    "grupo_anterior": [
+     {
+      "valor": "A",
+      "pregunta": "r13"
+     }
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "contexto primera_generacion = «True» (la pregunta nombra la variable)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.6601
+    }
+   ],
+   "segundos": 23.4,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 10928,
+    "recuperacion": 544,
+    "verificacion": 5937,
+    "interpretacion": 11829
+   },
+   "k_precision": 0.61,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Filtrar primera_generacion y dar la distribución de r13 dentro de ese grupo, con su n."
+}

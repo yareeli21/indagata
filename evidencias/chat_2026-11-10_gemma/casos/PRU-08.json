@@ -1,0 +1,86 @@
+{
+ "id": "PRU-08",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la sección de verdadero/falso con la de competencias básicas en cantidad de respuestas en blanco",
+   "rag_log_id": 3195,
+   "respuesta": "La sección de Competencias Digitales Básicas tuvo un 10.2% de respuestas en blanco o nulas, mientras que la sección de Verdadero o Falso digital presentó un 0.6% de respuestas en blanco o nulas [Fuente 1]. La diferencia principal radica en el número elevado de respuestas en blanco en la sección de Competencias Digitales Básicas, donde 99 de las 10 reactivos fueron considerados en blanco o nulos, frente a los 4 reactivos con respuestas en blanco o nulos en la sección de Verdadero o Falso digital [Fuente 1].\n\n**Respuestas en blanco o nulas por sección [Fuente 1]**\n| Sección | Reactivos | En blanco o nulas | % de sus respuestas |\n|---|---|---|---|\n| SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS | 10 | 99 | 10.2 % |\n| SECCIÓN: VERDADERO O FALSO DIGITAL | 7 | 4 | 0.6 % |\n| SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE) | 5 | 3 | 0.6 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "seccion"
+   },
+   "plan_modelo": {
+    "contexto": {
+     "tipo_pregunta": "verdadero_falso"
+    },
+    "intencion": "comparar_grupos",
+    "agrupar_por": "tipo_pregunta",
+    "excluir_preguntas": [
+     "r17",
+     "r18",
+     "r19",
+     "r20",
+     "r21",
+     "r22"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar por sección (respuestas en blanco o nulas)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r14",
+     "score": 0.5102
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.5022
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.4666
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4516
+    }
+   ],
+   "segundos": 65.7,
+   "tiempos_ms": {
+    "ejecucion": 26,
+    "redaccion": 29432,
+    "recuperacion": 590,
+    "verificacion": 16277,
+    "interpretacion": 35577
+   },
+   "k_precision": 0.859,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "% de NR por sección con su número de reactivos."
+}

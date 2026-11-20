@@ -1,0 +1,109 @@
+{
+ "id": "ENT-09",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Notó diferencia en su desempeño académico antes y después de recibir apoyo?",
+   "rag_log_id": 3694,
+   "respuesta": "- En p01 «Para empezar, ¿cómo describirías tu estado de ánimo durante este semestre?» habla de: semestre pesado; dificultad dormir; presión emocional; valoración negativo. Cita de E01: «Ha sido un semestre pesado».\n- En p02 «¿Qué situaciones de la universidad te generan más estrés o ansiedad?» habla de: carga de proyectos; exposiciones; materias; trabajo papelería; valoración negativo. Cita de E01: «Eh, Sobre todo la carga de proyectos».\n- En p05 «¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?» habla de: solicitud de cita; tiempo de espera; disponibilidad fechas; estado paciente; valoración negativo. Cita de E01: «Pasaron casi dos semanas». [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p08"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p08"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.7085
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.7042
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.6847
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6108
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6096
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.5715
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.5712
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.5665
+    }
+   ],
+   "segundos": 35.6,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 30836,
+    "recuperacion": 495,
+    "verificacion": 11053,
+    "interpretacion": 4191
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta guía correspondiente; no inventar un cambio."
+}

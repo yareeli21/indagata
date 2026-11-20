@@ -40,7 +40,7 @@ _RE_ANCLA_PAREN = re.compile(r"(?<![\d.])(\d{1,2})\s*\(\s*([^()\d]{2,40}?)\s*\)"
 # Una línea de la escala general de las instrucciones: «1 = Totalmente en desacuerdo / Nunca».
 # PDF de Google Forms: la última opción de la pregunta anterior («Cargas máxima», «Siempre») o el pie de página
 # («Google no creó ni aprobó este contenido.») queda en la MISMA línea que la pregunta siguiente, separada por dos
-# o más espacios: «Siempre  De tus profesores de este periodo, ¿cuántos tienen doctorado?  *» (28 oct).
+# o más espacios: «Siempre  ¿Con qué frecuencia vas a la biblioteca?  *».
 _HUECO_PDF = re.compile(r"\s{2,}")
 _MARCADOR = re.compile(r"^\(?\s*(?:\d{1,3}|[a-hA-H])\s*[.)\-:]?\s*\)?$")  # «1.», «a)»: numeración, no arrastre
 _RE_ANCLA_LINEA = re.compile(r"^(\d{1,2})\s*=\s*([^\d=].{1,80})$")

@@ -1,0 +1,33 @@
+{
+ "id": "CPR-07",
+ "instrumento": "pru_control",
+ "categoria": "cortesia",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál es la calificación promedio del grupo?",
+   "rag_log_id": 2830,
+   "respuesta": "Indagata no califica las pruebas: no tiene clave de respuestas, así que no hay aprobados, promedios ni puntajes. Lo que sí puedo mostrarte es qué eligieron los alumnos en cada reactivo, cuántos los dejaron en blanco y cómo se repartieron las respuestas.\n\nPor ejemplo, puedes preguntarme:\n- ¿Qué opción eligieron más en el reactivo r01 («Qué caracteriza a la investigación cuantitativa»)?\n- ¿Qué opción eligieron más en el reactivo r15 («Qué es un artículo de revisión (review article)»)?\n- ¿Qué respondió el alumno A001?",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "regla:sin_calificar",
+   "plantilla": "sin_calificar",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.0,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No califica: explica que solo describe lo que eligieron."
+}

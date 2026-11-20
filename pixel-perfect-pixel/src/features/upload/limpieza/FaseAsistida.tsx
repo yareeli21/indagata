@@ -3,6 +3,8 @@ import { AlertTriangle, CheckCircle2, CloudCheck, Loader2, ShieldCheck } from "l
 import { Button } from "@/components/ui/button";
 import type { EjecucionLimpieza, HallazgoLimpieza } from "@/types";
 import { ResumenAutomatico } from "./ResumenAutomatico";
+import { SignificadoCodigos } from "./SignificadoCodigos";
+import type { SignificadoCodigos as Significado } from "@/types";
 import { TarjetaHallazgo } from "./TarjetaHallazgo";
 
 interface FaseAsistidaProps {
@@ -11,6 +13,8 @@ interface FaseAsistidaProps {
   guardado: "pendiente" | "guardando" | "guardado";
   confirmando: boolean;
   onElegir: (idHallazgo: string, opcion: string) => void;
+  /** Microdatos: texto de una pregunta en código y significado de sus códigos. */
+  onCambiarSignificado: (clave: string, significado: Significado) => void;
   onConfirmar: () => void;
 }
 
@@ -20,6 +24,7 @@ export function FaseAsistida({
   guardado,
   confirmando,
   onElegir,
+  onCambiarSignificado,
   onConfirmar,
 }: FaseAsistidaProps) {
   const { hallazgos } = ejecucion;
@@ -45,6 +50,14 @@ export function FaseAsistida({
           <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden /> {aviso}
         </p>
       ))}
+
+      {ejecucion.codigos && ejecucion.codigos.columnas.length > 0 && (
+        <SignificadoCodigos
+          key={`${ejecucion.idCrudo}:${ejecucion.version}`}
+          codigos={ejecucion.codigos}
+          onCambiar={onCambiarSignificado}
+        />
+      )}
 
       {grupos.length === 0 ? (
         <div className="flex items-center gap-3 rounded-2xl border border-border bg-card p-5">

@@ -1,0 +1,60 @@
+{
+ "id": "ENC-18",
+ "instrumento": "enc",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿De qué trata esta encuesta y para qué se usan sus resultados?",
+   "rag_log_id": 3770,
+   "respuesta": "La encuesta se refiere a la percepción y experiencia de los estudiantes sobre la calidad académica de su institución, cubriendo aspectos como la oferta educativa, el cuerpo docente, la investigación, los recursos de aprendizaje, la trayectoria escolar y la vinculación con el entorno.\n\nEsta encuesta se aplicó a estudiantes universitarios de posgrado en inteligencia artificial. El objetivo principal es conocer su percepción sobre la calidad académica de su institución, cubriendo temas como la acreditación, la carga académica, la experiencia docente y la vinculación con el entorno. Sus resultados alimentan 18 indicadores clave de desempeño (KPIs) que ayudan a identificar fortalezas y áreas de mejora.\n\nEl instrumento es una encuesta que se compone de 2000 preguntas sin secciones, dirigida a estudiantes universitarios de posgrado en inteligencia artificial. Cubre aspectos como la calidad académica, el cuerpo docente, la investigación y los recursos de aprendizaje, y sus resultados alimentan 18 indicadores clave de desempeño (KPIs) que ayudan a identificar fortalezas y áreas de mejora.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.597
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.5724
+    }
+   ],
+   "segundos": 24.3,
+   "tiempos_ms": {
+    "redaccion": 23869,
+    "recuperacion": 179,
+    "verificacion": 7868
+   },
+   "k_precision": 0.909,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Síntesis en prosa (propósito, temas, población, KPIs) sin preguntar el instrumento ni inventar."
+}

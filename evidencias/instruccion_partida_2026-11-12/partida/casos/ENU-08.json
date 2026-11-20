@@ -1,0 +1,68 @@
+{
+ "id": "ENU-08",
+ "instrumento": "enc_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos sienten que la institución no les avisa a tiempo de los trámites?",
+   "rag_log_id": 4139,
+   "respuesta": "«Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios» no registra «avisa». En p05 («La institución me informa a tiempo sobre trámites y servicios.») las opciones que sí existen son estas:\n\n**Distribución de p05 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Totalmente en desacuerdo / Nunca | 8 | 5.0 % |\n| En desacuerdo / Pocas veces | 33 | 20.6 % |\n| Ni de acuerdo ni en desacuerdo / A veces | 44 | 27.5 % |\n| De acuerdo / Frecuentemente | 43 | 26.9 % |\n| Totalmente de acuerdo / Siempre | 32 | 20.0 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p05"
+    ],
+    "aclaracion": "«Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios» no registra «avisa». En p05 («La institución me informa a tiempo sobre trámites y servicios.») las opciones que sí existen son estas:"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "filtros": [
+     {
+      "op": "<",
+      "valor": "Siempre",
+      "pregunta": "p05"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "p05: «Siempre» → «Totalmente de acuerdo / Siempre»",
+    "filtro p05 < «Totalmente de acuerdo / Siempre» → = (es una opción de texto)",
+    "filtro p05 = «Totalmente de acuerdo / Siempre» descartado (la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "lo que pide no existe en el instrumento: se responde con lo que sí hay"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:no_existe",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 12.0,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "recuperacion": 377,
+    "interpretacion": 11543
+   },
+   "k_precision": 0.929,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Nivel de desacuerdo en la pregunta de información sobre trámites (p05): número y %."
+}

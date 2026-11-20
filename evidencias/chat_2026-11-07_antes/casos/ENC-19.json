@@ -1,0 +1,70 @@
+{
+ "id": "ENC-19",
+ "instrumento": "enc",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opciones tiene la pregunta sobre la carga académica?",
+   "rag_log_id": 2298,
+   "respuesta": "Criterio: resumen de p03.\np03 «¿Cómo es tu carga académica actual?»: 1931 respuestas válidas, 69 sin respuesta.\nInterpretación calculada: La opción más elegida es «Carga media/normal»: la eligió el 65.1 % de quienes respondieron. [Fuente 1]\n\n**Distribución de p03 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Carga media/normal | 1258 | 65.1 % |\n| Cargas maxima | 486 | 25.2 % |\n| Carga minima | 382 | 19.8 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p03"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:cifras_completadas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.6851
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.6653
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p16",
+     "score": 0.6261
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.5879
+    }
+   ],
+   "segundos": 40.4,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 32946,
+    "recuperacion": 263,
+    "verificacion": 14392,
+    "interpretacion": 7137
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Carga mínima, Carga media/normal y Cargas máxima, sin texto pegado de otras preguntas."
+}

@@ -15,6 +15,7 @@ import { BurbujaMensaje } from "./BurbujaMensaje";
 import { ChipsFuentes } from "./ChipsFuentes";
 import { EstadoVacioChat } from "./EstadoVacioChat";
 import { FormularioContexto } from "./FormularioContexto";
+import { PanelFuente, type FuenteSeleccionada } from "./PanelFuente";
 import { PanelNoticias } from "./PanelNoticias";
 import { SelectorAlcance } from "./SelectorAlcance";
 
@@ -60,14 +61,26 @@ export function ChatPage() {
 
   // Chat
   const [mensajes, setMensajes] = useState<Mensaje[]>([]);
-  const [modelo, setModelo] = useState<ModeloLLM>("servidor");
+  // Fuente citada abierta en el panel lateral (trazabilidad: documento y parte exacta usada).
+  const [fuenteAbierta, setFuenteAbierta] = useState<FuenteSeleccionada | null>(null);
+  const [modelo, setModelo] = useState<ModeloLLM>("llama3.2:3b");
   const [generando, setGenerando] = useState(false);
   const cancelarRef = useRef<(() => void) | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const listaRef = useRef<HTMLDivElement>(null);
+  const mensajesPrevios = useRef(0);
 
-  // Auto-scroll al último mensaje
+  // Auto-scroll al último mensaje. Al abrir una conversación guardada se salta directo al final (antes
+  // el desplazamiento suave se quedaba a medio camino en conversaciones largas); con cada mensaje nuevo,
+  // desplazamiento suave.
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    const lista = listaRef.current;
+    const alAbrir = mensajesPrevios.current === 0 && mensajes.length > 0;
+    mensajesPrevios.current = mensajes.length;
+    if (!lista) return;
+    requestAnimationFrame(() => {
+      lista.scrollTo({ top: lista.scrollHeight, behavior: alAbrir ? "auto" : "smooth" });
+    });
   }, [mensajes]);
 
   // Guarda la conversación cada vez que termina una respuesta.
@@ -187,7 +200,10 @@ export function ChatPage() {
 
   // ── Chat activo ──
   return (
-    <div className="flex h-full flex-1 overflow-hidden">
+    // Alto de la ventana menos el encabezado de la app (h-18 = 4.5rem): solo la lista de mensajes hace
+    // scroll, así la barra de entrada y el panel de noticias quedan siempre a la vista. Antes la página
+    // entera crecía con la conversación y ambos se perdían al desplazarse.
+    <div className="flex h-[calc(100dvh-4.5rem)] max-h-[calc(100dvh-4.5rem)] min-h-0 flex-none overflow-hidden">
       {/* Área principal del chat */}
       <div className="flex min-w-0 flex-1 flex-col">
         {/* Alcance y chips de fuentes */}
@@ -219,8 +235,8 @@ export function ChatPage() {
           )}
         </div>
 
-        {/* Mensajes */}
-        <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6">
+        {/* Mensajes (lo único que hace scroll) */}
+        <div ref={listaRef} className="min-h-0 flex-1 overflow-y-auto px-4 py-6 space-y-6">
           {mensajes.length === 0 && (
             <div className="flex flex-col items-center gap-2 py-12 text-center">
               <p className="text-sm font-medium text-muted-foreground">
@@ -230,7 +246,7 @@ export function ChatPage() {
             </div>
           )}
           {mensajes.map((m) => (
-            <BurbujaMensaje key={m.id} mensaje={m} />
+            <BurbujaMensaje key={m.id} mensaje={m} onAbrirFuente={setFuenteAbierta} />
           ))}
           <div ref={bottomRef} />
         </div>
@@ -245,8 +261,12 @@ export function ChatPage() {
         />
       </div>
 
+      {/* Fuente citada (trazabilidad): angosta el chat en lugar de taparlo. Mientras está abierta,
+          las noticias se ocultan para dejarle espacio; al cerrarla vuelven. */}
+      <PanelFuente seleccion={fuenteAbierta} onCerrar={() => setFuenteAbierta(null)} />
+
       {/* Panel lateral de noticias */}
-      <PanelNoticias />
+      {!fuenteAbierta && <PanelNoticias />}
     </div>
   );
 }

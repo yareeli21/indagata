@@ -1,0 +1,53 @@
+{
+ "id": "CEN-06",
+ "instrumento": "enc_control",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos usan la meditación como estrategia para gestionar su tiempo?",
+   "rag_log_id": 2636,
+   "respuesta": "«Encuesta de Carga Académica y Gestión del Tiempo» no registra «meditación». En p11 («¿Qué estrategia usas más para gestionar tu tiempo?») las opciones que sí existen son estas:\n\n**Distribución de p11 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Agenda física | 45 | 28.1 % |\n| Sin estrategia definida | 42 | 26.2 % |\n| App digital | 39 | 24.4 % |\n| Lista de tareas informal | 34 | 21.2 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p11"
+    ],
+    "aclaracion": "«Encuesta de Carga Académica y Gestión del Tiempo» no registra «meditación». En p11 («¿Qué estrategia usas más para gestionar tu tiempo?») las opciones que sí existen son estas:"
+   },
+   "correcciones": [
+    "mención «meditación» descartada (la pregunta no pregunta quién lo mencionó)",
+    "ninguna condición respaldada: se pide aclaración",
+    "lo que pide no existe en el instrumento: se responde con lo que sí hay"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:no_existe",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 18.6,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 293,
+    "interpretacion": 18286
+   },
+   "k_precision": 0.909,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No existe la opción; listar las existentes con conteos."
+}

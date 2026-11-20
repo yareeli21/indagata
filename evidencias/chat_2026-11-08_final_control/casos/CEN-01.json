@@ -1,0 +1,90 @@
+{
+ "id": "CEN-01",
+ "instrumento": "enc_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos estudiantes trabajan más de 30 horas?",
+   "rag_log_id": 2803,
+   "respuesta": "37 de 160 respondentes (23.1 %) cumplen la condición p14 «¿Cuál es tu carga laboral actual?» [Fuente 1]. La pregunta p14 de la encuesta «Encuesta de Carga Académica y Gestión del Tiempo» indagaba sobre si los estudiantes trabajaban más de 30 horas [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "campos": [
+     "p09"
+    ],
+    "filtros": [
+     {
+      "valor": "Trabajo más de 30h",
+      "pregunta": "p14"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "campos": [
+     "p09"
+    ],
+    "menciona": "trabajan más de 30h",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "mención «trabajan más de 30h» descartada (la pregunta no pregunta quién lo mencionó)",
+    "filtro p17 = «30 horas» (escrito en la pregunta)",
+    "filtro p14 = «Trabajo 20-30h, Trabajo más de 30h, Trabajo menos de 20h semanales» (sus opciones dicen lo que pide la pregunta)",
+    "filtro p14: solo «Trabajo más de 30h» (dice «mas de 30» tal cual)",
+    "filtro p17 = «30 horas» quitado (el número ya es la opción de p14)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.609
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p17",
+     "score": 0.6033
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p17",
+     "score": 0.6013
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p12",
+     "score": 0.5969
+    }
+   ],
+   "segundos": 36.8,
+   "tiempos_ms": {
+    "ejecucion": 19,
+    "redaccion": 18051,
+    "recuperacion": 326,
+    "verificacion": 1,
+    "interpretacion": 18270
+   },
+   "k_precision": 0.909,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Conteo y % sobre el total, desde la pregunta de carga laboral."
+}

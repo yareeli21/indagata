@@ -1,0 +1,33 @@
+{
+ "id": "ENT-07",
+ "instrumento": "ent",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Hubo preguntas de seguimiento que no estaban en la guía?",
+   "rag_log_id": 3227,
+   "respuesta": "Todas las preguntas del entrevistador corresponden a una pregunta de la guía; no hubo preguntas de seguimiento fuera de ella. Ojo: como no se subió el guion original, la guía se armó con las preguntas que hizo el entrevistador, así que una pregunta de seguimiento también quedó como parte de la guía.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "entrevista:fuera_guia",
+   "plantilla": null,
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.0,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Intervenciones del entrevistador que no coinciden con la guía."
+}

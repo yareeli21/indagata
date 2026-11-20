@@ -1,0 +1,109 @@
+{
+ "id": "ENT-09",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Notó diferencia en su desempeño académico antes y después de recibir apoyo?",
+   "rag_log_id": 3990,
+   "respuesta": "Hallazgos:\n\n• Desempeño académico\n- Pregunta: p08\n- Valoración: positivo, citó: «Sí, un poco. Empecé a usar una agenda y a dividir los proyectos en partes pequeñas, como me sugirió la psicóloga. En el segundo parcial subí mi promedio de siete punto ocho a ocho punto cinco. Y en la última exposición me puse nerviosa, pero usé la respiración y pude terminarla sin quedarme en blanco.»\n\n• Desempeño académico\n- Pregunta: p03\n- Valoración: neutro, citó: «Sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía. Me enteré bien hasta tercer semestre, cuando una compañera me dijo que ella iba al departamento de orientación. En la inducción de primer semestre lo mencionaron muy rápido, entre muchas otras cosas, y no se me quedó.»\n\n• Desempeño académico\n- Pregunta: p09\n- Valoración: depende del profesor, citó: «Depende mucho del profesor. Mi tutor académico casi no tiene tiempo, lo vi una vez en todo el semestre y fue para firmar la carga de materias. Pero una profesora de estadística notó que estaba muy distraída, me preguntó si estaba bien y fue la que me recomendó ir a orientación. Si no fuera por ella, no sé si habría ido.»",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p08"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p08"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.7085
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.7042
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.6847
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6108
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6096
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.5715
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.5712
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.5665
+    }
+   ],
+   "segundos": 34.5,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 30238,
+    "recuperacion": 368,
+    "verificacion": 10174,
+    "interpretacion": 3868
+   },
+   "k_precision": 0.958,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta guía correspondiente; no inventar un cambio."
+}

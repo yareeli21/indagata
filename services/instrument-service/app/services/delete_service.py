@@ -7,7 +7,7 @@ Regla de autorización:
 
 Al borrar se elimina la fila `raw_data` (que arrastra en cascada a
 `instrumento_procesado` y descendientes vía ON DELETE CASCADE) y se pide al
-ALMACENAMIENTO (storage port) que elimine los archivos (respondido y original).
+ALMACENAMIENTO (storage port) que elimine los archivos (respondido, original y diccionario).
 El servicio no borra del disco directamente: delega en el puerto.
 """
 from __future__ import annotations
@@ -62,7 +62,7 @@ class DeleteService:
             )
 
         # Rutas de los archivos a limpiar tras el commit.
-        rutas = [instrumento.raw_archivo, instrumento.raw_archivo_original]
+        rutas = [instrumento.raw_archivo, instrumento.raw_archivo_original, instrumento.raw_archivo_diccionario]
 
         try:
             db.delete(instrumento)  # cascada a instrumento_procesado y descendientes

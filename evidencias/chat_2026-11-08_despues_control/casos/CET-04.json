@@ -1,0 +1,125 @@
+{
+ "id": "CET-04",
+ "instrumento": "ent_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué dijo E03 sobre abandonar la universidad?",
+   "rag_log_id": 2642,
+   "respuesta": "E03 indicó que ha aprendido a ser muy eficiente con el tiempo, estudiando en lugares como el metro y durante descansos laborales [Fuente 1, p02].  Afirmó que \"Cada minuto cuenta\" y que administrar su tiempo de forma eficiente es fundamental para él [Fuente 1, p02]. Según sus datos registrados, E03 considera que el tiempo es su recurso más escaso [Fuente 1, p02].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E03 |\n|---|---|\n| Contexto: Edad | 34 |\n| Contexto: GPA | 2.78 |\n| Contexto: Género | masculino |\n| Contexto: Horas trabajo/semana | 38 |\n| Contexto: Perfil | P4 — Trabajador adulto tiempo parcial |\n| Contexto: Semestre | 8 |\n| Contexto: Universidad | publica |\n| p02 «¿Has pensado alguna vez en abandonar la universidad? ¿Qué te llevó a t» | He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p12 «¿Qué mensaje darías a un estudiante que está pensando en desertar?» | Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p02",
+     "p12"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E03"
+    ]
+   },
+   "correcciones": [
+    "RAG: se agregó p12 (intercambio más parecido a la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p02",
+     "score": 0.593
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p02",
+     "score": 0.5731
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p12",
+     "score": 0.5726
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p12",
+     "score": 0.5671
+    }
+   ],
+   "segundos": 24.5,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 17009,
+    "recuperacion": 265,
+    "verificacion": 1,
+    "interpretacion": 7170
+   },
+   "k_precision": 0.923,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y qué estrategias usa para mantenerse?",
+   "rag_log_id": 2643,
+   "respuesta": "E15 utiliza el deseo de un mejor futuro familiar como fuerza motivadora para continuar sus estudios y trabajo simultáneo [Fuente 1, p11]. También ha desarrollado habilidades para administrar su tiempo, identificando que es su recurso más escaso [Fuente 1, p11]. E19 reconoce que pedir ayuda no es una debilidad, sino una estrategia inteligente [Fuente 1, p03]. E26 estudia en lugares como el metro y durante los descansos del trabajo, siendo eficiente con el tiempo y considerando cada minuto como importante [Fuente 1, p03].",
+   "intencion": "metodologia",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "metodologia",
+    "aclaracion": "¿Te refieres a las estrategias que E03 mencionó o a otras estrategias en general?"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E15 en p11",
+     "score": 0.428
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E19 en p03",
+     "score": 0.4274
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E26 en p03",
+     "score": 0.4244
+    }
+   ],
+   "segundos": 26.4,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 92,
+    "interpretacion": 9535
+   },
+   "k_precision": 0.59,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) sigue hablando de E03."
+}

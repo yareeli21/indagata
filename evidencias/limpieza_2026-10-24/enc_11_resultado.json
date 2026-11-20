@@ -1,0 +1,207 @@
+{
+ "verdad": "evidencias\\limpieza_2026-10-24\\enc_11_verdad.json",
+ "id_control": 119,
+ "id_errores": 120,
+ "por_tipo": {
+  "duplicados": {
+   "inyectados": 5,
+   "detectados_nuevos": 5,
+   "verdaderos_positivos": 5,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": ""
+  },
+  "fuera_de_rango": {
+   "inyectados": 6,
+   "detectados_nuevos": 6,
+   "verdaderos_positivos": 6,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": ""
+  },
+  "no_respuestas": {
+   "inyectados": 4,
+   "detectados_nuevos": 4,
+   "verdaderos_positivos": 4,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": "Solo «No sé» y «No aplica» (4); los 4 «NA/N/A» son datos faltantes y lo correcto es vaciarlos. Por diferencia de totales."
+  },
+  "columna_incompleta": {
+   "inyectados": 1,
+   "detectados_nuevos": 1,
+   "verdaderos_positivos": 1,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": ""
+  },
+  "encuestados_incompletos": {
+   "inyectados": 4,
+   "detectados_nuevos": 4,
+   "verdaderos_positivos": 4,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": ""
+  },
+  "linea_recta": {
+   "inyectados": 5,
+   "detectados_nuevos": 5,
+   "verdaderos_positivos": 5,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": "Por diferencia de totales (40 contra 35 del control): la lista de filas se corta en 20 y el generador ya trae encuestados en línea recta. 1 de las filas inyectadas aparecen en la lista visible."
+  },
+  "columnas_ajenas": {
+   "inyectados": 2,
+   "detectados_nuevos": 2,
+   "verdaderos_positivos": 2,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": ""
+  }
+ },
+ "global": {
+  "inyectados": 27,
+  "verdaderos_positivos": 27,
+  "detectados_nuevos": 27,
+  "precision": 1.0,
+  "recall": 1.0
+ },
+ "antes_despues": [
+  {
+   "metrica": "Respondentes",
+   "antes": 165.0,
+   "despues": 156.0,
+   "formato": "num"
+  },
+  {
+   "metrica": "Columnas",
+   "antes": 32.0,
+   "despues": 29.0,
+   "formato": "num"
+  },
+  {
+   "metrica": "Completitud",
+   "antes": 0.9655,
+   "despues": 0.9719,
+   "formato": "pct"
+  },
+  {
+   "metrica": "Celdas vacías",
+   "antes": 0.0345,
+   "despues": 0.0281,
+   "formato": "pct"
+  },
+  {
+   "metrica": "Filas duplicadas",
+   "antes": 5.0,
+   "despues": 0.0,
+   "formato": "num"
+  },
+  {
+   "metrica": "Valores fuera de rango",
+   "antes": 14.0,
+   "despues": 0.0,
+   "formato": "num"
+  },
+  {
+   "metrica": "Respuestas en línea recta",
+   "antes": 40.0,
+   "despues": 38.0,
+   "formato": "num"
+  },
+  {
+   "metrica": "Encuestados incompletos",
+   "antes": 4.0,
+   "despues": 0.0,
+   "formato": "num"
+  },
+  {
+   "metrica": "Alfa de Cronbach · Compromiso acad",
+   "antes": 0.8528,
+   "despues": 0.8891,
+   "formato": "dec"
+  },
+  {
+   "metrica": "Alfa de Cronbach · Apoyo instituci",
+   "antes": 0.8763,
+   "despues": 0.8882,
+   "formato": "dec"
+  },
+  {
+   "metrica": "Alfa de Cronbach · Todas las escalas Likert",
+   "antes": 0.8693,
+   "despues": 0.8838,
+   "formato": "dec"
+  }
+ ],
+ "hallazgos_control": [
+  "col-ajena:id_respondente",
+  "rol:perfil",
+  "rol:edad",
+  "rol:genero",
+  "rol:semestre",
+  "rango:semestre",
+  "rol:promedio_gpa",
+  "rol:horas_trabajo_semana",
+  "rol:tipo_universidad",
+  "rol:nivel_ses",
+  "rol:nivel_estudio",
+  "rol:primera_generacion",
+  "rol:tiene_beca",
+  "rol:compromiso_acad_item1",
+  "rol:compromiso_acad_item2",
+  "rol:compromiso_acad_item3",
+  "rol:compromiso_acad_item4",
+  "rol:apoyo_instituci_item1",
+  "rol:apoyo_instituci_item2",
+  "rol:apoyo_instituci_item3",
+  "rol:apoyo_instituci_item4",
+  "rol:cuentas_con_una_beca",
+  "linea-recta"
+ ],
+ "hallazgos_errores": [
+  "col-ajena:marca_temporal",
+  "col-ajena:direccion_ip",
+  "col-ajena:id_respondente",
+  "rol:perfil",
+  "rol:edad",
+  "rol:genero",
+  "rol:semestre",
+  "rango:semestre",
+  "rol:promedio_gpa",
+  "rol:horas_trabajo_semana",
+  "rol:tipo_universidad",
+  "rol:nivel_ses",
+  "rol:nivel_estudio",
+  "rol:primera_generacion",
+  "rol:tiene_beca",
+  "rol:compromiso_acad_item1",
+  "rango:compromiso_acad_item1",
+  "rol:compromiso_acad_item2",
+  "rango:compromiso_acad_item2",
+  "rol:compromiso_acad_item3",
+  "rango:compromiso_acad_item3",
+  "rol:compromiso_acad_item4",
+  "rango:compromiso_acad_item4",
+  "rol:apoyo_instituci_item1",
+  "rango:apoyo_instituci_item1",
+  "rol:apoyo_instituci_item2",
+  "rango:apoyo_instituci_item2",
+  "rol:apoyo_instituci_item3",
+  "rol:apoyo_instituci_item4",
+  "incompleta:cual_es_tu_principal_medio_de_transport",
+  "rol:cuentas_con_una_beca",
+  "no-respuestas",
+  "duplicados",
+  "linea-recta",
+  "incompletos"
+ ]
+}

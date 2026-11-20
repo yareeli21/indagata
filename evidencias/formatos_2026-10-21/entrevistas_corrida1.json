@@ -1,0 +1,541 @@
+{
+  "I01": {
+    "descripcion": "Etiquetas «Entrevistador:/Entrevistado:» y bloques «RESPONDENTE»",
+    "nivel": "ideal",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "4 participantes",
+        "ok": true,
+        "obtenido": 4
+      },
+      {
+        "prueba": "16 intercambios",
+        "ok": true,
+        "obtenido": 16
+      },
+      {
+        "prueba": "cada respuesta unida a su pregunta del guion",
+        "ok": true,
+        "obtenido": "sin pregunta: 0"
+      },
+      {
+        "prueba": "todas las respuestas analizadas",
+        "ok": true,
+        "obtenido": "2.1"
+      },
+      {
+        "prueba": "cada unidad es literal de su respuesta",
+        "ok": true,
+        "obtenido": "no literales: 0"
+      },
+      {
+        "prueba": "chat: posturas de p01 calculadas como en el documento",
+        "ok": true,
+        "obtenido": "estructurada · esperado {'ambivalente': 2, 'no': 1, 'si': 1}",
+        "respuesta": "De los 4 entrevistados, 1 dice que sí y 2 son ambivalentes. Por lo tanto, no se puede determinar con certeza el número de entrevistados que creen que las actividades extracurriculares actualmente tienen impacto en sus calificaciones."
+      },
+      {
+        "prueba": "chat: qué dijo E02 sobre las tutorías",
+        "ok": true,
+        "obtenido": "estructurada",
+        "respuesta": "El participante E02 dijo que \"voy cada martes con mi tutora de estadística, me ha servido mucho\". [R017 en p04]"
+      }
+    ],
+    "metricas": {
+      "n": 16,
+      "metodos": {
+        "llm": 14,
+        "reglas": 2
+      },
+      "postura_exactitud": 0.562,
+      "postura_kappa": 0.407,
+      "nucleo_correcto": 0.875,
+      "contexto_excluido": 1.0,
+      "descartadas_no_literales": 1,
+      "discrepancias": [
+        {
+          "persona": "E01",
+          "pregunta": 1,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 2,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 3,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 4,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 3,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 4,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E04",
+          "pregunta": 2,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        }
+      ]
+    },
+    "id_crudo": 95,
+    "decisiones_limpieza": [
+      "rol_hablante=entrevistador",
+      "rol_hablante=entrevistado"
+    ]
+  },
+  "I02": {
+    "descripcion": "Preguntas numeradas «P1:» y «R:» por bloque",
+    "nivel": "ideal",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "4 participantes",
+        "ok": true,
+        "obtenido": 4
+      },
+      {
+        "prueba": "16 intercambios",
+        "ok": true,
+        "obtenido": 16
+      },
+      {
+        "prueba": "cada respuesta unida a su pregunta del guion",
+        "ok": true,
+        "obtenido": "sin pregunta: 0"
+      },
+      {
+        "prueba": "todas las respuestas analizadas",
+        "ok": true,
+        "obtenido": "2.1"
+      },
+      {
+        "prueba": "cada unidad es literal de su respuesta",
+        "ok": true,
+        "obtenido": "no literales: 0"
+      },
+      {
+        "prueba": "chat: posturas de p01 calculadas como en el documento",
+        "ok": true,
+        "obtenido": "estructurada · esperado {'ambivalente': 1, 'no': 1, 'si': 2}",
+        "respuesta": "Pregunta p01 «¿Consideras que las actividades extracurriculares actualmente tienen impacto en tus calificaciones?»: de 4 entrevistados con respuesta analizada, 2 sí (dicen que sí), 1 no (dicen que no), 1 ambivalentes (análisis revisado por el investigador en 0 de 4). [Fuente 1]\nE01 (ambivalente): «pero ahora creo que sí, me llenan de energía por querer seguir manteniendo la beca deportiva» [Fuente 1]\nE02 (no): «Sinceramente no mis calificaciones bajaron este semestre» [Fuente 1]\nE03 (sí): «Depende; en semestres tranquilos sí me ayudan pero en exámenes finales me estresan. Hablando de otra cosa, el comedor está carísimo.» [Fuente 1]\nE04 (sí): «Sí, el teatro me enseñó a organizar mi tiempo y ahora entrego todo a tiempo»; motivo: «Me enseñó a organizar mi tiempo» [Fuente 1]"
+      },
+      {
+        "prueba": "chat: qué dijo E02 sobre las tutorías",
+        "ok": true,
+        "obtenido": "estructurada",
+        "respuesta": "El participante E02 dijo que \"voy cada martes con mi tutora de estadística, me ha servido mucho\". [R017 en p04]"
+      }
+    ],
+    "metricas": {
+      "n": 16,
+      "metodos": {
+        "llm": 13,
+        "reglas": 3
+      },
+      "postura_exactitud": 0.5,
+      "postura_kappa": 0.304,
+      "nucleo_correcto": 0.875,
+      "contexto_excluido": 0.889,
+      "descartadas_no_literales": 1,
+      "discrepancias": [
+        {
+          "persona": "E01",
+          "pregunta": 1,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 2,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 3,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 4,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 1,
+          "referencia": "ambivalente",
+          "sistema": "si"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 3,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 4,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E04",
+          "pregunta": 2,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        }
+      ]
+    },
+    "id_crudo": 96,
+    "decisiones_limpieza": [
+      "rol_hablante=entrevistador",
+      "rol_hablante=entrevistado"
+    ]
+  },
+  "I03": {
+    "descripcion": "Transcripción de Zoom («Hablante n  mm:ss», muletillas), grupal",
+    "nivel": "aceptado",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "4 participantes",
+        "ok": true,
+        "obtenido": 4
+      },
+      {
+        "prueba": "16 intercambios",
+        "ok": true,
+        "obtenido": 16
+      },
+      {
+        "prueba": "cada respuesta unida a su pregunta del guion",
+        "ok": true,
+        "obtenido": "sin pregunta: 0"
+      },
+      {
+        "prueba": "todas las respuestas analizadas",
+        "ok": true,
+        "obtenido": "2.1"
+      },
+      {
+        "prueba": "cada unidad es literal de su respuesta",
+        "ok": true,
+        "obtenido": "no literales: 0"
+      },
+      {
+        "prueba": "chat: posturas de p01 calculadas como en el documento",
+        "ok": true,
+        "obtenido": "estructurada · esperado {'ambivalente': 1, 'no': 1, 'si': 2}",
+        "respuesta": "De los 4 entrevistados, 2 dicen que sí y 1 ambivalente. El resto (1) dice no."
+      },
+      {
+        "prueba": "chat: qué dijo E02 sobre las tutorías",
+        "ok": true,
+        "obtenido": "estructurada",
+        "respuesta": "El participante E02 dijo que \"voy cada martes con mi tutora de estadística, me ha servido mucho\". [R017 en p04]"
+      }
+    ],
+    "metricas": {
+      "n": 16,
+      "metodos": {
+        "llm": 13,
+        "reglas": 3
+      },
+      "postura_exactitud": 0.5,
+      "postura_kappa": 0.304,
+      "nucleo_correcto": 0.875,
+      "contexto_excluido": 0.889,
+      "descartadas_no_literales": 1,
+      "discrepancias": [
+        {
+          "persona": "E01",
+          "pregunta": 1,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 2,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 3,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 4,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 1,
+          "referencia": "ambivalente",
+          "sistema": "si"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 3,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 4,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E04",
+          "pregunta": 2,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        }
+      ]
+    },
+    "id_crudo": 97,
+    "decisiones_limpieza": [
+      "rol_hablante=entrevistador",
+      "rol_hablante=entrevistado",
+      "rol_hablante=entrevistado",
+      "rol_hablante=entrevistado",
+      "rol_hablante=entrevistado"
+    ]
+  },
+  "I04": {
+    "descripcion": "WebVTT de Teams con voces «<v Nombre>», grupal",
+    "nivel": "aceptado",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "4 participantes",
+        "ok": true,
+        "obtenido": 4
+      },
+      {
+        "prueba": "16 intercambios",
+        "ok": true,
+        "obtenido": 16
+      },
+      {
+        "prueba": "cada respuesta unida a su pregunta del guion",
+        "ok": true,
+        "obtenido": "sin pregunta: 0"
+      },
+      {
+        "prueba": "todas las respuestas analizadas",
+        "ok": true,
+        "obtenido": "2.1"
+      },
+      {
+        "prueba": "cada unidad es literal de su respuesta",
+        "ok": true,
+        "obtenido": "no literales: 0"
+      },
+      {
+        "prueba": "chat: posturas de p01 calculadas como en el documento",
+        "ok": true,
+        "obtenido": "estructurada · esperado {'ambivalente': 1, 'no': 1, 'si': 2}",
+        "respuesta": "De los 4 entrevistados, 2 dicen que sí y 1 dice que no. El resto (E01) es ambivalente."
+      },
+      {
+        "prueba": "chat: qué dijo E02 sobre las tutorías",
+        "ok": true,
+        "obtenido": "estructurada",
+        "respuesta": "El participante E02 dijo que \"voy cada martes con mi tutora de estadística, me ha servido mucho\". [R017 en p04]"
+      }
+    ],
+    "metricas": {
+      "n": 16,
+      "metodos": {
+        "llm": 13,
+        "reglas": 3
+      },
+      "postura_exactitud": 0.5,
+      "postura_kappa": 0.304,
+      "nucleo_correcto": 0.875,
+      "contexto_excluido": 0.889,
+      "descartadas_no_literales": 1,
+      "discrepancias": [
+        {
+          "persona": "E01",
+          "pregunta": 1,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 2,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 3,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E01",
+          "pregunta": 4,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 1,
+          "referencia": "ambivalente",
+          "sistema": "si"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 3,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E03",
+          "pregunta": 4,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E04",
+          "pregunta": 2,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        }
+      ]
+    },
+    "id_crudo": 98,
+    "decisiones_limpieza": [
+      "rol_hablante=entrevistador",
+      "rol_hablante=entrevistado",
+      "rol_hablante=entrevistado",
+      "rol_hablante=entrevistado",
+      "rol_hablante=entrevistado"
+    ]
+  },
+  "I05": {
+    "descripcion": "Sin etiquetas de hablante (una persona, párrafos)",
+    "nivel": "aceptado",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "1 participantes",
+        "ok": false,
+        "obtenido": 2
+      },
+      {
+        "prueba": "4 intercambios",
+        "ok": false,
+        "obtenido": 5
+      },
+      {
+        "prueba": "cada respuesta unida a su pregunta del guion",
+        "ok": false,
+        "obtenido": "sin pregunta: 1"
+      },
+      {
+        "prueba": "todas las respuestas analizadas",
+        "ok": true,
+        "obtenido": "2.1"
+      },
+      {
+        "prueba": "cada unidad es literal de su respuesta",
+        "ok": true,
+        "obtenido": "no literales: 0"
+      },
+      {
+        "prueba": "chat: posturas de p01 calculadas como en el documento",
+        "ok": true,
+        "obtenido": "estructurada · esperado {'ambivalente': 1}",
+        "respuesta": "Pregunta p01 «¿Consideras que las actividades extracurriculares actualmente tienen impacto en tus calificaciones?»: de 1 entrevistados con respuesta analizada, 1 ambivalentes (análisis revisado por el investigador en 0 de 1). [Fuente 1]\nE02 (ambivalente): «pero ahora creo que sí, me llenan de energía por querer seguir manteniendo la beca deportiva» [Fuente 1]"
+      }
+    ],
+    "metricas": {
+      "n": 4,
+      "metodos": {
+        "llm": 4
+      },
+      "postura_exactitud": 0.25,
+      "postura_kappa": 0.0,
+      "nucleo_correcto": 0.0,
+      "contexto_excluido": 1.0,
+      "descartadas_no_literales": 1,
+      "discrepancias": [
+        {
+          "persona": "E01",
+          "pregunta": 0,
+          "referencia": "no",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E02",
+          "pregunta": 1,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        },
+        {
+          "persona": "E02",
+          "pregunta": 2,
+          "referencia": "si",
+          "sistema": "ambivalente"
+        }
+      ]
+    },
+    "id_crudo": 99,
+    "decisiones_limpieza": [
+      "segmentacion_inferida=usar_segmentacion",
+      "rol_hablante=entrevistador",
+      "rol_hablante=entrevistado"
+    ]
+  }
+}

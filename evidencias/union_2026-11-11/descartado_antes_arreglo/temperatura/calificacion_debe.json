@@ -1,0 +1,252 @@
+{
+ "ENC-01|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-01|t0|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-01|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-01|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-01|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-01|t0.5|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0.5|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-08|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-08|t0|rep2": {
+  "cumple": "no",
+  "nota": "Dice que la presencial tiene mayor satisfacción (media 2.92 frente a 2.97 en línea) y atribuye 30.0 % y 31.4 % a otros grupos."
+ },
+ "ENC-08|t0.2|rep1": {
+  "cumple": "parcial",
+  "nota": "Medias correctas, sin n, y atribuye a «en línea» el 31.4 % del grupo mixto."
+ },
+ "ENC-08|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-08|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-08|t0.5|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-09|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-09|t0|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-09|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-09|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-09|t0.5|rep1": {
+  "cumple": "parcial",
+  "nota": "Compara porcentajes, pero dice «aprobaron 235 certificaciones» (son personas) y concluye una probabilidad."
+ },
+ "ENC-09|t0.5|rep2": {
+  "cumple": "cumple"
+ },
+ "PRU-01|t0|rep1": {
+  "cumple": "parcial",
+  "nota": "97 alumnos, pero dice que no hay secciones (tiene tres)."
+ },
+ "PRU-01|t0|rep2": {
+  "cumple": "parcial",
+  "nota": "Igual que la repetición 1."
+ },
+ "PRU-01|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-01|t0.2|rep2": {
+  "cumple": "parcial",
+  "nota": "97 alumnos, pero dice que no hay secciones."
+ },
+ "PRU-01|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-01|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "97 alumnos, pero dice que no hay secciones."
+ },
+ "PRU-03|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-03|t0|rep2": {
+  "cumple": "cumple"
+ },
+ "PRU-03|t0.2|rep1": {
+  "cumple": "parcial",
+  "nota": "«97 nulas o sin responder de 100»: son 97 alumnos."
+ },
+ "PRU-03|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "PRU-03|t0.5|rep1": {
+  "cumple": "parcial",
+  "nota": "«de 100» y una tabla en HTML."
+ },
+ "PRU-03|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "«de 100»."
+ },
+ "PRU-08|t0|rep1": {
+  "cumple": "parcial",
+  "nota": "Porcentajes por sección sin el número de reactivos."
+ },
+ "PRU-08|t0|rep2": {
+  "cumple": "parcial",
+  "nota": "Igual."
+ },
+ "PRU-08|t0.2|rep1": {
+  "cumple": "parcial",
+  "nota": "Lee el 10.2 % como parte de toda la prueba y no da reactivos."
+ },
+ "PRU-08|t0.2|rep2": {
+  "cumple": "parcial",
+  "nota": "Lee el 10.2 % como «del grupo» y no da reactivos."
+ },
+ "PRU-08|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-08|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "Sin el número de reactivos."
+ },
+ "PRU-09|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-09|t0|rep2": {
+  "cumple": "cumple"
+ },
+ "PRU-09|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-09|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "PRU-09|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-09|t0.5|rep2": {
+  "cumple": "cumple"
+ },
+ "ENT-04|t0|rep1": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-04|t0|rep2": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-04|t0.2|rep1": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-04|t0.2|rep2": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-04|t0.5|rep1": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-04|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-06|t0|rep1": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-06|t0|rep2": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-06|t0.2|rep1": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-06|t0.2|rep2": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-06|t0.5|rep1": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-06|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-08|t0|rep1": {
+  "cumple": "parcial",
+  "nota": "Las dos respuestas lado a lado, sin la relación breve."
+ },
+ "ENT-08|t0|rep2": {
+  "cumple": "parcial",
+  "nota": "Las dos respuestas lado a lado, sin la relación breve."
+ },
+ "ENT-08|t0.2|rep1": {
+  "cumple": "parcial",
+  "nota": "Las dos respuestas lado a lado, sin la relación breve."
+ },
+ "ENT-08|t0.2|rep2": {
+  "cumple": "parcial",
+  "nota": "Las dos respuestas lado a lado, sin la relación breve."
+ },
+ "ENT-08|t0.5|rep1": {
+  "cumple": "parcial",
+  "nota": "Las dos respuestas lado a lado, sin la relación breve."
+ },
+ "ENT-08|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "Las dos respuestas lado a lado, sin la relación breve."
+ },
+ "ENT-09|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "ENT-09|t0|rep2": {
+  "cumple": "cumple"
+ },
+ "ENT-09|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "ENT-09|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "ENT-09|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "ENT-09|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "Dice que mejoró y después que no se refirió a una mejora."
+ }
+}

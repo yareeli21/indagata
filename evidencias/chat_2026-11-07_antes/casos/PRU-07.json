@@ -1,0 +1,72 @@
+{
+ "id": "PRU-07",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo estuvieron más repartidas las respuestas?",
+   "rag_log_id": 2345,
+   "respuesta": "Criterio: preguntas con respuestas más repartidas (opción más elegida con el porcentaje más bajo), sin contar r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, r21, r22.\nNo hay resúmenes calculados para ordenar las preguntas. [Fuente 1]",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida",
+    "excluir_preguntas": [
+     "r01",
+     "r02",
+     "r03",
+     "r04",
+     "r05",
+     "r06",
+     "r07",
+     "r08",
+     "r09",
+     "r10",
+     "r11",
+     "r12",
+     "r13",
+     "r14",
+     "r15",
+     "r16",
+     "r17",
+     "r18",
+     "r19",
+     "r20",
+     "r21",
+     "r22"
+    ]
+   },
+   "correcciones": [
+    "criterio del ranking: repartida (lo que dice la pregunta)"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:ranking_preguntas:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 39.4,
+   "tiempos_ms": {
+    "ejecucion": 42,
+    "recuperacion": 1287,
+    "interpretacion": 38041
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    22,
+    22
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "no hizo un análisis bien y no se le entiende porque ni da razones"
+  }
+ ],
+ "debe": "Decir qué medida usó."
+}

@@ -28,14 +28,13 @@ const ETIQUETAS: Record<NivelCoincidencia, string> = {
 };
 
 const CRITERIOS: Record<NivelCoincidencia, string> = {
-  alta: "3 criterios",
-  media: "2 criterios",
-  baja: "1 criterio",
+  alta: "mismo KPI y descripción similar",
+  media: "mismo KPI",
+  baja: "descripción similar",
 };
 
 const COLORES_RAZON: Record<string, string> = {
   kpi: "bg-accent/15 text-accent-foreground border-accent/30",
-  nivel: "bg-primary/10 text-primary border-primary/20",
   descripcion: "bg-secondary text-secondary-foreground border-border",
 };
 
@@ -60,7 +59,7 @@ export function Paso2Relacionados({
     return (
       <ProcesandoIA
         mensaje="Buscando instrumentos relacionados…"
-        detalle="Comparamos KPIs, nivel educativo y similitud semántica con tu selección."
+        detalle="Comparamos KPIs y similitud semántica con tu selección."
       />
     );
   }

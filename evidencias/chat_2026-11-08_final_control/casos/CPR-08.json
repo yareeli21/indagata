@@ -1,0 +1,33 @@
+{
+ "id": "CPR-08",
+ "instrumento": "pru_control",
+ "categoria": "cortesia",
+ "turnos": [
+  {
+   "pregunta": "Hola",
+   "rag_log_id": 2879,
+   "respuesta": "¡Hola! Soy el asistente de investigación de INDAGATA. Estás trabajando con «Prueba de Competencia en Investigación Científica» (prueba estandarizada).\n\nPor ejemplo, puedes preguntarme:\n- ¿Qué opción eligieron más en el reactivo r01 («Qué caracteriza a la investigación cuantitativa»)?\n- ¿Qué opción eligieron más en el reactivo r15 («Qué es un artículo de revisión (review article)»)?\n- ¿Qué respondió el alumno A001?",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "regla:cortesia",
+   "plantilla": "cortesia",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.0,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Bienvenida con ejemplos de esta prueba."
+}

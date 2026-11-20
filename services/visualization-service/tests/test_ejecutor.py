@@ -139,6 +139,48 @@ def test_conteo_por_nivel_y_por_filtro():
     assert e.lineas == ["Cumplen la condición 2 de 5 respondentes (40.0 %)."] and e.total == 2
 
 
+def test_porcentaje_sobre_el_grupo_nombrado():
+    """«¿Qué porcentaje del turno vespertino está de acuerdo con p04?»: sobre los 3 del turno, no sobre los 5 (10 nov,
+    prueba de aritmética A01: 4 de 60 en lugar de 4 de 30)."""
+    e = _uno(_plan(intencion="conteo_porcentaje", contexto={"Turno": "Vespertino"},
+                   filtros=[{"pregunta": "p04", "nivel": "acuerdo"}]), _enc())
+    assert e.lineas == ["Cumplen la condición 1 de los 3 con Turno = «Vespertino» que respondieron p04 (33.3 %); "
+                        "sobre el total del instrumento, 1 de 5 respondentes (20.0 %)."]
+    assert e.frase_dato.startswith("1 de los 3 con Turno = «Vespertino» que respondieron p04 (33.3 %) cumplen el criterio")
+
+
+def test_porcentaje_sin_quienes_no_respondieron():
+    """«¿Qué porcentaje cursa en línea?»: quien no respondió la pregunta no cuenta en la base (A15: 263 de 2000 en lugar
+    de 263 de 1949)."""
+    doc = docs_ejemplo.encuesta()
+    doc["respondentes"][4]["respuestas"][3] = {"pregunta_id": "INS-0001-p04", "pregunta": "x", "estado": "sin_respuesta"}
+    e = _uno(_plan(intencion="conteo_porcentaje", filtros=[{"pregunta": "p04", "nivel": "acuerdo"}]),
+             Instrumento("1", "x", "encuesta", doc))
+    assert e.lineas == ["Cumplen la condición 2 de los 4 que respondieron p04 (50.0 %); "
+                        "sobre el total del instrumento, 2 de 5 respondentes (40.0 %)."] and e.total == 2
+
+
+def test_mismo_nivel_como_filtro_y_como_nivel_es_una_sola_condicion():
+    """A12 (tercera prueba): con «p01 de acuerdo» como filtro y como nivel salía «2 de los 2 (100 %)»."""
+    e = _uno(_plan(intencion="conteo_porcentaje", nivel="acuerdo", preguntas=["p01"],
+                   filtros=[{"pregunta": "p01", "nivel": "acuerdo"}]), _enc())
+    assert any("2 de 5 de quienes respondieron están de acuerdo (nivel alto) (40.0 %)" in l for l in e.lineas)
+    assert "100.0 %" not in e.texto() + e.frase_dato
+
+
+def test_condicion_solo_de_grupo_se_cuenta_sobre_todos():
+    e = _uno(_plan(intencion="conteo_porcentaje", contexto={"Turno": "Vespertino"}), _enc())
+    assert e.lineas == ["Cumplen la condición 3 de 5 respondentes (60.0 %)."]
+
+
+def test_base_del_filtro_del_enrutador():
+    from shared.conocimiento import consultas
+    doc = docs_ejemplo.encuesta()
+    doc["respondentes"][1]["respuestas"][3]["estado"] = "sin_respuesta"
+    assert [r["id"][-4:] for r in consultas.respondieron(doc, ["p04"], {"Turno": "Vespertino"})] == ["R003", "R004"]
+    assert len(consultas.respondieron(doc, ["p01", "p04"])) == 4
+
+
 def test_comparar_grupos_por_contexto():
     e = _uno(_plan(intencion="comparar_grupos", preguntas=["p01"], nivel="acuerdo", agrupar_por="Turno"), _enc())
     (t,) = e.tablas
@@ -209,6 +251,27 @@ def test_ejecutor_de_hallazgo_lista_candidatos_y_sus_fuentes():
     assert e.lineas[0].startswith("Dato 1: En p01") and e.preguntas == ["INS-0009-p01"]
 
 
+
+def _doc_dos_temas() -> dict:
+    """Dos secciones: «Apoyo» (p01, p02) y «Servicios» (p03, con mucha no respuesta: el hallazgo más notable)."""
+    def preg(n, seccion, acuerdo, sin=0):
+        return {"id": f"INS-0009-p0{n}", "texto": f"Pregunta {n}", "tipo": "likert", "seccion_id": seccion, "resumen": {
+            "n_validas": 40 - sin, "n_sin_respuesta": sin, "por_nivel": {"acuerdo": acuerdo, "desacuerdo": 100 - acuerdo},
+            "distribucion": [{"significado": "Totalmente en desacuerdo", "n": 40 - sin - int((40 - sin) * acuerdo / 100), "pct": 100 - acuerdo},
+                             {"significado": "Totalmente de acuerdo", "n": int((40 - sin) * acuerdo / 100), "pct": acuerdo}]}}
+    return {"secciones": [{"id": "s1", "nombre": "Apoyo"}, {"id": "s2", "nombre": "Servicios"}],
+            "preguntas": [preg(1, "s1", 80.0), preg(2, "s1", 35.0), preg(3, "s2", 50.0, sin=30)], "respondentes": []}
+
+
+def test_hallazgo_de_un_tema_solo_usa_las_preguntas_de_su_seccion():
+    """«¿Qué opinan del apoyo institucional?» (plan con p01): los hallazgos salen de la sección de p01, no de p03."""
+    ins = Instrumento("9", "Dos temas", "encuesta", _doc_dos_temas())
+    todos = _uno(_plan(intencion="hallazgo"), ins)
+    assert any("p03" in x for x in todos.lineas)
+    tema = _uno(_plan(intencion="hallazgo", preguntas=["p01"]), ins)
+    assert tema.lineas and not any("p03" in x for x in tema.lineas)
+    assert set(tema.preguntas) <= {"INS-0009-p01", "INS-0009-p02"}
+
 def test_endpoint_interpretar_devuelve_plan_y_resultado(cliente, storage, db, monkeypatch):
     import json as _json
 
@@ -252,10 +315,15 @@ def test_filtro_por_nivel_y_por_grupo_de_contexto():
     assert "Cumplen la condición 2 de 5 respondentes (40.0 %)." in e.lineas
     e = _uno(_plan(intencion="conteo_porcentaje", filtros=[{"pregunta": "p01", "nivel": "acuerdo"}],
                    contexto={"Turno": "Vespertino"}), _enc())
-    assert "Cumplen la condición 1 de 5 respondentes (20.0 %)." in e.lineas and "Turno = «Vespertino»" in e.criterio
+    # Las dos formas del plan dan el mismo porcentaje: sobre los 3 del turno vespertino (10 nov, aritmética A01 y A06).
+    assert any(l.startswith("Cumplen la condición 1 de los 3 con Turno = «Vespertino» que respondieron p01 (33.3 %)")
+               for l in e.lineas) and "Turno = «Vespertino»" in e.criterio
     # % de acuerdo en p01 dentro del turno vespertino: R002 (2), R003 (3), R004 (5) → 1 de 3.
     e = _uno(_plan(intencion="conteo_porcentaje", preguntas=["p01"], nivel="acuerdo", contexto={"Turno": "Vespertino"}), _enc())
     assert any("1 de 3 de quienes cumplen la condición y respondieron" in l and "33.3 %" in l for l in e.lineas)
+    # …y la frase de la respuesta es ese resultado, no cuántos son del turno (aritmética A01, segunda prueba).
+    assert e.frase_dato == ("1 de los 3 que cumplen Turno = «Vespertino» y respondieron p01 (33.3 %) están de acuerdo "
+                            "(nivel alto) en p01 «Los profesores explican con claridad».")
 
 
 def test_comparacion_sobre_contexto_numerico():

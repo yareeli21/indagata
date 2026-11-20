@@ -1,0 +1,78 @@
+{
+ "id": "PRU-09",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "De los que marcaron Verdadero en «el correo electrónico es siempre seguro», ¿qué eligieron en el reactivo de la VPN?",
+   "rag_log_id": 2549,
+   "respuesta": "De los 81 estudiantes que respondieron “Verdadero” al reactivo r11 sobre la seguridad del correo electrónico, 39 (48.1%) seleccionaron “Almacenar archivos en la nube” como la principal función de una VPN [Fuente 1].  Además, 19 (23.5%) eligieron “Aumentar la velocidad de internet” y 17 (21.0%) optaron por “Bloquear anuncios publicitarios” [Fuente 1]. Finalmente, 6 (7.4%) seleccionaron “Crear una conexión segura y privada” como función principal de la VPN [Fuente 1].\n\n**r03 entre quienes cumplen la condición [Fuente 1]**\n| Opción | Personas | % del grupo |\n|---|---|---|\n| Almacenar archivos en la nube | 39 | 48.1 % |\n| Aumentar la velocidad de internet | 19 | 23.5 % |\n| Bloquear anuncios publicitarios | 17 | 21.0 % |\n| Crear una conexión segura y privada | 6 | 7.4 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r11"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r03"
+    ]
+   },
+   "correcciones": [
+    "cruce: r03 entre quienes respondieron «Verdadero» en r11"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.691
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6452
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.638
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.5933
+    }
+   ],
+   "segundos": 26.2,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 20060,
+    "recuperacion": 465,
+    "verificacion": 1,
+    "interpretacion": 5555
+   },
+   "k_precision": 0.892,
+   "cifras_con_respaldo": [
+    11,
+    11
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruzar dos reactivos y dar la distribución dentro del grupo."
+}

@@ -1,0 +1,53 @@
+{
+ "id": "ETU-04",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opina de que solo den tres sesiones?",
+   "rag_log_id": 4123,
+   "respuesta": "Según el contexto proporcionado [Fuente 1], la persona E01 expresa su opinión sobre la cantidad de sesiones de salud mental disponible en la universidad. En particular, menciona que \"dieran más de tres sesiones cuando la persona lo necesita\", lo que sugiere que considera que tres sesiones son insuficientes para satisfacer las necesidades de algunos estudiantes.\n\nNo hay una respuesta explícita sobre si solo den tres sesiones o no, pero se puede inferir que E01 cree que se deberían ofrecer más sesiones.\n\nEs el testimonio de una sola persona (E01); no permite generalizar a otros estudiantes.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Mejor en qué pregunta o entre qué grupos?"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Mejor en qué pregunta o entre qué grupos?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental entrevista"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.5517
+    }
+   ],
+   "segundos": 7.8,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 227,
+    "interpretacion": 2893
+   },
+   "k_precision": 0.452,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta de cómo valora la atención, con cita."
+}

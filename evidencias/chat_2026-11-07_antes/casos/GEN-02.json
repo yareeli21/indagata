@@ -1,0 +1,38 @@
+{
+ "id": "GEN-02",
+ "instrumento": "enc",
+ "categoria": "cortesia",
+ "turnos": [
+  {
+   "pregunta": "¿Qué tal? ¿Qué puedes hacer?",
+   "rag_log_id": 2372,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿De qué pregunta o tema quieres saber la opinión?"
+   },
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "plan:aclaracion_ajena",
+   "plantilla": "aclaracion_ajena",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 33.6,
+   "tiempos_ms": {
+    "ejecucion": 21,
+    "recuperacion": 437,
+    "interpretacion": 32714
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Tipos de consultas con ejemplos del instrumento activo."
+}

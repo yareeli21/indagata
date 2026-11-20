@@ -1,0 +1,77 @@
+{
+ "id": "ENT-19",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántas preguntas tiene la guía y qué temas cubre?",
+   "rag_log_id": 2332,
+   "respuesta": "La guía de entrevista “Salud mental en la universidad” consta de trece preguntas sin secciones diferenciadas [Fuente 1]. Las preguntas abordan temas como el estado de ánimo del estudiante durante el semestre (p01) y agradecen al participante por compartir su experiencia (p13). [Fuente 1]",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.5924
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5023
+    }
+   ],
+   "segundos": 24.6,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 12530,
+    "recuperacion": 240,
+    "verificacion": 1,
+    "interpretacion": 11676
+   },
+   "k_precision": 0.727,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": "Le faltó más encontrar o interpretar qué temas se tratan con ayuda del LLM"
+  }
+ ],
+ "debe": "12 y agrupadas en temas."
+}

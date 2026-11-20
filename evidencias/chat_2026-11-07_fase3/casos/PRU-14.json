@@ -1,0 +1,199 @@
+{
+ "id": "PRU-14",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en «la nube elimina por completo el riesgo de perder datos»?",
+   "rag_log_id": 2428,
+   "respuesta": "Criterio: resumen de r16.\nr16 «El almacenamiento en la nube elimina por completo el riesgo de perder »: 95 respuestas válidas, 2 sin respuesta.\nInterpretación calculada: La opción más elegida fue «Verdadero» (58.8 % de los alumnos). 2 sin respuesta válida (2.1 %).\nOpción más elegida: «Verdadero» (58.8 %, 57 alumnos). [Fuente 1]\n\n**Distribución de r16 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 57 | 58.8 % |\n| Falso | 38 | 39.2 % |\n| NR | 2 | 2.1 % |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r16"
+    ]
+   },
+   "correcciones": [
+    "contexto Turno = «Vespertino» descartado (la pregunta no lo menciona)",
+    "nivel acuerdo quitado (ni la consulta lo dice ni la pregunta es de escala)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:cifras_completadas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5851
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5748
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.4825
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.4561
+    }
+   ],
+   "segundos": 54.9,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 20576,
+    "recuperacion": 2338,
+    "verificacion": 5505,
+    "interpretacion": 31864
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "De ellos, ¿qué respondieron sobre Wi-Fi público?",
+   "rag_log_id": 2429,
+   "respuesta": "De los alumnos que participaron en la Prueba de Alfabetización Digital, el 75.3% (73 estudiantes) respondió “Verdadero” a la afirmación de que “Usar redes Wi-Fi públicas sin VPN es completamente seguro”. El 24.7% (24 estudiantes) respondió “Falso”, indicando su desacuerdo con esta afirmación. [Fuente 1]\n\n**Distribución de r15 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 73 | 75.3 % |\n| Falso | 24 | 24.7 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r15"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6068
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5847
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5092
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.49
+    }
+   ],
+   "segundos": 30.9,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 13799,
+    "recuperacion": 316,
+    "verificacion": 1,
+    "interpretacion": 16774
+   },
+   "k_precision": 0.781,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame 5",
+   "rag_log_id": 2430,
+   "respuesta": "El 75.3% (73 alumnos) de los participantes en la Prueba de Alfabetización Digital respondió “Verdadero” a la afirmación sobre la seguridad de las redes Wi-Fi públicas sin VPN [Fuente 1]. En contraste, el 24.7% (24 estudiantes) respondió “Falso”, indicando una percepción diferente sobre este tema [Fuente 1]. La prueba r03 evaluó competencias digitales básicas relacionadas con VPN y la nube, mostrando una clara disparidad en las respuestas a la pregunta r15 [Fuente 1].\n\n**Distribución de r15 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 73 | 75.3 % |\n| Falso | 24 | 24.7 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r15"
+    ],
+    "consulta_semantica": "Resumen de las respuestas a la pregunta r15"
+   },
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.544
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5347
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.3652
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r06",
+     "score": 0.3592
+    }
+   ],
+   "segundos": 56.5,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 37402,
+    "recuperacion": 400,
+    "verificacion": 14628,
+    "interpretacion": 18675
+   },
+   "k_precision": 0.674,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) filtrar sobre el grupo de (1); (3) 5 IDs anónimos con el total."
+}

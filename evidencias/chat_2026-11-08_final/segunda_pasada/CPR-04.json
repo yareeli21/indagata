@@ -1,0 +1,172 @@
+{
+ "id": "CPR-04",
+ "instrumento": "pru_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Falso en el reactivo del acceso abierto?",
+   "rag_log_id": 2873,
+   "respuesta": "34 de 80 respondientes marcaron “Falso” en el reactivo r09 «El acceso abierto (open access) permite la lectura gratuita de artículos científicos» [Fuente 1]. Esto representa un 42.5 % de los que participaron en la prueba [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Falso",
+      "pregunta": "r09"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Falso",
+      "pregunta": "r09"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.5723
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.461
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r14",
+     "score": 0.4564
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.4438
+    }
+   ],
+   "segundos": 28.3,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 9863,
+    "recuperacion": 316,
+    "verificacion": 1,
+    "interpretacion": 18115
+   },
+   "k_precision": 0.762,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "De ellos, ¿qué eligieron en el reactivo del DOI?",
+   "rag_log_id": 2874,
+   "respuesta": "De las 80 respuestas válidas en el reactivo r14 sobre el DOI, la opción más elegida fue “Descargar artículos ilegalmente”, seleccionada por 44 alumnos (55.0 %). La opción B, que identificaba de manera permanente y única un documento digital, obtuvo 9 respuestas (11.2 %), mientras que la opción C, crear correos electrónicos académicos, recibió 26 respuestas (32.5 %) y la opción D, almacenar datos de investigación, solo 1 respuesta (1.2 %). [Fuente 1]\n\n**Distribución de r14 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Descargar artículos ilegalmente | 44 | 55.0 % |\n| B) Identificar de manera permanente y única un documento digital | 9 | 11.2 % |\n| C) Crear correos electrónicos académicos | 26 | 32.5 % |\n| D) Almacenar datos de investigación | 1 | 1.2 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "B) Identificar de manera permanente y única un documento digital",
+      "pregunta": "r14"
+     },
+     {
+      "valor": "Falso",
+      "pregunta": "r09"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r14"
+    ]
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Identificar de manera permanente y única un documento digital",
+      "pregunta": "r14"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r14"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "r14: «Identificar de manera permanente y única un documento digital» → «B) Identificar de manera permanente y única un documento digital»",
+    "filtro r09 heredado del plan anterior"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.4817
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.4756
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4705
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r14",
+     "score": 0.4557
+    }
+   ],
+   "segundos": 49.0,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 28904,
+    "recuperacion": 346,
+    "verificacion": 14427,
+    "interpretacion": 19672
+   },
+   "k_precision": 0.937,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(1) conteo y %; (2) distribución del reactivo del DOI dentro del grupo de (1)."
+}

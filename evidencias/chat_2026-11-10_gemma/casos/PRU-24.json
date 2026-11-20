@@ -1,0 +1,75 @@
+{
+ "id": "PRU-24",
+ "instrumento": "pru",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál es la respuesta correcta del reactivo de la VPN?",
+   "rag_log_id": 3219,
+   "respuesta": "Indagata no califica las pruebas porque no tiene clave de respuestas, así que no se sabe si acertaron. En el reactivo r03 («¿Cuál es la principal función de una VPN?»), la opción más elegida fue «D) Almacenar archivos en la nube» (48.5 % de los alumnos) [Fuente 1].",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "limite": 1,
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r03"
+   },
+   "plan_modelo": {
+    "limite": 1,
+    "contexto": {
+     "opción": "A"
+    },
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r03"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "contexto opción = «A» descartado (la pregunta no lo menciona)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "estructurada:sin_calificar",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.7143
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.7119
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6396
+    }
+   ],
+   "segundos": 54.3,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 24785,
+    "recuperacion": 337,
+    "verificacion": 1,
+    "interpretacion": 28926
+   },
+   "k_precision": 0.941,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No maneja respuestas correctas; puede mostrar opciones y lo elegido, sin opinar."
+}

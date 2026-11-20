@@ -1,0 +1,255 @@
+{
+ "ENC-01|t0|rep1": {
+  "cumple": "parcial",
+  "nota": "Cifras correctas; la oración del modelo agrega algo falso sobre otra pregunta."
+ },
+ "ENC-01|t0|rep2": {
+  "cumple": "parcial",
+  "nota": "Cifras correctas; la oración del modelo agrega algo falso sobre otra pregunta."
+ },
+ "ENC-01|t0.2|rep1": {
+  "cumple": "parcial",
+  "nota": "Cifras correctas; dice que se relaciona con p04 (profesores con doctorado)."
+ },
+ "ENC-01|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-01|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-01|t0.5|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-02|t0.5|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-08|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-08|t0|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-08|t0.2|rep1": {
+  "cumple": "no",
+  "nota": "Dice que la presencial opina mejor (su media es menor) y atribuye cifras a otras opciones."
+ },
+ "ENC-08|t0.2|rep2": {
+  "cumple": "no",
+  "nota": "Dice que 2.92 es mayor que 2.97."
+ },
+ "ENC-08|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-08|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "Medias correctas; atribuye a «en línea» el 30.0 % del grupo presencial."
+ },
+ "ENC-09|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-09|t0|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-09|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "ENC-09|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "ENC-09|t0.5|rep1": {
+  "cumple": "no",
+  "nota": "Compara 48.5 % con 37.6 %, que es otra opción; el grupo que no trabaja aprobó 18.0 %."
+ },
+ "ENC-09|t0.5|rep2": {
+  "cumple": "cumple"
+ },
+ "PRU-01|t0|rep1": {
+  "cumple": "no",
+  "nota": "Responde con un KPI en lugar del número de alumnos."
+ },
+ "PRU-01|t0|rep2": {
+  "cumple": "no",
+  "nota": "Responde con un KPI en lugar del número de alumnos."
+ },
+ "PRU-01|t0.2|rep1": {
+  "cumple": "no",
+  "nota": "Responde con un KPI en lugar del número de alumnos."
+ },
+ "PRU-01|t0.2|rep2": {
+  "cumple": "no",
+  "nota": "Responde con un KPI en lugar del número de alumnos."
+ },
+ "PRU-01|t0.5|rep1": {
+  "cumple": "no",
+  "nota": "Responde con un KPI en lugar del número de alumnos."
+ },
+ "PRU-01|t0.5|rep2": {
+  "cumple": "no",
+  "nota": "Responde con un KPI en lugar del número de alumnos."
+ },
+ "PRU-03|t0|rep1": {
+  "cumple": "parcial",
+  "nota": "Da r10 y después dice que todas las preguntas tienen cero respuestas nulas."
+ },
+ "PRU-03|t0|rep2": {
+  "cumple": "parcial",
+  "nota": "Da r10 y después dice que todas las preguntas tienen cero respuestas nulas."
+ },
+ "PRU-03|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-03|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "PRU-03|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-03|t0.5|rep2": {
+  "cumple": "cumple"
+ },
+ "PRU-08|t0|rep1": {
+  "cumple": "parcial",
+  "nota": "Porcentajes por sección sin el número de reactivos."
+ },
+ "PRU-08|t0|rep2": {
+  "cumple": "parcial",
+  "nota": "Porcentajes por sección sin el número de reactivos."
+ },
+ "PRU-08|t0.2|rep1": {
+  "cumple": "parcial",
+  "nota": "Sin el número de reactivos."
+ },
+ "PRU-08|t0.2|rep2": {
+  "cumple": "parcial",
+  "nota": "Sin el número de reactivos."
+ },
+ "PRU-08|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-08|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "Sin el número de reactivos."
+ },
+ "PRU-09|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-09|t0|rep2": {
+  "cumple": "cumple"
+ },
+ "PRU-09|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-09|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "PRU-09|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "PRU-09|t0.5|rep2": {
+  "cumple": "cumple"
+ },
+ "ENT-04|t0|rep1": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-04|t0|rep2": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-04|t0.2|rep1": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-04|t0.2|rep2": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-04|t0.5|rep1": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-04|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "Muestra todas las respuestas sin señalar dónde menciona a profesores o tutor."
+ },
+ "ENT-06|t0|rep1": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-06|t0|rep2": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-06|t0.2|rep1": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-06|t0.2|rep2": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-06|t0.5|rep1": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-06|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "Cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-08|t0|rep1": {
+  "cumple": "parcial",
+  "nota": "Las dos respuestas lado a lado, sin la relación breve."
+ },
+ "ENT-08|t0|rep2": {
+  "cumple": "parcial",
+  "nota": "Las dos respuestas lado a lado, sin la relación breve."
+ },
+ "ENT-08|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "ENT-08|t0.2|rep2": {
+  "cumple": "parcial",
+  "nota": "Las dos respuestas lado a lado, sin la relación breve."
+ },
+ "ENT-08|t0.5|rep1": {
+  "cumple": "parcial",
+  "nota": "Las dos respuestas lado a lado, sin la relación breve."
+ },
+ "ENT-08|t0.5|rep2": {
+  "cumple": "parcial",
+  "nota": "Las dos respuestas lado a lado, sin la relación breve."
+ },
+ "ENT-09|t0|rep1": {
+  "cumple": "cumple"
+ },
+ "ENT-09|t0|rep2": {
+  "cumple": "cumple"
+ },
+ "ENT-09|t0.2|rep1": {
+  "cumple": "cumple"
+ },
+ "ENT-09|t0.2|rep2": {
+  "cumple": "cumple"
+ },
+ "ENT-09|t0.5|rep1": {
+  "cumple": "cumple"
+ },
+ "ENT-09|t0.5|rep2": {
+  "cumple": "cumple"
+ }
+}

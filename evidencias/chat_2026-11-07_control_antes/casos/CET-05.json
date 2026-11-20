@@ -1,0 +1,70 @@
+{
+ "id": "CET-05",
+ "instrumento": "ent_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántas veces mencionan el dinero o la economía?",
+   "rag_log_id": 2391,
+   "respuesta": "9 de 40 respondientes (22.5 %) mencionaron “dinero o economía” en sus respuestas abiertas [Fuente 1].\n\n**Dónde se menciona «dinero o economia» [Fuente 1]**\n| Respondente | Pregunta | Fragmento |\n|---|---|---|\n| E04 | p02 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E04 | p04 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E06 | p05 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E06 | p06 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E06 | p08 | «…el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a…» |\n| E06 | p09 | «…el acceso a una buena educación dependa tanto del dinero que tienes. A pesar de las dificultades económicas, me aferro a…» |\n| E17 | p09 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E17 | p12 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "menciona": "dinero o economia",
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "menciones de «dinero o economia» en las respuestas abiertas"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E14 en p05",
+     "score": 0.4261
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E06 en p05",
+     "score": 0.4214
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E28 en p09",
+     "score": 0.4205
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E29 en p05",
+     "score": 0.4175
+    }
+   ],
+   "segundos": 25.9,
+   "tiempos_ms": {
+    "ejecucion": 26,
+    "redaccion": 16252,
+    "recuperacion": 324,
+    "verificacion": 5881,
+    "interpretacion": 9254
+   },
+   "k_precision": 0.978,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Aclarar cómo cuenta y citar ejemplos."
+}

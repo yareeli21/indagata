@@ -1,0 +1,58 @@
+{
+ "id": "PRU-12",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Las respuestas en blanco se concentran en alguna sección?",
+   "rag_log_id": 2500,
+   "respuesta": "La Prueba de Alfabetización Digital consta de tres secciones: “SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS” (10 reactivos), “SECCIÓN: VERDADERO O FALSO DIGITAL” (7 reactivos) y “SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE)” (5 reactivos) [Fuente 1]. El resultado no indica si las respuestas en blanco se concentran en alguna sección específica, pero la prueba evalúa competencias básicas, seguridad en internet y herramientas de colaboración digital [Fuente 1].",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4103
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r08",
+     "score": 0.3674
+    }
+   ],
+   "segundos": 19.3,
+   "tiempos_ms": {
+    "redaccion": 18898,
+    "recuperacion": 151,
+    "verificacion": 1
+   },
+   "k_precision": 0.846,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución de NR por sección."
+}

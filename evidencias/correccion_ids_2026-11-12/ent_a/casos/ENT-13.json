@@ -1,0 +1,255 @@
+{
+ "id": "ENT-13",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué situaciones de la universidad le generan más estrés?",
+   "rag_log_id": 4067,
+   "respuesta": "resultado (temas, valoración y citas del análisis de cada respuesta):\n\n* Carga de Proyectos\n + Pregunta guía p02: ¿Qué situaciones de la universidad te generan más estrés o ansiedad?\n  - Cita exacta: \"Eh, Sobre todo la carga de proyectos\".\n* Exposiciones",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p02"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "¿Qué situaciones de la universidad te generan más estrés o ansiedad?",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p02 = «¿Qué situaciones de la universidad te generan más estrés o ansiedad?» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.8443
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.8163
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.8152
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5997
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5762
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5246
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4813
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4705
+    }
+   ],
+   "segundos": 23.4,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 18958,
+    "recuperacion": 431,
+    "verificacion": 2,
+    "interpretacion": 3970
+   },
+   "k_precision": 0.889,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y buscó ayuda por eso?",
+   "rag_log_id": 4068,
+   "respuesta": "**Hallazgos**\n\n* **Carga de Proyectos**: En la pregunta guía p02 \"¿Qué situaciones de la universidad te generan más estrés o ansiedad?\", la participante E01 cita: \"Eh, Sobre todo la carga de proyectos\". Según su respuesta, esta carga es lo que le genera más estrés y ansiedad.\n* **Exposiciones**: En la misma pregunta guía p02, la participante E01 también menciona que las exposiciones son otra situación que le genera estrés y ansiedad, citando: \"Eh, Sobre todo la carga de proyectos. Exposiciones, porque siento que todos me están evaluando\".\n* **Falta de conocimiento sobre servicios de apoyo psicológico**: La participante E01 menciona que no sabía dónde estaba el servicio de apoyo psicológico y cómo se pedía: \"Sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía\".\n* **Dificultad para recibir ayuda**: Aunque la participante E01 menciona que recibió ayuda después de hablar con una psicóloga, su respuesta no muestra que busque ayuda por el estrés y ansiedad mencionado anteriormente.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p02"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí, pero lo dejé",
+      "pregunta": "p03"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p03 = «Sí, pero lo dejé» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "aclaración → plan de la respuesta anterior (la pregunta se refiere a ella)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.762
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.7542
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.7338
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5916
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.5906
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.5902
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.565
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.5606
+    }
+   ],
+   "segundos": 18.6,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 12279,
+    "recuperacion": 374,
+    "verificacion": 2,
+    "interpretacion": 5917
+   },
+   "k_precision": 0.843,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Cuánto tardaron en atenderla?",
+   "rag_log_id": 4069,
+   "respuesta": "«Salud mental en la universidad» no registra «tardaron». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: Edad, Turno, Carrera, Género, Trabaja, Semestre.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Salud mental en la universidad» no registra «tardaron». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: Edad, Turno, Carrera, Género, Trabaja, Semestre."
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Carga de Proyectos",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p02 = «Carga de Proyectos» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 6.4,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 209,
+    "interpretacion": 6101
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) y (3) seguir hablando de ella; (3) usar la pregunta del tiempo de espera."
+}

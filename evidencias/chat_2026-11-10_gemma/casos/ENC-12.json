@@ -1,0 +1,97 @@
+{
+ "id": "ENC-12",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Quienes usan una plataforma virtual a diario califican mejor la biblioteca que quienes la usan menos de una vez al mes?",
+   "rag_log_id": 3166,
+   "respuesta": "El grupo que utiliza las plataformas virtuales diariamente (887 personas) tiene una media de 3.06 en la escala 1-5, con un 29.9% respondiendo “4 en escala 1–5”, mientras que el grupo que las usa menos de una vez al mes (132 personas) presenta una media de 2.8 y un 34.9% respondiendo “2 en escala 1–5) [Fuente 1]. Según la pregunta p09, se está preguntando sobre la frecuencia de uso de plataformas virtuales [Fuente 1].\n\n**Comparación por p09 «¿Con qué frecuencia usas alguna plataforma virtual (Moodle, Classroom,» [Fuente 1]**\n| Grupo | Personas | p18: respuestas del grupo |\n|---|---|---|\n| Diariamente | 887 | media 3.06; «2 en escala 1–5» 258 (30.6 %); «4 en escala 1–5» 252 (29.9 %); «3 en escala 1–5» 190 (22.5 %); «Totalmente de acuerdo» 85 (10.1 %); «Totalmente en desacuerdo» 58 (6.9 %) |\n| Menos de una vez al mes | 132 | media 2.8; «2 en escala 1–5» 44 (34.9 %); «3 en escala 1–5» 30 (23.8 %); «4 en escala 1–5» 29 (23.0 %); «Totalmente en desacuerdo» 14 (11.1 %); «Totalmente de acuerdo» 9 (7.1 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "filtros": [
+     {
+      "valor": [
+       "Diariamente",
+       "Menos de una vez al mes"
+      ],
+      "pregunta": "p09"
+     }
+    ],
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p18"
+    ],
+    "agrupar_por": "p09"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p09"
+    ],
+    "agrupar_por": "p09",
+    "contexto_num": [
+     {
+      "valor": 5.0,
+      "variable": "p01"
+     }
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "contexto p01 > 5 descartado (la pregunta no lo menciona)",
+    "comparar p18 entre «Diariamente» y «Menos de una vez al mes» de p09"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.6705
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.6586
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.4457
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.3945
+    }
+   ],
+   "segundos": 63.2,
+   "tiempos_ms": {
+    "ejecucion": 42,
+    "redaccion": 33254,
+    "recuperacion": 337,
+    "verificacion": 15747,
+    "interpretacion": 29536
+   },
+   "k_precision": 0.915,
+   "cifras_con_respaldo": [
+    30,
+    30
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Comparar los dos extremos, cada uno con su n."
+}

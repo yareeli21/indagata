@@ -1,0 +1,50 @@
+{
+ "id": "ENT-21",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué indicaciones tenía el entrevistador?",
+   "rag_log_id": 3839,
+   "respuesta": "El entrevistador tenía las siguientes indicaciones: \"Gracias por aceptar la entrevista. Todo lo que digas es confidencial y puedes no responder alguna pregunta.\" [Fuente 1].",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    }
+   ],
+   "segundos": 2.6,
+   "tiempos_ms": {
+    "redaccion": 2190,
+    "recuperacion": 180,
+    "verificacion": 1
+   },
+   "k_precision": 0.9,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Las indicaciones si están; si no, no inventarlas."
+}

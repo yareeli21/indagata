@@ -1,0 +1,103 @@
+{
+ "id": "PRU-16",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué herramienta para gestionar referencias eligieron más?",
+   "rag_log_id": 3209,
+   "respuesta": "La herramienta que los alumnos seleccionaron como la mejor para gestionar referencias bibliográficas fue Zotero o Mendeley, elegida por el 77.3% de los 97 estudiantes [Fuente 1]. La distribución específica es: 5.2% (n=5) optaron por Canva, 77.3% (n=75) eligieron Zotero o Mendeley, 4.1% (n=4) seleccionaron Trello y 13.4% (n=13) prefirieron Photoshop [Fuente 1].",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": "{\"intencion\": \"conteo_porcentaje\", \"filtros\": [{\"pregunta\": \"r20\"}], \"menciona\": \"herramienta para gestionar referencias\"}",
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.7044
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6822
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.4645
+    }
+   ],
+   "segundos": 32.2,
+   "tiempos_ms": {
+    "ejecucion": 0,
+    "recuperacion": 236,
+    "interpretacion": 13145
+   },
+   "k_precision": 0.781,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué puede indicar eso?",
+   "rag_log_id": 3210,
+   "respuesta": "- r10 «¿Qué es una contraseña segura?» tiene 97 respuestas nulas o vacías de 97 alumnos (100.0 %).\n- El reactivo donde más alumnos coinciden es r11 «El correo electrónico es siempre un canal seguro para enviar información confidencial.»: el 83.5 % eligió «Verdadero».\n- El reactivo con las respuestas más repartidas es r01 «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?»: la opción más elegida solo reúne el 30.9 %. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:calificada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.3736
+    }
+   ],
+   "segundos": 73.7,
+   "tiempos_ms": {
+    "ejecucion": 18,
+    "redaccion": 67513,
+    "recuperacion": 333,
+    "verificacion": 27711,
+    "interpretacion": 5797
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) interpretar con cifras, sin juzgar correcto o incorrecto."
+}

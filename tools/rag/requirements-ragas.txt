@@ -17,3 +17,6 @@ langchain-community==0.3.27
 langchain-openai==0.3.35
 instructor==1.17.0
 openai==2.54.0
+# Juez de RAGAS por la API de Anthropic (tools/rag/evaluacion/evaluar_v1.py, 11 nov 2026): RAGAS lo usa con
+# llm_factory(provider="anthropic"). La clave va en ANTHROPIC_API_KEY del .env, nunca en el código.
+anthropic>=0.40,<1

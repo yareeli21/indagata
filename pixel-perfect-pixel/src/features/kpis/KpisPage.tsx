@@ -89,8 +89,10 @@ export function KpisPage() {
     );
   }, [catalogo, busqueda]);
 
-  function abrirDashboard(kpi: KpiCatalogo) {
-    setKpiDashboard((prev) => (prev?.id === kpi.id ? null : kpi));
+  // Al elegir un KPI se abre su ficha (qué es, cómo se mide, fuentes) y queda seleccionado para el dashboard.
+  function elegirKpi(kpi: KpiCatalogo) {
+    setKpiDashboard(kpi);
+    setKpiDetalle(kpi);
   }
 
   return (
@@ -143,15 +145,15 @@ export function KpisPage() {
                 key={kpi.id}
                 kpi={kpi}
                 activo={kpiDashboard?.id === kpi.id}
-                onClick={() => abrirDashboard(kpi)}
+                onClick={() => elegirKpi(kpi)}
               />
             ))}
           </div>
         )}
 
         <p className="text-xs text-muted-foreground">
-          Haz clic en una tarjeta para ver el dashboard · Haz clic en "Ver detalle" para la ficha
-          completa.
+          Haz clic en una tarjeta para ver su ficha completa; también queda seleccionada para el
+          dashboard de tu investigación.
         </p>
       </section>
 

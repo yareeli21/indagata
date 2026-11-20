@@ -1,0 +1,76 @@
+{
+ "id": "ENT-25",
+ "instrumento": "ent",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "Estoy muy estresada con mis exámenes, ¿qué me recomiendas?",
+   "rag_log_id": 2338,
+   "respuesta": "E01 en p02 indica que experimenta altos niveles de estrés y ansiedad debido a la carga académica, específicamente por la cantidad de proyectos finales en equipo y las exposiciones, donde siente una fuerte presión evaluativa.  Según sus datos registrados, E01 menciona haber dormido poco (cinco horas) y sentirse cansada, lo que sugiere un impacto negativo en su bienestar emocional y rendimiento académico [Fuente 1]. La intervención con la psicóloga, a través de la agenda y la división de tareas, parece haber ayudado a mejorar ligeramente su promedio y a manejar mejor las situaciones de ansiedad en las exposiciones.\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p02 «¿Qué situaciones de la universidad te generan más estrés o ansiedad?» | Eh, Sobre todo la carga de proyectos. Este semestre llevo siete materias y en cuatro hay proyecto final en equipo. Además trabajo quince horas por semana en una papelería, entonces casi no me queda tiempo. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando. |\n| p08 «¿Notaste algún cambio en tu desempeño académico después de recibir apo» | Sí, un poco. Empecé a usar una agenda y a dividir los proyectos en partes pequeñas, como me sugirió la psicóloga. En el segundo parcial subí mi promedio de siete punto ocho a ocho punto cinco. Y en la última exposición me puse nerviosa, pero usé la respiración y pude terminarla sin quedarme en blanco. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p02",
+     "p08"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "correcciones": [
+    "RAG: se agregó p08 (intercambio más parecido a la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.6954
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.6179
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5543
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5233
+    }
+   ],
+   "segundos": 29.6,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 23564,
+    "recuperacion": 274,
+    "verificacion": 1,
+    "interpretacion": 5781
+   },
+   "k_precision": 0.777,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "debió decirme que no me puede hacer recomendaciones porque no es su tarea, solo son preguntas sobre el instrumento y que me ayude a entenderlo"
+  }
+ ],
+ "debe": "Amable; no da consejos; sugerir los servicios de apoyo de su institución."
+}

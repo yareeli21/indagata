@@ -1,0 +1,77 @@
+{
+ "id": "PRU-20",
+ "instrumento": "pru",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opciones tiene el reactivo sobre HTTPS?",
+   "rag_log_id": 2760,
+   "respuesta": "El reactivo r19 de la Prueba de Alfabetización Digital ofrece cuatro opciones para emparejar con «HTTPS»: Protocolo de mensajería (17 respuestas, 17.5 %), Protocolo seguro de transferencia web (39 respuestas, 40.2 %), Servidor de correo (13 respuestas, 13.4 %) y Sistema de archivos (28 respuestas, 28.9 %). La opción más elegida fue «Protocolo seguro de transferencia web» con un 40.2 % de las respuestas [Fuente 1]. Según sus datos registrados, el número de alumnos que eligieron la opción «Protocolo seguro de transferencia web» fue de 39 [Fuente 1].\n\n**Distribución de r19 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Protocolo de mensajería | 17 | 17.5 % |\n| B) Protocolo seguro de transferencia web | 39 | 40.2 % |\n| C) Servidor de correo | 13 | 13.4 % |\n| D) Sistema de archivos | 28 | 28.9 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r19"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r19"
+    ]
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.6674
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.5894
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.5368
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.4928
+    }
+   ],
+   "segundos": 64.3,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 45864,
+    "recuperacion": 1520,
+    "verificacion": 18061,
+    "interpretacion": 16901
+   },
+   "k_precision": 0.919,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Las cuatro opciones con su texto, sin marcar ninguna como correcta."
+}

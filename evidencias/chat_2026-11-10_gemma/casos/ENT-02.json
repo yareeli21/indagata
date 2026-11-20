@@ -1,0 +1,33 @@
+{
+ "id": "ENT-02",
+ "instrumento": "ent",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántas palabras dijo la participante y cuántas el entrevistador?",
+   "rag_log_id": 3222,
+   "respuesta": "Participación por hablante en «Salud mental en la universidad» (de la limpieza de la transcripción completa): Entrevistadora (entrevistador): 13 intervenciones y 170 palabras; Entrevistada (entrevistado): 13 intervenciones y 698 palabras.\n\n**Intervenciones y palabras por hablante**\n| Hablante | Intervenciones | Palabras |\n|---|---|---|\n| Entrevistadora (entrevistador) | 13 | 170 |\n| Entrevistada (entrevistado) | 13 | 698 |",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "entrevista:hablantes",
+   "plantilla": null,
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.0,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Participación por hablante, con números de la limpieza."
+}

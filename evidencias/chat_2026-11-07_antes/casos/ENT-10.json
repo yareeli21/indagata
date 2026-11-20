@@ -1,0 +1,72 @@
+{
+ "id": "ENT-10",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara el papel de sus profesores con el de los servicios de la universidad",
+   "rag_log_id": 2314,
+   "respuesta": "Según la entrevista con E01, el papel de los profesores en la salud mental del estudiante es variable, siendo una profesora de estadística quien identificó su problema y lo derivó a orientación, mientras que el tutor académico tuvo poca participación. De acuerdo al resultado, solo 1 de 1 participantes (E01) reportó alguna interacción con un profesor o tutor que influyó en su búsqueda de apoyo para problemas de salud mental [Fuente 1].\n\n**Respuestas a p09 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Depende mucho del profesor. Mi tutor académico casi no tiene tiempo, lo vi una vez en todo el semestre y fue para firmar la carga de materias. Pero una profesora de estadística notó que estaba muy distraída, me preguntó si estaba bien y fue la que me recomendó ir a orientación. Si no fuera por ella, no sé si habría ido. |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p09"
+    ]
+   },
+   "correcciones": [
+    "contexto Turno = «matutino» descartado (la pregunta no lo menciona)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.6442
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p08",
+     "score": 0.6088
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.5731
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.5716
+    }
+   ],
+   "segundos": 25.8,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 17051,
+    "recuperacion": 312,
+    "verificacion": 1,
+    "interpretacion": 8406
+   },
+   "k_precision": 0.774,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruzar las preguntas guía correspondientes, con citas."
+}

@@ -1,0 +1,70 @@
+{
+ "id": "ENC-03",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué porcentaje sabe que su programa tiene acreditación vigente?",
+   "rag_log_id": 2274,
+   "respuesta": "Criterio: resumen de p01.\np01 «Cargas máxima ¿Tu programa académico cuenta con acreditación vigente (»: 1951 respuestas válidas, 49 sin respuesta.\nInterpretación calculada: La opción más frecuente es «No lo se» (46.6 % de las respuestas). [Fuente 1]\n\n**Distribución de p01 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| No lo se | 909 | 46.6 % |\n| Si | 758 | 38.9 % |\n| No | 284 | 14.6 % |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "p01"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:cifras_completadas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.6786
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.6692
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.6014
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.5989
+    }
+   ],
+   "segundos": 233.7,
+   "tiempos_ms": {
+    "ejecucion": 125,
+    "redaccion": 196196,
+    "recuperacion": 2175,
+    "verificacion": 79437,
+    "interpretacion": 35174
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "% de «Sí»; «No» y «No lo sé» por separado si los menciona."
+}

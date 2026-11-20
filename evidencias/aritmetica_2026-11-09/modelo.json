@@ -1,0 +1,441 @@
+[
+ {
+  "id": "A01",
+  "ins": 59,
+  "tipo": "porcentaje",
+  "texto": "¿Qué porcentaje del turno vespertino está de acuerdo con que las evaluaciones están relacionadas con lo que se ve en clase?",
+  "esperado": {
+   "k": 4,
+   "n": 30,
+   "pct": 13.3
+  },
+  "A": {
+   "respuesta": "35.0 %",
+   "segundos": 18.7,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 60,
+   "tokens_datos": 1783,
+   "respuesta": "El número total de personas que dieron respuesta \"De acuerdo\" al turno vespertino es 26.",
+   "segundos": 50.5
+  }
+ },
+ {
+  "id": "A02",
+  "ins": 59,
+  "tipo": "porcentaje",
+  "texto": "¿Qué porcentaje del turno matutino está de acuerdo con que las evaluaciones están relacionadas con lo que se ve en clase?",
+  "esperado": {
+   "k": 17,
+   "n": 30,
+   "pct": 56.7
+  },
+  "A": {
+   "respuesta": "35.0 % del turno matutino está de acuerdo con que las evaluaciones están relacionadas con lo que se ve en clase.",
+   "segundos": 18.6,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 60,
+   "tokens_datos": 1783,
+   "respuesta": "El número de personas de turno matutino que expresaron acuerdo es 13.",
+   "segundos": 24.9
+  }
+ },
+ {
+  "id": "A03",
+  "ins": 59,
+  "tipo": "conteo",
+  "texto": "¿Cuántos respondentes están en desacuerdo con que las calificaciones reflejan lo que realmente aprendieron?",
+  "esperado": {
+   "k": 15,
+   "n": 60,
+   "pct": 25.0
+  },
+  "A": {
+   "respuesta": "El número exacto de respondientes que se encuentran en desacuerdo con la pregunta p02 es 46, representando un 31.7% del total de respuestas válidas (145).",
+   "segundos": 22.3,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 60,
+   "tokens_datos": 1798,
+   "respuesta": "Hay un total de 23 estudiantes que respondieron \"En desacuerdo\" con la pregunta sobre si las calificaciones reflejan lo aprendido.",
+   "segundos": 26.5
+  }
+ },
+ {
+  "id": "A04",
+  "ins": 59,
+  "tipo": "porcentaje",
+  "texto": "¿Qué porcentaje de los respondentes está de acuerdo con sentirse parte de la comunidad escolar?",
+  "esperado": {
+   "k": 30,
+   "n": 60,
+   "pct": 50.0
+  },
+  "A": {
+   "respuesta": "50.0 %.",
+   "segundos": 17.2,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 60,
+   "tokens_datos": 1746,
+   "respuesta": "El número total de personas que expresaron \"De acuerdo\" es 34. Por lo tanto, el porcentaje de respondientes que están de acuerdo con sentirse parte de la comunidad escolar es del 34%.",
+   "segundos": 27.7
+  }
+ },
+ {
+  "id": "A05",
+  "ins": 59,
+  "tipo": "conteo",
+  "texto": "¿Cuántas mujeres están de acuerdo con que se sienten seguras dentro de las instalaciones de la escuela?",
+  "esperado": {
+   "k": 14,
+   "n": 34,
+   "pct": 41.2
+  },
+  "A": {
+   "respuesta": "No se proporciona información sobre el género de los encuestados en ninguno de los datos proporcionados. Por lo tanto, no puedo determinar cuántas mujeres están de acuerdo con sentirse seguras.",
+   "segundos": 20.4,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 60,
+   "tokens_datos": 1797,
+   "respuesta": "Hay 23 mujeres que han expresado estar de acuerdo con la pregunta.",
+   "segundos": 26.0
+  }
+ },
+ {
+  "id": "A06",
+  "ins": 59,
+  "tipo": "porcentaje",
+  "texto": "¿Qué porcentaje del turno vespertino está en desacuerdo con que los criterios de evaluación se explican con claridad?",
+  "esperado": {
+   "k": 12,
+   "n": 30,
+   "pct": 40.0
+  },
+  "A": {
+   "respuesta": "25.0 %",
+   "segundos": 19.5,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 60,
+   "tokens_datos": 1777,
+   "respuesta": "Hay 23 personas en el turno vespertino que han expresado estar en desacuerdo, lo que representa un 36.8% del total de respuestas del turno vespertino.",
+   "segundos": 28.0
+  }
+ },
+ {
+  "id": "A07",
+  "ins": 61,
+  "tipo": "conteo",
+  "texto": "¿Cuántos estudiantes trabajan más de 30 horas?",
+  "esperado": {
+   "k": 37,
+   "n": 160,
+   "pct": 23.1
+  },
+  "A": {
+   "respuesta": "37 estudiantes.",
+   "segundos": 16.6,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 160,
+   "tokens_datos": 3449,
+   "respuesta": "7",
+   "segundos": 40.5
+  }
+ },
+ {
+  "id": "A08",
+  "ins": 61,
+  "tipo": "porcentaje",
+  "texto": "¿Qué porcentaje de los estudiantes tiene dificultades para equilibrar trabajo y estudios?",
+  "esperado": {
+   "k": 83,
+   "n": 160,
+   "pct": 51.9
+  },
+  "A": {
+   "respuesta": "51.9 %.",
+   "segundos": 17.3,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 160,
+   "tokens_datos": 2798,
+   "respuesta": "El número total de respuestas \"No\" a la pregunta \"p15\" es 96. Por lo tanto, el porcentaje de estudiantes que tienen dificultades para equilibrar trabajo y estudios es del 96%.",
+   "segundos": 37.0
+  }
+ },
+ {
+  "id": "A09",
+  "ins": 61,
+  "tipo": "conteo",
+  "texto": "¿Cuántos estudiantes han reprobado alguna materia por falta de tiempo para estudiar?",
+  "esperado": {
+   "k": 88,
+   "n": 160,
+   "pct": 55.0
+  },
+  "A": {
+   "respuesta": "88",
+   "segundos": 16.8,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 160,
+   "tokens_datos": 3281,
+   "respuesta": "27",
+   "segundos": 36.2
+  }
+ },
+ {
+  "id": "A10",
+  "ins": 61,
+  "tipo": "promedio",
+  "texto": "¿Cuál es el promedio de horas por semana que los estudiantes dedican al estudio fuera de clases?",
+  "esperado": {
+   "valor": 27.23,
+   "n": 160
+  },
+  "A": {
+   "respuesta": "27.23 horas.",
+   "segundos": 16.9,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 160,
+   "tokens_datos": 2856,
+   "respuesta": "El promedio de horas por semana que los estudiantes dedican al estudio fuera de clases es de 30.45 horas.",
+   "segundos": 36.9
+  }
+ },
+ {
+  "id": "A11",
+  "ins": 61,
+  "tipo": "conteo",
+  "texto": "¿Cuántos estudiantes de universidad pública dicen que su institución ofrece talleres de gestión del tiempo?",
+  "esperado": {
+   "k": 31,
+   "n": 83,
+   "pct": 37.3
+  },
+  "A": {
+   "respuesta": "63.",
+   "segundos": 17.2,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 160,
+   "tokens_datos": 2778,
+   "respuesta": "Hay 35 estudiantes de universidad pública que dicen que su institución ofrece talleres de gestión del tiempo.",
+   "segundos": 34.8
+  }
+ },
+ {
+  "id": "A12",
+  "ins": 61,
+  "tipo": "porcentaje",
+  "texto": "¿Qué porcentaje de los estudiantes está de acuerdo con que tiene tiempo suficiente para estudiar cada materia?",
+  "esperado": {
+   "k": 70,
+   "n": 160,
+   "pct": 43.8
+  },
+  "A": {
+   "respuesta": "95.0% de los estudiantes están de acuerdo con que tienen tiempo suficiente para estudiar cada materia, según la pregunta p03 de la encuesta \"Encuesta de Carga Académica y Gestión del Tiempo\", donde la escala es de 1 a 5.",
+   "segundos": 23.8,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 160,
+   "tokens_datos": 3979,
+   "respuesta": "De acuerdo / Frecuentemente: 46\nDe acuerdo / Frecuentemente: 13\nTotalmente de acuerdo / Siempre: 8\nNi de acuerdo ni en desacuerdo / A veces: 40\nEn desacuerdo / Pocas veces: 15",
+   "segundos": 49.5
+  }
+ },
+ {
+  "id": "A13",
+  "ins": 61,
+  "tipo": "conteo",
+  "texto": "¿Cuántos estudiantes que trabajan más de 30 horas tienen dificultades para equilibrar trabajo y estudios?",
+  "esperado": {
+   "k": 14,
+   "n": 160,
+   "pct": 8.8
+  },
+  "A": {
+   "respuesta": "83",
+   "segundos": 16.7,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 160,
+   "tokens_datos": 4332,
+   "respuesta": "7",
+   "segundos": 47.7
+  }
+ },
+ {
+  "id": "A14",
+  "ins": 127,
+  "tipo": "conteo",
+  "texto": "¿Cuántos estudiantes llevan carga académica máxima?",
+  "esperado": {
+   "k": 486,
+   "n": 1931,
+   "pct": 25.2
+  },
+  "A": {
+   "respuesta": "486",
+   "segundos": 16.5,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 2000,
+   "tokens_datos": 24636,
+   "respuesta": null,
+   "motivo": "no cabe: 24636 tokens de datos en una ventana de 8192"
+  }
+ },
+ {
+  "id": "A15",
+  "ins": 127,
+  "tipo": "porcentaje",
+  "texto": "¿Qué porcentaje de los estudiantes cursa su programa en línea?",
+  "esperado": {
+   "k": 263,
+   "n": 1949,
+   "pct": 13.5
+  },
+  "A": {
+   "respuesta": "13.5 %.",
+   "segundos": 8.7,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 2000,
+   "tokens_datos": 21965,
+   "respuesta": null,
+   "motivo": "no cabe: 21965 tokens de datos en una ventana de 8192"
+  }
+ },
+ {
+  "id": "A16",
+  "ins": 127,
+  "tipo": "porcentaje",
+  "texto": "¿Qué porcentaje está en desacuerdo con que los laboratorios, equipos y espacios son adecuados para su formación?",
+  "esperado": {
+   "k": 721,
+   "n": 1911,
+   "pct": 37.7
+  },
+  "A": {
+   "respuesta": "37.7 %",
+   "segundos": 8.9,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 2000,
+   "tokens_datos": 25241,
+   "respuesta": null,
+   "motivo": "no cabe: 25241 tokens de datos en una ventana de 8192"
+  }
+ },
+ {
+  "id": "A17",
+  "ins": 127,
+  "tipo": "conteo",
+  "texto": "¿Cuántos estudiantes trabajan en un área relacionada con su carrera?",
+  "esperado": {
+   "k": 500,
+   "n": 1946,
+   "pct": 25.7
+  },
+  "A": {
+   "respuesta": "No se puede determinar el número exacto de estudiantes que trabajan en un área relacionada con su carrera a partir de los datos proporcionados.",
+   "segundos": 9.1,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 2000,
+   "tokens_datos": 28755,
+   "respuesta": null,
+   "motivo": "no cabe: 28755 tokens de datos en una ventana de 8192"
+  }
+ },
+ {
+  "id": "A18",
+  "ins": 127,
+  "tipo": "conteo",
+  "texto": "¿Cuántos estudiantes presentaron un examen de certificación profesional y lo aprobaron?",
+  "esperado": {
+   "k": 379,
+   "n": 1952,
+   "pct": 19.4
+  },
+  "A": {
+   "respuesta": "379",
+   "segundos": 7.9,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 2000,
+   "tokens_datos": 27917,
+   "respuesta": null,
+   "motivo": "no cabe: 27917 tokens de datos en una ventana de 8192"
+  }
+ },
+ {
+  "id": "A19",
+  "ins": 127,
+  "tipo": "porcentaje",
+  "texto": "¿Qué porcentaje espera titularse en el tiempo que marca su plan de estudios?",
+  "esperado": {
+   "k": 382,
+   "n": 1942,
+   "pct": 19.7
+  },
+  "A": {
+   "respuesta": "19.7% del total de estudiantes respondió que esperaban titularse en el tiempo que marca su plan de estudios, según los datos fuente=\"3\".",
+   "segundos": 10.3,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 2000,
+   "tokens_datos": 29737,
+   "respuesta": null,
+   "motivo": "no cabe: 29737 tokens de datos en una ventana de 8192"
+  }
+ },
+ {
+  "id": "A20",
+  "ins": 127,
+  "tipo": "conteo",
+  "texto": "¿Cuántos estudiantes de modalidad presencial llevan carga académica máxima?",
+  "esperado": {
+   "k": 316,
+   "n": 1881,
+   "pct": 16.8
+  },
+  "A": {
+   "respuesta": "No se proporciona información específica sobre la cantidad de estudiantes de modalidad presencial que llevan carga académica máxima.",
+   "segundos": 8.7,
+   "fragmentos": 8
+  },
+  "B": {
+   "filas": 2000,
+   "tokens_datos": 39192,
+   "respuesta": null,
+   "motivo": "no cabe: 39192 tokens de datos en una ventana de 8192"
+  }
+ }
+]

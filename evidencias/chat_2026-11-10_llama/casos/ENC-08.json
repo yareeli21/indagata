@@ -1,0 +1,83 @@
+{
+ "id": "ENC-08",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la opinión sobre laboratorios y equipos entre modalidad presencial y en línea",
+   "rag_log_id": 3060,
+   "respuesta": "Criterio: por p02 «¿En qué modalidad cursas tu programa?». [Fuente 1]\n\n**Comparación por p02 «¿En qué modalidad cursas tu programa?» [Fuente 1]**\n| Grupo | Personas | p17: respuestas del grupo |\n|---|---|---|\n| En linea | 263 | media 2.97; «2 en escala 1–5» 81 (31.3 %); «3 en escala 1–5» 74 (28.6 %); «4 en escala 1–5» 60 (23.2 %); «Totalmente de acuerdo» 25 (9.7 %); «Totalmente en desacuerdo» 19 (7.3 %) |\n| Mixta/hibrida | 435 | media 3.01; «2 en escala 1–5» 128 (31.4 %); «3 en escala 1–5» 115 (28.3 %); «4 en escala 1–5» 87 (21.4 %); «Totalmente de acuerdo» 50 (12.3 %); «Totalmente en desacuerdo» 27 (6.6 %) |\n| Presencial | 1251 | media 2.92; «3 en escala 1–5» 402 (33.6 %); «2 en escala 1–5» 359 (30.0 %); «4 en escala 1–5» 247 (20.7 %); «Totalmente de acuerdo» 98 (8.2 %); «Totalmente en desacuerdo» 90 (7.5 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p17",
+     "p02"
+    ],
+    "aclaracion": "¿Cuál es la diferencia en la opinión sobre laboratorios y equipos entre estudiantes de modalidad presencial y en línea?",
+    "agrupar_por": "p02"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p17",
+     "p02"
+    ],
+    "aclaracion": "¿Cuál es la diferencia en la opinión sobre laboratorios y equipos entre estudiantes de modalidad presencial y en línea?",
+    "agrupar_por": "p02"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p17",
+     "score": 0.5948
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.5417
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.5401
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p17",
+     "score": 0.5226
+    }
+   ],
+   "segundos": 40.2,
+   "tiempos_ms": {
+    "ejecucion": 70,
+    "redaccion": 27695,
+    "recuperacion": 415,
+    "verificacion": 11926,
+    "interpretacion": 11985
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    42,
+    42
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Dos grupos con su n y su media o distribución, sin concluir causas."
+}

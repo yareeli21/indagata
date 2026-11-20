@@ -1,0 +1,76 @@
+{
+ "id": "PRU-09",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "De los que marcaron Verdadero en «el correo electrónico es siempre seguro», ¿qué eligieron en el reactivo de la VPN?",
+   "rag_log_id": 2347,
+   "respuesta": "81 de 97 (83.5 %) respondieron “Verdadero” al criterio r11 “El correo electrónico es siempre un canal seguro para enviar información confidencial”. De las opciones presentadas, 81 estudiantes eligieron “B) Protocolo seguro de transferencia web”.",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "op": ">",
+      "valor": "Verdadero",
+      "pregunta": "r11"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "contexto Turno = «Vespertino» descartado (la pregunta no lo menciona)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6518
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.6014
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.5395
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.537
+    }
+   ],
+   "segundos": 187.8,
+   "tiempos_ms": {
+    "ejecucion": 49,
+    "redaccion": 91118,
+    "recuperacion": 1553,
+    "verificacion": 4,
+    "interpretacion": 95075
+   },
+   "k_precision": 0.864,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": 1,
+   "comentario_humano": "se tuvo que haber dado el resultado respecto a la muestra de la primera respuesta"
+  }
+ ],
+ "debe": "Cruzar dos reactivos y dar la distribución dentro del grupo."
+}

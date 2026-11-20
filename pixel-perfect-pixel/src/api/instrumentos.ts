@@ -150,8 +150,8 @@ interface RelacionadoDTO {
 }
 
 /**
- * Instrumentos de OTROS autores relacionados con la selección, por KPIs en común,
- * nivel educativo y similitud semántica de su ficha (vectores en ChromaDB).
+ * Instrumentos de OTROS autores relacionados con la selección, por KPIs en común
+ * y similitud semántica de su ficha (vectores en ChromaDB).
  * POST /visualizacion/relacionados
  */
 export async function buscarRelacionados(

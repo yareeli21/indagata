@@ -1,0 +1,169 @@
+{
+ "id": "ENC-16",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 3072,
+   "respuesta": "**Patrones de preocupación**\n\n* **Carga académica insuficiente**: 65.1% de quienes respondieron consideran que su carga académica actual es \"Carga media/normal\", lo que podría indicar una falta de desafío o estímulo en el currículum, lo que podría afectar la motivación y el rendimiento académico.\n* **Falta de oportunidades de especialización**: 57.8% de quienes respondieron consideran que \"Nunca\" o \"Rara vez\" han tenido un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado, lo que podría sugerir una falta de flexibilidad en la estructura del programa y limitaciones en las oportunidades de especialización.\n* **Duda sobre la institución**: 61.7% de quienes respondieron consideran que \"No lo se\" si la institución ha obtenido patentes en los últimos años, lo que podría indicar una falta de confianza en la capacidad de la institución para innovar y mantenerse competitiva en el mercado laboral.\n* **División en opiniones sobre la oferta de programas**: La pregunta p16 tiene una desviación estándar de 1.26 puntos en la escala, lo que podría sugerir una división en opiniones sobre si la oferta de programas, materias optativas y cursos de la institución responde a sus intereses académicos y profesionales.\n\n**Lo más preocupante**\n\nConsidero que **la falta de oportunidades de especialización** es lo más preocupante, ya que podría afectar la motivación y el rendimiento académico de los estudiantes, y limitar su capacidad para desarrollar habilidades y conocimientos específicos en un campo determinado. Esto podría tener consecuencias a largo plazo en la carrera profesional y en la competitividad en el mercado laboral.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Con hasta un año de retraso",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "op": ">",
+      "valor": "Con hasta un año de retraso",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p10 > «Con hasta un año de retraso» → = (es una opción de texto)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.4382
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.433
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4315
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.4129
+    }
+   ],
+   "segundos": 44.7,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 21125,
+    "recuperacion": 379,
+    "verificacion": 2,
+    "interpretacion": 23129
+   },
+   "k_precision": 0.44,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué lo consideras preocupante?",
+   "rag_log_id": 3073,
+   "respuesta": "**Lo que muestran los datos:** Dato 1: La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»). Dato 2: La pregunta con más respuestas en el nivel alto es p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?»: 50.4 % de quienes respondieron (respondieron «4 en escala 1–5» o «Muy probable»).\n\n**Interpretación (del asistente, no es un dato):** La preocupación se debe a que un alto porcentaje de estudiantes considera su carga académica como \"normal\", lo que podría sugerir una falta de desafío o estímulo en el currículum, afectando la motivación y el rendimiento académico. Esto podría indicar que los programas no están proporcionando suficientes oportunidades para que los estudiantes crezcan y se desarrollen académicamente.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Con hasta un año de retraso",
+      "pregunta": "p10"
+     }
+    ],
+    "relacion": "profundiza",
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Cuál es el patrón que se repite entre quienes contestaron y por qué?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "intención aclaracion → hallazgo con sentido desfavorable",
+    "profundiza: se repite el plan anterior (hallazgo) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4628
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.4507
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.4503
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4395
+    }
+   ],
+   "segundos": 8.8,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 4702,
+    "recuperacion": 301,
+    "verificacion": 0,
+    "interpretacion": 3765
+   },
+   "k_precision": 0.621,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la polaridad (no elegir respuestas favorables) y justificar con cifras."
+}

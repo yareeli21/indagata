@@ -1,0 +1,70 @@
+{
+ "id": "CEN-04",
+ "instrumento": "enc_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué pregunta están más divididas las opiniones?",
+   "rag_log_id": 3943,
+   "respuesta": "Criterio: preguntas con respuestas más repartidas (índice de dispersión más alto: 1 = repartidas por igual entre sus opciones; entropía normalizada).\n1. p09 «¿Cuántas materias cursas actualmente?»: índice de dispersión 1.00 (4 opciones); la más elegida, «5-6», con 41 de 160 (25.6 %).\n2. p15 «¿Tienes dificultades para equilibrar trabajo y estudios?»: índice de dispersión 1.00 (2 opciones); la más elegida, «Sí», con 83 de 160 (51.9 %).\n3. p10 «¿Con qué frecuencia dejas tareas para el último momento?»: índice de dispersión 1.00 (5 opciones); la más elegida, «Frecuentemente», con 37 de 160 (23.1 %). [Fuente 1]\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | p09 | índice de dispersión 1.00 (4 opciones); la más elegida, «5-6», con 41 de 160 (25.6 %) |\n| 2 | p15 | índice de dispersión 1.00 (2 opciones); la más elegida, «Sí», con 83 de 160 (51.9 %) |\n| 3 | p10 | índice de dispersión 1.00 (5 opciones); la más elegida, «Frecuentemente», con 37 de 160 (23.1 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "filtros": [
+     {
+      "valor": "manejable",
+      "pregunta": "p01"
+     },
+     {
+      "valor": "elimino",
+      "pregunta": "p07"
+     }
+    ],
+    "intencion": "ranking_preguntas",
+    "agrupar_por": "niveles"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p01 = «manejable» descartado (no es una opción y la pregunta no lo menciona)",
+    "filtro p07 = «elimino» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "intención aclaracion → ranking_preguntas («repartida» por pregunta)",
+    "criterio del ranking: repartida (lo que dice la pregunta)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "estructurada",
+   "motivo": "plan:ranking_preguntas:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 14.9,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 10543,
+    "recuperacion": 358,
+    "verificacion": 4778,
+    "interpretacion": 3942
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    16,
+    16
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Una pregunta con su medida de dispersión explicada."
+}

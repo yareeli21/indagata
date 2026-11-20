@@ -1,0 +1,86 @@
+{
+ "id": "PRU-12",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Las respuestas en blanco se concentran en alguna sección?",
+   "rag_log_id": 2350,
+   "respuesta": "Prueba de Alfabetización Digital (Prueba estandarizada) [Fuente 1]:\n- Tiene 3 secciones y 22 reactivos:\n- Sección 1 «SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS»: 10 reactivos (r01, r02, r03, r04, r05, r06, r07, r08, r09, r10).\n- Sección 2 «SECCIÓN: VERDADERO O FALSO DIGITAL»: 7 reactivos (r11, r12, r13, r14, r15, r16, r17).\n- Sección 3 «SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE)»: 5 reactivos (r18, r19, r20, r21, r22).",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r01",
+     "r02",
+     "r03",
+     "r04",
+     "r05",
+     "r06",
+     "r07",
+     "r08",
+     "r09",
+     "r10",
+     "r11",
+     "r12",
+     "r13",
+     "r14",
+     "r15",
+     "r16",
+     "r17",
+     "r18",
+     "r19",
+     "r20",
+     "r21",
+     "r22"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "modelo_no_disponible",
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": "modelo_no_disponible",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.3757
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r08",
+     "score": 0.3617
+    }
+   ],
+   "segundos": 235.2,
+   "tiempos_ms": {
+    "ejecucion": 77,
+    "redaccion": 1767,
+    "recuperacion": 1759,
+    "verificacion": 0,
+    "interpretacion": 230736
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    22,
+    22
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "no me muestra que efectivamente están en blanco, entonces no entendió"
+  }
+ ],
+ "debe": "Distribución de NR por sección."
+}

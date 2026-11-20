@@ -32,6 +32,7 @@ class Entrada:
     nombre_archivo: str
     extension: str  # con punto y en minúsculas: ".csv", ".docx"…
     contenido: bytes
+    diccionario: Any = None  # diccionario de datos que se subió con el instrumento (microdatos), o None
 
 
 @dataclass

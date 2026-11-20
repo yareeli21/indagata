@@ -3,7 +3,9 @@
   - Sí / No en otro idioma o abreviado («Yes», «S», «N», «True») en una columna de Sí / No: se escriben como
     las demás, sin decisión. Si la columna mezcla «1» y «0», el investigador decide qué significa cada uno.
   - Opciones poco frecuentes casi iguales a otra opción («Una vez al mse» ≈ «Una vez al mes», «Nuca» ≈
-    «Nunca»): se propone cambiarlas por la opción frecuente; el investigador decide.
+    «Nunca»): se propone cambiarlas por la opción frecuente; el investigador decide. Una etiqueta de una escala
+    del diccionario («Totalmente en desacuerdo» junto a «Totalmente de acuerdo») o un «No sé» es una opción válida,
+    no un error de escritura.
 
 No se buscan sinónimos («Jamás» por «Nunca»): eso exige entender el significado.
 """
@@ -15,7 +17,7 @@ from difflib import SequenceMatcher
 
 from services.configuracion import normalizar_texto
 from services.motores.encuestas import universales
-from services.motores.encuestas.likert import numero
+from services.motores.encuestas.likert import no_respuestas, numero, posiciones
 
 _SI = {"si", "s", "yes", "y", "true", "verdadero"}
 _NO = {"no", "n", "false", "falso"}
@@ -137,6 +139,8 @@ def parecidas(tabla: universales.TablaPreparada) -> list[Parecida]:
         for raro, veces in conteo.items():
             frecuentes = [k for k, n in conteo.items() if k != raro and n >= max(3, _VECES_MAS_FRECUENTE * veces)]
             if veces > max_rara or not frecuentes or len(raro) < _LARGO_MINIMO:
+                continue
+            if posiciones(raro) or raro in no_respuestas():
                 continue
             similitud, destino = max((SequenceMatcher(None, raro, f).ratio(), f) for f in frecuentes)
             # «Grupo 1» y «Grupo 2» se parecen, pero son opciones distintas.

@@ -1,0 +1,72 @@
+{
+ "id": "PRU-10",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara los primeros 50 alumnos con los últimos 50 en el reactivo de la contraseña segura",
+   "rag_log_id": 2498,
+   "respuesta": "El reactivo r10 sobre contraseñas seguras evaluó a 48 personas en la sección de competencias digitales básicas [Fuente 1]. La prueba, dividida en primeros y últimos 48 alumnos, incluyó preguntas como \"¿Qué es una contraseña segura?\" y \"Empareja: HTTPS →\" [Fuente 1]. Ambos grupos (primeros y últimos 48) constan de 48 personas cada uno [Fuente 1].\n\n**Comparación por posición (primeros 48 y últimos 48) [Fuente 1]**\n| Grupo | Personas |\n|---|---|\n| Primeros 48 | 48 |\n| Últimos 48 | 48 |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "limite": 50,
+    "intencion": "comparar_grupos",
+    "agrupar_por": "posicion",
+    "criterio_ranking": "repartida"
+   },
+   "correcciones": [
+    "comparar los primeros 50 con los últimos 50"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r10",
+     "score": 0.5692
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r10",
+     "score": 0.5244
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.4907
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.4868
+    }
+   ],
+   "segundos": 45.5,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 25106,
+    "recuperacion": 305,
+    "verificacion": 12324,
+    "interpretacion": 20005
+   },
+   "k_precision": 0.795,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Grupos por posición con la distribución de cada uno."
+}

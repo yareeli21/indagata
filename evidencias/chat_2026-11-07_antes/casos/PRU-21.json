@@ -1,0 +1,58 @@
+{
+ "id": "PRU-21",
+ "instrumento": "pru",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Qué respondieron en el reactivo 25?",
+   "rag_log_id": 2367,
+   "respuesta": "El alumno A011 respondió “A” al reactivo 25. [Fuente 1]",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "No encontré la pregunta «r25» en «Prueba de Alfabetización Digital». ¿A cuál te refieres?"
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "cifras_sin_respaldo",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "alumno",
+     "etiqueta": "A011",
+     "score": 0.441
+    },
+    {
+     "seccion": "alumno",
+     "etiqueta": "A052",
+     "score": 0.4374
+    },
+    {
+     "seccion": "alumno",
+     "etiqueta": "A026",
+     "score": 0.4349
+    }
+   ],
+   "segundos": 91.2,
+   "tiempos_ms": {
+    "ejecucion": 41,
+    "recuperacion": 601,
+    "interpretacion": 50234
+   },
+   "k_precision": 0.5,
+   "cifras_con_respaldo": [
+    1,
+    2
+   ],
+   "calificacion_humana": 1,
+   "comentario_humano": "pero no solo ese respondente, sino todos"
+  }
+ ],
+ "debe": "La prueba solo tiene 22 reactivos."
+}

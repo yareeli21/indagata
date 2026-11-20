@@ -1,0 +1,132 @@
+{
+ "id": "ENT-17",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuáles son los hallazgos principales de la entrevista?",
+   "rag_log_id": 4078,
+   "respuesta": "resultado (exacto, no lo recalcules):\n\n- Temas: Estigma Profesional; Percepción de Gravedad; Dinámicas Familiares; Miedo al Juicio Social\n- Valoración: negativo\n- Citas:\n  - «Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente.»\n  - «Sobre todo la carga de proyectos. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando.»\n  - «Eh, Sobre todo la carga de proyectos.\n\nEs el testimonio de una sola persona (E01); no permite generalizar a otros estudiantes.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.4875
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4812
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.4599
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.4569
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4448
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4286
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.428
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.424
+    }
+   ],
+   "segundos": 25.0,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 21275,
+    "recuperacion": 358,
+    "verificacion": 2,
+    "interpretacion": 3368
+   },
+   "k_precision": 0.8,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Cuál debería atender primero la universidad y por qué?",
+   "rag_log_id": 4079,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados. Recuerda que solo entran al RAG los instrumentos con metadatos aprobados por su autor; puedes ampliar la selección de tu investigación.",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Qué patrón se repite entre quienes contestaron?"
+   },
+   "plan_modelo": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Qué patrón se repite entre quienes contestaron?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "plan:hallazgo con similitud 0.52 < 0.55",
+   "plantilla": "sin_informacion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 5.0,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 389,
+    "interpretacion": 4535
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) opinión fundamentada en lo citado, aclarando que es un solo testimonio."
+}

@@ -1,0 +1,704 @@
+{
+ "modo": "antes",
+ "fecha": "2026-10-28T13:39:44",
+ "metricas": true,
+ "resultados": [
+  {
+   "id": "C01",
+   "categoria": "hallazgo",
+   "pregunta": "dame un dato que encuentres interesante del instrumento",
+   "segundos": 12.34,
+   "decision": "dentro",
+   "ruta": "semantica",
+   "motivo": null,
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Un dato interesante que encontré es que el número de personas que respondieron a la pregunta P07 es de 2000, ya que se trata de todas las personas cuyas respuestas están incluidas en el conjunto de datos. [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras_alguna": false
+   },
+   "metricas": {
+    "estado": "listo",
+    "fidelidad": 0.0,
+    "relevancia": 0.237,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C02",
+   "categoria": "filtro con límite y todas las respuestas",
+   "pregunta": "dame los primeros 5 estudiantes que contestaron que tienen carga mínima, junto con todas sus respuestas",
+   "segundos": 11.95,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:filtro:negativa_corregida",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 10855,
+    "verificacion": 0
+   },
+   "respuesta": "Condición: p03 «¿Cómo es tu carga académica actual?» = «Carga minima» [Fuente 1]\nCumplen la condición 382 de 2000 respondentes (19.1 %). [Fuente 1]\nRespondentes que la cumplen: R002, R006, R008, R011, R014, R026, R027, R036, R037, R040 y 372 más. [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true,
+    "contiene": true
+   },
+   "metricas": {
+    "estado": "calculada",
+    "fidelidad": 1.0,
+    "relevancia": 0.633,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C03",
+   "categoria": "por respondente (ordinal)",
+   "pregunta": "qué respondió el primer respondente en todas las preguntas?",
+   "segundos": 8.1,
+   "decision": "fuera",
+   "ruta": "semantica",
+   "motivo": "clasificador: No se proporcionó información sobre los respuestas de un respondente",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": false,
+    "contiene": false
+   }
+  },
+  {
+   "id": "C04",
+   "categoria": "por respondente (ID y pregunta)",
+   "pregunta": "¿qué respondió R017 en la pregunta 3?",
+   "segundos": 5.61,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:respuesta",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 5041,
+    "verificacion": 15
+   },
+   "respuesta": "R017 respondió \"Carga media/normal\" en la pregunta p03 \"¿Cómo es tu carga académica actual?\" [Fuente 1].",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "contiene": true
+   },
+   "metricas": {
+    "estado": "listo",
+    "fidelidad": 1.0,
+    "relevancia": 0.436,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C05",
+   "categoria": "filtros combinados (conteo)",
+   "pregunta": "¿cuántos tienen carga minima y alguna certificación?",
+   "segundos": 14.46,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:filtro:negativa_corregida",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 14014,
+    "verificacion": 0
+   },
+   "respuesta": "Condición: p03 «¿Cómo es tu carga académica actual?» = «Carga minima» [Fuente 1]\nCondición: p11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco, Microsoft Azure, Google Cloud, etc.?» = «Si, y no lo aprobe» o «Si, y lo aprobe» («certificacion» se interpretó como «sí») [Fuente 1]\nCumplen la condición 105 de 2000 respondentes (5.2 %). [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true
+   },
+   "metricas": {
+    "estado": "calculada",
+    "fidelidad": 1.0,
+    "relevancia": 0.364,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C06",
+   "categoria": "seguimiento con historial",
+   "pregunta": "¿y de ellos cuántos están en modalidad en línea?",
+   "segundos": 11.55,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:filtro:cifras_completadas",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 11087,
+    "verificacion": 1
+   },
+   "respuesta": "Condición: p02 «¿En qué modalidad cursas tu programa?» = «En linea» [Fuente 1]\nCumplen la condición 263 de 2000 respondentes (13.2 %). [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false
+   },
+   "metricas": {
+    "estado": "calculada",
+    "fidelidad": 1.0,
+    "relevancia": 0.645,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C07",
+   "categoria": "porcentaje en un nivel",
+   "pregunta": "¿qué porcentaje está en desacuerdo con que los laboratorios son adecuados?",
+   "segundos": 11.73,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:pct_nivel:cifras_completadas",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 11325,
+    "verificacion": 0
+   },
+   "respuesta": "En la pregunta p17 «Los laboratorios, equipos, materiales y espacios de la institución son adecuados para mi formación.», el 0.0 % (0 de 1911) de quienes respondieron está en desacuerdo. [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false
+   },
+   "metricas": {
+    "estado": "calculada",
+    "fidelidad": 1.0,
+    "relevancia": 0.705,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C08",
+   "categoria": "negación",
+   "pregunta": "¿cuántos no han presentado ningún examen de certificación profesional?",
+   "segundos": 15.63,
+   "decision": "dentro",
+   "ruta": "semantica",
+   "motivo": null,
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Según la encuesta, 1952 personas respondieron que no habían presentado ningún examen de certificación profesional. De estas, 48 no respondieron a esta pregunta.\n\nLa distribución de las respuestas es:\n\n- No, pero planeo hacerlo: 44.7% (n=873)\n- No, y no lo planeo: 23.3% (n=454)\n- Si, y lo aprobé: 19.4% (n=379)\n- Si, y no lo aprobé: 12.6% (n=246)\n\nLa opción más frecuente es \"No, pero planeo hacerlo\" con un 44.7% de las respuestas.\n\n[Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false
+   },
+   "metricas": {
+    "estado": "listo",
+    "fidelidad": 0.667,
+    "relevancia": 0.501,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C09",
+   "categoria": "límite y solo IDs",
+   "pregunta": "dame los IDs de 3 estudiantes que cursan en modalidad en línea",
+   "segundos": 12.14,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:filtro:negativa_corregida",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 11584,
+    "verificacion": 0
+   },
+   "respuesta": "Condición: p02 «¿En qué modalidad cursas tu programa?» = «En linea» [Fuente 1]\nCumplen la condición 263 de 2000 respondentes (13.2 %). [Fuente 1]\nRespondentes que la cumplen: R015, R018, R020, R025, R030, R034, R046, R051, R056, R066 y 253 más. [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true,
+    "contiene": true
+   },
+   "metricas": {
+    "estado": "calculada",
+    "fidelidad": 1.0,
+    "relevancia": 0.55,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C10",
+   "categoria": "por respondente (último)",
+   "pregunta": "¿qué contestó el último respondente en la pregunta 2?",
+   "segundos": 8.31,
+   "decision": "fuera",
+   "ruta": "semantica",
+   "motivo": "clasificador: No tengo acceso a información de respuestas previas",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": false,
+    "contiene": false
+   }
+  },
+  {
+   "id": "C11",
+   "categoria": "resumen de una pregunta",
+   "pregunta": "¿qué respondieron en la pregunta 2?",
+   "segundos": 12.16,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:filtro:negativa_corregida",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 5065,
+    "verificacion": 0
+   },
+   "respuesta": "Condición: p02 «¿En qué modalidad cursas tu programa?» = «Presencial» (condición interpretada por el modelo) [Fuente 1]\nCumplen la condición 1251 de 2000 respondentes (62.5 %). [Fuente 1]\nRespondentes que la cumplen: R001, R002, R004, R005, R008, R009, R010, R011, R012, R013 y 1241 más. [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false,
+    "contiene": true
+   },
+   "metricas": {
+    "estado": "calculada",
+    "fidelidad": 1.0,
+    "relevancia": 0.337,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C12",
+   "categoria": "KPI",
+   "pregunta": "¿qué KPIs tiene asociados el instrumento?",
+   "segundos": 13.4,
+   "decision": "dentro",
+   "ruta": "semantica",
+   "motivo": null,
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Según el contexto proporcionado, el instrumento tiene asociados los siguientes KPIs:\n\n1. Cualificación Docente y Tasa de Rotación del Profesorado\n2. Estado de Acreditación y Clasificaciones Académicas\n3. Ratio de Matriculados frente a Graduados del Curso\n\n[Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "contiene": true
+   },
+   "metricas": {
+    "estado": "listo",
+    "fidelidad": 1.0,
+    "relevancia": 0.964,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C13",
+   "categoria": "valor que no existe",
+   "pregunta": "¿cuántos estudian en modalidad nocturna?",
+   "segundos": 12.61,
+   "decision": "sin_informacion",
+   "ruta": "semantica",
+   "motivo": "el modelo no encontró la respuesta en el contexto",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": false,
+    "contiene_alguno": false,
+    "sin_cifras": true
+   }
+  },
+  {
+   "id": "C14",
+   "categoria": "ambigua",
+   "pregunta": "¿qué opinan de eso?",
+   "segundos": 1.9,
+   "decision": "fuera",
+   "ruta": "semantica",
+   "motivo": "clasificador: No es relevante para el dominio de la educación",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": false
+   }
+  },
+  {
+   "id": "C15",
+   "categoria": "fuera de dominio (regla)",
+   "pregunta": "escríbeme un poema sobre el mar",
+   "segundos": 0.07,
+   "decision": "fuera",
+   "ruta": null,
+   "motivo": "regla:fuera",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true
+   }
+  },
+  {
+   "id": "C16",
+   "categoria": "fuera de dominio (plan)",
+   "pregunta": "¿quién ganó el mundial de futbol de 2010?",
+   "segundos": 0.22,
+   "decision": "fuera",
+   "ruta": "semantica",
+   "motivo": "similitud máxima 0.19 < 0.3",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true
+   }
+  },
+  {
+   "id": "C17",
+   "categoria": "reidentificación",
+   "pregunta": "¿cómo se llama el respondente R017 y cuál es su correo?",
+   "segundos": 0.07,
+   "decision": "privacidad",
+   "ruta": null,
+   "motivo": "regla:privacidad",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo, «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo.",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true
+   }
+  },
+  {
+   "id": "C18",
+   "categoria": "metodología",
+   "pregunta": "¿qué significa un alfa de Cronbach bajo?",
+   "segundos": 3.33,
+   "decision": "dentro",
+   "ruta": "semantica",
+   "motivo": null,
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Un alfa de Cronbach bajo indica que los ítems de un bloque de una encuesta no responden de forma coherente entre sí, lo que sugiere que los ítems no miden lo mismo. Esto puede indicar que falta invertir algún ítem redactado en negativo o que hay redundancia en la medida.\n\n[ Fuente 2 ]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "contiene_alguno": false
+   },
+   "metricas": {
+    "estado": "listo",
+    "fidelidad": 0.75,
+    "relevancia": 1.0,
+    "precisionContexto": 0.0
+   }
+  },
+  {
+   "id": "C19",
+   "categoria": "uso de la plataforma",
+   "pregunta": "¿cómo descargo el archivo limpio de un instrumento?",
+   "segundos": 13.41,
+   "decision": "ayuda",
+   "ruta": "ayuda",
+   "motivo": null,
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Para descargar el archivo limpio de un instrumento, sigue estos pasos:\n\n1.  Ve a \"Mis instrumentos\" en la plataforma.\n2.  Busca el instrumento que deseas descargar y haz clic en él.\n3.  Haz clic en \"Descargar\".\n4.  Selecciona \"Archivo crudo\".\n\n[ Fuente: Ayuda de la plataforma ]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true
+   }
+  },
+  {
+   "id": "C20",
+   "categoria": "comparar grupos de contexto",
+   "pregunta": "compara el porcentaje de acuerdo en la pregunta 1 entre los turnos",
+   "segundos": 1.56,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:pct_nivel:negativa_corregida",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 1243,
+    "verificacion": 0
+   },
+   "respuesta": "En la pregunta p01 «Los criterios de evaluación se explican con claridad al inicio del curso.», el 38.3 % (23 de 60) de quienes respondieron está de acuerdo. [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false,
+    "contiene": false
+   },
+   "metricas": {
+    "estado": "calculada",
+    "fidelidad": 1.0,
+    "relevancia": 0.444,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C21",
+   "categoria": "porcentaje de un grupo",
+   "pregunta": "¿qué porcentaje del turno vespertino está de acuerdo con que se siente seguro en la escuela?",
+   "segundos": 11.67,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:pct_nivel",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 11467,
+    "verificacion": 2
+   },
+   "respuesta": "El 33.3% del turno vespertino está de acuerdo con que se siente seguro en la escuela, ya que 10 de los 30 respondientes coincidieron en esta pregunta. [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true
+   },
+   "metricas": {
+    "estado": "listo",
+    "fidelidad": 1.0,
+    "relevancia": 0.934,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C22",
+   "categoria": "comparar grupos de contexto",
+   "pregunta": "compara por género cuántos están de acuerdo con que la institución se preocupa por su permanencia",
+   "segundos": 12.11,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:filtro:cifras_completadas",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 11830,
+    "verificacion": 0
+   },
+   "respuesta": "Condición: p07 «Siento que la institución se preocupa por mi permanencia.»: de acuerdo [Fuente 1]\nCondición: p25 «primera_generacion» = «Sí» («genero» se interpretó como «sí») [Fuente 1]\nCumplen la condición 1 de 160 respondentes (0.6 %). [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false
+   },
+   "metricas": {
+    "estado": "calculada",
+    "fidelidad": 1.0,
+    "relevancia": 0.315,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C23",
+   "categoria": "conteo binario",
+   "pregunta": "¿cuántos han reprobado alguna materia en el último año?",
+   "segundos": 11.49,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:filtro",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 11249,
+    "verificacion": 0
+   },
+   "respuesta": "Según el resultado calculado, 44 personas cumplieron con la condición de haber reprobado alguna materia en el último año, lo que representa un 27,5% del total de respondentes (160). [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true
+   },
+   "metricas": {
+    "estado": "listo",
+    "fidelidad": 0.5,
+    "relevancia": 0.725,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C24",
+   "categoria": "filtro con nivel y opción",
+   "pregunta": "¿cuántos están de acuerdo con que la cantidad de materias es manejable y dedican Menos de 5h al estudio fuera de clases?",
+   "segundos": 13.28,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:filtro:cifras_completadas",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 13009,
+    "verificacion": 1
+   },
+   "respuesta": "Condición: p12 «¿Cuántas horas dedicas al estudio fuera de clases por semana?» = «Menos de 5h» [Fuente 1]\nCondición: p01 «Considero que la cantidad de materias que curso es manejable.»: de acuerdo [Fuente 1]\nCumplen la condición 17 de 160 respondentes (10.6 %). [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true
+   },
+   "metricas": {
+    "estado": "calculada",
+    "fidelidad": 1.0,
+    "relevancia": 0.723,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C25",
+   "categoria": "comparación entre instrumentos",
+   "pregunta": "compara lo que respondieron en la pregunta 1 de ambos instrumentos",
+   "segundos": 20.14,
+   "decision": "dentro",
+   "ruta": "semantica",
+   "motivo": null,
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Según los datos proporcionados, en la pregunta 1 \"Los criterios de evaluación se explican…\" tanto en la Encuesta como en el instrumento no especificado (no se menciona su nombre), los respondentes R014 y R050 indicaron estar en desacuerdo, mientras que el respondente R002 también lo hizo.",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false
+   },
+   "metricas": {
+    "estado": "listo",
+    "fidelidad": 0.5,
+    "relevancia": 0.527,
+    "precisionContexto": 0.583
+   }
+  },
+  {
+   "id": "C26",
+   "categoria": "hallazgo",
+   "pregunta": "¿qué es lo más llamativo de la encuesta por turno?",
+   "segundos": 0.38,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:patrones",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Encuesta de evaluación y ambiente escolar por turno (Encuesta) [Fuente 1]:\n- Pregunta con más acuerdo (o nivel alto): p08 «Me siento parte de la comunidad escolar.», 50.0 %.\n- Pregunta con más desacuerdo (o nivel bajo): p04 «Las evaluaciones están relacionadas con lo que se ve en clase.», 31.7 %.\n- Las 8 preguntas de escala tienen respuestas divididas: ninguna opinión predomina con claridad.\n- Sección con la media más alta: «AMBIENTE ESCOLAR» (3.38); la más baja: «EVALUACIÓN DEL APRENDIZAJE» (3.15), en escala de 1 a 5.",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "cifras_alguna": true
+   },
+   "metricas": {
+    "estado": "calculada",
+    "fidelidad": 1.0,
+    "relevancia": 0.473,
+    "precisionContexto": null
+   }
+  },
+  {
+   "id": "C27",
+   "categoria": "entrevista por participante",
+   "pregunta": "¿qué respondió E02 en la pregunta 1?",
+   "segundos": 18.67,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "estructurada:dijo",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {
+    "redaccion": 18412,
+    "verificacion": 0
+   },
+   "respuesta": "E02 respondió que \"Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas.\" [Fuente 1]",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "contiene": true
+   },
+   "metricas": {
+    "estado": "listo",
+    "fidelidad": 1.0,
+    "relevancia": 0.181,
+    "precisionContexto": 1.0
+   }
+  },
+  {
+   "id": "C28",
+   "categoria": "semántica abierta",
+   "pregunta": "¿qué dicen los entrevistados sobre el apoyo familiar?",
+   "segundos": 14.55,
+   "decision": "dentro",
+   "ruta": "semantica",
+   "motivo": null,
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Según la entrevista, los entrevistados mencionan que el apoyo familiar ha sido clave para su permanencia en la institución. Ambos participantes (E01 y E36) destacan la importancia de pedir ayuda como una estrategia inteligente, y mencionan específicamente a sus compañeros y familiares como fuente de apoyo.\n\nEn particular, E01 destaca el valor del estudio en grupo, mientras que E36 menciona los momentos difíciles en los primeros semestres y la comprensión de algunos profesores. Ambos coinciden en que pedir ayuda no es una debilidad, sino una forma de demostrar inteligencia.\n\nNo se mencionan cifras ni estadísticas específicas sobre el apoyo familiar y su impacto en la permanencia universitaria.",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true,
+    "ruta": true
+   },
+   "metricas": {
+    "estado": "listo",
+    "fidelidad": 0.5,
+    "relevancia": 0.535,
+    "precisionContexto": 0.583
+   }
+  }
+ ],
+ "resumen": {
+  "casos": 28,
+  "respuesta_correcta_pct": 53.6,
+  "cifras_correctas_pct": 46.7,
+  "decision_correcta_pct": 85.7,
+  "plan_por_campo_pct": null,
+  "plan_completo_pct": null,
+  "segundos_mediana": 11.84,
+  "segundos_max": 20.14,
+  "ms_por_etapa_mediana": {
+   "redaccion": 11325,
+   "verificacion": 0
+  },
+  "metricas_media": {
+   "fidelidad": 0.846,
+   "relevancia": 0.561,
+   "precisionContexto": 0.903
+  },
+  "fallas": [
+   "C01",
+   "C03",
+   "C06",
+   "C07",
+   "C08",
+   "C10",
+   "C11",
+   "C13",
+   "C14",
+   "C18",
+   "C20",
+   "C22",
+   "C25"
+  ]
+ }
+}

@@ -1,0 +1,76 @@
+{
+ "id": "PRU-12",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Las respuestas en blanco se concentran en alguna sección?",
+   "rag_log_id": 3096,
+   "respuesta": "Las respuestas en blanco se concentran principalmente en la sección \"SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS\", con un total de 99 respuestas en blanco o nulas entre 10 reactivos.\n\nEste es el porcentaje de sus respuestas posibles que corresponden a este patrón: 10.2 % (99/97).\n\nEn esta sección, las respuestas en blanco o nulas son más comunes que en otras secciones, con un total de 99 respuestas en blanco o nulas entre 10 reactivos.\n\n**Respuestas en blanco o nulas por sección [Fuente 1]**\n| Sección | Reactivos | En blanco o nulas | % de sus respuestas |\n|---|---|---|---|\n| SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS | 10 | 99 | 10.2 % |\n| SECCIÓN: VERDADERO O FALSO DIGITAL | 7 | 4 | 0.6 % |\n| SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE) | 5 | 3 | 0.6 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "seccion",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar por sección (respuestas en blanco o nulas)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4103
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r08",
+     "score": 0.3674
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r08",
+     "score": 0.3658
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.3634
+    }
+   ],
+   "segundos": 25.0,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 12677,
+    "recuperacion": 356,
+    "verificacion": 4685,
+    "interpretacion": 11870
+   },
+   "k_precision": 0.855,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución de NR por sección."
+}

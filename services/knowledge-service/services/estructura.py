@@ -20,6 +20,8 @@ import re
 from dataclasses import dataclass, field
 from typing import Any
 
+from shared.conocimiento import significados
+
 from services import original as orig
 from services.interpretacion.privacidad import es_dato_personal
 from services.original import InstrumentoOriginal, PreguntaOriginal, normalizar
@@ -132,9 +134,51 @@ def encuesta(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOrigin
     e = _encuesta(id_crudo, reporte, original)
     if original is not None:
         _anclas_de_escalas_lineales(e, original.escalas_lineales)
+    aplicar_significados(e, significados.de_reporte(reporte, "encuesta"))
     dimensiones = ((reporte.get("especifico") or {}).get("encuesta") or {}).get("dimensiones") or []
     _secciones_por_dimension(e, id_instrumento(id_crudo), dimensiones, nombres_dimensiones or [])
     return e
+
+
+_TIPOS_ESCALA = ("likert", "cuadricula", "escala_lineal")
+# Prefijo de un código («P» de «P1», «Q» de «Q12_3»): no es un nombre de sección.
+_RE_PREFIJO_CODIGO = re.compile(r"^[A-Za-z]{1,3}\d*(?: \d+)*$")
+
+
+def aplicar_significados(e: Estructura, sig: dict[str, dict[str, Any]], prueba: bool = False) -> None:
+    """Texto de las preguntas en código y significado de sus códigos (diccionario de datos o limpieza).
+
+    Manda sobre el instrumento original y sobre el encabezado: es lo que la investigadora confirmó para esa
+    columna. En las pruebas, las etiquetas de las letras son el texto de cada opción.
+    """
+    if not sig:
+        return
+    con_texto = 0
+    for p in e.preguntas:
+        s = sig.get(p.columna or "")
+        if not s:
+            continue
+        if s.get("pregunta"):
+            p.texto = " ".join(s["pregunta"].split())
+            con_texto += 1
+        valores = s.get("valores") or {}
+        if not valores:
+            continue
+        if prueba:
+            # Letras (opción múltiple) o números (escala): la etiqueta es lo que significa cada respuesta.
+            p.letras = dict(valores)
+            p.opciones = [f"{k}) {v}" for k, v in valores.items()]
+        elif p.tipo not in _TIPOS_ESCALA:
+            p.opciones = list(valores.values())
+        if all(k.lstrip("-").isdigit() for k in valores) and not p.anclas and p.tipo in _TIPOS_ESCALA:
+            p.anclas = {int(k): v for k, v in valores.items()}
+    # Secciones que solo eran el prefijo del código («P» de P1…P8): ya no describen nada.
+    for s in e.secciones:
+        if _RE_PREFIJO_CODIGO.match(s.nombre):
+            s.nombre = "Preguntas del instrumento"
+    if con_texto and con_texto == sum(1 for p in e.preguntas if p.columna):
+        e.avisos = [a for a in e.avisos if a.get("codigo") not in ("sin_original", "preguntas_sin_original", "sin_original_prueba")]
+        e.fuente = "original" if e.fuente == "original" else "diccionario"
 
 
 def _anclas_de_escalas_lineales(e: Estructura, escalas: list[dict[int, str]]) -> None:
@@ -528,6 +572,7 @@ def prueba(id_crudo: int, reporte: dict[str, Any], original: InstrumentoOriginal
         c.aviso("sin_original", "No se subió la prueba original: los reactivos no tienen texto ni opciones.")
     elif not mismo_largo and not por_numero:
         c.aviso("reactivos_sin_texto", "No se pudo emparejar la prueba original con los reactivos de la hoja de respuestas.")
+    aplicar_significados(c.e, significados.de_reporte(reporte, "prueba_estandarizada"), prueba=True)
     return c.e
 
 

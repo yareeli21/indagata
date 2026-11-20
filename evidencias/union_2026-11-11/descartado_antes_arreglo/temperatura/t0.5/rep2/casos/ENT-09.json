@@ -1,0 +1,109 @@
+{
+ "id": "ENT-09",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Notó diferencia en su desempeño académico antes y después de recibir apoyo?",
+   "rag_log_id": 3620,
+   "respuesta": "resultado:\n\n- Tema: Desempeño académico\n- Pregunta: p08, p03 (múltiples preguntas)\n- Valoración: positivo (p08), neutro (p03)\n\nCon base en el análisis de las respuestas del participante E01, se presentan los siguientes hallazgos:\n\n* El participante E01 mencionó que recibió apoyo psicológico y que esto le permitió mejorar su desempeño académico. En la pregunta p08, respondió: \"Sí, un poco. Empecé a usar una agenda y a dividir los proyectos en partes pequeñas, como me sugirió la psicóloga.\"\n* El participante E01 también mencionó que su profesora de estadística notó que estaba distraída y le recomendó ir a orientación, lo que podría haber sido un factor importante en su decisión de buscar apoyo.\n* Aunque el participante E01 mencionó que sabía que la universidad ofrecía servicios de apoyo psicológico, no se refirió a una mejora en su desempeño académico como resultado de este conocimiento.\n* En la pregunta p03, el participante E01 respondió que sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía. Esto sugiere que la falta de información sobre los servicios de apoyo psicológico podría haber sido un obstáculo para su búsqueda de ayuda.\n\nID del participante: E01",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p08"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p08"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.7085
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.7042
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.6847
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6108
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6096
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.5715
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.5712
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.5665
+    }
+   ],
+   "segundos": 23.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 18903,
+    "recuperacion": 402,
+    "verificacion": 2,
+    "interpretacion": 3901
+   },
+   "k_precision": 0.728,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta guía correspondiente; no inventar un cambio."
+}

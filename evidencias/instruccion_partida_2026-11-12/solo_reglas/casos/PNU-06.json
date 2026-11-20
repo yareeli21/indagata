@@ -1,0 +1,60 @@
+{
+ "id": "PNU-06",
+ "instrumento": "pru_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "Muéstrame lo que contestó A033 en los primeros tres reactivos",
+   "rag_log_id": 4182,
+   "respuesta": "A033 respondió:\n\nr01 \"¿Qué caracteriza a la investigación cuantitativa?\" La observación participante.\nr02 \"La hipótesis en investigación científica es:\" La conclusión final del estudio.\nr03 \"¿Qué es la validez en un instrumento de medición?\" Que tenga muchos ítems.\n\nSegún su respuesta, A033 considera que la investigación cuantitativa se caracteriza por la observación participante y que la hipótesis en investigación científica es la conclusión final del estudio. También menciona que la validez en un instrumento de medición se refiere a que tiene muchos ítems.\n\nFuente: <datos>\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | A033 |\n|---|---|\n| Contexto: edad | 19 |\n| Contexto: genero | femenino |\n| Contexto: horas_trabajo_semana | 7 |\n| Contexto: nivel_estudio | pregrado |\n| Contexto: nivel_ses | alto |\n| Contexto: perfil | P1 |\n| Contexto: primera_generacion | False |\n| Contexto: promedio_gpa | 3.85 |\n| Contexto: semestre | 7 |\n| Contexto: tiene_beca | False |\n| Contexto: tipo_universidad | privada |\n| r01 «¿Qué caracteriza a la investigación cuantitativa?» | La observación participante |\n| r02 «La hipótesis en investigación científica es:» | La conclusión final del estudio |\n| r03 «¿Qué es la validez en un instrumento de medición?» | Que tenga muchos ítems |\n| r04 «¿Qué es la triangulación en investigación?» | Usar solo un método de recolección de datos |\n| r05 «¿Cuál es la función del marco teórico en una investigación?» | Presentar los resultados obtenidos |\n| r06 «Un muestreo probabilístico garantiza:» | Que la investigación sea cualitativa |\n| r07 «El coeficiente alpha de Cronbach mide:» | La correlación entre dos variables |\n| r08 «¿Qué es una revisión sistemática de literatura?» | Un resumen personal de lo que se sabe |\n| r09 «El acceso abierto (open access) permite la lectura gratuita de artícul» | Falso |\n| r10 «La fabricación de datos en investigación es éticamente aceptable si el» | Verdadero |\n| r11 «El factor de impacto de una revista científica indica cuántas veces so» | Falso |\n| r12 «Publicar el mismo artículo en dos revistas distintas sin declararlo es» | Falso |\n| r13 «¿Cuál base de datos es específicamente para artículos científicos indi» | Scopus o Web of Science |\n| r14 «El DOI (Digital Object Identifier) sirve para:» | Descargar artículos ilegalmente |\n| r15 «¿Qué es un artículo de revisión (review article)?» | Un artículo que critica a otros investigadores |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "A033"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 3,
+    "intencion": "datos_respondente"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "respondente A033 tomado de la pregunta"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "estructurada",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 17.9,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 5073,
+    "recuperacion": 563,
+    "verificacion": 2,
+    "interpretacion": 12163
+   },
+   "k_precision": 0.989,
+   "cifras_con_respaldo": [
+    18,
+    18
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Respuestas de A033 en r01–r03."
+}

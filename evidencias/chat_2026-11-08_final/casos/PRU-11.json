@@ -1,0 +1,69 @@
+{
+ "id": "PRU-11",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara cómo respondieron los reactivos de seguridad (VPN, phishing, contraseña, Wi-Fi) con los de licencias (Creative Commons, código abierto)",
+   "rag_log_id": 2844,
+   "respuesta": "Según los datos disponibles, el reactivo r15 de la “Prueba de Alfabetización Digital” sobre redes Wi-Fi públicas sin VPN obtuvo un resultado de 75.3% de respuestas como “Verdadero” (n=73) frente al 24.7% que respondió “Falso” (n=24) [Fuente 1]. No hay información disponible para comparar este resultado con otros reactivos relacionados con seguridad o licencias.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«tema» no es una variable de contexto de «Prueba de Alfabetización Digital» (disponibles: perfil, edad, genero, semestre, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca)."
+   },
+   "plan_modelo": {
+    "limite": 20,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r03",
+     "r15",
+     "r21"
+    ],
+    "agrupar_por": "tema"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6091
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5822
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.5046
+    }
+   ],
+   "segundos": 35.7,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "recuperacion": 165,
+    "interpretacion": 19648
+   },
+   "k_precision": 0.565,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Qué reactivos agrupó y qué opciones predominan en cada grupo."
+}

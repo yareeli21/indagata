@@ -1,0 +1,87 @@
+{
+ "id": "PRU-06",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en el reactivo de Wi-Fi público sin VPN?",
+   "rag_log_id": 2737,
+   "respuesta": "73 de 97 respondieron “Verdadero” en el reactivo r15 [Fuente 1]. Esto representa un 75.3 % [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "campos": [
+     "r15"
+    ],
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "campos": [
+     "r15"
+    ],
+    "menciona": "Verdadero",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "mención «Verdadero» descartada (la pregunta no pregunta quién lo mencionó)",
+    "conteo de r15 = «Verdadero» como condición (la consulta nombra la opción)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6852
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6602
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.4958
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.4799
+    }
+   ],
+   "segundos": 33.6,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 14771,
+    "recuperacion": 828,
+    "verificacion": 0,
+    "interpretacion": 17902
+   },
+   "k_precision": 0.75,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Llegar al reactivo por su significado y mostrar «Verdadero/Falso», no «Opción A/B»."
+}

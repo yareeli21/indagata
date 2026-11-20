@@ -1,0 +1,58 @@
+{
+ "id": "ENC-12",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Quienes usan una plataforma virtual a diario califican mejor la biblioteca que quienes la usan menos de una vez al mes?",
+   "rag_log_id": 2530,
+   "respuesta": "Según los datos registrados [Fuente 1], el 46.0% (n=887) de los estudiantes responde que usa alguna plataforma virtual diariamente. El 6.8% (n=132) responde que la usa menos de una vez al mes. No se proporciona información sobre la relación entre estas dos categorías y la valoración de la biblioteca [Fuente 1].",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«valor» no es una variable de contexto de «Indicadores de Experiencia y Calidad Académica» (disponibles: ninguna)."
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.6705
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.6586
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.4457
+    }
+   ],
+   "segundos": 40.7,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "recuperacion": 177,
+    "interpretacion": 19306
+   },
+   "k_precision": 0.438,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Comparar los dos extremos, cada uno con su n."
+}

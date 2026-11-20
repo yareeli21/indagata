@@ -2,7 +2,6 @@ import type {
   DublinCore,
   KpiSugerido,
   MetadatosTipo,
-  NivelEducativo,
   OrigenMetadato,
   TipoInstrumento,
 } from "@/types";
@@ -55,6 +54,7 @@ interface UploadResponse {
   fecha_carga?: string | null;
   archivo_respondido: ArchivoRegistrado;
   archivo_original?: ArchivoRegistrado | null;
+  archivo_diccionario?: ArchivoRegistrado | null;
   mensaje: string;
 }
 
@@ -79,7 +79,8 @@ async function detalleDe(respuesta: Response): Promise<string> {
 }
 
 /**
- * Sube el instrumento RESPONDIDO (y opcionalmente el ORIGINAL) por el gateway:
+ * Sube el instrumento RESPONDIDO (y opcionalmente el ORIGINAL y, con microdatos, su
+ * DICCIONARIO DE DATOS: variable, pregunta, valor y etiqueta) por el gateway:
  * `POST /instrumentos/upload` (multipart). El storage-service guarda el archivo
  * tal cual se subió. Requiere Bearer (rol investigador/admin).
  *
@@ -90,11 +91,13 @@ export async function subirInstrumento(
   archivo: File,
   tipo: TipoInstrumento,
   archivoOriginal?: File | null,
+  archivoDiccionario?: File | null,
 ): Promise<ResultadoCarga> {
   const form = new FormData();
   form.append("archivo", archivo);
   form.append("tipo_instrumento", TIPO_UI_A_BACKEND[tipo]);
   if (archivoOriginal) form.append("archivo_original", archivoOriginal);
+  if (archivoDiccionario) form.append("archivo_diccionario", archivoDiccionario);
 
   const headers: Record<string, string> = {};
   const token = leerToken();
@@ -209,20 +212,14 @@ function texto(valor: unknown): string {
   return String(valor);
 }
 
-/** «Licenciatura — Estudiantes de la UNAM» → nivel + detalle. */
-function partirCobertura(cobertura: string): { nivel: NivelEducativo | ""; detalle: string } {
+/**
+ * «Licenciatura — Estudiantes de la UNAM» → «Estudiantes de la UNAM». Quita el nivel con que empiece la
+ * cobertura propuesta (todo el acervo es de licenciatura, 16 nov) y deja solo el alcance.
+ */
+function detalleCobertura(cobertura: string): string {
   const limpio = cobertura.trim();
-  const m = /^(Licenciatura|Posgrado)(?:\s*\([^)]*\))?\s*(?:[—–-]\s*)?(.*)$/i.exec(limpio);
-  if (m) {
-    const nivel: NivelEducativo = m[1]?.toLowerCase() === "posgrado" ? "Posgrado" : "Licenciatura";
-    return { nivel, detalle: (m[2] ?? "").trim() };
-  }
-  const minusculas = limpio.toLowerCase();
-  if (/posgrado|maestr|doctor|especialidad/.test(minusculas))
-    return { nivel: "Posgrado", detalle: limpio };
-  if (/licenciatura|universitari|pregrado/.test(minusculas))
-    return { nivel: "Licenciatura", detalle: limpio };
-  return { nivel: "", detalle: limpio };
+  const m = /^(Licenciatura|Posgrado|No especificado)(?:\s*\([^)]*\))?\s*(?:[—–-]\s*)?(.*)$/i.exec(limpio);
+  return m ? (m[2] ?? "").trim() : limpio;
 }
 
 /** Aplica una propuesta (valores `dc_*`) sobre el formulario Dublin Core. */
@@ -237,9 +234,9 @@ export function dublinCoreDesdePropuesta(
   }
   const cobertura = texto(valores["dc_coverage"]);
   if (cobertura) {
-    const { nivel, detalle } = partirCobertura(cobertura);
-    dc.cobertura = nivel;
-    dc.coberturaDetalle = detalle;
+    // Todo el acervo es de licenciatura: el nivel propuesto no se usa, el alcance sí.
+    dc.cobertura = "Licenciatura";
+    dc.coberturaDetalle = detalleCobertura(cobertura);
   }
   return dc;
 }

@@ -1,0 +1,197 @@
+{
+ "id": "ENC-13",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos han hecho prácticas profesionales?",
+   "rag_log_id": 3633,
+   "respuesta": "- La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»).\n- La pregunta con más respuestas en el nivel alto es p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?»: 50.4 % de quienes respondieron (respondieron «4 en escala 1–5» o «Muy probable»).\n- En p03 «¿Cómo es tu carga académica actual?» predomina «Carga media/normal»: 65.1 % de quienes respondieron. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 3,
+    "filtros": [
+     {
+      "valor": "Si, en una empresa con convenio de mi institucion",
+      "pregunta": "p14"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 3,
+    "filtros": [
+     {
+      "valor": "Si, en una empresa con convenio de mi institucion",
+      "pregunta": "p14"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.6836
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.6526
+    }
+   ],
+   "segundos": 28.7,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 15960,
+    "recuperacion": 642,
+    "verificacion": 6371,
+    "interpretacion": 12020
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y de ellos, cuántos la consiguieron por convenio de la institución?",
+   "rag_log_id": 3634,
+   "respuesta": "**Patrones interesantes del resultado**\n\n* 57.8% de quienes respondieron a p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?» respondieron «Nunca» o «Rara vez», lo que podría indicar que estos eventos son poco frecuentes en la institución.\n* 50.4% de quienes respondieron a p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?» respondieron con una probabilidad alta, lo que sugiere confianza en la institución para futuras carreras académicas.\n* 65.1% de quienes respondieron a p03 «¿Cómo es tu carga académica actual?» eligieron la categoría «Carga media/normal», lo que podría indicar una carga académica equilibrada y no excesiva para muchos estudiantes.\n* 64.2% de quienes respondieron a p02 «¿En qué modalidad cursas tu programa?» eligieron la opción presencial, lo que sugiere que la mayoría de los programas se ofrecen en este formato.\n* 61.7% de quienes respondieron a p08 «¿Sabes si la institución ha obtenido patentes en los últimos años?» respondieron con un conocimiento limitado o no, lo que podría indicar una falta de información sobre innovación y desarrollo tecnológico en la institución.\n* La pregunta p16 «La oferta de programas, materias optativas y cursos de mi institución responde a mis intereses académicos y profesionales.» tiene una desviación estándar de 1.26 puntos en la escala, lo que sugiere una gran variabilidad en las opiniones de los estudiantes sobre si sus intereses se alinean con la oferta de programas de la institución.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Si, en una empresa con convenio de mi institucion",
+      "pregunta": "p14"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Si, en una empresa con convenio de mi institucion",
+      "pregunta": "p14"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "estructurada",
+   "motivo": "plan:hallazgo:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 25.8,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 13004,
+    "recuperacion": 368,
+    "verificacion": 9795,
+    "interpretacion": 12344
+   },
+   "k_precision": 0.645,
+   "cifras_con_respaldo": [
+    12,
+    12
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué puede significar eso?",
+   "rag_log_id": 3635,
+   "respuesta": "**Lo que muestran los datos:** Dato 1: La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»). Dato 2: La pregunta con más respuestas en el nivel alto es p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?»: 50.4 % de quienes respondieron (respondieron «4 en escala 1–5» o «Muy probable»).\n\n**Interpretación (del asistente, no es un dato):** El hecho de que 57.8% de los estudiantes respondieron que nunca o solo rara vez han experimentado un cambio de profesor iniciado el periodo o una materia sin profesor asignado, podría sugerir que estos eventos son poco frecuentes en la institución y que los estudiantes se sienten establecidos en sus carreras académicas.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Si, en una empresa con convenio de mi institucion",
+      "pregunta": "p14"
+     }
+    ],
+    "relacion": "profundiza",
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Cuál es el significado de que la mayoría de los estudiantes no han realizado prácticas profesionales?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "profundiza: se repite el plan anterior (hallazgo) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "estructurada",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 7.6,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 3727,
+    "recuperacion": 369,
+    "verificacion": 0,
+    "interpretacion": 3423
+   },
+   "k_precision": 0.77,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) «ellos» = el grupo de (1); (3) interpretar con las cifras, sin buscar otra pregunta."
+}

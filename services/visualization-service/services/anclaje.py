@@ -2,9 +2,9 @@
 
 El modelo de 3B arma bien la forma del plan, pero en la medición del 28 oct (instrumento 127) se equivocó en
 detalles que el esquema no puede detectar porque el plan sigue siendo válido:
-  - «¿cuántos tienen carga minima…?» → filtro «Carga media/normal» (otra opción real de la misma pregunta);
+  - «¿cuántos llegan caminando…?» → filtro «En bicicleta» (otra opción real de la misma pregunta);
   - «¿qué respondió R017 en la pregunta 3?» → plan sin el respondente ni la pregunta;
-  - «¿y de ellos cuántos están en modalidad en línea?» → un filtro inventado en otra pregunta, sin «En linea», y
+  - «¿y de ellos cuántos estudian a distancia?» → un filtro inventado en otra pregunta, sin «A distancia», y
     como lista en lugar de conteo.
 
 Este paso corrige el plan con las menciones explícitas de la pregunta, que son inequívocas: IDs de respondente,
@@ -20,7 +20,7 @@ import re
 
 from services import enrutador
 from services.catalogo import Catalogo
-from services.dominio import normalizar
+from services.dominio import normalizar, valor_nombrado
 from services import plan_consulta
 from services.plan_consulta import CondicionContexto, Filtro, Orden, PlanConsulta, _es_escala
 
@@ -94,7 +94,7 @@ def _opciones_mencionadas(texto: str, cat: Catalogo) -> dict[str, list[str]]:
     for o, pids in por_opcion.items():
         if len(pids) == 1:
             salida.setdefault(next(iter(pids)), []).append(o)
-    # «Trabajo más de 30h» contiene «30h»: se queda la opción más larga de cada pregunta si una contiene a otra.
+    # «Más de 20 horas» contiene «20 horas»: se queda la opción más larga de cada pregunta si una contiene a otra.
     for pid, ops in salida.items():
         salida[pid] = [o for o in ops if not any(o != x and normalizar(o) in normalizar(x) for x in ops)]
     return salida
@@ -173,11 +173,13 @@ def sin_inventos(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, s
 
     cambios: dict = {}
     notas: list[str] = []
+    filtro_mencion: Filtro | None = None
     # Un grupo de contexto se sostiene si la consulta dice su valor; en una variable de sí/no basta con nombrarla
     # («los que tienen beca»). Nombrar solo la variable no basta: «¿cuántos estudian ingeniería?» se convertía en
     # nivel_estudio = «pregrado» porque «estudian» comparte raíz con la variable (consulta 2195, 7 nov).
     contexto = {k: v for k, v in plan.contexto.items()
-                if dicho(str(v)) or (normalizar(str(v)) in _VERDADEROS | _FALSOS and dicho(k))}
+                if dicho(str(v)) or valor_nombrado(str(v), texto) or valor_nombrado(str(v), previas)
+                or (normalizar(str(v)) in _VERDADEROS | _FALSOS and dicho(k))}
     if contexto != plan.contexto:
         cambios["contexto"] = contexto
         notas += [f"contexto {k} = «{v}» descartado (la pregunta no lo menciona)" for k, v in plan.contexto.items()
@@ -190,13 +192,17 @@ def sin_inventos(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, s
     if plan.menciona and not (_termino_mencionado(texto) or _termino_mencionado(previas)):
         cambios["menciona"] = ""
         notas.append(f"mención «{plan.menciona}» descartada (la pregunta no pregunta quién lo mencionó)")
+        if catalogos and (filtro_mencion := _mencion_como_filtro(plan, pregunta, catalogos)):
+            notas.append(f"filtro {filtro_mencion.pregunta} = «{', '.join(_valores(filtro_mencion))}» (la mención es el "
+                         "texto de esa pregunta)")
     if catalogos and plan.filtros:
         cat = next((c for c in catalogos if c.id in plan.instrumentos), catalogos[0])
         variable_nombrada = _filtros_sin_inventos(plan, cat, raices, dicho, cambios, notas)
-        if not variable_nombrada and not cambios.get("filtros", plan.filtros) and not cambios.get("contexto", plan.contexto) \
+        if not variable_nombrada and filtro_mencion is None and not cambios.get("filtros", plan.filtros) \
+                and not cambios.get("contexto", plan.contexto) \
                 and not cambios.get("contexto_num", plan.contexto_num) and not cambios.get("preguntas", plan.preguntas):
             # Antes de rendirse: la condición puede estar en las opciones de una pregunta que no usa las palabras de
-            # la consulta («¿cuántos trabajan?» → p12 «¿Cuál es tu situación laboral actual?», consulta 2149).
+            # la consulta («¿cuántos trabajan?» → la pregunta sobre la situación laboral, consulta 2149).
             if por_opcion := opciones_por_raiz(pregunta, cat):
                 cambios["filtros"] = [Filtro(pregunta=pid, valor=ops) for pid, ops in por_opcion.items()]
                 notas += [f"filtro {pid} = «{', '.join(ops)}» (sus opciones dicen lo que pide la pregunta)"
@@ -204,9 +210,14 @@ def sin_inventos(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, s
                 return plan.model_copy(update=cambios), notas
             # Pedía una condición y ninguna se sostiene: se dice que no existe en lugar de contar a todos
             # («¿cuántos estudian ingeniería?» en una prueba sin carrera, consulta 1612).
+            if (nombrada := _pregunta_nombrada(pregunta, cat)) is not None:
+                notas.append(f"la consulta nombra {nombrada}: se resume esa pregunta (el filtro era un invento)")
+                return PlanConsulta(intencion="resumen_pregunta", preguntas=[nombrada], instrumentos=plan.instrumentos), notas
             notas.append(NINGUNA_CONDICION)
             nuevo = _aclarar_condicion(plan, pregunta, cat)
             return nuevo, notas + ([AVISO_INEXISTENTE] if nuevo.intencion != "aclaracion" else [])
+    if filtro_mencion is not None:
+        cambios["filtros"] = [*cambios.get("filtros", plan.filtros), filtro_mencion]
     return (plan.model_copy(update=cambios) if cambios else plan), notas
 
 
@@ -225,6 +236,10 @@ _PRIMEROS_ULTIMOS = re.compile(r"\bprimer[oa]s\s+(\d{1,4})\b.{0,60}\bultim[oa]s\
 _POR_SECCION = re.compile(r"\b(?:por|entre|en (?:alguna|cada|que)|de (?:la|cada)) secci\w*\b|\bsecciones?\b.{0,40}\b(?:compar\w*|"
                           r"concentr\w*|mas|menos)\b|\bcompar\w*\b.{0,60}\bseccion\b")
 _SEGUN = re.compile(r"\b(?:segun|dependiendo de|de acuerdo con|en funcion de)\s+(?:la|el|los|las|su|sus)?\s*(.{3,60}?)(?:[?,.]|$)")
+# «Están de acuerdo con que…» es un nivel de la escala, no «según» (10 nov, aritmética A12: «¿qué porcentaje está de
+# acuerdo con que tiene tiempo suficiente…?» se volvió «comparar p03 según p13»).
+_ESTAR_ANTES = re.compile(r"\b(?:esta|estan|estoy|estamos|estas|estar|estuvo|estuvieron|totalmente|muy|ni|poco|bastante|"
+                          r"nada)\s+$")
 
 
 _PREOCUPANTE = re.compile(r"\b(?:preocupa\w*|alarma\w*|negativ\w*|peor(?:es)?|problema\w*|debilidad\w*|riesgos?|"
@@ -248,6 +263,37 @@ _DE_LOS_QUE = re.compile(r"^(?:y\s+)?de\s+(?:los|las|quienes)\s+que\s+(.+?)[,?¿
 _CONTRASTE = re.compile(r"\b(?:que|contra|frente a|comparados? con|vs\.?)\s+(?:los|las)?\s*(?:que|quienes)\b")
 
 
+_PROMEDIO = re.compile(r"\b(?:promedio|en promedio|la media|media de|mediana)\b")
+_NUMERICAS = {"numerica", "calificacion", "escala_lineal"}
+_CUANTOS_O_PORCENTAJE = re.compile(r"\b(?:cuant[oa]s|porcentaje|proporcion|que tanto por ciento)\b")
+_CON_MEDIA = _NUMERICAS | {"likert", "cuadricula"}  # su resumen ya trae la media
+_NEGACION_ANTES = re.compile(r"\b(?:no|nunca|ningun\w*|jamas)\b")
+
+
+def _mencion_como_filtro(plan: PlanConsulta, pregunta: str, catalogos: list[Catalogo]) -> Filtro | None:
+    """Una «mención» que en realidad es el texto de una pregunta cerrada se vuelve un filtro sobre esa pregunta (10 nov,
+    aritmética A11 y A09): «¿cuántos dicen que su institución ofrece talleres de gestión del tiempo?» es p16 = «Sí», no
+    quién escribió «talleres»; al descartar la mención quedaba solo el grupo, o la distribución de otra pregunta.
+    Solo si la frase comparte al menos dos raíces con la pregunta y cubre la mitad de las suyas."""
+    cat = next((c for c in catalogos if c.id in plan.instrumentos), catalogos[0])
+    propias = enrutador._raices(plan.menciona)
+    pid = _pregunta_por_texto(plan.menciona, cat, {f.pregunta for f in plan.filtros})
+    if pid is None or not cat.preguntas[pid].opciones:
+        return None
+    comunes = propias & enrutador._raices(cat.preguntas[pid].texto)
+    if len(comunes) < 2 or 2 * len(comunes) < len(propias):
+        return None
+    texto = normalizar(pregunta)
+    primera = min((texto.find(r) for r in comunes if r in texto), default=-1)
+    polo = "no" if primera > 0 and _NEGACION_ANTES.search(texto[max(0, primera - 30):primera]) else "si"
+    opciones = cat.preguntas[pid].opciones
+    del_polo = [o for o in opciones if normalizar(o).split(" ")[0].strip(",.") == polo]
+    if del_polo and any(normalizar(o).split(" ")[0].strip(",.") in ("si", "no") for o in opciones if o not in del_polo):
+        return Filtro(pregunta=pid, valor=del_polo)
+    nombradas = _opcion_en(pregunta, pid, cat)
+    return Filtro(pregunta=pid, valor=nombradas) if nombradas else None
+
+
 def _pregunta_por_texto(frase: str, cat: Catalogo, excluir: set[str]) -> str | None:
     """La pregunta cuyo texto comparte más raíces con la frase (una sola, sin empate)."""
     def raices(t: str) -> set[str]:  # también siglas de tres letras («VPN», «PDF»)
@@ -255,8 +301,8 @@ def _pregunta_por_texto(frase: str, cat: Catalogo, excluir: set[str]) -> str | N
                 and w not in _RELLENO_TEXTO}
 
     propias = raices(frase)
-    # Coincidencias y, para desempatar, qué tanto de la pregunta es lo que se nombra: «el reactivo de la VPN» es
-    # «¿Cuál es la principal función de una VPN?» antes que «Usar redes Wi-Fi públicas sin VPN es seguro» (PRU-09).
+    # Coincidencias y, para desempatar, qué tanto de la pregunta es lo que se nombra: «el reactivo del correo» es el
+    # que pregunta por el correo antes que otro que solo lo menciona de paso (PRU-09).
     puntos = [(len(propias & raices(q.texto)), len(propias & raices(q.texto)) / max(1, len(raices(q.texto))), pid)
               for pid, q in cat.preguntas.items() if pid not in excluir]
     mejor = max(puntos, default=(0, 0.0, None))
@@ -327,7 +373,7 @@ def _agrupamiento(plan: PlanConsulta, pregunta: str, cat: Catalogo) -> tuple[Pla
     """Comparaciones que la consulta dice con todas sus letras (7 nov, Fase 4), sin importar lo que propuso el modelo:
       - «compara los primeros 100 con los últimos 100 en…» → grupos por posición (N en `limite`);
       - «¿las respuestas en blanco se concentran en alguna sección?» / «compara la sección A con la B» → por sección;
-      - «¿cambia X según la carga académica?» → grupos por la respuesta a la pregunta de la carga;
+      - «¿cambia X según el medio de transporte?» → grupos por la respuesta a la pregunta del transporte;
       - «compara X entre <opción A> y <opción B>» de una misma pregunta → grupos por esa pregunta, solo esas opciones."""
     texto = normalizar(pregunta)
     objetivo = [q for q in plan.preguntas if q in cat.preguntas]
@@ -349,7 +395,8 @@ def _agrupamiento(plan: PlanConsulta, pregunta: str, cat: Catalogo) -> tuple[Pla
         return plan.model_copy(update={"intencion": "comparar_grupos", "agrupar_por": "seccion", "filtros": [],
                                        "aclaracion": "", "consulta_semantica": "", "preguntas": []}), [
             "comparar por sección (respuestas en blanco o nulas)"]
-    if (m := _SEGUN.search(texto)) and plan.intencion in ("comparar_grupos", "resumen_pregunta", "conteo_porcentaje",
+    if (m := _SEGUN.search(texto)) and not (m.group(0).startswith("de acuerdo") and _ESTAR_ANTES.search(texto[:m.start()])) \
+            and plan.intencion in ("comparar_grupos", "resumen_pregunta", "conteo_porcentaje",
                                                          "aclaracion", "semantica_abierta", "hallazgo"):
         frase = enrutador._raices(m.group(1))
         candidatas = [(len(frase & enrutador._raices(q.texto)), pid) for pid, q in cat.preguntas.items()
@@ -412,8 +459,8 @@ def opciones_por_raiz(pregunta: str, cat: Catalogo, ya_usadas: set[str] | None =
                       explicadas: set[str] | None = None, con_ausentes: bool = False) -> dict[str, list[str]]:
     """{pregunta: opciones} cuya redacción contiene una palabra de la consulta que no está explicada por otra
     condición. La palabra debe estar en las opciones de UNA sola pregunta y no en todas sus opciones (eso no filtra):
-    «trabajan» → p12 «Trabajo en un area relacionada…», «Trabajo en un area no relacionada». Se respeta la polaridad:
-    sin negación en la consulta no entran las opciones que empiezan negando («No trabajo ni busco empleo»), y con
+    «trabajan» → las opciones de la pregunta laboral que dicen «Trabajo…». Se respeta la polaridad:
+    sin negación en la consulta no entran las opciones que empiezan negando («No trabajo»), y con
     negación solo entran esas."""
     texto = normalizar(pregunta)
     if not con_ausentes and _ausentes(pregunta, cat):
@@ -461,7 +508,7 @@ def _prefijo_comun(a: str, b: str) -> int:
 def comparte_raiz(palabra: str, opcion: str) -> bool:
     """¿La palabra de la consulta es la misma que una de la opción, salvo su terminación? Cinco letras iguales no
     bastan: «consiguieron» y «considerando» comparten «consi» y la consulta «¿cuántos la consiguieron por convenio?»
-    filtraba «Estoy considerando abandonar» (7 nov, ENC-13). Se piden seis letras en común, o la palabra entera si una
+    filtraba una opción con «considerando» (caso ENC-13). Se piden seis letras en común, o la palabra entera si una
     de las dos es más corta («mixta», «turno»)."""
     for w in re.findall(r"[a-z]+", normalizar(opcion)):
         comun = _prefijo_comun(palabra, w)
@@ -704,7 +751,7 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
     contra = _CONTRA.search(texto) is not None
     # Dos valores de la misma variable también son una comparación: «¿responden distinto los de universidad pública
     # y los de privada?» filtraba solo «publica» (consulta 2239).
-    nombrados = {var: [v for v in valores if len(v) >= 3 and not v.isdigit() and _menciona(texto, v)]
+    nombrados = {var: [v for v in valores if len(v) >= 3 and not v.isdigit() and (_menciona(texto, v) or valor_nombrado(v, texto))]
                  for var, valores in cat.contexto.items()}
     varios = any(len(set(vs)) >= 2 for vs in nombrados.values())
     if (not plan.contexto or contra or varios) and intencion in (*_FILTRADO, "comparar_grupos", "resumen_pregunta"):
@@ -761,6 +808,13 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
             for q in preguntas_plan if q in cat.preguntas):
         cambios["nivel"] = None
         notas.append(f"nivel {plan.nivel} quitado (ni la consulta lo dice ni la pregunta es de escala)")
+    # «¿Qué porcentaje está de acuerdo con…?» resuelto como resumen de la pregunta de escala daba la distribución, sin
+    # el porcentaje de acuerdo (10 nov, aritmética A12, tercera prueba): es un conteo con ese nivel.
+    if nivel and intencion == "resumen_pregunta" and _CUANTOS_O_PORCENTAJE.search(texto) and preguntas_plan and all(
+            q in cat.preguntas and (cat.preguntas[q].escala or cat.preguntas[q].tipo in ("likert", "escala_lineal", "cuadricula"))
+            for q in preguntas_plan):
+        intencion = "conteo_porcentaje"
+        notas.append(f"resumen de {', '.join(preguntas_plan)} → porcentaje en nivel {nivel} (la consulta pide cuántos o qué porcentaje)")
     if nivel and not plan.nivel and preguntas_plan and intencion in ("comparar_grupos", "conteo_porcentaje"):
         cambios["nivel"] = nivel
         notas.append(f"nivel {nivel} tomado de la pregunta")
@@ -834,6 +888,15 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
                 and not cambios.get("contexto_num", plan.contexto_num):
             nuevo = _aclarar_condicion(plan, pregunta, cat)
             return nuevo, notas + [NINGUNA_CONDICION, *([AVISO_INEXISTENTE] if nuevo.intencion != "aclaracion" else [])]
+
+    # 5b. «¿Qué porcentaje de los que tienen beca reprobó…?» con intención «hallazgo»: el hallazgo no aplica las
+    # condiciones y respondía con otro tema (16 nov, video del recorrido). Con condiciones y un conteo, es un conteo.
+    if intencion == "hallazgo" and _CONTEO.search(texto) \
+            and (cambios.get("filtros", plan.filtros) or cambios.get("contexto", plan.contexto)
+                 or cambios.get("contexto_num", plan.contexto_num)):
+        notas.append("intención hallazgo → conteo_porcentaje (pide un porcentaje o un conteo con condiciones)")
+        intencion = "conteo_porcentaje"
+        cambios.update(intencion=intencion, limite=None, orden=None, campos="solo_ids")
 
     # 6. «¿Cuántos…?» sin pedir quiénes: es un conteo, no una lista.
     if intencion == "filtrar_respondentes" and _CONTEO.search(texto) and not _LISTAR.search(texto) \
@@ -916,6 +979,23 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
             notas += [f"filtro {f.pregunta} = «{f.valor}» quitado (es la pregunta que se resume y la consulta no nombra "
                       "esa opción)" for f in propios]
 
+    # 9. «¿Cuál es el promedio de horas…?» sobre una pregunta sin números (rangos «Menos de 5h», «5-10h»…): si otra
+    # pregunta numérica dice lo mismo, se resume esa, que trae la media (10 nov, aritmética A10: p12 en lugar de p17).
+    if _PROMEDIO.search(texto) and intencion in ("resumen_pregunta", "conteo_porcentaje"):
+        actuales = list(cambios.get("preguntas", plan.preguntas)) or (list(plan.campos) if isinstance(plan.campos, list) else [])
+        sin_numeros = [q for q in actuales if q in cat.preguntas and cat.preguntas[q].tipo not in _CON_MEDIA]
+        if sin_numeros:
+            frase = enrutador._raices(texto)
+            puntos = sorted(((len(frase & enrutador._raices(q.texto)), pid) for pid, q in cat.preguntas.items()
+                             if q.tipo in _NUMERICAS), reverse=True)
+            if puntos and puntos[0][0] >= 2 and (len(puntos) == 1 or puntos[0][0] > puntos[1][0]):
+                numerica = puntos[0][1]
+                intencion = "resumen_pregunta"
+                cambios["preguntas"] = [numerica if q in sin_numeros else q for q in actuales]
+                cambios["campos"] = "solo_ids"
+                cambios["filtros"] = [f for f in cambios.get("filtros", plan.filtros) if f.pregunta not in sin_numeros]
+                notas.append(f"promedio: {', '.join(sin_numeros)} → {numerica} (la pregunta numérica que dice lo mismo)")
+
     if intencion != plan.intencion:
         cambios["intencion"] = intencion
     return (plan.model_copy(update=cambios) if cambios else plan), notas
@@ -958,9 +1038,13 @@ def _ajustar_filtro(f: Filtro, texto: str, nivel: str | None, cat: Catalogo, not
     if nivel and (p.escala or p.tipo in ("likert", "escala_lineal", "cuadricula")) and not escritos:
         notas.append(f"filtro {f.pregunta}: «{f.valor}» → nivel {nivel} (la pregunta habla del nivel)")
         return Filtro(pregunta=f.pregunta, op=f.op, nivel=nivel)
-    # «no han presentado ningún examen» → todas las «No…», no solo «No, y no lo planeo» (regresión C08).
+    # «no han presentado ningún examen» → todas las opciones «No…», no solo la que eligió el modelo (regresión C08).
     polos = {normalizar(v).split(" ")[0].strip(",.") for v in valores}
-    if len(polos) == 1 and (polo := polos.pop()) in ("si", "no") and not escritos:
+    # Si la consulta dice lo que distingue a la opción elegida, además del «Sí» («…y lo terminaron» → «Sí, y lo
+    # terminé»), se respeta: juntar todas las «Sí…» sumaba también la opción contraria (caso A18 de aritmética).
+    resto = set().union(*(enrutador._raices(normalizar(v).split(" ", 1)[1] if " " in normalizar(v) else "") for v in valores))
+    distingue = bool(resto) and resto <= enrutador._raices(texto)
+    if len(polos) == 1 and (polo := polos.pop()) in ("si", "no") and not escritos and not distingue:
         todas = [o for o in p.opciones if normalizar(o).split(" ")[0].strip(",.") == polo]
         if len(todas) > len(valores):
             notas.append(f"filtro {f.pregunta}: todas las opciones «{'Sí' if polo == 'si' else 'No'}…» ({len(todas)})")
@@ -1072,6 +1156,25 @@ _VERBOS_CONSULTA = {"estud", "lleva", "tiene", "hacen", "estan", "fuero", "eligi
                     # Palabras que nombran partes del instrumento, no una condición: «el REACTIVO de Wi-Fi» no es
                     # algo que la prueba «no registra» (8 nov, Fase 5, PRU-06).
                     "react", "pregu", "opcio", "respu", "secci", "alumn", "encue", "prueb", "instr", "marca"}
+
+
+def _pregunta_nombrada(pregunta: str, cat: Catalogo) -> str | None:
+    """La pregunta del instrumento que la consulta repite casi literal («¿qué porcentaje asiste puntualmente a todas sus
+    clases?» → p01 «Asisto puntualmente a todas mis clases»): al menos el 75 % de las raíces de su texto, y la consulta
+    no nombra nada que el instrumento no registre. Si el modelo inventó un filtro sobre esa pregunta, no se pidió una
+    condición: se resume la pregunta, sin decir «no encontré esa condición» (16 nov, video del recorrido)."""
+    if _ausentes(pregunta, cat):
+        return None
+    raices = enrutador._raices(normalizar(pregunta))
+    mejor, mejor_cobertura = None, 0.0
+    for q in cat.preguntas.values():
+        propias = enrutador._raices(q.texto)
+        if len(propias) < 2:
+            continue
+        cobertura = len(raices & propias) / len(propias)
+        if cobertura > mejor_cobertura:
+            mejor, mejor_cobertura = q.id, cobertura
+    return mejor if mejor_cobertura >= 0.75 else None
 
 
 def _aclarar_condicion(plan: PlanConsulta, pregunta: str, cat: Catalogo) -> PlanConsulta:

@@ -255,14 +255,21 @@ def por_polaridad(doc: dict[str, Any], sentido: str) -> list[dict[str, Any]]:
     return sorted(salida, key=lambda c: -c["puntaje"])[:_MAX_CANDIDATOS]
 
 
-def candidatos(tipo: str, doc: dict[str, Any], fiabilidad: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
-    """Candidatos a hallazgo ordenados de mayor a menor puntaje (a lo más `_MAX_CANDIDATOS`)."""
+def candidatos(tipo: str, doc: dict[str, Any], fiabilidad: list[dict[str, Any]] | None = None,
+               solo: set[str] | None = None) -> list[dict[str, Any]]:
+    """Candidatos a hallazgo ordenados de mayor a menor puntaje (a lo más `_MAX_CANDIDATOS`).
+
+    Con `solo` (IDs cortos de preguntas), únicamente los candidatos que se basan en esas preguntas: «¿qué opinan del
+    apoyo institucional?» no debe responder con la reprobación o el medio de transporte.
+    """
     if tipo == "prueba_estandarizada":
         lista = _prueba(doc)
     elif tipo == "entrevista":
         lista = _entrevista(doc)
     else:
         lista = _encuesta(doc, fiabilidad)
+    if solo is not None:
+        lista = [c for c in lista if c["preguntas"] and all(_corto(q) in solo for q in c["preguntas"])]
     vistos: set[str] = set()
     unicos = []
     for c in sorted(lista, key=lambda c: -c["puntaje"]):

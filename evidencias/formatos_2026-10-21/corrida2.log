@@ -1,0 +1,197 @@
+=== E01 (ideal) Con secciones; encabezados con prefijo de sección (Evaluación_item1…)
+3-4. Metadatos: «Encuesta de evaluación y ambiente escolar por turno»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Tamaño Promedio de Clase (Alumnos por Aula)', 'Puntajes en Pruebas Estandarizadas de Referencia']
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 8 preguntas en el perfil | 8
+     OK texto del original en cada pregunta | todas
+     OK 2 dimensiones con α | Evaluación α=0.8738, Ambiente α=0.8316
+     OK avisos del perfil | —
+     OK Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroal | ok
+     OK Q02 ¿Qué respondió R005 en la pregunta 8? | ok
+     OK Q03 Dame un respondente en desacuerdo en p1, p2 y p3 | ok
+     OK Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6,  | ok
+     OK Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4? | ok
+     OK Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8? | ok
+     OK Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar? | ok
+     OK Q17 ¿Qué opinan los estudiantes sobre el transporte público? | sin_informacion
+     OK Q18 ¿Cuál es el nombre del respondente R017? | privacidad
+=== E02 (ideal) Google Forms: marca temporal + texto completo de la pregunta; original con secciones
+3-4. Metadatos: «Encuesta de evaluación y ambiente escolar por turno»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Tamaño Promedio de Clase (Alumnos por Aula)', 'Puntajes en Pruebas Estandarizadas de Referencia']
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 8 preguntas en el perfil | 8
+     OK texto del original en cada pregunta | todas
+     OK 2 dimensiones con α | Dimensión 1 α=0.8738, Dimensión 2 α=0.8316
+     OK avisos del perfil | —
+     OK Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroal | ok
+     OK Q02 ¿Qué respondió R005 en la pregunta 8? | ok
+     OK Q03 Dame un respondente en desacuerdo en p1, p2 y p3 | ok
+     OK Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6,  | ok
+     OK Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4? | ok
+     OK Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8? | ok
+     OK Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar? | ok
+     OK Q17 ¿Qué opinan los estudiantes sobre el transporte público? | sin_informacion
+     OK Q18 ¿Cuál es el nombre del respondente R017? | privacidad
+=== E03 (aceptado) Sin secciones; encabezado = texto de la pregunta
+3-4. Metadatos: «Encuesta de evaluación y ambiente escolar por turno»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Tamaño Promedio de Clase (Alumnos por Aula)', 'Puntajes en Pruebas Estandarizadas de Referencia']
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 8 preguntas en el perfil | 8
+     OK texto del original en cada pregunta | todas
+     OK 2 dimensiones con α | Dimensión 1 α=0.8738, Dimensión 2 α=0.8316
+     OK avisos del perfil | —
+     OK Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroal | ok
+     OK Q02 ¿Qué respondió R005 en la pregunta 8? | ok
+     OK Q03 Dame un respondente en desacuerdo en p1, p2 y p3 | ok
+     OK Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6,  | ok
+     OK Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4? | ok
+     OK Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8? | ok
+     OK Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar? | ok
+     OK Q17 ¿Qué opinan los estudiantes sobre el transporte público? | sin_informacion
+     OK Q18 ¿Cuál es el nombre del respondente R017? | privacidad
+=== E04 (aceptado) Sin secciones; encabezados con prefijo (Evaluación_item1…)
+3-4. Metadatos: «Encuesta de evaluación y ambiente escolar por turno»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Tamaño Promedio de Clase (Alumnos por Aula)', 'Puntajes en Pruebas Estandarizadas de Referencia']
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 8 preguntas en el perfil | 8
+     OK texto del original en cada pregunta | todas
+     OK 2 dimensiones con α | Evaluación α=0.8738, Ambiente α=0.8316
+     OK avisos del perfil | emparejadas_por_posicion
+     OK Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroal | ok
+     OK Q02 ¿Qué respondió R005 en la pregunta 8? | ok
+     OK Q03 Dame un respondente en desacuerdo en p1, p2 y p3 | ok
+     OK Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6,  | ok
+     XX Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4? | faltan ['4', '30']
+     OK Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8? | ok
+     OK Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar? | ok
+     OK Q17 ¿Qué opinan los estudiantes sobre el transporte público? | sin_informacion
+     OK Q18 ¿Cuál es el nombre del respondente R017? | privacidad
+=== E05 (aceptado) Sin secciones; encabezados en código P1…P8 con original
+3-4. Metadatos: «Encuesta de evaluación y ambiente escolar por turno»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Tamaño Promedio de Clase (Alumnos por Aula)', 'Ratio de Estudiantes por Profesor (Relación Alumno/Docente)']
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 8 preguntas en el perfil | 8
+     OK texto del original en cada pregunta | todas
+     OK 2 dimensiones con α | Dimensión 1 α=0.8738, Dimensión 2 α=0.8316
+     OK avisos del perfil | emparejadas_por_posicion
+     OK Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroal | ok
+     OK Q02 ¿Qué respondió R005 en la pregunta 8? | ok
+     OK Q03 Dame un respondente en desacuerdo en p1, p2 y p3 | ok
+     OK Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6,  | ok
+     OK Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4? | ok
+     OK Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8? | ok
+     OK Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar? | ok
+     OK Q17 ¿Qué opinan los estudiantes sobre el transporte público? | sin_informacion
+     OK Q18 ¿Cuál es el nombre del respondente R017? | privacidad
+=== E06 (ideal) Google Forms con cuadrícula «Instrucción [afirmación]» y etiquetas de la escala
+3-4. Metadatos: «Encuesta de evaluación y ambiente escolar por turno»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Tamaño Promedio de Clase (Alumnos por Aula)', 'Puntajes en Pruebas Estandarizadas de Referencia']
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 8 preguntas en el perfil | 8
+     OK texto del original en cada pregunta | todas
+     OK 2 dimensiones con α | Dimensión 1 α=0.8738, Dimensión 2 α=0.8316
+     OK avisos del perfil | —
+     OK Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroal | ok
+     OK Q02 ¿Qué respondió R005 en la pregunta 8? | ok
+     OK Q03 Dame un respondente en desacuerdo en p1, p2 y p3 | ok
+     OK Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6,  | ok
+     OK Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4? | ok
+     OK Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8? | ok
+     OK Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar? | ok
+     OK Q17 ¿Qué opinan los estudiantes sobre el transporte público? | sin_informacion
+     OK Q18 ¿Cuál es el nombre del respondente R017? | privacidad
+=== E07 (aceptado) Exporte de Qualtrics (3 filas de encabezado, columnas de sistema, IP y ubicación)
+3-4. Metadatos: «Encuesta de evaluación y ambiente escolar por turno»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Tamaño Promedio de Clase (Alumnos por Aula)', 'Puntajes en Pruebas Estandarizadas de Referencia']
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 8 preguntas en el perfil | 8
+     OK texto del original en cada pregunta | todas
+     OK 2 dimensiones con α | Dimensión 1 α=0.8738, Dimensión 2 α=0.8316
+     OK avisos del perfil | —
+     OK Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroal | ok
+     OK Q02 ¿Qué respondió R005 en la pregunta 8? | ok
+     OK Q03 Dame un respondente en desacuerdo en p1, p2 y p3 | ok
+     OK Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6,  | ok
+     OK Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4? | ok
+     OK Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8? | ok
+     OK Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar? | ok
+     OK Q17 ¿Qué opinan los estudiantes sobre el transporte público? | sin_informacion
+     OK Q18 ¿Cuál es el nombre del respondente R017? | privacidad
+=== E08 (aceptado) Exporte de LimeSurvey con códigos G01Q01…G02Q08 y columnas de sistema
+3-4. Metadatos: «Encuesta de evaluación y ambiente escolar por turno»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Tamaño Promedio de Clase (Alumnos por Aula)', 'Puntajes en Pruebas Estandarizadas de Referencia']
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 8 preguntas en el perfil | 8
+     OK texto del original en cada pregunta | todas
+     OK 2 dimensiones con α | G01Q α=0.8738, G02Q α=0.8316
+     OK avisos del perfil | emparejadas_por_posicion
+     OK Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroal | ok
+     OK Q02 ¿Qué respondió R005 en la pregunta 8? | ok
+     OK Q03 Dame un respondente en desacuerdo en p1, p2 y p3 | ok
+     OK Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6,  | ok
+     OK Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4? | ok
+     OK Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8? | ok
+     OK Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar? | ok
+     OK Q17 ¿Qué opinan los estudiantes sobre el transporte público? | sin_informacion
+     OK Q18 ¿Cuál es el nombre del respondente R017? | privacidad
+=== E09 (ideal) XLSX sin secciones con texto de la pregunta
+3-4. Metadatos: «Encuesta de evaluación y ambiente escolar por turno»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Tamaño Promedio de Clase (Alumnos por Aula)', 'Puntajes en Pruebas Estandarizadas de Referencia']
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 8 preguntas en el perfil | 8
+     OK texto del original en cada pregunta | todas
+     OK 2 dimensiones con α | Dimensión 1 α=0.8738, Dimensión 2 α=0.8316
+     OK avisos del perfil | —
+     OK Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroal | ok
+     OK Q02 ¿Qué respondió R005 en la pregunta 8? | ok
+     OK Q03 Dame un respondente en desacuerdo en p1, p2 y p3 | ok
+     OK Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6,  | ok
+     OK Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4? | ok
+     OK Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8? | ok
+     OK Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar? | ok
+     OK Q17 ¿Qué opinan los estudiantes sobre el transporte público? | sin_informacion
+     OK Q18 ¿Cuál es el nombre del respondente R017? | privacidad
+=== E10 (ideal) CSV con «;» y BOM UTF-8, encabezados con prefijo, original con secciones
+3-4. Metadatos: «Encuesta de evaluación y ambiente escolar por turno»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Tamaño Promedio de Clase (Alumnos por Aula)', 'Puntajes en Pruebas Estandarizadas de Referencia']
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 8 preguntas en el perfil | 8
+     OK texto del original en cada pregunta | todas
+     OK 2 dimensiones con α | Evaluación α=0.8738, Ambiente α=0.8316
+     OK avisos del perfil | —
+     OK Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroal | ok
+     OK Q02 ¿Qué respondió R005 en la pregunta 8? | ok
+     OK Q03 Dame un respondente en desacuerdo en p1, p2 y p3 | ok
+     OK Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6,  | ok
+     XX Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4? | faltan ['4']
+     OK Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8? | ok
+     OK Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar? | ok
+     OK Q17 ¿Qué opinan los estudiantes sobre el transporte público? | sin_informacion
+     OK Q18 ¿Cuál es el nombre del respondente R017? | privacidad
+=== E11 (rechazado) Códigos P1…P8 SIN original
+    {'prueba': 'la subida se rechaza con el motivo', 'ok': True, 'obtenido': '422: Los encabezados son códigos (por ejemplo «P1») y no se subió el instrumento original. Sube también el instrumento original (PDF, DOCX o TXT con las preguntas) para saber qué pregunta cada columna.'}
+=== E12 (rechazado) Formato largo (respondente, pregunta, respuesta)
+    {'prueba': 'la subida se rechaza con el motivo', 'ok': True, 'obtenido': '422: El archivo está en formato largo (una fila por respuesta). Conviértelo a una fila por respondente y una columna por pregunta (en Excel: tabla dinámica con las preguntas como columnas).'}
+=== E13 (rechazado) Sin fila de encabezados
+    {'prueba': 'la subida se rechaza con el motivo', 'ok': True, 'obtenido': '422: La primera fila no tiene nombres de columna: parece una fila de respuestas. Agrega una fila de encabezados con el texto (o el código) de cada pregunta.'}
+Total 141/143. Reporte: C:\Users\yarel\Documents\indagata\indagata\evidencias\formatos_2026-10-21\encuestas.md

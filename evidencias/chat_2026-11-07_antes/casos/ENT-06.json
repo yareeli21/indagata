@@ -1,0 +1,51 @@
+{
+ "id": "ENT-06",
+ "instrumento": "ent",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántas veces menciona el estrés o la ansiedad?",
+   "rag_log_id": 2310,
+   "respuesta": "Criterio: mencionan «estres o ansiedad» en sus respuestas abiertas.\nCumplen la condición 0 de 1 respondentes (0.0 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "campos": [
+     "p02"
+    ],
+    "menciona": "estres o ansiedad",
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "menciones de «estres o ansiedad» en las respuestas abiertas"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:conteo_porcentaje:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 9.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 282,
+    "interpretacion": 8940
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "Sí se menciona, pero no lo buscó bien, falta análisis de texto"
+  }
+ ],
+ "debe": "Aclarar si cuenta palabras exactas o menciones parecidas; citar ejemplos."
+}

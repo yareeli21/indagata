@@ -1,0 +1,89 @@
+{
+ "id": "ENC-19",
+ "instrumento": "enc",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opciones tiene la pregunta sobre la carga académica?",
+   "rag_log_id": 3078,
+   "respuesta": "Las opciones que tiene la pregunta sobre la carga académica son:\n\n* Carga media/normal (65.1% de quienes respondieron)\n* Cargas maxima\n* Carga minima\n\nEsto podría indicar que muchos estudiantes sienten que su carga académica actual es normal o razonable, pero algunos se sienten sobrecargados o insuficientemente desafiantes.\n\nEn la pregunta p03, el texto del instrumento dice que la pregunta busca evaluar la percepción de los estudiantes sobre su carga académica actual, y que las opciones incluyen \"Carga media/normal\", \"Cargas maxima\" y \"Carga minima\".",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 3,
+    "filtros": [
+     {
+      "valor": "Carga media/normal",
+      "pregunta": "p03"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 3,
+    "filtros": [
+     {
+      "valor": "Carga media/normal",
+      "pregunta": "p03"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.7595
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p16",
+     "score": 0.6408
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p16",
+     "score": 0.6356
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.6297
+    }
+   ],
+   "segundos": 14.8,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 10174,
+    "recuperacion": 312,
+    "verificacion": 1,
+    "interpretacion": 4209
+   },
+   "k_precision": 0.614,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Carga mínima, Carga media/normal y Cargas máxima, sin texto pegado de otras preguntas."
+}

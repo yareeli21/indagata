@@ -1,0 +1,66 @@
+{
+ "id": "PRU-07",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo estuvieron más repartidas las respuestas?",
+   "rag_log_id": 3784,
+   "respuesta": "Criterio: preguntas con respuestas más repartidas (índice de dispersión más alto: 1 = repartidas por igual entre sus opciones; entropía normalizada).\n1. r17 «La huella digital incluye todo rastro que dejamos en línea.»: índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %).\n2. r14 «La inteligencia artificial puede generar texto, imágenes y código de p»: índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %).\n3. r12 «El análisis de datos de aprendizaje (learning analytics) puede ayudar »: índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %). [Fuente 1]\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %) |\n| 2 | r14 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %) |\n| 3 | r12 | índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Transporte público",
+      "pregunta": "r06"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r06 = «Transporte público» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "intención aclaracion → ranking_preguntas («repartida» por pregunta)",
+    "criterio del ranking: repartida (lo que dice la pregunta)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "estructurada",
+   "motivo": "plan:ranking_preguntas:cifras_completadas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 24.0,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 9369,
+    "recuperacion": 524,
+    "verificacion": 3869,
+    "interpretacion": 14085
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Decir qué medida usó."
+}

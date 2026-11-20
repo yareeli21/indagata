@@ -183,12 +183,21 @@ def test_kpis_de_un_instrumento(cliente, acervo):
 
 def test_relacionados(cliente, acervo):
     r = cliente.post("/visualizacion/relacionados", json={"ids": ["1"]}, headers=ANA).json()
-    assert [x["instrumento"]["id"] for x in r] == ["2", "3"]
+    # El 3 solo compartía el nivel; desde el 16 nov (todo es licenciatura) el nivel ya no es criterio.
+    assert [x["instrumento"]["id"] for x in r] == ["2"]
     primero = r[0]
     assert primero["nivel"] == "alta"
-    assert {razon["tipo"] for razon in primero["razones"]} == {"kpi", "nivel", "descripcion"}
+    assert {razon["tipo"] for razon in primero["razones"]} == {"kpi", "descripcion"}
     assert primero["coincideCon"] == ["1"]
-    assert r[1]["nivel"] == "baja"  # solo comparte el nivel
+    assert primero["instrumento"]["nivel"] == "Licenciatura"
+
+
+def test_contexto_de_investigacion_siempre_es_licenciatura():
+    from models import ContextoInvestigacion
+
+    # Sesiones de chat guardadas antes del 16 nov pueden traer «Posgrado»; se toma como licenciatura.
+    assert ContextoInvestigacion(nivel="Posgrado").nivel == "Licenciatura"
+    assert ContextoInvestigacion().nivel == "Licenciatura"
 
 
 def test_descargas_con_regla_de_propiedad(cliente, acervo, storage):
@@ -259,13 +268,17 @@ def test_chat_json_filtrado_por_investigacion_y_registrado(cliente, acervo, chro
     assert "Analizar el compromiso" in ollama["prompts"][-1]
     from services import prompt
 
-    assert ollama["sistemas"][-1] == prompt.SISTEMA  # las reglas viajan en `system`
+    assert ollama["sistemas"][-1] == prompt.sistema_para(ollama["prompts"][-1])  # las reglas viajan en `system`
     db.expire_all()
     log = db.query(RagLog).one()
     assert log.pregunta == "¿qué tanto se esfuerzan en clase?" and log.chunks_usados == 3
 
 
-def test_chat_sse_y_sin_coleccion(cliente, acervo, chroma):
+def test_chat_sse_y_sin_coleccion(cliente, acervo, chroma, monkeypatch):
+    # Vectores falsos: similitudes de 0.35–0.70; esta prueba no es del umbral.
+    from shared.db.core.config import settings as _s
+
+    monkeypatch.setattr(_s, "RAG_MIN_SCORE", 0.35)
     r = cliente.post("/rag/chat", json={"pregunta": "compromiso", "stream": True}, headers=ANA)
     assert r.status_code == 200
     texto = r.text
@@ -407,7 +420,9 @@ def test_chat_limita_top_k_y_baja_temperatura():
     from services import ollama_client
 
     assert ChatRequest(pregunta="x", top_k=20).top_k == 8
-    assert ollama_client._payload("m", "p", stream=False)["options"] == {"num_ctx": 4096, "temperature": 0.2}
+    # La redacción lleva además un tope de tokens contra las respuestas que se repiten (test_repeticion.py).
+    assert ollama_client._payload("m", "p", stream=False)["options"] == {
+        "num_ctx": 4096, "temperature": 0.2, "num_predict": ollama_client._MAX_TOKENS_REDACCION}
     # La interpretación, los clasificadores y el juez la fijan en 0 aunque la redacción use otra.
     assert ollama_client._payload("m", "p", stream=False, opciones={"temperature": 0})["options"]["temperature"] == 0
 

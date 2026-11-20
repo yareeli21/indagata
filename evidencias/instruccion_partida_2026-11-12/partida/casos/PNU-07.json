@@ -1,0 +1,72 @@
+{
+ "id": "PNU-07",
+ "instrumento": "pru_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Hubo reactivos que alguien dejó en blanco?",
+   "rag_log_id": 4151,
+   "respuesta": "Criterio: dejaron alguna pregunta sin responder.\nCumplen la condición 0 de 80 respondentes (0.0 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 3,
+    "intencion": "conteo_porcentaje",
+    "con_omisiones": true
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 3,
+    "filtros": [
+     {
+      "valor": "Falso",
+      "pregunta": "r11"
+     },
+     {
+      "valor": "Verdadero",
+      "pregunta": "r09"
+     },
+     {
+      "valor": "Verdadero",
+      "pregunta": "r12"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "intención hallazgo → conteo_porcentaje: personas que dejaron alguna pregunta sin responder"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:conteo_porcentaje:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 14.4,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "recuperacion": 466,
+    "interpretacion": 13929
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Reactivos con respuestas en blanco y su conteo, o decir que no hubo."
+}

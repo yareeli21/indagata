@@ -1,0 +1,73 @@
+{
+ "id": "ENU-02",
+ "instrumento": "enc_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos llegan a la universidad en bicicleta?",
+   "rag_log_id": 4098,
+   "respuesta": "18 de 160 respondentes (11.2 %) cumplen el criterio: p11 «¿Cuál es tu principal medio de transporte a la universidad?» = «Bicicleta». [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Bicicleta",
+      "pregunta": "p11"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Bicicleta",
+      "pregunta": "p11"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.621
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.5871
+    }
+   ],
+   "segundos": 15.7,
+   "tiempos_ms": {
+    "ejecucion": 20,
+    "redaccion": 4554,
+    "recuperacion": 369,
+    "verificacion": 0,
+    "interpretacion": 10704
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Opción «Bicicleta» de la pregunta del transporte: número y %."
+}

@@ -1,0 +1,100 @@
+{
+ "id": "PRU-17",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué reactivos convendría revisar por cómo se respondieron?",
+   "rag_log_id": 3676,
+   "respuesta": "La primera pregunta del ranking es la r10 \"¿Qué es una contraseña segura?\" con un 100.0% de respuestas en blanco o nulas, sin contar a las respuestas que no fueron proporcionadas.\n\nNo hay empate en esta pregunta, ya que todas las respuestas son nulas.\n\n**Preguntas por no respuesta [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r10 | 97 nulas o sin responder de 97 (100.0 %) |\n| 2 | r22 | 3 nulas o sin responder de 97 (3.1 %) |\n| 3 | r16 | 2 nulas o sin responder de 97 (2.1 %) |\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %) |\n| 2 | r14 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %) |\n| 3 | r12 | índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "revisar"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r12"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "intención hallazgo → ranking_preguntas («revisar» por pregunta)",
+    "criterio del ranking: revisar (lo que dice la pregunta)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "estructurada",
+   "motivo": "plan:ranking_preguntas:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 16.6,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 9785,
+    "recuperacion": 434,
+    "verificacion": 3089,
+    "interpretacion": 6292
+   },
+   "k_precision": 0.932,
+   "cifras_con_respaldo": [
+    21,
+    21
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué?",
+   "rag_log_id": 3677,
+   "respuesta": "Según [Fuente 1], podrían deberse a una falta de conocimiento sobre el tema o una mala comprensión de lo que se pregunta. Una explicación posible es que las personas no han utilizado contraseñas seguras en la vida real, por lo que no tienen experiencia para responder correctamente a esta pregunta.\n\nAdemás, podría ser que algunas personas simplemente no hayan respondido debido a la facilidad con la que pueden hacerlo, sin necesidad de pensar o investigar. Esto podría deberse a una falta de conciencia sobre la importancia de las contraseñas seguras o a una tendencia a no preocuparse por este tema.\n\nEs importante destacar que no se puede determinar con certeza el motivo exacto por el cual las personas respondieron de esta manera, ya que no hay información adicional en [Fuente 1] sobre la demografía de los participantes o sus niveles de conocimiento previo sobre seguridad informática.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": "seguimiento de la consulta 3676",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "resultado",
+     "etiqueta": "resultado",
+     "score": null
+    }
+   ],
+   "segundos": 11.3,
+   "tiempos_ms": null,
+   "k_precision": 0.018,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Criterios sin calificar: muchas NR, muchas inválidas, muy repartidas o redacción confusa."
+}

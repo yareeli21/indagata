@@ -1,0 +1,80 @@
+{
+ "id": "PRU-08",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la sección de verdadero/falso con la de competencias básicas en cantidad de respuestas en blanco",
+   "rag_log_id": 2739,
+   "respuesta": "La sección de Competencias Digitales Básicas presentó un 10.2% de respuestas en blanco o nulas, mientras que la sección de Verdadero o Falso solo tuvo un 0.6% de respuestas en blanco o nulas. Esto indica una mayor dificultad para los estudiantes al responder preguntas relacionadas con conceptos básicos de competencias digitales [Fuente 1].\n\n**Respuestas en blanco o nulas por sección [Fuente 1]**\n| Sección | Reactivos | En blanco o nulas | % de sus respuestas |\n|---|---|---|---|\n| SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS | 10 | 99 | 10.2 % |\n| SECCIÓN: VERDADERO O FALSO DIGITAL | 7 | 4 | 0.6 % |\n| SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE) | 5 | 3 | 0.6 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "seccion"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r14",
+     "r17"
+    ],
+    "agrupar_por": "tipo_respuesta",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar por sección (respuestas en blanco o nulas)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r14",
+     "score": 0.5102
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.5022
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.4666
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4516
+    }
+   ],
+   "segundos": 33.0,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 12854,
+    "recuperacion": 301,
+    "verificacion": 1,
+    "interpretacion": 19786
+   },
+   "k_precision": 0.873,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "% de NR por sección con su número de reactivos."
+}

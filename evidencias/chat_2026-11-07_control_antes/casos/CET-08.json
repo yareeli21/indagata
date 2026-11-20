@@ -1,0 +1,58 @@
+{
+ "id": "CET-08",
+ "instrumento": "ent_control",
+ "categoria": "cortesia",
+ "turnos": [
+  {
+   "pregunta": "¿Qué me recomiendas para no reprobar?",
+   "rag_log_id": 2394,
+   "respuesta": "Los participantes E02, E07 y E35 recomiendan pedir ayuda a familiares y profesores, considerándolo una estrategia inteligente [Fuente 1]. También sugieren enfocarse en las metas personales y subestiman el apoyo de los compañeros de clase [Fuente 1].",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿En qué contexto o pregunta quieres recomendaciones?"
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E35 en p12",
+     "score": 0.5242
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E02 en p12",
+     "score": 0.5208
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E07 en p12",
+     "score": 0.5087
+    }
+   ],
+   "segundos": 16.0,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 194,
+    "interpretacion": 5377
+   },
+   "k_precision": 0.6,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No da consejos; redirigir."
+}

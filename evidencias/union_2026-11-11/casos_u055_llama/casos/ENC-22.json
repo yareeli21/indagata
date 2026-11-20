@@ -1,0 +1,52 @@
+{
+ "id": "ENC-22",
+ "instrumento": "enc",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos estudiantes cursan en modalidad nocturna?",
+   "rag_log_id": 3774,
+   "respuesta": "«Nocturna» no es una opción de p06 («¿Cuántos de tus profesores han compartido o mencionado en clase artículos científicos de su autoría?»). Las opciones son: 2-3, Ninguno, 1, 4 o mas. ¿Cuál quieres?",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Nocturna» no es una opción de p06 («¿Cuántos de tus profesores han compartido o mencionado en clase artículos científicos de su autoría?»). Las opciones son: 2-3, Ninguno, 1, 4 o mas. ¿Cuál quieres?"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Presencial",
+      "pregunta": "p02"
+     },
+     {
+      "valor": "Nocturna",
+      "pregunta": "p06"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 4.6,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "recuperacion": 473,
+    "interpretacion": 3996
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "«No existe esa modalidad» y las existentes con sus conteos."
+}

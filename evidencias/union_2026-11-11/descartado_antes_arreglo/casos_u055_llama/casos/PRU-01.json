@@ -1,0 +1,52 @@
+{
+ "id": "PRU-01",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos respondieron la prueba?",
+   "rag_log_id": 3653,
+   "respuesta": "Prueba de Alfabetización Digital (Prueba estandarizada) [Fuente 1]:\n- 97 alumnos presentaron la prueba; tiene 22 reactivos.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": "{\n  \"intencion\": \"hallazgo\",\n  \"filtros\": [\n    {\n      \"pregunta\": \"r01\"\n    }\n  ],\n  \"campos\": \"solo_ids\",\n  \"orden\": {\"por\": \"id_respondente\", \"dir\": \"asc\"},\n  \"limite\": 97\n}",
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    }
+   ],
+   "segundos": 25.4,
+   "tiempos_ms": {
+    "ejecucion": 0,
+    "redaccion": 10247,
+    "recuperacion": 182,
+    "verificacion": 3836,
+    "interpretacion": 14618
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Total de alumnos después de la limpieza."
+}

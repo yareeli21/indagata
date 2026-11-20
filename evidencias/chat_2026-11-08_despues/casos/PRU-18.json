@@ -1,0 +1,53 @@
+{
+ "id": "PRU-18",
+ "instrumento": "pru",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿De qué trata esta prueba y qué explora?",
+   "rag_log_id": 2614,
+   "respuesta": "Prueba de Alfabetización Digital (Prueba estandarizada) [Fuente 1]:\n- Tipo: Prueba estandarizada.\n- Objetivo: Conocer si los estudiantes conocen o han estado familiarizados con los conceptos básicos que se han ido implementando con las tecnologías emergentes de hoy en día.\n- Población: Sexto semestre, 6BM13.\n- Nivel educativo: Licenciatura.\n- Contexto: Institución: UAM. Cobertura: Licenciatura — Estudiantes UAM. Unidad de aprendizaje: Informática en la era de la IA. Tipo de prueba: formativa. Grado: Sexto semestre.\n- 22 reactivos en 3 secciones (SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS; SECCIÓN: VERDADERO O FALSO DIGITAL; SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE)); 97 alumnos.\n- Algunas de sus preguntas: «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?»; «¿Qué significa LMS en contextos educativos?»; «¿Cuál es la principal función de una VPN?»; «¿Qué es el phishing?».\n- Palabras clave: Alfabetización digital en los estudiantes, Competencias Digitales Básicas, Seguridad en Internet, Herramientas de Colaboración Digital, Conceptos de Cloud Computing, Derechos de Autor Digitales.\n- KPIs asociados: Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales; Proporción de Matriculados Online frente a Presencial; Tasa de Finalización de Cursos Online; Nivel de Adopción de Analítica de Aprendizaje (Learning Analytics).",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion:cifras_corregidas",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.3776
+    }
+   ],
+   "segundos": 57.3,
+   "tiempos_ms": {
+    "redaccion": 56839,
+    "recuperacion": 247,
+    "verificacion": 28194
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Síntesis en prosa: tema, 3 secciones y sus temas."
+}

@@ -1,0 +1,183 @@
+{
+ "id": "PRU-14",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en «la nube elimina por completo el riesgo de perder datos»?",
+   "rag_log_id": 2354,
+   "respuesta": "Criterio: resumen de r16.\nr16 «El almacenamiento en la nube elimina por completo el riesgo de perder »: 95 respuestas válidas, 2 sin respuesta.\nInterpretación calculada: La opción más elegida fue «Verdadero» (58.8 % de los alumnos). 2 sin respuesta válida (2.1 %).\nOpción más elegida: «Verdadero» (58.8 %, 57 alumnos). [Fuente 1]\n\n**Distribución de r16 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 57 | 58.8 % |\n| Falso | 38 | 39.2 % |\n| NR | 2 | 2.1 % |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r16"
+    ]
+   },
+   "correcciones": [
+    "contexto Turno = «Vespertino» descartado (la pregunta no lo menciona)",
+    "nivel acuerdo quitado (ni la consulta lo dice ni la pregunta es de escala)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5703
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.474
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.4303
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4177
+    }
+   ],
+   "segundos": 33.7,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 14219,
+    "recuperacion": 272,
+    "verificacion": 5955,
+    "interpretacion": 19220
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "De ellos, ¿qué respondieron sobre Wi-Fi público?",
+   "rag_log_id": 2355,
+   "respuesta": "73 alumnos de los 97 que respondieron a la pregunta (75.3 %) seleccionaron la opción “Verdadero” en el reactivo r15 (“Usar redes Wi-Fi públicas sin VPN es completamente seguro”). [Fuente 1]\n\n**Distribución de r15 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 73 | 75.3 % |\n| Falso | 24 | 24.7 % |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r15"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5847
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.4855
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r06",
+     "score": 0.4509
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.428
+    }
+   ],
+   "segundos": 28.2,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 10872,
+    "recuperacion": 325,
+    "verificacion": 1,
+    "interpretacion": 17018
+   },
+   "k_precision": 0.958,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "pero era respecto a los 57 de la pregunta anterior, no siguió el hilo"
+  },
+  {
+   "pregunta": "Muéstrame 5",
+   "rag_log_id": 2356,
+   "respuesta": "Criterio: r15 «Usar redes Wi-Fi públicas sin VPN es completamente seguro.» > 0.5.\nCumplen la condición 0 de 97 respondentes (0.0 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "op": ">",
+      "valor": 0.5,
+      "pregunta": "r15"
+     }
+    ],
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r15"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:conteo_porcentaje:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 20.9,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "recuperacion": 277,
+    "interpretacion": 20560
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "no me muestra los 5 respondentes correspondientes a la respuesta anterior, no siguió el hilo"
+  }
+ ],
+ "debe": "(2) filtrar sobre el grupo de (1); (3) 5 IDs anónimos con el total."
+}

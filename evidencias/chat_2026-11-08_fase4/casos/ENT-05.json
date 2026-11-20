@@ -1,0 +1,31 @@
+{
+ "id": "ENT-05",
+ "instrumento": "ent",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál fue su respuesta más larga y a qué pregunta corresponde?",
+   "rag_log_id": 2511,
+   "respuesta": "La respuesta más larga de E01 es la de p11 «Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarí»: 74 palabras. (Se cuentan las palabras de cada respuesta en el documento final.)\n\n**Respuestas más largas**\n| Participante | Pregunta | Palabras |\n|---|---|---|\n| E01 | p11 | 74 |\n| E01 | p06 | 66 |\n| E01 | p10 | 63 |",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "entrevista:extension",
+   "plantilla": null,
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.1,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Pregunta de la guía y extensión de la respuesta."
+}

@@ -1,0 +1,932 @@
+{
+ "corrida": "gemma3:4b=1462-1499",
+ "faltan": [],
+ "turnos": [
+  {
+   "consulta": 1477,
+   "enCache": false,
+   "respuesta": "La opción más elegida en la pregunta de la VPN fue D (Almacenar archivos en la nube), 48.5% de 97 alumnos [Fuente 1].",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": null,
+    "ruta": "semantica",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 2,
+    "cifrasConRespaldo": 2,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {},
+    "latenciaMs": 18153
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "criterios": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.877,
+     "precision_contexto": 1.0,
+     "promedio": 0.959,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "1.1",
+   "similitud": 0.544
+  },
+  {
+   "consulta": 1478,
+   "enCache": false,
+   "respuesta": "Respuestas interpretadas de A001, A002, A003, A004, A005, A006, A007, A008, A009, A010 (los 10 primeros por número de respondente (de 97)). [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | A001 | A002 | A003 | A004 | A005 | A006 | A007 | A008 | A009 | A010 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| Contexto: edad | 20 | 21 | 30 | 26 | 21 | 21 | 22 | 26 | 20 | 20 |\n| Contexto: genero | masculino | femenino | masculino | masculino | femenino | femenino | femenino | femenino | masculino | femenino |\n| Contexto: horas_trabajo_semana | 20 | 15 | 11 | 32 | 6 | 27 | 9 | 26 | 36 | 1 |\n| Contexto: nivel_estudio | pregrado | pregrado | posgrado | pregrado | pregrado | pregrado | pregrado | posgrado | pregrado | pregrado |\n| Contexto: nivel_ses | bajo | medio | alto | medio | medio | muy_bajo | medio | alto | bajo | alto |\n| Contexto: perfil | P3 | P2 | P7 | P4 | P2 | P8 | P5 | P7 | P3 | P1 |\n| Contexto: primera_generacion | True | False | False | False | False | False | False | False | True | False |\n| Contexto: promedio_gpa | 1.82 | 2.9 | 3.91 | 2.62 | 3.5 | 2.62 | 3.65 | 3.76 | 2.73 | 3.82 |\n| Contexto: semestre | 2 | 2 | 2 | 8 | 4 | 2 | 9 | 5 | 3 | 8 |\n| Contexto: tiene_beca | False | False | False | False | False | True | False | False | False | False |\n| Contexto: tipo_universidad | publica | publica | privada | publica | publica | publica | mixta | privada | publica | privada |\n| r03 «¿Cuál es la principal función de una VPN?» | Aumentar la velocidad de internet | Bloquear anuncios publicitarios | Almacenar archivos en la nube | Crear una conexión segura y privada | Crear una conexión segura y privada | Aumentar la velocidad de internet | Almacenar archivos en la nube | Bloquear anuncios publicitarios | Aumentar la velocidad de internet | Aumentar la velocidad de internet |",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "datos_respondente",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 8765
+    },
+    "latenciaMs": 8785
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.265,
+     "precision_contexto": 1.0,
+     "promedio": 0.755,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Solo tenía que darme el porcentaje de la respuesta de la pregunta anterior."
+   },
+   "turno": "1.2",
+   "similitud": 0.224
+  },
+  {
+   "consulta": 1479,
+   "enCache": false,
+   "respuesta": "La opción más elegida fue “Almacenar archivos en la nube”, con un 48.5% de los 97 alumnos [Fuente 1].",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": null,
+    "ruta": "semantica",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 2,
+    "cifrasConRespaldo": 2,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {},
+    "latenciaMs": 90401
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.169,
+     "precision_contexto": 1.0,
+     "promedio": 0.723,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Solo debió afirmar o negar de acuerdo al porcentaje."
+   },
+   "turno": "1.3"
+  },
+  {
+   "consulta": 1480,
+   "enCache": false,
+   "respuesta": "«A)» no es una opción de r01 («¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?»). Las opciones son: A) .docx, B) .xlsx, C) .pptx, D) .pdf. ¿Cuál quieres?",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 15,
+     "interpretacion": 31579
+    },
+    "latenciaMs": 31653
+   },
+   "tipo": "capacidad",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió decir que no calificamos la prueba, todo es con las respuestas."
+   },
+   "turno": "2.1",
+   "similitud": 0.087
+  },
+  {
+   "consulta": 1481,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué opción eligió la mayoría en el reactivo 3?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 10,
+     "interpretacion": 14487
+    },
+    "latenciaMs": 14559
+   },
+   "tipo": "capacidad",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 1,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió decir que el sistema no califica."
+   },
+   "turno": "2.2",
+   "similitud": 0.284
+  },
+  {
+   "consulta": 1482,
+   "enCache": false,
+   "respuesta": "Nadie respondió la pregunta de la contraseña segura [Fuente 1].",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": null,
+    "ruta": "semantica",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 0,
+    "cifrasConRespaldo": 0,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 0,
+     "interpretacion": 11444
+    },
+    "latenciaMs": 20132
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.909,
+     "precision_contexto": 1.0,
+     "promedio": 0.97,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "3.1",
+   "similitud": 0.286
+  },
+  {
+   "consulta": 1483,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué opción eligió la mayoría en el reactivo 3?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 15323
+    },
+    "latenciaMs": 15342
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "3.2"
+  },
+  {
+   "consulta": 1484,
+   "enCache": false,
+   "respuesta": "Los universitarios de tipo universidad privada mostraron una mayor preferencia por la opción «Un tipo de búsqueda en Google» (37.9%) en comparación con los de tipo universidad mixta (44.4%) y pública (40.7%). [Fuente 1] La diferencia más notable se observa entre el grupo privado, que tuvo 11 respuestas a la opción elegida, frente a las 4 del grupo mixto y las 24 del grupo público. [Fuente 1]\n\n**Comparación por tipo_universidad [Fuente 1]**\n| tipo_universidad | Respondentes | r04: opción más elegida |\n|---|---|---|\n| mixta | 9 | «Un tipo de búsqueda en Google» 44.4 % (4 de 9) |\n| privada | 29 | «Un tipo de búsqueda en Google» 37.9 % (11 de 29) |\n| publica | 59 | «Un tipo de búsqueda en Google» 40.7 % (24 de 59) |",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "comparar_grupos",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 9,
+    "cifrasConRespaldo": 9,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 48,
+     "redaccion": 15685,
+     "verificacion": 0,
+     "interpretacion": 5827
+    },
+    "latenciaMs": 21575
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.501,
+     "precision_contexto": 1.0,
+     "promedio": 0.834,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "4.1",
+   "similitud": 0.749
+  },
+  {
+   "consulta": 1485,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué opción eligió la mayoría en el reactivo 3?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 11908
+    },
+    "latenciaMs": 11932
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No contestó, si no existe esa opción debe poner que no se tiene o fundamentar algo."
+   },
+   "turno": "4.2",
+   "similitud": 0.272
+  },
+  {
+   "consulta": 1486,
+   "enCache": false,
+   "respuesta": "No encontré esa condición en «Prueba de Alfabetización Digital». ¿A qué pregunta u opción te refieres?",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 5,
+     "interpretacion": 17014
+    },
+    "latenciaMs": 17027
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "No hizo bien el filtro."
+   },
+   "turno": "5.1",
+   "similitud": 0.102
+  },
+  {
+   "consulta": 1487,
+   "enCache": false,
+   "respuesta": "«No respondido» no es una opción de r01 («¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?»). Las opciones son: A) .docx, B) .xlsx, C) .pptx, D) .pdf. ¿Cuál quieres?",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 6962
+    },
+    "latenciaMs": 6974
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Como no hizo bien el filtro anterior no pudo responder bien esta."
+   },
+   "turno": "5.2",
+   "similitud": 0.206
+  },
+  {
+   "consulta": 1488,
+   "enCache": false,
+   "respuesta": "No hay un respondente «R0057» en «Prueba de Alfabetización Digital» (van de A001 a A097).",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 5,
+     "interpretacion": 14932
+    },
+    "latenciaMs": 14944
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": null
+   },
+   "turno": "6.1",
+   "similitud": 0.545
+  },
+  {
+   "consulta": 1489,
+   "enCache": false,
+   "respuesta": "No hay un respondente «R0067» en «Prueba de Alfabetización Digital» (van de A001 a A097).",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 17693
+    },
+    "latenciaMs": 17705
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "6.2",
+   "similitud": 0.64
+  },
+  {
+   "consulta": 1490,
+   "enCache": false,
+   "respuesta": "Criterio: tipo_universidad = «publica».\nCumplen la condición 59 de 97 respondentes (60.8 %).\nr15 «Usar redes Wi-Fi públicas sin VPN es completamente seguro.»: 0 de 59 de quienes cumplen la condición y respondieron están de acuerdo (nivel alto) (0.0 %). [Fuente 1]",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "conteo_porcentaje",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "cifras_completadas",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 10,
+     "redaccion": 17912,
+     "verificacion": 8307,
+     "interpretacion": 4833
+    },
+    "latenciaMs": 22763
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.814,
+     "precision_contexto": 1.0,
+     "promedio": 0.938,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "7.1",
+   "similitud": 0.779
+  },
+  {
+   "consulta": 1491,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "semantica_abierta",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 9116
+    },
+    "latenciaMs": 17807
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": true,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "8.1",
+   "similitud": 0.226
+  },
+  {
+   "consulta": 1492,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué opción eligió la mayoría en el reactivo 3?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 5,
+     "interpretacion": 16923
+    },
+    "latenciaMs": 16940
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": true,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 1,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Solo debió decir que no se tiene registrada la carrera en el instrumento."
+   },
+   "turno": "8.2",
+   "similitud": 0.316
+  },
+  {
+   "consulta": 1498,
+   "enCache": false,
+   "respuesta": "El reactivo r10: \"¿Qué es una contraseña segura?\" tuvo el 100.0% de respuestas nulas [Fuente 1].",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": null,
+    "ruta": "semantica",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 1,
+    "cifrasConRespaldo": 1,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {},
+    "latenciaMs": 32171
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.697,
+     "precision_contexto": 1.0,
+     "promedio": 0.899,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Justamente respondió con la que pedí que evitara y la respuesta correcta era de otro reactivo."
+   },
+   "turno": "9.1",
+   "similitud": 0.525
+  },
+  {
+   "consulta": 1499,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados. Recuerda que solo entran al RAG los instrumentos con metadatos aprobados por su autor; puedes ampliar la selección de tu investigación.",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": null,
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {},
+    "latenciaMs": 15787
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Sí existe una pregunta que cumple con la condición de que se preguntó y el sistema dijo que no hay información."
+   },
+   "turno": "9.2",
+   "similitud": 0.075
+  },
+  {
+   "consulta": 1494,
+   "enCache": false,
+   "respuesta": "Los datos de la Prueba de Alfabetización Digital son confiables en un 57.7% [Fuente 1: reactivo r09]. Esto se basa en el criterio más elegido para evaluar la confiabilidad de una fuente en internet, que es \"La autoridad del autor y la fecha de publicación\".",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "metodologia",
+    "ruta": "semantica",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 1,
+    "cifrasConRespaldo": 1,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 3455
+    },
+    "latenciaMs": 15874
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.5,
+     "relevancia": 0.586,
+     "precision_contexto": 1.0,
+     "promedio": 0.695,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Me habla sobre una pregunta que habla sobre la confiabilidad de fuentes de internet, pero yo me refería a la confiabilidad del instrumento y debió decir que sí es confiable porque hasta pasó por limpieza."
+   },
+   "turno": "10.1"
+  },
+  {
+   "consulta": 1495,
+   "enCache": false,
+   "respuesta": "La limpieza automática mostró “Lo que hicimos automáticamente”.\n",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "uso_plataforma",
+    "ruta": "ayuda",
+    "decision": "ayuda",
+    "respuesta": "plantilla",
+    "plantilla": "ayuda",
+    "plantillaDetalle": "Respuesta de la base de ayuda de la plataforma.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 14583
+    },
+    "latenciaMs": 20220
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.743,
+     "precision_contexto": 1.0,
+     "promedio": 0.914,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió decir explícitamente qué se corrigió en la limpieza"
+   },
+   "turno": "10.2"
+  },
+  {
+   "consulta": 1496,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué opción eligió la mayoría en el reactivo 3?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 12669
+    },
+    "latenciaMs": 12679
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "No buscó bien o no hizo bien el filtro para responder."
+   },
+   "turno": "11.1",
+   "similitud": 0.412
+  },
+  {
+   "consulta": 1497,
+   "enCache": false,
+   "respuesta": "Prueba de Alfabetización Digital (Prueba estandarizada) [Fuente 1]:\n- Indagata no califica las pruebas: no tiene clave de respuestas, así que no sabe qué respuesta es correcta ni cuántos aciertos hubo. Lo que sí sabe es qué eligieron los alumnos en cada reactivo:\n- r01 «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?»: La opción más elegida fue «D) .pdf» (30.9 % de los alumnos). 1 sin respuesta válida (1 %).\n- r02 «¿Qué significa LMS en contextos educativos?»: La opción más elegida fue «C) Local Messaging System» (39.2 % de los alumnos).\n- r03 «¿Cuál es la principal función de una VPN?»: La opción más elegida fue «D) Almacenar archivos en la nube» (48.5 % de los alumnos).\n- r04 «¿Qué es el phishing?»: La opción más elegida fue «A) Un tipo de búsqueda en Google» (40.2 % de los alumnos). Nadie eligió: D.\n- r05 «¿Cuál herramienta es más adecuada para la colaboración en documentos en tiempo real?»: La opción más elegida fue «D) Imprimir y entregar físicamente» (39.2 % de los alumnos).\n- r06 «¿Qué es la nube (cloud computing) en tecnología?»: La opción más elegida fue «A) Un servidor físico en tu oficina» (56.7 % de los alumnos).\n- r07 «¿Qué significa una licencia Creative Commons?»: La opción más elegida fue «A) El contenido es completamente privado» (43.3 % de los alumnos).\n- r08 «¿Cuál es la principal función de un buscador web como Google?»: La opción más elegida fue «D) Crear presentaciones» (40.2 % de los alumnos). 1 sin respuesta válida (1 %).\n- r09 «¿Cuál de los siguientes es un criterio para evaluar la confiabilidad de una fuente en internet?»: La opción más elegida fue «B) La autoridad del autor y la fecha de publicación» (57.7 % de los alumnos).\n- r10 «¿Qué es una contraseña segura?»: Sin respuestas válidas. 97 sin respuesta válida (100 %). Nadie eligió: A, B, C, D.\n- r11 «El correo electrónico es siempre un canal seguro para enviar información confidencial.»: La opción más elegida fue «Verdadero» (83.5 % de los alumnos). 1 sin respuesta válida (1 %).\n- r12 «El análisis de datos de aprendizaje (learning analytics) puede ayudar a identificar estudiantes en riesgo.»: La opción más elegida fue «Verdadero» (55.7 % de los alumnos).\n- r13 «Plagiar contenido digital tiene las mismas consecuencias éticas que plagiar contenido impreso.»: La opción más elegida fue «Verdadero» (56.7 % de los alumnos).\n- r14 «La inteligencia artificial puede generar texto, imágenes y código de programación.»: La opción más elegida fue «Falso» (53.6 % de los alumnos).\n- r15 «Usar redes Wi-Fi públicas sin VPN es completamente seguro.»: La opción más elegida fue «Verdadero» (75.3 % de los alumnos).",
+   "indicadores": {
+    "modelo": "gemma3:4b",
+    "intencion": "reglas",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {},
+    "latenciaMs": 16781
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.439,
+     "precision_contexto": null,
+     "promedio": 0.72,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": "Sí, pero debió decir más como lo que el modelo opina de cuál es la más difícil de acuerdo con las respuestas."
+   },
+   "turno": "12.1"
+  }
+ ]
+}

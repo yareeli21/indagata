@@ -1,0 +1,83 @@
+{
+ "id": "PRU-06",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en el reactivo de Wi-Fi público sin VPN?",
+   "rag_log_id": 3658,
+   "respuesta": "81 de los 96 que respondieron r11 (84.4 %) cumplen el criterio: r11 «El correo electrónico es siempre un canal seguro para enviar informaci» = «Verdadero». Sobre el total del instrumento son 81 de 97 respondentes (83.5 %). Entre los 81 que cumplen r11 «El correo electrónico es siempre un canal seguro para enviar informaci» = «Verdadero», en r15 «Usar redes Wi-Fi públicas sin VPN es completamente seguro.» respondieron: «Verdadero» 60 (74.1 %); «Falso» 21 (25.9 %). [Fuente 1]\n\n**r15 entre quienes cumplen la condición [Fuente 1]**\n| Opción | Personas | % del grupo |\n|---|---|---|\n| Verdadero | 60 | 74.1 % |\n| Falso | 21 | 25.9 % |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r11"
+     }
+    ],
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r15"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r11"
+     }
+    ],
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r15"
+    ]
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6852
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6602
+    }
+   ],
+   "segundos": 40.5,
+   "tiempos_ms": {
+    "ejecucion": 13,
+    "redaccion": 14995,
+    "recuperacion": 979,
+    "verificacion": 0,
+    "interpretacion": 24421
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    11,
+    11
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Llegar al reactivo por su significado y mostrar «Verdadero/Falso», no «Opción A/B»."
+}

@@ -1,0 +1,50 @@
+{
+ "id": "ENT-19",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántas preguntas tiene la guía y qué temas cubre?",
+   "rag_log_id": 4081,
+   "respuesta": "La guía de la entrevista tiene 12 preguntas que cubren los temas de Salud y atención mental. [Fuente 1]",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    }
+   ],
+   "segundos": 4.5,
+   "tiempos_ms": {
+    "redaccion": 4044,
+    "recuperacion": 171,
+    "verificacion": 1
+   },
+   "k_precision": 0.875,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "12 y agrupadas en temas."
+}

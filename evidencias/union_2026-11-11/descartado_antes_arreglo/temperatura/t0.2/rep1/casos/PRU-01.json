@@ -1,0 +1,52 @@
+{
+ "id": "PRU-01",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos respondieron la prueba?",
+   "rag_log_id": 3577,
+   "respuesta": "97 alumnos presentaron la prueba. \n\nEl instrumento se divide en tres secciones: SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS, SECCIÓN: VERDADERO O FALSO DIGITAL y SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE). \n\nEl texto del instrumento menciona que la primera sección trata sobre Competencias Digitales Básicas, la segunda sobre Verdadero o Falso Digital y la tercera sobre Ordenamiento y emparejamiento con opciones múltiples.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": "{\n  \"intencion\": \"hallazgo\",\n  \"filtros\": [\n    {\n      \"pregunta\": \"r01\"\n    }\n  ],\n  \"campos\": \"solo_ids\",\n  \"orden\": {\"por\": \"id_respondente\", \"dir\": \"asc\"},\n  \"limite\": 97\n}",
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    }
+   ],
+   "segundos": 26.2,
+   "tiempos_ms": {
+    "ejecucion": 0,
+    "redaccion": 7214,
+    "recuperacion": 193,
+    "verificacion": 1,
+    "interpretacion": 15978
+   },
+   "k_precision": 0.744,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Total de alumnos después de la limpieza."
+}

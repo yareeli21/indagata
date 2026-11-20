@@ -1,0 +1,1733 @@
+{
+ "corrida": "qwen2.5:3b=1366-1395",
+ "faltan": [],
+ "turnos": [
+  {
+   "consulta": 1367,
+   "enCache": false,
+   "respuesta": "El KPI Número de Programas Académicos Acreditados está más relacionado con el contenido de la encuesta, ya que mide el recuento de programas educativos acreditados y si responden a los intereses académicos y profesionales de los estudiantes. Las preguntas p01 y p16 sustentan este KPI. [Fuente 1]\n\n**KPIs asociados [Fuente 1]**\n| KPI | Qué mide | Preguntas que lo sustentan |\n|---|---|---|\n| Número de Programas Académicos Acreditados | Recuento de programas educativos que han superado con éxito la evaluación de calidad de agencias nacionales o internacionales. | p01, p16 |",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "kpi",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 0,
+    "cifrasConRespaldo": 0,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 22,
+     "redaccion": 4251,
+     "verificacion": 2,
+     "interpretacion": 1879
+    },
+    "latenciaMs": 6379
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.649,
+     "precision_contexto": 0.0,
+     "promedio": 0.55,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.568,
+     "precision_contexto": 1.0,
+     "promedio": 0.856,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.605,
+     "precision_contexto": 0.0,
+     "promedio": 0.535,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.585,
+     "precision_contexto": 1.0,
+     "promedio": 0.862,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": null
+   },
+   "turno": "1.1",
+   "similitud": 0.722
+  },
+  {
+   "consulta": 1368,
+   "enCache": false,
+   "respuesta": "Los KPIs asociados son Número de Programas Académicos Acreditados. Este indicador mide el recuento de programas educativos que han superado con éxito la evaluación de calidad de agencias nacionales o internacionales. Las preguntas que lo sustentan son p01 y p16. [Fuente 1]\n\n**KPIs asociados [Fuente 1]**\n| KPI | Qué mide | Preguntas que lo sustentan |\n|---|---|---|\n| Número de Programas Académicos Acreditados | Recuento de programas educativos que han superado con éxito la evaluación de calidad de agencias nacionales o internacionales. | p01, p16 |",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "kpi",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 0,
+    "cifrasConRespaldo": 0,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 5453,
+     "redaccion": 2358,
+     "verificacion": 0,
+     "interpretacion": 2331
+    },
+    "latenciaMs": 10189
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.402,
+     "precision_contexto": 0.0,
+     "promedio": 0.467,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.476,
+     "precision_contexto": 1.0,
+     "promedio": 0.825,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.39,
+     "precision_contexto": 0.0,
+     "promedio": 0.463,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.465,
+     "precision_contexto": 1.0,
+     "promedio": 0.822,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": null
+   },
+   "turno": "1.2",
+   "similitud": 0.642
+  },
+  {
+   "consulta": 1369,
+   "enCache": false,
+   "respuesta": "La pregunta más interesante es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?». 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»). Esta pregunta relacionada con la estabilidad del cuerpo docente tiene mayor relevancia en el contenido del instrumento que evalúa la calidad académica, ya que sugiere inestabilidad y posibles problemas de seguimiento educativo.",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 1,
+    "cifrasConRespaldo": 1,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 16,
+     "redaccion": 5409,
+     "verificacion": 1,
+     "interpretacion": 3158
+    },
+    "latenciaMs": 8627
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.667,
+     "relevancia": 0.231,
+     "precision_contexto": 0.0,
+     "promedio": 0.299,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.224,
+     "precision_contexto": 1.0,
+     "promedio": 0.741,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.4,
+     "relevancia": 0.528,
+     "precision_contexto": 1.0,
+     "promedio": 0.643,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.231,
+     "precision_contexto": 1.0,
+     "promedio": 0.744,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "debió seguir dándome el KPI que considera más relevante, no darme una pregunta del instrumento."
+   },
+   "turno": "1.3",
+   "similitud": 0.548
+  },
+  {
+   "consulta": 1370,
+   "enCache": false,
+   "respuesta": "Encontré un patrón interesante en la pregunta p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de los estudiantes que respondieron (respondieron «Nunca» o «Rara vez») sugiere que la mayoría de ellos no han experimentado estos cambios significativos en su programa académico. Esto podría indicar un nivel aceptable de estabilidad y confiabilidad en el cuerpo docente, aunque también puede sugerir que los estudiantes tienen una percepción generalizada de que las asignaciones son consistentes. [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 1,
+    "cifrasConRespaldo": 1,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 16,
+     "redaccion": 3381,
+     "verificacion": 0,
+     "interpretacion": 1074
+    },
+    "latenciaMs": 4507
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.0,
+     "relevancia": 0.601,
+     "precision_contexto": 1.0,
+     "promedio": 0.534,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.667,
+     "relevancia": 0.604,
+     "precision_contexto": 1.0,
+     "promedio": 0.757,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.663,
+     "precision_contexto": 1.0,
+     "promedio": 0.888,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.632,
+     "precision_contexto": 1.0,
+     "promedio": 0.877,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": null
+   },
+   "turno": "2.1"
+  },
+  {
+   "consulta": 1371,
+   "enCache": false,
+   "respuesta": "En el nivel alto, la pregunta p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?» muestra que 50.4 % de los estudiantes respondieron con una probabilidad alta (4 o 5 en escala 1-5). Esto sugiere que la mayoría de los estudiantes considera que existe calidad educativa en ESCOM, al menos en términos de su intención de continuar sus estudios aquí. [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 4,
+    "cifrasConRespaldo": 4,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "redaccion": 2662,
+     "verificacion": 0,
+     "interpretacion": 1937
+    },
+    "latenciaMs": 4650
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.0,
+     "relevancia": 0.181,
+     "precision_contexto": 1.0,
+     "promedio": 0.394,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.196,
+     "precision_contexto": 0.0,
+     "promedio": 0.399,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.5,
+     "relevancia": 0.183,
+     "precision_contexto": 1.0,
+     "promedio": 0.561,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 0.667,
+     "relevancia": 0.138,
+     "precision_contexto": 1.0,
+     "promedio": 0.602,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Sí me respondió sobre algo interesante, pero no siguió bajo el primer patrón interesante que me dio."
+   },
+   "turno": "2.2"
+  },
+  {
+   "consulta": 1372,
+   "enCache": false,
+   "respuesta": "El patrón interesante es el de p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?» con una respuesta del 50.4 %. Los estudiantes respondieron que la probabilidad era entre 1 y 2 en escala de 1 a 5, lo que sugiere que aunque no están muy seguros de volver, consideran que es probable que sí. Este patrón podría indicar que los estudiantes ven una cierta calidad académica pero con dudas sobre la continuidad futura en la institución.",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 4,
+    "cifrasConRespaldo": 4,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "redaccion": 3158,
+     "verificacion": 0,
+     "interpretacion": 2342
+    },
+    "latenciaMs": 5549
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.667,
+     "relevancia": 0.328,
+     "precision_contexto": 1.0,
+     "promedio": 0.665,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.333,
+     "relevancia": 0.327,
+     "precision_contexto": 1.0,
+     "promedio": 0.553,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.0,
+     "relevancia": 0.43,
+     "precision_contexto": 1.0,
+     "promedio": 0.477,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 0.667,
+     "relevancia": 0.421,
+     "precision_contexto": 1.0,
+     "promedio": 0.696,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": "Sí, pero me respondió bajo el segundo patrón que encontró, no sobre el primero, y todo debió ser bajo el primer patrón encontrado."
+   },
+   "turno": "2.3"
+  },
+  {
+   "consulta": 1373,
+   "enCache": false,
+   "respuesta": "El 50.4 % de los estudiantes (respondieron con una escala de 1 a 5, donde 1 es \"Muy poco probable\" y 5 es \"Muy probable\") está dispuesto a volver a estudiar en la institución para especializarse, obtener un maestría o doctorado. Esto sugiere que aunque no todos están muy comprometidos con continuar sus estudios aquí, una proporción significativa lo considera como una opción viable y deseable. [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 3,
+    "cifrasConRespaldo": 3,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "redaccion": 2922,
+     "verificacion": 0,
+     "interpretacion": 1396
+    },
+    "latenciaMs": 4370
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.0,
+     "relevancia": 0.623,
+     "precision_contexto": 1.0,
+     "promedio": 0.541,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.4,
+     "relevancia": 0.741,
+     "precision_contexto": 1.0,
+     "promedio": 0.714,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.0,
+     "relevancia": 0.73,
+     "precision_contexto": 1.0,
+     "promedio": 0.577,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.755,
+     "precision_contexto": 1.0,
+     "promedio": 0.918,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": "Sí fundamentó, pero debió ser un fundamento más extenso y con mayor análisis,"
+   },
+   "turno": "3.1"
+  },
+  {
+   "consulta": 1374,
+   "enCache": false,
+   "respuesta": "«orden_respondente» no es una variable de contexto de «Indicadores de Experiencia y Calidad Académica» (disponibles: ninguna).",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 1680
+    },
+    "latenciaMs": 1727
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No entendió y me menciona variables."
+   },
+   "turno": "4.1"
+  },
+  {
+   "consulta": 1375,
+   "enCache": false,
+   "respuesta": "La consulta no indica de qué pregunta se trata. [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "comparar_grupos",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 2942
+    },
+    "latenciaMs": 2984
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.072,
+     "precision_contexto": 0.0,
+     "promedio": 0.357,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.421,
+     "precision_contexto": 1.0,
+     "promedio": 0.807,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.517,
+     "precision_contexto": 1.0,
+     "promedio": 0.839,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.027,
+     "precision_contexto": 1.0,
+     "promedio": 0.676,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No identifica la primera consulta que hice para que la relacione y entonces sí me de la respuesta, no entiende."
+   },
+   "turno": "4.2"
+  },
+  {
+   "consulta": 1376,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "interpretacion": 1662
+    },
+    "latenciaMs": 1711
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": true,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 1,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Debió decir que no existe esa modalidad y ya."
+   },
+   "turno": "5.1",
+   "similitud": 0.175
+  },
+  {
+   "consulta": 1378,
+   "enCache": false,
+   "respuesta": "Criterio: p03 «¿Cómo es tu carga académica actual?» = «Cargas maxima».\nCumplen la condición 486 de 2000 respondentes (24.3 %). [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "conteo_porcentaje",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "cifras_corregidas",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 122,
+     "redaccion": 4117,
+     "verificacion": 1156,
+     "interpretacion": 1453
+    },
+    "latenciaMs": 5731
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.378,
+     "precision_contexto": 0.0,
+     "promedio": 0.459,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.414,
+     "precision_contexto": 1.0,
+     "promedio": 0.805,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.408,
+     "precision_contexto": 1.0,
+     "promedio": 0.803,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.534,
+     "precision_contexto": 1.0,
+     "promedio": 0.845,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "6.1",
+   "similitud": 0.629
+  },
+  {
+   "consulta": 1379,
+   "enCache": false,
+   "respuesta": "[Fuente 1] Indicadores de Experiencia y Calidad Académica (Encuesta)\n- Criterio: p03 «¿Cómo es tu carga académica actual?» = «Cargas maxima» y p01 «Cargas máxima ¿Tu programa académico cuenta con acreditación vigente (» = «Si»\n- Cumplen la condición 173 de 2000 respondentes (8.7 %).\n\nDe ellos que llevan carga máxima, trabajan 173 personas (8.7%).",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "conteo_porcentaje",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 1,
+    "primerFallo": "cifras_corregidas",
+    "verificacion": "regenerada",
+    "cifrasTotal": 3,
+    "cifrasConRespaldo": 3,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 103,
+     "redaccion": 7323,
+     "verificacion": 3615,
+     "interpretacion": 2538
+    },
+    "latenciaMs": 10014
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": true,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.492,
+     "precision_contexto": 1.0,
+     "promedio": 0.831,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.89,
+     "precision_contexto": 1.0,
+     "promedio": 0.963,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.0,
+     "relevancia": 0.6,
+     "precision_contexto": 1.0,
+     "promedio": 0.533,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.482,
+     "precision_contexto": 1.0,
+     "promedio": 0.827,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "quiero que verifique si trabajan aquellos que tienen carga máxima, pero lo confunde con programa académico vigente."
+   },
+   "turno": "6.2",
+   "similitud": 0.201
+  },
+  {
+   "consulta": 1380,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 3046
+    },
+    "latenciaMs": 3091
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "No hizo bien el filtro para la búsqueda de información y supuestamente no hay con qué responder."
+   },
+   "turno": "7.1",
+   "similitud": 0.418
+  },
+  {
+   "consulta": 1381,
+   "enCache": false,
+   "respuesta": "Criterio: p04 «Siempre De tus profesores de este periodo, ¿cuántos tienen doctorado?» >= «Mas de la mitad».\nCumplen la condición 274 de 2000 respondentes (13.7 %).\nSe muestran los 30 primeros por número de respondente que la cumplen: 30 de 274.\nRespondentes: R008, R026, R031, R032, R037, R041, R056, R057, R059, R069, R079, R080, R085, R087, R090, R099, R105, R106, R109, R112, R118, R123, R130, R132, R140, R146, R148, R165, R166, R168. [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "filtrar_respondentes",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 94,
+     "interpretacion": 1743
+    },
+    "latenciaMs": 1869
+   },
+   "tipo": "control",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.812,
+     "precision_contexto": 1.0,
+     "promedio": 0.937,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.888,
+     "precision_contexto": 1.0,
+     "promedio": 0.963,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.742,
+     "precision_contexto": 1.0,
+     "promedio": 0.914,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.904,
+     "precision_contexto": 1.0,
+     "promedio": 0.968,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "8.1",
+   "similitud": 0.523
+  },
+  {
+   "consulta": 1382,
+   "enCache": false,
+   "respuesta": "Respuestas interpretadas de R008 (respondentes R008). [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | R008 |\n|---|---|\n| p01 «Cargas máxima ¿Tu programa académico cuenta con acreditación vigente (» | Si |\n| p02 «¿En qué modalidad cursas tu programa?» | Presencial |\n| p03 «¿Cómo es tu carga académica actual?» | Carga minima |\n| p04 «Siempre De tus profesores de este periodo, ¿cuántos tienen doctorado?» | Mas de la mitad |\n| p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el » | Rara vez |\n| p06 «Ninguna ¿Cuántos de tus profesores han compartido o mencionado en clas» | 2-3 |\n| p07 «¿En qué actividades de investigación de tus profesores has participado» | Articulos cientificos |\n| p08 «Totalmente de acuerdo ¿Sabes si la institución ha obtenido patentes en» | No ha obtenido |\n| p09 «No, y no lo planeo ¿Con qué frecuencia usas alguna plataforma virtual » | Diariamente |\n| p10 «¿Cuándo esperas titularte?» | En el tiempo que marca mi plan de estudios |\n| p11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco» | No, pero planeo hacerlo |\n| p12 «No ¿Cuál es tu situación laboral actual?» | Trabajo en un area relacionada con mi carrera |\n| p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (espec» | 5 en escala 1–5 |\n| p14 «¿Has realizado prácticas profesionales o pasantías?» | Si, pero la consegui por mi cuenta |\n| p15 «Google no cr eó ni apr obó este contenido. ¿En qué programas de cooper» | Movilidad internacional |\n| p16 «La oferta de programas, materias optativas y cursos de mi institución » | 5 en escala 1–5 |\n| p17 «Los laboratorios, equipos, materiales y espacios de la institución son» | 5 en escala 1–5 |\n| p18 «En la biblioteca y las bases de datos académicas (Scopus, IEEE Xplore,» | 4 en escala 1–5 |",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "datos_respondente",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 44,
+     "interpretacion": 4380
+    },
+    "latenciaMs": 4471
+   },
+   "tipo": "control",
+   "intencion_correcta": true,
+   "criterios": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.232,
+     "precision_contexto": 0.0,
+     "promedio": 0.411,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.174,
+     "precision_contexto": 1.0,
+     "promedio": 0.725,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.656,
+     "precision_contexto": 1.0,
+     "promedio": 0.885,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.168,
+     "precision_contexto": 1.0,
+     "promedio": 0.723,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "8.2"
+  },
+  {
+   "consulta": 1383,
+   "enCache": false,
+   "respuesta": "¿A qué carrera de la encuesta Indicadores de Experiencia y Calidad Académica te refieres?",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 1611
+    },
+    "latenciaMs": 1653
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Me pregunta a qué carrera me refiero cuando me debe decir qué carrera de acuerdo con la información dada se identifica."
+   },
+   "turno": "9.1",
+   "similitud": 0.45
+  },
+  {
+   "consulta": 1384,
+   "enCache": false,
+   "respuesta": "Del instrumento actual con el que estamos trabajando, la pregunta más interesante es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»). Esto sugiere que la mayoría de los estudiantes no han experimentado estos situaciones problemáticas durante su período académico actual.",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 1,
+    "cifrasConRespaldo": 1,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "redaccion": 5119,
+     "verificacion": 0,
+     "interpretacion": 1232
+    },
+    "latenciaMs": 6410
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.0,
+     "relevancia": 0.176,
+     "precision_contexto": 1.0,
+     "promedio": 0.392,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.183,
+     "precision_contexto": 1.0,
+     "promedio": 0.728,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.667,
+     "relevancia": 0.484,
+     "precision_contexto": 1.0,
+     "promedio": 0.717,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.143,
+     "precision_contexto": 1.0,
+     "promedio": 0.714,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "No entendió y me dio una pregunta interesante, cuando yo pedí la carrera."
+   },
+   "turno": "9.2",
+   "similitud": 0.274
+  },
+  {
+   "consulta": 1385,
+   "enCache": false,
+   "respuesta": "La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»). [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "cifras_corregidas",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "redaccion": 8455,
+     "verificacion": 4729,
+     "interpretacion": 1068
+    },
+    "latenciaMs": 9562
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.275,
+     "precision_contexto": 1.0,
+     "promedio": 0.758,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.275,
+     "precision_contexto": 1.0,
+     "promedio": 0.758,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.592,
+     "precision_contexto": 1.0,
+     "promedio": 0.864,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.28,
+     "precision_contexto": 1.0,
+     "promedio": 0.76,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": "Debe fundamentar con más datos e información por qué lo considera preocupante."
+   },
+   "turno": "10.1"
+  },
+  {
+   "consulta": 1386,
+   "enCache": false,
+   "respuesta": "La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»). [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "cifras_corregidas",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "redaccion": 6716,
+     "verificacion": 3705,
+     "interpretacion": 2509
+    },
+    "latenciaMs": 9264
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.331,
+     "precision_contexto": 1.0,
+     "promedio": 0.777,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.331,
+     "precision_contexto": 1.0,
+     "promedio": 0.777,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.401,
+     "precision_contexto": 1.0,
+     "promedio": 0.8,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.264,
+     "precision_contexto": 1.0,
+     "promedio": 0.755,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Quería una mejor explicación de por qué considerarse preocupante."
+   },
+   "turno": "10.2"
+  },
+  {
+   "consulta": 1387,
+   "enCache": false,
+   "respuesta": "El nivel alto predomina en p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?»: 50.4 % de quienes respondieron (respondieron «4 en escala 1–5» o «5 en escala 1–5»). Este dato sugiere preocupación por la posibilidad de que los estudiantes no consideren repetir estudios aquí, lo cual podría indicar una percepción de falta de calidad académica.",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 4,
+    "cifrasConRespaldo": 4,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "redaccion": 2795,
+     "verificacion": 0,
+     "interpretacion": 2279
+    },
+    "latenciaMs": 5131
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.333,
+     "relevancia": 0.369,
+     "precision_contexto": 1.0,
+     "promedio": 0.567,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.369,
+     "precision_contexto": 1.0,
+     "promedio": 0.79,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.25,
+     "relevancia": 0.411,
+     "precision_contexto": 1.0,
+     "promedio": 0.554,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.392,
+     "precision_contexto": 1.0,
+     "promedio": 0.797,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Sí, pero me lo dio de otro dato preocupante, no del que principalmente me dijo"
+   },
+   "turno": "10.3"
+  },
+  {
+   "consulta": 1388,
+   "enCache": false,
+   "respuesta": "En el nivel alto, la pregunta p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?» muestra que 50.4 % de los estudiantes respondieron con una probabilidad alta (respondieron «4 en escala 1–5» o «5 en escala 1–5»). Esto sugiere que la mayoría de los estudiantes considera probable su retorno a ESCOM, lo cual podría indicar una percepción general positiva sobre la institución. [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 4,
+    "cifrasConRespaldo": 4,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 16,
+     "redaccion": 3362,
+     "verificacion": 1,
+     "interpretacion": 3068
+    },
+    "latenciaMs": 6485
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.0,
+     "relevancia": 0.254,
+     "precision_contexto": 1.0,
+     "promedio": 0.418,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.333,
+     "relevancia": 0.189,
+     "precision_contexto": 1.0,
+     "promedio": 0.507,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.5,
+     "relevancia": 0.179,
+     "precision_contexto": 1.0,
+     "promedio": 0.56,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 0.75,
+     "relevancia": 0.235,
+     "precision_contexto": 1.0,
+     "promedio": 0.662,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió responder que a qué exactamente yo quería que me respondiera."
+   },
+   "turno": "10.4"
+  },
+  {
+   "consulta": 1389,
+   "enCache": false,
+   "respuesta": "La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»). [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "cifras_corregidas",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "redaccion": 6520,
+     "verificacion": 3740,
+     "interpretacion": 740
+    },
+    "latenciaMs": 7306
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.238,
+     "precision_contexto": 1.0,
+     "promedio": 0.746,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.238,
+     "precision_contexto": 1.0,
+     "promedio": 0.746,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.509,
+     "precision_contexto": 1.0,
+     "promedio": 0.836,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.244,
+     "precision_contexto": 1.0,
+     "promedio": 0.748,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": "Pudo decirme qué encontró en otras preguntas y cómo llegó a esta conclusión."
+   },
+   "turno": "11.1",
+   "similitud": 0.495
+  },
+  {
+   "consulta": 1390,
+   "enCache": false,
+   "respuesta": "La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»). [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "cifras_corregidas",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "redaccion": 9744,
+     "verificacion": 6953,
+     "interpretacion": 1967
+    },
+    "latenciaMs": 11763
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 0.0,
+   "contexto_suficiente": true,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.193,
+     "precision_contexto": 1.0,
+     "promedio": 0.731,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.193,
+     "precision_contexto": 1.0,
+     "promedio": 0.731,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.366,
+     "precision_contexto": 1.0,
+     "promedio": 0.789,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.203,
+     "precision_contexto": 1.0,
+     "promedio": 0.734,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": "Debió explicar por qué está dividida"
+   },
+   "turno": "11.2",
+   "similitud": 0.366
+  },
+  {
+   "consulta": 1391,
+   "enCache": false,
+   "respuesta": "Indicadores de Experiencia y Calidad Académica (Encuesta) [Fuente 1]:\n- Tipo: Encuesta.\n- Objetivo: Conocer la percepción y la experiencia de los estudiantes sobre la calidad académica de su institución. La encuesta cubre la oferta educativa, el cuerpo docente, la investigación, los recursos de aprendizaje, la trayectoria escolar y la vinculación con el entorno, y sus resultados alimentan 18 indicadores clave de desempeño (KPIs) que ayudan a identificar fortalezas y áreas de mejora.\n- Población: Estudiantes universitarios.\n- Nivel educativo: Posgrado.\n- 18 preguntas sin secciones; 2000 respondentes.\n- Algunas de sus preguntas: «Cargas máxima ¿Tu programa académico cuenta con acreditación vigente (COP AES, SEAES CONAIC, u otro )?»; «¿En qué modalidad cursas tu programa?»; «¿Cómo es tu carga académica actual?»; «Siempre De tus profesores de este periodo, ¿cuántos tienen doctorado?».\n- Palabras clave: calidad, correspondan, institución, materias, profesores, solo, programas, profesionales.\n- KPIs asociados: Ratio de Matriculados frente a Graduados del Curso; Tasa de Continuidad en Estudios de Posgrado; Número de Programas Académicos Acreditados; Cualificación Docente y Tasa de Rotación del Profesorado; Estado de Acreditación y Clasificaciones Académicas.",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "semantica_abierta",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 7,
+     "interpretacion": 3453
+    },
+    "latenciaMs": 5389
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": false,
+   "criterios": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.193,
+     "precision_contexto": null,
+     "promedio": 0.597,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.268,
+     "precision_contexto": null,
+     "promedio": 0.634,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.231,
+     "precision_contexto": null,
+     "promedio": 0.616,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.159,
+     "precision_contexto": null,
+     "promedio": 0.58,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": "Necesito una descripción contextual de lo que trata el instrumento, no solo metadatos."
+   },
+   "turno": "12.1",
+   "similitud": 0.679
+  },
+  {
+   "consulta": 1392,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados. Recuerda que solo entran al RAG los instrumentos con metadatos aprobados por su autor; puedes ampliar la selección de tu investigación.",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "semantica_abierta",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 2384
+    },
+    "latenciaMs": 2797
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No me dio una descripción de qué trata el instrumento y dio por hecho que no tiene información. Debió hacer un análisis,"
+   },
+   "turno": "12.2"
+  },
+  {
+   "consulta": 1393,
+   "enCache": false,
+   "respuesta": "¿Qué sección o qué parte del instrumento te refieres con 'secciones'?",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 7,
+     "interpretacion": 1456
+    },
+    "latenciaMs": 1497
+   },
+   "tipo": "control",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 1,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Solo debió responder con sí o no"
+   },
+   "turno": "13.1",
+   "similitud": 0.215
+  },
+  {
+   "consulta": 1394,
+   "enCache": false,
+   "respuesta": "La pregunta con el mayor número de respuestas es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?». 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»).",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 1,
+    "cifrasConRespaldo": 1,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "redaccion": 1771,
+     "verificacion": 0,
+     "interpretacion": 1047
+    },
+    "latenciaMs": 2864
+   },
+   "tipo": "control",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.0,
+     "relevancia": 0.169,
+     "precision_contexto": 1.0,
+     "promedio": 0.39,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.169,
+     "precision_contexto": 1.0,
+     "promedio": 0.723,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.5,
+     "relevancia": 0.142,
+     "precision_contexto": 1.0,
+     "promedio": 0.547,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": null,
+     "relevancia": 0.168,
+     "precision_contexto": 1.0,
+     "promedio": 0.584,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Se desvió completamente de lo que estaba pidiendo. Y siempre responde con esas preguntas."
+   },
+   "turno": "13.2",
+   "similitud": 0.127
+  },
+  {
+   "consulta": 1395,
+   "enCache": false,
+   "respuesta": "No encontré la pregunta «*» en «Indicadores de Experiencia y Calidad Académica». ¿A cuál te refieres?",
+   "indicadores": {
+    "modelo": "qwen2.5:3b",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 1630
+    },
+    "latenciaMs": 1671
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió analizar el instrumento para buscar si había respuestas en blanco a preguntas de algunos respondentes."
+   },
+   "turno": "14.1",
+   "similitud": 0.36
+  }
+ ]
+}

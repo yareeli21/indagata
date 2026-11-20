@@ -1,0 +1,41 @@
+{
+ "id": "PRU-10",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara los primeros 50 alumnos con los últimos 50 en el reactivo de la contraseña segura",
+   "rag_log_id": 2348,
+   "respuesta": "«Prueba de Alfabetización Digital» no registra «últimos, reactivo». En r10 («¿Qué es una contraseña segura?») las opciones son: A) El nombre de tu mascota, B) Una combinación de letras, números y símbolos de al menos 12 caracteres, C) Tu fecha de nacimiento, D) Una sola palabra del diccionario.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Prueba de Alfabetización Digital» no registra «últimos, reactivo». En r10 («¿Qué es una contraseña segura?») las opciones son: A) El nombre de tu mascota, B) Una combinación de letras, números y símbolos de al menos 12 caracteres, C) Tu fecha de nacimiento, D) Una sola palabra del diccionario."
+   },
+   "correcciones": [
+    "filtro r10 = «todos» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 99.6,
+   "tiempos_ms": {
+    "ejecucion": 44,
+    "recuperacion": 751,
+    "interpretacion": 98829
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    2
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "de esa no respondieron, pero debió decirlo explícitamente o efectivamente hacer la comparación solicitada porque no se entiende lo que muestra como respuesta"
+  }
+ ],
+ "debe": "Grupos por posición con la distribución de cada uno."
+}

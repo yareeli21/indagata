@@ -1,0 +1,161 @@
+{
+ "id": "CPR-04",
+ "instrumento": "pru_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Falso en el reactivo del acceso abierto?",
+   "rag_log_id": 2889,
+   "respuesta": "Criterio: r09 «El acceso abierto (open access) permite la lectura gratuita de artícul» = «Falso».\nCumplen la condición 34 de 80 respondentes (42.5 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Falso",
+      "pregunta": "r09"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Falso",
+      "pregunta": "r09"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:cifras_completadas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.5723
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.461
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r14",
+     "score": 0.4564
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.4438
+    }
+   ],
+   "segundos": 184.9,
+   "tiempos_ms": {
+    "ejecucion": 47,
+    "redaccion": 132558,
+    "recuperacion": 2116,
+    "verificacion": 65739,
+    "interpretacion": 50116
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "De ellos, ¿qué eligieron en el reactivo del DOI?",
+   "rag_log_id": 2890,
+   "respuesta": "De los 34 estudiantes que respondieron al reactivo r14 sobre el DOI, 19 (55.9%) eligieron “Descargar artículos ilegalmente”, 10 (29.4%) seleccionaron “Crear correos electrónicos académicos” y 4 (11.8%) optaron por “Identificar de manera permanente y única un documento digital”. Según sus datos registrados, [Fuente 1] r14 entre quienes cumplen la condición muestra una distribución en donde el 55.9% eligieron descargar artículos ilegalmente, el 29.4% crearon correos electrónicos académicos y el 11.8% identificaron de manera permanente y única un documento digital. [Fuente 1]\n\n**r14 entre quienes cumplen la condición [Fuente 1]**\n| Opción | Personas | % del grupo |\n|---|---|---|\n| Descargar artículos ilegalmente | 19 | 55.9 % |\n| Crear correos electrónicos académicos | 10 | 29.4 % |\n| Identificar de manera permanente y única un documento digital | 4 | 11.8 % |\n| Almacenar datos de investigación | 1 | 2.9 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Falso",
+      "pregunta": "r09"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r14"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r14"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r09 heredado del plan anterior"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.4817
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.4756
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4705
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r14",
+     "score": 0.4557
+    }
+   ],
+   "segundos": 511.0,
+   "tiempos_ms": {
+    "ejecucion": 47,
+    "redaccion": 446908,
+    "recuperacion": 2351,
+    "verificacion": 241209,
+    "interpretacion": 61945
+   },
+   "k_precision": 0.895,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(1) conteo y %; (2) distribución del reactivo del DOI dentro del grupo de (1)."
+}

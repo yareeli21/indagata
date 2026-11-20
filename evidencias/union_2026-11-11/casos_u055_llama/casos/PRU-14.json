@@ -1,0 +1,210 @@
+{
+ "id": "PRU-14",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en «la nube elimina por completo el riesgo de perder datos»?",
+   "rag_log_id": 3793,
+   "respuesta": "57 de los 95 que respondieron r16 (60.0 %) cumplen el criterio: r16 «El almacenamiento en la nube elimina por completo el riesgo de perder » = «Verdadero». Sobre el total del instrumento son 57 de 97 respondentes (58.8 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r16"
+     }
+    ],
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r16"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r16"
+    ],
+    "contexto_num": [
+     {
+      "valor": 0.0,
+      "variable": "r16"
+     },
+     {
+      "valor": 1.0,
+      "variable": "r16"
+     }
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "contexto r16 > 0 descartado (la pregunta no lo menciona)",
+    "contexto r16 > 1 descartado (la pregunta no lo menciona)",
+    "conteo de r16 = «Verdadero» como condición (la consulta nombra la opción)"
+   ],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5851
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5748
+    }
+   ],
+   "segundos": 19.1,
+   "tiempos_ms": {
+    "ejecucion": 11,
+    "redaccion": 5647,
+    "recuperacion": 391,
+    "verificacion": 0,
+    "interpretacion": 13004
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "De ellos, ¿qué respondieron sobre Wi-Fi público?",
+   "rag_log_id": 3794,
+   "respuesta": "Según la información proporcionada en [Fuente 1], 73 alumnos (75.3%) de los 97 que respondieron a la pregunta \"Usar redes Wi-Fi públicas sin VPN es completamente seguro\" marcaron Verdadero.\n\nEn cuanto a la pregunta específica \"la nube elimina por completo el riesgo de perder datos\", se menciona que 57 de los 95 alumnos (60.0%) que respondieron a esta pregunta también marcaron Verdadero.",
+   "intencion": "aclaracion",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "aclaracion",
+    "aclaracion": "«Wi-Fi público» no es una opción de r06 («¿Qué es la nube (cloud computing) en tecnología?»). Las opciones son: A) Un servidor físico en tu oficina, B) Almacenamiento y servicios de internet a través de servidores remotos, C) Una aplicación de mensajería, D) Un hardware específico. ¿Cuál quieres?"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Wi-Fi público",
+      "pregunta": "r06"
+     },
+     {
+      "valor": "Verdadero",
+      "pregunta": "r11"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r06",
+     "r11"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "cifras_sin_respaldo",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6068
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5847
+    }
+   ],
+   "segundos": 21.2,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "recuperacion": 299,
+    "interpretacion": 14780
+   },
+   "k_precision": 0.462,
+   "cifras_con_respaldo": [
+    3,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame 5",
+   "rag_log_id": 3795,
+   "respuesta": "- r10 «¿Qué es una contraseña segura?» tiene 97 respuestas nulas o vacías de 97 alumnos (100.0 %).\n- El reactivo donde más alumnos coinciden es r11 «El correo electrónico es siempre un canal seguro para enviar información confidencial.»: el 83.5 % eligió «Verdadero».\n- El reactivo con las respuestas más repartidas es r01 «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?»: la opción más elegida solo reúne el 30.9 %. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "limite": 5,
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 5,
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "estructurada",
+   "motivo": "plan:hallazgo:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 32.1,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 16502,
+    "recuperacion": 370,
+    "verificacion": 7342,
+    "interpretacion": 15230
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) filtrar sobre el grupo de (1); (3) 5 IDs anónimos con el total."
+}

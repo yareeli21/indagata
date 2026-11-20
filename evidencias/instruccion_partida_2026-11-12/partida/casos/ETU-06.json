@@ -1,0 +1,45 @@
+{
+ "id": "ETU-06",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué semestre va la entrevistada y si trabaja?",
+   "rag_log_id": 4159,
+   "respuesta": "No encontré la pregunta «¿En qué semestre va la entrevistada y si trabaja?» en «Salud mental entrevista». ¿A cuál te refieres?",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "No encontré la pregunta «¿En qué semestre va la entrevistada y si trabaja?» en «Salud mental entrevista». ¿A cuál te refieres?"
+   },
+   "plan_modelo": {
+    "intencion": "hallazgo",
+    "preguntas": [
+     "¿En qué semestre va la entrevistada y si trabaja?"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 8.3,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "recuperacion": 260,
+    "interpretacion": 7977
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Datos registrados: semestre 6 y trabaja 15 horas por semana, presentados como datos registrados."
+}

@@ -1,0 +1,188 @@
+{
+ "id": "PRU-14",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en «la nube elimina por completo el riesgo de perder datos»?",
+   "rag_log_id": 2604,
+   "respuesta": "57 de 97 respondientes (58.8 %) marcaron “Verdadero” al criterio r16 “El almacenamiento en la nube elimina por completo el riesgo de perder”. [Fuente 1] Esto indica que un número considerable de participantes no considera que el almacenamiento en la nube elimine completamente el riesgo de pérdida de datos, según reactivo r16.",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r16"
+     }
+    ],
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r16"
+    ]
+   },
+   "correcciones": [
+    "mención «nube elimina por completo el riesgo de perder datos» descartada (la pregunta no pregunta quién lo mencionó)",
+    "el enunciado citado es r16",
+    "conteo de r16 = «Verdadero» como condición (la consulta nombra la opción)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5851
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5748
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.4825
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.4561
+    }
+   ],
+   "segundos": 41.9,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 22920,
+    "recuperacion": 292,
+    "verificacion": 9636,
+    "interpretacion": 18630
+   },
+   "k_precision": 0.63,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "De ellos, ¿qué respondieron sobre Wi-Fi público?",
+   "rag_log_id": 2605,
+   "respuesta": "De los 97 alumnos, 73 marcaron “Verdadero” al reactivo r15 (“Usar redes Wi-Fi públicas sin VPN es completamente seguro”), lo que representa el 75.3 % [Fuente 1].",
+   "intencion": "semantica_abierta",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "semantica_abierta",
+    "preguntas": [
+     "r15"
+    ],
+    "consulta_semantica": "uso de redes wifi públicas"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6264
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5615
+    }
+   ],
+   "segundos": 28.0,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 159,
+    "interpretacion": 18195
+   },
+   "k_precision": 0.857,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame 5",
+   "rag_log_id": 2606,
+   "respuesta": "Criterio: KPI KPI-25.\nPor qué se asoció: El KPI, al medir la interacción y participación del estudiante en plataformas virtuales como sesiones y foros, se relaciona directamente con el instrumento al evaluar si los alumnos han estado familiarizados con conceptos básicos sobre tecnologías emergentes. Las preguntas específicas sobre LMS y análisis de datos de aprendizaje buscan cuantificar esa interacción, indicando el nivel de compromiso que predice el éxito académico según la definición del KPI. [Fuente 1]\n\n**KPIs asociados [Fuente 1]**\n| KPI | Qué mide | Preguntas que lo sustentan |\n|---|---|---|\n| Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales | Cuantifica el nivel de actividad y participación activa de los alumnos dentro de la plataforma de aprendizaje en línea. | r02, r12 |",
+   "intencion": "kpi",
+   "plan": {
+    "kpi": "KPI-25",
+    "intencion": "kpi"
+   },
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:kpi:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.544
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5347
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.3652
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r06",
+     "score": 0.3592
+    }
+   ],
+   "segundos": 65.7,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 48646,
+    "recuperacion": 314,
+    "verificacion": 22446,
+    "interpretacion": 16686
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) filtrar sobre el grupo de (1); (3) 5 IDs anónimos con el total."
+}

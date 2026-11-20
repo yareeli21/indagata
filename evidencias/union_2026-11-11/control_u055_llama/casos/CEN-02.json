@@ -1,0 +1,91 @@
+{
+ "id": "CEN-02",
+ "instrumento": "enc_control",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Los que no trabajan dejan menos tareas para el último momento que los que trabajan más de 30 horas?",
+   "rag_log_id": 3939,
+   "respuesta": "Criterio: por p14 «¿Cuál es tu carga laboral actual?». [Fuente 1]\n\n**Comparación por p14 «¿Cuál es tu carga laboral actual?» [Fuente 1]**\n| Grupo | Personas | p10: respuestas del grupo |\n|---|---|---|\n| No trabajo | 40 | media 3.15; «Siempre» 11 (27.5 %); «A veces» 9 (22.5 %); «Nunca» 8 (20.0 %); «Frecuentemente» 6 (15.0 %); «Raramente» 6 (15.0 %) |\n| Trabajo 20-30h | 48 | media 3.38; «Frecuentemente» 16 (33.3 %); «Siempre» 12 (25.0 %); «Raramente» 8 (16.7 %); «Nunca» 7 (14.6 %); «A veces» 5 (10.4 %) |\n| Trabajo menos de 20h semanales | 35 | media 3.0; «Frecuentemente» 9 (25.7 %); «A veces» 8 (22.9 %); «Raramente» 7 (20.0 %); «Nunca» 6 (17.1 %); «Siempre» 5 (14.3 %) |\n| Trabajo más de 30h | 37 | media 2.76; «A veces» 10 (27.0 %); «Nunca» 9 (24.3 %); «Raramente» 7 (18.9 %); «Frecuentemente» 6 (16.2 %); «Siempre» 5 (13.5 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "filtros": [
+     {
+      "valor": [
+       "No trabajo",
+       "Trabajo 20-30h",
+       "Trabajo más de 30h",
+       "Trabajo menos de 20h semanales"
+      ],
+      "pregunta": "p14"
+     }
+    ],
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p10"
+    ],
+    "agrupar_por": "p14"
+   },
+   "plan_modelo": {
+    "limite": 2,
+    "intencion": "comparar_grupos",
+    "agrupar_por": "p10",
+    "consulta_semantica": "¿Los que no trabajan dejan menos tareas para el último momento que los que trabajan más de 30 horas?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar p10 entre «No trabajo» y «Trabajo 20-30h, Trabajo más de 30h, Trabajo menos de 20h semanales» de p14"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:inferencia",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5989
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.5962
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.5862
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5637
+    }
+   ],
+   "segundos": 26.5,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 22219,
+    "recuperacion": 615,
+    "verificacion": 4240,
+    "interpretacion": 3590
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    37,
+    37
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruce de dos preguntas, cada grupo con su n y %."
+}

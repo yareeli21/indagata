@@ -1,0 +1,58 @@
+{
+ "id": "ENT-21",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué indicaciones tenía el entrevistador?",
+   "rag_log_id": 2670,
+   "respuesta": "El entrevistador indicó: “Gracias por aceptar la entrevista. Todo lo que digas es confidencial y puedes no responder alguna pregunta.” [Fuente 1, Encabezado de la transcripción].",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.544
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.5268
+    }
+   ],
+   "segundos": 6.2,
+   "tiempos_ms": {
+    "redaccion": 5805,
+    "recuperacion": 179,
+    "verificacion": 1
+   },
+   "k_precision": 0.889,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Las indicaciones si están; si no, no inventarlas."
+}

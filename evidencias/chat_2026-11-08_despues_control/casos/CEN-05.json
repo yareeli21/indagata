@@ -1,0 +1,114 @@
+{
+ "id": "CEN-05",
+ "instrumento": "enc_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 2634,
+   "respuesta": "*   45.6 % (73 de 160) respondió “Menos de 5h” o “Más de 20h” en p12 «¿Cuántas horas dedicas al estudio fuera de clases por semana?» [Fuente 1]. Esto sugiere una posible discrepancia entre las horas reportadas y la realidad del tiempo dedicado al estudio.\n*   23.1 % (37 de 160) respondió “Totalmente en desacuerdo / Nunca” o “En desacuerdo / Pocas veces” en p07 «Identifico y elimino distracciones durante mis sesiones de estudio.» [Fuente 1]. Este resultado indica una dificultad para controlar las distracciones al estudiar.\n*   Considero que lo más preocupante es el 45.6 % (73 de 160) que respondió “Menos de 5h” o “Más de 20h” en p12, ya que podría indicar una falta de autoevaluación precisa sobre la carga académica y su impacto en el rendimiento académico [Fuente 1].",
+   "intencion": "hallazgo",
+   "plan": {
+    "sentido": "desfavorable",
+    "intencion": "hallazgo"
+   },
+   "correcciones": [
+    "filtro p08 = «alta» descartado (no es una opción y la pregunta no lo menciona)",
+    "intención resumen_pregunta → hallazgo con sentido desfavorable"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4556
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4504
+    }
+   ],
+   "segundos": 80.3,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 61410,
+    "recuperacion": 296,
+    "verificacion": 26713,
+    "interpretacion": 18543
+   },
+   "k_precision": 0.7,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué?",
+   "rag_log_id": 2635,
+   "respuesta": "**Lo que muestran los datos:** Dato 1: 45.6 % (73 de 160) respondió «Menos de 5h» o «Más de 20h» en p12 «¿Cuántas horas dedicas al estudio fuera de clases por semana?» (respuestas desfavorables según el sistema (sin revisar)) Dato 2: 23.1 % (37 de 160) respondió «Totalmente en desacuerdo / Nunca» o «En desacuerdo / Pocas veces» en p07 «Identifico y elimino distracciones durante mis sesiones de estudio.» (respuestas desfavorables según el sistema (sin revisar))\n\n**Interpretación (del asistente, no es un dato):** Los datos no registran por qué respondieron así; con este cálculo no se pueden afirmar causas. Sirve como punto de partida para revisarlo con más información.",
+   "intencion": "hallazgo",
+   "plan": {
+    "sentido": "desfavorable",
+    "relacion": "profundiza",
+    "intencion": "hallazgo"
+   },
+   "correcciones": [
+    "profundiza: se repite el plan anterior (hallazgo) para explicarlo"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:cifras_completadas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4716
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4617
+    }
+   ],
+   "segundos": 31.9,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 14111,
+    "recuperacion": 279,
+    "verificacion": 0,
+    "interpretacion": 17483
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    11,
+    11
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Respuestas desfavorables con cifras."
+}

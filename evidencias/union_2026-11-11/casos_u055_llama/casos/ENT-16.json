@@ -1,0 +1,281 @@
+{
+ "id": "ENT-16",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Conoce a compañeros que necesiten apoyo y no lo busquen?",
+   "rag_log_id": 3831,
+   "respuesta": "- En p01 «Para empezar, ¿cómo describirías tu estado de ánimo durante este semestre?» habla de: semestre pesado; dificultad dormir; presión emocional; valoración negativo. Cita de E01: «Ha sido un semestre pesado».\n- En p02 «¿Qué situaciones de la universidad te generan más estrés o ansiedad?» habla de: carga de proyectos; exposiciones; materias; trabajo papelería; valoración negativo. Cita de E01: «Eh, Sobre todo la carga de proyectos».\n- En p05 «¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?» habla de: solicitud de cita; tiempo de espera; disponibilidad fechas; estado paciente; valoración negativo. Cita de E01: «Pasaron casi dos semanas». [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.76
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7179
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7046
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.67
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.642
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.617
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6063
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6023
+    }
+   ],
+   "segundos": 33.0,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 28651,
+    "recuperacion": 331,
+    "verificacion": 6948,
+    "interpretacion": 4005
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué les diría?",
+   "rag_log_id": 3832,
+   "respuesta": "**resultado**\n\n- Tema: Compañeros Estresados\n- Pregunta: p10 y p12\n- Valoración: negativo (p10) y positivo (p12)\n\n- Citas:\n  - E01: «Ehm, Sí, varios. pero casi nadie va a orientación.» (p10)\n  - E01: «Que no espere a estar muy mal, como yo. Que pedir ayuda no significa que sea débil, al contrario.» (p12)\n  - E01: «En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación.» (p10)\n\n- Tema: Falta de Asistencia\n- Pregunta: p10\n- Valoración: negativo\n\n- Citas:\n  - E01: «Ehm, Sí, varios. pero casi nadie va a orientación.» (p10)\n  - E01: «Algunos no saben que existe y otros piensan lo mismo que yo pensaba, que es solo para casos muy graves.» (p10)\n\n- Tema: Percepción del Apoyo",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7576
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.7318
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7143
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.6986
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6858
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6765
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6684
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.6369
+    }
+   ],
+   "segundos": 29.2,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 22846,
+    "recuperacion": 359,
+    "verificacion": 2,
+    "interpretacion": 5926
+   },
+   "k_precision": 0.952,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Resume su postura en una frase",
+   "rag_log_id": 3833,
+   "respuesta": "Criterio: resumen de p10, p12.\np10 «¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo b»: respondieron 1 de 1 participantes.\np12 «Para terminar, ¿qué le dirías a un compañero que está pasando por un m»: respondieron 1 de 1 participantes. [Fuente 1]\n\n**Respuestas a p10 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Ehm, Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación. Algunos no saben que existe y otros piensan lo mismo que yo pensaba, que es solo para casos muy graves. Un compañero dejó de venir a mitad del semestre y nadie supo bien qué le pasó. |\n\n**Respuestas a p12 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Que no espere a estar muy mal, como yo. Que pedir ayuda no significa que sea débil, al contrario. Y que la orientación es gratuita y confidencial, nadie se va a enterar. A mí me sirvió para darme cuenta de que no estaba sola y de que lo que sentía tenía nombre y se podía trabajar. |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "orden": {},
+    "limite": 1,
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p10",
+     "p12"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     },
+     {
+      "valor": "Sí",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p10",
+     "p12"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p10 = «Sí» quitado (es la pregunta que se resume y la consulta no nombra esa opción)",
+    "filtro p12 = «Sí» quitado (es la pregunta que se resume y la consulta no nombra esa opción)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p12",
+     "score": 0.5923
+    }
+   ],
+   "segundos": 23.4,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 16661,
+    "recuperacion": 350,
+    "verificacion": 5418,
+    "interpretacion": 6355
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(3) síntesis fiel, sin ideas que no dijo."
+}

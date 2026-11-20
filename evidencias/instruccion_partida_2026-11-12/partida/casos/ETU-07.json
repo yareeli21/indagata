@@ -1,0 +1,100 @@
+{
+ "id": "ETU-07",
+ "instrumento": "ent_nueva",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Le sirvió el apoyo psicológico?",
+   "rag_log_id": 4160,
+   "respuesta": "«Salud mental entrevista» no registra «sirvió». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: Edad, Turno, Carrera, Género, Trabaja, Semestre.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Salud mental entrevista» no registra «sirvió». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: Edad, Turno, Carrera, Género, Trabaja, Semestre."
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "15",
+      "pregunta": "p04"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p04 = «15» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 9.8,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 281,
+    "interpretacion": 9442
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿En qué lo notó?",
+   "rag_log_id": 4161,
+   "respuesta": "No encontré esa condición en «Salud mental entrevista». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: Edad, Turno, Carrera, Género, Trabaja, Semestre.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "No encontré esa condición en «Salud mental entrevista». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: Edad, Turno, Carrera, Género, Trabaja, Semestre."
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Siempre",
+      "pregunta": "p03"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p03 = «Siempre» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 5.8,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 206,
+    "interpretacion": 5558
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(1) lo que dijo del apoyo, con cita; (2) sigue con ella: cambios que mencionó (desempeño), con cita, sin inventar."
+}

@@ -1,0 +1,72 @@
+{
+ "id": "PRU-22",
+ "instrumento": "pru",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos eligieron la opción E en el reactivo 3?",
+   "rag_log_id": 2368,
+   "respuesta": "Criterio: resumen de r03.\nr03 «¿Cuál es la principal función de una VPN?»: 97 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «D) Almacenar archivos en la nube» (48.5 % de los alumnos).\nOpción más elegida: «Almacenar archivos en la nube» (48.5 %, 47 alumnos). [Fuente 1]\n\n**Distribución de r03 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 23 | 23.7 % |\n| B | 7 | 7.2 % |\n| C | 20 | 20.6 % |\n| D | 47 | 48.5 % |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r03"
+    ]
+   },
+   "correcciones": [
+    "filtro r03 = «D» descartado (no es una opción y la pregunta no lo menciona)"
+   ],
+   "verificacion": "modelo_no_disponible",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": "modelo_no_disponible",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4796
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.4596
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4422
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.4304
+    }
+   ],
+   "segundos": 89.7,
+   "tiempos_ms": {
+    "ejecucion": 66,
+    "redaccion": 1554,
+    "recuperacion": 1527,
+    "verificacion": 0,
+    "interpretacion": 86476
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "debió decir que no existe esa opción"
+  }
+ ],
+ "debe": "«No existe la opción E»; las opciones son A a D (más NR)."
+}

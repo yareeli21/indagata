@@ -19,7 +19,7 @@ from pydantic import BaseModel
 # NivelEducativo). Mantener en sincronía con src/types/index.ts.
 TipoInstrumentoDTO = Literal["Encuesta", "Entrevista", "Prueba estandarizada"]
 EstadoInstrumentoDTO = Literal["Borrador", "En revisión", "Estandarizado"]
-NivelEducativoDTO = Literal["Licenciatura", "Posgrado"]
+NivelEducativoDTO = Literal["Licenciatura"]  # todo el acervo es de licenciatura (16 nov)
 
 
 class InstrumentoDTO(BaseModel):

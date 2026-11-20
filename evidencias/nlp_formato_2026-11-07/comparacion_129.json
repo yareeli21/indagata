@@ -1,0 +1,379 @@
+2026-11-08 03:06:14,140 INFO sqlalchemy.engine.Engine select pg_catalog.version()
+2026-11-08 03:06:14,142 INFO sqlalchemy.engine.Engine [raw sql] {}
+2026-11-08 03:06:14,157 INFO sqlalchemy.engine.Engine select current_schema()
+2026-11-08 03:06:14,157 INFO sqlalchemy.engine.Engine [raw sql] {}
+2026-11-08 03:06:14,160 INFO sqlalchemy.engine.Engine show standard_conforming_strings
+2026-11-08 03:06:14,161 INFO sqlalchemy.engine.Engine [raw sql] {}
+2026-11-08 03:06:14,173 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-11-08 03:06:14,179 INFO sqlalchemy.engine.Engine SELECT tt_rag.version_conocimiento.id_version AS tt_rag_version_conocimiento_id_version, tt_rag.version_conocimiento.id_crudo AS tt_rag_version_conocimiento_id_crudo, tt_rag.version_conocimiento.version AS tt_rag_version_conocimiento_version, tt_rag.version_conocimiento.estado AS tt_rag_version_conocimiento_estado, tt_rag.version_conocimiento.perfil AS tt_rag_version_conocimiento_perfil, tt_rag.version_conocimiento.decisiones_kpi AS tt_rag_version_conocimiento_decisiones_kpi, tt_rag.version_conocimiento.ruta_documento AS tt_rag_version_conocimiento_ruta_documento, tt_rag.version_conocimiento.esquema_version AS tt_rag_version_conocimiento_esquema_version, tt_rag.version_conocimiento.avisos AS tt_rag_version_conocimiento_avisos, tt_rag.version_conocimiento.sha256 AS tt_rag_version_conocimiento_sha256, tt_rag.version_conocimiento.id_limpieza AS tt_rag_version_conocimiento_id_limpieza, tt_rag.version_conocimiento.id_usuario AS tt_rag_version_conocimiento_id_usuario, tt_rag.version_conocimiento.fecha_creacion AS tt_rag_version_conocimiento_fecha_creacion, tt_rag.version_conocimiento.fecha_kpis AS tt_rag_version_conocimiento_fecha_kpis, tt_rag.version_conocimiento.fecha_documento AS tt_rag_version_conocimiento_fecha_documento, tt_rag.version_conocimiento.fecha_publicacion AS tt_rag_version_conocimiento_fecha_publicacion 
+FROM tt_rag.version_conocimiento 
+WHERE tt_rag.version_conocimiento.id_crudo = %(id_crudo_1)s::INTEGER AND tt_rag.version_conocimiento.estado = %(estado_1)s::VARCHAR
+2026-11-08 03:06:14,179 INFO sqlalchemy.engine.Engine [generated in 0.00069s] {'id_crudo_1': 129, 'estado_1': 'vigente'}
+{
+ "id_crudo": 129,
+ "modelo": "gemma3:4b",
+ "resumen": {
+  "a_libre": {
+   "respuestas": 12,
+   "validas": 4,
+   "vacias": 8,
+   "temas": 15,
+   "descartadas": 17,
+   "segundos_total": 622.0
+  },
+  "b_esquema": {
+   "respuestas": 12,
+   "validas": 9,
+   "vacias": 3,
+   "temas": 35,
+   "descartadas": 29,
+   "segundos_total": 692.0
+  },
+  "c_partes": {
+   "respuestas": 12,
+   "validas": 9,
+   "vacias": 3,
+   "temas": 33,
+   "descartadas": 2,
+   "segundos_total": 822.1
+  }
+ },
+ "detalle": [
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p01",
+   "a_libre": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 5,
+    "segundos": 501.4
+   },
+   "b_esquema": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 2,
+    "segundos": 399.8
+   },
+   "c_partes": {
+    "valido": true,
+    "vacio": false,
+    "temas": 3,
+    "citas_clave": 3,
+    "descartadas": 0,
+    "segundos": 38.7
+   }
+  },
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p02",
+   "a_libre": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 4,
+    "segundos": 32.8
+   },
+   "b_esquema": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 4,
+    "segundos": 32.0
+   },
+   "c_partes": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 0,
+    "segundos": 38.6
+   }
+  },
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p03",
+   "a_libre": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 1.2
+   },
+   "b_esquema": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 4,
+    "segundos": 41.5
+   },
+   "c_partes": {
+    "valido": true,
+    "vacio": false,
+    "temas": 3,
+    "citas_clave": 3,
+    "descartadas": 2,
+    "segundos": 46.0
+   }
+  },
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p04",
+   "a_libre": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 1.9
+   },
+   "b_esquema": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 3,
+    "segundos": 38.4
+   },
+   "c_partes": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 0,
+    "segundos": 49.5
+   }
+  },
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p05",
+   "a_libre": {
+    "valido": true,
+    "vacio": false,
+    "temas": 3,
+    "citas_clave": 3,
+    "descartadas": 6,
+    "segundos": 46.9
+   },
+   "b_esquema": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 3,
+    "segundos": 38.4
+   },
+   "c_partes": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 0,
+    "segundos": 38.6
+   }
+  },
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p06",
+   "a_libre": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 2.0
+   },
+   "b_esquema": {
+    "valido": true,
+    "vacio": false,
+    "temas": 3,
+    "citas_clave": 3,
+    "descartadas": 6,
+    "segundos": 34.3
+   },
+   "c_partes": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 0,
+    "segundos": 51.8
+   }
+  },
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p07",
+   "a_libre": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 1.8
+   },
+   "b_esquema": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 2,
+    "segundos": 36.2
+   },
+   "c_partes": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 0,
+    "segundos": 48.1
+   }
+  },
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p08",
+   "a_libre": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 2,
+    "segundos": 32.1
+   },
+   "b_esquema": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 2,
+    "segundos": 31.7
+   },
+   "c_partes": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 0,
+    "segundos": 49.7
+   }
+  },
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p09",
+   "a_libre": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 1.9
+   },
+   "b_esquema": {
+    "valido": true,
+    "vacio": false,
+    "temas": 4,
+    "citas_clave": 3,
+    "descartadas": 3,
+    "segundos": 39.7
+   },
+   "c_partes": {
+    "valido": true,
+    "vacio": false,
+    "temas": 3,
+    "citas_clave": 3,
+    "descartadas": 0,
+    "segundos": 461.1
+   }
+  },
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p10",
+   "a_libre": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 0.0
+   },
+   "b_esquema": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 0.0
+   },
+   "c_partes": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 0.0
+   }
+  },
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p11",
+   "a_libre": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 0.0
+   },
+   "b_esquema": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 0.0
+   },
+   "c_partes": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 0.0
+   }
+  },
+  {
+   "participante": "INS-0129-E01",
+   "pregunta_id": "INS-0129-p12",
+   "a_libre": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 0.0
+   },
+   "b_esquema": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 0.0
+   },
+   "c_partes": {
+    "valido": false,
+    "vacio": true,
+    "temas": 0,
+    "citas_clave": 0,
+    "descartadas": null,
+    "segundos": 0.0
+   }
+  }
+ ]
+}

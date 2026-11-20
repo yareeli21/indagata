@@ -1,0 +1,104 @@
+{
+ "id": "ETU-02",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opina de sus profesores?",
+   "rag_log_id": 4121,
+   "respuesta": "Según la entrevista del participante E01:\n\n* El papel de los profesores en el tema es importante, pero depende mucho del individuo y no siempre se puede confiar en ellos.\nE01 (p09): \"Depende mucho del profesor. Mi tu tor académico casi no tiene tiempo, lo vi una vez en todo el semestre y fue para firmar la carga de materias.\"\n\n* La falta de apoyo emocional por parte de los profesores es un tema común entre los estudiantes.\nE01 (p10): \"Sí, varios. En mi grupo somos treinta y dos, este,, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación.\"\n\n* La carga de trabajo y la falta de apoyo emocional son factores que generan estrés y ansiedad en los estudiantes.\nE01 (p02): \"Este... pues sobre todo la carga de proyectos. Este semestre llevo siete materias y en cuatro hay proyecto final en equipo. Además trabajo quince horas por semana en una papelería, entonces casi no me queda tiempo.\"\n\n* La falta de conocimiento sobre los servicios de apoyo psicológico disponible en la universidad es un tema común entre los estudiantes.\nE01 (p03): \"Yo, yo sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía. Me enteré bien hasta tercer semestre, cuando una compañera me dijo que ella iba al departamento de orientación.\"\n\nEs el testimonio de una sola persona (E01); no permite generalizar a otros estudiantes.",
+   "intencion": "hallazgo",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p09"
+    ]
+   },
+   "plan_modelo": {
+    "campos": "todas_las_respuestas",
+    "filtros": [
+     {
+      "valor": "¿Qué papel han tenido tus profesores o tu tutor en este tema?",
+      "pregunta": "p09"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p09 = «¿Qué papel han tenido tus profesores o tu tutor en este tema?» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental entrevista"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.6013
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.4515
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.396
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.3901
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.3827
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.3622
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.3621
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.3525
+    }
+   ],
+   "segundos": 24.8,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 15978,
+    "recuperacion": 671,
+    "verificacion": 2,
+    "interpretacion": 8113
+   },
+   "k_precision": 0.773,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta del papel de profesores y tutor, con cita."
+}

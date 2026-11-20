@@ -1,0 +1,533 @@
+{
+ "corrida": "qwen3:4b-instruct=1500-1547",
+ "faltan": [],
+ "turnos": [
+  {
+   "consulta": 1535,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué dijo el participante E02 sobre la evaluación?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 8262
+    },
+    "latenciaMs": 8674
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No analiza bien el instrumento porque sí existe información sobre lo que se pide."
+   },
+   "turno": "1.1",
+   "similitud": 0.087
+  },
+  {
+   "consulta": 1536,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué dijo el participante E02 sobre la evaluación?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 3,
+     "interpretacion": 5117
+    },
+    "latenciaMs": 5126
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Sí hay información y no muestra no lo que se pide en la consulta."
+   },
+   "turno": "1.2",
+   "similitud": 0.222
+  },
+  {
+   "consulta": 1537,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué dijo el participante E02 sobre la evaluación?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 3,
+     "interpretacion": 4035
+    },
+    "latenciaMs": 4046
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Sí hay información y no lo devuelve,"
+   },
+   "turno": "1.3"
+  },
+  {
+   "consulta": 1538,
+   "enCache": false,
+   "respuesta": "Respuestas interpretadas de E01 (respondentes E01). [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| p06 «¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?» | Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca. |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "datos_respondente",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 3404
+    },
+    "latenciaMs": 3419
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.726,
+     "precision_contexto": 1.0,
+     "promedio": 0.909,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": "Sí me dio la respuesta, pero igual debió complementarla con la parte de que la parafrasea el modelo,"
+   },
+   "turno": "2.1"
+  },
+  {
+   "consulta": 1539,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "fuera_de_dominio",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 3,
+     "interpretacion": 2061
+    },
+    "latenciaMs": 6375
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": false,
+   "criterios": true,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No identifica la muletilla que hace referencia a una risa para poder hacer una conclusión."
+   },
+   "turno": "3.1",
+   "similitud": 0.308
+  },
+  {
+   "consulta": 1540,
+   "enCache": false,
+   "respuesta": "Criterio: resumen de p02.\np02 «¿Qué situaciones de la universidad te generan más estrés o ansiedad?»: sin resumen calculado. [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "conteo_porcentaje",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "negativa_corregida",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 3,
+     "redaccion": 8464,
+     "verificacion": 4924,
+     "interpretacion": 3644
+    },
+    "latenciaMs": 12118
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.603,
+     "precision_contexto": 1.0,
+     "promedio": 0.868,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Solo debió decir que existe una entrevistada y que ella mencionó la ansiedad en ella,"
+   },
+   "turno": "4.1",
+   "similitud": 0.57
+  },
+  {
+   "consulta": 1541,
+   "enCache": false,
+   "respuesta": "¿Refieres a cuántos estudiantes mencionaron ansiedad en sus respuestas o qué situaciones específicas identificaron como fuente de estrés?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 3,
+     "interpretacion": 5482
+    },
+    "latenciaMs": 5491
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió decir que solo hay una entrevistada."
+   },
+   "turno": "4.2"
+  },
+  {
+   "consulta": 1542,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "fuera_de_dominio",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 3,
+     "interpretacion": 2103
+    },
+    "latenciaMs": 6326
+   },
+   "tipo": "control",
+   "intencion_correcta": true,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": "Bien, pero igual debió mencionar que no se menciona el nombre de la entrevistada."
+   },
+   "turno": "5.1"
+  },
+  {
+   "consulta": 1543,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué dijo el participante E02 sobre la evaluación?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "fuera_de_dominio",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "fuera_de_dominio",
+    "plantillaDetalle": "Mensaje fijo de pregunta fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 2,
+     "interpretacion": 2395
+    },
+    "latenciaMs": 2404
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Sí hay información y no la encontró o simplemente no me la mencionó."
+   },
+   "turno": "5.2",
+   "similitud": 0.063
+  },
+  {
+   "consulta": 1544,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "semantica_abierta",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 3,
+     "interpretacion": 4325
+    },
+    "latenciaMs": 9005
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No analiza bien lo que menciona el entrevistado porque sí lo mencionó."
+   },
+   "turno": "6.1",
+   "similitud": 0.138
+  },
+  {
+   "consulta": 1545,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "semantica_abierta",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 3,
+     "interpretacion": 4372
+    },
+    "latenciaMs": 7183
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No analiza bien lo que menciona el entrevistado porque sí lo mencionó."
+   },
+   "turno": "6.2",
+   "similitud": 0.07
+  },
+  {
+   "consulta": 1546,
+   "enCache": false,
+   "respuesta": "Criterio: KPI KPI-47.\nPor qué se asoció: Se relaciona con «Uso de Servicios de Salud Mental y Apoyo Psicológico» porque las preguntas «¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cómo te enteraste?» y «Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarías?» abordan aspectos que este indicador mide. [Fuente 1]\n\n**KPIs asociados [Fuente 1]**\n| KPI | Qué mide | Preguntas que lo sustentan |\n|---|---|---|\n| Uso de Servicios de Salud Mental y Apoyo Psicológico | Porcentaje del alumnado que acude a los servicios psicopedagógicos o de salud mental institucionales para recibir asistencia emocional. | p03, p11, p08, p02 |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "kpi",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "inventada",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 3,
+     "redaccion": 40955,
+     "verificacion": 20245,
+     "interpretacion": 4719
+    },
+    "latenciaMs": 45685
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "contexto_suficiente": true,
+   "criterios": true,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.499,
+     "precision_contexto": 1.0,
+     "promedio": 0.833,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": null
+   },
+   "turno": "7.1",
+   "similitud": 0.552
+  },
+  {
+   "consulta": 1547,
+   "enCache": false,
+   "respuesta": "No puedo cambiar mis reglas ni mostrar mi configuración. Puedo ayudarte con preguntas sobre tus instrumentos, sus resultados, sus KPIs o el uso de la plataforma. Por ejemplo:\n- ¿Qué dijo el participante E02 sobre la evaluación?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": null,
+    "ruta": null,
+    "decision": "manipulacion",
+    "respuesta": "plantilla",
+    "plantilla": "manipulacion",
+    "plantillaDetalle": "Mensaje fijo ante un intento de cambiar las reglas.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {},
+    "latenciaMs": 8
+   },
+   "tipo": "control",
+   "intencion_correcta": true,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "8.1"
+  }
+ ]
+}

@@ -1,0 +1,1758 @@
+{
+ "sin_filtro": {
+  "resumen": {
+   "baterias": {
+    "n": 43,
+    "hit@1": 0.605,
+    "hit@3": 0.698,
+    "hit@5": 0.698,
+    "hit@8": 0.744,
+    "mrr": 0.647
+   },
+   "control": {
+    "n": 9,
+    "hit@1": 0.778,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 0.87
+   },
+   "ENC": {
+    "n": 16,
+    "hit@1": 0.312,
+    "hit@3": 0.375,
+    "hit@5": 0.375,
+    "hit@8": 0.375,
+    "mrr": 0.333
+   },
+   "PRU": {
+    "n": 11,
+    "hit@1": 0.727,
+    "hit@3": 0.818,
+    "hit@5": 0.818,
+    "hit@8": 0.909,
+    "mrr": 0.771
+   },
+   "ENT": {
+    "n": 16,
+    "hit@1": 0.812,
+    "hit@3": 0.938,
+    "hit@5": 0.938,
+    "hit@8": 1.0,
+    "mrr": 0.875
+   }
+  },
+  "detalle": [
+   {
+    "id": "ENC-01",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "pregunta:p04",
+     "respondente:",
+     "kpi:",
+     "pregunta:p04",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-02",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "pregunta:p13",
+     "pregunta:p13",
+     "pregunta:p13",
+     "pregunta:p03",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-03",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-04",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "pregunta:p06",
+     "pregunta:p06",
+     "pregunta:p04",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-05",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 3,
+    "recuperados": [
+     "respondente:",
+     "respondente:",
+     "pregunta:p11",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-06",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p07",
+     "pregunta:p07",
+     "pregunta:p07",
+     "pregunta:p07",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-08",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-09",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-11",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p03",
+     "pregunta:p13",
+     "pregunta:p13",
+     "encabezado:",
+     "kpi:",
+     "pregunta:p16",
+     "pregunta:p01",
+     "kpi:"
+    ]
+   },
+   {
+    "id": "ENC-12",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p09",
+     "pregunta:p09",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-13",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p14",
+     "pregunta:p14",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-17",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "pregunta:p09",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-18",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-19",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p03",
+     "pregunta:p16",
+     "pregunta:p16",
+     "pregunta:p13",
+     "kpi:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-20",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "ENC-22",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "respondente:",
+     "pregunta:p09",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "PRU-02",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r04",
+     "reactivo:r04",
+     "reactivo:r13",
+     "reactivo:r11",
+     "reactivo:r19",
+     "reactivo:r11",
+     "reactivo:r09",
+     "reactivo:r15"
+    ]
+   },
+   {
+    "id": "PRU-06",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r15",
+     "reactivo:r15",
+     "reactivo:r03",
+     "reactivo:r03",
+     "reactivo:r19",
+     "reactivo:r11",
+     "reactivo:r17",
+     "reactivo:r06"
+    ]
+   },
+   {
+    "id": "PRU-09",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 3,
+    "recuperados": [
+     "reactivo:r15",
+     "reactivo:r15",
+     "reactivo:r11",
+     "reactivo:r11",
+     "reactivo:r03",
+     "reactivo:r03",
+     "reactivo:r19",
+     "reactivo:r19"
+    ]
+   },
+   {
+    "id": "PRU-10",
+    "instrumento": "130",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "alumno:",
+     "alumno:",
+     "alumno:",
+     "alumno:",
+     "alumno:",
+     "alumno:",
+     "alumno:",
+     "alumno:"
+    ]
+   },
+   {
+    "id": "PRU-11",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r15",
+     "reactivo:r15",
+     "reactivo:r03",
+     "reactivo:r21",
+     "reactivo:r21",
+     "reactivo:r07",
+     "reactivo:r07",
+     "reactivo:r04"
+    ]
+   },
+   {
+    "id": "PRU-14",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r16",
+     "reactivo:r16",
+     "reactivo:r17",
+     "reactivo:r11",
+     "reactivo:r17",
+     "reactivo:r06",
+     "reactivo:r13",
+     "reactivo:r11"
+    ]
+   },
+   {
+    "id": "PRU-16",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r20",
+     "reactivo:r20",
+     "reactivo:r05",
+     "reactivo:r05",
+     "reactivo:r18",
+     "reactivo:r18",
+     "reactivo:r01",
+     "reactivo:r09"
+    ]
+   },
+   {
+    "id": "PRU-18",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "encabezado:",
+     "alumno:",
+     "alumno:",
+     "alumno:",
+     "alumno:",
+     "alumno:",
+     "alumno:",
+     "alumno:"
+    ]
+   },
+   {
+    "id": "PRU-19",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 7,
+    "recuperados": [
+     "reactivo:r22",
+     "reactivo:r18",
+     "reactivo:r18",
+     "reactivo:r01",
+     "reactivo:r02",
+     "reactivo:r08",
+     "encabezado:",
+     "reactivo:r22"
+    ]
+   },
+   {
+    "id": "PRU-20",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r19",
+     "reactivo:r19",
+     "reactivo:r03",
+     "reactivo:r03",
+     "reactivo:r15",
+     "reactivo:r09",
+     "reactivo:r08",
+     "reactivo:r08"
+    ]
+   },
+   {
+    "id": "PRU-24",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r03",
+     "reactivo:r03",
+     "reactivo:r15",
+     "reactivo:r15",
+     "reactivo:r19",
+     "reactivo:r19",
+     "reactivo:r06",
+     "reactivo:r06"
+    ]
+   },
+   {
+    "id": "ENT-04",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p09",
+     "intercambio:p09",
+     "intercambio:p09",
+     "intercambio:p09",
+     "kpi:",
+     "kpi:",
+     "pregunta:p12",
+     "intercambio:p03"
+    ]
+   },
+   {
+    "id": "ENT-06",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p02",
+     "intercambio:p02",
+     "intercambio:p02",
+     "intercambio:p02",
+     "pregunta:p12",
+     "intercambio:p10",
+     "intercambio:p01",
+     "pregunta:p01"
+    ]
+   },
+   {
+    "id": "ENT-08",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p07",
+     "intercambio:p07",
+     "intercambio:p07",
+     "intercambio:p07",
+     "pregunta:p01",
+     "intercambio:p12",
+     "pregunta:p12",
+     "intercambio:p06"
+    ]
+   },
+   {
+    "id": "ENT-09",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p08",
+     "intercambio:p08",
+     "intercambio:p08",
+     "intercambio:p08",
+     "kpi:",
+     "kpi:",
+     "pregunta:p09",
+     "kpi:"
+    ]
+   },
+   {
+    "id": "ENT-10",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p09",
+     "intercambio:p09",
+     "pregunta:p08",
+     "kpi:",
+     "kpi:",
+     "encabezado:",
+     "kpi:",
+     "kpi:"
+    ]
+   },
+   {
+    "id": "ENT-11",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p06",
+     "intercambio:p06",
+     "pregunta:p06",
+     "intercambio:p06",
+     "intercambio:p12",
+     "pregunta:p10",
+     "intercambio:p10",
+     "pregunta:p12"
+    ]
+   },
+   {
+    "id": "ENT-13",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p02",
+     "intercambio:p02",
+     "intercambio:p02",
+     "pregunta:p02",
+     "intercambio:p01",
+     "pregunta:p01",
+     "intercambio:p01",
+     "intercambio:p01"
+    ]
+   },
+   {
+    "id": "ENT-13c",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p05",
+     "intercambio:p05",
+     "intercambio:p05",
+     "intercambio:p05",
+     "intercambio:p07",
+     "intercambio:p07",
+     "pregunta:p06",
+     "pregunta:p07"
+    ]
+   },
+   {
+    "id": "ENT-14",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p07",
+     "intercambio:p07",
+     "intercambio:p07",
+     "intercambio:p07",
+     "intercambio:p06",
+     "intercambio:p08",
+     "intercambio:p08",
+     "pregunta:p05"
+    ]
+   },
+   {
+    "id": "ENT-14c",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "pregunta:p11",
+     "pregunta:p04",
+     "kpi:",
+     "kpi:"
+    ]
+   },
+   {
+    "id": "ENT-15",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p03",
+     "intercambio:p03",
+     "intercambio:p03",
+     "pregunta:p04",
+     "pregunta:p03",
+     "intercambio:p10",
+     "intercambio:p10",
+     "pregunta:p10"
+    ]
+   },
+   {
+    "id": "ENT-16",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p10",
+     "intercambio:p10",
+     "intercambio:p10",
+     "intercambio:p10",
+     "intercambio:p12",
+     "intercambio:p10",
+     "pregunta:p12",
+     "intercambio:p12"
+    ]
+   },
+   {
+    "id": "ENT-16b",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p12",
+     "intercambio:p12",
+     "intercambio:p12",
+     "intercambio:p12",
+     "intercambio:p12",
+     "pregunta:p05",
+     "pregunta:p01",
+     "intercambio:p06"
+    ]
+   },
+   {
+    "id": "ENT-18",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 3,
+    "recuperados": [
+     "pregunta:p05",
+     "pregunta:p01",
+     "encabezado:",
+     "intercambio:p06",
+     "pregunta:p06",
+     "pregunta:p07",
+     "pregunta:p12",
+     "intercambio:p02"
+    ]
+   },
+   {
+    "id": "ENT-20",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 2,
+    "recuperados": [
+     "pregunta:p05",
+     "encabezado:",
+     "intercambio:p05",
+     "intercambio:p05",
+     "intercambio:p05",
+     "intercambio:p02",
+     "intercambio:p02",
+     "pregunta:p04"
+    ]
+   },
+   {
+    "id": "ENT-21",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 6,
+    "recuperados": [
+     "pregunta:p05",
+     "pregunta:p06",
+     "intercambio:p06",
+     "pregunta:p07",
+     "intercambio:p05",
+     "encabezado:",
+     "pregunta:p01",
+     "intercambio:p09"
+    ]
+   },
+   {
+    "id": "CEN-01",
+    "instrumento": "61",
+    "control": true,
+    "lugar": 2,
+    "recuperados": [
+     "respondente:",
+     "pregunta:p14",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "CEN-02",
+    "instrumento": "61",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p10",
+     "pregunta:p14",
+     "pregunta:p14",
+     "pregunta:p10",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "CEN-03",
+    "instrumento": "61",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p15",
+     "pregunta:p15",
+     "pregunta:p04",
+     "kpi:",
+     "respondente:",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "CEN-06",
+    "instrumento": "61",
+    "control": true,
+    "lugar": 3,
+    "recuperados": [
+     "pregunta:p19",
+     "pregunta:p19",
+     "pregunta:p11",
+     "pregunta:p19",
+     "pregunta:p11",
+     "pregunta:p19",
+     "pregunta:p19",
+     "pregunta:p12"
+    ]
+   },
+   {
+    "id": "CEN-07",
+    "instrumento": "61",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p18",
+     "pregunta:p18",
+     "pregunta:p18",
+     "pregunta:p18",
+     "pregunta:p18",
+     "respondente:",
+     "respondente:",
+     "respondente:"
+    ]
+   },
+   {
+    "id": "CET-01",
+    "instrumento": "60",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p03",
+     "intercambio:p03",
+     "intercambio:p03",
+     "pregunta:p03",
+     "intercambio:p03",
+     "intercambio:p03",
+     "intercambio:p03",
+     "intercambio:p03"
+    ]
+   },
+   {
+    "id": "CET-03",
+    "instrumento": "60",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p04",
+     "intercambio:p04",
+     "intercambio:p03",
+     "intercambio:p03",
+     "intercambio:p04",
+     "intercambio:p04",
+     "intercambio:p03",
+     "intercambio:p04"
+    ]
+   },
+   {
+    "id": "CET-04",
+    "instrumento": "60",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p02",
+     "intercambio:p12",
+     "intercambio:p12",
+     "intercambio:p12",
+     "intercambio:p02",
+     "intercambio:p02",
+     "intercambio:p02",
+     "intercambio:p02"
+    ]
+   },
+   {
+    "id": "CET-04b",
+    "instrumento": "60",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11"
+    ]
+   }
+  ]
+ },
+ "filtro_del_chat": {
+  "resumen": {
+   "baterias": {
+    "n": 43,
+    "hit@1": 0.744,
+    "hit@3": 0.837,
+    "hit@5": 0.86,
+    "hit@8": 0.953,
+    "mrr": 0.802
+   },
+   "control": {
+    "n": 9,
+    "hit@1": 0.889,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 0.926
+   },
+   "ENC": {
+    "n": 16,
+    "hit@1": 0.625,
+    "hit@3": 0.688,
+    "hit@5": 0.75,
+    "hit@8": 0.875,
+    "mrr": 0.687
+   },
+   "PRU": {
+    "n": 11,
+    "hit@1": 0.818,
+    "hit@3": 0.909,
+    "hit@5": 0.909,
+    "hit@8": 1.0,
+    "mrr": 0.861
+   },
+   "ENT": {
+    "n": 16,
+    "hit@1": 0.812,
+    "hit@3": 0.938,
+    "hit@5": 0.938,
+    "hit@8": 1.0,
+    "mrr": 0.875
+   }
+  },
+  "detalle": [
+   {
+    "id": "ENC-01",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 6,
+    "recuperados": [
+     "pregunta:p04",
+     "kpi:",
+     "pregunta:p04",
+     "pregunta:p07",
+     "pregunta:p07",
+     "pregunta:p12",
+     "pregunta:p07",
+     "pregunta:p07"
+    ]
+   },
+   {
+    "id": "ENC-02",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p10",
+     "pregunta:p13",
+     "pregunta:p13",
+     "pregunta:p13",
+     "pregunta:p04",
+     "pregunta:p03",
+     "pregunta:p05",
+     "kpi:"
+    ]
+   },
+   {
+    "id": "ENC-03",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p01",
+     "pregunta:p01",
+     "pregunta:p14",
+     "pregunta:p11",
+     "kpi:",
+     "kpi:",
+     "pregunta:p11",
+     "pregunta:p02"
+    ]
+   },
+   {
+    "id": "ENC-04",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 8,
+    "recuperados": [
+     "pregunta:p06",
+     "pregunta:p06",
+     "pregunta:p04",
+     "pregunta:p04",
+     "kpi:",
+     "pregunta:p07",
+     "pregunta:p07",
+     "pregunta:p17"
+    ]
+   },
+   {
+    "id": "ENC-05",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p11",
+     "pregunta:p11",
+     "pregunta:p11",
+     "pregunta:p01",
+     "pregunta:p04",
+     "kpi:",
+     "pregunta:p04",
+     "pregunta:p10"
+    ]
+   },
+   {
+    "id": "ENC-06",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p07",
+     "pregunta:p07",
+     "pregunta:p07",
+     "pregunta:p07",
+     "pregunta:p06",
+     "encabezado:",
+     "pregunta:p05",
+     "pregunta:p04"
+    ]
+   },
+   {
+    "id": "ENC-08",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p17",
+     "pregunta:p09",
+     "pregunta:p02",
+     "pregunta:p17",
+     "pregunta:p17",
+     "pregunta:p18",
+     "encabezado:",
+     "encabezado:"
+    ]
+   },
+   {
+    "id": "ENC-09",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p11",
+     "pregunta:p11",
+     "pregunta:p01",
+     "kpi:",
+     "pregunta:p01",
+     "pregunta:p11",
+     "pregunta:p14",
+     "pregunta:p14"
+    ]
+   },
+   {
+    "id": "ENC-11",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p03",
+     "pregunta:p13",
+     "pregunta:p13",
+     "encabezado:",
+     "kpi:",
+     "pregunta:p16",
+     "pregunta:p01",
+     "kpi:"
+    ]
+   },
+   {
+    "id": "ENC-12",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p09",
+     "pregunta:p09",
+     "pregunta:p02",
+     "pregunta:p05",
+     "pregunta:p05",
+     "pregunta:p10",
+     "pregunta:p05",
+     "pregunta:p02"
+    ]
+   },
+   {
+    "id": "ENC-13",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p14",
+     "pregunta:p14",
+     "pregunta:p07",
+     "encabezado:",
+     "pregunta:p05",
+     "pregunta:p04",
+     "pregunta:p09",
+     "pregunta:p05"
+    ]
+   },
+   {
+    "id": "ENC-17",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 5,
+    "recuperados": [
+     "pregunta:p09",
+     "kpi:",
+     "pregunta:p05",
+     "pregunta:p04",
+     "pregunta:p02",
+     "pregunta:p09",
+     "pregunta:p03",
+     "pregunta:p05"
+    ]
+   },
+   {
+    "id": "ENC-18",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "pregunta:p07",
+     "pregunta:p07",
+     "pregunta:p15",
+     "pregunta:p07",
+     "pregunta:p15",
+     "pregunta:p02",
+     "pregunta:p09",
+     "pregunta:p01"
+    ]
+   },
+   {
+    "id": "ENC-19",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p03",
+     "pregunta:p16",
+     "pregunta:p16",
+     "pregunta:p13",
+     "kpi:",
+     "kpi:",
+     "pregunta:p01",
+     "pregunta:p17"
+    ]
+   },
+   {
+    "id": "ENC-20",
+    "instrumento": "127",
+    "control": false,
+    "lugar": 2,
+    "recuperados": [
+     "pregunta:p06",
+     "pregunta:p17",
+     "pregunta:p05",
+     "pregunta:p07",
+     "pregunta:p02",
+     "pregunta:p04",
+     "pregunta:p16",
+     "pregunta:p15"
+    ]
+   },
+   {
+    "id": "ENC-22",
+    "instrumento": "127",
+    "control": false,
+    "lugar": null,
+    "recuperados": [
+     "pregunta:p09",
+     "pregunta:p09",
+     "kpi:",
+     "pregunta:p01",
+     "pregunta:p04",
+     "pregunta:p05",
+     "pregunta:p13",
+     "pregunta:p05"
+    ]
+   },
+   {
+    "id": "PRU-02",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r04",
+     "reactivo:r04",
+     "reactivo:r13",
+     "reactivo:r11",
+     "reactivo:r19",
+     "reactivo:r11",
+     "reactivo:r09",
+     "reactivo:r15"
+    ]
+   },
+   {
+    "id": "PRU-06",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r15",
+     "reactivo:r15",
+     "reactivo:r03",
+     "reactivo:r03",
+     "reactivo:r19",
+     "reactivo:r11",
+     "reactivo:r17",
+     "reactivo:r06"
+    ]
+   },
+   {
+    "id": "PRU-09",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 3,
+    "recuperados": [
+     "reactivo:r15",
+     "reactivo:r15",
+     "reactivo:r11",
+     "reactivo:r11",
+     "reactivo:r03",
+     "reactivo:r03",
+     "reactivo:r19",
+     "reactivo:r19"
+    ]
+   },
+   {
+    "id": "PRU-10",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r10",
+     "reactivo:r10",
+     "reactivo:r19",
+     "reactivo:r11",
+     "reactivo:r12",
+     "reactivo:r17",
+     "reactivo:r12",
+     "reactivo:r12"
+    ]
+   },
+   {
+    "id": "PRU-11",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r15",
+     "reactivo:r15",
+     "reactivo:r03",
+     "reactivo:r21",
+     "reactivo:r21",
+     "reactivo:r07",
+     "reactivo:r07",
+     "reactivo:r04"
+    ]
+   },
+   {
+    "id": "PRU-14",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r16",
+     "reactivo:r16",
+     "reactivo:r17",
+     "reactivo:r11",
+     "reactivo:r17",
+     "reactivo:r06",
+     "reactivo:r13",
+     "reactivo:r11"
+    ]
+   },
+   {
+    "id": "PRU-16",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r20",
+     "reactivo:r20",
+     "reactivo:r05",
+     "reactivo:r05",
+     "reactivo:r18",
+     "reactivo:r18",
+     "reactivo:r01",
+     "reactivo:r09"
+    ]
+   },
+   {
+    "id": "PRU-18",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "encabezado:",
+     "kpi:",
+     "reactivo:r12",
+     "reactivo:r12",
+     "kpi:",
+     "kpi:",
+     "reactivo:r09",
+     "kpi:"
+    ]
+   },
+   {
+    "id": "PRU-19",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 7,
+    "recuperados": [
+     "reactivo:r22",
+     "reactivo:r18",
+     "reactivo:r18",
+     "reactivo:r01",
+     "reactivo:r02",
+     "reactivo:r08",
+     "encabezado:",
+     "reactivo:r22"
+    ]
+   },
+   {
+    "id": "PRU-20",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r19",
+     "reactivo:r19",
+     "reactivo:r03",
+     "reactivo:r03",
+     "reactivo:r15",
+     "reactivo:r09",
+     "reactivo:r08",
+     "reactivo:r08"
+    ]
+   },
+   {
+    "id": "PRU-24",
+    "instrumento": "130",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "reactivo:r03",
+     "reactivo:r03",
+     "reactivo:r15",
+     "reactivo:r15",
+     "reactivo:r19",
+     "reactivo:r19",
+     "reactivo:r06",
+     "reactivo:r06"
+    ]
+   },
+   {
+    "id": "ENT-04",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p09",
+     "intercambio:p09",
+     "intercambio:p09",
+     "intercambio:p09",
+     "kpi:",
+     "kpi:",
+     "pregunta:p12",
+     "intercambio:p03"
+    ]
+   },
+   {
+    "id": "ENT-06",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p02",
+     "intercambio:p02",
+     "intercambio:p02",
+     "intercambio:p02",
+     "pregunta:p12",
+     "intercambio:p10",
+     "intercambio:p01",
+     "pregunta:p01"
+    ]
+   },
+   {
+    "id": "ENT-08",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p07",
+     "intercambio:p07",
+     "intercambio:p07",
+     "intercambio:p07",
+     "pregunta:p01",
+     "intercambio:p12",
+     "pregunta:p12",
+     "intercambio:p06"
+    ]
+   },
+   {
+    "id": "ENT-09",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p08",
+     "intercambio:p08",
+     "intercambio:p08",
+     "intercambio:p08",
+     "kpi:",
+     "kpi:",
+     "pregunta:p09",
+     "kpi:"
+    ]
+   },
+   {
+    "id": "ENT-10",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p09",
+     "intercambio:p09",
+     "pregunta:p08",
+     "kpi:",
+     "kpi:",
+     "encabezado:",
+     "kpi:",
+     "kpi:"
+    ]
+   },
+   {
+    "id": "ENT-11",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p06",
+     "intercambio:p06",
+     "pregunta:p06",
+     "intercambio:p06",
+     "intercambio:p12",
+     "pregunta:p10",
+     "intercambio:p10",
+     "pregunta:p12"
+    ]
+   },
+   {
+    "id": "ENT-13",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p02",
+     "intercambio:p02",
+     "intercambio:p02",
+     "pregunta:p02",
+     "intercambio:p01",
+     "pregunta:p01",
+     "intercambio:p01",
+     "intercambio:p01"
+    ]
+   },
+   {
+    "id": "ENT-13c",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p05",
+     "intercambio:p05",
+     "intercambio:p05",
+     "intercambio:p05",
+     "intercambio:p07",
+     "intercambio:p07",
+     "pregunta:p06",
+     "pregunta:p07"
+    ]
+   },
+   {
+    "id": "ENT-14",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p07",
+     "intercambio:p07",
+     "intercambio:p07",
+     "intercambio:p07",
+     "intercambio:p06",
+     "intercambio:p08",
+     "intercambio:p08",
+     "pregunta:p05"
+    ]
+   },
+   {
+    "id": "ENT-14c",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "pregunta:p11",
+     "pregunta:p04",
+     "kpi:",
+     "kpi:"
+    ]
+   },
+   {
+    "id": "ENT-15",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p03",
+     "intercambio:p03",
+     "intercambio:p03",
+     "pregunta:p04",
+     "pregunta:p03",
+     "intercambio:p10",
+     "intercambio:p10",
+     "pregunta:p10"
+    ]
+   },
+   {
+    "id": "ENT-16",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p10",
+     "intercambio:p10",
+     "intercambio:p10",
+     "intercambio:p10",
+     "intercambio:p12",
+     "intercambio:p10",
+     "pregunta:p12",
+     "intercambio:p12"
+    ]
+   },
+   {
+    "id": "ENT-16b",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p12",
+     "intercambio:p12",
+     "intercambio:p12",
+     "intercambio:p12",
+     "intercambio:p12",
+     "pregunta:p05",
+     "pregunta:p01",
+     "intercambio:p06"
+    ]
+   },
+   {
+    "id": "ENT-18",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 3,
+    "recuperados": [
+     "pregunta:p05",
+     "pregunta:p01",
+     "encabezado:",
+     "intercambio:p06",
+     "pregunta:p06",
+     "pregunta:p07",
+     "pregunta:p12",
+     "intercambio:p02"
+    ]
+   },
+   {
+    "id": "ENT-20",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 2,
+    "recuperados": [
+     "pregunta:p05",
+     "encabezado:",
+     "intercambio:p05",
+     "intercambio:p05",
+     "intercambio:p05",
+     "intercambio:p02",
+     "intercambio:p02",
+     "pregunta:p04"
+    ]
+   },
+   {
+    "id": "ENT-21",
+    "instrumento": "129",
+    "control": false,
+    "lugar": 6,
+    "recuperados": [
+     "pregunta:p05",
+     "pregunta:p06",
+     "intercambio:p06",
+     "pregunta:p07",
+     "intercambio:p05",
+     "encabezado:",
+     "pregunta:p01",
+     "intercambio:p09"
+    ]
+   },
+   {
+    "id": "CEN-01",
+    "instrumento": "61",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p14",
+     "pregunta:p17",
+     "pregunta:p17",
+     "pregunta:p12",
+     "pregunta:p12",
+     "pregunta:p15",
+     "pregunta:p14",
+     "pregunta:p20"
+    ]
+   },
+   {
+    "id": "CEN-02",
+    "instrumento": "61",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p10",
+     "pregunta:p14",
+     "pregunta:p14",
+     "pregunta:p10",
+     "pregunta:p04",
+     "pregunta:p15",
+     "pregunta:p10",
+     "pregunta:p19"
+    ]
+   },
+   {
+    "id": "CEN-03",
+    "instrumento": "61",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p15",
+     "pregunta:p15",
+     "pregunta:p04",
+     "kpi:",
+     "pregunta:p18",
+     "pregunta:p17",
+     "pregunta:p14",
+     "pregunta:p06"
+    ]
+   },
+   {
+    "id": "CEN-06",
+    "instrumento": "61",
+    "control": true,
+    "lugar": 3,
+    "recuperados": [
+     "pregunta:p19",
+     "pregunta:p19",
+     "pregunta:p11",
+     "pregunta:p19",
+     "pregunta:p11",
+     "pregunta:p19",
+     "pregunta:p19",
+     "pregunta:p12"
+    ]
+   },
+   {
+    "id": "CEN-07",
+    "instrumento": "61",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "pregunta:p18",
+     "pregunta:p18",
+     "pregunta:p18",
+     "pregunta:p18",
+     "pregunta:p18",
+     "pregunta:p02",
+     "pregunta:p20",
+     "pregunta:p15"
+    ]
+   },
+   {
+    "id": "CET-01",
+    "instrumento": "60",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p03",
+     "intercambio:p03",
+     "intercambio:p03",
+     "pregunta:p03",
+     "intercambio:p03",
+     "intercambio:p03",
+     "intercambio:p03",
+     "intercambio:p03"
+    ]
+   },
+   {
+    "id": "CET-03",
+    "instrumento": "60",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p04",
+     "intercambio:p04",
+     "intercambio:p03",
+     "intercambio:p03",
+     "intercambio:p04",
+     "intercambio:p04",
+     "intercambio:p03",
+     "intercambio:p04"
+    ]
+   },
+   {
+    "id": "CET-04",
+    "instrumento": "60",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p02",
+     "intercambio:p12",
+     "intercambio:p12",
+     "intercambio:p12",
+     "intercambio:p02",
+     "intercambio:p02",
+     "intercambio:p02",
+     "intercambio:p02"
+    ]
+   },
+   {
+    "id": "CET-04b",
+    "instrumento": "60",
+    "control": true,
+    "lugar": 1,
+    "recuperados": [
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11",
+     "intercambio:p11"
+    ]
+   }
+  ]
+ }
+}

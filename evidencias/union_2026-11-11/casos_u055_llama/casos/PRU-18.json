@@ -1,0 +1,50 @@
+{
+ "id": "PRU-18",
+ "instrumento": "pru",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿De qué trata esta prueba y qué explora?",
+   "rag_log_id": 3803,
+   "respuesta": "La prueba se aplicó a los 97 estudiantes del sexto semestre de la licenciatura en Informática en la era de la IA, de la UAM. El objetivo es conocer si estos estudiantes conocen o han estado familiarizados con los conceptos básicos que se han ido implementando con las tecnologías emergentes de hoy en día.\n\nLa Prueba de Alfabetización Digital es una prueba estandarizada diseñada para evaluar el nivel de alfabetización digital de los estudiantes. Se trata de un instrumento formativo que cubre temas como la competencia digital básica, la seguridad en Internet, las herramientas de colaboración digital y los conceptos de cloud computing. El examen consta de 22 reactivos divididos en tres secciones: competencias digitales básicas, verdadero o falso digital y ordenamiento y emparejamiento (codificado como opción múltiple).",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    }
+   ],
+   "segundos": 11.3,
+   "tiempos_ms": {
+    "redaccion": 10873,
+    "recuperacion": 230,
+    "verificacion": 2
+   },
+   "k_precision": 0.812,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Síntesis en prosa: tema, 3 secciones y sus temas."
+}

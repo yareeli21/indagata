@@ -1,0 +1,53 @@
+{
+ "id": "PRU-01",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos respondieron la prueba?",
+   "rag_log_id": 3971,
+   "respuesta": "Criterio: KPI KPI-25.\nPor qué se asoció: El KPI, al medir la interacción y participación del estudiante en plataformas virtuales como sesiones y foros, se relaciona directamente con el instrumento al evaluar si los alumnos han estado familiarizados con conceptos básicos sobre tecnologías emergentes. Las preguntas específicas sobre LMS y análisis de datos de aprendizaje buscan cuantificar esa interacción, indicando el nivel de compromiso que predice el éxito académico según la definición del KPI. [Fuente 1]\n\n**KPIs asociados [Fuente 1]**\n| KPI | Qué mide | Preguntas que lo sustentan |\n|---|---|---|\n| Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales | Cuantifica el nivel de actividad y participación activa de los alumnos dentro de la plataforma de aprendizaje en línea. | r02, r12 |",
+   "intencion": "kpi",
+   "plan": {
+    "kpi": "KPI-25",
+    "intencion": "kpi"
+   },
+   "plan_modelo": {
+    "kpi": "KPI-25",
+    "intencion": "kpi"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "estructurada",
+   "motivo": "plan:kpi:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 19.3,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 7308,
+    "recuperacion": 350,
+    "verificacion": 4675,
+    "interpretacion": 11557
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Total de alumnos después de la limpieza."
+}

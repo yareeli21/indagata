@@ -1,0 +1,93 @@
+{
+ "id": "PRU-06",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en el reactivo de Wi-Fi público sin VPN?",
+   "rag_log_id": 3090,
+   "respuesta": "73 de 97 respondentes (75.3 %) cumplen el criterio: r15 «Usar redes Wi-Fi públicas sin VPN es completamente seguro.» = «Verdadero». [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     }
+    ],
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r15"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     }
+    ],
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r15"
+    ]
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6852
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6602
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.4958
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.4799
+    }
+   ],
+   "segundos": 38.0,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 12735,
+    "recuperacion": 356,
+    "verificacion": 0,
+    "interpretacion": 24798
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Llegar al reactivo por su significado y mostrar «Verdadero/Falso», no «Opción A/B»."
+}

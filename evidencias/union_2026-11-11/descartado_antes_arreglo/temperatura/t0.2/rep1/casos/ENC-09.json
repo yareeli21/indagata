@@ -1,0 +1,88 @@
+{
+ "id": "ENC-09",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Los que trabajan en algo relacionado con su carrera aprobaron más certificaciones que los que no trabajan?",
+   "rag_log_id": 3576,
+   "respuesta": "Criterio: por p12 «¿Cuál es tu situación laboral actual?». [Fuente 1]\n\n**Comparación por p12 «¿Cuál es tu situación laboral actual?» [Fuente 1]**\n| Grupo | Personas | p11: respuestas del grupo |\n|---|---|---|\n| No trabajo ni busco empleo por ahora | 384 | «No, pero planeo hacerlo» 168 (44.4 %); «No, y no lo planeo» 142 (37.6 %); «Si, y no lo aprobe» 68 (18.0 %) |\n| Trabajo en un area no relacionada | 396 | «No, y no lo planeo» 163 (42.2 %); «No, pero planeo hacerlo» 138 (35.8 %); «Si, y no lo aprobe» 85 (22.0 %) |\n| Trabajo en un area relacionada con mi carrera | 500 | «No, pero planeo hacerlo» 250 (51.5 %); «Si, y lo aprobe» 235 (48.5 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "filtros": [
+     {
+      "valor": [
+       "Trabajo en un area relacionada con mi carrera",
+       "Trabajo en un area no relacionada",
+       "No trabajo ni busco empleo por ahora"
+      ],
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p11"
+    ],
+    "agrupar_por": "p12"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "p11"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar p11 entre «Trabajo en un area relacionada con mi carrera, Trabajo en un area no relacionada» y «No trabajo ni busco empleo por ahora» de p12"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:cifra_atribuida",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.5963
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.5913
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5879
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.564
+    }
+   ],
+   "segundos": 24.1,
+   "tiempos_ms": {
+    "ejecucion": 46,
+    "redaccion": 13061,
+    "recuperacion": 612,
+    "verificacion": 4786,
+    "interpretacion": 10288
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    21,
+    21
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruzar dos preguntas y comparar porcentajes, no conteos."
+}

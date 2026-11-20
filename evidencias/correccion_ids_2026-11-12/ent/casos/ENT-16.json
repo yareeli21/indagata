@@ -1,0 +1,273 @@
+{
+ "id": "ENT-16",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Conoce a compañeros que necesiten apoyo y no lo busquen?",
+   "rag_log_id": 4075,
+   "respuesta": "resultado (temas, valoración y citas del análisis de cada respuesta):\n\n- Tema: Compañeros Estresados\n  - Pregunta guía p10: ¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo busquen?\n  - Cita: \"Ehm, Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación.\"\n- Tema: Falta de Asistencia",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.76
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7179
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7046
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.67
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.642
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.617
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6063
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6023
+    }
+   ],
+   "segundos": 24.8,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 20621,
+    "recuperacion": 375,
+    "verificacion": 2,
+    "interpretacion": 3816
+   },
+   "k_precision": 0.9,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué les diría?",
+   "rag_log_id": 4076,
+   "respuesta": "**resultado**\n\n- Tema: Compañeros Estresados\n  - Pregunta guía p10: ¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo busquen?\n  - Cita: \"Ehm, Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada\"\n- Tema: Falta de Asistencia",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p12"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "¿Qué le dirías a un compañero que está pasando por un momento difícil y no ",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p12 = «¿Qué le dirías a un compañero que está pasando por un momento difícil y no » descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7576
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.7318
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7143
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.6986
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6858
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6765
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6684
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.6369
+    }
+   ],
+   "segundos": 29.2,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 22685,
+    "recuperacion": 332,
+    "verificacion": 2,
+    "interpretacion": 6179
+   },
+   "k_precision": 0.913,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Resume su postura en una frase",
+   "rag_log_id": 4077,
+   "respuesta": "La participante E01 expresó que conoce a varios compañeros que necesitan apoyo emocional y que la mitad del grupo está estresada, pero no muchos buscan ayuda. Según sus datos registrados, solo ella mencionó conocer a alguien que necesita este tipo de apoyo.\n\n**Respuesta de la participante E01**\n\nLa participante E01 cree que es importante hablar sobre el estrés y la ansiedad en la universidad para que los compañeros no se sientan solos. Ella menciona que algunos estudiantes piensan que solo los casos graves requieren ayuda, pero en realidad, cualquier persona puede necesitar apoyo emocional.\n\n**Cifras**\n\n- La participante E01 es la única persona que respondió a esta pregunta.\n- De 1 persona, solo ella mencionó conocer a alguien que necesita apoyo emocional.\n\n**Respuestas a p10 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Ehm, Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación. Algunos no saben que existe y otros piensan lo mismo que yo pensaba, que es solo para casos muy graves. Un compañero dejó de venir a mitad del semestre y nadie supo bien qué le pasó. |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "resumen_pregunta"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "resumen_pregunta"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p12",
+     "score": 0.5923
+    }
+   ],
+   "segundos": 14.0,
+   "tiempos_ms": {
+    "ejecucion": 2,
+    "redaccion": 7825,
+    "recuperacion": 308,
+    "verificacion": 1,
+    "interpretacion": 5849
+   },
+   "k_precision": 0.604,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(3) síntesis fiel, sin ideas que no dijo."
+}

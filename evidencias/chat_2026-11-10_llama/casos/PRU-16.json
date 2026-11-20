@@ -1,0 +1,112 @@
+{
+ "id": "PRU-16",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué herramienta para gestionar referencias eligieron más?",
+   "rag_log_id": 3106,
+   "respuesta": "Para responder a esta pregunta, debemos revisar el contexto en el que se realizó la investigación y los instrumentos utilizados. Sin embargo, no tengo información relacionada con lo que solicitas en los instrumentos consultados.\n\n(Puedes proporcionar más contexto o detalles sobre la investigación para que pueda ayudarte mejor.)",
+   "intencion": "uso_plataforma",
+   "plan": {
+    "intencion": "uso_plataforma",
+    "aclaracion": "¿Cómo subir, limpiar y aprobar instrumentos en Indagata?"
+   },
+   "plan_modelo": {
+    "intencion": "uso_plataforma",
+    "aclaracion": "¿Cómo subir, limpiar y aprobar instrumentos en Indagata?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "ayuda",
+   "motivo": "plan:uso_plataforma",
+   "plantilla": "ayuda",
+   "fuentes": [],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 5.3,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 153,
+    "interpretacion": 1616
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué puede indicar eso?",
+   "rag_log_id": 3107,
+   "respuesta": "Según el CONTEXTO, en la Prueba de Alfabetización Digital, se realizó un reactivo titulado \"Reactivo r20\" con preguntas relacionadas con la gestión de referencias bibliográficas. En esta pregunta, los alumnos fueron presentados con cuatro opciones y debieron elegir la que mejor correspondía al propósito de gestionar referencias bibliográficas.\n\nEl resultado mostró que la opción más elegida fue B) Zotero o Mendeley, con un 77.3% de los votos (n=75). Esto podría indicar que los alumnos consideran a Zotero o Mendeley como una herramienta fundamental para la gestión de referencias bibliográficas.\n\nEn este sentido, podríamos interpretar que los resultados sugieren que los alumnos valoran la importancia de las herramientas digitales para la organización y el seguimiento de referencias en sus trabajos académicos.",
+   "intencion": "semantica_abierta",
+   "plan": {
+    "intencion": "semantica_abierta",
+    "consulta_semantica": "¿Qué herramienta para gestionar referencias eligieron más?"
+   },
+   "plan_modelo": {
+    "intencion": "semantica_abierta",
+    "consulta_semantica": "¿Qué herramienta para gestionar referencias eligieron más?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.7044
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6822
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.4645
+    }
+   ],
+   "segundos": 10.4,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 151,
+    "interpretacion": 2479
+   },
+   "k_precision": 0.492,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) interpretar con cifras, sin juzgar correcto o incorrecto."
+}

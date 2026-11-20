@@ -1,0 +1,246 @@
+{
+ "id": "PRU-13",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo hubo menos consenso?",
+   "rag_log_id": 3097,
+   "respuesta": "La primera pregunta del ranking es la que trata sobre la seguridad de usar redes Wi-Fi públicas sin VPN, con un índice de dispersión de 1.00 (2 opciones) y una respuesta de 97 personas.\n\nNo hay empate en esta pregunta, ya que todas las personas respondieron de manera uniforme.\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %) |\n| 2 | r14 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %) |\n| 3 | r12 | índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "orden": {},
+    "limite": 1,
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "B",
+      "pregunta": "r03"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r03 = «B» descartado (no es una opción y la pregunta no lo menciona)",
+    "filtro r10 = «B) Una combinación de letras, números y símbolos de al menos 12 caracteres» (sus opciones dicen lo que pide la pregunta)",
+    "intención hallazgo → ranking_preguntas («repartida» por pregunta)",
+    "criterio del ranking: repartida (lo que dice la pregunta)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4226
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4102
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.3912
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.3907
+    }
+   ],
+   "segundos": 22.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 9005,
+    "recuperacion": 285,
+    "verificacion": 2881,
+    "interpretacion": 12871
+   },
+   "k_precision": 0.842,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame cómo se repartieron las respuestas",
+   "rag_log_id": 3098,
+   "respuesta": "Las opciones más votadas fueron:\n\n* Opción Falso: 49 respondentes (50.5 %)\n* Opción Verdadero: 47 respondentes (48.5 %)\n\nLa opción No Responde (NR) fue solo una respuesta válida, con un 1% de los alumnos.\n\nEn el contexto de la pregunta, se puede interpretar que la mayoría de los estudiantes consideran que plagiar contenido digital tiene las mismas consecuencias éticas que plagiar contenido impreso.\n\n**Distribución de r17 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Falso | 49 | 50.5 % |\n| Verdadero | 47 | 48.5 % |\n| NR | 1 | 1.0 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r17"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 50,
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r06"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "mostrar: distribución de r17, la primera del ranking anterior"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4604
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.438
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4271
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4226
+    }
+   ],
+   "segundos": 25.7,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 11058,
+    "recuperacion": 310,
+    "verificacion": 4159,
+    "interpretacion": 14241
+   },
+   "k_precision": 0.837,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué podría explicar esa división?",
+   "rag_log_id": 3099,
+   "respuesta": "**Lo que muestran los datos:** r17 «La huella digital incluye todo rastro que dejamos en línea.»: 96 respuestas válidas, 1 sin respuesta. Opción más elegida: «Falso» (50.5 %, 49 alumnos).\n\n**Interpretación (del asistente, no es un dato):** La mayoría de los estudiantes consideran que la huella digital incluye todo rastro que dejamos en línea, lo que sugiere una falta de conciencia sobre la importancia de proteger su privacidad en línea. Esto podría estar relacionado con la falta de educación sobre seguridad informática y uso responsable de las tecnologías digitales. La división entre opciones Falso y Verdadero puede indicar una necesidad de sensibilización sobre el tema.",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "profundiza",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r17"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "hallazgo",
+    "preguntas": [
+     "r17"
+    ],
+    "contexto_num": [
+     {
+      "valor": 25.0,
+      "variable": "edad"
+     },
+     {
+      "valor": 7.0,
+      "variable": "semestre"
+     }
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "contexto edad > 25 descartado (la pregunta no lo menciona)",
+    "contexto semestre > 7 descartado (la pregunta no lo menciona)",
+    "profundiza: se repite el plan anterior (resumen_pregunta) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.3808
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.3718
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.3642
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.3572
+    }
+   ],
+   "segundos": 20.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 5199,
+    "recuperacion": 293,
+    "verificacion": 1,
+    "interpretacion": 14714
+   },
+   "k_precision": 0.491,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) tabla con n y %; (3) interpretación marcada como tal, sin calificar."
+}

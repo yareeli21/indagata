@@ -1,0 +1,96 @@
+{
+ "tipo": "prueba",
+ "base": "storage\\instrumentos_sinteticos\\pruebas\\pru_01_respondido.csv",
+ "semilla": 7,
+ "filas_base": 100,
+ "filas_con_errores": 100,
+ "errores": {
+  "respuesta_multiple": [
+   {
+    "fila": 7,
+    "columna": "pru_01_Comprensió_q1",
+    "valor": "A,B"
+   },
+   {
+    "fila": 10,
+    "columna": "pru_01_Comprensió_q4",
+    "valor": "BC"
+   },
+   {
+    "fila": 20,
+    "columna": "pru_01_Comprensió_q7",
+    "valor": "A/D"
+   },
+   {
+    "fila": 42,
+    "columna": "pru_01_Comprensió_q10",
+    "valor": "A,B"
+   },
+   {
+    "fila": 51,
+    "columna": "pru_01_Identifica_q3",
+    "valor": "BC"
+   },
+   {
+    "fila": 84,
+    "columna": "pru_01_Comprensió_q1",
+    "valor": "A/D"
+   }
+  ],
+  "ilegible": [
+   {
+    "fila": 9,
+    "columna": "pru_01_Comprensió_q1",
+    "valor": "?"
+   },
+   {
+    "fila": 15,
+    "columna": "pru_01_Comprensió_q4",
+    "valor": "#"
+   },
+   {
+    "fila": 52,
+    "columna": "pru_01_Comprensió_q7",
+    "valor": "*"
+   },
+   {
+    "fila": 74,
+    "columna": "pru_01_Comprensió_q10",
+    "valor": "?"
+   },
+   {
+    "fila": 80,
+    "columna": "pru_01_Identifica_q3",
+    "valor": "#"
+   }
+  ],
+  "caracter_invalido": [
+   {
+    "fila": 5,
+    "columna": "pru_01_Comprensió_q1",
+    "valor": "Z"
+   },
+   {
+    "fila": 16,
+    "columna": "pru_01_Comprensió_q4",
+    "valor": "E"
+   },
+   {
+    "fila": 33,
+    "columna": "pru_01_Comprensió_q7",
+    "valor": "Z"
+   },
+   {
+    "fila": 73,
+    "columna": "pru_01_Comprensió_q10",
+    "valor": "E"
+   }
+  ],
+  "id_duplicado": [
+   "R0019",
+   "R0040",
+   "R0089"
+  ],
+  "filas_vacias": 2
+ }
+}

@@ -1,0 +1,209 @@
+{
+ "id": "ENT-13",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué situaciones de la universidad le generan más estrés?",
+   "rag_log_id": 2318,
+   "respuesta": "E01 reporta que la carga de proyectos, específicamente llevar siete materias con cuatro proyectos finales en equipo, genera estrés y ansiedad [Fuente 1, p02]. Además, menciona que trabaja quince horas semanales en una papelería, lo que limita su tiempo y contribuye a su estrés [Fuente 1, p02]. Según E01, las exposiciones son particularmente estresantes debido a la sensación de ser evaluado constantemente [Fuente 1, p02].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p02 «¿Qué situaciones de la universidad te generan más estrés o ansiedad?» | Eh, Sobre todo la carga de proyectos. Este semestre llevo siete materias y en cuatro hay proyecto final en equipo. Además trabajo quince horas por semana en una papelería, entonces casi no me queda tiempo. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando. |\n| p01 «Gracias por aceptar la entrevista. Todo lo que digas es confidencial y» | Ha sido un semestre pesado. Al principio estaba bien, pero desde la semana de parciales empecé a dormir muy poco, unas cinco horas, y me sentía cansada todo el tiempo. Hubo días en que no quería ni venir a clases, no por flojera, sino porque sentía mucha presión en el pecho antes de entrar al salón. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p02",
+     "p01"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "correcciones": [
+    "RAG: se agregó p01 (intercambio más parecido a la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.8491
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5101
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.4894
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.4788
+    }
+   ],
+   "segundos": 23.6,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 18119,
+    "recuperacion": 269,
+    "verificacion": 1,
+    "interpretacion": 5225
+   },
+   "k_precision": 0.881,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y buscó ayuda por eso?",
+   "rag_log_id": 2319,
+   "respuesta": "El estudiante E01 sí buscó ayuda, acudiendo a orientación psicológica en tres sesiones de cincuenta minutos [Fuente 1, p04]. Según sus datos registrados, la primera sesión le resultó difícil y requirió mucho esfuerzo para hablar, pero en la segunda se sintió más cómodo y recibió ejercicios de respiración y consejos sobre cómo manejar el estrés ante las exposiciones [Fuente 1, p04].\n\n**Respuestas a p04 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Mmm... Sí, fui a orientación psicológica este semestre. Tuve tres sesiones de cincuenta minutos con una psicóloga. Me ayudó a ordenar mis tiempos y me enseñó ejercicios de respiración para antes de exponer. La primera sesión me costó mucho trabajo, casi no hablé, pero en la segunda ya me sentí más en confianza. |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "orden": {},
+    "limite": 1,
+    "relacion": "continua",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p04"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.8271
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.7613
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p08",
+     "score": 0.6077
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.5925
+    }
+   ],
+   "segundos": 28.7,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 16219,
+    "recuperacion": 280,
+    "verificacion": 1,
+    "interpretacion": 12230
+   },
+   "k_precision": 0.767,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": 1,
+   "comentario_humano": "Sí pidió ayuda, pero debió relacionar la razón con la respuesta de la pregunta anterior porque era respecto a eso saber si fue un factor que la llevó a buscar ayuda"
+  },
+  {
+   "pregunta": "¿Cuánto tardaron en atenderla?",
+   "rag_log_id": 2320,
+   "respuesta": "E01 tardó casi dos semanas en ser atendida después de solicitar la cita. Ella consideró que este tiempo fue excesivo, especialmente porque ya se sentía mal cuando solicitó la cita inicialmente. Según ella, si hubiera tenido que esperar más, no habría ido a buscar ayuda.\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p05 «¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?» | Pasaron casi dos semanas. Pedí la cita por correo y me contestaron a los cuatro días, y luego la primera fecha disponible era la siguiente semana. Para mí fue mucho tiempo, porque cuando pedí la cita ya estaba muy mal. Creo que si hubiera tenido que esperar más, ya no habría ido. |\n| p06 «¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?» | Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p05",
+     "p06"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "correcciones": [
+    "RAG: se agregó p06 (intercambio más parecido a la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.5853
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p05",
+     "score": 0.5482
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.5265
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.4808
+    }
+   ],
+   "segundos": 25.6,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 16476,
+    "recuperacion": 303,
+    "verificacion": 1,
+    "interpretacion": 8808
+   },
+   "k_precision": 0.909,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) y (3) seguir hablando de ella; (3) usar la pregunta del tiempo de espera."
+}

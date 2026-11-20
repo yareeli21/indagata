@@ -1,0 +1,80 @@
+{
+ "id": "CPR-02",
+ "instrumento": "pru_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo están más repartidas las respuestas?",
+   "rag_log_id": 2824,
+   "respuesta": "La primera pregunta del ranking es r12 “Publicar el mismo artículo en dos revistas distintas sin declararlo es”: con 43 de 80 (53.8 %) respuestas, lo que representa un índice de dispersión de 1.00 [Fuente 1]. No hay empate en esta pregunta.\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r12 | índice de dispersión 1.00 (2 opciones); la más elegida, «Verdadero», con 43 de 80 (53.8 %) |\n| 2 | r09 | índice de dispersión 0.98 (2 opciones); la más elegida, «Verdadero», con 46 de 80 (57.5 %) |\n| 3 | r08 | índice de dispersión 0.94 (4 opciones); la más elegida, «C», con 29 de 80 (36.2 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida"
+   },
+   "plan_modelo": {
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r01",
+     "r02",
+     "r11"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "intención conteo_porcentaje → ranking_preguntas («repartida» por pregunta)",
+    "criterio del ranking: repartida (lo que dice la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.6147
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.6008
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.5785
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r06",
+     "score": 0.567
+    }
+   ],
+   "segundos": 39.9,
+   "tiempos_ms": {
+    "ejecucion": 11,
+    "redaccion": 20458,
+    "recuperacion": 438,
+    "verificacion": 1,
+    "interpretacion": 18926
+   },
+   "k_precision": 0.926,
+   "cifras_con_respaldo": [
+    16,
+    16
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Un reactivo con su medida de dispersión explicada."
+}

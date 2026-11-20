@@ -1,0 +1,65 @@
+{
+ "id": "PNU-03",
+ "instrumento": "pru_nueva",
+ "categoria": "filtro",
+ "turnos": [
+  {
+   "pregunta": "De los alumnos de primera generación, ¿qué base de datos eligieron más en el reactivo de bases de datos?",
+   "rag_log_id": 4179,
+   "respuesta": "La base de datos que elegieron más los alumnos de primera generación es Scopus o Web of Science, con un total de 1 persona. En segundo lugar, la base de datos Wikipedia fue elegida por 4 personas y YouTube por 2 personas. La base de datos Google Drive fue elegida solo por una persona.\n\n**Comparación por r13 «¿Cuál base de datos es específicamente para artículos científicos indi» [Fuente 1]**\n| Grupo | Personas |\n|---|---|\n| Google Drive | 1 |\n| Scopus o Web of Science | 1 |\n| Wikipedia | 4 |\n| YouTube | 2 |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "limite": 1,
+    "contexto": {
+     "primera_generacion": "True"
+    },
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r13"
+   },
+   "plan_modelo": {
+    "limite": 1,
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r13"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "contexto primera_generacion = «True» (la pregunta nombra la variable)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.6601
+    }
+   ],
+   "segundos": 18.5,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 7012,
+    "recuperacion": 674,
+    "verificacion": 2,
+    "interpretacion": 10787
+   },
+   "k_precision": 0.795,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Filtrar primera_generacion y dar la distribución de r13 dentro de ese grupo, con su n."
+}

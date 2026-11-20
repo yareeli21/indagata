@@ -1,0 +1,42 @@
+﻿........................................................................ [ 16%]
+........................................................................ [ 33%]
+........................................................................ [ 49%]
+........................................................................ [ 66%]
+........................................................................ [ 82%]
+........................................................................ [ 99%]
+....                                                                     [100%]
+============================== warnings summary ===============================
+..\..\.venv\Lib\site-packages\starlette\testclient.py:40
+  C:\Users\yarel\Documents\indagata\indagata\.venv\Lib\site-packages\starlette\testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+tests/test_cache.py: 44 warnings
+  C:\Users\yarel\Documents\indagata\indagata\.venv\Lib\site-packages\fastapi\routing.py:233: DeprecationWarning: 'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16; use inspect.iscoroutinefunction() instead
+    is_coroutine = asyncio.iscoroutinefunction(dependant.call)
+
+tests/test_cache.py: 58 warnings
+tests/test_chat_planificado.py: 60 warnings
+tests/test_ejecutor.py: 2 warnings
+tests/test_enrutador.py: 40 warnings
+tests/test_espacio.py: 31 warnings
+tests/test_evaluacion.py: 9 warnings
+tests/test_filtros.py: 2 warnings
+tests/test_fuentes_kpi.py: 4 warnings
+tests/test_indicadores.py: 6 warnings
+tests/test_noticias.py: 5 warnings
+tests/test_visualizacion.py: 36 warnings
+  C:\Users\yarel\Documents\indagata\indagata\.venv\Lib\site-packages\starlette\_utils.py:39: DeprecationWarning: 'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16; use inspect.iscoroutinefunction() instead
+    return asyncio.iscoroutinefunction(obj) or (callable(obj) and asyncio.iscoroutinefunction(obj.__call__))
+
+tests/test_seguimiento.py::test_valor_que_nombra_una_variable_no_es_opcion
+  C:\Users\yarel\Documents\indagata\indagata\.venv\Lib\site-packages\pydantic\main.py:475: UserWarning: Pydantic serializer warnings:
+    PydanticSerializationUnexpectedValue(Expected `Filtro` - serialized value may not be as expected [field_name='filtros', input_value={'pregunta': 'p04', 'valor': 'no_beca'}, input_type=dict])
+    return self.__pydantic_serializer__.to_python(
+
+tests/test_seguimiento.py::test_valor_que_nombra_una_variable_no_es_opcion
+  C:\Users\yarel\Documents\indagata\indagata\.venv\Lib\site-packages\pydantic\main.py:475: UserWarning: Pydantic serializer warnings:
+    PydanticSerializationUnexpectedValue(Expected `Filtro` - serialized value may not be as expected [field_name='filtros', input_value={'pregunta': 'r04', 'valor': 'tiene_beca'}, input_type=dict])
+    return self.__pydantic_serializer__.to_python(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+436 passed, 300 warnings in 5.56s

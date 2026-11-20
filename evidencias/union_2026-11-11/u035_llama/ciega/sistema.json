@@ -1,0 +1,142 @@
+[
+ {
+  "id": "B01",
+  "respuesta": "* 50.0 % de quienes respondieron (respondieron «De acuerdo» o «Totalmente de acuerdo») [Podría indicar una percepción general positiva sobre el ambiente escolar].\n* La pregunta con más respuestas de acuerdo es p08 «Me siento parte de la comunidad escolar.»: 50.0 % de quienes respondieron (respondieron «De acuerdo» o «Totalmente de acuerdo») [Sugiere que sentirse parte de la comunidad puede estar relacionado con percibir buenas relaciones entre compañeros].\n* Desviación estándar de 1.15 puntos en la escala [Indica una cierta división en opiniones sobre el tema, pero no una clara mayoría o minoría].",
+  "segundos": 19.6,
+  "consultaId": 3529,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B02",
+  "respuesta": "5 de los 26 que cumplen genero = «masculino» y respondieron p07 (19.2 %) están en desacuerdo (nivel bajo) en p07 «Los profesores están disponibles para resolver dudas.». [Fuente 1] El criterio utilizado en la encuesta es el género del estudiante (masculino), y se calcula el porcentaje de estudiantes masculinos que respondieron en desacuerdo con la pregunta p07, que es sobre la disponibilidad de los profesores para resolver dudas. La pregunta p07 está relacionada con el tamaño promedio de clase (alumnos por aula) y se encuentra en la sección \"Ambiente Escolar\" de la encuesta.",
+  "segundos": 16.3,
+  "consultaId": 3530,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B03",
+  "respuesta": "Según la encuesta, no se proporciona información específica sobre el número de alumnos del turno matutino que están en desacuerdo con que reciben retroalimentación a tiempo para mejorar. Sin embargo, se proporciona la escala de respuesta y los KPIs asociados con esta pregunta [Fuente 1].\n\nLa pregunta p03 está relacionada con la escala de 1 (Totalmente en desacuerdo) a 5 (Totalmente de acuerdo), pero no se proporciona información sobre el número de alumnos que respondieron con un valor específico de esta escala [Fuente 1].",
+  "segundos": 17.8,
+  "consultaId": 3531,
+  "ruta": "semantica"
+ },
+ {
+  "id": "B04",
+  "respuesta": "Según la encuesta, el 45.0% de los estudiantes se sienten parte de la comunidad escolar en el turno vespertino.\n\n[Respuestas válidas: De acuerdo n=27; Totalmente en desacuerdo n=3; En desacuerdo n=8; Ni de acuerdo ni en desacuerdo n=20; Totalmente en desacuerdo n=2]\n\nLa distribución es la siguiente:\n\n- Totalmente en desacuerdo: 5.0% (n=3)\n- En desacuerdo: 13.3% (n=8)\n- Ni de acuerdo ni en desacuerdo: 33.3% (n=20)\n- De acuerdo: 45.0% (n=27)\n\n[Fuente 1]",
+  "segundos": 16.7,
+  "consultaId": 3532,
+  "ruta": "semantica"
+ },
+ {
+  "id": "B05",
+  "respuesta": "13 de 60 respondentes (21.7 %) cumplen el criterio: p02 «Las calificaciones reflejan lo que realmente aprendí.» de acuerdo (nivel alto) y p04 «Las evaluaciones están relacionadas con lo que se ve en clase.» de acuerdo (nivel alto). [Fuente 1]",
+  "segundos": 17.7,
+  "consultaId": 3533,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B06",
+  "respuesta": "40 de 160 respondentes (25.0 %) cumplen el criterio: p14 «¿Cuál es tu carga laboral actual?» = «No trabajo». [Fuente 1]",
+  "segundos": 15.9,
+  "consultaId": 3534,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B07",
+  "respuesta": "39 de 160 respondentes (24.4 %) cumplen el criterio: p11 «¿Qué estrategia usas más para gestionar tu tiempo?» = «App digital». [Fuente 1]",
+  "segundos": 16.3,
+  "consultaId": 3535,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B08",
+  "respuesta": "Según la encuesta de Carga Académica y Gestión del Tiempo, en las universidades privadas, no se proporciona información específica sobre el número de estudiantes que cursan 7 o más materias. La pregunta p09 solo ofrece opciones para responder sobre cuántas materias cursa actualmente, pero no proporciona un resultado numérico específico para la categoría \"7 o más\". Por lo tanto, no tengo información relacionada con lo que solicitas en los instrumentos consultados [Fuente 1].",
+  "segundos": 9.8,
+  "consultaId": 3536,
+  "ruta": "semantica"
+ },
+ {
+  "id": "B09",
+  "respuesta": "«Encuesta de Carga Académica y Gestión del Tiempo» no registra «promedio». En p20 («¿Cuántos créditos cursas este semestre? (número)») las opciones que sí existen son estas:\n\nCriterio: resumen de p20.\np20 «¿Cuántos créditos cursas este semestre? (número)»: 160 respuestas válidas; media 25.26.\nInterpretación calculada: Media 25.3, mediana 26 (de 10 a 40). [Fuente 1]",
+  "segundos": 4.2,
+  "consultaId": 3537,
+  "ruta": "estructurada"
+ },
+ {
+  "id": "B10",
+  "respuesta": "No encontré esa condición en «Encuesta de Carga Académica y Gestión del Tiempo». En p10 («¿Con qué frecuencia dejas tareas para el último momento?») las opciones que sí existen son estas:\n\n**Distribución de p10 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Nunca | 30 | 18.8 % |\n| Raramente | 28 | 17.5 % |\n| A veces | 32 | 20.0 % |\n| Frecuentemente | 37 | 23.1 % |\n| Siempre | 33 | 20.6 % |",
+  "segundos": 3.3,
+  "consultaId": 3538,
+  "ruta": "estructurada"
+ },
+ {
+  "id": "B11",
+  "respuesta": "40 de 160 respondentes (25.0 %) cumplen el criterio: p14 «¿Cuál es tu carga laboral actual?» = «No trabajo». [Fuente 1]",
+  "segundos": 16.9,
+  "consultaId": 3539,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B12",
+  "respuesta": "9 de 160 respondentes (5.6 %) cumplen el criterio: p13 «¿Has reprobado alguna materia por falta de tiempo para estudiar?» = «nunca» y p10 «¿Con qué frecuencia dejas tareas para el último momento?» = «Nunca». [Fuente 1]",
+  "segundos": 18.5,
+  "consultaId": 3540,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B13",
+  "respuesta": "97 de 160 respondentes (60.6 %) cumplen el criterio: p16 «¿Tu institución ofrece talleres de gestión del tiempo?» = «No». [Fuente 1]",
+  "segundos": 13.4,
+  "consultaId": 3541,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B14",
+  "respuesta": "887 de los 1930 que respondieron p09 (46.0 %) cumplen el criterio: p09 «¿Con qué frecuencia usas alguna plataforma virtual (Moodle, Classroom,» = «Diariamente». Sobre el total del instrumento son 887 de 2000 respondentes (44.4 %). [Fuente 1]",
+  "segundos": 15.7,
+  "consultaId": 3542,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B15",
+  "respuesta": "159 de los 1942 que respondieron p10 (8.2 %) cumplen el criterio: p10 «¿Cuándo esperas titularte?» = «Estoy considerando abandonar». Sobre el total del instrumento son 159 de 2000 respondentes (8.0 %). [Fuente 1]",
+  "segundos": 17.1,
+  "consultaId": 3543,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B16",
+  "respuesta": "1193 de los 1951 que respondieron p01 (61.1 %) cumplen el criterio: p01 «¿Tu programa académico cuenta con acreditación vigente (COP AES, SEAES» = «No lo se» o «No». Sobre el total del instrumento son 1193 de 2000 respondentes (59.6 %). [Fuente 1] El criterio se refiere a si el programa académico tiene acreditación vigente. Según la pregunta, esto se mide en relación con la matriculación y graduación de estudiantes, así como con otros indicadores de calidad académica. [Fuente 1]",
+  "segundos": 17.5,
+  "consultaId": 3544,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B17",
+  "respuesta": "«Indicadores de Experiencia y Calidad Académica» no registra «volver». En p13 («¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización») las opciones que sí existen son estas:\n\n**Distribución de p13 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Nada probable | 145 | 7.7 % |\n| 2 en escala 1–5 | 343 | 18.3 % |\n| 3 en escala 1–5 | 441 | 23.6 % |\n| 4 en escala 1–5 | 470 | 25.1 % |\n| Muy probable | 473 | 25.3 % |",
+  "segundos": 10.2,
+  "consultaId": 3545,
+  "ruta": "estructurada"
+ },
+ {
+  "id": "B18",
+  "respuesta": "- La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»).\n- La pregunta con más respuestas en el nivel alto es p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?»: 50.4 % de quienes respondieron (respondieron «4 en escala 1–5» o «Muy probable»).\n- En p03 «¿Cómo es tu carga académica actual?» predomina «Carga media/normal»: 65.1 % de quienes respondieron. [Fuente 1]",
+  "segundos": 28.9,
+  "consultaId": 3546,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B19",
+  "respuesta": "734 de 1892 estudiantes respondieron de acuerdo en p18 con un nivel alto, lo que representa un porcentaje del 38.8%. [Fuente 1]",
+  "segundos": 11.9,
+  "consultaId": 3547,
+  "ruta": "mixta"
+ },
+ {
+  "id": "B20",
+  "respuesta": "- La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»).\n- La pregunta con más respuestas en el nivel alto es p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?»: 50.4 % de quienes respondieron (respondieron «4 en escala 1–5» o «Muy probable»).\n- En p03 «¿Cómo es tu carga académica actual?» predomina «Carga media/normal»: 65.1 % de quienes respondieron. [Fuente 1]",
+  "segundos": 31.0,
+  "consultaId": 3548,
+  "ruta": "mixta"
+ }
+]

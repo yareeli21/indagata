@@ -30,6 +30,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Any
 
+from shared.conocimiento import significados
 from shared.parsing import TabularParseError, read_tabular
 
 from services import configuracion
@@ -39,6 +40,7 @@ from services.motores import estadistica as est
 from services.motores import filas as estructura_filas
 from services.motores.base import Entrada, ErrorLimpieza, Hallazgo, ResultadoAutomatico, ResultadoFinal
 from services.motores.encuestas import categorias
+from services.motores.encuestas import diccionario
 from services.motores.encuestas import dimensiones as dims
 from services.motores.encuestas import numeros
 from services.motores.encuestas import universales
@@ -106,6 +108,8 @@ def _es_ajena(etiqueta: str, patrones: list[str]) -> bool:
 
 
 _SEPARADOR_OPCIONES = ";"
+# Columna con lo que se escribió en «Otro» (LimeSurvey: «Pregunta [other]» o «Pregunta [Otro]»).
+_OTRO = re.compile(r"\[\s*(other|otro|otra|otros|otras)\s*\]\s*$", re.IGNORECASE)
 # Opciones que excluyen a las demás en una selección múltiple.
 _EXCLUYENTES = {"ninguno", "ninguna", "ninguno de los anteriores", "ninguna de las anteriores", "no aplica", "nada"}
 
@@ -271,6 +275,9 @@ def _preparar(entrada: Entrada, decisiones: dict[str, str] | None = None) -> Est
             if c.indice_original < len(textos) and textos[c.indice_original].strip():
                 c.extra["texto"] = textos[c.indice_original].strip()
     tabla.transformaciones.extend(numeros.normalizar(tabla))
+    no_resp_diccionario, categoricas_diccionario = diccionario.aplicar(tabla, entrada.diccionario)
+    if no_resp_diccionario:
+        tabla.transformaciones.append(no_resp_diccionario)
     unificado, si_no = categorias.si_no(tabla)
     if unificado:
         tabla.transformaciones.append(unificado)
@@ -296,6 +303,10 @@ def _preparar(entrada: Entrada, decisiones: dict[str, str] | None = None) -> Est
                          "frecuente a la que se parecen.", "afectados": len(casos_parecidas), "casos": casos_parecidas})
 
     tipos = {c.id: inferir(c.etiqueta, c.valores, cfg) for c in tabla.columnas}
+    # Códigos de opciones sin orden según el diccionario («1» = «Presencial»): categórica, no escala.
+    for cid in categoricas_diccionario:
+        if tipos[cid].tipo in ("likert", "escala_lineal", "calificacion", "numerica"):
+            tipos[cid] = InfoTipo("categorica")
     ajenas = {c.id for c in tabla.columnas if _es_ajena(c.etiqueta, cfg.get("columnas_ajenas", []))}
     largo = int(cfg.get("largo_minimo_pregunta", 25))
     rol_auto = {c.id: "pregunta" for c in tabla.columnas if c.id not in ajenas and len(c.etiqueta) > largo}
@@ -447,6 +458,7 @@ def _incompletos(columnas: list, filas: list[int]) -> set[int]:  # noqa: ANN001
 # ── Estadística descriptiva y fiabilidad ───────────────────────────────────────
 
 _NUMERICOS = ("numerica", "escala_lineal", "calificacion")
+_MAX_CODIGOS = 15  # más valores distintos ya no son códigos de categoría o de escala
 
 
 def _estadistica(
@@ -481,6 +493,10 @@ def _estadistica(
             "n_nulos": n - len(presentes),
             "pct_nulos": round((n - len(presentes)) / n, 4) if n else 0.0,
         }
+        # Códigos distintos (pocos y cortos: «1», «2», «A»): la limpieza pide o lee su significado.
+        distintos = {v.strip() for v in presentes}
+        if 2 <= len(distintos) <= _MAX_CODIGOS and all(significados.es_codigo(v) for v in distintos):
+            fila["codigos"] = sorted(distintos, key=lambda v: (not v.lstrip("-").isdigit(), int(v) if v.lstrip("-").isdigit() else 0, v))
         if info.likert:
             lik = info.likert
             codigos = [_codigo(info, v, excluir) for v in presentes]
@@ -940,7 +956,9 @@ def _hallazgos(estado: Estado) -> list[Hallazgo]:
 
         # Columnas muy incompletas (umbrales de la Tabla 3).
         if pct_nulos > umbrales.get("nulos_maximo", 0.4) or (1 - pct_nulos) < umbrales.get("completitud_minima", 0.6):
-            sugerir_eliminar = pct_nulos >= umbrales.get("nulos_sugerir_eliminar", 0.9)
+            # «Pregunta [other]», «Pregunta [Otro]»: lo que se escribió en «Otro» casi siempre está vacío, y es respuesta.
+            es_otro = bool(_OTRO.search(c.etiqueta))
+            sugerir_eliminar = pct_nulos >= umbrales.get("nulos_sugerir_eliminar", 0.9) and not es_otro
             salida.append(
                 Hallazgo(
                     id=f"incompleta:{c.id}", tipo="columna_incompleta", tema="Calidad de los datos", objetivo=c.id,

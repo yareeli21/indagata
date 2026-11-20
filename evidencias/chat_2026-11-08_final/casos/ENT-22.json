@@ -1,0 +1,49 @@
+{
+ "id": "ENT-22",
+ "instrumento": "ent",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Qué respondió la segunda participante?",
+   "rag_log_id": 2795,
+   "respuesta": "«Salud mental en la universidad» tiene una sola participante (E01): no hay otra persona entrevistada ni con quién comparar sus respuestas.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Salud mental en la universidad» tiene una sola participante (E01): no hay otra persona entrevistada ni con quién comparar sus respuestas."
+   },
+   "plan_modelo": {
+    "campos": "todas_las_respuestas",
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "otra participante pedida en una entrevista de una sola persona",
+    "lo que pide no existe en el instrumento: se responde con lo que sí hay"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 5.9,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 171,
+    "interpretacion": 5739
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Solo hay una participante."
+}

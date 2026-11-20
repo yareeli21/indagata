@@ -165,6 +165,13 @@ def filtrar(doc: dict[str, Any], condiciones: list[dict[str, Any]], contexto: di
     return sorted(salida, key=lambda r: r["id"])
 
 
+def respondieron(doc: dict[str, Any], preguntas: list[str], contexto: dict[str, str] | None = None) -> list[dict[str, Any]]:
+    """Respondentes del grupo (contexto) que respondieron todas las preguntas: la base del porcentaje de un filtro."""
+    objetivo = [_id(doc, q) for q in preguntas]
+    return [r for r in filtrar(doc, [], contexto)
+            if all(any(x["pregunta_id"] == q and x.get("estado") == "respondida" for x in r["respuestas"]) for q in objetivo)]
+
+
 # 9. ¿Cuántos entrevistados dicen que sí (o no) a la pregunta X y qué motivos dan? (esquema 2.1)
 def posturas(doc: dict[str, Any], pregunta_id: str) -> dict[str, Any]:
     """Posturas de los intercambios con análisis de respuesta para una pregunta del guion."""

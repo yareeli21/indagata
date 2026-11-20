@@ -1,0 +1,167 @@
+{
+ "id": "ENT-17",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuáles son los hallazgos principales de la entrevista?",
+   "rag_log_id": 2329,
+   "respuesta": "Basado en la información proporcionada, los hallazgos principales de la entrevista con Isabella Cortes (E01) son:\n\n*   **Impacto del estrés académico en el bienestar:** E01 describe sentirse “cansada todo el tiempo” y experimentar presión en el pecho antes de asistir a clases debido a una alta carga académica, incluyendo “siete materias y en cuatro hay proyecto final en equipo” [Fuente 1, p01].\n\n*   **Alteraciones del sueño como síntoma de estrés:** E01 reporta un patrón de sueño alterado, con “unas cinco horas, y me sentía cansada todo el tiempo”, que se intensificó desde la semana de parciales [Fuente 1, p01].\n\n*   **Percepción limitada del apoyo psicológico:** E01 indica haber conocido los servicios de apoyo psicológico en el tercer semestre, a través de una compañera, y señala que “solo me dieron tres sesiones, porque es el máximo por semestre”, lo cual fue considerado insuficiente [Fuente 1, p07].\n\n*   **Uso inicial limitado de los servicios de orientación:** E01 describe la primera sesión con la psicóloga como “costó mucho trabajo, casi no hablé”, sugiriendo una dificultad para establecer una relación terapéutica en las primeras etapas [Fuente 1, p04].\n\n*   **Valoración positiva de la atención recibida (con limitaciones):** A pesar de la brevedad del apoyo, E01 califica la atención recibida como “buena” y le otorga un ocho de diez, destacando que la psicóloga fue “muy amable y nunca me hizo sentir juzgada”, aunque reconoce que el tiempo asignado fue insuficiente [Fuente 1, p07].",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo"
+   },
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p13",
+     "score": 0.5662
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5094
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.4987
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4322
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.4144
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.4143
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.3857
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p04",
+     "score": 0.3776
+    }
+   ],
+   "segundos": 92.7,
+   "tiempos_ms": {
+    "ejecucion": 12,
+    "redaccion": 88078,
+    "recuperacion": 321,
+    "verificacion": 43076,
+    "interpretacion": 4325
+   },
+   "k_precision": 0.545,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Cuál debería atender primero la universidad y por qué?",
+   "rag_log_id": 2330,
+   "respuesta": "Basado en la entrevista con Isabella Cortes (E01), los siguientes temas o patrones se repiten o destacan:\n\n*   **Sobrecarga académica y estrés:** E01 menciona que “Ha sido un semestre pesado” y experimenta dificultades para dormir debido a una alta carga de proyectos y materias [Fuente 1, p01].\n*   **Falta de conocimiento sobre los servicios de apoyo:** E01 reconoce no saber dónde estaban ubicados ni cómo acceder a los servicios de salud mental hasta el tercer semestre [Fuente 1, p03].\n*   **Insuficiente personal y acceso limitado:** E01 señala que “solo hay dos psicólogos para todo el plantel” [Fuente 1, p11] y que las citas son limitadas, lo que dificulta el acceso a la ayuda.\n*   **Rol de los profesores en la detección del problema:** E01 destaca que una profesora de estadística notó su distracción y la recomendó ir a orientación, evidenciando la necesidad de mayor atención por parte del profesorado [Fuente 1, p09].\n*   **Estereotipos sobre el uso de servicios de salud mental:** E01 observa que “casi nadie va a orientación” [Fuente 1, p10], sugiriendo que existen barreras percibidas en torno al uso de estos servicios.",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Qué hallazgos específicos de la entrevista deberían ser priorizados por la universidad?"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.5016
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.4141
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.406
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.387
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.3854
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.3211
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.25
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.2363
+    }
+   ],
+   "segundos": 50.4,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 42055,
+    "recuperacion": 344,
+    "verificacion": 2,
+    "interpretacion": 8025
+   },
+   "k_precision": 0.44,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "no da una idea de qué debería atenderse primero"
+  }
+ ],
+ "debe": "(2) opinión fundamentada en lo citado, aclarando que es un solo testimonio."
+}

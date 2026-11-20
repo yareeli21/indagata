@@ -1,0 +1,53 @@
+{
+ "id": "PNU-04",
+ "instrumento": "pru_nueva",
+ "categoria": "control",
+ "turnos": [
+  {
+   "pregunta": "¿Qué alumno tuvo el mejor desempeño?",
+   "rag_log_id": 4114,
+   "respuesta": "«Prueba de Competencia en Investigación Científica» no registra «mejor, desempeño». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: perfil, edad, genero, semestre, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca, edad.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Prueba de Competencia en Investigación Científica» no registra «mejor, desempeño». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: perfil, edad, genero, semestre, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca, edad."
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "A",
+      "pregunta": "r07"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r07 = «A» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 11.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 205,
+    "interpretacion": 10920
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No califica: explica que la prueba no tiene clave y ofrece lo que sí describe."
+}

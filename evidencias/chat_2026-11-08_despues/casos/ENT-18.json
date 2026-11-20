@@ -1,0 +1,58 @@
+{
+ "id": "ENT-18",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿De qué trata esta entrevista y cuál es su objetivo?",
+   "rag_log_id": 2667,
+   "respuesta": "Esta entrevista trata sobre las experiencias y percepciones de estudiantes universitarios de licenciatura en la institución ESCOM con respecto a su salud mental y el acceso a servicios de apoyo psicológico. [Fuente 1] El objetivo de la entrevista, según se indica en el texto del instrumento, es identificar estas experiencias y percepciones. La entrevista fue realizada a un único estudiante de licenciatura de la institución ESCOM ISC mediante una metodología de entrevista semiestructurada presencial, con una duración aproximada de 40 minutos, llevada a cabo el 14 de octubre de 2026 en el cubículo de tutorías. [Fuente 1] Los KPIs asociados a esta investigación incluyen el uso de servicios de salud mental y apoyo psicológico, la proporción de consejeros/orientadores por estudiante, la tasa de transferencia/traslado a otras instituciones y la cobertura y calidad de los servicios de apoyo estudiantil. [Fuente 1]",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.5688
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5315
+    }
+   ],
+   "segundos": 29.9,
+   "tiempos_ms": {
+    "redaccion": 29449,
+    "recuperacion": 198,
+    "verificacion": 1
+   },
+   "k_precision": 0.868,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Síntesis en prosa: tema y una participante."
+}

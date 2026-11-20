@@ -1,0 +1,284 @@
+{
+ "redactores": {
+  "llama3.2:3b": {
+   "turnos": 28,
+   "intencion_correcta": 0.536,
+   "plantilla_indebida": 7,
+   "redactadas": 9,
+   "regeneraciones": 3,
+   "cifras_sin_respaldo": 0,
+   "cifras_con_respaldo": 1.0,
+   "ids_inventados": 0,
+   "exactitud": 0.593,
+   "criterios": 0.182,
+   "contexto_suficiente": 0.25,
+   "similitud": 0.497,
+   "latencia_mediana_s": 7.2,
+   "humana_media": 0.643,
+   "humana_bien": 0.286,
+   "calificadas": 28
+  },
+  "qwen2.5:3b": {
+   "turnos": 28,
+   "intencion_correcta": 0.714,
+   "plantilla_indebida": 8,
+   "redactadas": 12,
+   "regeneraciones": 6,
+   "cifras_sin_respaldo": 0,
+   "cifras_con_respaldo": 1.0,
+   "ids_inventados": 0,
+   "exactitud": 0.333,
+   "criterios": 0.182,
+   "contexto_suficiente": 0.25,
+   "similitud": 0.426,
+   "latencia_mediana_s": 4.9,
+   "humana_media": 0.857,
+   "humana_bien": 0.286,
+   "calificadas": 28
+  },
+  "qwen3:4b-instruct": {
+   "turnos": 28,
+   "intencion_correcta": 0.536,
+   "plantilla_indebida": 10,
+   "redactadas": 10,
+   "regeneraciones": 5,
+   "cifras_sin_respaldo": 2,
+   "cifras_con_respaldo": 0.833,
+   "ids_inventados": 0,
+   "exactitud": 0.778,
+   "criterios": 0.273,
+   "contexto_suficiente": 0.417,
+   "similitud": 0.534,
+   "latencia_mediana_s": 15.6,
+   "humana_media": 1.071,
+   "humana_bien": 0.464,
+   "calificadas": 28
+  },
+  "gemma3:4b": {
+   "turnos": 28,
+   "intencion_correcta": 0.643,
+   "plantilla_indebida": 2,
+   "redactadas": 17,
+   "regeneraciones": 1,
+   "cifras_sin_respaldo": 0,
+   "cifras_con_respaldo": 1.0,
+   "ids_inventados": 0,
+   "exactitud": 0.37,
+   "criterios": 0.182,
+   "contexto_suficiente": 0.25,
+   "similitud": 0.493,
+   "latencia_mediana_s": 18.3,
+   "humana_media": 1.071,
+   "humana_bien": 0.429,
+   "calificadas": 28
+  }
+ },
+ "matriz": {
+  "jueces": [
+   "gemma3:4b",
+   "llama3.2:3b",
+   "qwen2.5:3b",
+   "qwen3:4b-instruct"
+  ],
+  "celdas": {
+   "llama3.2:3b": {
+    "gemma3:4b": {
+     "fidelidad": 0.941,
+     "relevancia": 0.372,
+     "precision_contexto": 1.0,
+     "promedio": 0.749
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.799,
+     "relevancia": 0.44,
+     "precision_contexto": 1.0,
+     "promedio": 0.729
+    },
+    "qwen2.5:3b": {
+     "fidelidad": 0.696,
+     "relevancia": 0.396,
+     "precision_contexto": 0.429,
+     "promedio": 0.52
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.708,
+     "relevancia": 0.459,
+     "precision_contexto": 0.929,
+     "promedio": 0.684
+    }
+   },
+   "qwen2.5:3b": {
+    "gemma3:4b": {
+     "fidelidad": 0.954,
+     "relevancia": 0.354,
+     "precision_contexto": 1.0,
+     "promedio": 0.757
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.892,
+     "relevancia": 0.388,
+     "precision_contexto": 0.95,
+     "promedio": 0.738
+    },
+    "qwen2.5:3b": {
+     "fidelidad": 0.651,
+     "relevancia": 0.343,
+     "precision_contexto": 0.7,
+     "promedio": 0.563
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.706,
+     "relevancia": 0.465,
+     "precision_contexto": 0.9,
+     "promedio": 0.686
+    }
+   },
+   "qwen3:4b-instruct": {
+    "gemma3:4b": {
+     "fidelidad": 0.851,
+     "relevancia": 0.464,
+     "precision_contexto": 1.0,
+     "promedio": 0.756
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.77,
+     "relevancia": 0.499,
+     "precision_contexto": 1.0,
+     "promedio": 0.743
+    },
+    "qwen2.5:3b": {
+     "fidelidad": 0.817,
+     "relevancia": 0.433,
+     "precision_contexto": 0.833,
+     "promedio": 0.686
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.734,
+     "relevancia": 0.505,
+     "precision_contexto": 0.933,
+     "promedio": 0.713
+    }
+   },
+   "gemma3:4b": {
+    "gemma3:4b": {
+     "fidelidad": 0.937,
+     "relevancia": 0.426,
+     "precision_contexto": 1.0,
+     "promedio": 0.782
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.764,
+     "relevancia": 0.452,
+     "precision_contexto": 1.0,
+     "promedio": 0.737
+    },
+    "qwen2.5:3b": {
+     "fidelidad": 0.665,
+     "relevancia": 0.405,
+     "precision_contexto": 0.826,
+     "promedio": 0.632
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.874,
+     "relevancia": 0.482,
+     "precision_contexto": 1.0,
+     "promedio": 0.778
+    }
+   }
+  },
+  "sesgo_autoevaluacion": {
+   "llama3.2:3b": 0.078,
+   "qwen2.5:3b": -0.164,
+   "qwen3:4b-instruct": -0.015,
+   "gemma3:4b": 0.066
+  }
+ },
+ "cruce": {
+  "gemma3:4b": {
+   "n": 78,
+   "kappa_fidelidad_vs_cifras": 0.159,
+   "n_fidelidad": 37,
+   "kappa_aprobado_vs_humana": 0.143,
+   "spearman_promedio_vs_humana": 0.203,
+   "spearman_relevancia_vs_humana": 0.326,
+   "n_humana": 78,
+   "confusion_precision": {
+    "prec_alta_ctx_si": 14,
+    "prec_alta_ctx_no": 22,
+    "prec_baja_ctx_si": 0,
+    "prec_baja_ctx_no": 0
+   }
+  },
+  "llama3.2:3b": {
+   "n": 78,
+   "kappa_fidelidad_vs_cifras": 0.043,
+   "n_fidelidad": 38,
+   "kappa_aprobado_vs_humana": 0.121,
+   "spearman_promedio_vs_humana": 0.136,
+   "spearman_relevancia_vs_humana": 0.317,
+   "n_humana": 78,
+   "confusion_precision": {
+    "prec_alta_ctx_si": 14,
+    "prec_alta_ctx_no": 22,
+    "prec_baja_ctx_si": 0,
+    "prec_baja_ctx_no": 0
+   }
+  },
+  "qwen2.5:3b": {
+   "n": 78,
+   "kappa_fidelidad_vs_cifras": 0.023,
+   "n_fidelidad": 39,
+   "kappa_aprobado_vs_humana": 0.108,
+   "spearman_promedio_vs_humana": 0.266,
+   "spearman_relevancia_vs_humana": 0.281,
+   "n_humana": 78,
+   "confusion_precision": {
+    "prec_alta_ctx_si": 13,
+    "prec_alta_ctx_no": 11,
+    "prec_baja_ctx_si": 1,
+    "prec_baja_ctx_no": 11
+   }
+  },
+  "qwen3:4b-instruct": {
+   "n": 78,
+   "kappa_fidelidad_vs_cifras": 0.033,
+   "n_fidelidad": 37,
+   "kappa_aprobado_vs_humana": 0.226,
+   "spearman_promedio_vs_humana": 0.331,
+   "spearman_relevancia_vs_humana": 0.446,
+   "n_humana": 78,
+   "confusion_precision": {
+    "prec_alta_ctx_si": 14,
+    "prec_alta_ctx_no": 20,
+    "prec_baja_ctx_si": 0,
+    "prec_baja_ctx_no": 2
+   }
+  }
+ },
+ "entre_jueces": {
+  "gemma3:4b ~ llama3.2:3b": {
+   "n": 78,
+   "spearman": 0.584
+  },
+  "gemma3:4b ~ qwen2.5:3b": {
+   "n": 78,
+   "spearman": 0.429
+  },
+  "gemma3:4b ~ qwen3:4b-instruct": {
+   "n": 78,
+   "spearman": 0.371
+  },
+  "llama3.2:3b ~ qwen2.5:3b": {
+   "n": 78,
+   "spearman": 0.305
+  },
+  "llama3.2:3b ~ qwen3:4b-instruct": {
+   "n": 78,
+   "spearman": 0.399
+  },
+  "qwen2.5:3b ~ qwen3:4b-instruct": {
+   "n": 78,
+   "spearman": 0.31
+  }
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "id": "ENC-21",
+ "instrumento": "enc",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué preguntas eran opcionales?",
+   "rag_log_id": 3648,
+   "respuesta": "El documento final no registra qué preguntas eran opcionales u obligatorias en el instrumento original, así que no puedo decírtelo sin inventarlo. Lo que sí registra es cuántas personas dejaron cada pregunta sin responder: puedes preguntarme «¿en qué pregunta hubo más respuestas sin contestar?».",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "instrumento:opcionales",
+   "plantilla": null,
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.1,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Si el sistema guarda el dato, nombrarlas; si no, decir que no lo tiene, sin inventar."
+}

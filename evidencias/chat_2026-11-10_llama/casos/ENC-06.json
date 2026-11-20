@@ -1,0 +1,89 @@
+{
+ "id": "ENC-06",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál es la actividad de investigación de los profesores más conocida por los estudiantes?",
+   "rag_log_id": 3058,
+   "respuesta": "Se presentan los siguientes patrones:\n\n* La pregunta con mayor frecuencia de respuesta en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % respondieron que nunca o solo rara vez se ha producido este tipo de situación.\n* La pregunta con mayor frecuencia de respuesta en el nivel alto es p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?»: 50.4 % respondieron que es muy probable que vuelvan a estudiar en la institución.\n* En p03 «¿Cómo es tu carga académica actual?» predomina la respuesta de una carga media/normal: 65.1 % respondieron que su carga académica es normal.\n* La pregunta con opiniones más divididas es p16 «La oferta de programas, materias optativas y cursos de mi institución responde a mis intereses académicos y profesionales.», con una desviación estándar de 1.26 puntos en la escala.\n\nEn cuanto a la actividad de investigación de los profesores más conocida por los estudiantes, no se menciona explícitamente en el resultado. Sin embargo, se mencionan algunos KPIs que podrían estar relacionados con la investigación académica, como el Ratio de Matriculados frente a Graduados del Curso y la Tasa de Continuidad en Estudios de Posgrado.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Proyectos de investigacion financiados",
+      "pregunta": "p07"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Proyectos de investigacion financiados",
+      "pregunta": "p07"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.5524
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.4836
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p16",
+     "score": 0.4523
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p16",
+     "score": 0.4495
+    }
+   ],
+   "segundos": 25.8,
+   "tiempos_ms": {
+    "ejecucion": 10,
+    "redaccion": 13869,
+    "recuperacion": 325,
+    "verificacion": 3,
+    "interpretacion": 11496
+   },
+   "k_precision": 0.774,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Opción múltiple; distinguir número de menciones de número de respondentes."
+}

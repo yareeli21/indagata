@@ -1,0 +1,206 @@
+{
+ "id": "ENT-16",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Conoce a compañeros que necesiten apoyo y no lo busquen?",
+   "rag_log_id": 2326,
+   "respuesta": "E01 en p10 respondió que sí conoce a varios compañeros en su grupo de treinta y dos que están muy estresados, pero casi nadie acude a la orientación. Según E01, algunos no saben que existe este tipo de apoyo o piensan que es solo para casos graves. Esto indica una barrera de acceso a los servicios de salud mental debido a desconocimiento o percepción errónea sobre su utilidad [Fuente 1].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p10 «¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo b» | Ehm, Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación. Algunos no saben que existe y otros piensan lo mismo que yo pensaba, que es solo para casos muy graves. Un compañero dejó de venir a mitad del semestre y nadie supo bien qué le pasó. |\n| p12 «Para terminar, ¿qué le dirías a un compañero que está pasando por un m» | Que no espere a estar muy mal, como yo. Que pedir ayuda no significa que sea débil, al contrario. Y que la orientación es gratuita y confidencial, nadie se va a enterar. A mí me sirvió para darme cuenta de que no estaba sola y de que lo que sentía tenía nombre y se podía trabajar. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p10",
+     "p12"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "correcciones": [
+    "RAG: se agregó p12 (intercambio más parecido a la pregunta)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7327
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6716
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.4733
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.3699
+    }
+   ],
+   "segundos": 94.0,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 87803,
+    "recuperacion": 222,
+    "verificacion": 15690,
+    "interpretacion": 5974
+   },
+   "k_precision": 0.902,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué les diría?",
+   "rag_log_id": 2327,
+   "respuesta": "E01 en p12 respondió que un compañero que está pasando por un momento difícil debería no esperar a estar muy mal, como ella, y que pedir ayuda no significa debilidad, sino reconocer que su problema tiene nombre y se puede trabajar. Según E01, la orientación es gratuita y confidencial, lo cual le sirvió para darse cuenta de que no estaba sola [Fuente 1]. Esto sugiere una dificultad en los estudiantes para acceder a servicios de apoyo debido al temor a ser juzgados o a percibir el problema como algo grave [Fuente 1].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p12 «Para terminar, ¿qué le dirías a un compañero que está pasando por un m» | Que no espere a estar muy mal, como yo. Que pedir ayuda no significa que sea débil, al contrario. Y que la orientación es gratuita y confidencial, nadie se va a enterar. A mí me sirvió para darme cuenta de que no estaba sola y de que lo que sentía tenía nombre y se podía trabajar. |\n| p10 «¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo b» | Ehm, Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación. Algunos no saben que existe y otros piensan lo mismo que yo pensaba, que es solo para casos muy graves. Un compañero dejó de venir a mitad del semestre y nadie supo bien qué le pasó. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p12",
+     "p10"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "correcciones": [
+    "RAG: se agregó p10 (intercambio más parecido a la pregunta)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.7357
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7281
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.504
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.4077
+    }
+   ],
+   "segundos": 75.0,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 67551,
+    "recuperacion": 261,
+    "verificacion": 14028,
+    "interpretacion": 7185
+   },
+   "k_precision": 0.885,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Resume su postura en una frase",
+   "rag_log_id": 2328,
+   "respuesta": "E01 sugiere que un estudiante que se siente desmotivado con su carrera debería buscar ayuda psicológica sin considerar que es un signo de debilidad, enfatizando la confidencialidad y gratuidad de los servicios de orientación [Fuente 1]. Según E01, pedir ayuda permite reconocer que el problema tiene nombre y puede ser abordado [Fuente 1].  E01 indica que no debe esperar a estar \"muy mal\", como ella lo estaba [Fuente 1].\n\n**Respuestas a p12 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Que no espere a estar muy mal, como yo. Que pedir ayuda no significa que sea débil, al contrario. Y que la orientación es gratuita y confidencial, nadie se va a enterar. A mí me sirvió para darme cuenta de que no estaba sola y de que lo que sentía tenía nombre y se podía trabajar. |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p12"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p12",
+     "score": 0.5912
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.5265
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.4722
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.4641
+    }
+   ],
+   "segundos": 25.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 17523,
+    "recuperacion": 294,
+    "verificacion": 1,
+    "interpretacion": 7324
+   },
+   "k_precision": 0.607,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(3) síntesis fiel, sin ideas que no dijo."
+}

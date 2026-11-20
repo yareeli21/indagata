@@ -1,0 +1,6 @@
+# Estadística de la limpieza: reporte guardado (id_crudo 61, enc_09) contra cálculo independiente con pandas (22 oct)
+Reporte (tt_rag.limpieza_ejecucion.reporte → estadistica.despues): horas de estudio n 160, media 27.2312, mediana 28.5, desv 14.5387, q1 16.0, q3 40.25, asimetria -0.1267, curtosis -1.2011, atipicos 0/0; alfa Carga horaria 0.9071, Organización 0.9075, todas 0.8757
+pandas sobre storage/instrumentos_sinteticos/encuestas/enc_09_respondido.csv:
+Cu�ntas_horas_por_semana_dedicas_al_est n 160 media 27.2312 mediana 28.5 desv 14.5387 q1 16.00 q3 40.25 asim -0.1267 curt -1.2011
+Carga_horaria_p 4 alfa 0.9071
+Organizaci�n_de 4 alfa 0.9075

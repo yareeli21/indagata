@@ -1,0 +1,70 @@
+{
+ "id": "PRU-04",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos dejaron al menos un reactivo sin responder?",
+   "rag_log_id": 2342,
+   "respuesta": "97 de 97 estudiantes dejaron sin responder al menos un reactivo [Fuente 1]. Esto representa el 100.0 % de los respondientes [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "con_omisiones": true
+   },
+   "correcciones": [
+    "personas que dejaron alguna pregunta sin responder"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4691
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.4574
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4462
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r14",
+     "score": 0.4132
+    }
+   ],
+   "segundos": 40.9,
+   "tiempos_ms": {
+    "ejecucion": 11,
+    "redaccion": 11108,
+    "recuperacion": 218,
+    "verificacion": 1,
+    "interpretacion": 29547
+   },
+   "k_precision": 0.7,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": 1,
+   "comentario_humano": "debería mostrar para cada respondente si es que efectivamente fueron todos, qué reactivo no respondieron"
+  }
+ ],
+ "debe": "Contar alumnos con NR, no mostrar a un solo alumno."
+}

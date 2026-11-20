@@ -1,0 +1,79 @@
+# Inventario de instrumentos en tt_rag (consulta del 22 oct; horas como las guarda la base)
+# limp = limpiezas; doc = documento vigente; resp = filas en respuesta_interpretada; kpis = KPIs aceptados
+ id  |    carga    |         tipo         |            archivo             |   estado    | limp |   doc   | resp | kpis 
+-----+-------------+----------------------+--------------------------------+-------------+------+---------+------+------
+   2 | 10-14 02:40 | encuesta             | inst_02.v1.json                | vectorizado |    0 |         |    0 |    0
+   3 | 10-14 02:40 | encuesta             | inst_03.v1.json                | vectorizado |    0 |         |    0 |    0
+   4 | 10-14 02:40 | encuesta             | inst_04.v1.json                | vectorizado |    0 |         |    0 |    0
+   5 | 10-14 02:40 | encuesta             | inst_05.v1.json                | vectorizado |    0 |         |    0 |    0
+   6 | 10-14 02:40 | encuesta             | inst_06.v1.json                | vectorizado |    0 |         |    0 |    0
+   7 | 10-14 02:40 | encuesta             | inst_07.v1.json                | vectorizado |    0 |         |    0 |    0
+   8 | 10-14 02:40 | encuesta             | inst_08.v1.json                | vectorizado |    0 |         |    0 |    0
+   9 | 10-14 02:40 | encuesta             | inst_09.v1.json                | vectorizado |    0 |         |    0 |    0
+  10 | 10-14 02:40 | encuesta             | inst_10.v1.json                | vectorizado |    0 |         |    0 |    0
+  11 | 10-14 02:40 | encuesta             | inst_11.v1.json                | vectorizado |    0 |         |    0 |    0
+  12 | 10-14 02:40 | encuesta             | inst_12.v1.json                | vectorizado |    0 |         |    0 |    0
+  13 | 10-14 02:40 | encuesta             | inst_13.v1.json                | vectorizado |    0 |         |    0 |    0
+  14 | 10-14 02:40 | encuesta             | inst_14.v1.json                | vectorizado |    0 |         |    0 |    0
+  15 | 10-14 02:40 | encuesta             | inst_15.v1.json                | vectorizado |    0 |         |    0 |    0
+  16 | 10-14 02:40 | encuesta             | inst_16.v1.json                | vectorizado |    0 |         |    0 |    0
+  17 | 10-14 02:40 | encuesta             | inst_17.v1.json                | vectorizado |    0 |         |    0 |    0
+  18 | 10-14 02:40 | encuesta             | inst_18.v1.json                | vectorizado |    0 |         |    0 |    0
+  19 | 10-14 02:40 | encuesta             | inst_19.v1.json                | vectorizado |    0 |         |    0 |    0
+  20 | 10-14 02:40 | encuesta             | inst_20.v1.json                | vectorizado |    0 |         |    0 |    0
+  22 | 10-15 00:22 | encuesta             | enc_04_respondido.csv          | vectorizado |    0 |         |    0 |    0
+  53 | 10-16 06:31 | entrevista           | ent_01_respondido.txt          | vectorizado |    3 | vigente |  480 |    4
+  55 | 10-16 07:04 | prueba_estandarizada | pru_01_respondido.csv          | vectorizado |    2 | vigente | 2500 |    0
+  59 | 10-17 22:53 | encuesta             | enc_10_turno_respondido.csv    | vectorizado |    1 | vigente |  480 |    2
+  60 | 10-17 23:56 | entrevista           | ent_01_respondido.txt          | vectorizado |    1 | vigente |  480 |    2
+  61 | 10-18 03:30 | encuesta             | enc_09_respondido.csv          | vectorizado |    1 | vigente | 3200 |    4
+  62 | 10-19 23:15 | encuesta             | enc_04_respondido.csv          | limpio      |    1 |         |    0 |    0
+  63 | 10-19 23:17 | encuesta             | enc_04_respondido.csv          | vectorizado |    1 |         |    0 |    0
+  64 | 10-20 06:41 | encuesta             | enc_10_sinsec_A_respondido.csv | vectorizado |    1 | vigente |  480 |    2
+  65 | 10-20 06:42 | encuesta             | enc_10_sinsec_B_respondido.csv | vectorizado |    1 | vigente |  480 |    2
+  66 | 10-20 06:43 | encuesta             | enc_10_sinsec_C_respondido.csv | vectorizado |    1 | vigente |  480 |    2
+  67 | 10-22 01:22 | encuesta             | enc_10_sinsec_A_respondido.csv | vectorizado |    1 | vigente |  480 |    2
+  68 | 10-22 01:23 | encuesta             | enc_10_sinsec_B_respondido.csv | vectorizado |    1 | vigente |  480 |    2
+  69 | 10-22 01:23 | encuesta             | enc_10_sinsec_C_respondido.csv | vectorizado |    1 | vigente |  480 |    2
+  70 | 10-22 01:55 | encuesta             | enc_10_sinsec_C_respondido.csv | vectorizado |    1 | vigente |  480 |    2
+  71 | 10-22 01:59 | encuesta             | enc_10_turno_respondido.csv    | vectorizado |    1 | vigente |  480 |    2
+  72 | 10-22 02:00 | encuesta             | enc_10_sinsec_A_respondido.csv | vectorizado |    1 | vigente |  480 |    2
+  73 | 10-22 02:00 | encuesta             | enc_10_sinsec_B_respondido.csv | vectorizado |    1 | vigente |  480 |    2
+  74 | 10-22 02:01 | encuesta             | enc_10_sinsec_C_respondido.csv | vectorizado |    1 | vigente |  480 |    2
+  75 | 10-22 02:36 | encuesta             | E01_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  76 | 10-22 02:38 | encuesta             | E02_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  77 | 10-22 02:39 | encuesta             | E03_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  78 | 10-22 02:41 | encuesta             | E04_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  79 | 10-22 02:43 | encuesta             | E05_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  80 | 10-22 02:44 | encuesta             | E06_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  81 | 10-22 02:46 | encuesta             | E07_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  82 | 10-22 02:47 | encuesta             | E08_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  83 | 10-22 02:49 | encuesta             | E09_respuestas.xlsx            | limpio      |    1 |         |    0 |    0
+  84 | 10-22 02:51 | encuesta             | E01_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  85 | 10-22 02:53 | encuesta             | E02_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  86 | 10-22 02:54 | encuesta             | E03_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  87 | 10-22 02:56 | encuesta             | E04_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  88 | 10-22 02:58 | encuesta             | E05_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  89 | 10-22 03:00 | encuesta             | E06_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  90 | 10-22 03:01 | encuesta             | E07_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  91 | 10-22 03:03 | encuesta             | E08_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  92 | 10-22 03:04 | encuesta             | E09_respuestas.xlsx            | vectorizado |    1 | vigente |  480 |    2
+  93 | 10-22 03:06 | encuesta             | E10_respuestas.csv             | vectorizado |    1 | vigente |  480 |    2
+  94 | 10-22 03:09 | entrevista           | I01_transcripcion.txt          | vectorizado |    1 |         |    0 |    2
+  95 | 10-22 03:15 | entrevista           | I01_transcripcion.txt          | vectorizado |    1 | vigente |   16 |    2
+  96 | 10-22 03:17 | entrevista           | I02_transcripcion.txt          | vectorizado |    1 | vigente |   16 |    2
+  97 | 10-22 03:19 | entrevista           | I03_zoom.txt                   | vectorizado |    1 | vigente |   16 |    2
+  98 | 10-22 03:21 | entrevista           | I04_teams.vtt                  | vectorizado |    1 | vigente |   16 |    2
+  99 | 10-22 03:22 | entrevista           | I05_sin_etiquetas.txt          | vectorizado |    1 | vigente |    5 |    2
+ 100 | 10-22 03:25 | entrevista           | I01_transcripcion.txt          | vectorizado |    1 | vigente |   16 |    2
+ 101 | 10-22 03:27 | entrevista           | I02_transcripcion.txt          | vectorizado |    1 | vigente |   16 |    2
+ 102 | 10-22 03:28 | entrevista           | I03_zoom.txt                   | vectorizado |    1 | vigente |   16 |    2
+ 103 | 10-22 03:30 | entrevista           | I04_teams.vtt                  | vectorizado |    1 | vigente |   16 |    2
+ 104 | 10-22 03:32 | entrevista           | I05_sin_etiquetas.txt          | vectorizado |    1 | vigente |    4 |    2
+ 105 | 10-22 03:36 | entrevista           | D01_transcripcion.txt          | vectorizado |    1 | vigente |   16 |    2
+ 106 | 10-22 03:39 | entrevista           | D02_zoom.txt                   | vectorizado |    1 | vigente |   16 |    2
+ 107 | 10-22 04:48 | entrevista           | I01_transcripcion.txt          | vectorizado |    1 | vigente |   16 |    2
+ 108 | 10-22 04:51 | entrevista           | D01_transcripcion.txt          | vectorizado |    1 | vigente |   16 |    2
+ 109 | 10-22 15:05 | encuesta             | enc_11_respondido.csv          | vectorizado |    1 | vigente | 4160 |    2
+(73 rows)
+

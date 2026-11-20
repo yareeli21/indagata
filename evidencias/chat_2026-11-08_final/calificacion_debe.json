@@ -1,0 +1,272 @@
+{
+ "ENC-01": {
+  "cumple": "cumple"
+ },
+ "ENC-02": {
+  "cumple": "cumple"
+ },
+ "ENC-03": {
+  "cumple": "cumple"
+ },
+ "ENC-04": {
+  "cumple": "cumple",
+  "nota": "Corregido en la Fase 5: «1 o 2» son las dos primeras posiciones; nombra las dos opciones."
+ },
+ "ENC-05": {
+  "cumple": "cumple",
+  "nota": "El criterio repite la condición dos veces (cosmético)."
+ },
+ "ENC-06": {
+  "cumple": "cumple"
+ },
+ "ENC-07": {
+  "cumple": "parcial",
+  "nota": "Da las preguntas con más respuestas en blanco, pero no cuántos respondentes dejaron al menos una."
+ },
+ "ENC-08": {
+  "cumple": "cumple",
+  "nota": "Se mostró el cálculo (tabla con n, media y distribución por grupo)."
+ },
+ "ENC-09": {
+  "cumple": "cumple",
+  "nota": "La verificación rechazó la redacción y se mostró la tabla del cruce, con los % de cada grupo. En la corrida limpia la redacción atribuía mal las cifras."
+ },
+ "ENC-10": {
+  "cumple": "cumple"
+ },
+ "ENC-11": {
+  "cumple": "parcial",
+  "nota": "La tabla es correcta; la redacción llama «grupo de 1063 estudiantes (39.6 %)» al grupo de carga media y le atribuye las dos opciones de retraso. La verificación no lo detecta porque la frase sí nombra la opción del 39.6 %."
+ },
+ "ENC-12": {
+  "cumple": "cumple",
+  "nota": "Se mostró el cálculo."
+ },
+ "ENC-13": {
+  "cumple": "parcial",
+  "nota": "(2) el resultado ya da 382 de los 1104 del grupo anterior (34.6 %), pero la redacción dice que 34.6 % es «sobre el total»; (3) interpretación genérica."
+ },
+ "ENC-14": {
+  "cumple": "cumple"
+ },
+ "ENC-15": {
+  "cumple": "cumple",
+  "nota": "La justificación guardada del KPI conserva un texto corrupto («Siempre De tus profesores…») de cuando se asoció."
+ },
+ "ENC-16": {
+  "cumple": "cumple"
+ },
+ "ENC-17": {
+  "cumple": "cumple",
+  "nota": "(2) 30 de los 435 del grupo anterior; (3) 5 IDs con el total."
+ },
+ "ENC-18": {
+  "cumple": "cumple"
+ },
+ "ENC-19": {
+  "cumple": "cumple"
+ },
+ "ENC-20": {
+  "cumple": "cumple",
+  "nota": "Nombra 5 y no 4: incluye p05 (1 = Nunca a 5 = Siempre), que en el documento también es escala 1–5. Revisar si el «Debe» la excluye a propósito."
+ },
+ "ENC-21": {
+  "cumple": "cumple"
+ },
+ "ENC-22": {
+  "cumple": "parcial",
+  "nota": "Muestra las tres modalidades con sus conteos, pero no dice que «nocturna» no existe: esta vez el modelo puso un filtro inventado («Mixta/hibrida»), la verificación rechazó la redacción y se mostró el resumen. En la corrida limpia sí lo dijo (variación del modelo)."
+ },
+ "ENC-23": {
+  "cumple": "cumple",
+  "nota": "Dice que no tiene información; no sugiere lo más cercano (opcional en el «Debe»)."
+ },
+ "ENC-24": {
+  "cumple": "cumple"
+ },
+ "ENC-25": {
+  "cumple": "cumple"
+ },
+ "ENT-01": {
+  "cumple": "cumple"
+ },
+ "ENT-02": {
+  "cumple": "cumple"
+ },
+ "ENT-03": {
+  "cumple": "cumple"
+ },
+ "ENT-04": {
+  "cumple": "parcial",
+  "nota": "Encuentra la respuesta correcta (p09), pero sin cita textual en la redacción y dice que el papel de los profesores es «fundamental» cuando ella dijo «depende mucho del profesor»."
+ },
+ "ENT-05": {
+  "cumple": "cumple"
+ },
+ "ENT-06": {
+  "cumple": "cumple"
+ },
+ "ENT-07": {
+  "cumple": "cumple"
+ },
+ "ENT-08": {
+  "cumple": "parcial",
+  "nota": "Relaciona los dos temas, pero sin citas textuales."
+ },
+ "ENT-09": {
+  "cumple": "cumple"
+ },
+ "ENT-10": {
+  "cumple": "parcial",
+  "nota": "Una sola cita (profesores) y dice que los servicios «no se mencionan», aunque los menciona en p03, p05, p07 y p11."
+ },
+ "ENT-11": {
+  "cumple": "cumple"
+ },
+ "ENT-12": {
+  "cumple": "cumple"
+ },
+ "ENT-13": {
+  "cumple": "parcial",
+  "nota": "(2) ya sigue hablando de ella (en la corrida limpia caía a «sin información»), pero dice que no mencionó haber buscado ayuda, cuando en p04 cuenta que fue a orientación: solo miró p02. (3) bien."
+ },
+ "ENT-14": {
+  "cumple": "parcial",
+  "nota": "(2) parafrasea en lugar de dar la cita textual completa (la tabla de «Ver datos» sí la trae); (3) bien."
+ },
+ "ENT-15": {
+  "cumple": "no",
+  "nota": "(2) repite (1) sin interpretación marcada ni aclarar que es una sola persona."
+ },
+ "ENT-16": {
+  "cumple": "cumple"
+ },
+ "ENT-17": {
+  "cumple": "parcial",
+  "nota": "(1) bien; (2) prioriza con citas, pero no aclara que es un solo testimonio."
+ },
+ "ENT-18": {
+  "cumple": "cumple"
+ },
+ "ENT-19": {
+  "cumple": "parcial",
+  "nota": "Dice 12 preguntas, pero no las agrupa en temas (operación no implementada)."
+ },
+ "ENT-20": {
+  "cumple": "cumple"
+ },
+ "ENT-21": {
+  "cumple": "cumple"
+ },
+ "ENT-22": {
+  "cumple": "cumple"
+ },
+ "ENT-23": {
+  "cumple": "cumple"
+ },
+ "ENT-24": {
+  "cumple": "cumple"
+ },
+ "ENT-25": {
+  "cumple": "cumple"
+ },
+ "GEN-01": {
+  "cumple": "cumple"
+ },
+ "GEN-02": {
+  "cumple": "cumple"
+ },
+ "GEN-03": {
+  "cumple": "cumple"
+ },
+ "GEN-04": {
+  "cumple": "cumple"
+ },
+ "PRU-01": {
+  "cumple": "cumple"
+ },
+ "PRU-02": {
+  "cumple": "cumple",
+  "nota": "La tabla ya trae la letra con el texto de cada opción (corrección de la Fase 5)."
+ },
+ "PRU-03": {
+  "cumple": "cumple"
+ },
+ "PRU-04": {
+  "cumple": "cumple"
+ },
+ "PRU-05": {
+  "cumple": "parcial",
+  "nota": "Señala r10 (todo en blanco) y r22 (3 nulas), pero no usa los motivos del reporte de limpieza."
+ },
+ "PRU-06": {
+  "cumple": "cumple",
+  "nota": "73 de 97 (75.3 %) marcaron «Verdadero» en r15."
+ },
+ "PRU-07": {
+  "cumple": "cumple",
+  "nota": "Repetido después de corregir la comprobación del orden del ranking (en la primera pasada la redacción ponía r12 primero); se mostró el cálculo con la medida explicada."
+ },
+ "PRU-08": {
+  "cumple": "cumple",
+  "nota": "La verificación rechazó la redacción con «mayor dificultad» y se mostró el cálculo por sección."
+ },
+ "PRU-09": {
+  "cumple": "cumple"
+ },
+ "PRU-10": {
+  "cumple": "cumple",
+  "nota": "Dice que r10 no tiene respuestas en ninguno de los dos grupos."
+ },
+ "PRU-11": {
+  "cumple": "no",
+  "nota": "Comparar conjuntos de reactivos por tema no está implementado."
+ },
+ "PRU-12": {
+  "cumple": "cumple"
+ },
+ "PRU-13": {
+  "cumple": "cumple",
+  "nota": "(3) La interpretación es la genérica (los datos no registran por qué); está marcada y no califica."
+ },
+ "PRU-14": {
+  "cumple": "parcial",
+  "nota": "(2) la tabla del cruce es correcta (r15 dentro de los 57), pero la redacción dice que los 57 «cumplieron la condición r15»; (3) 5 IDs con el total."
+ },
+ "PRU-15": {
+  "cumple": "cumple",
+  "nota": "(3) compara la respuesta de A001 con la distribución de todos (21.6 %, no es la más común) sin decir si acertó. (2) se mostró la tabla de sus respuestas."
+ },
+ "PRU-16": {
+  "cumple": "parcial",
+  "nota": "(1) bien; (2) repite los datos sin interpretación marcada."
+ },
+ "PRU-18": {
+  "cumple": "cumple"
+ },
+ "PRU-19": {
+  "cumple": "cumple"
+ },
+ "PRU-20": {
+  "cumple": "cumple"
+ },
+ "PRU-21": {
+  "cumple": "cumple"
+ },
+ "PRU-22": {
+  "cumple": "cumple"
+ },
+ "PRU-23": {
+  "cumple": "cumple"
+ },
+ "PRU-24": {
+  "cumple": "cumple"
+ },
+ "PRU-25": {
+  "cumple": "cumple"
+ },
+ "PRU-17": {
+  "cumple": "cumple",
+  "nota": "(1) Repetido con el criterio «revisar»: las preguntas con más respuestas en blanco o nulas (r10) y las más repartidas, sin calificar. (2) Interpretación genérica, marcada y sin calificar; la primera pasada decía «brecha en el entendimiento» y se repitió tras ampliar las palabras de calificación."
+ }
+}

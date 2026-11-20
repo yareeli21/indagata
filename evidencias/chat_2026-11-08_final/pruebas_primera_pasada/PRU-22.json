@@ -1,0 +1,59 @@
+{
+ "id": "PRU-22",
+ "instrumento": "pru",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos eligieron la opción E en el reactivo 3?",
+   "rag_log_id": 2762,
+   "respuesta": "No existe la opción E en r03 («¿Cuál es la principal función de una VPN?»): sus opciones son A, B, C, D. Así se repartieron las respuestas:\n\n**Distribución de r03 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Aumentar la velocidad de internet | 23 | 23.7 % |\n| B) Crear una conexión segura y privada | 7 | 7.2 % |\n| C) Bloquear anuncios publicitarios | 20 | 20.6 % |\n| D) Almacenar archivos en la nube | 47 | 48.5 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r03"
+    ],
+    "aclaracion": "No existe la opción E en r03 («¿Cuál es la principal función de una VPN?»): sus opciones son A, B, C, D. Así se repartieron las respuestas:"
+   },
+   "plan_modelo": {
+    "menciona": "reactivo r03",
+    "intencion": "conteo_porcentaje",
+    "consulta_semantica": "Número de respuestas a la opción E"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "mención «reactivo r03» descartada (la pregunta no pregunta quién lo mencionó)",
+    "opción E inexistente en r03",
+    "lo que pide no existe en el instrumento: se responde con lo que sí hay"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:no_existe",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 18.8,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "recuperacion": 284,
+    "interpretacion": 18487
+   },
+   "k_precision": 0.906,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "«No existe la opción E»; las opciones son A a D (más NR)."
+}

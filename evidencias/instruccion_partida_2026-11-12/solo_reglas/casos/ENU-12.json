@@ -1,0 +1,91 @@
+{
+ "id": "ENU-12",
+ "instrumento": "enc_nueva",
+ "categoria": "interpretativo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué te parece lo más preocupante de los servicios de apoyo?",
+   "rag_log_id": 4176,
+   "respuesta": "**Patrones encontrados en la encuesta**\n\n* **Predominio del nivel pregrado**: 90.6% de quienes respondieron preferirían un nivel de estudio de pregrado, lo que podría indicar una falta de preparación para el mundo laboral o una insatisfacción con la calidad educativa actual.\n\t+ Cifra exacta: 90.6%\n\t+ Frase breve: Sugiere una necesidad de mejora en la formación académica y profesional.\n* **Falta de becas**: 89.4% de quienes respondieron no tienen becas, lo que podría indicar una falta de apoyo financiero para los estudiantes más vulnerables o una insuficiencia en la política de becas de la institución.\n\t+ Cifra exacta: 89.4%\n\t+ Frase breve: Sugiere una necesidad de aumentar el apoyo financiero a los estudiantes y mejorar la accesibilidad a las oportunidades educativas.\n* **Diversidad en la primera generación**: 88.8% de quienes respondieron no son de la primera generación universitaria, lo que podría indicar una falta de representación de estudiantes provenientes de comunidades más amplias o una insuficiencia en la política de apoyo a los primeros generaciones.\n\t+ Cifra exacta: 88.8%\n\t+ Frase breve: Sugiere una necesidad de mejorar la inclusión y el apoyo a los estudiantes que no son parte de las comunidades tradicionales universitarias.\n* **Opiniones divididas sobre la satisfacción con la carrera**: La pregunta p14 «Del 1 al 10, ¿qué tan satisfecho/a estás con tu carrera?» tiene una desviación estándar de 1.98 puntos en la escala, lo que sugiere una gran variabilidad en las opiniones sobre la satisfacción con la carrera.\n\t+ Cifra exacta: Desviación estándar de 1.98 puntos\n\t+ Frase breve: Sugiere una necesidad de mejorar la evaluación y el apoyo a los estudiantes para mejorar su satisfacción con la carrera.\n\n**Lo más preocupante**\n\nConsidero que lo más preocupante es la falta de becas, ya que sugiere una insuficiencia en la política de apoyo financiero a los estudiantes más vulnerables. Esto podría tener un impacto negativo en la accesibilidad y la inclusión en las oportunidades educativas.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Totalmente de acuerdo / Siempre",
+      "pregunta": "p06"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Siempre",
+      "pregunta": "p06"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "p06: «Siempre» → «Totalmente de acuerdo / Siempre»"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.5264
+    },
+    {
+     "seccion": "kpi",
+     "etiqueta": "kpi",
+     "score": 0.5326
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.6144
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.573
+    }
+   ],
+   "segundos": 23.7,
+   "tiempos_ms": {
+    "ejecucion": 158,
+    "redaccion": 17679,
+    "recuperacion": 505,
+    "verificacion": 10,
+    "interpretacion": 5236
+   },
+   "k_precision": 0.358,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cifras de las preguntas de servicios (p05–p08) y una interpretación prudente marcada como tal."
+}

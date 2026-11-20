@@ -1,0 +1,45 @@
+{
+ "id": "PRU-21",
+ "instrumento": "pru",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Qué respondieron en el reactivo 25?",
+   "rag_log_id": 2761,
+   "respuesta": "No existe «r25»: «Prueba de Alfabetización Digital» solo tiene 22 reactivos (r01 a r22).",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "No existe «r25»: «Prueba de Alfabetización Digital» solo tiene 22 reactivos (r01 a r22)."
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r25"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 16.7,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "recuperacion": 151,
+    "interpretacion": 16529
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "La prueba solo tiene 22 reactivos."
+}

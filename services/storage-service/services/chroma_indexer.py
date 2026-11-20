@@ -70,7 +70,7 @@ _TIPO_UI = {
     "entrevista": "Entrevista",
     "prueba_estandarizada": "Prueba estandarizada",
 }
-_NIVEL_POSGRADO = ("posgrado", "maestr", "doctor", "especialidad")
+NIVEL = "Licenciatura"  # todo el acervo es de licenciatura (16 nov): ya no se infiere posgrado
 
 
 class IndiceError(Exception):
@@ -394,16 +394,6 @@ def construir_chunks(data: dict[str, Any], tipo_ui: str) -> list[Chunk]:
     return chunks
 
 
-def _nivel(data: dict[str, Any]) -> str:
-    metadata = _dict(data.get("metadata"))
-    textos = " ".join(
-        (
-            _texto(_dict(metadata.get("dublin_core")).get("dc:coverage")),
-            _texto(_dict(metadata.get("survey_specific")).get("poblacion_objetivo")),
-            _texto(_dict(metadata.get("survey_specific")).get("nivel_educativo")),
-        )
-    ).lower()
-    return "Posgrado" if any(c in textos for c in _NIVEL_POSGRADO) else "Licenciatura"
 
 
 def _anio(data: dict[str, Any], raw: RawData) -> int:
@@ -501,7 +491,7 @@ def indexar_instrumento(db: Session, id_crudo: int, *, reindexar: bool = True) -
         "tipo": tipo_ui,
         "investigador": _texto(dc.get("dc:creator")) or (autor.nombre if autor else ""),
         "autorId": str(raw.id_owner),
-        "nivel": _nivel(data),
+        "nivel": NIVEL,
         "anio": _anio(data, raw),
         "kpis": json.dumps(kpis, ensure_ascii=False),
         # De dónde salieron los chunks: `documento` (documento final) o `json_tecnico`.

@@ -1,0 +1,210 @@
+{
+ "id": "ENC-17",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos estudian en modalidad mixta?",
+   "rag_log_id": 3176,
+   "respuesta": "435 de los 1949 que respondieron p02 (22.3 %) cumplen el criterio: p02 «¿En qué modalidad cursas tu programa?» = «Mixta/hibrida». Sobre el total del instrumento son 435 de 2000 respondentes (21.8 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Mixta/hibrida",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Mixta/hibrida",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.5668
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.5351
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.535
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.5334
+    }
+   ],
+   "segundos": 48.1,
+   "tiempos_ms": {
+    "ejecucion": 426,
+    "redaccion": 19153,
+    "recuperacion": 341,
+    "verificacion": 0,
+    "interpretacion": 28077
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y cuántos de ellos están considerando abandonar?",
+   "rag_log_id": 3177,
+   "respuesta": "No encontré esa condición en «Indicadores de Experiencia y Calidad Académica». Ninguna pregunta ni dato de contexto lo registra.",
+   "intencion": "aclaracion",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "aclaracion",
+    "aclaracion": "No encontré esa condición en «Indicadores de Experiencia y Calidad Académica». Ninguna pregunta ni dato de contexto lo registra."
+   },
+   "plan_modelo": {
+    "campos": "todas_las_respuestas",
+    "filtros": [
+     {
+      "valor": "Con mas de un año de retraso",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p10 = «Con mas de un año de retraso» descartado (la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 28.9,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "recuperacion": 158,
+    "interpretacion": 28715
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame 5 de ellos",
+   "rag_log_id": 3178,
+   "respuesta": "De un total de 2000 respondentes, 435 cumplieron la condición de cursar su programa en modalidad mixta/híbrida (21.8 % de los encuestados) [Fuente 1]. Se muestran los 5 primeros por número de respondente que cumplen con esta condición [Fuente 1].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | R003 | R006 | R007 | R023 | R027 |\n|---|---|---|---|---|---|\n| p01 «¿Tu programa académico cuenta con acreditación vigente (COP AES, SEAES» | No lo se | No lo se | No | No lo se | No lo se |\n| p02 «¿En qué modalidad cursas tu programa?» | Mixta/hibrida | Mixta/hibrida | Mixta/hibrida | Mixta/hibrida | Mixta/hibrida |\n| p03 «¿Cómo es tu carga académica actual?» | Carga media/normal | Carga minima | Carga media/normal | Carga media/normal | Carga minima |\n| p04 «De tus profesores de este periodo, ¿cuántos tienen doctorado?» | Todos | Aproximadamente la mitad | Todos | Aproximadamente la mitad | Todos |\n| p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el » | Nunca | Rara vez | Rara vez | Nunca | Nunca |\n| p06 «¿Cuántos de tus profesores han compartido o mencionado en clase artícu» | 1 | 2-3 | Ninguno | 2-3 | Ninguno |\n| p07 «¿En qué actividades de investigación de tus profesores has participado» | Proyectos de investigacion financiados | Ponencias en cogresos | Libros o capitulos, Ninguna | (sin respuesta) | Desarrollos tecnologicos o software |\n| p08 «¿Sabes si la institución ha obtenido patentes en los últimos años?» | No ha obtenido | (sin respuesta) | Si, conozco al menos una | No lo se | No ha obtenido |\n| p09 «¿Con qué frecuencia usas alguna plataforma virtual (Moodle, Classroom,» | Diariamente | Diariamente | Diariamente | Semanalmente | Semanalmente |\n| p10 «¿Cuándo esperas titularte?» | En el tiempo que marca mi plan de estudios | En el tiempo que marca mi plan de estudios | Con hasta un año de retraso | Con hasta un año de retraso | (sin respuesta) |\n| p11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco» | Si, y lo aprobe | No, pero planeo hacerlo | No, pero planeo hacerlo | Si, y lo aprobe | Si, y lo aprobe |\n| p12 «¿Cuál es tu situación laboral actual?» | Busco empleo | Busco empleo | Trabajo en un area relacionada con mi carrera | Trabajo en un area relacionada con mi carrera | Trabajo en un area relacionada con mi carrera |\n| p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (espec» | Muy probable | Muy probable | Muy probable | Muy probable | 4 en escala 1–5 |\n| p14 «¿Has realizado prácticas profesionales o pasantías?» | Si, pero la consegui por mi cuenta | Si, pero la consegui por mi cuenta | Si, en una empresa con convenio de mi institucion | Si, pero la consegui por mi cuenta | Si, pero la consegui por mi cuenta |\n| p15 «¿En qué programas de cooperación de tu institución has participado o c» | (sin respuesta) | Movilidad internacional | Movilidad internacional, Doble titulacion | Movilidad nacional, Proyectos con gobierno o empresas | Doble titulacion |\n| p16 «La oferta de programas, materias optativas y cursos de mi institución » | Totalmente de acuerdo | 4 en escala 1–5 | Totalmente de acuerdo | (no interpretada) | 4 en escala 1–5 |\n| p17 «Los laboratorios, equipos, materiales y espacios de la institución son» | 3 en escala 1–5 | 4 en escala 1–5 | 4 en escala 1–5 | 4 en escala 1–5 | Totalmente de acuerdo |\n| p18 «En la biblioteca y las bases de datos académicas (Scopus, IEEE Xplore,» | 4 en escala 1–5 | 4 en escala 1–5 | Totalmente de acuerdo | Totalmente de acuerdo | 4 en escala 1–5 |",
+   "intencion": "filtrar_respondentes",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 5,
+    "filtros": [
+     {
+      "valor": "Mixta/hibrida",
+      "pregunta": "p02"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "filtrar_respondentes"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 5,
+    "filtros": [
+     {
+      "valor": "Mixta/hibrida",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "filtrar_respondentes"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:filtrar_respondentes:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5598
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.4933
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.4394
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.4361
+    }
+   ],
+   "segundos": 37.8,
+   "tiempos_ms": {
+    "ejecucion": 73,
+    "redaccion": 26307,
+    "recuperacion": 312,
+    "verificacion": 9203,
+    "interpretacion": 11037
+   },
+   "k_precision": 0.986,
+   "cifras_con_respaldo": [
+    23,
+    23
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(3) 5 IDs anónimos con sus respuestas y el total."
+}

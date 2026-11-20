@@ -1,0 +1,129 @@
+{
+ "id": "ENC-16",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 2292,
+   "respuesta": "*   57.8 % respondieron “Nunca” o “Rara vez” a la pregunta p05 (“¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?”). Esto podría indicar una inestabilidad en la planificación académica y una falta de recursos para asegurar la continuidad del proceso formativo [Fuente 1].\n*   50.4 % respondieron “4” o “5” a la pregunta p13 (“¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?”). Sugiere un nivel de satisfacción general con la institución y una percepción positiva de su oferta académica [Fuente 1].\n*   65.1 % respondieron “Carga media/normal” a la pregunta p03 (“¿Cómo es tu carga académica actual?”). Esto sugiere que la carga académica se percibe como adecuada para la mayoría de los estudiantes, aunque podría indicar una necesidad de evaluar si existe un rango óptimo [Fuente 1].\n*   64.2 % respondieron “Presencial” a la pregunta p02 (“¿En qué modalidad cursas tu programa?”).  Esto refleja la preferencia por el modelo presencial como modalidad de estudio predominante en ESCOM [Fuente 1].\n\nConsiderando los resultados, lo más preocupante es que un 57.8% de los estudiantes respondieron “Nunca” o “Rara vez” a la pregunta sobre cambios de profesor y materias sin asignación, ya que esto podría indicar una falta de planificación y recursos en el área académica, afectando potencialmente la calidad de la experiencia educativa [Fuente 1].",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.4382
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4347
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.4308
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.4137
+    }
+   ],
+   "segundos": 54.8,
+   "tiempos_ms": {
+    "ejecucion": 17,
+    "redaccion": 47627,
+    "recuperacion": 401,
+    "verificacion": 2,
+    "interpretacion": 6755
+   },
+   "k_precision": 0.538,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": 1,
+   "comentario_humano": "Considero que algo mal porque debe ser capaz de encontrar ciertos análisis o patrones que sean preocupantes en el ámbito educativo con lo que se tiene. Candidatos razonables: abandono, retraso en titulación, desacuerdo con laboratorios"
+  },
+  {
+   "pregunta": "¿Por qué lo consideras preocupante?",
+   "rag_log_id": 2293,
+   "respuesta": "Basado en los resultados, los patrones más interesantes son:\n\n*   57.8% de quienes respondieron “Nunca” o “Rara vez” a la pregunta p05 (“¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?”) [Fuente 1]. El texto del instrumento indica que esta pregunta evalúa la estabilidad en la planificación académica.  El hecho de que el 57.8% respondiera “Nunca” o “Rara vez” sugiere que los estudiantes no experimentan con frecuencia este tipo de interrupciones, lo que podría indicar una relativa estabilidad en la organización del programa, pero también podría deberse a una falta de reporte de estos incidentes [Fuente 1].\n\n*   61.7% de quienes respondieron “No lo sé” a la pregunta p08 (“Totalmente de acuerdo ¿Sabes si la institución ha obtenido patentes en los últimos años?”) [Fuente 1]. El texto del instrumento indica que esta pregunta evalúa el nivel de conocimiento sobre la investigación realizada por la institución.  El alto porcentaje de respuestas “No lo sé” podría reflejar una falta de comunicación o transparencia sobre las actividades de investigación y desarrollo de patentes, sugiriendo un posible problema en la divulgación de resultados [Fuente 1].\n\n*   65.1% de quienes respondieron “Carga media/normal” a la pregunta p03 (“¿Cómo es tu carga académica actual?”) [Fuente 1]. El texto del instrumento indica que esta pregunta evalúa la percepción sobre el nivel de intensidad del programa.  El predominio de respuestas que indican una carga “media/normal” podría sugerir que los estudiantes no perciben su carga como excesivamente pesada, pero también podría indicar un problema en la oferta de cursos o en la gestión de la demanda [Fuente 1].\n\n*   64.2% de quienes respondieron “Presencial” a la pregunta p02 (“¿En qué modalidad cursas tu programa?”) [Fuente 1]. El texto del instrumento indica que esta pregunta evalúa el tipo de modalidad de estudio elegida por los estudiantes.  El predominio de respuestas “Presencial” podría indicar una preferencia por este modelo de aprendizaje, pero también podría reflejar la falta de opciones o recursos disponibles para modalidades a distancia [Fuente 1].",
+   "intencion": "hallazgo",
+   "plan": {
+    "relacion": "profundiza",
+    "intencion": "hallazgo"
+   },
+   "correcciones": [
+    "profundiza: se repite el plan anterior (hallazgo) para explicarlo"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4651
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.4507
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.4504
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.4347
+    }
+   ],
+   "segundos": 130.7,
+   "tiempos_ms": {
+    "ejecucion": 12,
+    "redaccion": 109344,
+    "recuperacion": 318,
+    "verificacion": 55875,
+    "interpretacion": 20970
+   },
+   "k_precision": 0.425,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "no, me está dando patrones interesantes y yo quiero saber lo preocupante de acuerdo a las respuestas"
+  }
+ ],
+ "debe": "Usar la polaridad (no elegir respuestas favorables) y justificar con cifras."
+}

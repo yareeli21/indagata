@@ -1,0 +1,72 @@
+{
+ "id": "PRU-11",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara cómo respondieron los reactivos de seguridad (VPN, phishing, contraseña, Wi-Fi) con los de licencias (Creative Commons, código abierto)",
+   "rag_log_id": 2349,
+   "respuesta": "Criterio: resumen de r15, r19, r21.\nr15 «Usar redes Wi-Fi públicas sin VPN es completamente seguro.»: 97 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «Verdadero» (75.3 % de los alumnos).\nOpción más elegida: «Verdadero» (75.3 %, 73 alumnos).\nr19 «Empareja: HTTPS →»: 97 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «B) Protocolo seguro de transferencia web» (40.2 % de los alumnos).\nOpción más elegida: «Protocolo seguro de transferencia web» (40.2 %, 39 alumnos).\nr21 «¿Qué tipo de licencia permite modificar y redistribuir libremente un s»: 97 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «D) Shareware» (37.1 % de los alumnos).\nOpción más elegida: «Shareware» (37.1 %, 36 alumnos). [Fuente 1]\n\n**Distribución de r15 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 73 | 75.3 % |\n| Falso | 24 | 24.7 % |\n\n**Distribución de r19 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 17 | 17.5 % |\n| B | 39 | 40.2 % |\n| C | 13 | 13.4 % |\n| D | 28 | 28.9 % |\n\n**Distribución de r21 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 27 | 27.8 % |\n| B | 22 | 22.7 % |\n| C | 12 | 12.4 % |\n| D | 36 | 37.1 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r15",
+     "r19",
+     "r21"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "modelo_no_disponible",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": "modelo_no_disponible",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5855
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.4869
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r21",
+     "score": 0.4865
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r07",
+     "score": 0.4861
+    }
+   ],
+   "segundos": 367.7,
+   "tiempos_ms": {
+    "ejecucion": 44,
+    "redaccion": 300056,
+    "recuperacion": 1517,
+    "verificacion": 2,
+    "interpretacion": 66002
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    24,
+    24
+   ],
+   "calificacion_humana": 1,
+   "comentario_humano": "no está comparando todos los reactivos que envuelven esas dos secciones, falta comprensión"
+  }
+ ],
+ "debe": "Qué reactivos agrupó y qué opciones predominan en cada grupo."
+}

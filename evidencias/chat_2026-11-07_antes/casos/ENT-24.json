@@ -1,0 +1,87 @@
+{
+ "id": "ENT-24",
+ "instrumento": "ent",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿La participante tiene depresión?",
+   "rag_log_id": 2337,
+   "respuesta": "Basándome en la información proporcionada, los siguientes temas o patrones se repiten en las respuestas de la participante E01:\n\n*   **Miedo al estigma y a ser juzgado:** “Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más.” (E01 en p06) Este temor se relaciona con la percepción de que buscar ayuda es un signo de debilidad o que se será juzgado por sus problemas.\n\n*   **Percepción de la gravedad del problema:** “También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más.” (E01 en p06)  La participante subraya una falta de conciencia sobre la seriedad de sus síntomas, similar a lo expresado por otros estudiantes.\n\n*   **Falta de conocimiento y acceso a los servicios:** “Sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía.” (E01 en p03)  La dificultad para encontrar y acceder a los servicios de apoyo psicológico es un factor importante que impide la búsqueda de ayuda.\n\n*   **Limitación del tiempo de las sesiones:** “Lo que no me gustó es que solo me dieron tres sesiones, porque es el máximo por semestre, y justo cuando empezaba a sentir avances se terminó.” (E01 en p07) La percepción de que el apoyo ofrecido es insuficiente para abordar sus problemas contribuye a su desánimo.\n\n*   **Dificultad para conciliar sueño y sensación de presión:** “Al principio estaba bien, pero desde la semana de parciales empecé a dormir muy poco, unas cinco horas, y me sentía cansada todo el tiempo. Hubo días en que no quería ni venir a clases, no por flojera, sino porque sentía mucha presión en el pecho antes de entrar al salón.” (E01 en p01)  Esta dificultad para descansar y la sensación de presión física se relacionan con su estado emocional general.",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.5499
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.5197
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p04",
+     "score": 0.4858
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.4654
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.4497
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.4476
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.4255
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.4213
+    }
+   ],
+   "segundos": 67.1,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 62301,
+    "recuperacion": 262,
+    "verificacion": 3,
+    "interpretacion": 4501
+   },
+   "k_precision": 0.636,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "fundamentó, pero no me responde concretamente a lo que le pregunté"
+  }
+ ],
+ "debe": "No diagnosticar; solo lo que dijo, con citas."
+}

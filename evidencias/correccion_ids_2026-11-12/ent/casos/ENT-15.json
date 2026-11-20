@@ -1,0 +1,98 @@
+{
+ "id": "ENT-15",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cómo se enteró de los servicios de apoyo?",
+   "rag_log_id": 4073,
+   "respuesta": "Según el intercambio de datos, la persona E01 se enteró de los servicios de apoyo psicológico a través de una compañera que le dijo que iba al departamento de orientación. También mencionó que en la inducción del primer semestre, los servicios fueron mencionados rápidamente entre otras cosas, pero no se quedó con esa información.\n\n[Fuente 1]",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Mejor en qué pregunta o entre qué grupos?"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Mejor en qué pregunta o entre qué grupos?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6757
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.5911
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6531
+    }
+   ],
+   "segundos": 11.6,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 188,
+    "interpretacion": 6378
+   },
+   "k_precision": 0.667,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Eso qué dice sobre la difusión de los servicios?",
+   "rag_log_id": 4074,
+   "respuesta": "¿Qué información adicional se podría obtener sobre la difusión de los servicios de apoyo psicológico en la universidad?",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Qué información adicional se podría obtener sobre la difusión de los servicios de apoyo psicológico en la universidad?"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Qué información adicional se podría obtener sobre la difusión de los servicios de apoyo psicológico en la universidad?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 4.6,
+   "tiempos_ms": {
+    "ejecucion": 2,
+    "recuperacion": 207,
+    "interpretacion": 4310
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) interpretación marcada como tal, aclarando que viene de una sola persona."
+}

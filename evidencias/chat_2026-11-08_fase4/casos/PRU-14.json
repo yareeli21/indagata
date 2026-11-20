@@ -1,0 +1,166 @@
+{
+ "id": "PRU-14",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en «la nube elimina por completo el riesgo de perder datos»?",
+   "rag_log_id": 2504,
+   "respuesta": "Criterio: r07 «¿Qué significa una licencia Creative Commons?» = «A) El contenido es completamente privado» y r22 «¿Cuál es el emparejamiento correcto? Big Data ↔» = «B) Análisis de grandes volúmenes de datos».\nCumplen la condición 0 de 97 respondentes (0.0 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "filtros": [
+     {
+      "valor": "A) El contenido es completamente privado",
+      "pregunta": "r07"
+     },
+     {
+      "valor": "B) Análisis de grandes volúmenes de datos",
+      "pregunta": "r22"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "mención «nube elimina por completo el riesgo de perder datos» descartada (la pregunta no pregunta quién lo mencionó)",
+    "filtro r07 = «A) El contenido es completamente privado» (sus opciones dicen lo que pide la pregunta)",
+    "filtro r22 = «B) Análisis de grandes volúmenes de datos» (sus opciones dicen lo que pide la pregunta)"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:conteo_porcentaje:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 19.0,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "recuperacion": 321,
+    "interpretacion": 18643
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "De ellos, ¿qué respondieron sobre Wi-Fi público?",
+   "rag_log_id": 2505,
+   "respuesta": "Criterio: r07 «¿Qué significa una licencia Creative Commons?» = «A) El contenido es completamente privado» y r22 «¿Cuál es el emparejamiento correcto? Big Data ↔» = «B) Análisis de grandes volúmenes de datos».\nCumplen la condición 0 de 97 respondentes (0.0 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "A) El contenido es completamente privado",
+      "pregunta": "r07"
+     },
+     {
+      "valor": "B) Análisis de grandes volúmenes de datos",
+      "pregunta": "r22"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "conteo_porcentaje",
+    "criterio_ranking": "no_respuesta"
+   },
+   "correcciones": [
+    "excluir r05 descartado (la pregunta no pide excluir nada)",
+    "filtro r07 heredado del plan anterior",
+    "filtro r22 heredado del plan anterior"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:conteo_porcentaje:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 18.7,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "recuperacion": 320,
+    "interpretacion": 18393
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame 5",
+   "rag_log_id": 2506,
+   "respuesta": "Criterio: r07 «¿Qué significa una licencia Creative Commons?» = «A) El contenido es completamente privado» y r22 «¿Cuál es el emparejamiento correcto? Big Data ↔» = «B) Análisis de grandes volúmenes de datos».\nCumplen la condición 0 de 97 respondentes (0.0 %). [Fuente 1]",
+   "intencion": "filtrar_respondentes",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "limite": 5,
+    "filtros": [
+     {
+      "valor": "A) El contenido es completamente privado",
+      "pregunta": "r07"
+     },
+     {
+      "valor": "B) Análisis de grandes volúmenes de datos",
+      "pregunta": "r22"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "filtrar_respondentes",
+    "criterio_ranking": "no_respuesta"
+   },
+   "correcciones": [
+    "listar 5 del grupo anterior (sus condiciones, con sus respuestas)"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:filtrar_respondentes:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 17.8,
+   "tiempos_ms": {
+    "ejecucion": 12,
+    "recuperacion": 291,
+    "interpretacion": 17499
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) filtrar sobre el grupo de (1); (3) 5 IDs anónimos con el total."
+}

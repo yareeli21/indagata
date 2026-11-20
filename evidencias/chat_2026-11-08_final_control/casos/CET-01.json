@@ -1,0 +1,78 @@
+{
+ "id": "CET-01",
+ "instrumento": "ent_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos participantes mencionan a su familia como apoyo?",
+   "rag_log_id": 2814,
+   "respuesta": "36 de 40 respondientes (90.0%) cumplen la condición de mencionar “familia como apoyo” [Fuente 1].\n\n**Dónde se menciona «familia como apoyo» [Fuente 1]**\n| Respondente | Pregunta | Fragmento |\n|---|---|---|\n| E01 | p06 | «…mestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendi…» |\n| E01 | p12 | «…mestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no…» |\n| E02 | p03 | «…mestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendi…» |\n| E02 | p09 | «…mestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no…» |\n| E02 | p12 | «…mestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendi…» |\n| E04 | p01 | «…transporte pero gasto más datos del teléfono. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da f…» |\n| E04 | p03 | «…plo de que con determinación y apoyo se puede. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da f…» |\n| E04 | p06 | «…a convicción de que la educación cambia vidas. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da f…» |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "menciona": "familia como apoyo",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "menciona": "familia",
+    "relacion": "continua",
+    "intencion": "conteo_porcentaje",
+    "aclaracion": "En qué pregunta o respuestas se busca la mención de 'familia'?",
+    "consulta_semantica": "participantes que mencionan a su familia como apoyo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "menciones de «familia como apoyo» en las respuestas abiertas"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E04 en p03",
+     "score": 0.6773
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E04 en p03",
+     "score": 0.6766
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6616
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.658
+    }
+   ],
+   "segundos": 49.7,
+   "tiempos_ms": {
+    "ejecucion": 58,
+    "redaccion": 13685,
+    "recuperacion": 272,
+    "verificacion": 4534,
+    "interpretacion": 35543
+   },
+   "k_precision": 0.978,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Conteo de participantes con citas de ejemplo."
+}

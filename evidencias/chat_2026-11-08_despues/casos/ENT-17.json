@@ -1,0 +1,167 @@
+{
+ "id": "ENT-17",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuáles son los hallazgos principales de la entrevista?",
+   "rag_log_id": 2665,
+   "respuesta": "Los hallazgos principales de la entrevista con E01 son:\n\n*   **Tema:** Semestre pesado; dificultad dormir; presión emocional. **Pregunta:** p01. **Cita:** “Ha sido un semestre pesado”. [Fuente 1]\n*   **Tema:** Carga de proyectos; exposiciones; materias; trabajo papelería. **Pregunta:** p02. **Cita:** “Eh, Sobre todo la carga de proyectos”. [Fuente 1]\n*   **Tema:** Estigma profesional; percepción de gravedad; dinámicas familiares; miedo al juicio social. **Pregunta:** p06. **Cita:** “Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente”. [Fuente 1]\n*   **Tema:** Agenda; proyectos pequeños; promedio académico; control nervioso. **Pregunta:** p08. **Cita:** “Sí, un poco.” [Fuente 1]\n*   **Tema:** Escasez de psicólogos; sistema de citas; ubicación consultorio; duración sesiones. **Pregunta:** p11. **Cita:** “Primero, que hubiera más psicólogos, porque me dijeron que solo hay dos para todo el plantel”. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.4875
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4812
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.4599
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.4569
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4448
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4286
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.428
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.424
+    }
+   ],
+   "segundos": 46.5,
+   "tiempos_ms": {
+    "ejecucion": 17,
+    "redaccion": 42018,
+    "recuperacion": 329,
+    "verificacion": 2,
+    "interpretacion": 4137
+   },
+   "k_precision": 0.907,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Cuál debería atender primero la universidad y por qué?",
+   "rag_log_id": 2666,
+   "respuesta": "Los hallazgos más preocupantes que debe atender primero la universidad son:\n\n*   **Carga de proyectos y exposiciones:** Este tema aparece en p02, donde E01 responde: “Eh, Sobre todo la carga de proyectos. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando.” [Fuente 1] La alta carga académica combinada con el sentimiento de ser evaluado constantemente genera estrés y ansiedad, lo cual podría afectar negativamente su rendimiento académico y bienestar general.\n*   **Escasez de psicólogos:** Este tema emerge en p11, donde E01 afirma: “Primero, que hubiera más psicólogos, porque me dijeron que solo hay dos para todo el plantel.” [Fuente 1] La limitación del número de profesionales de salud mental disponibles es un factor crítico que impide que los estudiantes accedan a la ayuda necesaria y agrava su situación.\n*   **Dificultad para acceder a los servicios:** Este tema se identifica en p05, donde E01 indica: “Pasaron casi dos semanas”. [Fuente 1] El tiempo de espera prolongado para obtener citas dificulta que los estudiantes busquen ayuda de manera oportuna y puede aumentar su frustración y desesperanza.\n*   **Estigma profesional:** Este tema se identifica en p06, donde E01 indica: “Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente”. [Fuente 1] El estigma asociado a buscar ayuda psicológica puede disuadir a los estudiantes de acceder a los servicios disponibles, perpetuando un ciclo de silencio y sufrimiento.\n*   **Falta de conocimiento sobre los servicios:** Este tema se identifica en p03, donde E01 indica: “Sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía”. [Fuente 1] La falta de información clara sobre la disponibilidad y el acceso a los servicios de salud mental dificulta que los estudiantes busquen ayuda cuando la necesitan.",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Según los hallazgos de la entrevista, cuál es el primer problema que debe abordar la universidad?"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.5107
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.503
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.4923
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.4239
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.4222
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.4208
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.4141
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.4114
+    }
+   ],
+   "segundos": 69.7,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 61291,
+    "recuperacion": 305,
+    "verificacion": 4,
+    "interpretacion": 8065
+   },
+   "k_precision": 0.587,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) opinión fundamentada en lo citado, aclarando que es un solo testimonio."
+}

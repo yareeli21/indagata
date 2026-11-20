@@ -1,0 +1,200 @@
+{
+ "id": "PRU-14",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en «la nube elimina por completo el riesgo de perder datos»?",
+   "rag_log_id": 2541,
+   "respuesta": "97 (100%) respondieron “Verdadero” al reactivo r16. Esto preocupa a la institución porque indica una falta de comprensión sobre los riesgos asociados con el almacenamiento en la nube, lo que podría afectar la seguridad de la información. [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "mención «nube elimina por completo el riesgo de perder datos» descartada (la pregunta no pregunta quién lo mencionó)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5851
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5748
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.4825
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.4561
+    }
+   ],
+   "segundos": 30.4,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 11451,
+    "recuperacion": 282,
+    "verificacion": 1,
+    "interpretacion": 18671
+   },
+   "k_precision": 0.412,
+   "cifras_con_respaldo": [
+    2,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "De ellos, ¿qué respondieron sobre Wi-Fi público?",
+   "rag_log_id": 2542,
+   "respuesta": "De los alumnos que participaron en la Prueba de Alfabetización Digital, el 75.3% (73 estudiantes) respondió “Verdadero” a la afirmación de que “Usar redes Wi-Fi públicas sin VPN es completamente seguro”, mientras que el 24.7% (24 estudiantes) respondió “Falso”. Según los datos registrados, esta respuesta refleja una comprensión errónea sobre los riesgos asociados con el uso de redes Wi-Fi públicas [Fuente 1].\n\n**Distribución de r15 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 73 | 75.3 % |\n| Falso | 24 | 24.7 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r15"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6068
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5847
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5092
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.49
+    }
+   ],
+   "segundos": 33.0,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 15819,
+    "recuperacion": 324,
+    "verificacion": 1,
+    "interpretacion": 16847
+   },
+   "k_precision": 0.75,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame 5",
+   "rag_log_id": 2543,
+   "respuesta": "Criterio: resumen de r01, r02, r03, r04, r05.\nr01 «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Exc»: 96 respuestas válidas, 1 sin respuesta.\nInterpretación calculada: La opción más elegida fue «D) .pdf» (30.9 % de los alumnos). 1 sin respuesta válida (1 %).\nOpción más elegida: «.pdf» (30.9 %, 30 alumnos).\nr02 «¿Qué significa LMS en contextos educativos?»: 97 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «C) Local Messaging System» (39.2 % de los alumnos).\nOpción más elegida: «Local Messaging System» (39.2 %, 38 alumnos).\nr03 «¿Cuál es la principal función de una VPN?»: 97 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «D) Almacenar archivos en la nube» (48.5 % de los alumnos).\nOpción más elegida: «Almacenar archivos en la nube» (48.5 %, 47 alumnos).\nr04 «¿Qué es el phishing?»: 97 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «A) Un tipo de búsqueda en Google» (40.2 % de los alumnos). Nadie eligió: D.\nOpción más elegida: «Un tipo de búsqueda en Google» (40.2 %, 39 alumnos).\nr05 «¿Cuál herramienta es más adecuada para la colaboración en documentos e»: 97 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «D) Imprimir y entregar físicamente» (39.2 % de los alumnos).\nOpción más elegida: «Imprimir y entregar físicamente» (39.2 %, 38 alumnos). [Fuente 1]\n\n**Distribución de r01 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 27 | 27.8 % |\n| B | 13 | 13.4 % |\n| C | 26 | 26.8 % |\n| D | 30 | 30.9 % |\n| nula | 1 | 1.0 % |\n\n**Distribución de r02 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 16 | 16.5 % |\n| B | 25 | 25.8 % |\n| C | 38 | 39.2 % |\n| D | 18 | 18.6 % |\n\n**Distribución de r03 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 23 | 23.7 % |\n| B | 7 | 7.2 % |\n| C | 20 | 20.6 % |\n| D | 47 | 48.5 % |\n\n**Distribución de r04 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 39 | 40.2 % |\n| B | 21 | 21.6 % |\n| C | 37 | 38.1 % |\n| D | 0 | 0.0 % |\n\n**Distribución de r05 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 37 | 38.1 % |\n| B | 13 | 13.4 % |\n| C | 9 | 9.3 % |\n| D | 38 | 39.2 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r01",
+     "r02",
+     "r03",
+     "r04",
+     "r05"
+    ],
+    "consulta_semantica": "Preguntas de la prueba de alfabetización digital"
+   },
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:calificada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.544
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5347
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.3652
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r06",
+     "score": 0.3592
+    }
+   ],
+   "segundos": 71.6,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 50789,
+    "recuperacion": 362,
+    "verificacion": 23010,
+    "interpretacion": 20423
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    40,
+    40
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) filtrar sobre el grupo de (1); (3) 5 IDs anónimos con el total."
+}

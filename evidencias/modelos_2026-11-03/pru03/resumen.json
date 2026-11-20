@@ -1,0 +1,82 @@
+{
+ "redactores": {
+  "gemma3:4b": {
+   "turnos": 22,
+   "intencion_correcta": 0.455,
+   "plantilla_indebida": 8,
+   "redactadas": 6,
+   "regeneraciones": 1,
+   "cifras_sin_respaldo": 0,
+   "cifras_con_respaldo": 1.0,
+   "ids_inventados": 0,
+   "exactitud": 0.182,
+   "criterios": 0.25,
+   "contexto_suficiente": 0.273,
+   "similitud": 0.369,
+   "latencia_mediana_s": 17.0,
+   "humana_media": 0.773,
+   "humana_bien": 0.273,
+   "calificadas": 22
+  },
+  "qwen3:4b-instruct": {
+   "turnos": 22,
+   "intencion_correcta": 0.5,
+   "plantilla_indebida": 10,
+   "redactadas": 5,
+   "regeneraciones": 4,
+   "cifras_sin_respaldo": 0,
+   "cifras_con_respaldo": 1.0,
+   "ids_inventados": 0,
+   "exactitud": 0.455,
+   "criterios": 0.5,
+   "contexto_suficiente": 0.455,
+   "similitud": 0.37,
+   "latencia_mediana_s": 9.7,
+   "humana_media": 0.773,
+   "humana_bien": 0.273,
+   "calificadas": 22
+  }
+ },
+ "matriz": {
+  "jueces": [
+   "qwen3:4b-instruct"
+  ],
+  "celdas": {
+   "gemma3:4b": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.95,
+     "relevancia": 0.6,
+     "precision_contexto": 1.0,
+     "promedio": 0.841
+    }
+   },
+   "qwen3:4b-instruct": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.871,
+     "relevancia": 0.564,
+     "precision_contexto": 0.875,
+     "promedio": 0.77
+    }
+   }
+  },
+  "sesgo_autoevaluacion": {}
+ },
+ "cruce": {
+  "qwen3:4b-instruct": {
+   "n": 18,
+   "kappa_fidelidad_vs_cifras": 0.0,
+   "n_fidelidad": 9,
+   "kappa_aprobado_vs_humana": 0.118,
+   "spearman_promedio_vs_humana": 0.342,
+   "spearman_relevancia_vs_humana": 0.406,
+   "n_humana": 18,
+   "confusion_precision": {
+    "prec_alta_ctx_si": 8,
+    "prec_alta_ctx_no": 4,
+    "prec_baja_ctx_si": 0,
+    "prec_baja_ctx_no": 0
+   }
+  }
+ },
+ "entre_jueces": {}
+}

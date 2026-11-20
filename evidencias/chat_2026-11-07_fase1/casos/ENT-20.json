@@ -1,0 +1,56 @@
+{
+ "id": "ENT-20",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué tipo de entrevista es y cuánto dura?",
+   "rag_log_id": 2401,
+   "respuesta": "Es una entrevista [Fuente 1]. No se especifica su duración en el texto proporcionado.",
+   "intencion": "semantica_abierta",
+   "plan": {
+    "intencion": "semantica_abierta",
+    "consulta_semantica": "¿Qué tipo de entrevista es y cuánto dura?"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.5014
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p05",
+     "score": 0.4844
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p05",
+     "score": 0.4775
+    }
+   ],
+   "segundos": 13.3,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 212,
+    "interpretacion": 7644
+   },
+   "k_precision": 0.0,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Semiestructurada, una participante; si la duración no está, decirlo."
+}

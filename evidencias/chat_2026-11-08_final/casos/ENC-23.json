@@ -1,0 +1,49 @@
+{
+ "id": "ENC-23",
+ "instrumento": "enc",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opinan los estudiantes del comedor?",
+   "rag_log_id": 2729,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "intencion": "semantica_abierta",
+   "plan": {
+    "intencion": "semantica_abierta",
+    "preguntas": [
+     "p05"
+    ],
+    "consulta_semantica": "¿Comentarios sobre el comedor?"
+   },
+   "plan_modelo": {
+    "intencion": "semantica_abierta",
+    "preguntas": [
+     "p05"
+    ],
+    "consulta_semantica": "¿Comentarios sobre el comedor?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": "el modelo no encontró la respuesta en el contexto",
+   "plantilla": "sin_informacion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 22.1,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "recuperacion": 197,
+    "interpretacion": 18202
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "La encuesta no pregunta eso; puede sugerir lo más cercano sin forzarlo."
+}

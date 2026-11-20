@@ -1,0 +1,51 @@
+{
+ "id": "PRU-09",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "De los que marcaron Verdadero en «el correo electrónico es siempre seguro», ¿qué eligieron en el reactivo de la VPN?",
+   "rag_log_id": 2424,
+   "respuesta": "De los que marcaron Verdadero en “el correo electrónico es siempre seguro”, 73 de 97 (75.3 %) [Fuente 1] eligieron “Usar redes Wi-Fi públicas sin VPN es completamente seguro”.",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.691
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6452
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.638
+    }
+   ],
+   "segundos": 154.7,
+   "tiempos_ms": {
+    "recuperacion": 1260
+   },
+   "k_precision": 0.867,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruzar dos reactivos y dar la distribución dentro del grupo."
+}

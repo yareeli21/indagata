@@ -1,0 +1,52 @@
+{
+ "id": "PRU-01",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos respondieron la prueba?",
+   "rag_log_id": 3613,
+   "respuesta": "97 alumnos presentaron la prueba [Fuente 1]. No hay secciones o partes específicas en esta prueba estandarizada. El instrumento consta de un único bloque de preguntas que cubren temas como Alfabetización digital, Competencias Digitales Básicas y Seguridad en Internet.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": "{\n  \"intencion\": \"hallazgo\",\n  \"filtros\": [\n    {\n      \"pregunta\": \"r01\"\n    }\n  ],\n  \"campos\": \"solo_ids\",\n  \"orden\": {\"por\": \"id_respondente\", \"dir\": \"asc\"},\n  \"limite\": 97\n}",
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    }
+   ],
+   "segundos": 22.0,
+   "tiempos_ms": {
+    "ejecucion": 0,
+    "redaccion": 5972,
+    "recuperacion": 205,
+    "verificacion": 1,
+    "interpretacion": 15517
+   },
+   "k_precision": 0.682,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Total de alumnos después de la limpieza."
+}

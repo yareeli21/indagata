@@ -1,0 +1,175 @@
+{
+ "id": "ENT-13",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué situaciones de la universidad le generan más estrés?",
+   "rag_log_id": 2654,
+   "respuesta": "E01 en p02 indica que la carga de proyectos y las exposiciones son las principales fuentes de estrés para ella. Según sus respuestas, siente mucha presión debido a la gran cantidad de materias con proyecto final en equipo, además del trabajo de quince horas semanales en una papelería, lo que le genera ansiedad por el temor a ser evaluada durante las exposiciones [Fuente 1, p02].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p02 «¿Qué situaciones de la universidad te generan más estrés o ansiedad?» | Eh, Sobre todo la carga de proyectos. Este semestre llevo siete materias y en cuatro hay proyecto final en equipo. Además trabajo quince horas por semana en una papelería, entonces casi no me queda tiempo. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando. |\n| p01 «Para empezar, ¿cómo describirías tu estado de ánimo durante este semes» | Ha sido un semestre pesado. Al principio estaba bien, pero desde la semana de parciales empecé a dormir muy poco, unas cinco horas, y me sentía cansada todo el tiempo. Hubo días en que no quería ni venir a clases, no por flojera, sino porque sentía mucha presión en el pecho antes de entrar al salón. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p02",
+     "p01"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "correcciones": [
+    "RAG: se agregó p01 (intercambio más parecido a la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.8443
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.8163
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.8152
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5997
+    }
+   ],
+   "segundos": 23.7,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 18241,
+    "recuperacion": 444,
+    "verificacion": 1,
+    "interpretacion": 4983
+   },
+   "k_precision": 0.914,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y buscó ayuda por eso?",
+   "rag_log_id": 2655,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "intencion": "metodologia",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "metodologia",
+    "aclaracion": "¿Te refieres a la metodología del alfa de Cronbach?"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": "el modelo no encontró la respuesta en el contexto",
+   "plantilla": "sin_informacion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 16.9,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 161,
+    "interpretacion": 9285
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Cuánto tardaron en atenderla?",
+   "rag_log_id": 2656,
+   "respuesta": "E01 respondió que pasaron casi dos semanas para conseguir una cita, desde que la solicitó hasta que fue atendida [Fuente 1, p05].  Ella consideró este tiempo excesivo y lo atribuyó a que al pedir la cita ya se encontraba en un estado de malestar importante [Fuente 1, p05]. Para ella, esta demora fue un factor determinante para no acudir a buscar ayuda [Fuente 1, p05].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p05 «¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?» | Pasaron casi dos semanas. Pedí la cita por correo y me contestaron a los cuatro días, y luego la primera fecha disponible era la siguiente semana. Para mí fue mucho tiempo, porque cuando pedí la cita ya estaba muy mal. Creo que si hubiera tenido que esperar más, ya no habría ido. |\n| p06 «¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?» | Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p05",
+     "p06"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "correcciones": [
+    "RAG: se agregó p06 (intercambio más parecido a la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.5866
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.5774
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p05",
+     "score": 0.5466
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.5218
+    }
+   ],
+   "segundos": 26.9,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 19123,
+    "recuperacion": 313,
+    "verificacion": 1,
+    "interpretacion": 7398
+   },
+   "k_precision": 0.848,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) y (3) seguir hablando de ella; (3) usar la pregunta del tiempo de espera."
+}

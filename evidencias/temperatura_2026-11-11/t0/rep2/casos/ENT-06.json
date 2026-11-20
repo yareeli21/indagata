@@ -1,0 +1,85 @@
+{
+ "id": "ENT-06",
+ "instrumento": "ent",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántas veces menciona el estrés o la ansiedad?",
+   "rag_log_id": 3988,
+   "respuesta": "1 de 1 respondentes (100.0 %) cumplen el criterio: mencionan «estres o ansiedad» en sus respuestas abiertas. [Fuente 1]\n\n**Dónde se menciona «estres o ansiedad» [Fuente 1]**\n| Respondente | Pregunta | Fragmento |\n|---|---|---|\n| E01 | p02 | «…ría, entonces casi no me queda tiempo. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están…» |\n| E01 | p10 | «…y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación. Algunos no saben que exis…» |\n| E01 | p11 | «…sona lo necesita. Y que los talleres de manejo de estrés fueran en la tarde, porque los que trabajamos no podemos ir en…» |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "orden": {},
+    "limite": 1,
+    "menciona": "estres o ansiedad",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "estrés o ansiedad",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p02 = «estrés o ansiedad» descartado (son palabras del enunciado, no una opción)",
+    "intención hallazgo → conteo_porcentaje: menciones de «estres o ansiedad» en las respuestas abiertas"
+   ],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.6423
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.6032
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.602
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.5889
+    }
+   ],
+   "segundos": 17.1,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 7571,
+    "recuperacion": 308,
+    "verificacion": 0,
+    "interpretacion": 9164
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Aclarar si cuenta palabras exactas o menciones parecidas; citar ejemplos."
+}

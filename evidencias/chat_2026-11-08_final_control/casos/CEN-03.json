@@ -1,0 +1,274 @@
+{
+ "id": "CEN-03",
+ "instrumento": "enc_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos tienen dificultades para equilibrar trabajo y estudios?",
+   "rag_log_id": 2805,
+   "respuesta": "83 de 160 respondientes (51.9 %) afirman tener dificultades para equilibrar trabajo y estudios [Fuente 1]. Este resultado se basa en la pregunta p15 de la Encuesta de Carga Académica y Gestión del Tiempo [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p15"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p15"
+     }
+    ],
+    "contexto": {
+     "instrumento": "encuesta «Encuesta de Carga Académica y Gestión del Tiempo»"
+    },
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "contexto instrumento = «encuesta «Encuesta de Carga Académica y Gestión del Tiempo»» descartado (la pregunta no lo menciona)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.7621
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.7345
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.6715
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p18",
+     "score": 0.6299
+    }
+   ],
+   "segundos": 31.5,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 10674,
+    "recuperacion": 277,
+    "verificacion": 1,
+    "interpretacion": 20555
+   },
+   "k_precision": 0.765,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y de ellos, cuántos no trabajan?",
+   "rag_log_id": 2806,
+   "respuesta": "Criterio: p14 «¿Cuál es tu carga laboral actual?» = «No trabajo» y p15 «¿Tienes dificultades para equilibrar trabajo y estudios?» = «Sí».\nCumplen la condición 24 de los 83 del grupo anterior (28.9 %); sobre el total, 24 de 160 respondentes (15.0 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "No trabajo",
+      "pregunta": "p14"
+     },
+     {
+      "valor": "Sí",
+      "pregunta": "p15"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "conteo_porcentaje",
+    "grupo_anterior": [
+     {
+      "valor": "Sí",
+      "pregunta": "p15"
+     }
+    ],
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo": {
+    "intencion": "filtrar_respondentes",
+    "criterio_ranking": "no_respuesta",
+    "excluir_preguntas": [
+     "p15"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "excluir p15 descartado (la pregunta no pide excluir nada)",
+    "filtro p14 = «No trabajo» (sus opciones dicen lo que pide la pregunta)",
+    "intención filtrar_respondentes → conteo_porcentaje («cuántos» sin pedir quiénes)",
+    "filtro p15 heredado del plan anterior",
+    "el % se da también sobre el grupo anterior"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:cifras_completadas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.7276
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.7133
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.6112
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.6011
+    }
+   ],
+   "segundos": 37.0,
+   "tiempos_ms": {
+    "ejecucion": 13,
+    "redaccion": 17657,
+    "recuperacion": 289,
+    "verificacion": 7061,
+    "interpretacion": 19040
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame 5 de ellos",
+   "rag_log_id": 2807,
+   "respuesta": "Según los datos registrados, 24 de 160 respondientes (15.0 %) cumplen el criterio de no tener trabajo y experimentar dificultades para equilibrar su carga laboral con sus estudios. De estos 24, los 5 primeros por número de respondiente que cumplen la condición son 5 de 24 [Fuente 1].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | R008 | R009 | R014 | R021 | R022 |\n|---|---|---|---|---|---|\n| Contexto: tipo_universidad | privada | mixta | privada | publica | publica |\n| p01 «Considero que la cantidad de materias que curso es manejable.» | Totalmente de acuerdo / Siempre | De acuerdo / Frecuentemente | De acuerdo / Frecuentemente | De acuerdo / Frecuentemente | De acuerdo / Frecuentemente |\n| p02 «El volumen de lecturas y tareas es proporcional al crédito de cada mat» | Totalmente de acuerdo / Siempre | Ni de acuerdo ni en desacuerdo / A veces | Ni de acuerdo ni en desacuerdo / A veces | Ni de acuerdo ni en desacuerdo / A veces | De acuerdo / Frecuentemente |\n| p03 «Tengo tiempo suficiente para estudiar cada materia adecuadamente.» | Totalmente de acuerdo / Siempre | De acuerdo / Frecuentemente | Ni de acuerdo ni en desacuerdo / A veces | De acuerdo / Frecuentemente | De acuerdo / Frecuentemente |\n| p04 «La carga de trabajo me permite mantener un equilibrio saludable.» | Totalmente de acuerdo / Siempre | Totalmente de acuerdo / Siempre | En desacuerdo / Pocas veces | De acuerdo / Frecuentemente | Ni de acuerdo ni en desacuerdo / A veces |\n| p05 «Planifico mis actividades con anticipación usando agendas o calendario» | De acuerdo / Frecuentemente | Ni de acuerdo ni en desacuerdo / A veces | Ni de acuerdo ni en desacuerdo / A veces | Totalmente en desacuerdo / Nunca | De acuerdo / Frecuentemente |\n| p06 «Cumplo con mis horarios de estudio establecidos.» | Totalmente de acuerdo / Siempre | Ni de acuerdo ni en desacuerdo / A veces | En desacuerdo / Pocas veces | Ni de acuerdo ni en desacuerdo / A veces | Totalmente en desacuerdo / Nunca |\n| p07 «Identifico y elimino distracciones durante mis sesiones de estudio.» | De acuerdo / Frecuentemente | Ni de acuerdo ni en desacuerdo / A veces | Totalmente en desacuerdo / Nunca | Ni de acuerdo ni en desacuerdo / A veces | De acuerdo / Frecuentemente |\n| p08 «Distribuyo el tiempo de manera equilibrada entre todas mis materias.» | Totalmente de acuerdo / Siempre | En desacuerdo / Pocas veces | Totalmente en desacuerdo / Nunca | En desacuerdo / Pocas veces | Ni de acuerdo ni en desacuerdo / A veces |\n| p09 «¿Cuántas materias cursas actualmente?» | 5-6 | 7 o más | 3-4 | 5-6 | 1-2 |\n| p10 «¿Con qué frecuencia dejas tareas para el último momento?» | Nunca | Frecuentemente | Siempre | Siempre | Siempre |\n| p11 «¿Qué estrategia usas más para gestionar tu tiempo?» | App digital | App digital | Lista de tareas informal | App digital | Sin estrategia definida |\n| p12 «¿Cuántas horas dedicas al estudio fuera de clases por semana?» | 5-10h | Más de 20h | 10-15h | 10-15h | 10-15h |\n| p13 «¿Has reprobado alguna materia por falta de tiempo para estudiar?» | Sí, varias veces | No, nunca | Sí, varias veces | Sí, una vez | Sí, varias veces |\n| p14 «¿Cuál es tu carga laboral actual?» | No trabajo | No trabajo | No trabajo | No trabajo | No trabajo |\n| p15 «¿Tienes dificultades para equilibrar trabajo y estudios?» | Sí | Sí | Sí | Sí | Sí |\n| p16 «¿Tu institución ofrece talleres de gestión del tiempo?» | No | Sí | No | No | No |\n| p17 «¿Cuántas horas por semana dedicas al estudio fuera de clases? (número)» | 3 horas | 41 horas | 19 horas | 43 horas | 25 horas |\n| p18 «Del 1 al 10, ¿cuánta presión sientes por la carga académica?» | 9 de 10 | 2 de 10 | 10 de 10 | 9 de 10 | 10 de 10 |\n| p19 «Del 1 al 10, ¿qué tan efectivo/a eres gestionando tu tiempo?» | 1 de 10 | 1 de 10 | 2 de 10 | 10 de 10 | 10 de 10 |\n| p20 «¿Cuántos créditos cursas este semestre? (número)» | 12 (escala 0–100) | 14 (escala 0–100) | 12 (escala 0–100) | 36 (escala 0–100) | 26 (escala 0–100) |",
+   "intencion": "filtrar_respondentes",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "limite": 5,
+    "filtros": [
+     {
+      "valor": "No trabajo",
+      "pregunta": "p14"
+     },
+     {
+      "valor": "Sí",
+      "pregunta": "p15"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "filtrar_respondentes",
+    "grupo_anterior": [
+     {
+      "valor": "Sí",
+      "pregunta": "p15"
+     }
+    ],
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "No trabajo",
+      "pregunta": "p14"
+     },
+     {
+      "valor": "Sí",
+      "pregunta": "p15"
+     }
+    ],
+    "intencion": "filtrar_respondentes"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "listar 5 del grupo anterior (sus condiciones, con sus respuestas)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:filtrar_respondentes",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.4888
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.4588
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.449
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.437
+    }
+   ],
+   "segundos": 33.8,
+   "tiempos_ms": {
+    "ejecucion": 10,
+    "redaccion": 12382,
+    "recuperacion": 326,
+    "verificacion": 2,
+    "interpretacion": 20984
+   },
+   "k_precision": 0.989,
+   "cifras_con_respaldo": [
+    31,
+    31
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) sobre el grupo de (1); (3) 5 IDs con el total."
+}

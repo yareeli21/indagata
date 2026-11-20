@@ -1,0 +1,65 @@
+{
+ "id": "PRU-24",
+ "instrumento": "pru",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál es la respuesta correcta del reactivo de la VPN?",
+   "rag_log_id": 2370,
+   "respuesta": "Indagata no califica las pruebas porque no tiene clave de respuestas, así que no se sabe si acertaron. En el reactivo r03 («¿Cuál es la principal función de una VPN?»), la opción más elegida fue D) Almacenar archivos en la nube (48.5 % de los alumnos) [Fuente 1].",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r03"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "estructurada:sin_calificar",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.6857
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6019
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.5092
+    }
+   ],
+   "segundos": 35.6,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 17816,
+    "recuperacion": 263,
+    "verificacion": 2,
+    "interpretacion": 17391
+   },
+   "k_precision": 0.941,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No maneja respuestas correctas; puede mostrar opciones y lo elegido, sin opinar."
+}

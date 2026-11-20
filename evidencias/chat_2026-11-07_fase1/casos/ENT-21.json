@@ -1,0 +1,58 @@
+{
+ "id": "ENT-21",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué indicaciones tenía el entrevistador?",
+   "rag_log_id": 2402,
+   "respuesta": "El entrevistador preguntó si E01 sabía que la universidad ofrecía servicios de apoyo psicológico y cómo se enteró de ellos [Fuente 1, p03].",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Qué preguntas específicas del instrumento 'Salud mental en la universidad' (INSTRUMENTO 129) te refieres con 'indicaciones'?"
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.4818
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.4708
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.469
+    }
+   ],
+   "segundos": 15.8,
+   "tiempos_ms": {
+    "ejecucion": 2,
+    "recuperacion": 125,
+    "interpretacion": 9183
+   },
+   "k_precision": 0.455,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Las indicaciones si están; si no, no inventarlas."
+}

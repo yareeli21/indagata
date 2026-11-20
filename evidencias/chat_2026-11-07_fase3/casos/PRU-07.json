@@ -1,0 +1,70 @@
+{
+ "id": "PRU-07",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo estuvieron más repartidas las respuestas?",
+   "rag_log_id": 2423,
+   "respuesta": "La primera pregunta del ranking fue r01 \"¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Exc?: “.pdf” con 30 de 97 (30.9 %). [Fuente 1] Hay empate en la posición segunda y tercera, r21 “¿Qué tipo de licencia permite modificar y redistribuir libremente un s”: «Shareware» con 36 de 97 (37.1 %) y r02 “¿Qué significa LMS en contextos educativos?”: «Local Messaging System» con 38 de 97 (39.2 %). [Fuente 1]\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r01 | «.pdf» con 30 de 97 (30.9 %) |\n| 2 | r21 | «Shareware» con 36 de 97 (37.1 %) |\n| 3 | r02 | «Local Messaging System» con 38 de 97 (39.2 %) |\n| 4 | r05 | «Imprimir y entregar físicamente» con 38 de 97 (39.2 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida"
+   },
+   "correcciones": [
+    "excluir r01, r02, r03, r04, r05… descartado (la pregunta no pide excluir nada)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4959
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.4785
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4777
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.475
+    }
+   ],
+   "segundos": 392.4,
+   "tiempos_ms": {
+    "ejecucion": 34,
+    "redaccion": 183262,
+    "recuperacion": 2071,
+    "verificacion": 4,
+    "interpretacion": 207026
+   },
+   "k_precision": 0.909,
+   "cifras_con_respaldo": [
+    13,
+    13
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Decir qué medida usó."
+}

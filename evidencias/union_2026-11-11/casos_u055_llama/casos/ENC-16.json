@@ -1,0 +1,105 @@
+{
+ "id": "ENC-16",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 3765,
+   "respuesta": "**Patrones de preocupación**\n\n* **Carga académica inadecuada**: 65.1% de estudiantes respondieron que su carga académica actual es \"Carga media/normal\", lo que podría indicar una falta de desafío o estimulación para los estudiantes, lo que podría afectar su motivación y rendimiento académico.\n* **Falta de oportunidades de crecimiento**: 61.7% de estudiantes respondieron que no saben si la institución ha obtenido patentes en los últimos años, lo que sugiere una falta de información sobre las oportunidades de crecimiento y desarrollo profesional para los estudiantes.\n* **Dificultades con el cambio de profesor o materia sin asignación**: 57.8% de estudiantes respondieron que nunca han experimentado un cambio de profesor iniciado el periodo o una materia sin profesor asignada, lo que podría indicar una falta de flexibilidad y adaptabilidad en la estructura del programa.\n* **División en opiniones sobre la oferta de programas**: La pregunta p16 sobre la oferta de programas responde a los intereses académicos y profesionales de los estudiantes presenta una desviación estándar de 1.26 puntos en la escala, lo que sugiere una división en opiniones y posibles inconformidades entre los estudiantes con respecto a la calidad y relevancia de las opciones disponibles.\n\nConsidero que **la falta de oportunidades de crecimiento** es lo más preocupante, ya que podría afectar la motivación y el compromiso de los estudiantes con su formación académica y profesional.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Con hasta un año de retraso",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "op": ">",
+      "valor": "Con hasta un año de retraso",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p10 > «Con hasta un año de retraso» → = (es una opción de texto)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "estructurada",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 17.0,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 12425,
+    "recuperacion": 356,
+    "verificacion": 3,
+    "interpretacion": 4106
+   },
+   "k_precision": 0.433,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué lo consideras preocupante?",
+   "rag_log_id": 3766,
+   "respuesta": "Considero que lo considero preocupante porque podrían estar relacionados con la satisfacción general de los estudiantes y, en última instancia, con la calidad del programa académico. [Fuente 1] \n\nUna posible explicación es que una carga académica inadecuada podría afectar la motivación y el rendimiento académico de los estudiantes, lo que podría tener consecuencias a largo plazo en su desarrollo profesional y personal.\n\nOtra posibilidad es que la falta de oportunidades de crecimiento y desarrollo profesional para los estudiantes podría llevar a una sensación de estancamiento o inseguridad en sus carreras, lo que podría afectar su satisfacción con el programa.\n\nAdemás, las dificultades con el cambio de profesor o materia sin asignación podrían indicar una falta de flexibilidad y adaptabilidad en la estructura del programa, lo que podría afectar la experiencia general de los estudiantes.\n\nFinalmente, la división en opiniones sobre la oferta de programas podría sugerir que algunos estudiantes sienten que el programa no se adapta a sus intereses académicos y profesionales, lo que podría llevar a una disminución en la satisfacción con el programa.\n\nEn resumen, estas preocupaciones podrían estar relacionadas con la calidad del programa académico y podrían tener consecuencias importantes para los estudiantes y la institución.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": "seguimiento de la consulta 3765",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "resultado",
+     "etiqueta": "resultado",
+     "score": null
+    }
+   ],
+   "segundos": 13.4,
+   "tiempos_ms": null,
+   "k_precision": 0.226,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la polaridad (no elegir respuestas favorables) y justificar con cifras."
+}

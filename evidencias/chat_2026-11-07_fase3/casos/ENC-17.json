@@ -1,0 +1,224 @@
+{
+ "id": "ENC-17",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos estudian en modalidad mixta?",
+   "rag_log_id": 2416,
+   "respuesta": "435 de 2000 estudiantes (21.8%) cursan su programa en modalidad mixta/hibrida [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Mixta/hibrida",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.5668
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.5351
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.535
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.5334
+    }
+   ],
+   "segundos": 19.1,
+   "tiempos_ms": {
+    "ejecucion": 80,
+    "redaccion": 8362,
+    "recuperacion": 716,
+    "verificacion": 0,
+    "interpretacion": 9886
+   },
+   "k_precision": 0.778,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y cuántos de ellos están considerando abandonar?",
+   "rag_log_id": 2417,
+   "respuesta": "Criterio: p10 «¿Cuándo esperas titularte?» = «Estoy considerando abandonar» y p02 «¿En qué modalidad cursas tu programa?» = «Mixta/hibrida».\nCumplen la condición 30 de 2000 respondentes (1.5 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Estoy considerando abandonar",
+      "pregunta": "p10"
+     },
+     {
+      "valor": "Mixta/hibrida",
+      "pregunta": "p02"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "contexto Turno = «Vespertino» descartado (la pregunta no lo menciona)",
+    "filtro p10 > 0 quitado (p10 no tiene opciones numéricas)",
+    "filtro p10 = «Estoy considerando abandonar» (sus opciones dicen lo que pide la pregunta)",
+    "filtro p02 heredado del plan anterior"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.5914
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.5793
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.5513
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.5486
+    }
+   ],
+   "segundos": 38.1,
+   "tiempos_ms": {
+    "ejecucion": 317,
+    "redaccion": 16844,
+    "recuperacion": 889,
+    "verificacion": 6717,
+    "interpretacion": 19960
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame 5 de ellos",
+   "rag_log_id": 2418,
+   "respuesta": "Criterio: p10 «¿Cuándo esperas titularte?» = «Estoy considerando abandonar» y p02 «¿En qué modalidad cursas tu programa?» = «Mixta/hibrida».\nCumplen la condición 30 de 2000 respondentes (1.5 %).\nSe muestran los 5 primeros por número de respondente que la cumplen: 5 de 30. [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | R186 | R199 | R271 | R381 | R522 |\n|---|---|---|---|---|---|\n| p01 «¿Tu programa académico cuenta con acreditación vigente (COP AES, SEAES» | Si | No lo se | No | Si | No lo se |\n| p02 «¿En qué modalidad cursas tu programa?» | Mixta/hibrida | Mixta/hibrida | Mixta/hibrida | Mixta/hibrida | Mixta/hibrida |\n| p03 «¿Cómo es tu carga académica actual?» | Carga media/normal | Carga media/normal | Carga media/normal, Cargas maxima | Carga minima | Carga media/normal |\n| p04 «De tus profesores de este periodo, ¿cuántos tienen doctorado?» | Menos de la mitad | Menos de la mitad | Ninguno | No lo se | Ninguno |\n| p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el » | Frecuentemente | Siempre | Frecuentemente | Frecuentemente | Siempre |\n| p06 «¿Cuántos de tus profesores han compartido o mencionado en clase artícu» | 4 o mas | 2-3 | 4 o mas | 4 o mas | Ninguno |\n| p07 «¿En qué actividades de investigación de tus profesores has participado» | Proyectos de investigacion financiados | Articulos cientificos | Desarrollos tecnologicos o software, Ninguna | Ninguna, Proyectos de investigacion financiados | Ponencias en cogresos |\n| p08 «¿Sabes si la institución ha obtenido patentes en los últimos años?» | Si, conozco al menos una | No lo se | No lo se | No ha obtenido | No lo se |\n| p09 «¿Con qué frecuencia usas alguna plataforma virtual (Moodle, Classroom,» | Diariamente | Menos de una vez al mes | Diariamente | Diariamente | Diariamente |\n| p10 «¿Cuándo esperas titularte?» | Estoy considerando abandonar | Estoy considerando abandonar | Estoy considerando abandonar | Estoy considerando abandonar | Estoy considerando abandonar |\n| p11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco» | No, y no lo planeo | No, y no lo planeo | No, pero planeo hacerlo | No, pero planeo hacerlo | No, y no lo planeo |\n| p12 «¿Cuál es tu situación laboral actual?» | Trabajo en un area no relacionada | Busco empleo | No trabajo ni busco empleo por ahora | No trabajo ni busco empleo por ahora | Trabajo en un area no relacionada |\n| p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (espec» | 2 en escala 1–5 | 2 en escala 1–5 | 2 en escala 1–5 | 2 en escala 1–5 | 2 en escala 1–5 |\n| p14 «¿Has realizado prácticas profesionales o pasantías?» | No | Aun no, pero planeo hacerlo | No | No | No |\n| p15 «¿En qué programas de cooperación de tu institución has participado o c» | Proyectos con gobierno o empresas, Ninguno | Estancias en centro de investigacion | Movilidad internacional, Ninguno | (sin respuesta) | Estancias en centro de investigacion |\n| p16 «La oferta de programas, materias optativas y cursos de mi institución » | Totalmente en desacuerdo | 2 en escala 1–5 | 2 en escala 1–5 | Totalmente en desacuerdo | 2 en escala 1–5 |\n| p17 «Los laboratorios, equipos, materiales y espacios de la institución son» | 2 en escala 1–5 | 2 en escala 1–5 | 2 en escala 1–5 | 2 en escala 1–5 | 2 en escala 1–5 |\n| p18 «En la biblioteca y las bases de datos académicas (Scopus, IEEE Xplore,» | 2 en escala 1–5 | 2 en escala 1–5 | Totalmente en desacuerdo | 2 en escala 1–5 | 2 en escala 1–5 |",
+   "intencion": "filtrar_respondentes",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "limite": 5,
+    "filtros": [
+     {
+      "valor": "Estoy considerando abandonar",
+      "pregunta": "p10"
+     },
+     {
+      "valor": "Mixta/hibrida",
+      "pregunta": "p02"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "filtrar_respondentes"
+   },
+   "correcciones": [
+    "filtro p01 en nivel acuerdo quitado (p01 no es de escala)",
+    "filtro p04 > 30 quitado (p04 no tiene opciones numéricas)",
+    "listar 5 del grupo anterior (sus condiciones, con sus respuestas)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:filtrar_respondentes:cita_inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5598
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.4933
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.4394
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.4361
+    }
+   ],
+   "segundos": 48.3,
+   "tiempos_ms": {
+    "ejecucion": 99,
+    "redaccion": 25154,
+    "recuperacion": 1831,
+    "verificacion": 10654,
+    "interpretacion": 21127
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    26,
+    26
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(3) 5 IDs anónimos con sus respuestas y el total."
+}

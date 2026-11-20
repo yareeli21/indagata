@@ -1,0 +1,70 @@
+{
+ "id": "PRU-12",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Las respuestas en blanco se concentran en alguna sección?",
+   "rag_log_id": 3664,
+   "respuesta": "Las respuestas en blanco o nulas se concentran principalmente en la sección \"SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS\", con un total de 99 respuestas en blanco o nulas (10.2% de sus respuestas posibles). Esta sección tiene el mayor porcentaje de respuestas en blanco o nulas, con un 10.2%.\n\n**Respuestas en blanco o nulas por sección [Fuente 1]**\n| Sección | Reactivos | En blanco o nulas | % de sus respuestas |\n|---|---|---|---|\n| SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS | 10 | 99 | 10.2 % |\n| SECCIÓN: VERDADERO O FALSO DIGITAL | 7 | 4 | 0.6 % |\n| SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE) | 5 | 3 | 0.6 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "seccion"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 3,
+    "filtros": [
+     {
+      "valor": "A",
+      "pregunta": "r05"
+     },
+     {
+      "valor": "B",
+      "pregunta": "r06"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r05 = «A» descartado (no es una opción y la pregunta no lo menciona)",
+    "filtro r06 = «B» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "comparar por sección (respuestas en blanco o nulas)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "estructurada",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 17.4,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 4193,
+    "recuperacion": 363,
+    "verificacion": 1,
+    "interpretacion": 12820
+   },
+   "k_precision": 0.902,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución de NR por sección."
+}

@@ -1,0 +1,82 @@
+{
+ "id": "ENC-11",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Cambia la expectativa de titularse según la carga académica?",
+   "rag_log_id": 3631,
+   "respuesta": "Criterio: resumen de p10, p03.\np10 «¿Cuándo esperas titularte?»: 1942 respuestas válidas, 58 sin respuesta.\nInterpretación calculada: La opción más frecuente es «Con hasta un año de retraso» (37.4 % de las respuestas).\np03 «¿Cómo es tu carga académica actual?»: 1931 respuestas válidas, 69 sin respuesta.\nInterpretación calculada: La opción más elegida es «Carga media/normal»: la eligió el 65.1 % de quienes respondieron. [Fuente 1]\n\n**Distribución de p10 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Con hasta un año de retraso | 726 | 37.4 % |\n| Con mas de un año de retraso | 503 | 25.9 % |\n| En el tiempo que marca mi plan de estudios | 382 | 19.7 % |\n| No estoy seguro(a) | 172 | 8.9 % |\n| Estoy considerando abandonar | 159 | 8.2 % |\n\n**Distribución de p03 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Carga media/normal | 1258 | 65.1 % |\n| Cargas maxima | 486 | 25.2 % |\n| Carga minima | 382 | 19.8 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p10",
+     "p03"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p10",
+     "p03"
+    ],
+    "agrupar_por": "posicion"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "agrupar por posición quitado (la consulta no habla de primeros y últimos)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.6947
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.6825
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.6524
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.6284
+    }
+   ],
+   "segundos": 39.5,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 28842,
+    "recuperacion": 728,
+    "verificacion": 8513,
+    "interpretacion": 9856
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    21,
+    21
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución por nivel de carga."
+}

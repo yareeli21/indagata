@@ -1,9 +1,8 @@
-import type { EstadoInstrumento, Instrumento, NivelEducativo, TipoInstrumento } from "@/types";
+import type { EstadoInstrumento, Instrumento, TipoInstrumento } from "@/types";
 
 export interface Filtros {
   palabra: string;
   kpis: string[];
-  nivel: NivelEducativo | null;
   tipo: TipoInstrumento | null;
   estado: EstadoInstrumento | null;
   anio: number | null;
@@ -14,7 +13,6 @@ export interface Filtros {
 export const FILTROS_VACIOS: Filtros = {
   palabra: "",
   kpis: [],
-  nivel: null,
   tipo: null,
   estado: null,
   anio: null,
@@ -28,7 +26,6 @@ export function aplicarFiltros(lista: Instrumento[], f: Filtros): Instrumento[] 
     if (q && ![i.titulo, i.descripcion, ...i.etiquetas].some((t) => t.toLowerCase().includes(q)))
       return false;
     if (f.kpis.length && !f.kpis.some((k) => i.kpis.includes(k))) return false;
-    if (f.nivel && i.nivel !== f.nivel) return false;
     if (f.tipo && i.tipo !== f.tipo) return false;
     if (f.estado && i.estado !== f.estado) return false;
     if (f.anio !== null && i.anio !== f.anio) return false;
@@ -47,7 +44,6 @@ export function hayFiltros(f: Filtros): boolean {
   return !!(
     f.palabra.trim() ||
     f.kpis.length ||
-    f.nivel ||
     f.tipo ||
     f.estado ||
     f.anio !== null ||

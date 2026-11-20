@@ -1,0 +1,57 @@
+{
+ "id": "GEN-03",
+ "instrumento": "enc",
+ "categoria": "cortesia",
+ "turnos": [
+  {
+   "pregunta": "Gracias",
+   "rag_log_id": 2373,
+   "respuesta": "*   57.8 % de quienes respondieron a p05 (“¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?”) respondieron “Nunca” o “Rara vez”. Esto podría indicar una percepción general de estabilidad en la asignación docente y la continuidad de los programas. [Fuente 1]\n*   50.4 % de quienes respondieron a p13 (“¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?”) respondieron “4” o “5” en escala 1–5. Sugiere un alto nivel de satisfacción y confianza en la institución como opción para estudios futuros. [Fuente 1]\n*   65.1 % de quienes respondieron a p03 (“¿Cómo es tu carga académica actual?”) indicaron “Carga media/normal”. Esto refleja una distribución común de la carga académica entre los estudiantes participantes. [Fuente 1]\n*   64.2 % de quienes respondieron a p02 (“¿En qué modalidad cursas tu programa?”) eligieron “Presencial”.  Esto sugiere que la modalidad presencial sigue siendo la opción predominante para este programa académico. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.2024
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.2002
+    }
+   ],
+   "segundos": 40.8,
+   "tiempos_ms": {
+    "ejecucion": 12,
+    "redaccion": 37616,
+    "recuperacion": 308,
+    "verificacion": 2,
+    "interpretacion": 2792
+   },
+   "k_precision": 0.633,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Frase breve de cortesía."
+}

@@ -1,0 +1,53 @@
+{
+ "id": "ENT-19",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántas preguntas tiene la guía y qué temas cubre?",
+   "rag_log_id": 2668,
+   "respuesta": "La guía de entrevista “Salud mental en la universidad” consta de 12 preguntas sin secciones diferenciadas [Fuente 1]. El instrumento aborda el tema de salud y atención mental, buscando identificar las experiencias y percepciones de los estudiantes universitarios con respecto al uso de servicios de apoyo psicológico [Fuente 1].",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.4522
+    }
+   ],
+   "segundos": 13.1,
+   "tiempos_ms": {
+    "redaccion": 12752,
+    "recuperacion": 165,
+    "verificacion": 1
+   },
+   "k_precision": 0.8,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "12 y agrupadas en temas."
+}

@@ -1,0 +1,1608 @@
+{
+ "corrida": "qwen3:4b-instruct=1397-1429",
+ "faltan": [],
+ "turnos": [
+  {
+   "consulta": 1427,
+   "enCache": false,
+   "respuesta": "El KPI \"Cualificación Docente y Tasa de Rotación del Profesorado\" está más relacionado con el contenido de la encuesta porque evalúa directamente la calidad académica a través del nivel académico del cuerpo docente (maestrías, doctorados) y la estabilidad laboral del profesorado, lo cual está alineado con los aspectos de la oferta educativa y el cuerpo docente que la encuesta aborda [Fuente 1]. Este KPI se sustenta en las preguntas p16, p17, p01 y p13, que permiten medir tanto la calificación del personal docente como la rotación del profesorado, elementos clave para evaluar la calidad académica en ESCOM [Fuente 1].\n\n**KPIs asociados [Fuente 1]**\n| KPI | Qué mide | Preguntas que lo sustentan |\n|---|---|---|\n| Cualificación Docente y Tasa de Rotación del Profesorado | KPI doble que evalúa por un lado el nivel académico del claustro (maestrías, doctorados) y por otro la estabilidad laboral mediante el porcentaje de salida de profesores. | p16, p17, p01, p13 |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "kpi",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 0,
+    "cifrasConRespaldo": 0,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "redaccion": 15694,
+     "verificacion": 0,
+     "interpretacion": 3858
+    },
+    "latenciaMs": 19605
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.671,
+     "precision_contexto": 1.0,
+     "promedio": 0.89,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.5,
+     "relevancia": 0.48,
+     "precision_contexto": 1.0,
+     "promedio": 0.66,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.667,
+     "relevancia": 0.613,
+     "precision_contexto": 1.0,
+     "promedio": 0.76,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 0.833,
+     "relevancia": 0.962,
+     "precision_contexto": 1.0,
+     "promedio": 0.932,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": null
+   },
+   "turno": "1.1",
+   "similitud": 0.717
+  },
+  {
+   "consulta": 1428,
+   "enCache": false,
+   "respuesta": "El KPI más relacionado al instrumento es \"Cualificación Docente y Tasa de Rotación del Profesorado\", ya que directamente mide la calidad académica de la institución evaluando tanto el nivel académico del cuerpo docente (maestrías, doctorados) como la estabilidad laboral del profesorado mediante la tasa de rotación, lo cual está directamente vinculado a la percepción de calidad educativa [Fuente 1]. Este KPI se sustenta en las preguntas p16, p17, p01 y p13, que abordan aspectos clave de la oferta educativa y el cuerpo docente, que son centrales en la experiencia académica del estudiante [Fuente 1].  \n\n[Fuente 1]\n\n**KPIs asociados [Fuente 1]**\n| KPI | Qué mide | Preguntas que lo sustentan |\n|---|---|---|\n| Cualificación Docente y Tasa de Rotación del Profesorado | KPI doble que evalúa por un lado el nivel académico del claustro (maestrías, doctorados) y por otro la estabilidad laboral mediante el porcentaje de salida de profesores. | p16, p17, p01, p13 |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "kpi",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 0,
+    "cifrasConRespaldo": 0,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 11,
+     "redaccion": 13727,
+     "verificacion": 0,
+     "interpretacion": 4591
+    },
+    "latenciaMs": 18378
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.0,
+     "relevancia": 0.369,
+     "precision_contexto": 1.0,
+     "promedio": 0.456,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.667,
+     "relevancia": 0.789,
+     "precision_contexto": 1.0,
+     "promedio": 0.819,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.6,
+     "relevancia": 0.817,
+     "precision_contexto": 1.0,
+     "promedio": 0.806,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 0.75,
+     "relevancia": 0.441,
+     "precision_contexto": 1.0,
+     "promedio": 0.73,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": null
+   },
+   "turno": "1.2",
+   "similitud": 0.78
+  },
+  {
+   "consulta": 1429,
+   "enCache": false,
+   "respuesta": "El KPI \"Cualificación Docente y Tasa de Rotación del Profesorado\" tiene mayor relevancia con el contenido del instrumento porque directamente relaciona la calidad académica con el nivel académico del cuerpo docente (maestrías, doctorados) y con la estabilidad laboral del profesorado, lo cual es central para evaluar si existe calidad educativa en ESCOM. Este KPI está sustentado por las preguntas p16, p17, p01 y p13, que permiten medir tanto la formación del personal docente como su rotación, elementos clave en la percepción de calidad académica por parte de los estudiantes [Fuente 1].\n\n**KPIs asociados [Fuente 1]**\n| KPI | Qué mide | Preguntas que lo sustentan |\n|---|---|---|\n| Cualificación Docente y Tasa de Rotación del Profesorado | KPI doble que evalúa por un lado el nivel académico del claustro (maestrías, doctorados) y por otro la estabilidad laboral mediante el porcentaje de salida de profesores. | p16, p17, p01, p13 |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "kpi",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 0,
+    "cifrasConRespaldo": 0,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 20,
+     "redaccion": 11752,
+     "verificacion": 0,
+     "interpretacion": 5310
+    },
+    "latenciaMs": 17143
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "contexto_suficiente": false,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.557,
+     "precision_contexto": 1.0,
+     "promedio": 0.852,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.697,
+     "precision_contexto": 1.0,
+     "promedio": 0.899,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.2,
+     "relevancia": 0.556,
+     "precision_contexto": 1.0,
+     "promedio": 0.585,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 0.8,
+     "relevancia": 0.488,
+     "precision_contexto": 1.0,
+     "promedio": 0.763,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": "Muy bien, no se desvió y contestó lo que debía."
+   },
+   "turno": "1.3",
+   "similitud": 0.778
+  },
+  {
+   "consulta": 1401,
+   "enCache": false,
+   "respuesta": "Uno de los patrones más interesantes es que el 57,8 % de los estudiantes respondieron que nunca o rara vez han experimentado cambios de profesor durante el periodo académico, lo que sugiere una estabilidad en el cuerpo docente en sus materias, aunque no refleja directamente la percepción de calidad educativa. Este resultado se relaciona con la continuidad del aprendizaje, ya que una asignación estable de profesores puede influir en la cohesión del proceso académico [Fuente 1].",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 1,
+    "cifrasConRespaldo": 1,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 22,
+     "redaccion": 14550,
+     "verificacion": 1,
+     "interpretacion": 9821
+    },
+    "latenciaMs": 24446
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.75,
+     "relevancia": 0.59,
+     "precision_contexto": 1.0,
+     "promedio": 0.78,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.5,
+     "relevancia": 0.605,
+     "precision_contexto": 1.0,
+     "promedio": 0.702,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.668,
+     "precision_contexto": 1.0,
+     "promedio": 0.889,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 0.5,
+     "relevancia": 0.594,
+     "precision_contexto": 1.0,
+     "promedio": 0.698,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": "Sí fundamentó, pero estaría interesante que fundamentara con contexto más de fuentes externas para complementar, sin salirse de contexto, solo un poco."
+   },
+   "turno": "2.1"
+  },
+  {
+   "consulta": 1402,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados. Recuerda que solo entran al RAG los instrumentos con metadatos aprobados por su autor; puedes ampliar la selección de tu investigación.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "metodologia",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 8921
+    },
+    "latenciaMs": 17831
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No entendió que era continuidad de la pregunta anterior."
+   },
+   "turno": "2.2"
+  },
+  {
+   "consulta": 1403,
+   "enCache": false,
+   "respuesta": "La pregunta p16 «La oferta de programas, materias optativas y cursos de mi institución responde a mis intereses académicos y profesionales» muestra una desviación estándar de 1.26 puntos en la escala, lo que indica una amplia divergencia en las respuestas de los estudiantes sobre si la oferta académica de ESCOM se alinea con sus intereses. Este patrón sugiere que, aunque algunos estudiantes perciben que la institución cumple con sus expectativas, otros sienten que la oferta no es adecuada para sus metas académicas o profesionales, lo que refleja una falta de coherencia entre la oferta educativa y las necesidades reales de los estudiantes. [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 1,
+    "primerFallo": "negativa_corregida",
+    "verificacion": "regenerada",
+    "cifrasTotal": 1,
+    "cifrasConRespaldo": 1,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 11,
+     "redaccion": 15008,
+     "verificacion": 12703,
+     "interpretacion": 9145
+    },
+    "latenciaMs": 24233
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.424,
+     "precision_contexto": 1.0,
+     "promedio": 0.808,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.426,
+     "precision_contexto": 1.0,
+     "promedio": 0.809,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.2,
+     "relevancia": 0.412,
+     "precision_contexto": 1.0,
+     "promedio": 0.537,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.441,
+     "precision_contexto": 1.0,
+     "promedio": 0.814,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": "Sí está bien, pero debió basarse en el patrón que primeramente nos mencionó."
+   },
+   "turno": "2.3"
+  },
+  {
+   "consulta": 1404,
+   "enCache": false,
+   "respuesta": "¿De qué pregunta o tema quieres saber la opinión?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 3948
+    },
+    "latenciaMs": 3992
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No entendió que yo ya le di el dato y necesito que me dé su opinión porque es un hecho que ya fue detectado en el instrumento."
+   },
+   "turno": "3.1"
+  },
+  {
+   "consulta": 1405,
+   "enCache": false,
+   "respuesta": "«id_respondente» no es una variable de contexto de «Indicadores de Experiencia y Calidad Académica» (disponibles: ninguna).",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "interpretacion": 8186
+    },
+    "latenciaMs": 8237
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No entendió que quiero la comparación y no se debe basar en que a fuerzas hay una variable con tal nombre."
+   },
+   "turno": "4.1"
+  },
+  {
+   "consulta": 1406,
+   "enCache": false,
+   "respuesta": "¿Qué aspecto específico de los resultados quieres comparar entre los primeros 100 y los siguientes 100 respondentes? Por ejemplo, una pregunta en particular o un grupo de preguntas?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 10,
+     "interpretacion": 7588
+    },
+    "latenciaMs": 7642
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": "Sí respondió bien, porque efectivamente se necesita saber qué se quiere comparar, entonces se debe dar continuidad."
+   },
+   "turno": "4.2"
+  },
+  {
+   "consulta": 1407,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 10,
+     "interpretacion": 8262
+    },
+    "latenciaMs": 8310
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": true,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "No supo realizar el filtro para obtenr los respondentes con la modalidad nocturna. O si no existiera, decirlo que sí se buscó, pero que no está."
+   },
+   "turno": "5.1",
+   "similitud": 0.175
+  },
+  {
+   "consulta": 1408,
+   "enCache": false,
+   "respuesta": "486 respondientes cumplen con la carga máxima, de un total de 2000, lo que representa un 24.3 %. El criterio aplicado es la pregunta p03: «¿Cómo es tu carga académica actual?» con la opción «Cargas maxima». [Fuente 01]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "conteo_porcentaje",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 1,
+    "primerFallo": "cifras_completadas",
+    "verificacion": "regenerada",
+    "cifrasTotal": 3,
+    "cifrasConRespaldo": 3,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 243,
+     "redaccion": 12360,
+     "verificacion": 5927,
+     "interpretacion": 5006
+    },
+    "latenciaMs": 17646
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.418,
+     "precision_contexto": 1.0,
+     "promedio": 0.806,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.5,
+     "relevancia": 0.566,
+     "precision_contexto": 1.0,
+     "promedio": 0.689,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.616,
+     "precision_contexto": 1.0,
+     "promedio": 0.872,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.482,
+     "precision_contexto": 1.0,
+     "promedio": 0.827,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "6.1",
+   "similitud": 0.752
+  },
+  {
+   "consulta": 1409,
+   "enCache": false,
+   "respuesta": "Criterio: p03 «¿Cómo es tu carga académica actual?» = «Cargas maxima» y p01 «Cargas máxima ¿Tu programa académico cuenta con acreditación vigente (» = «Si».\nCumplen la condición 173 de 2000 respondentes (8.7 %). [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "conteo_porcentaje",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "negativa_corregida",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 89,
+     "redaccion": 7161,
+     "verificacion": 3917,
+     "interpretacion": 8742
+    },
+    "latenciaMs": 16044
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": true,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.41,
+     "precision_contexto": 0.0,
+     "promedio": 0.47,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.413,
+     "precision_contexto": 1.0,
+     "promedio": 0.804,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.302,
+     "precision_contexto": 1.0,
+     "promedio": 0.767,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.463,
+     "precision_contexto": 1.0,
+     "promedio": 0.821,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Confunde programa académico con acreditación vigente con ver el filtro si trabajan o no."
+   },
+   "turno": "6.2",
+   "similitud": 0.152
+  },
+  {
+   "consulta": 1410,
+   "enCache": false,
+   "respuesta": "Criterio: p11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco» = «No, pero planeo hacerlo» o «No, y no lo planeo».\nCumplen la condición 1327 de 2000 respondentes (66.3 %). [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "conteo_porcentaje",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "cifras_completadas",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 92,
+     "redaccion": 11013,
+     "verificacion": 4717,
+     "interpretacion": 7270
+    },
+    "latenciaMs": 18425
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.546,
+     "precision_contexto": 1.0,
+     "promedio": 0.849,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.662,
+     "precision_contexto": 1.0,
+     "promedio": 0.887,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.545,
+     "precision_contexto": 1.0,
+     "promedio": 0.848,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.518,
+     "precision_contexto": 1.0,
+     "promedio": 0.839,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "7.1",
+   "similitud": 0.683
+  },
+  {
+   "consulta": 1411,
+   "enCache": false,
+   "respuesta": "Criterio: p04 «Siempre De tus profesores de este periodo, ¿cuántos tienen doctorado?» = «Mas de la mitad».\nCumplen la condición 274 de 2000 respondentes (13.7 %).\nSe muestran los 30 primeros por número de respondente que la cumplen: 30 de 274.\nRespondentes: R008, R026, R031, R032, R037, R041, R056, R057, R059, R069, R079, R080, R085, R087, R090, R099, R105, R106, R109, R112, R118, R123, R130, R132, R140, R146, R148, R165, R166, R168. [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "filtrar_respondentes",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 100,
+     "interpretacion": 8704
+    },
+    "latenciaMs": 8842
+   },
+   "tipo": "control",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.812,
+     "precision_contexto": 1.0,
+     "promedio": 0.937,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.888,
+     "precision_contexto": 1.0,
+     "promedio": 0.963,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.799,
+     "precision_contexto": 1.0,
+     "promedio": 0.933,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.867,
+     "precision_contexto": 1.0,
+     "promedio": 0.956,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "8.1",
+   "similitud": 0.521
+  },
+  {
+   "consulta": 1412,
+   "enCache": false,
+   "respuesta": "Respuestas interpretadas de R008 (respondentes R008). [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | R008 |\n|---|---|\n| p01 «Cargas máxima ¿Tu programa académico cuenta con acreditación vigente (» | Si |\n| p02 «¿En qué modalidad cursas tu programa?» | Presencial |\n| p03 «¿Cómo es tu carga académica actual?» | Carga minima |\n| p04 «Siempre De tus profesores de este periodo, ¿cuántos tienen doctorado?» | Mas de la mitad |\n| p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el » | Rara vez |\n| p06 «Ninguna ¿Cuántos de tus profesores han compartido o mencionado en clas» | 2-3 |\n| p07 «¿En qué actividades de investigación de tus profesores has participado» | Articulos cientificos |\n| p08 «Totalmente de acuerdo ¿Sabes si la institución ha obtenido patentes en» | No ha obtenido |\n| p09 «No, y no lo planeo ¿Con qué frecuencia usas alguna plataforma virtual » | Diariamente |\n| p10 «¿Cuándo esperas titularte?» | En el tiempo que marca mi plan de estudios |\n| p11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco» | No, pero planeo hacerlo |\n| p12 «No ¿Cuál es tu situación laboral actual?» | Trabajo en un area relacionada con mi carrera |\n| p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (espec» | 5 en escala 1–5 |\n| p14 «¿Has realizado prácticas profesionales o pasantías?» | Si, pero la consegui por mi cuenta |\n| p15 «Google no cr eó ni apr obó este contenido. ¿En qué programas de cooper» | Movilidad internacional |\n| p16 «La oferta de programas, materias optativas y cursos de mi institución » | 5 en escala 1–5 |\n| p17 «Los laboratorios, equipos, materiales y espacios de la institución son» | 5 en escala 1–5 |\n| p18 «En la biblioteca y las bases de datos académicas (Scopus, IEEE Xplore,» | 4 en escala 1–5 |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "datos_respondente",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 58,
+     "interpretacion": 15080
+    },
+    "latenciaMs": 15191
+   },
+   "tipo": "control",
+   "intencion_correcta": true,
+   "criterios": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.232,
+     "precision_contexto": 0.0,
+     "promedio": 0.411,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.174,
+     "precision_contexto": 1.0,
+     "promedio": 0.725,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.656,
+     "precision_contexto": 1.0,
+     "promedio": 0.885,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.168,
+     "precision_contexto": 1.0,
+     "promedio": 0.723,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "8.2"
+  },
+  {
+   "consulta": 1413,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "fuera_de_dominio",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 22,
+     "interpretacion": 2613
+    },
+    "latenciaMs": 9186
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "criterios": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "No busca bien en el instrumento para encontrar a qué carrera pertenece ese instrumento porque este instrumento sí lo tiene."
+   },
+   "turno": "9.1",
+   "similitud": 0.05
+  },
+  {
+   "consulta": 1414,
+   "enCache": false,
+   "respuesta": "El instrumento actual con el que estamos trabajando es una encuesta dirigida a universitarios en licenciatura, cuyo objetivo es conocer la percepción y la experiencia de los estudiantes sobre la calidad académica de su institución [Fuente 1]. Esta encuesta cubre aspectos como la oferta educativa, el cuerpo docente, la investigación, los recursos de aprendizaje, la trayectoria escolar y la vinculación con el entorno, y sus resultados alimentan 18 indicadores [Fuente 1].\n\nEn relación con la pregunta específica sobre si los estudiantes consideran que existe calidad educativa en ESCOM, se evidencia en los datos que algunos estudiantes reconocen la presencia de actividades de investigación (por ejemplo, desarrollos tecnológicos o software, ponencias en congresos, artículos científicos), y que conocen al menos una persona del cuerpo docente involucrada en investigación. Además, algunos estudiantes indican participación frecuente en actividades de investigación (semanalmente o diariamente), lo cual sugiere una vinculación activa con el ámbito académico.\n\nSin embargo, no se proporciona una respuesta directa sobre si los estudiantes consideran que existe calidad educativa en general en ESCOM, solo se evidencia información sobre participación en actividades de investigación y conocimiento del cuerpo docente. Por lo tanto, no se puede afirmar con certeza si los estudiantes consideran que existe calidad educativa en ESCOM, ya que la encuesta no incluye preguntas directas sobre esta percepción global [Fuente 1]. \n\n[Nota: La pregunta de investigación se centra en la percepción de calidad educativa, pero el instrumento actual no incluye preguntas explícitas sobre esta cuestión, solo sobre actividades de investigación y conocimiento del cuerpo docente. Por lo tanto, no se puede responder con precisión sobre la percepción general de calidad educativa en ESCOM basado únicamente en este instrumento.]\n\nFuente 1",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "fuera_de_dominio",
+    "ruta": "semantica",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "cifras_sin_respaldo",
+    "cifrasTotal": 2,
+    "cifrasConRespaldo": 0,
+    "cifrasSinRespaldo": [
+     "18",
+     "1"
+    ],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 7,
+     "interpretacion": 2869
+    },
+    "latenciaMs": 46463
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.143,
+     "relevancia": 0.163,
+     "precision_contexto": 0.5,
+     "promedio": 0.269,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.167,
+     "relevancia": 0.0,
+     "precision_contexto": 1.0,
+     "promedio": 0.389,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.091,
+     "relevancia": 0.0,
+     "precision_contexto": 0.0,
+     "promedio": 0.03,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 0.333,
+     "relevancia": 0.0,
+     "precision_contexto": 1.0,
+     "promedio": 0.444,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": true,
+    "comentario": "Respondió muy bien, pero no respondió a lo que se le pidió, de qué carrera son los estudiantes que respondieron la encuesta."
+   },
+   "turno": "9.2",
+   "similitud": 0.451
+  },
+  {
+   "consulta": 1415,
+   "enCache": false,
+   "respuesta": "Lo más preocupante es que el 57,8 % de los estudiantes respondieron que nunca o rara vez han tenido cambios de profesor o materias sin profesor asignado en el periodo académico, lo que sugiere una inestabilidad en el cuerpo docente que podría afectar la continuidad y calidad de la enseñanza. Este resultado indica una falta de estabilidad en la asignación docente, lo cual puede impactar negativamente en su experiencia académica [Fuente 1].",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 1,
+    "cifrasConRespaldo": 1,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 11,
+     "redaccion": 14178,
+     "verificacion": 1,
+     "interpretacion": 3611
+    },
+    "latenciaMs": 17833
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.274,
+     "precision_contexto": 1.0,
+     "promedio": 0.758,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.5,
+     "relevancia": 0.273,
+     "precision_contexto": 1.0,
+     "promedio": 0.591,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.25,
+     "relevancia": 0.302,
+     "precision_contexto": 1.0,
+     "promedio": 0.517,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 0.5,
+     "relevancia": 0.432,
+     "precision_contexto": 1.0,
+     "promedio": 0.644,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": "Sí, pero siempre elige ese patrón."
+   },
+   "turno": "10.1"
+  },
+  {
+   "consulta": 1417,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 51,
+     "interpretacion": 5527
+    },
+    "latenciaMs": 5632
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No entendió que quiero fundamentos del patrón interesante que encontró."
+   },
+   "turno": "10.2"
+  },
+  {
+   "consulta": 1418,
+   "enCache": false,
+   "respuesta": "¿De qué dato o pregunta específica quieres que explique por qué es preocupante?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 18,
+     "interpretacion": 6202
+    },
+    "latenciaMs": 6293
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": "No toma en cuenta lo que le pregunté hace 3 consultas, lo pierde."
+   },
+   "turno": "10.3"
+  },
+  {
+   "consulta": 1419,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 5585
+    },
+    "latenciaMs": 5636
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No entiende qué es lo que quiero."
+   },
+   "turno": "10.4"
+  },
+  {
+   "consulta": 1420,
+   "enCache": false,
+   "respuesta": "Criterio: en desacuerdo (nivel bajo) en p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16, p17, p18.\np01 «Cargas máxima ¿Tu programa académico cuenta con acreditación vigente (»: 0 de 1951 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np02 «¿En qué modalidad cursas tu programa?»: 0 de 1949 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np03 «¿Cómo es tu carga académica actual?»: 0 de 1931 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np04 «Siempre De tus profesores de este periodo, ¿cuántos tienen doctorado?»: 0 de 1958 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el »: 1120 de 1937 de quienes respondieron están en desacuerdo (nivel bajo) (57.8 %).\np06 «Ninguna ¿Cuántos de tus profesores han compartido o mencionado en clas»: 0 de 1930 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np07 «¿En qué actividades de investigación de tus profesores has participado»: 0 de 1938 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np08 «Totalmente de acuerdo ¿Sabes si la institución ha obtenido patentes en»: 0 de 1933 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np09 «No, y no lo planeo ¿Con qué frecuencia usas alguna plataforma virtual »: 0 de 1930 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np10 «¿Cuándo esperas titularte?»: 0 de 1942 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco»: 0 de 1952 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np12 «No ¿Cuál es tu situación laboral actual?»: 0 de 1946 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (espec»: 488 de 1872 de quienes respondieron están en desacuerdo (nivel bajo) (26.1 %).\np14 «¿Has realizado prácticas profesionales o pasantías?»: 0 de 1931 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np15 «Google no cr eó ni apr obó este contenido. ¿En qué programas de cooper»: 0 de 1948 de quienes respondieron están en desacuerdo (nivel bajo) (0.0 %).\np16 «La oferta de programas, materias optativas y cursos de mi institución »: 476 de 1874 de quienes respondieron están en desacuerdo (nivel bajo) (25.4 %).\np17 «Los laboratorios, equipos, materiales y espacios de la institución son»: 721 de 1911 de quienes respondieron están en desacuerdo (nivel bajo) (37.7 %).\np18 «En la biblioteca y las bases de datos académicas (Scopus, IEEE Xplore,»: 699 de 1892 de quienes respondieron están en desacuerdo (nivel bajo) (36.9 %). [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "conteo_porcentaje",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "cifras_completadas",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 6482,
+     "redaccion": 23239,
+     "verificacion": 7424,
+     "interpretacion": 13858
+    },
+    "latenciaMs": 43625
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "criterios": true,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.165,
+     "precision_contexto": 1.0,
+     "promedio": 0.722,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.511,
+     "precision_contexto": 1.0,
+     "promedio": 0.837,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.524,
+     "precision_contexto": 1.0,
+     "promedio": 0.841,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.395,
+     "precision_contexto": 1.0,
+     "promedio": 0.798,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": "Sí fue buen resultado, pero debió fundamentar su respuesta, el por qué."
+   },
+   "turno": "11.1",
+   "similitud": 0.522
+  },
+  {
+   "consulta": 1421,
+   "enCache": false,
+   "respuesta": "La opinión más dividida es sobre la oferta de programas, materias optativas y cursos que responde a los intereses académicos y profesionales de los estudiantes, con una desviación estándar de 1.26 puntos en la escala. Esto indica una amplia divergencia en las respuestas, reflejando que los estudiantes no están de acuerdo en la medida en que la oferta académica cumple con sus intereses. [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 1,
+    "cifrasConRespaldo": 1,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 13,
+     "redaccion": 11542,
+     "verificacion": 0,
+     "interpretacion": 7937
+    },
+    "latenciaMs": 19577
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "criterios": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 0.0,
+     "relevancia": 0.363,
+     "precision_contexto": 1.0,
+     "promedio": 0.454,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.472,
+     "precision_contexto": 1.0,
+     "promedio": 0.824,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.667,
+     "relevancia": 0.462,
+     "precision_contexto": 1.0,
+     "promedio": 0.71,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 0.75,
+     "relevancia": 0.529,
+     "precision_contexto": 1.0,
+     "promedio": 0.76,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "11.2",
+   "similitud": 0.608
+  },
+  {
+   "consulta": 1422,
+   "enCache": false,
+   "respuesta": "Indicadores de Experiencia y Calidad Académica (Encuesta) [Fuente 1]:\n- Tipo: Encuesta.\n- Objetivo: Conocer la percepción y la experiencia de los estudiantes sobre la calidad académica de su institución. La encuesta cubre la oferta educativa, el cuerpo docente, la investigación, los recursos de aprendizaje, la trayectoria escolar y la vinculación con el entorno, y sus resultados alimentan 18 indicadores clave de desempeño (KPIs) que ayudan a identificar fortalezas y áreas de mejora.\n- Población: Estudiantes universitarios.\n- Nivel educativo: Posgrado.\n- 18 preguntas sin secciones; 2000 respondentes.\n- Algunas de sus preguntas: «Cargas máxima ¿Tu programa académico cuenta con acreditación vigente (COP AES, SEAES CONAIC, u otro )?»; «¿En qué modalidad cursas tu programa?»; «¿Cómo es tu carga académica actual?»; «Siempre De tus profesores de este periodo, ¿cuántos tienen doctorado?».\n- Palabras clave: calidad, correspondan, institución, materias, profesores, solo, programas, profesionales.\n- KPIs asociados: Ratio de Matriculados frente a Graduados del Curso; Tasa de Continuidad en Estudios de Posgrado; Número de Programas Académicos Acreditados; Cualificación Docente y Tasa de Rotación del Profesorado; Estado de Acreditación y Clasificaciones Académicas.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "metodologia",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 2575
+    },
+    "latenciaMs": 2917
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": false,
+   "criterios": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.196,
+     "precision_contexto": null,
+     "promedio": 0.598,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.256,
+     "precision_contexto": null,
+     "promedio": 0.628,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.22,
+     "precision_contexto": null,
+     "promedio": 0.61,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.13,
+     "precision_contexto": null,
+     "promedio": 0.565,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": "Necesito una respuesta más descriptiva, contextual. Con lo que se tiene qué se puede decir sobre lo que se trata."
+   },
+   "turno": "12.1",
+   "similitud": 0.679
+  },
+  {
+   "consulta": 1423,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados. Recuerda que solo entran al RAG los instrumentos con metadatos aprobados por su autor; puedes ampliar la selección de tu investigación.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "metodologia",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 7,
+     "interpretacion": 2769
+    },
+    "latenciaMs": 4517
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No entiende que lo descriptivo y contextual es referente a lo de sobre de qué trata el instrumento."
+   },
+   "turno": "12.2"
+  },
+  {
+   "consulta": 1424,
+   "enCache": false,
+   "respuesta": "Indicadores de Experiencia y Calidad Académica (Encuesta) [Fuente 1]:\n- No tiene secciones: sus 18 preguntas forman un solo bloque.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "fuera_de_dominio",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "interpretacion": 2747
+    },
+    "latenciaMs": 3062
+   },
+   "tipo": "control",
+   "intencion_correcta": false,
+   "exactitud": 1.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.293,
+     "precision_contexto": null,
+     "promedio": 0.646,
+     "estado": "calculada"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.379,
+     "precision_contexto": null,
+     "promedio": 0.69,
+     "estado": "calculada"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.35,
+     "precision_contexto": null,
+     "promedio": 0.675,
+     "estado": "calculada"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.247,
+     "precision_contexto": null,
+     "promedio": 0.623,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "13.1",
+   "similitud": 0.652
+  },
+  {
+   "consulta": 1425,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion_ajena",
+    "plantillaDetalle": "La interpretación pidió una aclaración, pero la pregunta se tomó como ajena al instrumento y se respondió con el mensaje de fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "interpretacion": 5945
+    },
+    "latenciaMs": 6031
+   },
+   "tipo": "control",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió corroborarme que no tiene secciones el instrumento."
+   },
+   "turno": "13.2",
+   "similitud": 0.318
+  },
+  {
+   "consulta": 1426,
+   "enCache": false,
+   "respuesta": "Sí, hay respondentes que dejaron en blanco algunas preguntas. Por ejemplo:\n\n- El respondente R668 dejó en blanco las preguntas p08, p09, p10 y p11.\n- El respondente R1524 no respondió p11.\n- El respondente R1653 no respondió p13.\n\nEstos casos se registran como \"sin respuesta (sin_respuesta)\" en los datos proporcionados [Fuente 1].",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "metodologia",
+    "ruta": "semantica",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 0,
+    "cifrasConRespaldo": 0,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "interpretacion": 3140
+    },
+    "latenciaMs": 16528
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen2.5:3b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.884,
+     "precision_contexto": 1.0,
+     "promedio": 0.961,
+     "estado": "listo"
+    },
+    "llama3.2:3b": {
+     "fidelidad": 0.25,
+     "relevancia": 0.898,
+     "precision_contexto": 1.0,
+     "promedio": 0.716,
+     "estado": "listo"
+    },
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.8,
+     "relevancia": 0.751,
+     "precision_contexto": 1.0,
+     "promedio": 0.85,
+     "estado": "listo"
+    },
+    "gemma3:4b": {
+     "fidelidad": 1.0,
+     "relevancia": 0.729,
+     "precision_contexto": 1.0,
+     "promedio": 0.91,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": "Perfecto!"
+   },
+   "turno": "14.1",
+   "similitud": 0.702
+  }
+ ]
+}

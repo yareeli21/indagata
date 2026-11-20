@@ -1,0 +1,53 @@
+{
+ "id": "ENT-20",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué tipo de entrevista es y cuánto dura?",
+   "rag_log_id": 2544,
+   "respuesta": "Salud mental en la universidad (Entrevista) [Fuente 1]:\n- Tipo: Entrevista.\n- Objetivo: Identificar las experiencias y percepciones de estudiantes universitarios con respecto a su salud mental y el acceso a servicios de apoyo en un entorno académico.\n- Nivel educativo: Licenciatura.\n- Contexto: Institución: ESCOM. Cobertura: Licenciatura — Estudiante ESCOM ISC. Metodología: Entrevista a profundidad.\n- Guion de 12 preguntas; se entrevistó a 1 participantes.\n- Algunas de sus preguntas: «Para empezar, ¿cómo describirías tu estado de ánimo durante este semestre?»; «¿Qué situaciones de la universidad te generan más estrés o ansiedad?»; «¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cómo te enteraste?»; «¿Has utilizado alguno de esos servicios? Cuéntame cómo fue.».\n- Palabras clave: Salud y atención mental.\n- KPIs asociados: Uso de Servicios de Salud Mental y Apoyo Psicológico; Proporción de Consejeros/Orientadores por Estudiante; Tasa de Transferencia / Traslado a Otras Instituciones; Cobertura y Calidad de Servicios de Apoyo Estudiantil.",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion:cifras_corregidas",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.577
+    }
+   ],
+   "segundos": 21.4,
+   "tiempos_ms": {
+    "redaccion": 20931,
+    "recuperacion": 175,
+    "verificacion": 7530
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Semiestructurada, una participante; si la duración no está, decirlo."
+}

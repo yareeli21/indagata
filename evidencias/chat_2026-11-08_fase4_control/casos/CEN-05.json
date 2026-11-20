@@ -1,0 +1,137 @@
+{
+ "id": "CEN-05",
+ "instrumento": "enc_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 2522,
+   "respuesta": "Criterio: resumen de p08.\np08 «Distribuyo el tiempo de manera equilibrada entre todas mis materias.»: 160 respuestas válidas; media 3.31.\nInterpretación calculada: Respuestas divididas: 48.1 % acuerdo, 26.2 % desacuerdo, 25.6 % neutral. [Fuente 1]\n\n**Distribución de p08 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Totalmente en desacuerdo / Nunca | 13 | 8.1 % |\n| En desacuerdo / Pocas veces | 29 | 18.1 % |\n| Ni de acuerdo ni en desacuerdo / A veces | 41 | 25.6 % |\n| De acuerdo / Frecuentemente | 50 | 31.2 % |\n| Totalmente de acuerdo / Siempre | 27 | 16.9 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p08"
+    ]
+   },
+   "correcciones": [
+    "filtro p08 = «alta» descartado (no es una opción y la pregunta no lo menciona)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:cifras_completadas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.4769
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4688
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p18",
+     "score": 0.4591
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.4572
+    }
+   ],
+   "segundos": 70.3,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 51235,
+    "recuperacion": 287,
+    "verificacion": 20013,
+    "interpretacion": 18754
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué?",
+   "rag_log_id": 2523,
+   "respuesta": "**Lo que muestran los datos:** p08 «Distribuyo el tiempo de manera equilibrada entre todas mis materias.»: 160 respuestas válidas; media 3.31.\n\n**Interpretación (del asistente, no es un dato):** Según los resultados de la encuesta, existe una percepción mixta sobre la distribución del tiempo entre las materias, con un porcentaje significativo de estudiantes que expresan desacuerdo o neutralidad respecto a lograr un equilibrio [Fuente 1].  Específicamente, casi el treinta por ciento de los encuestados indican que no distribuyen su tiempo de manera equilibrada y otro veintiséis por ciento lo expresa como desacuerdo [Fuente 1]. Dada la cantidad relativamente pequeña de respuestas en las categorías de \"Totalmente en desacuerdo\" y \"En desacuerdo\", se sugiere una mayor exploración para comprender mejor los factores que influyen en esta percepción, considerando que solo el ocho por ciento de los encuestados expresaron estar totalmente en desacuerdo [Fuente 1].",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "profundiza",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p08"
+    ]
+   },
+   "correcciones": [
+    "profundiza: se repite el plan anterior (resumen_pregunta) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4919
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.4855
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.48
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4716
+    }
+   ],
+   "segundos": 39.6,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 21871,
+    "recuperacion": 279,
+    "verificacion": 0,
+    "interpretacion": 17425
+   },
+   "k_precision": 0.373,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Respuestas desfavorables con cifras."
+}

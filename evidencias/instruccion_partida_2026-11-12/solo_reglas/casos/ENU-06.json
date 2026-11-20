@@ -1,0 +1,64 @@
+{
+ "id": "ENU-06",
+ "instrumento": "enc_nueva",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la puntualidad en clases entre hombres y mujeres",
+   "rag_log_id": 4169,
+   "respuesta": "Criterio: por genero. [Fuente 1]\n\n**Comparación por genero [Fuente 1]**\n| Grupo | Personas | p01: respuestas del grupo |\n|---|---|---|\n| femenino | 79 | media 3.23; «De acuerdo / Frecuentemente» 24 (30.4 %); «Ni de acuerdo ni en desacuerdo / A veces» 22 (27.8 %); «En desacuerdo / Pocas veces» 16 (20.3 %); «Totalmente de acuerdo / Siempre» 11 (13.9 %); «Totalmente en desacuerdo / Nunca» 6 (7.6 %) |\n| masculino | 75 | media 3.24; «De acuerdo / Frecuentemente» 21 (28.0 %); «Ni de acuerdo ni en desacuerdo / A veces» 20 (26.7 %); «En desacuerdo / Pocas veces» 17 (22.7 %); «Totalmente de acuerdo / Siempre» 12 (16.0 %); «Totalmente en desacuerdo / Nunca» 5 (6.7 %) |\n| otro | 6 | media 4.17; «Totalmente de acuerdo / Siempre» 3 (50.0 %); «Ni de acuerdo ni en desacuerdo / A veces» 2 (33.3 %); «De acuerdo / Frecuentemente» 1 (16.7 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p01"
+    ],
+    "agrupar_por": "genero"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p01"
+    ],
+    "agrupar_por": "genero"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:cifra_atribuida",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5808
+    }
+   ],
+   "segundos": 42.7,
+   "tiempos_ms": {
+    "ejecucion": 12,
+    "redaccion": 31044,
+    "recuperacion": 456,
+    "verificacion": 13413,
+    "interpretacion": 11124
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    30,
+    30
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Pregunta de puntualidad por género: cada grupo con su n y su media o distribución, sin causas."
+}

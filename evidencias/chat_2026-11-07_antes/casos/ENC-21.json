@@ -1,0 +1,70 @@
+{
+ "id": "ENC-21",
+ "instrumento": "enc",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué preguntas eran opcionales?",
+   "rag_log_id": 2300,
+   "respuesta": "Según los datos registrados, la opción más frecuente en cuanto al uso de plataformas virtuales es “Diariamente”, siendo utilizada por 887 estudiantes (46.0%) [Fuente 1]. El 621 estudiantes (32.2%) las utilizan semanalmente y 229 (11.9%) lo hacen mensualmente, mientras que 132 (6.8%) las usan menos de una vez al mes y 61 (3.2%) nunca [Fuente 1]. La pregunta p07, relacionada con la participación en actividades de investigación de profesores, era opcional según los datos registrados [Fuente 1].\n\n**Distribución de p09 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Diariamente | 887 | 46.0 % |\n| Semanalmente | 621 | 32.2 % |\n| Mensualmente | 229 | 11.9 % |\n| Menos de una vez al mes | 132 | 6.8 % |\n| Nunca | 61 | 3.2 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p09"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4425
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4404
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.4201
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.4187
+    }
+   ],
+   "segundos": 44.1,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 36800,
+    "recuperacion": 269,
+    "verificacion": 16979,
+    "interpretacion": 6947
+   },
+   "k_precision": 0.745,
+   "cifras_con_respaldo": [
+    12,
+    12
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "No, no entendió lo que le pedí"
+  }
+ ],
+ "debe": "Si el sistema guarda el dato, nombrarlas; si no, decir que no lo tiene, sin inventar."
+}

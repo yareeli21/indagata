@@ -1,0 +1,69 @@
+{
+ "id": "PRU-11",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara cómo respondieron los reactivos de seguridad (VPN, phishing, contraseña, Wi-Fi) con los de licencias (Creative Commons, código abierto)",
+   "rag_log_id": 2742,
+   "respuesta": "Los alumnos respondieron al reactivo r15 (“Usar redes Wi-Fi públicas sin VPN es completamente seguro”) con una respuesta de “Verdadero”, obteniendo un 75.3% (n=73) de respuestas correctas. El 24.7% restante (n=24) respondió “Falso”. [Fuente 1]",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«tema» no es una variable de contexto de «Prueba de Alfabetización Digital» (disponibles: perfil, edad, genero, semestre, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca)."
+   },
+   "plan_modelo": {
+    "limite": 20,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r03",
+     "r15",
+     "r21"
+    ],
+    "agrupar_por": "tema"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6091
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5822
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.5046
+    }
+   ],
+   "segundos": 31.3,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 182,
+    "interpretacion": 19661
+   },
+   "k_precision": 0.824,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Qué reactivos agrupó y qué opciones predominan en cada grupo."
+}

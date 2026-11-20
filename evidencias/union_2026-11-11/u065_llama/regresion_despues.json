@@ -1,0 +1,982 @@
+{
+ "modo": "despues",
+ "fecha": "2026-11-11T18:34:16",
+ "metricas": false,
+ "resultados": [
+  {
+   "id": "C01",
+   "categoria": "hallazgo",
+   "pregunta": "dame un dato que encuentres interesante del instrumento",
+   "segundos": 30.88,
+   "decision": "dentro",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:regenerada",
+   "plan": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Cuál es el KPI asociado a esta pregunta?",
+    "consulta_semantica": "¿cuál es la tasa de continuidad en estudios de posgrado?"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 11,
+    "redaccion": 18596,
+    "recuperacion": 431,
+    "verificacion": 8719,
+    "interpretacion": 11464
+   },
+   "respuesta": "* 57.8% de quienes respondieron a p05 \"¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?\" respondieron \"Nunca\" o \"Rara vez\", lo que podría sugerir que la inestabilidad en la enseñanza es un problema poco frecuente para muchos estudiantes.\n* 50.4% de quienes respondieron a p13 \"¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?\" respondieron \"Muy probable\", lo que podría indicar que la mayoría de los estudiantes consideran que volverán a estudiar en la misma institución.\n* 65.1% de quienes respondieron a p03 \"¿Cómo es tu carga académica actual?\" eligieron \"Carga media/normal\", lo que sugiere que muchos estudiantes sienten que su carga académica es razonable y no demasiado pesada.\n* 64.2% de quienes respondieron a p02 \"¿En qué modalidad cursas tu programa?\" eligieron \"Presencial\", lo que podría indicar que la mayoría de los estudiantes prefieren un aprendizaje presencial.\n* 61.7% de quienes respondieron a p08 \"¿Sabes si la institución ha obtenido patentes en los últimos años?\" eligieron \"No lo se\", lo que sugiere que muchos estudiantes no tienen información sobre el desarrollo tecnológico de la institución.",
+   "plan_ok": {
+    "intencion": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras_alguna": true
+   }
+  },
+  {
+   "id": "C02",
+   "categoria": "filtro con límite y todas las respuestas",
+   "pregunta": "dame los primeros 5 estudiantes que contestaron que tienen carga mínima, junto con todas sus respuestas",
+   "segundos": 20.32,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "plan:datos_respondente:inventada",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 5,
+    "intencion": "datos_respondente"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 61,
+    "redaccion": 15937,
+    "recuperacion": 716,
+    "verificacion": 4956,
+    "interpretacion": 3500
+   },
+   "respuesta": "Respuestas interpretadas de R001, R002, R003, R004, R005 (los 5 primeros por número de respondente (de 2000)). [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | R001 | R002 | R003 | R004 | R005 |\n|---|---|---|---|---|---|\n| p01 «¿Tu programa académico cuenta con acreditación vigente (COP AES, SEAES» | No lo se | No lo se | No lo se | Si | No lo se |\n| p02 «¿En qué modalidad cursas tu programa?» | Presencial | Presencial | Mixta/hibrida | Presencial | Presencial |\n| p03 «¿Cómo es tu carga académica actual?» | Carga media/normal | Carga minima, Carga media/normal | Carga media/normal | Carga media/normal | Carga media/normal, Cargas maxima |\n| p04 «De tus profesores de este periodo, ¿cuántos tienen doctorado?» | No lo se | Menos de la mitad | Todos | Menos de la mitad | Menos de la mitad |\n| p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el » | Algunas veces | Rara vez | Nunca | Algunas veces | Rara vez |\n| p06 «¿Cuántos de tus profesores han compartido o mencionado en clase artícu» | 2-3 | Ninguno | 1 | 4 o mas | 2-3 |\n| p07 «¿En qué actividades de investigación de tus profesores has participado» | Articulos cientificos, Direccion de tesis | Ninguna | Proyectos de investigacion financiados | (sin respuesta) | Ponencias en cogresos |\n| p08 «¿Sabes si la institución ha obtenido patentes en los últimos años?» | Si, conozco al menos una | No lo se | No ha obtenido | No ha obtenido | No lo se |\n| p09 «¿Con qué frecuencia usas alguna plataforma virtual (Moodle, Classroom,» | Diariamente | Mensualmente | Diariamente | Diariamente | Nunca |\n| p10 «¿Cuándo esperas titularte?» | Con hasta un año de retraso | Con mas de un año de retraso | En el tiempo que marca mi plan de estudios | Con hasta un año de retraso | Con hasta un año de retraso |\n| p11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco» | Si, y no lo aprobe | No, pero planeo hacerlo | Si, y lo aprobe | No, pero planeo hacerlo | No, y no lo planeo |\n| p12 «¿Cuál es tu situación laboral actual?» | Busco empleo | Busco empleo | Busco empleo | Busco empleo | Trabajo en un area no relacionada |\n| p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (espec» | 4 en escala 1–5 | 4 en escala 1–5 | Muy probable | 3 en escala 1–5 | 4 en escala 1–5 |\n| p14 «¿Has realizado prácticas profesionales o pasantías?» | Si, pero la consegui por mi cuenta | Aun no, pero planeo hacerlo | Si, pero la consegui por mi cuenta | Aun no, pero planeo hacerlo | Aun no, pero planeo hacerlo |\n| p15 «¿En qué programas de cooperación de tu institución has participado o c» | Movilidad internacional | Ninguno, Doble titulacion | (sin respuesta) | Doble titulacion, Ninguno | Movilidad internacional |\n| p16 «La oferta de programas, materias optativas y cursos de mi institución » | 3 en escala 1–5 | 3 en escala 1–5 | Totalmente de acuerdo | 3 en escala 1–5 | 3 en escala 1–5 |\n| p17 «Los laboratorios, equipos, materiales y espacios de la institución son» | 3 e",
+   "plan_ok": {
+    "intencion": false,
+    "filtros": false,
+    "limite": true,
+    "campos": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false,
+    "contiene": false
+   }
+  },
+  {
+   "id": "C03",
+   "categoria": "por respondente (ordinal)",
+   "pregunta": "qué respondió el primer respondente en todas las preguntas?",
+   "segundos": 18.99,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "plan:datos_respondente",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "datos_respondente"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 59,
+    "redaccion": 14838,
+    "recuperacion": 341,
+    "verificacion": 2,
+    "interpretacion": 3637
+   },
+   "respuesta": "R001 respondió de la siguiente manera:\n\n- En p01 dijo que no cuenta con acreditación vigente.\n- En p02 dijo que cursa su programa presencialmente.\n- En p03 dijo que su carga académica actual es media/normal.\n- En p04 dijo que no sabe cuántos profesores tienen doctorado.\n- En p05 dijo que ha tocado un cambio de profesor algunas veces.\n- En p06 dijo que 2-3 profesores han compartido o mencionado artículos en clase.\n- En p07 dijo que ha participado en actividades de investigación con artículos científicos y dirección de tesis.\n- En p08 dijo que sabe que la institución ha obtenido patentes en los últimos años, conociendo al menos a una persona.\n- En p09 dijo que usa alguna plataforma virtual diariamente.\n- En p10 dijo que espera titularse con un retraso de hasta un año.\n- En p11 dijo que ha presentado algún examen de certificación profesional y no lo ha aprobado.\n- En p12 dijo que está buscando empleo.\n- En p13 dijo que es probable que vuelva a estudiar en la institución con una probabilidad del 4 en una escala de 1 a 5.\n- En p14 dijo que realizó prácticas profesionales, pero las obtuvo por su cuenta.\n- En p15 dijo que ha participado o realizado programas de cooperación internacional.\n- En p16 dijo que la oferta de programas y materias optativas es de un 3 en una escala de 1 a 5.\n- En p17 dijo que los laboratorios, equipos, materiales y espacios son de un 3 en una escala de 1 a 5.\n- En p18 dijo que las bases de datos académicas son de un 3 en una escala de 1 a 5.\n\nR001 dijo que no cuenta con acreditación vigente (p01), cursa su programa presencialmente (p02) y tiene una carga académica media/normal (p03).\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | R001 |\n|---|---|\n| p01 «¿Tu programa académico cuenta con acreditación vigente (COP AES, SEAES» | No lo se |\n| p02 «¿En qué modalidad cursas tu programa?» | Presencial |\n| p03 «¿Cómo es tu carga académica actual?» | Carga media/normal |\n| p04 «De tus profesores de este periodo, ¿cuántos tienen doctorado?» | No lo se |\n| p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el » | Algunas veces |\n| p06 «¿Cuántos de tus profesores han compartido o mencionado en clase artícu» | 2-3 |\n| p07 «¿En qué actividades de investigación de tus profesores has participado» | Articulos cientificos, Direccion de tesis |\n| p08 «¿Sabes si la institución ha obtenido patentes en los últimos años?» | Si, conozco al menos una |\n| p09 «¿Con qué frecuencia usas alguna plataforma virtual (Moodle, Classroom,» | Diariamente |\n| p10 «¿Cuándo esperas titularte?» | Con hasta un año de retraso |\n| p11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco» | Si, y no lo aprobe |\n| p12 «¿Cuál es tu situación laboral actual?» | Busco empleo |\n| p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (espec» | 4 en escala 1–5 |\n| p14 «¿Has realizado prácticas profesionales o pasantías?» | Si, pero la consegui por mi cuenta |\n| p15 «¿En qué programas de cooperación de tu institución h",
+   "plan_ok": {
+    "intencion": true,
+    "limite": true,
+    "campos": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "contiene": true
+   }
+  },
+  {
+   "id": "C04",
+   "categoria": "por respondente (ID y pregunta)",
+   "pregunta": "¿qué respondió R017 en la pregunta 3?",
+   "segundos": 18.18,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "plan:datos_respondente:regenerada",
+   "plan": {
+    "campos": [
+     "p03"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "R017"
+    ],
+    "consulta_semantica": "¿Qué respondió R017 en la pregunta 3?"
+   },
+   "correcciones": [
+    "respondente R017 tomado de la pregunta",
+    "campos p03 tomados de la pregunta"
+   ],
+   "tiempos": {
+    "ejecucion": 44,
+    "redaccion": 5320,
+    "recuperacion": 299,
+    "verificacion": 1984,
+    "interpretacion": 12409
+   },
+   "respuesta": "R017 respondió que su carga académica actual es \"carga media/normal\". Esto significa que considera que su carga actual es normal y no demasiado pesada ni ligera. [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | R017 |\n|---|---|\n| p03 «¿Cómo es tu carga académica actual?» | Carga media/normal |",
+   "plan_ok": {
+    "intencion": true,
+    "respondentes": true,
+    "campos": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "contiene": true
+   }
+  },
+  {
+   "id": "C05",
+   "categoria": "filtros combinados (conteo)",
+   "pregunta": "¿cuántos tienen carga minima y alguna certificación?",
+   "segundos": 16.17,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Carga minima",
+      "pregunta": "p03"
+     },
+     {
+      "valor": [
+       "Si, y lo aprobe",
+       "Si, y no lo aprobe"
+      ],
+      "pregunta": "p11"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "filtro p11: todas las opciones «Sí…» (2)"
+   ],
+   "tiempos": {
+    "ejecucion": 136,
+    "redaccion": 4430,
+    "recuperacion": 493,
+    "verificacion": 0,
+    "interpretacion": 11012
+   },
+   "respuesta": "105 de los 1886 que respondieron p03 y p11 (5.6 %) cumplen el criterio: p03 «¿Cómo es tu carga académica actual?» = «Carga minima» y p11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco» = «Si, y lo aprobe» o «Si, y no lo aprobe». Sobre el total del instrumento son 105 de 2000 respondentes (5.2 %). [Fuente 1]",
+   "plan_ok": {
+    "intencion": true,
+    "filtros": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true
+   }
+  },
+  {
+   "id": "C06",
+   "categoria": "seguimiento con historial",
+   "pregunta": "¿y de ellos cuántos están en modalidad en línea?",
+   "segundos": 20.15,
+   "decision": "dentro",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:negativa_corregida",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 50,
+    "filtros": [
+     {
+      "valor": "En linea",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 9,
+    "redaccion": 15098,
+    "recuperacion": 472,
+    "verificacion": 5458,
+    "interpretacion": 4462
+   },
+   "respuesta": "- La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»).\n- La pregunta con más respuestas en el nivel alto es p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?»: 50.4 % de quienes respondieron (respondieron «4 en escala 1–5» o «Muy probable»).\n- En p03 «¿Cómo es tu carga académica actual?» predomina «Carga media/normal»: 65.1 % de quienes respondieron. [Fuente 1]",
+   "plan_ok": {
+    "intencion": false,
+    "filtros": false
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false
+   }
+  },
+  {
+   "id": "C07",
+   "categoria": "porcentaje en un nivel",
+   "pregunta": "¿qué porcentaje está en desacuerdo con que los laboratorios son adecuados?",
+   "segundos": 8.78,
+   "decision": "dentro",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "nivel": "desacuerdo",
+      "pregunta": "p17"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "filtro p17: «Totalmente en desacuerdo» → nivel desacuerdo (la pregunta habla del nivel)"
+   ],
+   "tiempos": {
+    "ejecucion": 192,
+    "redaccion": 4374,
+    "recuperacion": 477,
+    "verificacion": 0,
+    "interpretacion": 3639
+   },
+   "respuesta": "721 de los 1911 que respondieron p17 (37.7 %) cumplen el criterio: p17 «Los laboratorios, equipos, materiales y espacios de la institución son» en desacuerdo (nivel bajo). Sobre el total del instrumento son 721 de 2000 respondentes (36.0 %). [Fuente 1] El criterio se refiere a si los laboratorios son adecuados para la formación de los estudiantes. La pregunta es sobre si los laboratorios son adecuados para mi formación y se trata de un nivel de acuerdo o desacuerdo.",
+   "plan_ok": {
+    "intencion": true,
+    "preguntas": false,
+    "nivel": false
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true
+   }
+  },
+  {
+   "id": "C08",
+   "categoria": "negación",
+   "pregunta": "¿cuántos no han presentado ningún examen de certificación profesional?",
+   "segundos": 20.45,
+   "decision": "dentro",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:cifras_completadas",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "p11",
+     "p15"
+    ]
+   },
+   "correcciones": [
+    "excluir p15 descartado (la pregunta no pide excluir nada)",
+    "nivel neutral quitado (ni la consulta lo dice ni la pregunta es de escala)"
+   ],
+   "tiempos": {
+    "ejecucion": 73,
+    "redaccion": 8519,
+    "recuperacion": 812,
+    "verificacion": 3315,
+    "interpretacion": 10949
+   },
+   "respuesta": "Criterio: resumen de p11, p15.\np11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco»: 1952 respuestas válidas, 48 sin respuesta.\nInterpretación calculada: La opción más frecuente es «No, pero planeo hacerlo» (44.7 % de las respuestas).\np15 «¿En qué programas de cooperación de tu institución has participado o c»: 1948 respuestas válidas, 52 sin respuesta.\nInterpretación calculada: La opción más elegida es «Doble titulacion»: la eligió el 26.1 % de quienes respondieron. [Fuente 1]\n\n**Distribución de p11 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| No, pero planeo hacerlo | 873 | 44.7 % |\n| No, y no lo planeo | 454 | 23.3 % |\n| Si, y lo aprobe | 379 | 19.4 % |\n| Si, y no lo aprobe | 246 | 12.6 % |\n\n**Distribución de p15 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Doble titulacion | 508 | 26.1 % |\n| Ninguno | 498 | 25.6 % |\n| Movilidad internacional | 495 | 25.4 % |\n| Estancias en centro de investigacion | 487 | 25.0 % |\n| Proyectos con gobierno o empresas | 478 | 24.5 % |\n| Movilidad nacional | 472 | 24.2 % |",
+   "plan_ok": {
+    "intencion": true,
+    "filtros": false
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false
+   }
+  },
+  {
+   "id": "C09",
+   "categoria": "límite y solo IDs",
+   "pregunta": "dame los IDs de 3 estudiantes que cursan en modalidad en línea",
+   "segundos": 20.84,
+   "decision": "dentro",
+   "ruta": "mixta",
+   "motivo": "plan:filtrar_respondentes:cifras_completadas",
+   "plan": {
+    "orden": {},
+    "limite": 3,
+    "filtros": [
+     {
+      "valor": "En linea",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "filtrar_respondentes"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 287,
+    "redaccion": 7897,
+    "recuperacion": 619,
+    "verificacion": 3002,
+    "interpretacion": 11940
+   },
+   "respuesta": "Criterio: p02 «¿En qué modalidad cursas tu programa?» = «En linea».\nCumplen la condición 263 de 2000 respondentes (13.2 %).\nSe muestran los 3 primeros por número de respondente que la cumplen: 3 de 263.\nFaltan 260: pide «muéstrame más» para ver los siguientes.\nRespondentes: R015, R018, R020. [Fuente 1]",
+   "plan_ok": {
+    "intencion": true,
+    "filtros": true,
+    "limite": true,
+    "campos": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true,
+    "contiene": true
+   }
+  },
+  {
+   "id": "C10",
+   "categoria": "por respondente (último)",
+   "pregunta": "¿qué contestó el último respondente en la pregunta 2?",
+   "segundos": 14.3,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "plan:datos_respondente",
+   "plan": {
+    "orden": {
+     "dir": "desc"
+    },
+    "campos": [
+     "p02"
+    ],
+    "limite": 1,
+    "intencion": "datos_respondente"
+   },
+   "correcciones": [
+    "orden desc por número de respondente («ultimo» en la pregunta)",
+    "campos p02 tomados de la pregunta"
+   ],
+   "tiempos": {
+    "ejecucion": 48,
+    "redaccion": 3848,
+    "recuperacion": 375,
+    "verificacion": 1,
+    "interpretacion": 9930
+   },
+   "respuesta": "El último respondiente en la pregunta 2 (p02) dijo que cursaba su programa de presencial. Esto significa que no cursaba su programa en línea ni en una modalidad mixta/hibrida.\n\nR2000 en p02: \"Presencial\"\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | R2000 |\n|---|---|\n| p02 «¿En qué modalidad cursas tu programa?» | Presencial |",
+   "plan_ok": {
+    "intencion": true,
+    "campos": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "contiene": true
+   }
+  },
+  {
+   "id": "C11",
+   "categoria": "resumen de una pregunta",
+   "pregunta": "¿qué respondieron en la pregunta 2?",
+   "segundos": 11.42,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "plan:resumen_pregunta:inventada",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p02"
+    ]
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 7,
+    "redaccion": 8662,
+    "recuperacion": 309,
+    "verificacion": 4119,
+    "interpretacion": 2348
+   },
+   "respuesta": "Criterio: resumen de p02.\np02 «¿En qué modalidad cursas tu programa?»: 1949 respuestas válidas, 51 sin respuesta.\nInterpretación calculada: La opción más frecuente es «Presencial» (64.2 % de las respuestas). [Fuente 1]\n\n**Distribución de p02 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Presencial | 1251 | 64.2 % |\n| Mixta/hibrida | 435 | 22.3 % |\n| En linea | 263 | 13.5 % |",
+   "plan_ok": {
+    "intencion": true,
+    "preguntas": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true,
+    "contiene": true
+   }
+  },
+  {
+   "id": "C12",
+   "categoria": "KPI",
+   "pregunta": "¿qué KPIs tiene asociados el instrumento?",
+   "segundos": 40.54,
+   "decision": "dentro",
+   "ruta": "mixta",
+   "motivo": "plan:kpi:inventada",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 10,
+    "filtros": [
+     {
+      "valor": "Si",
+      "pregunta": "p01"
+     },
+     {
+      "valor": "Presencial",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "kpi"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 9,
+    "redaccion": 29103,
+    "recuperacion": 350,
+    "verificacion": 14314,
+    "interpretacion": 10985
+   },
+   "respuesta": "Criterio: los 5 KPIs asociados. [Fuente 1]\n\n**KPIs asociados [Fuente 1]**\n| KPI | Qué mide | Preguntas que lo sustentan |\n|---|---|---|\n| Ratio de Matriculados frente a Graduados del Curso | Mide la efectividad del contenido y el nivel de persistencia de los estudiantes dentro de un curso específico (presencial o híbrido). | p13, p01, p16, p03, p04 |\n| Tasa de Continuidad en Estudios de Posgrado | Porcentaje de egresados de licenciatura o grado que continúan inmediatamente su formación académica en programas de posgrado. | p13, p01, p16, p03 |\n| Número de Programas Académicos Acreditados | Recuento de programas educativos que han superado con éxito la evaluación de calidad de agencias nacionales o internacionales. | p01, p16 |\n| Cualificación Docente y Tasa de Rotación del Profesorado | KPI doble que evalúa por un lado el nivel académico del claustro (maestrías, doctorados) y por otro la estabilidad laboral mediante el porcentaje de salida de profesores. | p16, p17, p01, p13 |\n| Estado de Acreditación y Clasificaciones Académicas | Mide el estatus de validación formal otorgado por agencias acreditadoras de calidad y la posición competitiva de la institución en clasificaciones educativas globales o regionales. Refleja el cumplimiento de estándares rigurosos en infraestructura, currículo, cuerpo docente y resultados estudiantiles. | p01 |",
+   "plan_ok": {
+    "intencion": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "contiene": true
+   }
+  },
+  {
+   "id": "C13",
+   "categoria": "valor que no existe",
+   "pregunta": "¿cuántos estudian en modalidad nocturna?",
+   "segundos": 10.74,
+   "decision": "dentro",
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Nocturna» no es una opción de p06 («¿Cuántos de tus profesores han compartido o mencionado en clase artículos científicos de su autoría?»). Las opciones son: 2-3, Ninguno, 1, 4 o mas. ¿Cuál quieres?"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 9,
+    "recuperacion": 414,
+    "interpretacion": 10224
+   },
+   "respuesta": "«Nocturna» no es una opción de p06 («¿Cuántos de tus profesores han compartido o mencionado en clase artículos científicos de su autoría?»). Las opciones son: 2-3, Ninguno, 1, 4 o mas. ¿Cuál quieres?",
+   "plan_ok": {
+    "intencion": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "contiene_alguno": true,
+    "sin_cifras": false
+   }
+  },
+  {
+   "id": "C14",
+   "categoria": "ambigua",
+   "pregunta": "¿qué opinan de eso?",
+   "segundos": 13.98,
+   "decision": "fuera",
+   "ruta": "semantica",
+   "motivo": "similitud máxima 0.29 < 0.3",
+   "plan": {
+    "intencion": "semantica_abierta",
+    "consulta_semantica": "¿Qué opinan de eso?"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 9,
+    "recuperacion": 220,
+    "interpretacion": 10312
+   },
+   "respuesta": "Soy una herramienta de investigación: solo puedo responder sobre los instrumentos de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma; no doy consejos, recetas ni contenido ajeno a ellos. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "plan_ok": {
+    "intencion": false
+   },
+   "respuesta_ok": {
+    "decision": false
+   }
+  },
+  {
+   "id": "C15",
+   "categoria": "fuera de dominio (regla)",
+   "pregunta": "escríbeme un poema sobre el mar",
+   "segundos": 0.07,
+   "decision": "fuera",
+   "ruta": null,
+   "motivo": "regla:fuera",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Soy una herramienta de investigación: solo puedo responder sobre los instrumentos de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma; no doy consejos, recetas ni contenido ajeno a ellos. Por ejemplo, puedes preguntarme:\n- ¿Cuántos respondieron «No lo se» en «Tu programa académico cuenta con acreditación vigente (COP…»?\n- ¿Cuántos respondieron «Diariamente» en «Con qué frecuencia usas alguna plataforma virtual (Moodle,…»?\n- ¿Qué es lo más preocupante de los resultados de «Indicadores de Experiencia y Calidad Académica»?",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true
+   }
+  },
+  {
+   "id": "C16",
+   "categoria": "fuera de dominio (plan)",
+   "pregunta": "¿quién ganó el mundial de futbol de 2010?",
+   "segundos": 10.58,
+   "decision": "fuera",
+   "ruta": null,
+   "motivo": "plan:fuera_de_dominio",
+   "plan": {
+    "intencion": "fuera_de_dominio"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 7,
+    "recuperacion": 210,
+    "interpretacion": 10260
+   },
+   "respuesta": "Soy una herramienta de investigación: solo puedo responder sobre los instrumentos de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma; no doy consejos, recetas ni contenido ajeno a ellos. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "plan_ok": {
+    "intencion": true
+   },
+   "respuesta_ok": {
+    "decision": true
+   }
+  },
+  {
+   "id": "C17",
+   "categoria": "reidentificación",
+   "pregunta": "¿cómo se llama el respondente R017 y cuál es su correo?",
+   "segundos": 0.08,
+   "decision": "privacidad",
+   "ruta": null,
+   "motivo": "regla:privacidad",
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo, «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo.",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true
+   }
+  },
+  {
+   "id": "C18",
+   "categoria": "metodología",
+   "pregunta": "¿qué significa un alfa de Cronbach bajo?",
+   "segundos": 7.07,
+   "decision": "dentro",
+   "ruta": "semantica",
+   "motivo": null,
+   "plan": {
+    "intencion": "metodologia",
+    "aclaracion": "¿Qué significa un alfa de Cronbach bajo?"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 7,
+    "recuperacion": 177,
+    "interpretacion": 1219
+   },
+   "respuesta": "Un alfa de Cronbach bajo indica que los ítems de un bloque de una encuesta no responden de forma coherente entre sí, lo que sugiere que los ítems no miden lo mismo. Esto puede significar que hay variabilidad o inconsistencia en la respuesta de los participantes a las preguntas del bloque.\n\nEn otras palabras, si el alfa de Cronbach es bajo, es posible que algunos ítems estén mediendo conceptos diferentes o que haya una falta de consistencia en la medida que se está intentando capturar. Esto puede ser un problema para la validez y la fiabilidad de los resultados obtenidos.\n\nEn general, un alfa de Cronbach bajo puede indicar que es necesario revisar o reorganizar el bloque de preguntas para mejorar su consistencia y validad.",
+   "plan_ok": {
+    "intencion": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "contiene_alguno": true
+   }
+  },
+  {
+   "id": "C19",
+   "categoria": "uso de la plataforma",
+   "pregunta": "¿cómo descargo el archivo limpio de un instrumento?",
+   "segundos": 4.26,
+   "decision": "ayuda",
+   "ruta": "ayuda",
+   "motivo": null,
+   "plan": null,
+   "correcciones": null,
+   "tiempos": {},
+   "respuesta": "Para descargar el archivo limpio de un instrumento, sigue estos pasos:\n\n1.  Accede a \"Mis instrumentos\" en la plataforma.\n2.  Selecciona el instrumento que deseas descargar y haz clic en \"Descargar\".\n3.  En la página de descarga, selecciona \"Archivo crudo\" como formato de archivo.\n4.  Haz clic en \"Descargar\".\n\nDe esta manera podrás obtener el archivo limpio del instrumento sin modificaciones.",
+   "plan_ok": {},
+   "respuesta_ok": {
+    "decision": true
+   }
+  },
+  {
+   "id": "C20",
+   "categoria": "comparar grupos de contexto",
+   "pregunta": "compara el porcentaje de acuerdo en la pregunta 1 entre los turnos",
+   "segundos": 23.23,
+   "decision": "dentro",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:inventada",
+   "plan": {
+    "nivel": "acuerdo",
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p01"
+    ],
+    "agrupar_por": "turno"
+   },
+   "correcciones": [
+    "agrupar_por «Turno» → «turno»",
+    "nivel acuerdo tomado de la pregunta"
+   ],
+   "tiempos": {
+    "ejecucion": 6,
+    "redaccion": 12231,
+    "recuperacion": 439,
+    "verificacion": 5385,
+    "interpretacion": 10410
+   },
+   "respuesta": "Criterio: por turno. [Fuente 1]\n\n**Comparación por turno [Fuente 1]**\n| Grupo | Personas | p01: de acuerdo (nivel alto) |\n|---|---|---|\n| Matutino | 30 | 60.0 % (18 de 30) |\n| Vespertino | 30 | 16.7 % (5 de 30) |",
+   "plan_ok": {
+    "intencion": true,
+    "preguntas": true,
+    "nivel": true,
+    "agrupar_por": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true,
+    "contiene": true
+   }
+  },
+  {
+   "id": "C21",
+   "categoria": "porcentaje de un grupo",
+   "pregunta": "¿qué porcentaje del turno vespertino está de acuerdo con que se siente seguro en la escuela?",
+   "segundos": 15.95,
+   "decision": "dentro",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plan": {
+    "nivel": "acuerdo",
+    "contexto": {
+     "turno": "Vespertino"
+    },
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "p05"
+    ]
+   },
+   "correcciones": [
+    "contexto «Turno = Vespertino» → «turno = Vespertino»"
+   ],
+   "tiempos": {
+    "ejecucion": 6,
+    "redaccion": 5062,
+    "recuperacion": 381,
+    "verificacion": 0,
+    "interpretacion": 10423
+   },
+   "respuesta": "10 de los 30 que cumplen turno = «Vespertino» y respondieron p05 (33.3 %) están de acuerdo (nivel alto) en p05 «Me siento seguro dentro de las instalaciones de la escuela.». [Fuente 1]",
+   "plan_ok": {
+    "intencion": true,
+    "preguntas": true,
+    "contexto": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true
+   }
+  },
+  {
+   "id": "C22",
+   "categoria": "comparar grupos de contexto",
+   "pregunta": "compara por género cuántos están de acuerdo con que la institución se preocupa por su permanencia",
+   "segundos": 22.44,
+   "decision": "dentro",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plan": {
+    "orden": {},
+    "limite": 10,
+    "intencion": "comparar_grupos",
+    "aclaracion": "¿Cuántos varones y mujeres están de acuerdo con que la institución se preocupa por su permanencia?",
+    "agrupar_por": "genero"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 10,
+    "redaccion": 10376,
+    "recuperacion": 507,
+    "verificacion": 4156,
+    "interpretacion": 11409
+   },
+   "respuesta": "Las personas femeninas (79) tienen un nivel de acuerdo más alto en que la institución se preocupa por su permanencia, lo que podría importar para la institución porque sugiere una mayor sensibilidad y compromiso con el bienestar de sus estudiantes.\n\nPor otro lado, las personas masculinas (75) tienen un nivel de acuerdo similar al de las femeninas, pero con menos participantes en total. \n\nLa preocupación principal es que 6 personas de otro género no han expresado una opinión sobre este tema.\n\n**Comparación por genero [Fuente 1]**\n| Grupo | Personas |\n|---|---|\n| femenino | 79 |\n| masculino | 75 |\n| otro | 6 |",
+   "plan_ok": {
+    "intencion": true,
+    "preguntas": false,
+    "nivel": false,
+    "agrupar_por": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false
+   }
+  },
+  {
+   "id": "C23",
+   "categoria": "conteo binario",
+   "pregunta": "¿cuántos han reprobado alguna materia en el último año?",
+   "segundos": 8.49,
+   "decision": "dentro",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 15,
+    "redaccion": 4546,
+    "recuperacion": 370,
+    "verificacion": 0,
+    "interpretacion": 3459
+   },
+   "respuesta": "44 de 160 respondentes (27.5 %) cumplen el criterio: p12 «¿Has reprobado alguna materia en el último año?» = «Sí». [Fuente 1]",
+   "plan_ok": {
+    "intencion": true,
+    "filtros": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true
+   }
+  },
+  {
+   "id": "C24",
+   "categoria": "filtro con nivel y opción",
+   "pregunta": "¿cuántos están de acuerdo con que la cantidad de materias es manejable y dedican Menos de 5h al estudio fuera de clases?",
+   "segundos": 18.02,
+   "decision": "dentro",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plan": {
+    "filtros": [
+     {
+      "nivel": "acuerdo",
+      "pregunta": "p03"
+     },
+     {
+      "valor": "Menos de 5h",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "p03: «Siempre» → «Totalmente de acuerdo / Siempre»",
+    "filtro p12 < «Menos de 5h» → = (es una opción de texto)",
+    "filtro p03: «Totalmente de acuerdo / Siempre» → nivel acuerdo (la pregunta habla del nivel)"
+   ],
+   "tiempos": {
+    "ejecucion": 13,
+    "redaccion": 6170,
+    "recuperacion": 557,
+    "verificacion": 0,
+    "interpretacion": 11159
+   },
+   "respuesta": "19 de 160 respondentes (11.9 %) cumplen el criterio: p03 «Tengo tiempo suficiente para estudiar cada materia adecuadamente.» de acuerdo (nivel alto) y p12 «¿Cuántas horas dedicas al estudio fuera de clases por semana?» = «Menos de 5h». [Fuente 1]",
+   "plan_ok": {
+    "intencion": true,
+    "filtros": false
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": false
+   }
+  },
+  {
+   "id": "C25",
+   "categoria": "comparación entre instrumentos",
+   "pregunta": "compara lo que respondieron en la pregunta 1 de ambos instrumentos",
+   "segundos": 32.47,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "plan:comparar_grupos:cifras_completadas",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p01"
+    ]
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 9,
+    "redaccion": 20140,
+    "recuperacion": 390,
+    "verificacion": 7240,
+    "interpretacion": 11849
+   },
+   "respuesta": "Encuesta de evaluación y ambiente escolar por turno:\nCriterio: resumen de p01.\np01 «Los criterios de evaluación se explican con claridad al inicio del cur»: 60 respuestas válidas; media 3.17.\nInterpretación calculada: Respuestas divididas: 38.3 % acuerdo, 36.7 % neutral, 25 % desacuerdo. [Fuente 1]\n\nEncuesta de Carga Académica y Gestión del Tiempo:\nCriterio: resumen de p01.\np01 «Considero que la cantidad de materias que curso es manejable.»: 160 respuestas válidas; media 3.27.\nInterpretación calculada: Respuestas divididas: 45.6 % acuerdo, 30 % neutral, 24.4 % desacuerdo. [Fuente 2]\n\n**Distribución de p01 — Encuesta de evaluación y ambiente escolar por turno [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Totalmente en desacuerdo | 2 | 3.3 % |\n| En desacuerdo | 13 | 21.7 % |\n| Ni de acuerdo ni en desacuerdo | 22 | 36.7 % |\n| De acuerdo | 19 | 31.7 % |\n| Totalmente de acuerdo | 4 | 6.7 % |\n\n**Distribución de p01 — Encuesta de Carga Académica y Gestión del Tiempo [Fuente 2]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Totalmente en desacuerdo / Nunca | 11 | 6.9 % |\n| En desacuerdo / Pocas veces | 28 | 17.5 % |\n| Ni de acuerdo ni en desacuerdo / A veces | 48 | 30.0 % |\n| De acuerdo / Frecuentemente | 52 | 32.5 % |\n| Totalmente de acuerdo / Siempre | 21 | 13.1 % |",
+   "plan_ok": {
+    "intencion": true,
+    "preguntas": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras": true
+   }
+  },
+  {
+   "id": "C26",
+   "categoria": "hallazgo",
+   "pregunta": "¿qué es lo más llamativo de la encuesta por turno?",
+   "segundos": 32.02,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "plan:hallazgo:inferencia",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Totalmente en desacuerdo",
+      "pregunta": "p01"
+     },
+     {
+      "valor": "Totalmente de acuerdo",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 64,
+    "redaccion": 19580,
+    "recuperacion": 336,
+    "verificacion": 8507,
+    "interpretacion": 11960
+   },
+   "respuesta": "- En p03 «Recibo retroalimentación sobre mis trabajos a tiempo para mejorar.», el grupo «Matutino» (turno) está en el nivel alto en un 70.0 % y el grupo «Vespertino» en un 20.0 %: 50.0 puntos de diferencia.\n- La pregunta con más respuestas de acuerdo es p08 «Me siento parte de la comunidad escolar.»: 50.0 % de quienes respondieron (respondieron «De acuerdo» o «Totalmente de acuerdo»).\n- La pregunta con más respuestas en desacuerdo es p04 «Las evaluaciones están relacionadas con lo que se ve en clase.»: 31.7 % de quienes respondieron (respondieron «Totalmente en desacuerdo» o «En desacuerdo»). [Fuente 1]",
+   "plan_ok": {
+    "intencion": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "cifras_alguna": true
+   }
+  },
+  {
+   "id": "C27",
+   "categoria": "entrevista por participante",
+   "pregunta": "¿qué respondió E02 en la pregunta 1?",
+   "segundos": 13.48,
+   "decision": "dentro",
+   "ruta": "estructurada",
+   "motivo": "plan:datos_respondente",
+   "plan": {
+    "campos": [
+     "p01"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E02"
+    ]
+   },
+   "correcciones": [
+    "respondente E02 tomado de la pregunta",
+    "campos p01 tomados de la pregunta"
+   ],
+   "tiempos": {
+    "ejecucion": 4,
+    "redaccion": 4702,
+    "recuperacion": 297,
+    "verificacion": 1,
+    "interpretacion": 8360
+   },
+   "respuesta": "E02 mencionó que \"uso la plataforma de la institución principalmente para entregar tareas y ver materiales\" como un factor fundamental para continuar sus estudios universitarios. También destacó el apoyo de sus compañeros de clase como un aspecto importante a considerar. Para ella, mantenerse enfocado en sus metas es clave para lograr su objetivo de permanecer en la universidad.\n\n[Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E02 |\n|---|---|\n| Contexto: Edad | 19 |\n| Contexto: GPA | 3.45 |\n| Contexto: Género | femenino |\n| Contexto: Horas trabajo/semana | 1 |\n| Contexto: Perfil | P2 — Promedio comprometido |\n| Contexto: Semestre | 4 |\n| Contexto: Universidad | publica |\n| p01 «¿Qué factores consideras que han sido fundamentales para continuar tus» | Uso la plataforma de la institución principalmente para entregar tareas y ver materiales. A veces es confusa pero me las arreglo. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. |",
+   "plan_ok": {
+    "intencion": true,
+    "respondentes": true,
+    "campos": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "contiene": true
+   }
+  },
+  {
+   "id": "C28",
+   "categoria": "semántica abierta",
+   "pregunta": "¿qué dicen los entrevistados sobre el apoyo familiar?",
+   "segundos": 16.24,
+   "decision": "dentro",
+   "ruta": "semantica",
+   "motivo": null,
+   "plan": {
+    "intencion": "semantica_abierta",
+    "preguntas": [
+     "p03"
+    ],
+    "consulta_semantica": "apoyo familiar"
+   },
+   "correcciones": [],
+   "tiempos": {
+    "ejecucion": 3,
+    "recuperacion": 199,
+    "interpretacion": 8810
+   },
+   "respuesta": "Según la entrevista, algunos participantes consideran que el apoyo familiar ha sido positivo para su permanencia en la institución. Por ejemplo, Participante E01 menciona que \"el apoyo de mis compañeros\" ha sido clave, ya que estudiar en grupo le ayuda cuando el material es complicado y ha aprendido a pedir ayuda sin sentirse debilitado [Fuente 1].\n\nPor otro lado, otros participantes como Participante E36 mencionan que el apoyo familiar ha sido mixto. Aunque han tenido momentos difíciles, especialmente en los primeros semestres, el apoyo de su familia y algunos profesores lo han ayudado a mantenerse. También menciona que ha aprendido la importancia de pedir ayuda sin sentirse debilitado [Fuente 1].\n\nEn general, parece que algunos participantes consideran que el apoyo familiar ha sido una fuente de apoyo importante para su permanencia en la institución, mientras que otros lo han encontrado más mixto o menos relevante [Fuente 1].",
+   "plan_ok": {
+    "intencion": true
+   },
+   "respuesta_ok": {
+    "decision": true,
+    "ruta": true
+   }
+  }
+ ],
+ "resumen": {
+  "casos": 28,
+  "respuesta_correcta_pct": 75.0,
+  "cifras_correctas_pct": 66.7,
+  "decision_correcta_pct": 96.4,
+  "plan_por_campo_pct": {
+   "intencion": 88.0,
+   "filtros": 42.9,
+   "limite": 100.0,
+   "campos": 100.0,
+   "respondentes": 100.0,
+   "preguntas": 66.7,
+   "nivel": 33.3,
+   "agrupar_por": 100.0,
+   "contexto": 100.0
+  },
+  "plan_completo_pct": 72.0,
+  "segundos_mediana": 16.2,
+  "segundos_max": 40.54,
+  "ms_por_etapa_mediana": {
+   "ejecucion": 10,
+   "redaccion": 8590,
+   "recuperacion": 381,
+   "verificacion": 3158,
+   "interpretacion": 10312
+  },
+  "metricas_media": {},
+  "fallas": [
+   "C02",
+   "C06",
+   "C08",
+   "C13",
+   "C14",
+   "C22",
+   "C24"
+  ]
+ }
+}

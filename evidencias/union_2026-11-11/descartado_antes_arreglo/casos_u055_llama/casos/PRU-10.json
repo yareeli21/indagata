@@ -1,0 +1,69 @@
+{
+ "id": "PRU-10",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara los primeros 50 alumnos con los últimos 50 en el reactivo de la contraseña segura",
+   "rag_log_id": 3662,
+   "respuesta": "Criterio: por posición (primeros 50 y últimos 50; 3 personas están en los dos grupos). [Fuente 1]\n\n**Comparación por posición (primeros 50 y últimos 50; 3 personas están en los dos grupos) [Fuente 1]**\n| Grupo | Personas | r10: respuestas del grupo |\n|---|---|---|\n| Primeros 50 | 50 | (sin respuestas) |\n| Últimos 50 | 50 | (sin respuestas) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "limite": 50,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r10"
+    ],
+    "agrupar_por": "posicion"
+   },
+   "plan_modelo": {
+    "limite": 50,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r10"
+    ],
+    "aclaracion": "¿Comparar los primeros y últimos en la pregunta de seguridad de contraseña?",
+    "agrupar_por": "posicion"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar los primeros 50 con los últimos 50"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:calificada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r10",
+     "score": 0.5692
+    }
+   ],
+   "segundos": 20.9,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 8408,
+    "recuperacion": 644,
+    "verificacion": 3704,
+    "interpretacion": 11780
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Grupos por posición con la distribución de cada uno."
+}

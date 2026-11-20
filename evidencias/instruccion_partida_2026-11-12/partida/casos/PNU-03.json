@@ -1,0 +1,61 @@
+{
+ "id": "PNU-03",
+ "instrumento": "pru_nueva",
+ "categoria": "filtro",
+ "turnos": [
+  {
+   "pregunta": "De los alumnos de primera generación, ¿qué base de datos eligieron más en el reactivo de bases de datos?",
+   "rag_log_id": 4147,
+   "respuesta": "De los alumnos de primera generación, la opción más elegida fue B (Scopus o Web of Science), con una distribución del 37.5% (n=30) entre las opciones A (Wikipedia), B (Scopus o Web of Science) y C (Google Drive) [Fuente 1].",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«reactivo_bases_de_datos» no es una variable de contexto de «Prueba de Competencia en Investigación Científica» (disponibles: perfil, edad, genero, semestre, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca)."
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "intencion": "comparar_grupos",
+    "agrupar_por": "reactivo_bases_de_datos",
+    "grupo_anterior": [
+     {
+      "valor": "BScopus o Web of Science",
+      "pregunta": "r13"
+     }
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.6601
+    }
+   ],
+   "segundos": 23.3,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 385,
+    "interpretacion": 12593
+   },
+   "k_precision": 0.812,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Filtrar primera_generacion y dar la distribución de r13 dentro de ese grupo, con su n."
+}

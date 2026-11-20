@@ -1,0 +1,152 @@
+{
+ "id": "PRU-13",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo hubo menos consenso?",
+   "rag_log_id": 3790,
+   "respuesta": "La primera pregunta del ranking con un índice de dispersión más alto es la pregunta 3, con un índice de dispersión de 0.99 (2 opciones). En este caso, hay empate entre preguntas 1 y 2, ya que ambos tienen un índice de dispersión de 1.00.\n\n[Fuente 1]\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %) |\n| 2 | r14 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %) |\n| 3 | r12 | índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "orden": {},
+    "limite": 1,
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "B",
+      "pregunta": "r03"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r03 = «B» descartado (no es una opción y la pregunta no lo menciona)",
+    "filtro r10 = «B) Una combinación de letras, números y símbolos de al menos 12 caracteres» (sus opciones dicen lo que pide la pregunta)",
+    "intención hallazgo → ranking_preguntas («repartida» por pregunta)",
+    "criterio del ranking: repartida (lo que dice la pregunta)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "estructurada",
+   "motivo": "plan:ranking_preguntas:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 21.6,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 8045,
+    "recuperacion": 427,
+    "verificacion": 3120,
+    "interpretacion": 13070
+   },
+   "k_precision": 0.914,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame cómo se repartieron las respuestas",
+   "rag_log_id": 3791,
+   "respuesta": "Criterio: resumen de r17.\nr17 «La huella digital incluye todo rastro que dejamos en línea.»: 96 respuestas válidas, 1 sin respuesta.\nInterpretación calculada: La opción más elegida fue «Falso» (50.5 % de los alumnos). 1 sin respuesta válida (1 %).\nOpción más elegida: «Falso» (50.5 %, 49 alumnos). [Fuente 1]\n\n**Distribución de r17 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Falso | 49 | 50.5 % |\n| Verdadero | 47 | 48.5 % |\n| NR | 1 | 1.0 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r17"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r06"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "mostrar: distribución de r17, la primera del ranking anterior"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "estructurada",
+   "motivo": "plan:resumen_pregunta:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 22.3,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 8862,
+    "recuperacion": 443,
+    "verificacion": 3764,
+    "interpretacion": 12991
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué podría explicar esa división?",
+   "rag_log_id": 3792,
+   "respuesta": "Según [Fuente 1], la opción más elegida fue \"Falso\" (50.5 % de los alumnos), lo que podría deberse a que muchos estudiantes pueden no estar familiarizados con el concepto de huella digital o no entender completamente su alcance en la vida diaria.\n\nUna explicación posible es que algunos estudiantes pueden no haber utilizado internet o dispositivos electrónicos durante un período significativo, lo que les habría impedido dejar una huella digital. Otra posibilidad es que algunos estudiantes puedan estar más conscientes de la importancia de proteger su privacidad en línea y por lo tanto opten por no responder a esta pregunta.\n\nEs importante destacar que solo el 1% de los alumnos respondió sin respuesta válida, lo que sugiere que muchos estudiantes pueden estar desconcertados o no tener una opinión clara sobre este tema. [Fuente 1]",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": "seguimiento de la consulta 3791",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "resultado",
+     "etiqueta": "resultado",
+     "score": null
+    }
+   ],
+   "segundos": 8.1,
+   "tiempos_ms": null,
+   "k_precision": 0.217,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) tabla con n y %; (3) interpretación marcada como tal, sin calificar."
+}

@@ -1,0 +1,60 @@
+{
+ "id": "PNU-09",
+ "instrumento": "pru_nueva",
+ "categoria": "estructura",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos reactivos tiene la prueba y qué temas abarca?",
+   "rag_log_id": 4153,
+   "respuesta": "La Prueba de Competencia en Investigación Científica tiene 15 reactivos distribuidos en tres secciones: Metodología de Investigación, Ética y Difusión Científica, y Emparejamiento Investigativo. [Fuente 1]",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r07",
+     "score": 0.6139
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.5818
+    }
+   ],
+   "segundos": 10.8,
+   "tiempos_ms": {
+    "redaccion": 10289,
+    "recuperacion": 242,
+    "verificacion": 1
+   },
+   "k_precision": 0.875,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "15 reactivos y sus temas o tipos (opción múltiple, verdadero/falso)."
+}

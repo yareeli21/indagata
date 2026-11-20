@@ -82,7 +82,8 @@ def test_ingesta_por_pregunta_y_registro_en_bd(cliente, servicio, db, chroma):
     encabezado = puntos[f"inst-{id_crudo}-0"]
     assert encabezado["metadata"]["seccion"] == "encabezado"
     assert "Satisfacción académica" in encabezado["document"]
-    assert encabezado["metadata"]["nivel"] == "Posgrado"
+    # La cobertura dice «Posgrado», pero todo el acervo es de licenciatura (16 nov).
+    assert encabezado["metadata"]["nivel"] == "Licenciatura"
     assert encabezado["metadata"]["anio"] == 2025
     preguntas = [p for p in puntos.values() if p["metadata"]["seccion"] == "pregunta"]
     assert {p["metadata"]["preguntaId"] for p in preguntas} == {"q1", "q2"}

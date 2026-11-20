@@ -1,0 +1,33 @@
+{
+ "id": "GEN-03",
+ "instrumento": "enc",
+ "categoria": "cortesia",
+ "turnos": [
+  {
+   "pregunta": "Gracias",
+   "rag_log_id": 3256,
+   "respuesta": "¡Con gusto! Si quieres, sigue preguntando sobre tus instrumentos.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "regla:cortesia",
+   "plantilla": "cortesia",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.1,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Frase breve de cortesía."
+}

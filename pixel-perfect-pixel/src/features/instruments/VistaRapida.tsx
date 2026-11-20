@@ -21,6 +21,8 @@ interface VistaRapidaProps {
   instrumento: Instrumento | null;
   autor: string;
   ajeno: boolean;
+  /** El administrador puede descargar y eliminar también los instrumentos ajenos. */
+  esAdmin: boolean;
   onCerrar: () => void;
   onDescargar: (f: FormatoDescarga) => void;
   onEliminar: () => void;
@@ -30,6 +32,7 @@ export function VistaRapida({
   instrumento: i,
   autor,
   ajeno,
+  esAdmin,
   onCerrar,
   onDescargar,
   onEliminar,
@@ -95,8 +98,8 @@ export function VistaRapida({
               <CalidadInstrumento instrumentoId={i.id} />
               <TiemposInstrumento instrumentoId={i.id} />
               <div className="flex flex-wrap gap-2 border-t pt-4">
-                <MenuDescarga instrumento={i} ajeno={ajeno} onDescargar={onDescargar} />
-                {!ajeno && (
+                <MenuDescarga instrumento={i} ajeno={ajeno && !esAdmin} onDescargar={onDescargar} />
+                {(!ajeno || esAdmin) && (
                   <Button
                     variant="outline"
                     className="text-destructive hover:text-destructive"

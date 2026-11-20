@@ -1,0 +1,81 @@
+{
+ "id": "CET-01",
+ "instrumento": "ent_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos participantes mencionan a su familia como apoyo?",
+   "rag_log_id": 4088,
+   "respuesta": "36 de 40 respondentes (90.0 %) cumplen el criterio: mencionan «familia como apoyo» en sus respuestas abiertas. [Fuente 1]\n\n**Dónde se menciona «familia como apoyo» [Fuente 1]**\n| Respondente | Pregunta | Fragmento |\n|---|---|---|\n| E01 | p06 | «…mestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendi…» |\n| E01 | p12 | «…mestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no…» |\n| E02 | p03 | «…mestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendi…» |\n| E02 | p09 | «…mestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no…» |\n| E02 | p12 | «…mestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendi…» |\n| E04 | p01 | «…transporte pero gasto más datos del teléfono. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da f…» |\n| E04 | p03 | «…plo de que con determinación y apoyo se puede. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da f…» |\n| E04 | p06 | «…a convicción de que la educación cambia vidas. Mi familia ha sacrificado mucho para que yo pueda estar aquí; eso me da f…» |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "menciona": "familia como apoyo",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p03"
+     }
+    ],
+    "menciona": "familia",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "menciones de «familia como apoyo» en las respuestas abiertas"
+   ],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E04 en p03",
+     "score": 0.6773
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E04 en p03",
+     "score": 0.6766
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6616
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.658
+    }
+   ],
+   "segundos": 16.5,
+   "tiempos_ms": {
+    "ejecucion": 50,
+    "redaccion": 8972,
+    "recuperacion": 353,
+    "verificacion": 0,
+    "interpretacion": 7077
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Conteo de participantes con citas de ejemplo."
+}

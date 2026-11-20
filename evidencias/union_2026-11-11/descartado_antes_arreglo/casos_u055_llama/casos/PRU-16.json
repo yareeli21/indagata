@@ -1,0 +1,151 @@
+{
+ "id": "PRU-16",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué herramienta para gestionar referencias eligieron más?",
+   "rag_log_id": 3674,
+   "respuesta": "- r10 «¿Qué es una contraseña segura?» tiene 97 respuestas nulas o vacías de 97 alumnos (100.0 %).\n- El reactivo donde más alumnos coinciden es r11 «El correo electrónico es siempre un canal seguro para enviar información confidencial.»: el 83.5 % eligió «Verdadero».\n- El reactivo con las respuestas más repartidas es r01 «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?»: la opción más elegida solo reúne el 30.9 %. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": [
+       "C) Una herramienta de edición de imágenes"
+      ],
+      "pregunta": "r04"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "B",
+      "pregunta": "r20"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r20 = «B» descartado (no es una opción y la pregunta no lo menciona)",
+    "filtro r04 = «C) Una herramienta de edición de imágenes» (sus opciones dicen lo que pide la pregunta)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.7044
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6822
+    }
+   ],
+   "segundos": 20.0,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 13691,
+    "recuperacion": 393,
+    "verificacion": 4364,
+    "interpretacion": 5854
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué puede indicar eso?",
+   "rag_log_id": 3675,
+   "respuesta": "- r10 «¿Qué es una contraseña segura?» tiene 97 respuestas nulas o vacías de 97 alumnos (100.0 %).\n- El reactivo donde más alumnos coinciden es r11 «El correo electrónico es siempre un canal seguro para enviar información confidencial.»: el 83.5 % eligió «Verdadero».\n- El reactivo con las respuestas más repartidas es r01 «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?»: la opción más elegida solo reúne el 30.9 %. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": [
+       "C) Una herramienta de edición de imágenes"
+      ],
+      "pregunta": "r04"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Cuál es el propósito de la herramienta que éligeo más?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "aclaración → plan de la respuesta anterior (la pregunta se refiere a ella)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:calificada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6633
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6362
+    }
+   ],
+   "segundos": 24.8,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 19356,
+    "recuperacion": 418,
+    "verificacion": 9660,
+    "interpretacion": 4935
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) interpretar con cifras, sin juzgar correcto o incorrecto."
+}

@@ -1,0 +1,202 @@
+{
+ "id": "PRU-13",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo hubo menos consenso?",
+   "rag_log_id": 2501,
+   "respuesta": "La primera pregunta del ranking, reactivo r17 “La huella digital incluye todo rastro que dejamos en línea”, tuvo 49 de 96 (51.0 %) respuestas, lo que representa un empate con el reactivo r14 “La inteligencia artificial puede generar texto, imágenes y código de p” que también obtuvo 52 de 97 (53.6 %). [Fuente 1]\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %) |\n| 2 | r14 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %) |\n| 3 | r12 | índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida"
+   },
+   "correcciones": [
+    "criterio del ranking: repartida (lo que dice la pregunta)",
+    "excluir r01, r02, r03, r04, r05… descartado (la pregunta no pide excluir nada)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4226
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4102
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.3912
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.3907
+    }
+   ],
+   "segundos": 44.0,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 13838,
+    "recuperacion": 310,
+    "verificacion": 1,
+    "interpretacion": 29833
+   },
+   "k_precision": 0.91,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame cómo se repartieron las respuestas",
+   "rag_log_id": 2502,
+   "respuesta": "La opción «Falso» fue la más elegida en el reactivo r17 sobre la huella digital, obteniendo un 50.5 % de las respuestas válidas (49 alumnos) frente al 48.5 % que eligió «Verdadero» (47 alumnos). Un único alumno respondió con «NR» (1.0 %). [Fuente 1]\n\n**Distribución de r17 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Falso | 49 | 50.5 % |\n| Verdadero | 47 | 48.5 % |\n| NR | 1 | 1.0 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "continua",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r17"
+    ]
+   },
+   "correcciones": [
+    "excluir r05 descartado (la pregunta no pide excluir nada)",
+    "mostrar: distribución de r17, la primera del ranking anterior"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4604
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.438
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4271
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4226
+    }
+   ],
+   "segundos": 31.8,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 13076,
+    "recuperacion": 316,
+    "verificacion": 1,
+    "interpretacion": 18370
+   },
+   "k_precision": 0.848,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué podría explicar esa división?",
+   "rag_log_id": 2503,
+   "respuesta": "**Lo que muestran los datos:** r17 «La huella digital incluye todo rastro que dejamos en línea.»: 96 respuestas válidas, 1 sin respuesta. Opción más elegida: «Falso» (50.5 %, 49 alumnos).\n\n**Interpretación (del asistente, no es un dato):** Podría sugerir que existe una comprensión inicialmente más común de lo que implica el concepto de huella digital, reflejada en la opción «Verdadero». La ligera preponderancia de respuestas a esta opción frente a la opción «Falso» podría indicar un nivel de familiaridad con la idea de dejar rastros en línea. Sin embargo, la pequeña cantidad de respuestas «NR» (1 %) requiere una mayor exploración para determinar si se trata de confusión, falta de comprensión o simplemente desinterés en el reactivo.",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "profundiza",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r17"
+    ]
+   },
+   "correcciones": [
+    "profundiza: se repite el plan anterior (resumen_pregunta) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.3808
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.3718
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.3642
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.3572
+    }
+   ],
+   "segundos": 35.4,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 16104,
+    "recuperacion": 311,
+    "verificacion": 0,
+    "interpretacion": 18976
+   },
+   "k_precision": 0.458,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) tabla con n y %; (3) interpretación marcada como tal, sin calificar."
+}

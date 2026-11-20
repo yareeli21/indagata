@@ -1,0 +1,75 @@
+{
+ "id": "ENC-02",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos están considerando abandonar sus estudios?",
+   "rag_log_id": 2557,
+   "respuesta": "159 de 2000 respondientes (8.0 %) cumplen la condición “Estoy considerando abandonar” [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": [
+       "Estoy considerando abandonar"
+      ],
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5747
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.558
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.5496
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.5227
+    }
+   ],
+   "segundos": 19.7,
+   "tiempos_ms": {
+    "ejecucion": 141,
+    "redaccion": 9730,
+    "recuperacion": 2509,
+    "verificacion": 4,
+    "interpretacion": 7130
+   },
+   "k_precision": 0.889,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Pregunta de titulación, opción «Estoy considerando abandonar»."
+}

@@ -1,0 +1,76 @@
+{
+ "id": "PRU-09",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "De los que marcaron Verdadero en «el correo electrónico es siempre seguro», ¿qué eligieron en el reactivo de la VPN?",
+   "rag_log_id": 2537,
+   "respuesta": "De los 73 alumnos que respondieron “Verdadero” al reactivo r15 (“Usar redes Wi-Fi públicas sin VPN es completamente seguro”), 75.3% (73) también seleccionaron “Verdadero” en el reactivo r11 (“El correo electrónico es siempre un canal seguro para enviar información confidencial”). Esto indica que la mayoría de los estudiantes evaluados consideró inseguras las redes Wi-Fi públicas sin VPN y también, el uso del correo electrónico para información confidencial [Fuente 1].\n\n**Distribución de r15 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 73 | 75.3 % |\n| Falso | 24 | 24.7 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r15"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.691
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6452
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.638
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.5933
+    }
+   ],
+   "segundos": 36.3,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 17057,
+    "recuperacion": 356,
+    "verificacion": 1,
+    "interpretacion": 18865
+   },
+   "k_precision": 0.848,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruzar dos reactivos y dar la distribución dentro del grupo."
+}

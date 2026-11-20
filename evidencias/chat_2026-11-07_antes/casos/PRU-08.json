@@ -1,0 +1,71 @@
+{
+ "id": "PRU-08",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la sección de verdadero/falso con la de competencias básicas en cantidad de respuestas en blanco",
+   "rag_log_id": 2346,
+   "respuesta": "La Prueba de Alfabetización Digital consta de tres secciones: “Competencias Digitales Básicas” (10 reactivos), “Verdadero o Falso Digital” (7 reactivos) y “Ordenamiento y Emparejamiento” (5 reactivos). La sección “Verdadero o Falso Digital” presenta 7 respuestas en blanco, mientras que la sección “Competencias Digitales Básicas” no tiene respuestas en blanco [Fuente 1].",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r11",
+     "r12",
+     "r13",
+     "r14",
+     "r15",
+     "r16",
+     "r17",
+     "r18",
+     "r19",
+     "r20",
+     "r21",
+     "r22"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r14",
+     "score": 0.505
+    }
+   ],
+   "segundos": 270.3,
+   "tiempos_ms": {
+    "ejecucion": 36,
+    "redaccion": 146707,
+    "recuperacion": 886,
+    "verificacion": 4,
+    "interpretacion": 122526
+   },
+   "k_precision": 0.844,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": 1,
+   "comentario_humano": "faltó que me diera el porcentaje"
+  }
+ ],
+ "debe": "% de NR por sección con su número de reactivos."
+}

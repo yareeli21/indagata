@@ -1,0 +1,33 @@
+{
+ "id": "ENT-03",
+ "instrumento": "ent",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Respondió todas las preguntas de la guía? ¿Cuáles no?",
+   "rag_log_id": 3223,
+   "respuesta": "E01 respondió las 12 preguntas de la guía. La guía se tomó de las preguntas que hizo el entrevistador (no se subió el guion original).\n\n**Preguntas de la guía respondidas**\n| Participante | Respondió | Sin respuesta |\n|---|---|---|\n| E01 | 12 de 12 | ninguna |",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "entrevista:cobertura",
+   "plantilla": null,
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.1,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Relacionar intercambios con las 12 preguntas; nombrar faltantes o decir que respondió todas."
+}

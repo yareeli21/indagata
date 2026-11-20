@@ -1,0 +1,79 @@
+{
+ "id": "CPR-03",
+ "instrumento": "pru_control",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara lo que eligieron en el reactivo del muestreo probabilístico entre universidades públicas y privadas",
+   "rag_log_id": 2872,
+   "respuesta": "Criterio: por tipo_universidad. [Fuente 1]\n\n**Comparación por tipo_universidad [Fuente 1]**\n| Grupo | Personas | r06: respuestas del grupo |\n|---|---|---|\n| mixta | 7 | «Que la muestra sea muy grande» 4 (57.1 %); «Que todos los individuos de la población tienen igual probabilidad de ser seleccionados» 1 (14.3 %); «Que no haya errores en la investigación» 1 (14.3 %); «Que la investigación sea cualitativa» 1 (14.3 %) |\n| privada | 35 | «Que la muestra sea muy grande» 14 (40.0 %); «Que todos los individuos de la población tienen igual probabilidad de ser seleccionados» 10 (28.6 %); «Que la investigación sea cualitativa» 8 (22.9 %); «Que no haya errores en la investigación» 3 (8.6 %) |\n| publica | 38 | «Que la muestra sea muy grande» 15 (39.5 %); «Que todos los individuos de la población tienen igual probabilidad de ser seleccionados» 13 (34.2 %); «Que la investigación sea cualitativa» 10 (26.3 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r06"
+    ],
+    "agrupar_por": "tipo_universidad"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r06"
+    ],
+    "agrupar_por": "tipo_universidad"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:cifra_atribuida",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r06",
+     "score": 0.6064
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.5898
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.5512
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r06",
+     "score": 0.5504
+    }
+   ],
+   "segundos": 58.7,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 39972,
+    "recuperacion": 459,
+    "verificacion": 18512,
+    "interpretacion": 18221
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    21,
+    21
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución por grupo, cada uno con su n y %."
+}

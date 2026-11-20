@@ -1,0 +1,95 @@
+{
+ "id": "ETU-05",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué consejo le daría a un compañero que la está pasando mal?",
+   "rag_log_id": 4125,
+   "respuesta": "Basado en el texto del instrumento, se repiten los siguientes temas o patrones:\n\n*   La importancia de buscar ayuda y no sentirse avergonzado por ello. E01 dice: \"Que no espere a estar muy mal, como yo. Que pedir ayuda no significa que sea débil, al contrario.\"\n*   El miedo a la estigmatización y la falta de información sobre los servicios de apoyo psicológico disponibles en la universidad. E01 menciona: \"Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente.\" Y también: \"Yo sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía.\"\n*   La necesidad de más tiempo y apoyo para superar los desafíos emocionales. E01 expresa: \"La atención es buena, pero es muy poquito tiempo.\"",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Qué consejo le daría a un compañero que la está pasando mal?",
+    "consulta_semantica": "¿qué consejo le daría a un compañero que está pasando mal?"
+   },
+   "plan_modelo": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Qué consejo le daría a un compañero que la está pasando mal?",
+    "consulta_semantica": "¿qué consejo le daría a un compañero que está pasando mal?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental entrevista"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6821
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.5673
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.49
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p04",
+     "score": 0.3412
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.3407
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.3289
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.2937
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.2844
+    }
+   ],
+   "segundos": 43.6,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 25087,
+    "recuperacion": 343,
+    "verificacion": 2,
+    "interpretacion": 18178
+   },
+   "k_precision": 0.661,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta final del mensaje a un compañero, con cita."
+}

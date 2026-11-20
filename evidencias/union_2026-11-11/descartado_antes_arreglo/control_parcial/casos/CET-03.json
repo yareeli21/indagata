@@ -1,0 +1,67 @@
+{
+ "id": "CET-03",
+ "instrumento": "ent_control",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara lo que dicen sobre sus profesores con lo que dicen sobre los servicios de apoyo",
+   "rag_log_id": 3861,
+   "respuesta": "Según las entrevistas, los participantes mencionan que a veces los profesores no entienden las situaciones de estudiantes como ellos. Esto se desprende del comentario de Participante E34: \"A veces el sistema no está diseñado pensando en estudiantes como yo\" [Fuente 1].\n\nPor otro lado, cuando se les pregunta sobre los servicios de apoyo institucional, como tutorías y becas, algunos participantes mencionan que estos servicios han sido neutros o ambivalentes. Por ejemplo, Participante E34 responde: \"A veces los profesores no entienden las situaciones de estudiantes como yo. A veces el sistema no está diseñado pensando en estudiantes como yo\". Sin embargo, otros participantes expresan una valoración positiva hacia estos servicios, como es el caso de Participante E01, quien menciona que \"el apoyo de mis compañeros también ha sido clave\" y que \"los compañeros de clase son un apoyo fundamental que muchas veces se subestima\" [Fuente 1].\n\nEn general, parece que los participantes consideran que los profesores pueden no estar lo suficientemente preparados para entender las necesidades de los estudiantes, mientras que los servicios de apoyo institucional pueden ser neutros o ambivalentes. Sin embargo, es importante destacar que la respuesta de Participante E34 sobre los servicios de apoyo institucional es ambivalente y no expresan una valoración clara [Fuente 1].",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«contexto_num» no es una variable de contexto de «Entrevista sobre estrategias de permanencia universitaria» (disponibles: Edad, Perfil, Género, Semestre, Universidad)."
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p06",
+     "p03"
+    ],
+    "agrupar_por": "contexto_num"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.6305
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E34 en p04",
+     "score": 0.703
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.626
+    }
+   ],
+   "segundos": 19.4,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 270,
+    "interpretacion": 8552
+   },
+   "k_precision": 0.633,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Citas de ambos temas, sin exagerar."
+}

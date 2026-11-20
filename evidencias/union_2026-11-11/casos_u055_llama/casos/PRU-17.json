@@ -1,0 +1,105 @@
+{
+ "id": "PRU-17",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué reactivos convendría revisar por cómo se respondieron?",
+   "rag_log_id": 3801,
+   "respuesta": "La primera pregunta del ranking es la r10 \"¿Qué es una contraseña segura?\" con un 100.0% de respuestas en blanco o nulas, sin contar a las respuestas que no fueron proporcionadas.\n\nNo hay empate en esta pregunta, ya que todas las respuestas son nulas o sin responder.\n\n**Preguntas por no respuesta [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r10 | 97 nulas o sin responder de 97 (100.0 %) |\n| 2 | r22 | 3 nulas o sin responder de 97 (3.1 %) |\n| 3 | r16 | 2 nulas o sin responder de 97 (2.1 %) |\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %) |\n| 2 | r14 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %) |\n| 3 | r12 | índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "revisar"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 10,
+    "filtros": [
+     {
+      "valor": "A",
+      "pregunta": "r01"
+     },
+     {
+      "valor": "A",
+      "pregunta": "r02"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r01 = «A» descartado (no es una opción y la pregunta no lo menciona)",
+    "filtro r02 = «A» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "lo que pide no existe en el instrumento: se responde con lo que sí hay",
+    "intención resumen_pregunta → ranking_preguntas («revisar» por pregunta)",
+    "criterio del ranking: revisar (lo que dice la pregunta)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "estructurada",
+   "motivo": "plan:ranking_preguntas:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 19.7,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 13921,
+    "recuperacion": 756,
+    "verificacion": 3335,
+    "interpretacion": 4984
+   },
+   "k_precision": 0.933,
+   "cifras_con_respaldo": [
+    21,
+    21
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué?",
+   "rag_log_id": 3802,
+   "respuesta": "Basado en el contexto proporcionado, podríamos inferir que las respuestas en blanco o nulas en la pregunta r10 \"¿Qué es una contraseña segura?\" podrían deberse a varias razones. Una explicación posible es que muchos estudiantes no tienen experiencia previa con contraseñas digitales, lo que podría llevar a una falta de conocimiento sobre cómo crear una contraseña segura. [Fuente 1]\n\nOtra posibilidad es que algunos estudiantes simplemente no se sintieron motivados para responder a la pregunta o no consideraron que fuera relevante para su vida diaria. Sin embargo, no hay suficiente evidencia en el contexto para apoyar esta suposición.\n\nEs importante destacar que la falta de respuestas en blanco o nulas puede ser un indicador de una necesidad de educación y concienciación sobre la importancia de las contraseñas digitales. [Fuente 1]\n\nEn cuanto a las preguntas por repartida, como se menciona en el contexto, es posible que los estudiantes estén buscando respuestas más fáciles o menos complejas para evitar el esfuerzo de pensar críticamente sobre la información proporcionada. Sin embargo, sin más evidencia, no puedo confirmar esta suposición.\n\nEn cualquier caso, es importante revisar estas preguntas y considerar cómo podemos mejorar la educación digital en los estudiantes para que puedan desarrollar habilidades más sólidas en este ámbito. [Fuente 1]",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": "seguimiento de la consulta 3801",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "resultado",
+     "etiqueta": "resultado",
+     "score": null
+    }
+   ],
+   "segundos": 13.8,
+   "tiempos_ms": null,
+   "k_precision": 0.141,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Criterios sin calificar: muchas NR, muchas inválidas, muy repartidas o redacción confusa."
+}

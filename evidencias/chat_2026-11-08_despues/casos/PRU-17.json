@@ -1,0 +1,139 @@
+{
+ "id": "PRU-17",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué reactivos convendría revisar por cómo se respondieron?",
+   "rag_log_id": 2612,
+   "respuesta": "Criterio: resumen de r18, r09, r20.\nr18 «¿Cuál es el orden correcto para crear un documento académico digital? »: 97 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «B) 2-3-1-4» (46.4 % de los alumnos).\nOpción más elegida: «2-3-1-4» (46.4 %, 45 alumnos).\nr09 «¿Cuál de los siguientes es un criterio para evaluar la confiabilidad d»: 97 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «B) La autoridad del autor y la fecha de publicación» (57.7 % de los alumnos).\nOpción más elegida: «La autoridad del autor y la fecha de publicación» (57.7 %, 56 alumnos).\nr20 «¿Qué herramienta corresponde mejor al propósito de gestionar referenci»: 97 respuestas válidas.\nInterpretación calculada: La opción más elegida fue «B) Zotero o Mendeley» (77.3 % de los alumnos).\nOpción más elegida: «Zotero o Mendeley» (77.3 %, 75 alumnos). [Fuente 1]\n\n**Distribución de r18 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 25 | 25.8 % |\n| B | 45 | 46.4 % |\n| C | 4 | 4.1 % |\n| D | 23 | 23.7 % |\n\n**Distribución de r09 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 6 | 6.2 % |\n| B | 56 | 57.7 % |\n| C | 29 | 29.9 % |\n| D | 6 | 6.2 % |\n\n**Distribución de r20 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 5 | 5.2 % |\n| B | 75 | 77.3 % |\n| C | 4 | 4.1 % |\n| D | 13 | 13.4 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r18",
+     "r09",
+     "r20"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:calificada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4548
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4433
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4401
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4307
+    }
+   ],
+   "segundos": 63.6,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 45336,
+    "recuperacion": 320,
+    "verificacion": 20204,
+    "interpretacion": 17878
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    27,
+    27
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué?",
+   "rag_log_id": 2613,
+   "respuesta": "**Lo que muestran los datos:** r18 «¿Cuál es el orden correcto para crear un documento académico digital? »: 97 respuestas válidas. Opción más elegida: «2-3-1-4» (46.4 %, 45 alumnos).\n\n**Interpretación (del asistente, no es un dato):** Podría sugerir que existe una necesidad de reforzar los conocimientos sobre los pasos para crear un documento académico digital entre los estudiantes. La opción más elegida, “2-3-1-4”, indica una comprensión secuencial del proceso, aunque la distribución muestra que una proporción significativa (46.4%) eligió respuestas incorrectas. Con una muestra de 97 alumnos, es necesario analizar en detalle las respuestas erróneas para identificar posibles lagunas en el aprendizaje [Fuente 1].",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "profundiza",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r18",
+     "r09",
+     "r20"
+    ]
+   },
+   "correcciones": [
+    "profundiza: se repite el plan anterior (resumen_pregunta) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4453
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4396
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4383
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.433
+    }
+   ],
+   "segundos": 40.0,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 20232,
+    "recuperacion": 329,
+    "verificacion": 1,
+    "interpretacion": 19409
+   },
+   "k_precision": 0.632,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Criterios sin calificar: muchas NR, muchas inválidas, muy repartidas o redacción confusa."
+}

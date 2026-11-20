@@ -1,0 +1,150 @@
+{
+ "id": "CET-04",
+ "instrumento": "ent_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué dijo E03 sobre abandonar la universidad?",
+   "rag_log_id": 4091,
+   "respuesta": "E03 dijo que nunca pensó en abandonar la universidad porque aprendió a ser muy eficiente con el tiempo y a administrarlo, lo que le ha sido fundamental. Según sus palabras, \"cada minuto cuenta\".\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E03 |\n|---|---|\n| Contexto: Edad | 34 |\n| Contexto: GPA | 2.78 |\n| Contexto: Género | masculino |\n| Contexto: Horas trabajo/semana | 38 |\n| Contexto: Perfil | P4 — Trabajador adulto tiempo parcial |\n| Contexto: Semestre | 8 |\n| Contexto: Universidad | publica |\n| p01 «¿Qué factores consideras que han sido fundamentales para continuar tus» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p02 «¿Has pensado alguna vez en abandonar la universidad? ¿Qué te llevó a t» | He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p03 «¿De qué manera el apoyo familiar ha influido en tu permanencia en la i» | Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p04 «¿Qué servicios de apoyo institucional (tutorías, becas, orientación) h» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p05 «¿Cómo has manejado las dificultades económicas durante tu trayectoria » | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Los fines de semana son mi único espacio para estudiar tranquilamente. |\n| p06 «¿Qué rol ha jugado la relación con tus profesores en tu decisión de co» | Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente. |\n| p07 «¿Cómo ha impactado el trabajo en tu desempeño y permanencia académica?» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Los fines de semana son mi único espacio para estudiar tranquilamente. |\n| p08 «¿Qué cambiarías de los servicios de apoyo universitario para mejorar l» | He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p09 «¿Cómo describirías tu nivel de motivación en diferentes momentos de tu» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p10 «¿Has tenido que interrumpir tus estudios temporalmente? ¿Qué sucedió?» | He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p11 «¿Qué estrategias personales has desarrollado para mantenerte en la uni» | Aunque a veces la conexión en el trabajo es mala, prefiero las herramientas digitales porque me dan flexibilidad. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p12 «¿Qué mensaje darías a un estudiante que está pensando en desertar?» | Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E03"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "datos_respondente"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "respondente E03 tomado de la pregunta"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p02",
+     "score": 0.593
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p02",
+     "score": 0.5731
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p12",
+     "score": 0.5726
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p12",
+     "score": 0.5671
+    }
+   ],
+   "segundos": 22.7,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 13416,
+    "recuperacion": 338,
+    "verificacion": 3,
+    "interpretacion": 8892
+   },
+   "k_precision": 0.989,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y qué estrategias usa para mantenerse?",
+   "rag_log_id": 4092,
+   "respuesta": "E01 dijo que los compañeros de clase son un apoyo fundamental que muchas veces se subestima y que ha aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. También mencionó el apoyo de su orientador y la importancia de mantenerse enfocado/a en sus metas. (E01 en p11)\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Edad | 23 |\n| Contexto: GPA | 3.33 |\n| Contexto: Género | masculino |\n| Contexto: Horas trabajo/semana | 3 |\n| Contexto: Perfil | P2 — Promedio comprometido |\n| Contexto: Semestre | 3 |\n| Contexto: Universidad | publica |\n| p01 «¿Qué factores consideras que han sido fundamentales para continuar tus» | Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. |\n| p02 «¿Has pensado alguna vez en abandonar la universidad? ¿Qué te llevó a t» | No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p03 «¿De qué manera el apoyo familiar ha influido en tu permanencia en la i» | El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p04 «¿Qué servicios de apoyo institucional (tutorías, becas, orientación) h» | Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p05 «¿Cómo has manejado las dificultades económicas durante tu trayectoria » | Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. |\n| p06 «¿Qué rol ha jugado la relación con tus profesores en tu decisión de co» | Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p07 «¿Cómo ha impactado el trabajo en tu desempeño y permanencia académica?» | El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. |\n| p08 «¿Qué cambiarías de los servicios de apoyo universitario para mejorar l» | El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. |\n| p09 «¿Cómo describirías tu nivel de motivación en diferentes momentos de tu» | Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p10 «¿Has tenido que interrumpir tus estudios temporalmente? ¿Qué sucedió?» | El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. |\n| p11 «¿Qué estrategias personales has desarrollado para mantenerte en la uni» | Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p12 «¿Qué mensaje darías a un estudiante que está pensando en desertar?» | Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "relacion": "continua",
+    "intencion": "datos_respondente"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "datos_respondente"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.672
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.6689
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.6548
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.6417
+    }
+   ],
+   "segundos": 20.0,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 14961,
+    "recuperacion": 369,
+    "verificacion": 2,
+    "interpretacion": 4672
+   },
+   "k_precision": 0.991,
+   "cifras_con_respaldo": [
+    14,
+    14
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) sigue hablando de E03."
+}

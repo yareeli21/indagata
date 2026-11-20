@@ -1,0 +1,89 @@
+{
+ "id": "ENC-01",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos estudiantes trabajan en un área relacionada con su carrera?",
+   "rag_log_id": 2700,
+   "respuesta": "500 de 2000 respondientes (25.0 %) cumplen la condición p12 [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Trabajo en un area relacionada con mi carrera",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "p12"
+    ]
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Trabajo en un area relacionada con mi carrera",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "p12"
+    ]
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.6106
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.6014
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.59
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.5873
+    }
+   ],
+   "segundos": 55.0,
+   "tiempos_ms": {
+    "ejecucion": 98,
+    "redaccion": 13498,
+    "recuperacion": 7315,
+    "verificacion": 1,
+    "interpretacion": 33275
+   },
+   "k_precision": 0.857,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta de situación laboral; número y % sobre el total."
+}

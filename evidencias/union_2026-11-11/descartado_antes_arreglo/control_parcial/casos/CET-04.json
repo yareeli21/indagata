@@ -1,0 +1,181 @@
+{
+ "id": "CET-04",
+ "instrumento": "ent_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué dijo E03 sobre abandonar la universidad?",
+   "rag_log_id": 3862,
+   "respuesta": "E03 dijo que no ha pensado abandonar la universidad porque ha aprendido a ser muy eficiente con el tiempo y a administrarlo como su recurso más escaso. Según sus palabras, \"cada minuto cuenta\". Esto significa que para ella, aprender a gestionar su tiempo de manera efectiva es fundamental para continuar estudiando. (E03 en p02)\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E03 |\n|---|---|\n| Contexto: Edad | 34 |\n| Contexto: GPA | 2.78 |\n| Contexto: Género | masculino |\n| Contexto: Horas trabajo/semana | 38 |\n| Contexto: Perfil | P4 — Trabajador adulto tiempo parcial |\n| Contexto: Semestre | 8 |\n| Contexto: Universidad | publica |\n| p01 «¿Qué factores consideras que han sido fundamentales para continuar tus» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p02 «¿Has pensado alguna vez en abandonar la universidad? ¿Qué te llevó a t» | He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p03 «¿De qué manera el apoyo familiar ha influido en tu permanencia en la i» | Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p04 «¿Qué servicios de apoyo institucional (tutorías, becas, orientación) h» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p05 «¿Cómo has manejado las dificultades económicas durante tu trayectoria » | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Los fines de semana son mi único espacio para estudiar tranquilamente. |\n| p06 «¿Qué rol ha jugado la relación con tus profesores en tu decisión de co» | Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente. |\n| p07 «¿Cómo ha impactado el trabajo en tu desempeño y permanencia académica?» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Los fines de semana son mi único espacio para estudiar tranquilamente. |\n| p08 «¿Qué cambiarías de los servicios de apoyo universitario para mejorar l» | He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p09 «¿Cómo describirías tu nivel de motivación en diferentes momentos de tu» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p10 «¿Has tenido que interrumpir tus estudios temporalmente? ¿Qué sucedió?» | He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p11 «¿Qué estrategias personales has desarrollado para mantenerte en la uni» | Aunque a veces la conexión en el trabajo es mala, prefiero las herramientas digitales porque me dan flexibilidad. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p12 «¿Qué mensaje darías a un estudiante que está pensando en desertar?» | Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E03"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "datos_respondente"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "respondente E03 tomado de la pregunta"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p02",
+     "score": 0.593
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p02",
+     "score": 0.5731
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p12",
+     "score": 0.5726
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p12",
+     "score": 0.5671
+    }
+   ],
+   "segundos": 23.5,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 14252,
+    "recuperacion": 332,
+    "verificacion": 2,
+    "interpretacion": 8850
+   },
+   "k_precision": 0.983,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y qué estrategias usa para mantenerse?",
+   "rag_log_id": 3863,
+   "respuesta": "**Patrones encontrados en las respuestas de los participantes**\n\n* **Estrategia de gestión del tiempo**: 21 de 40 participantes (52,5%) respondieron que no han tenido que interrumpir sus estudios temporalmente. Esto podría indicar que la mayoría de los participantes han aprendido a gestionar su tiempo de manera efectiva para mantenerse en la universidad.\n* **Importancia del apoyo familiar**: 26 de 40 participantes (65.0%) respondieron que el apoyo familiar no ha influido en su permanencia en la institución. Esto sugiere que la mayoría de los participantes consideran que el apoyo familiar es menos importante para ellos que otros factores.\n* **Estrategias personales**: 23 de 40 participantes (57,5%) respondieron que no han desarrollado estrategias personales para mantenerse en la universidad. Esto podría indicar que muchos participantes necesitan desarrollar habilidades o estrategias adicionales para permanecer en la institución.\n* **Uso de los servicios de apoyo universitario**: 21 de 40 participantes (52,5%) respondieron que no cambiarían los servicios de apoyo universitario para mejorar la retención estudiantil. Esto sugiere que muchos participantes consideran que los servicios actuales son suficientes o incluso superiores a lo que necesitan.\n\n**Interpretación**: Estos patrones sugieren que la gestión del tiempo, el apoyo familiar y las estrategias personales pueden ser factores importantes para la permanencia en la universidad. Sin embargo, también es evidente que muchos participantes consideran que los servicios de apoyo universitario son suficientes o incluso superiores a lo que necesitan.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "relacion": "continua",
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p11"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "¿Qué estrategias personales has desarrollado para mantenerte en la universidad?",
+      "pregunta": "p11"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p11 = «¿Qué estrategias personales has desarrollado para mantenerte en la universidad?» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E35 en p02",
+     "score": 0.7008
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E17 en p11",
+     "score": 0.6973
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E16 en p02",
+     "score": 0.6971
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E40 en p12",
+     "score": 0.696
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E26 en p12",
+     "score": 0.6946
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E13 en p11",
+     "score": 0.6937
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E02 en p02",
+     "score": 0.6918
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E14 en p02",
+     "score": 0.6895
+    }
+   ],
+   "segundos": 26.5,
+   "tiempos_ms": {
+    "ejecucion": 63,
+    "redaccion": 19956,
+    "recuperacion": 309,
+    "verificacion": 3,
+    "interpretacion": 6176
+   },
+   "k_precision": 0.555,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) sigue hablando de E03."
+}

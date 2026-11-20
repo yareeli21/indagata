@@ -52,8 +52,9 @@ from shared.models.rag_log import RagLog
 from shared.models.version_conocimiento import VersionConocimiento
 
 from models import ChatRequest, ChatResponse, FuenteChatOut, IndexRequest, ReferenciaChatOut
-from services import (anclaje, consulta_planificada, cortesia, dominio, entrevista_ops, instrumento_ops, ejecutor, enrutador, evaluacion, interpretacion, ollama_client,
-                      prompt, seguimiento, storage_client, vectores)
+from services import (anclaje, consulta_planificada, cortesia, dominio, entrevista_ops, instrumento_ops, ejecutor,
+                      enrutador, evaluacion, hibrida, inferencia, interpretacion, juez_fable, ollama_client, prompt,
+                      seguimiento, storage_client, trazabilidad, vectores)
 from services.plan_consulta import ESTRUCTURADAS, PlanConsulta
 
 logger = logging.getLogger("visualization-service")
@@ -192,12 +193,8 @@ def _buscar(peticion: ChatRequest, vector: list[float]) -> tuple[list[dict[str, 
     ids = [i for i in (peticion.instrumentoIds or []) if i]
     where = _donde(ids, peticion.pregunta)
     try:
-        res = coleccion.query(
-            query_embeddings=[vector],
-            n_results=peticion.top_k * _CANDIDATOS_POR_FRAGMENTO,
-            where=where,
-            include=["metadatas", "documents", "distances"],
-        )
+        res = hibrida.consultar(coleccion, vector, peticion.pregunta, peticion.top_k * _CANDIDATOS_POR_FRAGMENTO,
+                                where, ids, fabrica_sesiones)
     except Exception as exc:  # noqa: BLE001
         logger.error("Vector store no disponible: %s", exc)
         raise HTTPException(status.HTTP_502_BAD_GATEWAY, "Vector store no disponible.") from exc
@@ -206,14 +203,15 @@ def _buscar(peticion: ChatRequest, vector: list[float]) -> tuple[list[dict[str, 
     encabezados: dict[str, int] = {}
     por_instrumento: dict[str, int] = {}
     score_max = 0.0
-    for meta, doc, dist in zip(
+    for n, (meta, doc, dist) in enumerate(zip(
         (res.get("metadatas") or [[]])[0], (res.get("documents") or [[]])[0], (res.get("distances") or [[]])[0]
-    ):
+    )):
         meta = meta or {}
         score = round(1.0 - float(dist), 4)
         score_max = max(score_max, score)
-        if score < settings.RAG_MIN_SCORE:
-            continue  # poco relacionado: no se le da al LLM para que no improvise
+        lexico = _lexico(res, n)
+        if not hibrida.relevante({"score": score, "seccion": str(meta.get("seccion", "")), **lexico}):
+            continue  # poco relacionado (ni por significado ni por palabras): no se le da al LLM para que no improvise
         if len(fragmentos) >= peticion.top_k:
             break
         # Diversidad: las fichas (encabezado) se parecen a casi cualquier pregunta y,
@@ -239,9 +237,21 @@ def _buscar(peticion: ChatRequest, vector: list[float]) -> tuple[list[dict[str, 
                 "score": score,
                 "preguntaId": str(meta.get("preguntaId", "")),
                 "respondenteId": str(meta.get("respondenteId", "")),
+                # Trazabilidad: posición en el documento indexado y texto sin recortes (services/trazabilidad.py).
+                "chunkIndex": 0 if seccion == "encabezado" else meta.get("chunk_index"),
+                "fragmentoOriginal": str(doc or ""),
+                **lexico,
             }
         )
     return fragmentos, score_max
+
+
+def _lexico(res: dict[str, Any], n: int) -> dict[str, Any]:
+    """Cobertura de la pregunta y posiciones en las dos búsquedas del n-ésimo resultado (búsqueda híbrida)."""
+    def dato(clave: str) -> Any:
+        lista = (res.get(clave) or [[]])[0]
+        return lista[n] if n < len(lista) else None
+    return {"coincidencia": dato("coincidencias"), "palabras": dato("palabras"), "rangos": dato("rangos")}
 
 
 def _kpis_usados(fragmentos: list[dict[str, Any]], instrumento_id: str, consulta_kpi: bool) -> list[str]:
@@ -302,7 +312,6 @@ _SECCIONES_APOYO_DEFECTO = ["encabezado", "pregunta", "reactivo", "intercambio"]
 _MAX_APOYO = 4
 # Si con el filtro nada pasa el umbral, entran los más cercanos igual: el RAG no se descarta (5 nov, corrida 1709–1771:
 # «¿por qué consideras que es preocupante?» o «¿de qué trata el instrumento?» se respondían solo con el cálculo).
-_MIN_APOYO_SIN_UMBRAL = 2
 _MAX_FICHA_APOYO = 1200
 # En los patrones de una entrevista el texto ES la evidencia: entran más intercambios y sin umbral de similitud
 # («¿qué patrones encuentras?» se parece poco a cualquier respuesta concreta).
@@ -359,7 +368,7 @@ def _apoyo_rag(peticion: ChatRequest, preparada: "consulta_planificada.Preparada
     for f in candidatos:
         f["numero"] = numeros.get(f["instrumentoId"], 1)
     salida = [f for f in candidatos if f["score"] >= settings.RAG_MIN_SCORE or patrones_texto][:limite]
-    return salida or candidatos[:_MIN_APOYO_SIN_UMBRAL]
+    return salida  # sin relleno bajo el umbral (10 nov)
 
 
 def _fragmentos_de(res: dict[str, Any], coleccion: Any) -> list[dict[str, Any]]:
@@ -367,8 +376,8 @@ def _fragmentos_de(res: dict[str, Any], coleccion: Any) -> list[dict[str, Any]]:
     su primer fragmento solo trae el título."""
     salida: list[dict[str, Any]] = []
     vistos: set[str] = set()
-    for meta, doc, dist in zip((res.get("metadatas") or [[]])[0], (res.get("documents") or [[]])[0],
-                               (res.get("distances") or [[]])[0]):
+    for n, (meta, doc, dist) in enumerate(zip((res.get("metadatas") or [[]])[0], (res.get("documents") or [[]])[0],
+                                              (res.get("distances") or [[]])[0])):
         meta, score = meta or {}, round(1.0 - float(dist), 4)
         inst, seccion = str(meta.get("instrumentoId", "")), str(meta.get("seccion", ""))
         if seccion == "encabezado":
@@ -383,7 +392,9 @@ def _fragmentos_de(res: dict[str, Any], coleccion: Any) -> list[dict[str, Any]]:
                        "tipo": meta.get("tipo") if meta.get("tipo") in _TIPOS else "Encuesta",
                        "investigador": str(meta.get("investigador", "")), "kpis": _kpis(meta.get("kpis")),
                        "seccion": seccion, "fragmento": str(doc or ""), "score": score,
-                       "preguntaId": str(meta.get("preguntaId", "")), "respondenteId": str(meta.get("respondenteId", ""))})
+                       "preguntaId": str(meta.get("preguntaId", "")), "respondenteId": str(meta.get("respondenteId", "")),
+                       "chunkIndex": 0 if seccion == "encabezado" else meta.get("chunk_index"),
+                       "fragmentoOriginal": str(doc or ""), **_lexico(res, n)})
     return salida
 
 
@@ -393,33 +404,45 @@ def _fragmentos_de(res: dict[str, Any], coleccion: Any) -> list[dict[str, Any]]:
 #   2. responde por sí mismo cuando no hace falta calcular (o cuando el plan solo sabría pedir aclaración);
 #   3. complementa el cálculo cuando la pregunta implica contar o filtrar: si difieren, manda el cálculo.
 _MAX_RECUPERADOS = 5
-_MIN_RECUPERADOS = 3  # aunque ninguno pase el umbral, entran los más cercanos (sobre RAG_FUERA_MAX)
 _MAX_PISTAS = 3
 
 
-def _recuperar_primero(peticion: ChatRequest) -> tuple[list[dict[str, Any]], float]:
+def _recuperar_primero(peticion: ChatRequest, estado: dict[str, Any] | None = None
+                       ) -> tuple[list[dict[str, Any]], float, dict[str, float]]:
     """Los fragmentos del alcance más parecidos a la pregunta (o al seguimiento con su pregunta anterior) y la
     similitud máxima. Sin Chroma devuelve vacío: las demás etapas siguen."""
     ids = [i for i in (peticion.instrumentoIds or []) if i]
     try:
         coleccion = vectores.coleccion_existente(settings.CHROMA_COLLECTION_INSTRUMENTOS)
         if coleccion is None:
-            return [], 0.0
-        res = coleccion.query(query_embeddings=[_vector(_consulta_apoyo(peticion.pregunta, peticion.historial))],
-                              n_results=_MAX_RECUPERADOS * 3, where=_donde(ids, peticion.pregunta),
-                              include=["metadatas", "documents", "distances"])
+            return [], 0.0, {}
+        consulta = _consulta_apoyo(peticion.pregunta, peticion.historial)
+        res = hibrida.consultar(coleccion, _vector(consulta), consulta, _MAX_RECUPERADOS * 3,
+                                _donde(ids, peticion.pregunta), ids, fabrica_sesiones)
     except HTTPException:
         raise
     except Exception as exc:  # noqa: BLE001
         logger.warning("Recuperación del RAG no disponible: %s", exc)
-        return [], 0.0
+        return [], 0.0, {}
     candidatos = _fragmentos_de(res, coleccion)
     score_max = max((f["score"] for f in candidatos), default=0.0)
-    sobre_umbral = [f for f in candidatos if f["score"] >= settings.RAG_MIN_SCORE][:_MAX_RECUPERADOS]
-    if len(sobre_umbral) < _MIN_RECUPERADOS:
-        cercanos = [f for f in candidatos if f not in sobre_umbral and f["score"] >= settings.RAG_FUERA_MAX]
-        sobre_umbral += cercanos[:_MIN_RECUPERADOS - len(sobre_umbral)]
-    return sobre_umbral, score_max
+    if any(hibrida.relevante(f) for f in candidatos):
+        # Lo encontró la búsqueda por palabras aunque el coseno no llegue: para las decisiones del chat («¿hay algo
+        # del tema?») cuenta como relevante; la similitud mostrada sigue siendo el coseno.
+        score_max = max(score_max, settings.RAG_MIN_SCORE)
+    # La mayor similitud de cada instrumento, pase o no el umbral: la tarjeta de fuente la muestra.
+    similitudes: dict[str, float] = {}
+    for f in candidatos:
+        clave = str(f["instrumentoId"])
+        similitudes[clave] = max(similitudes.get(clave, 0.0), f["score"])
+    # A la respuesta solo llega lo que alcanza el umbral (10 nov: antes se completaba con los más cercanos sobre
+    # RAG_FUERA_MAX y una pregunta sin relación se respondía con ellos). Las pistas de la interpretación sí usan los
+    # cercanos: solo orientan el plan y no se muestran; sin ellas «¿qué porcentaje organiza su material…?» (0.62) se
+    # quedaba en aclaración.
+    if estado is not None:
+        estado["pistas"] = [f for f in candidatos
+                            if f["score"] >= settings.RAG_FUERA_MAX or hibrida.relevante(f)][:_MAX_RECUPERADOS]
+    return [f for f in candidatos if hibrida.relevante(f)][:_MAX_RECUPERADOS], score_max, similitudes
 
 
 _SOBRE_EL_INSTRUMENTO = {"descripcion", "estructura"}
@@ -451,7 +474,8 @@ def _fichas(instrumentos: list[enrutador.Instrumento]) -> list[dict[str, Any]]:
         if ficha := _ficha_completa(coleccion, ins.id_crudo):
             salida.append({"instrumentoId": ins.id_crudo, "numero": 1, "titulo": ins.titulo, "tipo": ins.tipo_ui,
                            "investigador": "", "kpis": [], "seccion": "encabezado",
-                           "fragmento": ficha[:_MAX_FICHA_APOYO], "score": None, "preguntaId": "", "respondenteId": ""})
+                           "fragmento": ficha[:_MAX_FICHA_APOYO], "score": None, "preguntaId": "", "respondenteId": "",
+                           "chunkIndex": 0, "fragmentoOriginal": ficha})
     return salida
 
 
@@ -460,9 +484,9 @@ _CIFRA_OPCION = re.compile(r"\s*\d+(?:[.,]\d+)?\s*%(?:\s*\(n=\d+\))?|\s*\(n=\d+\
 
 
 def _pistas(recuperados: list[dict[str, Any]]) -> str:
-    """Para la interpretación: qué partes del instrumento recuperó el RAG («r03 (0.62): ¿Cuál es la principal función
-    de una VPN?»), con las opciones de cada pregunta sin sus cifras: lo que se pide puede estar en una opción y no en
-    el enunciado («¿cuántos trabajan?» → «Trabajo en un área relacionada…» de p12, consulta 2149)."""
+    """Para la interpretación: qué partes del instrumento recuperó el RAG («r03 (0.62): ¿Para qué sirve un antivirus?»),
+    con las opciones de cada pregunta sin sus cifras: lo que se pide puede estar en una opción y no en el enunciado
+    («¿cuántos trabajan?» → una opción «Trabajo…» de la pregunta laboral, consulta 2149)."""
     lineas = []
     for f in recuperados[:_MAX_PISTAS]:
         linea = f"- {_etiqueta_fragmento(f)} (similitud {f['score']:.2f}): {(f['fragmento'].splitlines() or [''])[0][:160]}"
@@ -588,6 +612,14 @@ _SOBRE_LO_ANTERIOR = re.compile(r"\b(?:eso|esto|ello|lo anterior|por que|signifi
                                 r"expli\w*|interpret\w*)\b")
 
 
+def _define_termino(pregunta: str) -> bool:
+    """«¿Qué significa un alfa de Cronbach bajo?» nombra un término del glosario: es una definición nueva, no
+    «¿qué significa eso?» sobre la respuesta anterior (dentro de una conversación repetía el cálculo previo y la
+    respuesta no tenía respaldo, fidelidad 0 del juez; 16 nov)."""
+    return dominio.es_definicion(pregunta) and any(
+        s >= 0.75 for _, s in dominio.anclas_cercanas(pregunta, None, "glosario", k=1))
+
+
 def _retomar_anterior(preparada: "consulta_planificada.Preparada", pregunta: str,
                       plan_anterior: dict[str, Any] | None) -> None:
     """Si la interpretación pidió aclaración pero la pregunta se refiere a la respuesta anterior («y eso, ¿qué puede
@@ -596,7 +628,7 @@ def _retomar_anterior(preparada: "consulta_planificada.Preparada", pregunta: str
     p = preparada.plan
     if p is None or p.intencion != "aclaracion" or not plan_anterior \
             or plan_anterior.get("intencion") not in ESTRUCTURADAS \
-            or not _SOBRE_LO_ANTERIOR.search(dominio.normalizar(pregunta)):
+            or not _SOBRE_LO_ANTERIOR.search(dominio.normalizar(pregunta)) or _define_termino(pregunta):
         return
     try:
         plan = PlanConsulta.model_validate({k: v for k, v in plan_anterior.items() if not k.startswith("_")})
@@ -699,6 +731,13 @@ def registrar_consulta(
             sesion.commit()
             if evaluar:  # después de entregar la respuesta, en segundo plano
                 evaluacion.programar(fila.rag_log_id, fabrica_sesiones)
+            # Juez Claude Fable 5.2 (11 nov): cada respuesta evaluable, en segundo plano y en la API de Anthropic
+            # (no compite con Ollama por la GPU, así que no espera a que la persona lo pida).
+            try:
+                if plan is not None and juez_fable.aplica(fila):
+                    juez_fable.solicitar(fila, sesion, fabrica_sesiones)
+            except Exception as exc:  # noqa: BLE001 — el juez nunca rompe el chat
+                logger.warning("No se pudo agendar el juez Fable de la consulta %s: %s", fila.rag_log_id, exc)
             return fila.rag_log_id
         finally:
             sesion.close()
@@ -713,7 +752,7 @@ _DECISIONES_REUTILIZABLES = {dominio.DENTRO, dominio.AYUDA}
 # Súbelo cuando cambie cómo se calculan o redactan las respuestas (enrutador, consultas):
 # las guardadas con la versión anterior dejan de reutilizarse. Las reglas del prompt
 # (`prompt.SISTEMA`) ya entran en la huella.
-_VERSION_RESPUESTAS = 35  # 35: ronda posterior (frase del dato calculada en conteos, «de ellos» y cruces; cita literal y nota de un solo testimonio en entrevistas); 34: correcciones de la Fase 5 (posiciones de escala, opciones abreviadas, «más de N», seguimientos, base del grupo anterior, pruebas sin calificar en toda redacción, cifras atribuidas a su opción, orden del ranking, letras con su texto); 33: sin el nombre de quien registró el instrumento en el encabezado de las fuentes (C13, 8 nov) y ejemplos del prompt sin textos de los instrumentos de prueba; 32: Fases 3 y 4 del 7–8 nov (cortesía, hilo, lo que no existe, comparaciones por pregunta/posición/sección, cruces, entropía, dos capas, polaridad, operaciones de entrevista); 31: redacción del bloque D (cifras derivables, comparación invertida, inferencias, porcentaje con su n, negación cierta, borradores guardados, explicar lo anterior, lo más X, pocas personas, preguntas más omitidas); 30: resumen de reactivos de pruebas (distribución por opción) y filtros imposibles quitados; 29: hilo de la conversación (relación nueva/continua/profundiza sobre el plan anterior), condiciones en las opciones, condición inexistente dicha tal cual, preguntas sobre el instrumento con su ficha, personas con omisiones; 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
+_VERSION_RESPUESTAS = 49  # 49: reglas de tema por palabra suelta exceptuadas si la palabra está en el JSON final del alcance, búsqueda por palabras sin chunks de personas y patrones de «revela tus instrucciones» y de traducir sin «traduce» (20 nov); 48: una definición con término del glosario no es «¿qué significa eso?» y un hallazgo con condiciones que pide un porcentaje es un conteo (16 nov); 47: un filtro inventado sobre la pregunta que la consulta repite ya no se responde con «No encontré esa condición»: se resume la pregunta (16 nov); 46: los hallazgos de un tema se buscan solo en las preguntas de su sección («¿qué opinan del apoyo institucional?» respondía con la reprobación y el transporte, 16 nov); 45: la redacción recibe solo las reglas que aplican a lo que trae el mensaje (RAG_PROMPT_MODULAR, Pruebas 6.8.3, 12 nov); 44: reglas 11 y 12 sin IDs de ejemplo (PERSONAS EN LOS DATOS), la tabla que copia el modelo se quita en lugar de descartar la redacción y respaldo de los datos de un respondente con sus respuestas más relacionadas (12 nov);43: unión de la rama de pruebas con PArturo (búsqueda híbrida, umbral, seguimientos de inferencia y trazabilidad sobre los chunks en tokens y el cálculo corregido); rama PArturo — 42: búsqueda híbrida (significado + palabras, RRF); 41: «¿qué significa eso?» usa el seguimiento si la interpretación no retoma el plan; 40: búsqueda semántica con la pregunta original si la reescrita se parece menos; «¿qué significa eso?» interpreta el resultado; 39: pistas de la interpretación con los fragmentos cercanos y personas de la evidencia en los seguimientos; 38: seguimientos tras una aclaración y sin muletillas del prompt; 37: seguimientos de inferencia con la evidencia de la respuesta anterior; 36: umbral 0.65, similitud en cada tarjeta y hallazgos sin relación también dentro de una conversación; 35: umbral 0.70 sin relleno bajo el umbral y hallazgos de un tema sin relación → sin información; 34: regla 16 también pide variar «esto sugiere»; 33: regla 16 del prompt (interpretar con sus palabras, sin abrir siempre con «según el contexto»); 32: catálogo de la interpretación dentro del contexto; 31: citas [Fuente n] añadidas a las líneas que salen claramente de una fuente cuando el modelo no citó; 30: solo las fuentes que la respuesta usó (citadas o del resultado calculado); 29: cada fuente trae sus pasajes (trazabilidad: parte del documento, similitud y posición); rama de pruebas — 37: prompt de la interpretación dentro de la ventana (presupuesto de tokens) y ejemplos que no repiten preguntas de evaluación (10 nov); 36: base del porcentaje (el grupo nombrado y quienes respondieron la pregunta de la condición) , frase del dato con el nivel dentro del grupo y anclaje de la prueba de aritmética: «estar de acuerdo con» no es «según», opción «Sí…» que la consulta distingue, equivalencias de contexto, mención que es una pregunta cerrada y promedio sobre la pregunta numérica (10 nov); 35: ronda posterior (frase del dato calculada en conteos, «de ellos» y cruces; cita literal y nota de un solo testimonio en entrevistas); 34: correcciones de la Fase 5 (posiciones de escala, opciones abreviadas, «más de N», seguimientos, base del grupo anterior, pruebas sin calificar en toda redacción, cifras atribuidas a su opción, orden del ranking, letras con su texto); 33: sin el nombre de quien registró el instrumento en el encabezado de las fuentes (C13, 8 nov) y ejemplos del prompt sin textos de los instrumentos de prueba; 32: Fases 3 y 4 del 7–8 nov (cortesía, hilo, lo que no existe, comparaciones por pregunta/posición/sección, cruces, entropía, dos capas, polaridad, operaciones de entrevista); 31: redacción del bloque D (cifras derivables, comparación invertida, inferencias, porcentaje con su n, negación cierta, borradores guardados, explicar lo anterior, lo más X, pocas personas, preguntas más omitidas); 30: resumen de reactivos de pruebas (distribución por opción) y filtros imposibles quitados; 29: hilo de la conversación (relación nueva/continua/profundiza sobre el plan anterior), condiciones en las opciones, condición inexistente dicha tal cual, preguntas sobre el instrumento con su ficha, personas con omisiones; 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
 
 
 def clave_cache(peticion: ChatRequest, modelo: str) -> str | None:
@@ -744,6 +783,8 @@ def clave_cache(peticion: ChatRequest, modelo: str) -> str | None:
         "modelo": modelo,
         "version": _VERSION_RESPUESTAS,
         "reglas": hashlib.sha256(prompt.SISTEMA.encode("utf-8")).hexdigest()[:16],
+        # La instrucción partida cambia lo que recibe el modelo: no reutiliza respuestas de la completa.
+        "instruccion": [settings.RAG_PROMPT_MODULAR, settings.RAG_EJEMPLOS_MAX],
     }
     return hashlib.sha256(json.dumps(huella, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
 
@@ -881,6 +922,8 @@ class Plan:
     # 4 nov: en conteos, comparaciones, resúmenes y rankings la redacción solo puede usar cifras del resultado; en
     # las demás también las del texto recuperado del RAG (lo que dijo una persona, «tres sesiones», «15 horas»).
     cifras_solo_resultado: bool = False
+    # Mayor similitud de cada instrumento con la pregunta en la recuperación (para mostrarla en su tarjeta).
+    similitudes: dict[str, float] = field(default_factory=dict)
 
     @property
     def usados(self) -> int:
@@ -897,7 +940,9 @@ class Plan:
             salida.append({"tipo": "resultado", "texto": self.resultado})
         salida += [{"tipo": r.tipo, "titulo": r.titulo, "texto": r.texto} for r in self.referencias]
         salida += [{"tipo": "fragmento", "instrumentoId": f["instrumentoId"], "seccion": f["seccion"],
-                    "etiqueta": _etiqueta_fragmento(f), "score": f.get("score"), "texto": f["fragmento"]}
+                    "etiqueta": _etiqueta_fragmento(f), "score": f.get("score"), "texto": f["fragmento"],
+                    # Búsqueda híbrida (11 nov): para «Ver métricas» (services/metricas_respuesta.py).
+                    "coincidencia": f.get("coincidencia"), "palabras": f.get("palabras"), "rangos": f.get("rangos")}
                    for f in self.fragmentos]
         return salida
 
@@ -949,6 +994,8 @@ async def planear(peticion: ChatRequest) -> Plan:
         # Ronda posterior (8 nov): en una entrevista de una sola participante, una respuesta que interpreta lo dice
         # siempre; antes dependía de que el modelo lo escribiera (ENT-15, ENT-17).
         plan.nota_final = NOTA_UN_TESTIMONIO.format(persona=persona)
+    if "similitudes" in estado:  # un seguimiento no busca: conserva las de la respuesta anterior
+        plan.similitudes = estado["similitudes"]
     return plan
 
 
@@ -966,7 +1013,7 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
 
     # Capa 1a: reglas de intención (sin modelo).
     instrumentos = _instrumentos_alcance(ids)
-    if regla := dominio.reglas(pregunta):
+    if regla := dominio.reglas(pregunta, instrumentos):
         decision, motivo = regla
         propios = [e for ins in instrumentos[:2] for e in cortesia.ejemplos(ins)]
         return Plan(decision=decision, motivo=motivo, instrumentos=ids,
@@ -993,6 +1040,19 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
     if dominio.es_ayuda(pregunta):
         return _plan_ayuda(pregunta, ids, contexto)
 
+    # Hilo de la conversación: «¿por qué crees que pasa eso?» razona sobre la respuesta anterior con su misma
+    # evidencia, sin pasar por la interpretación (que la calculaba como pregunta nueva sobre toda la colección).
+    # «¿Qué significa eso?» tras un cálculo se difiere: primero se intenta retomar el plan anterior con cifras
+    # verificadas (_retomar_anterior); si la interpretación no lo retoma, se usa este seguimiento.
+    diferido: Plan | None = None
+    if peticion.historial and (plan := _plan_cuentas(pregunta, peticion, ids)) is not None:
+        return plan
+    if peticion.historial and not _define_termino(pregunta) \
+            and (plan := _plan_seguimiento(pregunta, peticion, ids, contexto)) is not None:
+        if not plan.motivo.endswith(_DIFERIDO):
+            return plan
+        diferido, plan.motivo = plan, plan.motivo.removesuffix(_DIFERIDO)
+
     # Etapas 1 y 2: interpretación (plan JSON) y ejecución determinista. Sin plan (Ollama caído o plan inválido
     # dos veces) se sigue con las reglas anteriores.
     registro: dict[str, Any] | None = None
@@ -1001,7 +1061,8 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
     conversacion = _conversacion(peticion.historial)
     # RAG primero: la búsqueda en Chroma va antes que la interpretación y que cualquier cálculo.
     inicio_rag = time.perf_counter()
-    recuperados, score_rag = _recuperar_primero(peticion)
+    recuperados, score_rag, estado["similitudes"] = _recuperar_primero(peticion, estado)
+    cercanos = estado.get("pistas") or recuperados
     ms_rag = round((time.perf_counter() - inicio_rag) * 1000)
     tiempos["recuperacion"] = ms_rag
     estado["tiempos"] = tiempos
@@ -1015,18 +1076,29 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
             try:
                 preparada = await consulta_planificada.preparar(
                     pregunta, [(m.rol, m.texto) for m in peticion.historial], ids, sesion, tema=tema,
-                    pistas=_pistas(recuperados), plan_anterior=plan_anterior,
-                    recuperadas=_preguntas_recuperadas(recuperados), personas=_persona_reciente(peticion.historial))
+                    pistas=_pistas(cercanos), plan_anterior=plan_anterior,
+                    recuperadas=_preguntas_recuperadas(recuperados), personas=_persona_reciente(peticion.historial),
+                    prioridad=list(dict.fromkeys(str(f["instrumentoId"]) for f in cercanos)))
             finally:
                 sesion.close()
         except Exception as exc:  # noqa: BLE001 — sin BD o storage: siguen las reglas
             logger.warning("Interpretación no disponible: %s", exc)
             preparada = None
+        if preparada is None and diferido is not None:
+            return diferido
         if preparada is not None:
             unicas = [c.respondentes[0] for c in preparada.catalogos if c.tipo == "entrevista" and len(c.respondentes) == 1]
             if unicas and len(unicas) == len(preparada.catalogos):
                 estado["un_testimonio"] = unicas[0]
             _retomar_anterior(preparada, pregunta, plan_anterior)
+            # Retoma el plan anterior la regla de la aclaración (_retomar_anterior) o la relación «profundiza» del
+            # hilo (`seguimiento`); si ninguna lo hizo, responde el seguimiento de inferencia.
+            if diferido is not None and not any(c.startswith(("aclaración → plan de la respuesta anterior",
+                                                              "profundiza: se repite el plan anterior"))
+                                                for c in preparada.interp.correcciones):
+                diferido.plan_consulta = preparada.registro()
+                diferido.tiempos = {"recuperacion": ms_rag, "interpretacion": preparada.interp.ms}
+                return diferido
             inicio_apoyo = time.perf_counter()
             apoyo = _apoyo_rag(peticion, preparada)
             p = preparada.plan
@@ -1045,7 +1117,8 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
             if consulta_semantica is None:
                 decidido = _plan_desde_preparada(preparada, pregunta, ids, contexto,
                                                  seguimiento=bool(peticion.historial), apoyo=apoyo,
-                                                 conversacion=conversacion)
+                                                 conversacion=conversacion, score_rag=score_rag,
+                                                 hay_relacion=bool(recuperados))
                 if decidido is not None:
                     # «Cómo lo calculé» (7 nov, Fase 4): el criterio de cada cálculo queda con el plan.
                     registro = {**registro, "calculo": [
@@ -1093,6 +1166,12 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
         logger.warning("Enrutador no disponible: %s", exc)
 
     fragmentos, score_chunks = _buscar(peticion, vector)
+    if consulta_semantica and consulta_semantica != pregunta:
+        # La interpretación reescribe la búsqueda («comentarios sobre el apoyo de sus compañeros», 0.55) y puede
+        # quedar bajo el umbral aunque la pregunta original sí lo pase (0.74): se usa la que más se parezca (10 nov).
+        otros, score_otros = _buscar(peticion, _vector(pregunta))
+        if score_otros > score_chunks:
+            fragmentos, score_chunks = otros, score_otros
     if resultado is not None:
         # RAG primero (5 nov): todo resultado de las reglas lleva el texto recuperado de sus instrumentos. Antes solo
         # los KPIs lo llevaban porque, con los fragmentos al lado, el modelo llegó a tomar el % de toda la muestra en
@@ -1203,7 +1282,8 @@ def _plan_ayuda(pregunta: str, ids: list[str], contexto: dict[str, Any] | None) 
 
 def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta: str, ids: list[str],
                           contexto: dict[str, Any] | None, seguimiento: bool = False,
-                          apoyo: list[dict[str, Any]] | None = None, conversacion: str = "") -> Plan | None:
+                          apoyo: list[dict[str, Any]] | None = None, conversacion: str = "",
+                          score_rag: float | None = None, hay_relacion: bool | None = None) -> Plan | None:
     """Plan del chat a partir del plan de la interpretación; None = sigue la ruta semántica o las reglas.
 
     `seguimiento`: la conversación ya tiene turnos anteriores. `apoyo`: fragmentos del RAG que acompañan al
@@ -1247,13 +1327,16 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
         return plan
     if p.intencion not in ESTRUCTURADAS or not preparada.ejecuciones:
         return None
+    if _hallazgo_sin_relacion(p.intencion, pregunta, seguimiento, score_rag, hay_relacion):
+        return Plan(decision=dominio.SIN_INFORMACION, motivo=f"plan:hallazgo con similitud {score_rag:.2f} < "
+                    f"{settings.RAG_MIN_SCORE}", fija=MENSAJE_SIN_CONTEXTO, instrumentos=ids, score_max=score_rag or 0.0)
     ejecuciones = preparada.ejecuciones
     apoyo = apoyo or []
     plan = Plan(ruta="estructurada", motivo=f"plan:{p.intencion}", score_max=1.0,
                 instrumentos=ids or [e.instrumento.id_crudo for e in ejecuciones])
     plan.fuentes = consulta_planificada.fuentes(ejecuciones)
     plan.resultado = consulta_planificada.resultado_completo(ejecuciones)
-    plan.respuesta_directa = consulta_planificada.directa(ejecuciones)
+    plan.respuesta_directa = consulta_planificada.directa(ejecuciones, apoyo)
     plan.anexo = consulta_planificada.anexo(ejecuciones)
     if anclaje.AVISO_INEXISTENTE in preparada.interp.correcciones and p.aclaracion:
         # Lo que se pidió no existe (7 nov, Fase 3): el aviso y lo que sí hay, tal cual, sin redacción.
@@ -1266,6 +1349,10 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
     entrevistas = [e for e in ejecuciones if e.instrumento.tipo == "entrevista"]
     adicional = consulta_planificada.formato_adicional(
         pregunta, p.relacion, len(ejecutor._personas(entrevistas[0].instrumento.doc)) if len(entrevistas) == 1 else None)
+    if any(c.startswith("aclaración → plan de la respuesta anterior") for c in preparada.interp.correcciones):
+        # «¿Qué significa eso?» tras un resultado: con el formato del cálculo el modelo lo repetía tal cual (10 nov).
+        formato = (f"{formato} La pregunta pide interpretar el resultado anterior: no lo repitas; explica con tus "
+                   "palabras qué significa y qué podría implicar, usando sus cifras tal cual.").strip()
     texto_entrevista =p.intencion == "hallazgo" and all(e.instrumento.tipo == "entrevista" for e in ejecuciones)
     if texto_entrevista and not plan.admite_negativa and any(
             c.get("tipo") == "lo_que_cuentan" for e in ejecuciones for c in e.candidatos):
@@ -1332,6 +1419,83 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
 # % de toda la muestra de un fragmento en lugar del % del grupo calculado).
 _INTENCIONES_TEXTO = {"datos_respondente", "hallazgo"}
 _CON_FRASE_DATO = {"conteo_porcentaje", "resumen_pregunta"}  # el resumen solo trae frase en un cruce
+
+# «Dame un dato interesante», «¿qué patrones hay?», «¿qué destaca de esta encuesta?»: piden los hallazgos del
+# instrumento en sí, no un tema; se responden con el cálculo aunque ningún fragmento se parezca a la pregunta.
+_PIDE_HALLAZGOS = re.compile(r"\b(dato|datos) (interesante|curioso|relevante)|patron|hallazg|tendencia|destac|"
+                             r"llama la atencion|sobresal|resum")
+
+
+_DIFERIDO = " (diferido)"
+
+
+def _plan_cuentas(pregunta: str, peticion: ChatRequest, ids: list[str]) -> Plan | None:
+    """«¿Cómo inferiste que no hay…?» tras un «sin información»: la traza de esa respuesta, sin LLM (qué se buscó, la
+    parte más parecida y su similitud frente al umbral), con esa parte como fuente para abrirla."""
+    if not inferencia.pide_cuentas(pregunta):
+        return None
+    anterior = inferencia.leer_sin_respuesta(peticion.historial, fabrica_sesiones)
+    if anterior is None:
+        return None
+    busqueda: dict[str, Any] = {}
+    _recuperar_primero(ChatRequest(pregunta=anterior.pregunta, instrumentoIds=anterior.instrumentos or ids), busqueda)
+    cercano = next(iter(busqueda.get("pistas") or []), None)
+    plan = Plan(motivo=f"explicación de la consulta {anterior.consulta_id}", ruta="semantica",
+                instrumentos=anterior.instrumentos or ids, score_max=cercano["score"] if cercano else None)
+    if cercano is not None:
+        plan.fragmentos = [cercano]
+        plan.fuentes = _numerar(plan.fragmentos)
+        cercano = {**cercano, "etiqueta": trazabilidad.etiqueta(cercano.get("seccion") or "", cercano.get("preguntaId"),
+                                                                cercano.get("respondenteId")).lower()}
+    plan.fija = inferencia.explicar_sin_respuesta(anterior, cercano, settings.RAG_MIN_SCORE)
+    return plan
+
+
+def _plan_seguimiento(pregunta: str, peticion: ChatRequest, ids: list[str],
+                      contexto: dict[str, Any] | None) -> Plan | None:
+    """Seguimiento de inferencia sobre la respuesta anterior (`services/inferencia.py`); None = no lo es."""
+    if not inferencia.es_inferencia(pregunta):
+        return None
+    anterior = inferencia.leer_anterior(peticion.historial, fabrica_sesiones)
+    if anterior is None:
+        return None
+    try:
+        fuentes = [FuenteChatOut(**f) for f in anterior.fuentes]
+    except ValueError:
+        return None
+    fragmentos = anterior.fragmentos()
+    if not fragmentos:
+        return None
+    scores = [f["score"] for f in fragmentos if f.get("score") is not None]
+    diferir = settings.RAG_INTERPRETACION_LLM and inferencia.lo_retoma_el_plan(pregunta, anterior, ESTRUCTURADAS)
+    plan = Plan(ruta="semantica",
+                motivo=f"seguimiento de la consulta {anterior.consulta_id}" + (_DIFERIDO if diferir else ""),
+                score_max=max(scores) if scores else None,
+                instrumentos=ids or sorted({f.instrumentoId for f in fuentes}), fragmentos=fragmentos, fuentes=fuentes)
+    plan.similitudes = {str(f.instrumentoId): f.similitud for f in fuentes if f.similitud is not None}
+    plan.texto_prompt = prompt.construir(pregunta, fragmentos, contexto, formato=inferencia.formato(fragmentos),
+                                         conversacion=inferencia.conversacion(anterior, interpretacion.sin_tablas))
+    return plan
+
+
+def _hallazgo_sin_relacion(intencion: str, pregunta: str, seguimiento: bool, score_rag: float | None,
+                          hay_relacion: bool | None = None) -> bool:
+    """¿Un «hallazgo» que responde a un TEMA que nada del alcance trata? El plan elegía hallazgos del instrumento
+    aunque no hablara del tema (10 nov: «¿qué estrategias usan los estudiantes para mejorar su rendimiento?» con un
+    instrumento sobre modalidad de estudio, similitud 0.65); sin un fragmento sobre RAG_MIN_SCORE, no hay información.
+
+    `hay_relacion`: algún fragmento llega a la respuesta (`hibrida.relevante`). La similitud máxima no basta: incluye
+    la ficha y los KPIs, que se parecen a casi cualquier pregunta (11 nov, unión con la rama de pruebas: con el umbral
+    0.55, la ficha de la encuesta 127 dejaba pasar «estrategias» con 0.64 sin que nada del instrumento lo tratara)."""
+    relacionado = hay_relacion if hay_relacion is not None else (score_rag is not None and score_rag >= settings.RAG_MIN_SCORE)
+    if intencion != "hallazgo" or score_rag is None or relacionado:
+        return False
+    texto = dominio.normalizar(pregunta)
+    # En una conversación solo cuenta como seguimiento lo que se refiere a lo anterior («¿y eso?», «¿por qué?»): una
+    # pregunta nueva sobre otro tema no hereda nada (10 nov, consulta 130).
+    if seguimiento and (consulta_planificada.REFERENCIA.search(texto) or len(texto.split()) <= 4):
+        return False
+    return not (_PIDE_HALLAZGOS.search(texto) or enrutador.refiere_al_alcance(pregunta))
 _CON_CIFRA = re.compile(r"\d")
 
 
@@ -1739,6 +1903,7 @@ def califica_prueba(respuesta: str, contexto: str = "") -> bool:
 
 
 _TABLA_MD = re.compile(r"^\s*\|.*\|\s*$", re.MULTILINE)  # la redacción no escribe tablas: se anexan del cálculo
+_MIN_SIN_TABLA = 60  # caracteres del párrafo que queda al quitar la tabla copiada por el modelo
 _ID_DATO = re.compile(r"\b(?:[RAE]\d{2,5}|p\d{2,3}|r\d{2,3}|KPI-\d+)\b")
 
 
@@ -1777,7 +1942,9 @@ _MAX_BORRADOR = 1500  # caracteres de cada borrador rechazado que se guardan en 
 async def _generar_estructurada(plan: Plan, modelo: str) -> tuple[str, bool]:
     """Redacción del resultado calculado, verificada cifra por cifra; las tablas calculadas se anexan al final."""
     inicio = time.perf_counter()
-    respuesta, degradado = await ollama_client.generar_no_stream(plan.texto_prompt, modelo, sistema=prompt.SISTEMA)
+    respuesta, degradado = await ollama_client.generar_no_stream(plan.texto_prompt, modelo,
+                                                                 sistema=prompt.sistema_para(plan.texto_prompt))
+    tokens_redaccion = ollama_client.TOKENS_PROMPT.get()
     plan.tiempos["redaccion"] = round((time.perf_counter() - inicio) * 1000)
     if plan.frase_dato:
         inicio = time.perf_counter()
@@ -1797,7 +1964,8 @@ async def _generar_estructurada(plan: Plan, modelo: str) -> tuple[str, bool]:
         aviso = _AVISOS_REINTENTO.get(fallo, "no respetó el RESULTADO CALCULADO")
         reintento, degradado = await ollama_client.generar_no_stream(
             f"{plan.texto_prompt}\n\nTu respuesta anterior fue: «{_pulir(respuesta, plan)[:600]}»\nNo es válida porque {aviso}. "
-            "Escríbela de nuevo usando solo el RESULTADO CALCULADO y el TEXTO RECUPERADO.", modelo, sistema=prompt.SISTEMA)
+            "Escríbela de nuevo usando solo el RESULTADO CALCULADO y el TEXTO RECUPERADO.", modelo,
+            sistema=prompt.sistema_para(plan.texto_prompt))
         plan.tiempos["redaccion"] += round((time.perf_counter() - inicio) * 1000)
         verificada, degradado = _verificar_redaccion(plan, reintento, degradado)
         verificacion = {"intentos": 2, "primer_fallo": fallo,
@@ -1824,7 +1992,9 @@ async def _generar_estructurada(plan: Plan, modelo: str) -> tuple[str, bool]:
         respuesta = (f"**Lo que muestran los datos:** {plan.hechos}\n\n"
                      f"**Interpretación (del asistente, no es un dato):** {interpretacion}")
     if plan.plan_consulta is not None:
-        plan.plan_consulta = {**plan.plan_consulta, "verificacion": verificacion}
+        plan.plan_consulta = {**plan.plan_consulta, "verificacion": verificacion,
+                              "redaccion": {"reglas": len(prompt.reglas_para(plan.texto_prompt)) if settings.RAG_PROMPT_MODULAR
+                                            else len(prompt._REGLAS), "tokens_prompt": tokens_redaccion}}
     if plan.nota_final:
         respuesta = f"{respuesta.rstrip()}\n\n{plan.nota_final}"
     if plan.anexo:
@@ -1879,6 +2049,13 @@ def _copia_listado(respuesta: str, listado: str | None) -> bool:
 
 def _verificar_redaccion(plan: Plan, respuesta: str, degradado: bool) -> tuple[str, bool]:
     respuesta = _pulir(respuesta, plan)
+    if plan.cifras_obligatorias is not None and _TABLA_MD.search(respuesta):
+        # Las tablas salen del cálculo y se anexan debajo: la que copia el modelo se quita y se verifica el resto. Antes
+        # una tabla descartaba toda la redacción aunque el párrafo fuera correcto (12 nov, consulta 4047). Si lo que
+        # queda solo presentaba la tabla («Así quedan:»), la redacción se descarta como antes.
+        sin_tabla = re.sub(r"\n{3,}", "\n\n", _TABLA_MD.sub("", respuesta)).strip()
+        if len(sin_tabla) >= _MIN_SIN_TABLA and not sin_tabla.endswith(":"):
+            respuesta = sin_tabla
     contexto = "\n".join(c["texto"] for c in plan.contexto_usado())
     if plan.cifras_obligatorias is not None and not degradado:
         # Ruta del plan (28 oct): toda cifra de la redacción debe estar en el resultado y deben estar las del conteo.
@@ -1972,14 +2149,15 @@ async def responder(peticion: ChatRequest):
         elif plan.resultado:
             respuesta, degradado = await _generar_estructurada(plan, modelo)
         else:
-            respuesta, degradado = await ollama_client.generar_no_stream(plan.texto_prompt, modelo, sistema=prompt.SISTEMA)
+            respuesta, degradado = await ollama_client.generar_no_stream(
+                plan.texto_prompt, modelo, sistema=prompt.sistema_para(plan.texto_prompt))
             respuesta = _pulir(respuesta, plan)
             _anotar_cifras_semanticas(plan, respuesta)
             if plan.nota_final and not degradado:
                 respuesta = f"{respuesta.rstrip()}\n\n{plan.nota_final}"
     finally:
         evaluacion.chat_termina()
-    fuentes, usados = _fuentes_finales(plan, respuesta)
+    fuentes, usados, respuesta = _fuentes_finales(plan, respuesta)
     referencias = plan.referencias_out() if usados else []
     consulta_id = registrar_consulta(peticion.pregunta, respuesta, modelo, usados, inicio, plan, clave=clave,
                                      salida=_salida(fuentes, referencias, degradado))
@@ -1997,15 +2175,25 @@ def _anotar_cifras_semanticas(plan: Plan, respuesta: str) -> None:
         "resultado": "cifras_sin_respaldo" if sin else "aceptada", "cifras_sin_sustento": sin}}
 
 
-def _fuentes_finales(plan: Plan, respuesta: str) -> tuple[list[FuenteChatOut], int]:
-    """Fuentes que se muestran: ninguna si el modelo respondió que no tiene información."""
+def _fuentes_finales(plan: Plan, respuesta: str) -> tuple[list[FuenteChatOut], int, str]:
+    """Fuentes que se muestran (ninguna si el modelo respondió que no tiene información), cuántas piezas de contexto
+    se usaron y la respuesta final (con las citas que faltaban, en la redacción libre)."""
     if plan.fija is not None and plan.decision != dominio.DENTRO:
-        return [], 0
+        return [], 0, respuesta
     if plan.fija is None and es_negativa(respuesta):  # no respondió con ellas: no se muestran como fuentes
         plan.decision = dominio.SIN_INFORMACION
         plan.motivo = plan.motivo or "el modelo no encontró la respuesta en el contexto"
-        return [], 0
-    return plan.fuentes, plan.usados
+        return [], 0, respuesta
+    # Cada tarjeta lleva los pasajes que se le dieron al modelo (de qué parte del documento salió la información) y
+    # solo se muestran las fuentes que la respuesta usó: citadas o parte del resultado calculado. En la redacción
+    # libre (sin resultado calculado), si el modelo no citó, se citan las líneas que salen claramente de una fuente.
+    fuentes = trazabilidad.adjuntar(plan.fuentes, plan.fragmentos)
+    for f in fuentes:
+        scores = [p.score for p in f.pasajes if p.score is not None]
+        f.similitud = max(scores) if scores else plan.similitudes.get(str(f.instrumentoId))
+    if plan.fija is None and not plan.resultado:
+        respuesta = trazabilidad.citar(respuesta, fuentes)
+    return trazabilidad.citadas(fuentes, respuesta, plan.resultado), plan.usados, respuesta
 
 
 def _evento(nombre: str, datos: dict[str, Any]) -> str:
@@ -2047,7 +2235,7 @@ async def _sse_generar(pregunta: str, modelo: str, plan: Plan, inicio: float, cl
         # Se emite con un retraso de `_RETENCION` caracteres: al terminar, el
         # remanente se limpia de la frase de «sin información» sobrante.
         generado, enviados = "", 0
-        async for trozo in ollama_client.generar_stream(plan.texto_prompt, modelo, sistema=prompt.SISTEMA):
+        async for trozo in ollama_client.generar_stream(plan.texto_prompt, modelo, sistema=prompt.sistema_para(plan.texto_prompt)):
             generado += trozo
             hasta = len(generado) - _RETENCION
             if hasta > enviados:
@@ -2066,7 +2254,8 @@ async def _sse_generar(pregunta: str, modelo: str, plan: Plan, inicio: float, cl
         if plan.nota_final and ollama_client.MENSAJE_DEGRADADO not in respuesta:
             yield _evento("token", {"t": f"\n\n{plan.nota_final}"})
             respuesta = f"{respuesta.rstrip()}\n\n{plan.nota_final}"
-    fuentes, usados = _fuentes_finales(plan, respuesta)
+    transmitida = respuesta
+    fuentes, usados, respuesta = _fuentes_finales(plan, respuesta)
     referencias = plan.referencias_out() if usados else []
     # El mensaje de Ollama no disponible no se guarda como respuesta reutilizable.
     degradado = ollama_client.MENSAJE_DEGRADADO in respuesta
@@ -2080,5 +2269,7 @@ async def _sse_generar(pregunta: str, modelo: str, plan: Plan, inicio: float, cl
         "ruta": plan.ruta,
         "consultaId": consulta_id,
         "latenciaMs": latencia_ms,
+        # Si se añadieron citas, la UI reemplaza el texto que llegó por tokens por este (es el mismo, con las marcas).
+        **({"respuesta": respuesta} if respuesta != transmitida else {}),
     })
     yield "event: fin\ndata: {}\n\n"

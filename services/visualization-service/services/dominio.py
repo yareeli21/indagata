@@ -62,18 +62,52 @@ def config() -> dict[str, Any]:
     return dominio
 
 
+def valor_nombrado(valor: str, texto: str) -> bool:
+    """¿El texto (normalizado) nombra el valor de contexto, tal cual o con una de sus `equivalencias_contexto`?
+    «¿cuántas mujeres…?» nombra genero = femenino (10 nov, aritmética A05: el grupo se descartaba)."""
+    v = normalizar(str(valor))
+    formas = {v} | {normalizar(f) for clave, lista in (config().get("equivalencias_contexto") or {}).items()
+                    if normalizar(clave) == v for f in lista}
+    return len(v) >= 3 and any(re.search(rf"\b{re.escape(f)}\b", texto) for f in formas)
+
+
 # ── Capa 1a: reglas de intención ───────────────────────────────────────────────
 
 # Orden de evaluación: lo más grave primero.
-_ORDEN = ((PRIVACIDAD, "privacidad"), (MANIPULACION, "manipulacion"), (FUERA, "fuera"))
+_ORDEN = ((PRIVACIDAD, "privacidad"), (MANIPULACION, "manipulacion"), (FUERA, "fuera"), (FUERA, "fuera_tema"))
+# Partes del documento que no describen el instrumento (respuestas por persona): no cuentan como su tema.
+_SIN_TEMA = {"respondentes", "alumnos"}
 
 
-def reglas(pregunta: str) -> tuple[str, str] | None:
-    """(decisión, motivo) si una regla de intención decide la pregunta; si no, None."""
+def _textos(valor: Any) -> list[str]:
+    if isinstance(valor, str):
+        return [valor]
+    if isinstance(valor, dict):
+        return [t for k, v in valor.items() if k not in _SIN_TEMA for t in _textos(v)]
+    if isinstance(valor, list):
+        return [t for v in valor for t in _textos(v)]
+    return []
+
+
+def _en_alcance(palabra: str, alcance: list[Any]) -> bool:
+    """¿La palabra (o su singular) aparece en el título, las preguntas u opciones de algún instrumento del alcance?"""
+    raiz = re.compile(rf"\b{re.escape(palabra.rstrip('s'))}")
+    return any(raiz.search(normalizar(" ".join([getattr(ins, "titulo", ""), *_textos(getattr(ins, "doc", {}))])))
+               for ins in alcance)
+
+
+def reglas(pregunta: str, alcance: list[Any] | None = None) -> tuple[str, str] | None:
+    """(decisión, motivo) si una regla de intención decide la pregunta; si no, None.
+
+    `alcance` son los instrumentos seleccionados (con `titulo` y `doc`): un tema de `fuera_tema` que aparece en ellos
+    («películas» en una encuesta de hobbies) no se rechaza y lo deciden la búsqueda y el clasificador.
+    """
     texto = normalizar(pregunta)
     for decision, clave in _ORDEN:
         for patron in config()["_patrones"].get(clave, []):
-            if patron.search(texto):
+            if m := patron.search(texto):
+                if clave == "fuera_tema" and alcance and _en_alcance(m.group(0), alcance):
+                    continue
                 return decision, f"regla:{clave}"
     return None
 

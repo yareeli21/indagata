@@ -1,0 +1,70 @@
+{
+ "id": "PRU-02",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opción eligieron más en el reactivo sobre phishing?",
+   "rag_log_id": 2405,
+   "respuesta": "La opción “Un tipo de búsqueda en Google” fue la más elegida en el reactivo r04 sobre phishing, seleccionada por un 40.2% (39 alumnos) del total de participantes. La opción C, “Una herramienta de edición de imágenes”, obtuvo el segundo mayor número de respuestas con un 38.1% (37 alumnos). Ningún estudiante eligió la opción D, “Un protocolo de transferencia de archivos”. [Fuente 1]\n\n**Distribución de r04 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 39 | 40.2 % |\n| B | 21 | 21.6 % |\n| C | 37 | 38.1 % |\n| D | 0 | 0.0 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r04"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r04",
+     "score": 0.7175
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r04",
+     "score": 0.6277
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4899
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.4811
+    }
+   ],
+   "segundos": 32.5,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 14760,
+    "recuperacion": 427,
+    "verificacion": 1,
+    "interpretacion": 17226
+   },
+   "k_precision": 0.814,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución A–D y NR con n, % y texto de cada opción, sin decir cuál es correcta."
+}

@@ -1,0 +1,58 @@
+{
+ "id": "ENC-11",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Cambia la expectativa de titularse según la carga académica?",
+   "rag_log_id": 2283,
+   "respuesta": "Según los datos registrados, el 50.4 % de los estudiantes encuestados respondió que es probable que vuelvan a estudiar en ESCOM (p13). La media de esta respuesta es 23.6 %, y la baja es del 26.1 %. La media general de la pregunta p13 es 3.42. Esto sugiere una expectativa relativamente alta entre los estudiantes de volver a estudiar en la institución, aunque no es la mayoría. [Fuente 1]",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«contexto» no es una variable de contexto de «Indicadores de Experiencia y Calidad Académica» (disponibles: ninguna)."
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.6634
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.6634
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.6507
+    }
+   ],
+   "segundos": 65.4,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "recuperacion": 245,
+    "interpretacion": 38301
+   },
+   "k_precision": 0.577,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "No hizo la comparación de la carga académica con la expectativa de titularse, mal comparación"
+  }
+ ],
+ "debe": "Distribución por nivel de carga."
+}

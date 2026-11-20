@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS raw_data (
     nombre_archivo       TEXT        NOT NULL,
     raw_archivo          TEXT        NOT NULL,  -- ruta del archivo respondido (crudo con datos)
     raw_archivo_original TEXT,                  -- ruta del instrumento original (solo preguntas)
+    raw_archivo_diccionario TEXT,               -- ruta del diccionario de datos (variable, pregunta, valor, etiqueta)
     fecha_carga          TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -266,6 +267,9 @@ CREATE TABLE IF NOT EXISTS documento_vectorizado (
     n_tokens                 INTEGER,
     almacenado_en            TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
 );
+-- Búsqueda híbrida del chat (por palabras, en español): migrations/2026_20_busqueda_hibrida.sql.
+CREATE INDEX IF NOT EXISTS idx_documento_vectorizado_texto
+    ON documento_vectorizado USING gin (to_tsvector('spanish', chunk_texto));
 
 -- ── 14. kpi_inferido_chunk (puente: evidencia de la inferencia) ───────────────
 -- Registra qué chunks vectorizados sustentaron cada KPI inferido por búsqueda

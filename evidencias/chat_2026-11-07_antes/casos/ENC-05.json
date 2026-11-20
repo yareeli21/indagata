@@ -1,0 +1,78 @@
+{
+ "id": "ENC-05",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos NO han presentado ningún examen de certificación?",
+   "rag_log_id": 2276,
+   "respuesta": "1327 de 2000 estudiantes (66.3 %) [Fuente 1] no han presentado ningún examen de certificación profesional (A WS, Cisco, Microsoft Azure, Google Cloud, etc.).",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": [
+       "No, pero planeo hacerlo",
+       "No, y no lo planeo"
+      ],
+      "pregunta": "p11"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "filtro p11: todas las opciones «No…» (2)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.6085
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5077
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.5037
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5029
+    }
+   ],
+   "segundos": 165.3,
+   "tiempos_ms": {
+    "ejecucion": 475,
+    "redaccion": 82804,
+    "recuperacion": 2175,
+    "verificacion": 3,
+    "interpretacion": 79769
+   },
+   "k_precision": 0.923,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Resolver la negación sumando «No, pero planeo hacerlo» y «No, y no lo planeo»."
+}

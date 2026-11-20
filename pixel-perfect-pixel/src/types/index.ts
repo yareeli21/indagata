@@ -1,4 +1,5 @@
-export const NIVELES_EDUCATIVOS = ["Licenciatura", "Posgrado"] as const;
+/** Todo el acervo es de licenciatura (16 nov): ya no existe «Posgrado». */
+export const NIVELES_EDUCATIVOS = ["Licenciatura"] as const;
 
 export type NivelEducativo = (typeof NIVELES_EDUCATIVOS)[number];
 
@@ -282,6 +283,39 @@ export interface VistaFinalLimpieza {
 }
 
 /** Una versión de la limpieza de un instrumento. */
+/** Un código de respuesta de una columna (p. ej. «2», «B») y cuántas veces aparece. */
+export interface CodigoRespuesta {
+  codigo: string;
+  n: number | null;
+}
+
+/** Columna (encuesta) o reactivo (prueba) en código, con el texto y el significado que ya tiene. */
+export interface ColumnaCodigos {
+  clave: string;
+  /** Encabezado tal como viene en el archivo («P5»). */
+  etiqueta: string;
+  tipo: string | null;
+  encabezado_codigo: boolean;
+  codigos: CodigoRespuesta[];
+  pregunta: string | null;
+  /** {código: etiqueta}, p. ej. {"1": "Hombre", "2": "Mujer"}. */
+  etiquetas: Record<string, string>;
+  /** diccionario | investigador | anterior (null = aún sin significado). */
+  origen: string | null;
+}
+
+/** Microdatos: columnas con códigos y el resumen del diccionario de datos, si se subió. */
+export interface CodigosLimpieza {
+  columnas: ColumnaCodigos[];
+  diccionario: { nombre: string; emparejadas: number; sin_columna: string[]; n_sin_columna: number } | null;
+}
+
+/** Texto de una pregunta en código y significado de sus códigos, como se guarda en la limpieza. */
+export interface SignificadoCodigos {
+  pregunta: string | null;
+  valores: Record<string, string>;
+}
+
 export interface EjecucionLimpieza {
   idCrudo: number;
   version: number;
@@ -293,6 +327,8 @@ export interface EjecucionLimpieza {
   transformaciones: TransformacionLimpieza[];
   hallazgos: HallazgoLimpieza[];
   pendientesObligatorias: number;
+  /** Columnas con códigos (microdatos), mientras la versión espera decisiones. */
+  codigos: CodigosLimpieza | null;
   vistaFinal: VistaFinalLimpieza | null;
 }
 
@@ -563,7 +599,7 @@ export type FormatoDescarga = "crudo" | "json" | "sav";
 export type NivelCoincidencia = "alta" | "media" | "baja";
 
 export interface RazonCoincidencia {
-  tipo: "kpi" | "nivel" | "descripcion";
+  tipo: "kpi" | "descripcion";
   etiqueta: string;
 }
 
@@ -575,7 +611,7 @@ export interface InstrumentoRelacionado {
 }
 
 /** «servidor»: no se envía modelo y el chat usa el de `OLLAMA_MODEL` (.env) en todas sus etapas. */
-export type ModeloLLM = "servidor" | "llama3.2:3b";
+export type ModeloLLM = "llama3.2:3b";
 
 export interface ContextoInvestigacion {
   objetivo: string;
@@ -593,6 +629,48 @@ export interface FuenteChat {
   investigador: string;
   kpis: string[];
   fragmento: string;
+  /** De qué partes del instrumento salió la información (más parecido primero). Ausente en
+   *  respuestas guardadas antes de la trazabilidad. */
+  pasajes?: PasajeFuente[];
+  /** Mayor similitud (0–1) del instrumento con la pregunta, aunque la respuesta sea un cálculo sin pasajes. */
+  similitud?: number | null;
+}
+
+/** Un fragmento del instrumento que se le dio al modelo para responder. */
+export interface PasajeFuente {
+  seccion: string;
+  /** «Ficha», «Pregunta p04», «Respondente R017 · p04»… */
+  etiqueta: string;
+  texto: string;
+  /** Similitud con la pregunta (null: se agregó sin búsqueda, p. ej. la ficha). */
+  score: number | null;
+  /** Posición en el documento indexado: abre el visor justo ahí. */
+  chunkIndex: number | null;
+  preguntaId: string;
+  respondenteId: string;
+}
+
+/** Un fragmento del documento indexado de un instrumento (lo que el chat puede recuperar). */
+export interface FragmentoDocumento {
+  chunkIndex: number;
+  seccion: string;
+  etiqueta: string;
+  texto: string;
+  preguntaId: string;
+  respondenteId: string;
+}
+
+/** Un tramo [desde, hasta) del documento indexado, en orden. */
+export interface DocumentoFuente {
+  instrumentoId: string;
+  titulo: string;
+  tipo: string;
+  /** documento: documento final vigente; json_tecnico: registro técnico. */
+  origen: string;
+  total: number;
+  desde: number;
+  hasta: number;
+  fragmentos: FragmentoDocumento[];
 }
 
 /** Entrada curada que respalda una respuesta: glosario metodológico o ayuda de la plataforma. */
@@ -622,6 +700,8 @@ export interface ResultadoChat {
   enCache?: boolean;
   /** Milisegundos que tardó la respuesta (Pruebas: duración). */
   latenciaMs?: number | null;
+  /** Texto final de la respuesta cuando el servicio le añadió citas [Fuente n] (trazabilidad). */
+  contenido?: string;
 }
 
 /** Métricas automáticas de una respuesta (juez local: evaluación aproximada). */
@@ -643,7 +723,40 @@ export interface MetricasRespuesta {
   indicadores: IndicadoresRespuesta | null;
   /** Evaluaciones de la misma respuesta por cada juez (experimento redactor × juez). */
   jueces: EvaluacionJuez[];
+  /** Juez Claude Fable 5.2: evalúa cada respuesta sola, en segundo plano (null = no aplica). */
+  juezFable: EvaluacionFable | null;
   calificacion: CalificacionRespuesta | null;
+}
+
+/**
+ * Seis métricas tipo RAGAS calculadas con el juez Claude Fable 5.2 (services/juez_fable.py). Todas van de 0 a 1;
+ * en `sensibilidadRuido` menor es mejor. Recuerdo, ruido y corrección factual se comparan con una respuesta de
+ * referencia que el juez escribe sin ver la del sistema.
+ */
+export interface EvaluacionFable {
+  modelo: string;
+  /** El modelo que juzgó de verdad (distinto si Fable declinó y respondió el modelo de respaldo). */
+  modeloReal: string | null;
+  fallback: boolean;
+  estado: "calculando" | "listo" | "omitida" | "error";
+  motivo: string | null;
+  fecha: string | null;
+  precisionContexto: number | null;
+  recuerdoContexto: number | null;
+  fidelidad: number | null;
+  relevancia: number | null;
+  sensibilidadRuido: number | null;
+  correccionFactual: number | null;
+  correccionPrecision: number | null;
+  correccionRecuerdo: number | null;
+  noSustentadas: string[];
+  incorrectas: string[];
+  respuestaReferencia: string | null;
+  afirmacionesReferencia: string[];
+  /** Números (desde 1) de las afirmaciones de referencia que la respuesta omitió. */
+  referenciaNoCubierta: number[];
+  origenReferencia: "contexto_ampliado" | "solo_contexto_usado" | null;
+  preguntasGeneradas: string[];
 }
 
 /** Indicadores del sistema de una respuesta (sin juez): quién la escribió, si inventó cifras o IDs, tiempos. */
@@ -671,6 +784,49 @@ export interface IndicadoresRespuesta {
   comoSeCalculo?: string[];
   /** Lo que el sistema corrigió del plan que propuso el modelo. */
   ajustes?: string[];
+  /** «Ver métricas» (sin juez): cómo se recuperó, cuánto respalda lo recuperado y si cita. */
+  recuperacion?: MetricaRecuperacion | null;
+  fundamentacion?: MetricaFundamentacion | null;
+  citas?: MetricaCitas | null;
+}
+
+/** Un fragmento que llegó a la respuesta y cómo lo encontró la búsqueda híbrida. */
+export interface FragmentoRecuperado {
+  etiqueta: string;
+  instrumentoId: string;
+  /** Coseno del embedding con la pregunta (0–1). */
+  similitud: number | null;
+  /** Proporción de las palabras de la pregunta que contiene (0–1). */
+  coincidencia: number | null;
+  /** Lugar en cada búsqueda; null = no apareció en ella. */
+  rangoSemantico: number | null;
+  rangoPalabras: number | null;
+  paso: "significado" | "palabras" | "ambos" | "contexto";
+}
+
+export interface MetricaRecuperacion {
+  modo: "hibrida" | "semantica";
+  umbral: number;
+  coberturaMinima: number;
+  similitudMaxima: number | null;
+  similitudPromedio: number | null;
+  fragmentos: FragmentoRecuperado[];
+}
+
+/** Oraciones de la respuesta respaldadas por lo recuperado (fidelidad sin juez). */
+export interface MetricaFundamentacion {
+  oraciones: number;
+  respaldadas: number | null;
+  proporcion: number | null;
+  sinRespaldo: string[];
+}
+
+export interface MetricaCitas {
+  oraciones: number;
+  conCita: number;
+  proporcion: number | null;
+  fuentesCitadas: number[];
+  citasInvalidas: number[];
 }
 
 export interface EvaluacionJuez {

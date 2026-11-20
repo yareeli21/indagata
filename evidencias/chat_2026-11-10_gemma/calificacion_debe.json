@@ -1,0 +1,266 @@
+{
+ "ENC-01": {
+  "cumple": "cumple"
+ },
+ "ENC-02": {
+  "cumple": "no",
+  "nota": "Dice que no encontró la condición y muestra otra pregunta (p13)."
+ },
+ "ENC-03": {
+  "cumple": "cumple"
+ },
+ "ENC-04": {
+  "cumple": "cumple"
+ },
+ "ENC-05": {
+  "cumple": "cumple"
+ },
+ "ENC-06": {
+  "cumple": "parcial",
+  "nota": "Da la distribución, pero no distingue menciones de respondentes y llama «menos elegida» a una que no lo es."
+ },
+ "ENC-07": {
+  "cumple": "no",
+  "nota": "Cuenta solo a quienes respondieron «No lo sé» en p01 y dejaron alguna sin responder."
+ },
+ "ENC-08": {
+  "cumple": "cumple"
+ },
+ "ENC-09": {
+  "cumple": "no",
+  "nota": "La tabla es correcta, pero el texto llama «tasa de aprobación» a «No, pero planeo hacerlo»."
+ },
+ "ENC-10": {
+  "cumple": "cumple"
+ },
+ "ENC-11": {
+  "cumple": "parcial",
+  "nota": "Tabla correcta; el texto confunde la expectativa de titulación con la carga."
+ },
+ "ENC-12": {
+  "cumple": "cumple"
+ },
+ "ENC-13": {
+  "cumple": "parcial",
+  "nota": "(1) y (2) correctos; (3) responde con el mensaje de fuera de dominio."
+ },
+ "ENC-14": {
+  "cumple": "cumple"
+ },
+ "ENC-15": {
+  "cumple": "cumple"
+ },
+ "ENC-16": {
+  "cumple": "cumple"
+ },
+ "ENC-17": {
+  "cumple": "no",
+  "nota": "(2) dice que no existe la condición; (3) muestra 5 de modalidad mixta, no del grupo."
+ },
+ "ENC-18": {
+  "cumple": "cumple",
+  "nota": "Recalificado: lo que dice está en los metadatos del instrumento."
+ },
+ "ENC-19": {
+  "cumple": "cumple"
+ },
+ "ENC-20": {
+  "cumple": "cumple",
+  "nota": "Nombra las 5 preguntas con escala 1–5 y sus extremos."
+ },
+ "ENC-21": {
+  "cumple": "cumple"
+ },
+ "ENC-22": {
+  "cumple": "cumple"
+ },
+ "ENC-23": {
+  "cumple": "cumple"
+ },
+ "ENC-24": {
+  "cumple": "cumple"
+ },
+ "ENC-25": {
+  "cumple": "cumple"
+ },
+ "PRU-01": {
+  "cumple": "cumple"
+ },
+ "PRU-02": {
+  "cumple": "parcial",
+  "nota": "Da la distribución con el texto de cada opción, pero empieza con «No encontré esa condición»."
+ },
+ "PRU-03": {
+  "cumple": "cumple"
+ },
+ "PRU-04": {
+  "cumple": "cumple"
+ },
+ "PRU-05": {
+  "cumple": "no",
+  "nota": "Solo dice cuántos respondentes tiene el instrumento."
+ },
+ "PRU-06": {
+  "cumple": "cumple"
+ },
+ "PRU-07": {
+  "cumple": "cumple"
+ },
+ "PRU-08": {
+  "cumple": "parcial",
+  "nota": "Tabla correcta; el texto dice «99 de las 10 reactivos»."
+ },
+ "PRU-09": {
+  "cumple": "cumple"
+ },
+ "PRU-10": {
+  "cumple": "cumple"
+ },
+ "PRU-11": {
+  "cumple": "no",
+  "nota": "Responde con un solo reactivo; no agrupa por tema (no implementado)."
+ },
+ "PRU-12": {
+  "cumple": "cumple"
+ },
+ "PRU-13": {
+  "cumple": "cumple"
+ },
+ "PRU-14": {
+  "cumple": "no",
+  "nota": "(2) no filtra al grupo de (1); (3) muestra 5 del reactivo de Wi-Fi, no del grupo."
+ },
+ "PRU-15": {
+  "cumple": "no",
+  "nota": "(2) solo muestra la tabla; (3) responde con otro reactivo."
+ },
+ "PRU-16": {
+  "cumple": "parcial",
+  "nota": "(1) correcto con la distribución; (2) responde con patrones generales de la prueba."
+ },
+ "PRU-17": {
+  "cumple": "no",
+  "nota": "Habla de la opción «más correcta»: juzga respuestas en una prueba que no se califica."
+ },
+ "PRU-18": {
+  "cumple": "cumple"
+ },
+ "PRU-19": {
+  "cumple": "cumple"
+ },
+ "PRU-20": {
+  "cumple": "cumple"
+ },
+ "PRU-21": {
+  "cumple": "cumple"
+ },
+ "PRU-22": {
+  "cumple": "cumple"
+ },
+ "PRU-23": {
+  "cumple": "cumple"
+ },
+ "PRU-24": {
+  "cumple": "cumple"
+ },
+ "PRU-25": {
+  "cumple": "cumple"
+ },
+ "ENT-01": {
+  "cumple": "cumple"
+ },
+ "ENT-02": {
+  "cumple": "cumple"
+ },
+ "ENT-03": {
+  "cumple": "cumple"
+ },
+ "ENT-04": {
+  "cumple": "cumple"
+ },
+ "ENT-05": {
+  "cumple": "cumple"
+ },
+ "ENT-06": {
+  "cumple": "parcial",
+  "nota": "Da fragmentos, pero cuenta personas («1 de 1») y no aclara cómo cuenta las menciones."
+ },
+ "ENT-07": {
+  "cumple": "cumple"
+ },
+ "ENT-08": {
+  "cumple": "parcial",
+  "nota": "Compara bien, pero parafrasea en lugar de citar los dos fragmentos lado a lado."
+ },
+ "ENT-09": {
+  "cumple": "cumple"
+ },
+ "ENT-10": {
+  "cumple": "no",
+  "nota": "Dice que no menciona los servicios de la universidad, y sí habló de orientación."
+ },
+ "ENT-11": {
+  "cumple": "no",
+  "nota": "Dice que no hay información sobre el tiempo de espera ni sobre no conocer los servicios, y sí la hay."
+ },
+ "ENT-12": {
+  "cumple": "cumple"
+ },
+ "ENT-13": {
+  "cumple": "parcial",
+  "nota": "(1) y (3) correctos; (2) dice que no buscó ayuda, y sí fue a orientación."
+ },
+ "ENT-14": {
+  "cumple": "parcial",
+  "nota": "(1) y (3) correctos; (2) cita todas sus respuestas, no la de la atención."
+ },
+ "ENT-15": {
+  "cumple": "parcial",
+  "nota": "(2) hallazgos con citas, pero sin marcar la interpretación ni aclarar que es un solo testimonio."
+ },
+ "ENT-16": {
+  "cumple": "cumple",
+  "nota": "Recalificado con el criterio del 8 nov (cita su respuesta y la resume con fidelidad)."
+ },
+ "ENT-17": {
+  "cumple": "parcial",
+  "nota": "Hallazgos con citas, pero sin aclarar que es un solo testimonio."
+ },
+ "ENT-18": {
+  "cumple": "cumple"
+ },
+ "ENT-19": {
+  "cumple": "parcial",
+  "nota": "Dice 12 preguntas, pero no las agrupa en temas."
+ },
+ "ENT-20": {
+  "cumple": "cumple"
+ },
+ "ENT-21": {
+  "cumple": "cumple"
+ },
+ "ENT-22": {
+  "cumple": "cumple"
+ },
+ "ENT-23": {
+  "cumple": "cumple"
+ },
+ "ENT-24": {
+  "cumple": "cumple"
+ },
+ "ENT-25": {
+  "cumple": "cumple"
+ },
+ "GEN-01": {
+  "cumple": "cumple"
+ },
+ "GEN-02": {
+  "cumple": "cumple"
+ },
+ "GEN-03": {
+  "cumple": "cumple"
+ },
+ "GEN-04": {
+  "cumple": "cumple"
+ }
+}

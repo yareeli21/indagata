@@ -1,0 +1,58 @@
+{
+ "id": "ENT-21",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué indicaciones tenía el entrevistador?",
+   "rag_log_id": 2439,
+   "respuesta": "El instrumento es una entrevista a profundidad tipo “Salud mental en la universidad” dirigida a estudiantes de licenciatura del programa ESCOM ISC, con el objetivo de identificar sus experiencias y percepciones sobre su salud mental y el acceso a servicios de apoyo. Según sus datos registrados, el entrevistador indicó al participante que todo lo que dijera era confidencial y que podía no responder alguna pregunta [Fuente 1]. El resultado indica que la entrevista se realizó siguiendo un guion de 12 preguntas [Fuente 1].",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.544
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.5268
+    }
+   ],
+   "segundos": 14.3,
+   "tiempos_ms": {
+    "redaccion": 13924,
+    "recuperacion": 152,
+    "verificacion": 1
+   },
+   "k_precision": 0.758,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Las indicaciones si están; si no, no inventarlas."
+}

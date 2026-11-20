@@ -1,0 +1,49 @@
+{
+ "id": "ENT-12",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara sus respuestas con las de los demás participantes",
+   "rag_log_id": 4066,
+   "respuesta": "«Salud mental en la universidad» tiene una sola participante (E01): no hay otra persona entrevistada ni con quién comparar sus respuestas.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Salud mental en la universidad» tiene una sola participante (E01): no hay otra persona entrevistada ni con quién comparar sus respuestas."
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p07"
+    ],
+    "agrupar_por": "participante"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "otra participante pedida en una entrevista de una sola persona",
+    "lo que pide no existe en el instrumento: se responde con lo que sí hay"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 2.9,
+   "tiempos_ms": {
+    "ejecucion": 2,
+    "recuperacion": 226,
+    "interpretacion": 2652
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Hay una sola participante; no hay con quién comparar."
+}

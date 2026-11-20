@@ -1,0 +1,77 @@
+{
+ "id": "CPR-06",
+ "instrumento": "pru_control",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Qué respondieron en el reactivo 20?",
+   "rag_log_id": 2829,
+   "respuesta": "En el reactivo r02, la opción más elegida fue “El resumen del trabajo” (48.8 %, 39 alumnos), indicando que esta respuesta fue seleccionada por la mayoría de los participantes en la prueba [Fuente 1]. La opción menos frecuente fue “La conclusión final del estudio”, con un 6.2 % de las respuestas (5 alumnos) [Fuente 1].  De las cuatro opciones presentadas, “El resumen del trabajo” obtuvo el mayor porcentaje de respuestas, superando al resto de los criterios evaluados en la prueba [Fuente 1].\n\n**Distribución de r02 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) La conclusión final del estudio | 5 | 6.2 % |\n| B) Una suposición que se somete a verificación empírica | 26 | 32.5 % |\n| C) La descripción del método | 10 | 12.5 % |\n| D) El resumen del trabajo | 39 | 48.8 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r02"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r02"
+    ]
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.4526
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.4517
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.4407
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.432
+    }
+   ],
+   "segundos": 45.5,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 28206,
+    "recuperacion": 318,
+    "verificacion": 14814,
+    "interpretacion": 16892
+   },
+   "k_precision": 0.741,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No existe; decir cuántos reactivos hay."
+}

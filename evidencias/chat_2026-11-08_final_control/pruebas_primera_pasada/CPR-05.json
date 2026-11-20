@@ -1,0 +1,71 @@
+{
+ "id": "CPR-05",
+ "instrumento": "pru_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué sección hay más respuestas en blanco?",
+   "rag_log_id": 2828,
+   "respuesta": "La sección “SECCIÓN: METODOLOGÍA DE INVESTIGACIÓN” presenta el 0% de respuestas en blanco o nulas, lo que representa un total de 8 reactivos sin respuesta entre 80 alumnos [Fuente 1].  Esta es la única sección con un porcentaje de respuestas en blanco al 0.0 % [Fuente 1]. Las secciones “ÉTICA Y DIFUSIÓN CIENTÍFICA” y “EMPAREJAMIENTO INVESTIGATIVO” no presentan ninguna respuesta en blanco o nula [Fuente 1].\n\n**Respuestas en blanco o nulas por sección [Fuente 1]**\n| Sección | Reactivos | En blanco o nulas | % de sus respuestas |\n|---|---|---|---|\n| SECCIÓN: METODOLOGÍA DE INVESTIGACIÓN | 8 | 0 | 0.0 % |\n| SECCIÓN: ÉTICA Y DIFUSIÓN CIENTÍFICA | 4 | 0 | 0.0 % |\n| SECCIÓN: EMPAREJAMIENTO INVESTIGATIVO | 3 | 0 | 0.0 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "seccion",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar por sección (respuestas en blanco o nulas)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.3611
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.3585
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r08",
+     "score": 0.3557
+    }
+   ],
+   "segundos": 34.2,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 16753,
+    "recuperacion": 316,
+    "verificacion": 1,
+    "interpretacion": 17082
+   },
+   "k_precision": 0.852,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Respuestas en blanco por sección con su %, o decir que no hay."
+}

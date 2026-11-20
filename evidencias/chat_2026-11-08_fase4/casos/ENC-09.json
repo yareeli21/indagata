@@ -1,0 +1,82 @@
+{
+ "id": "ENC-09",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Los que trabajan en algo relacionado con su carrera aprobaron más certificaciones que los que no trabajan?",
+   "rag_log_id": 2482,
+   "respuesta": "Según los datos de la encuesta, el 44.7% de los estudiantes que respondieron “No, pero planeo hacerlo” (873 respuestas) han manifestado interés en obtener certificaciones profesionales, mientras que el 23.3% de aquellos que respondieron “No, y no lo planeo” (454 respuestas) no tienen intención de hacerlo [Fuente 1]. La opción más frecuente entre los estudiantes que han presentado exámenes de certificación profesional es “No, pero planeo hacerlo”, con un 44.7% del total de respuestas válidas sobre este criterio [Fuente 1].\n\n**Distribución de p11 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| No, pero planeo hacerlo | 873 | 44.7 % |\n| No, y no lo planeo | 454 | 23.3 % |\n| Si, y lo aprobe | 379 | 19.4 % |\n| Si, y no lo aprobe | 246 | 12.6 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "filtros": [
+     {
+      "valor": [
+       "Si, y lo aprobe",
+       "No, pero planeo hacerlo",
+       "No, y no lo planeo"
+      ],
+      "pregunta": "p11"
+     }
+    ],
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p11"
+    ]
+   },
+   "correcciones": [
+    "filtro p02 en nivel acuerdo quitado (p02 no es de escala)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.5963
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.5913
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5879
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.564
+    }
+   ],
+   "segundos": 62.3,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 38528,
+    "recuperacion": 334,
+    "verificacion": 15583,
+    "interpretacion": 23406
+   },
+   "k_precision": 0.766,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruzar dos preguntas y comparar porcentajes, no conteos."
+}

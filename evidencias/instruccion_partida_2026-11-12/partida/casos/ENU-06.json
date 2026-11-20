@@ -1,0 +1,66 @@
+{
+ "id": "ENU-06",
+ "instrumento": "enc_nueva",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la puntualidad en clases entre hombres y mujeres",
+   "rag_log_id": 4137,
+   "respuesta": "La puntualidad en clases varía según el género de los estudiantes. Mientras que las mujeres asisten con una frecuencia media del 30,4% (24 de 79 personas), las mujeres asisten con una frecuencia media del 28,0% (21 de 75 personas). Las mujeres también tienden a ser más puntuales en sus clases que los hombres, ya que el 13,9% de las mujeres se declaran \"Totalmente de acuerdo / Siempre\" en comparación con el 16,0% de los hombres.\n\n**Comparación por genero [Fuente 1]**\n| Grupo | Personas | p01: respuestas del grupo |\n|---|---|---|\n| femenino | 79 | media 3.23; «De acuerdo / Frecuentemente» 24 (30.4 %); «Ni de acuerdo ni en desacuerdo / A veces» 22 (27.8 %); «En desacuerdo / Pocas veces» 16 (20.3 %); «Totalmente de acuerdo / Siempre» 11 (13.9 %); «Totalmente en desacuerdo / Nunca» 6 (7.6 %) |\n| masculino | 75 | media 3.24; «De acuerdo / Frecuentemente» 21 (28.0 %); «Ni de acuerdo ni en desacuerdo / A veces» 20 (26.7 %); «En desacuerdo / Pocas veces» 17 (22.7 %); «Totalmente de acuerdo / Siempre» 12 (16.0 %); «Totalmente en desacuerdo / Nunca» 5 (6.7 %) |\n| otro | 6 | media 4.17; «Totalmente de acuerdo / Siempre» 3 (50.0 %); «Ni de acuerdo ni en desacuerdo / A veces» 2 (33.3 %); «De acuerdo / Frecuentemente» 1 (16.7 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p01"
+    ],
+    "agrupar_por": "genero"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p01"
+    ],
+    "agrupar_por": "p19"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar por genero («contra» o dos de sus valores en la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5808
+    }
+   ],
+   "segundos": 18.6,
+   "tiempos_ms": {
+    "ejecucion": 10,
+    "redaccion": 7912,
+    "recuperacion": 387,
+    "verificacion": 1,
+    "interpretacion": 10233
+   },
+   "k_precision": 0.825,
+   "cifras_con_respaldo": [
+    30,
+    30
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Pregunta de puntualidad por género: cada grupo con su n y su media o distribución, sin causas."
+}

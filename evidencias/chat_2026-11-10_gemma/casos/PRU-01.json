@@ -1,0 +1,74 @@
+{
+ "id": "PRU-01",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos respondieron la prueba?",
+   "rag_log_id": 3187,
+   "respuesta": "97 de 97 (100.0 %) [Fuente 1]. La prueba tuvo una cobertura de estudiantes de Licenciatura en la UAM, específicamente del sexto semestre en el programa de Informática en la era de la IA.",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "menciona": "r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12,r",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "mención «r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12,r» descartada (la pregunta no pregunta quién lo mencionó)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.4888
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4764
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4087
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.4077
+    }
+   ],
+   "segundos": 43.0,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 9964,
+    "recuperacion": 315,
+    "verificacion": 1,
+    "interpretacion": 32568
+   },
+   "k_precision": 0.692,
+   "cifras_con_respaldo": [
+    1,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Total de alumnos después de la limpieza."
+}

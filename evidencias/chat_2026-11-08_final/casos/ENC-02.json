@@ -1,0 +1,87 @@
+{
+ "id": "ENC-02",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos están considerando abandonar sus estudios?",
+   "rag_log_id": 2701,
+   "respuesta": "159 de 2000 respondientes (8.0 %) cumplen la condición p10 «¿Cuándo esperas titularte?» = «Estoy considerando abandonar» [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": [
+       "Estoy considerando abandonar"
+      ],
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": [
+       "Estoy considerando abandonar"
+      ],
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5747
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.558
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.5496
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.5227
+    }
+   ],
+   "segundos": 28.1,
+   "tiempos_ms": {
+    "ejecucion": 87,
+    "redaccion": 9322,
+    "recuperacion": 434,
+    "verificacion": 1,
+    "interpretacion": 18136
+   },
+   "k_precision": 0.917,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Pregunta de titulación, opción «Estoy considerando abandonar»."
+}

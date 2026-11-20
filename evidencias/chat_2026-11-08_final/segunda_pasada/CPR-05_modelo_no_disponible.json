@@ -1,0 +1,62 @@
+{
+ "id": "CPR-05",
+ "instrumento": "pru_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué sección hay más respuestas en blanco?",
+   "rag_log_id": 2891,
+   "respuesta": "La Prueba de Competencia en Investigación Científica consta de tres secciones: Metodología de Investigación, Ética y Difusión Científica, y Emparejamiento Investigativo [Fuente 1]. La sección “SECCIÓN: METODOLOGÍA DE INVESTIGACIÓN” comprende 8 reactivos.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": "No se pudo contactar al modelo local (Ollama). Se muestran las fuentes recuperadas de tus instrumentos; reintenta cuando el modelo esté disponible.",
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.3611
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.3585
+    }
+   ],
+   "segundos": 41.3,
+   "tiempos_ms": {
+    "ejecucion": 0,
+    "redaccion": 34206,
+    "recuperacion": 1352,
+    "verificacion": 1,
+    "interpretacion": 1410
+   },
+   "k_precision": 0.857,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Respuestas en blanco por sección con su %, o decir que no hay."
+}

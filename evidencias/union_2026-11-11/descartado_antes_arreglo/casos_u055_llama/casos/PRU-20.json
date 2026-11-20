@@ -1,0 +1,78 @@
+{
+ "id": "PRU-20",
+ "instrumento": "pru",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opciones tiene el reactivo sobre HTTPS?",
+   "rag_log_id": 3680,
+   "respuesta": ":\n\n* El 83.5% de los alumnos eligió \"Verdadero\" para r11 \"El correo electrónico es siempre un canal seguro para enviar información confidencial.\"\n* No hay cifras proporcionadas sobre las opciones relacionadas con HTTPS en el reactivo r19.\n\nSin embargo, el reactivo r19 presenta una pregunta de emparejamiento: \"Empareja: HTTPS →\". Las opciones son:\n\nA) Protocolo de mensajería\nB) Protocolo seguro de transferencia web\nC) Servidor de correo\nD) Sistema de archivos",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo",
+    "preguntas": [
+     "r19"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "HTTPS",
+      "pregunta": "r19"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r19 = «HTTPS» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.6674
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.5894
+    }
+   ],
+   "segundos": 12.6,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 7566,
+    "recuperacion": 491,
+    "verificacion": 1,
+    "interpretacion": 4533
+   },
+   "k_precision": 0.865,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Las cuatro opciones con su texto, sin marcar ninguna como correcta."
+}

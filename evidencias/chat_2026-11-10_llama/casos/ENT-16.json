@@ -1,0 +1,275 @@
+{
+ "id": "ENT-16",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Conoce a compañeros que necesiten apoyo y no lo busquen?",
+   "rag_log_id": 3138,
+   "respuesta": "resultado:\n\n- Tema: Compañeros Estresados\n- Pregunta: p10\n- Cita: \"Ehm, Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación.\"\n\n- Tema: Falta de Asistencia\n- Pregunta: p10\n- Cita: \"En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación.\"\n\n- Tema: Percepción del Apoyo\n- Pregunta: p10\n- Cita: \"Algunos no saben que existe y otros piensan lo mismo que yo pensaba, que es solo para casos muy graves.\"\n\n- Tema: Estigma de la Ayuda\n- Pregunta: p12\n- Cita: \"Que pedir ayuda no significa que sea débil, al contrario.\"",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.76
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7179
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7046
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.67
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.642
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.617
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6063
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6023
+    }
+   ],
+   "segundos": 16.9,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 12553,
+    "recuperacion": 291,
+    "verificacion": 2,
+    "interpretacion": 4015
+   },
+   "k_precision": 0.923,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué les diría?",
+   "rag_log_id": 3139,
+   "respuesta": " hallazgos:\n\n* Tema: Compañeros Estresados\n- Pregunta: p10\n- Cita: \"Ehm, Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación.\"\n\n* Tema: Falta de Asistencia\n- Pregunta: p10\n- Cita: \"En mi grupo somos treinta y dos, y creo q\"\n\n* Tema: Buscar Apoyo\n- Pregunta: p12\n- Cita: \"Que pedir ayuda no significa que sea débil, al contrario.\"\n\n* Tema: Estigma de la Ayuda\n- Pregunta: p12\n- Cita: \"Y que la orientación es gratuita y confidencial, nadie se va a enterar.\"",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7576
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.7318
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.7143
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.6986
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6858
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6765
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6684
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.6369
+    }
+   ],
+   "segundos": 28.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 21996,
+    "recuperacion": 282,
+    "verificacion": 6491,
+    "interpretacion": 5866
+   },
+   "k_precision": 0.891,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Resume su postura en una frase",
+   "rag_log_id": 3140,
+   "respuesta": "Criterio: p01 «Para empezar, ¿cómo describirías tu estado de ánimo durante este semes» = «Sí» y p02 «¿Qué situaciones de la universidad te generan más estrés o ansiedad?» = «Sí».\nEntre los 0 que cumplen p01 «Para empezar, ¿cómo describirías tu estado de ánimo durante este semes» = «Sí» y p02 «¿Qué situaciones de la universidad te generan más estrés o ansiedad?» = «Sí», p10 «¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo b»: 0 respuestas válidas. [Fuente 1]",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p01"
+     },
+     {
+      "valor": "Sí",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p10"
+    ]
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p01"
+     },
+     {
+      "valor": "Sí",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p10"
+    ]
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:resumen_pregunta:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 5.8,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 329,
+    "interpretacion": 5403
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(3) síntesis fiel, sin ideas que no dijo."
+}

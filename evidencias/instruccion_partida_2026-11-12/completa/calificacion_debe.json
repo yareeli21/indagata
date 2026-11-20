@@ -1,0 +1,119 @@
+{
+ "ENU-01": {
+  "cumple": "cumple"
+ },
+ "ENU-02": {
+  "cumple": "cumple"
+ },
+ "ENU-03": {
+  "cumple": "no",
+  "nota": "El cálculo no cruza con la reprobación (solo cuenta personas por carga laboral) y la redacción concluye sin datos."
+ },
+ "ENU-04": {
+  "cumple": "no",
+  "nota": "Responde con hallazgos de otras preguntas; no usa la de servicios usados."
+ },
+ "ENU-05": {
+  "cumple": "parcial",
+  "nota": "Muestra la distribución de p14, pero empieza diciendo que no encontró la condición."
+ },
+ "ENU-06": {
+  "cumple": "parcial",
+  "nota": "Cifras correctas, pero concluye que las mujeres son más puntuales con medias casi iguales."
+ },
+ "ENU-07": {
+  "cumple": "parcial",
+  "nota": "Media y rango (0 a 25), sin cuántos estudian 0 horas; empieza con «no encontré esa condición»."
+ },
+ "ENU-08": {
+  "cumple": "no",
+  "nota": "Filtra p05 > 5 y responde 0."
+ },
+ "ENU-09": {
+  "cumple": "no",
+  "nota": "Responde «sin información» en lugar de decir que esa opción no existe."
+ },
+ "ENU-10": {
+  "cumple": "cumple",
+  "nota": "Correcta; agrega un porcentaje del grupo que no se pidió."
+ },
+ "ENU-11": {
+  "cumple": "parcial",
+  "nota": "(1) correcta; (2) dice que no hay información sobre la reprobación del grupo."
+ },
+ "ENU-12": {
+  "cumple": "no",
+  "nota": "Atribuye a p06 un 88.8 % de «Nunca o Rara vez» que no existe (el desacuerdo es 38 de 160)."
+ },
+ "PNU-01": {
+  "cumple": "parcial",
+  "nota": "Distribución correcta (A, 62.5 %), pero dice que no registra «elegida»."
+ },
+ "PNU-02": {
+  "cumple": "no",
+  "nota": "Solo dice que hay 80 respondentes."
+ },
+ "PNU-03": {
+  "cumple": "no",
+  "nota": "Dice que eligieron Scopus; la más elegida fue Wikipedia (4 de 8)."
+ },
+ "PNU-04": {
+  "cumple": "parcial",
+  "nota": "No califica, pero no explica que la prueba no tiene clave."
+ },
+ "PNU-05": {
+  "cumple": "cumple",
+  "nota": "Tabla por nivel de estudio con n y distribución."
+ },
+ "PNU-06": {
+  "cumple": "parcial",
+  "nota": "Las tres opciones correctas, pero interpreta que A033 piensa lo contrario de lo que eligió en r01."
+ },
+ "PNU-07": {
+  "cumple": "cumple"
+ },
+ "PNU-08": {
+  "cumple": "no",
+  "nota": "Responde «sin información»."
+ },
+ "PNU-09": {
+  "cumple": "cumple",
+  "nota": "15 reactivos y tres secciones."
+ },
+ "ETU-01": {
+  "cumple": "no",
+  "nota": "Dice que no registra «obstáculos»."
+ },
+ "ETU-02": {
+  "cumple": "parcial",
+  "nota": "Cita p09, pero generaliza a «los estudiantes» desde una sola persona."
+ },
+ "ETU-03": {
+  "cumple": "cumple",
+  "nota": "Lo que dijo de la primera sesión (p04)."
+ },
+ "ETU-04": {
+  "cumple": "cumple",
+  "nota": "Cita p11 («más de tres sesiones») y aclara que es un solo testimonio."
+ },
+ "ETU-05": {
+  "cumple": "cumple",
+  "nota": "Cita p12."
+ },
+ "ETU-06": {
+  "cumple": "cumple",
+  "nota": "Semestre 6 y 15 horas de trabajo."
+ },
+ "ETU-07": {
+  "cumple": "no",
+  "nota": "(1) lista citas sin responder si le sirvió; (2) no usa p08."
+ },
+ "ETU-08": {
+  "cumple": "no",
+  "nota": "Repite la pregunta."
+ },
+ "ETU-09": {
+  "cumple": "cumple",
+  "nota": "Cita lo que dijo de su casa y su papá (p06)."
+ }
+}

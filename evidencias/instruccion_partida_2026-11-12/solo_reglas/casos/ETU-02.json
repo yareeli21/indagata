@@ -1,0 +1,104 @@
+{
+ "id": "ETU-02",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opina de sus profesores?",
+   "rag_log_id": 4187,
+   "respuesta": "Según la entrevista con Participante E01, se repiten los siguientes temas:\n\n* La falta de tiempo y apoyo de los profesores es un tema importante para esta persona. \n  - Quién lo dice: E01\n  - En qué pregunta: p09 (¿Qué papel han tenido tus profesores o tu tutor en este tema?)\n  - Cita breve: \"Mi tu tor académico casi no tiene tiempo, lo vi una vez en todo el semestre y fue para firmar la carga de materias.\"\n\n* La presión y estrés que siente debido a sus responsabilidades académicas y laborales.\n  - Quién lo dice: E01\n  - En qué pregunta: p02 (¿Qué situaciones de la universidad te generan más estrés o ansiedad?)\n  - Cita breve: \"Este... pues sobre todo la carga de proyectos. Este semestre llevo siete materias y en cuatro hay proyecto final en equipo.\"\n\n* La importancia del apoyo psicológico para manejar el estrés y la ansiedad.\n  - Quién lo dice: E01\n  - En qué pregunta: p08 (¿Notaste algún cambio en tu desempeño académico después de recibir apoyo?)\n  - Cita breve: \"Empecé a usar una agenda y a dividir los proyectos en partes pequeñas, como me sugirió la psicóloga. En el segundo parcial subí mi promedio de siete punto ocho a ocho punto cinco.\"\n\n* La falta de conocimiento sobre los servicios de apoyo psicológico disponibles en la universidad.\n  - Quién lo dice: E01\n  - En qué pregunta: p03 (¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cómo te enteraste?)\n  - Cita breve: \"Yo, yo sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía.\"\n\nEs el testimonio de una sola persona (E01); no permite generalizar a otros estudiantes.",
+   "intencion": "hallazgo",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p09"
+    ]
+   },
+   "plan_modelo": {
+    "campos": "todas_las_respuestas",
+    "filtros": [
+     {
+      "valor": "¿Qué papel han tenido tus profesores o tu tutor en este tema?",
+      "pregunta": "p09"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p09 = «¿Qué papel han tenido tus profesores o tu tutor en este tema?» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental entrevista"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.6013
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.4515
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.396
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.3901
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.3827
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.3622
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.3621
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.3525
+    }
+   ],
+   "segundos": 32.7,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 23645,
+    "recuperacion": 422,
+    "verificacion": 3,
+    "interpretacion": 8614
+   },
+   "k_precision": 0.756,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta del papel de profesores y tutor, con cita."
+}

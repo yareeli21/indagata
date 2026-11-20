@@ -1,0 +1,83 @@
+{
+ "id": "PRU-10",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara los primeros 50 alumnos con los últimos 50 en el reactivo de la contraseña segura",
+   "rag_log_id": 3197,
+   "respuesta": "Según el resultado de la prueba «Prueba de Alfabetización Digital», ni un solo estudiante seleccionó alguna de las opciones (A, B, C o D) al responder a la pregunta sobre qué es una contraseña segura [Fuente 1]. Esto se observa tanto en los primeros 50 alumnos evaluados como en los últimos 50 [Fuente 1]. La prueba está diseñada para evaluar competencias digitales básicas y aborda temas como HTTPS y la seguridad del correo electrónico [Fuente 1].\n\n**Comparación por posición (primeros 50 y últimos 50; 3 personas están en los dos grupos) [Fuente 1]**\n| Grupo | Personas | r10: respuestas del grupo |\n|---|---|---|\n| Primeros 50 | 50 | (sin respuestas) |\n| Últimos 50 | 50 | (sin respuestas) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "limite": 50,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r10"
+    ],
+    "agrupar_por": "posicion"
+   },
+   "plan_modelo": {
+    "limite": 50,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r10"
+    ],
+    "agrupar_por": "posicion"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [
+    "comparar los primeros 50 con los últimos 50"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r10",
+     "score": 0.5692
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r10",
+     "score": 0.5244
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.4907
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.4868
+    }
+   ],
+   "segundos": 47.2,
+   "tiempos_ms": {
+    "ejecucion": 16,
+    "redaccion": 17663,
+    "recuperacion": 402,
+    "verificacion": 12373,
+    "interpretacion": 29020
+   },
+   "k_precision": 0.72,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Grupos por posición con la distribución de cada uno."
+}

@@ -195,6 +195,50 @@ def test_opciones_que_solo_cambian_en_un_numero_no_se_unen():
     assert categorias.parecidas(tabla) == []
 
 
+
+def test_etiqueta_de_la_escala_poco_frecuente_no_se_propone_cambiar():
+    """«Totalmente en desacuerdo» (2 veces) se parece a «Totalmente de acuerdo» (10), pero es otra opción de la
+    escala: proponer el cambio invertiría la respuesta (cuadrícula de Google Forms con etiquetas)."""
+    from services.motores.encuestas import categorias, universales
+    from shared.parsing import read_tabular
+
+    opciones = ["Totalmente de acuerdo"] * 10 + ["De acuerdo"] * 12 + ["En desacuerdo"] * 8 + ["Totalmente en desacuerdo"] * 2
+    datos = [[f"R{i}", v] for i, v in enumerate(opciones)]
+    tabla = universales.preparar(read_tabular(_csv(["id", "Indica [Los laboratorios son adecuados]"], datos), ".csv"), [])
+    assert categorias.parecidas(tabla) == []
+
+
+def test_microdatos_con_diccionario_no_respuesta_y_opciones_sin_orden():
+    """Con el diccionario, «9» = «No sé» no es un punto de la escala y «1» = «Presencial» no es una escala."""
+    from shared.conocimiento.significados import leer_diccionario
+
+    dic = leer_diccionario(_csv(["variable", "pregunta", "valor", "etiqueta"], [
+        ["P1", "Me siento parte de la comunidad", "1", "Totalmente en desacuerdo"], ["P1", "", "2", "En desacuerdo"],
+        ["P1", "", "3", "Ni de acuerdo ni en desacuerdo"], ["P1", "", "4", "De acuerdo"],
+        ["P1", "", "5", "Totalmente de acuerdo"], ["P1", "", "9", "No sé"],
+        ["P2", "Modalidad", "1", "Presencial"], ["P2", "", "2", "En línea"], ["P2", "", "3", "Mixta"], ["P2", "", "4", "Otra"],
+    ]), ".csv")
+    datos = [[str(1000 + i), str(1 + i % 5) if i % 8 else "9", str(1 + i % 4)] for i in range(40)]
+    entrada = Entrada(1, "encuesta", "microdatos.csv", ".csv", _csv(["folio", "P1", "P2"], datos), dic)
+    motor = obtener("encuesta", ".csv")
+    auto = motor.automatica(entrada)
+    final = motor.aplicar(entrada, auto, {h.id: h.sugerida for h in auto.hallazgos if h.sugerida})
+    assert _reglas(auto).get("codigos_no_respuesta") == 5
+    assert _hallazgo(auto, "no-respuestas")
+    columnas = {c["etiqueta"]: c for c in final.estadistica["columnas"]}
+    assert columnas["P1"]["tipo"] == "likert" and columnas["P1"]["numerico"]["max"] == 5
+    assert columnas["P2"]["tipo"] == "categorica"
+    assert "P2" not in {i for b in final.estadistica["fiabilidad"] for i in b["items"]}
+
+
+def test_columna_otro_casi_vacia_se_sugiere_conservar():
+    """En LimeSurvey, lo escrito en «Otro» va en «Pregunta [other]»: casi vacía, pero es respuesta."""
+    datos = [[f"R{i}", ["Presencial", "En línea", "Mixta"][i % 3], "Dual" if i == 5 else "", "x" if i == 7 else ""]
+             for i in range(40)]
+    auto, _ = _correr("encuesta", _csv(["id", "G01Q03", "G01Q03[other]", "Comentario"], datos))
+    assert _hallazgo(auto, "incompleta:g01q03_other").sugerida == "conservar"
+    assert _hallazgo(auto, "incompleta:comentario").sugerida == "eliminar"
+
 # ── Pruebas estandarizadas ─────────────────────────────────────────────────────
 
 

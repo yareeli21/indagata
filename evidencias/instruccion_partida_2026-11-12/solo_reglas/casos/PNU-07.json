@@ -1,0 +1,53 @@
+{
+ "id": "PNU-07",
+ "instrumento": "pru_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Hubo reactivos que alguien dejó en blanco?",
+   "rag_log_id": 4183,
+   "respuesta": "Criterio: dejaron alguna pregunta sin responder.\nCumplen la condición 0 de 80 respondentes (0.0 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "con_omisiones": true
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "intención ranking_preguntas → conteo_porcentaje: personas que dejaron alguna pregunta sin responder"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:conteo_porcentaje:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 11.3,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "recuperacion": 473,
+    "interpretacion": 10765
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Reactivos con respuestas en blanco y su conteo, o decir que no hubo."
+}

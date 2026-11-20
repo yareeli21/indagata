@@ -1,0 +1,54 @@
+{
+ "id": "PRU-01",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos respondieron la prueba?",
+   "rag_log_id": 2339,
+   "respuesta": "De acuerdo a los datos proporcionados, 97 alumnos presentaron la Prueba de Alfabetización Digital [Fuente 1]. La prueba consta de 22 reactivos y tiene como objetivo conocer si los estudiantes conocen conceptos básicos de informática relacionados con temas como alfabetización digital, seguridad en internet y herramientas de colaboración digital [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "filtro r01 en nivel acuerdo quitado (r01 no es de escala)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "estructurada:estructura",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    }
+   ],
+   "segundos": 32.9,
+   "tiempos_ms": {
+    "ejecucion": 11,
+    "redaccion": 13845,
+    "recuperacion": 264,
+    "verificacion": 1,
+    "interpretacion": 18565
+   },
+   "k_precision": 0.857,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Total de alumnos después de la limpieza."
+}

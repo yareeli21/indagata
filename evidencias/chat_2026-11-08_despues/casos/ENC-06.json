@@ -1,0 +1,70 @@
+{
+ "id": "ENC-06",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál es la actividad de investigación de los profesores más conocida por los estudiantes?",
+   "rag_log_id": 2561,
+   "respuesta": "La actividad de investigación más conocida por los estudiantes, según la encuesta “Indicadores de Experiencia y Calidad Académica”, es “Proyectos de investigación financiados”, elegida por 431 personas (22.2% del total de respuestas válidas) [Fuente 1]. El segundo porcentaje más alto lo comparten las opciones de “Artículos científicos” (427 respuestas, 22.0% del total) y “Ponencias en congresos” (425 respuestas, 21.9% del total) [Fuente 1]. La opción menos frecuente es “Ninguna”, seleccionada por 411 personas (21.2% del total de respuestas válidas) [Fuente 1].\n\n**Distribución de p07 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Proyectos de investigacion financiados | 431 | 22.2 % |\n| Articulos cientificos | 427 | 22.0 % |\n| Ponencias en cogresos | 425 | 21.9 % |\n| Ninguna | 411 | 21.2 % |\n| Desarrollos tecnologicos o software | 408 | 21.1 % |\n| Direccion de tesis | 403 | 20.8 % |\n| Libros o capitulos | 402 | 20.7 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p07"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.7511
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.746
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.6916
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.6799
+    }
+   ],
+   "segundos": 453.6,
+   "tiempos_ms": {
+    "ejecucion": 33,
+    "redaccion": 401038,
+    "recuperacion": 2419,
+    "verificacion": 220725,
+    "interpretacion": 50087
+   },
+   "k_precision": 0.781,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Opción múltiple; distinguir número de menciones de número de respondentes."
+}

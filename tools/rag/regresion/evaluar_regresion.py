@@ -11,7 +11,7 @@ Modos: «antes» = flujo anterior, solo reglas (`usarInterpretacion: false`); «
 redacción → verificación. Guarda un JSON y un resumen en Markdown en evidencias/rag_rediseno_2026-10-28/.
 
 Uso (desde la raíz del repositorio, con el stack levantado):
-    .venv\\Scripts\\python.exe tools\\rag\\regresion\\evaluar_regresion.py --modo despues [--metricas] [--casos C01,C02]
+    .venv\\Scripts\\python.exe tools\\rag\\regresion\\evaluar_regresion.py --modo despues [--metricas] [--casos C01,C02] [--salida carpeta]
 """
 from __future__ import annotations
 
@@ -210,9 +210,11 @@ if __name__ == "__main__":
     args.add_argument("--modo", choices=["antes", "despues"], required=True)
     args.add_argument("--metricas", action="store_true")
     args.add_argument("--casos", default="")
+    args.add_argument("--salida", default="", help="carpeta para el reporte (por omisión, la evidencia del 28 oct)")
     args.add_argument("--recalificar", action="store_true",
                       help="vuelve a calificar el reporte guardado del modo con el banco actual, sin preguntar al chat")
     a = args.parse_args()
+    SALIDA = Path(a.salida) if a.salida else SALIDA
     if a.recalificar:
         reporte = json.loads((SALIDA / f"regresion_{a.modo}.json").read_text(encoding="utf-8"))
         esperados = {c["id"]: c for c in json.loads(BANCO.read_text(encoding="utf-8"))["casos"]}

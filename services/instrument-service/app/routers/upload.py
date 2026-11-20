@@ -46,6 +46,8 @@ UsuarioQuePuedeIngestar = Annotated[
         "- **prueba_estandarizada** → tabular (respuestas de los alumnos) o documento "
         "(el examen en texto). Indagata **no califica** las pruebas: no se acepta clave de "
         "respuestas (`archivo_clave` → 400).\n\n"
+        "Con microdatos se puede subir también su **diccionario de datos** (`archivo_diccionario`); con él "
+        "se aceptan encabezados en código aunque no haya instrumento original.\n\n"
         "Delega el almacenamiento de ambos archivos en el servicio de storage y "
         "registra el instrumento en `raw_data` (padre) + `instrumento_procesado` "
         "(estado `recibido`). "
@@ -69,6 +71,13 @@ async def upload_instrumento(
         default=None,
         description="Ya no se acepta: Indagata no califica las pruebas (si se envía → 400).",
     ),
+    archivo_diccionario: UploadFile | None = File(
+        default=None,
+        description=(
+            "Diccionario de datos de los microdatos (CSV, XLSX o XLS; opcional): variable, pregunta, valor y "
+            "etiqueta. Da texto a las preguntas en código y significado a sus códigos."
+        ),
+    ),
 ) -> UploadResponse:
     return await UploadService.upload(
         db=db,
@@ -77,4 +86,5 @@ async def upload_instrumento(
         archivo=archivo,
         archivo_original=archivo_original,
         archivo_clave=archivo_clave,
+        archivo_diccionario=archivo_diccionario,
     )

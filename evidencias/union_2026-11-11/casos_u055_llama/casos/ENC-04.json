@@ -1,0 +1,77 @@
+{
+ "id": "ENC-04",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos calificaron con 1 o 2 los laboratorios y equipos?",
+   "rag_log_id": 3749,
+   "respuesta": "Criterio: p17 «Los laboratorios, equipos, materiales y espacios de la institución son» de acuerdo (nivel alto) y p17 «Los laboratorios, equipos, materiales y espacios de la institución son» = «2 en escala 1–5».\nCumplen la condición 0 de los 1911 que respondieron p17 (0.0 %); sobre el total del instrumento, 0 de 2000 respondentes (0.0 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "nivel": "acuerdo",
+      "pregunta": "p17"
+     },
+     {
+      "valor": "2 en escala 1–5",
+      "pregunta": "p17"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "nivel": "acuerdo",
+      "pregunta": "p17"
+     },
+     {
+      "valor": 1.0,
+      "pregunta": "p17"
+     },
+     {
+      "valor": 2.0,
+      "pregunta": "p17"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "p17 = 1.0 → posiciones de la escala «Totalmente en desacuerdo»",
+    "p17 = 2.0 → posiciones de la escala «2 en escala 1–5»",
+    "filtro p17 = «Totalmente en desacuerdo» descartado (la pregunta no lo menciona)"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:conteo_porcentaje:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 12.6,
+   "tiempos_ms": {
+    "ejecucion": 112,
+    "recuperacion": 557,
+    "interpretacion": 11860
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Sumar ambos valores de la escala y explicarlo como desacuerdo."
+}

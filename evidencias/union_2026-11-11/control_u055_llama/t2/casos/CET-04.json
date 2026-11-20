@@ -1,0 +1,181 @@
+{
+ "id": "CET-04",
+ "instrumento": "ent_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué dijo E03 sobre abandonar la universidad?",
+   "rag_log_id": 3952,
+   "respuesta": "Respuestas interpretadas de E03 (respondentes E03). [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E03 |\n|---|---|\n| Contexto: Edad | 34 |\n| Contexto: GPA | 2.78 |\n| Contexto: Género | masculino |\n| Contexto: Horas trabajo/semana | 38 |\n| Contexto: Perfil | P4 — Trabajador adulto tiempo parcial |\n| Contexto: Semestre | 8 |\n| Contexto: Universidad | publica |\n| p01 «¿Qué factores consideras que han sido fundamentales para continuar tus» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p02 «¿Has pensado alguna vez en abandonar la universidad? ¿Qué te llevó a t» | He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p03 «¿De qué manera el apoyo familiar ha influido en tu permanencia en la i» | Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p04 «¿Qué servicios de apoyo institucional (tutorías, becas, orientación) h» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p05 «¿Cómo has manejado las dificultades económicas durante tu trayectoria » | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. Los fines de semana son mi único espacio para estudiar tranquilamente. |\n| p06 «¿Qué rol ha jugado la relación con tus profesores en tu decisión de co» | Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente. |\n| p07 «¿Cómo ha impactado el trabajo en tu desempeño y permanencia académica?» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Los fines de semana son mi único espacio para estudiar tranquilamente. |\n| p08 «¿Qué cambiarías de los servicios de apoyo universitario para mejorar l» | He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p09 «¿Cómo describirías tu nivel de motivación en diferentes momentos de tu» | Mi jefe a veces me pide quedarse más tarde y eso afecta mis clases nocturnas. Es complicado pero no tengo otra opción. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p10 «¿Has tenido que interrumpir tus estudios temporalmente? ¿Qué sucedió?» | He aprendido a ser muy eficiente con el tiempo. Estudio en el metro, en los descansos del trabajo. Cada minuto cuenta. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. Trabajo y estudio simultáneamente desde hace años; ya es parte de mi rutina. |\n| p11 «¿Qué estrategias personales has desarrollado para mantenerte en la uni» | Aunque a veces la conexión en el trabajo es mala, prefiero las herramientas digitales porque me dan flexibilidad. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |\n| p12 «¿Qué mensaje darías a un estudiante que está pensando en desertar?» | Balancear trabajo y estudio es un reto constante. Llevo muchos años estudiando a tiempo parcial y hay semestres en que avanzo poco. Los fines de semana son mi único espacio para estudiar tranquilamente. El tiempo es mi recurso más escaso y aprender a administrarlo ha sido fundamental. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E03"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "datos_respondente"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "respondente E03 tomado de la pregunta"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p02",
+     "score": 0.593
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p02",
+     "score": 0.5731
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p12",
+     "score": 0.5726
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E03 en p12",
+     "score": 0.5671
+    }
+   ],
+   "segundos": 27.1,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 17807,
+    "recuperacion": 424,
+    "verificacion": 3201,
+    "interpretacion": 8868
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y qué estrategias usa para mantenerse?",
+   "rag_log_id": 3953,
+   "respuesta": "- En p05 «¿Cómo has manejado las dificultades económicas durante tu trayectoria universitaria?», 27 de 40 participantes tienen la postura «no» (67.5 %).\n- En p03 «¿De qué manera el apoyo familiar ha influido en tu permanencia en la institución?», 26 de 40 participantes tienen la postura «no» (65.0 %).\n- En p11 «¿Qué estrategias personales has desarrollado para mantenerte en la universidad?», 23 de 40 participantes tienen la postura «no» (57.5 %). [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "relacion": "continua",
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p11"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "¿Qué estrategias personales has desarrollado para mantenerte en la universidad?",
+      "pregunta": "p11"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p11 = «¿Qué estrategias personales has desarrollado para mantenerte en la universidad?» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E35 en p02",
+     "score": 0.7008
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E17 en p11",
+     "score": 0.6973
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E16 en p02",
+     "score": 0.6971
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E40 en p12",
+     "score": 0.696
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E26 en p12",
+     "score": 0.6946
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E13 en p11",
+     "score": 0.6937
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E02 en p02",
+     "score": 0.6918
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E14 en p02",
+     "score": 0.6895
+    }
+   ],
+   "segundos": 34.3,
+   "tiempos_ms": {
+    "ejecucion": 10,
+    "redaccion": 28095,
+    "recuperacion": 300,
+    "verificacion": 9110,
+    "interpretacion": 5870
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) sigue hablando de E03."
+}

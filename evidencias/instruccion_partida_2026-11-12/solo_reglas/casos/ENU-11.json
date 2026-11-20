@@ -1,0 +1,145 @@
+{
+ "id": "ENU-11",
+ "instrumento": "enc_nueva",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos son de primera generación?",
+   "rag_log_id": 4174,
+   "respuesta": "18 de 160 respondentes (11.2 %) cumplen el criterio: p25 «primera_generacion» = «Sí». [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p25"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p25"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p25",
+     "score": 0.4849
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p25",
+     "score": 0.3738
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R003",
+     "score": 0.5354
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R123",
+     "score": 0.5075
+    }
+   ],
+   "segundos": 10.2,
+   "tiempos_ms": {
+    "ejecucion": 25,
+    "redaccion": 6510,
+    "recuperacion": 387,
+    "verificacion": 0,
+    "interpretacion": 3182
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y cuántos de ellos han reprobado alguna materia?",
+   "rag_log_id": 4175,
+   "respuesta": "* 88.8% de quienes respondieron a p25 «primera_generacion» = «Sí», reportaron haber reprobado una o más materias.\n* La pregunta con las opiniones más divididas es p14 «Del 1 al 10, ¿qué tan satisfecho/a estás con tu carrera?», donde se observa una desviación estándar de 1.98 puntos en la escala.\n* Predomina el nivel pregrado en p24 «nivel_estudio» (90.6% de quienes respondieron).\n* En p26 «tiene_beca», predomina la respuesta negativa, con un 89.4% de quienes respondieron indicando que no tienen beca.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 18,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p12"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 18,
+    "filtros": [
+     {
+      "valor": "Sí",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "estructurada",
+   "motivo": "plan:hallazgo:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 20.8,
+   "tiempos_ms": {
+    "ejecucion": 162,
+    "redaccion": 14151,
+    "recuperacion": 483,
+    "verificacion": 6656,
+    "interpretacion": 5921
+   },
+   "k_precision": 0.8,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(1) número y % de primera generación; (2) reprobación (p12 = Sí) dentro del grupo de (1), con base en ese grupo."
+}

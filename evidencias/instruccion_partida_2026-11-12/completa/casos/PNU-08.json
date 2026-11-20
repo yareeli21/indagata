@@ -1,0 +1,43 @@
+{
+ "id": "PNU-08",
+ "instrumento": "pru_nueva",
+ "categoria": "metodologia",
+ "turnos": [
+  {
+   "pregunta": "¿Qué significa que un reactivo tenga las respuestas muy repartidas?",
+   "rag_log_id": 4118,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados. Recuerda que solo entran al RAG los instrumentos con metadatos aprobados por su autor; puedes ampliar la selección de tu investigación.",
+   "intencion": "metodologia",
+   "plan": {
+    "intencion": "metodologia",
+    "aclaracion": "¿Cuál es el significado de una respuesta con las opciones muy repartidas?"
+   },
+   "plan_modelo": {
+    "intencion": "metodologia",
+    "aclaracion": "¿Cuál es el significado de una respuesta con las opciones muy repartidas?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": "semantica",
+   "motivo": "sin fragmentos sobre el umbral",
+   "plantilla": "sin_informacion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 13.3,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 299,
+    "interpretacion": 9878
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Explicación del concepto (dispersión), sin calificar."
+}

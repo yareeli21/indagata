@@ -1,0 +1,55 @@
+{
+ "id": "ENT-18",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿De qué trata esta entrevista y cuál es su objetivo?",
+   "rag_log_id": 4080,
+   "respuesta": "Esta entrevista se refiere a la salud mental en la universidad, específicamente para identificar las experiencias y percepciones de estudiantes universitarios con respecto a su salud mental y el acceso a servicios de apoyo en un entorno académico.\n\nEste instrumento es una entrevista semiestructurada que se aplicó a un solo participante. Se trata de una guía de 12 preguntas diseñadas para recopilar información sobre la salud mental, el estrés y la ansiedad en estudiantes universitarios. La entrevista tiene como objetivo recopilar datos sobre las experiencias personales de los estudiantes con respecto a su salud mental y cómo se perciben estos servicios en un entorno académico.\n\nEl resultado indica que se entrevistó a 1 participante, mientras que el texto del instrumento menciona que la entrevista fue realizada por un solo participante. La pregunta guía p05 del instrumento se refiere al tiempo que pasó desde que se solicitó la cita hasta que se recibió atención en los servicios de salud mental y apoyo psicológico.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.5688
+    }
+   ],
+   "segundos": 12.0,
+   "tiempos_ms": {
+    "redaccion": 11573,
+    "recuperacion": 231,
+    "verificacion": 2
+   },
+   "k_precision": 0.792,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Síntesis en prosa: tema y una participante."
+}

@@ -1,0 +1,119 @@
+{
+ "id": "PRU-05",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Hubo respuestas inválidas o ilegibles? ¿En qué reactivos?",
+   "rag_log_id": 2838,
+   "respuesta": "Sí, hubo respuestas inválidas o ilegibles en algunos reactivos. En el reactivo r10, todas las respuestas fueron \"NR\" (No Respuesta), representando un 100% de los respondientes, lo que indica una falta de respuesta a la pregunta planteada. Además, en el reactivo r22, se registraron 3 respuestas “nula”, representando un 3.1% del total de respondientes.\n\n**Distribución de r01 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) .docx | 27 | 27.8 % |\n| B) .xlsx | 13 | 13.4 % |\n| C) .pptx | 26 | 26.8 % |\n| D) .pdf | 30 | 30.9 % |\n| nula | 1 | 1.0 % |\n\n**Distribución de r02 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Learning Management System | 16 | 16.5 % |\n| B) Library Management Software | 25 | 25.8 % |\n| C) Local Messaging System | 38 | 39.2 % |\n| D) Lecture Multimedia Server | 18 | 18.6 % |\n\n**Distribución de r03 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Aumentar la velocidad de internet | 23 | 23.7 % |\n| B) Crear una conexión segura y privada | 7 | 7.2 % |\n| C) Bloquear anuncios publicitarios | 20 | 20.6 % |\n| D) Almacenar archivos en la nube | 47 | 48.5 % |\n\n**Distribución de r04 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Un tipo de búsqueda en Google | 39 | 40.2 % |\n| B) Un intento fraudulento de obtener información personal | 21 | 21.6 % |\n| C) Una herramienta de edición de imágenes | 37 | 38.1 % |\n| D) Un protocolo de transferencia de archivos | 0 | 0.0 % |\n\n**Distribución de r05 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) USB compartida | 37 | 38.1 % |\n| B) Correo electrónico con adjuntos | 13 | 13.4 % |\n| C) Google Docs o Microsoft 365 | 9 | 9.3 % |\n| D) Imprimir y entregar físicamente | 38 | 39.2 % |\n\n**Distribución de r06 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Un servidor físico en tu oficina | 55 | 56.7 % |\n| B) Almacenamiento y servicios de internet a través de servidores remotos | 26 | 26.8 % |\n| C) Una aplicación de mensajería | 10 | 10.3 % |\n| D) Un hardware específico | 6 | 6.2 % |\n\n**Distribución de r07 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) El contenido es completamente privado | 42 | 43.3 % |\n| B) El autor permite ciertos usos de su obra bajo condiciones específicas | 13 | 13.4 % |\n| C) El contenido puede ser vendido libremente | 31 | 32.0 % |\n| D) El contenido no tiene derechos de autor | 11 | 11.3 % |\n\n**Distribución de r08 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Almacenar información en la nube | 22 | 22.7 % |\n| B) Indexar y recuperar páginas web relevantes | 26 | 26.8 % |\n| C) Enviar correos electrónicos | 9 | 9.3 % |\n| D) Crear presentaciones | 39 | 40.2 % |\n| nula | 1 | 1.0 % |\n\n**Distribución de r09 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) El número de visitas del sitio | 6 | 6.2 % |\n| B) La autoridad del autor y la fecha de publicación | 56 | 57.7 % |\n| C) El diseño visual del sitio web | 29 | 29.9 % |\n| D) La cantidad de imágenes que tiene | 6 | 6.2 % |\n\n**Distribución de r10 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) El nombre de tu mascota | 0 | 0.0 % |\n| B) Una combinación de letras, números y símbolos de al menos 12 caracteres | 0 | 0.0 % |\n| C) Tu fecha de nacimiento | 0 | 0.0 % |\n| D) Una sola palabra del diccionario | 0 | 0.0 % |\n| NR | 97 | 100.0 % |\n\n**Distribución de r11 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 81 | 83.5 % |\n| Falso | 15 | 15.5 % |\n| NR | 1 | 1.0 % |\n\n**Distribución de r12 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 54 | 55.7 % |\n| Falso | 43 | 44.3 % |\n\n**Distribución de r13 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 55 | 56.7 % |\n| Falso | 42 | 43.3 % |\n\n**Distribución de r14 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Falso | 52 | 53.6 % |\n| Verdadero | 45 | 46.4 % |\n\n**Distribución de r15 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 73 | 75.3 % |\n| Falso | 24 | 24.7 % |\n\n**Distribución de r16 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 57 | 58.8 % |\n| Falso | 38 | 39.2 % |\n| NR | 2 | 2.1 % |\n\n**Distribución de r17 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Falso | 49 | 50.5 % |\n| Verdadero | 47 | 48.5 % |\n| NR | 1 | 1.0 % |\n\n**Distribución de r18 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) 1-2-3-4 | 25 | 25.8 % |\n| B) 2-3-1-4 | 45 | 46.4 % |\n| C) 3-4-2-1 | 4 | 4.1 % |\n| D) 4-3-2-1 | 23 | 23.7 % |\n\n**Distribución de r19 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Protocolo de mensajería | 17 | 17.5 % |\n| B) Protocolo seguro de transferencia web | 39 | 40.2 % |\n| C) Servidor de correo | 13 | 13.4 % |\n| D) Sistema de archivos | 28 | 28.9 % |\n\n**Distribución de r20 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Canva | 5 | 5.2 % |\n| B) Zotero o Mendeley | 75 | 77.3 % |\n| C) Trello | 4 | 4.1 % |\n| D) Photoshop | 13 | 13.4 % |\n\n**Distribución de r21 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Propietaria | 27 | 27.8 % |\n| B) Freeware | 22 | 22.7 % |\n| C) Open Source / Código abierto | 12 | 12.4 % |\n| D) Shareware | 36 | 37.1 % |\n\n**Distribución de r22 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) Impresión 3D | 13 | 13.4 % |\n| B) Análisis de grandes volúmenes de datos | 4 | 4.1 % |\n| C) Redes sociales únicamente | 21 | 21.6 % |\n| D) Hardware de almacenamiento físico | 56 | 57.7 % |\n| nula | 3 | 3.1 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r01",
+     "r02",
+     "r03",
+     "r04",
+     "r05",
+     "r06",
+     "r07",
+     "r08",
+     "r09",
+     "r10",
+     "r11",
+     "r12",
+     "r13",
+     "r14",
+     "r15",
+     "r16",
+     "r17",
+     "r18",
+     "r19",
+     "r20",
+     "r21",
+     "r22"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r01",
+     "r02",
+     "r03",
+     "r04",
+     "r05",
+     "r06",
+     "r07",
+     "r08",
+     "r09",
+     "r10",
+     "r11",
+     "r12",
+     "r13",
+     "r14",
+     "r15",
+     "r16",
+     "r17",
+     "r18",
+     "r19",
+     "r20",
+     "r21",
+     "r22"
+    ]
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.417
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.4055
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.3975
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.3962
+    }
+   ],
+   "segundos": 76.4,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 48427,
+    "recuperacion": 361,
+    "verificacion": 24196,
+    "interpretacion": 27617
+   },
+   "k_precision": 0.974,
+   "cifras_con_respaldo": [
+    96,
+    96
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Motivos de limpieza por reactivo; si no hubo, decirlo."
+}

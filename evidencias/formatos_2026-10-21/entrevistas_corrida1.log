@@ -1,0 +1,75 @@
+=== I01 (ideal) Etiquetas «Entrevistador:/Entrevistado:» y bloques «RESPONDENTE»
+3-4. Metadatos: «Entrevista sobre vida universitaria y actividades extracurriculares»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Porcentaje de Estudiantes a Tiempo Parcial', 'Oferta de Actividades Extracurriculares']
+6b. Análisis de respuestas: listo (16 de 16)
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 4 participantes | 4
+     OK 16 intercambios | 16
+     OK cada respuesta unida a su pregunta del guion | sin pregunta: 0
+     OK todas las respuestas analizadas | 2.1
+     OK cada unidad es literal de su respuesta | no literales: 0
+     OK chat: posturas de p01 calculadas como en el documento | estructurada · esperado {'ambivalente': 2, 'no': 1, 'si': 1}
+     OK chat: qué dijo E02 sobre las tutorías | estructurada
+     métricas: {'n': 16, 'metodos': {'llm': 14, 'reglas': 2}, 'postura_exactitud': 0.562, 'postura_kappa': 0.407, 'nucleo_correcto': 0.875, 'contexto_excluido': 1.0, 'descartadas_no_literales': 1}
+=== I02 (ideal) Preguntas numeradas «P1:» y «R:» por bloque
+3-4. Metadatos: «Entrevista sobre vida universitaria y actividades extracurriculares»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Porcentaje de Estudiantes a Tiempo Parcial', 'Oferta de Actividades Extracurriculares']
+6b. Análisis de respuestas: listo (16 de 16)
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 4 participantes | 4
+     OK 16 intercambios | 16
+     OK cada respuesta unida a su pregunta del guion | sin pregunta: 0
+     OK todas las respuestas analizadas | 2.1
+     OK cada unidad es literal de su respuesta | no literales: 0
+     OK chat: posturas de p01 calculadas como en el documento | estructurada · esperado {'ambivalente': 1, 'no': 1, 'si': 2}
+     OK chat: qué dijo E02 sobre las tutorías | estructurada
+     métricas: {'n': 16, 'metodos': {'llm': 13, 'reglas': 3}, 'postura_exactitud': 0.5, 'postura_kappa': 0.304, 'nucleo_correcto': 0.875, 'contexto_excluido': 0.889, 'descartadas_no_literales': 1}
+=== I03 (aceptado) Transcripción de Zoom («Hablante n  mm:ss», muletillas), grupal
+3-4. Metadatos: «Entrevista sobre vida universitaria y actividades extracurriculares»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Porcentaje de Estudiantes a Tiempo Parcial', 'Oferta de Actividades Extracurriculares']
+6b. Análisis de respuestas: listo (16 de 16)
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 4 participantes | 4
+     OK 16 intercambios | 16
+     OK cada respuesta unida a su pregunta del guion | sin pregunta: 0
+     OK todas las respuestas analizadas | 2.1
+     OK cada unidad es literal de su respuesta | no literales: 0
+     OK chat: posturas de p01 calculadas como en el documento | estructurada · esperado {'ambivalente': 1, 'no': 1, 'si': 2}
+     OK chat: qué dijo E02 sobre las tutorías | estructurada
+     métricas: {'n': 16, 'metodos': {'llm': 13, 'reglas': 3}, 'postura_exactitud': 0.5, 'postura_kappa': 0.304, 'nucleo_correcto': 0.875, 'contexto_excluido': 0.889, 'descartadas_no_literales': 1}
+=== I04 (aceptado) WebVTT de Teams con voces «<v Nombre>», grupal
+3-4. Metadatos: «Entrevista sobre vida universitaria y actividades extracurriculares»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Porcentaje de Estudiantes a Tiempo Parcial', 'Oferta de Actividades Extracurriculares']
+6b. Análisis de respuestas: listo (16 de 16)
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     OK 4 participantes | 4
+     OK 16 intercambios | 16
+     OK cada respuesta unida a su pregunta del guion | sin pregunta: 0
+     OK todas las respuestas analizadas | 2.1
+     OK cada unidad es literal de su respuesta | no literales: 0
+     OK chat: posturas de p01 calculadas como en el documento | estructurada · esperado {'ambivalente': 1, 'no': 1, 'si': 2}
+     OK chat: qué dijo E02 sobre las tutorías | estructurada
+     métricas: {'n': 16, 'metodos': {'llm': 13, 'reglas': 3}, 'postura_exactitud': 0.5, 'postura_kappa': 0.304, 'nucleo_correcto': 0.875, 'contexto_excluido': 0.889, 'descartadas_no_literales': 1}
+=== I05 (aceptado) Sin etiquetas de hablante (una persona, párrafos)
+3-4. Metadatos: «Entrevista sobre vida universitaria y actividades extracurriculares»
+5. Aprobado; perfil v1
+6. KPIs: 2 aceptados de 8 sugeridos: ['Porcentaje de Estudiantes a Tiempo Parcial', 'Oferta de Actividades Extracurriculares']
+6b. Análisis de respuestas: listo (5 de 5)
+7. Documento v1 publicado (la reingesta al RAG sigue en segundo plano)
+     OK ingesta al RAG | 
+     XX 1 participantes | 2
+     XX 4 intercambios | 5
+     XX cada respuesta unida a su pregunta del guion | sin pregunta: 1
+     OK todas las respuestas analizadas | 2.1
+     OK cada unidad es literal de su respuesta | no literales: 0
+     OK chat: posturas de p01 calculadas como en el documento | estructurada · esperado {'ambivalente': 1}
+     métricas: {'n': 4, 'metodos': {'llm': 4}, 'postura_exactitud': 0.25, 'postura_kappa': 0.0, 'nucleo_correcto': 0.0, 'contexto_excluido': 1.0, 'descartadas_no_literales': 1}
+Total 36/39. Reporte: C:\Users\yarel\Documents\indagata\indagata\evidencias\formatos_2026-10-21\entrevistas.md

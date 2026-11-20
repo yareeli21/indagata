@@ -1,0 +1,33 @@
+{
+ "id": "GEN-02",
+ "instrumento": "enc",
+ "categoria": "cortesia",
+ "turnos": [
+  {
+   "pregunta": "¿Qué tal? ¿Qué puedes hacer?",
+   "rag_log_id": 2800,
+   "respuesta": "Soy el asistente de investigación de INDAGATA. Estás trabajando con «Indicadores de Experiencia y Calidad Académica» (encuesta). Puedo:\n- darte datos: cuántos o qué porcentaje respondió algo, y quiénes (con IDs anónimos);\n- comparar grupos o preguntas;\n- explicarte el instrumento: de qué trata, sus preguntas, opciones y KPIs;\n- en entrevistas, decirte qué contó cada participante, con sus palabras.\n\nPor ejemplo, puedes preguntarme:\n- ¿Cuántos respondieron «No lo se» en «Tu programa académico cuenta con acreditación vigente (COP…»?\n- ¿Cuántos respondieron «Diariamente» en «Con qué frecuencia usas alguna plataforma virtual (Moodle,…»?\n- ¿Qué es lo más preocupante de los resultados de «Indicadores de Experiencia y Calidad Académica»?",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "regla:cortesia",
+   "plantilla": "cortesia",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.1,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Tipos de consultas con ejemplos del instrumento activo."
+}

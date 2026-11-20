@@ -7,8 +7,9 @@ avisa en la limpieza o el perfil:
   - **Formato largo** (una fila por respuesta: respondente, pregunta, valor): cada
     pregunta debe ser una columna.
   - **Sin fila de encabezados**: la primera fila trae respuestas, no nombres de columna.
-  - **Encabezados en código sin el instrumento original** («P1», «Q12», «G01Q03»,
-    «Evaluación_item3»): sin el original las preguntas serían solo esos códigos.
+  - **Encabezados en código sin el instrumento original ni diccionario de datos** («P1», «Q12»,
+    «G01Q03», «Evaluación_item3»): sin ninguno de los dos las preguntas serían solo esos códigos
+    (`hay_original` es verdadero si se subió cualquiera de los dos).
 
 Compartido por instrument-service (al subir) y probado desde cleaning-service.
 """
@@ -67,5 +68,6 @@ def motivo_rechazo_encuesta(encabezados: list[str], filas: list[list[str]], hay_
     if not hay_original and preguntas and sum(es_codigo(h) for h in preguntas) >= 0.5 * len(preguntas):
         return ("Los encabezados son códigos (por ejemplo «" + next(h for h in preguntas if es_codigo(h)) + "») "
                 "y no se subió el instrumento original. Sube también el instrumento original (PDF, DOCX o TXT "
-                "con las preguntas) para saber qué pregunta cada columna.")
+                "con las preguntas) o el diccionario de datos de los microdatos (variable, pregunta, valor y "
+                "etiqueta) para saber qué pregunta cada columna.")
     return None

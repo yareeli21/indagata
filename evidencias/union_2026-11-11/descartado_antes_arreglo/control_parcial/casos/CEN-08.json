@@ -1,0 +1,33 @@
+{
+ "id": "CEN-08",
+ "instrumento": "enc_control",
+ "categoria": "cortesia",
+ "turnos": [
+  {
+   "pregunta": "Hola",
+   "rag_log_id": 3858,
+   "respuesta": "¡Hola! Soy el asistente de investigación de INDAGATA. Estás trabajando con «Encuesta de Carga Académica y Gestión del Tiempo» (encuesta).\n\nPor ejemplo, puedes preguntarme:\n- ¿Cómo se reparten las respuestas de «Considero que la cantidad de materias que curso es manejable» (p01)?\n- ¿Cuántos respondieron «Agenda física» en «Qué estrategia usas más para gestionar tu tiempo»?\n- ¿Qué es lo más preocupante de los resultados de «Encuesta de Carga Académica y Gestión del Tiempo»?",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "regla:cortesia",
+   "plantilla": "cortesia",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.0,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Bienvenida con ejemplos de este instrumento."
+}

@@ -1,0 +1,58 @@
+{
+ "id": "CET-03",
+ "instrumento": "ent_control",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara lo que dicen sobre sus profesores con lo que dicen sobre los servicios de apoyo",
+   "rag_log_id": 2388,
+   "respuesta": "Según sus datos registrados, E34 y E16 expresan una necesidad de mayor comprensión por parte de los profesores. E34 afirma que “a veces los profesores no entienden las situaciones de estudiantes como yo” [Fuente 1: p04]. Asimismo, E16 señala que “cree que la institución podría hacer más para apoyar a estudiantes como yo, que no somos los más brillantes pero sí los más constantes” [Fuente 1: p04]. Ambos participantes comparten una percepción similar sobre la falta de adaptación del sistema educativo a sus necesidades individuales. E34 añade que “a veces el sistema no está diseñado pensando en estudiantes como yo” [Fuente 1: p04] y E16 complementa con \"que no somos los más brillantes pero sí los más constantes\" [Fuente 1: p04].",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«tema» no es una variable de contexto de «Entrevista sobre estrategias de permanencia universitaria» (disponibles: ninguna)."
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E34 en p04",
+     "score": 0.7168
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E16 en p04",
+     "score": 0.6679
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E34 en p03",
+     "score": 0.6641
+    }
+   ],
+   "segundos": 31.0,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 177,
+    "interpretacion": 6730
+   },
+   "k_precision": 0.592,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Citas de ambos temas, sin exagerar."
+}

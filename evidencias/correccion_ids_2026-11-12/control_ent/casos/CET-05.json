@@ -1,0 +1,74 @@
+{
+ "id": "CET-05",
+ "instrumento": "ent_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántas veces mencionan el dinero o la economía?",
+   "rag_log_id": 4093,
+   "respuesta": "13 de 40 respondentes (32.5 %) cumplen el criterio: mencionan «dinero o economia» en sus respuestas abiertas. [Fuente 1] El criterio se refiere a las respuestas abiertas de los participantes en la entrevista sobre estrategias de permanencia universitaria. Una de las preguntas guía es: \"¿Cómo has manejado las dificultades económicas durante tu trayectoria universitaria?\" y dos de los participantes (E24 y E04) responden de manera similar: \"a una buena educación depende tanto del dinero que tienes\". Esto sugiere que el acceso a una buena educación es visto como estrechamente relacionado con la disponibilidad de dinero.\n\n**Dónde se menciona «dinero o economia» [Fuente 1]**\n| Respondente | Pregunta | Fragmento |\n|---|---|---|\n| E04 | p01 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E04 | p02 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E04 | p04 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E04 | p05 | «…el acceso a una buena educación dependa tanto del dinero que tienes.» |\n| E04 | p06 | «…ión y apoyo se puede. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas…» |\n| E04 | p07 | «…í; eso me da fuerzas. A pesar de las dificultades económicas, me aferro a la convicción de que la educación cambia vidas…» |\n| E04 | p08 | «…ha constante entre la academia y la sobrevivencia económica. A pesar de las dificultades económicas, me aferro a la conv…» |\n| E04 | p09 | «El estrés económico es constante. Cuando se retrasa el pago de mi beca, hay sema…» |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "menciona": "dinero o economia",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "dinero",
+      "pregunta": "p05"
+     },
+     {
+      "valor": "economia",
+      "pregunta": "p07"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "menciones de «dinero o economia» en las respuestas abiertas"
+   ],
+   "verificacion": "frase_dato_con_contexto",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E24 en p05",
+     "score": 0.4195
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E04 en p05",
+     "score": 0.4138
+    }
+   ],
+   "segundos": 15.9,
+   "tiempos_ms": {
+    "ejecucion": 37,
+    "redaccion": 6867,
+    "recuperacion": 261,
+    "verificacion": 1,
+    "interpretacion": 8684
+   },
+   "k_precision": 0.898,
+   "cifras_con_respaldo": [
+    12,
+    12
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Aclarar cómo cuenta y citar ejemplos."
+}

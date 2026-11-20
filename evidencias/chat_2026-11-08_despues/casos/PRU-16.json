@@ -1,0 +1,136 @@
+{
+ "id": "PRU-16",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué herramienta para gestionar referencias eligieron más?",
+   "rag_log_id": 2610,
+   "respuesta": "De las 97 respuestas válidas obtenidas en la prueba de Alfabetización Digital, “Zotero o Mendeley” fue la opción más elegida, seleccionada por 75 alumnos (77.3 % de los participantes) [Fuente 1]. La opción “Canva” obtuvo un 5.2% de las respuestas, con 5 respondentes [Fuente 1]. Finalmente, la opción “Photoshop” recibió el 4.1% de las respuestas, seleccionada por 4 alumnos [Fuente 1].\n\n**Distribución de r20 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 5 | 5.2 % |\n| B | 75 | 77.3 % |\n| C | 4 | 4.1 % |\n| D | 13 | 13.4 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r20"
+    ]
+   },
+   "correcciones": [
+    "filtro r20 = «herramienta para gestionar referencias bibliográficas» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.7044
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6822
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.4645
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.4555
+    }
+   ],
+   "segundos": 51.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 31468,
+    "recuperacion": 318,
+    "verificacion": 13698,
+    "interpretacion": 19371
+   },
+   "k_precision": 0.829,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué puede indicar eso?",
+   "rag_log_id": 2611,
+   "respuesta": "La opción más elegida para gestionar referencias bibliográficas fue “Zotero o Mendeley”, seleccionada por 75 alumnos, representando el 77.3% de las respuestas válidas en la prueba de Alfabetización Digital [Fuente 1]. La herramienta “Canva” obtuvo un 5.2% de las respuestas, con 5 respondientes [Fuente 1], mientras que las opciones “Trello” y “Photoshop” recibieron un 13.4% (13 respuestas) y un 4.1% (4 respuestas), respectivamente [Fuente 1]. Según el reactivo r20, la herramienta más utilizada para este propósito fue “Zotero o Mendeley” [Fuente 1].\n\n**Distribución de r20 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 5 | 5.2 % |\n| B | 75 | 77.3 % |\n| C | 4 | 4.1 % |\n| D | 13 | 13.4 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r20"
+    ]
+   },
+   "correcciones": [
+    "aclaración → plan de la respuesta anterior (la pregunta se refiere a ella)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6633
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6362
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4372
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.4327
+    }
+   ],
+   "segundos": 58.4,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 40597,
+    "recuperacion": 358,
+    "verificacion": 18124,
+    "interpretacion": 17395
+   },
+   "k_precision": 0.86,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) interpretar con cifras, sin juzgar correcto o incorrecto."
+}

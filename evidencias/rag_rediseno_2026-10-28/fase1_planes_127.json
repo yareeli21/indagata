@@ -1,0 +1,175 @@
+[
+ {
+  "plan": {
+   "intencion": "hallazgo"
+  },
+  "correcciones": [],
+  "intentos": 1,
+  "ms": 1094,
+  "error": "",
+  "pregunta": "dame un dato que encuentres interesante del instrumento",
+  "total_s": 2.2
+ },
+ {
+  "plan": {
+   "intencion": "filtrar_respondentes",
+   "filtros": [
+    {
+     "pregunta": "p03",
+     "valor": "Carga minima"
+    }
+   ],
+   "campos": "todas_las_respuestas",
+   "orden": {},
+   "limite": 5
+  },
+  "correcciones": [
+   "filtro p02 → p03 («Carga minima» es una opción de p03)"
+  ],
+  "intentos": 1,
+  "ms": 2240,
+  "error": "",
+  "pregunta": "dame los primeros 5 estudiantes que contestaron que tienen carga mínima, junto con todas sus respuestas",
+  "total_s": 2.6
+ },
+ {
+  "plan": {
+   "intencion": "datos_respondente",
+   "campos": "todas_las_respuestas",
+   "orden": {},
+   "limite": 1
+  },
+  "correcciones": [],
+  "intentos": 1,
+  "ms": 1514,
+  "error": "",
+  "pregunta": "qué respondió el primer respondente en todas las preguntas?",
+  "total_s": 1.7
+ },
+ {
+  "plan": {
+   "intencion": "conteo_porcentaje",
+   "filtros": [
+    {
+     "pregunta": "p03",
+     "valor": "Carga minima"
+    },
+    {
+     "pregunta": "p11",
+     "valor": [
+      "Si, y lo aprobe",
+      "Si, y no lo aprobe"
+     ]
+    }
+   ]
+  },
+  "correcciones": [
+   "filtro p02 → p03 («Carga media/normal» es una opción de p03)",
+   "filtro p03 → p11 («Sí, y lo aprobé» es una opción de p11)",
+   "p11: «Sí, y lo aprobé» → «Si, y lo aprobe»",
+   "p11: «Sí, y no lo aprobé» → «Si, y no lo aprobe»",
+   "filtro p03: «Carga media/normal» → «Carga minima» (lo que dice la pregunta)"
+  ],
+  "intentos": 1,
+  "ms": 1923,
+  "error": "",
+  "pregunta": "¿cuántos tienen carga minima y alguna certificación?",
+  "total_s": 2.2
+ },
+ {
+  "plan": {
+   "intencion": "conteo_porcentaje",
+   "preguntas": [
+    "p17"
+   ],
+   "nivel": "desacuerdo"
+  },
+  "correcciones": [],
+  "intentos": 1,
+  "ms": 1088,
+  "error": "",
+  "pregunta": "¿qué porcentaje está en desacuerdo con que los laboratorios son adecuados?",
+  "total_s": 1.3
+ },
+ {
+  "plan": {
+   "intencion": "datos_respondente",
+   "respondentes": [
+    "R017"
+   ],
+   "campos": [
+    "p03"
+   ]
+  },
+  "correcciones": [
+   "respondente R017 tomado de la pregunta",
+   "campos p03 tomados de la pregunta"
+  ],
+  "intentos": 1,
+  "ms": 1474,
+  "error": "",
+  "pregunta": "¿qué respondió R017 en la pregunta 3?",
+  "total_s": 1.7
+ },
+ {
+  "plan": {
+   "intencion": "kpi"
+  },
+  "correcciones": [
+   "KPI «KPI-12, KPI-37, KPI-28, KPI-19, KPI-01» no está asociado: se buscan todos los KPIs"
+  ],
+  "intentos": 1,
+  "ms": 1308,
+  "error": "",
+  "pregunta": "¿qué KPIs tiene asociados el instrumento?",
+  "total_s": 1.5
+ },
+ {
+  "plan": {
+   "intencion": "fuera_de_dominio"
+  },
+  "correcciones": [],
+  "intentos": 1,
+  "ms": 806,
+  "error": "",
+  "pregunta": "escríbeme una receta de pastel",
+  "total_s": 1.0
+ },
+ {
+  "plan": {
+   "intencion": "metodologia"
+  },
+  "correcciones": [],
+  "intentos": 1,
+  "ms": 673,
+  "error": "",
+  "pregunta": "¿qué significa un alfa de Cronbach bajo?",
+  "total_s": 0.9
+ },
+ {
+  "plan": {
+   "intencion": "conteo_porcentaje",
+   "filtros": [
+    {
+     "pregunta": "p03",
+     "valor": "Carga minima"
+    },
+    {
+     "pregunta": "p02",
+     "valor": "En linea"
+    }
+   ]
+  },
+  "correcciones": [
+   "filtro p02 → p03 («Carga minima» es una opción de p03)",
+   "filtro p02 = «En linea» (escrito en la pregunta)",
+   "filtro p06 = «2-3» descartado (la pregunta no lo menciona)",
+   "intención filtrar_respondentes → conteo_porcentaje («cuántos» sin pedir quiénes)"
+  ],
+  "intentos": 1,
+  "ms": 3031,
+  "error": "",
+  "pregunta": "¿y de ellos cuántos están en modalidad en línea?",
+  "total_s": 3.3
+ }
+]

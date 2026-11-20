@@ -13,11 +13,17 @@ limpio (vía storage-service) y el reporte_limpieza de la última versión confi
     que detectó la limpieza, con sus estadísticas (distribución, opción más elegida, nulas,
     no respondidas). No se califican: no hay clave de respuestas.
   - Prueba en documento: un bloque de texto por fila; se analiza como documento.
+
+Microdatos: el texto de las preguntas en código y el significado de sus códigos vienen del diccionario de
+datos o de lo que escribió la investigadora en la limpieza (`especifico.<tipo>.significados`); mandan sobre
+el encabezado y sobre el instrumento original.
 """
 from __future__ import annotations
 
 from collections import Counter, defaultdict
 from typing import Any
+
+from shared.conocimiento import significados
 
 from services import storage_client
 from services.analizador import (
@@ -57,6 +63,26 @@ def _especifico(limpieza: dict[str, Any], tipo: str) -> dict[str, Any]:
     return ((limpieza.get("reporte") or {}).get("especifico") or {}).get(tipo) or {}
 
 
+def _con_significado(pregunta: Pregunta, s: dict[str, Any] | None, prueba: bool = False) -> None:
+    """Texto de la pregunta y significado de sus códigos («1 = Hombre»), si la limpieza los tiene."""
+    if not s:
+        return
+    if s.get("pregunta"):
+        pregunta.texto = s["pregunta"]
+    valores = s.get("valores") or {}
+    if not valores:
+        return
+    pregunta.estadisticas["etiquetas"] = dict(valores)
+    escala = [str(e) for e in (pregunta.estadisticas.get("likert") or {}).get("etiquetas") or []]
+    if prueba:
+        pregunta.opciones = [f"{k}) {v}" for k, v in valores.items()]
+    elif escala and all(significados.codigo(e) in valores for e in escala):
+        # Escala con todos sus puntos en el diccionario: «Totalmente en desacuerdo … Totalmente de acuerdo».
+        pregunta.opciones = [valores[significados.codigo(e)] for e in escala]
+    elif not escala or not all(k.lstrip("-").isdigit() for k in valores):
+        pregunta.opciones = list(valores.values())
+
+
 # ── Encuestas ──────────────────────────────────────────────────────────────────
 
 
@@ -74,6 +100,7 @@ def _encuesta(tabla: dict[str, Any], limpieza: dict[str, Any], nombre: str, text
 
     # Tipo canónico provisional y opciones Likert del reporte (en vez de reinferirlos).
     specs = [columnas.get(headers[j]) or {} for j in indices]
+    sig = significados.de_reporte(limpieza.get("reporte"), "encuesta")
     descriptivos = {c["id"]: c for c in _estadistica(limpieza).get("columnas", [])}
     for pregunta, spec in zip(analisis.preguntas, specs):
         medidas = descriptivos.get(spec.get("id")) or {}
@@ -89,6 +116,7 @@ def _encuesta(tabla: dict[str, Any], limpieza: dict[str, Any], nombre: str, text
             pregunta.opciones = list(likert.get("etiquetas") or pregunta.opciones)
             pregunta.estadisticas["likert"] = likert
         pregunta.estadisticas["columna"] = spec.get("id")
+        _con_significado(pregunta, sig.get(spec.get("id") or ""))
 
     # Dimensiones sugeridas por la limpieza y confirmadas (el instrumento no trae secciones):
     # se guardan los textos de sus preguntas para que el LLM proponga un nombre por grupo.
@@ -103,7 +131,10 @@ def _encuesta(tabla: dict[str, Any], limpieza: dict[str, Any], nombre: str, text
     for j, h in enumerate(headers):
         spec = columnas.get(h) or {}
         valores_col = [f[j] for f in filas if j < len(f) and f[j].strip()]
-        if spec.get("rol") == "contexto" and es_columna_carrera(spec.get("etiqueta") or "", valores_col):
+        etiquetas = (sig.get(h) or {}).get("valores")
+        if etiquetas:  # carrera en código («10» = Pedagogía)
+            valores_col = [significados.etiqueta(etiquetas, v) or v for v in valores_col]
+        if spec.get("rol") == "contexto" and es_columna_carrera((sig.get(h) or {}).get("pregunta") or spec.get("etiqueta") or "", valores_col):
             analisis.carreras = [c for c, _ in Counter(valores_col).most_common(8)]
             if analisis.carreras:
                 analisis.hallazgos["poblacion"] = f"Estudiantes de {', '.join(analisis.carreras[:5])}"
@@ -177,6 +208,7 @@ def _prueba_tabular(tabla: dict[str, Any], limpieza: dict[str, Any], nombre: str
     del_examen = extraer_preguntas(texto_original) if texto_original else []
     usar_examen = len(del_examen) == len(orden) and bool(orden)
     reactivos = {r["pregunta"]: r for r in _estadistica(limpieza).get("reactivos", [])}
+    sig = significados.de_reporte(limpieza.get("reporte"), "prueba_estandarizada")
     preguntas = []
     for k, pregunta in enumerate(orden):
         c = por_pregunta.get(pregunta, Counter())
@@ -200,6 +232,8 @@ def _prueba_tabular(tabla: dict[str, Any], limpieza: dict[str, Any], nombre: str
                 },
             )
         )
+    for p in preguntas:
+        _con_significado(p, sig.get(p.id), prueba=True)
     texto = texto_original or "\n".join(p.texto for p in preguntas)
     base = _desde_documento(texto, "prueba_estandarizada", nombre)
     base.preguntas = preguntas

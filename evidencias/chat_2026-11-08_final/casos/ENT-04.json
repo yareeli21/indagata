@@ -1,0 +1,77 @@
+{
+ "id": "ENT-04",
+ "instrumento": "ent",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué respuestas menciona a sus profesores o a su tutor?",
+   "rag_log_id": 2769,
+   "respuesta": "E01 menciona que el papel de sus profesores es fundamental, destacando una profesora de estadística que notó su distracción y lo recomendó a orientación [Fuente 1]. Según E01, su tutor académico tuvo poca presencia en el semestre, participando solo una vez para firmar la carga de materias [Fuente 1]. La intervención de la profesora de estadística fue clave para que E01 buscara ayuda en orientación [Fuente 1].\n\n**Respuestas a p09 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Depende mucho del profesor. Mi tutor académico casi no tiene tiempo, lo vi una vez en todo el semestre y fue para firmar la carga de materias. Pero una profesora de estadística notó que estaba muy distraída, me preguntó si estaba bien y fue la que me recomendó ir a orientación. Si no fuera por ella, no sé si habría ido. |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p09"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p09"
+    ]
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.6979
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.6718
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.6669
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.6031
+    }
+   ],
+   "segundos": 51.4,
+   "tiempos_ms": {
+    "ejecucion": 2,
+    "redaccion": 21875,
+    "recuperacion": 291,
+    "verificacion": 1,
+    "interpretacion": 29196
+   },
+   "k_precision": 0.807,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Listar esas respuestas con un fragmento citado de cada una."
+}

@@ -205,6 +205,7 @@ export function InstrumentosPage() {
         instrumento={seleccionado}
         autor={seleccionado ? nombreAutor(seleccionado.autorId) : ""}
         ajeno={!!seleccionado && seleccionado.autorId !== miId}
+        esAdmin={usuario?.rol === "Administrador"}
         onCerrar={() => setSeleccionado(null)}
         onDescargar={(f) => {
           if (!seleccionado) return;

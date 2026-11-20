@@ -206,7 +206,8 @@ class Preparada:
         modelo = plan_del_modelo(self.interp.crudo)
         return {"plan": plan, "correcciones": self.interp.correcciones, "intentos": self.interp.intentos,
                 "error": self.interp.error, "plan_modelo": modelo,
-                "plan_modelo_sin_cambios": modelo is not None and modelo == plan, "catalogo": self.interp.catalogo}
+                "plan_modelo_sin_cambios": modelo is not None and modelo == plan, "catalogo": self.interp.catalogo,
+                "ajuste_prompt": self.interp.ajuste_prompt, "tokens_prompt": self.interp.tokens_prompt}
 
 
 def plan_del_modelo(crudo: str) -> dict[str, Any] | str | None:
@@ -222,17 +223,20 @@ def plan_del_modelo(crudo: str) -> dict[str, Any] | str | None:
 
 async def preparar(pregunta: str, historial: list[tuple[str, str]], ids: list[str], sesion: Any,
                    tema: str = "", pistas: str = "", plan_anterior: dict[str, Any] | None = None,
-                   recuperadas: list[str] | None = None, personas: list[str] | None = None) -> Preparada:
+                   recuperadas: list[str] | None = None, personas: list[str] | None = None,
+                   prioridad: list[str] | None = None) -> Preparada:
     """Interpreta la pregunta con el catálogo del alcance, la relaciona con el plan anterior (`seguimiento`) y, si la
     intención es estructurada, ejecuta el plan.
 
     `tema`: de qué trató la respuesta anterior (seguimientos). `pistas`: lo que recuperó el RAG. `plan_anterior`: el
     plan de la respuesta anterior (rag_log). `recuperadas`: preguntas de los intercambios que recuperó el RAG.
-    `personas`: los respondentes de los que se habló en la conversación (la persona activa, 7 nov)."""
+    `personas`: los respondentes de los que se habló en la conversación (la persona activa, 7 nov).
+    `prioridad`: los instrumentos de lo recuperado, del más parecido al menos (deciden qué catálogos entran al
+    prompt si el alcance no cabe)."""
     instrumentos = enrutador.cargar_documentos(sesion, ids)
     catalogos = [construir_catalogo(i.id_crudo, i.titulo, i.tipo, i.doc) for i in instrumentos]
     interp = await interpretacion.interpretar(pregunta, historial, catalogos, tema, pistas,
-                                              con_plan_anterior=plan_anterior is not None)
+                                              con_plan_anterior=plan_anterior is not None, prioridad=prioridad)
     if interp.plan is not None:
         rel = seguimiento.relacion(pregunta, interp.plan, plan_anterior)
         plan, notas = seguimiento.combinar(interp.plan, plan_anterior, rel, recuperadas, pregunta, catalogos)
@@ -347,14 +351,52 @@ def hechos(ejecuciones: list[Ejecucion]) -> str:
     return " ".join(lineas)
 
 
-def directa(ejecuciones: list[Ejecucion]) -> str:
-    """Respuesta sin redacción (respaldo si la del modelo no pasa la verificación): criterio y líneas calculadas."""
+_MAX_CITAS_RESPALDO = 2
+_MAX_CITA = 600
+
+
+def _citas_cercanas(e: Ejecucion, apoyo: list[dict[str, Any]]) -> list[str]:
+    """Las respuestas de la persona a las preguntas de los fragmentos más parecidos a la pregunta, citadas tal cual.
+
+    El respaldo de los datos de un respondente era solo «Respuestas interpretadas de E01 (…)», con la tabla escondida
+    en «Ver datos»: si la redacción se rechazaba, el chat casi no respondía (12 nov, consulta 4046). `apoyo` viene
+    ordenado por similitud; solo cuentan los fragmentos de esa misma persona o sin persona (la guía)."""
+    if len(e.respondentes) != 1 or not e.tablas:
+        return []
+    persona = e.respondentes[0].rsplit("-", 1)[-1]
+    filas = {str(f[0]).split(" ", 1)[0]: f for f in e.tablas[0].filas if f and len(f) > 1}
+    cercanas: list[str] = []
+    for frag in apoyo:
+        resp = str(frag.get("respondenteId") or "").rsplit("-", 1)[-1]
+        pid = str(frag.get("preguntaId") or "").rsplit("-", 1)[-1]
+        if pid in filas and resp in ("", persona) and pid not in cercanas:
+            cercanas.append(pid)
+    citas = []
+    for pid in cercanas[:_MAX_CITAS_RESPALDO]:
+        texto = " ".join(str(filas[pid][1]).split())
+        if not texto or texto == "—":
+            continue
+        if len(texto) > _MAX_CITA:
+            texto = texto[:_MAX_CITA].rsplit(" ", 1)[0] + "…"
+        citas.append(f"- {persona} en {filas[pid][0]}: «{texto}»")
+    return citas
+
+
+def directa(ejecuciones: list[Ejecucion], apoyo: list[dict[str, Any]] | None = None) -> str:
+    """Respuesta sin redacción (respaldo si la del modelo no pasa la verificación): criterio y líneas calculadas.
+
+    `apoyo`: fragmentos del RAG más parecidos a la pregunta; en los datos de un respondente eligen qué respuestas citar."""
     bloques = []
     for n, e in enumerate(ejecuciones, start=1):
         lineas = [f"Criterio: {e.criterio}."] if e.criterio and e.intencion not in ("hallazgo", "datos_respondente") else []
         if e.intencion == "datos_respondente" and e.respondentes:
             ids = ", ".join(r.rsplit("-", 1)[-1] for r in e.respondentes)
-            lineas.append(f"Respuestas interpretadas de {ids} ({e.criterio}).")
+            if citas := _citas_cercanas(e, apoyo or []):
+                lineas.append(f"Lo que respondió {ids} en las preguntas más relacionadas con lo que preguntas:")
+                lineas += citas
+                lineas.append("Sus demás respuestas están en «Ver datos».")
+            else:
+                lineas.append(f"Respuestas interpretadas de {ids} ({e.criterio}).")
         elif e.intencion == "hallazgo":
             lineas += [f"- {c['texto']}" for c in e.candidatos[:3]] if e.candidatos else e.lineas
         else:

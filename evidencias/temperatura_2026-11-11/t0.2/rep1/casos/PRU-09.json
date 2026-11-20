@@ -1,0 +1,83 @@
+{
+ "id": "PRU-09",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "De los que marcaron Verdadero en «el correo electrónico es siempre seguro», ¿qué eligieron en el reactivo de la VPN?",
+   "rag_log_id": 3998,
+   "respuesta": "Entre los 81 que cumplen r11 «El correo electrónico es siempre un canal seguro para enviar informaci» = «Verdadero», en r03 «¿Cuál es la principal función de una VPN?» respondieron: «Almacenar archivos en la nube» 39 (48.1 %); «Aumentar la velocidad de internet» 19 (23.5 %); «Bloquear anuncios publicitarios» 17 (21.0 %); «Crear una conexión segura y privada» 6 (7.4 %). [Fuente 1]\n\n**r03 entre quienes cumplen la condición [Fuente 1]**\n| Opción | Personas | % del grupo |\n|---|---|---|\n| Almacenar archivos en la nube | 39 | 48.1 % |\n| Aumentar la velocidad de internet | 19 | 23.5 % |\n| Bloquear anuncios publicitarios | 17 | 21.0 % |\n| Crear una conexión segura y privada | 6 | 7.4 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r11"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r03"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r11"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "cruce: r03 entre quienes respondieron «Verdadero» en r11"
+   ],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.691
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6452
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.638
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.5933
+    }
+   ],
+   "segundos": 19.3,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 6897,
+    "recuperacion": 516,
+    "verificacion": 0,
+    "interpretacion": 11832
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    11,
+    11
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruzar dos reactivos y dar la distribución dentro del grupo."
+}

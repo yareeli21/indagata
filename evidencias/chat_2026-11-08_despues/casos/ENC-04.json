@@ -1,0 +1,40 @@
+{
+ "id": "ENC-04",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos calificaron con 1 o 2 los laboratorios y equipos?",
+   "rag_log_id": 2559,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«[1, 2]» no es una opción de p17 («Los laboratorios, equipos, materiales y espacios de la institución son adecuados para mi formación.»). Las opciones son: Totalmente en desacuerdo, 2 en escala 1–5, 3 en escala 1–5, 4 en escala 1–5, Totalmente de acuerdo. ¿Cuál quieres?"
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": "el modelo no encontró la respuesta en el contexto",
+   "plantilla": "sin_informacion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 113.8,
+   "tiempos_ms": {
+    "ejecucion": 33,
+    "recuperacion": 1279,
+    "interpretacion": 79965
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Sumar ambos valores de la escala y explicarlo como desacuerdo."
+}

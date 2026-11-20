@@ -75,8 +75,8 @@ def _separados(presentes: list[str], separadores: list[str]) -> bool:
     """¿Los valores son listas («A, B; C») de opciones que se repiten entre filas?
 
     Regla (28 oct, encuesta de 2000 respondentes): una lista es una selección múltiple si sus partes también
-    aparecen SOLAS en otras filas («Carga mínima;Carga media/normal» y «Carga mínima»). Así:
-      - «Sí, y no lo aprobé» no es una lista: «y no lo aprobé» nunca aparece sola (la coma es del texto de la
+    aparecen SOLAS en otras filas («Biblioteca;Tutorías» y «Biblioteca»). Así:
+      - «Sí, pero lo dejé» no es una lista: «pero lo dejé» nunca aparece sola (la coma es del texto de la
         opción). Antes, con el 30 % de las respuestas con coma, se tomaba como selección múltiple y cada
         respuesta se partía en dos.
       - Una selección múltiple que pocos usan (15 % eligió más de una opción) sí se reconoce.
@@ -95,7 +95,7 @@ def _separados(presentes: list[str], separadores: list[str]) -> bool:
         if len(combinadas) >= 0.5 * len(con_sep):
             return True
         # Las mismas opciones combinadas de formas distintas («Biblioteca, Cafetería», «Biblioteca, Gimnasio»…),
-        # sin partes que empiecen con conjunción («Sí, y no lo aprobé», «No, pero planeo hacerlo» son UNA opción).
+        # sin partes que empiecen con conjunción («Sí, pero lo dejé», «No, pero me interesa» son UNA opción).
         distintos = {norm(v) for v in con_sep}
         en_cuantos: dict[str, int] = {}
         for v in distintos:
@@ -128,7 +128,10 @@ def inferir(etiqueta: str, valores: list[str | None], cfg: dict[str, Any]) -> In
     unicos = {normalizar_texto(v) for v in presentes}
     numeros = [numero(v) for v in valores]
     n_numeros = sum(1 for v, x in zip(valores, numeros) if v is not None and x is not None)
-    es_numerica = casi_todos(n_numeros, len(presentes), tolerancia)
+    # «No sé / No aplica» no son puntos de la escala: no cuentan para decidir si la columna es numérica
+    # (una escala 1–5 con 12 % de «No sé» seguía siendo escala y salía como categórica).
+    n_no_respuesta = sum(1 for v in presentes if normalizar_texto(v) in no_respuestas())
+    es_numerica = n_numeros > 0 and casi_todos(n_numeros, len(presentes) - n_no_respuesta, tolerancia)
     grupo = grupo_de(etiqueta)
     # Cantidades (horas, edad, hijos…): ni Likert numérica, ni escala, ni calificación,
     # aunque caigan en 0–10 o 0–100. Si el encabezado declara su rango

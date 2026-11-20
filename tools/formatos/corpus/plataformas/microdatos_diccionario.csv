@@ -1,0 +1,36 @@
+﻿variable,pregunta,valor,etiqueta
+P1,La institución responde a mis intereses académicos,1,Totalmente en desacuerdo
+P1,,2,En desacuerdo
+P1,,3,Ni de acuerdo ni en desacuerdo
+P1,,4,De acuerdo
+P1,,5,Totalmente de acuerdo
+P2_1,Los laboratorios son adecuados,1,Totalmente en desacuerdo
+P2_1,,2,En desacuerdo
+P2_1,,3,Ni de acuerdo ni en desacuerdo
+P2_1,,4,De acuerdo
+P2_1,,5,Totalmente de acuerdo
+P2_1,,9,No sé
+P2_2,La biblioteca tiene lo que necesito,1,Totalmente en desacuerdo
+P2_2,,2,En desacuerdo
+P2_2,,3,Ni de acuerdo ni en desacuerdo
+P2_2,,4,De acuerdo
+P2_2,,5,Totalmente de acuerdo
+P2_2,,9,No sé
+P2_3,Las aulas son cómodas,1,Totalmente en desacuerdo
+P2_3,,2,En desacuerdo
+P2_3,,3,Ni de acuerdo ni en desacuerdo
+P2_3,,4,De acuerdo
+P2_3,,5,Totalmente de acuerdo
+P2_3,,9,No sé
+P3,¿En qué modalidad cursas tu programa?,1,Presencial
+P3,,2,En línea
+P3,,3,Mixta
+P3,,4,Otra
+P4_1,¿Qué servicios usas? Biblioteca,1,Sí
+P4_1,,0,No
+P4_2,¿Qué servicios usas? Cafetería,1,Sí
+P4_2,,0,No
+P4_3,¿Qué servicios usas? Laboratorios,1,Sí
+P4_3,,0,No
+P4_4,¿Qué servicios usas? Tutorías,1,Sí
+P4_4,,0,No

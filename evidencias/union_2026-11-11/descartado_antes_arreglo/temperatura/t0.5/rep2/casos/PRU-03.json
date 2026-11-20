@@ -1,0 +1,53 @@
+{
+ "id": "PRU-03",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo hubo más respuestas en blanco?",
+   "rag_log_id": 3614,
+   "respuesta": "La primera pregunta del ranking es la r10 \"¿Qué es una contraseña segura?\" con 97 nulas o sin responder de 100 (100.0 %). No hay empate en este caso.\n\n**Preguntas por no respuesta**\n\nSegún el texto, las preguntas con más respuestas en blanco fueron las r10, r22 y r16.\n\n**Preguntas por no respuesta [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r10 | 97 nulas o sin responder de 97 (100.0 %) |\n| 2 | r22 | 3 nulas o sin responder de 97 (3.1 %) |\n| 3 | r16 | 2 nulas o sin responder de 97 (2.1 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "estructurada",
+   "motivo": "plan:ranking_preguntas:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 19.5,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 8254,
+    "recuperacion": 462,
+    "verificacion": 3242,
+    "interpretacion": 10704
+   },
+   "k_precision": 0.825,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Reactivo con más NR y su conteo."
+}

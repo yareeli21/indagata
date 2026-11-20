@@ -1,0 +1,136 @@
+{
+ "id": "ENC-16",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 2491,
+   "respuesta": "Criterio: resumen de p10.\np10 «¿Cuándo esperas titularte?»: 1942 respuestas válidas, 58 sin respuesta.\nInterpretación calculada: La opción más frecuente es «Con hasta un año de retraso» (37.4 % de las respuestas). [Fuente 1]\n\n**Distribución de p10 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Con hasta un año de retraso | 726 | 37.4 % |\n| Con mas de un año de retraso | 503 | 25.9 % |\n| En el tiempo que marca mi plan de estudios | 382 | 19.7 % |\n| No estoy seguro(a) | 172 | 8.9 % |\n| Estoy considerando abandonar | 159 | 8.2 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p10"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:inferencia",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.4951
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.4832
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p02",
+     "score": 0.4382
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.433
+    }
+   ],
+   "segundos": 69.2,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 51968,
+    "recuperacion": 401,
+    "verificacion": 24569,
+    "interpretacion": 16793
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    13,
+    13
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué lo consideras preocupante?",
+   "rag_log_id": 2492,
+   "respuesta": "**Lo que muestran los datos:** p10 «¿Cuándo esperas titularte?»: 1942 respuestas válidas, 58 sin respuesta.\n\n**Interpretación (del asistente, no es un dato):** La opción más frecuente de respuesta a la pregunta sobre cuándo esperan titularse es “Con hasta un año de retraso”. Esto sugiere que existe una percepción generalizada entre los estudiantes respecto a posibles dificultades para completar sus estudios en el tiempo previsto por su plan de estudios. Podría indicar la necesidad de analizar las razones detrás de esta expectativa y evaluar si existen factores específicos que contribuyen a este retraso [Fuente 1].",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "profundiza",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p10"
+    ]
+   },
+   "correcciones": [
+    "intención aclaracion → hallazgo con sentido desfavorable",
+    "profundiza: se repite el plan anterior (resumen_pregunta) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5019
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5012
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4628
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.4518
+    }
+   ],
+   "segundos": 23.1,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 15674,
+    "recuperacion": 297,
+    "verificacion": 0,
+    "interpretacion": 7088
+   },
+   "k_precision": 0.366,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la polaridad (no elegir respuestas favorables) y justificar con cifras."
+}

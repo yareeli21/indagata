@@ -1,0 +1,48 @@
+{
+ "id": "CPR-06",
+ "instrumento": "pru_control",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Qué respondieron en el reactivo 20?",
+   "rag_log_id": 3874,
+   "respuesta": "No existe «20»: «Prueba de Competencia en Investigación Científica» solo tiene 15 reactivos (r01 a r15).",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "No existe «20»: «Prueba de Competencia en Investigación Científica» solo tiene 15 reactivos (r01 a r15)."
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "datos_respondente"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "pregunta 20 fuera de rango",
+    "lo que pide no existe en el instrumento: se responde con lo que sí hay"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 10.8,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 211,
+    "interpretacion": 10586
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No existe; decir cuántos reactivos hay."
+}

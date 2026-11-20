@@ -1,0 +1,69 @@
+{
+ "id": "ENU-09",
+ "instrumento": "enc_nueva",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos estudiantes usan el servicio de nutrición?",
+   "rag_log_id": 4106,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados. Recuerda que solo entran al RAG los instrumentos con metadatos aprobados por su autor; puedes ampliar la selección de tu investigación.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": [
+       "Biblioteca",
+       "Tutorías",
+       "Bolsa de trabajo",
+       "Asesoría psicológica"
+      ],
+      "pregunta": "p16"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": [
+       "Biblioteca",
+       "Tutorías",
+       "Bolsa de trabajo",
+       "Asesoría psicológica"
+      ],
+      "pregunta": "p16"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "plan:hallazgo con similitud 0.50 < 0.55",
+   "plantilla": "sin_informacion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 12.3,
+   "tiempos_ms": {
+    "ejecucion": 128,
+    "recuperacion": 453,
+    "interpretacion": 11658
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Decir que esa opción no existe y mencionar los servicios que sí registra."
+}

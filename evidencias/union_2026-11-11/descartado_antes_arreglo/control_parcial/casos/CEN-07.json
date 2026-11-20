@@ -1,0 +1,81 @@
+{
+ "id": "CEN-07",
+ "instrumento": "enc_control",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara los primeros 40 respondentes con los últimos 40 en la presión por la carga académica",
+   "rag_log_id": 3857,
+   "respuesta": "Criterio: por posición (primeros 40 y últimos 40). [Fuente 1]\n\n**Comparación por posición (primeros 40 y últimos 40) [Fuente 1]**\n| Grupo | Personas | p18: respuestas del grupo |\n|---|---|---|\n| Primeros 40 | 40 | media 5.67; «2 de 10» 9 (22.5 %); «6 de 10» 6 (15.0 %); «9 de 10» 5 (12.5 %); «10 de 10» 5 (12.5 %); «7 de 10» 5 (12.5 %); «4 de 10» 4 (10.0 %); «3 de 10» 3 (7.5 %); «5 de 10» 2 (5.0 %); «8 de 10» 1 (2.5 %) |\n| Últimos 40 | 40 | media 6.0; «4 de 10» 7 (17.5 %); «9 de 10» 6 (15.0 %); «5 de 10» 6 (15.0 %); «8 de 10» 5 (12.5 %); «10 de 10» 5 (12.5 %); «3 de 10» 4 (10.0 %); «1 de 10» 2 (5.0 %); «2 de 10» 2 (5.0 %); «7 de 10» 2 (5.0 %); «6 de 10» 1 (2.5 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "limite": 40,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p18"
+    ],
+    "agrupar_por": "posicion"
+   },
+   "plan_modelo": {
+    "limite": 40,
+    "intencion": "comparar_grupos",
+    "aclaracion": "¿Cuál es el patrón de cambio en la presión por la carga académica entre los primeros y últimos respondentes?",
+    "agrupar_por": "posicion"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar los primeros 40 con los últimos 40"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:cifra_atribuida",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p18",
+     "score": 0.7706
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p18",
+     "score": 0.7693
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p18",
+     "score": 0.7594
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p18",
+     "score": 0.7487
+    }
+   ],
+   "segundos": 26.3,
+   "tiempos_ms": {
+    "ejecucion": 10,
+    "redaccion": 15723,
+    "recuperacion": 410,
+    "verificacion": 5615,
+    "interpretacion": 10077
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    19,
+    19
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Grupos por posición con su resultado."
+}

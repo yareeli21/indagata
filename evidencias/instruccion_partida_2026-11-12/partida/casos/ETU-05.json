@@ -1,0 +1,108 @@
+{
+ "id": "ETU-05",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué consejo le daría a un compañero que la está pasando mal?",
+   "rag_log_id": 4158,
+   "respuesta": "Basado en el texto del instrumento y el resultado, se destacan los siguientes temas o patrones:\n\n*   La importancia de buscar ayuda sin miedo a ser juzgado. E01 dice: \"Que no espere a estar muy mal, como yo. Que pedir ayuda no significa que sea débil, al contrario.\"\n*   La falta de conocimiento sobre los servicios de apoyo psicológico disponibles en la universidad. E01 menciona que solo se enteró de la existencia de estos servicios en el tercer semestre y que no sabía cómo solicitarlos.\n*   La importancia de la atención psicológica para mejorar el bienestar estudiantil. E01 expresa su satisfacción con las sesiones de orientación psicológica, destacando que la psicóloga fue amable y nunca la hizo sentir juzgada.\n\nEstos temas se relacionan entre sí, ya que la falta de conocimiento sobre los servicios de apoyo psicológico puede llevar a estudiantes como E01 a no buscar ayuda cuando realmente la necesitan. Por otro lado, la atención psicológica puede ser un factor clave para mejorar el bienestar estudiantil y reducir el estrés y la ansiedad.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p12"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "¿Qué le dirías a un compañero que está pasando por un momento difícil y no se anima a pedir ayuda?",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p12 = «¿Qué le dirías a un compañero que está pasando por un momento difícil y no se anima a pedir ayuda?» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental entrevista"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.6821
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.5673
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.49
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p04",
+     "score": 0.3412
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.3407
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.3289
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.2937
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.2844
+    }
+   ],
+   "segundos": 23.3,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 13086,
+    "recuperacion": 426,
+    "verificacion": 13,
+    "interpretacion": 9711
+   },
+   "k_precision": 0.506,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta final del mensaje a un compañero, con cita."
+}

@@ -62,8 +62,8 @@ def _contextos(reporte: dict[str, Any]) -> dict[str, dict[str, Any]]:
 
 
 def encabezado_de(reporte: dict[str, Any]) -> list[str]:
-    """Las líneas «Clave: valor» del encabezado de la transcripción que guardó la limpieza («Tipo: entrevista
-    semiestructurada», «Duración aproximada: 40 minutos»), sin datos personales (7 nov, ENT-20: el tipo y la duración
+    """Las líneas «Clave: valor» del encabezado de la transcripción que guardó la limpieza («Modalidad: en línea»,
+    «Duración aproximada: 30 minutos»), sin datos personales (7 nov, ENT-20: el tipo y la duración
     estaban en el reporte de limpieza pero no llegaban al chat)."""
     especifico = reporte.get("especifico") or {}
     lineas = (especifico.get("entrevista") or especifico).get("preambulo") or []

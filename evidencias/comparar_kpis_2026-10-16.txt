@@ -1,0 +1,95 @@
+
+##### 2026-10-16T01:05
+Token indices sequence length is longer than the specified maximum sequence length for this model (811 > 128). Running this sequence through the model will result in indexing errors
+
+====================================================================================================
+Instrumento 39 (encuesta) — Escala RAU de Rendimiento Académico Universitario
+  Resumen del método actual: 2643 caracteres, 811 tokens (el modelo solo lee los primeros 128).
+  Unidades de pregunta: 34. Similitud pregunta↔KPI: mediana 0.279, p90 0.433, p99 0.554, máx 0.604
+    pares ≥ 0.35: 24.6%
+    pares ≥ 0.45: 7.7%
+    pares ≥ 0.5: 3.6%
+    pares ≥ 0.55: 1.1%
+
+  MÉTODO ACTUAL (un resumen)                          MÉTODO NUEVO (perfil + preguntas)
+  Puntajes en Pruebas Estandarizadas de Refe 0.588    Puntajes en Pruebas Estandarizadas de Re 0.636 (g 0.63 p 0.56 c 1.00)
+  Tasa de Continuidad en Estudios de Posgrad 0.552    Tasa de Continuidad en Estudios de Posgr 0.615 (g 0.57 p 0.57 c 1.00)
+  Puntaje de Satisfacción Estudiantil (NPS / 0.551    Ratio de Matriculados frente a Graduados 0.615 (g 0.56 p 0.59 c 1.00)
+  Estado de Acreditación y Clasificaciones A 0.537    Puntaje de Satisfacción Estudiantil (NPS 0.602 (g 0.58 p 0.54 c 1.00)
+  Ratio de Matriculados frente a Graduados d 0.527    Tasa de Asistencia Escolar y Universitar 0.595 (g 0.57 p 0.53 c 1.00)
+
+  Coincidencia en el top 5: 4/5
+  Separación 1.º–5.º: actual 0.062 · nuevo 0.042
+
+  Evidencia de «Puntajes en Pruebas Estandarizadas de Referencia»:
+    0.568  Mis calificaciones reflejan el esfuerzo que dedico al estudio.
+    0.560  Obtengo calificaciones iguales o superiores a la media del grupo.
+    0.555  Mi promedio general ha mejorado a lo largo de los semestres.
+
+  Evidencia de «Tasa de Continuidad en Estudios de Posgrado»:
+    0.593  Mis calificaciones reflejan el esfuerzo que dedico al estudio.
+    0.576  Mi promedio general ha mejorado a lo largo de los semestres.
+    0.546  Mis notas me permiten aspirar a becas o reconocimientos.
+
+  Evidencia de «Ratio de Matriculados frente a Graduados del Curso»:
+    0.604  Mis notas me permiten aspirar a becas o reconocimientos.
+    0.591  Obtengo calificaciones iguales o superiores a la media del grupo.
+    0.569  Mis calificaciones reflejan el esfuerzo que dedico al estudio.
+
+====================================================================================================
+Instrumento 22 (encuesta) — MSLQ-SF: Cuestionario de Motivación y Estrategias de Aprendizaje Forma Corta
+  Resumen del método actual: 4651 caracteres, 1297 tokens (el modelo solo lee los primeros 128).
+  Unidades de pregunta: 50. Similitud pregunta↔KPI: mediana 0.186, p90 0.288, p99 0.436, máx 0.582
+    pares ≥ 0.35: 3.5%
+    pares ≥ 0.45: 0.8%
+    pares ≥ 0.5: 0.2%
+    pares ≥ 0.55: 0.1%
+
+  MÉTODO ACTUAL (un resumen)                          MÉTODO NUEVO (perfil + preguntas)
+  Nivel de Adopción de Analítica de Aprendiz 0.514    Métricas de Compromiso e Interacción del 0.489 (g 0.50 p 0.36 c 1.00)
+  Métricas de Compromiso e Interacción del E 0.506    Puntajes en Pruebas Estandarizadas de Re 0.470 (g 0.49 p 0.41 c 0.67)
+  Uso de Servicios de Salud Mental y Apoyo P 0.494    Tasa de Continuidad en Estudios de Posgr 0.465 (g 0.45 p 0.44 c 0.67)
+  Tamaño Promedio de Clase (Alumnos por Aula 0.480    Cualificación Docente y Tasa de Rotación 0.455 (g 0.46 p 0.41 c 0.67)
+  Gasto de Enseñanza por Estudiante equivale 0.477    Tamaño Promedio de Clase (Alumnos por Au 0.451 (g 0.46 p 0.39 c 0.67)
+
+  Coincidencia en el top 5: 2/5
+  Separación 1.º–5.º: actual 0.037 · nuevo 0.038
+
+  Evidencia de «Métricas de Compromiso e Interacción del Estudiante en Plataformas Virtuales»:
+    0.375  nivel_estudio
+    0.361  Autoeficacia_item3
+    0.354  Autoeficacia_item1
+
+  Evidencia de «Puntajes en Pruebas Estandarizadas de Referencia»:
+    0.460  nivel_estudio
+    0.442  promedio_gpa
+
+  Evidencia de «Tasa de Continuidad en Estudios de Posgrado»:
+    0.582  nivel_estudio
+    0.420  promedio_gpa
+
+##### 2026-10-16T01:06
+shared/db/core/config.py:95:    KPI_UMBRAL_EVIDENCIA: float = 0.45  # calibrado con instrumentos reales (scripts/comparar_kpis.py)
+services/analysis-service/app/vectorization/perfil/asociacion.py:41:    umbral_evidencia: float = 0.45
+13 passed in 5.71s
+1
+Instrumento 39 (encuesta) — Escala RAU de Rendimiento Académico Universitario
+  Unidades de pregunta: 34. Similitud pregunta↔KPI: mediana 0.279, p90 0.433, p99 0.554, máx 0.604
+  MÉTODO ACTUAL (un resumen)                          MÉTODO NUEVO (perfil + preguntas)
+  Puntajes en Pruebas Estandarizadas de Refe 0.588    Puntajes en Pruebas Estandarizadas de Re 0.636 (g 0.63 p 0.56 c 1.00)
+  Tasa de Continuidad en Estudios de Posgrad 0.552    Tasa de Continuidad en Estudios de Posgr 0.615 (g 0.57 p 0.57 c 1.00)
+  Puntaje de Satisfacción Estudiantil (NPS / 0.551    Ratio de Matriculados frente a Graduados 0.615 (g 0.56 p 0.59 c 1.00)
+  Estado de Acreditación y Clasificaciones A 0.537    Puntaje de Satisfacción Estudiantil (NPS 0.602 (g 0.58 p 0.54 c 1.00)
+  Ratio de Matriculados frente a Graduados d 0.527    Tasa de Asistencia Escolar y Universitar 0.595 (g 0.57 p 0.53 c 1.00)
+  Coincidencia en el top 5: 4/5
+  Separación 1.º–5.º: actual 0.062 · nuevo 0.042
+Instrumento 22 (encuesta) — MSLQ-SF: Cuestionario de Motivación y Estrategias de Aprendizaje Forma Corta
+  Unidades de pregunta: 50. Similitud pregunta↔KPI: mediana 0.186, p90 0.288, p99 0.436, máx 0.582
+  MÉTODO ACTUAL (un resumen)                          MÉTODO NUEVO (perfil + preguntas)
+  Nivel de Adopción de Analítica de Aprendiz 0.514    Puntajes en Pruebas Estandarizadas de Re 0.437 (g 0.49 p 0.41 c 0.33)
+  Métricas de Compromiso e Interacción del E 0.506    Tasa de Continuidad en Estudios de Posgr 0.432 (g 0.45 p 0.44 c 0.33)
+  Uso de Servicios de Salud Mental y Apoyo P 0.494    Tasa de Incidentes Disciplinarios y Falt 0.428 (g 0.27 p 0.46 c 1.00)
+  Tamaño Promedio de Clase (Alumnos por Aula 0.480    Cualificación Docente y Tasa de Rotación 0.422 (g 0.46 p 0.41 c 0.33)
+  Gasto de Enseñanza por Estudiante equivale 0.477    Ratio de Estudiantes por Profesor (Relac 0.415 (g 0.48 p 0.37 c 0.33)
+  Coincidencia en el top 5: 0/5
+  Separación 1.º–5.º: actual 0.037 · nuevo 0.022

@@ -1,0 +1,662 @@
+{
+ "Google Forms": {
+  "id_crudo": 179,
+  "hallazgos": [
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«Marca temporal» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«Dirección de correo electrónico» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «¿Qué servicios usas?»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "no_respuestas",
+    "titulo": "3 respuesta(s) «No sé» en 1 escala(s)",
+    "sugerida": "conservar_marcadas"
+   },
+   {
+    "tipo": "linea_recta",
+    "titulo": "3 encuestado(s) respondieron en línea recta",
+    "sugerida": "conservar"
+   }
+  ],
+  "transformaciones": [
+   "codificacion_utf8",
+   "encabezados_normalizados",
+   "identificadores_seguros",
+   "roles_automaticos"
+  ],
+  "columnas": [
+   {
+    "columna": "La institución responde a mis intereses académicos",
+    "tipo": "likert",
+    "media": 3.7368,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "Indica qué tan de acuerdo estás con las siguientes afirmaciones [Los laboratorios son adecuados]",
+    "tipo": "cuadricula",
+    "media": 3.525,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "Indica qué tan de acuerdo estás con las siguientes afirmaciones [La biblioteca tiene lo que necesito]",
+    "tipo": "cuadricula",
+    "media": 3.7027,
+    "no_se_excluidos": 3
+   },
+   {
+    "columna": "Indica qué tan de acuerdo estás con las siguientes afirmaciones [Las aulas son cómodas]",
+    "tipo": "cuadricula",
+    "media": 3.675,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "¿En qué modalidad cursas tu programa?",
+    "tipo": "categorica",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "¿Qué servicios usas?",
+    "tipo": "opcion_multiple_varias",
+    "media": null,
+    "no_se_excluidos": null
+   }
+  ],
+  "fiabilidad": [
+   {
+    "bloque": "Indica qué tan de acuerdo estás con las siguientes afirmaciones",
+    "items": 3,
+    "alfa": 0.8222
+   },
+   {
+    "bloque": "Todas las escalas Likert",
+    "items": 4,
+    "alfa": 0.8602
+   }
+  ]
+ },
+ "Microsoft Forms": {
+  "id_crudo": 180,
+  "hallazgos": [
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«Id» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«Hora de inicio» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«Hora de finalización» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«Correo electrónico» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «Las aulas son cómodas»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «¿Qué servicios usas?»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "no_respuestas",
+    "titulo": "3 respuesta(s) «No sé» en 1 escala(s)",
+    "sugerida": "conservar_marcadas"
+   },
+   {
+    "tipo": "linea_recta",
+    "titulo": "3 encuestado(s) respondieron en línea recta",
+    "sugerida": "conservar"
+   }
+  ],
+  "transformaciones": [
+   "codificacion_utf8",
+   "encabezados_normalizados",
+   "columnas_vacias",
+   "identificadores_seguros",
+   "roles_automaticos"
+  ],
+  "columnas": [
+   {
+    "columna": "La institución responde a mis intereses académicos",
+    "tipo": "likert",
+    "media": 3.7368,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "Los laboratorios son adecuados",
+    "tipo": "likert",
+    "media": 3.525,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "La biblioteca tiene lo que necesito",
+    "tipo": "likert",
+    "media": 3.7027,
+    "no_se_excluidos": 3
+   },
+   {
+    "columna": "Las aulas son cómodas",
+    "tipo": "likert",
+    "media": 3.675,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "¿En qué modalidad cursas tu programa?",
+    "tipo": "categorica",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "¿Qué servicios usas?",
+    "tipo": "opcion_multiple_varias",
+    "media": null,
+    "no_se_excluidos": null
+   }
+  ],
+  "fiabilidad": [
+   {
+    "bloque": "Todas las escalas Likert",
+    "items": 4,
+    "alfa": 0.8602
+   }
+  ]
+ },
+ "LimeSurvey (respuestas completas)": {
+  "id_crudo": 181,
+  "hallazgos": [
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«id» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«submitdate» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«lastpage» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«startlanguage» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«seed» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«startdate» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«datestamp» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_incompleta",
+    "titulo": "«¿En qué modalidad cursas tu programa? [Otro]» está vacía en el 95 % de las respuestas",
+    "sugerida": "conservar"
+   },
+   {
+    "tipo": "columna_incompleta",
+    "titulo": "«¿Qué servicios usas? [Biblioteca]» está vacía en el 57 % de las respuestas",
+    "sugerida": "conservar"
+   },
+   {
+    "tipo": "columna_incompleta",
+    "titulo": "«¿Qué servicios usas? [Cafetería]» está vacía en el 60 % de las respuestas",
+    "sugerida": "conservar"
+   },
+   {
+    "tipo": "columna_incompleta",
+    "titulo": "«¿Qué servicios usas? [Laboratorios]» está vacía en el 57 % de las respuestas",
+    "sugerida": "conservar"
+   },
+   {
+    "tipo": "columna_incompleta",
+    "titulo": "«¿Qué servicios usas? [Tutorías]» está vacía en el 60 % de las respuestas",
+    "sugerida": "conservar"
+   },
+   {
+    "tipo": "no_respuestas",
+    "titulo": "3 respuesta(s) «No sé» en 1 escala(s)",
+    "sugerida": "conservar_marcadas"
+   },
+   {
+    "tipo": "linea_recta",
+    "titulo": "3 encuestado(s) respondieron en línea recta",
+    "sugerida": "conservar"
+   }
+  ],
+  "transformaciones": [
+   "codificacion_utf8",
+   "encabezados_normalizados",
+   "identificadores_seguros",
+   "roles_automaticos"
+  ],
+  "columnas": [
+   {
+    "columna": "La institución responde a mis intereses académicos",
+    "tipo": "likert",
+    "media": 3.7368,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "Indica qué tan de acuerdo estás con las siguientes afirmaciones [Los laboratorios son adecuados]",
+    "tipo": "cuadricula",
+    "media": 3.525,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "Indica qué tan de acuerdo estás con las siguientes afirmaciones [La biblioteca tiene lo que necesito]",
+    "tipo": "cuadricula",
+    "media": 3.7027,
+    "no_se_excluidos": 3
+   },
+   {
+    "columna": "Indica qué tan de acuerdo estás con las siguientes afirmaciones [Las aulas son cómodas]",
+    "tipo": "cuadricula",
+    "media": 3.675,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "¿En qué modalidad cursas tu programa?",
+    "tipo": "categorica",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "¿En qué modalidad cursas tu programa? [Otro]",
+    "tipo": "binaria",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "¿Qué servicios usas? [Biblioteca]",
+    "tipo": "opcion_multiple_varias",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "¿Qué servicios usas? [Cafetería]",
+    "tipo": "opcion_multiple_varias",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "¿Qué servicios usas? [Laboratorios]",
+    "tipo": "opcion_multiple_varias",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "¿Qué servicios usas? [Tutorías]",
+    "tipo": "opcion_multiple_varias",
+    "media": null,
+    "no_se_excluidos": null
+   }
+  ],
+  "fiabilidad": [
+   {
+    "bloque": "Indica qué tan de acuerdo estás con las siguientes afirmaciones",
+    "items": 3,
+    "alfa": 0.8222
+   },
+   {
+    "bloque": "Todas las escalas Likert",
+    "items": 4,
+    "alfa": 0.8602
+   }
+  ]
+ },
+ "LimeSurvey (códigos)": {
+  "id_crudo": 182,
+  "hallazgos": [
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«id» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«submitdate» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«lastpage» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«startlanguage» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«seed» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«startdate» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«datestamp» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «G01Q01»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «G01Q02[SQ001]»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «G01Q02[SQ002]»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «G01Q02[SQ003]»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «G01Q03»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «G01Q03[other]»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "columna_incompleta",
+    "titulo": "«G01Q03[other]» está vacía en el 95 % de las respuestas",
+    "sugerida": "conservar"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «G01Q04[SQ001]»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "columna_incompleta",
+    "titulo": "«G01Q04[SQ001]» está vacía en el 57 % de las respuestas",
+    "sugerida": "conservar"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «G01Q04[SQ002]»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "columna_incompleta",
+    "titulo": "«G01Q04[SQ002]» está vacía en el 60 % de las respuestas",
+    "sugerida": "conservar"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «G01Q04[SQ003]»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "columna_incompleta",
+    "titulo": "«G01Q04[SQ003]» está vacía en el 57 % de las respuestas",
+    "sugerida": "conservar"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «G01Q04[SQ004]»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "columna_incompleta",
+    "titulo": "«G01Q04[SQ004]» está vacía en el 60 % de las respuestas",
+    "sugerida": "conservar"
+   }
+  ],
+  "transformaciones": [
+   "codificacion_utf8",
+   "encabezados_normalizados",
+   "identificadores_seguros"
+  ],
+  "columnas": [
+   {
+    "columna": "G01Q01",
+    "tipo": "likert",
+    "media": 3.7368,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "G01Q02[SQ001]",
+    "tipo": "categorica",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "G01Q02[SQ002]",
+    "tipo": "categorica",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "G01Q02[SQ003]",
+    "tipo": "categorica",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "G01Q03",
+    "tipo": "categorica",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "G01Q03[other]",
+    "tipo": "binaria",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "G01Q04[SQ001]",
+    "tipo": "opcion_multiple_varias",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "G01Q04[SQ002]",
+    "tipo": "opcion_multiple_varias",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "G01Q04[SQ003]",
+    "tipo": "opcion_multiple_varias",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "G01Q04[SQ004]",
+    "tipo": "opcion_multiple_varias",
+    "media": null,
+    "no_se_excluidos": null
+   }
+  ],
+  "fiabilidad": []
+ },
+ "Microdatos con diccionario": {
+  "id_crudo": 183,
+  "hallazgos": [
+   {
+    "tipo": "columna_ajena",
+    "titulo": "«folio» no parece parte del instrumento",
+    "sugerida": "eliminar"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «P1»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «P2_1»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «P2_2»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «P2_3»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «P3»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «P4_1»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «P4_2»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «P4_3»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "rol_columna",
+    "titulo": "¿Qué es «P4_4»?",
+    "sugerida": "pregunta"
+   },
+   {
+    "tipo": "no_respuestas",
+    "titulo": "3 respuesta(s) «No sé» en 1 escala(s)",
+    "sugerida": "conservar_marcadas"
+   },
+   {
+    "tipo": "linea_recta",
+    "titulo": "3 encuestado(s) respondieron en línea recta",
+    "sugerida": "conservar"
+   }
+  ],
+  "transformaciones": [
+   "codificacion_utf8",
+   "encabezados_normalizados",
+   "identificadores_seguros",
+   "codigos_no_respuesta"
+  ],
+  "columnas": [
+   {
+    "columna": "P1",
+    "tipo": "likert",
+    "media": 3.7368,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "P2_1",
+    "tipo": "likert",
+    "media": 3.525,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "P2_2",
+    "tipo": "likert",
+    "media": 3.7027,
+    "no_se_excluidos": 3
+   },
+   {
+    "columna": "P2_3",
+    "tipo": "likert",
+    "media": 3.675,
+    "no_se_excluidos": 0
+   },
+   {
+    "columna": "P3",
+    "tipo": "categorica",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "P4_1",
+    "tipo": "binaria",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "P4_2",
+    "tipo": "binaria",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "P4_3",
+    "tipo": "binaria",
+    "media": null,
+    "no_se_excluidos": null
+   },
+   {
+    "columna": "P4_4",
+    "tipo": "binaria",
+    "media": null,
+    "no_se_excluidos": null
+   }
+  ],
+  "fiabilidad": [
+   {
+    "bloque": "P2",
+    "items": 3,
+    "alfa": 0.8222
+   },
+   {
+    "bloque": "Todas las escalas Likert",
+    "items": 4,
+    "alfa": 0.8602
+   }
+  ]
+ }
+}

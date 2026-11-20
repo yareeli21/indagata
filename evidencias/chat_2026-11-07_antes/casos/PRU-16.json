@@ -1,0 +1,134 @@
+{
+ "id": "PRU-16",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué herramienta para gestionar referencias eligieron más?",
+   "rag_log_id": 2360,
+   "respuesta": "La opción “Zotero o Mendeley” fue elegida por 75 alumnos (77.3 % de los alumnos) en el reactivo r20. [Fuente 1]\n\n**Distribución de r20 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 5 | 5.2 % |\n| B | 75 | 77.3 % |\n| C | 4 | 4.1 % |\n| D | 13 | 13.4 % |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r20"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6907
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.463
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4478
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4078
+    }
+   ],
+   "segundos": 26.7,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 9213,
+    "recuperacion": 260,
+    "verificacion": 1,
+    "interpretacion": 17163
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué puede indicar eso?",
+   "rag_log_id": 2361,
+   "respuesta": "La opción “Zotero o Mendeley” fue elegida por 75 alumnos (77.3 % de los alumnos) en el reactivo r20 [Fuente 1]. Esto indica que la herramienta para gestionar referencias bibliográficas más conocida entre los universitarios IPN, EST de nivel licenciatura, es “Zotero o Mendeley”.\n\n**Distribución de r20 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A | 5 | 5.2 % |\n| B | 75 | 77.3 % |\n| C | 4 | 4.1 % |\n| D | 13 | 13.4 % |",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r20"
+    ]
+   },
+   "correcciones": [
+    "aclaración → plan de la respuesta anterior (la pregunta se refiere a ella)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.6435
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4293
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4254
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.4234
+    }
+   ],
+   "segundos": 30.7,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 12772,
+    "recuperacion": 282,
+    "verificacion": 1,
+    "interpretacion": 17618
+   },
+   "k_precision": 0.848,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) interpretar con cifras, sin juzgar correcto o incorrecto."
+}

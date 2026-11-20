@@ -1,0 +1,88 @@
+{
+ "id": "ENC-05",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos NO han presentado ningún examen de certificación?",
+   "rag_log_id": 3750,
+   "respuesta": "1327 de los 1952 que respondieron p11 (68.0 %) cumplen el criterio: p11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco» = «No, pero planeo hacerlo» o «No, y no lo planeo». Sobre el total del instrumento son 1327 de 2000 respondentes (66.3 %). [Fuente 1] El criterio se refiere a si los estudiantes han presentado algún examen de certificación profesional. Según la pregunta, los que respondieron \"No, pero planeo hacerlo\" o \"No, y no lo planeo\" cumplen esta condición. La encuesta pregunta sobre el programa académico para determinar si cuenta con acreditación vigente, pero este dato no se relaciona directamente con la certificación profesional.",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": [
+       "No, pero planeo hacerlo",
+       "No, y no lo planeo"
+      ],
+      "pregunta": "p11"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "No, y no lo planeo",
+      "pregunta": "p11"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p11: todas las opciones «No…» (2)"
+   ],
+   "verificacion": "frase_dato_con_contexto",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.6317
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.6135
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.6028
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5535
+    }
+   ],
+   "segundos": 18.1,
+   "tiempos_ms": {
+    "ejecucion": 297,
+    "redaccion": 5979,
+    "recuperacion": 766,
+    "verificacion": 0,
+    "interpretacion": 10957
+   },
+   "k_precision": 0.867,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Resolver la negación sumando «No, pero planeo hacerlo» y «No, y no lo planeo»."
+}

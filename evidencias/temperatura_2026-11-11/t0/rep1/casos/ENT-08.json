@@ -1,0 +1,82 @@
+{
+ "id": "ENT-08",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara cómo describe su estado de ánimo con cómo valora la atención que recibió",
+   "rag_log_id": 3977,
+   "respuesta": "Criterio: resumen de p01, p07.\np01 «Para empezar, ¿cómo describirías tu estado de ánimo durante este semes»: respondieron 1 de 1 participantes.\np07 «¿Cómo valoras la atención que recibiste?»: respondieron 1 de 1 participantes. [Fuente 1]\n\n**Respuestas a p01 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Ha sido un semestre pesado. Al principio estaba bien, pero desde la semana de parciales empecé a dormir muy poco, unas cinco horas, y me sentía cansada todo el tiempo. Hubo días en que no quería ni venir a clases, no por flojera, sino porque sentía mucha presión en el pecho antes de entrar al salón. |\n\n**Respuestas a p07 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Em, La psicóloga fue muy amable y nunca me hizo sentir juzgada. Lo que no me gustó es que solo me dieron tres sesiones, porque es el máximo por semestre, y justo cuando empezaba a sentir avances se terminó. Le pondría un ocho de diez: la atención es buena, pero es muy poquito tiempo. |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p01",
+     "p07"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p01",
+     "p07"
+    ],
+    "agrupar_por": "posicion"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "agrupar por posición quitado (la consulta no habla de primeros y últimos)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.6853
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.6722
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.6088
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.5624
+    }
+   ],
+   "segundos": 29.8,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 22747,
+    "recuperacion": 332,
+    "verificacion": 8725,
+    "interpretacion": 6709
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Dos fragmentos citados lado a lado y una relación breve, sin exagerar."
+}

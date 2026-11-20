@@ -1,0 +1,23 @@
+time="2026-11-09T22:31:06-06:00" level=warning msg="C:\\Users\\yarel\\Documents\\indagata\\indagata\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+Token indices sequence length is longer than the specified maximum sequence length for this model (1783 > 128). Running this sequence through the model will result in indexing errors
+A01 {'k': 4, 'n': 30, 'pct': 13.3}
+A02 {'k': 17, 'n': 30, 'pct': 56.7}
+A03 {'k': 15, 'n': 60, 'pct': 25.0}
+A04 {'k': 30, 'n': 60, 'pct': 50.0}
+A05 {'k': 14, 'n': 34, 'pct': 41.2}
+A06 {'k': 12, 'n': 30, 'pct': 40.0}
+A07 {'k': 37, 'n': 160, 'pct': 23.1}
+A08 {'k': 83, 'n': 160, 'pct': 51.9}
+A09 {'k': 88, 'n': 160, 'pct': 55.0}
+A10 {'valor': 27.23, 'n': 160}
+A11 {'k': 31, 'n': 83, 'pct': 37.3}
+A12 {'k': 70, 'n': 160, 'pct': 43.8}
+A13 {'k': 14, 'n': 160, 'pct': 8.8}
+A14 {'k': 486, 'n': 1931, 'pct': 25.2}
+A15 {'k': 263, 'n': 1949, 'pct': 13.5}
+A16 {'k': 721, 'n': 1911, 'pct': 37.7}
+A17 {'k': 500, 'n': 1946, 'pct': 25.7}
+A18 {'k': 379, 'n': 1952, 'pct': 19.4}
+A19 {'k': 382, 'n': 1942, 'pct': 19.7}
+A20 {'k': 316, 'n': 1881, 'pct': 16.8}

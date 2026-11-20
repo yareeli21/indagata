@@ -1,0 +1,978 @@
+{
+ "corrida": "qwen3:4b-instruct=1574-1595",
+ "faltan": [],
+ "turnos": [
+  {
+   "consulta": 1574,
+   "enCache": false,
+   "respuesta": "La opción elegida más en la pregunta de la VPN fue \"Almacenar archivos en la nube\", con un 48.5 % de los alumnos (97 estudiantes). [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": null,
+    "ruta": "semantica",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 2,
+    "cifrasConRespaldo": 2,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {},
+    "latenciaMs": 27374
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "criterios": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.667,
+     "relevancia": 0.839,
+     "precision_contexto": 1.0,
+     "promedio": 0.835,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "1.1",
+   "similitud": 0.618
+  },
+  {
+   "consulta": 1575,
+   "enCache": false,
+   "respuesta": "0 de 97 respondientes eligieron la opción correcta de la pregunta r03 «¿Cuál es la principal función de una VPN?», lo que representa un 0.0 %, y el criterio aplicado fue el nivel alto en r03 [Fuente 1].",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "conteo_porcentaje",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 2,
+    "cifrasConRespaldo": 2,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "redaccion": 6283,
+     "verificacion": 0,
+     "interpretacion": 6743
+    },
+    "latenciaMs": 13045
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.5,
+     "relevancia": 0.515,
+     "precision_contexto": 1.0,
+     "promedio": 0.672,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Debió responder el porcentaje como en la anterior respuesta."
+   },
+   "turno": "1.2",
+   "similitud": 0.262
+  },
+  {
+   "consulta": 1576,
+   "enCache": false,
+   "respuesta": "r10 «¿Qué es una contraseña segura?» tiene 97 respuestas nulas o vacías de 97 alumnos (100.0 %). [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "hallazgo",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "negativa_corregida",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "redaccion": 10344,
+     "verificacion": 6040,
+     "interpretacion": 10090
+    },
+    "latenciaMs": 20446
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.341,
+     "precision_contexto": 1.0,
+     "promedio": 0.78,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió decir que no se sabe porque no nos encargamos de calificar las pruebas."
+   },
+   "turno": "1.3"
+  },
+  {
+   "consulta": 1577,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "fuera_de_dominio",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 3049
+    },
+    "latenciaMs": 8714
+   },
+   "tipo": "capacidad",
+   "intencion_correcta": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 1,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió decir que el sistema no se encarga de calificar, por lo que no se puede decir si aprobaron o no."
+   },
+   "turno": "2.1",
+   "similitud": 0.437
+  },
+  {
+   "consulta": 1578,
+   "enCache": false,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué opción eligió la mayoría en el reactivo 3?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "fuera_de_dominio",
+    "ruta": null,
+    "decision": "fuera",
+    "respuesta": "plantilla",
+    "plantilla": "fuera_de_dominio",
+    "plantillaDetalle": "Mensaje fijo de pregunta fuera de dominio.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 2711
+    },
+    "latenciaMs": 2721
+   },
+   "tipo": "capacidad",
+   "intencion_correcta": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 1,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió decir que el sistema no se encarga de calificar"
+   },
+   "turno": "2.2",
+   "similitud": 0.284
+  },
+  {
+   "consulta": 1579,
+   "enCache": false,
+   "respuesta": "Nadie respondió la pregunta de la contraseña segura. La distribución indica que A, B, C y D tienen un porcentaje de 0.0 %, y el porcentaje de \"Nadie eligió\" es de 100.0 %. \n\nFuente 1.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": null,
+    "ruta": "semantica",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 3,
+    "cifrasConRespaldo": 3,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {},
+    "latenciaMs": 11401
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.728,
+     "precision_contexto": 1.0,
+     "promedio": 0.909,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "3.1",
+   "similitud": 0.418
+  },
+  {
+   "consulta": 1580,
+   "enCache": false,
+   "respuesta": "¿Refieres a la pregunta r10 sobre la contraseña segura o a otra pregunta específica?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 5,
+     "interpretacion": 5795
+    },
+    "latenciaMs": 5806
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió decir que simplemente no se menciona por qué no se responde."
+   },
+   "turno": "3.2"
+  },
+  {
+   "consulta": 1581,
+   "enCache": false,
+   "respuesta": "Los estudiantes de universidad privada responden con menor frecuencia que los de universidad pública sobre conceptos básicos de informática en el contexto del phishing, ya que el 37.9% de los privados eligieron «un tipo de búsqueda en Google» como ejemplo de conocimiento técnico, frente al 40.7% de los de universidad pública. Esta diferencia indica que, aunque ambos grupos mencionan una búsqueda en Google, el porcentaje de privados es menor, lo que sugiere una menor internalización de conceptos técnicos en este grupo.  \n[Fuente 1]\n\n**Comparación por tipo_universidad [Fuente 1]**\n| tipo_universidad | Respondentes | r04: opción más elegida |\n|---|---|---|\n| mixta | 9 | «Un tipo de búsqueda en Google» 44.4 % (4 de 9) |\n| privada | 29 | «Un tipo de búsqueda en Google» 37.9 % (11 de 29) |\n| publica | 59 | «Un tipo de búsqueda en Google» 40.7 % (24 de 59) |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "comparar_grupos",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 1,
+    "primerFallo": "negativa_corregida",
+    "verificacion": "regenerada",
+    "cifrasTotal": 9,
+    "cifrasConRespaldo": 9,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 6,
+     "redaccion": 16968,
+     "verificacion": 12207,
+     "interpretacion": 4144
+    },
+    "latenciaMs": 21129
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.718,
+     "precision_contexto": 1.0,
+     "promedio": 0.906,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": null
+   },
+   "turno": "4.1",
+   "similitud": 0.542
+  },
+  {
+   "consulta": 1582,
+   "enCache": false,
+   "respuesta": "Criterio: por tiene_beca. [Fuente 1]\n\n**Comparación por tiene_beca [Fuente 1]**\n| tiene_beca | Respondentes | r04: opción más elegida |\n|---|---|---|\n| False | 83 | «Un tipo de búsqueda en Google» 41.0 % (34 de 83) |\n| True | 14 | «Una herramienta de edición de imágenes» 50.0 % (7 de 14) |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "comparar_grupos",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "inventada",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 6,
+     "redaccion": 38075,
+     "verificacion": 21335,
+     "interpretacion": 5359
+    },
+    "latenciaMs": 43449
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.377,
+     "precision_contexto": 1.0,
+     "promedio": 0.792,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 1,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": "Faltó que parafraseara para interpretar ese resultado."
+   },
+   "turno": "4.2",
+   "similitud": 0.801
+  },
+  {
+   "consulta": 1583,
+   "enCache": false,
+   "respuesta": "No encontré la pregunta «horas_trabajo_semana» en «Prueba de Alfabetización Digital». ¿A cuál te refieres?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 6197
+    },
+    "latenciaMs": 6210
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "Sí está el dato y no lo encontró."
+   },
+   "turno": "5.1",
+   "similitud": 0.287
+  },
+  {
+   "consulta": 1584,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados. Recuerda que solo entran al RAG los instrumentos con metadatos aprobados por su autor; puedes ampliar la selección de tu investigación.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": null,
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {},
+    "latenciaMs": 16811
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió interpretar bien la pregunta anterior para resolver esta con la información proporcionada y decir que todos dejaron sin responder una pregunta."
+   },
+   "turno": "5.2",
+   "similitud": 0.055
+  },
+  {
+   "consulta": 1585,
+   "enCache": false,
+   "respuesta": "No hay un respondente «R0057» en «Prueba de Alfabetización Digital» (van de A001 a A097).",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 5,
+     "interpretacion": 10770
+    },
+    "latenciaMs": 10793
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "6.1",
+   "similitud": 0.545
+  },
+  {
+   "consulta": 1586,
+   "enCache": false,
+   "respuesta": "Respuestas interpretadas de A067 (respondentes A067). [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | A067 |\n|---|---|\n| Contexto: edad | 26 |\n| Contexto: genero | femenino |\n| Contexto: horas_trabajo_semana | 26 |\n| Contexto: nivel_estudio | pregrado |\n| Contexto: nivel_ses | muy_bajo |\n| Contexto: perfil | P8 |\n| Contexto: primera_generacion | False |\n| Contexto: promedio_gpa | 2.39 |\n| Contexto: semestre | 4 |\n| Contexto: tiene_beca | True |\n| Contexto: tipo_universidad | publica |\n| r11 «El correo electrónico es siempre un canal seguro para enviar informaci» | Verdadero |\n| r12 «El análisis de datos de aprendizaje (learning analytics) puede ayudar » | Verdadero |\n| r13 «Plagiar contenido digital tiene las mismas consecuencias éticas que pl» | Falso |\n| r14 «La inteligencia artificial puede generar texto, imágenes y código de p» | Verdadero |\n| r15 «Usar redes Wi-Fi públicas sin VPN es completamente seguro.» | Verdadero |\n| r16 «El almacenamiento en la nube elimina por completo el riesgo de perder » | Verdadero |\n| r17 «La huella digital incluye todo rastro que dejamos en línea.» | Falso |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "datos_respondente",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "presentacion_fija",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 7,
+     "interpretacion": 8403
+    },
+    "latenciaMs": 8421
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.572,
+     "precision_contexto": 1.0,
+     "promedio": 0.857,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": null,
+    "comentario": "No existe el usuario del que le pregunté."
+   },
+   "turno": "6.2",
+   "similitud": 0.187
+  },
+  {
+   "consulta": 1587,
+   "enCache": false,
+   "respuesta": "75.3 % de los respondentes (73 de 97) consideran que usar redes Wi-Fi públicas sin VPN es completamente seguro, según el criterio r15 que establece «Usar redes Wi-Fi públicas sin VPN es completamente seguro.» = «Verdadero». [Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "conteo_porcentaje",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 3,
+    "cifrasConRespaldo": 3,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 8,
+     "redaccion": 6469,
+     "verificacion": 0,
+     "interpretacion": 5825
+    },
+    "latenciaMs": 12313
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.849,
+     "precision_contexto": 1.0,
+     "promedio": 0.95,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "7.1",
+   "similitud": 0.92
+  },
+  {
+   "consulta": 1588,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "semantica_abierta",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 5922
+    },
+    "latenciaMs": 11770
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": true,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": false,
+    "comentario": null
+   },
+   "turno": "8.1",
+   "similitud": 0.226
+  },
+  {
+   "consulta": 1589,
+   "enCache": false,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados.",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "fuera_de_dominio",
+    "ruta": "semantica",
+    "decision": "sin_informacion",
+    "respuesta": "plantilla",
+    "plantilla": "sin_informacion",
+    "plantillaDetalle": "Mensaje de que no hay información relacionada.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 9,
+     "interpretacion": 2855
+    },
+    "latenciaMs": 7813
+   },
+   "tipo": "inexistente",
+   "intencion_correcta": false,
+   "criterios": true,
+   "plantilla_indebida": true,
+   "jueces": {},
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "8.2",
+   "similitud": 0.409
+  },
+  {
+   "consulta": 1590,
+   "enCache": false,
+   "respuesta": "Criterio: preguntas con más respuestas nulas o sin responder, sin contar r10.\n1. r22 «¿Cuál es el emparejamiento correcto? Big Data ↔»: 3 nulas o sin responder de 97 (3.1 %).\n2. r16 «El almacenamiento en la nube elimina por completo el riesgo de perder »: 2 nulas o sin responder de 97 (2.1 %).\n3. r01 «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Exc»: 1 nulas o sin responder de 97 (1.0 %).\n4. r08 «¿Cuál es la principal función de un buscador web como Google?»: 1 nulas o sin responder de 97 (1.0 %).\n5. r11 «El correo electrónico es siempre un canal seguro para enviar informaci»: 1 nulas o sin responder de 97 (1.0 %).\n6. r17 «La huella digital incluye todo rastro que dejamos en línea.»: 1 nulas o sin responder de 97 (1.0 %). [Fuente 1]\n\n**Preguntas por no respuesta [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r22 | 3 nulas o sin responder de 97 (3.1 %) |\n| 2 | r16 | 2 nulas o sin responder de 97 (2.1 %) |\n| 3 | r01 | 1 nulas o sin responder de 97 (1.0 %) |\n| 4 | r08 | 1 nulas o sin responder de 97 (1.0 %) |\n| 5 | r11 | 1 nulas o sin responder de 97 (1.0 %) |\n| 6 | r17 | 1 nulas o sin responder de 97 (1.0 %) |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "ranking_preguntas",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "inventada",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 5,
+     "redaccion": 64510,
+     "verificacion": 27338,
+     "interpretacion": 4833
+    },
+    "latenciaMs": 69370
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "criterios": true,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.083,
+     "precision_contexto": 1.0,
+     "promedio": 0.694,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "9.1",
+   "similitud": 0.604
+  },
+  {
+   "consulta": 1591,
+   "enCache": false,
+   "respuesta": "Sí, hay una pregunta donde casi todos eligieron lo mismo: la primera pregunta del ranking es r11 «El correo electrónico es siempre un canal seguro para enviar información», con 81 de 97 respuestas (83.5 %) que eligieron «Verdadero». No hay empate en este caso. [Fuente 1]\n\n**Preguntas por coincidencia [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r11 | «Verdadero» con 81 de 97 (83.5 %) |\n| 2 | r20 | «Zotero o Mendeley» con 75 de 97 (77.3 %) |\n| 3 | r15 | «Verdadero» con 73 de 97 (75.3 %) |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "ranking_preguntas",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 10,
+    "cifrasConRespaldo": 10,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "redaccion": 7737,
+     "verificacion": 0,
+     "interpretacion": 5512
+    },
+    "latenciaMs": 13262
+   },
+   "tipo": "dato",
+   "intencion_correcta": true,
+   "exactitud": 1.0,
+   "contexto_suficiente": true,
+   "criterios": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.406,
+     "precision_contexto": 1.0,
+     "promedio": 0.802,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": null,
+    "comentario": null
+   },
+   "turno": "9.2",
+   "similitud": 0.497
+  },
+  {
+   "consulta": 1592,
+   "enCache": false,
+   "respuesta": "Los datos de la Prueba de Alfabetización Digital son relativamente confiables, ya que después de aplicar una serie de correcciones de limpieza, el porcentaje de respuestas válidas aumentó de un 93,1 % a un 94,1 %. Esto indica que la mayoría de las respuestas fueron legibles, consistentes y coherentes con los criterios establecidos para la limpieza de datos.\n\nSin embargo, existen limitaciones que afectan la confiabilidad:\n\n- **Algunos reactivos tienen muchas respuestas nulas o vacías**, especialmente el reactivo pru_03_Competenci_q10, donde más del 20 % de los alumnos no respondieron. Esto puede indicar que el reactivo es confuso o que los estudiantes no tuvieron suficiente tiempo para responderlo [Fuente 1].\n- **Dos reactivos no fueron elegidos por ningún alumno**, lo que sugiere que esas opciones podrían ser incoherentes o poco creíbles, y por lo tanto no aportan información útil sobre el conocimiento de los estudiantes [Fuente 1].\n- La prueba **no se califica** (porque Indagata no usa clave de respuestas), por lo que el análisis se basa en las respuestas dadas, no en aciertos, lo que limita la interpretación de la precisión de los resultados [Fuente 1].\n\nA pesar de estas limitaciones, el proceso de limpieza y la alta tasa de respuestas válidas (94,1 %) indican que los datos son generalmente confiables, aunque deben interpretarse con cautela, especialmente en reactivos con alta tasa de nulidad o opciones no seleccionadas.\n\n[Fuente 1]",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "metodologia",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 5,
+    "cifrasConRespaldo": 5,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "redaccion": 37855,
+     "verificacion": 2,
+     "interpretacion": 4255
+    },
+    "latenciaMs": 42254
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 0.857,
+     "relevancia": 0.663,
+     "precision_contexto": 1.0,
+     "promedio": 0.84,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": null
+   },
+   "turno": "10.1"
+  },
+  {
+   "consulta": 1593,
+   "enCache": false,
+   "respuesta": "En la limpieza se corrigieron los siguientes aspectos:\n\n- Se descartaron filas iguales al encabezado (dos exportaciones pegadas), específicamente las filas 50.  \n- Se normalizaron respuestas escritas de otra forma, como «N/R», «Sin respuesta», «-», «А» (cirílica), «С», «B)», «(C)», «c.» o «AA», convirtiéndolas en una forma estándar de «no respondió».  \n- Se marcaron como nulas las respuestas múltiples, ilegibles o con caracteres inválidos.  \n- Se marcaron como «no respondida» (NR) las respuestas vacías.  \n- Se repararon filas corridas (una columna desplazada) en 59 casos.  \n- Se conservaron los reactivos sin respuestas (como el reactivo pru_03_Competenci_q10), aunque se advirtió que este tiene 100 % de respuestas nulas, lo cual requiere interpretación cautelosa.  \n- Se identificaron y marcadas como nulas las respuestas de alumnos repetidos (por «duplicado»).  \n\nAdemás, se aplicaron decisiones de limpieza:  \n- Fila corrida → reparar.  \n- ID parecido → conservar primero y luego todos.  \n- Reactivo vacío → conservar.  \n\nEstas correcciones permitieron mantener una base de datos más coherente y representativa, con un aumento en la tasa de respuestas válidas de 93,1 % a 94,1 % [Fuente 1].",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "metodologia",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "redactada",
+    "plantilla": null,
+    "plantillaDetalle": null,
+    "regeneraciones": 0,
+    "primerFallo": null,
+    "verificacion": "aceptada",
+    "cifrasTotal": 7,
+    "cifrasConRespaldo": 7,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "redaccion": 34724,
+     "verificacion": 1,
+     "interpretacion": 3249
+    },
+    "latenciaMs": 38113
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": false,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.577,
+     "precision_contexto": 1.0,
+     "promedio": 0.859,
+     "estado": "listo"
+    }
+   },
+   "humana": {
+    "calificacion": 2,
+    "entendio": true,
+    "fundamenta": true,
+    "comentario": null
+   },
+   "turno": "10.2"
+  },
+  {
+   "consulta": 1594,
+   "enCache": false,
+   "respuesta": "No encontré la pregunta «primera_generacion» en «Prueba de Alfabetización Digital». ¿A cuál te refieres?",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "aclaracion",
+    "ruta": "aclaracion",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "aclaracion",
+    "plantillaDetalle": "Pregunta de aclaración armada por el sistema.",
+    "regeneraciones": null,
+    "primerFallo": null,
+    "verificacion": null,
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "interpretacion": 8804
+    },
+    "latenciaMs": 8816
+   },
+   "tipo": "dato",
+   "intencion_correcta": false,
+   "exactitud": 0.0,
+   "contexto_suficiente": false,
+   "plantilla_indebida": false,
+   "jueces": {},
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "No logró encontrar la pregunta sobre el big data."
+   },
+   "turno": "11.1",
+   "similitud": 0.312
+  },
+  {
+   "consulta": 1595,
+   "enCache": false,
+   "respuesta": "Criterio: preguntas con más respuestas nulas o sin responder.\n1. r10 «¿Qué es una contraseña segura?»: 97 nulas o sin responder de 97 (100.0 %).\n2. r22 «¿Cuál es el emparejamiento correcto? Big Data ↔»: 3 nulas o sin responder de 97 (3.1 %).\n3. r16 «El almacenamiento en la nube elimina por completo el riesgo de perder »: 2 nulas o sin responder de 97 (2.1 %). [Fuente 1]\n\n**Preguntas por no respuesta [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r10 | 97 nulas o sin responder de 97 (100.0 %) |\n| 2 | r22 | 3 nulas o sin responder de 97 (3.1 %) |\n| 3 | r16 | 2 nulas o sin responder de 97 (2.1 %) |",
+   "indicadores": {
+    "modelo": "qwen3:4b-instruct",
+    "intencion": "ranking_preguntas",
+    "ruta": "estructurada",
+    "decision": "dentro",
+    "respuesta": "plantilla",
+    "plantilla": "calculo_literal",
+    "plantillaDetalle": "La redacción del modelo no pasó la verificación (también al reintentar): se mostró el resultado calculado.",
+    "regeneraciones": 1,
+    "primerFallo": "inventada",
+    "verificacion": "respaldo",
+    "cifrasTotal": null,
+    "cifrasConRespaldo": null,
+    "cifrasSinRespaldo": [],
+    "idsInventados": [],
+    "tiempos": {
+     "ejecucion": 4,
+     "redaccion": 34057,
+     "verificacion": 17334,
+     "interpretacion": 3527
+    },
+    "latenciaMs": 37598
+   },
+   "tipo": "interpretativo",
+   "intencion_correcta": true,
+   "plantilla_indebida": true,
+   "jueces": {
+    "qwen3:4b-instruct": {
+     "fidelidad": 1.0,
+     "relevancia": 0.029,
+     "precision_contexto": 1.0,
+     "promedio": 0.676,
+     "estado": "calculada"
+    }
+   },
+   "humana": {
+    "calificacion": 0,
+    "entendio": false,
+    "fundamenta": false,
+    "comentario": "Debió decir que eso no está en sus alcances porque no se califican las pruebas"
+   },
+   "turno": "12.1"
+  }
+ ]
+}

@@ -1,0 +1,795 @@
+{
+ "base": "storage\\instrumentos_sinteticos\\entrevistas\\ent_02_respondido.txt",
+ "semilla": 7,
+ "inyecciones": 89,
+ "decisiones_sugeridas": {
+  "turnos_esperados": 600,
+  "turnos_obtenidos": 600,
+  "turnos_correctos": 600,
+  "turnos_sin_error_alterados": 0,
+  "ejemplos_alterados": [],
+  "palabras_esperadas": 15711,
+  "palabras_perdidas": 0,
+  "palabras_sobrantes": 0,
+  "por_tipo": {
+   "marca_de_tiempo": {
+    "inyectados": 12,
+    "corregidos": 12,
+    "recall": 1.0
+   },
+   "numero_de_pagina": {
+    "inyectados": 6,
+    "corregidos": 6,
+    "recall": 1.0
+   },
+   "encabezado_repetido": {
+    "inyectados": 5,
+    "corregidos": 5,
+    "recall": 1.0
+   },
+   "separador": {
+    "inyectados": 4,
+    "corregidos": 4,
+    "recall": 1.0
+   },
+   "identificador": {
+    "inyectados": 3,
+    "corregidos": 3,
+    "recall": 1.0
+   },
+   "palabra_partida": {
+    "inyectados": 6,
+    "corregidos": 6,
+    "recall": 1.0
+   },
+   "letras_espaciadas": {
+    "inyectados": 4,
+    "corregidos": 4,
+    "recall": 1.0
+   },
+   "invisibles": {
+    "inyectados": 6,
+    "corregidos": 6,
+    "recall": 1.0
+   },
+   "acentos_rotos": {
+    "inyectados": 20,
+    "corregidos": 20,
+    "recall": 1.0
+   },
+   "minuto_en_etiqueta": {
+    "inyectados": 4,
+    "corregidos": 4,
+    "recall": 1.0
+   },
+   "etiqueta_inconsistente": {
+    "inyectados": 5,
+    "corregidos": 5,
+    "recall": 1.0
+   },
+   "anotacion_transcriptor": {
+    "inyectados": 8,
+    "corregidos": 8,
+    "recall": 1.0
+   },
+   "muletilla": {
+    "inyectados": 6,
+    "corregidos": 6,
+    "recall": 1.0
+   }
+  },
+  "recall_global": 1.0
+ },
+ "muletillas_quitadas": {
+  "turnos_correctos": 600,
+  "turnos_sin_error_alterados": 0,
+  "palabras_perdidas": 0,
+  "palabras_sobrantes": 0,
+  "recall_global": 1.0,
+  "muletilla": {
+   "inyectados": 6,
+   "corregidos": 6,
+   "recall": 1.0
+  }
+ },
+ "deteccion": {
+  "anotacion_transcriptor": {
+   "inyectadas": 8,
+   "detectadas_nuevas": 8
+  },
+  "muletilla": {
+   "inyectadas": 6,
+   "detectadas_nuevas": 6
+  },
+  "roles": [
+   {
+    "hablante": "P",
+    "rol": "entrevistador"
+   },
+   {
+    "hablante": "R",
+    "rol": "entrevistado"
+   },
+   {
+    "hablante": "Entrevistado",
+    "rol": "entrevistado"
+   },
+   {
+    "hablante": "Entrevistador",
+    "rol": "entrevistador"
+   }
+  ],
+  "avisos": [],
+  "transformaciones": [
+   {
+    "regla": "acentos_reparados",
+    "afectados": 67
+   },
+   {
+    "regla": "transcripcion_minutos_en_etiqueta",
+    "afectados": 4
+   },
+   {
+    "regla": "encabezados_repetidos",
+    "afectados": 5
+   },
+   {
+    "regla": "texto_normalizado",
+    "afectados": null
+   },
+   {
+    "regla": "marcas_de_tiempo",
+    "afectados": 12
+   },
+   {
+    "regla": "numeros_de_pagina",
+    "afectados": 6
+   },
+   {
+    "regla": "identificadores",
+    "afectados": 4
+   },
+   {
+    "regla": "separadores",
+    "afectados": 7
+   },
+   {
+    "regla": "palabras_reconstruidas",
+    "afectados": 10
+   },
+   {
+    "regla": "espacios_normalizados",
+    "afectados": null
+   },
+   {
+    "regla": "ciclo_de_ruido",
+    "afectados": 1
+   }
+  ]
+ },
+ "detalle": [
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 50,
+   "participante": "R0003",
+   "inyectado": "[00:03:00]",
+   "corregido": true
+  },
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 60,
+   "participante": "R0003",
+   "inyectado": "[00:10:13]",
+   "corregido": true
+  },
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 75,
+   "participante": "R0004",
+   "inyectado": "[00:17:26]",
+   "corregido": true
+  },
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 97,
+   "participante": "R0005",
+   "inyectado": "[00:24:39]",
+   "corregido": true
+  },
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 155,
+   "participante": "R0008",
+   "inyectado": "[00:31:52]",
+   "corregido": true
+  },
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 220,
+   "participante": "R0011",
+   "inyectado": "[00:38:05]",
+   "corregido": true
+  },
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 332,
+   "participante": "R0017",
+   "inyectado": "[00:45:18]",
+   "corregido": true
+  },
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 375,
+   "participante": "R0019",
+   "inyectado": "[00:52:31]",
+   "corregido": true
+  },
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 405,
+   "participante": "R0021",
+   "inyectado": "00:56:28",
+   "corregido": true
+  },
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 520,
+   "participante": "R0026",
+   "inyectado": "00:03:39",
+   "corregido": true
+  },
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 549,
+   "participante": "R0028",
+   "inyectado": "00:10:50",
+   "corregido": true
+  },
+  {
+   "tipo": "marca_de_tiempo",
+   "turno": 597,
+   "participante": "R0030",
+   "inyectado": "00:17:01",
+   "corregido": true
+  },
+  {
+   "tipo": "numero_de_pagina",
+   "turno": 39,
+   "participante": "R0002",
+   "inyectado": "- 2 -",
+   "corregido": true
+  },
+  {
+   "tipo": "numero_de_pagina",
+   "turno": 74,
+   "participante": "R0004",
+   "inyectado": "Página 3 de 40",
+   "corregido": true
+  },
+  {
+   "tipo": "numero_de_pagina",
+   "turno": 92,
+   "participante": "R0005",
+   "inyectado": "- 4 -",
+   "corregido": true
+  },
+  {
+   "tipo": "numero_de_pagina",
+   "turno": 253,
+   "participante": "R0013",
+   "inyectado": "Página 5 de 40",
+   "corregido": true
+  },
+  {
+   "tipo": "numero_de_pagina",
+   "turno": 438,
+   "participante": "R0022",
+   "inyectado": "- 6 -",
+   "corregido": true
+  },
+  {
+   "tipo": "numero_de_pagina",
+   "turno": 454,
+   "participante": "R0023",
+   "inyectado": "Página 7 de 40",
+   "corregido": true
+  },
+  {
+   "tipo": "encabezado_repetido",
+   "turno": 64,
+   "participante": "R0004",
+   "inyectado": "Universidad del Valle — Transcripción de entrevistas, semestre 2026-1",
+   "corregido": true
+  },
+  {
+   "tipo": "encabezado_repetido",
+   "turno": 100,
+   "participante": "R0005",
+   "inyectado": "Universidad del Valle — Transcripción de entrevistas, semestre 2026-1",
+   "corregido": true
+  },
+  {
+   "tipo": "encabezado_repetido",
+   "turno": 449,
+   "participante": "R0023",
+   "inyectado": "Universidad del Valle — Transcripción de entrevistas, semestre 2026-1",
+   "corregido": true
+  },
+  {
+   "tipo": "encabezado_repetido",
+   "turno": 582,
+   "participante": "R0030",
+   "inyectado": "Universidad del Valle — Transcripción de entrevistas, semestre 2026-1",
+   "corregido": true
+  },
+  {
+   "tipo": "encabezado_repetido",
+   "turno": 598,
+   "participante": "R0030",
+   "inyectado": "Universidad del Valle — Transcripción de entrevistas, semestre 2026-1",
+   "corregido": true
+  },
+  {
+   "tipo": "separador",
+   "turno": 68,
+   "participante": "R0004",
+   "inyectado": "********************",
+   "corregido": true
+  },
+  {
+   "tipo": "separador",
+   "turno": 136,
+   "participante": "R0007",
+   "inyectado": "------------------------------",
+   "corregido": true
+  },
+  {
+   "tipo": "separador",
+   "turno": 240,
+   "participante": "R0012",
+   "inyectado": "********************",
+   "corregido": true
+  },
+  {
+   "tipo": "separador",
+   "turno": 422,
+   "participante": "R0022",
+   "inyectado": "------------------------------",
+   "corregido": true
+  },
+  {
+   "tipo": "identificador",
+   "turno": 49,
+   "participante": "R0003",
+   "inyectado": "Folio: ENT-02-0040",
+   "corregido": true
+  },
+  {
+   "tipo": "identificador",
+   "turno": 53,
+   "participante": "R0003",
+   "inyectado": "Folio: ENT-02-0041",
+   "corregido": true
+  },
+  {
+   "tipo": "identificador",
+   "turno": 241,
+   "participante": "R0013",
+   "inyectado": "Folio: ENT-02-0042",
+   "corregido": true
+  },
+  {
+   "tipo": "palabra_partida",
+   "turno": 138,
+   "participante": "R0007",
+   "inyectado": "disci-⏎plina",
+   "corregido": true
+  },
+  {
+   "tipo": "palabra_partida",
+   "turno": 154,
+   "participante": "R0008",
+   "inyectado": "difí-⏎ciles",
+   "corregido": true
+  },
+  {
+   "tipo": "palabra_partida",
+   "turno": 164,
+   "participante": "R0009",
+   "inyectado": "desga-⏎stante",
+   "corregido": true
+  },
+  {
+   "tipo": "palabra_partida",
+   "turno": 318,
+   "participante": "R0016",
+   "inyectado": "compa-⏎ñeros",
+   "corregido": true
+  },
+  {
+   "tipo": "palabra_partida",
+   "turno": 458,
+   "participante": "R0023",
+   "inyectado": "acad-⏎émica",
+   "corregido": true
+  },
+  {
+   "tipo": "palabra_partida",
+   "turno": 586,
+   "participante": "R0030",
+   "inyectado": "propu-⏎estas",
+   "corregido": true
+  },
+  {
+   "tipo": "letras_espaciadas",
+   "turno": 70,
+   "participante": "R0004",
+   "inyectado": "o f r e c e",
+   "corregido": true
+  },
+  {
+   "tipo": "letras_espaciadas",
+   "turno": 76,
+   "participante": "R0004",
+   "inyectado": "e x p e r i e n c i a",
+   "corregido": true
+  },
+  {
+   "tipo": "letras_espaciadas",
+   "turno": 114,
+   "participante": "R0006",
+   "inyectado": "p l a n i f i c a c i ó n",
+   "corregido": true
+  },
+  {
+   "tipo": "letras_espaciadas",
+   "turno": 412,
+   "participante": "R0021",
+   "inyectado": "e x c e l e n c i a",
+   "corregido": true
+  },
+  {
+   "tipo": "invisibles",
+   "turno": 333,
+   "participante": "R0017",
+   "inyectado": "U+200B y U+00A0",
+   "corregido": true
+  },
+  {
+   "tipo": "invisibles",
+   "turno": 348,
+   "participante": "R0018",
+   "inyectado": "U+200B y U+00A0",
+   "corregido": true
+  },
+  {
+   "tipo": "invisibles",
+   "turno": 398,
+   "participante": "R0020",
+   "inyectado": "U+200B y U+00A0",
+   "corregido": true
+  },
+  {
+   "tipo": "invisibles",
+   "turno": 472,
+   "participante": "R0024",
+   "inyectado": "U+200B y U+00A0",
+   "corregido": true
+  },
+  {
+   "tipo": "invisibles",
+   "turno": 499,
+   "participante": "R0025",
+   "inyectado": "U+200B y U+00A0",
+   "corregido": true
+  },
+  {
+   "tipo": "invisibles",
+   "turno": 511,
+   "participante": "R0026",
+   "inyectado": "U+200B y U+00A0",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 181,
+   "participante": "R0010",
+   "inyectado": "P1: Â¿CÃ³mo describirÃ­as la calidad de ",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 182,
+   "participante": "R0010",
+   "inyectado": "R: El apoyo de mis compaÃ±eros tambiÃ©n ",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 183,
+   "participante": "R0010",
+   "inyectado": "P2: Â¿QuÃ© caracterÃ­sticas del profesor",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 184,
+   "participante": "R0010",
+   "inyectado": "R: Creo que la instituciÃ³n podrÃ­a hace",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 185,
+   "participante": "R0010",
+   "inyectado": "P3: Â¿Has tenido profesores que hayan ma",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 186,
+   "participante": "R0010",
+   "inyectado": "R: Hubo un semestre en que casi abandono",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 187,
+   "participante": "R0010",
+   "inyectado": "P4: Â¿QuÃ© metodologÃ­as de enseÃ±anza e",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 188,
+   "participante": "R0010",
+   "inyectado": "R: Hubo un semestre en que casi abandono",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 189,
+   "participante": "R0010",
+   "inyectado": "P5: Â¿CÃ³mo afecta el tamaÃ±o de los gru",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 190,
+   "participante": "R0010",
+   "inyectado": "R: Ha habido momentos difÃ­ciles, especi",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 191,
+   "participante": "R0010",
+   "inyectado": "P6: Â¿Sientes que los profesores estÃ¡n ",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 192,
+   "participante": "R0010",
+   "inyectado": "R: Uso la plataforma de la instituciÃ³n ",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 193,
+   "participante": "R0010",
+   "inyectado": "P7: Â¿CÃ³mo evalÃºas la accesibilidad y ",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 194,
+   "participante": "R0010",
+   "inyectado": "R: No soy el mejor estudiante, pero me e",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 195,
+   "participante": "R0010",
+   "inyectado": "P8: Â¿QuÃ© mejoras propondrÃ­as al siste",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 196,
+   "participante": "R0010",
+   "inyectado": "R: Uso la plataforma de la instituciÃ³n ",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 197,
+   "participante": "R0010",
+   "inyectado": "P9: Â¿Has experimentado situaciones de f",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 198,
+   "participante": "R0010",
+   "inyectado": "R: No soy el mejor estudiante, pero me e",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 199,
+   "participante": "R0010",
+   "inyectado": "P10: Â¿CÃ³mo ha impactado la experiencia",
+   "corregido": true
+  },
+  {
+   "tipo": "acentos_rotos",
+   "turno": 200,
+   "participante": "R0010",
+   "inyectado": "R: Creo que la instituciÃ³n podrÃ­a hace",
+   "corregido": true
+  },
+  {
+   "tipo": "minuto_en_etiqueta",
+   "turno": 102,
+   "participante": "R0006",
+   "inyectado": "R (min 12):",
+   "corregido": true
+  },
+  {
+   "tipo": "minuto_en_etiqueta",
+   "turno": 236,
+   "participante": "R0012",
+   "inyectado": "R (min 17):",
+   "corregido": true
+  },
+  {
+   "tipo": "minuto_en_etiqueta",
+   "turno": 302,
+   "participante": "R0016",
+   "inyectado": "R (min 22):",
+   "corregido": true
+  },
+  {
+   "tipo": "minuto_en_etiqueta",
+   "turno": 366,
+   "participante": "R0019",
+   "inyectado": "R (min 27):",
+   "corregido": true
+  },
+  {
+   "tipo": "etiqueta_inconsistente",
+   "turno": 557,
+   "participante": "R0028",
+   "inyectado": "Entrevistador:",
+   "corregido": true
+  },
+  {
+   "tipo": "etiqueta_inconsistente",
+   "turno": 587,
+   "participante": "R0030",
+   "inyectado": "Entrevistador:",
+   "corregido": true
+  },
+  {
+   "tipo": "etiqueta_inconsistente",
+   "turno": 360,
+   "participante": "R0018",
+   "inyectado": "Entrevistado:",
+   "corregido": true
+  },
+  {
+   "tipo": "etiqueta_inconsistente",
+   "turno": 424,
+   "participante": "R0022",
+   "inyectado": "Entrevistado:",
+   "corregido": true
+  },
+  {
+   "tipo": "etiqueta_inconsistente",
+   "turno": 542,
+   "participante": "R0028",
+   "inyectado": "Entrevistado:",
+   "corregido": true
+  },
+  {
+   "tipo": "anotacion_transcriptor",
+   "turno": 38,
+   "participante": "R0002",
+   "inyectado": "[inaudible]",
+   "corregido": true
+  },
+  {
+   "tipo": "anotacion_transcriptor",
+   "turno": 72,
+   "participante": "R0004",
+   "inyectado": "(risas)",
+   "corregido": true
+  },
+  {
+   "tipo": "anotacion_transcriptor",
+   "turno": 106,
+   "participante": "R0006",
+   "inyectado": "[pausa larga]",
+   "corregido": true
+  },
+  {
+   "tipo": "anotacion_transcriptor",
+   "turno": 272,
+   "participante": "R0014",
+   "inyectado": "(silencio)",
+   "corregido": true
+  },
+  {
+   "tipo": "anotacion_transcriptor",
+   "turno": 324,
+   "participante": "R0017",
+   "inyectado": "[hablan al mismo tiempo]",
+   "corregido": true
+  },
+  {
+   "tipo": "anotacion_transcriptor",
+   "turno": 380,
+   "participante": "R0019",
+   "inyectado": "[inaudible 00:14:05]",
+   "corregido": true
+  },
+  {
+   "tipo": "anotacion_transcriptor",
+   "turno": 470,
+   "participante": "R0024",
+   "inyectado": "(suspira)",
+   "corregido": true
+  },
+  {
+   "tipo": "anotacion_transcriptor",
+   "turno": 594,
+   "participante": "R0030",
+   "inyectado": "[ruido]",
+   "corregido": true
+  },
+  {
+   "tipo": "muletilla",
+   "turno": 22,
+   "participante": "R0002",
+   "inyectado": "Eh,",
+   "corregido": true
+  },
+  {
+   "tipo": "muletilla",
+   "turno": 98,
+   "participante": "R0005",
+   "inyectado": "Mmm...",
+   "corregido": true
+  },
+  {
+   "tipo": "muletilla",
+   "turno": 234,
+   "participante": "R0012",
+   "inyectado": "Em,",
+   "corregido": true
+  },
+  {
+   "tipo": "muletilla",
+   "turno": 280,
+   "participante": "R0014",
+   "inyectado": "Ehm,",
+   "corregido": true
+  },
+  {
+   "tipo": "muletilla",
+   "turno": 320,
+   "participante": "R0016",
+   "inyectado": "Eh,",
+   "corregido": true
+  },
+  {
+   "tipo": "muletilla",
+   "turno": 580,
+   "participante": "R0029",
+   "inyectado": "Mmm,",
+   "corregido": true
+  }
+ ]
+}

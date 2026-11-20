@@ -1,0 +1,97 @@
+{
+ "id": "PRU-07",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo estuvieron más repartidas las respuestas?",
+   "rag_log_id": 3194,
+   "respuesta": "Criterio: preguntas con respuestas más repartidas (índice de dispersión más alto: 1 = repartidas por igual entre sus opciones; entropía normalizada).\n1. r17 «La huella digital incluye todo rastro que dejamos en línea.»: índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %).\n2. r14 «La inteligencia artificial puede generar texto, imágenes y código de p»: índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %).\n3. r12 «El análisis de datos de aprendizaje (learning analytics) puede ayudar »: índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %). [Fuente 1]\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %) |\n| 2 | r14 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %) |\n| 3 | r12 | índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "preguntas": [
+     "r01",
+     "r02",
+     "r03",
+     "r04",
+     "r05",
+     "r06",
+     "r07",
+     "r08",
+     "r09",
+     "r10"
+    ],
+    "criterio_ranking": "repartida"
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "preguntas": [
+     "r01",
+     "r02",
+     "r03",
+     "r04",
+     "r05",
+     "r06",
+     "r07",
+     "r08",
+     "r09",
+     "r10"
+    ],
+    "criterio_ranking": "repartida"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas:ranking_desordenado",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4959
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.4785
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4777
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.475
+    }
+   ],
+   "segundos": 95.9,
+   "tiempos_ms": {
+    "ejecucion": 37,
+    "redaccion": 23114,
+    "recuperacion": 18448,
+    "verificacion": 12703,
+    "interpretacion": 52275
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Decir qué medida usó."
+}

@@ -10,7 +10,7 @@ import pytest
 from pydantic import ValidationError
 
 from services import catalogo, interpretacion
-from services.plan_consulta import LIMITE_MAX, PlanConsulta, esquema, validar_contra_catalogo
+from services.plan_consulta import LIMITE_MAX, Filtro, PlanConsulta, esquema, validar_contra_catalogo
 from tests import docs_ejemplo
 
 
@@ -133,7 +133,7 @@ def test_plan_valido_al_primer_intento_con_esquema_y_temperatura_cero(monkeypatc
     r = asyncio.run(interpretacion.interpretar("dame los primeros 5 que no trabajan con todas sus respuestas", [], [_cat_carga()]))
     assert r.plan is not None and r.intentos == 1 and r.plan.limite == 5 and r.plan.filtros[0].valor == "No trabajo"
     assert llamadas[0]["formato"] == esquema() and llamadas[0]["opciones"]["temperature"] == 0
-    assert "INSTRUMENTO 4 | encuesta" in llamadas[0]["prompt"] and "primer respondente" in llamadas[0]["prompt"]
+    assert "INSTRUMENTO 4 | encuesta" in llamadas[0]["prompt"] and "CATÁLOGO DE EJEMPLO" in llamadas[0]["prompt"]
 
 
 def test_plan_invalido_se_reintenta_una_vez_con_el_error(monkeypatch):
@@ -174,6 +174,65 @@ def test_catalogo_grande_pasa_a_forma_compacta():
     prompt = interpretacion.construir_prompt("¿algo?", [], cats)
     assert len(prompt) < len(interpretacion.construir_prompt("¿algo?", [], cats[:1])) + 6 * 1500
     assert "- p01 [likert] Los profesores explican con claridad" in prompt
+
+
+def _cat_grande() -> catalogo.Catalogo:
+    """Del tamaño del catálogo más grande del acervo (127: 1,074 tokens medidos), con opciones largas."""
+    preguntas = {f"p{k:02d}": catalogo.PreguntaCatalogo(
+        f"p{k:02d}", f"¿Con qué frecuencia participas en la actividad académica {k} de tu programa?",
+        "categorica", [f"Opción {j} de la actividad" for j in range(4)]) for k in range(1, 23)}
+    return catalogo.Catalogo("127", "Indicadores de prueba", "encuesta", preguntas, ["R001"], {}, [])
+
+
+def test_prompt_de_interpretacion_cabe_en_la_ventana():
+    """10 nov: instrucciones + ejemplos + catálogo + texto recuperado medían 4,200–4,800 tokens y Ollama (num_ctx 4096)
+    cortaba el inicio: el modelo perdía las reglas y los ejemplos. Ahora se reduce por pasos hasta caber."""
+    ajustes: list[str] = []
+    pistas = "\n".join(f"- p{k:02d} (similitud 0.6): texto recuperado de la pregunta {k} → opciones: a; b; c; d" * 2
+                       for k in range(3))
+    prompt = interpretacion.construir_prompt("¿cuántos estudiantes trabajan más de 30 horas?", [], [_cat_grande()],
+                                             pistas=pistas, ajustes=ajustes)
+    total = interpretacion.tokens_aprox(interpretacion.SISTEMA, prosa=True) + interpretacion.tokens_aprox(prompt)
+    assert total <= interpretacion.PRESUPUESTO_TOKENS and not any("no cabe" in a for a in ajustes)
+    assert ajustes and ajustes[0] != "sin recorte"
+    # Los ejemplos de control (fuera de dominio, aclaración) siempre van; la pregunta y el catálogo, también.
+    assert '"fuera_de_dominio"' in prompt and '"aclaracion"' in prompt
+    assert prompt.rstrip().endswith("P: ¿cuántos estudiantes trabajan más de 30 horas?\nPLAN:") and "- p22 " in prompt
+
+
+def test_sin_ejemplos_la_instruccion_no_los_lleva(monkeypatch):
+    """Prueba con y sin ejemplos (Pruebas 6.7.2): apagados, no va el catálogo de ejemplo ni ningún par pregunta → plan;
+    el catálogo real y la pregunta siguen."""
+    monkeypatch.setattr(interpretacion.settings, "RAG_EJEMPLOS_INTERPRETACION", False)
+    ajustes: list[str] = []
+    prompt = interpretacion.construir_prompt("¿algo?", [], [_cat_encuesta()], ajustes=ajustes)
+    assert "CATÁLOGO DE EJEMPLO" not in prompt and "\nPLAN: {" not in prompt and "sin ejemplos" in ajustes
+    assert _cat_encuesta().texto() in prompt and prompt.rstrip().endswith("P: ¿algo?\nPLAN:")
+
+
+def test_catalogo_pequeno_va_completo():
+    """Con un catálogo chico solo se quitan ejemplos: el catálogo va completo."""
+    ajustes: list[str] = []
+    prompt = interpretacion.construir_prompt("¿algo?", [], [_cat_encuesta()], ajustes=ajustes)
+    assert "compacto" not in ajustes[0] and _cat_encuesta().texto() in prompt
+
+
+def test_alcance_que_no_cabe_lleva_los_instrumentos_recuperados_y_no_pasa_del_contexto():
+    # Toda la colección: antes Ollama recortaba el prompt por el inicio (perdía instrucciones y ejemplos).
+    from dataclasses import replace
+
+    cats = [replace(_cat_encuesta(), id=str(n), titulo=f"Encuesta de hábitos {n}") for n in range(40)]
+    cats.append(replace(_cat_carga(), id="99", titulo="Carga laboral de estudiantes"))
+    ajustes: list[str] = []
+    prompt = interpretacion.construir_prompt("¿cuántos trabajan más de 30 horas?", [], cats, ajustes=ajustes,
+                                             prioridad=["7", "99"])
+    total = interpretacion.tokens_aprox(interpretacion.SISTEMA, prosa=True) + interpretacion.tokens_aprox(prompt)
+    assert total <= interpretacion.PRESUPUESTO_TOKENS and "más relacionados" in ajustes[0]
+    catalogo = prompt.split("=== CONSULTA REAL ===", 1)[1]
+    assert catalogo.index("INSTRUMENTO 7 ") < catalogo.index("INSTRUMENTO 99 ")
+    assert "instrumentos más en el alcance" in catalogo
+    # Los ejemplos de control (fuera de dominio, aclaración) siguen en la instrucción.
+    assert '"fuera_de_dominio"' in prompt and '"aclaracion"' in prompt
 
 
 # ── Anclaje a lo que dice la pregunta ──────────────────────────────────────────
@@ -640,6 +699,38 @@ def test_fase3_verdadero_en_varios_reactivos_y_conteo_de_algo_que_no_existe():
 
 
 
+def test_filtro_inventado_sobre_la_pregunta_nombrada_no_dice_que_la_condicion_no_existe():
+    """«¿Qué porcentaje asiste puntualmente a todas sus clases?»: el modelo inventó p01 = «5»; la consulta repite p01,
+    así que se resume p01 sin «No encontré esa condición» (16 nov)."""
+    preguntas = {
+        "p01": catalogo.PreguntaCatalogo("p01", "Asisto puntualmente a todas mis clases.", "likert",
+                                         ["Totalmente en desacuerdo / Nunca", "De acuerdo / Frecuentemente"]),
+        "p02": catalogo.PreguntaCatalogo("p02", "Entrego mis tareas completas y a tiempo.", "likert",
+                                         ["Totalmente en desacuerdo / Nunca", "De acuerdo / Frecuentemente"]),
+    }
+    cat = catalogo.Catalogo("9", "Trayectoria", "encuesta", preguntas, ["R001"], {}, [])
+    plan = PlanConsulta(intencion="hallazgo", filtros=[Filtro(pregunta="p01", valor="5")])
+    nuevo, notas = anclaje.sin_inventos(plan, "¿Qué porcentaje de los estudiantes asiste puntualmente a todas sus clases?",
+                                        [], [cat])
+    assert nuevo.intencion == "resumen_pregunta" and nuevo.preguntas == ["p01"] and not nuevo.aclaracion
+    assert anclaje.NINGUNA_CONDICION not in notas
+    # un filtro inventado sobre una pregunta que la consulta NO nombra sigue avisándose
+    nuevo, notas = anclaje.sin_inventos(PlanConsulta(intencion="hallazgo", filtros=[Filtro(pregunta="p01", valor="5")]),
+                                        "¿Cuántos estudiantes usan la meditación?", [], [cat])
+    assert anclaje.NINGUNA_CONDICION in notas
+
+
+def test_hallazgo_con_condiciones_que_pide_un_porcentaje_es_un_conteo():
+    """«¿Qué porcentaje de los que tienen beca reprobó…?» con intención «hallazgo» (el hallazgo no aplica condiciones y
+    respondía con otro tema): es un conteo (16 nov)."""
+    preguntas = {"p12": catalogo.PreguntaCatalogo("p12", "¿Has reprobado alguna materia en el último año?", "binaria",
+                                                  ["Sí", "No"])}
+    cat = catalogo.Catalogo("9", "Trayectoria", "encuesta", preguntas, ["R001"], {"beca": ["Sí", "No"]}, [])
+    plan = PlanConsulta(intencion="hallazgo", filtros=[Filtro(pregunta="p12", valor="Sí")], contexto={"beca": "Sí"})
+    nuevo, notas = anclaje.anclar(plan, "¿Qué porcentaje de los estudiantes con beca ha reprobado alguna materia?", [], cat)
+    assert nuevo.intencion == "conteo_porcentaje" and any("hallazgo → conteo_porcentaje" in n for n in notas)
+
+
 def test_fase4_agrupar_por_pregunta_posicion_seccion_y_segun():
     carga = _cat_carga()
     v = validar_contra_catalogo(PlanConsulta(intencion="comparar_grupos", preguntas=["p01"], agrupar_por="p03"), [carga])
@@ -707,3 +798,19 @@ def test_numeros_en_una_escala_son_sus_posiciones():
     validado = validar_contra_catalogo(PlanConsulta(intencion="conteo_porcentaje",
                                                     filtros=[{"pregunta": "p01", "valor": ["7"]}]), [cat])
     assert validado.plan.intencion == "aclaracion"
+
+
+def test_un_solo_instrumento_grande_no_se_recorta():
+    """11 nov (unión con PArturo): con un solo instrumento, el paso de «los más relacionados» recortaba sus reactivos
+    (prueba 130) y el plan filtraba por un reactivo que no se pidió. Con uno solo, el catálogo compacto va completo."""
+    from dataclasses import replace
+
+    preguntas = {f"r{k:02d}": catalogo.PreguntaCatalogo(
+        f"r{k:02d}", f"Reactivo {k}: enunciado largo de la prueba de alfabetización digital con varias palabras {k}",
+        "categorica", [f"Opción {j} del reactivo {k} con texto largo" for j in range(4)]) for k in range(1, 41)}
+    grande = replace(_cat_encuesta(), id="130", titulo="Prueba grande", preguntas=preguntas)
+    ajustes: list[str] = []
+    prompt = interpretacion.construir_prompt("¿cuántos marcaron Verdadero en el reactivo 40?", [], [grande],
+                                             ajustes=ajustes, prioridad=["130"])
+    assert "más relacionados" not in ajustes[0]
+    assert "r40" in prompt.split("=== CONSULTA REAL ===", 1)[1]

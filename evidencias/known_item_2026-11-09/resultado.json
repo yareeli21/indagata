@@ -1,0 +1,194 @@
+{
+ "texto": {
+  "resumen": {
+   "todas": {
+    "n": 84,
+    "hit@1": 0.976,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 0.988
+   },
+   "tipo:encuesta": {
+    "n": 38,
+    "hit@1": 0.947,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 0.974
+   },
+   "tipo:entrevista": {
+    "n": 24,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 1.0
+   },
+   "tipo:prueba": {
+    "n": 22,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 1.0
+   },
+   "instrumento:127": {
+    "n": 18,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 1.0
+   },
+   "instrumento:129": {
+    "n": 12,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 1.0
+   },
+   "instrumento:130": {
+    "n": 22,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 1.0
+   },
+   "instrumento:60": {
+    "n": 12,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 1.0
+   },
+   "instrumento:61": {
+    "n": 20,
+    "hit@1": 0.9,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 0.95
+   }
+  },
+  "fallas": [
+   {
+    "instrumento": "61",
+    "tipo": "encuesta",
+    "id": "p06",
+    "texto": "Cumplo con mis horarios de estudio establecidos.",
+    "palabras_clave": "cumplo horarios estudio establecidos",
+    "lugar": 2,
+    "primero": "kpi:"
+   },
+   {
+    "instrumento": "61",
+    "tipo": "encuesta",
+    "id": "p17",
+    "texto": "¿Cuántas horas por semana dedicas al estudio fuera de clases? (número)",
+    "palabras_clave": "cuántas horas semana dedicas estudio fuera clases número",
+    "lugar": 2,
+    "primero": "pregunta:p12"
+   }
+  ]
+ },
+ "palabras_clave": {
+  "resumen": {
+   "todas": {
+    "n": 84,
+    "hit@1": 0.976,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 0.988
+   },
+   "tipo:encuesta": {
+    "n": 38,
+    "hit@1": 0.947,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 0.974
+   },
+   "tipo:entrevista": {
+    "n": 24,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 1.0
+   },
+   "tipo:prueba": {
+    "n": 22,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 1.0
+   },
+   "instrumento:127": {
+    "n": 18,
+    "hit@1": 0.944,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 0.972
+   },
+   "instrumento:129": {
+    "n": 12,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 1.0
+   },
+   "instrumento:130": {
+    "n": 22,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 1.0
+   },
+   "instrumento:60": {
+    "n": 12,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 1.0
+   },
+   "instrumento:61": {
+    "n": 20,
+    "hit@1": 0.95,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@8": 1.0,
+    "mrr": 0.975
+   }
+  },
+  "fallas": [
+   {
+    "instrumento": "127",
+    "tipo": "encuesta",
+    "id": "p04",
+    "texto": "De tus profesores de este periodo, ¿cuántos tienen doctorado?",
+    "palabras_clave": "profesores periodo cuántos tienen doctorado",
+    "lugar": 2,
+    "primero": "kpi:"
+   },
+   {
+    "instrumento": "61",
+    "tipo": "encuesta",
+    "id": "p17",
+    "texto": "¿Cuántas horas por semana dedicas al estudio fuera de clases? (número)",
+    "palabras_clave": "cuántas horas semana dedicas estudio fuera clases número",
+    "lugar": 2,
+    "primero": "pregunta:p12"
+   }
+  ]
+ }
+}

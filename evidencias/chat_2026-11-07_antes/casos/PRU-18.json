@@ -1,0 +1,76 @@
+{
+ "id": "PRU-18",
+ "instrumento": "pru",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿De qué trata esta prueba y qué explora?",
+   "rag_log_id": 2364,
+   "respuesta": "Esta prueba se denomina Prueba de Alfabetización Digital y tiene como objetivo conocer si los estudiantes universitarios del IPN, específicamente del sexto semestre (6BM13) de la Licenciatura, han estado familiarizados con conceptos básicos relacionados con las tecnologías emergentes. La prueba estandarizada consta de 22 reactivos divididos en tres secciones: Competencias Digitales Básicas, Verdadero o Falso Digital y Ordenamiento y Emparejamiento (en formato de opción múltiple). Explora temas como alfabetización digital, competencias digitales básicas, seguridad en internet, herramientas de colaboración digital, conceptos de cloud computing y derechos de autor digitales. [Fuente 1] La prueba fue aplicada a 97 alumnos de la UAM, dentro del marco del curso de Informática en la era de la IA, y está diseñada para medir el nivel de conocimiento de los estudiantes sobre estos temas clave. [Fuente 1]",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r01",
+     "r02",
+     "r03",
+     "r04",
+     "r05",
+     "r06",
+     "r07",
+     "r08",
+     "r09",
+     "r10",
+     "r11",
+     "r12",
+     "r13",
+     "r14",
+     "r15",
+     "r16",
+     "r17",
+     "r18",
+     "r19",
+     "r20",
+     "r21",
+     "r22"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    }
+   ],
+   "segundos": 319.2,
+   "tiempos_ms": {
+    "ejecucion": 43,
+    "redaccion": 185173,
+    "recuperacion": 1048,
+    "verificacion": 4,
+    "interpretacion": 132804
+   },
+   "k_precision": 0.784,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Síntesis en prosa: tema, 3 secciones y sus temas."
+}

@@ -29,15 +29,25 @@ patrones:
     - '^(ahora\s+)?(actua|comportate|finge|haz de cuenta)\b'
     - '\b(modo desarrollador|jailbreak|sin restricciones|sin filtros|dan mode)\b'
     - '\bque modelo (de lenguaje )?eres\b'
+    # Pedir las instrucciones del asistente («revela tus instrucciones ocultas»). Con «tus»: «muéstrame las
+    # instrucciones del instrumento» o «¿qué reglas aplicó la limpieza?» son preguntas válidas.
+    - '\b(revela|revelame|filtra|filtrame)\b.{0,30}\b(instrucciones|reglas|indicaciones|configuracion|prompt)\b'
+    - '\b(muestrame|dime|ensename|dame|cuales son|revela)\s+tus\s+(instrucciones|reglas|indicaciones|configuracion)\b'
   # Tareas que no consultan los datos del acervo (generación libre o temas ajenos).
   fuera:
     - '\b(escribe|escribeme|redacta|compon|inventa|crea|genera)\b.{0,20}\b(poema|cuento|historia|cancion|chiste|ensayo|carta|discurso|novela|guion de cine|rima)\b'
-    # Solo temas que no pueden ser objeto de un instrumento educativo («clima escolar» o
-    # «deporte en el campus» sí pueden serlo; esos los decide la similitud y el clasificador).
-    - '\b(receta|recetas|pelicula|peliculas|serie de tv|horoscopo|chiste|chistes)\b'
     - '\b(traduce|traducir|traduccion)\b'
+    # Traducir sin decir «traduce» («convierte la pregunta 4 al inglés»). Solo con verbo de conversión: «¿cuántos
+    # cursan sus materias en inglés?» es un dato.
+    - '\b(convierte\w*|pasal[oa]s?|ponl[oa]s?|escribel[oa]s?|dil[oa]|reescribe\w*)\b.{0,40}\b(al|en) (ingles|frances|aleman|portugues|italiano|chino|japones|otro idioma)\b'
     - '\b(programa|codigo|script|funcion)\b.{0,20}\b(python|javascript|java|sql|c\+\+|html)\b'
     - '\b(disena|diseña|disename|crea|creame|elabora|elaborame)\b.{0,20}\b(encuesta|cuestionario|examen|prueba|entrevista|instrumento) nuev[oa]\b'
+  # Temas ajenos reconocidos por una sola palabra («clima escolar» o «deporte en el campus» sí
+  # pueden ser objeto de un instrumento; esos los decide la similitud y el clasificador). A
+  # diferencia de «fuera», no rechaza si la palabra aparece en los instrumentos del alcance: en
+  # una encuesta de hobbies, «¿cuántos ven más de 5 películas a la semana?» pregunta por los datos.
+  fuera_tema:
+    - '\b(receta|recetas|pelicula|peliculas|serie de tv|horoscopo|chiste|chistes)\b'
 
 mensajes:
   fuera: >-
@@ -112,3 +122,11 @@ glosario:
       Indicador clave de desempeño del catálogo de Indagata. A cada instrumento se le sugieren KPIs
       por similitud semántica entre su perfil y el catálogo; la investigadora los acepta o rechaza y
       cada KPI aceptado conserva su justificación y las preguntas que lo sustentan.
+
+
+# Formas comunes de nombrar un valor de contexto que no usan la palabra registrada en el instrumento
+# («las mujeres» → genero = femenino). Se comparan sin acentos; la clave y cada forma se buscan como palabra completa
+# en el valor registrado y en la pregunta. Es vocabulario general, nunca el texto de un instrumento en particular.
+equivalencias_contexto:
+  femenino: [mujer, mujeres, femenina, femeninas, alumna, alumnas, estudiantes mujeres, chicas]
+  masculino: [hombre, hombres, masculinos, varon, varones, alumnos hombres, chicos]

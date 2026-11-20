@@ -1,0 +1,79 @@
+{
+ "id": "CPR-03",
+ "instrumento": "pru_control",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara lo que eligieron en el reactivo del muestreo probabilístico entre universidades públicas y privadas",
+   "rag_log_id": 3960,
+   "respuesta": "Criterio: por tipo_universidad. [Fuente 1]\n\n**Comparación por tipo_universidad [Fuente 1]**\n| Grupo | Personas | r01: respuestas del grupo |\n|---|---|---|\n| mixta | 7 | «La medición numérica y el análisis estadístico» 3 (42.9 %); «La observación participante» 2 (28.6 %); «Las entrevistas en profundidad» 2 (28.6 %) |\n| privada | 35 | «La observación participante» 14 (40.0 %); «Las entrevistas en profundidad» 13 (37.1 %); «La medición numérica y el análisis estadístico» 8 (22.9 %) |\n| publica | 38 | «La observación participante» 18 (47.4 %); «Las entrevistas en profundidad» 13 (34.2 %); «La medición numérica y el análisis estadístico» 7 (18.4 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r01"
+    ],
+    "agrupar_por": "tipo_universidad"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r01"
+    ],
+    "agrupar_por": "tipo_universidad"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:cifra_atribuida",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r06",
+     "score": 0.6064
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.5898
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.5512
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r06",
+     "score": 0.5504
+    }
+   ],
+   "segundos": 25.9,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 12955,
+    "recuperacion": 1039,
+    "verificacion": 4270,
+    "interpretacion": 11870
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    18,
+    18
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución por grupo, cada uno con su n y %."
+}

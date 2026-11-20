@@ -1,0 +1,270 @@
+{
+ "ENC-01": {
+  "cumple": "cumple"
+ },
+ "ENC-02": {
+  "cumple": "cumple"
+ },
+ "ENC-03": {
+  "cumple": "cumple"
+ },
+ "ENC-04": {
+  "cumple": "no",
+  "nota": "Regresión: el modelo escribió «[1, 2]» como valor de la escala y la validación pidió aclaración porque no es el nombre de una opción; cayó a «sin información». En la línea base cumplía (por nivel bajo)."
+ },
+ "ENC-05": {
+  "cumple": "cumple"
+ },
+ "ENC-06": {
+  "cumple": "cumple"
+ },
+ "ENC-07": {
+  "cumple": "parcial",
+  "nota": "Da las preguntas con más respuestas en blanco, pero no cuántos respondentes dejaron al menos una."
+ },
+ "ENC-08": {
+  "cumple": "cumple"
+ },
+ "ENC-09": {
+  "cumple": "parcial",
+  "nota": "La tabla del cruce es correcta; la redacción atribuye mal las cifras: llama «tasa de aprobación» a «No, pero planeo hacerlo» (44.4 %) y a «Sí, y no lo aprobé» (22.0 %). Afirmación falsa con cifras que sí están en el resultado."
+ },
+ "ENC-10": {
+  "cumple": "cumple"
+ },
+ "ENC-11": {
+  "cumple": "parcial",
+  "nota": "La tabla es correcta (incluye un grupo «Carga media/normal, Cargas maxima» de respuestas múltiples del archivo); la redacción dice que 39.6 % suma «hasta un año» y «más de un año», cuando es solo «hasta un año»."
+ },
+ "ENC-12": {
+  "cumple": "cumple"
+ },
+ "ENC-13": {
+  "cumple": "parcial",
+  "nota": "(1) y (3) bien; (2) la cifra es correcta (382), pero el % se da sobre 2000 y no sobre los 1104 de (1)."
+ },
+ "ENC-14": {
+  "cumple": "cumple"
+ },
+ "ENC-15": {
+  "cumple": "cumple",
+  "nota": "La justificación guardada del KPI conserva un texto corrupto («Siempre De tus profesores…») de cuando se asoció; no lo genera el chat."
+ },
+ "ENC-16": {
+  "cumple": "cumple"
+ },
+ "ENC-17": {
+  "cumple": "no",
+  "nota": "(2) el modelo escribió «Abandonar» como opción y la validación no la emparejó con «Estoy considerando abandonar»; cayó a «sin información» y (3) mostró la distribución general."
+ },
+ "ENC-18": {
+  "cumple": "cumple"
+ },
+ "ENC-19": {
+  "cumple": "cumple"
+ },
+ "ENC-20": {
+  "cumple": "cumple",
+  "nota": "Nombra 5 y no 4: incluye p05 (frecuencia de 1 = Nunca a 5 = Siempre), que en el documento también es escala 1–5. Revisar si el «Debe» la excluye a propósito."
+ },
+ "ENC-21": {
+  "cumple": "cumple"
+ },
+ "ENC-22": {
+  "cumple": "cumple"
+ },
+ "ENC-23": {
+  "cumple": "cumple",
+  "nota": "Dice que no tiene información; no sugiere lo más cercano (opcional en el «Debe»)."
+ },
+ "ENC-24": {
+  "cumple": "cumple"
+ },
+ "ENC-25": {
+  "cumple": "cumple"
+ },
+ "PRU-01": {
+  "cumple": "cumple"
+ },
+ "PRU-02": {
+  "cumple": "parcial",
+  "nota": "La tabla muestra solo las letras A–D, sin el texto de cada opción; la redacción nombra solo la más elegida."
+ },
+ "PRU-03": {
+  "cumple": "cumple"
+ },
+ "PRU-04": {
+  "cumple": "cumple"
+ },
+ "PRU-05": {
+  "cumple": "no",
+  "nota": "Resume todos los reactivos en lugar de decir si la limpieza encontró respuestas inválidas o ilegibles."
+ },
+ "PRU-06": {
+  "cumple": "parcial",
+  "nota": "Da la distribución correcta de r15 (Verdadero 73, 75.3 %), pero empieza diciendo que la prueba «no registra «reactivo»»: la palabra «reactivo» se tomó como condición inexistente."
+ },
+ "PRU-07": {
+  "cumple": "cumple"
+ },
+ "PRU-08": {
+  "cumple": "parcial",
+  "nota": "La tabla por sección es correcta; la redacción concluye «mayor dificultad» de los alumnos, cuando 97 de las 99 respuestas en blanco son de r10, que viene vacío en el archivo."
+ },
+ "PRU-09": {
+  "cumple": "cumple"
+ },
+ "PRU-10": {
+  "cumple": "parcial",
+  "nota": "Arma los dos grupos, pero r10 no tiene respuestas válidas y la respuesta no lo dice; la redacción habla de las secciones."
+ },
+ "PRU-11": {
+  "cumple": "no",
+  "nota": "Comparar conjuntos de reactivos por tema no está implementado (pendiente conocido)."
+ },
+ "PRU-12": {
+  "cumple": "parcial",
+  "nota": "La tabla es correcta; la redacción dice que «la dificultad se centra» en r01 y r08 (no está en el resultado y es lenguaje de calificación)."
+ },
+ "PRU-13": {
+  "cumple": "cumple"
+ },
+ "PRU-14": {
+  "cumple": "no",
+  "nota": "(1) la cifra es correcta, pero la frase siguiente dice lo contrario («un número considerable no considera…»); (2) el modelo eligió una búsqueda abierta y no conservó el grupo de (1); (3) «Muéstrame 5» se interpretó como un KPI."
+ },
+ "PRU-15": {
+  "cumple": "no",
+  "nota": "(3) dice que su respuesta «coincide con la definición proporcionada en la prueba» (califica) y no la compara con la distribución; (2) infiere «dificultades en la comprensión» por su promedio."
+ },
+ "PRU-16": {
+  "cumple": "parcial",
+  "nota": "(1) bien; (2) repite los datos sin interpretación marcada. La tabla muestra solo letras."
+ },
+ "PRU-17": {
+  "cumple": "no",
+  "nota": "(1) elige r18, r09 y r20 sin criterio (no usa respuestas en blanco ni dispersión; r10 está vacío); (2) la interpretación dice «eligió respuestas incorrectas» (califica)."
+ },
+ "PRU-18": {
+  "cumple": "parcial",
+  "nota": "Ficha en lista, no síntesis en prosa; nombra las secciones pero no sus temas."
+ },
+ "PRU-19": {
+  "cumple": "cumple"
+ },
+ "PRU-20": {
+  "cumple": "cumple"
+ },
+ "PRU-21": {
+  "cumple": "cumple"
+ },
+ "PRU-22": {
+  "cumple": "cumple"
+ },
+ "PRU-23": {
+  "cumple": "cumple"
+ },
+ "PRU-24": {
+  "cumple": "cumple"
+ },
+ "PRU-25": {
+  "cumple": "cumple"
+ },
+ "ENT-01": {
+  "cumple": "cumple"
+ },
+ "ENT-02": {
+  "cumple": "cumple"
+ },
+ "ENT-03": {
+  "cumple": "cumple"
+ },
+ "ENT-04": {
+  "cumple": "cumple",
+  "nota": "Solo p09 menciona profesores o tutor en el documento."
+ },
+ "ENT-05": {
+  "cumple": "cumple"
+ },
+ "ENT-06": {
+  "cumple": "cumple"
+ },
+ "ENT-07": {
+  "cumple": "cumple"
+ },
+ "ENT-08": {
+  "cumple": "parcial",
+  "nota": "Relaciona los dos temas, pero sin citas textuales."
+ },
+ "ENT-09": {
+  "cumple": "cumple"
+ },
+ "ENT-10": {
+  "cumple": "parcial",
+  "nota": "Una sola cita (profesores) y dice que no se especifica el papel de los servicios, aunque los menciona en p03, p05, p07 y p11."
+ },
+ "ENT-11": {
+  "cumple": "cumple",
+  "nota": "Usa masculino («lo detuvieron») para la participante."
+ },
+ "ENT-12": {
+  "cumple": "cumple"
+ },
+ "ENT-13": {
+  "cumple": "no",
+  "nota": "(2) «¿Y buscó ayuda por eso?» se interpretó como metodología y cayó a «sin información»; (3) agrega que la demora fue «determinante para no acudir», que ella no dijo."
+ },
+ "ENT-14": {
+  "cumple": "parcial",
+  "nota": "(2) parafrasea en lugar de dar la cita textual completa (la tabla de «Ver datos» sí la trae); (3) bien."
+ },
+ "ENT-15": {
+  "cumple": "no",
+  "nota": "(1) agrega «la comunicación es deficiente» sin marcarlo como interpretación; (2) repite (1) sin interpretación marcada ni aclarar que es una sola persona."
+ },
+ "ENT-16": {
+  "cumple": "cumple",
+  "nota": "(1) y (2) cayeron al cálculo literal (tabla con sus respuestas); (3) síntesis fiel."
+ },
+ "ENT-17": {
+  "cumple": "parcial",
+  "nota": "(1) bien; (2) prioriza con citas, pero no aclara que es un solo testimonio."
+ },
+ "ENT-18": {
+  "cumple": "cumple"
+ },
+ "ENT-19": {
+  "cumple": "parcial",
+  "nota": "Dice 12 preguntas, pero no las agrupa en temas (pendiente conocido)."
+ },
+ "ENT-20": {
+  "cumple": "cumple"
+ },
+ "ENT-21": {
+  "cumple": "cumple"
+ },
+ "ENT-22": {
+  "cumple": "cumple"
+ },
+ "ENT-23": {
+  "cumple": "cumple"
+ },
+ "ENT-24": {
+  "cumple": "cumple"
+ },
+ "ENT-25": {
+  "cumple": "cumple"
+ },
+ "GEN-01": {
+  "cumple": "cumple"
+ },
+ "GEN-02": {
+  "cumple": "cumple"
+ },
+ "GEN-03": {
+  "cumple": "cumple"
+ },
+ "GEN-04": {
+  "cumple": "cumple"
+ }
+}

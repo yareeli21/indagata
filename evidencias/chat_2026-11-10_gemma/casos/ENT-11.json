@@ -1,0 +1,63 @@
+{
+ "id": "ENT-11",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Qué pesó más para no buscar ayuda: el estigma, el tiempo de espera o no conocer los servicios?",
+   "rag_log_id": 3231,
+   "respuesta": "Según sus datos registrados, E01 menciona que le daba pena que alguien lo viera entrando al consultorio [Fuente 1]. El estigma profesional fue un tema identificado en la entrevista [Fuente 1]. No hay información relacionada con el tiempo de espera ni sobre no conocer los servicios.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Me refiero a las opciones de la pregunta p06?"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Me refiero a las opciones de la pregunta p06?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.6195
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.6176
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.6155
+    }
+   ],
+   "segundos": 35.7,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 178,
+    "interpretacion": 25035
+   },
+   "k_precision": 0.556,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Basarse en las preguntas guía relacionadas, sin forzar una categoría que no mencionó."
+}

@@ -1,0 +1,53 @@
+{
+ "id": "PRU-03",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo hubo más respuestas en blanco?",
+   "rag_log_id": 4008,
+   "respuesta": "La primera pregunta del ranking es la r10 \"¿Qué es una contraseña segura?\" con 97 nulas o sin responder de 97 (100.0 %). No hay empate en este caso, ya que todos los estudiantes respondieron de manera nula.\n\n**Preguntas por no respuesta**\n\nSegún el resultado, solo se registraron respuestas nulas para la pregunta r10 \"¿Qué es una contraseña segura?\" y dos preguntas más: r22 \"¿Cuál es el emparejamiento correcto? Big Data ↔\" con 3 nulas o sin responder de 97 (3.1 %) y r16 \"El almacenamiento en la nube elimina por completo el riesgo de perder\" con 2 nulas o sin responder de 97 (2.1 %).\n\n**Preguntas por no respuesta [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r10 | 97 nulas o sin responder de 97 (100.0 %) |\n| 2 | r22 | 3 nulas o sin responder de 97 (3.1 %) |\n| 3 | r16 | 2 nulas o sin responder de 97 (2.1 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "estructurada",
+   "motivo": "plan:ranking_preguntas:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 22.8,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 10384,
+    "recuperacion": 450,
+    "verificacion": 5226,
+    "interpretacion": 11883
+   },
+   "k_precision": 0.875,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Reactivo con más NR y su conteo."
+}

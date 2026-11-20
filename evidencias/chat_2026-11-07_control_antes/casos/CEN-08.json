@@ -1,0 +1,38 @@
+{
+ "id": "CEN-08",
+ "instrumento": "enc_control",
+ "categoria": "cortesia",
+ "turnos": [
+  {
+   "pregunta": "Hola",
+   "rag_log_id": 2385,
+   "respuesta": "Solo puedo responder sobre los instrumentos de investigación de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma. Por ejemplo, puedes preguntarme:\n- ¿Qué porcentaje está de acuerdo con la pregunta 4?\n- ¿Qué respondió el respondente R017?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿De qué pregunta o tema quieres saber la opinión?"
+   },
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "plan:aclaracion_ajena",
+   "plantilla": "aclaracion_ajena",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 18.1,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "recuperacion": 137,
+    "interpretacion": 17937
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Bienvenida con ejemplos de este instrumento."
+}

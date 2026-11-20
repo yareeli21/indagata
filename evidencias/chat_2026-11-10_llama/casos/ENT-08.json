@@ -1,0 +1,67 @@
+{
+ "id": "ENT-08",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara cómo describe su estado de ánimo con cómo valora la atención que recibió",
+   "rag_log_id": 3125,
+   "respuesta": "Según la entrevista [Fuente 1], el participante E01 describe su estado de ánimo como \"ambivalente\" (en presente), lo que indica una sensación de incertidumbre o ambigüedad en su emocionalidad.\n\nEn cuanto a cómo valora la atención que recibió, el participante expresa un valoración mixta, considerando que la atención es \"buena\", pero que es \"muy poquito tiempo\". Esto sugiere que aunque siente que la atención es útil y de buena calidad, no se siente lo suficientemente atendido en términos de tiempo.\n\nEn particular, menciona que si hubiera más tiempo para las sesiones, habría podido aprovechar mejor los avances interrumpidos. Esto sugiere que el participante se siente frustrado por la limitación del tiempo disponible y que podría haber experimentado un mayor impacto positivo con una atención más prolongada.\n\nEn resumen, según la entrevista [Fuente 1], el participante E01 describe su estado de ánimo como ambivalente y valora la atención que recibió como buena, pero considera que es insuficiente en términos de tiempo.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«id_respondente» no es una variable de contexto de «Salud mental en la universidad» (disponibles: Edad, Turno, Carrera, Género, Trabaja, Semestre)."
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p01",
+     "p07"
+    ],
+    "agrupar_por": "id_respondente"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.6853
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.6722
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.6088
+    }
+   ],
+   "segundos": 14.5,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 152,
+    "interpretacion": 6457
+   },
+   "k_precision": 0.372,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Dos fragmentos citados lado a lado y una relación breve, sin exagerar."
+}

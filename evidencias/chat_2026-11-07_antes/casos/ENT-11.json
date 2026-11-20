@@ -1,0 +1,53 @@
+{
+ "id": "ENT-11",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Qué pesó más para no buscar ayuda: el estigma, el tiempo de espera o no conocer los servicios?",
+   "rag_log_id": 2316,
+   "respuesta": "Según la información proporcionada, el factor que más detuvo a E01 de buscar ayuda fue el estigma asociado a acudir al psicólogo [Fuente 1]. E01 mencionó “que me daba pena que alguien me viera entrando al consultorio” y “mi papá dice que eso es para gente que está loca”.",
+   "intencion": null,
+   "plan": null,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.6101
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.5736
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.5507
+    }
+   ],
+   "segundos": 37.3,
+   "tiempos_ms": {
+    "ejecucion": 0,
+    "recuperacion": 150,
+    "interpretacion": 19952
+   },
+   "k_precision": 0.682,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Basarse en las preguntas guía relacionadas, sin forzar una categoría que no mencionó."
+}

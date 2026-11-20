@@ -1,0 +1,186 @@
+{
+ "correctas": 13,
+ "total": 20,
+ "filas": [
+  {
+   "id": "B01",
+   "ins": 59,
+   "pregunta": "¿Cuántos estudiantes consideran que las relaciones entre compañeros son respetuosas?",
+   "esperado": "29 de 60",
+   "correcta": true,
+   "respuesta": "Criterio: de acuerdo (nivel alto) en p06.\np06 «Las relaciones entre compañeros son respetuosas.»: 29 de 60 de quienes respondieron están de acuerdo (nivel alto) (48.3 %). [Fuente 1]",
+   "consultaId": 2981
+  },
+  {
+   "id": "B02",
+   "ins": 59,
+   "pregunta": "Entre los hombres, ¿qué porcentaje no está de acuerdo con que los profesores están disponibles para resolver dudas?",
+   "esperado": "19.2 % (5 de 26)",
+   "correcta": true,
+   "respuesta": "5 de los 26 con genero = «masculino» que respondieron p07 (19.2 %) cumplen el criterio: genero = «masculino» y p07 «Los profesores están disponibles para resolver dudas.» en desacuerdo (nivel bajo). Sobre el total del instrumento son 5 de 60 respondentes (8.3 %). [Fuente 1]",
+   "consultaId": 2982
+  },
+  {
+   "id": "B03",
+   "ins": 59,
+   "pregunta": "¿Cuántos alumnos del turno matutino están en desacuerdo con que reciben retroalimentación a tiempo para mejorar?",
+   "esperado": "1 de 30",
+   "correcta": true,
+   "respuesta": "Según los datos registrados, 35 de 97 (36.3 %) estudiantes del turno matutino respondieron “Totalmente en desacuerdo” con la pregunta p03 [Fuente 1].",
+   "consultaId": 2983
+  },
+  {
+   "id": "B04",
+   "ins": 59,
+   "pregunta": "En el turno vespertino, ¿qué porcentaje se siente parte de la comunidad escolar?",
+   "esperado": "43.3 % (13 de 30)",
+   "correcta": true,
+   "respuesta": "13 de los 30 con turno = «Vespertino» que respondieron p08 (43.3 %) cumplen el criterio: turno = «Vespertino» y p08 «Me siento parte de la comunidad escolar.» de acuerdo (nivel alto). Sobre el total del instrumento son 13 de 60 respondentes (21.7 %). [Fuente 1]",
+   "consultaId": 2984
+  },
+  {
+   "id": "B05",
+   "ins": 59,
+   "pregunta": "¿Cuántos están de acuerdo tanto con que las calificaciones reflejan lo aprendido como con que las evaluaciones se relacionan con la clase?",
+   "esperado": "13 de 60",
+   "correcta": false,
+   "respuesta": "5 de 60 respondentes (8.3 %) cumplen el criterio: p02 «Las calificaciones reflejan lo que realmente aprendí.» = «De acuerdo» y p04 «Las evaluaciones están relacionadas con lo que se ve en clase.» = «De acuerdo». [Fuente 1]",
+   "consultaId": 2985
+  },
+  {
+   "id": "B06",
+   "ins": 61,
+   "pregunta": "¿Cuántos estudiantes no trabajan?",
+   "esperado": "40 de 160",
+   "correcta": true,
+   "respuesta": "40 de 160 respondentes (25.0 %) cumplen el criterio: p14 «¿Cuál es tu carga laboral actual?» = «No trabajo». [Fuente 1]",
+   "consultaId": 2986
+  },
+  {
+   "id": "B07",
+   "ins": 61,
+   "pregunta": "¿Qué porcentaje usa una app digital como su principal estrategia para gestionar el tiempo?",
+   "esperado": "24.4 % (39 de 160)",
+   "correcta": true,
+   "respuesta": "39 de 160 respondentes (24.4 %) cumplen el criterio: p11 «¿Qué estrategia usas más para gestionar tu tiempo?» = «App digital». [Fuente 1]",
+   "consultaId": 2987
+  },
+  {
+   "id": "B08",
+   "ins": 61,
+   "pregunta": "En las universidades privadas, ¿cuántos estudiantes cursan 7 o más materias?",
+   "esperado": "14 de 56",
+   "correcta": true,
+   "respuesta": "14 de los 56 con tipo_universidad = «privada» que respondieron p09 (25.0 %) cumplen el criterio: tipo_universidad = «privada» y p09 «¿Cuántas materias cursas actualmente?» = «7 o más». Sobre el total del instrumento son 14 de 160 respondentes (8.8 %). [Fuente 1]",
+   "consultaId": 2988
+  },
+  {
+   "id": "B09",
+   "ins": 61,
+   "pregunta": "En promedio, ¿cuántos créditos cursan los estudiantes este semestre?",
+   "esperado": "25.26",
+   "correcta": true,
+   "respuesta": "Criterio: resumen de p20.\np20 «¿Cuántos créditos cursas este semestre? (número)»: 160 respuestas válidas; media 25.26.\nInterpretación calculada: Media 25.3, mediana 26 (de 10 a 40). [Fuente 1]",
+   "consultaId": 2989
+  },
+  {
+   "id": "B10",
+   "ins": 61,
+   "pregunta": "¿Qué porcentaje deja con frecuencia las tareas para el último momento?",
+   "esperado": "43.8 % (70 de 160)",
+   "correcta": false,
+   "respuesta": "37 de 160 respondentes (23.1 %) cumplen el criterio: p10 «¿Con qué frecuencia dejas tareas para el último momento?» = «Frecuentemente». [Fuente 1]",
+   "consultaId": 2991
+  },
+  {
+   "id": "B11",
+   "ins": 61,
+   "pregunta": "¿Cuántos estudiantes que no trabajan dicen tener dificultades para equilibrar trabajo y estudios?",
+   "esperado": "24 de 160",
+   "correcta": false,
+   "respuesta": "40 de 160 respondentes (25.0 %) cumplen el criterio: p14 «¿Cuál es tu carga laboral actual?» = «No trabajo». [Fuente 1] Según la pregunta p15 de la encuesta «Encuesta de Carga Académica y Gestión del Tiempo», se evalúa si los estudiantes que no tienen carga laboral actual presentan dificultades para conciliar sus obligaciones laborales y académicas. [Fuente 1]",
+   "consultaId": 2993
+  },
+  {
+   "id": "B12",
+   "ins": 61,
+   "pregunta": "¿Cuántos estudiantes nunca han reprobado una materia por falta de tiempo?",
+   "esperado": "37 de 160",
+   "correcta": false,
+   "respuesta": "9 de 160 respondentes (5.6 %) cumplen el criterio: p13 «¿Has reprobado alguna materia por falta de tiempo para estudiar?» = «nunca» y p10 «¿Con qué frecuencia dejas tareas para el último momento?» = «Nunca». [Fuente 1]",
+   "consultaId": 2995
+  },
+  {
+   "id": "B13",
+   "ins": 61,
+   "pregunta": "De los estudiantes de universidad mixta, ¿qué porcentaje dice que su institución no ofrece talleres de gestión del tiempo?",
+   "esperado": "47.6 % (10 de 21)",
+   "correcta": true,
+   "respuesta": "10 de los 21 con tipo_universidad = «mixta» que respondieron p16 (47.6 %) cumplen el criterio: tipo_universidad = «mixta» y p16 «¿Tu institución ofrece talleres de gestión del tiempo?» = «No». Sobre el total del instrumento son 10 de 160 respondentes (6.2 %). [Fuente 1]",
+   "consultaId": 2996
+  },
+  {
+   "id": "B14",
+   "ins": 127,
+   "pregunta": "¿Qué porcentaje de los estudiantes usa una plataforma virtual diariamente?",
+   "esperado": "46.0 % (887 de 1930)",
+   "correcta": true,
+   "respuesta": "887 de los 1930 que respondieron p09 (46.0 %) cumplen el criterio: p09 «¿Con qué frecuencia usas alguna plataforma virtual (Moodle, Classroom,» = «Diariamente». Sobre el total del instrumento son 887 de 2000 respondentes (44.4 %). [Fuente 1]",
+   "consultaId": 2997
+  },
+  {
+   "id": "B15",
+   "ins": 127,
+   "pregunta": "¿Cuántos estudiantes están considerando abandonar sus estudios?",
+   "esperado": "159 de 1942",
+   "correcta": false,
+   "respuesta": "No encontré esa condición en «Indicadores de Experiencia y Calidad Académica». En p13 («¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización») las opciones que sí existen son estas:\n\n**Distribución de p13 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Nada probable | 145 | 7.7 % |\n| 2 en escala 1–5 | 343 | 18.3 % |\n| 3 en escala 1–5 | 441 | 23.6 % |\n| 4 en escala 1–5 | 470 | 25.1 % |\n| Muy probable | 473 | 25.3 % |",
+   "consultaId": 2998
+  },
+  {
+   "id": "B16",
+   "ins": 127,
+   "pregunta": "¿Cuántos dicen que su programa no cuenta con acreditación vigente?",
+   "esperado": "284 de 1951",
+   "correcta": false,
+   "respuesta": "1193 de los 1951 que respondieron p01 (61.1 %) cumplen el criterio: p01 «¿Tu programa académico cuenta con acreditación vigente (COP AES, SEAES» = «No lo se» o «No». Sobre el total del instrumento son 1193 de 2000 respondentes (59.6 %). [Fuente 1]",
+   "consultaId": 2999
+  },
+  {
+   "id": "B17",
+   "ins": 127,
+   "pregunta": "¿Qué porcentaje ve probable volver a estudiar en esta institución?",
+   "esperado": "50.4 % (943 de 1872)",
+   "correcta": false,
+   "respuesta": "El 25.3% (473 respuestas) de los encuestados consideraron “muy probable” que regresaran a estudiar en la institución, representando el nivel más alto en la escala de 1 a 5 [Fuente 1].  Un 25.1% (470 respuestas) respondió con un \"4\", indicando una probabilidad alta pero no absoluta de continuar sus estudios en la misma institución [Fuente 1]. Finalmente, el 18.3% (343 respuestas) manifestó una probabilidad del “2” en la escala de 1 a 5 [Fuente 1].\n\n**Distribución de p13 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Nada probable | 145 | 7.7 % |\n| 2 en escala 1–5 | 343 | 18.3 % |\n| 3 en escala 1–5 | 441 | 23.6 % |\n| 4 en escala 1–5 | 470 | 25.1 % |\n| Muy probable | 473 | 25.3 % |",
+   "consultaId": 3000
+  },
+  {
+   "id": "B18",
+   "ins": 127,
+   "pregunta": "¿Cuántos estudiantes de modalidad mixta o híbrida están buscando empleo?",
+   "esperado": "143 de 1896",
+   "correcta": true,
+   "respuesta": "143 de los 1896 que respondieron p02 y p12 (7.5 %) cumplen el criterio: p02 «¿En qué modalidad cursas tu programa?» = «Mixta/hibrida» y p12 «¿Cuál es tu situación laboral actual?» = «Busco empleo». Sobre el total del instrumento son 143 de 2000 respondentes (7.2 %). [Fuente 1]",
+   "consultaId": 3001
+  },
+  {
+   "id": "B19",
+   "ins": 127,
+   "pregunta": "¿Qué porcentaje está de acuerdo con que encuentra lo que necesita en la biblioteca y las bases de datos académicas?",
+   "esperado": "38.8 % (734 de 1892)",
+   "correcta": true,
+   "respuesta": "El 38.8 % (734 de 1892) de quienes respondieron está de acuerdo [Fuente 1].",
+   "consultaId": 3002
+  },
+  {
+   "id": "B20",
+   "ins": 127,
+   "pregunta": "¿Cuántos estudiantes hicieron prácticas profesionales en una empresa con convenio de su institución?",
+   "esperado": "382 de 1931",
+   "correcta": true,
+   "respuesta": "Criterio: resumen de p14.\np14 «¿Has realizado prácticas profesionales o pasantías?»: 1931 respuestas válidas, 69 sin respuesta.\nInterpretación calculada: La opción más frecuente es «Si, pero la consegui por mi cuenta» (37.4 % de las respuestas). [Fuente 1]\n\n**Distribución de p14 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Si, pero la consegui por mi cuenta | 722 | 37.4 % |\n| Aun no, pero planeo hacerlo | 586 | 30.3 % |\n| Si, en una empresa con convenio de mi institucion | 382 | 19.8 % |\n| No | 241 | 12.5 % |",
+   "consultaId": 3003
+  }
+ ]
+}

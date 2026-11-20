@@ -1,0 +1,139 @@
+{
+ "id": "CEN-05",
+ "instrumento": "enc_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 2381,
+   "respuesta": "Criterio: resumen de p09, p13, p18.\np09 «¿Cuántas materias cursas actualmente?»: 160 respuestas válidas.\nInterpretación calculada: La opción más frecuente es «5-6» (25.6 % de las respuestas).\np13 «¿Has reprobado alguna materia por falta de tiempo para estudiar?»: 160 respuestas válidas.\nInterpretación calculada: La opción más elegida es «Sí»: la eligió el 55 % de quienes respondieron.\np18 «Del 1 al 10, ¿cuánta presión sientes por la carga académica?»: 160 respuestas válidas; media 5.51.\nInterpretación calculada: Respuestas divididas: 50 % alta, 50 % baja. [Fuente 1]\n\n**Distribución de p09 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| 5-6 | 41 | 25.6 % |\n| 7 o más | 41 | 25.6 % |\n| 1-2 | 40 | 25.0 % |\n| 3-4 | 38 | 23.8 % |\n\n**Distribución de p13 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Sí | 88 | 55.0 % |\n| varias veces | 45 | 28.1 % |\n| una vez | 43 | 26.9 % |\n| No | 37 | 23.1 % |\n| nunca | 37 | 23.1 % |\n| Casi lo hago | 35 | 21.9 % |\n\n**Distribución de p18 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| 2 de 10 | 23 | 14.4 % |\n| 4 de 10 | 19 | 11.9 % |\n| 8 de 10 | 18 | 11.2 % |\n| 10 de 10 | 18 | 11.2 % |\n| 6 de 10 | 16 | 10.0 % |\n| 9 de 10 | 14 | 8.8 % |\n| 7 de 10 | 14 | 8.8 % |\n| 5 de 10 | 13 | 8.1 % |\n| 3 de 10 | 13 | 8.1 % |\n| 1 de 10 | 12 | 7.5 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p09",
+     "p13",
+     "p18"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:cifras_completadas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.4769
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4688
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p18",
+     "score": 0.4653
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4607
+    }
+   ],
+   "segundos": 66.5,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 47772,
+    "recuperacion": 208,
+    "verificacion": 22680,
+    "interpretacion": 18548
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    42,
+    42
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué?",
+   "rag_log_id": 2382,
+   "respuesta": "El resultado de la encuesta revela que un alto porcentaje de estudiantes, específicamente el 25.6% (41 respuestas), cursan entre 5 y 6 materias actualmente, mientras que un 25.0% (40 respuestas) lo hace entre 1 y 2 materias [Fuente 1]. Además, el 55% (88 respuestas) de los estudiantes han reprobado alguna materia debido a falta de tiempo para estudiar, con una distribución que indica que esta situación ocurre con frecuencia, ya que el 28.1% (45 respuestas) lo ha hecho varias veces [Fuente 1]. La media de presión percibida por la carga académica es de 5.51 sobre 10, con un 50% de los estudiantes reportando una alta presión y otro 50% una baja [Fuente 1], lo que sugiere una percepción variable del estrés académico.\n\n**Distribución de p09 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| 5-6 | 41 | 25.6 % |\n| 7 o más | 41 | 25.6 % |\n| 1-2 | 40 | 25.0 % |\n| 3-4 | 38 | 23.8 % |\n\n**Distribución de p13 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Sí | 88 | 55.0 % |\n| varias veces | 45 | 28.1 % |\n| una vez | 43 | 26.9 % |\n| No | 37 | 23.1 % |\n| nunca | 37 | 23.1 % |\n| Casi lo hago | 35 | 21.9 % |\n\n**Distribución de p18 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| 2 de 10 | 23 | 14.4 % |\n| 4 de 10 | 19 | 11.9 % |\n| 8 de 10 | 18 | 11.2 % |\n| 10 de 10 | 18 | 11.2 % |\n| 6 de 10 | 16 | 10.0 % |\n| 9 de 10 | 14 | 8.8 % |\n| 7 de 10 | 14 | 8.8 % |\n| 5 de 10 | 13 | 8.1 % |\n| 3 de 10 | 13 | 8.1 % |\n| 1 de 10 | 12 | 7.5 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "profundiza",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p09",
+     "p13",
+     "p18"
+    ]
+   },
+   "correcciones": [
+    "profundiza: se repite el plan anterior (resumen_pregunta) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4919
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.4855
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.4811
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p18",
+     "score": 0.4784
+    }
+   ],
+   "segundos": 50.5,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 32080,
+    "recuperacion": 194,
+    "verificacion": 1,
+    "interpretacion": 18216
+   },
+   "k_precision": 0.857,
+   "cifras_con_respaldo": [
+    41,
+    41
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Respuestas desfavorables con cifras."
+}

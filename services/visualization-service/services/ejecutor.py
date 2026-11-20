@@ -376,7 +376,33 @@ def _filtrar_respondentes(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) ->
         e.lineas.append("Respondentes: " + ", ".join(_corto(p["id"]) for p in mostrados) + ".")
 
 
+def _preguntas_filtro(plan: PlanConsulta) -> list[str]:
+    return list(dict.fromkeys(f.pregunta for f in plan.filtros))
+
+
+def _base_porcentaje(ins: Instrumento, plan: PlanConsulta) -> list[dict[str, Any]] | None:
+    """Sobre quiénes se calcula el porcentaje de un conteo con condiciones sobre preguntas: las personas del grupo
+    (datos de contexto) que respondieron todas las preguntas de la condición. Sin condiciones sobre preguntas no hay
+    base propia (`None`): una condición que solo nombra un grupo se cuenta sobre todo el instrumento."""
+    preguntas = _preguntas_filtro(plan)
+    if not preguntas:
+        return None
+    grupo, _ = _filtrados(ins, plan.model_copy(update={"filtros": [], "menciona": "", "con_omisiones": False}))
+    return [p for p in grupo if all((p["por_pregunta"].get(q) or {}).get("estado") == "respondida" for q in preguntas)]
+
+
+def _quienes_base(ins: Instrumento, plan: PlanConsulta, n: int) -> str:
+    """«los 30 con turno = «Vespertino» que respondieron p04», «los 1949 que respondieron p02»."""
+    grupo = ([f"{k} = «{v}»" for k, v in plan.contexto.items()]
+             + [f"{c.variable} {c.op} {_numero_texto(c.valor)}" for c in plan.contexto_num])
+    return f"los {n}" + (f" con {' y '.join(grupo)}" if grupo else "") + f" que respondieron {' y '.join(_preguntas_filtro(plan))}"
+
+
 def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> None:
+    if plan.nivel and (repetidos := [f for f in plan.filtros if f.pregunta in plan.preguntas and f.nivel == plan.nivel]):
+        # «p03 de acuerdo» como filtro y como nivel de p03 es una sola condición; con las dos, el porcentaje salía sobre
+        # quienes ya estaban de acuerdo: «70 de los 70 (100 %)» (10 nov, aritmética A12, tercera prueba).
+        plan = plan.model_copy(update={"filtros": [f for f in plan.filtros if f not in repetidos]})
     doc = ins.doc
     total = len(_personas(doc))
     grupo, condiciones = _filtrados(ins, plan)
@@ -398,6 +424,17 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
                             f"sobre el total, {len(grupo)} de {total} respondentes ({pct} %).")
             e.frase_dato = (f"{dentro} de los {len(base)} del grupo anterior ({pct_base} %) cumplen el criterio: "
                             f"{e.criterio}. Sobre el total son {len(grupo)} de {total} respondentes ({pct} %).")
+        elif (base := _base_porcentaje(ins, plan)) is not None and len(base) != total:
+            # El porcentaje es sobre el grupo nombrado y sobre quienes respondieron la pregunta de la condición, no
+            # sobre todo el instrumento (10 nov, prueba de aritmética A01: «del turno vespertino» daba 4 de 60 y no
+            # 4 de 30; A15: «en línea» daba 263 de 2000 y no 263 de 1949, los que respondieron).
+            dentro = sum(p["id"] in {b["id"] for b in base} for p in grupo)
+            pct_base = round(100 * dentro / len(base), 1) if base else 0.0
+            quienes = _quienes_base(ins, plan, len(base))
+            e.lineas.append(f"Cumplen la condición {dentro} de {quienes} ({pct_base} %); "
+                            f"sobre el total del instrumento, {len(grupo)} de {total} respondentes ({pct} %).")
+            e.frase_dato = (f"{dentro} de {quienes} ({pct_base} %) cumplen el criterio: {e.criterio}. "
+                            f"Sobre el total del instrumento son {len(grupo)} de {total} respondentes ({pct} %).")
         else:
             e.lineas.append(f"Cumplen la condición {len(grupo)} de {total} respondentes ({pct} %).")
         e.vacio = not grupo
@@ -424,12 +461,20 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
     preguntas = plan.preguntas
     if plan.nivel and preguntas:
         base = grupo if hay_condicion else _personas(doc)
+        frases = []
         for q in preguntas:
             validas = [p for p in base if (p["por_pregunta"].get(q) or {}).get("estado") == "respondida"]
             en = sum(_en_nivel(p["por_pregunta"].get(q), plan.nivel) for p in validas)
             pct = round(100 * en / len(validas), 1) if validas else 0.0
             quien = "de quienes cumplen la condición y respondieron" if hay_condicion else "de quienes respondieron"
             e.lineas.append(f"{_texto_pregunta(doc, q)}: {en} de {len(validas)} {quien} están {_NOMBRE_NIVEL[plan.nivel]} ({pct} %).")
+            frases.append(f"{en} de los {len(validas)} que cumplen {' y '.join(condiciones)} y respondieron {q} ({pct} %) "
+                          f"están {_NOMBRE_NIVEL[plan.nivel]} en {_texto_pregunta(doc, q)}")
+        if hay_condicion and frases:
+            # La frase del dato es el resultado del nivel dentro del grupo, no cuántos forman el grupo (10 nov,
+            # aritmética A01, segunda prueba: el plan «turno + p04 de acuerdo» respondía «30 de 60 cumplen turno =
+            # Vespertino» y el 4 de 30 quedaba fuera de la respuesta).
+            e.frase_dato = "; ".join(frases) + "."
         e.criterio = e.criterio or f"{_NOMBRE_NIVEL[plan.nivel]} en " + ", ".join(preguntas)
     elif preguntas and not hay_condicion:
         _resumen_pregunta(ins, plan, e)
@@ -776,6 +821,16 @@ def _kpi(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> None:
     e.preguntas = list(dict.fromkeys(e.preguntas))
 
 
+def _alcance_hallazgo(doc: dict[str, Any], preguntas: list[str]) -> set[str] | None:
+    """Preguntas en que se buscan los hallazgos: las del plan y las de su misma sección (el tema de la pregunta), o
+    None si el plan no nombra preguntas (se busca en todo el instrumento)."""
+    if not preguntas:
+        return None
+    elegidas = set(preguntas)
+    secciones = {p.get("seccion_id") for p in _items(doc) if _corto(p["id"]) in elegidas and p.get("seccion_id")}
+    return {_corto(p["id"]) for p in _items(doc) if _corto(p["id"]) in elegidas or p.get("seccion_id") in secciones}
+
+
 def _hallazgo(ins: Instrumento, plan: PlanConsulta, e: Ejecucion, fiabilidad: list[dict[str, Any]] | None) -> None:
     if plan.sentido and ins.tipo == "encuesta":
         e.candidatos = hallazgos.por_polaridad(ins.doc, plan.sentido)
@@ -787,8 +842,15 @@ def _hallazgo(ins: Instrumento, plan: PlanConsulta, e: Ejecucion, fiabilidad: li
             return
         e.lineas.append("Ninguna pregunta tiene decidido qué respuestas son favorables o desfavorables (polaridad): "
                         "estos son los datos más notables, sin juzgar si son buenos o malos.")
-    e.candidatos = hallazgos.candidatos(ins.tipo, ins.doc, fiabilidad)
+    alcance = _alcance_hallazgo(ins.doc, plan.preguntas)
+    e.candidatos = hallazgos.candidatos(ins.tipo, ins.doc, fiabilidad, alcance)
+    if alcance and not e.candidatos:
+        # Nada notable en ese tema: se responde con el resumen de sus preguntas, no con datos de otros temas.
+        _resumen_pregunta(ins, plan.model_copy(update={"preguntas": sorted(alcance)}), e)
+        return
     e.criterio = e.criterio or "datos calculados sobre los resúmenes del documento final, del más al menos notable"
+    if alcance:
+        e.criterio += f" en {', '.join(sorted(alcance))}"
     if not e.candidatos:
         e.vacio = True
         e.lineas.append("No hay resúmenes calculados para buscar un hallazgo en este instrumento.")

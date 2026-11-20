@@ -1,0 +1,77 @@
+{
+ "completa": {
+  "cumple": 11,
+  "parcial": 8,
+  "no": 11,
+  "por_instrumento": {
+   "ENU": 3,
+   "PNU": 3,
+   "ETU": 5
+  },
+  "planes_validos": 27,
+  "turnos": 32,
+  "tokens_interpretacion_mediana": 3382,
+  "tokens_redaccion_mediana": 2257.0,
+  "redacciones_medidas": 16,
+  "reglas_mediana": 21,
+  "aceptada_primera": 10,
+  "regenerada": 3,
+  "respaldo": 5,
+  "cifras_con_respaldo": [
+   234,
+   234
+  ],
+  "latencia_mediana_s": 17.1,
+  "redaccion_mediana_s": 11.6
+ },
+ "solo_reglas": {
+  "cumple": 11,
+  "parcial": 8,
+  "no": 11,
+  "por_instrumento": {
+   "ENU": 4,
+   "PNU": 4,
+   "ETU": 3
+  },
+  "planes_validos": 26,
+  "turnos": 32,
+  "tokens_interpretacion_mediana": 3381,
+  "tokens_redaccion_mediana": 1579.0,
+  "redacciones_medidas": 14,
+  "reglas_mediana": 13.0,
+  "aceptada_primera": 9,
+  "regenerada": 1,
+  "respaldo": 5,
+  "cifras_con_respaldo": [
+   214,
+   214
+  ],
+  "latencia_mediana_s": 15.8,
+  "redaccion_mediana_s": 12.2
+ },
+ "partida": {
+  "cumple": 7,
+  "parcial": 9,
+  "no": 14,
+  "por_instrumento": {
+   "ENU": 2,
+   "PNU": 3,
+   "ETU": 2
+  },
+  "planes_validos": 23,
+  "turnos": 32,
+  "tokens_interpretacion_mediana": 3257,
+  "tokens_redaccion_mediana": 1477.0,
+  "redacciones_medidas": 14,
+  "reglas_mediana": 13.0,
+  "aceptada_primera": 7,
+  "regenerada": 2,
+  "respaldo": 6,
+  "cifras_con_respaldo": [
+   214,
+   218
+  ],
+  "latencia_mediana_s": 17.6,
+  "redaccion_mediana_s": 12.4
+ }
+}

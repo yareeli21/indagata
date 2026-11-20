@@ -1,0 +1,87 @@
+{
+ "CEN-01": {
+  "cumple": "cumple",
+  "nota": "Corregido en la Fase 5: «más de 30» elige la opción «Trabajo más de 30h» (37 de 160)."
+ },
+ "CEN-02": {
+  "cumple": "cumple"
+ },
+ "CEN-03": {
+  "cumple": "cumple",
+  "nota": "(2) 24 de los 83 del grupo anterior (28.9 %); (3) 5 IDs con el total."
+ },
+ "CEN-04": {
+  "cumple": "cumple",
+  "nota": "Se mostró el cálculo, con la medida explicada (entropía normalizada)."
+ },
+ "CEN-05": {
+  "cumple": "parcial",
+  "nota": "Usa la polaridad propuesta (sin revisar), que marca «Más de 20h» de estudio como desfavorable; agrega opiniones sin marcarlas como interpretación. (2) bien."
+ },
+ "CEN-06": {
+  "cumple": "cumple"
+ },
+ "CEN-07": {
+  "cumple": "cumple"
+ },
+ "CEN-08": {
+  "cumple": "cumple"
+ },
+ "CET-01": {
+  "cumple": "cumple"
+ },
+ "CET-02": {
+  "cumple": "cumple"
+ },
+ "CET-03": {
+  "cumple": "parcial",
+  "nota": "Cita a un solo participante (E34) para los dos temas; no compara entre participantes."
+ },
+ "CET-04": {
+  "cumple": "cumple",
+  "nota": "Corregido en la Fase 5: (2) sigue hablando de E03."
+ },
+ "CET-05": {
+  "cumple": "parcial",
+  "nota": "Cuenta participantes (13), no veces, y no explica que cuenta por raíz de palabra."
+ },
+ "CET-06": {
+  "cumple": "cumple"
+ },
+ "CET-07": {
+  "cumple": "cumple"
+ },
+ "CET-08": {
+  "cumple": "cumple"
+ },
+ "CPR-01": {
+  "cumple": "parcial",
+  "nota": "La distribución y la opción más elegida son correctas y no califica, pero la segunda oración dice que otra opción tuvo «mayor aceptación» (contradice la primera)."
+ },
+ "CPR-02": {
+  "cumple": "cumple",
+  "nota": "Repetido tras corregir la comprobación del orden del ranking."
+ },
+ "CPR-03": {
+  "cumple": "cumple",
+  "nota": "Se mostró el cálculo: distribución por tipo de universidad con n y %."
+ },
+ "CPR-04": {
+  "cumple": "cumple",
+  "nota": "(2) distribución del reactivo dentro de los 34 de (1). Repetido tras quitar el filtro por una opción del mismo reactivo (en la primera pasada se resumía sobre los 80)."
+ },
+ "CPR-05": {
+  "cumple": "parcial",
+  "nota": "La tabla muestra 0 en las tres secciones, pero la frase calculada decía «la sección con más… es Metodología: 0» (corregido después en el código; no se repitió). En la primera pasada la redacción hablaba de «conocimiento uniforme»; en la segunda Ollama no respondió y se repitió."
+ },
+ "CPR-06": {
+  "cumple": "cumple",
+  "nota": "Repetido tras agregar el reactivo fuera de rango (en la primera pasada respondió con r02)."
+ },
+ "CPR-07": {
+  "cumple": "cumple"
+ },
+ "CPR-08": {
+  "cumple": "cumple"
+ }
+}

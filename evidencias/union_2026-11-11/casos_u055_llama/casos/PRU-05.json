@@ -1,0 +1,59 @@
+{
+ "id": "PRU-05",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Hubo respuestas inválidas o ilegibles? ¿En qué reactivos?",
+   "rag_log_id": 3782,
+   "respuesta": "«Prueba de Alfabetización Digital» no registra «inválidas, ilegibles». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: perfil, edad, genero, semestre, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca, edad.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Prueba de Alfabetización Digital» no registra «inválidas, ilegibles». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: perfil, edad, genero, semestre, tipo_universidad, nivel_ses, nivel_estudio, primera_generacion, tiene_beca, edad."
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "A",
+      "pregunta": "r01"
+     },
+     {
+      "valor": "A",
+      "pregunta": "r02"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r01 = «A» descartado (no es una opción y la pregunta no lo menciona)",
+    "filtro r02 = «A» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 15.0,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "recuperacion": 280,
+    "interpretacion": 14709
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Motivos de limpieza por reactivo; si no hubo, decirlo."
+}

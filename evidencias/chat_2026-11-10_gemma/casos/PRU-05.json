@@ -1,0 +1,74 @@
+{
+ "id": "PRU-05",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Hubo respuestas inválidas o ilegibles? ¿En qué reactivos?",
+   "rag_log_id": 3191,
+   "respuesta": "El instrumento tiene 97 respondentes. [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "menciona": "p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12,p",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "mención «p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12,p» descartada (la pregunta no pregunta quién lo mencionó)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:negativa_corregida",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.417
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.4055
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.3975
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.3962
+    }
+   ],
+   "segundos": 48.7,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 15989,
+    "recuperacion": 291,
+    "verificacion": 9352,
+    "interpretacion": 32396
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Motivos de limpieza por reactivo; si no hubo, decirlo."
+}

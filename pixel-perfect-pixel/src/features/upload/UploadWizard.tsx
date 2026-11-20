@@ -44,11 +44,13 @@ import {
   proponerKpisPerfil,
   publicarDocumento,
 } from "@/api/conocimiento";
+import { getCatalogoKpis } from "@/api/kpis";
 import { useAuth } from "@/features/auth/AuthContext";
 import type {
   DocumentoGenerado,
   DublinCore,
   EjecucionLimpieza,
+  KpiCatalogo,
   KpiPropuesto,
   MetadatosTipo,
   OrigenMetadato,
@@ -69,7 +71,7 @@ import { StepLimpieza } from "./StepLimpieza";
 import { StepDublinCore } from "./StepDublinCore";
 import { CAMPOS_POR_TIPO, StepMetadatosTipo } from "./StepMetadatosTipo";
 import { StepAprobacion } from "./StepAprobacion";
-import { StepKpis, type DecisionKpi } from "./StepKpis";
+import { StepKpis, type DecisionKpi, type KpiManual } from "./StepKpis";
 import { StepGuardar } from "./StepGuardar";
 
 const PASOS = [
@@ -120,13 +122,35 @@ function dublinCoreInicial(creador: string): DublinCore {
     tipo: "",
     fecha: new Date().toISOString().slice(0, 10),
     idioma: "es",
-    cobertura: "",
+    // Por ahora la carga solo admite instrumentos de licenciatura.
+    cobertura: "Licenciatura",
     coberturaDetalle: "",
     editor: "",
     derechos: "",
     formato: "",
     fuente: "",
     relacion: "",
+  };
+}
+
+/**
+ * Un KPI agregado a mano, en el formato de las sugerencias: sin puntaje ni evidencia (no lo infirió el sistema);
+ * su justificación dice que lo agregó el investigador.
+ */
+function kpiManual(m: KpiManual): KpiPropuesto {
+  return {
+    kpi_id: Number(m.kpi.id),
+    kpi_ref: `manual-${m.kpi.id}`,
+    nombre: m.kpi.nombre,
+    definicion: m.kpi.queEs,
+    que_mide: m.kpi.queMide,
+    dimension: "",
+    polaridad: "",
+    score: 0,
+    componentes: { g: 0, p: 0, c: 0 },
+    evidencia: [],
+    justificacion: "",
+    justificacion_origen: "plantilla",
   };
 }
 
@@ -140,6 +164,7 @@ export function UploadWizard() {
   const [paso, setPaso] = useState(0);
   const [archivo, setArchivo] = useState<File | null>(null);
   const [archivoOriginal, setArchivoOriginal] = useState<File | null>(null);
+  const [archivoDiccionario, setArchivoDiccionario] = useState<File | null>(null);
   const [tipo, setTipo] = useState<TipoInstrumento | null>(null);
   // Versión vigente de la limpieza (cleaning-service); se conserva al navegar entre pasos.
   const [limpieza, setLimpieza] = useState<EjecucionLimpieza | null>(null);
@@ -185,6 +210,9 @@ export function UploadWizard() {
   const [documento, setDocumento] = useState<DocumentoGenerado | null>(null);
   const [errorDocumento, setErrorDocumento] = useState<string | null>(null);
   const [decisiones, setDecisiones] = useState<Record<string, DecisionKpi>>({});
+  // KPIs que el investigador agrega del catálogo porque el sistema no los sugirió.
+  const [manuales, setManuales] = useState<KpiManual[]>([]);
+  const [catalogoKpis, setCatalogoKpis] = useState<KpiCatalogo[]>([]);
   const [confirmar, setConfirmar] = useState(false);
   const [guardando, setGuardando] = useState(false);
 
@@ -278,7 +306,22 @@ export function UploadWizard() {
     };
   }, [paso, documento, errorDocumento, idCrudo]);
 
-  const kpisAceptados = (sugeridos ?? []).filter((k) => decisiones[k.kpi_ref] === "aceptado");
+  const kpisAceptados = [
+    ...(sugeridos ?? []).filter((k) => decisiones[k.kpi_ref] === "aceptado"),
+    ...manuales.map(kpiManual),
+  ];
+
+  // El catálogo para agregar KPIs a mano se pide al llegar al paso de KPIs.
+  useEffect(() => {
+    if (paso !== 5 || catalogoKpis.length > 0) return;
+    let cancelado = false;
+    getCatalogoKpis().then((c) => {
+      if (!cancelado) setCatalogoKpis(c);
+    });
+    return () => {
+      cancelado = true;
+    };
+  }, [paso, catalogoKpis.length]);
 
   const etiquetas = useMemo(
     () => ({
@@ -313,6 +356,7 @@ export function UploadWizard() {
     setVersionKpis(null);
     setJustificaciones({});
     setDecisiones({});
+    setManuales([]);
     setDocumento(null);
     setErrorDocumento(null);
   }
@@ -323,7 +367,12 @@ export function UploadWizard() {
     try {
       if (paso === 0) {
         if (!archivo || !tipo) return;
-        const resultado = await subirInstrumento(archivo, tipo, archivoOriginal);
+        const resultado = await subirInstrumento(
+          archivo,
+          tipo,
+          archivoOriginal,
+          tipo === "Entrevista" ? null : archivoDiccionario,
+        );
         reiniciarMetadatos();
         setIdCrudo(resultado.idCrudo);
         setLimpieza(null);
@@ -362,6 +411,7 @@ export function UploadWizard() {
         setVersionKpis(null);
         setJustificaciones({});
         setDecisiones({});
+        setManuales([]);
         setDocumento(null);
         setErrorDocumento(null);
         if (resultado.ingesta.indexado) toast.success(resultado.mensaje);
@@ -369,18 +419,28 @@ export function UploadWizard() {
         setPaso(5);
         return;
       }
-      if (paso === 5 && idCrudo != null && versionKpis != null && (sugeridos ?? []).length > 0) {
+      if (
+        paso === 5 &&
+        idCrudo != null &&
+        versionKpis != null &&
+        ((sugeridos ?? []).length > 0 || manuales.length > 0)
+      ) {
         // Aceptados y rechazados quedan en la versión del conocimiento; los no decididos
-        // cuentan como rechazados (no se asocian).
-        await confirmarKpisPerfil(
-          idCrudo,
-          versionKpis,
-          (sugeridos ?? []).map((k) => ({
+        // cuentan como rechazados (no se asocian). Los agregados a mano van aceptados.
+        await confirmarKpisPerfil(idCrudo, versionKpis, [
+          ...(sugeridos ?? []).map((k) => ({
             kpi: k,
             aceptado: decisiones[k.kpi_ref] === "aceptado",
             justificacion: justificaciones[k.kpi_ref] ?? k.justificacion,
           })),
-        );
+          ...manuales.map((m) => ({
+            kpi: kpiManual(m),
+            aceptado: true,
+            justificacion: m.motivo.trim()
+              ? `Agregado manualmente por el investigador: ${m.motivo.trim()}`
+              : "Agregado manualmente por el investigador.",
+          })),
+        ]);
       }
       if (paso === 5 && idCrudo != null) {
         // Con KPIs nuevos, el documento final se vuelve a generar al entrar a «Guardar»,
@@ -483,6 +543,8 @@ export function UploadWizard() {
                 setIdCrudo(null);
               }}
               onArchivoOriginal={setArchivoOriginal}
+              archivoDiccionario={archivoDiccionario}
+              onArchivoDiccionario={setArchivoDiccionario}
               onTipo={(t) => {
                 setTipo(t);
                 setMeta({});
@@ -533,6 +595,13 @@ export function UploadWizard() {
               onDecidir={(id, d) => setDecisiones((prev) => ({ ...prev, [id]: d }))}
               justificaciones={justificaciones}
               onJustificar={(id, texto) => setJustificaciones((prev) => ({ ...prev, [id]: texto }))}
+              catalogo={catalogoKpis}
+              manuales={manuales}
+              onAgregarManual={(kpi) => setManuales((prev) => [...prev, { kpi, motivo: "" }])}
+              onQuitarManual={(id) => setManuales((prev) => prev.filter((m) => m.kpi.id !== id))}
+              onMotivoManual={(id, motivo) =>
+                setManuales((prev) => prev.map((m) => (m.kpi.id === id ? { ...m, motivo } : m)))
+              }
             />
           )}
           {paso === 6 && (

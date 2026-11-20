@@ -1,0 +1,57 @@
+{
+ "id": "CET-06",
+ "instrumento": "ent_control",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Qué respondió el participante E99?",
+   "rag_log_id": 3865,
+   "respuesta": "Respuestas interpretadas de E01 (el primero por número de respondente (de 40)). [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Edad | 23 |\n| Contexto: GPA | 3.33 |\n| Contexto: Género | masculino |\n| Contexto: Horas trabajo/semana | 3 |\n| Contexto: Perfil | P2 — Promedio comprometido |\n| Contexto: Semestre | 3 |\n| Contexto: Universidad | publica |\n| p01 «¿Qué factores consideras que han sido fundamentales para continuar tus» | Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. |\n| p02 «¿Has pensado alguna vez en abandonar la universidad? ¿Qué te llevó a t» | No soy el mejor estudiante, pero me esfuerzo. Hay materias que se me complican más que otras, pero intento no rendirme. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p03 «¿De qué manera el apoyo familiar ha influido en tu permanencia en la i» | El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p04 «¿Qué servicios de apoyo institucional (tutorías, becas, orientación) h» | Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p05 «¿Cómo has manejado las dificultades económicas durante tu trayectoria » | Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. |\n| p06 «¿Qué rol ha jugado la relación con tus profesores en tu decisión de co» | Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p07 «¿Cómo ha impactado el trabajo en tu desempeño y permanencia académica?» | El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. |\n| p08 «¿Qué cambiarías de los servicios de apoyo universitario para mejorar l» | El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. |\n| p09 «¿Cómo describirías tu nivel de motivación en diferentes momentos de tu» | Los videos de YouTube me han ayudado bastante cuando no entiendo los temas de clase. Es un recurso que uso mucho. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p10 «¿Has tenido que interrumpir tus estudios temporalmente? ¿Qué sucedió?» | El apoyo de mis compañeros también ha sido clave. Estudiar en grupo me ayuda cuando el material es complicado. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. |\n| p11 «¿Qué estrategias personales has desarrollado para mantenerte en la uni» | Hubo un semestre en que casi abandono, pero el orientador me ayudó a reorganizarme y seguí adelante. Los compañeros de clase son un apoyo fundamental que muchas veces se subestima. He aprendido que pedir ayuda no es una debilidad, sino una estrategia inteligente. |\n| p12 «¿Qué mensaje darías a un estudiante que está pensando en desertar?» | Ha habido momentos difíciles, especialmente en los primeros semestres. Lo que me ha mantenido es el apoyo de mi familia y algunos profesores que han sido muy comprensivos. Aunque no siempre es fácil, trato de mantenerme enfocado/a en mis metas. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "datos_respondente"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "datos_respondente"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "estructurada",
+   "motivo": "plan:datos_respondente:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 20.0,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 12028,
+    "recuperacion": 268,
+    "verificacion": 2928,
+    "interpretacion": 7627
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No existe; decir cuántos participantes hay."
+}

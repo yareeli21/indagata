@@ -1,0 +1,67 @@
+{
+ "id": "CPR-01",
+ "instrumento": "pru_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opción eligieron más en el reactivo del alpha de Cronbach?",
+   "rag_log_id": 3958,
+   "respuesta": "No encontré esa condición en «Prueba de Competencia en Investigación Científica». En r07 («El coeficiente alpha de Cronbach mide:») las opciones que sí existen son estas:\n\n**Distribución de r07 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| A) La validez del instrumento | 35 | 43.8 % |\n| B) La confiabilidad de una escala de medición | 5 | 6.2 % |\n| C) La correlación entre dos variables | 25 | 31.2 % |\n| D) El tamaño de la muestra | 15 | 18.8 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r07"
+    ],
+    "aclaracion": "No encontré esa condición en «Prueba de Competencia en Investigación Científica». En r07 («El coeficiente alpha de Cronbach mide:») las opciones que sí existen son estas:"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "op": ">",
+      "valor": "B",
+      "pregunta": "r07"
+     }
+    ],
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro r07 = «B» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "lo que pide no existe en el instrumento: se responde con lo que sí hay"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:no_existe",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 15.6,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "recuperacion": 436,
+    "interpretacion": 15102
+   },
+   "k_precision": 0.879,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución del reactivo con la opción más elegida y su %, sin decir si es correcta."
+}

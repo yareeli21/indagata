@@ -21,7 +21,7 @@ class InstrumentoCatalogo(BaseModel):
     id: str
     titulo: str
     tipo: TipoInstrumento
-    nivel: Literal["Licenciatura", "Posgrado"]
+    nivel: Literal["Licenciatura"] = "Licenciatura"  # todo el acervo es de licenciatura (16 nov)
     autorId: str
     anio: int
     fecha: str
@@ -96,7 +96,7 @@ class RelacionadosRequest(BaseModel):
 
 
 class RazonOut(BaseModel):
-    tipo: Literal["kpi", "nivel", "descripcion"]
+    tipo: Literal["kpi", "descripcion"]
     etiqueta: str
 
 
@@ -213,8 +213,14 @@ class IndexResponse(BaseModel):
 class ContextoInvestigacion(BaseModel):
     objetivo: str = ""
     poblacion: str = ""
-    nivel: str = ""
+    nivel: str = "Licenciatura"
     pregunta: str = ""
+
+    @field_validator("nivel", mode="before")
+    @classmethod
+    def _solo_licenciatura(cls, _valor: Any) -> str:
+        # Todo el acervo es de licenciatura (16 nov): las sesiones guardadas con otro nivel también lo usan.
+        return "Licenciatura"
 
 
 class MensajeHistorial(BaseModel):
@@ -264,6 +270,22 @@ class InterpretarOut(BaseModel):
     ms_ejecucion: int = 0
 
 
+class PasajeOut(BaseModel):
+    """Un fragmento del instrumento que se le dio al modelo para responder (trazabilidad de la fuente).
+
+    `chunkIndex` es su posición en el documento indexado: con él la UI abre
+    `GET /visualizacion/instrumentos/{id}/documento` justo en ese punto.
+    """
+
+    seccion: str  # encabezado | pregunta | respondente | reactivo | alumno | intercambio | kpi | contenido
+    etiqueta: str  # «Ficha», «Pregunta p04», «Respondente R017 · p04»…
+    texto: str  # el fragmento tal como está en el documento indexado
+    score: float | None = None  # similitud con la pregunta (None: se agregó sin búsqueda, p. ej. la ficha)
+    chunkIndex: int | None = None
+    preguntaId: str = ""
+    respondenteId: str = ""
+
+
 class FuenteChatOut(BaseModel):
     numero: int  # el n de las citas [Fuente n] de la respuesta
     instrumentoId: str
@@ -272,6 +294,31 @@ class FuenteChatOut(BaseModel):
     investigador: str
     kpis: list[str]
     fragmento: str
+    pasajes: list[PasajeOut] = []  # de dónde se recuperó la información, en orden de similitud
+    # La mayor similitud de este instrumento con la pregunta (0–1), aunque la respuesta sea un cálculo sin pasajes.
+    similitud: float | None = None
+
+
+class FragmentoDocumentoOut(BaseModel):
+    chunkIndex: int
+    seccion: str
+    etiqueta: str
+    texto: str
+    preguntaId: str = ""
+    respondenteId: str = ""
+
+
+class DocumentoFuenteOut(BaseModel):
+    """Un tramo del documento indexado de un instrumento (lo que el RAG puede recuperar), en orden."""
+
+    instrumentoId: str
+    titulo: str
+    tipo: str
+    origen: str  # documento (documento final vigente) | json_tecnico
+    total: int  # fragmentos del documento completo
+    desde: int
+    hasta: int  # exclusivo
+    fragmentos: list[FragmentoDocumentoOut]
 
 
 class ReferenciaChatOut(BaseModel):
@@ -296,6 +343,44 @@ class ChatResponse(BaseModel):
     enCache: bool = False  # se reutilizó la respuesta guardada de una consulta idéntica
 
 
+class FragmentoRecuperadoOut(BaseModel):
+    """Un fragmento que llegó a la respuesta y cómo lo encontró la búsqueda (services/metricas_respuesta.py)."""
+
+    etiqueta: str
+    instrumentoId: str = ""
+    similitud: float | None = None  # coseno del embedding con la pregunta
+    coincidencia: float | None = None  # proporción de las palabras de la pregunta que contiene
+    rangoSemantico: int | None = None  # lugar en la búsqueda por significado (None: no apareció)
+    rangoPalabras: int | None = None  # lugar en la búsqueda por palabras
+    paso: Literal["significado", "palabras", "ambos", "contexto"]
+
+
+class RecuperacionOut(BaseModel):
+    modo: Literal["hibrida", "semantica"]
+    umbral: float
+    coberturaMinima: float
+    similitudMaxima: float | None = None
+    similitudPromedio: float | None = None
+    fragmentos: list[FragmentoRecuperadoOut] = []
+
+
+class FundamentacionOut(BaseModel):
+    """Oraciones de la respuesta respaldadas por lo recuperado (fidelidad sin juez)."""
+
+    oraciones: int
+    respaldadas: int | None = None
+    proporcion: float | None = None
+    sinRespaldo: list[str] = []
+
+
+class CitasOut(BaseModel):
+    oraciones: int
+    conCita: int
+    proporcion: float | None = None
+    fuentesCitadas: list[int] = []
+    citasInvalidas: list[int] = []
+
+
 class IndicadoresOut(BaseModel):
     """Indicadores del sistema de una respuesta: deterministas, sin juez (services/indicadores.py)."""
 
@@ -318,6 +403,10 @@ class IndicadoresOut(BaseModel):
     latenciaMs: int | None = None
     comoSeCalculo: list[str] = []  # criterio de cada cálculo («Cómo lo calculé»)
     ajustes: list[str] = []  # lo que se corrigió del plan del modelo
+    # «Ver métricas» (11 nov): recuperación, fundamentación y citas de la respuesta, sin juez.
+    recuperacion: RecuperacionOut | None = None
+    fundamentacion: FundamentacionOut | None = None
+    citas: CitasOut | None = None
 
 
 class JuezOut(BaseModel):
@@ -329,6 +418,36 @@ class JuezOut(BaseModel):
     relevancia: float | None = None
     precisionContexto: float | None = None
     fecha: datetime | None = None
+
+
+class JuezFableOut(BaseModel):
+    """Evaluación de una respuesta por el juez Claude Fable 5.2: seis métricas tipo RAGAS (services/juez_fable.py).
+
+    `sensibilidadRuido` es la única donde MENOR es mejor. Recuerdo, ruido y corrección factual se comparan contra una
+    respuesta de referencia que escribe el mismo juez sin ver la del sistema (`respuestaReferencia`).
+    """
+
+    modelo: str
+    modeloReal: str | None = None  # el que juzgó de verdad (distinto si Fable declinó y respondió el respaldo)
+    fallback: bool = False
+    estado: Literal["calculando", "listo", "omitida", "error"]
+    motivo: str | None = None
+    fecha: datetime | None = None
+    precisionContexto: float | None = None
+    recuerdoContexto: float | None = None
+    fidelidad: float | None = None
+    relevancia: float | None = None
+    sensibilidadRuido: float | None = None
+    correccionFactual: float | None = None
+    correccionPrecision: float | None = None
+    correccionRecuerdo: float | None = None
+    noSustentadas: list[str] = []  # afirmaciones de la respuesta sin respaldo en lo recuperado
+    incorrectas: list[str] = []  # afirmaciones de la respuesta que la referencia no respalda
+    respuestaReferencia: str | None = None
+    afirmacionesReferencia: list[str] = []
+    referenciaNoCubierta: list[int] = []  # números (1..n) de afirmaciones de referencia que la respuesta omitió
+    origenReferencia: str | None = None  # contexto_ampliado | solo_contexto_usado
+    preguntasGeneradas: list[str] = []
 
 
 class CalificacionIn(BaseModel):
@@ -359,6 +478,7 @@ class MetricasConsultaOut(BaseModel):
     fecha: datetime | None = None
     indicadores: IndicadoresOut | None = None
     jueces: list[JuezOut] = []
+    juezFable: JuezFableOut | None = None
     calificacion: CalificacionOut | None = None
 
 

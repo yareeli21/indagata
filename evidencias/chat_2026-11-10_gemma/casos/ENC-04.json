@@ -1,0 +1,91 @@
+{
+ "id": "ENC-04",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos calificaron con 1 o 2 los laboratorios y equipos?",
+   "rag_log_id": 3158,
+   "respuesta": "721 de los 1911 que respondieron p17 (37.7 %) cumplen el criterio: p17 «Los laboratorios, equipos, materiales y espacios de la institución son» nivel bajo y p17 «Los laboratorios, equipos, materiales y espacios de la institución son» nivel bajo. Sobre el total del instrumento son 721 de 2000 respondentes (36.0 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "nivel": "bajo",
+      "pregunta": "p17"
+     },
+     {
+      "nivel": "bajo",
+      "pregunta": "p17"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "nivel": "bajo",
+      "pregunta": "p17"
+     },
+     {
+      "nivel": "bajo",
+      "pregunta": "p17"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.6336
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.6267
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.6097
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.5527
+    }
+   ],
+   "segundos": 44.0,
+   "tiempos_ms": {
+    "ejecucion": 182,
+    "redaccion": 15175,
+    "recuperacion": 301,
+    "verificacion": 0,
+    "interpretacion": 28336
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Sumar ambos valores de la escala y explicarlo como desacuerdo."
+}

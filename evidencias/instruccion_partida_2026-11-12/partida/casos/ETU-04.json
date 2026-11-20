@@ -1,0 +1,58 @@
+{
+ "id": "ETU-04",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opina de que solo den tres sesiones?",
+   "rag_log_id": 4157,
+   "respuesta": "Criterio: por p11 «Si pudieras cambiar algo de los servicios de salud mental de la univer». [Fuente 1]\n\nEs el testimonio de una sola persona (E01); no permite generalizar a otros estudiantes.\n\n**Comparación por p11 «Si pudieras cambiar algo de los servicios de salud mental de la univer» [Fuente 1]**\n| Grupo | Personas |\n|---|---|\n| Primero, que hubiera más sicólogos, porque me dijeron que solo hay dos para todo el plantel. Segundo, que se pudiera pedir la cita en línea y no solo por correo. También que el consultorio estuviera en un lugar más discreto y que dieran más de tres sesiones cuando la persona lo necesita. Y que los talleres de manejo de estrés fueran en la tarde, porque los que trabajamos no podemos ir en la mañana. | 1 |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "p11"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "p11"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:cita_inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Salud mental entrevista"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.5517
+    }
+   ],
+   "segundos": 20.9,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 14604,
+    "recuperacion": 363,
+    "verificacion": 3948,
+    "interpretacion": 5901
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta de cómo valora la atención, con cita."
+}

@@ -1,0 +1,55 @@
+{
+ "id": "PRU-08",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la sección de verdadero/falso con la de competencias básicas en cantidad de respuestas en blanco",
+   "rag_log_id": 3660,
+   "respuesta": "La sección \"SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS\" tiene 99 respuestas en blanco o nulas, mientras que la sección \"SECCIÓN: VERDADERO O FALSO DIGITAL\" tiene solo 4 respuestas en blanco o nulas. Esto significa que el 10.2% de las respuestas posibles de esta sección fueron en blanco o nulas, mientras que solo el 0.6% de la sección \"VERDADERO O FALSO DIGITAL\" lo fue.\n\nEn otras palabras, la sección \"COMPETENCIAS DIGITALES BÁSICAS\" tiene una mucha más cantidad de respuestas en blanco o nulas que la sección \"VERDADERO O FALSO DIGITAL\".\n\n**Respuestas en blanco o nulas por sección [Fuente 1]**\n| Sección | Reactivos | En blanco o nulas | % de sus respuestas |\n|---|---|---|---|\n| SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS | 10 | 99 | 10.2 % |\n| SECCIÓN: VERDADERO O FALSO DIGITAL | 7 | 4 | 0.6 % |\n| SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE) | 5 | 3 | 0.6 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "seccion"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r11"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar por sección (respuestas en blanco o nulas)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "estructurada",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 16.8,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 5811,
+    "recuperacion": 468,
+    "verificacion": 1,
+    "interpretacion": 10482
+   },
+   "k_precision": 0.93,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "% de NR por sección con su número de reactivos."
+}

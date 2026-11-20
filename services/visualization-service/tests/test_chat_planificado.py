@@ -371,7 +371,9 @@ def test_cita_textual_que_la_persona_no_dijo_se_descarta(entrevista):
     entrevista["redaccion"] = "E02 dijo: «la biblioteca es mi lugar favorito para estudiar» (p02) [Fuente 1]."
     datos, fila = entrevista["preguntar"]("¿Qué servicios usas?", ["3"])
     assert fila.plan["verificacion"]["primer_fallo"] == "cita_inventada"
-    assert datos["respuesta"].startswith("Respuestas interpretadas de E02")
+    # El respaldo cita lo que la persona sí respondió en la pregunta recuperada (12 nov, consulta 4046).
+    assert datos["respuesta"].startswith("Lo que respondió E02 en las preguntas más relacionadas")
+    assert "- E02 en p02" in datos["respuesta"] and "La biblioteca" in datos["respuesta"]
     entrevista["redaccion"] = "E02 respondió «La evaluación es con proyectos y rúbricas claras» (p01) [Fuente 1]."
     _, fila = entrevista["preguntar"]("¿Cómo te evalúan tus profesores?", ["3"])
     assert fila.plan["verificacion"]["resultado"] == "aceptada"
@@ -522,3 +524,14 @@ def test_entrevista_de_una_persona_avisa_que_no_se_generaliza(entrevista, db, st
     assert "Es el testimonio de una sola persona (E02); no permite generalizar" in datos["respuesta"]
     datos, _ = entrevista["preguntar"]("¿Qué servicios usa E02?", ["5"])  # pide un dato: sin nota
     assert "testimonio de una sola persona" not in datos["respuesta"]
+
+
+def test_tabla_copiada_se_quita_y_el_parrafo_se_verifica(entrevista):
+    """Consulta 4047: el párrafo era correcto, pero el modelo agregó una tabla y se descartaba toda la redacción."""
+    entrevista["plan"] = {"intencion": "datos_respondente", "respondentes": ["E02"], "campos": ["p01"]}
+    entrevista["redaccion"] = ("E02 cuenta que la evaluación es con proyectos y rúbricas claras [Fuente 1].\n\n"
+                               "| Pregunta | Respuesta |\n| --- | --- |\n| p01 | La evaluación es con proyectos. |")
+    datos, fila = entrevista["preguntar"]("¿Cómo te evalúan tus profesores?", ["3"])
+    assert fila.plan["verificacion"]["resultado"] == "aceptada"
+    assert datos["respuesta"].startswith("E02 cuenta que la evaluación")
+    assert "| Pregunta | Respuesta |" not in datos["respuesta"].split("**")[0]

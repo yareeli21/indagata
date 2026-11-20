@@ -1,0 +1,55 @@
+{
+ "id": "PRU-18",
+ "instrumento": "pru",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿De qué trata esta prueba y qué explora?",
+   "rag_log_id": 2862,
+   "respuesta": "Esta prueba se llama Prueba de Alfabetización Digital y tiene como objetivo conocer si los estudiantes del sexto semestre, específicamente aquellos en la carrera 6BM13 del nivel de licenciatura en la UAM, han estado familiarizados con conceptos básicos relacionados con las tecnologías emergentes actuales. La prueba estandarizada consta de 22 reactivos divididos en tres secciones: Competencias Digitales Básicas, Verdadero o Falso Digital y Ordenamiento y Emparejamiento (en formato de opción múltiple). Explora temas como alfabetización digital en estudiantes, competencias digitales básicas, seguridad en internet, herramientas de colaboración digital, conceptos de cloud computing y derechos de autor digitales. La prueba fue aplicada a 97 alumnos. [Fuente 1]",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.3776
+    }
+   ],
+   "segundos": 32.0,
+   "tiempos_ms": {
+    "redaccion": 31661,
+    "recuperacion": 161,
+    "verificacion": 2
+   },
+   "k_precision": 0.821,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Síntesis en prosa: tema, 3 secciones y sus temas."
+}

@@ -1,0 +1,83 @@
+{
+ "id": "ENC-01",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos estudiantes trabajan en un área relacionada con su carrera?",
+   "rag_log_id": 3609,
+   "respuesta": "500 de los 1946 que respondieron p12 (25.7 %) cumplen el criterio: p12 «¿Cuál es tu situación laboral actual?» = «Trabajo en un area relacionada con mi carrera». Sobre el total del instrumento son 500 de 2000 respondentes (25.0 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Trabajo en un area relacionada con mi carrera",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Trabajo en un area relacionada con mi carrera",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.6106
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.6014
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.59
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.5873
+    }
+   ],
+   "segundos": 18.6,
+   "tiempos_ms": {
+    "ejecucion": 197,
+    "redaccion": 6236,
+    "recuperacion": 572,
+    "verificacion": 0,
+    "interpretacion": 11485
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta de situación laboral; número y % sobre el total."
+}

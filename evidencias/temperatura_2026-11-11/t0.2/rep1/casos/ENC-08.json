@@ -1,0 +1,68 @@
+{
+ "id": "ENC-08",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la opinión sobre laboratorios y equipos entre modalidad presencial y en línea",
+   "rag_log_id": 3993,
+   "respuesta": "Los estudiantes de programas presenciales tienen una opinión más positiva sobre la adecuación de laboratorios y equipos para su formación que los estudiantes de programas en línea. Mientras que el 33.6% de los estudiantes de programas presenciales considera que los laboratorios y equipos son adecuados (p02: «3 en escala 1–5»), solo el 31.3% de los estudiantes de programas en línea comparte esta opinión (p02: «3 en escala 1–5»). Además, un 8.2% más de estudiantes presenciales considera que los laboratorios y equipos son \"totalmente adecuados\" para su formación (p02: «Totalmente de acuerdo») que los estudiantes en línea (p02: «Totalmente de acuerdo»).\n\nLa diferencia principal entre las opiniones se refleja en la escala de respuesta, ya que el 33.6% de los estudiantes presenciales seleccionó la puntuación más alta (3 en escala 1–5), mientras que solo el 31.3% de los estudiantes en línea lo hizo.\n\n**Comparación por p02 «¿En qué modalidad cursas tu programa?» [Fuente 1]**\n| Grupo | Personas | p17: respuestas del grupo |\n|---|---|---|\n| En linea | 263 | media 2.97; «2 en escala 1–5» 81 (31.3 %); «3 en escala 1–5» 74 (28.6 %); «4 en escala 1–5» 60 (23.2 %); «Totalmente de acuerdo» 25 (9.7 %); «Totalmente en desacuerdo» 19 (7.3 %) |\n| Mixta/hibrida | 435 | media 3.01; «2 en escala 1–5» 128 (31.4 %); «3 en escala 1–5» 115 (28.3 %); «4 en escala 1–5» 87 (21.4 %); «Totalmente de acuerdo» 50 (12.3 %); «Totalmente en desacuerdo» 27 (6.6 %) |\n| Presencial | 1251 | media 2.92; «3 en escala 1–5» 402 (33.6 %); «2 en escala 1–5» 359 (30.0 %); «4 en escala 1–5» 247 (20.7 %); «Totalmente de acuerdo» 98 (8.2 %); «Totalmente en desacuerdo» 90 (7.5 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p17",
+     "p02"
+    ],
+    "aclaracion": "¿Cuál es la opinión sobre laboratorios y equipos entre modalidad presencial y en línea?",
+    "agrupar_por": "p02"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p17",
+     "p02"
+    ],
+    "aclaracion": "¿Cuál es la opinión sobre laboratorios y equipos entre modalidad presencial y en línea?",
+    "agrupar_por": "p02"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p17",
+     "score": 0.5948
+    }
+   ],
+   "segundos": 33.9,
+   "tiempos_ms": {
+    "ejecucion": 49,
+    "redaccion": 21248,
+    "recuperacion": 847,
+    "verificacion": 7323,
+    "interpretacion": 11692
+   },
+   "k_precision": 0.82,
+   "cifras_con_respaldo": [
+    42,
+    42
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Dos grupos con su n y su media o distribución, sin concluir causas."
+}

@@ -1,0 +1,69 @@
+{
+ "id": "PRU-04",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos dejaron al menos un reactivo sin responder?",
+   "rag_log_id": 3781,
+   "respuesta": "97 de 97 respondentes (100.0 %) cumplen el criterio: dejaron alguna pregunta sin responder. [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "con_omisiones": true
+   },
+   "plan_modelo": {
+    "intencion": "conteo_porcentaje",
+    "preguntas": [
+     "r11",
+     "r13",
+     "r15"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "personas que dejaron alguna pregunta sin responder"
+   ],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "alumno",
+     "etiqueta": "A047",
+     "score": 0.6002
+    },
+    {
+     "seccion": "alumno",
+     "etiqueta": "A007",
+     "score": 0.5849
+    }
+   ],
+   "segundos": 18.0,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 5074,
+    "recuperacion": 486,
+    "verificacion": 0,
+    "interpretacion": 12365
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Contar alumnos con NR, no mostrar a un solo alumno."
+}

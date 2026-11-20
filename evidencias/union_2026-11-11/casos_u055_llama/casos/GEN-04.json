@@ -1,0 +1,33 @@
+{
+ "id": "GEN-04",
+ "instrumento": "enc",
+ "categoria": "cortesia",
+ "turnos": [
+  {
+   "pregunta": "¿Qué carrera me recomiendas estudiar?",
+   "rag_log_id": 3847,
+   "respuesta": "No doy consejos ni recomendaciones personales: soy una herramienta de investigación sobre los instrumentos cargados. Estás trabajando con «Indicadores de Experiencia y Calidad Académica» (encuesta). Lo que sí puedo hacer es consultar sus datos.\n\nPor ejemplo, puedes preguntarme:\n- ¿Cuántos respondieron «No lo se» en «Tu programa académico cuenta con acreditación vigente (COP…»?\n- ¿Cuántos respondieron «Diariamente» en «Con qué frecuencia usas alguna plataforma virtual (Moodle,…»?\n- ¿Qué es lo más preocupante de los resultados de «Indicadores de Experiencia y Calidad Académica»?",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "regla:consejo",
+   "plantilla": "consejo",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.1,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No da consejos; redirigir a la investigación."
+}

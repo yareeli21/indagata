@@ -1,0 +1,41 @@
+{
+ "id": "ENC-22",
+ "instrumento": "enc",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos estudiantes cursan en modalidad nocturna?",
+   "rag_log_id": 2301,
+   "respuesta": "«Indicadores de Experiencia y Calidad Académica» no registra «nocturna». En p02 («¿En qué modalidad cursas tu programa?») las opciones son: Presencial, Mixta/hibrida, En linea.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Indicadores de Experiencia y Calidad Académica» no registra «nocturna». En p02 («¿En qué modalidad cursas tu programa?») las opciones son: Presencial, Mixta/hibrida, En linea."
+   },
+   "correcciones": [
+    "filtro p02 = «Mixta/hibrida» descartado (la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 30.9,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "recuperacion": 243,
+    "interpretacion": 30597
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    1
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "no me dio lo que le pedí"
+  }
+ ],
+ "debe": "«No existe esa modalidad» y las existentes con sus conteos."
+}

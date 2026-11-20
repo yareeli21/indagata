@@ -1,0 +1,108 @@
+{
+ "id": "PRU-17",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué reactivos convendría revisar por cómo se respondieron?",
+   "rag_log_id": 3211,
+   "respuesta": "Con base en los resultados de la Prueba de Alfabetización Digital, los reactivos que convendría revisar son r09 y r20. [Fuente 1] indica que el reactivo r09 (¿Cuál de los siguientes es un criterio para evaluar la confiabilidad de una fuente en internet?) tuvo una opción más elegida con un 57.7% de respuestas, donde la opción B (“La autoridad del autor y la fecha de publicación”) fue la más frecuente (n=56). Sin embargo, el 29.9% restante eligió la opción C (“El diseño visual del sitio web”). Esto sugiere que existe una necesidad de revisar cómo los estudiantes evalúan la confiabilidad de las fuentes en internet, ya que la opción elegida como más correcta no fue la opción más votada.\n\nRespecto al reactivo r20 (¿Qué herramienta corresponde mejor al propósito de gestionar referencias bibliográficas?), el 77.3% de los alumnos seleccionó la opción B (“Zotero o Mendeley”), lo cual indica una buena comprensión del uso de estas herramientas. No obstante, el 13.4% restante eligió la opción D (“Photoshop”), lo que sugiere que podría ser necesario revisar si los estudiantes comprenden adecuadamente las herramientas disponibles para la gestión de referencias bibliográficas.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": "{\"intencion\": \"ranking_preguntas\", \"filtros\": [{\"pregunta\": \"r01\"}, {\"pregunta\": \"r02\"}, {\"pregunta\": \"r03\"}, {\"pregunta\": \"r04\"}, {\"pregunta\": \"r05\"}]}",
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": "clasificador: Relacionado con encuestas y análisis de respuestas.",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4548
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4433
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4401
+    }
+   ],
+   "segundos": 61.9,
+   "tiempos_ms": {
+    "ejecucion": 0,
+    "recuperacion": 185,
+    "interpretacion": 18450
+   },
+   "k_precision": 0.593,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué?",
+   "rag_log_id": 3212,
+   "respuesta": "- r10 «¿Qué es una contraseña segura?» tiene 97 respuestas nulas o vacías de 97 alumnos (100.0 %).\n- El reactivo donde más alumnos coinciden es r11 «El correo electrónico es siempre un canal seguro para enviar información confidencial.»: el 83.5 % eligió «Verdadero».\n- El reactivo con las respuestas más repartidas es r01 «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?»: la opción más elegida solo reúne el 30.9 %. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.3474
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.3216
+    }
+   ],
+   "segundos": 68.5,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 61669,
+    "recuperacion": 320,
+    "verificacion": 29655,
+    "interpretacion": 6489
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Criterios sin calificar: muchas NR, muchas inválidas, muy repartidas o redacción confusa."
+}

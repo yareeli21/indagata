@@ -1,0 +1,73 @@
+{
+ "id": "CEN-02",
+ "instrumento": "enc_control",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Los que no trabajan dejan menos tareas para el último momento que los que trabajan más de 30 horas?",
+   "rag_log_id": 2520,
+   "respuesta": "Según la Encuesta de Carga Académica y Gestión del Tiempo, los estudiantes de los últimos 20 puestos (25.0% de quienes responden) reportan “Raramente” o “Nunca” dejar tareas para el último momento, con una media de 2.75 en la pregunta p10, mientras que los estudiantes de los primeros 20 puestos (25.0% de quienes responden) indican “Siempre” o “A veces” dejar tareas para el último momento, con una media de 3.3 en la pregunta p10. Además, entre los últimos 20 puestos, el 45.0% reporta trabajar más de 30 horas semanales, mientras que entre los primeros 20 puestos, solo el 10.0% indica esta carga laboral [Fuente 1].\n\n**Comparación por posición (primeros 20 y últimos 20) [Fuente 1]**\n| Grupo | Personas | p10: respuestas del grupo | p14: respuestas del grupo |\n|---|---|---|---|\n| Primeros 20 | 20 | media 3.3; «Siempre» 5 (25.0 %); «A veces» 5 (25.0 %); «Raramente» 4 (20.0 %); «Frecuentemente» 4 (20.0 %); «Nunca» 2 (10.0 %) | «Trabajo 20-30h» 10 (50.0 %); «No trabajo» 6 (30.0 %); «Trabajo menos de 20h semanales» 2 (10.0 %); «Trabajo más de 30h» 2 (10.0 %) |\n| Últimos 20 | 20 | media 2.75; «Raramente» 6 (30.0 %); «Nunca» 5 (25.0 %); «Siempre» 4 (20.0 %); «Frecuentemente» 3 (15.0 %); «A veces» 2 (10.0 %) | «Trabajo más de 30h» 9 (45.0 %); «No trabajo» 5 (25.0 %); «Trabajo 20-30h» 4 (20.0 %); «Trabajo menos de 20h semanales» 2 (10.0 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "limite": 20,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p10",
+     "p14"
+    ],
+    "agrupar_por": "posicion"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5989
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.5962
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.5862
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p10",
+     "score": 0.5637
+    }
+   ],
+   "segundos": 50.7,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 31044,
+    "recuperacion": 295,
+    "verificacion": 1,
+    "interpretacion": 19226
+   },
+   "k_precision": 0.898,
+   "cifras_con_respaldo": [
+    16,
+    16
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruce de dos preguntas, cada grupo con su n y %."
+}

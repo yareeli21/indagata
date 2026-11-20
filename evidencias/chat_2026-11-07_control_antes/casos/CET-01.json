@@ -1,0 +1,48 @@
+{
+ "id": "CET-01",
+ "instrumento": "ent_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos participantes mencionan a su familia como apoyo?",
+   "rag_log_id": 2386,
+   "respuesta": "Criterio: mencionan «familia como apoyo» en sus respuestas abiertas.\nCumplen la condición 0 de 40 respondentes (0.0 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "menciona": "familia como apoyo",
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "menciones de «familia como apoyo» en las respuestas abiertas"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:conteo_porcentaje:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 31.7,
+   "tiempos_ms": {
+    "ejecucion": 26,
+    "recuperacion": 244,
+    "interpretacion": 31391
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Conteo de participantes con citas de ejemplo."
+}

@@ -1,0 +1,171 @@
+{
+ "id": "ENT-15",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cómo se enteró de los servicios de apoyo?",
+   "rag_log_id": 3239,
+   "respuesta": "E01 en p03 respondió que se enteró de los servicios de apoyo psicológico a través de una compañera en el tercer semestre, después de no haber tenido conocimiento previo de su existencia. Según sus datos registrados, la información fue mencionada brevemente durante la inducción del primer semestre, pero no quedó grabada en su memoria [Fuente 1].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p03 «¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cóm» | Sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía. Me enteré bien hasta tercer semestre, cuando una compañera me dijo que ella iba al departamento de orientación. En la inducción de primer semestre lo mencionaron muy rápido, entre muchas otras cosas, y no se me quedó. |\n| p10 «¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo b» | Ehm, Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación. Algunos no saben que existe y otros piensan lo mismo que yo pensaba, que es solo para casos muy graves. Un compañero dejó de venir a mitad del semestre y nadie supo bien qué le pasó. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p03",
+     "p10"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "plan_modelo": {
+    "campos": [
+     "p03"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "RAG: se agregó p10 (intercambio más parecido a la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6757
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6662
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.6531
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.551
+    }
+   ],
+   "segundos": 47.6,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 22303,
+    "recuperacion": 372,
+    "verificacion": 1,
+    "interpretacion": 24893
+   },
+   "k_precision": 0.891,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Eso qué dice sobre la difusión de los servicios?",
+   "rag_log_id": 3240,
+   "respuesta": "Los siguientes hallazgos se pueden identificar en relación a la difusión de los servicios de apoyo psicológico:\n\n*   **Conocimiento limitado y tardío:** El conocimiento de los servicios fue limitado y llegó tardíamente para E01. Se manifestó en p10: “Ehm, Sí, varios. pero casi nadie va a orientación.” [Fuente 1]\n*   **Falta de comunicación durante la inducción:** La información sobre los servicios no quedó grabada en la mente de E01 después de ser mencionada brevemente durante la inducción del primer semestre. Se indica en p03: “Sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía. Me enteré bien hasta tercer semestre, cuando una compañera me dijo que ella iba al departamento de orientación.” [Fuente 1]\n*   **Dependencia de fuentes externas:** La principal vía de acceso a la información sobre los servicios fue a través de compañeros, evidenciado en p03: “Sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía. Me enteré bien hasta tercer semestre, cuando una compañera me dijo que ella iba al departamento de orientación.” [Fuente 1]\n*   **Percepción de la información como poco relevante:** E01 percibió la información sobre los servicios como breve y poco destacada durante la inducción del primer semestre, lo que contribuyó a su falta de recuerdo. Se expresa en p03: “Sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía. Me enteré bien hasta tercer semestre, cuando una compañera me dijo que ella iba al departamento de orientación.” [Fuente 1]\n*   **Necesidad de canales de comunicación más efectivos:** E01 sugiere la necesidad de canales de comunicación más eficaces, como la posibilidad de solicitar citas en línea y tener un consultorio en un lugar más discreto. Se expresa en p11: “Primero, que hubiera más psicólogos, porque me dijeron que solo hay dos para todo el plantel. Segundo, que se pudiera pedir la cita en línea y no solo por correo.” [Fuente 1]\n\nEs el testimonio de una sola persona (E01); no permite generalizar a otros estudiantes.",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Qué dice específicamente sobre la difusión de los servicios?"
+   },
+   "plan_modelo": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Qué dice específicamente sobre la difusión de los servicios?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.4108
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.3746
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.3724
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p04",
+     "score": 0.355
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.3511
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.3336
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.3311
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.3244
+    }
+   ],
+   "segundos": 81.1,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 72083,
+    "recuperacion": 342,
+    "verificacion": 3,
+    "interpretacion": 8589
+   },
+   "k_precision": 0.669,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) interpretación marcada como tal, aclarando que viene de una sola persona."
+}

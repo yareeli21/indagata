@@ -1,0 +1,82 @@
+{
+ "id": "ENC-12",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Quienes usan una plataforma virtual a diario califican mejor la biblioteca que quienes la usan menos de una vez al mes?",
+   "rag_log_id": 3757,
+   "respuesta": "Las personas que usan una plataforma virtual a diario (30.6% del total) califican con una media de 3.06 en la escala de satisfacción, mientras que las personas que la usan menos de una vez al mes (23.8% del total) califican con una media de 2.8 en la misma escala.\n\nLa diferencia principal entre los dos grupos es que las personas que usan a diario tienen un nivel más alto de satisfacción con la biblioteca, ya que el 85% de ellas se expresa como \"Totalmente de acuerdo\" con la calidad de la biblioteca, mientras que solo el 9% de las personas que la usan menos de una vez al mes comparte esta opinión.\n\nEn resumen, las personas que usan a diario califican mejor la biblioteca que quienes la usan menos de una vez al mes.\n\n**Comparación por p09 «¿Con qué frecuencia usas alguna plataforma virtual (Moodle, Classroom,» [Fuente 1]**\n| Grupo | Personas | p18: respuestas del grupo |\n|---|---|---|\n| Diariamente | 887 | media 3.06; «2 en escala 1–5» 258 (30.6 %); «4 en escala 1–5» 252 (29.9 %); «3 en escala 1–5» 190 (22.5 %); «Totalmente de acuerdo» 85 (10.1 %); «Totalmente en desacuerdo» 58 (6.9 %) |\n| Menos de una vez al mes | 132 | media 2.8; «2 en escala 1–5» 44 (34.9 %); «3 en escala 1–5» 30 (23.8 %); «4 en escala 1–5» 29 (23.0 %); «Totalmente en desacuerdo» 14 (11.1 %); «Totalmente de acuerdo» 9 (7.1 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "filtros": [
+     {
+      "valor": [
+       "Diariamente",
+       "Menos de una vez al mes"
+      ],
+      "pregunta": "p09"
+     }
+    ],
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p18"
+    ],
+    "agrupar_por": "p09"
+   },
+   "plan_modelo": {
+    "limite": 2,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p09"
+    ],
+    "aclaracion": "¿Quienes usan una plataforma virtual a diario califican mejor la biblioteca que quienes la usan menos de una vez al mes?",
+    "agrupar_por": "posicion"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar p18 entre «Diariamente» y «Menos de una vez al mes» de p09"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.6705
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.6586
+    }
+   ],
+   "segundos": 20.3,
+   "tiempos_ms": {
+    "ejecucion": 52,
+    "redaccion": 8050,
+    "recuperacion": 521,
+    "verificacion": 1,
+    "interpretacion": 11609
+   },
+   "k_precision": 0.752,
+   "cifras_con_respaldo": [
+    30,
+    30
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Comparar los dos extremos, cada uno con su n."
+}

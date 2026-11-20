@@ -1,0 +1,68 @@
+{
+ "id": "ENC-08",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la opinión sobre laboratorios y equipos entre modalidad presencial y en línea",
+   "rag_log_id": 3628,
+   "respuesta": "Las personas que cursan programas en línea tienen una media de 2.97 en la escala 1-5 para evaluar los laboratorios y equipos de la institución, mientras que las personas que cursan programas presenciales tienen una media de 2.92 en la misma escala. Esto sugiere que las personas que cursan programas en línea consideran ligeramente mejor los laboratorios y equipos que las personas que cursan programas presenciales.\n\nAdemás, se observa que el 33.6% de las personas que cursan programas presenciales consideran que los laboratorios y equipos son \"3 en escala 1-5\", mientras que solo el 31.3% de las personas que cursan programas en línea lo hacen. Esto podría indicar que las personas que cursan programas presenciales tienen una percepción más positiva de los laboratorios y equipos.\n\nPor otro lado, se observa que el 8.2% de las personas que cursan programas en línea consideran que los laboratorios y equipos son \"totalmente de acuerdo\", mientras que solo el 6.6% de las personas que cursan programas presenciales lo hacen. Esto podría sugerir que las personas que cursan programas en línea tienen una percepción más negativa de los laboratorios y equipos.\n\nEn resumen, las personas que cursan programas en línea consideran ligeramente mejor a los laboratorios y equipos que las personas que cursan programas presenciales, pero también tienen una percepción más negativa de ellos.\n\n**Comparación por p02 «¿En qué modalidad cursas tu programa?» [Fuente 1]**\n| Grupo | Personas | p17: respuestas del grupo |\n|---|---|---|\n| En linea | 263 | media 2.97; «2 en escala 1–5» 81 (31.3 %); «3 en escala 1–5» 74 (28.6 %); «4 en escala 1–5» 60 (23.2 %); «Totalmente de acuerdo» 25 (9.7 %); «Totalmente en desacuerdo» 19 (7.3 %) |\n| Mixta/hibrida | 435 | media 3.01; «2 en escala 1–5» 128 (31.4 %); «3 en escala 1–5» 115 (28.3 %); «4 en escala 1–5» 87 (21.4 %); «Totalmente de acuerdo» 50 (12.3 %); «Totalmente en desacuerdo» 27 (6.6 %) |\n| Presencial | 1251 | media 2.92; «3 en escala 1–5» 402 (33.6 %); «2 en escala 1–5» 359 (30.0 %); «4 en escala 1–5» 247 (20.7 %); «Totalmente de acuerdo» 98 (8.2 %); «Totalmente en desacuerdo» 90 (7.5 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p17",
+     "p02"
+    ],
+    "aclaracion": "¿Cuál es la opinión sobre laboratorios y equipos entre modalidad presencial y en línea?",
+    "agrupar_por": "p02"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p17",
+     "p02"
+    ],
+    "aclaracion": "¿Cuál es la opinión sobre laboratorios y equipos entre modalidad presencial y en línea?",
+    "agrupar_por": "p02"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p17",
+     "score": 0.5948
+    }
+   ],
+   "segundos": 23.9,
+   "tiempos_ms": {
+    "ejecucion": 45,
+    "redaccion": 11234,
+    "recuperacion": 862,
+    "verificacion": 2,
+    "interpretacion": 11708
+   },
+   "k_precision": 0.722,
+   "cifras_con_respaldo": [
+    42,
+    42
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Dos grupos con su n y su media o distribución, sin concluir causas."
+}

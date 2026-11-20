@@ -1,0 +1,31 @@
+# Verificación de cómo se generan los Likert y las pruebas (22 oct)
+
+## Llamadas a las funciones de generación Likert
+tools/data_synthesis/generators/base_generator.py:63:    def beta_to_scale(self, alpha: float, beta: float, scale_min: int, scale_max: int, n: int) -> np.ndarray:
+tools/data_synthesis/generators/base_generator.py:69:    def generate_likert_item(self, profile: dict, n: int = 1, item_type: str = "normal") -> np.ndarray:
+tools/data_synthesis/generators/base_generator.py:73:        raw = self.beta_to_scale(a, b, 1, 5, n)
+tools/data_synthesis/generators/base_generator.py:77:            raw = self.beta_to_scale(2, 4, 1, 5, n)
+tools/data_synthesis/generators/base_generator.py:79:            raw = self.beta_to_scale(5, 2, 1, 5, n)
+tools/data_synthesis/generators/base_generator.py:90:    def generate_correlated_block(
+tools/data_synthesis/generators/base_generator.py:172:    def generate_instrument_responses(
+tools/data_synthesis/generators/base_generator.py:187:            block = self.generate_correlated_block(
+tools/data_synthesis/generators/encuesta_generator.py:751:            block = self.generate_instrument_responses(profile, dimensions, n_respondents=1)
+tools/data_synthesis/generators/prueba_generator.py:842:                    block = self.generate_correlated_block(profile_for_likert, len(items), 1)
+
+## Correlación entre ítems Likert (media de pares; dimensión = prefijo del encabezado)
+enc_01 21 dims 5 global intra 0.61 inter 0.36 | dentro de perfil intra 0.36 inter 0.00
+enc_09 8 dims 2 global intra 0.71 inter 0.46 | dentro de perfil intra 0.46 inter 0.09
+enc_10 10 dims 3 global intra 0.65 inter 0.34 | dentro de perfil intra 0.46 inter 0.01
+(enc_01: 6 dimensiones, el prefijo recortado agrupa 5)
+
+## Tipos de reactivo por prueba (tipo, n)
+pru_01 100 [('opcion_multiple', 10), ('opcion_multiple', 5), ('verdadero_falso', 5), ('respuesta_corta', 5)]
+pru_02 110 [('opcion_multiple', 7), ('opcion_multiple', 5), ('calculo_numerico', 4), ('verdadero_falso', 4)]
+pru_03 95 [('opcion_multiple', 10), ('verdadero_falso', 7), ('opcion_multiple', 5)]
+pru_04 90 [('likert_conductual', 8), ('opcion_multiple', 6), ('si_no', 4)]
+pru_05 120 [('opcion_multiple', 10), ('opcion_multiple', 10)]
+pru_06 80 [('opcion_multiple', 8), ('verdadero_falso', 4), ('opcion_multiple', 3)]
+pru_07 110 [('opcion_multiple', 15), ('likert_conductual', 10)]
+pru_08 90 [('opcion_multiple', 10), ('verdadero_falso', 5), ('opcion_multiple', 5)]
+pru_09 100 [('opcion_multiple', 12), ('verdadero_falso', 6)]
+pru_10 100 [('likert_conductual', 8), ('opcion_multiple', 8), ('si_no', 4)]

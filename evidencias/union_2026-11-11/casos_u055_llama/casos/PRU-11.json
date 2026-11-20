@@ -1,0 +1,90 @@
+{
+ "id": "PRU-11",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara cómo respondieron los reactivos de seguridad (VPN, phishing, contraseña, Wi-Fi) con los de licencias (Creative Commons, código abierto)",
+   "rag_log_id": 3788,
+   "respuesta": "Los grupos de estudiantes respondieron de manera diferente a las preguntas relacionadas con la seguridad en línea y las licencias. \n\nEn general, se puede observar que los estudiantes consideran que usar redes Wi-Fi públicas sin VPN es seguro (r15: 100% de acuerdo), lo cual no está relacionado directamente con las licencias.\n\nSin embargo, cuando se trata de las respuestas específicas a la pregunta, se pueden destacar algunas diferencias entre grupos:\n\n- Los estudiantes que respondieron sobre Creative Commons y código abierto mencionaron que usar redes Wi-Fi públicas sin VPN es seguro (100% de acuerdo), lo cual no está relacionado directamente con las licencias. \n- Los estudiantes que respondieron sobre licencias, como Creative Commons o código abierto, mencionaron diferentes respuestas para las preguntas de seguridad en línea: \n  - Para la pregunta \"¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?\" (r01), los estudiantes que respondieron sobre .docx mencionaron que usar redes Wi-Fi públicas sin VPN es seguro, pero con diferentes porcentajes de acuerdo.\n\n**Comparación por r01 «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Exc» [Fuente 1]**\n| Grupo | Personas | r03: respuestas del grupo | r04: respuestas del grupo | r10: respuestas del grupo |\n|---|---|---|---|---|\n| .docx | 27 | «Almacenar archivos en la nube» 14 (51.9 %); «Aumentar la velocidad de internet» 6 (22.2 %); «Bloquear anuncios publicitarios» 6 (22.2 %); «Crear una conexión segura y privada» 1 (3.7 %) | «Un tipo de búsqueda en Google» 13 (48.1 %); «Una herramienta de edición de imágenes» 9 (33.3 %); «Un intento fraudulento de obtener información personal» 5 (18.5 %) | (sin respuestas) |\n| .pdf | 30 | «Almacenar archivos en la nube» 15 (50.0 %); «Aumentar la velocidad de internet» 8 (26.7 %); «Bloquear anuncios publicitarios» 5 (16.7 %); «Crear una conexión segura y privada» 2 (6.7 %) | «Un tipo de búsqueda en Google» 12 (40.0 %); «Una herramienta de edición de imágenes» 10 (33.3 %); «Un intento fraudulento de obtener información personal» 8 (26.7 %) | (sin respuestas) |\n| .pptx | 26 | «Almacenar archivos en la nube» 11 (42.3 %); «Aumentar la velocidad de internet» 7 (26.9 %); «Crear una conexión segura y privada» 4 (15.4 %); «Bloquear anuncios publicitarios» 4 (15.4 %) | «Una herramienta de edición de imágenes» 11 (42.3 %); «Un tipo de búsqueda en Google» 8 (30.8 %); «Un intento fraudulento de obtener información personal» 7 (26.9 %) | (sin respuestas) |\n| .xlsx | 13 | «Almacenar archivos en la nube» 6 (46.2 %); «Bloquear anuncios publicitarios» 5 (38.5 %); «Aumentar la velocidad de internet» 2 (15.4 %) | «Un tipo de búsqueda en Google» 6 (46.2 %); «Una herramienta de edición de imágenes» 6 (46.2 %); «Un intento fraudulento de obtener información personal» 1 (7.7 %) | (sin respuestas) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r03",
+     "r04",
+     "r10"
+    ],
+    "agrupar_por": "r01"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r03",
+     "r04",
+     "r10"
+    ],
+    "agrupar_por": "r01",
+    "contexto_num": [
+     {
+      "valor": 25.0,
+      "variable": "edad"
+     },
+     {
+      "valor": 3.5,
+      "variable": "promedio_gpa"
+     }
+    ],
+    "excluir_preguntas": [
+     "r08"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "contexto edad > 25 descartado (la pregunta no lo menciona)",
+    "contexto promedio_gpa > 3.5 descartado (la pregunta no lo menciona)",
+    "excluir r08 descartado (la pregunta no pide excluir nada)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6091
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5822
+    }
+   ],
+   "segundos": 30.1,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 15203,
+    "recuperacion": 461,
+    "verificacion": 3,
+    "interpretacion": 14333
+   },
+   "k_precision": 0.79,
+   "cifras_con_respaldo": [
+    36,
+    37
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Qué reactivos agrupó y qué opciones predominan en cada grupo."
+}

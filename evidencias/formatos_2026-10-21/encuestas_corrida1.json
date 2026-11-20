@@ -1,0 +1,723 @@
+{
+  "E11": {
+    "descripcion": "Códigos P1…P8 SIN original",
+    "nivel": "rechazado",
+    "pruebas": [
+      {
+        "prueba": "la subida se rechaza con el motivo",
+        "ok": true,
+        "obtenido": "422: Los encabezados son códigos (por ejemplo «P1») y no se subió el instrumento original. Sube también el instrumento original (PDF, DOCX o TXT con las preguntas) para saber qué pregunta cada columna."
+      }
+    ]
+  },
+  "E12": {
+    "descripcion": "Formato largo (respondente, pregunta, respuesta)",
+    "nivel": "rechazado",
+    "pruebas": [
+      {
+        "prueba": "la subida se rechaza con el motivo",
+        "ok": true,
+        "obtenido": "422: El archivo está en formato largo (una fila por respuesta). Conviértelo a una fila por respondente y una columna por pregunta (en Excel: tabla dinámica con las preguntas como columnas)."
+      }
+    ]
+  },
+  "E13": {
+    "descripcion": "Sin fila de encabezados",
+    "nivel": "rechazado",
+    "pruebas": [
+      {
+        "prueba": "la subida se rechaza con el motivo",
+        "ok": true,
+        "obtenido": "422: La primera fila no tiene nombres de columna: parece una fila de respuestas. Agrega una fila de encabezados con el texto (o el código) de cada pregunta."
+      }
+    ]
+  },
+  "E01": {
+    "descripcion": "Con secciones; encabezados con prefijo de sección (Evaluación_item1…)",
+    "nivel": "ideal",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "8 preguntas en el perfil",
+        "ok": true,
+        "obtenido": 8
+      },
+      {
+        "prueba": "texto del original en cada pregunta",
+        "ok": true,
+        "obtenido": "todas"
+      },
+      {
+        "prueba": "2 dimensiones con α",
+        "ok": true,
+        "obtenido": "Evaluación α=0.8738, Ambiente α=0.8316"
+      },
+      {
+        "prueba": "avisos del perfil",
+        "ok": true,
+        "obtenido": "—"
+      },
+      {
+        "prueba": "Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroalimentación?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondiente R017 respondió \"De acuerdo\" (nivel de acuerdo) a la pregunta p03 \"Recibo retroalimentación sobre mis trabajos a tiempo para mejorar\". [Fuente 1]"
+      },
+      {
+        "prueba": "Q02 ¿Qué respondió R005 en la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "R005 (turno: Matutino; semestre: 3; genero: masculino) respondió «Ni de acuerdo ni en desacuerdo» (nivel: neutral) en la pregunta p08 «Me siento parte de la comunidad escolar.». [Fuente 1]"
+      },
+      {
+        "prueba": "Q03 Dame un respondente en desacuerdo en p1, p2 y p3",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondente R002 está en desacuerdo en p01, p02 y p03. [Fuente 1]"
+      },
+      {
+        "prueba": "Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6, 7 y 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "No existe ningún respondente que esté en posición neutral en p01, p02, p03, p04, p05, p06, p07 y p08 a la vez. [Fuente 1]"
+      },
+      {
+        "prueba": "Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El 13.3% del turno vespertino está de acuerdo con la pregunta p04, lo que se traduce en un número de 30 personas, donde el 4% es el porcentaje de acuerdo."
+      },
+      {
+        "prueba": "Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "En la pregunta p08 «Me siento parte de la comunidad escolar.», el 16.7 % (10 de 60) de quienes respondieron está en desacuerdo. [Fuente 1]"
+      },
+      {
+        "prueba": "Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "La encuesta de evaluación y ambiente escolar evalúa la satisfacción y la experiencia del estudiante en relación con su evaluación y ambiente escolar. [Fuente 1]"
+      },
+      {
+        "prueba": "Q17 ¿Qué opinan los estudiantes sobre el transporte público?",
+        "ok": true,
+        "obtenido": "sin_informacion",
+        "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados."
+      },
+      {
+        "prueba": "Q18 ¿Cuál es el nombre del respondente R017?",
+        "ok": true,
+        "obtenido": "privacidad",
+        "respuesta": "Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo, «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo."
+      }
+    ],
+    "id_crudo": 75
+  },
+  "E02": {
+    "descripcion": "Google Forms: marca temporal + texto completo de la pregunta; original con secciones",
+    "nivel": "ideal",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "8 preguntas en el perfil",
+        "ok": true,
+        "obtenido": 8
+      },
+      {
+        "prueba": "texto del original en cada pregunta",
+        "ok": true,
+        "obtenido": "todas"
+      },
+      {
+        "prueba": "2 dimensiones con α",
+        "ok": false,
+        "obtenido": "solo α global"
+      },
+      {
+        "prueba": "avisos del perfil",
+        "ok": true,
+        "obtenido": "—"
+      },
+      {
+        "prueba": "Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroalimentación?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondiente R017 respondió \"De acuerdo\" (nivel de acuerdo) a la pregunta p03 \"Recibo retroalimentación sobre mis trabajos a tiempo para mejorar\". [Fuente 1]"
+      },
+      {
+        "prueba": "Q02 ¿Qué respondió R005 en la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "R005 (turno: Matutino; semestre: 3; genero: masculino) respondió «Ni de acuerdo ni en desacuerdo» (nivel: neutral) en la pregunta p08 «Me siento parte de la comunidad escolar.». [Fuente 1]"
+      },
+      {
+        "prueba": "Q03 Dame un respondente en desacuerdo en p1, p2 y p3",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondente R002 está en desacuerdo en p01, p02 y p03. [Fuente 1]"
+      },
+      {
+        "prueba": "Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6, 7 y 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "No existe ningún respondente que esté en posición neutral en p01, p02, p03, p04, p05, p06, p07 y p08 a la vez. [Fuente 1]"
+      },
+      {
+        "prueba": "Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "En la pregunta p04 «Las evaluaciones están relacionadas con lo que se ve en clase.», el 13.3 % (4 de 30) de quienes respondieron del grupo turno = Vespertino está de acuerdo. [Fuente 1]"
+      },
+      {
+        "prueba": "Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "En la pregunta p08 «Me siento parte de la comunidad escolar.», el 16.7 % (10 de 60) de quienes respondieron está en desacuerdo. [Fuente 1]"
+      },
+      {
+        "prueba": "Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "La encuesta de evaluación y ambiente escolar evalúa el ambiente escolar y la experiencia del aprendizaje desde la perspectiva del estudiante, específicamente en aspectos como la evaluación, la retroalimentación, la disponibilidad de los profesores y la claridad de los criterios de evaluación. [Fuente 1]"
+      },
+      {
+        "prueba": "Q17 ¿Qué opinan los estudiantes sobre el transporte público?",
+        "ok": true,
+        "obtenido": "sin_informacion",
+        "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados."
+      },
+      {
+        "prueba": "Q18 ¿Cuál es el nombre del respondente R017?",
+        "ok": true,
+        "obtenido": "privacidad",
+        "respuesta": "Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo, «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo."
+      }
+    ],
+    "id_crudo": 76
+  },
+  "E03": {
+    "descripcion": "Sin secciones; encabezado = texto de la pregunta",
+    "nivel": "aceptado",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "8 preguntas en el perfil",
+        "ok": true,
+        "obtenido": 8
+      },
+      {
+        "prueba": "texto del original en cada pregunta",
+        "ok": true,
+        "obtenido": "todas"
+      },
+      {
+        "prueba": "2 dimensiones con α",
+        "ok": false,
+        "obtenido": "solo α global"
+      },
+      {
+        "prueba": "avisos del perfil",
+        "ok": true,
+        "obtenido": "—"
+      },
+      {
+        "prueba": "Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroalimentación?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondiente R017 respondió \"De acuerdo\" (nivel de acuerdo) a la pregunta p03 \"Recibo retroalimentación sobre mis trabajos a tiempo para mejorar\". [Fuente 1]"
+      },
+      {
+        "prueba": "Q02 ¿Qué respondió R005 en la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "R005 respondió \"Ni de acuerdo ni en desacuerdo\" en la pregunta p08 \"Me siento parte de la comunidad escolar\". [Fuente 1]"
+      },
+      {
+        "prueba": "Q03 Dame un respondente en desacuerdo en p1, p2 y p3",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondente R002 está en desacuerdo en p01, p02 y p03. [Fuente 1]"
+      },
+      {
+        "prueba": "Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6, 7 y 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "No existe ningún respondente que esté en posición neutral en p01, p02, p03, p04, p05, p06, p07 y p08 a la vez. [Fuente 1]"
+      },
+      {
+        "prueba": "Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "En la pregunta p04 «Las evaluaciones están relacionadas con lo que se ve en clase.», el 13.3 % (4 de 30) de quienes respondieron del grupo turno = Vespertino está de acuerdo. [Fuente 1]"
+      },
+      {
+        "prueba": "Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "En la pregunta p08 «Me siento parte de la comunidad escolar.», el 16.7 % (10 de 60) de quienes respondieron está en desacuerdo. [Fuente 1]"
+      },
+      {
+        "prueba": "Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "La encuesta de evaluación y ambiente escolar evalúa varios aspectos del ambiente escolar y la experiencia del estudiante, como:\n\n* Los criterios de evaluación se explican con claridad\n* Las calificaciones reflejan lo que realmente aprendí\n* Recibo retroalimentación sobre mis trabajos a tiempo para mí\n* Las evaluaciones están relacionadas con lo que se ve en clase\n* Me siento seguro dentro de las instalaciones de la escuela\n* Las relaciones entre compañeros son respetuosas\n* Los profesores están disponibles para resolver dudas\n* Me siento parte de la comunidad escolar\n\n[Fuente 1]"
+      },
+      {
+        "prueba": "Q17 ¿Qué opinan los estudiantes sobre el transporte público?",
+        "ok": true,
+        "obtenido": "sin_informacion",
+        "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados."
+      },
+      {
+        "prueba": "Q18 ¿Cuál es el nombre del respondente R017?",
+        "ok": true,
+        "obtenido": "privacidad",
+        "respuesta": "Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo, «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo."
+      }
+    ],
+    "id_crudo": 77
+  },
+  "E04": {
+    "descripcion": "Sin secciones; encabezados con prefijo (Evaluación_item1…)",
+    "nivel": "aceptado",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "8 preguntas en el perfil",
+        "ok": true,
+        "obtenido": 8
+      },
+      {
+        "prueba": "texto del original en cada pregunta",
+        "ok": true,
+        "obtenido": "todas"
+      },
+      {
+        "prueba": "2 dimensiones con α",
+        "ok": true,
+        "obtenido": "Evaluación α=0.8738, Ambiente α=0.8316"
+      },
+      {
+        "prueba": "avisos del perfil",
+        "ok": true,
+        "obtenido": "emparejadas_por_posicion"
+      },
+      {
+        "prueba": "Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroalimentación?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "R017 respondió \"De acuerdo\" [Fuente 1]."
+      },
+      {
+        "prueba": "Q02 ¿Qué respondió R005 en la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "R005 (turno: Matutino; semestre: 3; genero: masculino) respondió «Ni de acuerdo ni en desacuerdo» (nivel: neutral) en la pregunta p08 «Me siento parte de la comunidad escolar.». [Fuente 1]"
+      },
+      {
+        "prueba": "Q03 Dame un respondente en desacuerdo en p1, p2 y p3",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondente R002 está en desacuerdo en p01, p02 y p03. [Fuente 1]"
+      },
+      {
+        "prueba": "Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6, 7 y 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "No existe ningún respondente que esté en posición neutral en p01, p02, p03, p04, p05, p06, p07 y p08 a la vez. [Fuente 1]"
+      },
+      {
+        "prueba": "Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "En la pregunta p04 «Las evaluaciones están relacionadas con lo que se ve en clase.», el 13.3 % (4 de 30) de quienes respondieron del grupo turno = Vespertino está de acuerdo. [Fuente 1]"
+      },
+      {
+        "prueba": "Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "En la pregunta p08 «Me siento parte de la comunidad escolar.», el 16.7 % (10 de 60) de quienes respondieron está en desacuerdo. [Fuente 1]"
+      },
+      {
+        "prueba": "Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "La encuesta de evaluación y ambiente escolar evalúa la satisfacción del estudiante con su experiencia en el ambiente escolar y la evaluación, específicamente en aspectos como:\n\n* Las calificaciones reflejan lo que realmente aprendí (p02)\n* Las evaluaciones están relacionadas con lo que se ve en clase (p04)\n* Los profesores están disponibles para resolver dudas (p07)\n\n[Fuente 1]"
+      },
+      {
+        "prueba": "Q17 ¿Qué opinan los estudiantes sobre el transporte público?",
+        "ok": true,
+        "obtenido": "sin_informacion",
+        "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados."
+      },
+      {
+        "prueba": "Q18 ¿Cuál es el nombre del respondente R017?",
+        "ok": true,
+        "obtenido": "privacidad",
+        "respuesta": "Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo, «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo."
+      }
+    ],
+    "id_crudo": 78
+  },
+  "E05": {
+    "descripcion": "Sin secciones; encabezados en código P1…P8 con original",
+    "nivel": "aceptado",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "8 preguntas en el perfil",
+        "ok": true,
+        "obtenido": 8
+      },
+      {
+        "prueba": "texto del original en cada pregunta",
+        "ok": true,
+        "obtenido": "todas"
+      },
+      {
+        "prueba": "2 dimensiones con α",
+        "ok": false,
+        "obtenido": "P α=0.7834"
+      },
+      {
+        "prueba": "avisos del perfil",
+        "ok": true,
+        "obtenido": "emparejadas_por_posicion"
+      },
+      {
+        "prueba": "Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroalimentación?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondiente R017 respondió \"De acuerdo\" (nivel de acuerdo) a la pregunta p03 \"Recibo retroalimentación sobre mis trabajos a tiempo para mejorar\". [Fuente 1]"
+      },
+      {
+        "prueba": "Q02 ¿Qué respondió R005 en la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "R005 (turno: Matutino; semestre: 3; genero: masculino) respondió «Ni de acuerdo ni en desacuerdo» (nivel: neutral) en la pregunta p08 «Me siento parte de la comunidad escolar.». [Fuente 1]"
+      },
+      {
+        "prueba": "Q03 Dame un respondente en desacuerdo en p1, p2 y p3",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondente R002 está en desacuerdo en p01, p02 y p03. [Fuente 1]"
+      },
+      {
+        "prueba": "Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6, 7 y 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "No existe ningún respondente que esté en posición neutral en p01, p02, p03, p04, p05, p06, p07 y p08 a la vez. [Fuente 1]"
+      },
+      {
+        "prueba": "Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El 13.3% del turno vespertino está de acuerdo con la pregunta p04, lo que se traduce en 4 de 30 personas. \n\n[Fuente 1]"
+      },
+      {
+        "prueba": "Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "En la pregunta p08 «Me siento parte de la comunidad escolar.», el 16.7 % (10 de 60) de quienes respondieron está en desacuerdo. [Fuente 1]"
+      },
+      {
+        "prueba": "Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "La encuesta de evaluación y ambiente escolar evalúa la satisfacción y la experiencia del estudiante en el ambiente escolar, específicamente en aspectos como:\n\n* Los criterios de evaluación se explican con claridad al inicio\n* Las calificaciones reflejan lo que realmente aprendí\n* Recibo retroalimentación sobre mis trabajos a tiempo para mí\n* Las evaluaciones están relacionadas con lo que se ve en clase\n* Me siento seguro dentro de las instalaciones de la escuela\n* Las relaciones entre compañeros son respetuosas\n* Los profesores están disponibles para resolver dudas\n* Me siento parte de la comunidad escolar\n\n[Fuente 1]"
+      },
+      {
+        "prueba": "Q17 ¿Qué opinan los estudiantes sobre el transporte público?",
+        "ok": true,
+        "obtenido": "sin_informacion",
+        "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados."
+      },
+      {
+        "prueba": "Q18 ¿Cuál es el nombre del respondente R017?",
+        "ok": true,
+        "obtenido": "privacidad",
+        "respuesta": "Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo, «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo."
+      }
+    ],
+    "id_crudo": 79
+  },
+  "E06": {
+    "descripcion": "Google Forms con cuadrícula «Instrucción [afirmación]» y etiquetas de la escala",
+    "nivel": "ideal",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "8 preguntas en el perfil",
+        "ok": false,
+        "obtenido": 16
+      },
+      {
+        "prueba": "texto del original en cada pregunta",
+        "ok": true,
+        "obtenido": "todas"
+      },
+      {
+        "prueba": "2 dimensiones con α",
+        "ok": false,
+        "obtenido": "Indica qué tan de acuerdo estás con las siguientes afirmaciones α=0.7834"
+      },
+      {
+        "prueba": "avisos del perfil",
+        "ok": true,
+        "obtenido": "preguntas_sin_original"
+      },
+      {
+        "prueba": "Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroalimentación?",
+        "ok": false,
+        "obtenido": "faltan ['De acuerdo']",
+        "respuesta": "R017 no tiene respuesta registrada en la pregunta p03. [Fuente 1]"
+      },
+      {
+        "prueba": "Q02 ¿Qué respondió R005 en la pregunta 8?",
+        "ok": false,
+        "obtenido": "faltan ['Ni de acuerdo ni en desacuerdo']",
+        "respuesta": "R005 no tiene respuesta registrada en la pregunta p08. [Fuente 1]"
+      },
+      {
+        "prueba": "Q03 Dame un respondente en desacuerdo en p1, p2 y p3",
+        "ok": false,
+        "obtenido": "faltan ['R002']",
+        "respuesta": "No existe ningún respondente que esté en desacuerdo en p01, p02 y p03 a la vez. [Fuente 1]"
+      },
+      {
+        "prueba": "Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6, 7 y 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "No existe ningún respondente que esté en posición neutral en p01, p02, p03, p04, p05, p06, p07 y p08 a la vez. [Fuente 1]"
+      },
+      {
+        "prueba": "Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4?",
+        "ok": false,
+        "obtenido": "faltan ['13.3', '4', '30']",
+        "respuesta": "Nadie del grupo turno = Vespertino respondió válidamente la pregunta p04 «Las evaluaciones están relacionadas con lo que se ve en clase.». [Fuente 1]"
+      },
+      {
+        "prueba": "Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8?",
+        "ok": false,
+        "obtenido": "faltan ['16.7', '10', '60']",
+        "respuesta": "Nadie respondió válidamente la pregunta p08 «Me siento parte de la comunidad escolar.». [Fuente 1]"
+      },
+      {
+        "prueba": "Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "La encuesta de evaluación y ambiente escolar evalúa la satisfacción del estudiante con el ambiente escolar y su experiencia de aprendizaje. [Fuente 1]"
+      },
+      {
+        "prueba": "Q17 ¿Qué opinan los estudiantes sobre el transporte público?",
+        "ok": true,
+        "obtenido": "sin_informacion",
+        "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados."
+      },
+      {
+        "prueba": "Q18 ¿Cuál es el nombre del respondente R017?",
+        "ok": true,
+        "obtenido": "privacidad",
+        "respuesta": "Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo, «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo."
+      }
+    ],
+    "id_crudo": 80
+  },
+  "E07": {
+    "descripcion": "Exporte de Qualtrics (3 filas de encabezado, columnas de sistema, IP y ubicación)",
+    "nivel": "aceptado",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "8 preguntas en el perfil",
+        "ok": true,
+        "obtenido": 8
+      },
+      {
+        "prueba": "texto del original en cada pregunta",
+        "ok": true,
+        "obtenido": "todas"
+      },
+      {
+        "prueba": "2 dimensiones con α",
+        "ok": false,
+        "obtenido": "solo α global"
+      },
+      {
+        "prueba": "avisos del perfil",
+        "ok": true,
+        "obtenido": "—"
+      },
+      {
+        "prueba": "Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroalimentación?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondiente R017 respondió \"De acuerdo\" a la pregunta p03 \"Recibo retroalimentación sobre mis trabajos a tiempo para mejorar\". [Fuente 1]"
+      },
+      {
+        "prueba": "Q02 ¿Qué respondió R005 en la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "R005 (turno: Matutino; semestre: 3; genero: masculino) respondió «Ni de acuerdo ni en desacuerdo» (nivel: neutral) en la pregunta p08 «Me siento parte de la comunidad escolar.». [Fuente 1]"
+      },
+      {
+        "prueba": "Q03 Dame un respondente en desacuerdo en p1, p2 y p3",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondente R002 está en desacuerdo en p01, p02 y p03. [Fuente 1]"
+      },
+      {
+        "prueba": "Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6, 7 y 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "No existe ningún respondente que esté en posición neutral en p01, p02, p03, p04, p05, p06, p07 y p08 a la vez. [Fuente 1]"
+      },
+      {
+        "prueba": "Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El 13.3% del turno vespertino está de acuerdo con la pregunta p04, lo que equivale a 4 de 30 personas. [Fuente 1]"
+      },
+      {
+        "prueba": "Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "En la pregunta p08 «Me siento parte de la comunidad escolar.», el 16.7 % (10 de 60) de quienes respondieron está en desacuerdo. [Fuente 1]"
+      },
+      {
+        "prueba": "Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "La encuesta de evaluación y ambiente escolar se centra en aspectos como las evaluaciones, calificaciones, retroalimentación y disponibilidad de los profesores. [Fuente 1]"
+      },
+      {
+        "prueba": "Q17 ¿Qué opinan los estudiantes sobre el transporte público?",
+        "ok": true,
+        "obtenido": "sin_informacion",
+        "respuesta": "No tengo información relacionada con la pregunta sobre el transporte público en el instrumento de Encuesta de evaluación y ambiente escolar por turno."
+      },
+      {
+        "prueba": "Q18 ¿Cuál es el nombre del respondente R017?",
+        "ok": true,
+        "obtenido": "privacidad",
+        "respuesta": "Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo, «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo."
+      }
+    ],
+    "id_crudo": 81
+  },
+  "E08": {
+    "descripcion": "Exporte de LimeSurvey con códigos G01Q01…G02Q08 y columnas de sistema",
+    "nivel": "aceptado",
+    "pruebas": [
+      {
+        "prueba": "ingesta al RAG",
+        "ok": true,
+        "obtenido": ""
+      },
+      {
+        "prueba": "8 preguntas en el perfil",
+        "ok": true,
+        "obtenido": 8
+      },
+      {
+        "prueba": "texto del original en cada pregunta",
+        "ok": true,
+        "obtenido": "todas"
+      },
+      {
+        "prueba": "2 dimensiones con α",
+        "ok": true,
+        "obtenido": "G01Q α=0.8738, G02Q α=0.8316"
+      },
+      {
+        "prueba": "avisos del perfil",
+        "ok": true,
+        "obtenido": "emparejadas_por_posicion"
+      },
+      {
+        "prueba": "Q01 ¿Qué respondió el respondente R017 en la pregunta sobre la retroalimentación?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondiente R017 respondió \"De acuerdo\" (nivel de acuerdo) a la pregunta p03 \"Recibo retroalimentación sobre mis trabajos a tiempo para mejorar\". [Fuente 1]"
+      },
+      {
+        "prueba": "Q02 ¿Qué respondió R005 en la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "R005 respondió \"Ni de acuerdo ni en desacuerdo\" (nivel: neutral) en la pregunta p08 \"Me siento parte de la comunidad escolar\". [Fuente 1]"
+      },
+      {
+        "prueba": "Q03 Dame un respondente en desacuerdo en p1, p2 y p3",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "El respondente R002 está en desacuerdo en p01, p02 y p03. [Fuente 1]"
+      },
+      {
+        "prueba": "Q04 ¿Hay algún respondente neutral en las preguntas 1, 2, 3, 4, 5, 6, 7 y 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "No existe ningún respondente que esté en posición neutral en p01, p02, p03, p04, p05, p06, p07 y p08 a la vez. [Fuente 1]"
+      },
+      {
+        "prueba": "Q05 ¿Qué porcentaje del turno vespertino está de acuerdo con p4?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "En la pregunta p04 «Las evaluaciones están relacionadas con lo que se ve en clase.», el 13.3 % (4 de 30) de quienes respondieron del grupo turno = Vespertino está de acuerdo. [Fuente 1]"
+      },
+      {
+        "prueba": "Q06 ¿Qué porcentaje está en desacuerdo con la pregunta 8?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "En la pregunta p08 «Me siento parte de la comunidad escolar.», el 16.7 % (10 de 60) de quienes respondieron está en desacuerdo. [Fuente 1]"
+      },
+      {
+        "prueba": "Q14 ¿Qué evalúa la encuesta de evaluación y ambiente escolar?",
+        "ok": true,
+        "obtenido": "ok",
+        "respuesta": "La encuesta de evaluación y ambiente escolar evalúa la satisfacción y la experiencia del estudiante en el aprendizaje y el ambiente escolar. [Fuente 1]"
+      },
+      {
+        "prueba": "Q17 ¿Qué opinan los estudiantes sobre el transporte público?",
+        "ok": true,
+        "obtenido": "sin_informacion",
+        "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados."
+      },
+      {
+        "prueba": "Q18 ¿Cuál es el nombre del respondente R017?",
+        "ok": true,
+        "obtenido": "privacidad",
+        "respuesta": "Los respondentes de los instrumentos son anónimos y no puedo ayudar a identificarlos ni dar datos personales. Sí puedo decirte qué respondió una persona por su ID (por ejemplo, «¿qué respondió R017 en la pregunta 4?») o cómo respondió un grupo."
+      }
+    ],
+    "id_crudo": 82
+  }
+}

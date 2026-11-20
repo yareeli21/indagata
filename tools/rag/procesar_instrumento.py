@@ -16,6 +16,8 @@ evaluación fuera de línea del RAG (por ejemplo enc_10, la encuesta con turno).
 Uso (con la app levantada):
     python tools/rag/procesar_instrumento.py storage/instrumentos_sinteticos/encuestas/enc_10_turno_respondido.csv \
         --tipo encuesta --original storage/instrumentos_sinteticos/encuestas/enc_10_turno_original.txt [--kpis 2]
+    # Microdatos con diccionario de datos (sin original):
+    python tools/rag/procesar_instrumento.py storage/instrumentos_sinteticos/encuestas/enc_12_microdatos_respondido.csv         --tipo encuesta --diccionario storage/instrumentos_sinteticos/encuestas/enc_12_microdatos_diccionario.csv
 """
 from __future__ import annotations
 
@@ -66,12 +68,15 @@ def _llenar(propuesta: dict[str, Any], prefijo: str = "") -> dict[str, str]:
     return valores
 
 
-def procesar(api: Api, archivo: Path, tipo: str, original: Path | None, n_kpis: int, desde: int | None = None) -> int:
+def procesar(api: Api, archivo: Path, tipo: str, original: Path | None, n_kpis: int, desde: int | None = None,
+             diccionario: Path | None = None) -> int:
     if desde is not None:  # retoma un instrumento ya subido y limpio, desde los metadatos
         return _desde_metadatos(api, desde, n_kpis)
     archivos = {"archivo": (archivo.name, archivo.read_bytes())}
     if original:
         archivos["archivo_original"] = (original.name, original.read_bytes())
+    if diccionario:
+        archivos["archivo_diccionario"] = (diccionario.name, diccionario.read_bytes())
     carga = api.pedir("POST", f"{GATEWAY}/instrumentos/upload", data={"tipo_instrumento": tipo}, files=archivos)
     id_crudo = int(carga.get("id_crudo") or carga.get("idCrudo") or carga["id"])
     print(f"1. Archivo: id_crudo={id_crudo}")
@@ -81,7 +86,9 @@ def procesar(api: Api, archivo: Path, tipo: str, original: Path | None, n_kpis: 
     if decisiones:
         api.pedir("PATCH", f"{GATEWAY}/limpieza/{id_crudo}/ejecuciones/{ejec['version']}/decisiones", json={"decisiones": decisiones})
     api.pedir("POST", f"{GATEWAY}/limpieza/{id_crudo}/ejecuciones/{ejec['version']}/confirmar")
-    print(f"2. Limpieza: v{ejec['version']} confirmada con {len(decisiones)} decisiones sugeridas")
+    con_texto = sum(1 for c in (ejec.get("codigos") or {}).get("columnas") or [] if c.get("pregunta"))
+    print(f"2. Limpieza: v{ejec['version']} confirmada con {len(decisiones)} decisiones sugeridas"
+          + (f"; {con_texto} columna(s) en código con texto del diccionario" if con_texto else ""))
     return _desde_metadatos(api, id_crudo, n_kpis)
 
 
@@ -126,12 +133,13 @@ def main() -> None:
     p.add_argument("archivo", type=Path)
     p.add_argument("--tipo", required=True, choices=["encuesta", "entrevista", "prueba_estandarizada"])
     p.add_argument("--original", type=Path)
+    p.add_argument("--diccionario", type=Path, help="diccionario de datos de los microdatos (CSV o Excel)")
     p.add_argument("--kpis", type=int, default=2, help="KPIs sugeridos que se aceptan (los de mayor puntaje)")
     p.add_argument("--email", default="admin@indagata.com")
     p.add_argument("--password", default="admin123")
     p.add_argument("--desde-metadatos", type=int, metavar="ID_CRUDO", help="retoma un instrumento ya subido y limpio")
     a = p.parse_args()
-    procesar(Api(a.email, a.password), a.archivo, a.tipo, a.original, a.kpis, a.desde_metadatos)
+    procesar(Api(a.email, a.password), a.archivo, a.tipo, a.original, a.kpis, a.desde_metadatos, a.diccionario)
 
 
 if __name__ == "__main__":

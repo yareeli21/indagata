@@ -1,0 +1,78 @@
+{
+ "id": "CPR-02",
+ "instrumento": "pru_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo están más repartidas las respuestas?",
+   "rag_log_id": 3869,
+   "respuesta": "Criterio: preguntas con respuestas más repartidas (índice de dispersión más alto: 1 = repartidas por igual entre sus opciones; entropía normalizada).\n1. r12 «Publicar el mismo artículo en dos revistas distintas sin declararlo es»: índice de dispersión 1.00 (2 opciones); la más elegida, «Verdadero», con 43 de 80 (53.8 %).\n2. r09 «El acceso abierto (open access) permite la lectura gratuita de artícul»: índice de dispersión 0.98 (2 opciones); la más elegida, «Verdadero», con 46 de 80 (57.5 %).\n3. r08 «¿Qué es una revisión sistemática de literatura?»: índice de dispersión 0.94 (4 opciones); la más elegida, «C», con 29 de 80 (36.2 %). [Fuente 1]\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r12 | índice de dispersión 1.00 (2 opciones); la más elegida, «Verdadero», con 43 de 80 (53.8 %) |\n| 2 | r09 | índice de dispersión 0.98 (2 opciones); la más elegida, «Verdadero», con 46 de 80 (57.5 %) |\n| 3 | r08 | índice de dispersión 0.94 (4 opciones); la más elegida, «C», con 29 de 80 (36.2 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "repartida"
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r06"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "intención resumen_pregunta → ranking_preguntas («repartida» por pregunta)",
+    "criterio del ranking: repartida (lo que dice la pregunta)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r01",
+     "score": 0.6147
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.6008
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.5785
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r06",
+     "score": 0.567
+    }
+   ],
+   "segundos": 23.4,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 13392,
+    "recuperacion": 380,
+    "verificacion": 5633,
+    "interpretacion": 9566
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    16,
+    16
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Un reactivo con su medida de dispersión explicada."
+}

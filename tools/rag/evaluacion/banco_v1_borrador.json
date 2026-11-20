@@ -1,0 +1,2925 @@
+{
+  "version": "1-borrador",
+  "fecha": "2026-11-11",
+  "estado": "borrador: falta revisión humana",
+  "criterio_relevancia": "mismo instrumentoId y preguntaId (pregunta, reactivo o intercambios de la pregunta guía)",
+  "preguntas": [
+    {
+      "id": "I86-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Inventario de Estrategias de Aprendizaje y Estudio (IEAE)",
+      "alcance": [
+        "86"
+      ],
+      "pregunta": "¿Los estudiantes suelen ordenar sus materiales antes de ponerse a estudiar?",
+      "parafrasis": [
+        "¿Qué tanto preparan su material antes de estudiar?",
+        "¿Acostumbran acomodar lo que van a estudiar antes de empezar?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "86",
+          "preguntaId": "INS-0086-p01"
+        }
+      ],
+      "esperada": "Más elegida: «Ni de acuerdo ni en desacuerdo / A veces», 31.7 % (57 de 180).",
+      "cifras_clave": [
+        "31.7"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 57,
+          "porcentaje": 31.7
+        },
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 46,
+          "porcentaje": 25.6
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 34,
+          "porcentaje": 18.9
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 26,
+          "porcentaje": 14.4
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 17,
+          "porcentaje": 9.4
+        }
+      ]
+    },
+    {
+      "id": "I86-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Inventario de Estrategias de Aprendizaje y Estudio (IEAE)",
+      "alcance": [
+        "86"
+      ],
+      "pregunta": "¿Con qué frecuencia repasan sus notas al salir de clase?",
+      "parafrasis": [
+        "¿Revisan sus apuntes justo después de la clase?",
+        "¿Qué tan seguido releen lo que anotaron al terminar la clase?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "86",
+          "preguntaId": "INS-0086-p04"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 30.6 % (55 de 180).",
+      "cifras_clave": [
+        "30.6"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 55,
+          "porcentaje": 30.6
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 47,
+          "porcentaje": 26.1
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 33,
+          "porcentaje": 18.3
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 25,
+          "porcentaje": 13.9
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 20,
+          "porcentaje": 11.1
+        }
+      ]
+    },
+    {
+      "id": "I87-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Cuestionario de Compromiso Estudiantil (Student Engagement Questionnaire)",
+      "alcance": [
+        "87"
+      ],
+      "pregunta": "¿Los alumnos van a todas sus clases?",
+      "parafrasis": [
+        "¿Qué tan regular es su asistencia a clase?",
+        "¿Faltan mucho a clases los estudiantes?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "87",
+          "preguntaId": "INS-0087-p06"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 27.5 % (55 de 200).",
+      "cifras_clave": [
+        "27.5"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 55,
+          "porcentaje": 27.5
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 53,
+          "porcentaje": 26.5
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 36,
+          "porcentaje": 18.0
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 30,
+          "porcentaje": 15.0
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 26,
+          "porcentaje": 13.0
+        }
+      ]
+    },
+    {
+      "id": "I87-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Cuestionario de Compromiso Estudiantil (Student Engagement Questionnaire)",
+      "alcance": [
+        "87"
+      ],
+      "pregunta": "¿Relacionan lo nuevo que aprenden con lo que ya han vivido?",
+      "parafrasis": [
+        "¿Vinculan los contenidos nuevos con sus experiencias anteriores?",
+        "¿Conectan lo que aprenden con vivencias previas?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "87",
+          "preguntaId": "INS-0087-p02"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 31.5 % (63 de 200).",
+      "cifras_clave": [
+        "31.5"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 63,
+          "porcentaje": 31.5
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 52,
+          "porcentaje": 26.0
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 34,
+          "porcentaje": 17.0
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 34,
+          "porcentaje": 17.0
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 17,
+          "porcentaje": 8.5
+        }
+      ]
+    },
+    {
+      "id": "I88-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Cuestionario de Compromiso Escolar (Student Engagement in Schools Questionnaire – SESQ)",
+      "alcance": [
+        "88"
+      ],
+      "pregunta": "¿A los estudiantes les gusta asistir a la universidad?",
+      "parafrasis": [
+        "¿Qué tanto disfrutan ir a la universidad?",
+        "¿Les agrada estar en la universidad?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "88",
+          "preguntaId": "INS-0088-p01"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 34.1 % (75 de 220).",
+      "cifras_clave": [
+        "34.1"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 75,
+          "porcentaje": 34.1
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 63,
+          "porcentaje": 28.6
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 36,
+          "porcentaje": 16.4
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 34,
+          "porcentaje": 15.5
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 12,
+          "porcentaje": 5.5
+        }
+      ]
+    },
+    {
+      "id": "I88-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Cuestionario de Compromiso Escolar (Student Engagement in Schools Questionnaire – SESQ)",
+      "alcance": [
+        "88"
+      ],
+      "pregunta": "¿Se sienten aceptados en la universidad?",
+      "parafrasis": [
+        "¿Sienten que la universidad los acepta como son?",
+        "¿Qué tan aceptados se perciben en la institución?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "88",
+          "preguntaId": "INS-0088-p03"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 27.3 % (60 de 220).",
+      "cifras_clave": [
+        "27.3"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 60,
+          "porcentaje": 27.3
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 57,
+          "porcentaje": 25.9
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 50,
+          "porcentaje": 22.7
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 35,
+          "porcentaje": 15.9
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 18,
+          "porcentaje": 8.2
+        }
+      ]
+    },
+    {
+      "id": "I89-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "MSLQ-SF: Cuestionario de Motivación y Estrategias de Aprendizaje Forma Corta",
+      "alcance": [
+        "89"
+      ],
+      "pregunta": "¿Inventan sus propios ejemplos para entender los temas?",
+      "parafrasis": [
+        "¿Crean ejemplos propios cuando estudian?",
+        "¿Usan ejemplos hechos por ellos mismos para comprender los conceptos?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "89",
+          "preguntaId": "INS-0089-p02"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 33.5 % (67 de 200).",
+      "cifras_clave": [
+        "33.5"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 67,
+          "porcentaje": 33.5
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 56,
+          "porcentaje": 28.0
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 31,
+          "porcentaje": 15.5
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 26,
+          "porcentaje": 13.0
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 20,
+          "porcentaje": 10.0
+        }
+      ]
+    },
+    {
+      "id": "I89-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "MSLQ-SF: Cuestionario de Motivación y Estrategias de Aprendizaje Forma Corta",
+      "alcance": [
+        "89"
+      ],
+      "pregunta": "¿Relacionan lo que ven en esta materia con otras asignaturas?",
+      "parafrasis": [
+        "¿Vinculan lo aprendido con otras materias?",
+        "¿Conectan los contenidos de esta clase con los de otros cursos?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "89",
+          "preguntaId": "INS-0089-p05"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 31.5 % (63 de 200).",
+      "cifras_clave": [
+        "31.5"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 63,
+          "porcentaje": 31.5
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 54,
+          "porcentaje": 27.0
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 39,
+          "porcentaje": 19.5
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 30,
+          "porcentaje": 15.0
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 14,
+          "porcentaje": 7.0
+        }
+      ]
+    },
+    {
+      "id": "I90-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Escala RAU de Rendimiento Académico Universitario",
+      "alcance": [
+        "90"
+      ],
+      "pregunta": "¿Estudian de forma constante o solo antes del examen?",
+      "parafrasis": [
+        "¿Estudian con regularidad durante el periodo?",
+        "¿Dejan el estudio para el último momento antes de los exámenes?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "90",
+          "preguntaId": "INS-0090-p06"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 35.0 % (63 de 180).",
+      "cifras_clave": [
+        "35.0"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 63,
+          "porcentaje": 35.0
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 50,
+          "porcentaje": 27.8
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 28,
+          "porcentaje": 15.6
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 27,
+          "porcentaje": 15.0
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 12,
+          "porcentaje": 6.7
+        }
+      ]
+    },
+    {
+      "id": "I90-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Escala RAU de Rendimiento Académico Universitario",
+      "alcance": [
+        "90"
+      ],
+      "pregunta": "¿Toman el liderazgo en los proyectos de clase?",
+      "parafrasis": [
+        "¿Suelen dirigir los proyectos en equipo?",
+        "¿Qué tanto asumen el papel de líder en los trabajos de clase?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "90",
+          "preguntaId": "INS-0090-p05"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 37.2 % (67 de 180).",
+      "cifras_clave": [
+        "37.2"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 67,
+          "porcentaje": 37.2
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 52,
+          "porcentaje": 28.9
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 27,
+          "porcentaje": 15.0
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 20,
+          "porcentaje": 11.1
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 14,
+          "porcentaje": 7.8
+        }
+      ]
+    },
+    {
+      "id": "I91-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Encuesta de Diversidad e Inclusión en el Aula",
+      "alcance": [
+        "91"
+      ],
+      "pregunta": "¿Los profesores tratan igual a todos los alumnos?",
+      "parafrasis": [
+        "¿Reciben todos los estudiantes el mismo trato de parte del docente?",
+        "¿Hay trato parejo del profesor hacia todo el grupo?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "91",
+          "preguntaId": "INS-0091-p01"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 41.9 % (67 de 160).",
+      "cifras_clave": [
+        "41.9"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 67,
+          "porcentaje": 41.9
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 36,
+          "porcentaje": 22.5
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 24,
+          "porcentaje": 15.0
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 22,
+          "porcentaje": 13.8
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 11,
+          "porcentaje": 6.9
+        }
+      ]
+    },
+    {
+      "id": "I91-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Encuesta de Diversidad e Inclusión en el Aula",
+      "alcance": [
+        "91"
+      ],
+      "pregunta": "¿Hay diversidad de orígenes culturales en los grupos?",
+      "parafrasis": [
+        "¿En los salones conviven estudiantes de distintas culturas?",
+        "¿Qué tan diverso culturalmente es su grupo?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "91",
+          "preguntaId": "INS-0091-p05"
+        }
+      ],
+      "esperada": "Más elegida: «Ni de acuerdo ni en desacuerdo / A veces», 28.8 % (46 de 160).",
+      "cifras_clave": [
+        "28.8"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 46,
+          "porcentaje": 28.8
+        },
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 44,
+          "porcentaje": 27.5
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 28,
+          "porcentaje": 17.5
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 26,
+          "porcentaje": 16.2
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 16,
+          "porcentaje": 10.0
+        }
+      ]
+    },
+    {
+      "id": "I92-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Encuesta de Bienestar y Salud Mental Estudiantil",
+      "alcance": [
+        "92"
+      ],
+      "pregunta": "¿Cómo manejan el estrés de la escuela?",
+      "parafrasis": [
+        "¿Qué tan bien llevan la presión académica?",
+        "¿Saben controlar el estrés que les generan los estudios?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "92",
+          "preguntaId": "INS-0092-p02"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 27.5 % (44 de 160).",
+      "cifras_clave": [
+        "27.5"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 44,
+          "porcentaje": 27.5
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 39,
+          "porcentaje": 24.4
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 37,
+          "porcentaje": 23.1
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 22,
+          "porcentaje": 13.8
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 18,
+          "porcentaje": 11.2
+        }
+      ]
+    },
+    {
+      "id": "I92-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Encuesta de Bienestar y Salud Mental Estudiantil",
+      "alcance": [
+        "92"
+      ],
+      "pregunta": "¿Tienen a alguien de confianza para platicar sus problemas?",
+      "parafrasis": [
+        "¿Cuentan con personas con quienes hablar de lo que les preocupa?",
+        "¿Tienen con quién desahogarse cuando tienen problemas?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "92",
+          "preguntaId": "INS-0092-p03"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 30.0 % (48 de 160).",
+      "cifras_clave": [
+        "30.0"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 48,
+          "porcentaje": 30.0
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 37,
+          "porcentaje": 23.1
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 33,
+          "porcentaje": 20.6
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 21,
+          "porcentaje": 13.1
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 21,
+          "porcentaje": 13.1
+        }
+      ]
+    },
+    {
+      "id": "I93-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Encuesta de Carga Académica y Gestión del Tiempo",
+      "alcance": [
+        "93"
+      ],
+      "pregunta": "¿Les parece manejable el número de materias que llevan?",
+      "parafrasis": [
+        "¿Pueden con la cantidad de asignaturas que cursan?",
+        "¿Consideran razonable cuántas materias tienen?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "93",
+          "preguntaId": "INS-0093-p01"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 32.5 % (52 de 160).",
+      "cifras_clave": [
+        "32.5"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 52,
+          "porcentaje": 32.5
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 48,
+          "porcentaje": 30.0
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 28,
+          "porcentaje": 17.5
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 21,
+          "porcentaje": 13.1
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 11,
+          "porcentaje": 6.9
+        }
+      ]
+    },
+    {
+      "id": "I93-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Encuesta de Carga Académica y Gestión del Tiempo",
+      "alcance": [
+        "93"
+      ],
+      "pregunta": "¿Usan agenda o calendario para planear sus actividades?",
+      "parafrasis": [
+        "¿Planean con anticipación lo que tienen que hacer?",
+        "¿Organizan sus pendientes en un calendario?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "93",
+          "preguntaId": "INS-0093-p05"
+        }
+      ],
+      "esperada": "Más elegida: «Ni de acuerdo ni en desacuerdo / A veces», 27.5 % (44 de 160).",
+      "cifras_clave": [
+        "27.5"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 44,
+          "porcentaje": 27.5
+        },
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 43,
+          "porcentaje": 26.9
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 29,
+          "porcentaje": 18.1
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 24,
+          "porcentaje": 15.0
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 20,
+          "porcentaje": 12.5
+        }
+      ]
+    },
+    {
+      "id": "I94-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Prueba de Alfabetización Digital",
+      "alcance": [
+        "94"
+      ],
+      "pregunta": "¿Qué respondieron los alumnos cuando se les preguntó qué es el phishing?",
+      "parafrasis": [
+        "¿Qué opción eligieron más sobre el phishing?",
+        "¿Cómo definieron el phishing los estudiantes en la prueba?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "94",
+          "preguntaId": "INS-0094-r04"
+        }
+      ],
+      "esperada": "Más elegida: «Un tipo de búsqueda en Google», 40.0 % (38 de 95).",
+      "cifras_clave": [
+        "40.0"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Un tipo de búsqueda en Google",
+          "n": 38,
+          "porcentaje": 40.0
+        },
+        {
+          "opcion": "Una herramienta de edición de imágenes",
+          "n": 35,
+          "porcentaje": 36.8
+        },
+        {
+          "opcion": "Un intento fraudulento de obtener información personal",
+          "n": 22,
+          "porcentaje": 23.2
+        }
+      ]
+    },
+    {
+      "id": "I94-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Prueba de Alfabetización Digital",
+      "alcance": [
+        "94"
+      ],
+      "pregunta": "¿Qué opción eligieron más sobre para qué sirve una VPN?",
+      "parafrasis": [
+        "¿Qué contestaron sobre la función de una VPN?",
+        "¿Para qué creen los alumnos que se usa una VPN?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "94",
+          "preguntaId": "INS-0094-r03"
+        }
+      ],
+      "esperada": "Más elegida: «Almacenar archivos en la nube», 48.4 % (46 de 95).",
+      "cifras_clave": [
+        "48.4"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Almacenar archivos en la nube",
+          "n": 46,
+          "porcentaje": 48.4
+        },
+        {
+          "opcion": "Aumentar la velocidad de internet",
+          "n": 23,
+          "porcentaje": 24.2
+        },
+        {
+          "opcion": "Bloquear anuncios publicitarios",
+          "n": 19,
+          "porcentaje": 20.0
+        },
+        {
+          "opcion": "Crear una conexión segura y privada",
+          "n": 7,
+          "porcentaje": 7.4
+        }
+      ]
+    },
+    {
+      "id": "I95-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Evaluación de Competencias para el Aprendizaje Autónomo (CAA)",
+      "alcance": [
+        "95"
+      ],
+      "pregunta": "¿Buscan recursos extra cuando no entienden un tema?",
+      "parafrasis": [
+        "¿Consultan materiales adicionales si algo no les queda claro?",
+        "¿Qué hacen cuando no comprenden bien un tema: buscan más fuentes?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "95",
+          "preguntaId": "INS-0095-r02"
+        }
+      ],
+      "esperada": "Más elegida: «4 en escala 1–5», 31.1 % (28 de 90).",
+      "cifras_clave": [
+        "31.1"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "4 en escala 1–5",
+          "n": 28,
+          "porcentaje": 31.1
+        },
+        {
+          "opcion": "3 en escala 1–5",
+          "n": 27,
+          "porcentaje": 30.0
+        },
+        {
+          "opcion": "2 en escala 1–5",
+          "n": 17,
+          "porcentaje": 18.9
+        },
+        {
+          "opcion": "5 en escala 1–5",
+          "n": 15,
+          "porcentaje": 16.7
+        },
+        {
+          "opcion": "1 en escala 1–5",
+          "n": 3,
+          "porcentaje": 3.3
+        }
+      ]
+    },
+    {
+      "id": "I95-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Evaluación de Competencias para el Aprendizaje Autónomo (CAA)",
+      "alcance": [
+        "95"
+      ],
+      "pregunta": "¿Administran su tiempo sin que nadie se lo recuerde?",
+      "parafrasis": [
+        "¿Organizan su tiempo por su cuenta, sin recordatorios?",
+        "¿Qué tan independientes son para manejar su tiempo?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "95",
+          "preguntaId": "INS-0095-r05"
+        }
+      ],
+      "esperada": "Más elegida: «3 en escala 1–5», 31.1 % (28 de 90).",
+      "cifras_clave": [
+        "31.1"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "3 en escala 1–5",
+          "n": 28,
+          "porcentaje": 31.1
+        },
+        {
+          "opcion": "4 en escala 1–5",
+          "n": 28,
+          "porcentaje": 31.1
+        },
+        {
+          "opcion": "2 en escala 1–5",
+          "n": 18,
+          "porcentaje": 20.0
+        },
+        {
+          "opcion": "5 en escala 1–5",
+          "n": 14,
+          "porcentaje": 15.6
+        },
+        {
+          "opcion": "1 en escala 1–5",
+          "n": 2,
+          "porcentaje": 2.2
+        }
+      ]
+    },
+    {
+      "id": "I96-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Evaluación de Competencias Docentes desde la Perspectiva Estudiantil",
+      "alcance": [
+        "96"
+      ],
+      "pregunta": "¿Qué entienden los alumnos por aprendizaje activo?",
+      "parafrasis": [
+        "¿Cómo definieron el aprendizaje activo en el aula?",
+        "¿Qué opción eligieron más sobre el aprendizaje activo?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "96",
+          "preguntaId": "INS-0096-r06"
+        }
+      ],
+      "esperada": "Más elegida: «El estudiante participa, debate, experimenta y construye conocimiento», 75.8 % (91 de 120).",
+      "cifras_clave": [
+        "75.8"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "El estudiante participa, debate, experimenta y construye conocimiento",
+          "n": 91,
+          "porcentaje": 75.8
+        },
+        {
+          "opcion": "Escuchar al profesor sin interrumpir",
+          "n": 18,
+          "porcentaje": 15.0
+        },
+        {
+          "opcion": "Leer el libro de texto",
+          "n": 6,
+          "porcentaje": 5.0
+        },
+        {
+          "opcion": "Tomar apuntes de manera pasiva",
+          "n": 5,
+          "porcentaje": 4.2
+        }
+      ]
+    },
+    {
+      "id": "I96-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Evaluación de Competencias Docentes desde la Perspectiva Estudiantil",
+      "alcance": [
+        "96"
+      ],
+      "pregunta": "¿Qué piensan que indica la retroalimentación formativa de un docente?",
+      "parafrasis": [
+        "¿Qué contestaron sobre la retroalimentación formativa?",
+        "¿Para qué creen que sirve la retroalimentación formativa del profesor?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "96",
+          "preguntaId": "INS-0096-r03"
+        }
+      ],
+      "esperada": "Más elegida: «Una calificación final sin comentarios», 37.5 % (45 de 120).",
+      "cifras_clave": [
+        "37.5"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Una calificación final sin comentarios",
+          "n": 45,
+          "porcentaje": 37.5
+        },
+        {
+          "opcion": "La nota de asistencia",
+          "n": 35,
+          "porcentaje": 29.2
+        },
+        {
+          "opcion": "La evaluación del comportamiento",
+          "n": 25,
+          "porcentaje": 20.8
+        },
+        {
+          "opcion": "Comentarios sobre el proceso para mejorar el aprendizaje",
+          "n": 15,
+          "porcentaje": 12.5
+        }
+      ]
+    },
+    {
+      "id": "I97-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Prueba de Competencia en Investigación Científica",
+      "alcance": [
+        "97"
+      ],
+      "pregunta": "¿Qué contestaron sobre la triangulación en investigación?",
+      "parafrasis": [
+        "¿Cómo entienden los alumnos la triangulación?",
+        "¿Qué opción eligieron más sobre triangular en una investigación?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "97",
+          "preguntaId": "INS-0097-r04"
+        }
+      ],
+      "esperada": "Más elegida: «Usar solo un método de recolección de datos», 62.5 % (50 de 80).",
+      "cifras_clave": [
+        "62.5"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Usar solo un método de recolección de datos",
+          "n": 50,
+          "porcentaje": 62.5
+        },
+        {
+          "opcion": "Usar estadística triangular",
+          "n": 12,
+          "porcentaje": 15.0
+        },
+        {
+          "opcion": "Combinar múltiples métodos o fuentes para validar resultados",
+          "n": 11,
+          "porcentaje": 13.8
+        },
+        {
+          "opcion": "Dividir la muestra en tres grupos",
+          "n": 7,
+          "porcentaje": 8.8
+        }
+      ]
+    },
+    {
+      "id": "I97-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Prueba de Competencia en Investigación Científica",
+      "alcance": [
+        "97"
+      ],
+      "pregunta": "¿Cómo entienden la validez de un instrumento de medición?",
+      "parafrasis": [
+        "¿Qué respondieron sobre la validez de un instrumento?",
+        "¿Qué creen que significa que un instrumento sea válido?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "97",
+          "preguntaId": "INS-0097-r03"
+        }
+      ],
+      "esperada": "Más elegida: «Que mida lo que realmente se pretende medir», 43.8 % (35 de 80).",
+      "cifras_clave": [
+        "43.8"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Que mida lo que realmente se pretende medir",
+          "n": 35,
+          "porcentaje": 43.8
+        },
+        {
+          "opcion": "Que tenga muchos ítems",
+          "n": 34,
+          "porcentaje": 42.5
+        },
+        {
+          "opcion": "Que dé siempre los mismos resultados",
+          "n": 6,
+          "porcentaje": 7.5
+        },
+        {
+          "opcion": "Que sea fácil de aplicar",
+          "n": 5,
+          "porcentaje": 6.2
+        }
+      ]
+    },
+    {
+      "id": "I98-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Test de Orientación Vocacional y Aptitudes Profesionales",
+      "alcance": [
+        "98"
+      ],
+      "pregunta": "¿Qué sector laboral prefieren los estudiantes?",
+      "parafrasis": [
+        "¿En qué sector les gustaría trabajar?",
+        "¿Qué área de trabajo les atrae más a los alumnos?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "98",
+          "preguntaId": "INS-0098-r05"
+        }
+      ],
+      "esperada": "Más elegida: «Gobierno y política pública», 39.1 % (43 de 110).",
+      "cifras_clave": [
+        "39.1"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Gobierno y política pública",
+          "n": 43,
+          "porcentaje": 39.1
+        },
+        {
+          "opcion": "Arte y entretenimiento",
+          "n": 37,
+          "porcentaje": 33.6
+        },
+        {
+          "opcion": "Tecnología e innovación",
+          "n": 16,
+          "porcentaje": 14.5
+        },
+        {
+          "opcion": "Salud y bienestar",
+          "n": 14,
+          "porcentaje": 12.7
+        }
+      ]
+    },
+    {
+      "id": "I98-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Test de Orientación Vocacional y Aptitudes Profesionales",
+      "alcance": [
+        "98"
+      ],
+      "pregunta": "¿En qué tipo de ambiente de trabajo creen que rendirían mejor?",
+      "parafrasis": [
+        "¿Dónde piensan que se desempeñarían mejor laboralmente?",
+        "¿Qué entorno laboral prefieren para trabajar a gusto?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "98",
+          "preguntaId": "INS-0098-r01"
+        }
+      ],
+      "esperada": "Más elegida: «Trabajo de campo al aire libre», 48.2 % (53 de 110).",
+      "cifras_clave": [
+        "48.2"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Trabajo de campo al aire libre",
+          "n": 53,
+          "porcentaje": 48.2
+        },
+        {
+          "opcion": "Trabajo remoto sin supervisión",
+          "n": 41,
+          "porcentaje": 37.3
+        },
+        {
+          "opcion": "Trabajo en solitario con mínima interacción",
+          "n": 14,
+          "porcentaje": 12.7
+        },
+        {
+          "opcion": "Trabajo colaborativo con mucha interacción social",
+          "n": 2,
+          "porcentaje": 1.8
+        }
+      ]
+    },
+    {
+      "id": "I99-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Evaluación de Competencias Interculturales",
+      "alcance": [
+        "99"
+      ],
+      "pregunta": "¿Qué respondieron sobre la distancia al poder de Hofstede?",
+      "parafrasis": [
+        "¿Cómo entienden la dimensión de distancia al poder?",
+        "¿Qué opción eligieron más sobre la distancia al poder en las dimensiones culturales?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "99",
+          "preguntaId": "INS-0099-r06"
+        }
+      ],
+      "esperada": "Más elegida: «El nivel económico de un país», 53.3 % (48 de 90).",
+      "cifras_clave": [
+        "53.3"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "El nivel económico de un país",
+          "n": 48,
+          "porcentaje": 53.3
+        },
+        {
+          "opcion": "El grado en que los miembros menos poderosos aceptan la distribución desigual del poder",
+          "n": 25,
+          "porcentaje": 27.8
+        },
+        {
+          "opcion": "La diferencia de idiomas entre culturas",
+          "n": 10,
+          "porcentaje": 11.1
+        },
+        {
+          "opcion": "La distancia física entre países",
+          "n": 7,
+          "porcentaje": 7.8
+        }
+      ]
+    },
+    {
+      "id": "I99-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Evaluación de Competencias Interculturales",
+      "alcance": [
+        "99"
+      ],
+      "pregunta": "¿Qué entienden por etnocentrismo en el ámbito académico?",
+      "parafrasis": [
+        "¿Cómo definieron el etnocentrismo en la universidad?",
+        "¿Qué contestaron sobre el etnocentrismo académico?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "99",
+          "preguntaId": "INS-0099-r02"
+        }
+      ],
+      "esperada": "Más elegida: «Estudiar múltiples idiomas», 52.2 % (47 de 90).",
+      "cifras_clave": [
+        "52.2"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Estudiar múltiples idiomas",
+          "n": 47,
+          "porcentaje": 52.2
+        },
+        {
+          "opcion": "Juzgar otras culturas usando los propios valores como referencia",
+          "n": 35,
+          "porcentaje": 38.9
+        },
+        {
+          "opcion": "Fomentar el diálogo intercultural",
+          "n": 6,
+          "porcentaje": 6.7
+        },
+        {
+          "opcion": "Apreciar otras culturas como iguales",
+          "n": 2,
+          "porcentaje": 2.2
+        }
+      ]
+    },
+    {
+      "id": "I100-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Prueba de Habilidades de Comunicación Académica",
+      "alcance": [
+        "100"
+      ],
+      "pregunta": "¿Cómo creen que se presenta una cita textual larga en APA?",
+      "parafrasis": [
+        "¿Qué respondieron sobre las citas directas de más de 40 palabras en APA?",
+        "¿Cómo dicen que se escribe una cita larga en estilo APA?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "100",
+          "preguntaId": "INS-0100-r05"
+        }
+      ],
+      "esperada": "Más elegida: «En un bloque de texto sangrado, sin comillas», 76.0 % (76 de 100).",
+      "cifras_clave": [
+        "76.0"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "En un bloque de texto sangrado, sin comillas",
+          "n": 76,
+          "porcentaje": 76.0
+        },
+        {
+          "opcion": "En cursiva y entre comillas",
+          "n": 15,
+          "porcentaje": 15.0
+        },
+        {
+          "opcion": "En negrita dentro del párrafo",
+          "n": 6,
+          "porcentaje": 6.0
+        },
+        {
+          "opcion": "Solo en la bibliografía",
+          "n": 3,
+          "porcentaje": 3.0
+        }
+      ]
+    },
+    {
+      "id": "I100-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Prueba de Habilidades de Comunicación Académica",
+      "alcance": [
+        "100"
+      ],
+      "pregunta": "¿Qué conector eligieron para expresar contraste?",
+      "parafrasis": [
+        "¿Qué palabra de enlace marcaron como de contraposición?",
+        "¿Qué conectivo identificaron para oponer ideas?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "100",
+          "preguntaId": "INS-0100-r03"
+        }
+      ],
+      "esperada": "Más elegida: «Sin embargo», 36.0 % (36 de 100).",
+      "cifras_clave": [
+        "36.0"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Sin embargo",
+          "n": 36,
+          "porcentaje": 36.0
+        },
+        {
+          "opcion": "Por ejemplo",
+          "n": 32,
+          "porcentaje": 32.0
+        },
+        {
+          "opcion": "Por lo tanto",
+          "n": 27,
+          "porcentaje": 27.0
+        },
+        {
+          "opcion": "Además",
+          "n": 5,
+          "porcentaje": 5.0
+        }
+      ]
+    },
+    {
+      "id": "I101-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Encuesta de Satisfacción con Servicios Institucionales",
+      "alcance": [
+        "101"
+      ],
+      "pregunta": "¿Les alcanza la biblioteca para lo que necesitan?",
+      "parafrasis": [
+        "¿Están conformes con los servicios bibliotecarios, físicos y digitales?",
+        "¿La biblioteca cubre sus necesidades académicas?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "101",
+          "preguntaId": "INS-0101-p01"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 30.0 % (48 de 160).",
+      "cifras_clave": [
+        "30.0"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 48,
+          "porcentaje": 30.0
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 46,
+          "porcentaje": 28.8
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 30,
+          "porcentaje": 18.8
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 20,
+          "porcentaje": 12.5
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 16,
+          "porcentaje": 10.0
+        }
+      ]
+    },
+    {
+      "id": "I101-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Encuesta de Satisfacción con Servicios Institucionales",
+      "alcance": [
+        "101"
+      ],
+      "pregunta": "¿Qué tan rápidos les parecen los trámites administrativos?",
+      "parafrasis": [
+        "¿Consideran eficientes los trámites de la institución?",
+        "¿Cómo califican la agilidad de los procesos administrativos?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "101",
+          "preguntaId": "INS-0101-p04"
+        }
+      ],
+      "esperada": "Más elegida: «Ni de acuerdo ni en desacuerdo / A veces», 28.1 % (45 de 160).",
+      "cifras_clave": [
+        "28.1"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 45,
+          "porcentaje": 28.1
+        },
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 44,
+          "porcentaje": 27.5
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 31,
+          "porcentaje": 19.4
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 23,
+          "porcentaje": 14.4
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 17,
+          "porcentaje": 10.6
+        }
+      ]
+    },
+    {
+      "id": "I102-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Encuesta de Inserción Laboral y Expectativas Profesionales",
+      "alcance": [
+        "102"
+      ],
+      "pregunta": "¿Esperan trabajar en lo que estudiaron?",
+      "parafrasis": [
+        "¿Creen que se emplearán en su área de formación?",
+        "¿Piensan trabajar en su campo al egresar?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "102",
+          "preguntaId": "INS-0102-p02"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 40.7 % (61 de 150).",
+      "cifras_clave": [
+        "40.7"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 61,
+          "porcentaje": 40.7
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 44,
+          "porcentaje": 29.3
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 27,
+          "porcentaje": 18.0
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 17,
+          "porcentaje": 11.3
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 1,
+          "porcentaje": 0.7
+        }
+      ]
+    },
+    {
+      "id": "I102-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Encuesta de Inserción Laboral y Expectativas Profesionales",
+      "alcance": [
+        "102"
+      ],
+      "pregunta": "¿Se sienten listos para el mundo laboral?",
+      "parafrasis": [
+        "¿Qué tan preparados se perciben para los retos del trabajo?",
+        "¿Se sienten capaces de enfrentar el mercado laboral?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "102",
+          "preguntaId": "INS-0102-p05"
+        }
+      ],
+      "esperada": "Más elegida: «De acuerdo / Frecuentemente», 30.7 % (46 de 150).",
+      "cifras_clave": [
+        "30.7"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "De acuerdo / Frecuentemente",
+          "n": 46,
+          "porcentaje": 30.7
+        },
+        {
+          "opcion": "Ni de acuerdo ni en desacuerdo / A veces",
+          "n": 44,
+          "porcentaje": 29.3
+        },
+        {
+          "opcion": "Totalmente de acuerdo / Siempre",
+          "n": 39,
+          "porcentaje": 26.0
+        },
+        {
+          "opcion": "En desacuerdo / Pocas veces",
+          "n": 17,
+          "porcentaje": 11.3
+        },
+        {
+          "opcion": "Totalmente en desacuerdo / Nunca",
+          "n": 4,
+          "porcentaje": 2.7
+        }
+      ]
+    },
+    {
+      "id": "I103-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Prueba de Comprensión Lectora Universitaria",
+      "alcance": [
+        "103"
+      ],
+      "pregunta": "¿Qué papel le dan al docente en el aprendizaje basado en problemas?",
+      "parafrasis": [
+        "¿Qué contestaron sobre la función del profesor en el ABP?",
+        "¿Cómo describen el rol del docente en el modelo ABP?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "103",
+          "preguntaId": "INS-0103-r02"
+        }
+      ],
+      "esperada": "Más elegida: «Supervisor disciplinario», 65.0 % (65 de 100).",
+      "cifras_clave": [
+        "65.0"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Supervisor disciplinario",
+          "n": 65,
+          "porcentaje": 65.0
+        },
+        {
+          "opcion": "Evaluador exclusivo",
+          "n": 19,
+          "porcentaje": 19.0
+        },
+        {
+          "opcion": "Transmisor de información",
+          "n": 16,
+          "porcentaje": 16.0
+        }
+      ]
+    },
+    {
+      "id": "I103-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Prueba de Comprensión Lectora Universitaria",
+      "alcance": [
+        "103"
+      ],
+      "pregunta": "¿Qué entienden por metacognición dentro del ABP?",
+      "parafrasis": [
+        "¿Qué respondieron sobre la metacognición en el aprendizaje basado en problemas?",
+        "¿Cómo definieron la metacognición en el ABP?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "103",
+          "preguntaId": "INS-0103-r06"
+        }
+      ],
+      "esperada": "Más elegida: «Reflexionar sobre el propio proceso de aprendizaje», 48.0 % (48 de 100).",
+      "cifras_clave": [
+        "48.0"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Reflexionar sobre el propio proceso de aprendizaje",
+          "n": 48,
+          "porcentaje": 48.0
+        },
+        {
+          "opcion": "Memorizar el proceso de aprendizaje",
+          "n": 26,
+          "porcentaje": 26.0
+        },
+        {
+          "opcion": "Depender del docente para evaluar el aprendizaje",
+          "n": 21,
+          "porcentaje": 21.0
+        },
+        {
+          "opcion": "Ignorar los errores cometidos",
+          "n": 5,
+          "porcentaje": 5.0
+        }
+      ]
+    },
+    {
+      "id": "I104-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Prueba de Competencias Matemáticas Básicas",
+      "alcance": [
+        "104"
+      ],
+      "pregunta": "¿Qué respuesta eligieron más en el problema del artículo de $500 con 20 % de descuento?",
+      "parafrasis": [
+        "¿Cuánto dijeron que se paga con el descuento del 20 %?",
+        "¿Qué contestaron en el ejercicio del descuento?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "104",
+          "preguntaId": "INS-0104-r03"
+        }
+      ],
+      "esperada": "Más elegida: «$420», 51.8 % (57 de 110).",
+      "cifras_clave": [
+        "51.8"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "$420",
+          "n": 57,
+          "porcentaje": 51.8
+        },
+        {
+          "opcion": "$480",
+          "n": 26,
+          "porcentaje": 23.6
+        },
+        {
+          "opcion": "$400",
+          "n": 15,
+          "porcentaje": 13.6
+        },
+        {
+          "opcion": "$450",
+          "n": 12,
+          "porcentaje": 10.9
+        }
+      ]
+    },
+    {
+      "id": "I104-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Prueba de Competencias Matemáticas Básicas",
+      "alcance": [
+        "104"
+      ],
+      "pregunta": "¿Qué contestaron sobre la raíz cuadrada de 144?",
+      "parafrasis": [
+        "¿Qué opción marcaron más para la raíz de 144?",
+        "¿Cuánto dijeron que vale la raíz cuadrada de 144?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "104",
+          "preguntaId": "INS-0104-r06"
+        }
+      ],
+      "esperada": "Más elegida: «12», 42.7 % (47 de 110).",
+      "cifras_clave": [
+        "42.7"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "12",
+          "n": 47,
+          "porcentaje": 42.7
+        },
+        {
+          "opcion": "13",
+          "n": 32,
+          "porcentaje": 29.1
+        },
+        {
+          "opcion": "14",
+          "n": 20,
+          "porcentaje": 18.2
+        },
+        {
+          "opcion": "11",
+          "n": 11,
+          "porcentaje": 10.0
+        }
+      ]
+    },
+    {
+      "id": "I105-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Evaluación de Liderazgo y Participación Estudiantil",
+      "alcance": [
+        "105"
+      ],
+      "pregunta": "¿Animan a sus compañeros cuando el equipo tiene problemas?",
+      "parafrasis": [
+        "¿Motivan al grupo cuando las cosas se complican?",
+        "¿Qué tanto alientan a sus compañeros en momentos difíciles?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "105",
+          "preguntaId": "INS-0105-r02"
+        }
+      ],
+      "esperada": "Más elegida: «4 en escala 1–5», 27.0 % (27 de 100).",
+      "cifras_clave": [
+        "27.0"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "4 en escala 1–5",
+          "n": 27,
+          "porcentaje": 27.0
+        },
+        {
+          "opcion": "3 en escala 1–5",
+          "n": 25,
+          "porcentaje": 25.0
+        },
+        {
+          "opcion": "2 en escala 1–5",
+          "n": 24,
+          "porcentaje": 24.0
+        },
+        {
+          "opcion": "5 en escala 1–5",
+          "n": 16,
+          "porcentaje": 16.0
+        },
+        {
+          "opcion": "1 en escala 1–5",
+          "n": 8,
+          "porcentaje": 8.0
+        }
+      ]
+    },
+    {
+      "id": "I105-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "prueba_estandarizada",
+      "instrumento": "Evaluación de Liderazgo y Participación Estudiantil",
+      "alcance": [
+        "105"
+      ],
+      "pregunta": "¿Cómo manejan los conflictos cuando hay desacuerdos?",
+      "parafrasis": [
+        "¿Resuelven bien los desacuerdos en el grupo?",
+        "¿Qué tan constructivos son al enfrentar conflictos?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "105",
+          "preguntaId": "INS-0105-r05"
+        }
+      ],
+      "esperada": "Más elegida: «3 en escala 1–5», 29.0 % (29 de 100).",
+      "cifras_clave": [
+        "29.0"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "3 en escala 1–5",
+          "n": 29,
+          "porcentaje": 29.0
+        },
+        {
+          "opcion": "4 en escala 1–5",
+          "n": 22,
+          "porcentaje": 22.0
+        },
+        {
+          "opcion": "5 en escala 1–5",
+          "n": 18,
+          "porcentaje": 18.0
+        },
+        {
+          "opcion": "2 en escala 1–5",
+          "n": 16,
+          "porcentaje": 16.0
+        },
+        {
+          "opcion": "1 en escala 1–5",
+          "n": 15,
+          "porcentaje": 15.0
+        }
+      ]
+    },
+    {
+      "id": "I106-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre estrategias de permanencia universitaria",
+      "alcance": [
+        "106"
+      ],
+      "pregunta": "¿Cómo ha influido la familia en que sigan estudiando?",
+      "parafrasis": [
+        "¿Qué papel tiene el apoyo familiar en su permanencia?",
+        "¿Sus familias los han ayudado a no dejar la universidad?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "106",
+          "preguntaId": "INS-0106-p03"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I106-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre estrategias de permanencia universitaria",
+      "alcance": [
+        "106"
+      ],
+      "pregunta": "¿Cómo han enfrentado los problemas de dinero durante la carrera?",
+      "parafrasis": [
+        "¿Qué hacen ante las dificultades económicas en la universidad?",
+        "¿Cómo sortean la falta de recursos para estudiar?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "106",
+          "preguntaId": "INS-0106-p05"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I107-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre experiencia docente y calidad educativa",
+      "alcance": [
+        "107"
+      ],
+      "pregunta": "¿Qué opinan del tamaño de los grupos en sus clases?",
+      "parafrasis": [
+        "¿Cómo les afecta que los grupos sean grandes o pequeños?",
+        "¿Influye cuántos alumnos hay en el salón en cómo aprenden?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "107",
+          "preguntaId": "INS-0107-p05"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I107-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre experiencia docente y calidad educativa",
+      "alcance": [
+        "107"
+      ],
+      "pregunta": "¿Cómo sería para ellos el profesor ideal?",
+      "parafrasis": [
+        "¿Qué cualidades valoran más en un docente?",
+        "¿Qué características debe tener un buen profesor según ellos?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "107",
+          "preguntaId": "INS-0107-p02"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I108-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre tecnología y aprendizaje digital",
+      "alcance": [
+        "108"
+      ],
+      "pregunta": "¿Qué problemas tecnológicos han tenido al estudiar?",
+      "parafrasis": [
+        "¿Qué obstáculos de tecnología han enfrentado en sus estudios?",
+        "¿Qué fallas o limitaciones tecnológicas les han afectado?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "108",
+          "preguntaId": "INS-0108-p05"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I108-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre tecnología y aprendizaje digital",
+      "alcance": [
+        "108"
+      ],
+      "pregunta": "¿Qué opinan de la plataforma virtual de su universidad?",
+      "parafrasis": [
+        "¿Cómo ha sido su experiencia con el LMS institucional?",
+        "¿Les funciona bien la plataforma en línea de la escuela?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "108",
+          "preguntaId": "INS-0108-p02"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I109-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre inclusión y diversidad universitaria",
+      "alcance": [
+        "109"
+      ],
+      "pregunta": "¿Han vivido o visto discriminación en el campus?",
+      "parafrasis": [
+        "¿Han presenciado situaciones de exclusión en la universidad?",
+        "¿Han sido testigos o víctimas de trato discriminatorio en la institución?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "109",
+          "preguntaId": "INS-0109-p02"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I109-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre inclusión y diversidad universitaria",
+      "alcance": [
+        "109"
+      ],
+      "pregunta": "¿Qué cambiarían para que la universidad sea más inclusiva?",
+      "parafrasis": [
+        "¿Qué propuestas tienen para mejorar la inclusión?",
+        "¿Qué harían para que la institución incluya a todos?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "109",
+          "preguntaId": "INS-0109-p06"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I110-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre investigación y producción académica (posgrado)",
+      "alcance": [
+        "110"
+      ],
+      "pregunta": "¿Qué obstáculos encuentran para publicar en revistas de alto impacto?",
+      "parafrasis": [
+        "¿Qué dificultades tienen para que les acepten artículos en revistas indexadas?",
+        "¿Por qué les cuesta publicar en revistas importantes?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "110",
+          "preguntaId": "INS-0110-p03"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I110-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre investigación y producción académica (posgrado)",
+      "alcance": [
+        "110"
+      ],
+      "pregunta": "¿Cómo trabajan con otros investigadores o instituciones?",
+      "parafrasis": [
+        "¿Colaboran con investigadores de otras instituciones?",
+        "¿Qué tipo de colaboración científica tienen?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "110",
+          "preguntaId": "INS-0110-p06"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I111-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre orientación vocacional y tutoría",
+      "alcance": [
+        "111"
+      ],
+      "pregunta": "¿Les sirvió la orientación vocacional antes de entrar a la universidad?",
+      "parafrasis": [
+        "¿Recibieron orientación para elegir carrera y les fue útil?",
+        "¿Qué tan útil fue la orientación que tuvieron antes de ingresar?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "111",
+          "preguntaId": "INS-0111-p01"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I111-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre orientación vocacional y tutoría",
+      "alcance": [
+        "111"
+      ],
+      "pregunta": "¿Qué tan preparados se sienten para conseguir trabajo?",
+      "parafrasis": [
+        "¿Se sienten listos para el mercado laboral?",
+        "¿Creen estar preparados para emplearse al egresar?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "111",
+          "preguntaId": "INS-0111-p06"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I112-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre actividades extracurriculares y vida de campus",
+      "alcance": [
+        "112"
+      ],
+      "pregunta": "¿Cómo combinan las actividades extracurriculares con la escuela?",
+      "parafrasis": [
+        "¿Cómo equilibran lo extracurricular con sus deberes académicos?",
+        "¿Les da tiempo de hacer actividades fuera de clase sin descuidar sus estudios?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "112",
+          "preguntaId": "INS-0112-p04"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I112-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre actividades extracurriculares y vida de campus",
+      "alcance": [
+        "112"
+      ],
+      "pregunta": "¿Qué actividades nuevas les gustaría que hubiera?",
+      "parafrasis": [
+        "¿Qué otras actividades proponen que ofrezca la universidad?",
+        "¿Qué actividades echan de menos en su institución?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "112",
+          "preguntaId": "INS-0112-p06"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I113-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre financiamiento y accesibilidad de la educación",
+      "alcance": [
+        "113"
+      ],
+      "pregunta": "¿De dónde sacan el dinero para pagar sus estudios?",
+      "parafrasis": [
+        "¿Cómo financian su carrera?",
+        "¿Con qué recursos pagan la universidad?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "113",
+          "preguntaId": "INS-0113-p01"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I113-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre financiamiento y accesibilidad de la educación",
+      "alcance": [
+        "113"
+      ],
+      "pregunta": "¿El costo de estudiar ha sido un obstáculo para ellos?",
+      "parafrasis": [
+        "¿Lo caro de la educación les ha dificultado estudiar?",
+        "¿Qué tanto les ha frenado el costo de la universidad?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "113",
+          "preguntaId": "INS-0113-p03"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I114-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre transición secundaria-universidad (primer año)",
+      "alcance": [
+        "114"
+      ],
+      "pregunta": "¿Qué fue lo más difícil de su primer año?",
+      "parafrasis": [
+        "¿Qué retos enfrentaron al empezar la universidad?",
+        "¿Cuáles fueron sus principales dificultades en el primer año?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "114",
+          "preguntaId": "INS-0114-p03"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I114-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre transición secundaria-universidad (primer año)",
+      "alcance": [
+        "114"
+      ],
+      "pregunta": "¿Cómo se integraron con compañeros y profesores al principio?",
+      "parafrasis": [
+        "¿Cómo fue su socialización al inicio de la carrera?",
+        "¿Les costó relacionarse con compañeros y docentes al llegar?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "114",
+          "preguntaId": "INS-0114-p05"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I115-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre internacionalización y movilidad académica",
+      "alcance": [
+        "115"
+      ],
+      "pregunta": "¿Qué complicaciones tuvieron al estudiar en el extranjero?",
+      "parafrasis": [
+        "¿Qué dificultades encontraron en su intercambio internacional?",
+        "¿Qué se les hizo difícil al estudiar en otro país?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "115",
+          "preguntaId": "INS-0115-p04"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I115-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "entrevista",
+      "instrumento": "Entrevista sobre internacionalización y movilidad académica",
+      "alcance": [
+        "115"
+      ],
+      "pregunta": "¿Cómo apoya la universidad los intercambios internacionales?",
+      "parafrasis": [
+        "¿Qué apoyo da la institución para la movilidad académica?",
+        "¿La universidad respalda los programas de internacionalización?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "115",
+          "preguntaId": "INS-0115-p06"
+        }
+      ],
+      "esperada": null,
+      "cifras_clave": [],
+      "hechos_clave": [],
+      "verificacion": "anotación humana (entrevista: sin cifra)",
+      "revisar": "Escribir 1–3 hechos clave que debe mencionar una buena respuesta."
+    },
+    {
+      "id": "I117-a",
+      "conjunto": "prueba",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Simulación",
+      "alcance": [
+        "117"
+      ],
+      "pregunta": "¿Los estudiantes toman sus clases presenciales, en línea o mixtas?",
+      "parafrasis": [
+        "¿En qué modalidad estudian su programa?",
+        "¿Cómo cursan su carrera: presencial o a distancia?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "117",
+          "preguntaId": "INS-0117-p03"
+        }
+      ],
+      "esperada": "Más elegida: «Presencial», 64.2 % (1251 de 1949).",
+      "cifras_clave": [
+        "64.2"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Presencial",
+          "n": 1251,
+          "porcentaje": 64.2
+        },
+        {
+          "opcion": "Mixta/hibrida",
+          "n": 435,
+          "porcentaje": 22.3
+        },
+        {
+          "opcion": "En linea",
+          "n": 263,
+          "porcentaje": 13.5
+        }
+      ]
+    },
+    {
+      "id": "I117-b",
+      "conjunto": "desarrollo",
+      "tipo": "con_respuesta",
+      "tipo_instrumento": "encuesta",
+      "instrumento": "Simulación",
+      "alcance": [
+        "117"
+      ],
+      "pregunta": "¿Cuántos de sus profesores tienen doctorado?",
+      "parafrasis": [
+        "¿Qué proporción de sus docentes cuenta con doctorado?",
+        "¿Sus profesores de este periodo tienen grado de doctor?"
+      ],
+      "decision_esperada": "dentro",
+      "relevantes": [
+        {
+          "instrumentoId": "117",
+          "preguntaId": "INS-0117-p05"
+        }
+      ],
+      "esperada": "Más elegida: «Aproximadamente la mitad», 24.6 % (482 de 1958).",
+      "cifras_clave": [
+        "24.6"
+      ],
+      "hechos_clave": [],
+      "verificacion": "SQL sobre respuesta_interpretada (versión vigente)",
+      "revisar": "",
+      "distribucion": [
+        {
+          "opcion": "Aproximadamente la mitad",
+          "n": 482,
+          "porcentaje": 24.6
+        },
+        {
+          "opcion": "Menos de la mitad",
+          "n": 406,
+          "porcentaje": 20.7
+        },
+        {
+          "opcion": "No lo se",
+          "n": 392,
+          "porcentaje": 20.0
+        },
+        {
+          "opcion": "Mas de la mitad",
+          "n": 274,
+          "porcentaje": 14.0
+        },
+        {
+          "opcion": "Todos",
+          "n": 247,
+          "porcentaje": 12.6
+        },
+        {
+          "opcion": "Ninguno",
+          "n": 157,
+          "porcentaje": 8.0
+        }
+      ]
+    },
+    {
+      "id": "S01",
+      "conjunto": "prueba",
+      "tipo": "sin_respuesta",
+      "alcance": [],
+      "pregunta": "¿Cuántos estudiantes consumen alcohol o tabaco?",
+      "parafrasis": [],
+      "decision_esperada": "sin_informacion",
+      "relevantes": [],
+      "verificacion": "0 fragmentos con ~* '(alcohol|tabaco)' en documento_vectorizado (11 nov 2026)",
+      "revisar": ""
+    },
+    {
+      "id": "S02",
+      "conjunto": "prueba",
+      "tipo": "sin_respuesta",
+      "alcance": [],
+      "pregunta": "¿Qué opinan los estudiantes del estacionamiento de la universidad?",
+      "parafrasis": [],
+      "decision_esperada": "sin_informacion",
+      "relevantes": [],
+      "verificacion": "0 fragmentos con ~* '(estacionamiento)' en documento_vectorizado (11 nov 2026)",
+      "revisar": ""
+    },
+    {
+      "id": "S03",
+      "conjunto": "prueba",
+      "tipo": "sin_respuesta",
+      "alcance": [],
+      "pregunta": "¿Cómo afectó la pandemia de COVID-19 a los estudiantes?",
+      "parafrasis": [],
+      "decision_esperada": "sin_informacion",
+      "relevantes": [],
+      "verificacion": "0 fragmentos con ~* '(pandemia|covid)' en documento_vectorizado (11 nov 2026)",
+      "revisar": ""
+    },
+    {
+      "id": "S04",
+      "conjunto": "prueba",
+      "tipo": "sin_respuesta",
+      "alcance": [],
+      "pregunta": "¿Cuántas horas a la semana juegan videojuegos los alumnos?",
+      "parafrasis": [],
+      "decision_esperada": "sin_informacion",
+      "relevantes": [],
+      "verificacion": "0 fragmentos con ~* '(videojuego)' en documento_vectorizado (11 nov 2026)",
+      "revisar": ""
+    },
+    {
+      "id": "S05",
+      "conjunto": "prueba",
+      "tipo": "sin_respuesta",
+      "alcance": [],
+      "pregunta": "¿Están cómodos los estudiantes con el aire acondicionado de las aulas?",
+      "parafrasis": [],
+      "decision_esperada": "sin_informacion",
+      "relevantes": [],
+      "verificacion": "0 fragmentos con ~* '(aire acondicionado|clima)' en documento_vectorizado (11 nov 2026)",
+      "revisar": ""
+    },
+    {
+      "id": "S06",
+      "conjunto": "prueba",
+      "tipo": "sin_respuesta",
+      "alcance": [],
+      "pregunta": "¿Qué piensan los alumnos sobre usar uniforme?",
+      "parafrasis": [],
+      "decision_esperada": "sin_informacion",
+      "relevantes": [],
+      "verificacion": "0 fragmentos con ~* '(uniforme)' en documento_vectorizado (11 nov 2026)",
+      "revisar": ""
+    },
+    {
+      "id": "S07",
+      "conjunto": "desarrollo",
+      "tipo": "sin_respuesta",
+      "alcance": [],
+      "pregunta": "¿Con qué frecuencia usan los estudiantes el gimnasio de la universidad?",
+      "parafrasis": [],
+      "decision_esperada": "sin_informacion",
+      "relevantes": [],
+      "verificacion": "0 fragmentos con ~* '(gimnasio)' en documento_vectorizado (11 nov 2026)",
+      "revisar": ""
+    },
+    {
+      "id": "S08",
+      "conjunto": "desarrollo",
+      "tipo": "sin_respuesta",
+      "alcance": [],
+      "pregunta": "¿Participaron los estudiantes en alguna huelga o paro?",
+      "parafrasis": [],
+      "decision_esperada": "sin_informacion",
+      "relevantes": [],
+      "verificacion": "0 fragmentos con ~* '(huelga|paro estudiantil)' en documento_vectorizado (11 nov 2026)",
+      "revisar": ""
+    },
+    {
+      "id": "F01",
+      "conjunto": "prueba",
+      "tipo": "fuera_de_dominio",
+      "alcance": [],
+      "pregunta": "¿Cuál es la capital de Francia?",
+      "parafrasis": [],
+      "decision_esperada": "fuera",
+      "relevantes": [],
+      "verificacion": "",
+      "revisar": ""
+    },
+    {
+      "id": "F02",
+      "conjunto": "desarrollo",
+      "tipo": "fuera_de_dominio",
+      "alcance": [],
+      "pregunta": "Dame una receta para hacer pastel de chocolate.",
+      "parafrasis": [],
+      "decision_esperada": "fuera",
+      "relevantes": [],
+      "verificacion": "",
+      "revisar": ""
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+ "id": "ENC-10",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara los primeros 100 respondentes con los últimos 100 en qué tan probable es que vuelvan a estudiar aquí",
+   "rag_log_id": 2282,
+   "respuesta": "De acuerdo al contexto, los estudiantes R104 y R1193 indicaron una probabilidad de volver a estudiar en ESCOM entre 1 y 2 en una escala del 1 al 5. El estudiante R822 indicó una probabilidad de volver a estudiar en ESCOM de 4 en una escala del 1 al 5. [Fuente 1]",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Rango de respuesta» no es una variable de contexto de «Indicadores de Experiencia y Calidad Académica» (disponibles: ninguna)."
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "respondente",
+     "etiqueta": "R1193",
+     "score": 0.6187
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R104",
+     "score": 0.618
+    },
+    {
+     "seccion": "respondente",
+     "etiqueta": "R822",
+     "score": 0.6175
+    }
+   ],
+   "segundos": 53.3,
+   "tiempos_ms": {
+    "ejecucion": 40,
+    "recuperacion": 1258,
+    "interpretacion": 31021
+   },
+   "k_precision": 0.462,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": 1,
+   "comentario_humano": "No comparó con los estudiantes que sí entran en el rango"
+  }
+ ],
+ "debe": "Grupos por posición, cada uno con su resultado."
+}

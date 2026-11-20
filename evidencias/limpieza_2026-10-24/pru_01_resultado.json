@@ -1,0 +1,146 @@
+{
+ "verdad": "evidencias\\limpieza_2026-10-24\\pru_01_verdad.json",
+ "id_control": 121,
+ "id_errores": 122,
+ "por_tipo": {
+  "respuesta_multiple": {
+   "inyectados": 6,
+   "detectados_nuevos": 6,
+   "verdaderos_positivos": 6,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": "Por conteo de respuestas nulificadas con ese motivo (errores − control)."
+  },
+  "ilegible": {
+   "inyectados": 5,
+   "detectados_nuevos": 5,
+   "verdaderos_positivos": 5,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": "Por conteo de respuestas nulificadas con ese motivo (errores − control)."
+  },
+  "caracter_invalido": {
+   "inyectados": 4,
+   "detectados_nuevos": 4,
+   "verdaderos_positivos": 4,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": "Por conteo de respuestas nulificadas con ese motivo (errores − control)."
+  },
+  "id_duplicado": {
+   "inyectados": 3,
+   "detectados_nuevos": 3,
+   "verdaderos_positivos": 3,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": ""
+  },
+  "filas_vacias": {
+   "inyectados": 2,
+   "detectados_nuevos": 2,
+   "verdaderos_positivos": 2,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "nota": "Las filas vacías desaparecen del conteo (0 filas menos que el control), pero el reporte registra 2 como vacías."
+  }
+ },
+ "global": {
+  "inyectados": 20,
+  "verdaderos_positivos": 20,
+  "detectados_nuevos": 20,
+  "precision": 1.0,
+  "recall": 1.0
+ },
+ "antes_despues": [
+  {
+   "metrica": "Alumnos",
+   "antes": 95.0,
+   "despues": 95.0,
+   "formato": "num"
+  },
+  {
+   "metrica": "IDs repetidos",
+   "antes": 3.0,
+   "despues": 0.0,
+   "formato": "num"
+  },
+  {
+   "metrica": "Respuestas nulas",
+   "antes": 90.0,
+   "despues": 90.0,
+   "formato": "num"
+  },
+  {
+   "metrica": "No respondidas",
+   "antes": 0.0,
+   "despues": 0.0,
+   "formato": "num"
+  },
+  {
+   "metrica": "Aciertos entre respuestas válidas",
+   "antes": 0.6174,
+   "despues": 0.6174,
+   "formato": "pct"
+  },
+  {
+   "metrica": "Fiabilidad KR-20",
+   "antes": 0.6605,
+   "despues": 0.6605,
+   "formato": "dec"
+  }
+ ],
+ "hallazgos_control": [
+  "clave-confirmar",
+  "clave:pru_01_Comprensió_q1",
+  "clave:pru_01_Comprensió_q2",
+  "clave:pru_01_Comprensió_q3",
+  "clave:pru_01_Comprensió_q4",
+  "clave:pru_01_Comprensió_q5",
+  "clave:pru_01_Comprensió_q6",
+  "clave:pru_01_Comprensió_q7",
+  "clave:pru_01_Comprensió_q8",
+  "clave:pru_01_Comprensió_q9",
+  "clave:pru_01_Comprensió_q10",
+  "clave:pru_01_Identifica_q1",
+  "clave:pru_01_Identifica_q2",
+  "clave:pru_01_Identifica_q3",
+  "clave:pru_01_Identifica_q4",
+  "clave:pru_01_Identifica_q5",
+  "clave:pru_01_Verdadero _q1",
+  "clave:pru_01_Verdadero _q2",
+  "clave:pru_01_Verdadero _q3",
+  "clave:pru_01_Verdadero _q4",
+  "clave:pru_01_Verdadero _q5"
+ ],
+ "hallazgos_errores": [
+  "clave-confirmar",
+  "clave:pru_01_Comprensió_q1",
+  "clave:pru_01_Comprensió_q2",
+  "clave:pru_01_Comprensió_q3",
+  "clave:pru_01_Comprensió_q4",
+  "clave:pru_01_Comprensió_q5",
+  "clave:pru_01_Comprensió_q6",
+  "clave:pru_01_Comprensió_q7",
+  "clave:pru_01_Comprensió_q8",
+  "clave:pru_01_Comprensió_q9",
+  "clave:pru_01_Comprensió_q10",
+  "clave:pru_01_Identifica_q1",
+  "clave:pru_01_Identifica_q2",
+  "clave:pru_01_Identifica_q3",
+  "clave:pru_01_Identifica_q4",
+  "clave:pru_01_Identifica_q5",
+  "clave:pru_01_Verdadero _q1",
+  "clave:pru_01_Verdadero _q2",
+  "clave:pru_01_Verdadero _q3",
+  "clave:pru_01_Verdadero _q4",
+  "clave:pru_01_Verdadero _q5",
+  "id-duplicado:R0019",
+  "id-duplicado:R0040",
+  "id-duplicado:R0089"
+ ]
+}

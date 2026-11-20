@@ -1,0 +1,785 @@
+{
+ "encuesta": {
+  "archivo": "enc_06_sucio_no_contemplado.csv",
+  "por_tipo": {
+   "numero_con_etiqueta": {
+    "inyectados": 3,
+    "bien_hoy": 3,
+    "2_nov": "3/3 señalados como fuera de escala, con sugerencia de anular (se pierde el número que sí venía)"
+   },
+   "numero_en_palabra": {
+    "inyectados": 3,
+    "bien_hoy": 3,
+    "2_nov": "3/3 señalados como fuera de escala, con sugerencia de anular"
+   },
+   "apostrofo_de_excel": {
+    "inyectados": 2,
+    "bien_hoy": 2,
+    "2_nov": "2/2 corregidos en silencio por la homologación ('1 → 1): contemplado sin querer"
+   },
+   "coma_decimal": {
+    "inyectados": 4,
+    "bien_hoy": 4,
+    "2_nov": "0/4: sin aviso (4,5 / 3,82 quedan como texto en una columna numérica)"
+   },
+   "unidad_en_el_numero": {
+    "inyectados": 3,
+    "bien_hoy": 3,
+    "2_nov": "3/3 señalados como fuera de rango, con sugerencia de anular"
+   },
+   "error_ortografico_en_categoria": {
+    "inyectados": 3,
+    "bien_hoy": 3,
+    "2_nov": "0/3: sin aviso; «Una vez al mse» queda como una categoría nueva"
+   },
+   "sinonimo_de_categoria": {
+    "inyectados": 3,
+    "bien_hoy": 0,
+    "2_nov": "0/3: sin aviso; «Jamás» y «1 vez por semestre» quedan como categorías nuevas"
+   },
+   "otro_con_texto": {
+    "inyectados": 3,
+    "bien_hoy": 2,
+    "2_nov": "0/3: sin aviso; cada «Otro: …» es una categoría distinta"
+   },
+   "si_no_codificado": {
+    "inyectados": 3,
+    "bien_hoy": 3,
+    "2_nov": "0/3: sin aviso; 1, 0 y Yes conviven con Sí/No"
+   },
+   "mojibake": {
+    "inyectados": 2,
+    "bien_hoy": 2,
+    "2_nov": "0/2: sin aviso; «SÃ» queda como otra categoría"
+   },
+   "casi_duplicado": {
+    "inyectados": 1,
+    "bien_hoy": 0,
+    "2_nov": "0/2: no se detectan (solo se detectan duplicados exactos)"
+   },
+   "fila_desplazada": {
+    "inyectados": 1,
+    "bien_hoy": 1,
+    "2_nov": "no se detecta; además cambia el tipo de columnas de contexto: tiene_beca, primera_generacion y nivel_estudio pasan de binaria a categórica y semestre de escala 1–10 a calificación"
+   },
+   "fila_de_promedios": {
+    "inyectados": 1,
+    "bien_hoy": 1,
+    "2_nov": "se señala como encuestado incompleto y se sugiere eliminarla (detección parcial, por otra razón). Mientras no se elimine, sus decimales hacen que los 15 ítems Likert 1–5 se tomen como calificación 0–10 y la detección de respuestas en línea recta pasa de 38 encuestados a 0"
+   },
+   "segunda_fila_de_encabezado": {
+    "inyectados": 1,
+    "bien_hoy": 1,
+    "2_nov": "se cuenta como un respondente; sus textos salen como valores fuera de rango en cada columna numérica"
+   }
+  },
+  "resumen": [],
+  "detalle": [
+   {
+    "tipo": "numero_con_etiqueta",
+    "inyectado": "5 - Totalmente de acuerdo",
+    "esperado": "5",
+    "obtenido": "5",
+    "ok": true
+   },
+   {
+    "tipo": "numero_con_etiqueta",
+    "inyectado": "4 (De acuerdo)",
+    "esperado": "4",
+    "obtenido": "4",
+    "ok": true
+   },
+   {
+    "tipo": "numero_con_etiqueta",
+    "inyectado": "2 - En desacuerdo",
+    "esperado": "2",
+    "obtenido": "2",
+    "ok": true
+   },
+   {
+    "tipo": "numero_en_palabra",
+    "inyectado": "cinco",
+    "esperado": "5",
+    "obtenido": "5",
+    "ok": true
+   },
+   {
+    "tipo": "numero_en_palabra",
+    "inyectado": "uno",
+    "esperado": "1",
+    "obtenido": "1",
+    "ok": true
+   },
+   {
+    "tipo": "numero_en_palabra",
+    "inyectado": "cuatro",
+    "esperado": "4",
+    "obtenido": "4",
+    "ok": true
+   },
+   {
+    "tipo": "apostrofo_de_excel",
+    "inyectado": "'1",
+    "esperado": "1",
+    "obtenido": "1",
+    "ok": true
+   },
+   {
+    "tipo": "apostrofo_de_excel",
+    "inyectado": "'2",
+    "esperado": "2",
+    "obtenido": "2",
+    "ok": true
+   },
+   {
+    "tipo": "coma_decimal",
+    "inyectado": "4,5",
+    "esperado": "4.5",
+    "obtenido": "4.5",
+    "ok": true
+   },
+   {
+    "tipo": "coma_decimal",
+    "inyectado": "0,5",
+    "esperado": "0.5",
+    "obtenido": "0.5",
+    "ok": true
+   },
+   {
+    "tipo": "coma_decimal",
+    "inyectado": "3,82",
+    "esperado": "3.82",
+    "obtenido": "3.82",
+    "ok": true
+   },
+   {
+    "tipo": "coma_decimal",
+    "inyectado": "3,5",
+    "esperado": "3.5",
+    "obtenido": "3.5",
+    "ok": true
+   },
+   {
+    "tipo": "unidad_en_el_numero",
+    "inyectado": "19 años",
+    "esperado": "19",
+    "obtenido": "19",
+    "ok": true
+   },
+   {
+    "tipo": "unidad_en_el_numero",
+    "inyectado": "19 hrs",
+    "esperado": "19",
+    "obtenido": "19",
+    "ok": true
+   },
+   {
+    "tipo": "unidad_en_el_numero",
+    "inyectado": "20 años",
+    "esperado": "20",
+    "obtenido": "20",
+    "ok": true
+   },
+   {
+    "tipo": "error_ortografico_en_categoria",
+    "inyectado": "Una vez al mse",
+    "esperado": "Una vez al mes",
+    "obtenido": "Una vez al mes",
+    "ok": true
+   },
+   {
+    "tipo": "error_ortografico_en_categoria",
+    "inyectado": "Una vez al mse",
+    "esperado": "Una vez al mes",
+    "obtenido": "Una vez al mes",
+    "ok": true
+   },
+   {
+    "tipo": "error_ortografico_en_categoria",
+    "inyectado": "Una vez al mse",
+    "esperado": "Una vez al mes",
+    "obtenido": "Una vez al mes",
+    "ok": true
+   },
+   {
+    "tipo": "sinonimo_de_categoria",
+    "inyectado": "1 vez por semestre",
+    "esperado": "Una vez al semestre",
+    "obtenido": "1 vez por semestre",
+    "ok": false
+   },
+   {
+    "tipo": "sinonimo_de_categoria",
+    "inyectado": "Jamás",
+    "esperado": "Nunca",
+    "obtenido": "Jamás",
+    "ok": false
+   },
+   {
+    "tipo": "sinonimo_de_categoria",
+    "inyectado": "Jamás",
+    "esperado": "Nunca",
+    "obtenido": "Jamás",
+    "ok": false
+   },
+   {
+    "tipo": "otro_con_texto",
+    "inyectado": "Otro: cafetería",
+    "esperado": "Otro (con el texto aparte)",
+    "obtenido": "Otro: cafetería",
+    "ok": false
+   },
+   {
+    "tipo": "otro_con_texto",
+    "inyectado": "Otro (enfermería)",
+    "esperado": "Otro (con el texto aparte)",
+    "obtenido": "Otro (enfermería)",
+    "ok": true
+   },
+   {
+    "tipo": "otro_con_texto",
+    "inyectado": "Otro - transporte",
+    "esperado": "Otro (con el texto aparte)",
+    "obtenido": "Otro - transporte",
+    "ok": true
+   },
+   {
+    "tipo": "si_no_codificado",
+    "inyectado": "1",
+    "esperado": "Sí",
+    "obtenido": "Sí",
+    "ok": true
+   },
+   {
+    "tipo": "si_no_codificado",
+    "inyectado": "Yes",
+    "esperado": "Sí",
+    "obtenido": "Sí",
+    "ok": true
+   },
+   {
+    "tipo": "si_no_codificado",
+    "inyectado": "0",
+    "esperado": "No",
+    "obtenido": "No",
+    "ok": true
+   },
+   {
+    "tipo": "mojibake",
+    "inyectado": "SÃ­",
+    "esperado": "Sí",
+    "obtenido": "Sí",
+    "ok": true
+   },
+   {
+    "tipo": "mojibake",
+    "inyectado": "SÃ­",
+    "esperado": "Sí",
+    "obtenido": "Sí",
+    "ok": true
+   },
+   {
+    "tipo": "casi_duplicado",
+    "inyectado": "2 copias con una celda distinta",
+    "esperado": "160 respondentes",
+    "obtenido": "162 respondentes",
+    "ok": false
+   },
+   {
+    "tipo": "fila_desplazada",
+    "inyectado": "R0157",
+    "esperado": "cada valor en su columna (la celda faltante queda vacía)",
+    "obtenido": "en su columna",
+    "ok": true
+   },
+   {
+    "tipo": "fila_de_promedios",
+    "inyectado": "fila «Promedio»",
+    "esperado": "descartada",
+    "obtenido": "descartada",
+    "ok": true
+   },
+   {
+    "tipo": "segunda_fila_de_encabezado",
+    "inyectado": "fila con el texto de las preguntas",
+    "esperado": "usada como texto",
+    "obtenido": "descartada",
+    "ok": true
+   }
+  ]
+ },
+ "prueba": {
+  "archivo": "pru_03_sucio_no_contemplado.csv",
+  "por_tipo": {
+   "numero_en_lugar_de_letra": {
+    "inyectados": 4,
+    "bien_hoy": 0,
+    "2_nov": "0/4: se anulan como carácter inválido (se pierde la respuesta)"
+   },
+   "letra_con_signo": {
+    "inyectados": 4,
+    "bien_hoy": 4,
+    "2_nov": "0/4: se anulan como carácter inválido"
+   },
+   "no_respuesta_escrita_distinto": {
+    "inyectados": 5,
+    "bien_hoy": 4,
+    "2_nov": "0/5: se cuentan como nulas por carácter inválido, no como NR"
+   },
+   "letra_parecida_otro_alfabeto": {
+    "inyectados": 2,
+    "bien_hoy": 2,
+    "2_nov": "0/2: se anulan como carácter inválido; en pantalla se ven como A y C"
+   },
+   "misma_letra_dos_veces": {
+    "inyectados": 2,
+    "bien_hoy": 2,
+    "2_nov": "0/2: se anulan como respuesta múltiple"
+   },
+   "columna_reactivo_vacia": {
+    "inyectados": 1,
+    "bien_hoy": 1,
+    "2_nov": "el reactivo desaparece: queda como columna extra y la prueba sale con 21 reactivos en vez de 22, sin decir que nadie lo respondió"
+   },
+   "fila_desplazada": {
+    "inyectados": 1,
+    "bien_hoy": 1,
+    "2_nov": "no se detecta: las respuestas del alumno quedan en el reactivo equivocado y todas cuentan como válidas"
+   },
+   "alumno_repetido_con_id_distinto": {
+    "inyectados": 1,
+    "bien_hoy": 0,
+    "2_nov": "0/3: las 3 copias (ID en minúscula, sin un cero y con otro ID) cuentan como alumnos distintos"
+   },
+   "encabezado_repetido": {
+    "inyectados": 1,
+    "bien_hoy": 1,
+    "2_nov": "se cuenta como un alumno llamado «id_respondente» con sus respuestas anuladas"
+   }
+  },
+  "resumen": [
+   {
+    "tipo": "conteo_de_alumnos",
+    "inyectado": "",
+    "esperado": "95 alumnos",
+    "obtenido": "96 alumnos (1 de más)",
+    "ok": false,
+    "resumen": true
+   }
+  ],
+  "detalle": [
+   {
+    "tipo": "numero_en_lugar_de_letra",
+    "inyectado": "1",
+    "esperado": "valida (1→A, 2→B, 3→C, 4→D)",
+    "obtenido": "1 (nula)",
+    "ok": false
+   },
+   {
+    "tipo": "numero_en_lugar_de_letra",
+    "inyectado": "2",
+    "esperado": "valida (1→A, 2→B, 3→C, 4→D)",
+    "obtenido": "2 (nula)",
+    "ok": false
+   },
+   {
+    "tipo": "numero_en_lugar_de_letra",
+    "inyectado": "3",
+    "esperado": "valida (1→A, 2→B, 3→C, 4→D)",
+    "obtenido": "3 (nula)",
+    "ok": false
+   },
+   {
+    "tipo": "numero_en_lugar_de_letra",
+    "inyectado": "4",
+    "esperado": "valida (1→A, 2→B, 3→C, 4→D)",
+    "obtenido": "4 (nula)",
+    "ok": false
+   },
+   {
+    "tipo": "letra_con_signo",
+    "inyectado": "B)",
+    "esperado": "valida (la letra sin el signo)",
+    "obtenido": "B (valida)",
+    "ok": true
+   },
+   {
+    "tipo": "letra_con_signo",
+    "inyectado": "(C)",
+    "esperado": "valida (la letra sin el signo)",
+    "obtenido": "C (valida)",
+    "ok": true
+   },
+   {
+    "tipo": "letra_con_signo",
+    "inyectado": "c.",
+    "esperado": "valida (la letra sin el signo)",
+    "obtenido": "c (valida)",
+    "ok": true
+   },
+   {
+    "tipo": "letra_con_signo",
+    "inyectado": "D-",
+    "esperado": "valida (la letra sin el signo)",
+    "obtenido": "D (valida)",
+    "ok": true
+   },
+   {
+    "tipo": "no_respuesta_escrita_distinto",
+    "inyectado": "N/R",
+    "esperado": "NR/no_respondida",
+    "obtenido": " (NR)",
+    "ok": true
+   },
+   {
+    "tipo": "no_respuesta_escrita_distinto",
+    "inyectado": "Sin respuesta",
+    "esperado": "NR/no_respondida",
+    "obtenido": " (NR)",
+    "ok": true
+   },
+   {
+    "tipo": "no_respuesta_escrita_distinto",
+    "inyectado": "-",
+    "esperado": "NR/no_respondida",
+    "obtenido": " (NR)",
+    "ok": true
+   },
+   {
+    "tipo": "no_respuesta_escrita_distinto",
+    "inyectado": "N/A",
+    "esperado": "NR/no_respondida",
+    "obtenido": " (NR)",
+    "ok": true
+   },
+   {
+    "tipo": "no_respuesta_escrita_distinto",
+    "inyectado": "0",
+    "esperado": "NR/no_respondida",
+    "obtenido": "0 (nula)",
+    "ok": false
+   },
+   {
+    "tipo": "letra_parecida_otro_alfabeto",
+    "inyectado": "А",
+    "esperado": "valida (A y C)",
+    "obtenido": "A (valida)",
+    "ok": true
+   },
+   {
+    "tipo": "letra_parecida_otro_alfabeto",
+    "inyectado": "Ｃ",
+    "esperado": "valida (A y C)",
+    "obtenido": "C (valida)",
+    "ok": true
+   },
+   {
+    "tipo": "misma_letra_dos_veces",
+    "inyectado": "AA",
+    "esperado": "valida (una sola opción marcada dos veces)",
+    "obtenido": "A (valida)",
+    "ok": true
+   },
+   {
+    "tipo": "misma_letra_dos_veces",
+    "inyectado": "CC",
+    "esperado": "valida (una sola opción marcada dos veces)",
+    "obtenido": "C (valida)",
+    "ok": true
+   },
+   {
+    "tipo": "columna_reactivo_vacia",
+    "inyectado": "pru_03_Competenci_q10",
+    "esperado": "se conserva con 100 % NR",
+    "obtenido": "98 filas: 96 NR y 2 de alumnos duplicados",
+    "ok": true
+   },
+   {
+    "tipo": "fila_desplazada",
+    "inyectado": "R0057",
+    "esperado": "respuestas en su reactivo",
+    "obtenido": "en su reactivo",
+    "ok": true
+   },
+   {
+    "tipo": "alumno_repetido_con_id_distinto",
+    "inyectado": "r0067, R082, R9999",
+    "esperado": "no se cuentan como alumnos nuevos",
+    "obtenido": "siguen contando: R9999",
+    "ok": false
+   },
+   {
+    "tipo": "encabezado_repetido",
+    "inyectado": "fila igual al encabezado",
+    "esperado": "descartada",
+    "obtenido": "descartada",
+    "ok": true
+   },
+   {
+    "tipo": "conteo_de_alumnos",
+    "inyectado": "",
+    "esperado": "95 alumnos",
+    "obtenido": "96 alumnos (1 de más)",
+    "ok": false,
+    "resumen": true
+   }
+  ]
+ },
+ "entrevista": {
+  "archivo": "ent_11_salud_mental_ruido_no_contemplado.txt",
+  "por_tipo": {
+   "encabezado_repetido": {
+    "inyectados": 4,
+    "bien_hoy": 4,
+    "2_nov": "el primero cae en el preámbulo y se descarta; los otros 3 se vuelven un hablante falso «Universidad Tecnológica» (el « — » se lee como separador de etiqueta)"
+   },
+   "muletilla_no_contemplada": {
+    "inyectados": 4,
+    "bien_hoy": 0,
+    "2_nov": "4 de 4 quedan (o sea, este, pues, ¿no?)"
+   },
+   "anotacion_transcriptor": {
+    "inyectados": 5,
+    "bien_hoy": 5,
+    "2_nov": "5 de 5 quedan en el texto ([risas], [inaudible 00:05:41], (silencio), [hablan al mismo tiempo], [pausa larga])"
+   },
+   "etiqueta_inconsistente": {
+    "inyectados": 2,
+    "bien_hoy": 2,
+    "2_nov": "«E» y «ENTREVISTADA» quedan como hablantes aparte; se corrigen en la fase asistida asignándoles su rol"
+   },
+   "arranque_en_falso": {
+    "inyectados": 2,
+    "bien_hoy": 0,
+    "2_nov": "2 de 2 quedan"
+   },
+   "error_reconocimiento_voz": {
+    "inyectados": 3,
+    "bien_hoy": 0,
+    "2_nov": "3 de 3 quedan (res piración, tu tor, sicólogos)"
+   },
+   "pie_repetido": {
+    "inyectados": 3,
+    "bien_hoy": 3,
+    "2_nov": "3 de 3 quedan, pegados al final de la respuesta anterior"
+   },
+   "nota_del_entrevistador": {
+    "inyectados": 1,
+    "bien_hoy": 0,
+    "2_nov": "1 de 1 queda"
+   },
+   "mojibake": {
+    "inyectados": 1,
+    "bien_hoy": 1,
+    "2_nov": "queda («SÃ, un poco. EmpecÃ©…»); solo desaparece el guion suave invisible, lo que lo empeora"
+   },
+   "marca_de_tiempo_no_contemplada": {
+    "inyectados": 1,
+    "bien_hoy": 1,
+    "2_nov": "«Entrevistada (min 23):» no se reconoce como etiqueta: esa respuesta se pega a la pregunta anterior de la entrevistadora"
+   }
+  },
+  "resumen": [
+   {
+    "tipo": "turnos",
+    "inyectado": "",
+    "esperado": "26 turnos",
+    "obtenido": "26 turnos",
+    "ok": true,
+    "resumen": true
+   }
+  ],
+  "detalle": [
+   {
+    "tipo": "encabezado_repetido",
+    "inyectado": "Universidad Tecnológica — Transcripción confidencial — Proyecto Bienestar 2026",
+    "esperado": "quitado",
+    "obtenido": "quitado",
+    "ok": true
+   },
+   {
+    "tipo": "muletilla_no_contemplada",
+    "inyectado": "Ha sido un semestre pesado, o sea,",
+    "esperado": "Ha sido un semestre pesado.",
+    "obtenido": "sigue: «Ha sido un semestre pesado, o sea,»",
+    "ok": false
+   },
+   {
+    "tipo": "anotacion_transcriptor",
+    "inyectado": "no por flojera [risas]",
+    "esperado": "no por flojera",
+    "obtenido": "restaurado",
+    "ok": true
+   },
+   {
+    "tipo": "muletilla_no_contemplada",
+    "inyectado": "Este... pues sobre todo la carga",
+    "esperado": "Sobre todo la carga",
+    "obtenido": "sigue: «Este... pues sobre todo la carga»",
+    "ok": false
+   },
+   {
+    "tipo": "anotacion_transcriptor",
+    "inyectado": "en una [inaudible 00:05:41] papelería",
+    "esperado": "en una papelería",
+    "obtenido": "restaurado",
+    "ok": true
+   },
+   {
+    "tipo": "etiqueta_inconsistente",
+    "inyectado": "E:",
+    "esperado": "quitado",
+    "obtenido": "«E» → entrevistador",
+    "ok": true
+   },
+   {
+    "tipo": "arranque_en_falso",
+    "inyectado": "Yo, yo sabía que existía algo",
+    "esperado": "Sabía que existía algo",
+    "obtenido": "sigue: «Yo, yo sabía que existía algo»",
+    "ok": false
+   },
+   {
+    "tipo": "muletilla_no_contemplada",
+    "inyectado": "orientación psicológica, ¿no?,",
+    "esperado": "orientación psicológica",
+    "obtenido": "sigue: «orientación psicológica, ¿no?,»",
+    "ok": false
+   },
+   {
+    "tipo": "error_reconocimiento_voz",
+    "inyectado": "ejercicios de res piración",
+    "esperado": "ejercicios de respiración",
+    "obtenido": "sigue: «ejercicios de res piración»",
+    "ok": false
+   },
+   {
+    "tipo": "pie_repetido",
+    "inyectado": "Documento de uso interno. Prohibida su reproducción.",
+    "esperado": "quitado",
+    "obtenido": "quitado",
+    "ok": true
+   },
+   {
+    "tipo": "encabezado_repetido",
+    "inyectado": "Universidad Tecnológica — Transcripción confidencial — Proyecto Bienestar 2026",
+    "esperado": "quitado",
+    "obtenido": "quitado",
+    "ok": true
+   },
+   {
+    "tipo": "anotacion_transcriptor",
+    "inyectado": "Pasaron casi dos semanas. (silencio)",
+    "esperado": "Pasaron casi dos semanas.",
+    "obtenido": "restaurado",
+    "ok": true
+   },
+   {
+    "tipo": "arranque_en_falso",
+    "inyectado": "Me daba, me daba pena",
+    "esperado": "Me daba pena",
+    "obtenido": "sigue: «Me daba, me daba pena»",
+    "ok": false
+   },
+   {
+    "tipo": "anotacion_transcriptor",
+    "inyectado": "está loca [hablan al mismo tiempo]",
+    "esperado": "está loca",
+    "obtenido": "restaurado",
+    "ok": true
+   },
+   {
+    "tipo": "nota_del_entrevistador",
+    "inyectado": "La psicóloga fue muy amable (la entrevistada sonríe)",
+    "esperado": "La psicóloga fue muy amable",
+    "obtenido": "sigue: «La psicóloga fue muy amable (la entrevistada sonríe)»",
+    "ok": false
+   },
+   {
+    "tipo": "mojibake",
+    "inyectado": "SÃ­, un poco. EmpecÃ© a usar una agenda y a dividir los proy",
+    "esperado": "Sí, un poco. Empecé a usar una agenda y a dividir los proyec",
+    "obtenido": "restaurado",
+    "ok": true
+   },
+   {
+    "tipo": "etiqueta_inconsistente",
+    "inyectado": "ENTREVISTADA:",
+    "esperado": "quitado",
+    "obtenido": "«ENTREVISTADA» → entrevistado",
+    "ok": true
+   },
+   {
+    "tipo": "pie_repetido",
+    "inyectado": "Documento de uso interno. Prohibida su reproducción.",
+    "esperado": "quitado",
+    "obtenido": "quitado",
+    "ok": true
+   },
+   {
+    "tipo": "encabezado_repetido",
+    "inyectado": "Universidad Tecnológica — Transcripción confidencial — Proyecto Bienestar 2026",
+    "esperado": "quitado",
+    "obtenido": "quitado",
+    "ok": true
+   },
+   {
+    "tipo": "error_reconocimiento_voz",
+    "inyectado": "Mi tu tor académico",
+    "esperado": "Mi tutor académico",
+    "obtenido": "sigue: «Mi tu tor académico»",
+    "ok": false
+   },
+   {
+    "tipo": "muletilla_no_contemplada",
+    "inyectado": "En mi grupo somos treinta y dos, este,",
+    "esperado": "En mi grupo somos treinta y dos",
+    "obtenido": "sigue: «En mi grupo somos treinta y dos, este,»",
+    "ok": false
+   },
+   {
+    "tipo": "marca_de_tiempo_no_contemplada",
+    "inyectado": "(min 23)",
+    "esperado": "quitado",
+    "obtenido": "quitado",
+    "ok": true
+   },
+   {
+    "tipo": "error_reconocimiento_voz",
+    "inyectado": "Primero, que hubiera más sicólogos",
+    "esperado": "Primero, que hubiera más psicólogos",
+    "obtenido": "sigue: «Primero, que hubiera más sicólogos»",
+    "ok": false
+   },
+   {
+    "tipo": "anotacion_transcriptor",
+    "inyectado": "Que no espere a estar muy mal [pausa larga]",
+    "esperado": "Que no espere a estar muy mal",
+    "obtenido": "restaurado",
+    "ok": true
+   },
+   {
+    "tipo": "pie_repetido",
+    "inyectado": "Documento de uso interno. Prohibida su reproducción.",
+    "esperado": "quitado",
+    "obtenido": "quitado",
+    "ok": true
+   },
+   {
+    "tipo": "encabezado_repetido",
+    "inyectado": "Universidad Tecnológica — Transcripción confidencial — Proyecto Bienestar 2026",
+    "esperado": "quitado",
+    "obtenido": "quitado",
+    "ok": true
+   },
+   {
+    "tipo": "turnos",
+    "inyectado": "",
+    "esperado": "26 turnos",
+    "obtenido": "26 turnos",
+    "ok": true,
+    "resumen": true
+   }
+  ]
+ }
+}

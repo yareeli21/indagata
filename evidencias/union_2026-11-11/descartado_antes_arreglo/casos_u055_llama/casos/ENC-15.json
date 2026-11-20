@@ -1,0 +1,118 @@
+{
+ "id": "ENC-15",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál es el KPI más relevante para esta encuesta?",
+   "rag_log_id": 3638,
+   "respuesta": "Según los datos proporcionados, el KPI más relevante para esta encuesta parece ser la distribución de las cargas académicas. En particular, se destaca que el 65.1% de los estudiantes eligió la opción \"Carga media/normal\", lo que sugiere una carga académica relativamente moderada [Fuente 1].\n\nAdemás, se menciona que el 25.2% de los estudiantes eligió la opción \"Cargas maxima\" y el 19.8% eligió la opción \"Carga minima\". Esto indica que hay una variabilidad en las cargas académicas entre los estudiantes, pero que la mayoría están en un rango moderado [Fuente 1].\n\nNo se mencionan otros KPIs específicos como indicadores de experiencia y calidad académica, pero sí se proporciona información sobre la participación en programas de cooperación y actividades de investigación con profesores. Sin embargo, estos datos no parecen ser tan relevantes para determinar el KPI más relevante para esta encuesta [Fuente 1].\n\nEn resumen, según los datos proporcionados, la distribución de las cargas académicas es el indicador más relevante para esta encuesta, ya que refleja una tendencia general en la carga académica de los estudiantes [Fuente 1].",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "No encontré la pregunta «kpi» en «Indicadores de Experiencia y Calidad Académica». ¿A cuál te refieres?"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Ratio de Matriculados frente a Graduados del Curso",
+      "pregunta": "kpi"
+     },
+     {
+      "valor": "Estado de Acreditación y Clasificaciones Académicas",
+      "pregunta": "kpi"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.5851
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.5581
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.5541
+    }
+   ],
+   "segundos": 13.9,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "recuperacion": 204,
+    "interpretacion": 4914
+   },
+   "k_precision": 0.419,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué lo consideras así?",
+   "rag_log_id": 3639,
+   "respuesta": "Considero que el KPI más relevante para esta encuesta es la distribución de las cargas académicas porque el 65.1% de los estudiantes eligió la opción \"Carga media/normal\", lo que sugiere una carga académica relativamente moderada [Fuente 1]. Esto podría deberse a que muchos estudiantes están buscando un equilibrio entre su vida académica y personal, o quizás debido a que la institución está tratando de ofrecer un entorno de aprendizaje más accesible. Una explicación posible es que la institución está implementando políticas para reducir la carga académica y mejorar el bienestar estudiantil [Fuente 1].",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": "seguimiento de la consulta 3638",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.5851
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.5581
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.5541
+    }
+   ],
+   "segundos": 7.3,
+   "tiempos_ms": null,
+   "k_precision": 0.326,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(1) elegir un KPI y justificarlo con sus preguntas vinculadas; (2) no repetir la pregunta."
+}

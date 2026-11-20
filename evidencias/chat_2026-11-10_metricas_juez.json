@@ -1,0 +1,37 @@
+{
+ "llama": {
+  "resultado_calculado": {
+   "n": 43,
+   "fidelidad": 1.0,
+   "relevancia": 0.488,
+   "precision_contexto": 0.961
+  },
+  "redactadas_por_el_modelo": {
+   "n": 9,
+   "fidelidad": 0.513,
+   "relevancia": 0.458,
+   "precision_contexto": 0.724
+  },
+  "kappa_aprueba_vs_cumple": 0.143,
+  "spearman_juez_vs_calificacion": 0.389,
+  "casos_con_juez": 39
+ },
+ "gemma": {
+  "resultado_calculado": {
+   "n": 37,
+   "fidelidad": 1.0,
+   "relevancia": 0.509,
+   "precision_contexto": 0.969
+  },
+  "redactadas_por_el_modelo": {
+   "n": 0,
+   "fidelidad": null,
+   "relevancia": null,
+   "precision_contexto": null
+  },
+  "kappa_aprueba_vs_cumple": -0.057,
+  "spearman_juez_vs_calificacion": 0.317,
+  "casos_con_juez": 34
+ },
+ "nota": "El juez evaluó todas las respuestas con el resultado calculado y solo 9 redactadas por llama3.2:3b; la corrida se detuvo por falta de memoria. Kappa y Spearman se calcularon por caso con las respuestas evaluadas en la primera corrida del juez."
+}

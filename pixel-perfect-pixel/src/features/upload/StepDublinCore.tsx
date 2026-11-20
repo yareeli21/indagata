@@ -10,13 +10,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  NIVELES_EDUCATIVOS,
-  type DublinCore,
-  type NivelEducativo,
-  type OrigenMetadato,
-} from "@/types";
+import type { DublinCore, NivelEducativo, OrigenMetadato } from "@/types";
 import { EtiquetaOrigen } from "./EtiquetaOrigen";
+
+/** Niveles que admite la carga (por ahora solo licenciatura; los filtros del catálogo conservan los demás). */
+const NIVELES_CARGA: NivelEducativo[] = ["Licenciatura"];
 
 interface StepDublinCoreProps {
   valor: DublinCore;
@@ -94,7 +92,7 @@ export function StepDublinCore({ valor, onChange, origen, cargando, notas }: Ste
               <SelectValue placeholder="Selecciona un nivel" />
             </SelectTrigger>
             <SelectContent>
-              {NIVELES_EDUCATIVOS.map((n) => (
+              {NIVELES_CARGA.map((n) => (
                 <SelectItem key={n} value={n}>
                   {n}
                 </SelectItem>

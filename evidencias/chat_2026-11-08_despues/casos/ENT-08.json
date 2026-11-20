@@ -1,0 +1,58 @@
+{
+ "id": "ENT-08",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara cómo describe su estado de ánimo con cómo valora la atención que recibió",
+   "rag_log_id": 2649,
+   "respuesta": "E01 valoraría su estado de ánimo como ambivalente [Fuente 1]. Indica que la atención recibida es buena, pero considera que el tiempo asignado es insuficiente [Fuente 1].",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«id_respondente» no es una variable de contexto de «Salud mental en la universidad» (disponibles: Edad, Turno, Carrera, Género, Trabaja, Semestre)."
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.6853
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.6722
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.6088
+    }
+   ],
+   "segundos": 56.6,
+   "tiempos_ms": {
+    "ejecucion": 14,
+    "recuperacion": 2940,
+    "interpretacion": 39129
+   },
+   "k_precision": 0.417,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Dos fragmentos citados lado a lado y una relación breve, sin exagerar."
+}

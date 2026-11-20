@@ -1,0 +1,58 @@
+{
+ "id": "ETU-01",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué obstáculos tuvo para pedir ayuda?",
+   "rag_log_id": 4120,
+   "respuesta": "«Salud mental entrevista» no registra «obstáculos». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: Edad, Turno, Carrera, Género, Trabaja, Semestre.",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«Salud mental entrevista» no registra «obstáculos». Ninguna pregunta lo pregunta; los datos de contexto que sí registra son: Edad, Turno, Carrera, Género, Trabaja, Semestre."
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Estrés o ansiedad universitario",
+      "pregunta": "p02"
+     },
+     {
+      "valor": "Servicios de apoyo psicológico",
+      "pregunta": "p03"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p02 = «Estrés o ansiedad universitario» descartado (no es una opción y la pregunta no lo menciona)",
+    "filtro p03 = «Servicios de apoyo psicológico» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración"
+   ],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 11.2,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 175,
+    "interpretacion": 10997
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta de lo que la detuvo, con cita."
+}

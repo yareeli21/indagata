@@ -1,0 +1,87 @@
+{
+ "id": "PRU-06",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en el reactivo de Wi-Fi público sin VPN?",
+   "rag_log_id": 2839,
+   "respuesta": "73 de 97 respondieron “Verdadero” en el reactivo r15 (“Usar redes Wi-Fi públicas sin VPN es completamente seguro)” [Fuente 1]. Esto representa un 75.3 % de los participantes que respondieron a la prueba de alfabetización digital [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "campos": [
+     "r15"
+    ],
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "campos": [
+     "r15"
+    ],
+    "menciona": "Verdadero",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "mención «Verdadero» descartada (la pregunta no pregunta quién lo mencionó)",
+    "conteo de r15 = «Verdadero» como condición (la consulta nombra la opción)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6852
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6602
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.4958
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r03",
+     "score": 0.4799
+    }
+   ],
+   "segundos": 28.9,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 10372,
+    "recuperacion": 414,
+    "verificacion": 1,
+    "interpretacion": 18056
+   },
+   "k_precision": 0.824,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Llegar al reactivo por su significado y mostrar «Verdadero/Falso», no «Opción A/B»."
+}

@@ -1,0 +1,53 @@
+{
+ "id": "ENT-20",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué tipo de entrevista es y cuánto dura?",
+   "rag_log_id": 2438,
+   "respuesta": "La entrevista es de tipo “Salud mental en la universidad” y tiene como objetivo identificar las experiencias y percepciones de estudiantes universitarios con respecto a su salud mental y el acceso a servicios de apoyo en un entorno académico. [Fuente 1] El instrumento consiste en una entrevista a profundidad a 1 estudiante de licenciatura del programa ESCOM ISC, siguiendo un guion de 12 preguntas. Según sus datos registrados, la metodología es de tipo entrevista a profundidad, y se le agradeció al participante por aceptar la entrevista, indicando que todo lo dicho sería confidencial y que podía no responder algunas preguntas. [Fuente 1], [Fuente 1] Los KPIs asociados a esta entrevista son el Uso de Servicios de Salud Mental y Apoyo Psicológico, la Proporción de Consejeros/Orientadores por Estudiante, la Tasa de Transferencia / Traslado a Otras Instituciones, y la Cobertura y Calidad de Servicios de Apoyo Estudiantil. [Fuente 1]",
+   "intencion": null,
+   "plan": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.577
+    }
+   ],
+   "segundos": 28.3,
+   "tiempos_ms": {
+    "redaccion": 27920,
+    "recuperacion": 150,
+    "verificacion": 1
+   },
+   "k_precision": 0.877,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Semiestructurada, una participante; si la duración no está, decirlo."
+}

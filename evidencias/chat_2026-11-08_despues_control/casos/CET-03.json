@@ -1,0 +1,58 @@
+{
+ "id": "CET-03",
+ "instrumento": "ent_control",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara lo que dicen sobre sus profesores con lo que dicen sobre los servicios de apoyo",
+   "rag_log_id": 2641,
+   "respuesta": "El participante E34 expresa una valoración neutra y ambivalente sobre los profesores, indicando que “a veces los profesores no entienden las situaciones de estudiantes como yo” [Fuente 1, p04]. Además, manifiesta un deseo de “que hubiera más comprensión” [Fuente 1, p04]. Al mismo tiempo, el participante E34 también expresa una valoración ambivalente sobre los servicios de apoyo institucional, afirmando que “a veces el sistema no está diseñado pensando en estudiantes como yo” [Fuente 1, p04].",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "«sin_definir» no es una variable de contexto de «Entrevista sobre estrategias de permanencia universitaria» (disponibles: Edad, Perfil, Género, Semestre, Universidad)."
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Entrevista sobre estrategias de permanencia universitaria"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E34 en p04",
+     "score": 0.703
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E34 en p04",
+     "score": 0.6932
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E34 en p03",
+     "score": 0.667
+    }
+   ],
+   "segundos": 24.2,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 97,
+    "interpretacion": 8931
+   },
+   "k_precision": 0.75,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Citas de ambos temas, sin exagerar."
+}

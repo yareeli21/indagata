@@ -1,0 +1,45 @@
+{
+ "id": "ENT-12",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara sus respuestas con las de los demás participantes",
+   "rag_log_id": 2317,
+   "respuesta": "La consulta no indica de qué pregunta se trata. [Fuente 1]",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos"
+   },
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:comparar_grupos:vacio",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 6.4,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "recuperacion": 248,
+    "interpretacion": 6189
+   },
+   "k_precision": 1.0,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "debió decir que solo hay una entrevistada y por lo tanto, no se puede hacer una comparación"
+  }
+ ],
+ "debe": "Hay una sola participante; no hay con quién comparar."
+}

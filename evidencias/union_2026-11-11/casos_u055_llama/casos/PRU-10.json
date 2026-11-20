@@ -1,0 +1,69 @@
+{
+ "id": "PRU-10",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara los primeros 50 alumnos con los últimos 50 en el reactivo de la contraseña segura",
+   "rag_log_id": 3787,
+   "respuesta": "No hay diferencias entre los primeros 50 y los últimos 50 alumnos en términos de respuestas al reactivo sobre qué es una contraseña segura, ya que ambos grupos tienen 50 personas con respuestas vacías (sin elegir ninguna opción). Ambas partes del grupo tienen la misma cantidad de personas sin respuesta.\n\n**Comparación por posición (primeros 50 y últimos 50; 3 personas están en los dos grupos) [Fuente 1]**\n| Grupo | Personas | r10: respuestas del grupo |\n|---|---|---|\n| Primeros 50 | 50 | (sin respuestas) |\n| Últimos 50 | 50 | (sin respuestas) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "limite": 50,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r10"
+    ],
+    "agrupar_por": "posicion"
+   },
+   "plan_modelo": {
+    "limite": 50,
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r10"
+    ],
+    "agrupar_por": "posicion",
+    "consulta_semantica": "¿Qué es una contraseña segura?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar los primeros 50 con los últimos 50"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r10",
+     "score": 0.5692
+    }
+   ],
+   "segundos": 21.9,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 8051,
+    "recuperacion": 528,
+    "verificacion": 3129,
+    "interpretacion": 13273
+   },
+   "k_precision": 0.756,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Grupos por posición con la distribución de cada uno."
+}

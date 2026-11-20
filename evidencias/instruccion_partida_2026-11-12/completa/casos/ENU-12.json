@@ -1,0 +1,91 @@
+{
+ "id": "ENU-12",
+ "instrumento": "enc_nueva",
+ "categoria": "interpretativo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué te parece lo más preocupante de los servicios de apoyo?",
+   "rag_log_id": 4110,
+   "respuesta": "**Patrones de respuesta a las preguntas sobre los servicios de apoyo**\n\n* **Predominio del nivel bajo**: En la pregunta p06 «Los servicios de apoyo responden cuando los necesito», predomina la respuesta «Nunca» o «Rara vez», con un 88.8% de quienes respondieron. Esto podría indicar que muchos estudiantes se sienten abandonados o no reciben el apoyo necesario en momentos críticos.\n* **Diferencia en las opiniones**: La pregunta p14 «Del 1 al 10, ¿qué tan satisfecho/a estás con tu carrera?» muestra una desviación estándar de 1.98 puntos en la escala, lo que sugiere una gran división en las opiniones sobre el apoyo institucional. Esto podría indicar que hay un problema más profundo en la forma en que se aborda el apoyo a los estudiantes.\n* **Falta de uso de servicios**: En la pregunta p07 «Siento que la institución se preocupa por mi permanencia», predomina la respuesta «No» o «Rara vez», con un 89.4% de quienes respondieron. Esto podría indicar que muchos estudiantes no utilizan los servicios de apoyo porque no creen que sean efectivos o porque no saben cómo acceder a ellos.\n* **Predominio del nivel bajo en la pregunta p26**: En la pregunta p26 «tiene_beca», predomina la respuesta «No» con un 89.4% de quienes respondieron. Esto podría indicar que muchos estudiantes se sienten abandonados o no reciben el apoyo necesario, lo que podría estar relacionado con la falta de uso de servicios.\n\n**Lo más preocupante**: Considero que lo más preocupante es la falta de uso de servicios, ya que sugiere que muchos estudiantes no creen que sean efectivos o porque no saben cómo acceder a ellos. Esto podría indicar un problema más profundo en la forma en que se aborda el apoyo a los estudiantes y requiere una revisión de las políticas y procedimientos para mejorar la accesibilidad y eficacia de los servicios de apoyo.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Totalmente de acuerdo / Siempre",
+      "pregunta": "p06"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Siempre",
+      "pregunta": "p06"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "p06: «Siempre» → «Totalmente de acuerdo / Siempre»"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.5264
+    },
+    {
+     "seccion": "kpi",
+     "etiqueta": "kpi",
+     "score": 0.5326
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.6144
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.573
+    }
+   ],
+   "segundos": 21.0,
+   "tiempos_ms": {
+    "ejecucion": 148,
+    "redaccion": 16153,
+    "recuperacion": 471,
+    "verificacion": 2,
+    "interpretacion": 4210
+   },
+   "k_precision": 0.425,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cifras de las preguntas de servicios (p05–p08) y una interpretación prudente marcada como tal."
+}

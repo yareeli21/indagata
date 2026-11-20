@@ -1,0 +1,70 @@
+{
+ "id": "ENT-11",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Qué pesó más para no buscar ayuda: el estigma, el tiempo de espera o no conocer los servicios?",
+   "rag_log_id": 2514,
+   "respuesta": "Según la entrevista con E01, una de las principales razones que lo detuvieron a la hora de buscar ayuda fue el estigma asociado a acudir a un psicólogo en un entorno universitario [Fuente 1]. E01 mencionó específicamente el temor a ser visto y la preocupación por “quitar el lugar” a otros estudiantes que también pudieran necesitar atención [Fuente 1]. La percepción de que su problema no era tan grave, junto con actitudes familiares negativas hacia la búsqueda de apoyo psicológico, también influyeron en su decisión [Fuente 1].\n\n**Respuestas a p06 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca. |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p06"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.6195
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.6176
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.6155
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.612
+    }
+   ],
+   "segundos": 53.6,
+   "tiempos_ms": {
+    "ejecucion": 2,
+    "redaccion": 24075,
+    "recuperacion": 326,
+    "verificacion": 1,
+    "interpretacion": 29186
+   },
+   "k_precision": 0.621,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Basarse en las preguntas guía relacionadas, sin forzar una categoría que no mencionó."
+}

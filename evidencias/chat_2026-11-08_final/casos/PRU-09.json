@@ -1,0 +1,91 @@
+{
+ "id": "PRU-09",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "De los que marcaron Verdadero en «el correo electrónico es siempre seguro», ¿qué eligieron en el reactivo de la VPN?",
+   "rag_log_id": 2842,
+   "respuesta": "De los 81 estudiantes que respondieron “Verdadero” al reactivo r11 sobre la seguridad del correo electrónico, 39 (48.1%) seleccionaron “Almacenar archivos en la nube” como la principal función de una VPN [Fuente 1].  Otro 19 (23.5%) eligieron “Aumentar la velocidad de internet”, mientras que 17 (21.0%) optaron por “Bloquear anuncios publicitarios”. Finalmente, solo 6 (7.4%) seleccionaron “Crear una conexión segura y privada” [Fuente 1].\n\n**r03 entre quienes cumplen la condición [Fuente 1]**\n| Opción | Personas | % del grupo |\n|---|---|---|\n| Almacenar archivos en la nube | 39 | 48.1 % |\n| Aumentar la velocidad de internet | 19 | 23.5 % |\n| Bloquear anuncios publicitarios | 17 | 21.0 % |\n| Crear una conexión segura y privada | 6 | 7.4 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r11"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r03"
+    ]
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r15"
+     }
+    ],
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r15"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "cruce: r03 entre quienes respondieron «Verdadero» en r11"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.691
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6452
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.638
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r11",
+     "score": 0.5933
+    }
+   ],
+   "segundos": 26.8,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 17813,
+    "recuperacion": 340,
+    "verificacion": 1,
+    "interpretacion": 8597
+   },
+   "k_precision": 0.889,
+   "cifras_con_respaldo": [
+    11,
+    11
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruzar dos reactivos y dar la distribución dentro del grupo."
+}

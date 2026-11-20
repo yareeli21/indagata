@@ -1,0 +1,66 @@
+{
+ "id": "ENU-05",
+ "instrumento": "enc_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué tan satisfechos están con su carrera en general?",
+   "rag_log_id": 4102,
+   "respuesta": "No encontré esa condición en «Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios». En p14 («Del 1 al 10, ¿qué tan satisfecho/a estás con tu carrera?») las opciones que sí existen son estas:\n\n**Distribución de p14 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| 7 de 10 | 41 | 25.6 % |\n| 6 de 10 | 30 | 18.8 % |\n| 8 de 10 | 28 | 17.5 % |\n| 5 de 10 | 20 | 12.5 % |\n| 10 de 10 | 16 | 10.0 % |\n| 9 de 10 | 14 | 8.8 % |\n| 4 de 10 | 6 | 3.8 % |\n| 3 de 10 | 4 | 2.5 % |\n| 2 de 10 | 1 | 0.6 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p14"
+    ],
+    "aclaracion": "No encontré esa condición en «Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios». En p14 («Del 1 al 10, ¿qué tan satisfecho/a estás con tu carrera?») las opciones que sí existen son estas:"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 3,
+    "filtros": [
+     {
+      "valor": "8",
+      "pregunta": "p14"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p14 = «8» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "lo que pide no existe en el instrumento: se responde con lo que sí hay"
+   ],
+   "verificacion": null,
+   "ruta": "estructurada",
+   "motivo": "plan:no_existe",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 12.4,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "recuperacion": 450,
+    "interpretacion": 11846
+   },
+   "k_precision": 0.926,
+   "cifras_con_respaldo": [
+    24,
+    24
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución o media de la satisfacción con la carrera, con el significado de la escala."
+}

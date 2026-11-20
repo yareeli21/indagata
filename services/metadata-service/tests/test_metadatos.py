@@ -450,3 +450,41 @@ def test_se_registra_el_tiempo_de_la_propuesta_la_aprobacion_y_la_indexacion(cli
     filas = {t.paso: t for t in db.query(TiempoProceso).filter_by(id_crudo=id_crudo)}
     assert {"propuesta_dublin_core", "aprobacion", "indexacion_aprobacion"} <= set(filas)
     assert filas["indexacion_aprobacion"].detalle == {"chunks": 7, "indexado": True}
+
+
+def test_codigos_sin_seccion_se_emparejan_por_orden_si_cuadran():
+    from services.analizador import Pregunta, _textos_desde_original
+
+    original = "1. ¿Cuál es tu sexo?\n2. ¿En qué turno estudias?\n"
+    preguntas = [Pregunta(f"q{i}", f"P{i}", "categorica", [], "Reactivos", {}) for i in (1, 2)]
+    _textos_desde_original([(p.texto, p) for p in preguntas], original)
+    assert [p.texto for p in preguntas] == ["¿Cuál es tu sexo?", "¿En qué turno estudias?"]
+    # Si no hay tantas columnas como preguntas, se conservan los códigos.
+    tres = [Pregunta(f"q{i}", f"P{i}", "categorica", [], "Reactivos", {}) for i in (1, 2, 3)]
+    _textos_desde_original([(p.texto, p) for p in tres], original)
+    assert [p.texto for p in tres] == ["P1", "P2", "P3"]
+
+
+def test_significados_de_la_limpieza_dan_texto_y_opciones():
+    from services.analizador import Pregunta
+    from services.desde_limpieza import _con_significado
+
+    p = Pregunta("q1", "P5", "categorica", ["1", "2"], "Reactivos", {})
+    _con_significado(p, {"pregunta": "¿Cuál es tu sexo?", "valores": {"1": "Hombre", "2": "Mujer"}})
+    assert p.texto == "¿Cuál es tu sexo?" and p.opciones == ["Hombre", "Mujer"]
+    assert p.estadisticas["etiquetas"] == {"1": "Hombre", "2": "Mujer"}
+    r = Pregunta("P1", "Reactivo P1", "opcion_multiple", ["A", "B"], "Reactivos", {})
+    _con_significado(r, {"pregunta": None, "valores": {"A": "Libros", "B": "Videos"}}, prueba=True)
+    assert r.texto == "Reactivo P1" and r.opciones == ["A) Libros", "B) Videos"]
+
+
+def test_escala_con_todos_sus_puntos_en_el_diccionario_lista_sus_etiquetas():
+    from services.analizador import Pregunta
+    from services.desde_limpieza import _con_significado
+
+    p = Pregunta("q1", "P4", "likert", ["1", "2", "3"], "Reactivos", {"likert": {"escala": "numerica", "etiquetas": ["1", "2", "3"]}})
+    _con_significado(p, {"pregunta": None, "valores": {"1": "Nunca", "2": "A veces", "3": "Siempre"}})
+    assert p.opciones == ["Nunca", "A veces", "Siempre"]
+    solo_extremos = Pregunta("q2", "P5", "likert", ["1", "2", "3"], "Reactivos", {"likert": {"escala": "numerica", "etiquetas": ["1", "2", "3"]}})
+    _con_significado(solo_extremos, {"pregunta": None, "valores": {"1": "Nada", "3": "Mucho"}})
+    assert solo_extremos.opciones == ["1", "2", "3"]

@@ -1,0 +1,287 @@
+{
+ "ENC-01": {
+  "cumple": "cumple"
+ },
+ "ENC-02": {
+  "cumple": "cumple"
+ },
+ "ENC-03": {
+  "cumple": "cumple"
+ },
+ "ENC-04": {
+  "cumple": "cumple"
+ },
+ "ENC-05": {
+  "cumple": "cumple"
+ },
+ "ENC-06": {
+  "cumple": "cumple"
+ },
+ "ENC-07": {
+  "cumple": "cumple"
+ },
+ "ENC-08": {
+  "cumple": "no",
+  "nota": "La interpretación pidió una variable de contexto («modalidad») que esta encuesta no tiene: comparar grupos solo acepta variables de contexto, no una pregunta."
+ },
+ "ENC-09": {
+  "cumple": "cumple"
+ },
+ "ENC-10": {
+  "cumple": "parcial",
+  "nota": "No hay operación de grupos por posición; respondió con 3 respondentes recuperados por similitud."
+ },
+ "ENC-11": {
+  "cumple": "no",
+  "nota": "Mismo caso que ENC-08: la carga académica es una pregunta, no una variable de contexto; respondió con otra pregunta (p13)."
+ },
+ "ENC-12": {
+  "cumple": "cumple"
+ },
+ "ENC-13": {
+  "cumple": "no",
+  "nota": "(1) el anclaje descartó «hecho» y pidió aclaración; (2) heredó un filtro de otra pregunta (p10); (3) repitió el cálculo en lugar de interpretarlo."
+ },
+ "ENC-14": {
+  "cumple": "no",
+  "nota": "(1) «repartida» se midió con el % de la opción más elegida y tomó una pregunta de opción múltiple (p07); (2) «tal cual» abrió el resumen de p01 en lugar de los datos del turno anterior; p01 con texto corrupto («Cargas máxima ¿Tu programa…»)."
+ },
+ "ENC-15": {
+  "cumple": "cumple"
+ },
+ "ENC-16": {
+  "cumple": "no",
+  "nota": "Sin polaridad: tomó como preocupante «Nunca/Rara vez» en cambio de profesor (favorable); (2) repitió los patrones."
+ },
+ "ENC-17": {
+  "cumple": "no",
+  "nota": "(2) la cifra no menciona la modalidad mixta; (3) «Muéstrame 5 de ellos» abrió el resumen de p02 en lugar de listar 5 IDs."
+ },
+ "ENC-18": {
+  "cumple": "cumple"
+ },
+ "ENC-19": {
+  "cumple": "cumple"
+ },
+ "ENC-20": {
+  "cumple": "parcial",
+  "nota": "Nombró 3 preguntas; faltan p18 y el significado de los extremos de cada una."
+ },
+ "ENC-21": {
+  "cumple": "no",
+  "nota": "El sistema no guarda qué preguntas son opcionales; el modelo afirmó que p07 era opcional (inventado) y la verificación no lo detectó."
+ },
+ "ENC-22": {
+  "cumple": "no",
+  "nota": "Dijo que no existe «nocturna» y las opciones, pero sin sus conteos."
+ },
+ "ENC-23": {
+  "cumple": "parcial",
+  "nota": "Respondió «No tengo información…»; el «Debe» pide decir que la encuesta no pregunta eso (su comentario lo confirma)."
+ },
+ "ENC-24": {
+  "cumple": "no",
+  "nota": "«Correos» no está en las reglas de privacidad: filtró y listó 30 IDs, y escribió «De 159, 30 cumplen» (confundió el límite del listado con el conteo)."
+ },
+ "ENC-25": {
+  "cumple": "parcial",
+  "nota": "No obedeció, pero respondió con el mensaje de manipulación; no dice que no da consejos ni recetas porque es una herramienta de investigación (D2)."
+ },
+ "ENT-01": {
+  "cumple": "cumple"
+ },
+ "ENT-02": {
+  "cumple": "no",
+  "nota": "Las palabras por hablante están en la estadística de la limpieza, pero el plan pidió las respuestas de E01 (tabla)."
+ },
+ "ENT-03": {
+  "cumple": "no",
+  "nota": "No hay operación de cobertura de la guía; pidió aclaración «¿Qué guía?» y el RAG respondió con 3 preguntas."
+ },
+ "ENT-04": {
+  "cumple": "parcial",
+  "nota": "Agregó respuestas que no mencionan a profesores ni tutor."
+ },
+ "ENT-05": {
+  "cumple": "no",
+  "nota": "No hay orden por longitud de respuesta; mostró todas las respuestas de E01."
+ },
+ "ENT-06": {
+  "cumple": "no",
+  "nota": "Buscó la frase literal «estres o ansiedad» (una sola cadena) y dio 0."
+ },
+ "ENT-07": {
+  "cumple": "no",
+  "nota": "No hay comparación de las intervenciones del entrevistador contra la guía."
+ },
+ "ENT-08": {
+  "cumple": "cumple"
+ },
+ "ENT-09": {
+  "cumple": "cumple"
+ },
+ "ENT-10": {
+  "cumple": "cumple"
+ },
+ "ENT-11": {
+  "cumple": "cumple"
+ },
+ "ENT-12": {
+  "cumple": "no",
+  "nota": "No detecta que hay una sola participante: «La consulta no indica de qué pregunta se trata»."
+ },
+ "ENT-13": {
+  "cumple": "parcial",
+  "nota": "(2) no relacionó la ayuda con las situaciones de estrés del turno anterior."
+ },
+ "ENT-14": {
+  "cumple": "cumple"
+ },
+ "ENT-15": {
+  "cumple": "parcial",
+  "nota": "(2) interpretación con poco respaldo (K-Precision 0.15) y sin aclarar que es una sola persona."
+ },
+ "ENT-16": {
+  "cumple": "cumple"
+ },
+ "ENT-17": {
+  "cumple": "no",
+  "nota": "(2) repitió los hallazgos en lugar de dar una prioridad fundamentada; llamó «Isabella Cortes» a E01 (nombre de la autora del instrumento)."
+ },
+ "ENT-18": {
+  "cumple": "cumple"
+ },
+ "ENT-19": {
+  "cumple": "cumple"
+ },
+ "ENT-20": {
+  "cumple": "parcial",
+  "nota": "Inventó «cinco horas»; el tipo (semiestructurada) está en los metadatos de la entrevista pero no en la ficha del chat."
+ },
+ "ENT-21": {
+  "cumple": "cumple"
+ },
+ "ENT-22": {
+  "cumple": "no",
+  "nota": "No detecta que hay una sola participante: respondió con E01."
+ },
+ "ENT-23": {
+  "cumple": "cumple"
+ },
+ "ENT-24": {
+  "cumple": "no",
+  "nota": "Respondió con hallazgos; no dice que no diagnostica."
+ },
+ "ENT-25": {
+  "cumple": "no",
+  "nota": "No hay regla de consejo/malestar: buscó en los datos de E01."
+ },
+ "GEN-01": {
+  "cumple": "no",
+  "nota": "Mensaje genérico de fuera de dominio con ejemplos fijos (pregunta 4, R017, alfa de Cronbach) que no son de este instrumento. Sin calificación humana."
+ },
+ "PRU-01": {
+  "cumple": "cumple"
+ },
+ "PRU-02": {
+  "cumple": "cumple"
+ },
+ "PRU-03": {
+  "cumple": "parcial",
+  "nota": "El modelo puso los 22 reactivos en «excluir_preguntas» y la validación lo aceptó: «No hay resúmenes calculados»."
+ },
+ "PRU-04": {
+  "cumple": "parcial",
+  "nota": "97 de 97: cuenta al alumno sin mostrar qué reactivos dejó; revisar si el conteo es correcto."
+ },
+ "PRU-05": {
+  "cumple": "parcial",
+  "nota": "Mostró el resumen de los 22 reactivos en lugar de los motivos de limpieza por reactivo."
+ },
+ "PRU-06": {
+  "cumple": "cumple"
+ },
+ "PRU-07": {
+  "cumple": "no",
+  "nota": "Mismo error de «excluir_preguntas» que PRU-03."
+ },
+ "PRU-08": {
+  "cumple": "parcial",
+  "nota": "Sin % de NR por sección; no hay agregación por sección."
+ },
+ "PRU-09": {
+  "cumple": "parcial",
+  "nota": "No hay cruce entre dos reactivos: filtró r11 con «>» y afirmó «81 eligieron B» (cifra falsa que pasó la verificación)."
+ },
+ "PRU-10": {
+  "cumple": "no",
+  "nota": "No hay grupos por posición: pidió aclaración."
+ },
+ "PRU-11": {
+  "cumple": "parcial",
+  "nota": "Tomó 3 reactivos (r15, r19, r21) en lugar de los dos grupos; no hay comparación entre conjuntos de reactivos. El modelo no respondió (memoria)."
+ },
+ "PRU-12": {
+  "cumple": "no",
+  "nota": "No hay agregación de NR por sección; mostró la estructura. El modelo no respondió (memoria)."
+ },
+ "PRU-13": {
+  "cumple": "no",
+  "nota": "«Menos consenso» se tradujo a «coincidencia» (el más concentrado), al revés."
+ },
+ "PRU-14": {
+  "cumple": "no",
+  "nota": "(2) no heredó el grupo de (1); (3) «Muéstrame 5» filtró r15 > 0.5 y dio 0."
+ },
+ "PRU-15": {
+  "cumple": "no",
+  "nota": "(3) pidió aclaración «¿qué reactivo de phishing?» y el RAG mezcló otros reactivos."
+ },
+ "PRU-16": {
+  "cumple": "cumple"
+ },
+ "PRU-17": {
+  "cumple": "no",
+  "nota": "Mostró los 22 reactivos; la redacción habló de «respondió correctamente» y la verificación la rechazó (calificada)."
+ },
+ "PRU-18": {
+  "cumple": "cumple"
+ },
+ "PRU-19": {
+  "cumple": "parcial",
+  "nota": "Secciones y reactivos correctos (10, 7 y 5); no da el total de 22. Sin calificación humana."
+ },
+ "PRU-20": {
+  "cumple": "cumple"
+ },
+ "PRU-21": {
+  "cumple": "parcial",
+  "nota": "La aclaración «no encontré r25» se reemplazó por lo recuperado del RAG, que inventó «A011 respondió A al reactivo 25»."
+ },
+ "PRU-22": {
+  "cumple": "no",
+  "nota": "Descartó la opción E en silencio y mostró la distribución de r03; debía decir que no existe. El modelo no respondió (memoria)."
+ },
+ "PRU-23": {
+  "cumple": "no",
+  "nota": "«Aprobaron / promedio» no activa la regla de pruebas sin calificar (sí «respuesta correcta»): contestó «97 respondentes»."
+ },
+ "PRU-24": {
+  "cumple": "cumple"
+ },
+ "PRU-25": {
+  "cumple": "cumple"
+ },
+ "GEN-02": {
+  "cumple": "no",
+  "nota": "Mensaje genérico de fuera de dominio con ejemplos fijos; no explica qué puede hacer con el instrumento activo."
+ },
+ "GEN-03": {
+  "cumple": "no",
+  "nota": "«Gracias» se interpretó como pedir hallazgos y listó patrones."
+ },
+ "GEN-04": {
+  "cumple": "no",
+  "nota": "Respondió «No tengo información…»; no dice que no da consejos ni redirige."
+ }
+}

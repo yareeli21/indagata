@@ -1,0 +1,33 @@
+{
+ "id": "CET-08",
+ "instrumento": "ent_control",
+ "categoria": "cortesia",
+ "turnos": [
+  {
+   "pregunta": "¿Qué me recomiendas para no reprobar?",
+   "rag_log_id": 2822,
+   "respuesta": "No doy consejos ni recomendaciones personales: soy una herramienta de investigación sobre los instrumentos cargados. Estás trabajando con «Entrevista sobre estrategias de permanencia universitaria» (entrevista). Lo que sí puedo hacer es consultar sus datos.\n\nPor ejemplo, puedes preguntarme:\n- ¿Qué dijo E01 sobre «Qué factores consideras que han sido fundamentales para con…»?\n- ¿Qué dijo E01 sobre «Qué mensaje darías a un estudiante que está pensando en des…»?\n- ¿Cuáles son los hallazgos principales de la entrevista?",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "regla:consejo",
+   "plantilla": "consejo",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 0.0,
+   "tiempos_ms": null,
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No da consejos; redirigir."
+}

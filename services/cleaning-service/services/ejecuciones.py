@@ -27,13 +27,14 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from shared import tiempos
+from shared.conocimiento.significados import Diccionario, DiccionarioInvalido, leer_diccionario
 from shared.auth import ROL_ADMINISTRADOR
 from shared.models.instrumento_procesado import InstrumentoProcesado
 from shared.models.limpieza_ejecucion import LimpiezaEjecucion
 from shared.models.raw_data import RawData
 from shared.models.usuario import Usuario
 
-from services import VERSION_SERVICIO, configuracion, motores, storage_client
+from services import VERSION_SERVICIO, configuracion, motores, significados, storage_client
 from services.motores import Entrada, ErrorLimpieza, Hallazgo, MotorNoDisponible, ResultadoAutomatico
 from services.motores.resumen import resumir
 
@@ -131,7 +132,48 @@ def _entrada(raw: RawData) -> Entrada:
         nombre_archivo=raw.nombre_archivo,
         extension=_extension(raw),
         contenido=contenido,
+        diccionario=_diccionario(raw, [])[0],  # si no se puede leer, el aviso lo da `_codigos`
     )
+
+
+def _diccionario(raw: RawData, avisos: list[str]) -> tuple[Diccionario | None, str]:
+    """Diccionario de datos que se subió con el instrumento (o None). Si no se puede leer, se avisa y se sigue."""
+    ruta = getattr(raw, "raw_archivo_diccionario", None)
+    if not ruta:
+        return None, ""
+    nombre = PurePosixPath(ruta).name.split("__", 1)[-1]
+    try:
+        return leer_diccionario(storage_client.descargar(ruta), PurePosixPath(ruta).suffix.lower()), nombre
+    except (storage_client.StorageError, DiccionarioInvalido) as exc:
+        avisos.append(f"No se pudo leer el diccionario de datos ({nombre}): {exc}")
+        return None, nombre
+
+
+def _codigos(ctx: Contexto, automatico: ResultadoAutomatico, previos: dict[str, Any]) -> dict[str, Any]:
+    """Columnas que pueden llevar texto y significado, con lo que trae el diccionario y la versión anterior."""
+    tipo = ctx.raw.tipo_instrumento
+    dic, nombre = _diccionario(ctx.raw, automatico.avisos)
+    cands = significados.candidatos(tipo, automatico, dic)
+    sig, resumen = significados.desde_diccionario(dic, cands, nombre) if dic is not None else ({}, None)
+    claves = {c["clave"] for c in cands}
+    # Lo que ya se confirmó en la versión anterior (incluye lo escrito a mano) manda sobre el diccionario.
+    sig.update({k: {**v, "origen": "anterior"} for k, v in previos.items() if k in claves})
+    return {"columnas": cands, "significados": sig, "diccionario": resumen}
+
+
+def _roles_con_texto(automatico: ResultadoAutomatico, codigos: dict[str, Any]) -> None:
+    """«¿Qué es P1?»: si el diccionario (o la versión anterior) ya dice qué pregunta es, se muestra y se
+    sugiere el rol con el mismo criterio que a un encabezado legible: un texto largo es una pregunta; uno
+    corto que nombra un dato de la persona (turno, semestre…), contexto."""
+    sig = codigos.get("significados") or {}
+    largo = int(configuracion.reglas()["encuestas"].get("largo_minimo_pregunta", 25))
+    for h in automatico.hallazgos:
+        texto = (sig.get(h.objetivo) or {}).get("pregunta") if h.tipo == "rol_columna" else None
+        if texto:
+            corto_de_contexto = len(texto) <= largo and configuracion.es_contexto(texto)
+            h.sugerida = "contexto" if corto_de_contexto else "pregunta"
+            h.obligatoria = False
+            h.descripcion = f"Según el diccionario de datos es «{texto}». Confirma si es una pregunta del instrumento o un dato de contexto."
 
 
 # ── Consultas ──────────────────────────────────────────────────────────────────
@@ -176,7 +218,8 @@ def _siguiente_version(db: Session, id_crudo: int) -> int:
 
 
 def _reporte_inicial(
-    ctx: Contexto, version: int, automatico: ResultadoAutomatico, decisiones: dict[str, Any]
+    ctx: Contexto, version: int, automatico: ResultadoAutomatico, decisiones: dict[str, Any],
+    codigos: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     salida = configuracion.reglas().get("salida", {})
     return {
@@ -200,6 +243,7 @@ def _reporte_inicial(
         "transformaciones": [dict(t, origen="automatica") for t in automatico.transformaciones],
         "hallazgos": [h.a_dict() for h in automatico.hallazgos],
         "decisiones": decisiones,
+        "codigos": codigos or {},
         "avisos": list(automatico.avisos),
         "especifico": {ctx.raw.tipo_instrumento: automatico.especifico},
     }
@@ -255,14 +299,18 @@ def crear(db: Session, usuario: Usuario, id_crudo: int, *, nueva: bool = False) 
 
     # Al repetir una limpieza confirmada se precargan las decisiones que sigan aplicando.
     decisiones: dict[str, Any] = {}
+    previos: dict[str, Any] = {}
     if anterior is not None and anterior.estado == "confirmada":
         opciones = {h.id: h.opciones for h in automatico.hallazgos}
         for hid, dec in (anterior.reporte or {}).get("decisiones", {}).items():
             if hid in opciones and dec.get("valor") in opciones[hid] and dec.get("origen") == "investigador":
                 decisiones[hid] = dec
+        previos = (((anterior.reporte or {}).get("especifico") or {}).get(ctx.raw.tipo_instrumento) or {}).get("significados") or {}
 
     ejecucion.estado = "esperando_decisiones"
-    ejecucion.reporte = _reporte_inicial(ctx, version, automatico, decisiones)
+    codigos = _codigos(ctx, automatico, previos)
+    _roles_con_texto(automatico, codigos)
+    ejecucion.reporte = _reporte_inicial(ctx, version, automatico, decisiones, codigos)
     _avanzar_estado(ctx.procesado, "limpieza_en_proceso")
     db.add(ejecucion)
     guardada = _guardar_nueva(db, ejecucion, id_crudo, nueva)
@@ -318,6 +366,23 @@ def guardar_decisiones(
             "fecha": _ahora().isoformat(),
         }
     reporte["decisiones"] = decisiones
+    ejecucion.reporte = reporte  # reasignar: SQLAlchemy no detecta cambios internos del JSON
+    ejecucion.fecha_actualizacion = _ahora().replace(tzinfo=None)
+    db.commit()
+    db.refresh(ejecucion)
+    return ejecucion
+
+
+def guardar_significados(
+    db: Session, ejecucion: LimpiezaEjecucion, cambios: dict[str, dict[str, Any] | None]
+) -> LimpiezaEjecucion:
+    """Guarda (merge) el texto de las preguntas en código y el significado de sus códigos."""
+    if ejecucion.estado != "esperando_decisiones":
+        raise HTTPException(status.HTTP_409_CONFLICT, "Esta versión de la limpieza ya no admite cambios.")
+    reporte = dict(ejecucion.reporte or {})
+    codigos = dict(reporte.get("codigos") or {})
+    codigos["significados"] = significados.aplicar_cambios(codigos.get("significados") or {}, cambios, codigos.get("columnas") or [])
+    reporte["codigos"] = codigos
     ejecucion.reporte = reporte  # reasignar: SQLAlchemy no detecta cambios internos del JSON
     ejecucion.fecha_actualizacion = _ahora().replace(tzinfo=None)
     db.commit()
@@ -392,6 +457,10 @@ def confirmar(db: Session, usuario: Usuario, ejecucion: LimpiezaEjecucion) -> Li
         dict(t, origen="decision") for t in final.transformaciones
     ]
     reporte["especifico"] = {ctx.raw.tipo_instrumento: final.especifico}
+    codigos = reporte.get("codigos") or {}
+    if codigos.get("significados"):
+        reporte["especifico"][ctx.raw.tipo_instrumento]["significados"] = significados.para_especifico(
+            codigos["significados"], codigos.get("columnas") or [])
     # Muestra pequeña para la vista final (evita volver a leer el CSV de storage).
     reporte["vista_final"] = {
         "cifras": final.cifras,
@@ -508,5 +577,6 @@ def a_dto(ejecucion: LimpiezaEjecucion, tipo_instrumento: str) -> dict[str, Any]
         ],
         "hallazgos": hallazgos,
         "pendientesObligatorias": len(pendientes_obligatorias(reporte)),
+        "codigos": significados.vista(reporte.get("codigos")) if ejecucion.estado == "esperando_decisiones" else None,
         "vistaFinal": vista,
     }

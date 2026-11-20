@@ -1,0 +1,81 @@
+{
+ "id": "PRU-03",
+ "instrumento": "pru",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo hubo más respuestas en blanco?",
+   "rag_log_id": 2734,
+   "respuesta": "La pregunta r10 \"¿Qué es una contraseña segura?\" tuvo 97 respuestas nulas o sin responder de un total de 97 (100.0 %) [Fuente 1]. No hubo empate en el número de respuestas en blanco, ya que esta pregunta obtuvo la totalidad de las respuestas en blanco [Fuente 1].\n\n**Preguntas por no respuesta [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r10 | 97 nulas o sin responder de 97 (100.0 %) |\n| 2 | r22 | 3 nulas o sin responder de 97 (3.1 %) |\n| 3 | r16 | 2 nulas o sin responder de 97 (2.1 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo": {
+    "campos": [
+     "opciones"
+    ],
+    "menciona": "reactivos",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "mención «reactivos» descartada (la pregunta no pregunta quién lo mencionó)",
+    "intención conteo_porcentaje → ranking_preguntas («no_respuesta» por pregunta)",
+    "criterio del ranking: no_respuesta (lo que dice la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r17",
+     "score": 0.443
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4353
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r08",
+     "score": 0.4261
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4084
+    }
+   ],
+   "segundos": 29.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 11072,
+    "recuperacion": 321,
+    "verificacion": 1,
+    "interpretacion": 17798
+   },
+   "k_precision": 0.775,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Reactivo con más NR y su conteo."
+}

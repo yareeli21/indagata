@@ -1,0 +1,88 @@
+{
+ "id": "ENC-05",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos NO han presentado ningún examen de certificación?",
+   "rag_log_id": 3159,
+   "respuesta": "1327 de los 1952 que respondieron p11 (68.0 %) cumplen el criterio: p11 «¿Has presentado algún examen de certificación profesional (A WS, Cisco» = «No, pero planeo hacerlo» o «No, y no lo planeo». Sobre el total del instrumento son 1327 de 2000 respondentes (66.3 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": [
+       "No, pero planeo hacerlo",
+       "No, y no lo planeo"
+      ],
+      "pregunta": "p11"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "No, y no lo planeo",
+      "pregunta": "p11"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p11: todas las opciones «No…» (2)"
+   ],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.6317
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.6135
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.6028
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.5535
+    }
+   ],
+   "segundos": 48.2,
+   "tiempos_ms": {
+    "ejecucion": 275,
+    "redaccion": 19257,
+    "recuperacion": 318,
+    "verificacion": 0,
+    "interpretacion": 28240
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Resolver la negación sumando «No, pero planeo hacerlo» y «No, y no lo planeo»."
+}

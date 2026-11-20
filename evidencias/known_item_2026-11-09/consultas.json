@@ -1,0 +1,590 @@
+[
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p01",
+  "texto": "¿Tu programa académico cuenta con acreditación vigente (COP AES, SEAES CONAIC, u otro )?",
+  "palabras_clave": "programa académico cuenta acreditación vigente cop aes seaes conaic otro"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p02",
+  "texto": "¿En qué modalidad cursas tu programa?",
+  "palabras_clave": "modalidad cursas programa"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p03",
+  "texto": "¿Cómo es tu carga académica actual?",
+  "palabras_clave": "carga académica actual"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p04",
+  "texto": "De tus profesores de este periodo, ¿cuántos tienen doctorado?",
+  "palabras_clave": "profesores periodo cuántos tienen doctorado"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p05",
+  "texto": "¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?",
+  "palabras_clave": "frecuencia tocado cambio profesor iniciado periodo materia profesor asignado"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p06",
+  "texto": "¿Cuántos de tus profesores han compartido o mencionado en clase artículos científicos de su autoría?",
+  "palabras_clave": "cuántos profesores compartido mencionado clase artículos científicos autoría"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p07",
+  "texto": "¿En qué actividades de investigación de tus profesores has participado o de cuáles tienes conocimiento?",
+  "palabras_clave": "actividades investigación profesores has participado tienes conocimiento"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p08",
+  "texto": "¿Sabes si la institución ha obtenido patentes en los últimos años?",
+  "palabras_clave": "sabes institución obtenido patentes últimos años"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p09",
+  "texto": "¿Con qué frecuencia usas alguna plataforma virtual (Moodle, Classroom, Teams, etc.) para tus materias?",
+  "palabras_clave": "frecuencia usas plataforma virtual moodle classroom teams etc materias"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p10",
+  "texto": "¿Cuándo esperas titularte?",
+  "palabras_clave": "esperas titularte"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p11",
+  "texto": "¿Has presentado algún examen de certificación profesional (A WS, Cisco, Microsoft Azure, Google Cloud, etc.?",
+  "palabras_clave": "has presentado examen certificación profesional cisco microsoft azure google cloud etc"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p12",
+  "texto": "¿Cuál es tu situación laboral actual?",
+  "palabras_clave": "situación laboral actual"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p13",
+  "texto": "¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?",
+  "palabras_clave": "tan probable vuelvas estudiar institución especialización maestría doctorado"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p14",
+  "texto": "¿Has realizado prácticas profesionales o pasantías?",
+  "palabras_clave": "has realizado prácticas profesionales pasantías"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p15",
+  "texto": "¿En qué programas de cooperación de tu institución has participado o cuáles conoces?",
+  "palabras_clave": "programas cooperación institución has participado conoces"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p16",
+  "texto": "La oferta de programas, materias optativas y cursos de mi institución responde a mis intereses académicos y profesionales.",
+  "palabras_clave": "oferta programas materias optativas cursos institución responde intereses académicos profesionales"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p17",
+  "texto": "Los laboratorios, equipos, materiales y espacios de la institución son adecuados para mi formación.",
+  "palabras_clave": "laboratorios equipos materiales espacios institución son adecuados formación"
+ },
+ {
+  "instrumento": "127",
+  "tipo": "encuesta",
+  "id": "p18",
+  "texto": "En la biblioteca y las bases de datos académicas (Scopus, IEEE Xplore, EBSCO, etc.) encuentro lo que necesito para mis materias y proyectos.",
+  "palabras_clave": "biblioteca bases datos académicas scopus ieee xplore ebsco etc encuentro necesito materias proyectos"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r01",
+  "texto": "¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Excel?",
+  "palabras_clave": "extensión correcta archivo hoja cálculo excel"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r02",
+  "texto": "¿Qué significa LMS en contextos educativos?",
+  "palabras_clave": "significa lms contextos educativos"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r03",
+  "texto": "¿Cuál es la principal función de una VPN?",
+  "palabras_clave": "principal función vpn"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r04",
+  "texto": "¿Qué es el phishing?",
+  "palabras_clave": "phishing"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r05",
+  "texto": "¿Cuál herramienta es más adecuada para la colaboración en documentos en tiempo real?",
+  "palabras_clave": "herramienta adecuada colaboración documentos tiempo real"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r06",
+  "texto": "¿Qué es la nube (cloud computing) en tecnología?",
+  "palabras_clave": "nube cloud computing tecnología"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r07",
+  "texto": "¿Qué significa una licencia Creative Commons?",
+  "palabras_clave": "significa licencia creative commons"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r08",
+  "texto": "¿Cuál es la principal función de un buscador web como Google?",
+  "palabras_clave": "principal función buscador web google"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r09",
+  "texto": "¿Cuál de los siguientes es un criterio para evaluar la confiabilidad de una fuente en internet?",
+  "palabras_clave": "siguientes criterio evaluar confiabilidad fuente internet"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r10",
+  "texto": "¿Qué es una contraseña segura?",
+  "palabras_clave": "contraseña segura"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r11",
+  "texto": "El correo electrónico es siempre un canal seguro para enviar información confidencial.",
+  "palabras_clave": "correo electrónico siempre canal seguro enviar información confidencial"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r12",
+  "texto": "El análisis de datos de aprendizaje (learning analytics) puede ayudar a identificar estudiantes en riesgo.",
+  "palabras_clave": "análisis datos aprendizaje learning analytics puede ayudar identificar estudiantes riesgo"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r13",
+  "texto": "Plagiar contenido digital tiene las mismas consecuencias éticas que plagiar contenido impreso.",
+  "palabras_clave": "plagiar contenido digital tiene mismas consecuencias éticas plagiar contenido impreso"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r14",
+  "texto": "La inteligencia artificial puede generar texto, imágenes y código de programación.",
+  "palabras_clave": "inteligencia artificial puede generar texto imágenes código programación"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r15",
+  "texto": "Usar redes Wi-Fi públicas sin VPN es completamente seguro.",
+  "palabras_clave": "usar redes públicas vpn completamente seguro"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r16",
+  "texto": "El almacenamiento en la nube elimina por completo el riesgo de perder datos.",
+  "palabras_clave": "almacenamiento nube elimina completo riesgo perder datos"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r17",
+  "texto": "La huella digital incluye todo rastro que dejamos en línea.",
+  "palabras_clave": "huella digital incluye todo rastro dejamos línea"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r18",
+  "texto": "¿Cuál es el orden correcto para crear un documento académico digital? (1) Guardar borrador (2) Investigar (3) Redactar (4) Revisar y citar fuentes",
+  "palabras_clave": "orden correcto crear documento académico digital guardar borrador investigar redactar revisar citar fuentes"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r19",
+  "texto": "Empareja: HTTPS →",
+  "palabras_clave": "empareja https"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r20",
+  "texto": "¿Qué herramienta corresponde mejor al propósito de gestionar referencias bibliográficas?",
+  "palabras_clave": "herramienta corresponde mejor propósito gestionar referencias bibliográficas"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r21",
+  "texto": "¿Qué tipo de licencia permite modificar y redistribuir libremente un software?",
+  "palabras_clave": "tipo licencia permite modificar redistribuir libremente software"
+ },
+ {
+  "instrumento": "130",
+  "tipo": "prueba",
+  "id": "r22",
+  "texto": "¿Cuál es el emparejamiento correcto? Big Data ↔",
+  "palabras_clave": "emparejamiento correcto big data"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p01",
+  "texto": "Para empezar, ¿cómo describirías tu estado de ánimo durante este semestre?",
+  "palabras_clave": "empezar describirías estado ánimo durante semestre"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p02",
+  "texto": "¿Qué situaciones de la universidad te generan más estrés o ansiedad?",
+  "palabras_clave": "situaciones universidad generan estrés ansiedad"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p03",
+  "texto": "¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cómo te enteraste?",
+  "palabras_clave": "sabías universidad ofrece servicios apoyo psicológico enteraste"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p04",
+  "texto": "¿Has utilizado alguno de esos servicios? Cuéntame cómo fue.",
+  "palabras_clave": "has utilizado esos servicios cuéntame"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p05",
+  "texto": "¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?",
+  "palabras_clave": "cuánto tiempo pasó pediste cita hasta atendieron"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p06",
+  "texto": "¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?",
+  "palabras_clave": "hizo dudar detuvo antes buscar ayuda"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p07",
+  "texto": "¿Cómo valoras la atención que recibiste?",
+  "palabras_clave": "valoras atención recibiste"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p08",
+  "texto": "¿Notaste algún cambio en tu desempeño académico después de recibir apoyo?",
+  "palabras_clave": "notaste cambio desempeño académico después recibir apoyo"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p09",
+  "texto": "¿Qué papel han tenido tus profesores o tu tutor en este tema?",
+  "palabras_clave": "papel tenido profesores tutor tema"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p10",
+  "texto": "¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo busquen?",
+  "palabras_clave": "conoces otros compañeros necesiten tipo apoyo busquen"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p11",
+  "texto": "Si pudieras cambiar algo de los servicios de salud mental de la universidad, ¿qué cambiarías?",
+  "palabras_clave": "pudieras cambiar servicios salud mental universidad cambiarías"
+ },
+ {
+  "instrumento": "129",
+  "tipo": "entrevista",
+  "id": "p12",
+  "texto": "Para terminar, ¿qué le dirías a un compañero que está pasando por un momento difícil y no se anima a pedir ayuda?",
+  "palabras_clave": "terminar dirías compañero pasando momento difícil anima pedir ayuda"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p01",
+  "texto": "Considero que la cantidad de materias que curso es manejable.",
+  "palabras_clave": "considero cantidad materias curso manejable"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p02",
+  "texto": "El volumen de lecturas y tareas es proporcional al crédito de cada materia.",
+  "palabras_clave": "volumen lecturas tareas proporcional crédito cada materia"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p03",
+  "texto": "Tengo tiempo suficiente para estudiar cada materia adecuadamente.",
+  "palabras_clave": "tengo tiempo suficiente estudiar cada materia adecuadamente"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p04",
+  "texto": "La carga de trabajo me permite mantener un equilibrio saludable.",
+  "palabras_clave": "carga trabajo permite mantener equilibrio saludable"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p05",
+  "texto": "Planifico mis actividades con anticipación usando agendas o calendarios.",
+  "palabras_clave": "planifico actividades anticipación usando agendas calendarios"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p06",
+  "texto": "Cumplo con mis horarios de estudio establecidos.",
+  "palabras_clave": "cumplo horarios estudio establecidos"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p07",
+  "texto": "Identifico y elimino distracciones durante mis sesiones de estudio.",
+  "palabras_clave": "identifico elimino distracciones durante sesiones estudio"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p08",
+  "texto": "Distribuyo el tiempo de manera equilibrada entre todas mis materias.",
+  "palabras_clave": "distribuyo tiempo manera equilibrada todas materias"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p09",
+  "texto": "¿Cuántas materias cursas actualmente?",
+  "palabras_clave": "cuántas materias cursas actualmente"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p10",
+  "texto": "¿Con qué frecuencia dejas tareas para el último momento?",
+  "palabras_clave": "frecuencia dejas tareas último momento"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p11",
+  "texto": "¿Qué estrategia usas más para gestionar tu tiempo?",
+  "palabras_clave": "estrategia usas gestionar tiempo"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p12",
+  "texto": "¿Cuántas horas dedicas al estudio fuera de clases por semana?",
+  "palabras_clave": "cuántas horas dedicas estudio fuera clases semana"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p13",
+  "texto": "¿Has reprobado alguna materia por falta de tiempo para estudiar?",
+  "palabras_clave": "has reprobado materia falta tiempo estudiar"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p14",
+  "texto": "¿Cuál es tu carga laboral actual?",
+  "palabras_clave": "carga laboral actual"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p15",
+  "texto": "¿Tienes dificultades para equilibrar trabajo y estudios?",
+  "palabras_clave": "tienes dificultades equilibrar trabajo estudios"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p16",
+  "texto": "¿Tu institución ofrece talleres de gestión del tiempo?",
+  "palabras_clave": "institución ofrece talleres gestión tiempo"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p17",
+  "texto": "¿Cuántas horas por semana dedicas al estudio fuera de clases? (número)",
+  "palabras_clave": "cuántas horas semana dedicas estudio fuera clases número"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p18",
+  "texto": "Del 1 al 10, ¿cuánta presión sientes por la carga académica?",
+  "palabras_clave": "cuánta presión sientes carga académica"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p19",
+  "texto": "Del 1 al 10, ¿qué tan efectivo/a eres gestionando tu tiempo?",
+  "palabras_clave": "tan efectivo eres gestionando tiempo"
+ },
+ {
+  "instrumento": "61",
+  "tipo": "encuesta",
+  "id": "p20",
+  "texto": "¿Cuántos créditos cursas este semestre? (número)",
+  "palabras_clave": "cuántos créditos cursas semestre número"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p01",
+  "texto": "¿Qué factores consideras que han sido fundamentales para continuar tus estudios universitarios hasta ahora?",
+  "palabras_clave": "factores consideras sido fundamentales continuar estudios universitarios hasta ahora"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p02",
+  "texto": "¿Has pensado alguna vez en abandonar la universidad? ¿Qué te llevó a tomar esa decisión en su momento?",
+  "palabras_clave": "has pensado vez abandonar universidad llevó tomar decisión momento"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p03",
+  "texto": "¿De qué manera el apoyo familiar ha influido en tu permanencia en la institución?",
+  "palabras_clave": "manera apoyo familiar influido permanencia institución"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p04",
+  "texto": "¿Qué servicios de apoyo institucional (tutorías, becas, orientación) has utilizado y cómo te han ayudado?",
+  "palabras_clave": "servicios apoyo institucional tutorías becas orientación has utilizado ayudado"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p05",
+  "texto": "¿Cómo has manejado las dificultades económicas durante tu trayectoria universitaria?",
+  "palabras_clave": "has manejado dificultades económicas durante trayectoria universitaria"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p06",
+  "texto": "¿Qué rol ha jugado la relación con tus profesores en tu decisión de continuar estudiando?",
+  "palabras_clave": "rol jugado relación profesores decisión continuar estudiando"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p07",
+  "texto": "¿Cómo ha impactado el trabajo en tu desempeño y permanencia académica?",
+  "palabras_clave": "impactado trabajo desempeño permanencia académica"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p08",
+  "texto": "¿Qué cambiarías de los servicios de apoyo universitario para mejorar la retención estudiantil?",
+  "palabras_clave": "cambiarías servicios apoyo universitario mejorar retención estudiantil"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p09",
+  "texto": "¿Cómo describirías tu nivel de motivación en diferentes momentos de tu trayectoria?",
+  "palabras_clave": "describirías nivel motivación diferentes momentos trayectoria"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p10",
+  "texto": "¿Has tenido que interrumpir tus estudios temporalmente? ¿Qué sucedió?",
+  "palabras_clave": "has tenido interrumpir estudios temporalmente sucedió"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p11",
+  "texto": "¿Qué estrategias personales has desarrollado para mantenerte en la universidad?",
+  "palabras_clave": "estrategias personales has desarrollado mantenerte universidad"
+ },
+ {
+  "instrumento": "60",
+  "tipo": "entrevista",
+  "id": "p12",
+  "texto": "¿Qué mensaje darías a un estudiante que está pensando en desertar?",
+  "palabras_clave": "mensaje darías estudiante pensando desertar"
+ }
+]

@@ -1,0 +1,83 @@
+{
+ "id": "ENC-01",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos estudiantes trabajan en un área relacionada con su carrera?",
+   "rag_log_id": 3597,
+   "respuesta": "500 de los 1946 que respondieron p12 (25.7 %) cumplen el criterio: p12 «¿Cuál es tu situación laboral actual?» = «Trabajo en un area relacionada con mi carrera». Sobre el total del instrumento son 500 de 2000 respondentes (25.0 %). [Fuente 1] La pregunta p12 \"¿Cuál es tu situación laboral actual?\" se refiere a la relación entre el trabajo de los estudiantes y la carrera que estudian. Esta pregunta está relacionada con preguntas sobre los profesores de un curso, específicamente sobre si tienen doctorado (p04) o han participado en actividades de investigación (p07). El criterio para cumplir la condición es tener trabajo en una área relacionada con la carrera.",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Trabajo en un area relacionada con mi carrera",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Trabajo en un area relacionada con mi carrera",
+      "pregunta": "p12"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "frase_dato_con_contexto",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.6106
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p04",
+     "score": 0.6014
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.59
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.5873
+    }
+   ],
+   "segundos": 18.6,
+   "tiempos_ms": {
+    "ejecucion": 366,
+    "redaccion": 5982,
+    "recuperacion": 565,
+    "verificacion": 1,
+    "interpretacion": 11366
+   },
+   "k_precision": 0.854,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta de situación laboral; número y % sobre el total."
+}

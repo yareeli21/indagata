@@ -1,0 +1,108 @@
+{
+ "id": "ETU-01",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué obstáculos tuvo para pedir ayuda?",
+   "rag_log_id": 4154,
+   "respuesta": "- Participante E01, pregunta guía p12: Para terminar, ¿qué le dirías a un compañero que está pasando por un momento difícil y no se anima a pedir ayuda?\nRespuesta: Que no espere a estar muy mal, como yo. Que pedir ayuda no significa que sea débil, al contrario. Y que la orientación es gratuita y confidencial, nadie se va a enterar. A mí me sirvió para darme cuenta de que no estaba sola y de que lo que sentía tenía nombre y se podía trabajar. [Fuente 1]\n- Participante E01, pregunta guía p06: ¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?\nRespuesta: Me daba, me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca. [Fuente 1]\n- Participante E01, pregunta guía p10: ¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo busquen?\nRespuesta: Sí, varios. En mi grupo somos treinta y dos, este,, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación. Algunos no saben que existe y otros piensan lo mismo que yo pensaba, que es solo para casos muy graves. Un compañero dejó de venir a mitad del semestre y nadie supo bien qué le pasó. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p06"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?",
+      "pregunta": "p06"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p06 = «¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Salud mental entrevista"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.5639
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.5529
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.4212
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.4151
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.3475
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p04",
+     "score": 0.3376
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p05",
+     "score": 0.3238
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p13",
+     "score": 0.3162
+    }
+   ],
+   "segundos": 32.5,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 22689,
+    "recuperacion": 353,
+    "verificacion": 5810,
+    "interpretacion": 9394
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la pregunta de lo que la detuvo, con cita."
+}

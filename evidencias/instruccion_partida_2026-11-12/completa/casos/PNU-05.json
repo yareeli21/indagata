@@ -1,0 +1,69 @@
+{
+ "id": "PNU-05",
+ "instrumento": "pru_nueva",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Cambia lo que eligieron sobre la hipótesis según si estudian pregrado o posgrado?",
+   "rag_log_id": 4115,
+   "respuesta": "Criterio: por nivel_estudio. [Fuente 1]\n\n**Comparación por nivel_estudio [Fuente 1]**\n| Grupo | Personas | r02: respuestas del grupo |\n|---|---|---|\n| posgrado | 8 | «El resumen del trabajo» 6 (75.0 %); «Una suposición que se somete a verificación empírica» 1 (12.5 %); «La conclusión final del estudio» 1 (12.5 %) |\n| pregrado | 72 | «El resumen del trabajo» 33 (45.8 %); «Una suposición que se somete a verificación empírica» 25 (34.7 %); «La descripción del método» 10 (13.9 %); «La conclusión final del estudio» 4 (5.6 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r02"
+    ],
+    "agrupar_por": "nivel_estudio"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "r02"
+    ],
+    "agrupar_por": "nivel_estudio"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r05",
+     "score": 0.5832
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r02",
+     "score": 0.5798
+    }
+   ],
+   "segundos": 28.2,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 17478,
+    "recuperacion": 511,
+    "verificacion": 8110,
+    "interpretacion": 10185
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    15,
+    15
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "r02 por nivel_estudio: cada grupo con su n y distribución."
+}

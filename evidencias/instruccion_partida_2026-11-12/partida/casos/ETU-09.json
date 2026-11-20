@@ -1,0 +1,43 @@
+{
+ "id": "ETU-09",
+ "instrumento": "ent_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Qué dijo sobre su familia?",
+   "rag_log_id": 4163,
+   "respuesta": "Soy una herramienta de investigación: solo puedo responder sobre los instrumentos de Indagata que tienes seleccionados, sus KPIs y cómo usar la plataforma; no doy consejos, recetas ni contenido ajeno a ellos. Por ejemplo, puedes preguntarme:\n- ¿Qué dijo el participante E02 sobre la evaluación?\n- ¿Qué preguntas miden el KPI de satisfacción estudiantil?\n- ¿Qué significa un alfa de Cronbach bajo?\n- ¿Cómo subo un instrumento nuevo?",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Cuál es la pregunta que se refiere a la familia?"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Cuál es la pregunta que se refiere a la familia?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "plan:aclaracion_ajena",
+   "plantilla": "aclaracion_ajena",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 7.6,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 188,
+    "interpretacion": 7352
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Si menciona a su familia, citarlo; si no, decir que no la menciona."
+}

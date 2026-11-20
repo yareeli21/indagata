@@ -1,0 +1,56 @@
+{
+ "id": "CPR-05",
+ "instrumento": "pru_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué sección hay más respuestas en blanco?",
+   "rag_log_id": 3873,
+   "respuesta": "No hay ninguna sección con respuestas en blanco o nulas. Cada una de las tres secciones tiene un porcentaje de 0% de respuestas en blanco o nulas.\n\n**Respuesta del sistema:**\nNo hay sección con más respuestas en blanco.\n\n**Respuestas en blanco o nulas por sección [Fuente 1]**\n| Sección | Reactivos | En blanco o nulas | % de sus respuestas |\n|---|---|---|---|\n| SECCIÓN: METODOLOGÍA DE INVESTIGACIÓN | 8 | 0 | 0.0 % |\n| SECCIÓN: ÉTICA Y DIFUSIÓN CIENTÍFICA | 4 | 0 | 0.0 % |\n| SECCIÓN: EMPAREJAMIENTO INVESTIGATIVO | 3 | 0 | 0.0 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "seccion",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "no_respuesta"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar por sección (respuestas en blanco o nulas)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "estructurada",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 13.8,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 3191,
+    "recuperacion": 391,
+    "verificacion": 1,
+    "interpretacion": 10128
+   },
+   "k_precision": 0.921,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Respuestas en blanco por sección con su %, o decir que no hay."
+}

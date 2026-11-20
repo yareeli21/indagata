@@ -1,0 +1,148 @@
+{
+ "id": "PRU-17",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué reactivos convendría revisar por cómo se respondieron?",
+   "rag_log_id": 2887,
+   "respuesta": "La primera pregunta del ranking es r10 “¿Qué es una contraseña segura?” con 97 nulas o sin responder (100.0 %). [Fuente 1]\n\n**Preguntas por no respuesta [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r10 | 97 nulas o sin responder de 97 (100.0 %) |\n| 2 | r22 | 3 nulas o sin responder de 97 (3.1 %) |\n| 3 | r16 | 2 nulas o sin responder de 97 (2.1 %) |\n\n**Preguntas por repartida [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r17 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 49 de 96 (51.0 %) |\n| 2 | r14 | índice de dispersión 1.00 (2 opciones); la más elegida, «Falso», con 52 de 97 (53.6 %) |\n| 3 | r12 | índice de dispersión 0.99 (2 opciones); la más elegida, «Verdadero», con 54 de 97 (55.7 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "revisar"
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r18",
+     "r09",
+     "r20"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "intención resumen_pregunta → ranking_preguntas («revisar» por pregunta)",
+    "criterio del ranking: revisar (lo que dice la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4548
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4433
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4401
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4307
+    }
+   ],
+   "segundos": 110.6,
+   "tiempos_ms": {
+    "ejecucion": 42,
+    "redaccion": 61228,
+    "recuperacion": 3682,
+    "verificacion": 5,
+    "interpretacion": 45415
+   },
+   "k_precision": 0.972,
+   "cifras_con_respaldo": [
+    21,
+    21
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué?",
+   "rag_log_id": 2888,
+   "respuesta": "**Lo que muestran los datos:** 1. r10 «¿Qué es una contraseña segura?»: 97 nulas o sin responder de 97 (100.0 %). 2. r22 «¿Cuál es el emparejamiento correcto? Big Data ↔»: 3 nulas o sin responder de 97 (3.1 %).\n\n**Interpretación (del asistente, no es un dato):** Los datos no registran por qué respondieron así; con este cálculo no se pueden afirmar causas. Sirve como punto de partida para revisarlo con más información.",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "relacion": "profundiza",
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "revisar"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿De qué pregunta o tema quieres saber la opinión?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "profundiza: se repite el plan anterior (ranking_preguntas) para explicarlo"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas:calificada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r18",
+     "score": 0.4453
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r09",
+     "score": 0.4396
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.4383
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.433
+    }
+   ],
+   "segundos": 227.6,
+   "tiempos_ms": {
+    "ejecucion": 42,
+    "redaccion": 185364,
+    "recuperacion": 2026,
+    "verificacion": 3,
+    "interpretacion": 40122
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Criterios sin calificar: muchas NR, muchas inválidas, muy repartidas o redacción confusa."
+}

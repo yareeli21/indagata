@@ -1,0 +1,58 @@
+{
+ "id": "ENT-07",
+ "instrumento": "ent",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Hubo preguntas de seguimiento que no estaban en la guía?",
+   "rag_log_id": 2311,
+   "respuesta": "Sí, hubo preguntas de seguimiento. El entrevistador realizó las preguntas guía p06, p07 y p13 [Fuente 1].",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Qué preguntas específicas estás buscando?"
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.545
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.4902
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4763
+    }
+   ],
+   "segundos": 11.8,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 186,
+    "interpretacion": 4657
+   },
+   "k_precision": 0.5,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "la pregunta dice que fue una pregunta guía, entonces esa sí fue de la guía, debió identificar si había preguntas que surgieron por la respuesta del entrevistado y se mostró el entrevistador más interesado para hacer una pregunta"
+  }
+ ],
+ "debe": "Intervenciones del entrevistador que no coinciden con la guía."
+}

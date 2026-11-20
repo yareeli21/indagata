@@ -1,0 +1,76 @@
+{
+ "id": "CEN-01",
+ "instrumento": "enc_control",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos estudiantes trabajan más de 30 horas?",
+   "rag_log_id": 2375,
+   "respuesta": "El 2.5 % de los 160 respondientes (p17) dedicaron más de 30 horas por semana al estudio fuera de clases [Fuente 1]. Esto cumple la condición 4 de la Encuesta de Carga Académica y Gestión del Tiempo [Fuente 1].",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "30 horas",
+      "pregunta": "p17"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "correcciones": [
+    "filtro p14 > 30 quitado (p14 no tiene opciones numéricas)",
+    "filtro p17 = «30 horas» (escrito en la pregunta)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p17",
+     "score": 0.6081
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p12",
+     "score": 0.5969
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.5746
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.5741
+    }
+   ],
+   "segundos": 40.7,
+   "tiempos_ms": {
+    "ejecucion": 36,
+    "redaccion": 20251,
+    "recuperacion": 227,
+    "verificacion": 9270,
+    "interpretacion": 20037
+   },
+   "k_precision": 0.8,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Conteo y % sobre el total, desde la pregunta de carga laboral."
+}

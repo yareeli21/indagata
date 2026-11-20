@@ -1,0 +1,73 @@
+{
+ "id": "ENC-11",
+ "instrumento": "enc",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Cambia la expectativa de titularse según la carga académica?",
+   "rag_log_id": 2567,
+   "respuesta": "Un 39.6% de los estudiantes en el grupo de “Carga media/normal” y un 34.6% del grupo de “Cargas maxima” reportan estar con “hasta un año de retraso” o “con más de un año de retraso” respecto a su plan de estudios, mientras que en el grupo de “Carga minima”, este porcentaje es del 35.2%.  Asimismo, un 7.9% de los estudiantes en el grupo de “Carga media/normal” y un 8.6% del grupo de “Cargas maxima” expresan estar considerando abandonar sus estudios [Fuente 1].\n\n**Comparación por p03 «¿Cómo es tu carga académica actual?» [Fuente 1]**\n| Grupo | Personas | p10: respuestas del grupo |\n|---|---|---|\n| Carga media/normal | 1063 | «Con hasta un año de retraso» 408 (39.6 %); «Con mas de un año de retraso» 272 (26.4 %); «En el tiempo que marca mi plan de estudios» 186 (18.0 %); «No estoy seguro(a)» 84 (8.1 %); «Estoy considerando abandonar» 81 (7.9 %) |\n| Carga media/normal, Cargas maxima | 94 | «Con hasta un año de retraso» 30 (33.3 %); «Con mas de un año de retraso» 25 (27.8 %); «En el tiempo que marca mi plan de estudios» 16 (17.8 %); «No estoy seguro(a)» 10 (11.1 %); «Estoy considerando abandonar» 9 (10.0 %) |\n| Carga minima | 281 | «Con hasta un año de retraso» 96 (35.2 %); «En el tiempo que marca mi plan de estudios» 66 (24.2 %); «Con mas de un año de retraso» 62 (22.7 %); «No estoy seguro(a)» 29 (10.6 %); «Estoy considerando abandonar» 20 (7.3 %) |\n| Carga minima, Carga media/normal | 101 | «Con hasta un año de retraso» 39 (40.6 %); «Con mas de un año de retraso» 23 (24.0 %); «En el tiempo que marca mi plan de estudios» 21 (21.9 %); «Estoy considerando abandonar» 9 (9.4 %); «No estoy seguro(a)» 4 (4.2 %) |\n| Cargas maxima | 392 | «Con hasta un año de retraso» 133 (34.6 %); «Con mas de un año de retraso» 101 (26.3 %); «En el tiempo que marca mi plan de estudios» 82 (21.4 %); «No estoy seguro(a)» 35 (9.1 %); «Estoy considerando abandonar» 33 (8.6 %) |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "preguntas": [
+     "p10"
+    ],
+    "agrupar_por": "p03"
+   },
+   "correcciones": [
+    "comparar p10 según p03 (la consulta dice «según…»)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.6947
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.6825
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.6524
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.6284
+    }
+   ],
+   "segundos": 58.4,
+   "tiempos_ms": {
+    "ejecucion": 44,
+    "redaccion": 40016,
+    "recuperacion": 357,
+    "verificacion": 16483,
+    "interpretacion": 17957
+   },
+   "k_precision": 0.96,
+   "cifras_con_respaldo": [
+    53,
+    53
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución por nivel de carga."
+}

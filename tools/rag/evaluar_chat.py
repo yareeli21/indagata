@@ -277,7 +277,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--ids", required=True, help="clave=id_crudo, p. ej. enc=127,pru=130,ent=129")
     ap.add_argument("--salida", required=True)
-    ap.add_argument("--conjunto", default="casos", choices=["casos", "control"])
+    ap.add_argument("--conjunto", default="casos", choices=["casos", "control", "ciegas"])
     ap.add_argument("--solo", default="", help="IDs de casos separados por coma")
     ap.add_argument("--desde-log", default="", help="rango de rag_log_id ya respondidos, p. ej. 2271-2371")
     ap.add_argument("--calificacion", default="", help="JSON con la calificación contra el «Debe»")

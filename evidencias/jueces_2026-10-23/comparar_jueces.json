@@ -1,0 +1,226 @@
+[
+ {
+  "modelo": "llama3.2:3b",
+  "id": 726,
+  "grupo": "copia literal",
+  "esperado": "fidelidad 1.0",
+  "fidelidad": 0.5,
+  "afirmaciones": 4,
+  "no_sustentadas": [
+   "En la encuesta de carga académica y gestión del tiempo, el patrón más interesante es que la pregunta con más acuerdo es p18: 'Del 1 al 10, ¿cuánta presión sientes por la carga académica?' con un 50.0 % de acuerdo.",
+   "En la encuesta de carga académica y gestión del tiempo, el patrón más interesante es que la pregunta con más desacuerdo es p19: 'Del 1 al 10, ¿qué tan efectivo/a eres gestionando tu tiempo?' con un 56.2 % de desacuerdo."
+  ],
+  "segundos": 11.8
+ },
+ {
+  "modelo": "llama3.2:3b",
+  "id": 727,
+  "grupo": "copia literal",
+  "esperado": "fidelidad 1.0",
+  "fidelidad": 0.333,
+  "afirmaciones": 6,
+  "no_sustentadas": [
+   "Ambos instrumentos se enfocan en la licenciatura.",
+   "Tienen objetivos distintos.",
+   "Comparten el nivel educativo.",
+   "Los KPIs en común son el Porcentaje de Estudiantes a Tiempo Parcial."
+  ],
+  "segundos": 7.0
+ },
+ {
+  "modelo": "llama3.2:3b",
+  "id": 729,
+  "grupo": "copia literal",
+  "esperado": "fidelidad 1.0",
+  "fidelidad": 0.375,
+  "afirmaciones": 8,
+  "no_sustentadas": [
+   "La encuesta tiene como objetivo evaluar la carga académica percibida y la gestión del tiempo de los estudiantes universitarios.",
+   "La encuesta consta de 20 preguntas en 5 secciones.",
+   "160 estudiantes respondieron a la encuesta.",
+   "Las palabras clave son tiempo, carga, trabajo, estudio, materias y tareas.",
+   "Los KPIs asociados incluyen el porcentaje de estudiantes a tiempo parcial y años promedio para la graduación."
+  ],
+  "segundos": 10.8
+ },
+ {
+  "modelo": "llama3.2:3b",
+  "id": 724,
+  "grupo": "redacción correcta",
+  "esperado": "alta (≥ 0.8)",
+  "fidelidad": 0.8,
+  "afirmaciones": 5,
+  "no_sustentadas": [
+   "El primer instrumento tiene como objetivo identificar las estrategias."
+  ],
+  "segundos": 8.2
+ },
+ {
+  "modelo": "llama3.2:3b",
+  "id": 725,
+  "grupo": "redacción correcta",
+  "esperado": "alta (≥ 0.8)",
+  "fidelidad": 0.5,
+  "afirmaciones": 2,
+  "no_sustentadas": [
+   "Esta encuesta tiene como objetivo evaluar la carga académica percibida y la gestión del tiempo de los estudiantes universitarios en México."
+  ],
+  "segundos": 3.9
+ },
+ {
+  "modelo": "llama3.2:3b",
+  "id": 728,
+  "grupo": "redacción correcta",
+  "esperado": "alta (≥ 0.8)",
+  "fidelidad": 0.8,
+  "afirmaciones": 5,
+  "no_sustentadas": [
+   "El primer instrumento tiene como objetivo identificar las estrategias."
+  ],
+  "segundos": 5.3
+ },
+ {
+  "modelo": "llama3.2:3b",
+  "id": 719,
+  "grupo": "redacción con error",
+  "esperado": "marcar «ambos comparten el objetivo/permanencia»",
+  "fidelidad": 0.625,
+  "afirmaciones": 8,
+  "no_sustentadas": [
+   "Tienen como objetivo principal evaluar factores que contribuyen a la permanencia estudiantil en la universidad.",
+   "La entrevista es un tipo de instrumento que se utiliza para recopilar información más profunda y detallada sobre las experiencias y perspectivas de los estudiantes.",
+   "En resumen, ambos instrumentos comparten objetivos y características comunes, pero también tienen diferencias en términos de tipo y enfoque."
+  ],
+  "segundos": 17.0
+ },
+ {
+  "modelo": "llama3.2:3b",
+  "id": 723,
+  "grupo": "redacción con error",
+  "esperado": "marcar «ambos comparten el objetivo de entender cómo…»",
+  "fidelidad": 0.333,
+  "afirmaciones": 6,
+  "no_sustentadas": [
+   "La encuesta evalúa la carga académica percibida y la gestión del tiempo de los estudiantes universitarios.",
+   "Ambos instrumentos comparten el objetivo de entender cómo los estudiantes logran mantenerse en la universidad.",
+   "La entrevista proporciona información más profunda y específica sobre las estrategias y factores que contribuyen a la permanencia estudiantil.",
+   "La encuesta ofrece una visión más amplia y generalizada sobre la carga académica percibida y la gestión del tiempo de los estudiantes."
+  ],
+  "segundos": 12.5
+ },
+ {
+  "modelo": "llama3.2:3b",
+  "id": 722,
+  "grupo": "redacción con error",
+  "esperado": "marcar que en p16 lo más elegido fue «Sí» (fue «No»)",
+  "fidelidad": null,
+  "afirmaciones": null,
+  "no_sustentadas": "El juez devolvió 5 veredictos para 4 afirmaciones.",
+  "segundos": 19.0
+ },
+ {
+  "modelo": "qwen2.5:3b",
+  "id": 726,
+  "grupo": "copia literal",
+  "esperado": "fidelidad 1.0",
+  "fidelidad": 0.857,
+  "afirmaciones": 7,
+  "no_sustentadas": [
+   "La encuesta de carga académica y gestión del tiempo tiene una pregunta con un 56.2 % de desacuerdo en la efectividad de gestionar el tiempo."
+  ],
+  "segundos": 48.9
+ },
+ {
+  "modelo": "qwen2.5:3b",
+  "id": 727,
+  "grupo": "copia literal",
+  "esperado": "fidelidad 1.0",
+  "fidelidad": 1.0,
+  "afirmaciones": 6,
+  "no_sustentadas": [],
+  "segundos": 19.8
+ },
+ {
+  "modelo": "qwen2.5:3b",
+  "id": 729,
+  "grupo": "copia literal",
+  "esperado": "fidelidad 1.0",
+  "fidelidad": 1.0,
+  "afirmaciones": 8,
+  "no_sustentadas": [],
+  "segundos": 20.3
+ },
+ {
+  "modelo": "qwen2.5:3b",
+  "id": 724,
+  "grupo": "redacción correcta",
+  "esperado": "alta (≥ 0.8)",
+  "fidelidad": 0.333,
+  "afirmaciones": 3,
+  "no_sustentadas": [
+   "El objetivo de la entrevista es identificar estrategias y factores.",
+   "Los factores que contribuyen a la permanencia estudiantil en la universidad son los focos de análisis."
+  ],
+  "segundos": 8.3
+ },
+ {
+  "modelo": "qwen2.5:3b",
+  "id": 725,
+  "grupo": "redacción correcta",
+  "esperado": "alta (≥ 0.8)",
+  "fidelidad": 1.0,
+  "afirmaciones": 2,
+  "no_sustentadas": [],
+  "segundos": 3.8
+ },
+ {
+  "modelo": "qwen2.5:3b",
+  "id": 728,
+  "grupo": "redacción correcta",
+  "esperado": "alta (≥ 0.8)",
+  "fidelidad": 0.667,
+  "afirmaciones": 3,
+  "no_sustentadas": [
+   "Los contribuyentes son las personas que mantienen su estancia en la universidad."
+  ],
+  "segundos": 4.7
+ },
+ {
+  "modelo": "qwen2.5:3b",
+  "id": 719,
+  "grupo": "redacción con error",
+  "esperado": "marcar «ambos comparten el objetivo/permanencia»",
+  "fidelidad": 0.714,
+  "afirmaciones": 7,
+  "no_sustentadas": [
+   "La entrevista es un tipo de instrumento que se utiliza para recopilar información más profunda y detallada sobre las experiencias y perspectivas de los estudiantes.",
+   "Los dos instrumentos comparten como objetivo principal evaluar factores que contribuyen a la permanencia estudiantil en la universidad."
+  ],
+  "segundos": 14.7
+ },
+ {
+  "modelo": "qwen2.5:3b",
+  "id": 723,
+  "grupo": "redacción con error",
+  "esperado": "marcar «ambos comparten el objetivo de entender cómo…»",
+  "fidelidad": 0.667,
+  "afirmaciones": 3,
+  "no_sustentadas": [
+   "Ambos instrumentos comparten el objetivo de entender cómo los estudiantes logran mantenerse en la universidad."
+  ],
+  "segundos": 8.8
+ },
+ {
+  "modelo": "qwen2.5:3b",
+  "id": 722,
+  "grupo": "redacción con error",
+  "esperado": "marcar que en p16 lo más elegido fue «Sí» (fue «No»)",
+  "fidelidad": 0.6,
+  "afirmaciones": 5,
+  "no_sustentadas": [
+   "Basándome en los resultados presentados, considero que el patrón de información más interesante es la comparación entre las respuestas de los participantes en la entrevista y la encuesta.",
+   "En general, creo que esta comparación entre la entrevista y la encuesta puede ofrecer una visión más completa y matizada sobre las experiencias y desafíos de los estudiantes universitarios en términos de gestión del tiempo y carga académica."
+  ],
+  "segundos": 18.0
+ }
+]

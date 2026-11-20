@@ -1,0 +1,72 @@
+{
+ "id": "ENT-04",
+ "instrumento": "ent",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿En qué respuestas menciona a sus profesores o a su tutor?",
+   "rag_log_id": 3689,
+   "respuesta": "Respuestas interpretadas de E01 (el primero por número de respondente (de 1)). [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p01 «Para empezar, ¿cómo describirías tu estado de ánimo durante este semes» | Ha sido un semestre pesado. Al principio estaba bien, pero desde la semana de parciales empecé a dormir muy poco, unas cinco horas, y me sentía cansada todo el tiempo. Hubo días en que no quería ni venir a clases, no por flojera, sino porque sentía mucha presión en el pecho antes de entrar al salón. |\n| p02 «¿Qué situaciones de la universidad te generan más estrés o ansiedad?» | Eh, Sobre todo la carga de proyectos. Este semestre llevo siete materias y en cuatro hay proyecto final en equipo. Además trabajo quince horas por semana en una papelería, entonces casi no me queda tiempo. Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando. |\n| p03 «¿Sabías que la universidad ofrece servicios de apoyo psicológico? ¿Cóm» | Sabía que existía algo, pero no sabía dónde estaba ni cómo se pedía. Me enteré bien hasta tercer semestre, cuando una compañera me dijo que ella iba al departamento de orientación. En la inducción de primer semestre lo mencionaron muy rápido, entre muchas otras cosas, y no se me quedó. |\n| p04 «¿Has utilizado alguno de esos servicios? Cuéntame cómo fue.» | Mmm... Sí, fui a orientación psicológica este semestre. Tuve tres sesiones de cincuenta minutos con una psicóloga. Me ayudó a ordenar mis tiempos y me enseñó ejercicios de respiración para antes de exponer. La primera sesión me costó mucho trabajo, casi no hablé, pero en la segunda ya me sentí más en confianza. |\n| p05 «¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?» | Pasaron casi dos semanas. Pedí la cita por correo y me contestaron a los cuatro días, y luego la primera fecha disponible era la siguiente semana. Para mí fue mucho tiempo, porque cuando pedí la cita ya estaba muy mal. Creo que si hubiera tenido que esperar más, ya no habría ido. |\n| p06 «¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?» | Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca. |\n| p07 «¿Cómo valoras la atención que recibiste?» | Em, La psicóloga fue muy amable y nunca me hizo sentir juzgada. Lo que no me gustó es que solo me dieron tres sesiones, porque es el máximo por semestre, y justo cuando empezaba a sentir avances se terminó. Le pondría un ocho de diez: la atención es buena, pero es muy poquito tiempo. |\n| p08 «¿Notaste algún cambio en tu desempeño académico después de recibir apo» | Sí, un poco. Empecé a usar una agenda y a dividir los proyectos en partes pequeñas, como me sugirió la psicóloga. En el segundo parcial subí mi promedio de siete punto ocho a ocho punto cinco. Y en la última exposición me puse nerviosa, pero usé la respiración y pude terminarla sin quedarme en blanco. |\n| p09 «¿Qué papel han tenido tus profesores o tu tutor en este tema?» | Depende mucho del profesor. Mi tutor académico casi no tiene tiempo, lo vi una vez en todo el semestre y fue para firmar la carga de materias. Pero una profesora de estadística notó que estaba muy distraída, me preguntó si estaba bien y fue la que me recomendó ir a orientación. Si no fuera por ella, no sé si habría ido. |\n| p10 «¿Conoces a otros compañeros que necesiten este tipo de apoyo y no lo b» | Ehm, Sí, varios. En mi grupo somos treinta y dos, y creo que por lo menos la mitad anda muy estresada, pero casi nadie va a orientación. Algunos no saben que existe y otros piensan lo mismo que yo pensaba, que es solo para casos muy graves. Un compañero dejó de venir a mitad del semestre y nadie supo bien qué le pasó. |\n| p11 «Si pudieras cambiar algo de los servicios de salud mental de la univer» | Primero, que hubiera más psicólogos, porque me dijeron que solo hay dos para todo el plantel. Segundo, que se pudiera pedir la cita en línea y no solo por correo. También que el consultorio estuviera en un lugar más discreto y que dieran más de tres sesiones cuando la persona lo necesita. Y que los talleres de manejo de estrés fueran en la tarde, porque los que trabajamos no podemos ir en la mañana. |\n| p12 «Para terminar, ¿qué le dirías a un compañero que está pasando por un m» | Que no espere a estar muy mal, como yo. Que pedir ayuda no significa que sea débil, al contrario. Y que la orientación es gratuita y confidencial, nadie se va a enterar. A mí me sirvió para darme cuenta de que no estaba sola y de que lo que sentía tenía nombre y se podía trabajar. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "datos_respondente"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "datos_respondente"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.6718
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.6669
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.6031
+    }
+   ],
+   "segundos": 76.2,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 66898,
+    "recuperacion": 343,
+    "verificacion": 28616,
+    "interpretacion": 8892
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    14,
+    14
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Listar esas respuestas con un fragmento citado de cada una."
+}

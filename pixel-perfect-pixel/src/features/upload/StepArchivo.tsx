@@ -22,6 +22,55 @@ interface StepArchivoProps {
   /** Instrumento original sin respuestas (opcional): mejora los metadatos y los KPIs. */
   archivoOriginal: File | null;
   onArchivoOriginal: (f: File | null) => void;
+  /** Diccionario de datos de los microdatos (opcional): texto de las preguntas en código y significado de sus códigos. */
+  archivoDiccionario: File | null;
+  onArchivoDiccionario: (f: File | null) => void;
+}
+
+interface AdjuntoOpcionalProps {
+  titulo: string;
+  ayuda: string;
+  archivo: File | null;
+  aceptar: string;
+  onArchivo: (f: File | null) => void;
+}
+
+/** Un archivo opcional que acompaña al respondido (instrumento original o diccionario de datos). */
+function AdjuntoOpcional({ titulo, ayuda, archivo, aceptar, onArchivo }: AdjuntoOpcionalProps) {
+  const input = useRef<HTMLInputElement>(null);
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm">
+      <div className="min-w-0">
+        <p className="font-medium">{titulo}</p>
+        <p className="truncate text-muted-foreground">{archivo ? archivo.name : ayuda}</p>
+      </div>
+      <div className="flex gap-2">
+        {archivo && (
+          <button
+            type="button"
+            className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+            onClick={() => onArchivo(null)}
+          >
+            Quitar
+          </button>
+        )}
+        <button
+          type="button"
+          className="rounded-lg border border-border bg-card px-3 py-1.5 text-sm font-medium hover:border-primary/60"
+          onClick={() => input.current?.click()}
+        >
+          {archivo ? "Cambiar" : "Adjuntar"}
+        </button>
+      </div>
+      <input
+        ref={input}
+        type="file"
+        className="hidden"
+        accept={aceptar}
+        onChange={(e) => onArchivo(e.target.files?.[0] ?? null)}
+      />
+    </div>
+  );
 }
 
 export function StepArchivo({
@@ -31,9 +80,10 @@ export function StepArchivo({
   onTipo,
   archivoOriginal,
   onArchivoOriginal,
+  archivoDiccionario,
+  onArchivoDiccionario,
 }: StepArchivoProps) {
   const input = useRef<HTMLInputElement>(null);
-  const inputOriginal = useRef<HTMLInputElement>(null);
   const [arrastrando, setArrastrando] = useState(false);
 
   return (
@@ -87,41 +137,23 @@ export function StepArchivo({
         />
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm">
-        <div className="min-w-0">
-          <p className="font-medium">Instrumento original (opcional)</p>
-          <p className="truncate text-muted-foreground">
-            {archivoOriginal
-              ? archivoOriginal.name
-              : "Las preguntas sin respuestas (PDF, DOCX o TXT): mejoran los metadatos y los KPIs."}
-          </p>
-        </div>
-        <div className="flex gap-2">
-          {archivoOriginal && (
-            <button
-              type="button"
-              className="text-sm text-muted-foreground underline-offset-2 hover:underline"
-              onClick={() => onArchivoOriginal(null)}
-            >
-              Quitar
-            </button>
-          )}
-          <button
-            type="button"
-            className="rounded-lg border border-border bg-card px-3 py-1.5 text-sm font-medium hover:border-primary/60"
-            onClick={() => inputOriginal.current?.click()}
-          >
-            {archivoOriginal ? "Cambiar" : "Adjuntar"}
-          </button>
-        </div>
-        <input
-          ref={inputOriginal}
-          type="file"
-          className="hidden"
-          accept=".docx,.pdf,.txt"
-          onChange={(e) => onArchivoOriginal(e.target.files?.[0] ?? null)}
+      <AdjuntoOpcional
+        titulo="Instrumento original (opcional)"
+        ayuda="Las preguntas sin respuestas (PDF, DOCX o TXT): mejoran los metadatos y los KPIs."
+        archivo={archivoOriginal}
+        aceptar=".docx,.pdf,.txt"
+        onArchivo={onArchivoOriginal}
+      />
+
+      {tipo !== "Entrevista" && (
+        <AdjuntoOpcional
+          titulo="Diccionario de datos (opcional)"
+          ayuda="Si tu archivo usa códigos (P1, P2… o 1 = Hombre, 2 = Mujer): CSV o Excel con variable, pregunta, valor y etiqueta."
+          archivo={archivoDiccionario}
+          aceptar=".csv,.xlsx,.xls"
+          onArchivo={onArchivoDiccionario}
         />
-      </div>
+      )}
 
       <div className="space-y-3">
         <h3 className="font-semibold">Tipo de instrumento</h3>

@@ -590,7 +590,10 @@ lectura sobre la base de datos y ChromaDB, salvo la tabla `rag_log`, donde regis
 | GET | `/catalogo/{id_crudo}` | Ficha completa de un instrumento |
 | GET | `/investigadores` | Autores del acervo |
 | POST | `/relacionados` | Instrumentos de otros autores relacionados con una selección |
-| GET | `/descargas/{id_crudo}` | Descargar un instrumento: archivo crudo, JSON o `.sav` para SPSS |
+| GET | `/descargas/{id_crudo}` | Descargar un instrumento: archivo crudo, JSON o `.sav` para SPSS (encuestas), armado con la última limpieza confirmada |
+
+El archivo `.sav` se arma con el CSV limpio y el reporte de la última limpieza confirmada: la etiqueta de cada variable es el texto de la pregunta (o el del diccionario de datos); una escala Likert guarda el número de cada punto con su etiqueta y medida ordinal (un extremo escrito, «Totalmente de acuerdo», se codifica con su punto; una respuesta fuera de la escala recibe un código desde el 97, declarado como perdido); la escala lineal queda ordinal; numéricas y calificaciones, como escala; binarias, 1 = Sí y 0 = No; categóricas, un código por opción; selección múltiple, ranking y texto abierto, como texto. Se guarda con la versión de la limpieza en el nombre, así que una limpieza nueva genera otro.
+<!-- fuente: services/visualization-service/services/sav_export.py; routers/download.py -->
 
 **Tabla D.13.2.** visualization-service: KPIs y tableros.
 
@@ -2066,14 +2069,23 @@ esquema es estricto: un campo inventado invalida el plan.
 <!-- fuente: services/visualization-service/services/plan_consulta.py; esquemas/plan_consulta.json; tests/test_plan_consulta.py -->
 
 **Qué recibe el modelo** (`services/interpretacion.py`): las instrucciones, ejemplos breves (uno o más por
-intención, sobre un catálogo inventado que no se parece a ningún instrumento de prueba), el catálogo compacto de cada
+intención, sobre un catálogo inventado que no se parece a ningún instrumento de prueba; enseñan la forma del plan, no
+traen cifras ni respuestas, y ninguno repite una pregunta de los conjuntos de evaluación, lo que comprueba
+`tests/test_ejemplos_independientes.py` comparándolos con todas ellas), el catálogo compacto de cada
 instrumento (`services/catalogo.py`: preguntas con su ID, tipo y opciones o escala, variables de contexto, KPIs y
 rango de respondentes), los 3 fragmentos recuperados más parecidos (X.9.3), los últimos 4 mensajes del chat y la
 pregunta. Ollama recibe el JSON Schema en `format`, con temperatura 0. Si el plan no es válido, se reintenta una vez
 con el error; si vuelve a fallar, o si Ollama no responde, responde el enrutador por reglas (X.9.6).
-- **Por qué el catálogo compacto:** si pasa de 4,500 caracteres (varios instrumentos) se usa su forma corta, para no
-  rebasar el contexto de 4096 *tokens*, que es el mismo de la redacción y evita que Ollama recargue el modelo
-  (X.10.5).
+- **Por qué el prompt se ajusta a un presupuesto:** debe caber en el contexto de 4096 *tokens*, que es el mismo de la
+  redacción y evita que Ollama recargue el modelo (X.10.5); si no cabe, Ollama corta el inicio sin avisar y el modelo
+  pierde las instrucciones y los ejemplos. Las instrucciones y el prompt deben sumar como máximo 3,600 *tokens*
+  (la ventana menos los 300 de la salida y un margen), estimados con lo medido con el tokenizador del modelo (unos
+  3.6 caracteres por *token* en las instrucciones y 2.9 en los ejemplos y el catálogo). Si no cabe, se reduce por
+  pasos: el texto recuperado se recorta a 600 caracteres; se mandan 10, 7 o 5 ejemplos, los más parecidos a la
+  pregunta, más los de fuera de dominio y aclaración, que siempre van; el catálogo pasa a su forma corta, y al final
+  se quita el texto recuperado. Los pasos aplicados y los *tokens* que leyó Ollama se guardan en `rag_log.plan`
+  (`ajuste_prompt`, `tokens_prompt`). <!-- fuente: services/visualization-service/services/interpretacion.py (construir_prompt, PRESUPUESTO_TOKENS); tests/test_plan_consulta.py::test_prompt_de_interpretacion_cabe_en_la_ventana -->
+  Medido en el acervo: 59 y 60 caben con 10 ejemplos; 61 y 127 necesitan además el catálogo corto.
 
 **Las reglas que corrigen el plan.** Entre la interpretación y la ejecución, una capa de reglas revisa el plan
 (`anclaje.py`, `seguimiento.py`, `plan_consulta.py`). **No le enseñan nada al modelo**, que no cambia: actúan
@@ -2090,7 +2102,12 @@ muestra en «Cómo lo calculé».
 | Escalas | Las posiciones se leen de la escala del instrumento | «1 o 2» son las dos primeras posiciones | Cualquier escala ordenada |
 | Erratas | Una palabra parecida a una del catálogo no se toma como inexistente | «laboartorios» | Parecido de al menos 80 % con una palabra del catálogo |
 | Datos de contexto | Un valor que nombra un dato de contexto («tiene beca») no se busca como opción de una pregunta | «los que tienen beca» | Se compara con las variables de contexto de cualquier instrumento |
-<!-- fuente: services/visualization-service/services/plan_consulta.py (validar_contra_catalogo, _es_escala, _posiciones_de_escala, _contenida), anclaje.py (_filtros_sin_inventos, _raices_de_variables, _por_cantidad_escrita, inexistente), seguimiento.py (combinar, _preguntas_dichas); tests/test_plan_consulta.py, test_seguimiento.py y test_correcciones_fase5.py -->
+| Formas comunes de nombrar un grupo | Un valor de contexto se reconoce también por sus equivalencias de `config/dominio.yaml` (`equivalencias_contexto`) | «las mujeres» → genero = femenino | Vocabulario general en un archivo editable, no textos de un instrumento |
+| Lo que distingue a una opción | Las opciones que empiezan con «Sí…» o «No…» se juntan solo si la pregunta no dice lo que distingue a una de ellas | «…y lo aprobaron» se queda con «Sí, y lo aprobé»; «no han presentado ningún examen» junta todas las «No…» | Se compara el resto de cada opción con las palabras de la pregunta |
+| «Estar de acuerdo con» | No se lee como «según» (comparar por otra pregunta) | «¿qué porcentaje está de acuerdo con que…?» es un porcentaje en ese nivel | Regla del español |
+| Mención que es una pregunta cerrada | Si el modelo pone como «algo que se menciona» el texto de una pregunta de opciones, se cuenta con esa pregunta | «dicen que su institución ofrece talleres…» → la pregunta de sí o no sobre talleres = «Sí» | Se compara con el texto de las preguntas del catálogo |
+| Promedio | Si se pide un promedio sobre una pregunta sin números (rangos) y otra pregunta numérica dice lo mismo, se usa la numérica | «promedio de horas de estudio» usa la pregunta del número de horas, no la de rangos | Se compara por tipo de pregunta y texto |
+<!-- fuente: services/visualization-service/services/plan_consulta.py (validar_contra_catalogo, _es_escala, _posiciones_de_escala, _contenida), anclaje.py (_filtros_sin_inventos, _raices_de_variables, _por_cantidad_escrita, inexistente, _mencion_como_filtro, _ajustar_filtro, _agrupamiento, anclar paso 9), dominio.py (valor_nombrado); config/dominio.yaml (equivalencias_contexto); tests/test_plan_consulta.py, test_seguimiento.py, test_correcciones_fase5.py y test_correcciones_aritmetica.py -->
 
 **Por qué hacen falta.** Las pruebas mostraron lo que los modelos de 3B y 4B no hacen de forma confiable por sí solos:
 respetar el formato de las opciones (escribió `"[1, 2]"` para «¿cuántos calificaron con 1 o 2…?»), seguir el hilo
@@ -2155,7 +2172,7 @@ otra pregunta; cruzar; y leer resúmenes. Además:
 |---|---|
 | `datos_respondente` | Tabla con una fila por pregunta y una columna por respondente, con sus respuestas interpretadas; con una sola persona, también cómo respondieron todos en esa pregunta |
 | `filtrar_respondentes` | Cuántos cumplen de cuántos (con %) y los primeros N, con sus IDs o con todas sus respuestas |
-| `conteo_porcentaje` | Conteo de un filtro, % en un nivel de una pregunta, o ambos; en un seguimiento «de ellos», el % sobre el grupo anterior y sobre el total |
+| `conteo_porcentaje` | Conteo de un filtro, % en un nivel de una pregunta, o ambos. El % de un filtro sobre preguntas se calcula sobre las personas del grupo nombrado (datos de contexto) que respondieron esas preguntas, y se da también sobre el total del instrumento; en un seguimiento «de ellos», sobre el grupo anterior y sobre el total. Un nivel pedido dentro de un grupo («del turno vespertino, ¿cuántos de acuerdo?») da su frase con el resultado del nivel, no con el tamaño del grupo, y la misma condición puesta como filtro y como nivel cuenta una sola vez <!-- fuente: services/visualization-service/services/ejecutor.py (_base_porcentaje, _conteo_porcentaje); tests/test_ejecutor.py::test_porcentaje_sobre_el_grupo_nombrado --> |
 | `comparar_grupos` | Tabla por grupo (contexto, respuesta a otra pregunta, posición o sección): respondentes, distribución y media de cada grupo sobre su propio n |
 | `resumen_pregunta` | Respuestas válidas, sin respuesta, media, interpretación calculada y distribución |
 | `kpi` | KPIs asociados (o uno), qué miden, su justificación y las preguntas que los sustentan |

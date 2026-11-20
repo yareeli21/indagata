@@ -213,3 +213,12 @@ def test_bajo_demanda_respuesta_calculada_trae_la_fidelidad_y_espera_lo_demas(fa
     s.commit()
     publico = evaluacion.estado_publico(s.query(RagLog).one())
     assert publico["estado"] == "pendiente" and publico["fidelidad"] == 1.0 and publico["relevancia"] is None
+
+
+def test_numeros_de_lista_y_citas_entre_parentesis_no_son_cifras():
+    from services.evaluacion import cifras_sin_sustento
+
+    respuesta = ("Los instrumentos son:\n1. Entrevista sobre permanencia [Fuente 1]\n2) Encuesta de bienestar (Fuentes 2 y 3)\n"
+                 "El 32 % respondió «A veces».")
+    assert cifras_sin_sustento(respuesta, ["57 de 180 (32 %) respondió a veces"]) == []
+    assert cifras_sin_sustento("El 45 % dijo que sí.", ["El 32 % dijo que sí."]) == ["45"]

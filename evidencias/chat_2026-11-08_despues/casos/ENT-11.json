@@ -1,0 +1,71 @@
+{
+ "id": "ENT-11",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Qué pesó más para no buscar ayuda: el estigma, el tiempo de espera o no conocer los servicios?",
+   "rag_log_id": 2652,
+   "respuesta": "Según la entrevista con E01, una de las principales razones que lo detuvieron de buscar ayuda fue el estigma asociado a acudir a un servicio profesional, especialmente por la preocupación de ser visto y ocupar un espacio en la coordinación [Fuente 1].  Además, E01 mencionó su percepción de que su problema no era tan grave y temía \"quitar el lugar\" a alguien que lo necesitara más [Fuente 1]. Finalmente, se señala una influencia de factores familiares, donde su padre consideraba que buscar un psicólogo era algo reservado para personas “locas” [Fuente 1].\n\n**Respuestas a p06 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca. |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p06"
+    ],
+    "consulta_semantica": "¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.6195
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.6176
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.6155
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.612
+    }
+   ],
+   "segundos": 30.5,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 20418,
+    "recuperacion": 349,
+    "verificacion": 1,
+    "interpretacion": 9734
+   },
+   "k_precision": 0.662,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Basarse en las preguntas guía relacionadas, sin forzar una categoría que no mencionó."
+}

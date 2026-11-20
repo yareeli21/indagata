@@ -1,0 +1,256 @@
+{
+ "id": "ENT-13",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué situaciones de la universidad le generan más estrés?",
+   "rag_log_id": 3823,
+   "respuesta": "- En p01 «Para empezar, ¿cómo describirías tu estado de ánimo durante este semestre?» habla de: semestre pesado; dificultad dormir; presión emocional; valoración negativo. Cita de E01: «Ha sido un semestre pesado».\n- En p02 «¿Qué situaciones de la universidad te generan más estrés o ansiedad?» habla de: carga de proyectos; exposiciones; materias; trabajo papelería; valoración negativo. Cita de E01: «Eh, Sobre todo la carga de proyectos».\n- En p05 «¿Cuánto tiempo pasó desde que pediste la cita hasta que te atendieron?» habla de: solicitud de cita; tiempo de espera; disponibilidad fechas; estado paciente; valoración negativo. Cita de E01: «Pasaron casi dos semanas». [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p02"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "¿Qué situaciones de la universidad te generan más estrés o ansiedad?",
+      "pregunta": "p02"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p02 = «¿Qué situaciones de la universidad te generan más estrés o ansiedad?» descartado (son palabras del enunciado, no una opción)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.8443
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.8163
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.8152
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5997
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5762
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5246
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4813
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4705
+    }
+   ],
+   "segundos": 23.5,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 19101,
+    "recuperacion": 390,
+    "verificacion": 6763,
+    "interpretacion": 3980
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y buscó ayuda por eso?",
+   "rag_log_id": 3824,
+   "respuesta": "**resultado**\n\n- **Carga de proyectos**: p02, Cita de E01: \"Eh, Sobre todo la carga de proyectos\"\n- **Exposiciones**: p02, Cita de E01: \"Lo que más ansiedad me da son las exposiciones, porque siento que todos me están evaluando.\"\n- **Presión emocional**: p01, Cita de E01: \"Ha sido un semestre pesado\"\n- **Dificultad dormir**: p01, Cita de E01: \"Ha sido un semestre pesado\"\n\n**texto del instrumento**\n\nEn la pregunta guía p02, la participante E01 menciona que la carga de proyectos y las exposiciones son las situaciones que más le generan estrés y ansiedad.\n\n**Hallazgos**\n\n* La carga de proyectos y las exposiciones son las situaciones que más le generan estrés y ansiedad a la participante E01.\n* La presión emocional es otro factor que contribuye al estrés y la ansiedad de la participante E01, según su respuesta en p01.\n* La dificultad dormir también es un problema que enfrenta la participante E01 durante el semestre, según su respuesta en p01.\n* La participante E01 menciona que la falta de información sobre los servicios de apoyo psicológico y la dificultad para acceder a ellos son obstáculos importantes para buscar ayuda.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p02"
+    ]
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Sí, pero lo dejé",
+      "pregunta": "p03"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p03 = «Sí, pero lo dejé» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "aclaración → plan de la respuesta anterior (la pregunta se refiere a ella)"
+   ],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.762
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.7542
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.7338
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.5916
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.5906
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.5902
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.565
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p03",
+     "score": 0.5606
+    }
+   ],
+   "segundos": 28.8,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 22229,
+    "recuperacion": 346,
+    "verificacion": 9505,
+    "interpretacion": 6134
+   },
+   "k_precision": 0.869,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Cuánto tardaron en atenderla?",
+   "rag_log_id": 3825,
+   "respuesta": "Según el contexto proporcionado, la respuesta del participante E01 es que pasó casi dos semanas desde que pedió la cita hasta que se atendió. \n\n[ Fuente 1 ]\n\nEn cuanto a la interpretación de esta respuesta, parece que el tiempo de espera fue percibido como negativo por el participante, lo que sugiere que la experiencia fue frustrante y potencialmente contribuyó a su ansiedad.",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": "{\n  \"intencion\": \"hallazgo\",\n  \"filtros\": [\n    {\n      \"pregunta\": \"p05\"\n    }\n  ],\n  \"campos\": \"solo_ids\",\n  \"orden\": {\"por\": \"id_respondente\", \"dir\": \"asc\"},\n  \"limite\": 1\n}",
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.6967
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p05",
+     "score": 0.6573
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p05",
+     "score": 0.6247
+    }
+   ],
+   "segundos": 14.9,
+   "tiempos_ms": {
+    "ejecucion": 0,
+    "recuperacion": 253,
+    "interpretacion": 8992
+   },
+   "k_precision": 0.44,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) y (3) seguir hablando de ella; (3) usar la pregunta del tiempo de espera."
+}

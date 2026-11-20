@@ -1,0 +1,46 @@
+{
+ "id": "CET-06",
+ "instrumento": "ent_control",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Qué respondió el participante E99?",
+   "rag_log_id": 2820,
+   "respuesta": "No hay un respondente «E99» en «Entrevista sobre estrategias de permanencia universitaria» (van de E01 a E40).",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "No hay un respondente «E99» en «Entrevista sobre estrategias de permanencia universitaria» (van de E01 a E40)."
+   },
+   "plan_modelo": {
+    "campos": "todas_las_respuestas",
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E99"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": "aclaracion",
+   "motivo": "plan:aclaracion",
+   "plantilla": "aclaracion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 7.3,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 109,
+    "interpretacion": 7188
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No existe; decir cuántos participantes hay."
+}

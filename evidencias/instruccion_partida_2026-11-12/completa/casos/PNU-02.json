@@ -1,0 +1,60 @@
+{
+ "id": "PNU-02",
+ "instrumento": "pru_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos alumnos dijeron que la fabricación de datos es aceptable?",
+   "rag_log_id": 4112,
+   "respuesta": "El instrumento tiene 80 respondentes. [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r10",
+     "score": 0.6212
+    }
+   ],
+   "segundos": 16.8,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 5747,
+    "recuperacion": 370,
+    "verificacion": 2702,
+    "interpretacion": 10621
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "r10 = «Verdadero»: número y %, sin calificar."
+}

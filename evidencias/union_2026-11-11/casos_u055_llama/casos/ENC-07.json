@@ -1,0 +1,41 @@
+{
+ "id": "ENC-07",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Hay respondentes que dejaron preguntas sin contestar?",
+   "rag_log_id": 3752,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados. Recuerda que solo entran al RAG los instrumentos con metadatos aprobados por su autor; puedes ampliar la selección de tu investigación.",
+   "intencion": "fuera_de_dominio",
+   "plan": {
+    "intencion": "fuera_de_dominio"
+   },
+   "plan_modelo": {
+    "intencion": "fuera_de_dominio"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": "semantica",
+   "motivo": "sin fragmentos sobre el umbral",
+   "plantilla": "sin_informacion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 13.1,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "recuperacion": 169,
+    "interpretacion": 10091
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Conteo de respondentes con al menos un vacío, desglosado por pregunta; no mostrar a un solo respondente."
+}

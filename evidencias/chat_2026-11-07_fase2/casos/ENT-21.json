@@ -1,0 +1,55 @@
+{
+ "id": "ENT-21",
+ "instrumento": "ent",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué indicaciones tenía el entrevistador?",
+   "rag_log_id": 2410,
+   "respuesta": "El entrevistador preguntó: \"¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?\" [Fuente 1].",
+   "intencion": "metodologia",
+   "plan": {
+    "intencion": "metodologia"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.544
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.5268
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.5141
+    }
+   ],
+   "segundos": 11.5,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "recuperacion": 170,
+    "interpretacion": 5737
+   },
+   "k_precision": 0.75,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Las indicaciones si están; si no, no inventarlas."
+}

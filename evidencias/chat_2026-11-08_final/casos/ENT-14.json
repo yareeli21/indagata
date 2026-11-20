@@ -1,0 +1,232 @@
+{
+ "id": "ENT-14",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cómo valora la atención que recibió?",
+   "rag_log_id": 2781,
+   "respuesta": "E01 en p07 valoró la atención recibida con una calificación de ocho sobre diez, indicando que la atención fue buena pero limitaba su progreso debido a las tres sesiones por semestre, que se interrumpían cuando empezaba a sentirse avances. Según sus datos registrados, E01 consideraba que la psicóloga fue amable y nunca lo hizo sentir juzgado, aunque le pareció insuficiente el tiempo asignado [Fuente 1].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p07 «¿Cómo valoras la atención que recibiste?» | Em, La psicóloga fue muy amable y nunca me hizo sentir juzgada. Lo que no me gustó es que solo me dieron tres sesiones, porque es el máximo por semestre, y justo cuando empezaba a sentir avances se terminó. Le pondría un ocho de diez: la atención es buena, pero es muy poquito tiempo. |\n| p06 «¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?» | Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p07",
+     "p06"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "plan_modelo": {
+    "campos": [
+     "p07"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "RAG: se agregó p06 (intercambio más parecido a la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.7026
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.69
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.6409
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.4621
+    }
+   ],
+   "segundos": 29.6,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 23599,
+    "recuperacion": 337,
+    "verificacion": 1,
+    "interpretacion": 5645
+   },
+   "k_precision": 0.887,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame exactamente lo que dijo",
+   "rag_log_id": 2782,
+   "respuesta": "E01 en p07 respondió que valoró la atención recibida con un ocho sobre diez, explicando que aunque la psicóloga fue amable y nunca lo hizo sentir juzgado, solo recibió tres sesiones por semestre que se interrumpían cuando empezaba a sentirse avances. Según E01, esto limitaba su progreso debido a la poca duración de las sesiones [Fuente 1].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p07 «¿Cómo valoras la atención que recibiste?» | Em, La psicóloga fue muy amable y nunca me hizo sentir juzgada. Lo que no me gustó es que solo me dieron tres sesiones, porque es el máximo por semestre, y justo cuando empezaba a sentir avances se terminó. Le pondría un ocho de diez: la atención es buena, pero es muy poquito tiempo. |\n| p06 «¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?» | Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p07",
+     "p06"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "plan_modelo": {
+    "campos": [
+     "p07"
+    ],
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "RAG: se agregó p06 (intercambio más parecido a la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.6749
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.6587
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p07",
+     "score": 0.6161
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.4609
+    }
+   ],
+   "segundos": 20.1,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 13001,
+    "recuperacion": 306,
+    "verificacion": 1,
+    "interpretacion": 6727
+   },
+   "k_precision": 0.884,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y qué cambiaría de los servicios?",
+   "rag_log_id": 2783,
+   "respuesta": "E01 en p11 propone que haya más psicólogos debido a que solo hay dos para todo el plantel, además de que se pueda pedir la cita en línea y no solo por correo. También sugiere que el consultorio esté en un lugar más discreto y que se ofrezcan más de tres sesiones cuando la persona lo necesita [Fuente 1]. Para ella, estas mejoras serían importantes para optimizar los servicios de salud mental [Fuente 1].\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | E01 |\n|---|---|\n| Contexto: Carrera | Ingeniería Industrial |\n| Contexto: Edad | 21 |\n| Contexto: Género | femenino |\n| Contexto: Semestre | 6 |\n| Contexto: Trabaja | sí, 15 horas por semana |\n| Contexto: Turno | matutino |\n| p11 «Si pudieras cambiar algo de los servicios de salud mental de la univer» | Primero, que hubiera más psicólogos, porque me dijeron que solo hay dos para todo el plantel. Segundo, que se pudiera pedir la cita en línea y no solo por correo. También que el consultorio estuviera en un lugar más discreto y que dieran más de tres sesiones cuando la persona lo necesita. Y que los talleres de manejo de estrés fueran en la tarde, porque los que trabajamos no podemos ir en la mañana. |",
+   "intencion": "datos_respondente",
+   "plan": {
+    "campos": [
+     "p11"
+    ],
+    "relacion": "continua",
+    "intencion": "datos_respondente",
+    "respondentes": [
+     "E01"
+    ]
+   },
+   "plan_modelo": {
+    "intencion": "metodologia",
+    "aclaracion": "¿Qué significa un alfa de Cronbach bajo?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "continúa con E01 en p11"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:datos_respondente",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.4513
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.4392
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p11",
+     "score": 0.4152
+    }
+   ],
+   "segundos": 31.9,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 23685,
+    "recuperacion": 318,
+    "verificacion": 1,
+    "interpretacion": 7808
+   },
+   "k_precision": 0.875,
+   "cifras_con_respaldo": [
+    5,
+    5
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) cita textual completa; (3) usar la pregunta de qué cambiaría."
+}

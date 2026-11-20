@@ -1,0 +1,79 @@
+{
+ "id": "ENT-11",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Qué pesó más para no buscar ayuda: el estigma, el tiempo de espera o no conocer los servicios?",
+   "rag_log_id": 2776,
+   "respuesta": "Según la entrevista con E01, una sola persona manifestó que el principal factor que la detuvo de buscar ayuda fue el estigma asociado a acudir a un servicio de salud mental, junto con la preocupación por la privacidad y el temor a ser juzgado [Fuente 1]. E01 también señaló la percepción de que su problema no era tan grave y el miedo a “quitarle el lugar” a otra persona necesitada, así como la falta de conversación sobre salud mental en su hogar, donde su padre consideraba que buscar un psicólogo era algo reservado para personas consideradas \"locas\" [Fuente 1].\n\n**Respuestas a p06 [Fuente 1]**\n| Participante | Respuesta |\n|---|---|\n| E01 | Me daba pena que alguien me viera entrando al consultorio, porque está junto a la coordinación y siempre hay gente. También pensaba que mi problema no era tan grave y que le iba a quitar el lugar a alguien que lo necesitara más. Y en mi casa no se habla mucho de ir al psicólogo, mi papá dice que eso es para gente que está loca. |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p06"
+    ],
+    "consulta_semantica": "¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?"
+   },
+   "plan_modelo": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p06"
+    ],
+    "consulta_semantica": "¿Qué te hizo dudar o qué te detuvo antes de buscar ayuda?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.6195
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.6176
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.6155
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.612
+    }
+   ],
+   "segundos": 57.6,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 25933,
+    "recuperacion": 313,
+    "verificacion": 1,
+    "interpretacion": 31299
+   },
+   "k_precision": 0.639,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Basarse en las preguntas guía relacionadas, sin forzar una categoría que no mencionó."
+}

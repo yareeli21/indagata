@@ -1,0 +1,58 @@
+{
+ "id": "ENT-03",
+ "instrumento": "ent",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Respondió todas las preguntas de la guía? ¿Cuáles no?",
+   "rag_log_id": 2399,
+   "respuesta": "Según los datos proporcionados, el participante E01 respondió a las siguientes preguntas de la guía: p06 y p07. [Fuente 1]\n",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Qué guía estás preguntando?"
+   },
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.5395
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4568
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p09",
+     "score": 0.4201
+    }
+   ],
+   "segundos": 36.2,
+   "tiempos_ms": {
+    "ejecucion": 2,
+    "recuperacion": 154,
+    "interpretacion": 26937
+   },
+   "k_precision": 0.714,
+   "cifras_con_respaldo": [
+    3,
+    3
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Relacionar intercambios con las 12 preguntas; nombrar faltantes o decir que respondió todas."
+}

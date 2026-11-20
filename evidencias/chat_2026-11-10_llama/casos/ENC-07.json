@@ -1,0 +1,59 @@
+{
+ "id": "ENC-07",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Hay respondentes que dejaron preguntas sin contestar?",
+   "rag_log_id": 3059,
+   "respuesta": "Sí, hay respondentes que dejaron preguntas sin contestar. Según los datos recuperados, 62 estudiantes no respondieron a la pregunta p07 (actividades de investigación de sus profesores), y 70 estudiantes no respondieron a la pregunta p06 (cuántos de tus profesores han compartido o mencionado en clase artículos científicos de su autoría). [Fuente 1]",
+   "intencion": "fuera_de_dominio",
+   "plan": {
+    "intencion": "fuera_de_dominio"
+   },
+   "plan_modelo": {
+    "intencion": "fuera_de_dominio"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.4403
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.4347
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p06",
+     "score": 0.4283
+    }
+   ],
+   "segundos": 17.3,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "recuperacion": 162,
+    "interpretacion": 10005
+   },
+   "k_precision": 0.714,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Conteo de respondentes con al menos un vacío, desglosado por pregunta; no mostrar a un solo respondente."
+}

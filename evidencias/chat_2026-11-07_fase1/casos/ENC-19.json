@@ -1,0 +1,70 @@
+{
+ "id": "ENC-19",
+ "instrumento": "enc",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opciones tiene la pregunta sobre la carga académica?",
+   "rag_log_id": 2397,
+   "respuesta": "La opción más elegida para describir la carga académica actual es “Carga media/normal”, seleccionada por 1258 estudiantes, lo que representa el 65.1% de los 1931 respuestas válidas obtenidas en la pregunta p03 [Fuente 1].  El 486 estudiantes (25.2%) indicaron que su carga académica es “Cargas máxima”, mientras que 382 estudiantes (19.8%) respondieron que es “Carga mínima” [Fuente 1].\n\n**Distribución de p03 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Carga media/normal | 1258 | 65.1 % |\n| Cargas maxima | 486 | 25.2 % |\n| Carga minima | 382 | 19.8 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p03"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p03",
+     "score": 0.6851
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p16",
+     "score": 0.6408
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p13",
+     "score": 0.5936
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p01",
+     "score": 0.592
+    }
+   ],
+   "segundos": 38.4,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 32115,
+    "recuperacion": 334,
+    "verificacion": 14152,
+    "interpretacion": 5898
+   },
+   "k_precision": 0.833,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Carga mínima, Carga media/normal y Cargas máxima, sin texto pegado de otras preguntas."
+}

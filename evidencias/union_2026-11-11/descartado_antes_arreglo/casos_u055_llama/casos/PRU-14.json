@@ -1,0 +1,206 @@
+{
+ "id": "PRU-14",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos marcaron Verdadero en «la nube elimina por completo el riesgo de perder datos»?",
+   "rag_log_id": 3668,
+   "respuesta": "57 de los 95 que respondieron r16 (60.0 %) cumplen el criterio: r16 «El almacenamiento en la nube elimina por completo el riesgo de perder » = «Verdadero». Sobre el total del instrumento son 57 de 97 respondentes (58.8 %). [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r16"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r16"
+     }
+    ],
+    "intencion": "conteo_porcentaje"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "frase_dato",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:frase_dato",
+   "plantilla": "frase_calculada",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5851
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r16",
+     "score": 0.5748
+    }
+   ],
+   "segundos": 16.6,
+   "tiempos_ms": {
+    "ejecucion": 11,
+    "redaccion": 5221,
+    "recuperacion": 370,
+    "verificacion": 0,
+    "interpretacion": 10984
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "De ellos, ¿qué respondieron sobre Wi-Fi público?",
+   "rag_log_id": 3669,
+   "respuesta": "57 de los 97 estudiantes (58.8 %) respondieron que usar redes Wi-Fi públicas sin VPN es completamente seguro. \n\nLa opción más elegida fue \"Verdadero\" para la pregunta específica \"Usar redes Wi-Fi públicas sin VPN es completamente seguro\", pero no se menciona esta pregunta en el texto del instrumento.\n\n**Distribución de r16 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 57 | 58.8 % |\n| Falso | 38 | 39.2 % |\n| NR | 2 | 2.1 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r16"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "resumen_pregunta"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r16"
+     }
+    ],
+    "intencion": "resumen_pregunta"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.6068
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.5847
+    }
+   ],
+   "segundos": 17.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 5300,
+    "recuperacion": 432,
+    "verificacion": 1,
+    "interpretacion": 11410
+   },
+   "k_precision": 0.844,
+   "cifras_con_respaldo": [
+    7,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "Muéstrame 5",
+   "rag_log_id": 3670,
+   "respuesta": "Criterio: r16 «El almacenamiento en la nube elimina por completo el riesgo de perder » = «Verdadero».\nCumplen la condición 57 de 97 respondentes (58.8 %).\nSe muestran los 5 primeros por número de respondente que la cumplen: 5 de 57.\nFaltan 52: pide «muéstrame más» para ver los siguientes. [Fuente 1]\n\n**Respuestas interpretadas [Fuente 1]**\n| Pregunta | A002 | A003 | A005 | A007 | A008 |\n|---|---|---|---|---|---|\n| Contexto: edad | 21 | 30 | 21 | 22 | 26 |\n| Contexto: genero | femenino | masculino | femenino | femenino | femenino |\n| Contexto: horas_trabajo_semana | 15 | 11 | 6 | 9 | 26 |\n| Contexto: nivel_estudio | pregrado | posgrado | pregrado | pregrado | posgrado |\n| Contexto: nivel_ses | medio | alto | medio | medio | alto |\n| Contexto: perfil | P2 | P7 | P2 | P5 | P7 |\n| Contexto: primera_generacion | False | False | False | False | False |\n| Contexto: promedio_gpa | 2.9 | 3.91 | 3.5 | 3.65 | 3.76 |\n| Contexto: semestre | 2 | 2 | 4 | 9 | 5 |\n| Contexto: tiene_beca | False | False | False | False | False |\n| Contexto: tipo_universidad | publica | privada | publica | mixta | privada |\n| r01 «¿Cuál es la extensión correcta de un archivo de hoja de cálculo en Exc» | .docx | .pdf | .pptx | .xlsx | .pptx |\n| r02 «¿Qué significa LMS en contextos educativos?» | Local Messaging System | Learning Management System | Local Messaging System | Library Management Software | Library Management Software |\n| r03 «¿Cuál es la principal función de una VPN?» | Bloquear anuncios publicitarios | Almacenar archivos en la nube | Crear una conexión segura y privada | Almacenar archivos en la nube | Bloquear anuncios publicitarios |\n| r04 «¿Qué es el phishing?» | Un tipo de búsqueda en Google | Un intento fraudulento de obtener información personal | Una herramienta de edición de imágenes | Un tipo de búsqueda en Google | Una herramienta de edición de imágenes |\n| r05 «¿Cuál herramienta es más adecuada para la colaboración en documentos e» | Imprimir y entregar físicamente | USB compartida | USB compartida | USB compartida | USB compartida |\n| r06 «¿Qué es la nube (cloud computing) en tecnología?» | Almacenamiento y servicios de internet a través de servidores remotos | Un servidor físico en tu oficina | Almacenamiento y servicios de internet a través de servidores remotos | Un servidor físico en tu oficina | Un servidor físico en tu oficina |\n| r07 «¿Qué significa una licencia Creative Commons?» | El contenido puede ser vendido libremente | El contenido es completamente privado | El contenido es completamente privado | El contenido es completamente privado | El autor permite ciertos usos de su obra bajo condiciones específicas |\n| r08 «¿Cuál es la principal función de un buscador web como Google?» | Indexar y recuperar páginas web relevantes | Crear presentaciones | Almacenar información en la nube | Crear presentaciones | Crear presentaciones |\n| r09 «¿Cuál de los siguientes es un criterio para evaluar la confiabilidad d» | El diseño visual del sitio web | El diseño visual del sitio web | La autoridad del autor y la fecha de publicación | La autoridad del autor y la fecha de publicación | El diseño visual del sitio web |\n| r10 «¿Qué es una contraseña segura?» | (sin respuesta) | (sin respuesta) | (sin respuesta) | (sin respuesta) | (sin respuesta) |\n| r11 «El correo electrónico es siempre un canal seguro para enviar informaci» | Verdadero | Verdadero | Falso | Verdadero | Verdadero |\n| r12 «El análisis de datos de aprendizaje (learning analytics) puede ayudar » | Verdadero | Verdadero | Verdadero | Verdadero | Falso |\n| r13 «Plagiar contenido digital tiene las mismas consecuencias éticas que pl» | Verdadero | Verdadero | Verdadero | Verdadero | Falso |\n| r14 «La inteligencia artificial puede generar texto, imágenes y código de p» | Verdadero | Falso | Verdadero | Falso | Falso |\n| r15 «Usar redes Wi-Fi públicas sin VPN es completamente seguro.» | Verdadero | Verdadero | Verdadero | Verdadero | Falso |\n| r16 «El almacenamiento en la nube elimina por completo el riesgo de perder » | Verdadero | Verdadero | Verdadero | Verdadero | Verdadero |\n| r17 «La huella digital incluye todo rastro que dejamos en línea.» | Falso | Verdadero | Verdadero | Falso | Falso |\n| r18 «¿Cuál es el orden correcto para crear un documento académico digital? » | 2-3-1-4 | 2-3-1-4 | 2-3-1-4 | 1-2-3-4 | 2-3-1-4 |\n| r19 «Empareja: HTTPS →» | Protocolo seguro de transferencia web | Servidor de correo | Servidor de correo | Protocolo seguro de transferencia web | Protocolo seguro de transferencia web |\n| r20 «¿Qué herramienta corresponde mejor al propósito de gestionar referenci» | Canva | Zotero o Mendeley | Zotero o Mendeley | Zotero o Mendeley | Zotero o Mendeley |\n| r21 «¿Qué tipo de licencia permite modificar y redistribuir libremente un s» | Freeware | Freeware | Shareware | Open Source / Código abierto | Shareware |\n| r22 «¿Cuál es el emparejamiento correcto? Big Data ↔» | Hardware de almacenamiento físico | Hardware de almacenamiento físico | Hardware de almacenamiento físico | Redes sociales únicamente | Redes sociales únicamente |",
+   "intencion": "filtrar_respondentes",
+   "plan": {
+    "campos": "todas_las_respuestas",
+    "limite": 5,
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r16"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "filtrar_respondentes"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 5,
+    "filtros": [
+     {
+      "valor": "Verdadero",
+      "pregunta": "r16"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "listar 5 del grupo anterior (sus condiciones, con sus respuestas)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "estructurada",
+   "motivo": "plan:filtrar_respondentes:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 19.9,
+   "tiempos_ms": {
+    "ejecucion": 9,
+    "redaccion": 7329,
+    "recuperacion": 452,
+    "verificacion": 3103,
+    "interpretacion": 12040
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    33,
+    33
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) filtrar sobre el grupo de (1); (3) 5 IDs anónimos con el total."
+}

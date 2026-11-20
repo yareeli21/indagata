@@ -1,0 +1,67 @@
+{
+ "id": "ENU-03",
+ "instrumento": "enc_nueva",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Los que trabajan más de 30 horas reprueban más que los que no trabajan?",
+   "rag_log_id": 4166,
+   "respuesta": "Criterio: por p09 «¿Cuál es tu carga laboral actual?». [Fuente 1]\n\n**Comparación por p09 «¿Cuál es tu carga laboral actual?» [Fuente 1]**\n| Grupo | Personas |\n|---|---|\n| De 20 a 30 h a la semana | 23 |\n| Menos de 20 h a la semana | 102 |\n| Más de 30 h a la semana | 32 |\n| No trabajo | 3 |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "limite": 2,
+    "intencion": "comparar_grupos",
+    "agrupar_por": "p09",
+    "consulta_semantica": "¿Los que trabajan más de 30 horas reprueban más que los que no trabajan?"
+   },
+   "plan_modelo": {
+    "limite": 2,
+    "intencion": "comparar_grupos",
+    "agrupar_por": "p09",
+    "consulta_semantica": "¿Los que trabajan más de 30 horas reprueban más que los que no trabajan?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Trayectoria Académica, Trabajo y Uso de Servicios"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.6323
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p09",
+     "score": 0.5846
+    }
+   ],
+   "segundos": 23.5,
+   "tiempos_ms": {
+    "ejecucion": 25,
+    "redaccion": 10047,
+    "recuperacion": 516,
+    "verificacion": 3612,
+    "interpretacion": 12841
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    7,
+    7
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Cruzar carga laboral con reprobación: % de reprobados en cada grupo con su n, sin afirmar causas."
+}

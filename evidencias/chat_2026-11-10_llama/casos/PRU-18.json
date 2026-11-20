@@ -1,0 +1,55 @@
+{
+ "id": "PRU-18",
+ "instrumento": "pru",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿De qué trata esta prueba y qué explora?",
+   "rag_log_id": 3110,
+   "respuesta": "La Prueba de Alfabetización Digital se aplicó a 97 estudiantes del sexto semestre de la licenciatura en Informática en la era de la IA de la UAM. El objetivo principal es evaluar si los estudiantes conocen o han estado familiarizados con los conceptos básicos que se han ido implementando con las tecnologías emergentes de hoy en día.\n\nLa Prueba de Alfabetización Digital es una prueba estandarizada que cubre temas como la alfabetización digital, competencias digitales básicas, seguridad en Internet, herramientas de colaboración digital y conceptos de cloud computing. Se aplicó a estudiantes de licenciatura en Informática en la era de la IA de la UAM, específicamente del sexto semestre de la carrera 6BM13. La prueba consta de 22 reactivos distribuidos en tres secciones: competencias digitales básicas, verdadero o falso digital y ordenamiento y emparejamiento (codificado como opción múltiple).",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": null,
+   "ruta": "mixta",
+   "motivo": "estructurada:descripcion",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.3776
+    }
+   ],
+   "segundos": 11.7,
+   "tiempos_ms": {
+    "redaccion": 11308,
+    "recuperacion": 158,
+    "verificacion": 2
+   },
+   "k_precision": 0.871,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Síntesis en prosa: tema, 3 secciones y sus temas."
+}

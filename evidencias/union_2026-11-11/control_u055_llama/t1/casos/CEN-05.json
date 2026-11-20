@@ -1,0 +1,96 @@
+{
+ "id": "CEN-05",
+ "instrumento": "enc_control",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 3944,
+   "respuesta": "- 45.6 % (73 de 160) respondió «Menos de 5h» o «Más de 20h» en p12 «¿Cuántas horas dedicas al estudio fuera de clases por semana?» (respuestas desfavorables según el sistema (sin revisar))\n- 23.1 % (37 de 160) respondió «Totalmente en desacuerdo / Nunca» o «En desacuerdo / Pocas veces» en p07 «Identifico y elimino distracciones durante mis sesiones de estudio.» (respuestas desfavorables según el sistema (sin revisar)) [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "sentido": "desfavorable",
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "filtros": [
+     {
+      "op": ">",
+      "valor": "8",
+      "pregunta": "p18"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p18 = «8» descartado (no es una opción y la pregunta no lo menciona)",
+    "ninguna condición respaldada: se pide aclaración",
+    "intención aclaracion → hallazgo con sentido desfavorable"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "estructurada",
+   "motivo": "plan:hallazgo:inferencia",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 16.3,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 12729,
+    "recuperacion": 335,
+    "verificacion": 5326,
+    "interpretacion": 3175
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    9,
+    9
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué?",
+   "rag_log_id": 3945,
+   "respuesta": "Me parece que el motivo de preocupación podría deberse a una carga académica excesiva, lo cual puede generar estrés y dificultades para gestionar el tiempo de manera efectiva. Esto podría afectar la capacidad de identificar y eliminar distracciones durante las sesiones de estudio [Fuente 1].\n\nUna explicación posible es que los estudiantes se sientan abrumados por sus obligaciones académicas y no tengan el tiempo necesario para dedicarse a estudiar de manera efectiva, lo cual puede llevar a una sensación de desacuerdo o insuficiencia en la capacidad de identificar y eliminar distracciones durante las sesiones de estudio [Fuente 1].\n\nAdemás, es posible que los estudiantes que respondieron con horas de estudio fuera de clases por semana entre 5h y 20h estén experimentando un efecto de \"eficacia del tiempo\" donde se sienten más productivos cuando trabajan en un rango específico de horas [Fuente 1].",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": "seguimiento de la consulta 3944",
+   "plantilla": null,
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "resultado",
+     "etiqueta": "resultado",
+     "score": null
+    }
+   ],
+   "segundos": 8.7,
+   "tiempos_ms": null,
+   "k_precision": 0.324,
+   "cifras_con_respaldo": [
+    2,
+    2
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Respuestas desfavorables con cifras."
+}

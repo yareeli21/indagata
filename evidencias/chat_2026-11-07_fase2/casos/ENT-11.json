@@ -1,0 +1,88 @@
+{
+ "id": "ENT-11",
+ "instrumento": "ent",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "¿Qué pesó más para no buscar ayuda: el estigma, el tiempo de espera o no conocer los servicios?",
+   "rag_log_id": 2409,
+   "respuesta": "*   Uno de uno: Respuesta “no” en p06. El participante E01 expresaba miedo a que alguien lo viera entrando al consultorio y pensaba que su problema no era tan grave, además de considerar que pedir ayuda implicaría ser débil. [Fuente 1] Podría indicar una fuerte carga estigma asociada a la búsqueda de apoyo psicológico en el entorno universitario.\n*   Uno de uno: Respuesta “no” en p06. El participante E01 mencionaba que su papá decía que ir al psicólogo era para gente \"que está loca\", lo que sugiere una percepción distorsionada y un posible impacto de factores familiares en la decisión de no buscar ayuda. [Fuente 1] Sugiere la influencia de creencias culturales y familiares sobre la salud mental.\n*   Uno de uno: Respuesta “ambivalente” en p05. El participante E01 indicaba que el tiempo de espera desde la cita hasta la atención recibida era “ambivalente”, lo que podría reflejar una falta de acceso o dificultades para acceder a los servicios ofrecidos. [Fuente 1] Sugiere posibles problemas de organización y eficiencia en la gestión de citas y recursos de apoyo psicológico.\n*   Uno de uno: Respuesta “si” en p04. El participante E01 había utilizado los servicios de apoyo psicológico, lo que indica que, a pesar de las barreras percibidas, existe una demanda y acceso a estos servicios por parte de algunos estudiantes. [Fuente 1] Podría indicar la necesidad de mejorar la comunicación y promoción de los servicios para aumentar su utilización.",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Qué factores influyeron en la decisión de no buscar ayuda?"
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.6195
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.6176
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.612
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.5678
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.5308
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.5185
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p10",
+     "score": 0.518
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p12",
+     "score": 0.5166
+    }
+   ],
+   "segundos": 76.6,
+   "tiempos_ms": {
+    "ejecucion": 3,
+    "redaccion": 48390,
+    "recuperacion": 305,
+    "verificacion": 2,
+    "interpretacion": 27870
+   },
+   "k_precision": 0.481,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Basarse en las preguntas guía relacionadas, sin forzar una categoría que no mencionó."
+}

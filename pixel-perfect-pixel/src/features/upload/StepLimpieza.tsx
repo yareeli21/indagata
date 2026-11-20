@@ -4,9 +4,14 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { EstadoVacio } from "@/components/shared/EstadoVacio";
 import { ProcesandoIA } from "@/components/shared/ProcesandoIA";
-import { confirmarLimpieza, ejecutarLimpieza, guardarDecisiones } from "@/api/limpieza";
+import {
+  confirmarLimpieza,
+  ejecutarLimpieza,
+  guardarDecisiones,
+  guardarSignificados,
+} from "@/api/limpieza";
 import type { ErrorHttp } from "@/api/client";
-import type { EjecucionLimpieza } from "@/types";
+import type { EjecucionLimpieza, SignificadoCodigos } from "@/types";
 import { FaseAsistida } from "./limpieza/FaseAsistida";
 import { VistaFinalLimpieza } from "./limpieza/VistaFinalLimpieza";
 import { DETALLE_PROCESANDO } from "./limpieza/textos";
@@ -24,6 +29,8 @@ interface StepLimpiezaProps {
 
 /** Espera tras la última decisión antes de guardarla (agrupa clics seguidos). */
 const ESPERA_GUARDADO_MS = 400;
+/** Espera tras lo último que se escribió en «Significado de los códigos». */
+const ESPERA_TEXTO_MS = 900;
 
 function mensajeDe(e: unknown, defecto: string): string {
   return e instanceof Error && e.message ? e.message : defecto;
@@ -68,6 +75,9 @@ export function StepLimpieza({
   // Decisiones aún no enviadas y temporizador del guardado diferido.
   const pendientesRef = useRef<Record<string, string>>({});
   const temporizadorRef = useRef<number | null>(null);
+  // Lo mismo para el texto y el significado de los códigos (microdatos).
+  const significadosRef = useRef<Record<string, SignificadoCodigos>>({});
+  const temporizadorTextoRef = useRef<number | null>(null);
   const ejecucionRef = useRef(ejecucion);
   ejecucionRef.current = ejecucion;
 
@@ -126,6 +136,44 @@ export function StepLimpieza({
     }
   }, [idCrudo, onEjecucion]);
 
+  /** Envía el texto y el significado de los códigos que quedan pendientes. */
+  const guardarSignificadosPendientes = useCallback(async (): Promise<boolean> => {
+    if (temporizadorTextoRef.current !== null) {
+      window.clearTimeout(temporizadorTextoRef.current);
+      temporizadorTextoRef.current = null;
+    }
+    const actual = ejecucionRef.current;
+    const lote = significadosRef.current;
+    if (!actual || Object.keys(lote).length === 0) return true;
+    significadosRef.current = {};
+    setGuardando(true);
+    try {
+      const resultado = await guardarSignificados(idCrudo, actual.version, lote);
+      // Se conserva lo que muestra la sección (es la fuente mientras se escribe); solo cambia la versión del servidor.
+      onEjecucion({ ...resultado, hallazgos: ejecucionRef.current?.hallazgos ?? resultado.hallazgos });
+      setSinGuardar(
+        Object.keys(pendientesRef.current).length + Object.keys(significadosRef.current).length > 0,
+      );
+      return true;
+    } catch (e) {
+      significadosRef.current = { ...lote, ...significadosRef.current };
+      toast.error(mensajeDe(e, "No se pudo guardar el significado de los códigos."));
+      return false;
+    } finally {
+      setGuardando(false);
+    }
+  }, [idCrudo, onEjecucion]);
+
+  function cambiarSignificado(clave: string, significado: SignificadoCodigos) {
+    significadosRef.current = { ...significadosRef.current, [clave]: significado };
+    setSinGuardar(true);
+    if (temporizadorTextoRef.current !== null) window.clearTimeout(temporizadorTextoRef.current);
+    temporizadorTextoRef.current = window.setTimeout(
+      () => void guardarSignificadosPendientes(),
+      ESPERA_TEXTO_MS,
+    );
+  }
+
   function elegir(idHallazgo: string, opcion: string) {
     const actual = ejecucionRef.current;
     if (!actual) return;
@@ -140,8 +188,9 @@ export function StepLimpieza({
   useEffect(
     () => () => {
       if (Object.keys(pendientesRef.current).length > 0) void guardarPendientes();
+      if (Object.keys(significadosRef.current).length > 0) void guardarSignificadosPendientes();
     },
-    [guardarPendientes],
+    [guardarPendientes, guardarSignificadosPendientes],
   );
 
   // Si se cierra o recarga la página con decisiones sin enviar, se mandan con
@@ -149,10 +198,15 @@ export function StepLimpieza({
   useEffect(() => {
     function alOcultar() {
       const actual = ejecucionRef.current;
+      if (!actual) return;
       const lote = pendientesRef.current;
-      if (!actual || Object.keys(lote).length === 0) return;
+      const textos = significadosRef.current;
       pendientesRef.current = {};
-      void guardarDecisiones(idCrudo, actual.version, lote, true).catch(() => undefined);
+      significadosRef.current = {};
+      if (Object.keys(lote).length > 0)
+        void guardarDecisiones(idCrudo, actual.version, lote, true).catch(() => undefined);
+      if (Object.keys(textos).length > 0)
+        void guardarSignificados(idCrudo, actual.version, textos, true).catch(() => undefined);
     }
     window.addEventListener("pagehide", alOcultar);
     return () => window.removeEventListener("pagehide", alOcultar);
@@ -161,6 +215,7 @@ export function StepLimpieza({
   async function confirmar() {
     setConfirmando(true);
     try {
+      if (!(await guardarSignificadosPendientes())) return;
       const guardada = await guardarPendientes();
       if (!guardada) return;
       const resultado = await confirmarLimpieza(idCrudo, guardada.version);
@@ -256,6 +311,7 @@ export function StepLimpieza({
       guardado={guardando ? "guardando" : sinGuardar ? "pendiente" : "guardado"}
       confirmando={confirmando}
       onElegir={elegir}
+      onCambiarSignificado={cambiarSignificado}
       onConfirmar={() => void confirmar()}
     />
   );

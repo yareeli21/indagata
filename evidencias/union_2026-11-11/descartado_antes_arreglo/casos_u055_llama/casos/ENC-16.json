@@ -1,0 +1,105 @@
+{
+ "id": "ENC-16",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Qué es lo más preocupante de los resultados?",
+   "rag_log_id": 3640,
+   "respuesta": "- La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»).\n- La pregunta con más respuestas en el nivel alto es p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?»: 50.4 % de quienes respondieron (respondieron «4 en escala 1–5» o «Muy probable»).\n- En p03 «¿Cómo es tu carga académica actual?» predomina «Carga media/normal»: 65.1 % de quienes respondieron. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "valor": "Con hasta un año de retraso",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "filtros": [
+     {
+      "op": ">",
+      "valor": "Con hasta un año de retraso",
+      "pregunta": "p10"
+     }
+    ],
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "filtro p10 > «Con hasta un año de retraso» → = (es una opción de texto)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "estructurada",
+   "motivo": "plan:hallazgo:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 26.0,
+   "tiempos_ms": {
+    "ejecucion": 10,
+    "redaccion": 21438,
+    "recuperacion": 447,
+    "verificacion": 7982,
+    "interpretacion": 4045
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué lo consideras preocupante?",
+   "rag_log_id": 3641,
+   "respuesta": "Considero que los resultados son preocupantes porque indican que una gran parte de los estudiantes (57,8% en p05) no han experimentado cambios de profesor ni materia sin asignación, lo que podría sugerir una falta de estabilidad y seguridad académica. Esto podría afectar negativamente la motivación y el bienestar de los estudiantes.\n\nAdemás, aunque solo un 50,4% de los estudiantes considera probable volver a estudiar en la institución (p13), esta cifra es significativa en sí misma y podría indicar que muchos estudiantes están indecisos o desmotivados. Una explicación posible es que la institución no ofrece suficientes oportunidades de crecimiento académico o profesional, lo que podría llevar a una disminución de la satisfacción y la lealtad.\n\nTambién es preocupante que la carga académica sea percibida como \"normal\" por el 65,1% de los estudiantes (p03), ya que esto podría sugerir que muchos estudiantes se sienten abrumados o sobrecargados con sus responsabilidades académicas. Esto podría tener consecuencias negativas para la salud mental y física de los estudiantes.\n\nEn general, estos resultados sugieren que hay áreas en las que la institución puede mejorar para aumentar la satisfacción y la lealtad de sus estudiantes. [Fuente 1]",
+   "intencion": null,
+   "plan": null,
+   "plan_modelo": null,
+   "plan_modelo_sin_cambios": null,
+   "correcciones": null,
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": "seguimiento de la consulta 3640",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "resultado",
+     "etiqueta": "resultado",
+     "score": null
+    }
+   ],
+   "segundos": 12.4,
+   "tiempos_ms": null,
+   "k_precision": 0.161,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Usar la polaridad (no elegir respuestas favorables) y justificar con cifras."
+}

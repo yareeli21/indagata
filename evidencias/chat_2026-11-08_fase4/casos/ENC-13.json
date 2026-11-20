@@ -1,0 +1,210 @@
+{
+ "id": "ENC-13",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos han hecho prácticas profesionales?",
+   "rag_log_id": 2486,
+   "respuesta": "De las 1931 respuestas válidas obtenidas en la encuesta «Indicadores de Experiencia y Calidad Académica», 722 estudiantes (37.4 %) respondieron que habían realizado prácticas profesionales, principalmente indicando que las consiguieron por su cuenta [Fuente 1]. Unos 586 estudiantes (30.3 %) manifestaron planes de realizar prácticas en el futuro, mientras que 241 estudiantes (12.5 %) no habían realizado ninguna práctica profesional hasta ese momento [Fuente 1].\n\n**Distribución de p14 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Si, pero la consegui por mi cuenta | 722 | 37.4 % |\n| Aun no, pero planeo hacerlo | 586 | 30.3 % |\n| Si, en una empresa con convenio de mi institucion | 382 | 19.8 % |\n| No | 241 | 12.5 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p14"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "regenerada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta:regenerada",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.6836
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.6526
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.5337
+    },
+    {
+     "seccion": "encabezado",
+     "etiqueta": "encabezado",
+     "score": 0.5276
+    }
+   ],
+   "segundos": 40.2,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 33327,
+    "recuperacion": 307,
+    "verificacion": 13733,
+    "interpretacion": 6504
+   },
+   "k_precision": 0.764,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Y de ellos, cuántos la consiguieron por convenio de la institución?",
+   "rag_log_id": 2487,
+   "respuesta": "De las 1931 respuestas válidas obtenidas en la encuesta «Indicadores de Experiencia y Calidad Académica», 722 estudiantes (37.4 %) indicaron haber realizado prácticas profesionales, siendo la causa más frecuente que lo hubieran conseguido por su cuenta [Fuente 1]. Unos 586 estudiantes (30.3 %) manifestaron que aún planean realizar prácticas profesionales, mientras que 241 (12.5 %) no habían realizado ninguna práctica profesional hasta el momento. La opción de “Si, pero la consegui por mi cuenta” fue la más frecuente entre los que sí habían realizado prácticas [Fuente 1].\n\n**Distribución de p14 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Si, pero la consegui por mi cuenta | 722 | 37.4 % |\n| Aun no, pero planeo hacerlo | 586 | 30.3 % |\n| Si, en una empresa con convenio de mi institucion | 382 | 19.8 % |\n| No | 241 | 12.5 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Si, en una empresa con convenio de mi institucion",
+      "pregunta": "p14"
+     }
+    ],
+    "relacion": "continua",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p14"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.5433
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.5309
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.5221
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.5044
+    }
+   ],
+   "segundos": 40.7,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 20671,
+    "recuperacion": 307,
+    "verificacion": 1,
+    "interpretacion": 19638
+   },
+   "k_precision": 0.719,
+   "cifras_con_respaldo": [
+    10,
+    10
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué puede significar eso?",
+   "rag_log_id": 2488,
+   "respuesta": "**Lo que muestran los datos:** p14 «¿Has realizado prácticas profesionales o pasantías?»: 1931 respuestas válidas, 69 sin respuesta.\n\n**Interpretación (del asistente, no es un dato):** Según los resultados de la encuesta, la mayoría de los estudiantes han obtenido experiencia práctica fuera del ámbito institucional, gestionando ellos mismos su proceso de búsqueda [Fuente 1].  Un porcentaje considerable de estudiantes (30.3 %) ha manifestado planes para realizar prácticas en el futuro, lo que sugiere una demanda activa de oportunidades formativas complementarias a su formación académica [Fuente 1]. La causa más frecuente de estas experiencias es la iniciativa propia de los estudiantes, lo cual podría indicar un deseo de autonomía y control sobre sus itinerarios profesionales [Fuente 1].",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "filtros": [
+     {
+      "valor": "Si, en una empresa con convenio de mi institucion",
+      "pregunta": "p14"
+     }
+    ],
+    "relacion": "profundiza",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "p14"
+    ]
+   },
+   "correcciones": [
+    "profundiza: se repite el plan anterior (resumen_pregunta) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.5361
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p14",
+     "score": 0.5203
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.5158
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.5
+    }
+   ],
+   "segundos": 34.4,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 16652,
+    "recuperacion": 292,
+    "verificacion": 0,
+    "interpretacion": 17360
+   },
+   "k_precision": 0.291,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) «ellos» = el grupo de (1); (3) interpretar con las cifras, sin buscar otra pregunta."
+}

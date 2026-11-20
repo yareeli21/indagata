@@ -1,0 +1,55 @@
+{
+ "id": "PRU-08",
+ "instrumento": "pru",
+ "categoria": "comparacion",
+ "turnos": [
+  {
+   "pregunta": "Compara la sección de verdadero/falso con la de competencias básicas en cantidad de respuestas en blanco",
+   "rag_log_id": 3591,
+   "respuesta": "La sección \"SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS\" tiene 99 respuestas en blanco o nulas, mientras que la sección \"SECCIÓN: VERDADERO O FALSO DIGITAL\" solo tiene 4 respuestas en blanco o nulas. Esto significa que el 10.2% de las respuestas del grupo tienen una respuesta en blanco o nula en la sección de competencias básicas, mientras que solo el 0.6% del grupo tiene una respuesta en blanco o nula en la sección de verdadero/falso digital.\n\n[Fuente 1]\n\n**Respuestas en blanco o nulas por sección [Fuente 1]**\n| Sección | Reactivos | En blanco o nulas | % de sus respuestas |\n|---|---|---|---|\n| SECCIÓN: COMPETENCIAS DIGITALES BÁSICAS | 10 | 99 | 10.2 % |\n| SECCIÓN: VERDADERO O FALSO DIGITAL | 7 | 4 | 0.6 % |\n| SECCIÓN: ORDENAMIENTO Y EMPAREJAMIENTO (CODIFICADO COMO OPCIÓN MÚLTIPLE) | 5 | 3 | 0.6 % |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "seccion"
+   },
+   "plan_modelo": {
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r11"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "comparar por sección (respuestas en blanco o nulas)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "estructurada",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    }
+   ],
+   "segundos": 8.4,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 4968,
+    "recuperacion": 435,
+    "verificacion": 1,
+    "interpretacion": 2932
+   },
+   "k_precision": 0.905,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "% de NR por sección con su número de reactivos."
+}

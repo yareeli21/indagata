@@ -1,0 +1,67 @@
+{
+ "id": "ENC-06",
+ "instrumento": "enc",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál es la actividad de investigación de los profesores más conocida por los estudiantes?",
+   "rag_log_id": 3751,
+   "respuesta": "- La pregunta con más respuestas en el nivel bajo es p05 «¿Con qué frecuencia te ha tocado un cambio de profesor ya iniciado el periodo, o una materia sin profesor asignado?»: 57.8 % de quienes respondieron (respondieron «Nunca» o «Rara vez»).\n- La pregunta con más respuestas en el nivel alto es p13 «¿Qué tan probable es que vuelvas a estudiar en esta institución (especialización, maestría, doctorado)?»: 50.4 % de quienes respondieron (respondieron «4 en escala 1–5» o «Muy probable»).\n- En p03 «¿Cómo es tu carga académica actual?» predomina «Carga media/normal»: 65.1 % de quienes respondieron. [Fuente 1]",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p04",
+     "p06"
+    ]
+   },
+   "plan_modelo": {
+    "nivel": "desacuerdo",
+    "intencion": "hallazgo",
+    "preguntas": [
+     "p04",
+     "p06"
+    ]
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "nivel desacuerdo quitado (ni la consulta lo dice ni la pregunta es de escala)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo:negativa_corregida",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p05",
+     "score": 0.5524
+    }
+   ],
+   "segundos": 30.0,
+   "tiempos_ms": {
+    "ejecucion": 10,
+    "redaccion": 19114,
+    "recuperacion": 657,
+    "verificacion": 5129,
+    "interpretacion": 10109
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    8,
+    8
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Opción múltiple; distinguir número de menciones de número de respondentes."
+}

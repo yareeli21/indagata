@@ -1,0 +1,141 @@
+{
+ "id": "ENC-15",
+ "instrumento": "enc",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál es el KPI más relevante para esta encuesta?",
+   "rag_log_id": 3070,
+   "respuesta": "Criterio: KPI KPI-12.\nPor qué se asoció: El indicador Ratio de Matriculados frente a Graduados del Curso se relaciona con el instrumento porque mide la efectividad del contenido y el nivel de persistencia de los estudiantes dentro de un curso específico, lo que se refleja en las preguntas como \"¿Cómo es tu carga académica actual?\" y \"Siempre De tus profesores de este periodo, ¿cuántos tienen doctorado?\", que evalúan la experiencia del estudiante en el curso y su percepción sobre la calidad docente. [Fuente 1]\n\n**KPIs asociados [Fuente 1]**\n| KPI | Qué mide | Preguntas que lo sustentan |\n|---|---|---|\n| Ratio de Matriculados frente a Graduados del Curso | Mide la efectividad del contenido y el nivel de persistencia de los estudiantes dentro de un curso específico (presencial o híbrido). | p13, p01, p16, p03, p04 |",
+   "intencion": "kpi",
+   "plan": {
+    "kpi": "KPI-12",
+    "intencion": "kpi"
+   },
+   "plan_modelo": {
+    "kpi": "KPI-12 Ratio de Matriculados frente a Graduados del Curso",
+    "intencion": "kpi"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:kpi:inventada",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "kpi",
+     "etiqueta": "kpi",
+     "score": 0.6297
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.5851
+    },
+    {
+     "seccion": "kpi",
+     "etiqueta": "kpi",
+     "score": 0.573
+    },
+    {
+     "seccion": "kpi",
+     "etiqueta": "kpi",
+     "score": 0.5637
+    }
+   ],
+   "segundos": 18.3,
+   "tiempos_ms": {
+    "ejecucion": 15,
+    "redaccion": 15329,
+    "recuperacion": 452,
+    "verificacion": 6119,
+    "interpretacion": 2433
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Por qué lo consideras así?",
+   "rag_log_id": 3071,
+   "respuesta": "**Lo que muestran los datos:** Por qué se asoció: El indicador Ratio de Matriculados frente a Graduados del Curso se relaciona con el instrumento porque mide la efectividad del contenido y el nivel de persistencia de los estudiantes dentro de un curso específico, lo que se refleja en las preguntas como \"¿Cómo es tu carga académica actual?\" y \"Siempre De tus profesores de este periodo, ¿cuántos tienen doctorado?\", que evalúan la experiencia del estudiante en el curso y su percepción sobre la calidad docente.\n\n**Interpretación (del asistente, no es un dato):** El KPI más relevante para esta encuesta se relaciona con el indicador Ratio de Matriculados frente a Graduados del Curso porque mide la efectividad del contenido y el nivel de persistencia de los estudiantes dentro de un curso específico, lo que se refleja en las preguntas como \"¿Cómo es tu carga académica actual?\" y \"Siempre De tus profesores de este periodo, ¿cuántos tienen doctorado?\", que evalúan la experiencia del estudiante en el curso y su percepción sobre la calidad docente.",
+   "intencion": "kpi",
+   "plan": {
+    "kpi": "KPI-12",
+    "relacion": "profundiza",
+    "intencion": "kpi"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Cuál es el KPI más relevante para esta encuesta?"
+   },
+   "plan_modelo_sin_cambios": false,
+   "correcciones": [
+    "profundiza: se repite el plan anterior (kpi) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:kpi",
+   "plantilla": null,
+   "fuentes": [
+    "Indicadores de Experiencia y Calidad Académica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "kpi",
+     "etiqueta": "kpi",
+     "score": 0.6406
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p15",
+     "score": 0.6071
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p07",
+     "score": 0.5827
+    },
+    {
+     "seccion": "kpi",
+     "etiqueta": "kpi",
+     "score": 0.5774
+    }
+   ],
+   "segundos": 9.3,
+   "tiempos_ms": {
+    "ejecucion": 7,
+    "redaccion": 5047,
+    "recuperacion": 503,
+    "verificacion": 0,
+    "interpretacion": 3662
+   },
+   "k_precision": 0.944,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(1) elegir un KPI y justificarlo con sus preguntas vinculadas; (2) no repetir la pregunta."
+}

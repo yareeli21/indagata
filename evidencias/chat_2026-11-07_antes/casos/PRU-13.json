@@ -1,0 +1,183 @@
+{
+ "id": "PRU-13",
+ "instrumento": "pru",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿En qué reactivo hubo menos consenso?",
+   "rag_log_id": 2351,
+   "respuesta": "El reactivo r15 “Usar redes Wi-Fi públicas sin VPN es completamente seguro” obtuvo 73 de 97 (75.3 %) de respuestas “Verdadero”. [Fuente 1]\n\n**Preguntas por coincidencia [Fuente 1]**\n| Lugar | Pregunta | Dato |\n|---|---|---|\n| 1 | r11 | «Verdadero» con 81 de 97 (83.5 %) |\n| 2 | r20 | «Zotero o Mendeley» con 75 de 97 (77.3 %) |\n| 3 | r15 | «Verdadero» con 73 de 97 (75.3 %) |",
+   "intencion": "ranking_preguntas",
+   "plan": {
+    "intencion": "ranking_preguntas",
+    "criterio_ranking": "coincidencia"
+   },
+   "correcciones": [
+    "intención conteo_porcentaje → ranking_preguntas («coincidencia» por pregunta)",
+    "criterio del ranking: coincidencia (lo que dice la pregunta)"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:ranking_preguntas",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4193
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.3807
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r20",
+     "score": 0.3722
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.37
+    }
+   ],
+   "segundos": 47.7,
+   "tiempos_ms": {
+    "ejecucion": 8,
+    "redaccion": 16695,
+    "recuperacion": 1065,
+    "verificacion": 1,
+    "interpretacion": 29885
+   },
+   "k_precision": 0.971,
+   "cifras_con_respaldo": [
+    13,
+    13
+   ],
+   "calificacion_humana": 0,
+   "comentario_humano": "Sí me da un reactivo, pero el de menos consenso, o sea, que haya más desacuerdo y ese no se ve con mucho desacuerdo"
+  },
+  {
+   "pregunta": "Muéstrame cómo se repartieron las respuestas",
+   "rag_log_id": 2352,
+   "respuesta": "De las 97 respuestas válidas en el reactivo r11 de la Prueba de Alfabetización Digital, el 83.5 % (81 alumnos) consideraron que el correo electrónico es un canal siempre seguro para enviar información, mientras que el 15.5 % (15 alumnos) respondieron “Falso”.  Un único alumno no respondió al reactivo r11 (1 %). [Fuente 1]\n\n**Distribución de r11 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 81 | 83.5 % |\n| Falso | 15 | 15.5 % |\n| NR | 1 | 1.0 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r11"
+    ]
+   },
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r13",
+     "score": 0.4587
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r12",
+     "score": 0.4192
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.4124
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r15",
+     "score": 0.4096
+    }
+   ],
+   "segundos": 33.8,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 14955,
+    "recuperacion": 275,
+    "verificacion": 1,
+    "interpretacion": 18546
+   },
+   "k_precision": 0.872,
+   "cifras_con_respaldo": [
+    6,
+    7
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Qué podría explicar esa división?",
+   "rag_log_id": 2353,
+   "respuesta": "El resultado de la Prueba de Alfabetización Digital muestra que el 83.5% (81 alumnos) de los universitarios IPN, EST, nivel licenciatura, consideraron que el correo electrónico es un canal siempre seguro para enviar información, mientras que el 15.5% (15 alumnos) lo rechazaron [Fuente 1]. La opción “Verdadero” fue la más elegida, sugiriendo una percepción generalizada de seguridad en este medio [Fuente 1]. Podría deberse a una falta de comprensión sobre los riesgos asociados al correo electrónico o a una confianza excesiva en las medidas de seguridad implementadas. Es importante revisar cómo se aplicó la prueba y si se consideraron factores como la formación previa de los estudiantes en temas de ciberseguridad.\n\n**Distribución de r11 [Fuente 1]**\n| Opción | Respondentes | % |\n|---|---|---|\n| Verdadero | 81 | 83.5 % |\n| Falso | 15 | 15.5 % |\n| NR | 1 | 1.0 % |",
+   "intencion": "resumen_pregunta",
+   "plan": {
+    "relacion": "profundiza",
+    "intencion": "resumen_pregunta",
+    "preguntas": [
+     "r11"
+    ]
+   },
+   "correcciones": [
+    "profundiza: se repite el plan anterior (resumen_pregunta) para explicarlo"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:resumen_pregunta",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r22",
+     "score": 0.3687
+    }
+   ],
+   "segundos": 42.5,
+   "tiempos_ms": {
+    "ejecucion": 5,
+    "redaccion": 23763,
+    "recuperacion": 301,
+    "verificacion": 1,
+    "interpretacion": 18404
+   },
+   "k_precision": 0.516,
+   "cifras_con_respaldo": [
+    6,
+    6
+   ],
+   "calificacion_humana": 2,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) tabla con n y %; (3) interpretación marcada como tal, sin calificar."
+}

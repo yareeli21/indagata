@@ -1,0 +1,71 @@
+{
+ "id": "CEN-06",
+ "instrumento": "enc_control",
+ "categoria": "inexistente",
+ "turnos": [
+  {
+   "pregunta": "¿Cuántos usan la meditación como estrategia para gestionar su tiempo?",
+   "rag_log_id": 2449,
+   "respuesta": "El instrumento tiene 160 respondentes. [Fuente 1]",
+   "intencion": "conteo_porcentaje",
+   "plan": {
+    "intencion": "conteo_porcentaje",
+    "aclaracion": "¿Te refieres a la pregunta p11?",
+    "consulta_semantica": "estrategias de gestión del tiempo"
+   },
+   "correcciones": [
+    "mención «meditación» descartada (la pregunta no pregunta quién lo mencionó)"
+   ],
+   "verificacion": "respaldo",
+   "ruta": "mixta",
+   "motivo": "plan:conteo_porcentaje:cifras_corregidas",
+   "plantilla": "calculo_literal",
+   "fuentes": [
+    "Encuesta de Carga Académica y Gestión del Tiempo"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p19",
+     "score": 0.5747
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p19",
+     "score": 0.5684
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p11",
+     "score": 0.5308
+    },
+    {
+     "seccion": "pregunta",
+     "etiqueta": "p19",
+     "score": 0.5272
+    }
+   ],
+   "segundos": 41.0,
+   "tiempos_ms": {
+    "ejecucion": 13,
+    "redaccion": 20363,
+    "recuperacion": 338,
+    "verificacion": 10242,
+    "interpretacion": 20228
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    1,
+    1
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "No existe la opción; listar las existentes con conteos."
+}

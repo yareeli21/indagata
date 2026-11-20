@@ -89,6 +89,10 @@ class UploadResponse(BaseModel):
         default=None,
         description="El instrumento original sin respuestas (raw_archivo_original), si se subió.",
     )
+    archivo_diccionario: ArchivoRegistrado | None = Field(
+        default=None,
+        description="El diccionario de datos de los microdatos (raw_archivo_diccionario), si se subió.",
+    )
 
     mensaje: str = Field(
         default="Instrumento recibido y almacenado en crudo.",

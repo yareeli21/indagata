@@ -1,0 +1,65 @@
+{
+ "id": "PNU-01",
+ "instrumento": "pru_nueva",
+ "categoria": "datos",
+ "turnos": [
+  {
+   "pregunta": "¿Cuál fue la opción más elegida en el reactivo de la triangulación?",
+   "rag_log_id": 4145,
+   "respuesta": "La opción más elegida en el reactivo de la triangulación fue \"Combinar múltiples métodos o fuentes para validar resultados\" con 11 personas, lo que representa un 22% del total de respuestas. \n\n[Fuente 1]\n\n**Comparación por r04 «¿Qué es la triangulación en investigación?» [Fuente 1]**\n| Grupo | Personas |\n|---|---|\n| Combinar múltiples métodos o fuentes para validar resultados | 11 |\n| Dividir la muestra en tres grupos | 7 |\n| Usar estadística triangular | 12 |\n| Usar solo un método de recolección de datos | 50 |",
+   "intencion": "comparar_grupos",
+   "plan": {
+    "limite": 1,
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r04"
+   },
+   "plan_modelo": {
+    "limite": 1,
+    "intencion": "comparar_grupos",
+    "agrupar_por": "r04"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:comparar_grupos",
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Competencia en Investigación Científica"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r04",
+     "score": 0.6759
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r04",
+     "score": 0.5888
+    }
+   ],
+   "segundos": 16.8,
+   "tiempos_ms": {
+    "ejecucion": 6,
+    "redaccion": 5560,
+    "recuperacion": 418,
+    "verificacion": 1,
+    "interpretacion": 10702
+   },
+   "k_precision": 0.868,
+   "cifras_con_respaldo": [
+    5,
+    6
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Distribución de r04 con la opción más elegida y su %, sin decir si es correcta."
+}

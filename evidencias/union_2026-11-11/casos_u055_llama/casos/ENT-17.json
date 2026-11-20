@@ -1,0 +1,134 @@
+{
+ "id": "ENT-17",
+ "instrumento": "ent",
+ "categoria": "hilo",
+ "turnos": [
+  {
+   "pregunta": "¿Cuáles son los hallazgos principales de la entrevista?",
+   "rag_log_id": 3834,
+   "respuesta": "[Fuente 1] Salud mental en la universidad (Entrevista)\n\n**Hallazgos principales**\n\n* **Estigma profesional y percepción de gravedad**: En p06, E01 menciona que se daba pena que alguien lo viera entrando al consultorio porque estaba junto a la coordinación y siempre había gente. Esto sugiere que el estigma profesional es un factor importante para que los estudiantes busquen ayuda por sus problemas de salud mental.\n* **Carga de proyectos y exposiciones como fuentes de estrés**: En p02, E01 menciona que la carga de proyectos y las exposiciones son las situaciones que más le generan estrés y ansiedad. Esto sugiere que los estudiantes se sienten abrumados por sus responsabilidades académicas.\n* **Falta de apoyo y escasez de psicólogos**: En p11, E01 menciona que si pudiera cambiar algo en los servicios de salud mental de la universidad, sería aumentar el número de psicólogos. Esto sugiere que los estudiantes sienten que no reciben suficiente apoyo para sus problemas de salud mental.\n* **Dificultad dormir y presión emocional**: En p01, E01 menciona que ha sido un semestre pesado debido a la dificultad dormir y la presión emocional. Esto sugiere que los estudiantes están experimentando un aumento en su estrés y ansiedad durante este semestre.\n\n[Fuente 1] Salud mental en la universidad (Entrevista)\n\nEs el testimonio de una sola persona (E01); no permite generalizar a otros estudiantes.",
+   "intencion": "hallazgo",
+   "plan": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo"
+   },
+   "plan_modelo": {
+    "orden": {},
+    "campos": "todas_las_respuestas",
+    "limite": 1,
+    "intencion": "hallazgo"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": "aceptada",
+   "ruta": "mixta",
+   "motivo": "plan:hallazgo",
+   "plantilla": null,
+   "fuentes": [
+    "Salud mental en la universidad"
+   ],
+   "fragmentos": [
+    {
+     "seccion": null,
+     "etiqueta": null,
+     "score": null
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p06",
+     "score": 0.4875
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4812
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.4599
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p02",
+     "score": 0.4569
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4448
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p08",
+     "score": 0.4286
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.428
+    },
+    {
+     "seccion": "intercambio",
+     "etiqueta": "E01 en p01",
+     "score": 0.424
+    }
+   ],
+   "segundos": 22.9,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "redaccion": 19109,
+    "recuperacion": 409,
+    "verificacion": 2,
+    "interpretacion": 3344
+   },
+   "k_precision": 0.67,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  },
+  {
+   "pregunta": "¿Cuál debería atender primero la universidad y por qué?",
+   "rag_log_id": 3835,
+   "respuesta": "No tengo información relacionada con lo que solicitas en los instrumentos consultados. Recuerda que solo entran al RAG los instrumentos con metadatos aprobados por su autor; puedes ampliar la selección de tu investigación.",
+   "intencion": "hallazgo",
+   "plan": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Qué pregunta o entre qué grupos?",
+    "consulta_semantica": "¿cuál debería atender primero la universidad y por qué?"
+   },
+   "plan_modelo": {
+    "intencion": "hallazgo",
+    "aclaracion": "¿Qué pregunta o entre qué grupos?",
+    "consulta_semantica": "¿cuál debería atender primero la universidad y por qué?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [],
+   "verificacion": null,
+   "ruta": null,
+   "motivo": "plan:hallazgo con similitud 0.52 < 0.55",
+   "plantilla": "sin_informacion",
+   "fuentes": [],
+   "fragmentos": [],
+   "segundos": 5.4,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 438,
+    "interpretacion": 4923
+   },
+   "k_precision": null,
+   "cifras_con_respaldo": [
+    0,
+    0
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "(2) opinión fundamentada en lo citado, aclarando que es un solo testimonio."
+}

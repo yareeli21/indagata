@@ -1,0 +1,58 @@
+{
+ "id": "PRU-20",
+ "instrumento": "pru",
+ "categoria": "instrumento",
+ "turnos": [
+  {
+   "pregunta": "¿Qué opciones tiene el reactivo sobre HTTPS?",
+   "rag_log_id": 3805,
+   "respuesta": "Según la prueba estandarizada, el reactivo r19 ofrece las siguientes opciones para emparejar con HTTPS:\n\nA) Protocolo de mensajería\nB) Protocolo seguro de transferencia web [Fuente 1]\nC) Servidor de correo\nD) Sistema de archivos\n\nLa opción más elegida por los alumnos es B) Protocolo seguro de transferencia web, con un 40.2% de las respuestas (n=39 de 97 alumnos) [Fuente 1].",
+   "intencion": "aclaracion",
+   "plan": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Cuál es la opción correcta para el reactivo sobre HTTPS?"
+   },
+   "plan_modelo": {
+    "intencion": "aclaracion",
+    "aclaracion": "¿Cuál es la opción correcta para el reactivo sobre HTTPS?"
+   },
+   "plan_modelo_sin_cambios": true,
+   "correcciones": [
+    "aclaración → respuesta con lo recuperado del RAG"
+   ],
+   "verificacion": "aceptada",
+   "ruta": "semantica",
+   "motivo": null,
+   "plantilla": null,
+   "fuentes": [
+    "Prueba de Alfabetización Digital"
+   ],
+   "fragmentos": [
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.6674
+    },
+    {
+     "seccion": "reactivo",
+     "etiqueta": "r19",
+     "score": 0.5894
+    }
+   ],
+   "segundos": 6.2,
+   "tiempos_ms": {
+    "ejecucion": 4,
+    "recuperacion": 275,
+    "interpretacion": 1463
+   },
+   "k_precision": 0.857,
+   "cifras_con_respaldo": [
+    4,
+    4
+   ],
+   "calificacion_humana": null,
+   "comentario_humano": null
+  }
+ ],
+ "debe": "Las cuatro opciones con su texto, sin marcar ninguna como correcta."
+}

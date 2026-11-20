@@ -102,8 +102,13 @@ class AppSettings(BaseSettings):
     # Similitud coseno mínima para que un fragmento entre al contexto del LLM.
     # Si ninguno la alcanza, el chat responde que no tiene información
     # relacionada en lugar de dejar que el modelo improvise. Calibrado con 30
-    # instrumentos: preguntas sin relación ≤ 0.30, relacionadas 0.60–0.77.
-    RAG_MIN_SCORE: float = 0.35
+    # instrumentos: preguntas sin relación ≤ 0.30, relacionadas 0.60–0.77. Subido a 0.70 el 10 nov a pedido del
+    # equipo: con 0.65 se respondió «¿qué estrategias usan para mejorar su rendimiento?» con un instrumento que no
+    # trata de eso. Ningún fragmento por debajo entra a la respuesta (ni de relleno).
+    # Bajado a 0.65 el mismo día: 0.70 dejaba fuera preguntas relacionadas (0.60–0.77).
+    # Unión con la rama de pruebas (11 nov): con los chunks medidos en tokens la similitud del fragmento correcto tiene
+    # mediana 0.64 y 0.65 dejaba fuera 17 de 43; con 0.55 llegan 33 de 43 y decide igual que 0.65 (27 de 28).
+    RAG_MIN_SCORE: float = 0.55
     # Dominio acotado (visualization-service/services/dominio.py). Zona gris: similitud
     # en [RAG_MIN_SCORE, RAG_ZONA_GRIS_MAX) sin que una regla decida; ahí un clasificador
     # con Ollama (JSON, temperatura 0) decide si la pregunta es del dominio. Medido en la
@@ -115,6 +120,13 @@ class AppSettings(BaseSettings):
     # ejemplos; entre este valor y RAG_MIN_SCORE, el de «sin información». Auditoría:
     # «¿quién ganó el mundial?» 0.25; preguntas sin relación ≤ 0.30.
     RAG_FUERA_MAX: float = 0.30
+    # Búsqueda híbrida (visualization-service/services/hibrida.py, 11 nov): a la búsqueda por significado (Chroma) se
+    # suma la de palabras (texto completo de Postgres) y se combinan con RRF. Un fragmento también llega a la respuesta
+    # si contiene al menos RAG_MIN_COBERTURA de las palabras con contenido de la pregunta (y 2 o más), aunque su
+    # similitud no alcance RAG_MIN_SCORE: el embedding ubica mal preguntas casi literales.
+    RAG_HIBRIDA: bool = True
+    RAG_MIN_COBERTURA: float = 0.75
+    RAG_LEXICOS_MAX: int = 40
     # Métricas automáticas por respuesta (visualization-service/services/evaluacion.py):
     # fidelidad, relevancia y precisión del contexto, en segundo plano, con un juez local.
     RAG_METRICAS: bool = True
@@ -123,6 +135,16 @@ class AppSettings(BaseSettings):
     # y la pregunta siguiente pasaba de 4–8 s a 31–38 s. False = evaluar todas en segundo plano, como antes.
     RAG_METRICAS_BAJO_DEMANDA: bool = True
     RAG_JUEZ_MODELO: str = ""  # vacío = OLLAMA_MODEL; cámbialo por un juez más grande cuando haya
+    # Juez externo Claude Fable 5.2 (visualization-service/services/juez_fable.py, 11 nov): evalúa CADA respuesta en
+    # segundo plano con seis métricas tipo RAGAS (precisión y recuerdo del contexto, fidelidad, relevancia,
+    # sensibilidad al ruido y corrección factual). Corre en la API de Anthropic, no en la GPU local, así que no frena
+    # el chat. Sin ANTHROPIC_API_KEY la evaluación queda «omitida» con el motivo.
+    ANTHROPIC_API_KEY: str = ""
+    RAG_JUEZ_FABLE: bool = True
+    RAG_JUEZ_FABLE_MODELO: str = "claude-fable-5-2"
+    RAG_JUEZ_FABLE_ESFUERZO: str = "high"  # low | medium | high | xhigh | max (referencia y veredictos)
+    RAG_JUEZ_FABLE_AMPLIADO: int = 12  # fragmentos extra de Chroma (sin umbral) para la respuesta de referencia
+    RAG_JUEZ_FABLE_CONCURRENCIA: int = 2  # evaluaciones simultáneas
     RAG_CLASIFICADOR_LLM: bool = True
     RAG_CLASIFICADOR_MODELO: str = ""  # vacío = OLLAMA_MODEL
     # Consultas con filtro («los que sí reprobaron…»): si las reglas no hallan la
@@ -135,6 +157,16 @@ class AppSettings(BaseSettings):
     # Temperatura de la REDACCIÓN del chat (la interpretación, los clasificadores y el juez van en 0). 0.2 desde el
     # inicio; configurable para un experimento aparte (0 / 0.2 / 0.7). No se mueve al comparar modelos.
     RAG_TEMPERATURA_REDACCION: float = 0.2
+    # Ejemplos pregunta → plan en la instrucción de la interpretación (interpretacion._EJEMPLOS). Se apaga solo para
+    # medir cuánto aportan (prueba con y sin ejemplos, Pruebas 6.7.2); el sistema los usa siempre.
+    RAG_EJEMPLOS_INTERPRETACION: bool = True
+    # Instrucción partida (experimento del 12 nov, Pruebas 6.8.3, 30 preguntas nuevas). RAG_PROMPT_MODULAR: la redacción
+    # lleva solo las reglas que aplican a lo que trae el mensaje (visualization-service/services/prompt.py,
+    # `reglas_para`): mismos aciertos que con las 21 siempre (11 de 30) y un 30 % menos de tokens, así que se adoptó.
+    # RAG_EJEMPLOS_MAX > 0: la interpretación lleva solo esos ejemplos, los más parecidos a la pregunta (más los de fuera
+    # de dominio y aclaración); con 3 bajaron los aciertos de 11 a 7, así que se queda en 0 (todos los que quepan).
+    RAG_EJEMPLOS_MAX: int = 0
+    RAG_PROMPT_MODULAR: bool = True
     # Caché de respuestas: una pregunta idéntica (mismo alcance, versiones vigentes,
     # contexto y modelo) se responde con la guardada sin llamar a Ollama. 0 = sin caché.
     RAG_CACHE_HORAS: float = 24
