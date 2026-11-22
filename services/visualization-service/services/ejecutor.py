@@ -17,6 +17,7 @@ por aquí.
 from __future__ import annotations
 
 import re
+from collections import Counter
 import unicodedata
 from dataclasses import dataclass, field
 from typing import Any
@@ -326,6 +327,13 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
         e.criterio = " y ".join(condiciones)
         e.total = len(grupo)
         e.lineas.append(f"Cumplen la condición {len(grupo)} de {total} respondentes ({pct} %).")
+        if len(plan.filtros) >= 2:
+            # «De los que practican…, ¿cuántos reprobaron?»: la base es la primera condición (21 nov).
+            base, _ = _filtrados(ins, plan.model_copy(update={"filtros": plan.filtros[:1]}))
+            pct_base = round(100 * len(grupo) / len(base), 1) if base else 0.0
+            resto = " y ".join(_describir(doc, f) for f in plan.filtros[1:])
+            e.lineas.append(f"De los {len(base)} con {_describir(doc, plan.filtros[0])}, {len(grupo)} cumplen también "
+                            f"{resto} ({pct_base} %).")
         e.vacio = not grupo
         if plan.menciona and grupo:
             e.tablas.append(_tabla_menciones(doc, grupo, plan))
@@ -341,6 +349,11 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
         e.criterio = e.criterio or f"{_NOMBRE_NIVEL[plan.nivel]} en " + ", ".join(preguntas)
     elif preguntas and not hay_condicion:
         _resumen_pregunta(ins, plan, e)
+        return
+    elif preguntas and not plan.filtros and not plan.menciona and (plan.contexto or plan.contexto_num) \
+            and not doc.get("entrevistas"):
+        # «¿Cuántos intentos hicieron los hombres?»: la pregunta dentro del grupo, no solo cuántos son (21 nov).
+        _resumen_en_grupo(ins, plan, preguntas, e)
         return
     elif not hay_condicion:
         e.lineas.append(f"El instrumento tiene {total} respondentes.")
@@ -398,6 +411,9 @@ def _resumen_pregunta(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> Non
         e.vacio = True
         e.lineas.append("La consulta no indica de qué pregunta se trata.")
         return
+    if (plan.contexto or plan.contexto_num) and not doc.get("entrevistas"):
+        _resumen_en_grupo(ins, plan, preguntas, e)
+        return
     for q in preguntas:
         p = _pregunta(doc, q)
         resumen = (p or {}).get("resumen") or {}
@@ -426,6 +442,36 @@ def _resumen_pregunta(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> Non
             e.lineas.append(f"Opción más elegida: «{m.get('significado')}» ({m.get('pct')} %, {m.get('n')} alumnos).")
     e.criterio = "resumen de " + ", ".join(preguntas)
     e.preguntas = [p["id"] for p in _items(doc) if _corto(p["id"]) in preguntas]
+
+
+def _resumen_en_grupo(ins: Instrumento, plan: PlanConsulta, preguntas: list[str], e: Ejecucion) -> None:
+    """Distribución de cada pregunta solo entre las personas del grupo («¿cuántos intentos hicieron los hombres?»).
+    El resumen precalculado es de todo el instrumento; con un grupo de contexto se cuenta aquí (21 nov)."""
+    doc = ins.doc
+    grupo, condiciones = _filtrados(ins, plan.model_copy(update={"filtros": [], "menciona": ""}))
+    quien = " y ".join(condiciones)
+    for q in preguntas:
+        valores = [_mostrar(x) for p in grupo if (x := p["por_pregunta"].get(q)) and x.get("estado") == "respondida"]
+        cuenta = Counter(valores)
+        numeros = [n for v in valores if (n := _como_numero(v)) is not None]
+        media = f"; media {round(sum(numeros) / len(numeros), 2):g}" if valores and len(numeros) == len(valores) else ""
+        e.lineas.append(f"{_texto_pregunta(doc, q)}: {len(valores)} respuestas válidas de {len(grupo)} personas con "
+                        f"{quien}{media}.")
+        if cuenta:
+            filas = sorted(cuenta.items(), key=lambda kv: (-kv[1], kv[0]))
+            e.tablas.append(Tabla(f"Distribución de {q} ({quien})", ["Opción", "Respondentes", "%"],
+                                  [[v, str(n), f"{round(100 * n / len(valores), 1)} %"] for v, n in filas]))
+    e.criterio = "resumen de " + ", ".join(preguntas) + f" entre quienes cumplen {quien}"
+    e.total = len(grupo)
+    e.vacio = not grupo
+    e.preguntas = [p["id"] for p in _items(doc) if _corto(p["id"]) in preguntas]
+
+
+def _como_numero(valor: str) -> float | None:
+    try:
+        return float(str(valor).replace(",", "."))
+    except ValueError:
+        return None
 
 
 _TOP_RANKING = 3

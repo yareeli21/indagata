@@ -609,3 +609,59 @@ def test_filtro_que_es_opcion_de_la_pregunta_no_se_toca():
     validado = validar_contra_catalogo(plan, [cat])
     assert [f.valor for f in validado.plan.filtros] == ["Sí"]
     assert validado.plan.contexto == {}
+
+
+def _cat_conteos():
+    """Encuesta inventada con una pregunta Sí/No, una numérica de conteo, una de opciones y un grupo de contexto."""
+    preguntas = {
+        "p01": catalogo.PreguntaCatalogo("p01", "¿Usas el transporte escolar?", "binaria", ["Sí", "No"]),
+        "p02": catalogo.PreguntaCatalogo("p02", "¿Cuántos libros leíste el último mes?", "numerica", ["0", "1", "2", "5"]),
+        "p03": catalogo.PreguntaCatalogo("p03", "Cursos extra que tomaste este año", "numerica", ["0", "1", "3"]),
+        "p04": catalogo.PreguntaCatalogo("p04", "¿Qué medio de transporte prefieres para llegar?", "categorica",
+                                         ["Camión", "Metro", "Bicicleta"]),
+    }
+    return catalogo.Catalogo("7", "Encuesta de hábitos", "encuesta", preguntas, ["R001", "R002"],
+                             {"Turno": ["Matutino", "Vespertino"]}, [])
+
+
+@pytest.mark.parametrize(("consulta", "esperado"), [
+    ("¿Cuántos usan el transporte escolar?", [("p01", "=", ["Sí"])]),
+    ("¿Cuántos no usan el transporte escolar?", [("p01", "=", ["No"])]),
+    ("¿Cuántos tomaron al menos dos cursos extra?", [("p03", ">=", 2.0)]),
+    ("¿Cuántos tomaron cursos extra?", [("p03", ">=", 1.0)]),
+    ("¿Cuántos no tomaron ningún curso extra?", [("p03", "<", 1.0)]),
+    ("¿Cuántos tomaron más de 1 curso extra?", [("p03", ">", 1.0)]),
+    ("De los que usan el transporte escolar, ¿cuántos tomaron cursos extra?", [("p01", "=", ["Sí"]), ("p03", ">=", 1.0)]),
+])
+def test_conteo_por_el_tipo_de_la_pregunta(consulta, esperado):
+    # 21 nov: el modelo daba un hallazgo de otra pregunta o la media; el conteo sale del tipo de la pregunta aludida.
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="hallazgo"), consulta, [], _cat_conteos())
+    assert nuevo.intencion == "conteo_porcentaje"
+    assert [(f.pregunta, f.op, f.valor) for f in nuevo.filtros] == esperado
+
+
+def test_cuantos_de_la_cantidad_misma_da_la_distribucion_del_grupo():
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="hallazgo"), "¿Cuántos libros leyeron los del turno vespertino?",
+                              [], _cat_conteos())
+    assert nuevo.intencion == "resumen_pregunta" and nuevo.preguntas == ["p02"]
+    assert nuevo.contexto == {"Turno": "Vespertino"}
+
+
+def test_conteo_sin_pregunta_aludida_no_se_toca():
+    plan = PlanConsulta(intencion="aclaracion", aclaracion="¿A qué te refieres?")
+    nuevo, notas = anclaje.anclar(plan, "¿Cuántos trabajan además de estudiar?", [], _cat_conteos())
+    assert nuevo.intencion == "aclaracion" and notas == []
+
+
+def test_conteo_del_modelo_con_filtros_se_respeta():
+    plan = PlanConsulta(intencion="conteo_porcentaje", filtros=[{"pregunta": "p04", "valor": "Metro"}])
+    nuevo, _ = anclaje.anclar(plan, "¿Cuántos prefieren el metro para llegar?", [], _cat_conteos())
+    assert [(f.pregunta, f.valor) for f in nuevo.filtros] == [("p04", "Metro")]
+
+
+def test_comparacion_de_contexto_inventada_se_descarta():
+    cat = _cat_numerica()  # contexto numérico: edad, semestre_actual
+    plan = PlanConsulta(intencion="conteo_porcentaje", filtros=[{"pregunta": "p01", "valor": "Sí"}],
+                        contexto_num=[{"variable": "semestre_actual", "op": ">", "valor": 1}])
+    nuevo, notas = anclaje.anclar(plan, "¿Cuántos usan la biblioteca del campus al menos una vez?", [], cat)
+    assert nuevo.contexto_num == [] and any("descartado" in n for n in notas)

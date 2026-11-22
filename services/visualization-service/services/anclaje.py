@@ -314,6 +314,30 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
         notas.append((f"intención {intencion} → {nueva}: " if nueva != intencion else "")
                      + f"menciones de «{termino}» en las respuestas abiertas")
         return plan.model_copy(update=cambios), notas
+    # 0c. «¿Cuántos…?» sobre una pregunta que la consulta señala sin ambigüedad: plan por el tipo de la pregunta.
+    # Solo si el modelo no armó condiciones: un conteo con filtros del modelo lo revisan los pasos de abajo.
+    sin_condiciones = intencion in ("hallazgo", "resumen_pregunta", "semantica_abierta", "aclaracion") or (
+        intencion in _FILTRADO and not plan.filtros and not plan.preguntas)
+    if _CONTEO.search(texto) and not enrutador._persona(texto) and not _LISTAR.search(texto) and sin_condiciones \
+            and (directo := _conteo_por_pregunta(texto, plan, cat)) is not None:
+        nuevo, nota = directo
+        notas.append(f"intención {intencion} → {nuevo['intencion']}: {nota}" if nuevo["intencion"] != intencion else nota)
+        plan = plan.model_copy(update={"filtros": [], "preguntas": [], "nivel": None, "contexto": {}, "contexto_num": [],
+                                       "agrupar_por": None, "respondentes": [], "aclaracion": "", "consulta_semantica": "",
+                                       "menciona": "", "orden": None, "limite": None, **nuevo})
+        intencion = plan.intencion
+    elif _CONTEO.search(texto) and not enrutador._persona(texto) and intencion in ("hallazgo", "semantica_abierta") \
+            and not plan.preguntas and not plan.filtros:
+        # «¿Cuántos tienen dificultades socioeconómicas?», «¿cuántos trabajan más de 30 horas?»: la condición es un
+        # dato de la persona, no una pregunta. Si la consulta lo escribe, es un conteo (los pasos 3 lo agregan).
+        grupo = _grupo_contenido(texto, cat)
+        if grupo or _comparaciones_de_contexto(texto, cat):
+            notas.append(f"intención {intencion} → conteo_porcentaje: la condición es un dato de contexto")
+            plan = plan.model_copy(update={"intencion": "conteo_porcentaje", "contexto": dict([grupo]) if grupo else {},
+                                           "contexto_num": [], "aclaracion": "", "consulta_semantica": ""})
+            intencion = plan.intencion
+            if grupo:
+                notas.append(f"contexto {grupo[0]} = «{grupo[1]}» (escrito en la pregunta)")
     if intencion in ("fuera_de_dominio", "uso_plataforma", "metodologia", "aclaracion"):
         return plan, []
     excluidas = _excluidas(texto, cat)
@@ -359,7 +383,7 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
         for var, valores in cat.contexto.items():
             if var == plan.agrupar_por:
                 continue
-            valor = next((v for v in valores if len(v) >= 3 and not v.isdigit() and _menciona(texto, v)), None)
+            valor = next((v for v in valores if len(v) >= 3 and not v.isdigit() and _menciona_grupo(texto, v)), None)
             if valor and _valor_de_un_reactivo(texto, var, valor, cat):
                 notas.append(f"contexto {var} = «{valor}» no se toma («{valor}» es parte del reactivo citado)")
                 continue
@@ -384,6 +408,17 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
                 notas.append(f"contexto {var} = «{valor}» (la pregunta nombra la variable)")
                 break
 
+    # 3a. Comparación numérica del modelo cuyo número no escribió nadie: «¿cuántos reprobaron al menos una materia el
+    # semestre anterior?» se contaba con «Semestre actual > 1» inventado (21 nov, consulta 312).
+    previas_num = " ".join(normalizar(t) for rol, t in historial[-4:] if rol == "usuario")
+    leidas = {c.variable for c in _comparaciones_de_contexto(f"{texto} {previas_num}", cat)}
+    actuales = cambios.get("contexto_num", plan.contexto_num)
+    inventadas = [c for c in actuales
+                  if c.variable not in leidas and not _numero_junto_a(c, f"{texto} {previas_num}")]
+    if inventadas:
+        cambios["contexto_num"] = [c for c in actuales if c not in inventadas]
+        notas += [f"contexto {c.variable} {c.op} {c.valor:g} descartado (ese número no está en la pregunta)"
+                  for c in inventadas]
     # 3b. Comparación sobre un dato de contexto numérico («más de 20 horas»), si el modelo no la puso.
     comparaciones = []
     if intencion in (*_FILTRADO, "comparar_grupos", "resumen_pregunta"):
@@ -473,6 +508,155 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
     return (plan.model_copy(update=cambios) if cambios else plan), notas
 
 
+# ── Conteos por el tipo de la pregunta (21 nov) ──────────────────────────────────────────────────────────────────
+# El modelo de 3B contestaba «¿cuántos practican actividades extracurriculares?» con un hallazgo de otra pregunta,
+# daba la media en «¿cuántos reprobaron una o más materias?» e inventaba «Semestre actual > 1». Si la consulta pide
+# «cuántos» y sus palabras señalan sin ambigüedad una pregunta del catálogo, el plan se arma por el TIPO de esa
+# pregunta, no por la redacción de la consulta:
+#   - Sí/No: se cuentan los «Sí…» (los «No…» si la consulta niega: «no practican», «sin beca»);
+#   - numérica: la comparación escrita («al menos una», «dos o más», «más de 3», «ninguna»); sin comparación,
+#     «¿cuántos reprobaron materias?» es tener al menos 1 (y «no reprobaron», menos de 1);
+#   - «¿cuántos intentos…?» sobre una pregunta que pregunta «¿cuántos intentos…?»: la cantidad misma, su distribución;
+#   - de opciones sin opción nombrada (solo si el modelo no armó ya un conteo): la distribución de la pregunta.
+# Con dos preguntas («de los que practican…, ¿cuántos reprobaron?») se cuentan las dos condiciones. Los grupos de
+# contexto («los hombres») los añaden los pasos siguientes, solo si la consulta los escribe.
+_RAICES_GENERICAS = {"estud", "alumn", "encue", "respo", "perso", "parti", "entre", "prueb", "pregu", "cuant", "unive",
+                     "menos", "minim", "maxim", "algun", "ningu", "veces", "mayor", "menor"}
+_NUMERO_PALABRA = {"cero": 0, "un": 1, "una": 1, "uno": 1, "dos": 2, "tres": 3, "cuatro": 4, "cinco": 5, "seis": 6,
+                   "siete": 7, "ocho": 8, "nueve": 9, "diez": 10}
+_N = r"([0-9]+(?:[.,][0-9]+)?|cero|una|uno|un|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)"
+_COMPARACIONES_PREGUNTA = (
+    (re.compile(r"(?<![a-z])(?:al menos|por lo menos|como minimo|minimo) +" + _N + r"(?![a-z0-9])"), ">="),
+    (re.compile(r"(?<![a-z0-9])" + _N + r" +o +mas(?![a-z])"), ">="),
+    (re.compile(r"(?<![a-z])mas +de +" + _N + r"(?![a-z0-9])"), ">"),
+    (re.compile(r"(?<![a-z0-9])" + _N + r" +o +menos(?![a-z])"), "<="),
+    (re.compile(r"(?<![a-z])menos +de +" + _N + r"(?![a-z0-9])"), "<"),
+    (re.compile(r"(?<![a-z])(?:como maximo|a lo mas|maximo) +" + _N + r"(?![a-z0-9])"), "<="),
+)
+_NINGUNO = re.compile(r"(?<![a-z])ningun[oa]?(?![a-z])")
+_NEGACIONES = {"no", "sin", "nunca", "jamas"}
+_DOS_CONDICIONES = re.compile(r"(?<![a-z])(?:de|entre) +(?:los|las) +que(?![a-z])|(?<![a-z])de +quienes(?![a-z])|"
+                              r"(?<![a-z])y +(?:tambien|ademas)(?![a-z])")
+_CUANTOS_SUSTANTIVO = re.compile(r"(?<![a-z])cuant[oa]s +(?:de +)?([a-z]+)")
+
+
+def _numero_junto_a(c: CondicionContexto, texto: str) -> bool:
+    """¿El número de la comparación está escrito en cifras junto a una palabra de su variable («30 horas»)?"""
+    raices = {t[:5] for t in re.findall(r"[a-z]+", normalizar(c.variable.replace("_", " ")))
+              if len(t) >= 4} - _VARIABLE_GENERICA
+    palabras = re.findall(r"[0-9]+(?:[.,][0-9]+)?|[a-z]+", texto)
+    for i, w in enumerate(palabras):
+        if w[0].isdigit() and float(w.replace(",", ".")) == float(c.valor) \
+                and any(v[:5] in raices for v in palabras[max(0, i - 3):i + 4]):
+            return True
+    return False
+
+
+def _numero_de(token: str) -> float:
+    return float(_NUMERO_PALABRA[token]) if token in _NUMERO_PALABRA else float(token.replace(",", "."))
+
+
+def _es_polar(opciones: list[str]) -> bool:
+    """Pregunta de Sí/No: todas sus opciones empiezan por «sí» o «no», y hay de las dos."""
+    polos = {normalizar(o).split(" ")[0].strip(",.") for o in opciones}
+    return bool(opciones) and polos == {"si", "no"}
+
+
+def _negada(texto: str, raices: set[str]) -> bool:
+    """«no practican», «no han reprobado»: una negación hasta tres palabras antes de una palabra del tema."""
+    palabras = re.findall(r"[a-z]+", texto)
+    return any(w[:5] in raices and _NEGACIONES & set(palabras[max(0, i - 3):i]) for i, w in enumerate(palabras))
+
+
+def _comparacion_escrita(texto: str) -> tuple[str, float] | None:
+    for patron, op in _COMPARACIONES_PREGUNTA:
+        if m := patron.search(texto):
+            return op, _numero_de(m.group(1))
+    return ("<", 1.0) if _NINGUNO.search(texto) else None
+
+
+def _preguntas_aludidas(texto: str, cat: Catalogo) -> list[tuple[str, int]]:
+    """(pregunta, palabras en común) de las que la consulta señala sin ambigüedad: cada una tiene al menos una palabra
+    de la consulta que ninguna otra pregunta tiene. Máximo dos, y dos solo si la consulta encadena condiciones."""
+    contexto: set[str] = set()
+    for var, valores in cat.contexto.items():  # «los hombres», «del semestre…»: son grupos, no preguntas
+        contexto |= enrutador._raices(f"{var} {' '.join(valores)}")
+    verbos = {v[:5] for v in enrutador._VERBOS_CONSULTA}
+    raices = {r for r in enrutador._raices(texto) - _RAICES_GENERICAS - contexto - verbos if not r[0].isdigit()}
+    comunes = {pid: raices & enrutador._raices(p.texto) for pid, p in cat.preguntas.items()}
+    duenos: dict[str, list[str]] = {}
+    for pid, rs in comunes.items():
+        for r in rs:
+            duenos.setdefault(r, []).append(pid)
+    decisivas = {ps[0] for ps in duenos.values() if len(ps) == 1}
+    if not decisivas:
+        return []
+    puntaje = {pid: len(comunes[pid]) for pid in decisivas}
+    mejor = max(puntaje.values())
+    primeras = [pid for pid in decisivas if puntaje[pid] == mejor]
+    if _DOS_CONDICIONES.search(texto):
+        elegidas = [q for q in sorted(decisivas, key=lambda q: -puntaje[q]) if puntaje[q] >= 2 or q in primeras][:2]
+    elif len(primeras) == 1:
+        elegidas = primeras
+    else:
+        return []  # dos preguntas igual de nombradas: decide el modelo
+    # En el orden en que la consulta las nombra: «de los que practican…, ¿cuántos reprobaron?» → la base va primero.
+    palabras = [w[:5] for w in re.findall(r"[a-z]+", texto)]
+    def posicion(q: str) -> int:
+        return min((i for i, w in enumerate(palabras) if w in comunes[q]), default=len(palabras))
+    return [(q, puntaje[q]) for q in sorted(elegidas, key=posicion)]
+
+
+def _grupo_contenido(texto: str, cat: Catalogo) -> tuple[str, str] | None:
+    """El único grupo de contexto escrito en la consulta, completo o sin su código («dificultades socioeconómicas»
+    por «P8 — Dificultades socioeconómicas»; «los hombres» por «Hombre»)."""
+    hallados = set()
+    for var, valores in cat.contexto.items():
+        for v in valores:
+            partes = [normalizar(v)] + [p for p in re.split(r" *[—–-] *", normalizar(v)) if len(p) >= 6]
+            if any(_menciona_grupo(texto, p) for p in partes):
+                hallados.add((var, v))
+    return hallados.pop() if len(hallados) == 1 else None
+
+
+def _conteo_por_pregunta(texto: str, plan: PlanConsulta, cat: Catalogo) -> tuple[dict, str] | None:
+    """Plan de conteo (o de distribución) armado por el tipo de la pregunta aludida; None si no aplica."""
+    aludidas = _preguntas_aludidas(texto, cat)
+    if not aludidas:
+        return None
+    m = _CUANTOS_SUSTANTIVO.search(texto)
+    sustantivo = m.group(1)[:5] if m else ""
+    filtros: list[Filtro] = []
+    for pid, puntaje in aludidas:
+        p = cat.preguntas[pid]
+        raices_p = enrutador._raices(p.texto)
+        if _es_polar(p.opciones):
+            polo = "no" if _negada(texto, raices_p) else "si"
+            filtros.append(Filtro(pregunta=pid, valor=[o for o in p.opciones
+                                                       if normalizar(o).split(" ")[0].strip(",.") == polo]))
+        elif p.tipo == "numerica":
+            if len(aludidas) == 1 and sustantivo and sustantivo in raices_p and "cuant" in normalizar(p.texto):
+                return ({"intencion": "resumen_pregunta", "preguntas": [pid]},
+                        f"distribución de {pid} («cuántos {m.group(1)}» pide la cantidad misma)")
+            comparacion = _comparacion_escrita(texto) or (("<", 1.0) if _negada(texto, raices_p) else (">=", 1.0))
+            filtros.append(Filtro(pregunta=pid, op=comparacion[0], valor=comparacion[1]))
+        elif (len(aludidas) == 1 and p.opciones and puntaje >= 2 and not _opciones_mencionadas(texto, cat)
+              and plan.intencion in ("hallazgo", "semantica_abierta", "resumen_pregunta")):
+            return {"intencion": "resumen_pregunta", "preguntas": [pid]}, f"distribución de {pid} (pregunta de opciones)"
+    if not filtros:
+        return None
+    descripcion = ", ".join(f"{f.pregunta} {f.op} {'/'.join(f.valor) if isinstance(f.valor, list) else f.valor}"
+                            for f in filtros)
+    return {"intencion": "conteo_porcentaje", "filtros": filtros}, f"conteo por el tipo de la pregunta ({descripcion})"
+
+
+def _menciona_grupo(texto: str, valor: str) -> bool:
+    """Como `_menciona`, pero acepta el plural del grupo («los hombres» → «Hombre», «las mujeres» → «Mujer»)."""
+    n = normalizar(valor).strip(" .")
+    return (len(n) >= 4 and n not in _GENERICAS
+            and re.search(r"(?<![a-z0-9])" + re.escape(n) + r"(?:e?s)?(?![a-z0-9])", texto) is not None)
+
+
 def _condiciones_de(texto: str, cat: Catalogo) -> list[Filtro]:
     """Condiciones que una pregunta dice explícitamente: opciones escritas tal cual y, si una palabra nombra una sola
     pregunta de opciones «Sí…»/«No…» («alguna certificación»), sus opciones «Sí…» (o «No…» con «sin», «no», «ningún»)."""
@@ -522,7 +706,9 @@ def _ajustar_filtro(f: Filtro, texto: str, nivel: str | None, cat: Catalogo, not
 
 def _aclarar_condicion(plan: PlanConsulta, texto: str, cat: Catalogo) -> PlanConsulta:
     """Pregunta de aclaración con las opciones reales de la pregunta del instrumento que más se parece a la consulta."""
-    raices = enrutador._raices(texto)
+    # Sin las palabras genéricas («estudiantes», «estudios»): sugería la pregunta de los compañeros que desertaron
+    # «de los estudios» para «¿cuántos trabajan además de estudiar?» (21 nov, consulta 333).
+    raices = enrutador._raices(texto) - _RAICES_GENERICAS
     parecida = max(cat.preguntas.values(), key=lambda q: len(raices & enrutador._raices(q.texto)), default=None)
     if parecida is not None and raices & enrutador._raices(parecida.texto) and parecida.opciones:
         mensaje = (f"No encontré esa condición en «{cat.titulo}». En {parecida.id} («{parecida.texto[:80]}») las opciones "

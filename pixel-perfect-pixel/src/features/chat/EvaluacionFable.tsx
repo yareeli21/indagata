@@ -232,13 +232,8 @@ export function EvaluacionFable({ consultaId, inicial }: EvaluacionFableProps) {
 
       <p className="leading-snug text-muted-foreground">
         Evaluación automática de {evaluacion.modeloReal ?? evaluacion.modelo}
-        {evaluacion.fallback && " (Fable declinó y juzgó su modelo de respaldo)"}. La respuesta
-        ideal la escribe el mismo juez con{" "}
-        {evaluacion.origenReferencia === "contexto_ampliado"
-          ? "lo recuperado más otros fragmentos cercanos del acervo"
-          : "solo lo recuperado"}
-        , sin ver la respuesta del sistema. Puntajes de 0 a 1 calculados con las fórmulas de RAGAS
-        0.4.3 a partir de los veredictos del juez.
+        {evaluacion.fallback && " (Fable declinó y juzgó su modelo de respaldo)"}. Puntajes de 0 a 1
+        calculados con las fórmulas de RAGAS 0.4.3 a partir de los veredictos del juez.
       </p>
     </section>
   );
