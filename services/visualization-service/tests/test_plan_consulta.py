@@ -665,3 +665,25 @@ def test_comparacion_de_contexto_inventada_se_descarta():
                         contexto_num=[{"variable": "semestre_actual", "op": ">", "valor": 1}])
     nuevo, notas = anclaje.anclar(plan, "¿Cuántos usan la biblioteca del campus al menos una vez?", [], cat)
     assert nuevo.contexto_num == [] and any("descartado" in n for n in notas)
+
+
+def test_pregunta_doble_se_divide_en_dos_conteos():
+    # 22 nov: «¿cuántos tienen beca y cuántos son primera generación?» solo calculaba una de las dos.
+    assert anclaje.partes_de_conteo("¿Cuántos usan el transporte escolar y cuántos tomaron cursos extra?") == [
+        "cuantos usan el transporte escolar", "cuantos tomaron cursos extra"]
+    assert anclaje.partes_de_conteo("¿Cuántos usan el transporte escolar y la bicicleta?") == []
+
+
+def test_dos_grupos_de_una_variable_se_comparan():
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="hallazgo"),
+                              "¿Cuántos libros leyeron los del turno matutino y cuántos los del vespertino?", [],
+                              _cat_conteos())
+    assert nuevo.intencion == "comparar_grupos" and nuevo.agrupar_por == "Turno" and nuevo.preguntas == ["p02"]
+    assert nuevo.contexto == {}
+
+
+def test_variable_de_si_no_nombrada_es_un_conteo():
+    cat = _cat_conteos()
+    cat.contexto["tiene_beca"] = ["True", "False"]
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="hallazgo"), "¿Cuántos tienen beca?", [], cat)
+    assert nuevo.intencion == "conteo_porcentaje" and nuevo.contexto == {"tiene_beca": "True"}

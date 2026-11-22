@@ -331,13 +331,23 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
         # «¿Cuántos tienen dificultades socioeconómicas?», «¿cuántos trabajan más de 30 horas?»: la condición es un
         # dato de la persona, no una pregunta. Si la consulta lo escribe, es un conteo (los pasos 3 lo agregan).
         grupo = _grupo_contenido(texto, cat)
-        if grupo or _comparaciones_de_contexto(texto, cat):
+        if grupo or _comparaciones_de_contexto(texto, cat) or _si_no_nombrada(texto, cat):
             notas.append(f"intención {intencion} → conteo_porcentaje: la condición es un dato de contexto")
             plan = plan.model_copy(update={"intencion": "conteo_porcentaje", "contexto": dict([grupo]) if grupo else {},
                                            "contexto_num": [], "aclaracion": "", "consulta_semantica": ""})
             intencion = plan.intencion
             if grupo:
                 notas.append(f"contexto {grupo[0]} = «{grupo[1]}» (escrito en la pregunta)")
+    # 0d. «¿Cuántos intentos hicieron los hombres y cuántos las mujeres?»: dos grupos de una misma variable se
+    # comparan; antes se tomaba solo el primero (22 nov, consultas 321 y 339).
+    dos = _grupos_de_una_variable(texto, cat) if not enrutador._persona(texto) else None
+    if dos and intencion in ("hallazgo", "resumen_pregunta", "semantica_abierta", *_FILTRADO):
+        var, escritos = dos
+        notas.append(f"intención {intencion} → comparar_grupos por {var} (la pregunta nombra {', '.join(escritos)})")
+        plan = plan.model_copy(update={"intencion": "comparar_grupos", "agrupar_por": var, "aclaracion": "",
+                                       "contexto": {k: v for k, v in plan.contexto.items() if k != var},
+                                       "consulta_semantica": "", "orden": None, "limite": None})
+        intencion = plan.intencion
     if intencion in ("fuera_de_dominio", "uso_plataforma", "metodologia", "aclaracion"):
         return plan, []
     excluidas = _excluidas(texto, cat)
@@ -716,3 +726,33 @@ def _aclarar_condicion(plan: PlanConsulta, texto: str, cat: Catalogo) -> PlanCon
     else:
         mensaje = f"No encontré esa condición en «{cat.titulo}». ¿A qué pregunta u opción te refieres?"
     return PlanConsulta(intencion="aclaracion", instrumentos=plan.instrumentos, aclaracion=mensaje[:300])
+
+
+def _si_no_nombrada(texto: str, cat: Catalogo, saltar: str | None = None) -> tuple[str, str] | None:
+    """Variable de sí/no nombrada en la consulta («tienen beca», «no son de primera generación») y su valor."""
+    for var, valores in cat.contexto.items():
+        nombre = [t[:5] for t in re.findall(r"[a-z]+", normalizar(var.replace("_", " ")))  # en orden
+                  if len(t) >= 4 and t[:5] not in _VARIABLE_GENERICA]
+        if var == saltar or not nombre or not all(normalizar(v) in _VERDADEROS | _FALSOS for v in valores):
+            continue
+        if not (m := re.search(r"\b" + r"\w*\s+(?:\w+\s+)?".join(map(re.escape, nombre)), texto)):
+            continue
+        negada = re.search(r"\b(?:no|sin|ni)\s+(?:\w+\s+){0,2}$", texto[:m.start()]) is not None
+        if valor := _booleano(valores, not negada):
+            return var, valor
+    return None
+
+
+def _grupos_de_una_variable(texto: str, cat: Catalogo) -> tuple[str, list[str]] | None:
+    """(variable, grupos) si la consulta escribe dos o más grupos de una misma variable («hombres y mujeres»)."""
+    for var, valores in cat.contexto.items():
+        escritos = [v for v in valores if len(v) >= 3 and not v.isdigit() and _menciona_grupo(texto, v)]
+        if len(escritos) >= 2:
+            return var, escritos
+    return None
+
+
+def partes_de_conteo(pregunta: str) -> list[str]:
+    """«¿Cuántos tienen beca y cuántos son primera generación?» → las dos preguntas; [] si no es doble (22 nov)."""
+    partes = [p.strip(" ,;?") for p in re.split(r" y (?=cuant[oa]s )", normalizar(pregunta))]
+    return partes if len(partes) >= 2 and all(_CONTEO.search(p) for p in partes) else []

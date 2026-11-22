@@ -25,7 +25,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from models import FuenteChatOut
-from services import ejecutor, enrutador, interpretacion
+from services import anclaje, ejecutor, enrutador, interpretacion
 from services.catalogo import Catalogo, construir as construir_catalogo
 from services.dominio import normalizar
 from services.ejecutor import Ejecucion
@@ -117,7 +117,19 @@ async def preparar(pregunta: str, historial: list[tuple[str, str]], ids: list[st
     preparada = Preparada(interp, instrumentos, catalogos)
     if interp.plan is not None:
         inicio = time.perf_counter()
-        preparada.ejecuciones = ejecutor.ejecutar(interp.plan, instrumentos, ejecutor.fiabilidad_de(sesion, instrumentos))
+        fiabilidad = ejecutor.fiabilidad_de(sesion, instrumentos)
+        preparada.ejecuciones = ejecutor.ejecutar(interp.plan, instrumentos, fiabilidad)
+        # «¿Cuántos tienen beca y cuántos son primera generación?»: un plan calcula una sola cosa. Si la pregunta junta
+        # dos conteos y cada parte tiene un cálculo claro por sí sola, se calculan las dos (22 nov, consultas 318 y 338).
+        partes = anclaje.partes_de_conteo(pregunta) if interp.plan.intencion != "comparar_grupos" and catalogos else []
+        if partes:
+            cat = next((c for c in catalogos if c.id in interp.plan.instrumentos), catalogos[0])
+            planes = [anclaje.anclar(PlanConsulta(intencion="hallazgo", instrumentos=interp.plan.instrumentos),
+                                     parte, historial, cat)[0] for parte in partes]
+            if all(p.intencion in ("conteo_porcentaje", "resumen_pregunta", "comparar_grupos")
+                   and (p.filtros or p.contexto or p.contexto_num or p.preguntas or p.agrupar_por) for p in planes):
+                preparada.ejecuciones = [e for p in planes for e in ejecutor.ejecutar(p, instrumentos, fiabilidad)]
+                interp.correcciones.append(f"pregunta doble: se calcularon {len(planes)} partes por separado")
         preparada.ms_ejecucion = round((time.perf_counter() - inicio) * 1000)
     return preparada
 

@@ -393,7 +393,12 @@ def _comparar_grupos(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> None
                     conteo[_mostrar(p["por_pregunta"].get(q))] = conteo.get(_mostrar(p["por_pregunta"].get(q)), 0) + 1
                 if conteo:
                     top = max(conteo, key=conteo.get)
-                    fila.append(f"«{top}» {round(100 * conteo[top] / len(validas), 1)} % ({conteo[top]} de {len(validas)})")
+                    texto_fila = f"«{top}» {round(100 * conteo[top] / len(validas), 1)} % ({conteo[top]} de {len(validas)})"
+                    # Respuestas numéricas («¿cuántos intentos…?»): también la media del grupo (22 nov).
+                    numeros = [n for v, k in conteo.items() if (n := _como_numero(v)) is not None for _ in range(k)]
+                    if numeros and len(numeros) == len(validas):
+                        texto_fila += f"; media {round(sum(numeros) / len(numeros), 2):g}"
+                    fila.append(texto_fila)
                 else:
                     fila.append("(sin respuestas)")
         filas.append(fila)
