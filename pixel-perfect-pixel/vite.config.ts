@@ -12,6 +12,8 @@ import tsConfigPaths from "vite-tsconfig-paths";
 //   3. tanstackStart  → routing + SSR; su entry de servidor es src/server.ts.
 //   4. viteReact      → transformación de React (debe ir después de tanstackStart).
 //   5. nitro          → empaquetado del servidor para desplegar.
+const hostsPermitidos = process.env["VITE_HOSTS_PERMITIDOS"];
+
 export default defineConfig({
   server: {
     port: 8080,
@@ -19,12 +21,10 @@ export default defineConfig({
     // Vite seguía sirviendo la versión anterior de los archivos editados (9 nov). Con
     // VITE_USAR_POLLING=true (docker-compose.yml) revisa los archivos cada 300 ms.
     watch:
-      process.env.VITE_USAR_POLLING === "true" ? { usePolling: true, interval: 300 } : undefined,
+      process.env["VITE_USAR_POLLING"] === "true" ? { usePolling: true, interval: 300 } : undefined,
     // En el servidor se entra por un dominio (detrás de Caddy) y Vite rechaza los hosts que no conoce
     // («Blocked request»). VITE_HOSTS_PERMITIDOS=indagata.eafranco.com,localhost (docker-compose.servidor.yml).
-    allowedHosts: process.env.VITE_HOSTS_PERMITIDOS
-      ? process.env.VITE_HOSTS_PERMITIDOS.split(",").map((h) => h.trim())
-      : undefined,
+    allowedHosts: hostsPermitidos ? hostsPermitidos.split(",").map((h) => h.trim()) : undefined,
   },
   optimizeDeps: {
     include: ["sonner"],
