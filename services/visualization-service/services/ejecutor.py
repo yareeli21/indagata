@@ -433,6 +433,11 @@ def _resumen_pregunta(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> Non
         if not resumen:
             e.lineas.append(f"{_texto_pregunta(doc, q)}: sin resumen calculado.")
             continue
+        if not resumen.get("distribucion") and resumen.get("media") is None and not resumen.get("opcion_mas_elegida"):
+            # Pregunta abierta: su resumen solo cuenta respuestas. Se dan los textos reales, agrupados, para que la
+            # redacción no tenga que adivinar qué dijeron (24 nov, consulta 344).
+            _respuestas_abiertas(doc, q, e)
+            continue
         validas, sin = resumen.get("n_validas"), resumen.get("n_sin_respuesta")
         e.lineas.append(f"{_texto_pregunta(doc, q)}: {validas} respuestas válidas" + (f", {sin} sin respuesta" if sin else "")
                         + (f"; media {resumen['media']}" if resumen.get("media") is not None else "") + ".")
@@ -470,6 +475,30 @@ def _resumen_en_grupo(ins: Instrumento, plan: PlanConsulta, preguntas: list[str]
     e.total = len(grupo)
     e.vacio = not grupo
     e.preguntas = [p["id"] for p in _items(doc) if _corto(p["id"]) in preguntas]
+
+
+_MAX_RESPUESTAS_ABIERTAS = 40
+
+
+def _respuestas_abiertas(doc: dict[str, Any], q: str, e: Ejecucion) -> None:
+    """Las respuestas de una pregunta abierta, agrupadas por texto (sin mayúsculas ni signos), de la más repetida a la
+    menos, con quiénes las dieron. Tope de _MAX_RESPUESTAS_ABIERTAS textos distintos."""
+    grupos: dict[str, list[tuple[str, str]]] = {}
+    for p in _personas(doc):
+        x = p["por_pregunta"].get(q)
+        if not x or x.get("estado") != "respondida":
+            continue
+        texto = _mostrar(x).strip()
+        if texto:
+            grupos.setdefault(normalizar(texto).strip(" .,;"), []).append((texto, _corto(p["id"])))
+    total = sum(len(v) for v in grupos.values())
+    e.lineas.append(f"{_texto_pregunta(doc, q)}: {total} respuestas abiertas, {len(grupos)} distintas.")
+    filas = [[v[0][0], str(len(v)), ", ".join(r for _, r in v[:8]) + ("…" if len(v) > 8 else "")]
+             for v in sorted(grupos.values(), key=lambda v: (-len(v), v[0][0]))[:_MAX_RESPUESTAS_ABIERTAS]]
+    if filas:
+        e.tablas.append(Tabla(f"Respuestas a {q}", ["Respuesta", "Respondentes", "Quiénes"], filas))
+    if len(grupos) > _MAX_RESPUESTAS_ABIERTAS:
+        e.lineas.append(f"Se muestran las {_MAX_RESPUESTAS_ABIERTAS} respuestas distintas más frecuentes.")
 
 
 def _como_numero(valor: str) -> float | None:

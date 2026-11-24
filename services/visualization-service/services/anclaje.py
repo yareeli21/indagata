@@ -315,9 +315,10 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
                      + f"menciones de «{termino}» en las respuestas abiertas")
         return plan.model_copy(update=cambios), notas
     # 0c. «¿Cuántos…?» sobre una pregunta que la consulta señala sin ambigüedad: plan por el tipo de la pregunta.
-    # Solo si el modelo no armó condiciones: un conteo con filtros del modelo lo revisan los pasos de abajo.
+    # Solo si el modelo no armó condiciones: un conteo con filtros del modelo lo revisan los pasos de abajo. Un conteo
+    # que solo nombra la pregunta («¿cuántos reprueban materias?» → p01, sin condición) daba su resumen (24 nov, 351).
     sin_condiciones = intencion in ("hallazgo", "resumen_pregunta", "semantica_abierta", "aclaracion") or (
-        intencion in _FILTRADO and not plan.filtros and not plan.preguntas)
+        intencion in _FILTRADO and not plan.filtros and not plan.nivel)
     if _CONTEO.search(texto) and not enrutador._persona(texto) and not _LISTAR.search(texto) and sin_condiciones \
             and (directo := _conteo_por_pregunta(texto, plan, cat)) is not None:
         nuevo, nota = directo
@@ -347,6 +348,20 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
         plan = plan.model_copy(update={"intencion": "comparar_grupos", "agrupar_por": var, "aclaracion": "",
                                        "contexto": {k: v for k, v in plan.contexto.items() if k != var},
                                        "consulta_semantica": "", "orden": None, "limite": None})
+        intencion = plan.intencion
+    # 0e. «¿Hay inseguridad en la escuela?»: el modelo eligió «hallazgo» (datos notables de cualquier pregunta) para una
+    # consulta que nombra sin ambigüedad una pregunta del instrumento (24 nov, consultas 348 y 350): se da la pregunta
+    # (de opciones o numérica: su distribución; abierta: todas sus respuestas, agrupadas). En una encuesta, la búsqueda
+    # semántica sobre una pregunta abierta solo traía el fragmento de resumen («50 respuestas abiertas», sin textos) y el
+    # modelo inventó «98 % no ha sufrido inseguridad» (consulta 344): también pasa a sus respuestas.
+    revisar = intencion == "hallazgo" or (intencion == "semantica_abierta" and cat.tipo == "encuesta")
+    aludidas = _preguntas_aludidas(texto, cat) if revisar and not enrutador._persona(texto) else []
+    if len(aludidas) == 1 and (intencion == "hallazgo" or not cat.preguntas[aludidas[0][0]].opciones):
+        pid = aludidas[0][0]
+        tipo = "de opciones" if cat.preguntas[pid].opciones else "abierta: todas sus respuestas"
+        notas.append(f"intención {intencion} → resumen_pregunta de {pid} (la consulta trata de esa pregunta; {tipo})")
+        plan = plan.model_copy(update={"intencion": "resumen_pregunta", "preguntas": [pid], "filtros": [],
+                                       "consulta_semantica": ""})
         intencion = plan.intencion
     if intencion in ("fuera_de_dominio", "uso_plataforma", "metodologia", "aclaracion"):
         return plan, []
@@ -531,7 +546,10 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
 # Con dos preguntas («de los que practican…, ¿cuántos reprobaron?») se cuentan las dos condiciones. Los grupos de
 # contexto («los hombres») los añaden los pasos siguientes, solo si la consulta los escribe.
 _RAICES_GENERICAS = {"estud", "alumn", "encue", "respo", "perso", "parti", "entre", "prueb", "pregu", "cuant", "unive",
-                     "menos", "minim", "maxim", "algun", "ningu", "veces", "mayor", "menor"}
+                     "menos", "minim", "maxim", "algun", "ningu", "veces", "mayor", "menor",
+                     # La institución no nombra ninguna pregunta: «¿hay inseguridad en la escuela?» empataba con la de
+                     # los donativos «a la escuela» (24 nov).
+                     "escue", "facul", "insti", "plant"}
 _NUMERO_PALABRA = {"cero": 0, "un": 1, "una": 1, "uno": 1, "dos": 2, "tres": 3, "cuatro": 4, "cinco": 5, "seis": 6,
                    "siete": 7, "ocho": 8, "nueve": 9, "diez": 10}
 _N = r"([0-9]+(?:[.,][0-9]+)?|cero|una|uno|un|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)"

@@ -687,3 +687,20 @@ def test_variable_de_si_no_nombrada_es_un_conteo():
     cat.contexto["tiene_beca"] = ["True", "False"]
     nuevo, _ = anclaje.anclar(PlanConsulta(intencion="hallazgo"), "¿Cuántos tienen beca?", [], cat)
     assert nuevo.intencion == "conteo_porcentaje" and nuevo.contexto == {"tiene_beca": "True"}
+
+
+def test_hallazgo_que_nombra_una_pregunta_da_esa_pregunta():
+    # 24 nov: «¿hay inseguridad en la escuela?» daba hallazgos de otras preguntas.
+    cat = _cat_conteos()
+    cat.preguntas["p05"] = catalogo.PreguntaCatalogo("p05", "¿Has sufrido acoso dentro de la escuela? Describe", "texto_corto")
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="hallazgo"), "¿hay acoso en la escuela?", [], cat)
+    assert nuevo.intencion == "resumen_pregunta" and nuevo.preguntas == ["p05"]
+    # Sin una pregunta clara sigue siendo un hallazgo.
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="hallazgo"), "¿qué hallazgos interesantes hay?", [], cat)
+    assert nuevo.intencion == "hallazgo"
+
+
+def test_conteo_que_solo_nombra_la_pregunta_recibe_su_condicion():
+    plan = PlanConsulta(intencion="conteo_porcentaje", preguntas=["p03"])
+    nuevo, _ = anclaje.anclar(plan, "¿Cuántos tomaron cursos extra?", [], _cat_conteos())
+    assert [(f.pregunta, f.op, f.valor) for f in nuevo.filtros] == [("p03", ">=", 1.0)]
