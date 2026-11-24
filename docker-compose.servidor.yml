@@ -88,6 +88,11 @@ services:
   frontend:
     environment:
       VITE_USAR_POLLING: "false"
+      # Todo entra por el mismo dominio (Caddy): la página en «/», la API en «/api-gw» y el análisis en
+      # «/api-analisis». Con «localhost» el navegador de un visitante buscaría la API en su propia computadora.
+      VITE_API_URL: https://${INDAGATA_DOMINIO:-indagata.eafranco.com}/api-gw
+      VITE_ANALYSIS_URL: https://${INDAGATA_DOMINIO:-indagata.eafranco.com}/api-analisis
+      VITE_HOSTS_PERMITIDOS: ${INDAGATA_DOMINIO:-indagata.eafranco.com},localhost
     ports: !override
       - "127.0.0.1:3000:3000"
 

@@ -20,6 +20,11 @@ export default defineConfig({
     // VITE_USAR_POLLING=true (docker-compose.yml) revisa los archivos cada 300 ms.
     watch:
       process.env.VITE_USAR_POLLING === "true" ? { usePolling: true, interval: 300 } : undefined,
+    // En el servidor se entra por un dominio (detrás de Caddy) y Vite rechaza los hosts que no conoce
+    // («Blocked request»). VITE_HOSTS_PERMITIDOS=indagata.eafranco.com,localhost (docker-compose.servidor.yml).
+    allowedHosts: process.env.VITE_HOSTS_PERMITIDOS
+      ? process.env.VITE_HOSTS_PERMITIDOS.split(",").map((h) => h.trim())
+      : undefined,
   },
   optimizeDeps: {
     include: ["sonner"],

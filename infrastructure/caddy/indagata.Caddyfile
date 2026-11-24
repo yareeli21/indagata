@@ -1,0 +1,23 @@
+# Sitio de Indagata para el Caddy del servidor (24 nov 2026). Se agrega al Caddyfile principal.
+# Todo entra por el mismo dominio; los servicios solo escuchan en 127.0.0.1 (docker-compose.servidor.yml).
+indagata.eafranco.com {
+	encode gzip
+
+	# API (api-gateway). handle_path quita el prefijo: /api-gw/auth/login → /auth/login.
+	# flush_interval -1: el chat responde en streaming (SSE) y cada parte debe llegar en cuanto sale.
+	handle_path /api-gw/* {
+		reverse_proxy 127.0.0.1:8006 {
+			flush_interval -1
+		}
+	}
+
+	# analysis-service (KPIs), al que el frontend llama directo.
+	handle_path /api-analisis/* {
+		reverse_proxy 127.0.0.1:8002
+	}
+
+	# La página (frontend).
+	handle {
+		reverse_proxy 127.0.0.1:3000
+	}
+}
