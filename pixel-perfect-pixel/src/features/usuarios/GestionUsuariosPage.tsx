@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { UserPlus } from "lucide-react";
+import { useAuth } from "@/features/auth/AuthContext";
+import { ListaUsuarios } from "./ListaUsuarios";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Pagina } from "@/components/layout/Pagina";
 import {
@@ -9,10 +11,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { registrarUsuario } from "@/api/usuarios";
+import { listarUsuarios, registrarUsuario, type UsuarioAdmin } from "@/api/usuarios";
 import type { Rol } from "@/types";
 
 export function GestionUsuariosPage() {
+  const { usuario } = useAuth();
+  const [usuarios, setUsuarios] = useState<UsuarioAdmin[]>([]);
+  const [errorLista, setErrorLista] = useState<string | null>(null);
+  const cargar = useCallback(() => {
+    listarUsuarios()
+      .then((lista) => {
+        setUsuarios(lista);
+        setErrorLista(null);
+      })
+      .catch((err: unknown) =>
+        setErrorLista(err instanceof Error ? err.message : "No fue posible cargar los usuarios."),
+      );
+  }, []);
+  useEffect(cargar, [cargar]);
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,6 +49,7 @@ export function GestionUsuariosPage() {
       setEmail("");
       setPassword("");
       setRol("Investigador");
+      cargar();
     } catch (err) {
       setError(err instanceof Error ? err.message : "No fue posible crear el usuario.");
     } finally {
@@ -46,7 +63,7 @@ export function GestionUsuariosPage() {
         icono={UserPlus}
         etiqueta="Administración"
         titulo="Gestión de usuarios"
-        descripcion="Da de alta nuevos usuarios de INDAGATA. Solo disponible para administradores."
+        descripcion="Da de alta usuarios y administra sus cuentas: editar, restablecer contraseña, desactivar o eliminar. Solo para administradores."
       />
 
       <section className="superficie rounded-3xl p-6 md:p-8">
@@ -83,9 +100,9 @@ export function GestionUsuariosPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Contraseña (mínimo 6 caracteres)"
+              placeholder="Contraseña (mínimo 8 caracteres)"
               autoComplete="new-password"
-              minLength={6}
+              minLength={8}
               required
               className="w-full border-0 border-b-[1.5px] border-border bg-transparent px-0.5 pb-3 pt-1.5 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary"
             />
@@ -132,6 +149,21 @@ export function GestionUsuariosPage() {
             {enviando ? "Creando…" : "Crear usuario"}
           </button>
         </form>
+      </section>
+
+      <section className="superficie space-y-4 rounded-3xl p-6 md:p-8">
+        <h2 className="font-display text-xl font-bold tracking-tight">Usuarios registrados</h2>
+        <p className="text-sm text-muted-foreground">
+          Desactivar quita el acceso y conserva el trabajo de la persona. Solo se pueden eliminar
+          cuentas sin instrumentos, porque eliminarlas borraría todo lo que subieron.
+        </p>
+        {errorLista ? (
+          <p role="alert" className="text-sm text-destructive">
+            {errorLista}
+          </p>
+        ) : (
+          <ListaUsuarios usuarios={usuarios} miId={usuario?.id ?? ""} onCambio={cargar} />
+        )}
       </section>
     </Pagina>
   );

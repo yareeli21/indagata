@@ -43,7 +43,11 @@ CREATE TABLE IF NOT EXISTS usuario (
     email          VARCHAR(255) UNIQUE NOT NULL,
     password_hash  TEXT         NOT NULL,
     rol            VARCHAR(50),
-    fecha_registro TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+    fecha_registro TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    -- 2026_22: cuenta activa y bloqueo por intentos fallidos (5 seguidos → 15 minutos).
+    activo            BOOLEAN   NOT NULL DEFAULT TRUE,
+    intentos_fallidos INTEGER   NOT NULL DEFAULT 0,
+    bloqueado_hasta   TIMESTAMP NULL
 );
 
 -- ── 2. raw_data (TABLA PADRE) ─────────────────────────────────────────────────

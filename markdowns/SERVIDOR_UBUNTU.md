@@ -38,6 +38,8 @@ docker run --rm -v indagata_chromadb_data:/datos -v ~/migracion_indagata:/respal
   sh -c "rm -rf /datos/* && tar xzf /respaldo/chromadb_data.tgz -C /datos"
 docker compose cp ~/migracion_indagata/indagata_db.dump postgres:/tmp/indagata_db.dump
 docker compose exec postgres pg_restore -U postgres -d indagata_db --clean --if-exists /tmp/indagata_db.dump
+# El respaldo es anterior a la gestión de usuarios: aplicar su migración después de restaurar.
+docker compose exec postgres psql -U postgres -d indagata_db -f /migrations/2026_22_usuarios_gestion.sql
 ```
 
 ## 4. Levantar

@@ -39,3 +39,4 @@ class UsuarioRead(UsuarioBase):
 
     usuario_id: int
     fecha_registro: datetime | None = None
+    activo: bool = True

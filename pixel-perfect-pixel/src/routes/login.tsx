@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/features/auth/AuthContext";
 
 export const Route = createFileRoute("/login")({
@@ -28,6 +29,8 @@ function LoginPage() {
   const [contrasena, setContrasena] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
+  const [verContrasena, setVerContrasena] = useState(false);
+  const [ayudaContrasena, setAyudaContrasena] = useState(false);
 
   useEffect(() => {
     if (usuario) navigate({ to: "/inicio" });
@@ -82,7 +85,7 @@ function LoginPage() {
             <div className="flex items-end">
               <input
                 id="contrasena"
-                type="password"
+                type={verContrasena ? "text" : "password"}
                 value={contrasena}
                 onChange={(e) => setContrasena(e.target.value)}
                 placeholder="Contraseña"
@@ -90,13 +93,29 @@ function LoginPage() {
                 required
                 className="flex-1 border-0 border-b-[1.5px] border-border bg-transparent px-0.5 pb-3 pt-1.5 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary"
               />
-              <a
-                href="#"
-                className="ml-4 shrink-0 whitespace-nowrap pb-3 text-xs text-primary hover:underline"
+              <button
+                type="button"
+                onClick={() => setVerContrasena((v) => !v)}
+                aria-label={verContrasena ? "Ocultar contraseña" : "Mostrar contraseña"}
+                aria-pressed={verContrasena}
+                className="mb-2 ml-2 shrink-0 rounded-md p-1 text-muted-foreground hover:text-foreground"
+              >
+                {verContrasena ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+              </button>
+              <button
+                type="button"
+                onClick={() => setAyudaContrasena((v) => !v)}
+                className="ml-3 shrink-0 whitespace-nowrap pb-3 text-xs text-primary hover:underline"
               >
                 ¿Olvidaste tu contraseña?
-              </a>
+              </button>
             </div>
+            {ayudaContrasena && (
+              <p className="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm text-muted-foreground">
+                Pide a un administrador de INDAGATA que restablezca tu contraseña desde «Gestión de
+                usuarios». Después podrás cambiarla por una tuya en «Cambiar contraseña».
+              </p>
+            )}
 
             {error && (
               <p

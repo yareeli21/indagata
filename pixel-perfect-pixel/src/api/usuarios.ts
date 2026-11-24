@@ -31,7 +31,7 @@ function mensajeError(error: unknown): string {
     case 403:
       return "No tienes permisos para crear usuarios (se requiere rol administrador).";
     case 422:
-      return "Datos inválidos: revisa el correo (formato válido, sin dominios reservados) y que la contraseña tenga al menos 6 caracteres.";
+      return "Datos inválidos: revisa el correo (formato válido, sin dominios reservados) y que la contraseña tenga al menos 8 caracteres.";
     case 401:
       return "Tu sesión expiró, vuelve a iniciar sesión.";
     default:
@@ -57,5 +57,79 @@ export async function registrarUsuario(datos: DatosNuevoUsuario): Promise<Usuari
     });
   } catch (error) {
     throw new Error(mensajeError(error));
+  }
+}
+
+// ── Gestión de usuarios (24 nov) ──────────────────────────────────────────────────────────────────────
+
+/** Usuario en la lista del administrador (GET /auth/usuarios). */
+export interface UsuarioAdmin {
+  usuario_id: number;
+  nombre: string;
+  email: string;
+  rol: "investigador" | "administrador" | string;
+  activo: boolean;
+  instrumentos: number;
+  bloqueado: boolean;
+  fecha_registro: string | null;
+}
+
+/** El backend explica en `detail` por qué no se pudo (último administrador, cuenta con instrumentos…). */
+function detalle(error: unknown, defecto: string): Error {
+  return new Error(error instanceof Error && error.message ? error.message : defecto);
+}
+
+export async function listarUsuarios(): Promise<UsuarioAdmin[]> {
+  try {
+    return await pedir<UsuarioAdmin[]>(`${API_URL}/auth/usuarios`, { auth: true });
+  } catch (error) {
+    throw detalle(error, "No fue posible cargar los usuarios.");
+  }
+}
+
+export async function actualizarUsuario(
+  id: number,
+  cambios: { nombre?: string; rol?: Rol; activo?: boolean },
+): Promise<UsuarioAdmin> {
+  try {
+    return await pedir<UsuarioAdmin>(`${API_URL}/auth/usuarios/${id}`, {
+      method: "PATCH",
+      auth: true,
+      body: { ...cambios, rol: cambios.rol ? rolAMinusculas(cambios.rol) : undefined },
+    });
+  } catch (error) {
+    throw detalle(error, "No fue posible actualizar el usuario.");
+  }
+}
+
+export async function restablecerPassword(id: number, password: string): Promise<UsuarioAdmin> {
+  try {
+    return await pedir<UsuarioAdmin>(`${API_URL}/auth/usuarios/${id}/password`, {
+      method: "POST",
+      auth: true,
+      body: { password },
+    });
+  } catch (error) {
+    throw detalle(error, "No fue posible restablecer la contraseña.");
+  }
+}
+
+export async function eliminarUsuario(id: number): Promise<void> {
+  try {
+    await pedir<void>(`${API_URL}/auth/usuarios/${id}`, { method: "DELETE", auth: true });
+  } catch (error) {
+    throw detalle(error, "No fue posible eliminar el usuario.");
+  }
+}
+
+export async function cambiarMiPassword(actual: string, nueva: string): Promise<void> {
+  try {
+    await pedir<void>(`${API_URL}/auth/me/password`, {
+      method: "POST",
+      auth: true,
+      body: { actual, nueva },
+    });
+  } catch (error) {
+    throw detalle(error, "No fue posible cambiar la contraseña.");
   }
 }

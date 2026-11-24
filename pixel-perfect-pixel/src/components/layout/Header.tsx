@@ -3,6 +3,7 @@ import { LogOut, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/features/auth/AuthContext";
+import { CambiarPassword } from "@/features/auth/CambiarPassword";
 import { ResearchSelector } from "./ResearchSelector";
 import { ListaNavegacion, Marca, TarjetaSubir } from "./Sidebar";
 
@@ -55,6 +56,7 @@ export function Header() {
         >
           {iniciales(usuario?.nombre)}
         </span>
+        <CambiarPassword />
         <Button variant="ghost" onClick={salir} className="px-3 text-muted-foreground">
           <LogOut />
           <span className="hidden xl:inline">Cerrar sesión</span>
