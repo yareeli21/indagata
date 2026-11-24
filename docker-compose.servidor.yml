@@ -1,0 +1,95 @@
+# Ajustes para el servidor Ubuntu (24 nov 2026). Se usa ENCIMA de docker-compose.yml:
+#
+#   docker compose -f docker-compose.yml -f docker-compose.servidor.yml up -d
+#
+# - Usa el Ollama que ya está instalado en la máquina (servicio del sistema) en lugar de levantar otro
+#   contenedor: dos copias del modelo no caben en la GPU. Los contenedores lo alcanzan por
+#   host.docker.internal; Ollama debe escuchar en 0.0.0.0 (ver markdowns/SERVIDOR_UBUNTU.md).
+# - Fija ChromaDB en 1.4.4, la versión con la que se creó el índice que se migra.
+# - Publica todos los puertos solo en 127.0.0.1: desde internet se entra únicamente por Caddy (HTTPS).
+services:
+  ollama:
+    profiles: ["ollama-local"]  # no se levanta en el servidor
+
+  postgres:
+    ports: !override
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+
+  chromadb:
+    image: chromadb/chroma:1.4.4
+    ports: !override
+      - "127.0.0.1:8008:8000"
+
+  redis:
+    ports: !override
+      - "127.0.0.1:6379:6379"
+
+  api-gateway:
+    ports: !override
+      - "127.0.0.1:8006:8000"
+
+  instrument-service:
+    ports: !override
+      - "127.0.0.1:8001:8001"
+
+  analysis-service:
+    depends_on: !override
+      postgres:
+        condition: service_healthy
+      chromadb:
+        condition: service_started
+    environment:
+      OLLAMA_HOST: http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports: !override
+      - "127.0.0.1:8002:8002"
+
+  metadata-service:
+    environment:
+      OLLAMA_HOST: http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports: !override
+      - "127.0.0.1:8003:8003"
+
+  cleaning-service:
+    ports: !override
+      - "127.0.0.1:8007:8007"
+
+  knowledge-service:
+    environment:
+      OLLAMA_HOST: http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports: !override
+      - "127.0.0.1:8009:8009"
+
+  storage-service:
+    ports: !override
+      - "127.0.0.1:8004:8004"
+
+  visualization-service:
+    depends_on: !override
+      postgres:
+        condition: service_healthy
+      chromadb:
+        condition: service_started
+      storage-service:
+        condition: service_started
+    environment:
+      OLLAMA_HOST: http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports: !override
+      - "127.0.0.1:8005:8005"
+
+  frontend:
+    environment:
+      VITE_USAR_POLLING: "false"
+    ports: !override
+      - "127.0.0.1:3000:3000"
+
+  chroma-viewer:
+    ports: !override
+      - "127.0.0.1:8085:8000"
