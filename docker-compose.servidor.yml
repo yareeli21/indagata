@@ -5,7 +5,7 @@
 # - Usa el Ollama que ya está instalado en la máquina (servicio del sistema) en lugar de levantar otro
 #   contenedor: dos copias del modelo no caben en la GPU. Los contenedores lo alcanzan por
 #   host.docker.internal; Ollama debe escuchar en 0.0.0.0 (ver markdowns/SERVIDOR_UBUNTU.md).
-# - Fija ChromaDB en 1.4.4, la versión con la que se creó el índice que se migra.
+# - Fija ChromaDB por su digest (la imagen con la que se creó el índice que se migra, chroma 1.4.4).
 # - Publica todos los puertos solo en 127.0.0.1: desde internet se entra únicamente por Caddy (HTTPS).
 services:
   ollama:
@@ -16,7 +16,8 @@ services:
       - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
 
   chromadb:
-    image: chromadb/chroma:1.4.4
+    # La misma imagen (por su digest) con la que se creó el índice migrado: chroma 1.4.4.
+    image: chromadb/chroma@sha256:1e0b73a187a28757c572acba508c46f48c9e8b0acaf5c20e6d95cdedce1acdf6
     ports: !override
       - "127.0.0.1:8008:8000"
 
