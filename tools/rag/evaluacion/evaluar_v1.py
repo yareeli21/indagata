@@ -37,10 +37,9 @@ from typing import Any
 AQUI = Path(__file__).resolve().parent
 RAIZ = AQUI.parents[2]
 RESULTADOS = AQUI / "resultados"
-GATEWAY = "http://localhost:8006"
+GATEWAY = os.environ.get("INDAGATA_API", "http://localhost:8006")
 OLLAMA = "http://localhost:11434"
 EMBEDDINGS = "nomic-embed-text"
-REDACTOR = "llama3.2:3b"
 CONTENEDOR = "indagata_visualization_service"
 
 
@@ -71,13 +70,44 @@ def recuperacion(_: argparse.Namespace) -> None:
     env = {**os.environ, "MSYS_NO_PATHCONV": "1"}
     subprocess.run(["docker", "cp", str(AQUI / "banco_v1.json"), f"{CONTENEDOR}:/tmp/banco.json"], check=True, env=env)
     print("Midiendo la recuperación dentro del contenedor (unos minutos)…", flush=True)
-    r = subprocess.run(["docker", "compose", "exec", "-T", "-w", "/app", "-e", "PYTHONPATH=/app", "-e", "HF_HUB_OFFLINE=1",
-                        "visualization-service", "python", "scripts/evaluar_recuperacion.py", "/tmp/banco.json"],
-                       cwd=RAIZ, capture_output=True, text=True, encoding="utf-8", env=env)
+    r = subprocess.run(["docker", "exec", "-w", "/app", "-e", "PYTHONPATH=/app", "-e", "HF_HUB_OFFLINE=1", CONTENEDOR,
+                        "python", "scripts/evaluar_recuperacion.py", "/tmp/banco.json"],
+                       capture_output=True, text=True, encoding="utf-8", env=env)
     if r.returncode != 0:
         sys.exit(f"Falló la medición:\n{r.stderr[-2000:]}")
     datos = json.loads(r.stdout)
     print(f"Guardado: {_guardar('recuperacion', datos, reporte_recuperacion(datos))}")
+
+
+def calibrar(_: argparse.Namespace) -> None:
+    """Barrido del umbral de similitud y de la cobertura por palabras con el conjunto de DESARROLLO (no toca el de
+    prueba). Corre dentro del contenedor."""
+    env = {**os.environ, "MSYS_NO_PATHCONV": "1"}
+    subprocess.run(["docker", "cp", str(AQUI / "banco_v1.json"), f"{CONTENEDOR}:/tmp/banco.json"], check=True, env=env)
+    print("Calibrando con el conjunto de desarrollo dentro del contenedor…", flush=True)
+    r = subprocess.run(["docker", "exec", "-w", "/app", "-e", "PYTHONPATH=/app", "-e", "HF_HUB_OFFLINE=1", CONTENEDOR,
+                        "python", "scripts/evaluar_recuperacion.py", "/tmp/banco.json", "--calibrar"],
+                       capture_output=True, text=True, encoding="utf-8", env=env)
+    if r.returncode != 0:
+        sys.exit(f"Falló la calibración:\n{r.stderr[-2000:]}")
+    datos = json.loads(r.stdout)
+    print(f"Guardado: {_guardar('calibracion', datos, reporte_calibracion(datos))}")
+
+
+def reporte_calibracion(d: dict[str, Any]) -> str:
+    act = d["actual"]
+    lineas = [f"# Calibración del filtro de relevancia — conjunto de {d['conjunto']}", "",
+              f"Valores actuales: `RAG_MIN_SCORE` = {act['umbral']}, `RAG_MIN_COBERTURA` = {act['cobertura']}. Búsqueda "
+              "híbrida con el alcance del chat (el instrumento en las preguntas con respuesta; la colección en las demás). "
+              "Solo la compuerta de la recuperación: no incluye el planificador ni el clasificador de la zona gris.", "",
+              "| Umbral | Cobertura | Con respuesta aceptadas | Fragmento correcto pasa | Falsas aceptaciones | "
+              "Decisiones correctas |", "|---|---|---|---|---|---|"]
+    for f in sorted(d["tabla"], key=lambda f: (-f["decisiones_correctas"], -f["umbral"], -f["cobertura"])):
+        marca = " ← actual" if (f["umbral"], f["cobertura"]) == (act["umbral"], act["cobertura"]) else ""
+        lineas.append(f"| {f['umbral']} | {f['cobertura']} | {f['acepta_con_respuesta']}/{f['con_respuesta']} | "
+                      f"{f['fragmento_correcto_pasa']}/{f['con_respuesta']} | {f['falsas_aceptaciones']}/{f['sin_respuesta']} "
+                      f"| {f['decisiones_correctas']}/{f['total']}{marca} |")
+    return "\n".join(lineas) + "\n"
 
 
 def reporte_recuperacion(d: dict[str, Any]) -> str:
@@ -119,14 +149,56 @@ def reporte_recuperacion(d: dict[str, Any]) -> str:
 
 # ── 2. Chat de punta a punta ──────────────────────────────────────────────────────
 
-def _cliente():
-    import httpx
+class _Respuesta:
+    def __init__(self, status_code: int, texto: str):
+        self.status_code, self.text = status_code, texto
 
-    c = httpx.Client(timeout=httpx.Timeout(900, connect=15))
-    tok = c.post(f"{GATEWAY}/auth/login", json={"email": "investigador@indagata.com",
-                                                "password": "investigador123"}).json()["access_token"]
-    c.headers["Authorization"] = f"Bearer {tok}"
+    def json(self) -> Any:
+        return json.loads(self.text)
+
+
+class _Cliente:
+    """Cliente HTTP mínimo con la biblioteca estándar (el servidor no tiene httpx fuera de los contenedores)."""
+
+    def __init__(self) -> None:
+        self.token: str | None = None
+
+    def _pedir(self, metodo: str, url: str, datos: Any = None) -> _Respuesta:
+        import urllib.error
+        import urllib.request
+
+        cuerpo = json.dumps(datos).encode() if datos is not None else None
+        req = urllib.request.Request(url, data=cuerpo, method=metodo, headers={"Content-Type": "application/json"})
+        if self.token:
+            req.add_header("Authorization", f"Bearer {self.token}")
+        try:
+            with urllib.request.urlopen(req, timeout=900) as r:
+                return _Respuesta(r.status, r.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            return _Respuesta(e.code, e.read().decode("utf-8", "replace"))
+
+    def post(self, url: str, json: Any = None) -> _Respuesta:  # noqa: A002 — misma firma que httpx
+        return self._pedir("POST", url, json)
+
+    def get(self, url: str) -> _Respuesta:
+        return self._pedir("GET", url)
+
+
+def _cliente() -> _Cliente:
+    """Sesión en el chat. Usuario: INDAGATA_EMAIL / INDAGATA_PASSWORD (por defecto, el investigador de desarrollo)."""
+    c = _Cliente()
+    r = c.post(f"{GATEWAY}/auth/login", json={"email": os.environ.get("INDAGATA_EMAIL", "investigador@indagata.com"),
+                                              "password": os.environ.get("INDAGATA_PASSWORD", "investigador123")})
+    if r.status_code != 200:
+        sys.exit(f"No se pudo iniciar sesión ({r.status_code}). Define INDAGATA_EMAIL e INDAGATA_PASSWORD.")
+    c.token = r.json()["access_token"]
     return c
+
+
+def _modelo(c: _Cliente) -> str:
+    """El redactor que usa el servidor (OLLAMA_MODEL); la evaluación no elige modelo."""
+    r = c.get(f"{GATEWAY}/rag/modelo")
+    return (r.json().get("modelo") if r.status_code == 200 else None) or "desconocido"
 
 
 _NUMERO = re.compile(r"\d+(?:[.,]\d+)?")
@@ -143,12 +215,14 @@ def chat(a: argparse.Namespace) -> None:
     banco = _banco()
     preguntas = [p for p in banco["preguntas"] if a.conjunto == "todo" or p["conjunto"] == a.conjunto]
     c = _cliente()
+    redactor = _modelo(c)
+    print(f"Redactor del servidor: {redactor}; {len(preguntas)} preguntas ({a.conjunto}).", flush=True)
     filas = []
     for n, p in enumerate(preguntas, 1):
         inicio = time.monotonic()
         try:
             r = c.post(f"{GATEWAY}/rag/chat", json={"pregunta": p["pregunta"], "instrumentoIds": p["alcance"], "stream": False,
-                                                     "usarCache": False, "calcularMetricas": False, "modelo": REDACTOR})
+                                                     "usarCache": False, "calcularMetricas": False})
             datos = r.json() if r.status_code == 200 else {"error": f"HTTP {r.status_code}: {r.text[:200]}"}
         except Exception as exc:  # noqa: BLE001 — una consulta caída no tumba la corrida
             datos = {"error": f"{type(exc).__name__}: {exc}"}
@@ -165,7 +239,7 @@ def chat(a: argparse.Namespace) -> None:
                 if decision == "dentro" else None, "segundos": segundos, "error": datos.get("error")}
         filas.append(fila)
         print(f"[{n}/{len(preguntas)}] {p['id']} {decision} ({segundos} s) cifras={fila['cifras_correctas']}", flush=True)
-    datos = {"banco": banco["version"], "conjunto": a.conjunto, "redactor": REDACTOR, "filas": filas,
+    datos = {"banco": banco["version"], "conjunto": a.conjunto, "redactor": redactor, "filas": filas,
              "resumen": resumen_chat(filas)}
     print(f"Guardado: {_guardar('chat', datos, reporte_chat(datos))}")
 
@@ -306,6 +380,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="paso", required=True)
     sub.add_parser("recuperacion").set_defaults(funcion=recuperacion)
+    sub.add_parser("calibrar").set_defaults(funcion=calibrar)
     p_chat = sub.add_parser("chat")
     p_chat.add_argument("--conjunto", choices=("prueba", "desarrollo", "todo"), default="prueba")
     p_chat.set_defaults(funcion=chat)

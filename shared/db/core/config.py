@@ -110,7 +110,10 @@ class AppSettings(BaseSettings):
     # equipo: con 0.65 se respondió «¿qué estrategias usan para mejorar su rendimiento?» con un instrumento que no
     # trata de eso. Ningún fragmento por debajo entra a la respuesta (ni de relleno).
     # Bajado a 0.65 el mismo día: 0.70 dejaba fuera preguntas relacionadas (0.60–0.77).
-    RAG_MIN_SCORE: float = 0.65
+    # 25 nov: 0.55, calibrado con el conjunto de DESARROLLO del banco v1 (tools/rag/evaluacion/resultados/calibracion_*):
+    # el mayor número de decisiones correctas sin aceptaciones falsas (25/31 con respuesta aceptadas contra 22/31 con
+    # 0.65; 0 de 3 sin respuesta). El caso que motivó 0.70 (la ficha a 0.67) ya lo frena la regla de textos generales.
+    RAG_MIN_SCORE: float = 0.55
     # Dominio acotado (visualization-service/services/dominio.py). Zona gris: similitud
     # en [RAG_MIN_SCORE, RAG_ZONA_GRIS_MAX) sin que una regla decida; ahí un clasificador
     # con Ollama (JSON, temperatura 0) decide si la pregunta es del dominio. Medido en la

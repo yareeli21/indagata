@@ -1,0 +1,2624 @@
+{
+  "conjunto": "desarrollo",
+  "actual": {
+    "umbral": 0.65,
+    "cobertura": 0.75
+  },
+  "tabla": [
+    {
+      "umbral": 0.45,
+      "cobertura": 0.5,
+      "acepta_con_respuesta": 30,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 28,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 31,
+      "total": 34,
+      "rechazadas": [
+        "I95-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.45,
+      "cobertura": 0.6,
+      "acepta_con_respuesta": 29,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 28,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 30,
+      "total": 34,
+      "rechazadas": [
+        "I87-b",
+        "I95-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.45,
+      "cobertura": 0.75,
+      "acepta_con_respuesta": 29,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 28,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 30,
+      "total": 34,
+      "rechazadas": [
+        "I87-b",
+        "I95-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.45,
+      "cobertura": 0.9,
+      "acepta_con_respuesta": 29,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 28,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 30,
+      "total": 34,
+      "rechazadas": [
+        "I87-b",
+        "I95-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.5,
+      "cobertura": 0.5,
+      "acepta_con_respuesta": 30,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 28,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 31,
+      "total": 34,
+      "rechazadas": [
+        "I95-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.5,
+      "cobertura": 0.6,
+      "acepta_con_respuesta": 29,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 28,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 30,
+      "total": 34,
+      "rechazadas": [
+        "I87-b",
+        "I95-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.5,
+      "cobertura": 0.75,
+      "acepta_con_respuesta": 29,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 28,
+      "falsas_aceptaciones": 1,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 31,
+      "total": 34,
+      "rechazadas": [
+        "I87-b",
+        "I95-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07"
+      ]
+    },
+    {
+      "umbral": 0.5,
+      "cobertura": 0.9,
+      "acepta_con_respuesta": 29,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 28,
+      "falsas_aceptaciones": 1,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 31,
+      "total": 34,
+      "rechazadas": [
+        "I87-b",
+        "I95-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07"
+      ]
+    },
+    {
+      "umbral": 0.55,
+      "cobertura": 0.5,
+      "acepta_con_respuesta": 29,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 28,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 30,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I95-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.55,
+      "cobertura": 0.6,
+      "acepta_con_respuesta": 26,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 26,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 27,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I92-b",
+        "I95-b",
+        "I100-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.55,
+      "cobertura": 0.75,
+      "acepta_con_respuesta": 25,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 24,
+      "falsas_aceptaciones": 0,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 28,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I92-b",
+        "I95-b",
+        "I100-b",
+        "I105-b"
+      ],
+      "aceptadas_sin_respuesta": []
+    },
+    {
+      "umbral": 0.55,
+      "cobertura": 0.9,
+      "acepta_con_respuesta": 24,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 23,
+      "falsas_aceptaciones": 0,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 27,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I92-b",
+        "I93-b",
+        "I95-b",
+        "I100-b",
+        "I105-b"
+      ],
+      "aceptadas_sin_respuesta": []
+    },
+    {
+      "umbral": 0.6,
+      "cobertura": 0.5,
+      "acepta_con_respuesta": 28,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 27,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 29,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I95-b",
+        "I106-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.6,
+      "cobertura": 0.6,
+      "acepta_con_respuesta": 25,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 25,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 26,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I92-b",
+        "I95-b",
+        "I100-b",
+        "I106-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.6,
+      "cobertura": 0.75,
+      "acepta_con_respuesta": 23,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 22,
+      "falsas_aceptaciones": 0,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 26,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I92-b",
+        "I95-b",
+        "I100-b",
+        "I104-b",
+        "I105-b",
+        "I106-b"
+      ],
+      "aceptadas_sin_respuesta": []
+    },
+    {
+      "umbral": 0.6,
+      "cobertura": 0.9,
+      "acepta_con_respuesta": 22,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 21,
+      "falsas_aceptaciones": 0,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 25,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I92-b",
+        "I93-b",
+        "I95-b",
+        "I100-b",
+        "I104-b",
+        "I105-b",
+        "I106-b"
+      ],
+      "aceptadas_sin_respuesta": []
+    },
+    {
+      "umbral": 0.65,
+      "cobertura": 0.5,
+      "acepta_con_respuesta": 28,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 27,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 29,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I95-b",
+        "I106-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.65,
+      "cobertura": 0.6,
+      "acepta_con_respuesta": 25,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 25,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 26,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I92-b",
+        "I95-b",
+        "I100-b",
+        "I106-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.65,
+      "cobertura": 0.75,
+      "acepta_con_respuesta": 22,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 21,
+      "falsas_aceptaciones": 0,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 25,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I92-b",
+        "I95-b",
+        "I97-b",
+        "I100-b",
+        "I104-b",
+        "I105-b",
+        "I106-b"
+      ],
+      "aceptadas_sin_respuesta": []
+    },
+    {
+      "umbral": 0.65,
+      "cobertura": 0.9,
+      "acepta_con_respuesta": 20,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 18,
+      "falsas_aceptaciones": 0,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 23,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I92-b",
+        "I93-b",
+        "I95-b",
+        "I97-b",
+        "I100-b",
+        "I101-b",
+        "I104-b",
+        "I105-b",
+        "I106-b"
+      ],
+      "aceptadas_sin_respuesta": []
+    },
+    {
+      "umbral": 0.7,
+      "cobertura": 0.5,
+      "acepta_con_respuesta": 28,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 26,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 29,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I95-b",
+        "I106-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.7,
+      "cobertura": 0.6,
+      "acepta_con_respuesta": 25,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 24,
+      "falsas_aceptaciones": 2,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 26,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I92-b",
+        "I95-b",
+        "I100-b",
+        "I106-b"
+      ],
+      "aceptadas_sin_respuesta": [
+        "S07",
+        "S08"
+      ]
+    },
+    {
+      "umbral": 0.7,
+      "cobertura": 0.75,
+      "acepta_con_respuesta": 21,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 20,
+      "falsas_aceptaciones": 0,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 24,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I92-b",
+        "I94-b",
+        "I95-b",
+        "I97-b",
+        "I100-b",
+        "I104-b",
+        "I105-b",
+        "I106-b"
+      ],
+      "aceptadas_sin_respuesta": []
+    },
+    {
+      "umbral": 0.7,
+      "cobertura": 0.9,
+      "acepta_con_respuesta": 16,
+      "con_respuesta": 31,
+      "fragmento_correcto_pasa": 14,
+      "falsas_aceptaciones": 0,
+      "sin_respuesta": 3,
+      "decisiones_correctas": 19,
+      "total": 34,
+      "rechazadas": [
+        "I86-b",
+        "I87-b",
+        "I90-b",
+        "I92-b",
+        "I93-b",
+        "I94-b",
+        "I95-b",
+        "I96-b",
+        "I97-b",
+        "I100-b",
+        "I101-b",
+        "I104-b",
+        "I105-b",
+        "I106-b",
+        "I112-b"
+      ],
+      "aceptadas_sin_respuesta": []
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "I86-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.5279,
+          "seccion": "kpi",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5774,
+          "seccion": "kpi",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4172,
+          "seccion": "pregunta",
+          "coincidencia": 0.4,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5322,
+          "seccion": "respondente",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4871,
+          "seccion": "pregunta",
+          "coincidencia": 0.4,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.4327,
+          "seccion": "pregunta",
+          "coincidencia": 0.4,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.5278,
+          "seccion": "respondente",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4036,
+          "seccion": "kpi",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I87-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.4235,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": true
+        },
+        {
+          "score": 0.3792,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": true
+        },
+        {
+          "score": 0.3689,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.3131,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.3864,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.3312,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.3768,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.3384,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I88-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.6784,
+          "seccion": "pregunta",
+          "coincidencia": 1.0,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.6426,
+          "seccion": "pregunta",
+          "coincidencia": 1.0,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.6038,
+          "seccion": "respondente",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5304,
+          "seccion": "pregunta",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.6002,
+          "seccion": "respondente",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5753,
+          "seccion": "respondente",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5963,
+          "seccion": "respondente",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5697,
+          "seccion": "respondente",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I89-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.5502,
+          "seccion": "respondente",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.5737,
+          "seccion": "kpi",
+          "coincidencia": 1.0,
+          "palabras": 3,
+          "correcto": false
+        },
+        {
+          "score": 0.5499,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.5385,
+          "seccion": "pregunta",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.5486,
+          "seccion": "respondente",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.504,
+          "seccion": "pregunta",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.5486,
+          "seccion": "respondente",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4138,
+          "seccion": "pregunta",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I90-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.6942,
+          "seccion": "pregunta",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.6613,
+          "seccion": "pregunta",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.5814,
+          "seccion": "respondente",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.4272,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5781,
+          "seccion": "respondente",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.4696,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5754,
+          "seccion": "respondente",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.3869,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I91-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.532,
+          "seccion": "kpi",
+          "coincidencia": 1.0,
+          "palabras": 4,
+          "correcto": false
+        },
+        {
+          "score": 0.5514,
+          "seccion": "kpi",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": false
+        },
+        {
+          "score": 0.5587,
+          "seccion": "pregunta",
+          "coincidencia": 1.0,
+          "palabras": 4,
+          "correcto": true
+        },
+        {
+          "score": 0.504,
+          "seccion": "pregunta",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.5019,
+          "seccion": "encabezado",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.4715,
+          "seccion": "kpi",
+          "coincidencia": 1.0,
+          "palabras": 4,
+          "correcto": false
+        },
+        {
+          "score": 0.5272,
+          "seccion": "kpi",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4958,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I92-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.5381,
+          "seccion": "pregunta",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.4946,
+          "seccion": "pregunta",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.4599,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.3834,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4589,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.3928,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4582,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.426,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I93-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.5376,
+          "seccion": "pregunta",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.5155,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5134,
+          "seccion": "pregunta",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.4613,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4558,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.3227,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4493,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.3388,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I94-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.4823,
+          "seccion": "reactivo",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.6881,
+          "seccion": "reactivo",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": true
+        },
+        {
+          "score": 0.2828,
+          "seccion": "reactivo",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.3685,
+          "seccion": "reactivo",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.2788,
+          "seccion": "reactivo",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5655,
+          "seccion": "reactivo",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4622,
+          "seccion": "reactivo",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.3315,
+          "seccion": "reactivo",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I95-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.3838,
+          "seccion": "reactivo",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": true
+        },
+        {
+          "score": 0.2187,
+          "seccion": "reactivo",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.3427,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.2425,
+          "seccion": "kpi",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.1445,
+          "seccion": "alumno",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.1428,
+          "seccion": "alumno",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.2104,
+          "seccion": "alumno",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.0915,
+          "seccion": "encabezado",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I96-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.6664,
+          "seccion": "reactivo",
+          "coincidencia": 0.8,
+          "palabras": 4,
+          "correcto": true
+        },
+        {
+          "score": 0.617,
+          "seccion": "encabezado",
+          "coincidencia": 0.4,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6026,
+          "seccion": "kpi",
+          "coincidencia": 0.8,
+          "palabras": 4,
+          "correcto": false
+        },
+        {
+          "score": 0.6723,
+          "seccion": "reactivo",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.6369,
+          "seccion": "reactivo",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5932,
+          "seccion": "kpi",
+          "coincidencia": 0.4,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6053,
+          "seccion": "reactivo",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.6555,
+          "seccion": "reactivo",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I97-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.6428,
+          "seccion": "reactivo",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.463,
+          "seccion": "reactivo",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5221,
+          "seccion": "encabezado",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4175,
+          "seccion": "reactivo",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5555,
+          "seccion": "encabezado",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3516,
+          "seccion": "alumno",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.3345,
+          "seccion": "alumno",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.4553,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I98-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.7259,
+          "seccion": "reactivo",
+          "coincidencia": 0.5,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.6003,
+          "seccion": "reactivo",
+          "coincidencia": 0.333,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5516,
+          "seccion": "kpi",
+          "coincidencia": 0.167,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4859,
+          "seccion": "reactivo",
+          "coincidencia": 0.167,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5493,
+          "seccion": "reactivo",
+          "coincidencia": 0.167,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5268,
+          "seccion": "reactivo",
+          "coincidencia": 0.167,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5908,
+          "seccion": "reactivo",
+          "coincidencia": 0.167,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5485,
+          "seccion": "reactivo",
+          "coincidencia": 0.167,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I99-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.7574,
+          "seccion": "reactivo",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.8213,
+          "seccion": "reactivo",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7187,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6599,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.634,
+          "seccion": "reactivo",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.6104,
+          "seccion": "reactivo",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.542,
+          "seccion": "alumno",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5389,
+          "seccion": "alumno",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I100-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.5382,
+          "seccion": "reactivo",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.4222,
+          "seccion": "reactivo",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4094,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.408,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3998,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3989,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3965,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3744,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I101-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.6159,
+          "seccion": "pregunta",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.5915,
+          "seccion": "pregunta",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.3521,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4243,
+          "seccion": "respondente",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.336,
+          "seccion": "respondente",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3166,
+          "seccion": "respondente",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.3355,
+          "seccion": "respondente",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3338,
+          "seccion": "respondente",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I102-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.6376,
+          "seccion": "pregunta",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.7065,
+          "seccion": "pregunta",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6274,
+          "seccion": "pregunta",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6389,
+          "seccion": "respondente",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4583,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5281,
+          "seccion": "encabezado",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6339,
+          "seccion": "respondente",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5865,
+          "seccion": "pregunta",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "id": "I103-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.723,
+          "seccion": "reactivo",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": true
+        },
+        {
+          "score": 0.5047,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4975,
+          "seccion": "kpi",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4687,
+          "seccion": "kpi",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4614,
+          "seccion": "kpi",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4287,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4249,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4207,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I104-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.5859,
+          "seccion": "reactivo",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.4853,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.457,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4538,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4537,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4272,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3985,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3978,
+          "seccion": "kpi",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I105-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.5317,
+          "seccion": "reactivo",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.3303,
+          "seccion": "reactivo",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.3859,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3419,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.321,
+          "seccion": "kpi",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3048,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.2972,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.2953,
+          "seccion": "reactivo",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I106-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.4679,
+          "seccion": "intercambio",
+          "coincidencia": 0.4,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.4688,
+          "seccion": "intercambio",
+          "coincidencia": 0.4,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.5855,
+          "seccion": "pregunta",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": true
+        },
+        {
+          "score": 0.5399,
+          "seccion": "intercambio",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": true
+        },
+        {
+          "score": 0.5365,
+          "seccion": "intercambio",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": true
+        },
+        {
+          "score": 0.5365,
+          "seccion": "intercambio",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": true
+        },
+        {
+          "score": 0.5322,
+          "seccion": "intercambio",
+          "coincidencia": 0.2,
+          "palabras": 1,
+          "correcto": true
+        },
+        {
+          "score": 0.5254,
+          "seccion": "intercambio",
+          "coincidencia": 0.4,
+          "palabras": 2,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "id": "I107-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.7413,
+          "seccion": "pregunta",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.6955,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.6366,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7234,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7232,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7157,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.5403,
+          "seccion": "pregunta",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.7063,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "id": "I108-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.7147,
+          "seccion": "pregunta",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.6626,
+          "seccion": "kpi",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.6542,
+          "seccion": "encabezado",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6366,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6287,
+          "seccion": "kpi",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.7305,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7192,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.4624,
+          "seccion": "intercambio",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I109-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.8258,
+          "seccion": "intercambio",
+          "coincidencia": 1.0,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.781,
+          "seccion": "intercambio",
+          "coincidencia": 1.0,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.7593,
+          "seccion": "pregunta",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.8242,
+          "seccion": "intercambio",
+          "coincidencia": 1.0,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.6115,
+          "seccion": "kpi",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.8228,
+          "seccion": "intercambio",
+          "coincidencia": 1.0,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.8103,
+          "seccion": "intercambio",
+          "coincidencia": 1.0,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.7862,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "id": "I110-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.7883,
+          "seccion": "pregunta",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.8152,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7075,
+          "seccion": "intercambio",
+          "coincidencia": 1.0,
+          "palabras": 3,
+          "correcto": false
+        },
+        {
+          "score": 0.8141,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7046,
+          "seccion": "intercambio",
+          "coincidencia": 1.0,
+          "palabras": 3,
+          "correcto": false
+        },
+        {
+          "score": 0.8134,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.6728,
+          "seccion": "pregunta",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.8127,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "id": "I111-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.7612,
+          "seccion": "pregunta",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.6863,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.6842,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.738,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7261,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7064,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.4899,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.7043,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "id": "I112-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.6509,
+          "seccion": "pregunta",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.4864,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.4921,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4982,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5973,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.1771,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.5945,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.5864,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "id": "I113-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.7223,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.6857,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.6886,
+          "seccion": "pregunta",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7001,
+          "seccion": "pregunta",
+          "coincidencia": 0.25,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.7221,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7212,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7199,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.4735,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I114-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.7593,
+          "seccion": "pregunta",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.6818,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.6497,
+          "seccion": "intercambio",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.7308,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.6822,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.6767,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.6708,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.67,
+          "seccion": "intercambio",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "id": "I115-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.7598,
+          "seccion": "pregunta",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": true
+        },
+        {
+          "score": 0.6857,
+          "seccion": "kpi",
+          "coincidencia": 1.0,
+          "palabras": 4,
+          "correcto": false
+        },
+        {
+          "score": 0.6996,
+          "seccion": "kpi",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": false
+        },
+        {
+          "score": 0.6602,
+          "seccion": "kpi",
+          "coincidencia": 0.75,
+          "palabras": 3,
+          "correcto": false
+        },
+        {
+          "score": 0.6681,
+          "seccion": "encabezado",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6894,
+          "seccion": "pregunta",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6504,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6481,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 2,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "I117-b",
+      "tipo": "con_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.7804,
+          "seccion": "pregunta",
+          "coincidencia": 1.0,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.7224,
+          "seccion": "kpi",
+          "coincidencia": 1.0,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.6224,
+          "seccion": "pregunta",
+          "coincidencia": 1.0,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.7553,
+          "seccion": "pregunta",
+          "coincidencia": 1.0,
+          "palabras": 2,
+          "correcto": true
+        },
+        {
+          "score": 0.6402,
+          "seccion": "kpi",
+          "coincidencia": 1.0,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5539,
+          "seccion": "kpi",
+          "coincidencia": 0.5,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.6407,
+          "seccion": "respondente",
+          "coincidencia": 0.5,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.6394,
+          "seccion": "respondente",
+          "coincidencia": 0.5,
+          "palabras": 1,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "S07",
+      "tipo": "sin_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.4835,
+          "seccion": "pregunta",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.5474,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3879,
+          "seccion": "respondente",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5242,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3908,
+          "seccion": "respondente",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5216,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3221,
+          "seccion": "respondente",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.5216,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "S08",
+      "tipo": "sin_respuesta",
+      "fragmentos": [
+        {
+          "score": 0.4938,
+          "seccion": "pregunta",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4949,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.4207,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.3053,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.4861,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.3193,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        },
+        {
+          "score": 0.4857,
+          "seccion": "alumno",
+          "coincidencia": 0.333,
+          "palabras": 1,
+          "correcto": false
+        },
+        {
+          "score": 0.4161,
+          "seccion": "intercambio",
+          "coincidencia": 0.667,
+          "palabras": 2,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "id": "F02",
+      "tipo": "fuera_de_dominio",
+      "fragmentos": [
+        {
+          "score": 0.143,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.1237,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.1237,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.114,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.1028,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.0904,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.083,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        },
+        {
+          "score": 0.0817,
+          "seccion": "pregunta",
+          "coincidencia": 0.0,
+          "palabras": 0,
+          "correcto": false
+        }
+      ]
+    }
+  ]
+}

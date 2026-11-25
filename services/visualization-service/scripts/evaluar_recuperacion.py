@@ -113,8 +113,65 @@ def _resumen(filas: list[dict[str, Any]]) -> dict[str, Any]:
     return salida
 
 
+UMBRALES = (0.45, 0.50, 0.55, 0.60, 0.65, 0.70)
+COBERTURAS = (0.50, 0.60, 0.75, 0.90)
+
+
+def _fragmentos(res: dict[str, Any], relevantes: list[dict[str, str]]) -> list[dict[str, Any]]:
+    """Los K_MAX primeros del ranking con lo que mira el filtro del chat (hibrida.relevante) y si son correctos."""
+    salida = []
+    metas = (res.get("metadatas") or [[]])[0]
+    for n, (meta, dist) in enumerate(zip(metas[:K_MAX], (res.get("distances") or [[]])[0])):
+        meta = meta or {}
+        salida.append({"score": round(1 - float(dist), 4), "seccion": str(meta.get("seccion", "")),
+                       "coincidencia": (res.get("coincidencias") or [[]])[0][n] if res.get("coincidencias") else None,
+                       "palabras": (res.get("palabras") or [[]])[0][n] if res.get("palabras") else None,
+                       "correcto": _es_correcto(meta, relevantes)})
+    return salida
+
+
+def calibrar(banco: dict[str, Any], conjunto: str) -> dict[str, Any]:
+    """Barrido de RAG_MIN_SCORE × RAG_MIN_COBERTURA sobre el filtro de relevancia del chat (búsqueda híbrida, alcance
+    del chat: el instrumento en las preguntas con respuesta, toda la colección en las demás). Solo la compuerta de la
+    recuperación: no incluye el planificador ni el clasificador de la zona gris."""
+    coleccion = vectores.coleccion_existente(settings.CHROMA_COLLECTION_INSTRUMENTOS)
+    original = (settings.RAG_HIBRIDA, settings.RAG_MIN_SCORE, settings.RAG_MIN_COBERTURA)
+    preguntas = []
+    try:
+        for p in banco["preguntas"]:
+            if p["conjunto"] != conjunto:
+                continue
+            relevantes = p.get("relevantes") or []
+            res = _ranking(coleccion, p["pregunta"], p["alcance"], True)
+            preguntas.append({"id": p["id"], "tipo": p["tipo"], "fragmentos": _fragmentos(res, relevantes)})
+            print(f"{p['id']} listo", file=sys.stderr, flush=True)
+        tabla = []
+        for umbral in UMBRALES:
+            for cobertura in COBERTURAS:
+                settings.RAG_MIN_SCORE, settings.RAG_MIN_COBERTURA = umbral, cobertura
+                con = [q for q in preguntas if q["tipo"] == "con_respuesta"]
+                sin = [q for q in preguntas if q["tipo"] != "con_respuesta"]
+                acepta = {q["id"]: any(hibrida.relevante(f) for f in q["fragmentos"]) for q in preguntas}
+                util = {q["id"]: any(f["correcto"] and hibrida.relevante(f) for f in q["fragmentos"]) for q in con}
+                aciertos = sum(acepta[q["id"]] for q in con) + sum(not acepta[q["id"]] for q in sin)
+                tabla.append({"umbral": umbral, "cobertura": cobertura,
+                              "acepta_con_respuesta": sum(acepta[q["id"]] for q in con), "con_respuesta": len(con),
+                              "fragmento_correcto_pasa": sum(util.values()),
+                              "falsas_aceptaciones": sum(acepta[q["id"]] for q in sin), "sin_respuesta": len(sin),
+                              "decisiones_correctas": aciertos, "total": len(preguntas),
+                              "rechazadas": [q["id"] for q in con if not acepta[q["id"]]],
+                              "aceptadas_sin_respuesta": [q["id"] for q in sin if acepta[q["id"]]]})
+    finally:
+        settings.RAG_HIBRIDA, settings.RAG_MIN_SCORE, settings.RAG_MIN_COBERTURA = original
+    return {"conjunto": conjunto, "actual": {"umbral": original[1], "cobertura": original[2]}, "tabla": tabla,
+            "preguntas": preguntas}
+
+
 def main() -> None:
     banco = json.load(open(sys.argv[1], encoding="utf-8"))
+    if "--calibrar" in sys.argv:
+        json.dump(calibrar(banco, "desarrollo"), sys.stdout, ensure_ascii=False)
+        return
     coleccion = vectores.coleccion_existente(settings.CHROMA_COLLECTION_INSTRUMENTOS)
     original = settings.RAG_HIBRIDA
     detalle: list[dict[str, Any]] = []
