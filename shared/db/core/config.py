@@ -114,6 +114,10 @@ class AppSettings(BaseSettings):
     # el mayor número de decisiones correctas sin aceptaciones falsas (25/31 con respuesta aceptadas contra 22/31 con
     # 0.65; 0 de 3 sin respuesta). El caso que motivó 0.70 (la ficha a 0.67) ya lo frena la regla de textos generales.
     RAG_MIN_SCORE: float = 0.55
+    # Un «hallazgo» (patrones de todo el instrumento) sobre un TEMA solo se calcula si algún fragmento del alcance pasa
+    # este valor; si no, «sin información». Se queda en 0.65, el valor con el que se corrigió la consulta 122 (10 nov:
+    # «¿qué estrategias usan para mejorar su rendimiento?», 0.6459, con un instrumento que no trata eso).
+    RAG_HALLAZGO_MIN_SCORE: float = 0.65
     # Dominio acotado (visualization-service/services/dominio.py). Zona gris: similitud
     # en [RAG_MIN_SCORE, RAG_ZONA_GRIS_MAX) sin que una regla decida; ahí un clasificador
     # con Ollama (JSON, temperatura 0) decide si la pregunta es del dominio. Medido en la

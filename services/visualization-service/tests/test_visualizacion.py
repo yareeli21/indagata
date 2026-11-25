@@ -308,6 +308,7 @@ def test_recuperacion_diversa_una_ficha_por_instrumento(chroma, monkeypatch):
 
     from models import ChatRequest
     from services import rag_service
+    from shared.db.core.config import settings
 
     monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.0)
     col = chroma.crear("instrumentos")
@@ -450,3 +451,30 @@ def test_tiempos_del_procesamiento_y_latencia_del_chat(cliente, acervo):
     assert d["computo_ms"] == 65000 and d["punta_a_punta_ms"] == 7 * 60 * 1000
     assert d["chat"] == {"consultas": 2, "p50_ms": 1000, "p95_ms": 3000}  # la del instrumento 2 no cuenta
     assert cliente.get("/visualizacion/catalogo/99/tiempos", headers=ANA).json()["pasos"] == []
+
+
+def test_en_entrevistas_las_preguntas_guia_y_los_kpi_no_ocupan_los_lugares_de_datos(chroma, monkeypatch):
+    """Las respuestas de una entrevista están en los intercambios: dos preguntas guía y un KPI (sin respuestas) no deben
+    dejar fuera a los intercambios que responden (caso I112-a del banco v1, 25 nov)."""
+    from models import ChatRequest
+    from services import rag_service
+    from shared.db.core.config import settings
+
+    monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.0)
+    monkeypatch.setattr(settings, "RAG_HIBRIDA", False)
+    col = chroma.crear("instrumentos")
+    base = {"instrumentoId": "5", "tipo": "Entrevista", "titulo": "Vida de campus"}
+    texto = "actividades extracurriculares y escuela"
+    col.agregar("g1", f"Pregunta guía p02: {texto}", {**base, "seccion": "pregunta", "preguntaId": "INS-0005-p02"})
+    col.agregar("g2", f"Pregunta guía p04: {texto}", {**base, "seccion": "pregunta", "preguntaId": "INS-0005-p04"})
+    col.agregar("k1", f"KPI: Oferta de {texto}", {**base, "seccion": "kpi", "preguntaId": ""})
+    for n in range(1, 5):
+        col.agregar(f"i{n}", f"Participante E0{n}, pregunta p04: {texto}. Respuesta: organizo mi semana",
+                    {**base, "seccion": "intercambio", "preguntaId": "INS-0005-p04", "respondenteId": f"E0{n}"})
+
+    peticion = ChatRequest(pregunta=texto, instrumentoIds=["5"], top_k=8, stream=False)
+    fragmentos, _ = rag_service._buscar(peticion, rag_service._vector(texto))
+    secciones = [f["seccion"] for f in fragmentos]
+    assert secciones.count("pregunta") == 1
+    assert secciones.count("intercambio") == rag_service._MAX_FRAGMENTOS_POR_INSTRUMENTO
+    assert "kpi" in secciones
