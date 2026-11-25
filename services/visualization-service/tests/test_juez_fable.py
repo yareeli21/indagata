@@ -205,3 +205,92 @@ def test_bajo_demanda_queda_pendiente_y_se_evalua_al_pedirlo(cliente, con_fable,
     assert j["estado"] == "pendiente"
     j = cliente.post(f"/rag/consultas/{r['consultaId']}/metricas?juez=claude-fable-5-2", headers=ANA).json()["juezFable"]
     assert con_fable == [r["consultaId"]] and j["estado"] == "calculando"
+
+
+# ── Modo por lote (Batch API) ──────────────────────────────────────────────────
+
+class _LotesFalsos:
+    """Imita client.messages.batches: responde cada petición según su esquema y registra lo enviado."""
+
+    def __init__(self, referencia: dict, veredictos: dict, preguntas: dict):
+        import types
+
+        self._t = types
+        self._por_esquema = {"suficiente": referencia, "afirmaciones_respuesta": veredictos, "preguntas": preguntas}
+        self.enviados: list[list[dict]] = []
+
+    def create(self, requests):  # noqa: ANN001
+        self.enviados.append(requests)
+        return self._t.SimpleNamespace(id=f"lote_{len(self.enviados)}")
+
+    def retrieve(self, lote_id):  # noqa: ANN001
+        cuentas = self._t.SimpleNamespace(processing=0, succeeded=1, errored=0, expired=0)
+        return self._t.SimpleNamespace(processing_status="ended", request_counts=cuentas)
+
+    def results(self, lote_id):  # noqa: ANN001
+        import json
+
+        t = self._t
+        for r in self.enviados[int(lote_id.split("_")[1]) - 1]:
+            propiedades = r["params"]["output_config"]["format"]["schema"]["properties"]
+            datos = next(v for k, v in self._por_esquema.items() if k in propiedades)
+            mensaje = t.SimpleNamespace(stop_reason="end_turn", model="claude-fable-5-2",
+                                        content=[t.SimpleNamespace(type="text", text=json.dumps(datos))],
+                                        usage=t.SimpleNamespace(input_tokens=100, output_tokens=20, iterations=None))
+            yield t.SimpleNamespace(custom_id=r["custom_id"], result=t.SimpleNamespace(type="succeeded", message=mensaje))
+
+
+def test_lote_en_dos_rondas_guarda_las_mismas_metricas(fabrica, chroma, monkeypatch, tmp_path):
+    import importlib
+    import sys
+    import types
+    from pathlib import Path
+
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts" / "modelos"))
+    lote = importlib.import_module("juzgar_fable_lote")
+
+    s = fabrica()
+    s.add(RagLog(pregunta="¿hay compromiso?", respuesta="Hay compromiso académico.",
+                 contexto_usado=[{"tipo": "fragmento", "texto": "compromiso académico"}], metricas={"estado": "listo"}))
+    s.commit()
+    rid = s.query(RagLog).one().rag_log_id
+
+    falsos = _LotesFalsos(
+        {"suficiente": True, "respuesta_referencia": "Hay compromiso.", "afirmaciones": ["Hay compromiso académico."]},
+        {"afirmaciones_respuesta": [{"texto": "Hay compromiso académico.", "contextos": [1], "en_referencia": True}],
+         "afirmaciones_referencia": [{"n": 1, "contextos": [1], "en_respuesta": True}],
+         "contextos": [{"n": 1, "util": True, "razon": "lo dice"}]},
+        {"preguntas": ["¿hay compromiso?"] * 3, "evasiva": False},
+    )
+    monkeypatch.setattr(settings, "RAG_JUEZ_FABLE", True)
+    monkeypatch.setattr(settings, "ANTHROPIC_API_KEY", "clave-de-pruebas")
+    monkeypatch.setattr(lote, "_cliente", lambda: types.SimpleNamespace(messages=types.SimpleNamespace(batches=falsos)))
+    monkeypatch.setattr(lote, "SessionLocal", fabrica)
+    monkeypatch.setattr(lote, "_carpeta", lambda: tmp_path)
+    monkeypatch.setattr(lote.time, "sleep", lambda s: None)
+    monkeypatch.setattr(sys, "argv", ["juzgar_fable_lote.py", "--ids", str(rid), "--si"])
+
+    lote.main()
+
+    # Ronda 1: referencia + preguntas; ronda 2: veredictos. Esfuerzo configurado en las dos primeras, low en preguntas.
+    assert [sorted(r["custom_id"] for r in rs) for rs in falsos.enviados] == [[f"pre-{rid}", f"ref-{rid}"], [f"ver-{rid}"]]
+    esfuerzos = {r["custom_id"].split("-")[0]: r["params"]["output_config"]["effort"] for rs in falsos.enviados for r in rs}
+    assert esfuerzos == {"ref": settings.RAG_JUEZ_FABLE_ESFUERZO, "ver": settings.RAG_JUEZ_FABLE_ESFUERZO, "pre": "low"}
+    assert all("fallbacks" not in r["params"] for rs in falsos.enviados for r in rs)  # la Batch API no lo admite
+
+    s.expire_all()
+    m = s.query(RagMetricaJuez).filter_by(rag_log_id=rid).one().metricas
+    assert m["estado"] == "listo" and m["fidelidad"] == 1.0 and m["correccion_factual"] == 1.0
+    assert m["lote"] == "lote_1,lote_2" and m["esfuerzo"] == settings.RAG_JUEZ_FABLE_ESFUERZO
+    assert m["uso"] == {"entrada": 300, "salida": 60}
+    assert m["relevancia"] == pytest.approx(1.0, abs=1e-3)
+
+    # Volver a correrlo no reenvía lo que ya está listo.
+    lote.main()
+    assert len(falsos.enviados) == 2
+
+
+def test_esfuerzo_por_defecto_es_medium():
+    from shared.db.core.config import AppSettings
+
+    assert AppSettings.model_fields["RAG_JUEZ_FABLE_ESFUERZO"].default == "medium"

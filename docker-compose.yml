@@ -392,7 +392,7 @@ services:
       RAG_JUEZ_FABLE: ${RAG_JUEZ_FABLE:-true}
       RAG_JUEZ_FABLE_AUTOMATICO: ${RAG_JUEZ_FABLE_AUTOMATICO:-false}
       RAG_JUEZ_FABLE_MODELO: ${RAG_JUEZ_FABLE_MODELO:-claude-fable-5-2}
-      RAG_JUEZ_FABLE_ESFUERZO: ${RAG_JUEZ_FABLE_ESFUERZO:-high}
+      RAG_JUEZ_FABLE_ESFUERZO: ${RAG_JUEZ_FABLE_ESFUERZO:-medium}
       # Temperatura de la redacción del chat (la interpretación y el juez van en 0).
       RAG_TEMPERATURA_REDACCION: ${RAG_TEMPERATURA_REDACCION:-0.2}
       # Caché de respuestas (horas; 0 = sin caché). En el experimento de modelos se pone 0 para que una pregunta

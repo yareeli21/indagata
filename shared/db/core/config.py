@@ -148,7 +148,7 @@ class AppSettings(BaseSettings):
     # que cuesta ~0.16 USD por respuesta (pruebas automáticas incluidas) y envía el contexto a la API de Anthropic.
     RAG_JUEZ_FABLE_AUTOMATICO: bool = False
     RAG_JUEZ_FABLE_MODELO: str = "claude-fable-5-2"
-    RAG_JUEZ_FABLE_ESFUERZO: str = "high"  # low | medium | high | xhigh | max (referencia y veredictos)
+    RAG_JUEZ_FABLE_ESFUERZO: str = "medium"  # low | medium | high | xhigh | max (referencia y veredictos); 25 nov: high → medium, menos razonamiento cobrado como salida
     RAG_JUEZ_FABLE_AMPLIADO: int = 12  # fragmentos extra de Chroma (sin umbral) para la respuesta de referencia
     RAG_JUEZ_FABLE_CONCURRENCIA: int = 2  # evaluaciones simultáneas
     RAG_CLASIFICADOR_LLM: bool = True

@@ -10,6 +10,7 @@ respuestas de todos los redactores. Así sale la matriz redactor × juez sin rep
 | `correr_casos.py` | Hace en el chat real las preguntas de uno o varios archivos de casos, una conversación por caso y con el historial igual que la interfaz; imprime la corrida. Se corre desde el host |
 | `exportar.py` | Exporta a CSV (Excel) las consultas con su calificación humana, quién calificó, lo recuperado del RAG y las métricas de cada juez; por defecto solo lo calificado (`--todas`, `--desde`, `--hasta`). Escribe `storage/evaluacion_modelos/exportes/` |
 | `juzgar.py` | Evalúa con **un** juez las respuestas de una o varias corridas y muestra el avance en la terminal (`rag_metrica_juez`) |
+| `juzgar_fable_lote.py` | Evalúa con el juez **Claude Fable 5.2** un rango de consultas por la **Batch API** (50 % del precio, en dos rondas: referencia + preguntas, luego veredictos). `--desde N --hasta M` o `--ids`; pide confirmación con el costo aproximado; `--continuar <archivo>` retoma un lote cortado sin volver a pagarlo. Estado en `storage/evaluacion_modelos/lotes_fable/` |
 | `calificar.py` | Califica en la terminal los turnos de una corrida que no tienen calificación humana (la misma tabla que el panel) |
 | `reporte.py` | Calcula las métricas contra la referencia y el cruce juez / sin juez / persona, y escribe `storage/evaluacion_modelos/<fecha>/` |
 | `comun.py` | Corridas, emparejamiento de consultas con turnos, kappa de Cohen, π de Scott y Spearman |

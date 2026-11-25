@@ -73,7 +73,8 @@ Cada consulta queda en `rag_log` con su plan y el tiempo de cada etapa. El panel
   corrección se comparan con una respuesta de referencia que el juez escribe **sin ver la del sistema**, a partir de lo
   que vio el redactor más los `RAG_JUEZ_FABLE_AMPLIADO` fragmentos más cercanos de Chroma (sin umbral). Se guarda en
   `rag_metrica_juez` (`modelo_juez = claude-fable-5-2`) y se lee en `juezFable` de `GET /rag/consultas/{id}/metricas`;
-  `POST …/metricas?juez=claude-fable-5-2` la repite. Necesita `ANTHROPIC_API_KEY` (sin ella queda «omitida»); se apaga
+  `POST …/metricas?juez=claude-fable-5-2` la repite. Esfuerzo `medium` por defecto (`RAG_JUEZ_FABLE_ESFUERZO`). Para
+  corridas completas, `scripts/modelos/juzgar_fable_lote.py` usa la Batch API (mitad de precio). Necesita `ANTHROPIC_API_KEY` (sin ella queda «omitida»); se apaga
   con `RAG_JUEZ_FABLE=false`. Si Fable declina, responde su modelo de respaldo (`fallbacks: "default"`) y la fila queda
   con `fallback: true` y `modelo_real`. Cuesta ~3 llamadas a Fable por respuesta.
 - **Calificación humana** (`rag_calificacion`).

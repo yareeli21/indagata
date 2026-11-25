@@ -46,7 +46,7 @@ from shared.models.rag_log import RagLog
 
 logger = logging.getLogger("visualization-service")
 
-VERSION = "f1.0"
+VERSION = "f1.1"  # f1.1 (25 nov): esfuerzo por defecto medium y modo por lote (Batch API); se guarda `esfuerzo` y `lote`
 _ESTRICTEZ = 3
 _MAX_TOKENS = 16000
 _MAX_CARACTERES_FRAGMENTO = 4000
@@ -182,26 +182,38 @@ def _cliente_anthropic():
     return _cliente
 
 
-async def _llamar_fable(prompt: str, esquema: dict[str, Any], esfuerzo: str) -> Resultado:
-    """Una petición al juez con salida JSON validada por esquema. Sin temperatura: Fable 5.2 no la acepta."""
-    respuesta = await _cliente_anthropic().beta.messages.create(
-        model=modelo(),
-        max_tokens=_MAX_TOKENS,
-        system=_SISTEMA,
-        messages=[{"role": "user", "content": prompt}],
-        output_config={"effort": esfuerzo, "format": {"type": "json_schema", "schema": esquema}},
-        betas=[_BETA_FALLBACK],
-        fallbacks="default",
-    )
+def parametros(prompt: str, esquema: dict[str, Any], esfuerzo: str) -> dict[str, Any]:
+    """Parámetros de una petición al juez (los mismos en el modo inmediato y en el lote). Sin temperatura: Fable 5.2
+    no la acepta."""
+    return {
+        "model": modelo(),
+        "max_tokens": _MAX_TOKENS,
+        "system": _SISTEMA,
+        "messages": [{"role": "user", "content": prompt}],
+        "output_config": {"effort": esfuerzo, "format": {"type": "json_schema", "schema": esquema}},
+    }
+
+
+def leer_mensaje(respuesta: Any) -> Resultado:
+    """JSON y metadatos de un mensaje del juez (respuesta inmediata o resultado de un lote)."""
     if respuesta.stop_reason == "refusal":
-        detalle = respuesta.stop_details
+        detalle = getattr(respuesta, "stop_details", None)
         raise RechazoJuez(f"El juez declinó evaluar ({getattr(detalle, 'category', None) or 'sin categoría'}).")
     if respuesta.stop_reason == "max_tokens":
         raise RuntimeError("El juez se quedó sin tokens antes de terminar el veredicto.")
     texto = next((b.text for b in respuesta.content if b.type == "text"), "")
-    fallback = any(getattr(i, "type", None) == "fallback_message" for i in (respuesta.usage.iterations or []))
+    iteraciones = getattr(respuesta.usage, "iterations", None) or []
+    fallback = any(getattr(i, "type", None) == "fallback_message" for i in iteraciones)
     uso = {"entrada": respuesta.usage.input_tokens, "salida": respuesta.usage.output_tokens}
     return json.loads(texto), {"modelo": respuesta.model, "fallback": fallback, "uso": uso}
+
+
+async def _llamar_fable(prompt: str, esquema: dict[str, Any], esfuerzo: str) -> Resultado:
+    """Una petición inmediata al juez, con el respaldo del servidor si Fable declina (no existe en los lotes)."""
+    respuesta = await _cliente_anthropic().beta.messages.create(
+        **parametros(prompt, esquema, esfuerzo), betas=[_BETA_FALLBACK], fallbacks="default",
+    )
+    return leer_mensaje(respuesta)
 
 
 # ── Fórmulas (RAGAS 0.4.3) ─────────────────────────────────────────────────────
@@ -307,17 +319,83 @@ def _bloques(contextos: list[dict[str, Any]]) -> str:
     return "\n".join(partes) or "(sin contextos)"
 
 
-async def relevancia(respuesta: str, pregunta: str, llamar: Llamar, embeber: Embeber
-                     ) -> tuple[float | None, dict[str, Any], dict[str, Any]]:
-    datos, meta = await llamar(_P_PREGUNTAS.format(n=_ESTRICTEZ, respuesta=_recortar_tablas(respuesta)),
-                               ESQUEMA_PREGUNTAS, "low")
+# Las tres peticiones de una evaluación. La de veredictos necesita la referencia, así que va después; en el lote
+# eso son dos rondas (referencia + preguntas, luego veredictos).
+
+ESFUERZO_PREGUNTAS = "low"
+
+
+def peticion_referencia(pregunta: str, usados: list[dict[str, Any]], ampliado: list[dict[str, Any]]) -> tuple[str, dict]:
+    evidencia = _bloques([*usados, *ampliado])[:_MAX_CARACTERES_AMPLIADO]
+    return _P_REFERENCIA.format(pregunta=pregunta, evidencia=evidencia), ESQUEMA_REFERENCIA
+
+
+def peticion_preguntas(respuesta: str) -> tuple[str, dict]:
+    return _P_PREGUNTAS.format(n=_ESTRICTEZ, respuesta=_recortar_tablas(respuesta)), ESQUEMA_PREGUNTAS
+
+
+def afirmaciones_de(referencia: dict[str, Any]) -> list[str]:
+    """Afirmaciones de la referencia (vacío si el juez dijo que la evidencia no alcanza)."""
+    if not referencia.get("suficiente"):
+        return []
+    return [str(a).strip() for a in referencia.get("afirmaciones") or [] if str(a).strip()]
+
+
+def peticion_veredictos(pregunta: str, respuesta: str, usados: list[dict[str, Any]],
+                        afirmaciones_ref: list[str]) -> tuple[str, dict]:
+    lista_ref = "\n".join(f"{n}. {a}" for n, a in enumerate(afirmaciones_ref, start=1)) or "(sin referencia: la evidencia no alcanza)"
+    return (_P_VEREDICTOS.format(pregunta=pregunta, respuesta=respuesta, contextos=_bloques(usados), referencia=lista_ref),
+            ESQUEMA_VEREDICTOS)
+
+
+def relevancia_de(datos: dict[str, Any], pregunta: str, embeber: Embeber) -> tuple[float | None, dict[str, Any]]:
+    """ResponseRelevancy a partir de las preguntas que el juez generó: coseno medio con la pregunta (0 si evasiva)."""
     generadas = [str(p).strip() for p in datos.get("preguntas") or [] if str(p).strip()][:_ESTRICTEZ]
     if not generadas:
-        return None, {"preguntas_generadas": []}, meta
-    vectores = await asyncio.to_thread(embeber, [pregunta, *generadas])
+        return None, {"preguntas_generadas": []}
+    vectores = embeber([pregunta, *generadas])
     media = sum(_coseno(vectores[0], v) for v in vectores[1:]) / len(generadas)
     evasiva = bool(datos.get("evasiva"))
-    return (0.0 if evasiva else max(0.0, media)), {"preguntas_generadas": generadas, "evasiva": evasiva}, meta
+    return (0.0 if evasiva else max(0.0, media)), {"preguntas_generadas": generadas, "evasiva": evasiva}
+
+
+async def relevancia(respuesta: str, pregunta: str, llamar: Llamar, embeber: Embeber
+                     ) -> tuple[float | None, dict[str, Any], dict[str, Any]]:
+    prompt, esquema = peticion_preguntas(respuesta)
+    datos, meta = await llamar(prompt, esquema, ESFUERZO_PREGUNTAS)
+    valor, detalle = await asyncio.to_thread(relevancia_de, datos, pregunta, embeber)
+    return valor, detalle, meta
+
+
+def armar(referencia: dict[str, Any], meta_ref: dict[str, Any], veredictos: dict[str, Any], meta_ver: dict[str, Any],
+          valor_rel: float | None, detalle_rel: dict[str, Any], meta_rel: dict[str, Any], usados: list[dict[str, Any]],
+          ampliado: list[dict[str, Any]], origen_referencia: str, esfuerzo: str, lote: str | None = None) -> dict[str, Any]:
+    """Lo que se guarda en `rag_metrica_juez.metricas`, a partir de las tres respuestas del juez."""
+    afirmaciones_ref = afirmaciones_de(referencia)
+    puntajes, detalle = calcular(veredictos, len(usados), len(afirmaciones_ref))
+    puntajes["relevancia"] = valor_rel
+    metas = [meta_ref, meta_ver, meta_rel]
+    salida: dict[str, Any] = {
+        "estado": LISTO, "version": VERSION,
+        **{k: None if v is None else round(float(v), 3) for k, v in puntajes.items()},
+        "modelo_real": meta_ver.get("modelo") or modelo(),
+        "fallback": any(m.get("fallback") for m in metas),
+        "esfuerzo": esfuerzo,
+        "lote": lote,  # id del lote de la Batch API (50 % del precio) o None si fue inmediata
+        "uso": {"entrada": sum((m.get("uso") or {}).get("entrada", 0) for m in metas),
+                "salida": sum((m.get("uso") or {}).get("salida", 0) for m in metas)},
+        "detalle": {
+            **detalle,
+            "relevancia": detalle_rel,
+            "referencia": {"origen": origen_referencia, "suficiente": bool(referencia.get("suficiente")),
+                           "respuesta": str(referencia.get("respuesta_referencia", "")), "afirmaciones": afirmaciones_ref,
+                           "fragmentos_ampliados": len(ampliado)},
+        },
+    }
+    if not afirmaciones_ref:
+        salida["motivo"] = ("La evidencia disponible no alcanza para escribir una respuesta de referencia: recuerdo del "
+                            "contexto, sensibilidad al ruido y corrección factual no se calculan.")
+    return salida
 
 
 async def evaluar(pregunta: str, respuesta: str, usados: list[dict[str, Any]], ampliado: list[dict[str, Any]],
@@ -334,46 +412,18 @@ async def evaluar(pregunta: str, respuesta: str, usados: list[dict[str, Any]], a
     embeber = embeber or vectores.embed_texts
     esfuerzo = settings.RAG_JUEZ_FABLE_ESFUERZO
 
-    evidencia = _bloques([*usados, *ampliado])[:_MAX_CARACTERES_AMPLIADO]
     tarea_relevancia = asyncio.create_task(relevancia(respuesta, pregunta, llamar, embeber))
-    referencia, meta_ref = await llamar(_P_REFERENCIA.format(pregunta=pregunta, evidencia=evidencia),
-                                        ESQUEMA_REFERENCIA, esfuerzo)
-    afirmaciones_ref = [str(a).strip() for a in referencia.get("afirmaciones") or [] if str(a).strip()]
-    if not referencia.get("suficiente"):
-        afirmaciones_ref = []
-    lista_ref = "\n".join(f"{n}. {a}" for n, a in enumerate(afirmaciones_ref, start=1)) or "(sin referencia: la evidencia no alcanza)"
+    referencia, meta_ref = await llamar(*peticion_referencia(pregunta, usados, ampliado), esfuerzo)
     veredictos, meta_ver = await llamar(
-        _P_VEREDICTOS.format(pregunta=pregunta, respuesta=respuesta, contextos=_bloques(usados), referencia=lista_ref),
-        ESQUEMA_VEREDICTOS, esfuerzo)
-    puntajes, detalle = calcular(veredictos, len(usados), len(afirmaciones_ref))
+        *peticion_veredictos(pregunta, respuesta, usados, afirmaciones_de(referencia)), esfuerzo)
 
     try:
         valor_rel, detalle_rel, meta_rel = await tarea_relevancia
     except Exception as exc:  # noqa: BLE001 — la relevancia fallida no tumba las otras cinco
         logger.warning("Juez Fable: relevancia falló: %s", exc)
         valor_rel, detalle_rel, meta_rel = None, {"error": str(exc)[:200]}, {}
-    puntajes["relevancia"] = valor_rel
-
-    metas = [meta_ref, meta_ver, meta_rel]
-    salida: dict[str, Any] = {
-        "estado": LISTO, "version": VERSION,
-        **{k: None if v is None else round(float(v), 3) for k, v in puntajes.items()},
-        "modelo_real": meta_ver.get("modelo") or modelo(),
-        "fallback": any(m.get("fallback") for m in metas),
-        "uso": {"entrada": sum((m.get("uso") or {}).get("entrada", 0) for m in metas),
-                "salida": sum((m.get("uso") or {}).get("salida", 0) for m in metas)},
-        "detalle": {
-            **detalle,
-            "relevancia": detalle_rel,
-            "referencia": {"origen": origen_referencia, "suficiente": bool(referencia.get("suficiente")),
-                           "respuesta": str(referencia.get("respuesta_referencia", "")), "afirmaciones": afirmaciones_ref,
-                           "fragmentos_ampliados": len(ampliado)},
-        },
-    }
-    if not afirmaciones_ref:
-        salida["motivo"] = ("La evidencia disponible no alcanza para escribir una respuesta de referencia: recuerdo del "
-                            "contexto, sensibilidad al ruido y corrección factual no se calculan.")
-    return salida
+    return armar(referencia, meta_ref, veredictos, meta_ver, valor_rel, detalle_rel, meta_rel, usados, ampliado,
+                 origen_referencia, esfuerzo)
 
 
 # ── Contexto ampliado para la referencia ───────────────────────────────────────
@@ -410,6 +460,18 @@ def contexto_ampliado(fila: RagLog, usados: list[dict[str, Any]]) -> list[dict[s
     return salida
 
 
+def preparar(fila: RagLog) -> tuple[list[dict[str, Any]], list[dict[str, Any]], str]:
+    """Lo que el juez necesita de una consulta: lo que vio el redactor, el contexto ampliado y de dónde sale la
+    referencia."""
+    usados = [c for c in fila.contexto_usado or [] if c.get("texto")]
+    try:
+        ampliado = contexto_ampliado(fila, usados)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Juez Fable: sin contexto ampliado para %s: %s", fila.rag_log_id, exc)
+        ampliado = []
+    return usados, ampliado, ("contexto_ampliado" if ampliado else "solo_contexto_usado")
+
+
 # ── Cola en segundo plano ──────────────────────────────────────────────────────
 
 _semaforo: asyncio.Semaphore | None = None
@@ -424,7 +486,7 @@ def _fila_juez(sesion: Any, rag_log_id: int) -> RagMetricaJuez | None:
     return sesion.query(RagMetricaJuez).filter_by(rag_log_id=rag_log_id, modelo_juez=modelo()).one_or_none()
 
 
-def _guardar(sesion: Any, rag_log_id: int, metricas: dict[str, Any]) -> None:
+def guardar(sesion: Any, rag_log_id: int, metricas: dict[str, Any]) -> None:
     fila = _fila_juez(sesion, rag_log_id)
     if fila is None:
         fila = RagMetricaJuez(rag_log_id=rag_log_id, modelo_juez=modelo())
@@ -450,7 +512,7 @@ def registrar(fila: RagLog, sesion: Any, fabrica: Callable[[], Any]) -> None:
         solicitar(fila, sesion, fabrica)
         return
     if _fila_juez(sesion, fila.rag_log_id) is None:
-        _guardar(sesion, fila.rag_log_id, {
+        guardar(sesion, fila.rag_log_id, {
             "estado": PENDIENTE, "version": VERSION,
             "motivo": "Se evalúa solo si lo pides (cada evaluación usa la API de Anthropic).",
         })
@@ -470,11 +532,11 @@ def solicitar(fila: RagLog, sesion: Any, fabrica: Callable[[], Any], *, forzar: 
     if estado == LISTO and not forzar:
         return
     if not settings.ANTHROPIC_API_KEY:
-        _guardar(sesion, fila.rag_log_id, {"estado": OMITIDA, "version": VERSION,
+        guardar(sesion, fila.rag_log_id, {"estado": OMITIDA, "version": VERSION,
                                            "motivo": "Falta ANTHROPIC_API_KEY en el .env del servicio."})
         sesion.commit()
         return
-    _guardar(sesion, fila.rag_log_id, {"estado": CALCULANDO, "version": VERSION})
+    guardar(sesion, fila.rag_log_id, {"estado": CALCULANDO, "version": VERSION})
     sesion.commit()
     programar(fila.rag_log_id, fabrica)
 
@@ -489,15 +551,7 @@ async def evaluar_consulta(rag_log_id: int, fabrica: Callable[[], Any], llamar: 
             fila = sesion.get(RagLog, rag_log_id)
             if fila is None:
                 return
-            usados = [c for c in fila.contexto_usado or [] if c.get("texto")]
-            origen = "contexto_ampliado"
-            try:
-                ampliado = await asyncio.to_thread(contexto_ampliado, fila, usados)
-            except Exception as exc:  # noqa: BLE001
-                logger.warning("Juez Fable: sin contexto ampliado para %s: %s", rag_log_id, exc)
-                ampliado, origen = [], "solo_contexto_usado"
-            if not ampliado:
-                origen = "solo_contexto_usado"
+            usados, ampliado, origen = await asyncio.to_thread(preparar, fila)
             try:
                 metricas = await evaluar(fila.pregunta, fila.respuesta or "", usados, ampliado, llamar,
                                          origen_referencia=origen)
@@ -506,7 +560,7 @@ async def evaluar_consulta(rag_log_id: int, fabrica: Callable[[], Any], llamar: 
             except Exception as exc:  # noqa: BLE001
                 logger.warning("Juez Fable: no se pudo evaluar la consulta %s: %s", rag_log_id, exc)
                 metricas = {"estado": ERROR, "motivo": f"{type(exc).__name__}: {str(exc)[:200]}", "version": VERSION}
-            _guardar(sesion, rag_log_id, metricas)
+            guardar(sesion, rag_log_id, metricas)
             sesion.commit()
         finally:
             sesion.close()
