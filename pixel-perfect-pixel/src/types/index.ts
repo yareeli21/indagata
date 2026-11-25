@@ -704,7 +704,8 @@ export interface EvaluacionFable {
   /** El modelo que juzgó de verdad (distinto si Fable declinó y respondió el modelo de respaldo). */
   modeloReal: string | null;
   fallback: boolean;
-  estado: "calculando" | "listo" | "omitida" | "error";
+  /** «pendiente»: bajo demanda, todavía nadie pidió la evaluación (cada una usa la API de Anthropic). */
+  estado: "pendiente" | "calculando" | "listo" | "omitida" | "error";
   motivo: string | null;
   fecha: string | null;
   precisionContexto: number | null;

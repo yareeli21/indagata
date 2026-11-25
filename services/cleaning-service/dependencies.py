@@ -29,7 +29,7 @@ def get_current_user(
     except TokenError:
         raise cred_exc
     usuario = db.get(Usuario, datos.usuario_id)
-    if usuario is None:
+    if usuario is None or not usuario.activo:  # una cuenta desactivada pierde su sesión al instante
         raise cred_exc
     return usuario
 

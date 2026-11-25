@@ -129,6 +129,7 @@ def con_fable(db, chroma, monkeypatch):
     col.agregar("a-1", "horas de estudio por semana", {"instrumentoId": "1", "seccion": "pregunta", "titulo": "A"})
     monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.0)
     monkeypatch.setattr(settings, "RAG_JUEZ_FABLE", True)
+    monkeypatch.setattr(settings, "RAG_JUEZ_FABLE_AUTOMATICO", True)
     monkeypatch.setattr(settings, "ANTHROPIC_API_KEY", "clave-de-pruebas")
     monkeypatch.setattr(settings, "RAG_ZONA_GRIS_MAX", 0.0)
     programadas: list[int] = []
@@ -193,3 +194,14 @@ def test_un_error_del_juez_queda_guardado(fabrica):
     fila = s.query(RagMetricaJuez).one()
     s.refresh(fila)
     assert fila.modelo_juez == "claude-fable-5-2" and fila.metricas["estado"] == "error" and "cyber" in fila.metricas["motivo"]
+
+
+def test_bajo_demanda_queda_pendiente_y_se_evalua_al_pedirlo(cliente, con_fable, monkeypatch):
+    """Por defecto no se llama a la API: la respuesta queda «pendiente» hasta que alguien pide la evaluación."""
+    monkeypatch.setattr(settings, "RAG_JUEZ_FABLE_AUTOMATICO", False)
+    r = cliente.post("/rag/chat", json={"pregunta": "compromiso académico", "stream": False}, headers=ANA).json()
+    assert con_fable == []
+    j = cliente.get(f"/rag/consultas/{r['consultaId']}/metricas", headers=ANA).json()["juezFable"]
+    assert j["estado"] == "pendiente"
+    j = cliente.post(f"/rag/consultas/{r['consultaId']}/metricas?juez=claude-fable-5-2", headers=ANA).json()["juezFable"]
+    assert con_fable == [r["consultaId"]] and j["estado"] == "calculando"

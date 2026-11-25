@@ -9,14 +9,15 @@ Flujo de dos pasos (requiere decisión humana entre ambos):
                                      los KPIs aceptados y devuelve el JSON enriquecido.
 
 Mantenimiento:
-  POST /vectorizacion/kpis/reindex → (re)vectoriza la colección `kpis` desde la BD.
+  POST /vectorizacion/kpis/reindex → (re)vectoriza la colección `kpis` desde la BD (solo administradores).
 """
 from __future__ import annotations
 
-from fastapi import APIRouter, File, Form, UploadFile, status
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile, status
 
 from app.vectorization.core.kpi_indexer import reindex_kpis
 from app.vectorization.dependencies import DBSession, UsuarioActual
+from shared.auth import ROL_ADMINISTRADOR
 from app.vectorization.schemas.vectorizacion import (
     ConfirmarRequest,
     ConfirmarResponse,
@@ -111,6 +112,8 @@ def reindexar_kpis(
     usuario_actual: UsuarioActual,
     db: DBSession,
 ) -> ReindexResponse:
+    if usuario_actual.rol != ROL_ADMINISTRADOR:  # rehace la colección que usan todos
+        raise HTTPException(status.HTTP_403_FORBIDDEN, "Solo un administrador puede reindexar los KPIs.")
     resultado = reindex_kpis(db)
     return ReindexResponse(coleccion=resultado.coleccion, n_kpis=resultado.n_kpis)
 

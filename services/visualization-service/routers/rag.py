@@ -110,7 +110,7 @@ async def calcular_metricas(
     objetivo = (db.get(RagLog, origen) if origen else None) or fila
     juez = (juez or "").strip() or None
     if juez == juez_fable.modelo():
-        # El juez Fable ya evalúa cada respuesta solo; pedirlo vuelve a evaluarla (p. ej., tras configurar la clave).
+        # Juez Fable: evalúa una respuesta pendiente o vuelve a evaluar una ya evaluada (p. ej., tras configurar la clave).
         if (objetivo.metricas or {}).get("estado") != evaluacion.OMITIDA:
             juez_fable.solicitar(objetivo, db, rag_service.fabrica_sesiones, forzar=True)
     else:

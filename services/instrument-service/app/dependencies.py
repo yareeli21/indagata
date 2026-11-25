@@ -40,7 +40,7 @@ def get_current_user(
         raise cred_exc
 
     usuario = db.get(Usuario, data.usuario_id)
-    if usuario is None:
+    if usuario is None or not usuario.activo:  # una cuenta desactivada pierde su sesión al instante
         raise cred_exc
     return usuario
 

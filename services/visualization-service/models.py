@@ -428,7 +428,7 @@ class JuezFableOut(BaseModel):
     modelo: str
     modeloReal: str | None = None  # el que juzgó de verdad (distinto si Fable declinó y respondió el respaldo)
     fallback: bool = False
-    estado: Literal["calculando", "listo", "omitida", "error"]
+    estado: Literal["pendiente", "calculando", "listo", "omitida", "error"]
     motivo: str | None = None
     fecha: datetime | None = None
     precisionContexto: float | None = None

@@ -88,8 +88,8 @@ function puntaje(valor: number | null): string {
 }
 
 /**
- * Evaluación de la respuesta con el juez Claude Fable 5.2. El servicio la calcula sola después de cada respuesta;
- * aquí se consulta hasta que termina.
+ * Evaluación de la respuesta con el juez Claude Fable 5.2. Es bajo demanda: la respuesta llega «pendiente» y se
+ * evalúa al pulsar «Evaluar» (cada evaluación usa la API de Anthropic); después se consulta hasta que termina.
  */
 export function EvaluacionFable({ consultaId, inicial }: EvaluacionFableProps) {
   const [evaluacion, setEvaluacion] = useState<Evaluacion | null>(inicial);
@@ -163,6 +163,21 @@ export function EvaluacionFable({ consultaId, inicial }: EvaluacionFableProps) {
         <p className="inline-flex items-center gap-1.5 text-muted-foreground">
           <Loader2 className="size-3.5 animate-spin" aria-hidden /> El juez está evaluando esta
           respuesta…
+        </p>
+      </section>
+    );
+  }
+
+  if (evaluacion.estado === "pendiente") {
+    return (
+      <section className="space-y-1">
+        <div className="flex flex-wrap items-center gap-2">
+          {titulo}
+          <BotonReevaluar pidiendo={pidiendo} onClick={() => void reevaluar()} texto="Evaluar" />
+        </div>
+        <p className="text-muted-foreground">
+          Sin evaluar. Se evalúa solo si lo pides: cada evaluación usa la API de Anthropic y tarda
+          alrededor de un minuto.
         </p>
       </section>
     );
@@ -279,7 +294,15 @@ function GrupoMetricas({
   );
 }
 
-function BotonReevaluar({ pidiendo, onClick }: { pidiendo: boolean; onClick: () => void }) {
+function BotonReevaluar({
+  pidiendo,
+  onClick,
+  texto = "Volver a evaluar",
+}: {
+  pidiendo: boolean;
+  onClick: () => void;
+  texto?: string;
+}) {
   return (
     <button
       type="button"
@@ -292,7 +315,7 @@ function BotonReevaluar({ pidiendo, onClick }: { pidiendo: boolean; onClick: () 
       ) : (
         <RefreshCw className="size-3" aria-hidden />
       )}
-      Volver a evaluar
+      {texto}
     </button>
   );
 }

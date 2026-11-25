@@ -65,8 +65,9 @@ Cada consulta queda en `rag_log` con su plan y el tiempo de cada etapa. El panel
 - **Juez** (`evaluacion.py`): fidelidad, relevancia y precisión del contexto, **bajo demanda**
   (`RAG_METRICAS_BAJO_DEMANDA`). Cada evaluación se guarda por juez en `rag_metrica_juez`, para comparar jueces sobre las
   mismas respuestas; la del juez por defecto (`RAG_JUEZ_MODELO`) también va en `rag_log.metricas`.
-- **Juez Claude Fable 5.2** (`juez_fable.py`, 11 nov): evalúa **cada** respuesta en segundo plano, sin que se pida, en la
-  API de Anthropic (no usa la GPU de Ollama). Seis métricas de RAGAS 0.4.3: precisión del contexto, recuerdo del
+- **Juez Claude Fable 5.2** (`juez_fable.py`, 11 nov): evalúa en segundo plano, en la API de Anthropic (no usa la GPU de
+  Ollama). **Bajo demanda** desde el 25 nov: cada respuesta queda «pendiente» hasta que alguien pulsa «Evaluar»
+  (`RAG_JUEZ_FABLE_AUTOMATICO=true` vuelve a evaluar todas solas, ~0.16 USD por respuesta). Seis métricas de RAGAS 0.4.3: precisión del contexto, recuerdo del
   contexto, fidelidad, relevancia de la respuesta, sensibilidad al ruido (menor es mejor) y corrección factual (F1). El
   juez solo da veredictos con salida JSON validada por esquema; los puntajes se calculan en Python. Recuerdo, ruido y
   corrección se comparan con una respuesta de referencia que el juez escribe **sin ver la del sistema**, a partir de lo

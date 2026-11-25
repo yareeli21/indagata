@@ -61,10 +61,14 @@ class AppSettings(BaseSettings):
     SECRET_KEY: str = "dev-secret-key-change-in-production"
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
-    # Usuario fijo de desarrollo (cuando no hay JWT real todavía).
-    DEV_USER_ID: int = 1
-    # Si es True, los servicios aceptan el usuario de desarrollo sin token.
-    AUTH_DEV_MODE: bool = True
+    # Orígenes que el navegador puede usar para llamar a los servicios (CORS), separados
+    # por comas. En el servidor la página y la API comparten dominio (Caddy), así que no
+    # hace falta agregarlo; en desarrollo el frontend corre en el 3000 (o el 8080 de Vite).
+    CORS_ORIGENES: str = "http://localhost:3000,http://127.0.0.1:3000,http://localhost:8080"
+
+    @property
+    def cors_origenes(self) -> list[str]:
+        return [o.strip() for o in self.CORS_ORIGENES.split(",") if o.strip()]
 
     # ── URLs de los microservicios ───────────────────────────────────────────
     INSTRUMENT_SERVICE_URL: str = "http://localhost:8001"
@@ -139,6 +143,10 @@ class AppSettings(BaseSettings):
     # el chat. Sin ANTHROPIC_API_KEY la evaluación queda «omitida» con el motivo.
     ANTHROPIC_API_KEY: str = ""
     RAG_JUEZ_FABLE: bool = True
+    # False (por defecto): cada respuesta queda «pendiente» y el juez solo corre cuando alguien pulsa «Evaluar» en el
+    # panel o se llama POST /rag/consultas/{id}/metricas?juez=claude-fable-5-2. True: evalúa cada respuesta sola, lo
+    # que cuesta ~0.16 USD por respuesta (pruebas automáticas incluidas) y envía el contexto a la API de Anthropic.
+    RAG_JUEZ_FABLE_AUTOMATICO: bool = False
     RAG_JUEZ_FABLE_MODELO: str = "claude-fable-5-2"
     RAG_JUEZ_FABLE_ESFUERZO: str = "high"  # low | medium | high | xhigh | max (referencia y veredictos)
     RAG_JUEZ_FABLE_AMPLIADO: int = 12  # fragmentos extra de Chroma (sin umbral) para la respuesta de referencia

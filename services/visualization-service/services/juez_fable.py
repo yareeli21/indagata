@@ -1,7 +1,8 @@
-"""Evaluación de CADA respuesta del chat con un juez Claude Fable 5.2: seis métricas tipo RAGAS (11 nov).
+"""Evaluación de las respuestas del chat con un juez Claude Fable 5.2: seis métricas tipo RAGAS (11 nov).
 
-A diferencia del juez local (`evaluacion.py`, Ollama, bajo demanda porque comparte la GPU con el redactor), este juez
-corre en la API de Anthropic: se dispara en segundo plano después de cada respuesta y no frena el chat. Cada
+Corre en la API de Anthropic, en segundo plano, sin frenar el chat. Desde el 25 nov es BAJO DEMANDA por defecto: cada
+respuesta evaluable queda «pendiente» y se evalúa cuando alguien lo pide (`RAG_JUEZ_FABLE_AUTOMATICO=true` vuelve a
+evaluar cada respuesta sola). Cada
 evaluación se guarda en `rag_metrica_juez` (una fila por respuesta, `modelo_juez = RAG_JUEZ_FABLE_MODELO`).
 
 Las fórmulas siguen RAGAS 0.4.3; el juez solo emite veredictos (salida estructurada, JSON validado por esquema) y los
@@ -54,7 +55,7 @@ _FILAS_TABLA = 6
 _ATASCADA = timedelta(minutes=15)  # una evaluación «calculando» más vieja se puede volver a pedir (reinicio)
 _BETA_FALLBACK = "server-side-fallback-2026-07-01"
 
-CALCULANDO, LISTO, OMITIDA, ERROR = "calculando", "listo", "omitida", "error"
+CALCULANDO, LISTO, OMITIDA, ERROR, PENDIENTE = "calculando", "listo", "omitida", "error", "pendiente"
 
 
 def modelo() -> str:
@@ -437,6 +438,23 @@ def aplica(fila: RagLog) -> bool:
     metricas = fila.metricas or {}  # vacío = el juez local la evaluará en segundo plano: también aplica
     return bool(settings.RAG_JUEZ_FABLE and settings.RAG_METRICAS and fila.respuesta
                 and metricas.get("estado") != OMITIDA and not metricas.get("origen"))
+
+
+def registrar(fila: RagLog, sesion: Any, fabrica: Callable[[], Any]) -> None:
+    """Al guardar una respuesta evaluable: la evalúa ya (`RAG_JUEZ_FABLE_AUTOMATICO`) o la deja «pendiente».
+
+    Pendiente no llama a la API: la evaluación cuesta dinero y envía el contexto (respuestas de los instrumentos) a
+    Anthropic, así que por defecto solo se hace cuando alguien la pide desde el panel.
+    """
+    if settings.RAG_JUEZ_FABLE_AUTOMATICO:
+        solicitar(fila, sesion, fabrica)
+        return
+    if _fila_juez(sesion, fila.rag_log_id) is None:
+        _guardar(sesion, fila.rag_log_id, {
+            "estado": PENDIENTE, "version": VERSION,
+            "motivo": "Se evalúa solo si lo pides (cada evaluación usa la API de Anthropic).",
+        })
+        sesion.commit()
 
 
 def solicitar(fila: RagLog, sesion: Any, fabrica: Callable[[], Any], *, forzar: bool = False) -> None:

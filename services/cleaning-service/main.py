@@ -31,6 +31,8 @@ if not (Path(__file__).resolve().parent / "shared" / "__init__.py").exists():
 from fastapi import FastAPI  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
+from shared.db.core.config import settings  # noqa: E402
+
 from routers import health, limpieza  # noqa: E402
 from services import VERSION_SERVICIO  # noqa: E402
 
@@ -51,7 +53,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Ajustar en producción.
+    allow_origins=settings.cors_origenes,  # CORS_ORIGENES en shared/db/core/config.py
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
