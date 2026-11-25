@@ -8,6 +8,7 @@ import type {
   ResultadoChat,
 } from "@/types";
 import { API_URL, avisarSesionExpirada, leerToken, pedir } from "./client";
+import { enviarInvestigacion } from "./investigaciones";
 
 // 25 nov: antes la página mandaba siempre «llama3.2:3b»; en un servidor con otro modelo, Ollama respondía con error.
 // Ahora no se manda modelo y el servidor usa el suyo; su nombre se lee de GET /rag/modelo.
@@ -52,6 +53,7 @@ export function setInstrumentosDeInvestigacion(
   const mapa = leerMapa();
   mapa[investigacionId] = instrumentoIds;
   escribirMapa(mapa);
+  enviarInvestigacion(investigacionId, { instrumentos: instrumentoIds });
 }
 
 /** Devuelve los instrumentos juntados de una investigación (vacío ⇒ []). */

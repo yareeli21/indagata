@@ -6,6 +6,7 @@ import {
   eliminarInvestigacion,
   getInvestigaciones,
   reclamarInvestigacionesAnteriores,
+  sincronizarInvestigaciones,
 } from "@/api/investigaciones";
 import { useAuth } from "@/features/auth/AuthContext";
 import type { Investigacion } from "@/types";
@@ -71,13 +72,16 @@ export function ResearchProvider({ children }: { children: ReactNode }) {
     setCargando(true);
     const cuentaAnterior = usuario.usuario === CUENTA_INVESTIGACIONES_ANTERIORES;
     if (cuentaAnterior) reclamarInvestigacionesAnteriores(usuario.id);
-    getInvestigaciones(usuario.id).then((datos) => {
-      if (!vivo) return;
-      setInvestigaciones(datos);
-      const guardada = leerActiva(usuario.id) ?? (cuentaAnterior ? leerActivaAnterior() : null);
-      setActivaId(datos.some((i) => i.id === guardada) ? guardada : null);
-      setCargando(false);
-    });
+    // 25 nov: primero se junta con lo guardado en el servidor (investigaciones de otros dispositivos).
+    sincronizarInvestigaciones(usuario.id)
+      .then(() => getInvestigaciones(usuario.id))
+      .then((datos) => {
+        if (!vivo) return;
+        setInvestigaciones(datos);
+        const guardada = leerActiva(usuario.id) ?? (cuentaAnterior ? leerActivaAnterior() : null);
+        setActivaId(datos.some((i) => i.id === guardada) ? guardada : null);
+        setCargando(false);
+      });
     return () => {
       vivo = false;
     };

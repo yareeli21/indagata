@@ -23,6 +23,7 @@ from shared.models.limpieza_ejecucion import LimpiezaEjecucion
 from shared.models.version_conocimiento import VersionConocimiento
 from shared.models.respuesta_interpretada import RespuestaInterpretada
 from shared.models.tiempo_proceso import TiempoProceso
+from shared.models.investigacion import Investigacion
 
 __all__ = [
     "Usuario",
@@ -45,4 +46,5 @@ __all__ = [
     "VersionConocimiento",
     "RespuestaInterpretada",
     "TiempoProceso",
+    "Investigacion",
 ]

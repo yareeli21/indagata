@@ -10,7 +10,7 @@ Prefijos passthrough:
   - /instrumentos/*     → instrument-service :8001    (GET/POST/DELETE)
   - /almacenamiento/*   → storage-service :8004       (GET/POST/DELETE; interno: solo administradores)
   - /rag/*              → visualization-service :8005 (POST, GET y PUT; /rag/chat es SSE)
-  - /visualizacion/*    → visualization-service :8005 (GET/POST: catálogo, KPIs, descargas)
+  - /visualizacion/*    → visualization-service :8005 (GET/POST: catálogo, KPIs, descargas; PUT/DELETE: investigaciones)
   - /api/metadata/*     → metadata-service :8003      (GET/POST/DELETE)
   - /api/enrichment/*   → metadata-service :8003      (GET/POST/DELETE)
   - /limpieza/*         → cleaning-service :8007      (GET/POST/PATCH: limpieza asistida)
@@ -146,6 +146,17 @@ async def visualizacion_get(request: Request, path: str) -> Response:
 @router.post("/visualizacion/{path:path}")
 async def visualizacion_post(request: Request, path: str) -> Response:
     return await proxy_request("visualization", _ruta_upstream("/visualizacion", path), request, "POST")
+
+
+# Investigaciones del usuario (25 nov): PUT guarda (crea o actualiza) y DELETE elimina.
+@router.put("/visualizacion/{path:path}")
+async def visualizacion_put(request: Request, path: str) -> Response:
+    return await proxy_request("visualization", _ruta_upstream("/visualizacion", path), request, "PUT")
+
+
+@router.delete("/visualizacion/{path:path}")
+async def visualizacion_delete(request: Request, path: str) -> Response:
+    return await proxy_request("visualization", _ruta_upstream("/visualizacion", path), request, "DELETE")
 
 
 # ---------------------------------------------------------------------------

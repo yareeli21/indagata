@@ -397,3 +397,16 @@ BEGIN
     EXECUTE format('ALTER ROLE %I SET search_path TO tt_rag, public', current_user);
 END
 $$;
+
+-- ── investigacion (2026_23) ──────────────────────────────────────────────────
+-- Las investigaciones de cada usuario y su conversación (antes solo en el navegador).
+CREATE TABLE IF NOT EXISTS investigacion (
+    usuario_id      INTEGER      NOT NULL REFERENCES usuario(usuario_id) ON DELETE CASCADE,
+    id              VARCHAR(64)  NOT NULL,
+    nombre          VARCHAR(255) NOT NULL,
+    fecha_creacion  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    instrumentos    JSONB        NOT NULL DEFAULT '[]'::jsonb,
+    sesion          JSONB        NULL,
+    actualizada     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (usuario_id, id)
+);
