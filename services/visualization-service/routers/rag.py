@@ -45,6 +45,14 @@ async def chat(peticion: ChatRequest, _: Investigador):
     return await rag_service.responder(peticion)
 
 
+@router.get("/modelo", summary="Modelo de lenguaje que usa el chat en este servidor")
+async def modelo_del_servidor(_: Investigador) -> dict[str, str]:
+    """El selector del chat muestra este nombre en lugar de uno escrito en la página (25 nov)."""
+    from shared.db.core.config import settings
+
+    return {"modelo": settings.OLLAMA_MODEL}
+
+
 @router.post("/interpretar", response_model=InterpretarOut, summary="Plan de interpretación de una pregunta")
 async def interpretar(peticion: ChatRequest, _: Investigador, db: DBSession) -> InterpretarOut:
     """Etapa 1 del chat por separado: el plan que el LLM arma para la pregunta, validado contra el catálogo."""

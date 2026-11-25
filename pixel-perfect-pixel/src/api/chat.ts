@@ -9,9 +9,17 @@ import type {
 } from "@/types";
 import { API_URL, avisarSesionExpirada, leerToken, pedir } from "./client";
 
+// 25 nov: antes la página mandaba siempre «llama3.2:3b»; en un servidor con otro modelo, Ollama respondía con error.
+// Ahora no se manda modelo y el servidor usa el suyo; su nombre se lee de GET /rag/modelo.
 export const MODELOS_DISPONIBLES: { id: ModeloLLM; etiqueta: string }[] = [
-  { id: "llama3.2:3b", etiqueta: "Llama 3.2 (3B) — local" },
+  { id: "servidor", etiqueta: "Modelo del servidor" },
 ];
+
+/** Nombre del modelo que usa el chat en el servidor (p. ej. «llama3.1:8b-instruct-q4_K_M»). */
+export async function getModeloServidor(): Promise<string> {
+  const r = await pedir<{ modelo: string }>(`${API_URL}/rag/modelo`, { auth: true });
+  return r.modelo;
+}
 
 // ── Selección de instrumentos por investigación (persistencia en cliente) ───────
 
@@ -106,7 +114,7 @@ export function enviarMensaje(
         investigacionId,
         pregunta,
         instrumentoIds: ids,
-        modelo,
+        modelo: modelo === "servidor" ? undefined : modelo,
         stream: true,
         top_k: 6,
         // Orienta la respuesta hacia la investigación (objetivo, población, nivel).

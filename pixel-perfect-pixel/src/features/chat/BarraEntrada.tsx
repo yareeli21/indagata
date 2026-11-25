@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUp, Square } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { MODELOS_DISPONIBLES } from "@/api/chat";
+import { MODELOS_DISPONIBLES, getModeloServidor } from "@/api/chat";
 import type { ModeloLLM } from "@/types";
 
 interface BarraEntradaProps {
@@ -28,6 +28,13 @@ export function BarraEntrada({
   onDetener,
 }: BarraEntradaProps) {
   const [texto, setTexto] = useState("");
+  // Nombre real del modelo del servidor, para que el selector no muestre uno que no es (25 nov).
+  const [nombreServidor, setNombreServidor] = useState<string | null>(null);
+  useEffect(() => {
+    getModeloServidor()
+      .then(setNombreServidor)
+      .catch(() => setNombreServidor(null));
+  }, []);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const puedeEnviar = texto.trim().length > 0 && !generando;
@@ -57,13 +64,13 @@ export function BarraEntrada({
           onValueChange={(v) => onCambiarModelo(v as ModeloLLM)}
           disabled={generando}
         >
-          <SelectTrigger className="h-7 w-44 text-xs">
+          <SelectTrigger className="h-7 w-60 text-xs">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
             {MODELOS_DISPONIBLES.map((m) => (
               <SelectItem key={m.id} value={m.id} className="text-xs">
-                {m.etiqueta}
+                {m.id === "servidor" && nombreServidor ? nombreServidor : m.etiqueta}
               </SelectItem>
             ))}
           </SelectContent>

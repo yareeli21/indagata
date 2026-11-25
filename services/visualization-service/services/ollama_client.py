@@ -149,6 +149,38 @@ def _url() -> str:
     return f"{settings.OLLAMA_HOST.rstrip('/')}/api/generate"
 
 
+_instalados: tuple[float, set[str]] = (0.0, set())
+_VIGENCIA_INSTALADOS = 300.0  # segundos
+
+
+async def modelos_instalados() -> set[str]:
+    """Modelos que tiene Ollama (GET /api/tags), guardados 5 minutos. Vacío si Ollama no responde."""
+    global _instalados
+    import time
+
+    if time.monotonic() - _instalados[0] < _VIGENCIA_INSTALADOS and _instalados[1]:
+        return _instalados[1]
+    try:
+        async with httpx.AsyncClient(timeout=httpx.Timeout(5.0)) as cliente:
+            r = await cliente.get(f"{settings.OLLAMA_HOST.rstrip('/')}/api/tags")
+            r.raise_for_status()
+            nombres = {m.get("name", "") for m in r.json().get("models") or []}
+    except Exception:  # noqa: BLE001 — sin la lista, el chat sigue con el modelo del servidor
+        return set()
+    _instalados = (time.monotonic(), nombres)
+    return nombres
+
+
+async def modelo_para(pedido: str | None) -> str:
+    """El modelo que pidió el chat si Ollama lo tiene; si no, el del servidor (OLLAMA_MODEL).
+
+    La página mandaba siempre «llama3.2:3b»; en el servidor con llama3.1:8b ese modelo no existe, Ollama respondía
+    con error y todas las redacciones caían al resultado calculado tal cual (25 nov)."""
+    if not pedido or pedido == settings.OLLAMA_MODEL:
+        return settings.OLLAMA_MODEL
+    return pedido if pedido in await modelos_instalados() else settings.OLLAMA_MODEL
+
+
 async def generar_stream(prompt: str, modelo: str, sistema: str | None = None) -> AsyncIterator[str]:
     """Genera texto en streaming; produce trozos de `response` (§4.9).
 

@@ -1571,7 +1571,7 @@ def _verificar_redaccion(plan: Plan, respuesta: str, degradado: bool) -> tuple[s
 
 async def responder(peticion: ChatRequest):
     inicio = time.monotonic()
-    modelo = peticion.modelo or settings.OLLAMA_MODEL
+    modelo = await ollama_client.modelo_para(peticion.modelo)
     clave = clave_cache(peticion, modelo)
     if (guardada := buscar_en_cache(clave, peticion.pregunta, modelo, inicio)) is not None:
         if peticion.stream:

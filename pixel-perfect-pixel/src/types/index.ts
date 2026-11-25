@@ -576,7 +576,8 @@ export interface InstrumentoRelacionado {
 }
 
 /** «servidor»: no se envía modelo y el chat usa el de `OLLAMA_MODEL` (.env) en todas sus etapas. */
-export type ModeloLLM = "llama3.2:3b";
+/** «servidor»: el chat usa el modelo configurado en el servidor (OLLAMA_MODEL). */
+export type ModeloLLM = "servidor";
 
 export interface ContextoInvestigacion {
   objetivo: string;

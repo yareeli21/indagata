@@ -63,7 +63,7 @@ export function ChatPage() {
   const [mensajes, setMensajes] = useState<Mensaje[]>([]);
   // Fuente citada abierta en el panel lateral (trazabilidad: documento y parte exacta usada).
   const [fuenteAbierta, setFuenteAbierta] = useState<FuenteSeleccionada | null>(null);
-  const [modelo, setModelo] = useState<ModeloLLM>("llama3.2:3b");
+  const [modelo, setModelo] = useState<ModeloLLM>("servidor");
   const [generando, setGenerando] = useState(false);
   const cancelarRef = useRef<(() => void) | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
