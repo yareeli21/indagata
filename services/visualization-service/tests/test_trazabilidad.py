@@ -101,6 +101,18 @@ def test_citar_agrega_la_fuente_a_cada_linea_que_sale_de_ella():
     assert [f.numero for f in trazabilidad.citadas(FUENTES, citada)] == [1, 3]
 
 
+def test_citar_completa_las_oraciones_sin_cita_aunque_el_modelo_haya_citado_otras():
+    respuesta = ("En la encuesta de bienestar dicen sentirse emocionalmente equilibrados [Fuente 3]. "
+                 "La escala pregunta si los alumnos aportan ideas relevantes durante las clases. "
+                 "Esto es una conclusión general sin datos.")
+    assert trazabilidad.citar(respuesta, FUENTES) == (
+        "En la encuesta de bienestar dicen sentirse emocionalmente equilibrados [Fuente 3]. "
+        "La escala pregunta si los alumnos aportan ideas relevantes durante las clases [Fuente 1]. "
+        "Esto es una conclusión general sin datos.")
+    assert trazabilidad.citar("El 50.5 % está de acuerdo y la media es 3,08.", FUENTES) == \
+        "El 50.5 % está de acuerdo y la media es 3,08."  # sin relación con las fuentes; los decimales no cortan
+
+
 def test_citar_no_toca_respuestas_que_ya_citan_ni_lineas_ambiguas():
     ya_citada = "Aportan ideas relevantes durante las clases [Fuente 2]."
     assert trazabilidad.citar(ya_citada, FUENTES) == ya_citada

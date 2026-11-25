@@ -67,11 +67,14 @@ SISTEMA = (
     "Varía también cómo presentas tu interpretación: no la introduzcas siempre con la misma fórmula («lo que "
     "sugiere», «esto sugiere», «esto indica»); a veces dila directamente o con otras palabras, como lo haría un "
     "investigador al redactar."
+    # (25 nov) Se probó una regla 17 contra generalizar desde respuestas de una sola persona: el 8B la ignoraba y
+    # rechazaba más casos límite. Lo resuelve rag_service._resumenes_de_apoyo (agrega el resumen de la pregunta).
 )
 
 _SECCION = {
-    "encabezado": "ficha", "pregunta": "pregunta", "contenido": "texto", "respondente": "respondente",
-    "reactivo": "reactivo", "alumno": "alumno", "intercambio": "intercambio", "kpi": "KPI",
+    "encabezado": "ficha", "pregunta": "pregunta", "contenido": "texto",
+    "respondente": "respuesta de una sola persona (respondente)",
+    "reactivo": "reactivo", "alumno": "respuesta de una sola persona (alumno)", "intercambio": "intercambio", "kpi": "KPI",
     "resultado": "resultado calculado",
 }
 

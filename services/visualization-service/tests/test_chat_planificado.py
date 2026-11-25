@@ -438,3 +438,18 @@ def test_antes_de_pedir_aclaracion_responde_con_lo_recuperado(chat):
     chat["plan"] = {"intencion": "aclaracion", "aclaracion": "¿Te refieres a R0067?"}  # una persona por su ID: no
     _, fila = chat["preguntar"]("¿qué respondió R0067 sobre su carga laboral actual?", ["4"])
     assert fila.motivo == "plan:aclaracion"
+
+
+def test_redaccion_libre_con_cifra_inventada_lleva_aviso_visible():
+    """La redacción libre ya se transmitió: una cifra que no está en ningún fragmento no se puede retirar, pero se
+    avisa (25 nov: «72.0 % (n=108)» inventado). Sin cifras sin respaldo, o con resultado calculado, no se toca."""
+    from services import rag_service as r
+
+    plan = r.Plan(plan_consulta={"verificacion": {"resultado": "cifras_sin_respaldo", "cifras_sin_sustento": ["72.0", "108"]}})
+    con_aviso = r._aviso_cifras(plan, "El 72.0 % (n=108) espera trabajar en su campo [Fuente 1].")
+    assert con_aviso.endswith("**Aviso:** las cifras 72.0 y 108 no aparecen en las fuentes recuperadas; "
+                              "verifícalas antes de usarlas.")
+    limpio = r.Plan(plan_consulta={"verificacion": {"resultado": "aceptada", "cifras_sin_sustento": []}})
+    assert r._aviso_cifras(limpio, "Sin cifras raras.") == "Sin cifras raras."
+    calculada = r.Plan(resultado="Conteo: 12 de 40", plan_consulta=plan.plan_consulta)
+    assert r._aviso_cifras(calculada, "12 de 40") == "12 de 40"

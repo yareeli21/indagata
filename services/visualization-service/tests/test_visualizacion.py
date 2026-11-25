@@ -478,3 +478,27 @@ def test_en_entrevistas_las_preguntas_guia_y_los_kpi_no_ocupan_los_lugares_de_da
     assert secciones.count("pregunta") == 1
     assert secciones.count("intercambio") == rag_service._MAX_FRAGMENTOS_POR_INSTRUMENTO
     assert "kpi" in secciones
+
+
+def test_si_solo_entran_personas_sueltas_se_agrega_el_resumen_de_la_pregunta(chroma, monkeypatch):
+    """Con solo respuestas individuales el modelo generalizaba («los estudiantes suelen…», I86-a del banco v1): se
+    agrega el resumen de la pregunta del mismo instrumento aunque no pase el umbral."""
+    from models import ChatRequest
+    from services import rag_service
+    from shared.db.core.config import settings
+
+    texto = "ordenan sus materiales antes de estudiar"
+    monkeypatch.setattr(settings, "RAG_MIN_SCORE", 0.99)  # solo pasan los respondentes (idénticos a la pregunta)
+    monkeypatch.setattr(settings, "RAG_HIBRIDA", False)
+    monkeypatch.setattr(rag_service, "_MIN_RESUMEN_DE_APOYO", 0.0)
+    col = chroma.crear("instrumentos")
+    base = {"instrumentoId": "86", "tipo": "Encuesta", "titulo": "IEAE"}
+    col.agregar("r1", texto, {**base, "seccion": "respondente", "respondenteId": "R098"})
+    col.agregar("r2", texto, {**base, "seccion": "respondente", "respondenteId": "R155"})
+    col.agregar("p1", "Pregunta p01: organizo el material. Distribución: neutral 31.7 %",
+                {**base, "seccion": "pregunta", "preguntaId": "INS-0086-p01"})
+
+    fragmentos, _ = rag_service._buscar(ChatRequest(pregunta=texto, instrumentoIds=["86"], stream=False),
+                                        rag_service._vector(texto))
+    assert [f["seccion"] for f in fragmentos] == ["respondente", "respondente", "pregunta"]
+    assert fragmentos[-1]["apoyo"] == "resumen_de_pregunta" and fragmentos[-1]["preguntaId"] == "INS-0086-p01"

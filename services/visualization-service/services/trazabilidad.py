@@ -140,29 +140,48 @@ _EMPATE = 0.75  # otra fuente tan cercana como esto a la mejor también se cita 
 _RE_FIN_LINEA = re.compile(r"([.;:,]?)(\s*)$")
 
 
+# Fin de oración: punto, signo de cierre de pregunta o de exclamación seguido de espacio y de lo que abre otra oración.
+# No corta «50.5 %» ni «3,08» (después del punto no hay espacio).
+_RE_ORACION = re.compile(r"(?<=[.!?])\s+(?=[«\"(¿¡*\-A-ZÁÉÍÓÚÑ])")
+_RE_FUENTE = re.compile(r"\[Fuentes?\s+\d+")
+
+
 def citar(respuesta: str, fuentes: list[FuenteChatOut]) -> str:
-    """La respuesta con «[Fuente n]» al final de cada línea sin cita que sale claramente de una fuente."""
-    if not fuentes or numeros_citados(respuesta):
+    """La respuesta con «[Fuente n]» al final de cada ORACIÓN sin cita que sale claramente de una fuente.
+
+    Desde el 25 nov trabaja por oración y también cuando el modelo citó solo algunas: en las entrevistas citaba una vez
+    al final del párrafo y lo que decía de cada persona quedaba sin fuente (12–25 % de oraciones con cita). Las
+    oraciones que ya citan no se tocan; las ambiguas (más de dos fuentes igual de cercanas) tampoco."""
+    if not fuentes:
         return respuesta
     vocabulario = {
         f.numero: _palabras(" ".join([f.titulo, *(p.texto for p in f.pasajes)] if f.pasajes else [f.titulo, f.fragmento]))
         for f in fuentes
     }
-    lineas = respuesta.split("\n")
-    for i, linea in enumerate(lineas):
-        palabras = _palabras(linea)
+
+    def marcar(oracion: str) -> str:
+        if _RE_FUENTE.search(oracion) or oracion.rstrip().endswith(":"):
+            return oracion
+        palabras = _palabras(oracion)
         if len(palabras) < _MIN_PALABRAS_LINEA:
-            continue
+            return oracion
         puntajes = sorted(((len(palabras & v), n) for n, v in vocabulario.items()), reverse=True)
         mejor = puntajes[0][0]
         if mejor < max(_MIN_PALABRAS_LINEA, round(_UMBRAL_LINEA * len(palabras))):
-            continue
-        cercanas = sorted(n for s, n in puntajes if s >= _EMPATE * mejor)
+            return oracion
+        cercanas = sorted(n for p, n in puntajes if p >= _EMPATE * mejor)
         if len(cercanas) > 2:
-            continue  # ambiguo: varias fuentes dicen lo mismo
+            return oracion  # ambiguo: varias fuentes dicen lo mismo
         marcas = " ".join(f"[Fuente {n}]" for n in cercanas)
-        lineas[i] = _RE_FIN_LINEA.sub(lambda m: f" {marcas}{m.group(1)}{m.group(2)}", linea.rstrip(), count=1) \
-            if not linea.rstrip().endswith(":") else linea
+        return _RE_FIN_LINEA.sub(lambda m: f" {marcas}{m.group(1)}{m.group(2)}", oracion.rstrip(), count=1)
+
+    lineas = []
+    for linea in respuesta.split("\n"):
+        partes = _RE_ORACION.split(linea)
+        espacios = _RE_ORACION.findall(linea)
+        marcadas = [marcar(o) for o in partes]
+        nueva = marcadas[0] + "".join(e + o for e, o in zip(espacios, marcadas[1:]))
+        lineas.append(nueva + linea[len(linea.rstrip()):] if nueva != linea else linea)
     return "\n".join(lineas)
 
 

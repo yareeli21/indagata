@@ -68,6 +68,12 @@ _MAX_FRAGMENTOS_POR_INSTRUMENTO = 3
 # actividades extracurriculares con la escuela?» dos preguntas guía y un KPI llenaban los 3 lugares, los intercambios
 # que sí respondían (0.65–0.70) quedaban fuera y el modelo contestaba, con razón, que no había información.
 _MAX_GUIAS_POR_INSTRUMENTO = 1
+# Respuestas de personas sueltas sin la vista del grupo (25 nov): con solo dos respondentes el modelo concluía «los
+# estudiantes suelen…» o inventaba un «50 %». Si de un instrumento solo entran fragmentos por persona, se agrega el
+# resumen de pregunta o reactivo más parecido de ese instrumento (distribución precalculada), si alcanza este coseno.
+_POR_PERSONA = {"respondente", "alumno"}
+_RESUMENES = {"pregunta", "reactivo"}
+_MIN_RESUMEN_DE_APOYO = 0.45
 MENSAJE_SIN_CONTEXTO = (
     f"{prompt.SIN_INFORMACION} Recuerda que solo entran al RAG los instrumentos con "
     "metadatos aprobados por su autor; puedes ampliar la selección de tu investigación."
@@ -221,25 +227,49 @@ def _buscar(peticion: ChatRequest, vector: list[float]) -> tuple[list[dict[str, 
         if seccion == "encabezado":
             encabezados[inst] = encabezados.get(inst, 0) + 1
             doc = _ficha_completa(coleccion, inst) or doc
-        fragmentos.append(
-            {
-                "instrumentoId": inst,
-                "titulo": str(meta.get("titulo", "")),
-                "tipo": meta.get("tipo") if meta.get("tipo") in _TIPOS else "Encuesta",
-                "investigador": str(meta.get("investigador", "")),
-                "kpis": _kpis(meta.get("kpis")),
-                "seccion": seccion,
-                "fragmento": str(doc or ""),
-                "score": score,
-                "preguntaId": str(meta.get("preguntaId", "")),
-                "respondenteId": str(meta.get("respondenteId", "")),
-                # Trazabilidad: posición en el documento indexado y texto sin recortes (services/trazabilidad.py).
-                "chunkIndex": 0 if seccion == "encabezado" else meta.get("chunk_index"),
-                "fragmentoOriginal": str(doc or ""),
-                **lexico,
-            }
-        )
+        fragmentos.append(_fragmento_de(meta, doc, score, lexico))
+    fragmentos += _resumenes_de_apoyo(res, fragmentos)
     return fragmentos, score_max
+
+
+def _fragmento_de(meta: dict[str, Any], doc: Any, score: float, lexico: dict[str, Any]) -> dict[str, Any]:
+    seccion = str(meta.get("seccion", ""))
+    return {
+        "instrumentoId": str(meta.get("instrumentoId", "")),
+        "titulo": str(meta.get("titulo", "")),
+        "tipo": meta.get("tipo") if meta.get("tipo") in _TIPOS else "Encuesta",
+        "investigador": str(meta.get("investigador", "")),
+        "kpis": _kpis(meta.get("kpis")),
+        "seccion": seccion,
+        "fragmento": str(doc or ""),
+        "score": score,
+        "preguntaId": str(meta.get("preguntaId", "")),
+        "respondenteId": str(meta.get("respondenteId", "")),
+        # Trazabilidad: posición en el documento indexado y texto sin recortes (services/trazabilidad.py).
+        "chunkIndex": 0 if seccion == "encabezado" else meta.get("chunk_index"),
+        "fragmentoOriginal": str(doc or ""),
+        **lexico,
+    }
+
+
+def _resumenes_de_apoyo(res: dict[str, Any], fragmentos: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Para cada instrumento del que solo entraron respuestas de personas sueltas, el resumen de pregunta o reactivo
+    más parecido entre los candidatos (coseno ≥ _MIN_RESUMEN_DE_APOYO): sin él, el modelo generaliza desde dos personas."""
+    por_persona = {f["instrumentoId"] for f in fragmentos if f["seccion"] in _POR_PERSONA}
+    con_resumen = {f["instrumentoId"] for f in fragmentos if f["seccion"] in _RESUMENES}
+    faltan = por_persona - con_resumen
+    if not faltan:
+        return []
+    metas, docs = (res.get("metadatas") or [[]])[0], (res.get("documents") or [[]])[0]
+    mejores: dict[str, tuple[float, int]] = {}
+    for n, (meta, dist) in enumerate(zip(metas, (res.get("distances") or [[]])[0])):
+        meta = meta or {}
+        inst, score = str(meta.get("instrumentoId", "")), round(1.0 - float(dist), 4)
+        if (inst in faltan and str(meta.get("seccion", "")) in _RESUMENES and score >= _MIN_RESUMEN_DE_APOYO
+                and score > mejores.get(inst, (0.0, -1))[0]):
+            mejores[inst] = (score, n)
+    return [{**_fragmento_de(metas[n] or {}, docs[n], score, _lexico(res, n)), "apoyo": "resumen_de_pregunta"}
+            for score, n in mejores.values()]
 
 
 def _lexico(res: dict[str, Any], n: int) -> dict[str, Any]:
@@ -677,7 +707,7 @@ _DECISIONES_REUTILIZABLES = {dominio.DENTRO, dominio.AYUDA}
 # Súbelo cuando cambie cómo se calculan o redactan las respuestas (enrutador, consultas):
 # las guardadas con la versión anterior dejan de reutilizarse. Las reglas del prompt
 # (`prompt.SISTEMA`) ya entran en la huella.
-_VERSION_RESPUESTAS = 48  # 48: en entrevistas la pregunta guía (1 por instrumento) y los KPI no ocupan los lugares de datos; 47: umbral de similitud 0.55 (calibrado con el conjunto de desarrollo); 46: hallazgo que nombra una pregunta → sus respuestas o su distribución; conteo con la pregunta sin condición; 45: preguntas dobles (dos conteos o dos grupos de una variable); 44: conteos por el tipo de la pregunta aludida, resumen por grupo, base de dos condiciones y comparaciones de contexto inventadas fuera; 43: filtros cuyo valor es un grupo de contexto (perfil de entrevistados) pasan a condición de contexto; 42: búsqueda híbrida (significado + palabras, RRF); 41: «¿qué significa eso?» usa el seguimiento si la interpretación no retoma el plan; 40: búsqueda semántica con la pregunta original si la reescrita se parece menos; «¿qué significa eso?» interpreta el resultado; 39: pistas de la interpretación con los fragmentos cercanos y personas de la evidencia en los seguimientos; 38: seguimientos tras una aclaración y sin muletillas del prompt; 37: seguimientos de inferencia con la evidencia de la respuesta anterior; 36: umbral 0.65, similitud en cada tarjeta y hallazgos sin relación también dentro de una conversación; 35: umbral 0.70 sin relleno bajo el umbral y hallazgos de un tema sin relación → sin información; 34: regla 16 también pide variar «esto sugiere»; 33: regla 16 del prompt (interpretar con sus palabras, sin abrir siempre con «según el contexto»); 32: catálogo de la interpretación dentro del contexto; 31: citas [Fuente n] añadidas a las líneas que salen claramente de una fuente cuando el modelo no citó; 30: solo las fuentes que la respuesta usó (citadas o del resultado calculado); 29: cada fuente trae sus pasajes (trazabilidad: parte del documento, similitud y posición); 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
+_VERSION_RESPUESTAS = 52  # 52: aviso visible de cifras sin respaldo en la redacción libre; 51: sin la regla 17 (no servía); 50: resumen de la pregunta cuando solo entran respuestas de personas sueltas; 49: regla 17 (respuestas de una sola persona no se generalizan) y citas por oración; 48: en entrevistas la pregunta guía (1 por instrumento) y los KPI no ocupan los lugares de datos; 47: umbral de similitud 0.55 (calibrado con el conjunto de desarrollo); 46: hallazgo que nombra una pregunta → sus respuestas o su distribución; conteo con la pregunta sin condición; 45: preguntas dobles (dos conteos o dos grupos de una variable); 44: conteos por el tipo de la pregunta aludida, resumen por grupo, base de dos condiciones y comparaciones de contexto inventadas fuera; 43: filtros cuyo valor es un grupo de contexto (perfil de entrevistados) pasan a condición de contexto; 42: búsqueda híbrida (significado + palabras, RRF); 41: «¿qué significa eso?» usa el seguimiento si la interpretación no retoma el plan; 40: búsqueda semántica con la pregunta original si la reescrita se parece menos; «¿qué significa eso?» interpreta el resultado; 39: pistas de la interpretación con los fragmentos cercanos y personas de la evidencia en los seguimientos; 38: seguimientos tras una aclaración y sin muletillas del prompt; 37: seguimientos de inferencia con la evidencia de la respuesta anterior; 36: umbral 0.65, similitud en cada tarjeta y hallazgos sin relación también dentro de una conversación; 35: umbral 0.70 sin relleno bajo el umbral y hallazgos de un tema sin relación → sin información; 34: regla 16 también pide variar «esto sugiere»; 33: regla 16 del prompt (interpretar con sus palabras, sin abrir siempre con «según el contexto»); 32: catálogo de la interpretación dentro del contexto; 31: citas [Fuente n] añadidas a las líneas que salen claramente de una fuente cuando el modelo no citó; 30: solo las fuentes que la respuesta usó (citadas o del resultado calculado); 29: cada fuente trae sus pasajes (trazabilidad: parte del documento, similitud y posición); 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
 
 
 def clave_cache(peticion: ChatRequest, modelo: str) -> str | None:
@@ -1618,6 +1648,7 @@ async def responder(peticion: ChatRequest):
     finally:
         evaluacion.chat_termina()
     fuentes, usados, respuesta = _fuentes_finales(plan, respuesta)
+    respuesta = _aviso_cifras(plan, respuesta)
     referencias = plan.referencias_out() if usados else []
     consulta_id = registrar_consulta(peticion.pregunta, respuesta, modelo, usados, inicio, plan, clave=clave,
                                      salida=_salida(fuentes, referencias, degradado))
@@ -1633,6 +1664,21 @@ def _anotar_cifras_semanticas(plan: Plan, respuesta: str) -> None:
     sin = evaluacion.cifras_sin_sustento(respuesta, contextos) if contextos else []
     plan.plan_consulta = {**(plan.plan_consulta or {}), "verificacion": {
         "resultado": "cifras_sin_respaldo" if sin else "aceptada", "cifras_sin_sustento": sin}}
+
+
+def _aviso_cifras(plan: Plan, respuesta: str) -> str:
+    """En la redacción libre la respuesta ya se transmitió y no se puede retirar: si trae cifras que no están en ningún
+    fragmento (25 nov: «72.0 % (n=108)» inventado en una pregunta de encuesta), se agrega un aviso visible al final. El
+    stream lo entrega en el evento «fuentes» (la interfaz reemplaza el texto) igual que las citas agregadas."""
+    verificacion = (plan.plan_consulta or {}).get("verificacion") or {}
+    sin = verificacion.get("cifras_sin_sustento") or []
+    if plan.decision != dominio.DENTRO or plan.fija is not None or plan.resultado or not sin:
+        return respuesta
+    lista = ", ".join(sin[:-1]) + (" y " if len(sin) > 1 else "") + sin[-1]
+    plural = len(sin) > 1
+    return (f"{respuesta.rstrip()}\n\n**Aviso:** {'las cifras' if plural else 'la cifra'} {lista} no "
+            f"{'aparecen' if plural else 'aparece'} en las fuentes recuperadas; {'verifícalas' if plural else 'verifícala'} "
+            "antes de usarla" + ("s." if plural else "."))
 
 
 def _fuentes_finales(plan: Plan, respuesta: str) -> tuple[list[FuenteChatOut], int, str]:
@@ -1713,6 +1759,7 @@ async def _sse_generar(pregunta: str, modelo: str, plan: Plan, inicio: float, cl
         _anotar_cifras_semanticas(plan, respuesta)
     transmitida = respuesta
     fuentes, usados, respuesta = _fuentes_finales(plan, respuesta)
+    respuesta = _aviso_cifras(plan, respuesta)
     referencias = plan.referencias_out() if usados else []
     # El mensaje de Ollama no disponible no se guarda como respuesta reutilizable.
     degradado = ollama_client.MENSAJE_DEGRADADO in respuesta
