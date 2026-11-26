@@ -22,7 +22,7 @@ from dataclasses import dataclass, field
 
 from pydantic import ValidationError
 
-from services import anclaje, ollama_client
+from services import anclaje, modelos, ollama_client
 from services.catalogo import Catalogo
 from services.plan_consulta import PlanConsulta, esquema, validar_contra_catalogo
 from shared.db.core.config import settings
@@ -229,7 +229,7 @@ async def interpretar(pregunta: str, historial: list[tuple[str, str]], catalogos
     `tema`: de qué trató la respuesta anterior (sus respondentes, preguntas y criterio), leído de rag_log.
     `pistas`: lo que recuperó el RAG antes de interpretar (RAG primero, 5 nov)."""
     inicio = time.perf_counter()
-    modelo = settings.RAG_INTERPRETACION_MODELO or settings.OLLAMA_MODEL
+    modelo = settings.RAG_INTERPRETACION_MODELO or modelos.en_curso()
     prompt = construir_prompt(pregunta, historial, catalogos, tema, pistas, prioridad)
     resultado = Interpretacion(plan=None)
     for intento in (1, 2):

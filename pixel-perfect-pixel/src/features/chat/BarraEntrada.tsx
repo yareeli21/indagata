@@ -9,8 +9,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { MODELOS_DISPONIBLES, getModeloServidor } from "@/api/chat";
-import type { ModeloLLM } from "@/types";
+import { cargarModelo, getModelos } from "@/api/chat";
+import type { ModeloChat, ModeloLLM } from "@/types";
 
 interface BarraEntradaProps {
   modelo: ModeloLLM;
@@ -28,16 +28,33 @@ export function BarraEntrada({
   onDetener,
 }: BarraEntradaProps) {
   const [texto, setTexto] = useState("");
-  // Nombre real del modelo del servidor, para que el selector no muestre uno que no es (25 nov).
-  const [nombreServidor, setNombreServidor] = useState<string | null>(null);
+  // Catálogo del servidor (26 nov): los cuatro modelos con su descripción; el predeterminado va como «servidor».
+  const [modelos, setModelos] = useState<ModeloChat[]>([]);
   useEffect(() => {
-    getModeloServidor()
-      .then(setNombreServidor)
-      .catch(() => setNombreServidor(null));
+    getModelos()
+      .then(setModelos)
+      .catch(() => setModelos([]));
   }, []);
+  const valorDe = (m: ModeloChat): ModeloLLM => (m.predeterminado ? "servidor" : m.id);
+  const elegido = modelos.find((m) => valorDe(m) === modelo);
+  // Un modelo guardado que ya no está en el catálogo (o no está instalado) vuelve al del servidor.
+  useEffect(() => {
+    if (modelos.length && (!elegido || !elegido.instalado) && modelo !== "servidor")
+      onCambiarModelo("servidor");
+  }, [modelos, elegido, modelo, onCambiarModelo]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const puedeEnviar = texto.trim().length > 0 && !generando;
+  // Carga del modelo elegido (26 nov): sin ella, la primera pregunta esperaba la carga y gemma4 llegaba al tiempo
+  // límite. Mientras carga no se envía.
+  const [cargando, setCargando] = useState<"" | "cargando" | "error">("");
+  async function cambiarModelo(v: ModeloLLM) {
+    onCambiarModelo(v);
+    setCargando("cargando");
+    const ok = await cargarModelo(v).catch(() => false);
+    setCargando(ok ? "" : "error");
+  }
+
+  const puedeEnviar = texto.trim().length > 0 && !generando && cargando !== "cargando";
 
   function handleEnviar() {
     const msg = texto.trim();
@@ -61,20 +78,46 @@ export function BarraEntrada({
         <span className="text-xs text-muted-foreground">Modelo:</span>
         <Select
           value={modelo}
-          onValueChange={(v) => onCambiarModelo(v as ModeloLLM)}
-          disabled={generando}
+          onValueChange={(v) => void cambiarModelo(v as ModeloLLM)}
+          disabled={generando || cargando === "cargando"}
         >
-          <SelectTrigger className="h-7 w-60 text-xs">
-            <SelectValue />
+          <SelectTrigger className="h-7 w-60 text-xs" title={elegido?.descripcion}>
+            <SelectValue placeholder="Modelo del servidor">
+              {elegido ? elegido.etiqueta : "Modelo del servidor"}
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
-            {MODELOS_DISPONIBLES.map((m) => (
-              <SelectItem key={m.id} value={m.id} className="text-xs">
-                {m.id === "servidor" && nombreServidor ? nombreServidor : m.etiqueta}
+            {modelos.length === 0 && (
+              <SelectItem value="servidor" className="text-xs">
+                Modelo del servidor
+              </SelectItem>
+            )}
+            {modelos.map((m) => (
+              <SelectItem key={m.id} value={valorDe(m)} disabled={!m.instalado} className="text-xs">
+                <span className="flex flex-col">
+                  <span>
+                    {m.etiqueta}
+                    {m.predeterminado ? " (predeterminado)" : ""}
+                    {!m.instalado ? " · no instalado" : ""}
+                  </span>
+                  {m.descripcion && (
+                    <span className="text-[11px] text-muted-foreground">{m.descripcion}</span>
+                  )}
+                </span>
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
+        {cargando === "cargando" && (
+          <span className="text-xs text-muted-foreground" role="status">
+            Cargando modelo…
+          </span>
+        )}
+        {cargando === "error" && (
+          <span className="text-xs text-destructive" role="status">
+            No se pudo cargar el modelo; la primera respuesta puede tardar.
+          </span>
+        )}
       </div>
 
       {/* Campo de texto + acciones */}

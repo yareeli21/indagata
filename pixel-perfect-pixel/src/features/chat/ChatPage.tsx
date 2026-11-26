@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { enviarMensaje, guardarContexto } from "@/api/chat";
+import {
+  enviarMensaje,
+  guardarContexto,
+  guardarModeloElegido,
+  leerModeloElegido,
+} from "@/api/chat";
 import { getInstrumentos } from "@/api/instrumentos";
 import { guardarSesionChat, leerSesionChat } from "@/api/investigaciones";
 import { useAuth } from "@/features/auth/AuthContext";
@@ -63,7 +68,11 @@ export function ChatPage() {
   const [mensajes, setMensajes] = useState<Mensaje[]>([]);
   // Fuente citada abierta en el panel lateral (trazabilidad: documento y parte exacta usada).
   const [fuenteAbierta, setFuenteAbierta] = useState<FuenteSeleccionada | null>(null);
-  const [modelo, setModelo] = useState<ModeloLLM>("servidor");
+  const [modelo, setModeloEstado] = useState<ModeloLLM>(() => leerModeloElegido());
+  const setModelo = useCallback((m: ModeloLLM) => {
+    setModeloEstado(m);
+    guardarModeloElegido(m);
+  }, []);
   const [generando, setGenerando] = useState(false);
   const cancelarRef = useRef<(() => void) | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);

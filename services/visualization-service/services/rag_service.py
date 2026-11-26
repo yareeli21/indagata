@@ -52,7 +52,8 @@ from shared.models.rag_log import RagLog
 from shared.models.version_conocimiento import VersionConocimiento
 
 from models import ChatRequest, ChatResponse, FuenteChatOut, IndexRequest, ReferenciaChatOut
-from services import (anclaje, consulta_planificada, dominio, ejecutor, enrutador, evaluacion, interpretacion, ollama_client, prompt,
+from services import (anclaje, consulta_planificada, dominio, ejecutor, enrutador, evaluacion, interpretacion, modelos,
+                      ollama_client, prompt,
                       hibrida, juez_fable, seguimiento, storage_client, trazabilidad, vectores)
 from services.plan_consulta import ESTRUCTURADAS, Filtro, PlanConsulta
 
@@ -1779,6 +1780,7 @@ def _verificar_redaccion(plan: Plan, respuesta: str, degradado: bool) -> tuple[s
 async def responder(peticion: ChatRequest):
     inicio = time.monotonic()
     modelo = await ollama_client.modelo_para(peticion.modelo)
+    modelos.usar(modelo)  # todas las etapas (interpretación, clasificadores, redacción) usan el modelo elegido
     clave = clave_cache(peticion, modelo)
     if (guardada := buscar_en_cache(clave, peticion.pregunta, modelo, inicio)) is not None:
         if peticion.stream:

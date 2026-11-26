@@ -41,7 +41,7 @@ from shared.models.metadatos_dc import MetadatosDC
 from shared.models.respuesta_interpretada import RespuestaInterpretada
 from shared.models.version_conocimiento import VersionConocimiento
 
-from services import storage_client
+from services import modelos, storage_client
 from services.dominio import es_definicion, normalizar
 
 logger = logging.getLogger("visualization-service")
@@ -1380,7 +1380,7 @@ async def filtro_llm(pregunta: str, sesion: Session, ids: list[str] | None) -> R
     instrumentos = [i for i in _alcance(sesion, ids, texto) if i.tipo == "encuesta"][:3]
     if not instrumentos:
         return None
-    modelo = settings.RAG_CLASIFICADOR_MODELO or settings.OLLAMA_MODEL
+    modelo = settings.RAG_CLASIFICADOR_MODELO or modelos.en_curso()
     salida, degradado = await ollama_client.generar_no_stream(
         _PROMPT_FILTRO.format(catalogo=_catalogo(instrumentos), pregunta=pregunta), modelo,
         formato="json", opciones={"temperature": 0, "num_predict": 200},

@@ -212,9 +212,9 @@ async def clasificar_llm(pregunta: str) -> tuple[bool, str] | None:
     """(dentro, motivo) según Ollama, o None si está desactivado o no responde."""
     if not settings.RAG_CLASIFICADOR_LLM:
         return None
-    from services import ollama_client
+    from services import modelos, ollama_client
 
-    modelo = settings.RAG_CLASIFICADOR_MODELO or settings.OLLAMA_MODEL
+    modelo = settings.RAG_CLASIFICADOR_MODELO or modelos.en_curso()
     texto, degradado = await ollama_client.generar_no_stream(
         _PROMPT_CLASIFICADOR + pregunta, modelo, formato="json", opciones={"temperature": 0, "num_predict": 60}
     )

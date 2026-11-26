@@ -1,0 +1,32 @@
+# Modelos de lenguaje que se pueden elegir en el chat (26 nov 2026). Lo lee services/modelos.py.
+#
+# - id: el nombre EXACTO en Ollama (`ollama list`). Un modelo que Ollama no tenga aparece deshabilitado.
+# - El predeterminado es OLLAMA_MODEL (.env); se queda cargado siempre (keep_alive -1). Los demás se descargan a los
+#   `keep_alive` sin uso: en una GPU de 12 GB no caben dos de ellos junto al predeterminado (gemma4:12b ocupa 7.2 GB).
+# - El modelo elegido se usa en TODAS las etapas de la consulta (interpretación, clasificadores, redacción), no solo
+#   al redactar, para que comparar modelos compare el sistema completo.
+# - pensar: false en los modelos que «razonan» antes de responder (Ollama los marca con la capacidad «thinking»):
+#   sin eso gemma4 gastaba los 1024 tokens en su razonamiento (en inglés) y la respuesta llegaba vacía (26 nov).
+# - parametros: opciones de Ollama para la redacción. La interpretación y los clasificadores siempre usan
+#   temperature 0 (salida JSON). Se dejan iguales en todos los modelos para que la comparación sea justa: el
+#   contexto de 4096 se midió con el 8B (26 nov: 8192 no mejoró el conjunto de desarrollo).
+parametros_comunes:
+  temperature: 0.2      # RAG_TEMPERATURA_REDACCION si no se indica otra
+  num_ctx: 4096         # OLLAMA_NUM_CTX si no se indica otro
+  num_predict: 1024     # tope de tokens de la redacción
+keep_alive_no_predeterminado: "10m"
+
+modelos:
+  - id: llama3.1:8b-instruct-q4_K_M
+    etiqueta: Llama 3.1 · 8B
+    descripcion: Predeterminado del servidor. Mejor decisión en el conjunto de prueba (84.2 % frente a 78.9 % del 3B).
+  - id: llama3.2:3b
+    etiqueta: Llama 3.2 · 3B
+    descripcion: Más rápido y ligero (2 GB); decide peor y se apega menos al formato.
+  - id: qwen2.5:7b-instruct-q4_K_M
+    etiqueta: Qwen 2.5 · 7B
+    descripcion: Alternativa de tamaño similar al 8B; buena con salidas JSON.
+  - id: gemma4:12b-it-qat
+    etiqueta: Gemma 4 · 12B
+    descripcion: El más grande (7.2 GB); no cabe junto al 8B, así que al elegirlo se descarga el predeterminado.
+    pensar: false

@@ -22,6 +22,7 @@ from collections.abc import AsyncIterator
 import httpx
 
 from shared.db.core.config import settings
+from services import modelos
 
 logger = logging.getLogger("visualization-service")
 
@@ -120,19 +121,24 @@ def _payload(
     clasificador de dominio) y `formato="json"` obliga a Ollama a devolver JSON; con un JSON Schema
     (dict), Ollama restringe la salida a ese esquema (plan de la interpretación).
     """
+    # Parámetros del modelo (config/modelos.yaml, 26 nov): contexto, temperatura, tope de tokens y cuánto se queda
+    # cargado. Solo la redacción (texto libre) lleva tope de tokens; las salidas JSON no se tocan.
+    del_modelo, keep_alive = modelos.parametros(modelo)
+    tope = del_modelo.pop("num_predict", _MAX_TOKENS_REDACCION)
     cuerpo = {
         "model": modelo,
         "prompt": prompt,
         "stream": stream,
-        "keep_alive": _KEEP_ALIVE,
+        "keep_alive": keep_alive,
         "options": {
             "num_ctx": _NUM_CTX,
             "temperature": settings.RAG_TEMPERATURA_REDACCION,
-            # Solo la redacción (texto libre) lleva tope de tokens; las salidas JSON no se tocan.
-            **({} if formato else {"num_predict": _MAX_TOKENS_REDACCION}),
+            **del_modelo,
+            **({} if formato else {"num_predict": tope}),
             **(opciones or {}),
         },
     }
+    cuerpo.update(modelos.campos_extra(modelo))
     if sistema:
         cuerpo["system"] = sistema
     if formato:
@@ -171,6 +177,19 @@ async def modelos_instalados() -> set[str]:
     return nombres
 
 
+async def cargar(modelo: str) -> bool:
+    """Carga el modelo en Ollama sin generar nada (para que la primera pregunta no espere la carga). Si no cabe junto al
+    predeterminado, Ollama descarga a este. True si quedó cargado."""
+    _, keep_alive = modelos.parametros(modelo)
+    try:
+        async with httpx.AsyncClient(timeout=httpx.Timeout(connect=5.0, read=300.0, write=10.0, pool=5.0)) as cliente:
+            r = await cliente.post(_url(), json={"model": modelo, "keep_alive": keep_alive})
+            return r.status_code == 200
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("No se pudo cargar %s: %s", modelo, exc)
+        return False
+
+
 async def modelo_para(pedido: str | None) -> str:
     """El modelo que pidió el chat si Ollama lo tiene; si no, el del servidor (OLLAMA_MODEL).
 
@@ -178,7 +197,8 @@ async def modelo_para(pedido: str | None) -> str:
     con error y todas las redacciones caían al resultado calculado tal cual (25 nov)."""
     if not pedido or pedido == settings.OLLAMA_MODEL:
         return settings.OLLAMA_MODEL
-    return pedido if pedido in await modelos_instalados() else settings.OLLAMA_MODEL
+    # Solo los del catálogo (config/modelos.yaml) que Ollama tenga instalados.
+    return pedido if pedido in modelos.ids() and pedido in await modelos_instalados() else settings.OLLAMA_MODEL
 
 
 async def generar_stream(prompt: str, modelo: str, sistema: str | None = None) -> AsyncIterator[str]:

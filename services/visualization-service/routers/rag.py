@@ -53,6 +53,27 @@ async def modelo_del_servidor(_: Investigador) -> dict[str, str]:
     return {"modelo": settings.OLLAMA_MODEL}
 
 
+@router.get("/modelos", summary="Modelos de lenguaje que se pueden elegir en el chat")
+async def modelos_del_chat(_: Investigador) -> list[dict]:
+    """Catálogo de config/modelos.yaml con el predeterminado primero; `instalado` dice si Ollama lo tiene (26 nov)."""
+    from services import modelos, ollama_client
+
+    instalados = await ollama_client.modelos_instalados()
+    return [{"id": m["id"], "etiqueta": m.get("etiqueta") or m["id"], "descripcion": m.get("descripcion") or "",
+             "predeterminado": m["predeterminado"], "instalado": m["id"] in instalados or not instalados}
+            for m in modelos.catalogo()]
+
+
+@router.post("/modelos/cargar", summary="Carga en Ollama el modelo elegido antes de la primera pregunta")
+async def cargar_modelo(datos: dict, _: Investigador) -> dict:
+    """El selector lo llama al elegir un modelo: la carga (5–20 s, y descargar el predeterminado si no caben juntos) se
+    hace mientras la página muestra «Cargando modelo…», no durante la primera respuesta (26 nov)."""
+    from services import ollama_client
+
+    modelo = await ollama_client.modelo_para(str((datos or {}).get("modelo") or "") or None)
+    return {"modelo": modelo, "cargado": await ollama_client.cargar(modelo)}
+
+
 @router.post("/interpretar", response_model=InterpretarOut, summary="Plan de interpretación de una pregunta")
 async def interpretar(peticion: ChatRequest, _: Investigador, db: DBSession) -> InterpretarOut:
     """Etapa 1 del chat por separado: el plan que el LLM arma para la pregunta, validado contra el catálogo."""

@@ -4,6 +4,7 @@ import type {
   DocumentoFuente,
   Mensaje,
   MetricasRespuesta,
+  ModeloChat,
   ModeloLLM,
   ResultadoChat,
 } from "@/types";
@@ -11,10 +12,45 @@ import { API_URL, avisarSesionExpirada, leerToken, pedir } from "./client";
 import { enviarInvestigacion } from "./investigaciones";
 
 // 25 nov: antes la página mandaba siempre «llama3.2:3b»; en un servidor con otro modelo, Ollama respondía con error.
-// Ahora no se manda modelo y el servidor usa el suyo; su nombre se lee de GET /rag/modelo.
-export const MODELOS_DISPONIBLES: { id: ModeloLLM; etiqueta: string }[] = [
-  { id: "servidor", etiqueta: "Modelo del servidor" },
-];
+// 26 nov: los modelos elegibles vienen del servidor (GET /rag/modelos, config/modelos.yaml). Con el predeterminado
+// no se manda modelo («servidor»); con otro se manda su nombre y el servidor lo usa en todas las etapas del chat.
+
+/** Catálogo de modelos del chat, con el predeterminado primero. */
+export async function getModelos(): Promise<ModeloChat[]> {
+  return pedir<ModeloChat[]>(`${API_URL}/rag/modelos`, { auth: true });
+}
+
+/**
+ * Pide al servidor que cargue el modelo antes de la primera pregunta (5–20 s; si no cabe junto al predeterminado,
+ * Ollama descarga a este). «servidor» carga el predeterminado.
+ */
+export async function cargarModelo(modelo: ModeloLLM): Promise<boolean> {
+  const r = await pedir<{ modelo: string; cargado: boolean }>(`${API_URL}/rag/modelos/cargar`, {
+    method: "POST",
+    auth: true,
+    body: { modelo: modelo === "servidor" ? null : modelo },
+  });
+  return r.cargado;
+}
+
+const CLAVE_MODELO = "indagata.modelo";
+
+/** El modelo que eligió este navegador la última vez («servidor» si no hay o no se puede leer). */
+export function leerModeloElegido(): ModeloLLM {
+  try {
+    return localStorage.getItem(CLAVE_MODELO) || "servidor";
+  } catch {
+    return "servidor";
+  }
+}
+
+export function guardarModeloElegido(modelo: ModeloLLM): void {
+  try {
+    localStorage.setItem(CLAVE_MODELO, modelo);
+  } catch {
+    /* sin almacenamiento: la elección dura lo que la página */
+  }
+}
 
 /** Nombre del modelo que usa el chat en el servidor (p. ej. «llama3.1:8b-instruct-q4_K_M»). */
 export async function getModeloServidor(): Promise<string> {

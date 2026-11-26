@@ -575,9 +575,21 @@ export interface InstrumentoRelacionado {
   razones: RazonCoincidencia[];
 }
 
-/** «servidor»: no se envía modelo y el chat usa el de `OLLAMA_MODEL` (.env) en todas sus etapas. */
-/** «servidor»: el chat usa el modelo configurado en el servidor (OLLAMA_MODEL). */
-export type ModeloLLM = "servidor";
+/**
+ * «servidor»: no se envía modelo y el chat usa el de `OLLAMA_MODEL` (.env). Cualquier otro valor es el nombre de un
+ * modelo del catálogo del servidor (`GET /rag/modelos`, config/modelos.yaml); lo usan todas las etapas del chat.
+ */
+export type ModeloLLM = "servidor" | (string & {});
+
+/** Un modelo que se puede elegir en el chat (`GET /rag/modelos`). */
+export interface ModeloChat {
+  id: string;
+  etiqueta: string;
+  descripcion: string;
+  predeterminado: boolean;
+  /** Ollama lo tiene descargado; si no, aparece deshabilitado. */
+  instalado: boolean;
+}
 
 export interface ContextoInvestigacion {
   objetivo: string;
