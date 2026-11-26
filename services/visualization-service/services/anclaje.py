@@ -25,6 +25,8 @@ from services.plan_consulta import CondicionContexto, Filtro, Orden, PlanConsult
 _CONTEO = re.compile(r"\b(?:cuantos|cuantas|cuanto|que\s+porcentaje|que\s+tanto\s+por\s+ciento|numero\s+de)\b")
 _LISTAR = re.compile(r"\b(?:quienes|cuales|dame|da\s?me|lista|enlista|muestra|muestrame|ids?|identificadores)\b")
 _FILTRADO = ("filtrar_respondentes", "conteo_porcentaje")
+_RAICES_NO_PREGUNTA = {"tiene", "tenia", "tenga", "hacen", "hicie", "estan", "estab", "fuero", "cuant", "quien",
+                       "ellos", "ellas", "tambi", "entre", "mismo"}
 # «¿Cuántas personas respondieron la encuesta?», «¿cuántos alumnos presentaron la prueba?»: el total, sin condición.
 _TOTAL = re.compile(r"^(?:y\s+)?(?:en\s+total\s+)?cuant[oa]s\s+(?:personas|respondentes|estudiantes|alumn[oa]s|participantes|"
                     r"encuestad[oa]s|entrevistad[oa]s|sujetos)?\s*(?:la\s+|lo\s+)?(?:respondieron|contestaron|participaron|"
@@ -543,7 +545,10 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
         # Filtros que la pregunta no respalda: ni su valor ni su pregunta comparten palabras con la consulta ni
         # con lo que el usuario preguntó antes (las preguntas de seguimiento heredan sus condiciones).
         previas = " ".join(t for rol, t in historial[-4:] if rol == "usuario")
-        raices = enrutador._raices(texto) | enrutador._raices(previas)
+        # Sin verbos genéricos: «¿cuántos tienen beca?» respaldaba p11 («¿Tienes experiencia laboral…?») por «tiene»
+        # (26 nov).
+        raices = ((enrutador._raices(texto) | enrutador._raices(previas))
+                  - {v[:5] for v in enrutador._VERBOS_CONSULTA} - _RAICES_NO_PREGUNTA)
         respaldados = []
         for f in filtros:
             texto_p = cat.preguntas[f.pregunta].texto if f.pregunta in cat.preguntas else ""
@@ -747,7 +752,10 @@ def _condiciones_de(texto: str, cat: Catalogo) -> list[Filtro]:
         return []
     salida = [Filtro(pregunta=pid, valor=ops[0] if len(ops) == 1 else ops) for pid, ops in _opciones_mencionadas(texto, cat).items()]
     usadas = {f.pregunta for f in salida}
-    for palabra in {t for t in re.findall(r"[a-z]+", texto) if len(t) >= 6}:
+    # Verbos y palabras de consulta no nombran una pregunta: «¿cuántos tienen beca?» filtraba p11 («¿Tienes
+    # experiencia laboral…?») por «tienen» (26 nov).
+    verbos = {v[:5] for v in enrutador._VERBOS_CONSULTA} | _RAICES_NO_PREGUNTA
+    for palabra in {t for t in re.findall(r"[a-z]+", texto) if len(t) >= 6 and t[:5] not in verbos}:
         candidatas = [p for p in cat.preguntas.values() if p.id not in usadas and palabra[:5] in enrutador._raices(p.texto)]
         if len(candidatas) != 1:
             continue

@@ -181,6 +181,9 @@ class AppSettings(BaseSettings):
     RAG_TEMPERATURA_REDACCION: float = 0.2
     # Fragmentos del RAG: tope por instrumento y mínimo de fragmentos por consulta (0 = el que pide la página, 6).
     RAG_FRAGMENTOS_POR_INSTRUMENTO: int = 3
+    # Hilo de la conversación: mensajes previos que ve la interpretación (plan) y la redacción (respuesta).
+    RAG_HISTORIAL_INTERPRETACION: int = 4
+    RAG_HISTORIAL_REDACCION: int = 2
     RAG_TOP_K_MINIMO: int = 0
     # Caché de respuestas: una pregunta idéntica (mismo alcance, versiones vigentes,
     # contexto y modelo) se responde con la guardada sin llamar a Ollama. 0 = sin caché.

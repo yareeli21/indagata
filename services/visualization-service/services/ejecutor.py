@@ -442,7 +442,8 @@ def _resumen_pregunta(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> Non
         e.vacio = True
         e.lineas.append("La consulta no indica de qué pregunta se trata.")
         return
-    if (plan.contexto or plan.contexto_num) and not doc.get("entrevistas"):
+    grupo_por_filtro = bool(plan.preguntas and (plan.menciona or any(f.pregunta not in plan.preguntas for f in plan.filtros)))
+    if (plan.contexto or plan.contexto_num or grupo_por_filtro) and not doc.get("entrevistas"):
         _resumen_en_grupo(ins, plan, preguntas, e)
         return
     for q in preguntas:
@@ -499,7 +500,10 @@ def _resumen_en_grupo(ins: Instrumento, plan: PlanConsulta, preguntas: list[str]
     """Distribución de cada pregunta solo entre las personas del grupo («¿cuántos intentos hicieron los hombres?»).
     El resumen precalculado es de todo el instrumento; con un grupo de contexto se cuenta aquí (21 nov)."""
     doc = ins.doc
-    grupo, condiciones = _filtrados(ins, plan.model_copy(update={"filtros": [], "menciona": ""}))
+    # El grupo lo forman el contexto, los filtros sobre OTRAS preguntas y la mención («¿y entre esos, cómo manejan el
+    # estrés?» tras «no duermen 7 horas»: p16 = No es el grupo, p02 la pregunta; 26 nov).
+    grupo, condiciones = _filtrados(ins, plan.model_copy(update={
+        "filtros": [f for f in plan.filtros if f.pregunta not in preguntas], "nivel": None, "preguntas": []}))
     quien = " y ".join(condiciones)
     for q in preguntas:
         valores = [_mostrar(x) for p in grupo if (x := p["por_pregunta"].get(q)) and x.get("estado") == "respondida"]

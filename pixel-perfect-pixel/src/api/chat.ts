@@ -278,7 +278,7 @@ function historialReciente(
 ): { rol: "usuario" | "asistente"; texto: string; consultaId?: number }[] {
   return mensajes
     .filter((m) => !m.generando && m.contenido.trim())
-    .slice(-4)
+    .slice(-8) // el servicio decide cuántos usa (RAG_HISTORIAL_INTERPRETACION / _REDACCION)
     .map((m) => ({
       rol: m.rol === "usuario" ? "usuario" : "asistente",
       texto: m.contenido.slice(0, 1500),

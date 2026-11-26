@@ -52,9 +52,9 @@ from shared.models.rag_log import RagLog
 from shared.models.version_conocimiento import VersionConocimiento
 
 from models import ChatRequest, ChatResponse, FuenteChatOut, IndexRequest, ReferenciaChatOut
-from services import (consulta_planificada, dominio, ejecutor, enrutador, evaluacion, interpretacion, ollama_client, prompt,
+from services import (anclaje, consulta_planificada, dominio, ejecutor, enrutador, evaluacion, interpretacion, ollama_client, prompt,
                       hibrida, juez_fable, seguimiento, storage_client, trazabilidad, vectores)
-from services.plan_consulta import ESTRUCTURADAS, PlanConsulta
+from services.plan_consulta import ESTRUCTURADAS, Filtro, PlanConsulta
 
 logger = logging.getLogger("visualization-service")
 
@@ -580,6 +580,92 @@ _SOBRE_LO_ANTERIOR = re.compile(r"\b(?:eso|esto|ello|lo anterior|por que|signifi
                                 r"expli\w*|interpret\w*)\b")
 
 
+# «¿y en qué sector esperan trabajar ellos?», «¿y entre esos, cómo manejan el estrés?»: el grupo de la respuesta anterior.
+_GRUPO_ANTERIOR = re.compile(r"\b(?:ellos|ellas|esos|esas|estos|estas|dichos|dichas|ese grupo|este grupo)\b")
+_CONDICIONES = ("filtros", "contexto", "contexto_num", "menciona")
+
+
+_RESUMEN_HILO = re.compile(r"\b(?:resume|resumeme|resumen|resumir|recapitula\w*|repasa\w*)\b.*"
+                          r"\b(?:conversacion|platica|charla|lo que (?:hemos|llevamos|vimos|hablamos|me has dicho)|"
+                          r"hasta ahora|hasta aqui|todo lo anterior)\b")
+
+
+async def _resumen_hilo(peticion: ChatRequest) -> str:
+    """Resumen de la conversación con lo que ya se respondió (sin buscar nada nuevo). Si el modelo escribe una cifra que
+    no está en las respuestas anteriores, o falla, se da la lista de cada pregunta con la primera frase de su respuesta."""
+    turnos: list[tuple[str, str]] = []
+    pendiente = ""
+    for m in peticion.historial:
+        if m.rol == "usuario":
+            pendiente = m.texto.strip()
+        elif pendiente:
+            # Sin tablas, sin avisos y sin [Fuente n]: el resumen no trae tarjetas de fuente propias.
+            limpio = re.sub(r"\s*\[Fuente \d+\]", "", interpretacion.sin_tablas(m.texto).split("**Aviso:**")[0])
+            turnos.append((pendiente, limpio.strip()))
+            pendiente = ""
+    if not turnos:
+        return "Todavía no hemos visto nada en esta conversación. ¿En qué te puedo ayudar?"
+
+    def primera(texto: str) -> str:
+        oracion = re.split(r"(?<=[.!?])\s+", texto.replace("\n", " "), maxsplit=1)[0]
+        return oracion if len(oracion) <= 300 else oracion[:297] + "…"
+    respaldo = "Esto es lo que hemos visto:\n" + "\n".join(f"- **{p}** {primera(t)}" for p, t in turnos)
+    hilo = "\n\n".join(f"Pregunta: {p}\nRespuesta: {t[:1200]}" for p, t in turnos)
+    instruccion = ("Resume la conversación de abajo en una lista breve (una viñeta por tema), con las cifras e IDs "
+                   "tal como aparecen. Usa solo lo que dicen las respuestas; no agregues nada.\n\n"
+                   f"{hilo}\n\nResumen:")
+    try:
+        modelo = await ollama_client.modelo_para(peticion.modelo)
+        texto, degradado = await ollama_client.generar_no_stream(instruccion, modelo, sistema=prompt.SISTEMA)
+    except Exception as exc:  # noqa: BLE001 — sin Ollama, la lista
+        logger.warning("Resumen de la conversación sin modelo: %s", exc)
+        return respaldo
+    texto = re.sub(r"\s*\[Fuente \d+\]", "", _pulir(texto or ""))
+    if degradado or not texto.strip() or evaluacion.cifras_sin_sustento(texto, [hilo]) \
+            or set(_ID_DATO.findall(texto)) - set(_ID_DATO.findall(hilo)):
+        return respaldo
+    return texto.strip()
+
+
+def _heredar_grupo(preparada: "consulta_planificada.Preparada", pregunta: str,
+                   plan_anterior: dict[str, Any] | None) -> None:
+    """Si la pregunta se refiere al grupo de la respuesta anterior y el plan no trae condiciones, hereda las del plan
+    anterior y calcula la pregunta DENTRO de ese grupo. Antes se calculaba sobre toda la muestra y la redacción decía
+    que era el subgrupo (26 nov: «¿y en qué sector esperan trabajar ellos?» dio la distribución de los 150)."""
+    p = preparada.plan
+    texto = dominio.normalizar(pregunta)
+    if p is None or not plan_anterior or not _GRUPO_ANTERIOR.search(texto) or any(getattr(p, c) for c in _CONDICIONES):
+        return
+    if p.intencion not in ("resumen_pregunta", "conteo_porcentaje", "semantica_abierta", "hallazgo"):
+        return
+    try:
+        anterior = PlanConsulta.model_validate(plan_anterior)
+    except ValueError:
+        return
+    if anterior.intencion == "conteo_porcentaje" and anterior.nivel and anterior.preguntas:
+        # «¿Qué porcentaje no duerme 7 horas?» se calculó como nivel bajo de p16: ese nivel es el grupo.
+        anterior = anterior.model_copy(update={"filtros": [*anterior.filtros, *[
+            Filtro(pregunta=q, nivel=anterior.nivel) for q in anterior.preguntas]], "nivel": None, "preguntas": []})
+    if not any(getattr(anterior, c) for c in _CONDICIONES):
+        return
+    cat = next((c for c in preparada.catalogos if not anterior.instrumentos or c.id in anterior.instrumentos), None)
+    if cat is None:
+        return
+    previas = {f.pregunta for f in anterior.filtros}
+    aludidas = [q for q, _ in anclaje._preguntas_aludidas(texto, cat) if q not in previas]
+    preguntas = aludidas or [q for q in p.preguntas if q in cat.preguntas and q not in previas]
+    if not preguntas:
+        return
+    nuevo = PlanConsulta(intencion="resumen_pregunta", preguntas=preguntas[:2], instrumentos=[cat.id],
+                         **{c: getattr(anterior, c) for c in _CONDICIONES})
+    ejecuciones = ejecutor.ejecutar(nuevo, preparada.instrumentos)
+    if not ejecuciones or all(e.vacio for e in ejecuciones):
+        return
+    preparada.interp.plan, preparada.ejecuciones = nuevo, ejecuciones
+    preparada.interp.correcciones.append(f"grupo de la respuesta anterior heredado: {', '.join(preguntas[:2])} dentro "
+                                         "de ese grupo")
+
+
 def _retomar_anterior(preparada: "consulta_planificada.Preparada", pregunta: str,
                       plan_anterior: dict[str, Any] | None) -> None:
     """Si la interpretación pidió aclaración pero la pregunta se refiere a la respuesta anterior («y eso, ¿qué puede
@@ -604,7 +690,7 @@ def _retomar_anterior(preparada: "consulta_planificada.Preparada", pregunta: str
         sesion.close()
 
 
-_MAX_CONVERSACION = 2
+_MAX_CONVERSACION = settings.RAG_HISTORIAL_REDACCION
 _MAX_TEXTO_CONVERSACION = 300
 
 
@@ -708,7 +794,7 @@ _DECISIONES_REUTILIZABLES = {dominio.DENTRO, dominio.AYUDA}
 # Súbelo cuando cambie cómo se calculan o redactan las respuestas (enrutador, consultas):
 # las guardadas con la versión anterior dejan de reutilizarse. Las reglas del prompt
 # (`prompt.SISTEMA`) ya entran en la huella.
-_VERSION_RESPUESTAS = 54  # 54: saludos, agradecimientos y despedidas con respuesta natural; 53: total de participantes, ranking por respuestas negativas/positivas, menciones sin plural ni palabras funcionales (y sin cero falso si el RAG encuentra el tema), instrumento nombrado por título acota el cálculo, distribución de reactivos en el resumen y título fuera de la pregunta aludida; 52: aviso visible de cifras sin respaldo en la redacción libre; 51: sin la regla 17 (no servía); 50: resumen de la pregunta cuando solo entran respuestas de personas sueltas; 49: regla 17 (respuestas de una sola persona no se generalizan) y citas por oración; 48: en entrevistas la pregunta guía (1 por instrumento) y los KPI no ocupan los lugares de datos; 47: umbral de similitud 0.55 (calibrado con el conjunto de desarrollo); 46: hallazgo que nombra una pregunta → sus respuestas o su distribución; conteo con la pregunta sin condición; 45: preguntas dobles (dos conteos o dos grupos de una variable); 44: conteos por el tipo de la pregunta aludida, resumen por grupo, base de dos condiciones y comparaciones de contexto inventadas fuera; 43: filtros cuyo valor es un grupo de contexto (perfil de entrevistados) pasan a condición de contexto; 42: búsqueda híbrida (significado + palabras, RRF); 41: «¿qué significa eso?» usa el seguimiento si la interpretación no retoma el plan; 40: búsqueda semántica con la pregunta original si la reescrita se parece menos; «¿qué significa eso?» interpreta el resultado; 39: pistas de la interpretación con los fragmentos cercanos y personas de la evidencia en los seguimientos; 38: seguimientos tras una aclaración y sin muletillas del prompt; 37: seguimientos de inferencia con la evidencia de la respuesta anterior; 36: umbral 0.65, similitud en cada tarjeta y hallazgos sin relación también dentro de una conversación; 35: umbral 0.70 sin relleno bajo el umbral y hallazgos de un tema sin relación → sin información; 34: regla 16 también pide variar «esto sugiere»; 33: regla 16 del prompt (interpretar con sus palabras, sin abrir siempre con «según el contexto»); 32: catálogo de la interpretación dentro del contexto; 31: citas [Fuente n] añadidas a las líneas que salen claramente de una fuente cuando el modelo no citó; 30: solo las fuentes que la respuesta usó (citadas o del resultado calculado); 29: cada fuente trae sus pasajes (trazabilidad: parte del documento, similitud y posición); 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
+_VERSION_RESPUESTAS = 56  # 56: grupo de la respuesta anterior heredado («ellos», «entre esos»), resumen dentro del grupo, resumen de la conversación y verbos genéricos fuera de las preguntas sí/no; 55: reglas 11 y 12 sin IDs de ejemplo (el modelo los copiaba) y aviso de IDs sin respaldo; 54: saludos, agradecimientos y despedidas con respuesta natural; 53: total de participantes, ranking por respuestas negativas/positivas, menciones sin plural ni palabras funcionales (y sin cero falso si el RAG encuentra el tema), instrumento nombrado por título acota el cálculo, distribución de reactivos en el resumen y título fuera de la pregunta aludida; 52: aviso visible de cifras sin respaldo en la redacción libre; 51: sin la regla 17 (no servía); 50: resumen de la pregunta cuando solo entran respuestas de personas sueltas; 49: regla 17 (respuestas de una sola persona no se generalizan) y citas por oración; 48: en entrevistas la pregunta guía (1 por instrumento) y los KPI no ocupan los lugares de datos; 47: umbral de similitud 0.55 (calibrado con el conjunto de desarrollo); 46: hallazgo que nombra una pregunta → sus respuestas o su distribución; conteo con la pregunta sin condición; 45: preguntas dobles (dos conteos o dos grupos de una variable); 44: conteos por el tipo de la pregunta aludida, resumen por grupo, base de dos condiciones y comparaciones de contexto inventadas fuera; 43: filtros cuyo valor es un grupo de contexto (perfil de entrevistados) pasan a condición de contexto; 42: búsqueda híbrida (significado + palabras, RRF); 41: «¿qué significa eso?» usa el seguimiento si la interpretación no retoma el plan; 40: búsqueda semántica con la pregunta original si la reescrita se parece menos; «¿qué significa eso?» interpreta el resultado; 39: pistas de la interpretación con los fragmentos cercanos y personas de la evidencia en los seguimientos; 38: seguimientos tras una aclaración y sin muletillas del prompt; 37: seguimientos de inferencia con la evidencia de la respuesta anterior; 36: umbral 0.65, similitud en cada tarjeta y hallazgos sin relación también dentro de una conversación; 35: umbral 0.70 sin relleno bajo el umbral y hallazgos de un tema sin relación → sin información; 34: regla 16 también pide variar «esto sugiere»; 33: regla 16 del prompt (interpretar con sus palabras, sin abrir siempre con «según el contexto»); 32: catálogo de la interpretación dentro del contexto; 31: citas [Fuente n] añadidas a las líneas que salen claramente de una fuente cuando el modelo no citó; 30: solo las fuentes que la respuesta usó (citadas o del resultado calculado); 29: cada fuente trae sus pasajes (trazabilidad: parte del documento, similitud y posición); 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
 
 
 def clave_cache(peticion: ChatRequest, modelo: str) -> str | None:
@@ -939,6 +1025,11 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
         return Plan(decision=dominio.AYUDA, ruta="ayuda", motivo="saludo", fija=respuesta_saludo, literal=True,
                     score_max=1.0, instrumentos=ids)
 
+    # «Resume lo que hemos visto»: se resume el hilo (las respuestas anteriores), no el último tema (26 nov).
+    if peticion.historial and _RESUMEN_HILO.search(dominio.normalizar(pregunta)):
+        return Plan(decision=dominio.DENTRO, ruta="ayuda", motivo="resumen de la conversación", literal=True,
+                    score_max=1.0, instrumentos=ids, fija=await _resumen_hilo(peticion))
+
     # Capa 1a: reglas de intención (sin modelo).
     if regla := dominio.reglas(pregunta):
         decision, motivo = regla
@@ -991,6 +1082,7 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
             return diferido
         if preparada is not None:
             _retomar_anterior(preparada, pregunta, plan_anterior)
+            _heredar_grupo(preparada, pregunta, plan_anterior)
             if diferido is not None and not any(c.startswith("aclaración → plan de la respuesta anterior")
                                                 for c in preparada.interp.correcciones):
                 diferido.plan_consulta = preparada.registro()
@@ -1011,6 +1103,10 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
                 consulta_semantica = _consulta_apoyo(pregunta, peticion.historial)
             registro = preparada.registro()
             estado.update(registro=registro, tiempos=tiempos)
+            if consulta_semantica is None and _hallazgo_a_pregunta(preparada, recuperados, pregunta,
+                                                                   bool(peticion.historial), score_rag):
+                registro = preparada.registro()
+                estado.update(registro=registro)
             if consulta_semantica is None:
                 decidido = _plan_desde_preparada(preparada, pregunta, ids, contexto,
                                                  seguimiento=bool(peticion.historial), apoyo=apoyo,
@@ -1213,7 +1309,7 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
         return None
     if _hallazgo_sin_relacion(p.intencion, pregunta, seguimiento, score_rag):
         return Plan(decision=dominio.SIN_INFORMACION, motivo=f"plan:hallazgo con similitud {score_rag:.2f} < "
-                    f"{settings.RAG_MIN_SCORE}", fija=MENSAJE_SIN_CONTEXTO, instrumentos=ids, score_max=score_rag or 0.0)
+                    f"{settings.RAG_HALLAZGO_MIN_SCORE}", fija=MENSAJE_SIN_CONTEXTO, instrumentos=ids, score_max=score_rag or 0.0)
     ejecuciones = preparada.ejecuciones
     apoyo = apoyo or []
     plan = Plan(ruta="estructurada", motivo=f"plan:{p.intencion}", score_max=1.0,
@@ -1330,6 +1426,33 @@ def _plan_seguimiento(pregunta: str, peticion: ChatRequest, ids: list[str],
     plan.texto_prompt = prompt.construir(pregunta, fragmentos, contexto, formato=seguimiento.formato(fragmentos),
                                          conversacion=seguimiento.conversacion(anterior, interpretacion.sin_tablas))
     return plan
+
+
+def _hallazgo_a_pregunta(preparada: "consulta_planificada.Preparada", recuperados: list[dict[str, Any]],
+                         pregunta: str, seguimiento: bool, score_rag: float | None) -> bool:
+    """Anclaje semántico de un «hallazgo» sin relación: si lo más parecido que recuperó el RAG (sobre RAG_MIN_SCORE)
+    es el resumen de UNA pregunta o reactivo, la consulta trata de esa pregunta. «¿Con qué frecuencia repasan sus notas
+    al salir de clase?» es una paráfrasis de p04 («revisar mis apuntes inmediatamente después de cada clase»): sin
+    palabras en común, el anclaje léxico no la veía y el plan «hallazgo» terminaba en «sin información» (26 nov).
+    Devuelve True si reemplazó el plan y su ejecución."""
+    p = preparada.plan
+    if p is None or not _hallazgo_sin_relacion(p.intencion, pregunta, seguimiento, score_rag):
+        return False
+    sobre_umbral = [f for f in recuperados if (f.get("score") or 0) >= settings.RAG_MIN_SCORE]
+    if not sobre_umbral:
+        return False
+    mejor = max(sobre_umbral, key=lambda f: f["score"])
+    if mejor.get("seccion") not in _RESUMENES or not mejor.get("preguntaId"):
+        return False
+    nuevo = PlanConsulta(intencion="resumen_pregunta", preguntas=[str(mejor["preguntaId"]).rsplit("-", 1)[-1]],
+                         instrumentos=[str(mejor["instrumentoId"])])
+    ejecuciones = ejecutor.ejecutar(nuevo, preparada.instrumentos)
+    if not ejecuciones or all(e.vacio for e in ejecuciones):
+        return False
+    preparada.interp.plan, preparada.ejecuciones = nuevo, ejecuciones
+    preparada.interp.correcciones.append(f"hallazgo → resumen_pregunta de {nuevo.preguntas[0]} (el resumen más parecido "
+                                         f"que recuperó el RAG, similitud {mejor['score']:.2f})")
+    return True
 
 
 def _mencion_sin_eco(p: Any, score_rag: float | None) -> bool:
@@ -1706,8 +1829,12 @@ def _anotar_cifras_semanticas(plan: Plan, respuesta: str, pregunta: str = "") ->
     if contextos and pregunta:
         contextos.append(pregunta)
     sin = evaluacion.cifras_sin_sustento(respuesta, contextos) if contextos else []
+    # IDs que no están en ningún fragmento: el modelo copió «R017 en p04» del ejemplo de la regla 12 y le inventó
+    # citas textuales en una entrevista (26 nov, I106-b). La pregunta del usuario cuenta como contexto.
+    ids = sorted(set(_ID_DATO.findall(respuesta)) - set(_ID_DATO.findall("\n".join(contextos)))) if contextos else []
     plan.plan_consulta = {**(plan.plan_consulta or {}), "verificacion": {
-        "resultado": "cifras_sin_respaldo" if sin else "aceptada", "cifras_sin_sustento": sin}}
+        "resultado": "cifras_sin_respaldo" if sin else ("ids_sin_respaldo" if ids else "aceptada"),
+        "cifras_sin_sustento": sin, "ids_sin_sustento": ids}}
 
 
 def _aviso_cifras(plan: Plan, respuesta: str) -> str:
@@ -1716,13 +1843,22 @@ def _aviso_cifras(plan: Plan, respuesta: str) -> str:
     stream lo entrega en el evento «fuentes» (la interfaz reemplaza el texto) igual que las citas agregadas."""
     verificacion = (plan.plan_consulta or {}).get("verificacion") or {}
     sin = verificacion.get("cifras_sin_sustento") or []
-    if plan.decision != dominio.DENTRO or plan.fija is not None or plan.resultado or not sin:
+    ids = verificacion.get("ids_sin_sustento") or []
+    if plan.decision != dominio.DENTRO or plan.fija is not None or plan.resultado or not (sin or ids):
         return respuesta
-    lista = ", ".join(sin[:-1]) + (" y " if len(sin) > 1 else "") + sin[-1]
-    plural = len(sin) > 1
-    return (f"{respuesta.rstrip()}\n\n**Aviso:** {'las cifras' if plural else 'la cifra'} {lista} no "
-            f"{'aparecen' if plural else 'aparece'} en las fuentes recuperadas; {'verifícalas' if plural else 'verifícala'} "
-            "antes de usarla" + ("s." if plural else "."))
+
+    def lista(xs: list[str]) -> str:
+        return ", ".join(xs[:-1]) + (" y " if len(xs) > 1 else "") + xs[-1]
+    avisos = []
+    if sin:
+        plural = len(sin) > 1
+        avisos.append(f"{'las cifras' if plural else 'la cifra'} {lista(sin)} no {'aparecen' if plural else 'aparece'} "
+                      "en las fuentes recuperadas")
+    if ids:
+        plural = len(ids) > 1
+        avisos.append(f"{'los IDs' if plural else 'el ID'} {lista(ids)} no {'aparecen' if plural else 'aparece'} en las "
+                      "fuentes recuperadas (lo que se les atribuye no está respaldado)")
+    return f"{respuesta.rstrip()}\n\n**Aviso:** {'; '.join(avisos)}. Verifícalo antes de usarlo."
 
 
 def _fuentes_finales(plan: Plan, respuesta: str) -> tuple[list[FuenteChatOut], int, str]:

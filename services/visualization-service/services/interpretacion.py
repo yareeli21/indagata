@@ -29,7 +29,7 @@ from shared.db.core.config import settings
 
 logger = logging.getLogger("visualization-service")
 
-_MAX_HISTORIAL = 4  # mensajes recientes que ve el modelo
+_MAX_HISTORIAL = settings.RAG_HISTORIAL_INTERPRETACION  # mensajes recientes que ve el modelo
 # El prompt (instrucciones + ejemplos + catálogo) debe caber en num_ctx 4096 con la salida: unos 2,900 tokens con
 # un catálogo de 18 preguntas. Con más instrumentos o preguntas, el catálogo pasa a su forma compacta.
 _MAX_CARACTERES_CATALOGO = int(4500 * settings.escala_contexto)

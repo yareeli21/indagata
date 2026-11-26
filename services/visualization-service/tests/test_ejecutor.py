@@ -403,3 +403,11 @@ def test_nivel_sobre_respuestas_sin_nivel_da_la_distribucion_y_no_un_cero():
     e = _uno(_plan(intencion="conteo_porcentaje", preguntas=["r02"], nivel="acuerdo"),
              Instrumento("11", "Autonomía", "prueba_estandarizada", doc))
     assert not any("0 de" in l for l in e.lineas) and e.tablas[0].titulo == "Distribución de r02"
+
+
+def test_resumen_de_una_pregunta_dentro_del_grupo_de_un_filtro():
+    """26 nov: «¿y entre esos…?» debe dar la distribución solo del grupo (p01 en desacuerdo: R002 y R005)."""
+    from services.plan_consulta import Filtro
+    e = _uno(_plan(intencion="resumen_pregunta", preguntas=["p07"],
+                   filtros=[Filtro(pregunta="p01", nivel="desacuerdo").model_dump()]), _enc())
+    assert e.total == 2 and "2 respuestas válidas de 2 personas" in e.lineas[0]

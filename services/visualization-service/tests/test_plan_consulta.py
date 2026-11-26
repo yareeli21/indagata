@@ -748,3 +748,16 @@ def test_total_con_titulo_largo_ranking_con_respuestas_y_resumen_del_numero_nomb
     nuevo, _ = anclaje.anclar(PlanConsulta(intencion="resumen_pregunta", preguntas=["p05"]),
                               "¿Qué opción eligieron más en la pregunta 2?", [], _cat_encuesta())
     assert nuevo.preguntas == ["p02"]
+
+
+def test_tienen_beca_no_respalda_un_filtro_de_otra_pregunta_por_el_verbo():
+    """26 nov: «de los que trabajan más de 10 horas, ¿cuántos tienen beca?» filtraba p11 («¿Tienes experiencia
+    laboral…?») por «tienen» en lugar de la variable tiene_beca."""
+    from services.plan_consulta import Filtro
+    p11 = catalogo.PreguntaCatalogo("p11", "¿Tienes experiencia laboral en tu área?", "categorica",
+                                    ["Sí, tiempo completo", "Sí, como freelance", "No"])
+    cat = catalogo.Catalogo("102", "Inserción laboral", "encuesta", {"p11": p11}, ["R001"],
+                            {"tiene_beca": ["True", "False"]}, [], {"horas_trabajo_semana": (0.0, 40.0)})
+    plan = PlanConsulta(intencion="conteo_porcentaje", filtros=[Filtro(pregunta="p11", valor=["Sí, tiempo completo"])])
+    nuevo, notas = anclaje.anclar(plan, "De los que trabajan más de 10 horas, ¿cuántos tienen beca?", [], cat)
+    assert not any(f.pregunta == "p11" for f in nuevo.filtros), notas

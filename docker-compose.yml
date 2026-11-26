@@ -401,6 +401,8 @@ services:
       RAG_TEMPERATURA_REDACCION: ${RAG_TEMPERATURA_REDACCION:-0.2}
       RAG_FRAGMENTOS_POR_INSTRUMENTO: ${RAG_FRAGMENTOS_POR_INSTRUMENTO:-3}
       RAG_TOP_K_MINIMO: ${RAG_TOP_K_MINIMO:-0}
+      RAG_HISTORIAL_INTERPRETACION: ${RAG_HISTORIAL_INTERPRETACION:-4}
+      RAG_HISTORIAL_REDACCION: ${RAG_HISTORIAL_REDACCION:-2}
       # Caché de respuestas (horas; 0 = sin caché). En el experimento de modelos se pone 0 para que una pregunta
       # repetida se vuelva a responder.
       RAG_CACHE_HORAS: ${RAG_CACHE_HORAS:-24}

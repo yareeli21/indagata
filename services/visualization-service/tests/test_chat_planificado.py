@@ -447,8 +447,10 @@ def test_redaccion_libre_con_cifra_inventada_lleva_aviso_visible():
 
     plan = r.Plan(plan_consulta={"verificacion": {"resultado": "cifras_sin_respaldo", "cifras_sin_sustento": ["72.0", "108"]}})
     con_aviso = r._aviso_cifras(plan, "El 72.0 % (n=108) espera trabajar en su campo [Fuente 1].")
-    assert con_aviso.endswith("**Aviso:** las cifras 72.0 y 108 no aparecen en las fuentes recuperadas; "
-                              "verifícalas antes de usarlas.")
+    assert con_aviso.endswith("**Aviso:** las cifras 72.0 y 108 no aparecen en las fuentes recuperadas. "
+                              "Verifícalo antes de usarlo.")
+    ids = r.Plan(plan_consulta={"verificacion": {"cifras_sin_sustento": [], "ids_sin_sustento": ["A005", "R017"]}})
+    assert "los IDs A005 y R017 no aparecen en las fuentes recuperadas" in r._aviso_cifras(ids, "R017 en p04: «…»")
     limpio = r.Plan(plan_consulta={"verificacion": {"resultado": "aceptada", "cifras_sin_sustento": []}})
     assert r._aviso_cifras(limpio, "Sin cifras raras.") == "Sin cifras raras."
     calculada = r.Plan(resultado="Conteo: 12 de 40", plan_consulta=plan.plan_consulta)
@@ -488,3 +490,77 @@ def test_saludos_tienen_respuesta_natural(texto):
 def test_un_saludo_con_pregunta_sigue_el_camino_normal(texto):
     from services import dominio
     assert dominio.saludo(texto) is None
+
+
+def test_hallazgo_sin_relacion_se_ancla_al_resumen_mas_parecido_que_recupero_el_rag():
+    """26 nov: «¿con qué frecuencia repasan sus notas al salir de clase?» (paráfrasis de p04, sin palabras en común)
+    quedaba en «hallazgo» → «sin información» aunque el RAG traía el resumen de p04 sobre el umbral."""
+    from services import rag_service
+    from services.consulta_planificada import Preparada
+    from services.enrutador import Instrumento
+    from services.interpretacion import Interpretacion
+    from services.plan_consulta import PlanConsulta
+    from tests import docs_ejemplo
+
+    ins = Instrumento("1", "Experiencia estudiantil", "encuesta", docs_ejemplo.encuesta())
+    prep = Preparada(Interpretacion(plan=PlanConsulta(intencion="hallazgo")), [ins])
+    recuperados = [{"seccion": "pregunta", "preguntaId": "INS-0001-p01", "instrumentoId": "1", "score": 0.58},
+                   {"seccion": "respondente", "preguntaId": "", "instrumentoId": "1", "score": 0.56}]
+    assert rag_service._hallazgo_a_pregunta(prep, recuperados, "¿los profes se dan a entender?", False, 0.58)
+    assert prep.plan.intencion == "resumen_pregunta" and prep.plan.preguntas == ["p01"] and prep.ejecuciones
+    # Lo más parecido es una persona suelta, o nada pasa el umbral: no se ancla.
+    prep2 = Preparada(Interpretacion(plan=PlanConsulta(intencion="hallazgo")), [ins])
+    assert not rag_service._hallazgo_a_pregunta(prep2, recuperados[1:], "¿los profes se dan a entender?", False, 0.56)
+    assert not rag_service._hallazgo_a_pregunta(prep2, [{**recuperados[0], "score": 0.50}], "¿x?", False, 0.50)
+
+
+def test_seguimiento_sobre_ellos_hereda_el_grupo_de_la_respuesta_anterior():
+    """26 nov: «¿y entre esos…?» se calculaba sobre toda la muestra y la redacción decía que era el subgrupo."""
+    from services import catalogo, rag_service
+    from services.consulta_planificada import Preparada
+    from services.enrutador import Instrumento
+    from services.interpretacion import Interpretacion
+    from services.plan_consulta import PlanConsulta
+    from tests import docs_ejemplo
+
+    ins = Instrumento("1", "Experiencia estudiantil", "encuesta", docs_ejemplo.encuesta())
+    cat = catalogo.construir("1", ins.titulo, ins.tipo, ins.doc)
+    anterior = {"intencion": "conteo_porcentaje", "nivel": "desacuerdo", "preguntas": ["p01"]}
+    prep = Preparada(Interpretacion(plan=PlanConsulta(intencion="resumen_pregunta", preguntas=["p07"])), [ins], [cat])
+    rag_service._heredar_grupo(prep, "¿Y entre esos, recomendarían la carrera?", anterior)
+    assert prep.plan.preguntas == ["p07"] and prep.plan.filtros[0].pregunta == "p01"
+    assert prep.ejecuciones[0].total == 2
+    # Sin referencia al grupo («ellos», «esos»…) no se toca.
+    prep2 = Preparada(Interpretacion(plan=PlanConsulta(intencion="resumen_pregunta", preguntas=["p07"])), [ins], [cat])
+    rag_service._heredar_grupo(prep2, "¿Recomendarían la carrera?", anterior)
+    assert not prep2.plan.filtros
+
+
+def test_resume_lo_que_hemos_visto_usa_el_hilo_y_cae_a_la_lista_si_inventa(monkeypatch):
+    import asyncio
+    from models import ChatRequest
+    from services import ollama_client, rag_service
+
+    assert rag_service._RESUMEN_HILO.search("resume lo que hemos visto en esta conversacion")
+    assert not rag_service._RESUMEN_HILO.search("resume la pregunta 3")
+    hist = [{"rol": "usuario", "texto": "¿Cuántos usan la biblioteca?"},
+            {"rol": "asistente", "texto": "27 de 160 la usan más (16.9 %) [Fuente 1]."},
+            {"rol": "usuario", "texto": "¿Y la cafetería?"},
+            {"rol": "asistente", "texto": "54.1 % está de acuerdo con su calidad [Fuente 1]."}]
+    peticion = ChatRequest(pregunta="Resume lo que hemos visto", historial=hist)
+
+    async def modelo(_m):
+        return "llama"
+    monkeypatch.setattr(ollama_client, "modelo_para", modelo)
+
+    async def bien(*a, **k):
+        return "- Biblioteca: 27 de 160 (16.9 %).\n- Cafetería: 54.1 % de acuerdo.", False
+    monkeypatch.setattr(ollama_client, "generar_no_stream", bien)
+    assert asyncio.run(rag_service._resumen_hilo(peticion)).startswith("- Biblioteca: 27 de 160")
+
+    async def inventa(*a, **k):
+        return "- Biblioteca: 80 % la usa.", False
+    monkeypatch.setattr(ollama_client, "generar_no_stream", inventa)
+    lista = asyncio.run(rag_service._resumen_hilo(peticion))
+    assert lista.startswith("Esto es lo que hemos visto:") and "**¿Cuántos usan la biblioteca?** 27 de 160" in lista
+    assert "[Fuente" not in lista
