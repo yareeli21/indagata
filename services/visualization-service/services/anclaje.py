@@ -291,7 +291,14 @@ def acotar(plan: PlanConsulta, pregunta: str, cat: Catalogo, n_catalogos: int) -
     notas: list[str] = []
     sin_condicion = not (plan.filtros or plan.preguntas or plan.nivel or plan.contexto or plan.contexto_num
                          or plan.menciona or plan.agrupar_por or plan.respondentes)
-    if plan.intencion == "conteo_porcentaje" and sin_condicion and not _TOTAL.match(normalizar(pregunta).strip(" ?¿.!")):
+    texto = normalizar(pregunta)
+    if plan.intencion == "conteo_porcentaje" and sin_condicion and not _TOTAL.match(texto.strip(" ?¿.!")):
+        # Antes de la búsqueda semántica, la pregunta que la consulta nombra sin ambigüedad (2+ palabras): «¿tienen a
+        # alguien de confianza para platicar sus problemas?» perdía la mención y quedaba bajo el umbral (26 nov).
+        aludidas = _preguntas_aludidas(texto, cat) if not enrutador._persona(texto) else []
+        if len(aludidas) == 1 and aludidas[0][1] >= 2:
+            notas.append(f"conteo sin condición → resumen_pregunta de {aludidas[0][0]} (la consulta la nombra)")
+            return plan.model_copy(update={"intencion": "resumen_pregunta", "preguntas": [aludidas[0][0]]}), notas
         notas.append("conteo sin condición y la pregunta no pide el total → búsqueda semántica")
         return plan.model_copy(update={"intencion": "semantica_abierta", "consulta_semantica": pregunta}), notas
     nombra_ids = bool(plan.preguntas or plan.filtros or plan.respondentes)
@@ -405,7 +412,12 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
     # modelo inventó «98 % no ha sufrido inseguridad» (consulta 344): también pasa a sus respuestas.
     revisar = intencion == "hallazgo" or (intencion == "semantica_abierta" and cat.tipo == "encuesta")
     aludidas = _preguntas_aludidas(texto, cat) if revisar and not enrutador._persona(texto) else []
-    if len(aludidas) == 1 and (intencion == "hallazgo" or not cat.preguntas[aludidas[0][0]].opciones):
+    # Una búsqueda semántica en una encuesta que nombra sin ambigüedad una pregunta de opciones con 2+ palabras
+    # («¿tienen a alguien de confianza para platicar sus problemas?» → p03 «Tengo personas de confianza con quienes
+    # hablar de mis problemas»): su distribución es la respuesta. El plan del modelo oscilaba entre conteo y búsqueda
+    # semántica según mínimas diferencias numéricas de Ollama (26 nov); así no depende de eso.
+    if len(aludidas) == 1 and (intencion == "hallazgo" or not cat.preguntas[aludidas[0][0]].opciones
+                               or (intencion == "semantica_abierta" and aludidas[0][1] >= 2)):
         pid = aludidas[0][0]
         tipo = "de opciones" if cat.preguntas[pid].opciones else "abierta: todas sus respuestas"
         notas.append(f"intención {intencion} → resumen_pregunta de {pid} (la consulta trata de esa pregunta; {tipo})")

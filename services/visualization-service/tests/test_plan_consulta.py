@@ -761,3 +761,21 @@ def test_tienen_beca_no_respalda_un_filtro_de_otra_pregunta_por_el_verbo():
     plan = PlanConsulta(intencion="conteo_porcentaje", filtros=[Filtro(pregunta="p11", valor=["Sí, tiempo completo"])])
     nuevo, notas = anclaje.anclar(plan, "De los que trabajan más de 10 horas, ¿cuántos tienen beca?", [], cat)
     assert not any(f.pregunta == "p11" for f in nuevo.filtros), notas
+
+
+def test_busqueda_semantica_que_nombra_una_pregunta_de_opciones_da_su_distribucion():
+    """26 nov: el plan oscilaba entre conteo y búsqueda semántica; con dos palabras en común con UNA pregunta es esa."""
+    cat = _cat_encuesta()
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="semantica_abierta", consulta_semantica="x"),
+                              "¿Sienten que la evaluación es justa?", [], cat)
+    assert nuevo.intencion == "resumen_pregunta" and nuevo.preguntas == ["p02"]
+    # Una sola palabra en común no basta: sigue la búsqueda semántica.
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="semantica_abierta", consulta_semantica="x"),
+                              "¿Qué opinan de la evaluación en general?", [], cat)
+    assert nuevo.intencion == "semantica_abierta"
+
+
+def test_conteo_sin_condicion_que_nombra_una_pregunta_da_su_resumen():
+    nuevo, notas = anclaje.acotar(PlanConsulta(intencion="conteo_porcentaje"), "¿Sienten que la evaluación es justa?",
+                                  _cat_encuesta(), 1)
+    assert nuevo.intencion == "resumen_pregunta" and nuevo.preguntas == ["p02"], notas
