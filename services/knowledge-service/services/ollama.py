@@ -25,7 +25,7 @@ def generar_json(prompt: str) -> dict[str, Any] | None:
         "format": "json",
         # Número, no texto: Ollama rechaza "-1". num_ctx igual al de los demás servicios.
         "keep_alive": -1,
-        "options": {"temperature": 0.0, "num_ctx": 4096},
+        "options": {"temperature": 0.0, "num_ctx": settings.OLLAMA_NUM_CTX},
     }
     try:
         with httpx.Client(timeout=_TIMEOUT) as cliente:

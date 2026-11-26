@@ -62,7 +62,7 @@ _TIPOS = {"Encuesta", "Entrevista", "Prueba estandarizada"}
 # Se piden más candidatos de los que caben y se eligen con tope por instrumento.
 _CANDIDATOS_POR_FRAGMENTO = 4
 _MAX_FICHAS_POR_INSTRUMENTO = 1
-_MAX_FRAGMENTOS_POR_INSTRUMENTO = 3
+_MAX_FRAGMENTOS_POR_INSTRUMENTO = settings.RAG_FRAGMENTOS_POR_INSTRUMENTO
 # Fragmentos que no traen respuestas no ocupan los lugares de datos (25 nov): en una entrevista la pregunta guía es solo
 # el texto de la pregunta (las respuestas están en los intercambios) y un KPI es su definición. Con «¿Cómo combinan las
 # actividades extracurriculares con la escuela?» dos preguntas guía y un KPI llenaban los 3 lugares, los intercambios
@@ -187,8 +187,9 @@ def _buscar(peticion: ChatRequest, vector: list[float]) -> tuple[list[dict[str, 
 
     ids = [i for i in (peticion.instrumentoIds or []) if i]
     where = {"instrumentoId": {"$in": ids}} if ids else None
+    top_k = max(peticion.top_k, settings.RAG_TOP_K_MINIMO)
     try:
-        res = hibrida.consultar(coleccion, vector, peticion.pregunta, peticion.top_k * _CANDIDATOS_POR_FRAGMENTO,
+        res = hibrida.consultar(coleccion, vector, peticion.pregunta, top_k * _CANDIDATOS_POR_FRAGMENTO,
                                 where, ids, fabrica_sesiones)
     except Exception as exc:  # noqa: BLE001
         logger.error("Vector store no disponible: %s", exc)
@@ -208,7 +209,7 @@ def _buscar(peticion: ChatRequest, vector: list[float]) -> tuple[list[dict[str, 
         lexico = _lexico(res, n)
         if not hibrida.relevante({"score": score, "seccion": str(meta.get("seccion", "")), **lexico}):
             continue  # poco relacionado (ni por significado ni por palabras): no se le da al LLM para que no improvise
-        if len(fragmentos) >= peticion.top_k:
+        if len(fragmentos) >= top_k:
             break
         # Diversidad: las fichas (encabezado) se parecen a casi cualquier pregunta y,
         # sin tope, desplazan a los reactivos con resultados y al texto de entrevistas.

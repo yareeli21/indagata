@@ -32,12 +32,12 @@ logger = logging.getLogger("visualization-service")
 _MAX_HISTORIAL = 4  # mensajes recientes que ve el modelo
 # El prompt (instrucciones + ejemplos + catálogo) debe caber en num_ctx 4096 con la salida: unos 2,900 tokens con
 # un catálogo de 18 preguntas. Con más instrumentos o preguntas, el catálogo pasa a su forma compacta.
-_MAX_CARACTERES_CATALOGO = 4500
+_MAX_CARACTERES_CATALOGO = int(4500 * settings.escala_contexto)
 # Tope del prompt entero (sistema + ejemplos + catálogo + historial + pistas), en caracteres: ~3.3 por token medidos
 # el 9 nov, para dejar sitio a los 300 de salida en 4096. Con toda la colección (31 instrumentos) ni el catálogo
 # compacto cabía (12–28 mil tokens): Ollama recortaba el prompt por el INICIO a 2,050 tokens (se perdían las
 # instrucciones y los ejemplos) y, como el inicio cambiaba, no reusaba su caché: 12–40 s por plan, y planes a ciegas.
-_MAX_CARACTERES_PROMPT = 11500
+_MAX_CARACTERES_PROMPT = int(11500 * settings.escala_contexto)
 _MAX_TEXTO_HISTORIAL = 300
 
 SISTEMA = """Eres el intérprete de consultas de Indagata, una plataforma de instrumentos de investigación educativa \

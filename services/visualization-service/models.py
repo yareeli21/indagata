@@ -253,8 +253,8 @@ class ChatRequest(BaseModel):
     @field_validator("top_k")
     @classmethod
     def _limitar_top_k(cls, v: int) -> int:
-        """Se normaliza al rango [1, 8] en lugar de rechazarse (cabe en num_ctx)."""
-        return max(1, min(8, v))
+        """Se normaliza al rango [1, 12] en lugar de rechazarse; el servidor sube el mínimo con RAG_TOP_K_MINIMO."""
+        return max(1, min(12, v))
 
 
 class InterpretarOut(BaseModel):

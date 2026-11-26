@@ -56,7 +56,7 @@ def sugerir(tipo_ui: str, titulo: str, contexto: str, campos: dict[str, str]) ->
         # Número, no texto: Ollama rechaza "-1" con 400. num_ctx igual al del chat
         # (visualization-service) para que Ollama no recargue el modelo al alternar.
         "keep_alive": -1,
-        "options": {"temperature": 0.2, "num_ctx": 4096},
+        "options": {"temperature": 0.2, "num_ctx": settings.OLLAMA_NUM_CTX},
     }
     url = f"{settings.OLLAMA_HOST.rstrip('/')}/api/generate"
     try:

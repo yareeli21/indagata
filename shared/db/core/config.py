@@ -33,7 +33,11 @@ class AppSettings(BaseSettings):
 
     # ── Ollama (LLM local) ───────────────────────────────────────────────────
     OLLAMA_HOST: str = "http://localhost:11434"
-    OLLAMA_MODEL: str = "llama3.2:3b"
+    # Ventana de contexto de TODOS los servicios que llaman a Ollama (chat, análisis, conocimiento, metadatos): si
+    # uno pide otra, Ollama recarga el modelo. 4096 venía del 3B en una GPU de 4 GiB; los presupuestos de texto del
+    # chat (catálogos de la interpretación, contexto del juez) crecen en la misma proporción (`escala_contexto`).
+    OLLAMA_NUM_CTX: int = 4096
+    OLLAMA_MODEL: str = "llama3.1:8b-instruct-q4_K_M"  # 25 nov: el 8B decide mejor que el 3B (84.2 % vs 78.9 %)
 
     # ── ChromaDB (vector store) ──────────────────────────────────────────────
     CHROMA_PATH: str = "chromadb/data"
@@ -65,6 +69,11 @@ class AppSettings(BaseSettings):
     # por comas. En el servidor la página y la API comparten dominio (Caddy), así que no
     # hace falta agregarlo; en desarrollo el frontend corre en el 3000 (o el 8080 de Vite).
     CORS_ORIGENES: str = "http://localhost:3000,http://127.0.0.1:3000,http://localhost:8080"
+
+    @property
+    def escala_contexto(self) -> float:
+        """OLLAMA_NUM_CTX respecto de 4096, la ventana con la que se midieron los presupuestos de texto."""
+        return max(1.0, self.OLLAMA_NUM_CTX / 4096)
 
     @property
     def cors_origenes(self) -> list[str]:
@@ -170,6 +179,9 @@ class AppSettings(BaseSettings):
     # Temperatura de la REDACCIÓN del chat (la interpretación, los clasificadores y el juez van en 0). 0.2 desde el
     # inicio; configurable para un experimento aparte (0 / 0.2 / 0.7). No se mueve al comparar modelos.
     RAG_TEMPERATURA_REDACCION: float = 0.2
+    # Fragmentos del RAG: tope por instrumento y mínimo de fragmentos por consulta (0 = el que pide la página, 6).
+    RAG_FRAGMENTOS_POR_INSTRUMENTO: int = 3
+    RAG_TOP_K_MINIMO: int = 0
     # Caché de respuestas: una pregunta idéntica (mismo alcance, versiones vigentes,
     # contexto y modelo) se responde con la guardada sin llamar a Ollama. 0 = sin caché.
     RAG_CACHE_HORAS: float = 24

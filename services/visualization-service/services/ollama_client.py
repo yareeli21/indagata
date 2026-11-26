@@ -38,7 +38,7 @@ _TIMEOUT = httpx.Timeout(connect=5.0, read=120.0, write=120.0, pool=5.0)
 # - temperature: la de la redacción, `RAG_TEMPERATURA_REDACCION` (0.2 por defecto: respuestas apegadas al
 #   contexto). La interpretación, los clasificadores y el juez la sobrescriben con 0 en `opciones`.
 _KEEP_ALIVE = -1
-_NUM_CTX = 4096
+_NUM_CTX = settings.OLLAMA_NUM_CTX
 
 # Freno a las respuestas que se repiten (8 nov: «¿Qué es la escala RAU?» se quedó repitiendo el mismo párrafo
 # hasta que la usuaria lo detuvo; 35 s de generación contra 5–15 s de una respuesta normal). La penalización de

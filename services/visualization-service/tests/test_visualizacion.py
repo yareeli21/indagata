@@ -417,7 +417,7 @@ def test_chat_limita_top_k_y_baja_temperatura():
     from models import ChatRequest
     from services import ollama_client
 
-    assert ChatRequest(pregunta="x", top_k=20).top_k == 8
+    assert ChatRequest(pregunta="x", top_k=20).top_k == 12
     # La redacción lleva además un tope de tokens contra las respuestas que se repiten (test_repeticion.py).
     assert ollama_client._payload("m", "p", stream=False)["options"] == {
         "num_ctx": 4096, "temperature": 0.2, "num_predict": ollama_client._MAX_TOKENS_REDACCION}

@@ -52,7 +52,7 @@ logger = logging.getLogger("visualization-service")
 
 VERSION = "1.3"  # 1.3: un juez por parámetro y una evaluación por juez (rag_metrica_juez); 1.2: prompt de utilidad con ejemplo; 1.1: veredicto por afirmación si el juez se equivoca de cuenta; cifras sin sustento; calculadas medidas
 _ESTRICTEZ = 3  # preguntas generadas en la relevancia (strictness de RAGAS)
-_MAX_CONTEXTO = 6000  # caracteres de contexto por llamada (cabe en num_ctx 4096 con el prompt)
+_MAX_CONTEXTO = int(6000 * settings.escala_contexto)  # caracteres de contexto por llamada (cabe en num_ctx 4096 con el prompt)
 
 # Estados que ve la interfaz (también van en `metricas.estado`).
 CALCULANDO, LISTO, OMITIDA, ERROR, CALCULADA = "calculando", "listo", "omitida", "error", "calculada"

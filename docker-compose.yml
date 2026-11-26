@@ -190,7 +190,8 @@ services:
       # Debe coincidir con la SECRET_KEY del api-gateway para validar el JWT.
       SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-prod}
       OLLAMA_HOST: http://ollama:11434
-      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.1:8b-instruct-q4_K_M}
+      OLLAMA_NUM_CTX: ${OLLAMA_NUM_CTX:-4096}  # igual en todos los servicios (si no, Ollama recarga el modelo)
       CHROMA_HOST: chromadb
       CHROMA_PORT: 8000
       EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/paraphrase-multilingual-mpnet-base-v2}
@@ -235,7 +236,8 @@ services:
       STORAGE_SERVICE_URL: http://storage-service:8004
       # Sugerencias de metadatos con el LLM local (con degradación si no responde).
       OLLAMA_HOST: http://ollama:11434
-      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.1:8b-instruct-q4_K_M}
+      OLLAMA_NUM_CTX: ${OLLAMA_NUM_CTX:-4096}  # igual en todos los servicios (si no, Ollama recarga el modelo)
       METADATA_USAR_LLM: ${METADATA_USAR_LLM:-true}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
@@ -301,7 +303,8 @@ services:
       STORAGE_SERVICE_URL: http://storage-service:8004
       # Análisis de respuestas de entrevista (unidades, postura y motivo); sin Ollama usa reglas.
       OLLAMA_HOST: http://ollama:11434
-      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.1:8b-instruct-q4_K_M}
+      OLLAMA_NUM_CTX: ${OLLAMA_NUM_CTX:-4096}  # igual en todos los servicios (si no, Ollama recarga el modelo)
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
       - "8009:8009"
@@ -383,7 +386,8 @@ services:
       RAW_PATH: /app/storage/raw
       TEMP_PATH: /app/storage/temp
       OLLAMA_HOST: http://ollama:11434
-      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.1:8b-instruct-q4_K_M}
+      OLLAMA_NUM_CTX: ${OLLAMA_NUM_CTX:-4096}  # igual en todos los servicios (si no, Ollama recarga el modelo)
       # Juez de las métricas: qwen2.5:3b calificó 0.95 las copias
       # literales del cálculo contra 0.40 de llama3.2:3b (evidencias/jueces_2026-10-23).
       RAG_JUEZ_MODELO: ${RAG_JUEZ_MODELO:-qwen2.5:3b}
@@ -395,6 +399,8 @@ services:
       RAG_JUEZ_FABLE_ESFUERZO: ${RAG_JUEZ_FABLE_ESFUERZO:-medium}
       # Temperatura de la redacción del chat (la interpretación y el juez van en 0).
       RAG_TEMPERATURA_REDACCION: ${RAG_TEMPERATURA_REDACCION:-0.2}
+      RAG_FRAGMENTOS_POR_INSTRUMENTO: ${RAG_FRAGMENTOS_POR_INSTRUMENTO:-3}
+      RAG_TOP_K_MINIMO: ${RAG_TOP_K_MINIMO:-0}
       # Caché de respuestas (horas; 0 = sin caché). En el experimento de modelos se pone 0 para que una pregunta
       # repetida se vuelva a responder.
       RAG_CACHE_HORAS: ${RAG_CACHE_HORAS:-24}
