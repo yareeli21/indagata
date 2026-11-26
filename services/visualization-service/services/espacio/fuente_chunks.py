@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
-from typing import Protocol
+from typing import Any, Protocol
 
 from shared.db.core.config import settings
 
@@ -67,6 +67,22 @@ def _a_chunks(datos: dict) -> list[Chunk]:
     return salida
 
 
+_LOTE = 5000  # Chroma (SQLite) falla con «too many SQL variables» si se pide todo junto (36 681 chunks, 26 nov)
+
+
+def _get_paginado(coleccion: Any, **kwargs: Any) -> list[Chunk]:
+    """`coleccion.get` en lotes de `_LOTE`, ya convertido a chunks."""
+    salida: list[Chunk] = []
+    desplazamiento = 0
+    while True:
+        lote = coleccion.get(limit=_LOTE, offset=desplazamiento, **kwargs)
+        n = len(lote.get("ids") or [])
+        salida += _a_chunks(lote)
+        if n < _LOTE:
+            return salida
+        desplazamiento += n
+
+
 class ChunksRagInstrumentos:
     """Chunks de la colección del RAG (`encabezado`, `pregunta`, `contenido`)."""
 
@@ -81,7 +97,7 @@ class ChunksRagInstrumentos:
         if coleccion is None or limite <= 0:
             return []
         chunks = sorted(
-            _a_chunks(coleccion.get(include=["embeddings", "metadatas", "documents"])),
+            _get_paginado(coleccion, include=["embeddings", "metadatas", "documents"]),
             key=lambda c: c.id,
         )
         if len(chunks) <= limite:
@@ -93,11 +109,10 @@ class ChunksRagInstrumentos:
         coleccion = self._coleccion()
         if coleccion is None:
             return []
-        return _a_chunks(
-            coleccion.get(
-                where={"instrumentoId": str(instrumento_id)},
-                include=["embeddings", "metadatas", "documents"],
-            )
+        return _get_paginado(
+            coleccion,
+            where={"instrumentoId": str(instrumento_id)},
+            include=["embeddings", "metadatas", "documents"],
         )
 
 

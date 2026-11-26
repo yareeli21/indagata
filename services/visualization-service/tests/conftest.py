@@ -75,8 +75,9 @@ class ColeccionFalsa:
     def agregar(self, pid: str, texto: str, meta: dict, embedding: list[float] | None = None) -> None:
         self.puntos[pid] = {"document": texto, "metadata": meta, "embedding": embedding or vector_de(texto)}
 
-    def get(self, ids=None, where=None, include=None):  # noqa: ANN001
+    def get(self, ids=None, where=None, include=None, limit=None, offset=None):  # noqa: ANN001
         sel = [(i, p) for i, p in self.puntos.items() if (ids is None or i in ids) and _coincide(p["metadata"], where)]
+        sel = sel[offset or 0:][:limit] if limit is not None else sel[offset or 0:]
         return {
             "ids": [i for i, _ in sel],
             "embeddings": [p["embedding"] for _, p in sel],

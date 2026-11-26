@@ -263,3 +263,33 @@ def tachar_datos_personales(texto: str) -> str:
     for patron, reemplazo in _PII:
         texto = patron.sub(reemplazo, texto)
     return texto
+
+
+# ── Saludos (26 nov) ──────────────────────────────────────────────────────────
+# «hola» caía en «fuera de dominio» («Solo puedo responder sobre…»). Un mensaje que es SOLO un saludo, un
+# agradecimiento o una despedida se contesta con naturalidad, sin modelo; «hola, ¿cuántos…?» sigue el camino normal.
+_SALUDO = re.compile(
+    r"^(?:(hola|holi|holis|hey|que tal|saludos|buen dia|buenos dias|buenas tardes|buenas noches|buenas)"
+    r"|(gracias|muchas gracias|mil gracias|ok gracias|perfecto gracias|genial gracias)"
+    r"|(adios|hasta luego|nos vemos|bye|chao))"
+    r"(?:\s+(?:indagata|asistente|a todos|amigo|amiga))?"
+    r"(?:\s*,?\s*(?:como estas|como te va|que tal))?$"
+)
+_AYUDO = ("¿En qué te puedo ayudar? Puedo contarte de qué trata un instrumento, cuántos respondieron algo, qué dijo "
+          "un participante o qué preguntas miden un KPI.")
+
+
+def saludo(texto: str) -> str | None:
+    """Respuesta a un mensaje que es solo un saludo, un agradecimiento o una despedida; None si no lo es."""
+    t = re.sub(r"[^\w\s,]", " ", normalizar(texto)).strip(" ,")
+    m = _SALUDO.match(" ".join(t.split()))
+    if not m:
+        return None
+    hola, gracias, _ = m.groups()
+    if hola:
+        inicio = {"buen dia": "¡Buen día!", "buenos dias": "¡Buenos días!", "buenas tardes": "¡Buenas tardes!",
+                  "buenas noches": "¡Buenas noches!"}.get(hola, "¡Hola!")
+        return f"{inicio} Soy el asistente de Indagata. {_AYUDO}"
+    if gracias:
+        return "¡De nada! ¿Hay algo más que quieras saber de tus instrumentos?"
+    return "¡Hasta luego! Aquí estaré cuando quieras seguir con tu investigación."

@@ -259,3 +259,23 @@ def test_buscar_validacion(cliente, espacio):
     assert cliente.post("/visualizacion/espacio/buscar", json={"texto": "x" * 301}, headers=ANA).status_code == 422
     assert cliente.post("/visualizacion/espacio/buscar", json={"texto": "  a   "}, headers=ANA).status_code == 422
     assert cliente.post("/visualizacion/espacio/buscar", json={"texto": "graduacion"}).status_code == 401
+
+
+def test_chunks_del_mapa_se_leen_en_lotes(monkeypatch):
+    """26 nov: con 36 681 chunks, un solo `get` fallaba en Chroma («too many SQL variables») y «Ubica en el mapa» daba 502."""
+    from services.espacio import fuente_chunks
+
+    class Coleccion:
+        def __init__(self):
+            self.llamadas = []
+
+        def get(self, limit=None, offset=0, include=None, where=None):  # noqa: ANN001
+            self.llamadas.append((limit, offset))
+            ids = [f"c{i:03d}" for i in range(offset, min(offset + limit, 7))]
+            return {"ids": ids, "embeddings": [[1.0, 0.0]] * len(ids), "metadatas": [{}] * len(ids), "documents": [""] * len(ids)}
+
+    col = Coleccion()
+    monkeypatch.setattr(fuente_chunks, "_LOTE", 3)
+    monkeypatch.setattr(fuente_chunks.ChunksRagInstrumentos, "_coleccion", lambda self: col)
+    assert len(fuente_chunks.ChunksRagInstrumentos().todos(100)) == 7
+    assert col.llamadas == [(3, 0), (3, 3), (3, 6)]

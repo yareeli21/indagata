@@ -473,3 +473,18 @@ def test_linea_con_solo_una_cita_repetida_se_quita():
     assert rag_service._sin_citas_sueltas(texto) == "E33 aconseja seguir adelante [Fuente 1].\n\nE04 habla del dinero [Fuente 1]."
     unica = "Texto sin cita.\n\n[Fuente 2]"
     assert rag_service._sin_citas_sueltas(unica) == unica
+
+
+@pytest.mark.parametrize("texto", ["hola", "Hola!", "¡Buenas tardes!", "hola, ¿cómo estás?", "gracias", "adiós"])
+def test_saludos_tienen_respuesta_natural(texto):
+    from services import dominio
+    r = dominio.saludo(texto)
+    assert r and "Solo puedo responder" not in r
+    if "hola" in texto.lower():
+        assert "¿En qué te puedo ayudar?" in r
+
+
+@pytest.mark.parametrize("texto", ["hola, ¿cuántos estudiantes tienen beca?", "gracias por la tabla, ¿y en p03?", "holanda"])
+def test_un_saludo_con_pregunta_sigue_el_camino_normal(texto):
+    from services import dominio
+    assert dominio.saludo(texto) is None
