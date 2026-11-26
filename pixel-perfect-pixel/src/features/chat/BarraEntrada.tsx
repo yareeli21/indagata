@@ -12,6 +12,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { cargarModelo, getModelos } from "@/api/chat";
 import type { ModeloChat, ModeloLLM } from "@/types";
 
+// El modelo de embeddings (paraphrase-multilingual-mpnet) lee como máximo 128 tokens, ~500 caracteres en español
+// (medido el 26 nov: ~4 caracteres por token). Lo que pasa de ahí se corta y no cuenta para buscar las fuentes.
+const LARGO_AVISO = 400;
+const LARGO_MAXIMO_BUSQUEDA = 500;
+
 interface BarraEntradaProps {
   modelo: ModeloLLM;
   generando: boolean;
@@ -157,7 +162,29 @@ export function BarraEntrada({
           </Button>
         )}
       </div>
-      <p className="mt-1 text-right text-xs text-muted-foreground/60">{texto.length}/2000</p>
+      <div className="mt-1 flex items-start justify-between gap-3 text-xs">
+        <p
+          role="status"
+          className={
+            texto.length > LARGO_MAXIMO_BUSQUEDA ? "text-destructive" : "text-muted-foreground"
+          }
+        >
+          {texto.length > LARGO_MAXIMO_BUSQUEDA
+            ? "Pregunta demasiado larga: el buscador solo lee unos 500 caracteres y el final no se usará para encontrar las fuentes. Divídela en preguntas más cortas."
+            : texto.length > LARGO_AVISO
+              ? "Pregunta larga: el buscador lee unos 500 caracteres. Las preguntas cortas y concretas encuentran mejor las fuentes."
+              : ""}
+        </p>
+        <p
+          className={
+            texto.length > LARGO_MAXIMO_BUSQUEDA
+              ? "shrink-0 text-destructive"
+              : "shrink-0 text-muted-foreground/60"
+          }
+        >
+          {texto.length}/{LARGO_MAXIMO_BUSQUEDA}
+        </p>
+      </div>
     </div>
   );
 }
