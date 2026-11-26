@@ -341,3 +341,65 @@ def test_hallazgo_pide_varios_patrones_y_el_respaldo_trae_tres():
     directa = consulta_planificada.directa([e])
     assert all(c["texto"] in directa for c in e.candidatos[:3])
     assert all(c["texto"] not in directa for c in e.candidatos[3:])
+
+
+def test_mencion_en_plural_encuentra_el_singular_y_omite_palabras_funcionales():
+    """26 nov: «¿alguien mencionó becas?» daba 0 de 28 donde varios hablan de «mi beca»."""
+    doc = {"preguntas": [{"id": "INS-0007-p01", "texto": "¿Cómo pagas tus estudios?", "tipo": "guia"}],
+           "entrevistas": [
+               {"participante": "INS-0007-E01", "contexto": {}, "intercambios": [
+                   {"pregunta_id": "INS-0007-p01", "pregunta": "", "respuesta": "Tengo una beca que cubre parte."}]},
+               {"participante": "INS-0007-E02", "contexto": {}, "intercambios": [
+                   {"pregunta_id": "INS-0007-p01", "pregunta": "", "respuesta": "Trabajo de noche para pagar la escuela."}]}]}
+    ins = Instrumento("7", "Financiamiento", "entrevista", doc)
+    e = _uno(_plan(intencion="conteo_porcentaje", menciona="becas"), ins)
+    assert e.total == 1 and e.tablas[0].filas[0][0] == "E01"
+    # «para» no se exige: «trabajar para pagar la escuela» → trabaj + pagar + escue
+    assert _uno(_plan(intencion="conteo_porcentaje", menciona="trabajar para pagar la escuela"), ins).total == 1
+
+
+def test_resumen_de_un_reactivo_con_distribucion_por_letra():
+    """26 nov: la distribución de un reactivo es {"A": {n, pct}}; recorrerla como lista tronaba."""
+    doc = {"reactivos": [{"id": "INS-0008-r03", "texto": "¿Cuánto es 20 % de 500?", "opciones": {"A": "$100", "B": "$420"},
+                          "resumen": {"n_alumnos": 10, "distribucion": {"A": {"n": 7, "pct": 70.0}, "B": {"n": 3, "pct": 30.0}},
+                                      "opcion_mas_elegida": {"opcion": "A", "significado": "$100", "n": 7, "pct": 70.0}}}],
+           "alumnos": []}
+    e = _uno(_plan(intencion="resumen_pregunta", preguntas=["r03"]), Instrumento("8", "Matemáticas", "prueba_estandarizada", doc))
+    assert e.tablas[0].filas == [["A) $100", "7", "70.0 %"], ["B) $420", "3", "30.0 %"]]
+    assert e.lineas[0].startswith("r03") and "10 respuestas válidas" in e.lineas[0]
+
+
+def test_ranking_por_respuestas_negativas_y_positivas():
+    """26 nov: «¿qué pregunta tuvo respuestas más negativas?» no tenía criterio y se volvía «repartida»."""
+    def p(pid, neg, pos):
+        return {"id": f"INS-0009-{pid}", "texto": pid, "tipo": "likert",
+                "resumen": {"n_validas": 10, "por_nivel": {"desacuerdo": neg, "acuerdo": pos},
+                            "distribucion": [{"significado": "De acuerdo", "n": 1, "pct": pos}]}}
+    ins = Instrumento("9", "Clima", "encuesta", {"preguntas": [p("p01", 10.0, 80.0), p("p02", 60.0, 20.0)], "respondentes": []})
+    e = _uno(_plan(intencion="ranking_preguntas", criterio_ranking="negativa"), ins)
+    assert e.lineas[0].startswith("1. p02") and "60.0 % en desacuerdo" in e.lineas[0]
+    e = _uno(_plan(intencion="ranking_preguntas", criterio_ranking="positiva"), ins)
+    assert e.lineas[0].startswith("1. p01")
+
+
+def test_nivel_alto_en_una_pregunta_de_si_o_no_cuenta_los_si():
+    """26 nov: «¿duermen bien?» → nivel acuerdo en «¿Duermes al menos 7 horas?» (sí/no) daba 0 de 160."""
+    def r(rid, nivel):
+        return {"id": f"INS-0010-{rid}", "contexto": {}, "respuestas": [
+            {"pregunta_id": "INS-0010-p01", "estado": "respondida", "significado": nivel.capitalize(), "nivel": nivel}]}
+    doc = {"preguntas": [{"id": "INS-0010-p01", "texto": "¿Duermes al menos 7 horas?", "tipo": "binaria",
+                          "resumen": {"n_validas": 3, "por_nivel": {"si": 66.7, "no": 33.3}}}],
+           "respondentes": [r("R001", "si"), r("R002", "si"), r("R003", "no")]}
+    e = _uno(_plan(intencion="conteo_porcentaje", preguntas=["p01"], nivel="acuerdo"), Instrumento("10", "Sueño", "encuesta", doc))
+    assert any("2 de 3 personas respondieron «Sí» (66.7 %)" in l for l in e.lineas), e.lineas
+
+
+def test_nivel_sobre_respuestas_sin_nivel_da_la_distribucion_y_no_un_cero():
+    """26 nov: «de acuerdo» sobre un reactivo 1–5 de una prueba (sin nivel) daba «0 de 90»."""
+    doc = {"reactivos": [{"id": "INS-0011-r02", "texto": "Busco recursos extra", "opciones": {"A": "1", "B": "5"},
+                          "resumen": {"n_alumnos": 2, "distribucion": {"A": {"n": 1, "pct": 50.0}, "B": {"n": 1, "pct": 50.0}}}}],
+           "alumnos": [{"id": "INS-0011-A001", "contexto": {}, "respuestas": [
+               {"pregunta_id": "INS-0011-r02", "estado": "respondida", "significado": "5"}]}]}
+    e = _uno(_plan(intencion="conteo_porcentaje", preguntas=["r02"], nivel="acuerdo"),
+             Instrumento("11", "Autonomía", "prueba_estandarizada", doc))
+    assert not any("0 de" in l for l in e.lineas) and e.tablas[0].titulo == "Distribución de r02"

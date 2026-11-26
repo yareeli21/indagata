@@ -704,3 +704,47 @@ def test_conteo_que_solo_nombra_la_pregunta_recibe_su_condicion():
     plan = PlanConsulta(intencion="conteo_porcentaje", preguntas=["p03"])
     nuevo, _ = anclaje.anclar(plan, "¿Cuántos tomaron cursos extra?", [], _cat_conteos())
     assert [(f.pregunta, f.op, f.valor) for f in nuevo.filtros] == [("p03", ">=", 1.0)]
+
+
+def test_total_de_participantes_es_un_conteo_sin_condiciones():
+    """26 nov: «¿cuántas personas respondieron la encuesta?» llegó a contestar el % de acuerdo de una pregunta."""
+    nuevo, notas = anclaje.anclar(PlanConsulta(intencion="hallazgo"), "¿Cuántas personas respondieron la encuesta?",
+                                  [], _cat_encuesta())
+    assert nuevo.intencion == "conteo_porcentaje" and not (nuevo.filtros or nuevo.preguntas or nuevo.nivel)
+    assert notas
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="conteo_porcentaje"), "¿Cuántos respondieron que sí?", [], _cat_encuesta())
+    assert nuevo.intencion == "conteo_porcentaje"  # con condición: no es el total (lo deciden los otros pasos)
+
+
+def test_ranking_negativo_solo_con_escala_y_la_palabra_del_titulo_no_alude_a_una_pregunta():
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="ranking_preguntas", criterio_ranking="repartida"),
+                              "¿Qué pregunta tuvo respuestas más negativas?", [], _cat_encuesta())
+    assert nuevo.criterio_ranking == "negativa"
+    cat = _cat_encuesta()
+    pid = next(iter(cat.preguntas))
+    cat.preguntas[pid].texto += " en la ESCOM"
+    cat.titulo = "Indicadores de calidad en la ESCOM"
+    aludidas = anclaje._preguntas_aludidas(anclaje.normalizar("¿cómo califican las instalaciones de la ESCOM?"), cat)
+    assert pid not in [q for q, _ in aludidas]  # antes: la señalaba solo por «escom»
+
+
+def test_acotar_conteo_sin_condicion_y_preguntas_de_un_solo_catalogo():
+    cat = _cat_encuesta()
+    nuevo, notas = anclaje.acotar(PlanConsulta(intencion="conteo_porcentaje"), "¿Cuántos consumen alcohol o tabaco?", cat, 3)
+    assert nuevo.intencion == "semantica_abierta" and notas
+    nuevo, _ = anclaje.acotar(PlanConsulta(intencion="conteo_porcentaje"), "¿Cuántas personas respondieron?", cat, 3)
+    assert nuevo.intencion == "conteo_porcentaje"
+    nuevo, _ = anclaje.acotar(PlanConsulta(intencion="resumen_pregunta", preguntas=["p01"]), "¿qué opinan?", cat, 3)
+    assert nuevo.instrumentos == [cat.id]
+    nuevo, _ = anclaje.acotar(PlanConsulta(intencion="resumen_pregunta", preguntas=["p01"]), "¿qué opinan?", cat, 1)
+    assert nuevo.instrumentos == []
+
+
+def test_total_con_titulo_largo_ranking_con_respuestas_y_resumen_del_numero_nombrado():
+    t = lambda q: bool(anclaje._TOTAL.match(anclaje.normalizar(q).strip(" ?¿.!")))  # noqa: E731
+    assert t("¿Cuántos alumnos respondieron la encuesta de bienestar y salud mental?")
+    assert not t("¿Cuántos respondieron la encuesta de satisfacción que están contentos con la cafetería?")
+    assert anclaje._criterio_ranking(anclaje.normalizar("¿Qué pregunta tuvo más respuestas en desacuerdo?")) == "negativa"
+    nuevo, _ = anclaje.anclar(PlanConsulta(intencion="resumen_pregunta", preguntas=["p05"]),
+                              "¿Qué opción eligieron más en la pregunta 2?", [], _cat_encuesta())
+    assert nuevo.preguntas == ["p02"]

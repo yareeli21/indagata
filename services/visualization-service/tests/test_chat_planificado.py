@@ -453,3 +453,23 @@ def test_redaccion_libre_con_cifra_inventada_lleva_aviso_visible():
     assert r._aviso_cifras(limpio, "Sin cifras raras.") == "Sin cifras raras."
     calculada = r.Plan(resultado="Conteo: 12 de 40", plan_consulta=plan.plan_consulta)
     assert r._aviso_cifras(calculada, "12 de 40") == "12 de 40"
+
+
+def test_mencion_sin_resultado_no_se_afirma_si_el_rag_encuentra_el_tema():
+    """26 nov: «0 de 28 mencionan becas» en una entrevista donde varios hablan de su beca (cero falso)."""
+    from services import rag_service
+    from services.plan_consulta import PlanConsulta
+    con_mencion = PlanConsulta(intencion="conteo_porcentaje", menciona="becas")
+    assert rag_service._mencion_sin_eco(con_mencion, 0.70)
+    assert not rag_service._mencion_sin_eco(con_mencion, 0.40)  # el RAG tampoco lo encuentra: el 0 se sostiene
+    assert not rag_service._mencion_sin_eco(PlanConsulta(intencion="conteo_porcentaje"), 0.70)
+    larga = PlanConsulta(intencion="conteo_porcentaje", menciona="trabajar para pagar la escuela")
+    assert rag_service._mencion_sin_eco(larga, 0.40)  # tres raíces juntas: un cero literal no prueba nada
+
+
+def test_linea_con_solo_una_cita_repetida_se_quita():
+    from services import rag_service
+    texto = "E33 aconseja seguir adelante [Fuente 1].\n\nE04 habla del dinero [Fuente 1].\n\n[Fuente 1]"
+    assert rag_service._sin_citas_sueltas(texto) == "E33 aconseja seguir adelante [Fuente 1].\n\nE04 habla del dinero [Fuente 1]."
+    unica = "Texto sin cita.\n\n[Fuente 2]"
+    assert rag_service._sin_citas_sueltas(unica) == unica

@@ -50,7 +50,7 @@ INTENCIONES: tuple[str, ...] = Intencion.__args__  # type: ignore[attr-defined]
 ESTRUCTURADAS = frozenset({"datos_respondente", "filtrar_respondentes", "conteo_porcentaje", "comparar_grupos",
                            "hallazgo", "resumen_pregunta", "ranking_preguntas", "kpi"})
 # Criterios del ranking de preguntas: más nulas o sin responder, opción más elegida más alta o más baja.
-CriterioRanking = Literal["no_respuesta", "coincidencia", "repartida"]
+CriterioRanking = Literal["no_respuesta", "coincidencia", "repartida", "negativa", "positiva"]
 
 Operador = Literal["=", "!=", ">", ">=", "<", "<="]
 Nivel = Literal["alto", "medio", "bajo", "acuerdo", "neutral", "desacuerdo"]
@@ -113,7 +113,7 @@ class PlanConsulta(BaseModel):
     contexto_num: list[CondicionContexto] = Field(
         default_factory=list, max_length=3, description="Comparaciones sobre el contexto numérico («más de 20 horas»).")
     criterio_ranking: CriterioRanking | None = Field(
-        default=None, description="En ranking_preguntas: no_respuesta, coincidencia o repartida.")
+        default=None, description="En ranking_preguntas: no_respuesta, coincidencia, repartida, negativa o positiva.")
     # «sin contar la de la contraseña»: preguntas que no entran al cálculo (Fase 6, consultas 1493, 1498 y 1529).
     excluir_preguntas: list[str] = Field(default_factory=list, description="IDs cortos de preguntas que no se cuentan.")
     # «¿cuántos mencionaron la ansiedad?»: término que se busca en las respuestas abiertas (Fase 6, consultas 1468, 1540).

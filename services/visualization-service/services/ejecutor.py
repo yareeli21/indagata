@@ -37,10 +37,12 @@ _LIMITE_IDS = 30  # IDs mostrados si el plan no da límite
 _MAX_TEXTO_PREGUNTA = 70
 _PERSONALES = re.compile(r"nombre|apellido|correo|e-?mail|telefono|celular|matricula|curp|rfc|direccion|domicilio")
 # Sinónimos de nivel: el documento usa «alta/media/baja» o «acuerdo/neutral/desacuerdo» según la escala.
+# En una pregunta de sí/no el nivel de cada respuesta es «si»/«no»: «¿duermen bien?» sobre «¿Duermes al menos 7
+# horas?» (nivel acuerdo) contaba 0 de 160 con 80 «Sí» (26 nov). Sí es el nivel alto; no, el bajo.
 _NIVELES = {
-    "alto": {"alta", "alto", "acuerdo"}, "acuerdo": {"alta", "alto", "acuerdo"},
+    "alto": {"alta", "alto", "acuerdo", "si"}, "acuerdo": {"alta", "alto", "acuerdo", "si"},
     "medio": {"media", "medio", "neutral"}, "neutral": {"media", "medio", "neutral"},
-    "bajo": {"baja", "bajo", "desacuerdo"}, "desacuerdo": {"baja", "bajo", "desacuerdo"},
+    "bajo": {"baja", "bajo", "desacuerdo", "no"}, "desacuerdo": {"baja", "bajo", "desacuerdo", "no"},
 }
 _NOMBRE_NIVEL = {"alto": "nivel alto", "acuerdo": "de acuerdo (nivel alto)", "medio": "nivel medio",
                  "neutral": "neutral (nivel medio)", "bajo": "nivel bajo", "desacuerdo": "en desacuerdo (nivel bajo)"}
@@ -236,9 +238,20 @@ _ABIERTAS = {"texto_largo", "texto_corto", "texto", "abierta", "pregunta_abierta
 _MAX_CITAS = 8
 
 
+# Palabras de 4+ letras sin contenido: si se exigieran, «trabajar para pagar la escuela» pedía también «para».
+_FUNCIONALES = {"para", "pero", "porque", "como", "cuando", "donde", "sobre", "entre", "desde", "hasta", "esta",
+                "este", "estos", "estas", "esos", "esas", "tuvo", "tuve", "tiene", "tienen", "tenia", "tener", "hay",
+                "algo", "alguien", "algun", "alguna", "mucho", "muchos", "poco", "tambien", "solo", "cada", "otra",
+                "otro", "otros", "otras", "todo", "todos", "todas", "ellos", "ellas", "dijo", "dijeron", "mencion"}
+
+
 def _raices_termino(termino: str) -> list[str]:
-    """Raíz de 5 letras de cada palabra con contenido: «estrés» → «estre» (encuentra «estresada»)."""
-    return [w[:5] for w in re.findall(r"[a-z0-9]+", normalizar(termino)) if len(w) >= 4]
+    """Raíz de 5 letras de cada palabra con contenido: «estrés» → «estre» (encuentra «estresada»).
+
+    Sin la «s» final: con 5 letras, «becas» exigía «becas» y no encontraba «beca» (26 nov: «¿alguien mencionó
+    becas?» daba 0 de 28 en una entrevista donde varios hablan de su beca)."""
+    palabras = [w for w in re.findall(r"[a-z0-9]+", normalizar(termino)) if len(w) >= 4 and w not in _FUNCIONALES]
+    return [(w[:-1] if w.endswith("s") else w)[:5] for w in palabras]
 
 
 def _plano(texto: str) -> str:
@@ -338,6 +351,12 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
         if plan.menciona and grupo:
             e.tablas.append(_tabla_menciones(doc, grupo, plan))
     preguntas = plan.preguntas
+    if plan.nivel and preguntas and not hay_condicion and not any(
+            (p["por_pregunta"].get(q) or {}).get("nivel") for p in _personas(doc) for q in preguntas):
+        # Sus respuestas no tienen nivel (reactivos de una prueba, preguntas de opciones): contar «de acuerdo» daba
+        # «0 de 90» (26 nov, «¿buscan recursos extra…?» sobre un reactivo 1–5). Se da la distribución.
+        _resumen_pregunta(ins, plan, e)
+        return
     if plan.nivel and preguntas:
         base = grupo if hay_condicion else _personas(doc)
         for q in preguntas:
@@ -345,7 +364,14 @@ def _conteo_porcentaje(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> No
             en = sum(_en_nivel(p["por_pregunta"].get(q), plan.nivel) for p in validas)
             pct = round(100 * en / len(validas), 1) if validas else 0.0
             quien = "de quienes cumplen la condición y respondieron" if hay_condicion else "de quienes respondieron"
-            e.lineas.append(f"{_texto_pregunta(doc, q)}: {en} de {len(validas)} {quien} están {_NOMBRE_NIVEL[plan.nivel]} ({pct} %).")
+            dicho = f"están {_NOMBRE_NIVEL[plan.nivel]}"
+            polar = {"alto": "Sí", "acuerdo": "Sí", "bajo": "No", "desacuerdo": "No"}.get(plan.nivel)
+            if polar and validas and all(normalizar(str((p["por_pregunta"].get(q) or {}).get("nivel") or "")) in ("si", "no")
+                                         for p in validas):
+                # Pregunta de sí/no: «están de acuerdo (nivel alto)» llevó a «duermen bien» con la mitad (26 nov).
+                quien = "de quienes cumplen la condición" if hay_condicion else "personas"
+                dicho = f"respondieron «{polar}»"
+            e.lineas.append(f"{_texto_pregunta(doc, q)}: {en} de {len(validas)} {quien} {dicho} ({pct} %).")
         e.criterio = e.criterio or f"{_NOMBRE_NIVEL[plan.nivel]} en " + ", ".join(preguntas)
     elif preguntas and not hay_condicion:
         _resumen_pregunta(ins, plan, e)
@@ -438,12 +464,12 @@ def _resumen_pregunta(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> Non
             # redacción no tenga que adivinar qué dijeron (24 nov, consulta 344).
             _respuestas_abiertas(doc, q, e)
             continue
-        validas, sin = resumen.get("n_validas"), resumen.get("n_sin_respuesta")
+        validas, sin = resumen.get("n_validas", resumen.get("n_alumnos")), resumen.get("n_sin_respuesta")
         e.lineas.append(f"{_texto_pregunta(doc, q)}: {validas} respuestas válidas" + (f", {sin} sin respuesta" if sin else "")
                         + (f"; media {resumen['media']}" if resumen.get("media") is not None else "") + ".")
         if resumen.get("interpretacion"):
             e.lineas.append(f"Interpretación calculada: {resumen['interpretacion']}")
-        dist = resumen.get("distribucion") or []
+        dist = _distribucion(doc, q, resumen)
         if dist:
             e.tablas.append(Tabla(f"Distribución de {q}", ["Opción", "Respondentes", "%"],
                                   [[str(d.get("significado")), str(d.get("n")), f"{d.get('pct')} %"] for d in dist]))
@@ -452,6 +478,21 @@ def _resumen_pregunta(ins: Instrumento, plan: PlanConsulta, e: Ejecucion) -> Non
             e.lineas.append(f"Opción más elegida: «{m.get('significado')}» ({m.get('pct')} %, {m.get('n')} alumnos).")
     e.criterio = "resumen de " + ", ".join(preguntas)
     e.preguntas = [p["id"] for p in _items(doc) if _corto(p["id"]) in preguntas]
+
+
+def _distribucion(doc: dict[str, Any], q: str, resumen: dict[str, Any]) -> list[dict[str, Any]]:
+    """Distribución como lista [{significado, n, pct}]. En los reactivos viene como {"A": {n, pct}} (la letra de la
+    opción): recorrerla como lista tronaba con «'str' object has no attribute 'get'» y la pregunta caía a la ruta
+    semántica, que contestó con otro reactivo (26 nov, «¿qué opción eligieron más en la pregunta 3?»)."""
+    dist = resumen.get("distribucion") or []
+    if isinstance(dist, list):
+        return dist
+    if not isinstance(dist, dict):
+        return []
+    item = next((p for p in _items(doc) if _corto(p["id"]) == q), {})
+    opciones = item.get("opciones") if isinstance(item.get("opciones"), dict) else {}
+    return [{"significado": f"{letra}) {opciones[letra]}" if letra in opciones else str(letra),
+             "n": (d or {}).get("n"), "pct": (d or {}).get("pct")} for letra, d in dist.items()]
 
 
 def _resumen_en_grupo(ins: Instrumento, plan: PlanConsulta, preguntas: list[str], e: Ejecucion) -> None:
@@ -511,7 +552,9 @@ def _como_numero(valor: str) -> float | None:
 _TOP_RANKING = 3
 _NOMBRE_RANKING = {"no_respuesta": "más respuestas nulas o sin responder",
                    "coincidencia": "más coincidencia (opción más elegida con el porcentaje más alto)",
-                   "repartida": "respuestas más repartidas (opción más elegida con el porcentaje más bajo)"}
+                   "repartida": "respuestas más repartidas (opción más elegida con el porcentaje más bajo)",
+                   "negativa": "más respuestas en desacuerdo o en el nivel bajo de su escala",
+                   "positiva": "más respuestas de acuerdo o en el nivel alto de su escala"}
 
 
 def _medida_ranking(p: dict[str, Any], criterio: str) -> tuple[float, str] | None:
@@ -524,6 +567,13 @@ def _medida_ranking(p: dict[str, Any], criterio: str) -> tuple[float, str] | Non
             return None
         pct = round(100 * vacias / total, 1)
         return pct, f"{vacias} nulas o sin responder de {total} ({pct} %)"
+    if criterio in ("negativa", "positiva"):  # solo preguntas con escala (las demás no tienen nivel)
+        claves = hallazgos._NEGATIVOS if criterio == "negativa" else hallazgos._POSITIVOS
+        pct = hallazgos._nivel_pct(r, claves)
+        if pct is None:
+            return None
+        return float(pct), (f"{pct} % {hallazgos._nombre_nivel(r, claves)}".rstrip()
+                            + hallazgos._que_respondieron(p, claves))
     if r.get("opcion_mas_elegida"):  # pruebas
         m = r["opcion_mas_elegida"]
         return float(m.get("pct") or 0), f"«{m.get('significado')}» con {m.get('n')} de {r.get('n_alumnos')} ({m.get('pct')} %)"

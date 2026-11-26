@@ -25,6 +25,12 @@ from services.plan_consulta import CondicionContexto, Filtro, Orden, PlanConsult
 _CONTEO = re.compile(r"\b(?:cuantos|cuantas|cuanto|que\s+porcentaje|que\s+tanto\s+por\s+ciento|numero\s+de)\b")
 _LISTAR = re.compile(r"\b(?:quienes|cuales|dame|da\s?me|lista|enlista|muestra|muestrame|ids?|identificadores)\b")
 _FILTRADO = ("filtrar_respondentes", "conteo_porcentaje")
+# «¿Cuántas personas respondieron la encuesta?», «¿cuántos alumnos presentaron la prueba?»: el total, sin condición.
+_TOTAL = re.compile(r"^(?:y\s+)?(?:en\s+total\s+)?cuant[oa]s\s+(?:personas|respondentes|estudiantes|alumn[oa]s|participantes|"
+                    r"encuestad[oa]s|entrevistad[oa]s|sujetos)?\s*(?:la\s+|lo\s+)?(?:respondieron|contestaron|participaron|"
+                    r"presentaron|hicieron|tiene|hay|son|fueron)(?:\s+(?:en\s+)?(?:la|el|esta|este|esa|ese)\s+"
+                    r"(?:encuesta|prueba|entrevista|instrumento|examen|cuestionario)(?:\s+(?:de|del|sobre)\s+(?:(?!\b(?:que|quienes|donde|cuando|cuant[oa]s|pero)\b)[a-z0-9 ]){1,80}?)?)?"
+                    r"(?:\s+en\s+total)?$")
 _GENERICAS = {"si", "no", "otro", "otra", "ninguno", "ninguna"}
 # Niveles del enrutador de reglas → niveles del plan.
 _NIVEL_PLAN = {"acuerdo": "acuerdo", "desacuerdo": "desacuerdo", "neutral": "neutral", "satisfaccion": "alto",
@@ -54,11 +60,18 @@ _CRITERIOS_RANKING = (
                                 r"vacias?|omitid\w*|no contestad\w*|no respondid\w*)\b")),
     ("coincidencia", re.compile(r"\b(?:casi todos|coincid\w*|lo mismo|la misma|unanim\w*|consenso)\b")),
     ("repartida", re.compile(r"\b(?:dividid\w*|repartid\w*|dispers\w*|polarizad\w*)\b")),
+    # «¿Qué pregunta tuvo respuestas más negativas?» se volvía «repartida» y mostraba el «De acuerdo» de cada una
+    # (26 nov). Lo negativo va antes: «desacuerdo» contiene «acuerdo».
+    ("negativa", re.compile(r"\b(?:mas negativ\w*|peor(?:es)? (?:evaluad|calificad|valorad|opinion)\w*|"
+                            r"mas (?:respuestas? )?(?:en )?desacuerdo|menos (?:respuestas? )?(?:de )?acuerdo|"
+                            r"mas (?:respuestas? )?insatisf\w*)\b")),
+    ("positiva", re.compile(r"\b(?:mas positiv\w*|mejor(?:es)? (?:evaluad|calificad|valorad|opinion)\w*|"
+                            r"mas (?:respuestas? )?(?:de )?acuerdo|mas (?:respuestas? )?satisf\w*)\b")),
 )
 # «¿cuántos mencionaron la ansiedad?», «¿quiénes hablaron del estrés?»: menciones de un tema en respuestas abiertas.
 _MENCION = re.compile(r"\b(?:mencion\w*|nombr(?:an|aron|a|o)|habl(?:an|aron|a|o) (?:de|del|sobre|acerca de)|"
                       r"(?:dijeron|dicen|dijo|dice) algo (?:de|del|sobre|acerca de)|se refier\w* a|se refirieron a|"
-                      r"comentaron (?:sobre|de|del))\s+(.{1,40}?)(?=[,;?.]|\s+y\s+|\s+en\s+(?:la|el|las|los|sus)\s+|$)")
+                      r"comentaron (?:sobre|de|del))\s+(.{1,60}?)(?=[,;?.]|\s+y\s+|\s+en\s+(?:la|el|las|los|sus)\s+|$)")
 _RELLENO_MENCION = {"la", "el", "los", "las", "lo", "un", "una", "algo", "de", "del", "al", "a", "sobre", "su", "sus",
                     "tema", "temas", "que", "alguna", "algun", "vez"}
 _SEGUIMIENTO = re.compile(r"\b(?:de|entre) (?:ellos|ellas|esos|esas|estos|estas)\b")
@@ -264,6 +277,28 @@ def _filtros_sin_inventos(plan: PlanConsulta, cat: Catalogo, raices: set[str], d
         cambios["preguntas"] = preguntas
 
 
+def acotar(plan: PlanConsulta, pregunta: str, cat: Catalogo, n_catalogos: int) -> tuple[PlanConsulta, list[str]]:
+    """Último paso, con el plan ya validado y anclado (26 nov; lo destapó el manifiesto reparado, cuando el ejecutor
+    volvió a correr en todo el acervo):
+      * un conteo SIN ninguna condición es el total de respondentes: solo si la pregunta pide el total. «¿Cuántos
+        consumen alcohol o tabaco?» (nada lo mide; la condición se descartó) respondía «el instrumento tiene 90
+        respondentes» en diez instrumentos. Pasa a la ruta semántica, que dice «sin información» si nada lo trata;
+      * los IDs de pregunta, filtro o respondente se validaron contra UN catálogo (`cat`): con varios instrumentos
+        sin `instrumentos` en el plan, «p06» se calculaba en todos (p06 de una encuesta sobre aulas y p06 de una
+        entrevista sobre inclusión). Se ejecuta solo en ese catálogo."""
+    notas: list[str] = []
+    sin_condicion = not (plan.filtros or plan.preguntas or plan.nivel or plan.contexto or plan.contexto_num
+                         or plan.menciona or plan.agrupar_por or plan.respondentes)
+    if plan.intencion == "conteo_porcentaje" and sin_condicion and not _TOTAL.match(normalizar(pregunta).strip(" ?¿.!")):
+        notas.append("conteo sin condición y la pregunta no pide el total → búsqueda semántica")
+        return plan.model_copy(update={"intencion": "semantica_abierta", "consulta_semantica": pregunta}), notas
+    nombra_ids = bool(plan.preguntas or plan.filtros or plan.respondentes)
+    if nombra_ids and not plan.instrumentos and n_catalogos > 1:
+        notas.append(f"preguntas o respondentes de «{cat.titulo}»: el cálculo se hace solo en ese instrumento")
+        plan = plan.model_copy(update={"instrumentos": [cat.id]})
+    return plan, notas
+
+
 def _termino_mencionado(texto: str) -> str:
     """El tema de «mencionaron la ansiedad» / «hablaron del estrés», sin artículos («ansiedad», «estres»)."""
     m = _MENCION.search(texto)
@@ -288,10 +323,22 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
     cambios: dict = {}
     intencion = plan.intencion
 
+    # 00. El total de participantes: el plan del modelo variaba con las pistas del RAG y llegó a contestar el % de
+    # acuerdo de una pregunta (26 nov). Sin condición escrita, es un conteo sin filtros («El instrumento tiene N»).
+    if _TOTAL.match(texto.strip(" ?¿.!")):
+        if intencion != "conteo_porcentaje" or plan.filtros or plan.preguntas or plan.nivel or plan.contexto \
+                or plan.contexto_num or plan.menciona:
+            notas.append(f"intención {intencion} → conteo_porcentaje sin condiciones: la pregunta pide el total")
+        return plan.model_copy(update={"intencion": "conteo_porcentaje", "filtros": [], "preguntas": [], "nivel": None,
+                                       "contexto": {}, "contexto_num": [], "agrupar_por": None, "respondentes": [],
+                                       "aclaracion": "", "consulta_semantica": "", "menciona": "", "orden": None,
+                                       "limite": None}), notas
     # 0. Ranking de preguntas («¿en qué pregunta hubo más nulas, sin contar la de la contraseña?»): el plan solo tenía
     # el hallazgo, que da UNA pregunta y no permite excluir (Fase 6, consultas 1493, 1498 y 1529). Se revisa también
     # una aclaración: en 1529 el modelo filtró «A» en r10 y la validación lo volvió una pregunta absurda.
     criterio = _criterio_ranking(texto)
+    if criterio in ("negativa", "positiva") and cat.tipo == "prueba_estandarizada":
+        criterio = None  # los reactivos no tienen niveles de acuerdo: sin clave, no hay respuestas «negativas»
     if criterio and _PIDE_PREGUNTA.search(texto) and not enrutador._persona(texto) \
             and intencion in ("hallazgo", "resumen_pregunta", "semantica_abierta", "conteo_porcentaje", "aclaracion",
                               "ranking_preguntas"):
@@ -399,6 +446,11 @@ def anclar(plan: PlanConsulta, pregunta: str, historial: list[tuple[str, str]], 
             if plan.campos != pids and not _TODAS.search(texto):
                 cambios["campos"] = pids
                 notas.append(f"campos {', '.join(pids)} tomados de la pregunta")
+        elif intencion == "resumen_pregunta" and plan.preguntas != pids:
+            # «¿Qué opción eligieron más en el reactivo 5?»: el modelo puso r09 y la suma daba dos tablas (26 nov).
+            # En un resumen, las nombradas por número son las preguntas.
+            cambios["preguntas"] = pids
+            notas.append(f"preguntas {', '.join(pids)} tomadas de la pregunta (en lugar de {', '.join(plan.preguntas) or 'ninguna'})")
         elif not set(pids) <= set(plan.preguntas):
             cambios["preguntas"] = list(dict.fromkeys([*plan.preguntas, *pids]))
             notas.append(f"preguntas {', '.join(pids)} tomadas de la pregunta")
@@ -610,7 +662,10 @@ def _preguntas_aludidas(texto: str, cat: Catalogo) -> list[tuple[str, int]]:
     for var, valores in cat.contexto.items():  # «los hombres», «del semestre…»: son grupos, no preguntas
         contexto |= enrutador._raices(f"{var} {' '.join(valores)}")
     verbos = {v[:5] for v in enrutador._VERBOS_CONSULTA}
-    raices = {r for r in enrutador._raices(texto) - _RAICES_GENERICAS - contexto - verbos if not r[0].isdigit()}
+    # Las palabras del título nombran el instrumento, no una pregunta: «¿cómo califican las instalaciones de la ESCOM?»
+    # señalaba p15 («¿qué otra carrera… en la ESCOM?») solo por «escom» y daba su resumen (26 nov).
+    titulo = enrutador._raices(cat.titulo or "")
+    raices = {r for r in enrutador._raices(texto) - _RAICES_GENERICAS - contexto - verbos - titulo if not r[0].isdigit()}
     comunes = {pid: raices & enrutador._raices(p.texto) for pid, p in cat.preguntas.items()}
     duenos: dict[str, list[str]] = {}
     for pid, rs in comunes.items():

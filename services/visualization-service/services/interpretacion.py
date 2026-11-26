@@ -51,7 +51,7 @@ Intenciones:
 - comparar_grupos: una pregunta o nivel por grupo de contexto («por turno») o entre instrumentos.
 - hallazgo: un dato interesante, patrón, lo más llamativo o una conclusión de los datos.
 - resumen_pregunta: qué se respondió en una o varias preguntas (distribución).
-- ranking_preguntas: en qué pregunta hubo más respuestas nulas o sin contestar («criterio_ranking»: no_respuesta), donde casi todos eligieron lo mismo (coincidencia) o las respuestas más divididas (repartida).
+- ranking_preguntas: en qué pregunta hubo más respuestas nulas o sin contestar («criterio_ranking»: no_respuesta), donde casi todos eligieron lo mismo (coincidencia) las respuestas más divididas (repartida), la de más respuestas en desacuerdo o en el nivel bajo (negativa) o la de más respuestas de acuerdo o en el nivel alto (positiva).
 - kpi: KPIs asociados o qué preguntas miden un KPI.
 - semantica_abierta: contenido abierto (comentarios, opiniones, entrevistas, de qué trata el instrumento); pon \
 en «consulta_semantica» la búsqueda reformulada.
@@ -260,6 +260,8 @@ async def interpretar(pregunta: str, historial: list[tuple[str, str]], catalogos
         if catalogos:  # lo que la pregunta dice literalmente manda sobre lo que el modelo supuso
             cat = next((c for c in catalogos if c.id in plan.instrumentos), catalogos[0])
             plan, notas = anclaje.anclar(plan, pregunta, historial, cat)
+            correcciones += notas
+            plan, notas = anclaje.acotar(plan, pregunta, cat, len(catalogos))
             correcciones += notas
         resultado.plan, resultado.correcciones, resultado.error = plan, correcciones, ""
         break

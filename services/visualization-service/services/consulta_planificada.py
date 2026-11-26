@@ -111,7 +111,10 @@ async def preparar(pregunta: str, historial: list[tuple[str, str]], ids: list[st
 
     `tema`: de qué trató la respuesta anterior (seguimientos). `pistas`: lo que recuperó el RAG; `prioridad`: sus instrumentos, del más
     parecido al menos (deciden qué catálogos entran al prompt si el alcance no cabe)."""
-    instrumentos = enrutador.cargar_documentos(sesion, ids)
+    instrumentos = enrutador.cargar_documentos(sesion, ids, pregunta, prioridad)
+    # «¿Cuántos tienen beca en la encuesta de inserción laboral?»: el instrumento nombrado por su título acota el
+    # cálculo, como en el enrutador por reglas (`enrutador._alcance`); antes se calculaba en todo el alcance.
+    instrumentos = enrutador.nombrados(instrumentos, pregunta) or instrumentos
     catalogos = [construir_catalogo(i.id_crudo, i.titulo, i.tipo, i.doc) for i in instrumentos]
     interp = await interpretacion.interpretar(pregunta, historial, catalogos, tema, pistas, prioridad)
     preparada = Preparada(interp, instrumentos, catalogos)

@@ -37,6 +37,7 @@ from sqlalchemy.orm import Session
 from shared.conocimiento import consultas, sugerencias
 from shared.db.core.config import settings
 from shared.models.limpieza_ejecucion import LimpiezaEjecucion
+from shared.models.metadatos_dc import MetadatosDC
 from shared.models.respuesta_interpretada import RespuestaInterpretada
 from shared.models.version_conocimiento import VersionConocimiento
 
@@ -85,14 +86,34 @@ def _leer_documento(ruta: str) -> dict[str, Any] | None:
     return doc
 
 
-def cargar_documentos(sesion: Session, ids: list[str] | None) -> list[Instrumento]:
-    """Documentos finales vigentes del alcance (todos los del acervo si `ids` está vacío)."""
+def _puntos_titulo(raices: set[str], titulo: str) -> int:
+    return len(raices & (_raices(titulo) - _GENERICAS_TITULO))
+
+
+def cargar_documentos(sesion: Session, ids: list[str] | None, texto: str = "",
+                      prioridad: list[str] | None = None) -> list[Instrumento]:
+    """Documentos finales vigentes del alcance; a lo más `_MAX_INSTRUMENTOS`.
+
+    Con `ids` vacío (todo el acervo) se eligen ANTES de leerlos, con el título de `metadatos_dc`: primero los que la
+    pregunta (`texto`) nombra por su título, luego los que el RAG recuperó (`prioridad`, del más parecido al menos) y
+    al final el resto por id. Antes se leían los 10 de id más bajo: con 35 instrumentos, «¿cuántos tienen beca en la
+    encuesta de inserción laboral?» calculaba sobre otros diez y nunca sobre esa (26 nov)."""
     consulta = sesion.query(VersionConocimiento).filter(VersionConocimiento.estado == "vigente")
     numericos = [int(i) for i in ids or [] if str(i).isdigit()]
     if ids:
         consulta = consulta.filter(VersionConocimiento.id_crudo.in_(numericos))
+    filas = consulta.order_by(VersionConocimiento.id_crudo).all()
+    if not ids and len(filas) > _MAX_INSTRUMENTOS:
+        titulos = dict(sesion.query(MetadatosDC.id_crudo, MetadatosDC.dc_title)
+                       .filter(MetadatosDC.id_crudo.in_([f.id_crudo for f in filas])).all())
+        raices = _raices(texto) if texto else set()
+        puntos = {f.id_crudo: _puntos_titulo(raices, titulos.get(f.id_crudo) or "") for f in filas}
+        maximo = max(puntos.values(), default=0)
+        orden = {str(i): n for n, i in enumerate(prioridad or [])}
+        filas.sort(key=lambda f: (not (maximo >= 2 and puntos[f.id_crudo] == maximo),
+                                  orden.get(str(f.id_crudo), len(orden)), f.id_crudo))
     instrumentos: list[Instrumento] = []
-    for fila in consulta.order_by(VersionConocimiento.id_crudo).limit(_MAX_INSTRUMENTOS):
+    for fila in filas[:_MAX_INSTRUMENTOS]:
         doc = _leer_documento(fila.ruta_documento) if fila.ruta_documento else None
         if doc:
             ins = doc.get("instrumento") or {}
@@ -1214,7 +1235,7 @@ def _kpi_mencionado(doc: dict[str, Any], texto: str) -> dict[str, Any] | None:
 def nombrados(instrumentos: list[Instrumento], texto: str) -> list[Instrumento]:
     """Los instrumentos que la pregunta nombra por su título («la encuesta de carga académica»)."""
     raices = _raices(texto)
-    puntos = {ins.id_crudo: len(raices & (_raices(ins.titulo) - _GENERICAS_TITULO)) for ins in instrumentos}
+    puntos = {ins.id_crudo: _puntos_titulo(raices, ins.titulo) for ins in instrumentos}
     maximo = max(puntos.values(), default=0)
     return [ins for ins in instrumentos if maximo >= 2 and puntos[ins.id_crudo] == maximo]
 
@@ -1230,7 +1251,7 @@ def por_ordinal(instrumentos: list[Instrumento], texto: str) -> list[Instrumento
 
 
 def _alcance(sesion: Session, ids: list[str] | None, texto: str) -> list[Instrumento]:
-    instrumentos = cargar_documentos(sesion, ids)
+    instrumentos = cargar_documentos(sesion, ids, texto)
     return por_ordinal(instrumentos, texto) or nombrados(instrumentos, texto) or instrumentos
 
 
@@ -1265,7 +1286,7 @@ def resolver(pregunta: str, sesion: Session, ids: list[str] | None) -> Resultado
     intencion = detectar(pregunta)
     if intencion is None:
         return None
-    todos = cargar_documentos(sesion, ids)
+    todos = cargar_documentos(sesion, ids, pregunta)
     elegido = por_ordinal(todos, intencion.texto)
     instrumentos = elegido or nombrados(todos, intencion.texto) or todos
     resultado = _juntar(intencion, _ejecutar_todos(intencion, instrumentos, sesion))

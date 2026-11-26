@@ -707,7 +707,7 @@ _DECISIONES_REUTILIZABLES = {dominio.DENTRO, dominio.AYUDA}
 # Súbelo cuando cambie cómo se calculan o redactan las respuestas (enrutador, consultas):
 # las guardadas con la versión anterior dejan de reutilizarse. Las reglas del prompt
 # (`prompt.SISTEMA`) ya entran en la huella.
-_VERSION_RESPUESTAS = 52  # 52: aviso visible de cifras sin respaldo en la redacción libre; 51: sin la regla 17 (no servía); 50: resumen de la pregunta cuando solo entran respuestas de personas sueltas; 49: regla 17 (respuestas de una sola persona no se generalizan) y citas por oración; 48: en entrevistas la pregunta guía (1 por instrumento) y los KPI no ocupan los lugares de datos; 47: umbral de similitud 0.55 (calibrado con el conjunto de desarrollo); 46: hallazgo que nombra una pregunta → sus respuestas o su distribución; conteo con la pregunta sin condición; 45: preguntas dobles (dos conteos o dos grupos de una variable); 44: conteos por el tipo de la pregunta aludida, resumen por grupo, base de dos condiciones y comparaciones de contexto inventadas fuera; 43: filtros cuyo valor es un grupo de contexto (perfil de entrevistados) pasan a condición de contexto; 42: búsqueda híbrida (significado + palabras, RRF); 41: «¿qué significa eso?» usa el seguimiento si la interpretación no retoma el plan; 40: búsqueda semántica con la pregunta original si la reescrita se parece menos; «¿qué significa eso?» interpreta el resultado; 39: pistas de la interpretación con los fragmentos cercanos y personas de la evidencia en los seguimientos; 38: seguimientos tras una aclaración y sin muletillas del prompt; 37: seguimientos de inferencia con la evidencia de la respuesta anterior; 36: umbral 0.65, similitud en cada tarjeta y hallazgos sin relación también dentro de una conversación; 35: umbral 0.70 sin relleno bajo el umbral y hallazgos de un tema sin relación → sin información; 34: regla 16 también pide variar «esto sugiere»; 33: regla 16 del prompt (interpretar con sus palabras, sin abrir siempre con «según el contexto»); 32: catálogo de la interpretación dentro del contexto; 31: citas [Fuente n] añadidas a las líneas que salen claramente de una fuente cuando el modelo no citó; 30: solo las fuentes que la respuesta usó (citadas o del resultado calculado); 29: cada fuente trae sus pasajes (trazabilidad: parte del documento, similitud y posición); 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
+_VERSION_RESPUESTAS = 53  # 53: total de participantes, ranking por respuestas negativas/positivas, menciones sin plural ni palabras funcionales (y sin cero falso si el RAG encuentra el tema), instrumento nombrado por título acota el cálculo, distribución de reactivos en el resumen y título fuera de la pregunta aludida; 52: aviso visible de cifras sin respaldo en la redacción libre; 51: sin la regla 17 (no servía); 50: resumen de la pregunta cuando solo entran respuestas de personas sueltas; 49: regla 17 (respuestas de una sola persona no se generalizan) y citas por oración; 48: en entrevistas la pregunta guía (1 por instrumento) y los KPI no ocupan los lugares de datos; 47: umbral de similitud 0.55 (calibrado con el conjunto de desarrollo); 46: hallazgo que nombra una pregunta → sus respuestas o su distribución; conteo con la pregunta sin condición; 45: preguntas dobles (dos conteos o dos grupos de una variable); 44: conteos por el tipo de la pregunta aludida, resumen por grupo, base de dos condiciones y comparaciones de contexto inventadas fuera; 43: filtros cuyo valor es un grupo de contexto (perfil de entrevistados) pasan a condición de contexto; 42: búsqueda híbrida (significado + palabras, RRF); 41: «¿qué significa eso?» usa el seguimiento si la interpretación no retoma el plan; 40: búsqueda semántica con la pregunta original si la reescrita se parece menos; «¿qué significa eso?» interpreta el resultado; 39: pistas de la interpretación con los fragmentos cercanos y personas de la evidencia en los seguimientos; 38: seguimientos tras una aclaración y sin muletillas del prompt; 37: seguimientos de inferencia con la evidencia de la respuesta anterior; 36: umbral 0.65, similitud en cada tarjeta y hallazgos sin relación también dentro de una conversación; 35: umbral 0.70 sin relleno bajo el umbral y hallazgos de un tema sin relación → sin información; 34: regla 16 también pide variar «esto sugiere»; 33: regla 16 del prompt (interpretar con sus palabras, sin abrir siempre con «según el contexto»); 32: catálogo de la interpretación dentro del contexto; 31: citas [Fuente n] añadidas a las líneas que salen claramente de una fuente cuando el modelo no citó; 30: solo las fuentes que la respuesta usó (citadas o del resultado calculado); 29: cada fuente trae sus pasajes (trazabilidad: parte del documento, similitud y posición); 28: RAG primero (recuperación antes de interpretar, aclaraciones respondidas con lo recuperado, texto recuperado en toda respuesta calculada y en las reglas, filtros redactados); 27: RAG + cálculo (texto recuperado en las respuestas del plan), respuestas de una persona interpretadas por el modelo, varios patrones, patrones de entrevistas desde el texto y tema anterior en los seguimientos; 26: filtros inventados se quitan antes de validar, variables de sí/no nombradas, calificación de pruebas por la regla y redacción sin lenguaje de calificación (Fase 6, tercera corrida); 25: alcance con datos de contexto, aclaración en seguimientos, anclaje de verdadero/falso, comparaciones sobre el contexto numérico y ranking de preguntas con exclusiones , conteo de menciones en respuestas abiertas y calidad con las correcciones de la limpieza (Fase 6); 24: interpretación con plan JSON, ejecutor y redacción por intención; 4: ficha completa; 5: posturas de entrevistas; 6: conteo obligatorio en posturas y filtros; 8: estructura (listado sin LLM); 9: singular en el listado; 10: descripción y relación de instrumentos; 11: descripción sin LLM; 12: descripción y patrones redactados y verificados; 13: objetivos por separado en la relación; 14: afirmaciones verificadas antes de mostrar; 15: descripción con listado y métrica por construcción; 16: juez qwen2.5:3b; 17: sin verificación no se muestra la redacción; 18: patrones con el cálculo directo; 19: reactivos de pruebas en el orden de la hoja; 20: correcciones del banco (selección múltiple, conteo de filtros, rutas); 21: pruebas sin calificar; 22: más formas de pedir la descripción y el instrumento por número; 23: filtros con condición «sí» implícita y aviso de condición faltante
 
 
 def clave_cache(peticion: ChatRequest, modelo: str) -> str | None:
@@ -1064,9 +1064,12 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
         # lugar del % del grupo calculado (auditoría de la Fase 3): fuera de los KPIs los fragmentos llegan sin cifras
         # y las cifras salen solo del cálculo.
         propios = {i.id_crudo for i in resultado.instrumentos}
-        fragmentos = ([f for f in fragmentos if f["instrumentoId"] in propios][:3]
-                      or [f for f in recuperados if f["instrumentoId"] in propios][:3]
-                      or (_fichas(resultado.instrumentos) if resultado.consulta in _SOBRE_EL_INSTRUMENTO else []))
+        # «¿De qué trata esta encuesta?»: la respuesta sale de la ficha; la tarjeta mostraba respondentes sueltos que
+        # la búsqueda trajo y no la ficha de donde salió (26 nov). En lo que es sobre el instrumento, la ficha va primero.
+        fichas = _fichas(resultado.instrumentos) if resultado.consulta in _SOBRE_EL_INSTRUMENTO else []
+        fragmentos = (fichas
+                      or [f for f in fragmentos if f["instrumentoId"] in propios][:3]
+                      or [f for f in recuperados if f["instrumentoId"] in propios][:3])
         if resultado.consulta not in _CONSULTAS_MIXTAS:
             fragmentos = [{**f, "fragmento": _sin_cifras(f["fragmento"])} for f in fragmentos]
     # El glosario solo entra en preguntas de definición («qué es», «qué significa»…) que
@@ -1115,7 +1118,11 @@ async def _planear(peticion: ChatRequest, estado: dict[str, Any]) -> Plan:
         plan.ruta = "semantica"
         plan.fuentes = _numerar(fragmentos, consulta_kpi=bool(re.search(r"\bkpis?\b|indicador", dominio.normalizar(pregunta))))
         if not fragmentos and not glosario:
-            if score < settings.RAG_FUERA_MAX:  # nada del acervo, del glosario ni de los KPIs se le parece
+            # Si la interpretación entendió una consulta sobre los datos (conteo, menciones, filtro…) que no dio
+            # resultado, es del dominio aunque nada se le parezca: «¿quiénes mencionaron sentirse solos?» respondía
+            # «solo puedo responder sobre los instrumentos…» (26 nov). Es «sin información».
+            sobre_datos = ((registro or {}).get("plan") or {}).get("intencion") in ESTRUCTURADAS
+            if score < settings.RAG_FUERA_MAX and not sobre_datos:  # nada del acervo, del glosario ni de los KPIs se le parece
                 plan.decision, plan.motivo = dominio.FUERA, f"similitud máxima {score:.2f} < {settings.RAG_FUERA_MAX}"
                 plan.fija = dominio.mensaje(dominio.FUERA, _tipos_alcance(ids))
             else:
@@ -1226,6 +1233,8 @@ def _plan_desde_preparada(preparada: "consulta_planificada.Preparada", pregunta:
                                      for n, e in enumerate(ejecuciones, start=1))
         plan.respuesta_directa = "\n".join(f"- {f['fragmento']} [Fuente {f['numero']}]" for f in apoyo[:3])
         plan.admite_negativa = False
+    if plan.admite_negativa and _mencion_sin_eco(p, score_rag):
+        return None
     if plan.admite_negativa:  # sin resultados: se dice tal cual, sin redacción («nunca rellena»)
         plan.motivo = f"plan:{p.intencion}:vacio"
         plan.fija, plan.literal = plan.respuesta_directa, True
@@ -1317,6 +1326,18 @@ def _plan_seguimiento(pregunta: str, peticion: ChatRequest, ids: list[str],
     return plan
 
 
+def _mencion_sin_eco(p: Any, score_rag: float | None) -> bool:
+    """¿Un «nadie lo mencionó» que el RAG contradice? La mención se busca por raíces literales: «¿quién tuvo que
+    trabajar para pagar la escuela?» no encuentra «trabajo medio tiempo para pagar mis estudios». Si el RAG sí
+    recuperó texto sobre el umbral, afirmar «0 de 28» sería un cero falso (26 nov, «becas» en una entrevista donde
+    varios hablan de su beca): la pregunta sigue por la ruta semántica, que responde con ese texto y lo cita.
+    Tampoco se afirma con 2+ palabras de contenido («falta de financiamiento»: 0 de 25 donde 25 fragmentos hablan del financiamiento): exigirlas todas juntas no prueba que nadie lo dijo
+    («trabajar para pagar la escuela»: 0 de 40 donde 24 hablan de trabajar mientras estudian)."""
+    if not p.menciona:
+        return False
+    return len(ejecutor._raices_termino(p.menciona)) >= 2 or (score_rag is not None and score_rag >= settings.RAG_MIN_SCORE)
+
+
 def _hallazgo_sin_relacion(intencion: str, pregunta: str, seguimiento: bool, score_rag: float | None) -> bool:
     """¿Un «hallazgo» que responde a un TEMA que nada del alcance trata? El plan elegía hallazgos del instrumento
     aunque no hablara del tema (10 nov: «¿qué estrategias usan los estudiantes para mejorar su rendimiento?» con un
@@ -1398,7 +1419,21 @@ def _pulir(texto: str, plan: Plan | None = None) -> str:
     if plan is not None:
         texto = quitar_citas_inventadas(texto, plan.referencias)
         texto = _CORCHETE_NO_CITA.sub("", texto)
+        texto = _sin_citas_sueltas(texto)
     return dominio.tachar_datos_personales(texto)
+
+
+_LINEA_SOLO_CITA = re.compile(r"^[ \t]*(?:\[Fuente \d+\][ \t.]*)+$", re.MULTILINE)
+
+
+def _sin_citas_sueltas(texto: str) -> str:
+    """Quita las líneas que son solo «[Fuente n]» cuando esa fuente ya está citada junto a lo que dijo: al final de
+    la respuesta no señalaba ninguna afirmación (26 nov). Si es la única cita, se queda."""
+    def quitar(m: re.Match) -> str:
+        resto = texto[:m.start()] + texto[m.end():]
+        return "" if all(c in resto for c in re.findall(r"\[Fuente \d+\]", m.group(0))) else m.group(0)
+    limpio = _LINEA_SOLO_CITA.sub(quitar, texto)
+    return re.sub(r"\n{3,}", "\n\n", limpio).rstrip() if limpio != texto else texto
 
 
 _CONSULTAS_MIXTAS = {"kpi", "kpi_preguntas"}
@@ -1644,7 +1679,7 @@ async def responder(peticion: ChatRequest):
         else:
             respuesta, degradado = await ollama_client.generar_no_stream(plan.texto_prompt, modelo, sistema=prompt.SISTEMA)
             respuesta = _pulir(respuesta, plan)
-            _anotar_cifras_semanticas(plan, respuesta)
+            _anotar_cifras_semanticas(plan, respuesta, peticion.pregunta)
     finally:
         evaluacion.chat_termina()
     fuentes, usados, respuesta = _fuentes_finales(plan, respuesta)
@@ -1657,10 +1692,13 @@ async def responder(peticion: ChatRequest):
                         consultaId=consulta_id)
 
 
-def _anotar_cifras_semanticas(plan: Plan, respuesta: str) -> None:
+def _anotar_cifras_semanticas(plan: Plan, respuesta: str, pregunta: str = "") -> None:
     """En la ruta semántica la respuesta ya se transmitió: las cifras sin respaldo en los fragmentos se anotan en
-    rag_log.plan (y salen en las métricas como «cifra sin respaldo») en lugar de retirarse."""
+    rag_log.plan (y salen en las métricas como «cifra sin respaldo») en lugar de retirarse. Las cifras que escribió el
+    usuario («la pregunta 3») no son inventadas: el aviso las marcaba (26 nov)."""
     contextos = [c["texto"] for c in plan.contexto_usado()]
+    if contextos and pregunta:
+        contextos.append(pregunta)
     sin = evaluacion.cifras_sin_sustento(respuesta, contextos) if contextos else []
     plan.plan_consulta = {**(plan.plan_consulta or {}), "verificacion": {
         "resultado": "cifras_sin_respaldo" if sin else "aceptada", "cifras_sin_sustento": sin}}
@@ -1699,6 +1737,11 @@ def _fuentes_finales(plan: Plan, respuesta: str) -> tuple[list[FuenteChatOut], i
         f.similitud = max(scores) if scores else plan.similitudes.get(str(f.instrumentoId))
     if plan.fija is None and not plan.resultado:
         respuesta = trazabilidad.citar(respuesta, fuentes)
+    elif plan.fija is None and len(fuentes) == 1 and "[Fuente" not in respuesta:
+        # Resultado calculado de un solo instrumento que el redactor no citó («13 estudiantes tienen beca…», 26 nov):
+        # la cita va al final del primer párrafo, que es donde dice el resultado.
+        primero, sep, resto = respuesta.partition("\n\n")
+        respuesta = f"{primero.rstrip()} [Fuente {fuentes[0].numero}]{sep}{resto}"
     return trazabilidad.citadas(fuentes, respuesta, plan.resultado), plan.usados, respuesta
 
 
@@ -1756,7 +1799,7 @@ async def _sse_generar(pregunta: str, modelo: str, plan: Plan, inicio: float, cl
         if resto:
             yield _evento("token", {"t": _pulir(resto, plan)})
         respuesta = _pulir(final, plan)
-        _anotar_cifras_semanticas(plan, respuesta)
+        _anotar_cifras_semanticas(plan, respuesta, pregunta)
     transmitida = respuesta
     fuentes, usados, respuesta = _fuentes_finales(plan, respuesta)
     respuesta = _aviso_cifras(plan, respuesta)
